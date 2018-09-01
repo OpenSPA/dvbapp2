@@ -235,7 +235,10 @@ class EPGPathsSetup(Screen,ConfigListScreen):
 
 				requires = x.get("requires")
 				if requires and requires.startswith('config.'):
-					item = eval(requires or "")
+					try:
+						item = eval(requires or "")
+					except:
+						continue
 					if item.value and not item.value == "0":
 						SystemInfo[requires] = True
 					else:
@@ -249,7 +252,10 @@ class EPGPathsSetup(Screen,ConfigListScreen):
 
 				item_text = item_text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
-				b = eval(x.text or "")
+				try:
+					b = eval(x.text or "")
+				except:
+					b = ""
 				if b == "":
 					continue
 				#add to configlist
