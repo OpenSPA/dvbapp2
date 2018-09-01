@@ -189,6 +189,7 @@ class EPGScreen(Screen, ConfigListScreen):
 
 		self.list.append(getConfigListEntry(_('EPG location'), config.misc.epgcachepath))
 		self.list.append(getConfigListEntry(_("EPG file name"), config.misc.epgcachefilename))
+		self.list.append(getConfigListEntry(_('Show EIT now/next in infobar'), config.usage.show_eit_nownext))
 		self.list.append(getConfigListEntry(_('Enable EIT EPG'), config.epg.eit))
 		self.list.append(getConfigListEntry(_('Enable MHW EPG'), config.epg.mhw))
 		self.list.append(getConfigListEntry(_('Enable freesat EPG'), config.epg.freesat))
@@ -197,6 +198,10 @@ class EPGScreen(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_('Enable Virgin EPG'), config.epg.virgin))
 		self.list.append(getConfigListEntry(_('Maximum number of days in EPG'), config.epg.maxdays))
 		self.list.append(getConfigListEntry(_('Maintain old EPG data for'), config.epg.histminutes))
+		self.list.append(getConfigListEntry(_('Include EIT in http streams'), config.streaming.stream_eit))
+		self.list.append(getConfigListEntry(_('Include AIT in http streams'), config.streaming.stream_ait))
+		self.list.append(getConfigListEntry(_('Country for EPG event rating information'), config.misc.epgratingcountry))
+		self.list.append(getConfigListEntry(_('Country for EPG event genre information'), config.misc.epggenrecountry))
 		self.list.append(getConfigListEntry(_('Time to wait in the channel for EPG download (secs)'), config.epg.mhw.wait))
 
 		self['config'].list = self.list
