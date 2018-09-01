@@ -1,0 +1,27 @@
+<screen position="0,0" size="400,240">
+        <widget source="session.RecordState" render="Label" position="130,160" size="146,75" font="LCD; 70" halign="left" foregroundColor="#0065b0fe" transparent="1" zPosition="1" valign="center">
+		<convert type="wheaterSpzVfd">TemperaturaGrados</convert>
+	</widget>
+	<widget source="session.RecordState" render="spzWfLcd" position="5,140" size="110,110" zPosition="1" transparent="1" alphatest="blend">
+		<convert type="wheaterSpzVfd">IconoHoyLcd</convert>
+	</widget>	
+        <widget source="global.CurrentTime" render="Label" position="10,5" foregroundColor="#0065b0fe" size="600,120" font="LCD;60" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%d  %m  %Y,</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="300,5" foregroundColor="#0065b0fe" size="200,120" font="LCD;60" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%a</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="45,50" size="250,115" font="LCD; 112" foregroundColor="#0065b0fe" valign="left" halign="right" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%H:%M</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="320,100" size="65,70" font="LCD; 60" foregroundColor="#0065b0fe" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%S</convert>
+	</widget>
+	<widget source="session.RecordState" render="Pixmap" position="344,204" size="54,30" pixmap="display/skin_default/vfd_icon_rec.png" zPosition="4">
+	        <convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+	<widget source="session.RecordState" render="Pixmap" position="351,204" size="30,30" pixmap="display/skin_default/vfd_icon_timer.png" alphatest="blend" zPosition="4">
+		<convert type="info_timerno" />
+	</widget>
+	
+</screen>

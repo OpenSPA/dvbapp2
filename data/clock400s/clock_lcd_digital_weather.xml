@@ -1,0 +1,34 @@
+<screen position="0,0" size="400,240">
+	<ePixmap pixmap="display/clock_skin/digital_lcd_weather.png" position="0,0" size="400,240" zPosition="0" />
+	<!--<widget source="session.CurrentService" render="Label" position="2045,2045" size="1,1" font="RegularHD; 18" halign="left" transparent="1" noWrap="1" borderColor="black" borderWidth="1" valign="center">
+		<convert type="wheaterSpz">Lugar</convert>
+	</widget>
+	<widget source="session.CurrentService" render="Label" position="1734,66" size="98,36" font="RegularHD; 16" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" zPosition="4" noWrap="1" valign="center" borderColor="black" borderWidth="1">
+		<convert type="wheaterSpz">TextoHoy</convert>
+	</widget>-->
+	<widget source="session.RecordState" render="Pixmap" position="344,204" size="54,30" pixmap="display/skin_default/vfd_icon_rec.png" zPosition="4">
+	        <convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+	<widget source="session.RecordState" render="Pixmap" position="351,204" size="30,30" pixmap="display/skin_default/vfd_icon_timer.png" alphatest="blend" zPosition="4">
+		<convert type="info_timerno" />
+	</widget>	
+        <widget source="session.RecordState" render="Label" position="260,150" size="146,75" font="Bold1; 58" halign="left" foregroundColor="white" transparent="1" zPosition="4" valign="center">
+		<convert type="wheaterSpzVfd">TemperaturaGrados</convert>
+	</widget>
+	<widget source="session.RecordState" render="spzWfLcd" position="130,134" size="125,125" zPosition="4" transparent="1" alphatest="blend">
+		<convert type="wheaterSpzVfd">IconoHoyLcd</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="10,148" foregroundColor="white" size="145,90" font="Bold1;36" halign="center" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%a</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="10,190" foregroundColor="white" size="145,50" font="Bold1;36" halign="center" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%b %d</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="30,2" size="150,150" font="Bold1; 96" foregroundColor="black" valign="center" halign="right" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%H</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="209,2" size="150,150" font="Bold1; 96" foregroundColor="black" valign="center" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%M</convert>
+	</widget>
+
+</screen>

@@ -1,0 +1,38 @@
+<screen position="0,0" size="400,240">
+	<ePixmap pixmap="display/clock_skin/analog_lcd_black.png" position="0,0" size="400,240" zPosition="0" />
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="400,240" hColor="white" linewidth="6" zPosition="40" alphatest="on">
+		<convert type="OMaclock">Hours</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="400,240" mColor="white" linewidth="5" zPosition="30" alphatest="on">
+		<convert type="OMaclock">Minutes</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="400,240" sColor="#003f7cf6" linewidth="3" zPosition="20" alphatest="on">
+		<convert type="OMaclock">Seconds</convert>
+	</widget>
+    <widget source="session.RecordState" render="Pixmap" position="82,148" size="30,30" pixmap="display/clock_skin/vfd_icon_timer.png" alphatest="blend" zPosition="2">
+      <convert type="info_timerno" />
+    </widget>
+<!-- extra hora -->
+
+    <widget source="global.CurrentTime" render="Label" position="113,134" size="84,60" font="Regular; 43" halign="right" transparent="1" valign="center" backgroundColor="black" foregroundColor="#00777777" noWrap="1" zPosition="1">
+      <convert type="ClockToText">Format:%H</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="205,134" size="75,60" font="Regular; 38" halign="left" transparent="1" valign="center" backgroundColor="black" foregroundColor="#00777777" noWrap="1" zPosition="1">
+      <convert type="ClockToText">Format:%M</convert>
+    </widget>
+	<widget source="global.CurrentTime" render="Label" position="0,54" size="400,44" font="Regular; 28" halign="center" transparent="1" foregroundColor="#00777777" noWrap="1" zPosition="1">
+	  <convert type="ClockToText">Format:%d %b</convert>
+	</widget>
+
+	<widget source="session.RecordState" position="28,134" render="FixedLabel" size="344,60" valign="center" halign="left" zPosition="10" backgroundColor="black" foregroundColor="black" font="Regular; 35" transparent="0" noWrap="1">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	<!-- info record -->
+	<widget source="session.RecordState" position="31,153" render="FixedLabel" size="20,20" valign="center" halign="left" zPosition="11" backgroundColor="red" foregroundColor="black" transparent="0" noWrap="1">
+			<convert type="ConditionalShowHide" />
+		</widget>
+
+	<widget source="session.RecordState" position="57,141" render="RunningTextSpa" options="movetype=swimming,startpoint=0,direction=left,steptime=20,repeat=10,always=0,oneshot=0,startdelay=10000,pause=10000,backtime=4" size="313,44" valign="center" halign="left" zPosition="12" backgroundColor="black" foregroundColor="#00ffb4b4" font="Regular; 33" transparent="1" noWrap="1">
+			  <convert type="infoRecBm">NombreyCanal</convert>
+			</widget>
+</screen>

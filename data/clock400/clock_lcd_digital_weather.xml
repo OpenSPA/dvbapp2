@@ -1,0 +1,26 @@
+<screen position="0,0" size="400,240">
+	<ePixmap pixmap="display/clock_skin/clock_lcd_digital_weather.png" position="0,0" size="400,240" zPosition="0" />
+	<widget source="session.RecordState" render="Pixmap" position="344,204" size="54,30" pixmap="display/skin_default/vfd_icon_rec.png" zPosition="4">
+	        <convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+	<widget source="session.RecordState" render="Pixmap" position="351,204" size="30,30" pixmap="display/skin_default/vfd_icon_timer.png" alphatest="blend" zPosition="4">
+		<convert type="info_timerno" />
+	</widget>	
+        <widget source="session.RecordState" render="Label" position="254,180" size="146,75" font="Bold1; 48" halign="left" foregroundColor="white" transparent="1" zPosition="4" valign="center">
+		<convert type="wheaterSpzVfd">TemperaturaGrados</convert>
+	</widget>
+        <widget source="session.RecordState" render="Label" position="2,190" size="240,58" font="Bold1; 32" valign="center" halign="right" zPosition="1" transparent="1" foregroundColor="gray">
+	        <convert type="wheaterSpzVfd">Lugar</convert>
+        </widget>
+	<widget source="global.CurrentTime" render="Label" position="2,148" foregroundColor="white" size="396,90" font="Bold1;30" halign="center" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%A, %d/%m/%Y</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="30,2" size="150,150" font="Bold1; 96" foregroundColor="black" valign="center" halign="right" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%H</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="209,2" size="150,150" font="Bold1; 96" foregroundColor="black" valign="center" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%M</convert>
+	</widget>
+
+</screen>
+                                          

@@ -1,0 +1,17 @@
+<screen position="0,0" size="800,480">
+	<widget source="global.CurrentTime" render="Label" position="50,45" foregroundColor="#0065b0fe" size="600,120" font="LCD;100" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%d   %m   %Y</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="630,45" foregroundColor="#0065b0fe" size="200,120" font="LCD;100" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%a</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="30,187" size="460,200" font="LCD; 180" foregroundColor="#0065b0fe" valign="center" halign="right" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%H:%M</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="Label" position="500,267" size="130,100" font="LCD; 100" foregroundColor="#0065b0fe" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%S</convert>
+	</widget>
+	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="40,360" size="70,70" zPosition="4" alphatest="blend">
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+</screen>

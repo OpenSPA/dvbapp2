@@ -1,0 +1,29 @@
+  <screen position="0,0" size="400,240">
+		<widget source="session.spaUpdates" render="Pixmap" position="364,3" size="32,32" pixmap="display/clock_skin/vfd_icon_upt.png" zPosition="5">
+		  <convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.RecordState" position="71,196" render="RunningTextSpa" options="movetype=swimming,startpoint=0,direction=left,steptime=20,repeat=10,always=0,oneshot=0,startdelay=10000,pause=10000,backtime=4" size="333,44" valign="center" halign="left" zPosition="0" backgroundColor="black" foregroundColor="white" font="Regular; 33" transparent="1" noWrap="1">
+		  <convert type="infoRecBm">Canal</convert>
+		</widget>
+		<widget source="session.RecordState" position="6,153" render="Label" size="402,44" valign="center" halign="left" zPosition="5" backgroundColor="black" foregroundColor="#00ff4c4c" font="Regular; 36" transparent="1" noWrap="1">
+		  <convert type="infoRecBm">Restan</convert>
+		</widget>
+		<widget source="session.RecordState" position="6,153" render="FixedLabel" size="402,44" valign="center" halign="left" zPosition="4" backgroundColor="black" font="Regular; 35" transparent="0" noWrap="1">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" position="5,204" size="54,30" pixmap="display/clock_skin/vfd_icon_rec.png" zPosition="4">
+		  <convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="display/clock_skin/vfd_icon_timer.png" position="11,204" size="30,30" zPosition="-1">
+		  <convert type="info_timerno" />
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="7,153" size="392,44" font="Regular; 32" halign="center" transparent="1" foregroundColor="#00777777" noWrap="1">
+		  <convert type="ClockToText">Format:%d %B</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,4" size="198,140" font="Regular; 62" halign="right" transparent="1" valign="center" backgroundColor="background" foregroundColor="silver" noWrap="1">
+		  <convert type="ClockToText">Format:%H</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="209,4" size="196,140" font="Regular; 54" halign="left" transparent="1" valign="center" backgroundColor="background" foregroundColor="silver">
+		  <convert type="ClockToText">Format:%M</convert>
+		</widget>
+	</screen>	

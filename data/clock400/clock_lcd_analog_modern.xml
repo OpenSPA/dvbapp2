@@ -1,0 +1,46 @@
+<screen position="0,0" size="400,240">
+	<ePixmap pixmap="display/clock_skin/analog_lcd_min.png" position="18,0" size="363,200" zPosition="0" />
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="18,0" size="363,200" hColor="white" linewidth="6" zPosition="40" alphatest="on">
+		<convert type="OMaclock">Hours</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="18,0" size="363,200" mColor="white" linewidth="5" zPosition="30" alphatest="on">
+		<convert type="OMaclock">Minutes</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="18,0" size="363,200" sColor="red" linewidth="3" zPosition="20" alphatest="on">
+		<convert type="OMaclock">Seconds</convert>
+	</widget>
+<!-- extra clock -->
+	<widget source="session.RecordState" position="0,193" render="FixedLabel" size="402,49" valign="center" halign="left" zPosition="10" backgroundColor="black" foregroundColor="black" font="Regular; 35" transparent="0" noWrap="1">
+		<convert type="ConditionalShowHide" />
+	</widget>	
+
+<!-- hora actual -->
+
+    <widget source="global.CurrentTime" render="Label" position="55,197" size="75,44" font="Regular; 40" halign="right" transparent="1" valign="center" backgroundColor="black" foregroundColor="silver" noWrap="1" zPosition="1">
+      <convert type="ClockToText">Format:%H</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="137,197" size="75,44" font="Regular; 37" halign="left" transparent="1" valign="center" backgroundColor="black" foregroundColor="silver" noWrap="1" zPosition="1">
+      <convert type="ClockToText">Format:%M</convert>
+    </widget>
+    
+    <widget source="session.RecordState" render="Pixmap" position="10,204" size="30,30" pixmap="display/clock_skin/vfd_icon_timer.png" alphatest="blend" zPosition="2">
+      <convert type="info_timerno" />
+    </widget>
+    <widget source="session.spaUpdates" render="Pixmap" position="362,202" size="42,34" pixmap="display/clock_skin/vfd_icon_upt.png" zPosition="2">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="210,196" size="144,39" font="Regular; 30" halign="left" transparent="1" foregroundColor="#00777777" zPosition="1">
+      <convert type="ClockToText">Format:%d-%b</convert>
+    </widget>
+
+<!-- rec info -->
+
+		<widget source="session.RecordState" position="70,201" render="RunningTextSpa" options="movetype=swimming,startpoint=0,direction=left,steptime=20,repeat=10,always=0,oneshot=0,startdelay=10000,pause=10000,backtime=4" size="333,44" valign="center" halign="left" zPosition="12" backgroundColor="black" foregroundColor="#00ffc4c4c4" font="Regular; 33" transparent="1" noWrap="1">
+		  <convert type="infoRecBm">NombreyCanal</convert>
+		</widget>
+		
+		
+		<widget source="session.RecordState" render="Pixmap" position="4,209" size="54,30" pixmap="display/clock_skin/vfd_icon_rec.png" zPosition="14">
+		  <convert type="ConditionalShowHide" />
+		</widget>
+</screen>

@@ -1,0 +1,1873 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: spaTeam\n"
+"POT-Creation-Date: 2017-05-21 19:47+0200\n"
+"PO-Revision-Date: 2017-05-21 19:48+0200\n"
+"Last-Translator: pe.tardo <pe.thardo@gmail.com>\n"
+"Language-Team: OpenSPA <openspa.info>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+"Language: es_ES\n"
+
+#: CamStart.py:14 SoftcamPanel.py:33
+msgid "0 (disabled)"
+msgstr "0 (deshabilitado)"
+
+#: CamStart.py:15 SoftcamPanel.py:34
+msgid "1"
+msgstr "1"
+
+#: CamStart.py:16 SoftcamPanel.py:35
+msgid "3"
+msgstr "3"
+
+#: CamStart.py:17 SoftcamPanel.py:36
+msgid "5 (default)"
+msgstr "5 (por defecto)"
+
+#: CamStart.py:18 SoftcamPanel.py:37
+msgid "10"
+msgstr "10"
+
+#: CamStart.py:22 SoftcamPanel.py:41
+msgid "5"
+msgstr "5"
+
+#: CamStart.py:23 SoftcamPanel.py:42
+msgid "10 (default)"
+msgstr "10 (por defecto)"
+
+#: CamStart.py:24 SoftcamPanel.py:43
+msgid "20"
+msgstr "20"
+
+#: CamStart.py:25 SoftcamPanel.py:44
+msgid "30"
+msgstr "30"
+
+#: CamStart.py:26 SoftcamPanel.py:45
+msgid "60"
+msgstr "60"
+
+#: CamStart.py:27 SoftcamPanel.py:46
+msgid "120"
+msgstr "120"
+
+#: CamStart.py:28 SoftcamPanel.py:47
+msgid "240"
+msgstr "240"
+
+#: CamStart.py:32 SoftcamPanel.py:51
+msgid "Python Camstarter (default)"
+msgstr "Inicio Cam python (por defecto)"
+
+#: CamStart.py:33 SoftcamPanel.py:52
+msgid "Init.d"
+msgstr "Init.d"
+
+#: CronManager.py:17
+msgid "Custom"
+msgstr "Personalizado"
+
+#: CronManager.py:17
+msgid "Predefined"
+msgstr "Predefinido"
+
+#: CronManager.py:21
+msgid "Hourly"
+msgstr "Cada hora"
+
+#: CronManager.py:21
+msgid "Daily"
+msgstr "Diariamente"
+
+#: CronManager.py:21
+msgid "Weekly"
+msgstr "Semanalmente"
+
+#: CronManager.py:21
+msgid "Monthly"
+msgstr "Mensualmente"
+
+#: CronManager.py:22
+msgid "Monday"
+msgstr "Lunes"
+
+#: CronManager.py:22
+msgid "Tuesday"
+msgstr "Martes"
+
+#: CronManager.py:22
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: CronManager.py:22
+msgid "Thursday"
+msgstr "Jueves"
+
+#: CronManager.py:22
+msgid "Friday"
+msgstr "Viernes"
+
+#: CronManager.py:22
+msgid "Saturday"
+msgstr "Sábado"
+
+#: CronManager.py:22
+msgid "Sunday"
+msgstr "Domingo"
+
+#: CronManager.py:52 CronManager.py:282 plugin.py:772
+msgid "Cron Manager"
+msgstr "Administrador Cron"
+
+#: CronManager.py:53
+msgid "Autostart:"
+msgstr "Autoinicio"
+
+#: CronManager.py:54 SwapManager.py:102 SwapManager.py:220
+msgid "Active"
+msgstr "Activo"
+
+#: CronManager.py:55
+msgid "Disabled"
+msgstr "Deshabilitado"
+
+#: CronManager.py:56 SwapManager.py:126 SwapManager.py:220 SwapManager.py:225
+msgid "Current Status:"
+msgstr "Estado actual"
+
+#: CronManager.py:57
+msgid "Stopped"
+msgstr "Parado"
+
+#: CronManager.py:58
+msgid "Running"
+msgstr "Funcionando"
+
+#: CronManager.py:59
+msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
+msgstr "H: = Cada hora / D: = Diariamente / W: = Semanalmente / M: = Mensualmente"
+
+#: CronManager.py:64
+msgid "Add"
+msgstr "Añadir"
+
+#: CronManager.py:65 SwapManager.py:174
+msgid "Delete"
+msgstr "Borrar"
+
+#: CronManager.py:66 CronManager.py:150 DaemonsList.py:93 SoftcamPanel.py:379
+#: SoftcamPanel.py:556
+msgid "Start"
+msgstr "Iniciar"
+
+#: CronManager.py:67 SwapManager.py:105
+msgid "Autostart"
+msgstr "Autonicio"
+
+#: CronManager.py:146 DaemonsList.py:91 SoftcamPanel.py:136
+msgid "Stop"
+msgstr "Parar"
+
+#: CronManager.py:246
+msgid ""
+"Are you sure you want to delete this:\n"
+" "
+msgstr "Estás seguro que quieres borrarlo:"
+
+#: CronManager.py:248
+msgid "Remove Confirmation"
+msgstr "Quitar confirmación"
+
+#: CronManager.py:286 Epg.py:177 MountManager.py:390 SoftcamPanel.py:918
+msgid "Save"
+msgstr "Guardar"
+
+#: CronManager.py:287
+msgid "Keyboard"
+msgstr "Teclado"
+
+#: CronManager.py:308 CronManager.py:325
+msgid "Run how often ?"
+msgstr "Ejecutar cada cuando?"
+
+#: CronManager.py:310
+msgid "Time to execute command or script"
+msgstr "Tiempo a ejecutar comando o script"
+
+#: CronManager.py:312
+msgid "What Day of week ?"
+msgstr "Que día de la semana ?"
+
+#: CronManager.py:314
+msgid "What Day of month ?"
+msgstr "Que día del mes ?"
+
+#: CronManager.py:315 CronManager.py:325
+msgid "Command type"
+msgstr "Tipo de comando"
+
+#: CronManager.py:317 CronManager.py:319 CronManager.py:337
+msgid "Command To Run"
+msgstr "Comando a ejecutar"
+
+#: CronManager.py:349
+msgid "You must set at least one Command"
+msgstr "Debes configurar al menos un comando"
+
+#: DaemonsList.py:68 SoftcamPanel.py:142 plugin.py:195
+msgid "Exit"
+msgstr "Salir"
+
+#: DaemonsList.py:84
+msgid "Services List"
+msgstr "Lista de servicios"
+
+#: DaemonsList.py:95
+msgid "Configure"
+msgstr "Configurar"
+
+#: DaemonsList.py:103 SoftcamPanel.py:140 SoftcamPanel.py:786
+msgid "Install"
+msgstr "Instalar"
+
+#: DaemonsList.py:108 DaemonsList.py:221
+msgid "Checking services status..."
+msgstr "Comprobando estado servicios..."
+
+#: DaemonsList.py:108 DaemonsList.py:195 DaemonsList.py:197 DaemonsList.py:221
+msgid "Daemons"
+msgstr "Daemons"
+
+#: DaemonsList.py:172
+msgid ""
+"Please visit the following Website:\n"
+"http://linux-fuer-alle.de/doc_show.php?docid=7\n"
+"to gain further instructions how to configure your STB as NTP-Client/Server."
+msgstr ""
+"Por favor, visita la siguiente web:\n"
+"http://linux-fuer-alle.de/doc_show.php?docid=7\n"
+"para obtener más instrucciones de como configurar tu receptor como NTP-Cliente/Servidor"
+
+#: DaemonsList.py:181
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+"\n"
+"Después de presionar OK, espera por favor"
+
+#: DaemonsList.py:189 SoftcamPanel.py:803
+msgid "Do you want to install the package:\n"
+msgstr "Quieres instalar el paquete:\n"
+
+#: DaemonsList.py:195
+#, python-format
+msgid "Stopping %s..."
+msgstr "Probando %s..."
+
+#: DaemonsList.py:197
+#, python-format
+msgid "Starting %s..."
+msgstr "Iniciando %s..."
+
+#: DaemonsList.py:217
+msgid "Installation/Upgrade finished."
+msgstr "Instalación/Actualización finalizada."
+
+#: DaemonsList.py:217
+msgid "Do you want to restart Enigma2?"
+msgstr "Quieres reiniciar Enigma2?"
+
+#: Epg.py:101
+msgid "Update EPG"
+msgstr "Actualiza EPG"
+
+#: Epg.py:104
+msgid "Please wait, Updating Epg"
+msgstr "Espera por favor, actualizando Epg"
+
+#: Epg.py:170
+msgid "EPG Settings"
+msgstr "Ajustes EPG"
+
+#: Epg.py:175
+msgid "Show log"
+msgstr "Mostrar log"
+
+#: Epg.py:176 Epg.py:268 ScriptRunner.py:49 SoftcamPanel.py:784 SysInfo.py:174
+msgid "Close"
+msgstr "Cerrar"
+
+#: Epg.py:178 SoftwarePanel.py:65
+msgid "Update"
+msgstr "Actualizar"
+
+#: Epg.py:190
+msgid "EPG location"
+msgstr "Ruta EPG"
+
+#: Epg.py:191
+msgid "EPG file name"
+msgstr "Nombre archivo EPG"
+
+#: Epg.py:192
+msgid "Enable EIT EPG"
+msgstr "Habilita EPG EIT"
+
+#: Epg.py:193
+msgid "Enable MHW EPG"
+msgstr "Habilita EPG MHW"
+
+#: Epg.py:194
+msgid "Enable freesat EPG"
+msgstr "Habilita EPG freesat"
+
+#: Epg.py:195
+msgid "Enable ViaSat EPG"
+msgstr "Habilita EPG Viasat"
+
+#: Epg.py:196
+msgid "Enable Netmed EPG"
+msgstr "Habilita EPG Netmed"
+
+#: Epg.py:197
+msgid "Enable Virgin EPG"
+msgstr "Habilita EPG Virgin"
+
+#: Epg.py:198
+msgid "Maximum number of days in EPG"
+msgstr "Número máximo de días en EPG"
+
+#: Epg.py:199
+msgid "Maintain old EPG data for"
+msgstr "Mantener datos antiguos EPG para"
+
+#: Epg.py:200
+msgid "Time to wait in the channel for EPG download (secs)"
+msgstr "Tiempo a esperar en el canal para descarga EPG (segundos)"
+
+#: Epg.py:219
+msgid "EPG Download Cancelled - Recording active"
+msgstr "Descarga EPG cancelada - Grabación activa"
+
+#: Epg.py:242
+msgid "configuration is saved"
+msgstr "se ha guardado la configuración"
+
+#: Epg.py:258
+msgid "View Log File"
+msgstr "Ver archivo log"
+
+#: MountManager.py:49 plugin.py:683
+msgid "Mount Manager"
+msgstr "Administrador de montajes"
+
+#: MountManager.py:51
+msgid "Setup Mounts"
+msgstr "Configurar montajes"
+
+#: MountManager.py:73
+msgid "Use as HDD"
+msgstr "Usar como HDD"
+
+#: MountManager.py:91 plugin.py:966
+msgid "Wait please while scanning for devices..."
+msgstr "Por favor, espera mientras se buscan dispositivos..."
+
+#: MountManager.py:215 MountManager.py:527 plugin.py:1004
+msgid "HARD DISK: "
+msgstr "Disco duro: "
+
+#: MountManager.py:243 MountManager.py:245 MountManager.py:249
+#: MountManager.py:251 MountManager.py:539 plugin.py:1029 plugin.py:1031
+#: plugin.py:1035 plugin.py:1037
+msgid "None"
+msgstr "Nada"
+
+#: MountManager.py:250 MountManager.py:540 plugin.py:1036
+msgid "unavailable"
+msgstr "No disponible"
+
+#: MountManager.py:259 MountManager.py:261 MountManager.py:263
+#: MountManager.py:272 MountManager.py:274 MountManager.py:276
+#: MountManager.py:548 MountManager.py:550 MountManager.py:552
+#: MountManager.py:561 MountManager.py:563 MountManager.py:565 plugin.py:1045
+#: plugin.py:1047 plugin.py:1056 plugin.py:1058
+msgid "Size: "
+msgstr "Tamaño: "
+
+#: MountManager.py:259 MountManager.py:272 MountManager.py:548
+#: MountManager.py:561
+msgid "TB"
+msgstr "TB"
+
+#: MountManager.py:261 MountManager.py:274 MountManager.py:550
+#: MountManager.py:563 plugin.py:1045 plugin.py:1056
+msgid "GB"
+msgstr "GB"
+
+#: MountManager.py:263 MountManager.py:276 MountManager.py:552
+#: MountManager.py:565 plugin.py:1047 plugin.py:1058
+msgid "MB"
+msgstr "MB"
+
+#: MountManager.py:285 plugin.py:1067
+msgid "Mount: "
+msgstr "Montaje: "
+
+#: MountManager.py:285 plugin.py:1067
+msgid "Device: "
+msgstr "Dispositivo: "
+
+#: MountManager.py:285 plugin.py:1067
+msgid "Type: "
+msgstr "Tipo: "
+
+#: MountManager.py:307
+msgid "Mount failed"
+msgstr "Ha fallado el montaje"
+
+#: MountManager.py:325
+msgid ""
+"Can't unmount partiton, make sure it is not being used for swap or record/"
+"timeshift paths"
+msgstr ""
+"No se puede desmontar partición, asegúrate que no está siendo usada para swap o para grabar"
+"rutas timeshift"
+
+#: MountManager.py:342
+msgid "This Device is already mounted as HDD."
+msgstr "Este dispositivo está ya montado como HDD"
+
+#: MountManager.py:389
+msgid "Choose where to mount your devices to:"
+msgstr "Escoge donde montar tus dispositivos:"
+
+#: MountManager.py:391 SoftcamPanel.py:918 SoftcamPanel.py:935
+#: SoftwarePanel.py:64
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: MountManager.py:392
+#, python-format
+msgid "Wait please while scanning your %s %s devices..."
+msgstr "Por favor, espera mientras se buscan tus %s %s dispositivos"
+
+#: MountManager.py:598
+msgid "Updating mount locations."
+msgstr "Actualizando rutas de montaje"
+
+#: MountManager.py:600
+msgid "Please wait."
+msgstr "Por favor espera."
+
+#: MountManager.py:603
+#, python-format
+msgid ""
+"Changes need a system restart to take effect.\n"
+"Restart your %s %s now?"
+msgstr ""
+"Es necesario reiniciar sistema para aplicar cambios.\n"
+"Reiniciar tu %s %s ahora?"
+
+#: MountManager.py:605
+#, python-format
+msgid "Restart %s %s."
+msgstr "Reiniciar %s %s."
+
+#: RestartNetwork.py:17
+msgid "Please wait while your network is restarting..."
+msgstr "Por favor, espera mientras se reinicia la red..."
+
+#: RestartNetwork.py:22
+msgid "Restart Network Adapter"
+msgstr "Reiniciar adapatador de red"
+
+#: ScriptRunner.py:36 plugin.py:774
+msgid "Job Manager"
+msgstr "Administrador de tareas"
+
+#: ScriptRunner.py:50
+msgid "Run"
+msgstr "Ejecutar"
+
+#: ScriptRunner.py:55
+msgid "Select a script to run:"
+msgstr "Selecciona script a ejecutar"
+
+#: ScriptRunner.py:68
+msgid "Are you ready to run the script ?"
+msgstr "Estás preparado para ejecutar el script ?"
+
+#: ScriptRunner.py:70
+msgid "Run Confirmation"
+msgstr "Confirmación de ejecución"
+
+#: ScriptRunner.py:72
+msgid "You have no script to run."
+msgstr "No tienes script a ejecutar."
+
+#: SoftcamPanel.py:29
+msgid "dont wait"
+msgstr "no esperar"
+
+#: SoftcamPanel.py:29
+msgid "1 second"
+msgstr "1 segundo"
+
+#: SoftcamPanel.py:29
+msgid "5 seconds"
+msgstr " 5 segundos"
+
+#: SoftcamPanel.py:29
+msgid "10 seconds"
+msgstr "10 segundos"
+
+#: SoftcamPanel.py:29
+msgid "15 seconds"
+msgstr "15 segundos"
+
+#: SoftcamPanel.py:29
+msgid "20 seconds"
+msgstr "20 segundos"
+
+#: SoftcamPanel.py:29
+msgid "30 seconds"
+msgstr "30 segundos"
+
+#: SoftcamPanel.py:58
+msgid "Off"
+msgstr "Apagado"
+
+#: SoftcamPanel.py:58
+msgid "1 min."
+msgstr "1 min."
+
+#: SoftcamPanel.py:58
+msgid "5 min."
+msgstr "5 min."
+
+#: SoftcamPanel.py:58
+msgid "10 min."
+msgstr "10 min."
+
+#: SoftcamPanel.py:58
+msgid "15 min."
+msgstr "15 min."
+
+#: SoftcamPanel.py:58
+msgid "30 min."
+msgstr "30 min."
+
+#: SoftcamPanel.py:135 SoftcamPanel.py:355 SoftcamPanel.py:604
+msgid "ReStart"
+msgstr "Reiniciar"
+
+#: SoftcamPanel.py:137 SoftcamPanel.py:307 SoftcamPanel.py:317
+#: SoftcamPanel.py:381 SysInfo.py:175
+msgid "Refresh"
+msgstr "Refrescar"
+
+#: SoftcamPanel.py:143 SoftcamPanel.py:402 SoftcamPanel.py:557
+msgid "No ECM info"
+msgstr "Sin info ECM"
+
+#: SoftcamPanel.py:144 SoftcamPanel.py:293 SoftcamPanel.py:359
+#: SoftcamPanel.py:552
+msgid "no CAM 1 active"
+msgstr "Ningua CAM 1 activa"
+
+#: SoftcamPanel.py:145 SoftcamPanel.py:370 SoftcamPanel.py:553
+msgid "no CAM 2 active"
+msgstr "Ningua CAM 2 activa"
+
+#: SoftcamPanel.py:223
+msgid "Softcam Panel V2.0"
+msgstr "Panel Softcm V2.0"
+
+#: SoftcamPanel.py:245 SoftcamPanel.py:293 SoftcamPanel.py:295
+#: SoftcamPanel.py:299 SoftcamPanel.py:305
+msgid "no cam"
+msgstr "Ninguna cam"
+
+#: SoftcamPanel.py:290 SoftcamPanel.py:390
+msgid "Select Cam 1"
+msgstr "Selecciona Cam 1"
+
+#: SoftcamPanel.py:294
+msgid "Select Cam 2"
+msgstr "Selecciona Cam 2"
+
+#: SoftcamPanel.py:296 SoftcamPanel.py:953
+msgid "Wait time before start Cam 2"
+msgstr "Tiempo de espera antes de iniciar Cam 2"
+
+#: SoftcamPanel.py:311
+msgid "CCcamInfo"
+msgstr "CCcamInfo"
+
+#: SoftcamPanel.py:314
+msgid "OscamInfo"
+msgstr "OscamInfo"
+
+#: SoftcamPanel.py:356 SoftcamPanel.py:575
+msgid "active CAM 1: "
+msgstr "CAM 1 activa: "
+
+#: SoftcamPanel.py:367 SoftcamPanel.py:623
+msgid "active CAM 2: "
+msgstr "CAM 2 activa: "
+
+#: SoftcamPanel.py:407
+msgid "No new ECM info"
+msgstr "No hay nueva info ECM"
+
+#: SoftcamPanel.py:566
+msgid ""
+"No Cam started !!\n"
+"\n"
+"Cam 1 must be different from Cam 2"
+msgstr ""
+"Ninguna Cam iniciada !!\n"
+"\n"
+"Cam 1 debe ser diferente de Cam 2"
+
+#: SoftcamPanel.py:579 SoftcamPanel.py:627
+msgid ""
+" Not Started !!\n"
+"\n"
+"Cam binname must be in the start command line\n"
+"Check your emu config file"
+msgstr ""
+" No iniciada !!\n"
+"\n"
+"Nombre del binario de la Cam debe estar en línea de comandos de inicio\n"
+"Comprueba el archivo de configuración de la cam"
+
+#: SoftcamPanel.py:583
+msgid "Starting Cam 1: "
+msgstr "Iniciando Cam 1: "
+
+#: SoftcamPanel.py:588
+msgid "Creating start scripts and starting the cam"
+msgstr "Creando scripts de inicio e iniciando la cam"
+
+#: SoftcamPanel.py:614
+msgid "Waiting..."
+msgstr "Esperando..."
+
+#: SoftcamPanel.py:630
+msgid "Starting Cam 2: "
+msgstr "Iniciando Cam 2"
+
+#: SoftcamPanel.py:785
+msgid "Reload"
+msgstr "Recargar"
+
+#: SoftcamPanel.py:788
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+"\n"
+"Presiona OK en tu mando a distancia para continuar."
+
+#: SoftcamPanel.py:813
+msgid "Install Failed !!"
+msgstr "Ha fallado la instalación !!"
+
+#: SoftcamPanel.py:815
+msgid "Install Finished."
+msgstr "Instalación finalizada."
+
+#: SoftcamPanel.py:827
+msgid "Install Softcams"
+msgstr "Instalar Softcams"
+
+#: SoftcamPanel.py:835 SoftwarePanel.py:166
+msgid "Package list update"
+msgstr "Actualizar lista de paquetes"
+
+#: SoftcamPanel.py:835 SoftwarePanel.py:166
+msgid "Trying to download a new updatelist. Please wait..."
+msgstr "Intentando descargar una nueva lista de actualización. Por favor, espera..."
+
+#: SoftcamPanel.py:839
+msgid "Package list"
+msgstr "Lista de paquetes"
+
+#: SoftcamPanel.py:839
+msgid "Getting Softcam list. Please wait..."
+msgstr "Obteniendo lista de Softcam. Por favor, espera..."
+
+#: SoftcamPanel.py:843 SoftwarePanel.py:169
+msgid "Error"
+msgstr "Error"
+
+#: SoftcamPanel.py:843 SoftwarePanel.py:169
+msgid "There was an error downloading the updatelist. Please try again."
+msgstr "Hay un error descargando la lista de actualización. Por favor, inténtalo de nuevo."
+
+#: SoftcamPanel.py:911 SoftcamPanel.py:912 plugin.py:472 plugin.py:692
+msgid "Softcam-Panel Setup"
+msgstr "Ajustes Panel Softcam"
+
+#: SoftcamPanel.py:936
+msgid "OK"
+msgstr "OK"
+
+#: SoftcamPanel.py:944
+msgid "Show Softcam-Panel in Extensions Menu"
+msgstr "Mostrar Panel Softcam en el menú Extensiones"
+
+#: SoftcamPanel.py:945
+msgid "Start Mode"
+msgstr "Modo de inicio"
+
+#: SoftcamPanel.py:947
+msgid "Start attempts"
+msgstr "Intentos de inicio"
+
+#: SoftcamPanel.py:948
+msgid "Time between start attempts (sec.)"
+msgstr "Tiempo entre intentos de inicio (segundos)"
+
+#: SoftcamPanel.py:949
+msgid "Stop check when cam is running"
+msgstr "Parar comprobación cuando la cam se está ejecutando"
+
+#: SoftcamPanel.py:950
+msgid "Show CCcamInfo in Extensions Menu"
+msgstr "Mostrar CCcamInfo en el menú Extensiones"
+
+#: SoftcamPanel.py:951
+msgid "Show OscamInfo in Extensions Menu"
+msgstr "Mostrar OscamInfo en el menú Extensiones"
+
+#: SoftcamPanel.py:952
+msgid "Frozen Cam Check"
+msgstr "Comprobar "
+
+#: SoftcamPanel.py:1017
+msgid "Really close without saving settings?"
+msgstr "Realmente quieres cerrar sin guardar ajustes?"
+
+#: SoftwarePanel.py:24
+msgid "Software Panel"
+msgstr "Panel de Software"
+
+#: SoftwarePanel.py:66
+msgid "Updates Available:"
+msgstr "Actualizaciones disponibles:"
+
+#: SoftwarePanel.py:68 SoftwarePanel.py:69 SoftwarePanel.py:70
+msgid "feed status"
+msgstr "Estado feed"
+
+#: SoftwarePanel.py:98
+#, python-format
+msgid ""
+"There are to many update packages !!\n"
+"\n"
+"There is a risk that your %s %s will not\n"
+"boot after online-update, or will show disfunction in running Image.\n"
+"\n"
+"You need to flash new !!\n"
+"\n"
+"Do you want to flash-online ?"
+msgstr ""
+"Hay demasiados paquetes de actualización !!\n"
+"\n"
+"Hay riesgo que tu %s %s no\n"
+"arranque después de actualización online, o muestre disfunciones en la imagen.\n"
+"\n"
+"Necesitas instalar de nuevo !!\n"
+"\n"
+"Quieres instalar online ?"
+
+#: SoftwarePanel.py:172
+msgid "Nothing to upgrade"
+msgstr "Nada a actualizar"
+
+#: SoftwarePanel.py:172
+msgid "There are no updates available."
+msgstr "No hay actualizaciones disponibles"
+
+#: SwapManager.py:92 plugin.py:776
+msgid "Swap Manager"
+msgstr "Administrador Swap"
+
+#: SwapManager.py:96
+msgid "Swap Place:"
+msgstr "Situación Swap:"
+
+#: SwapManager.py:98
+msgid "Swap Size:"
+msgstr "Tamaño Swap"
+
+#: SwapManager.py:100
+msgid "Status:"
+msgstr "Estado:"
+
+#: SwapManager.py:101 SwapManager.py:225
+msgid "Inactive"
+msgstr "Inactivo"
+
+#: SwapManager.py:103 SwapManager.py:224
+msgid "Activate"
+msgstr "Activar"
+
+#: SwapManager.py:104 SwapManager.py:164
+msgid "Create"
+msgstr "Crear"
+
+#: SwapManager.py:127
+msgid "Wait please while scanning..."
+msgstr "Por favor, espera mientras se está buscando..."
+
+#: SwapManager.py:219
+msgid "Deactivate"
+msgstr "Desactivar"
+
+#: SwapManager.py:227
+msgid "Enable Swap at startup"
+msgstr "Habilitar Swap al inicio"
+
+#: SwapManager.py:243
+msgid "Swap File not found. You have to create the file before to activate."
+msgstr "Archivo Swap no encontrado. Tienes que crear el archivo antes de activar."
+
+#: SwapManager.py:244 SwapManager.py:310
+msgid "Info"
+msgstr "Info"
+
+#: SwapManager.py:276
+msgid "Please select device to use as swapfile location"
+msgstr "Por favor, selecciona el dispositivo a usar como swap"
+
+#: SwapManager.py:278
+msgid ""
+"Sorry, no physical devices that supports SWAP attached. Can't create "
+"Swapfile on network or fat32 filesystems"
+msgstr ""
+"Lo siento, no hay dispositivos físicos que soporten la SWAP añadida. No se puede crear "
+"el archivo swap en red o en sistemas fat32"
+
+#: SwapManager.py:283
+msgid "32 Mb"
+msgstr "32 Mb"
+
+#: SwapManager.py:283
+msgid "64 Mb"
+msgstr "64 Mb"
+
+#: SwapManager.py:283
+msgid "128 Mb"
+msgstr "128 Mb"
+
+#: SwapManager.py:283
+msgid "256 Mb"
+msgstr "256 Mb"
+
+#: SwapManager.py:283
+msgid "512 Mb"
+msgstr "512 Mb"
+
+#: SwapManager.py:283
+msgid "1024 Mb"
+msgstr "1024 Mb"
+
+#: SwapManager.py:283
+msgid "1536 Mb"
+msgstr "1536 Mb"
+
+#: SwapManager.py:283
+msgid "2048 Mb"
+msgstr "2048 Mb"
+
+#: SwapManager.py:284
+msgid "Select the Swap File Size:"
+msgstr "Selecciona el tamaño del archivo swap"
+
+#: SwapManager.py:289
+msgid "Wait please while creating swapfile..."
+msgstr "Por favor, espera mientras se crea la swap..."
+
+#: SwapManager.py:309
+msgid "You have to create a Swap File before to activate the autostart."
+msgstr "Tienes que crear un archivo swap antes de activar el autoinicio."
+
+#: SysInfo.py:122
+msgid "System Info Panel"
+msgstr "Panel Información Sistema"
+
+#: SysInfo.py:123 SysInfo.py:132
+msgid ""
+"\n"
+"Total:\n"
+"Free:\n"
+"Used:\n"
+"Used(%):"
+msgstr ""
+"\n"
+"Total:\n"
+"Libre:\n"
+"Usado:\n"
+"Usado(%):"
+
+#: SysInfo.py:141
+msgid ""
+"Sensor:\n"
+"Value:"
+msgstr ""
+"Sensor:\n"
+"Valor:"
+
+#: SysInfo.py:143
+msgid ""
+"HDD Temp:\n"
+"...."
+msgstr ""
+"Temp HDD:\n"
+"...."
+
+#: SysInfo.py:179
+msgid "Video"
+msgstr "Vídeo"
+
+#: SysInfo.py:180
+msgid "Audio"
+msgstr "Audio"
+
+#: SysInfo.py:178
+msgid "Min"
+msgstr "Min"
+
+#: SysInfo.py:182
+msgid "Max"
+msgstr "Max"
+
+#: SysInfo.py:183
+msgid "Current"
+msgstr "Actual"
+
+#: SysInfo.py:184
+msgid "Average"
+msgstr "Promedio"
+
+#: SysInfo.py:178 SysInfo.py:228
+msgid "Start Bitrate"
+msgstr "Iniciar Bitrate"
+
+#: SysInfo.py:231
+msgid "Stop Bitrate"
+msgstr "Parar Bitrate"
+
+#: SysInfo.py:310
+msgid "Day"
+msgstr "Día"
+
+#: SysInfo.py:316
+msgid "Days"
+msgstr "Días"
+
+#: SysInfo.py:323
+msgid "Hour:"
+msgstr "Hora:"
+
+#: SysInfo.py:329
+msgid "Hours:"
+msgstr "Horas:"
+
+#: SysInfo.py:336
+msgid "Minute:"
+msgstr "Minuto:"
+
+#: SysInfo.py:342
+msgid "Minutes:"
+msgstr "Minutos:"
+
+#: SysInfo.py:349
+msgid "Second:"
+msgstr "Segundo:"
+
+#: SysInfo.py:355
+msgid "Seconds:"
+msgstr "Segundos:"
+
+#: plugin.py:192
+msgid "OpenSPA Panel - Menu"
+msgstr "Panel OpenSPA - Menú"
+
+#: plugin.py:196
+msgid "System Info"
+msgstr "Información Sistema"
+
+#: plugin.py:197 plugin.py:952
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: plugin.py:198 plugin.py:199
+msgid "Services"
+msgstr "Servicios"
+
+#: plugin.py:403
+msgid "Update/Backup/Restore your box"
+msgstr "Actualizar, Backup y Restaurar"
+
+#: plugin.py:403
+msgid "Update/Backup your firmware, Backup/Restore settings"
+msgstr "Actualización/Copia de seguridad de tu firmware, Copia de seguridad/Restauración de ajustes"
+
+#: plugin.py:405
+msgid "Start/stop/select cam"
+msgstr "Iniciar/Parar/Seleccionar cam"
+
+#: plugin.py:405
+msgid "Start/stop/select your cam, You need to install first a softcam"
+msgstr "Iniciar/Parar/Seleccionar cam, necesitas instalar primero un softcam"
+
+#: plugin.py:406
+msgid "System Setup"
+msgstr "Configuración de sistema"
+
+#: plugin.py:406
+msgid "Setup your System"
+msgstr "Configurar sistema"
+
+#: plugin.py:407
+msgid "Mount Setup"
+msgstr "Configurar montajes"
+
+#: plugin.py:407
+msgid "Setup your mounts for network"
+msgstr "Configurar tus montajes de red"
+
+#: plugin.py:408
+msgid "Setup your local network"
+msgstr "Configurar tu red local"
+
+#: plugin.py:408
+msgid ""
+"Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
+msgstr ""
+"Configurar tu red local. Para Wifi necesitas arrancar con un stick USB-Wifi"
+
+#: plugin.py:409
+msgid "Setup Video/Audio"
+msgstr "Configurar Video/Audio"
+
+#: plugin.py:409 plugin.py:479
+msgid "Setup your Video Mode, Video Output and other Video Settings"
+msgstr "Configurar modo de video, salida de video y otros ajustes de video"
+
+#: plugin.py:410
+msgid "Setup Tuner"
+msgstr "Configuración de sintonizador"
+
+#: plugin.py:410
+msgid "Setup your Tuner and search for channels"
+msgstr "Configurar tu sintonizador y buscar canales"
+
+#: plugin.py:411
+msgid "Setup Plugins"
+msgstr "Configuración de plugins"
+
+#: plugin.py:411
+msgid "Shows available pluigns. Here you can download and install them"
+msgstr "Mostrar plugins disponibles. Aquí puedes descargarlos e instalarlos"
+
+#: plugin.py:412 plugin.py:586
+msgid "Additional Features"
+msgstr "Características adicionales"
+
+#: plugin.py:412
+msgid "Shows available additional pluigns"
+msgstr "Mostar plugins adicionales disponibles"
+
+#: plugin.py:413 plugin.py:541 plugin.py:779
+msgid "Harddisk Setup"
+msgstr "Configuración de disco duro"
+
+#: plugin.py:413 plugin.py:541
+msgid "Setup your Harddisk"
+msgstr "Configurar tu disco duro"
+
+#: plugin.py:419
+msgid "Setup Enigma2"
+msgstr "Configuración Enigma2"
+
+#: plugin.py:419
+msgid "Customise enigma2 personal settings"
+msgstr "Personalizar ajustes personales enigma2"
+
+#: plugin.py:420
+msgid "OSD Setup"
+msgstr "Configuración OSD"
+
+#: plugin.py:420
+msgid "Setup your OSD"
+msgstr "Configurar OSD"
+
+#: plugin.py:421 plugin.py:666
+msgid "Button Setup"
+msgstr "Configuración de teclas"
+
+#: plugin.py:421
+msgid "Setup your remote buttons"
+msgstr "Configurar teclar mando a distancia"
+
+#: plugin.py:423
+msgid "Display Setup"
+msgstr "Configuración de display"
+
+#: plugin.py:423
+msgid "Setup your display"
+msgstr "Configurar display"
+
+#: plugin.py:425
+msgid "Select LCD Skin"
+msgstr "Selecciona skin LCD"
+
+#: plugin.py:425
+msgid "Setup your LCD"
+msgstr "Configurar LCD"
+
+#: plugin.py:426
+msgid "Select Enigma2 Skin"
+msgstr "Selecciona skin enigma2"
+
+#: plugin.py:426
+msgid "Setup your Skin"
+msgstr "Configurar skin"
+
+#: plugin.py:427
+msgid "Select Keymap"
+msgstr "Seleccionar keymap"
+
+#: plugin.py:427
+msgid "Select your keymap style"
+msgstr "Seleccionar estilo keymap"
+
+#: plugin.py:428
+msgid "Recording Setup"
+msgstr "Configuración de grabaciones"
+
+#: plugin.py:428
+msgid "Setup your recording config"
+msgstr "Configurar ajustes de grabación"
+
+#: plugin.py:429
+msgid "EPG Setup"
+msgstr "Configuración de EPG"
+
+#: plugin.py:429
+msgid "Setup your EPG config"
+msgstr "Configurar ajustes de EPG"
+
+#: plugin.py:435
+msgid "Configure your Network"
+msgstr "Configurar red"
+
+#: plugin.py:435
+msgid ""
+"Use the Networkwizard to configure your Network. The wizard will help you to "
+"setup your network"
+msgstr ""
+"Usar Usar el asistente de red para configurar tu red. El asistente te ayudará a "
+"usar tu red"
+
+#: plugin.py:437
+msgid "Select Lan/Wlan"
+msgstr "Seleccionar Lan/Wlan"
+
+#: plugin.py:437
+msgid ""
+"Setup your network interface. If no Wlan stick is used, you only can select "
+"Lan"
+msgstr ""
+"Configurar interfaz de red. Si no usas stick wifi, solo puedes seleccionar "
+"Lan"
+
+#: plugin.py:439
+msgid "Setup interface"
+msgstr "Configurar interfaz"
+
+#: plugin.py:439
+msgid "Setup network. Here you can setup DHCP, IP, DNS"
+msgstr "Configurar red. Aquí puedes configurar DHCP, IP, DNS"
+
+#: plugin.py:440
+msgid "Restart network to with current setup"
+msgstr "Reiniciar red con ajustes actuales"
+
+#: plugin.py:440
+msgid "Restart network and remount connections"
+msgstr "Reiniciar red y volver a montar conexiones"
+
+#: plugin.py:441
+msgid "Setup Network Services"
+msgstr "Configurar servicios de red"
+
+#: plugin.py:441
+msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
+msgstr "Configurar servicios de red (Samba,Ftp, NFS, ...)"
+
+#: plugin.py:447
+msgid "Setup Samba"
+msgstr "Configurar Samba"
+
+#: plugin.py:448
+msgid "Setup NFS"
+msgstr "Configurar NFS"
+
+#: plugin.py:449
+msgid "Setup FTP"
+msgstr "Configurar FTP"
+
+#: plugin.py:450
+msgid "Setup AFP"
+msgstr "Configurar AFP"
+
+#: plugin.py:451
+msgid "Setup OpenVPN"
+msgstr "Configurar OpenVPN"
+
+#: plugin.py:452
+msgid "Setup MiniDLNA"
+msgstr "Configurar MiniDLNA"
+
+#: plugin.py:453
+msgid "Setup Inadyn"
+msgstr "Configurar Inadyn"
+
+#: plugin.py:454
+msgid "Setup SABnzbd"
+msgstr "Configurar SABnzbd"
+
+#: plugin.py:455
+msgid "Setup uShare"
+msgstr "Configurar uShare"
+
+#: plugin.py:456
+msgid "Setup Telnet"
+msgstr "Configurar Telnet"
+
+#: plugin.py:462
+msgid "Manage network mounts"
+msgstr "Administrar montajes de red"
+
+#: plugin.py:462
+msgid "Setup your network mounts"
+msgstr "Configurar montajes de red"
+
+#: plugin.py:463
+msgid "Search for network shares"
+msgstr "Buscar recursos de red compartidos"
+
+#: plugin.py:464
+msgid "Mounts Devices"
+msgstr "Dispositivos de montaje"
+
+#: plugin.py:464
+msgid "Setup your Device mounts (USB, HDD, others...)"
+msgstr "Configurar tus dispositivos montados (USB, HDD, otros...)"
+
+#: plugin.py:471
+msgid "Control your Softcams"
+msgstr "Controlar tus "
+
+#: plugin.py:471
+msgid ""
+"Use the Softcam Panel to control your Cam. This let you start/stop/select a "
+"cam"
+msgstr ""
+"Usar el Panel CAM para controlar tu Cam. Esto te permitirá arrancar/parar/seleccionar una"
+"cam"
+
+#: plugin.py:473
+msgid "Download and install cam"
+msgstr "Descargar e instalar cam"
+
+#: plugin.py:473
+msgid "Shows available softcams. Here you can download and install them"
+msgstr "Muestra softcams disponibles. Aquí puedes descargar e instalarlos"
+
+#: plugin.py:479
+msgid "Setup Videomode"
+msgstr "Configurar modo de video"
+
+#: plugin.py:480
+msgid "Setup Audiomode"
+msgstr "Configurar modo de audio"
+
+#: plugin.py:480
+msgid "Setup your Audio Mode"
+msgstr "Confiurar tu Moodo de Audio"
+
+#: plugin.py:482
+msgid "Setup Audio Sync"
+msgstr "Configurar sincronización de audio"
+
+#: plugin.py:482
+msgid "Setup Audio Sync settings"
+msgstr "Configurar ajustes de sincronización de audio"
+
+#: plugin.py:483
+msgid "Auto Language Selection"
+msgstr "Selección idioma auto"
+
+#: plugin.py:483
+msgid "Select your Language for Audio/Subtitles"
+msgstr "Selecciona idioma para Audio/Subtítulos"
+
+#: plugin.py:485
+msgid "VideoEnhancement Setup"
+msgstr "Configurar Mejora de video"
+
+#: plugin.py:492
+msgid "Setup tuner(s)"
+msgstr "Configurar sintonizador(es)"
+
+#: plugin.py:492
+msgid "Setup each tuner for your satellite system"
+msgstr "Configurar cada sintonizador para tu sistema de satélite"
+
+#: plugin.py:494
+msgid "Setup rotor"
+msgstr "Configurar motor"
+
+#: plugin.py:494
+msgid "Setup your positioner for your satellite system"
+msgstr "Configurar motor para tu sistema de satélite"
+
+#: plugin.py:495
+msgid "Automatic Service Searching"
+msgstr "Búsqueda automática"
+
+#: plugin.py:495
+msgid "Automatic scan for services"
+msgstr "Escaneo automático de canales"
+
+#: plugin.py:496
+msgid "Manual Service Searching"
+msgstr "Búsqueda manual"
+
+#: plugin.py:496
+msgid "Manual scan for services"
+msgstr "Escaneo manual de canales"
+
+#: plugin.py:498
+msgid "Search Sats"
+msgstr "Buscar satélites"
+
+#: plugin.py:498
+msgid "Search Sats, check signal and lock"
+msgstr "Buscar satélites, comprobar señal y bloquear"
+
+#: plugin.py:504
+msgid "Online software update"
+msgstr "Actualizar software online"
+
+#: plugin.py:504
+msgid ""
+"Check/Install online updates (you must have a working internet connection)"
+msgstr ""
+"Comprobar/Instalar actualizaciones online (necesitas conexión a internet)"
+
+#: plugin.py:506
+msgid "Flash Online a new image"
+msgstr "Flashear online una imagen nueva"
+
+#: plugin.py:506
+msgid "Flash on the fly your your Receiver software."
+msgstr "Flashear al vuelo el software de tu receptor"
+
+#: plugin.py:508
+msgid "Backup your current image"
+msgstr "Backup de tu imagen actual"
+
+#: plugin.py:508
+msgid ""
+"Backup your current image to HDD or USB. This will make a 1:1 copy of your "
+"box"
+msgstr ""
+"Backup de la imagen actual en HDD o USB. Esto realizará una copia 1:! de tu "
+"receptor"
+
+#: plugin.py:509
+msgid "Backup your current settings"
+msgstr "Backup de ajustes actuales"
+
+#: plugin.py:509
+msgid ""
+"Backup your current settings. This includes E2-setup, channels, network and "
+"all selected files"
+msgstr "Backup de ajustes actuales. Incluye ajustes-E2, canales, red y "
+"todos los archivos seleccionados"
+
+#: plugin.py:510
+msgid "Restore settings from a backup"
+msgstr "Restaurar ajustes desde backup"
+
+#: plugin.py:510
+msgid ""
+"Restore your settings back from a backup. After restore the box will restart "
+"to activated the new settings"
+msgstr ""
+"Restaurar ajustes desde backup. Después de restaurar, el receptor se reiniciará "
+"para activar los nuevos ajustes"
+
+#: plugin.py:511
+msgid "Show files backed up by default"
+msgstr "Mostrar archivos predeterminados backup"
+
+#: plugin.py:511
+msgid ""
+"Here you can browse (but not modify) the files that are added to the "
+"backupfile by default (E2-setup, channels, network)."
+msgstr ""
+"Aquí puedes explorar (pero no modificar) los archivos que se añaden por "
+"defecto en el backup (Ajustes-E2, canales, red)."
+
+#: plugin.py:512
+msgid "Select additional files to backup"
+msgstr "Seleccionar archivos adicionales al backup"
+
+#: plugin.py:512
+msgid ""
+"Here you can specify additional files that should be added to the backup "
+"file."
+msgstr ""
+"Aquí puedes especificar archivos adicionales que deben incluirse en el backup"
+
+#: plugin.py:513
+msgid "Select files to exclude from backup"
+msgstr "Seleccionar archivos a excluir del backup"
+
+#: plugin.py:513
+msgid "Here you can select which files should be excluded from the backup."
+msgstr "Aquí puedes seleccionar que archivos deben ser excluidos del backup"
+
+#: plugin.py:514
+msgid "Manage your online update files"
+msgstr "Administrar archivos de actualización online"
+
+#: plugin.py:514
+msgid "Here you can select which files should be updated with a online update"
+msgstr "Aquí puedes seleccionar que archivos deben ser actualizados con actualización online"
+
+#: plugin.py:520 plugin.py:531 plugin.py:532 plugin.py:533
+msgid "Open the Plugin Browser"
+msgstr "Abrir el Explorador de Plugins"
+
+#: plugin.py:520 plugin.py:531 plugin.py:532 plugin.py:533
+msgid "Shows Plugins Browser. Here you can setup installed Plugin"
+msgstr "Muestra el Explorador de Plugins. Aquí puedes configurar los plugins instalados"
+
+#: plugin.py:521
+msgid "Download and install Plugins"
+msgstr "Descargar e instalar plugins"
+
+#: plugin.py:521
+msgid "Shows available plugins. Here you can download and install them"
+msgstr "Muestra plugins disponibles. Aquí puedes descargar e instalarlos"
+
+#: plugin.py:522
+msgid "Delete Plugins"
+msgstr "Eliminar plugins"
+
+#: plugin.py:522
+msgid "Delete and unstall Plugins. This will remove the Plugin from your box"
+msgstr "Eliminar y desinstalar plugins. Se borrarán el plugin de tu receptor"
+
+#: plugin.py:523
+msgid "Setup Plugin filter"
+msgstr "Configurar filtrado de plugins"
+
+#: plugin.py:523
+msgid ""
+"Setup Plugin filter. Here you can select which Plugins are showed in the "
+"PluginBrowser"
+msgstr ""
+"Configurar filtrado de plugins. Aquí puedes seleccionar que plugins se muestran en "
+"el Explorador de Plugins"
+
+#: plugin.py:524
+msgid "Install local extension"
+msgstr "Instalar extensión local"
+
+#: plugin.py:524
+msgid "Scan for local extensions and install them"
+msgstr "Buscar extensiones locales e instalarlas"
+
+#: plugin.py:525
+msgid "Delete installed ipls"
+msgstr "Eliminar ipks instalados"
+
+#: plugin.py:525
+msgid "Search package ipk installed and delete them"
+msgstr "Buscar paquetes ipk instalados y eliminarlos"
+
+#: plugin.py:542
+msgid "Format HDD"
+msgstr "Formatear HDD"
+
+#: plugin.py:542
+msgid "Format your Harddisk"
+msgstr "Formatear tu disco duro"
+
+#: plugin.py:543
+msgid "Check HDD"
+msgstr "Comprobar HDD"
+
+#: plugin.py:543
+msgid "Filesystem check your Harddisk"
+msgstr "Comprobar sistema de archivos de tu disco duro"
+
+#: plugin.py:545
+msgid "Convert filesystem ext3 to ext4"
+msgstr "Convertir ext3 a ext4"
+
+#: plugin.py:561
+msgid "Network"
+msgstr "Red"
+
+#: plugin.py:565
+msgid "System"
+msgstr "Sistema"
+
+#: plugin.py:568
+msgid "Mounts"
+msgstr "Montajes"
+
+#: plugin.py:571
+msgid "Softcam"
+msgstr "Softcam"
+
+#: plugin.py:574
+msgid "AV Setup"
+msgstr "Configurar AV"
+
+#: plugin.py:577
+msgid "Tuner Setup"
+msgstr "Configurar sintonizador"
+
+#: plugin.py:580
+msgid "Software Manager"
+msgstr "Administrador de software"
+
+#: plugin.py:583
+msgid "Plugins"
+msgstr "Complementos"
+
+#: plugin.py:589
+msgid "Harddisk"
+msgstr "Disco duro"
+
+#: plugin.py:602
+msgid "Network Wizard"
+msgstr "Asistente de red"
+
+#: plugin.py:604
+msgid "Network Adapter Selection"
+msgstr "Selección adaptador de red"
+
+#: plugin.py:606
+msgid "Network Interface"
+msgstr "Interfaz de red"
+
+#: plugin.py:608
+msgid "Network Restart"
+msgstr "Reiniciar red"
+
+#: plugin.py:610
+msgid "Network Services"
+msgstr "Servicios de red"
+
+#: plugin.py:613
+msgid "Samba"
+msgstr "Samba"
+
+#: plugin.py:617 plugin.py:622 plugin.py:627 plugin.py:632 plugin.py:637
+#: plugin.py:642 plugin.py:647 plugin.py:652 plugin.py:657 plugin.py:662
+msgid "Sorry not found!"
+msgstr "No encontrado!"
+
+#: plugin.py:618
+msgid "NFS"
+msgstr "NFS"
+
+#: plugin.py:623
+msgid "FTP"
+msgstr "FTP"
+
+#: plugin.py:628
+msgid "AFP"
+msgstr "AFP"
+
+#: plugin.py:633
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+#: plugin.py:638
+msgid "MiniDLNA"
+msgstr "MiniDLNA"
+
+#: plugin.py:643
+msgid "Inadyn"
+msgstr "Inadyn"
+
+#: plugin.py:648
+msgid "SABnzbd"
+msgstr "SABnzbd"
+
+#: plugin.py:653
+msgid "uShare"
+msgstr "uShare"
+
+#: plugin.py:658
+msgid "Telnet"
+msgstr "Telnet"
+
+#: plugin.py:664
+msgid "Customise"
+msgstr "Personalizar"
+
+#: plugin.py:668
+msgid "Display Settings"
+msgstr "Ajustes de Display"
+
+#: plugin.py:670
+msgid "LCD Skin Setup"
+msgstr "Configurar skin LCD"
+
+#: plugin.py:672
+msgid "Skin Setup"
+msgstr "Configurar skin"
+
+#: plugin.py:674
+msgid "OSD settings"
+msgstr "Configurar OSD"
+
+#: plugin.py:676
+msgid "Keymap Selection"
+msgstr "Selección Keymap"
+
+#: plugin.py:678
+msgid "Recording settings"
+msgstr "Configurar grabaciones"
+
+#: plugin.py:680
+msgid "EPG settings"
+msgstr "Configurar EPG"
+
+#: plugin.py:685
+msgid "Network Browser"
+msgstr "Explorador de red"
+
+#: plugin.py:687
+msgid "Device Manager"
+msgstr "Administrador de dispositivos"
+
+#: plugin.py:690
+msgid "Softcam Panel"
+msgstr "Panel softcam"
+
+#: plugin.py:694
+msgid "Download Softcams"
+msgstr "Descargar softcams"
+
+#: plugin.py:697
+msgid "Video Settings"
+msgstr "Configurar video"
+
+#: plugin.py:699
+msgid "Audio Settings"
+msgstr "Configurar audio"
+
+#: plugin.py:701
+msgid "Auto Language"
+msgstr "Idioma auto"
+
+#: plugin.py:703
+msgid "Audio Sync"
+msgstr "Sinc. audio"
+
+#: plugin.py:705
+msgid "VideoEnhancement"
+msgstr "Mejora de video"
+
+#: plugin.py:708
+msgid "Tuner Configuration"
+msgstr "Configuración de sintonizador"
+
+#: plugin.py:710
+msgid "Positioner Setup"
+msgstr "Configurar motor"
+
+#: plugin.py:712
+msgid "Automatic Scan"
+msgstr "Búsqueda automática"
+
+#: plugin.py:714
+msgid "Manual Scan"
+msgstr "Búsqueda manual"
+
+#: plugin.py:716
+msgid "Sat Finder"
+msgstr "Buscador de satélites"
+
+#: plugin.py:719
+msgid "Software Update"
+msgstr "Actualización de software"
+
+#: plugin.py:721
+msgid "Flash Online"
+msgstr "Instalación en línea"
+
+#: plugin.py:723
+msgid "Complete Backup"
+msgstr "Backup completo"
+
+#: plugin.py:730
+msgid "Backup Settings"
+msgstr "Realizar backup de la configuración"
+
+#: plugin.py:732
+msgid "Restore Settings"
+msgstr "Restaurar ajustes"
+
+#: plugin.py:739
+#, python-format
+msgid ""
+"Are you sure you want to restore your %s %s backup?\n"
+"STB will restart after the restore"
+msgstr ""
+"Estás seguro que quieres restaurar tu backup %s %s?\n"
+"El receptor se reiniciará después de la restauración"
+
+#: plugin.py:741
+msgid "Sorry no backups found!"
+msgstr "Lo sentimos, no se han encontrado backups!"
+
+#: plugin.py:742
+msgid "Show default backup files"
+msgstr "Muestra archivos del backup"
+
+#: plugin.py:743
+msgid "Default files/folders to backup"
+msgstr "Archivos/Carpetas por defecto en backup"
+
+#: plugin.py:744
+msgid "Select additional backup files"
+msgstr "Archivos adicionales en backup"
+
+#: plugin.py:745
+msgid "Additional files/folders to backup"
+msgstr "Archivos/Carpetas adicionales en backup"
+
+#: plugin.py:746
+msgid "Select excluded backup files"
+msgstr "Archivos excluidos del backup"
+
+#: plugin.py:747
+msgid "Files/folders to exclude from backup"
+msgstr "Archivos/Carpetas a excluir del backup"
+
+#: plugin.py:748
+msgid "Software Manager Setup"
+msgstr "Configurar Administrador de software"
+
+#: plugin.py:751
+msgid "Plugin Browser"
+msgstr "Explorador de plugins"
+
+#: plugin.py:753
+msgid "Download Plugins"
+msgstr "Descargar plugins"
+
+#: plugin.py:755
+msgid "Remove Plugins"
+msgstr "Eliminar plugins"
+
+#: plugin.py:757
+msgid "Plugin Filter"
+msgstr "Filtrar plugins"
+
+#: plugin.py:759
+msgid "IPK Installer"
+msgstr "Instalar IPK"
+
+#: plugin.py:764
+msgid "Sorry MediaScanner is not installed!"
+msgstr "Lo sentimos, MediaScanner no está instalado"
+
+#: plugin.py:765
+msgid "IPK Uninstaller"
+msgstr "Desinstalar IPK"
+
+#: plugin.py:770
+msgid "Sorry IPK Uninstaller is not installed!"
+msgstr "Lo sentimos, desinstalador de IPK no está instalado!"
+
+#: plugin.py:781
+msgid "Initialization"
+msgstr "Inicialización"
+
+#: plugin.py:783
+msgid "Filesystem Check"
+msgstr "Comprobar sistema de archivos"
+
+#: plugin.py:785
+msgid "Convert ext3 to ext4"
+msgstr "Convertir ext3 a ext4"
+
+#: plugin.py:816
+msgid "No positioner capable frontend found."
+msgstr "No se ha encontrado ningún motor"
+
+#: plugin.py:819
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"configure the positioner."
+msgstr ""
+"Una grabación está en marcha. Por favor, para la grabación antes de "
+"configurar el motor"
+
+#: plugin.py:831
+msgid "No tuner is configured for use with a diseqc positioner!"
+msgstr "Ningún sintonizador configurado para usar con motor diseqc!"
+
+#: plugin.py:842
+msgid "No satellite frontend found!!"
+msgstr "No se encontró frontend de satélite!!"
+
+#: plugin.py:845
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
+msgstr ""
+"Una grabación está en marcha. Por favor, para la grabación antes de "
+"arrancar el buscador de satélites"
+#: plugin.py:852
+msgid "Backup done."
+msgstr "Backup hecho."
+
+#: plugin.py:854
+msgid "Backup failed."
+msgstr "El backup ha fallado"
+
+#: plugin.py:990
+msgid "No Devices Found !!"
+msgstr "Ningún dispositivo encontrado"
+
+#: plugin.py:1093 plugin.py:1102 plugin.py:1103
+msgid "OpenSPA Panel"
+msgstr "Panel OpenSPA"

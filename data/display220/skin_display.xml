@@ -1,0 +1,186 @@
+<skin>
+  <windowstyle type="skinned" id="1">
+    <title offset="20,14" font="Consola;24" />
+    <color name="Background" color="background" />
+    <color name="LabelForeground" color="white" />
+    <color name="WindowTitleForeground" color="white" />
+    <color name="WindowTitleBackground" color="white" />
+  </windowstyle>
+  <colors>
+    <color name="azul" value="#006699ff" />
+    <color name="azuloscuro" value="#001e3d4c" />
+    <color name="background" value="#00000000" />
+    <color name="black" value="#00000000" />
+    <color name="blue" value="#000000ff" />
+    <color name="foreground" value="#00ffffff" />
+    <color name="gray" value="#00999999" />
+    <color name="green" value="#0000ff00" />
+    <color name="naranja" value="#00ffcc00" />
+    <color name="naranjaoscuro" value="#004c3d00" />
+    <color name="red" value="#00ff0000" />
+    <color name="silver" value="#00bbbbbb" />
+    <color name="transparent" value="#ffffffff" />
+    <color name="un999999" value="#00999999" />
+    <color name="unafafaf" value="#00afafaf" />
+    <color name="verde" value="#0033ff66" />
+    <color name="verdeoscuro" value="#00143328" />
+    <color name="white" value="#00ffffff" />
+    <color name="yellow" value="#00ffff00" />
+  </colors>
+  <!--vfd_1-->
+  <fonts>
+  <font filename="tuxtxt2.ttf" name="Consola" scale="70" />
+  <font filename="hd2.ttf" name="VFD" scale="70" />
+  <font filename="/usr/share/enigma2/MetrixJRSD/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
+</fonts>
+  <screen name="InfoBarSummary" position="0,0" size="220,176">
+    <widget source="session.CurrentService" render="Label" position="2,79" size="217,53" font="VFD; 29" halign="left" transparent="1" valign="center">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="session.CurrentService" render="LcdPicon" size="100,60" position="3,1" transparent="0">
+      <convert type="ServiceName">Reference</convert>
+    </widget>
+    <widget source="session.Event_Now" render="Progress" position="2,65" size="216,10" backgroundColor="verde" foregroundColor="verde" transparent="1" zPosition="2">
+      <convert type="EventTime">Progress</convert>
+    </widget>
+    <eLabel name="fondoprogreso" position="2,65" size="216,10" backgroundColor="verdeoscuro" />
+    <widget source="session.Event_Now" render="Label" position="34,29" size="179,44" font="VFD; 40" zPosition="2" halign="right" transparent="1" foregroundColor="verde">
+      <convert type="EventTime">Remaining</convert>
+      <convert type="RemainingToText">NoSeconds</convert>
+    </widget>
+    <widget source="session.FrontendInfo" render="Pixmap" position="192,5" zPosition="2" size="23,21" pixmap="/usr/share/enigma2/display/skin_default/vfd_sat.png" alphatest="blend" transparent="0">
+      <convert type="FrontendInfo">TYPE</convert>
+      <convert type="ValueRange">0,0</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.FrontendInfo" render="Pixmap" position="192,5" zPosition="2" size="23,21" pixmap="/usr/share/enigma2/display/skin_default/vfd_tdt.png" alphatest="off" transparent="0">
+      <convert type="FrontendInfo">TYPE</convert>
+      <convert type="ValueRange">2,2</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <ePixmap name="icotv" position="192,5" size="23,21" alphatest="blend" pixmap="/usr/share/enigma2/display/skin_default/vfd_tv.png" zPosition="1" />
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="InfoBarMoviePlayerSummary" position="0,0" size="220,176">
+    <widget source="session.CurrentService" render="Label" position="0,0" size="355,40" font="VFD; 31" halign="left" noWrap="1" valign="center" transparent="1">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" position="31,47" size="209,36" font="VFD; 44" zPosition="2" halign="left" transparent="1" text="00:00:00" noWrap="1">
+      <convert type="ServicePositionSPA">Position,ShowHours,NoSign,Fixed</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" position="65,98" size="153,36" font="VFD; 35" halign="right" transparent="1" foregroundColor="naranja" noWrap="1">
+      <convert type="ServicePositionSPA">Remaining,ShowHours,ShowNoSeconds</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Progress" position="2,83" size="216,14" backgroundColor="naranja" foregroundColor="naranja" transparent="1" zPosition="1">
+      <convert type="ServicePosition">Position</convert>
+    </widget>
+    <eLabel name="lin1" position="2,83" size="216,14" zPosition="0" backgroundColor="naranjaoscuro" transparent="0" />
+    <ePixmap name="imagen" position="3,51" size="28,25" alphatest="blend" pixmap="/usr/share/enigma2/display/skin_default/vfd_play28.png" zPosition="20" />
+    <panel name="RelojAbajo" />
+  </screen>
+  <!-- COMUNES -->
+  <screen name="ChannelSelection_summary" position="0,0" size="220,176">
+    <widget source="parent.ServiceEvent" render="Label" position="0,0" size="217,67" zPosition="2" font="VFD; 38" halign="left" foregroundColor="azul" valign="top">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="parent.ServiceEvent" render="Label" position="1,68" size="217,64" font="VFD; 36" halign="left" transparent="1" valign="top">
+      <convert type="EventName">Name</convert>
+    </widget>
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="ChoiceBox_summary" position="0,0" size="220,176">
+    <widget source="parent.summary_list" render="Label" position="1,0" size="219,130" font="VFD; 38" />
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="MessageBox_summary" position="0,0" size="220,176">
+    <widget source="parent.Text" render="Label" position="0,0" size="220,80" font="VFD; 31" halign="center" valign="center" foregroundColor="azul" transparent="1" />
+    <widget source="parent.selectedChoice" render="Label" position="0,80" size="220,50" font="VFD; 33" halign="center" valign="center" transparent="1" />
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="MessageBoxSimple_summary" position="0,0" size="220,176">
+    <widget source="parent.Text" render="Label" position="0,0" size="220,91" font="VFD; 31" halign="center" valign="center" foregroundColor="azul" transparent="1" />
+    <widget source="parent.selectedChoice" render="Label" position="0,92" size="220,44" font="VFD; 33" halign="center" valign="center" transparent="1" />
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="MenuSummary" position="0,0" size="220,176">
+    <widget source="parent.title" render="Label" position="0,0" size="220,52" font="VFD; 33" halign="center" valign="center" foregroundColor="azul" />
+    <widget source="parent.menu" render="Label" position="0,53" size="220,80" font="VFD; 32" halign="center" valign="center">
+      <convert type="StringListSelection" />
+    </widget>
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="ServiceScanSummary" position="0,0" size="220,176">
+    <widget name="Title" position="0,0" size="398,44" font="VFD; 33" transparent="1" foregroundColor="azul" text="scan" noWrap="1" />
+    <widget name="Service" position="0,45" size="220,66" font="VFD; 28" transparent="1" text="service" />
+    <widget name="scan_progress" position="3,113" zPosition="1" borderWidth="2" size="212,16" backgroundColor="azul" foregroundColor="azul" transparent="1" />
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="SetupSummary" position="0,0" size="220,176">
+    <widget source="SetupTitle" render="Label" position="0,0" size="220,28" font="VFD; 32" halign="center" foregroundColor="azul" noWrap="1" />
+    <widget source="SetupEntry" render="Label" position="0,29" size="220,59" font="VFD; 30" transparent="1" valign="center" />
+    <widget source="SetupValue" render="Label" position="1,88" size="219,41" font="VFD; 30" transparent="1" valign="center" />
+    <panel name="RelojAbajo" />
+  </screen>
+<!--<screen name="StandbySummary" position="0,0" size="220,176">
+    <widget source="session.spaUpdates" render="Pixmap" position="169,4" size="48,28" pixmap="/usr/share/enigma2/display/skin_default/vfd_icon_upt.png" zPosition="5">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.RecordState" position="-1,136" render="Label" size="175,35" valign="center" halign="left" zPosition="0" backgroundColor="black" foregroundColor="white" font="VFD; 31" transparent="1" noWrap="1" text="Antena 3 hd">
+      <convert type="infoRecBm">Canal</convert>
+    </widget>
+    <widget source="session.RecordState" position="66,109" render="Label" size="152,28" valign="center" halign="right" zPosition="4" backgroundColor="black" foregroundColor="red" font="VFD; 25" transparent="1" noWrap="1">
+      <convert type="infoRecBm">Restan</convert>
+    </widget>
+    <widget source="session.RecordState" render="Pixmap" position="180,143" size="38,21" pixmap="/usr/share/enigma2/display/skin_default/vfd_icon_rec.png" zPosition="4">
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/skin_default/vfd_icon_timer.png" position="197,143" size="21,21" zPosition="-1">
+      <convert type="info_timernoVFD" />
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="129,61" size="220,44" font="VFD; 36" halign="left" transparent="1" foregroundColor="gray">
+      <convert type="ClockToText">Format:%d-%b</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1,52" size="206,62" font="VFD; 58" halign="left" transparent="1" valign="center" backgroundColor="background" foregroundColor="silver">
+      <convert type="ClockToText">Format:%H:%M</convert>
+    </widget>
+  </screen>-->
+  <screen name="SimpleSummary" position="0,0" size="220,176">
+    <widget source="parent.Title" render="Label" position="0,38" size="220,64" font="VFD; 30" halign="center" valign="center" transparent="1" foregroundColor="azul" />
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="MediaPlayerLCDScreen" position="0,0" size="220,176">
+    <widget name="text1" position="0,0" size="220,44" font="VFD; 33" />
+    <widget name="text3" position="0,46" size="220,44" font="VFD; 30" transparent="1" />
+    <widget name="text4" position="0,88" size="220,44" font="VFD; 30" transparent="1" />
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="WizardSummary" position="0,0" size="220,176">
+    <widget source="text" render="Label" position="0,0" size="220,71" font="VFD; 31" transparent="1" foregroundColor="azul" halign="left" valign="center" />
+    <widget source="parent.list" render="Label" position="0,75" size="220,57" font="VFD; 33" transparent="1" halign="left" valign="center">
+      <convert type="StringListSelection" />
+    </widget>
+    <panel name="RelojAbajo" />
+  </screen>
+  <screen name="RelojAbajo">
+  <!-- info -->
+  <eLabel name="linver" position="0,135" size="220,1" backgroundColor="gray" />
+  <widget source="global.CurrentTime" render="Label" position="0,132" size="172,58" font="VFD; 46" halign="left" transparent="1" valign="center" backgroundColor="background" foregroundColor="silver">
+    <convert type="ClockToText">Format:%H:%M</convert>
+  </widget>
+  <widget source="session.RecordState" render="Pixmap" position="175,145" size="38,21" pixmap="/usr/share/enigma2/display/skin_default/vfd_icon_rec.png" zPosition="1">
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.RecordState" render="Pixmap" position="192,145" size="21,21" pixmap="/usr/share/enigma2/display/skin_default/vfd_icon_timer.png" alphatest="blend">
+    <convert type="info_timerno" />
+  </widget>
+  <widget source="session.spaUpdates" render="Pixmap" position="111,146" size="47,28" pixmap="/usr/share/enigma2/display/skin_default/vfd_icon_upt.png" zPosition="11">
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="session.spaUpdates" render="Label" position="95,143" size="77,34" zPosition="10" transparent="0" backgroundColor="black" foregroundColor="gray">
+    <convert type="ConditionalShowHide" />
+  </widget>
+  <widget source="global.CurrentTime" render="Label" position="95,142" size="144,39" font="VFD; 30" halign="left" transparent="1" foregroundColor="gray">
+    <convert type="ClockToText">Format:%d-%b</convert>
+  </widget>
+</screen>
+</skin>

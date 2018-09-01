@@ -1,0 +1,240 @@
+#!/bin/sh
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+datarootdir=@datarootdir@
+
+#wetek kodi start
+if [ -e /usr/bin/kodi ]; then
+	if [ -e /etc/.kodistart ]; then
+		rm -f /etc/.kodistart
+		echo 0 >  /sys/class/video/disable_video
+		/usr/bin/kodi
+		echo 1 > /sys/class/graphics/fb0/blank
+		if grep -q 1080 /etc/enigma2/settings; then
+			echo "0 0 1919 1079" > /sys/class/video/axis
+			echo 1080p50Hz > /sys/class/display/mode
+		else
+			echo "0 0 1279 719" > /sys/class/video/axis
+			echo 720p50Hz > /sys/class/display/mode
+		fi
+		echo 0 >  /sys/class/video/disable_video
+		echo 0 > /sys/class/graphics/fb0/blank
+	fi
+fi
+
+#check for /etc/enigma2 folder
+if [ ! -d /etc/enigma2 ] ; then
+	mkdir -p /etc/enigma2
+fi
+
+#check for /usr/share/enigma2/picon folder
+if [ ! -d /usr/share/enigma2/picon ] ; then
+	mkdir -p /usr/share/enigma2/picon
+fi
+
+# workaround for corrupt ssl files
+if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firstrun=False" ]; then
+	rm -rf /etc/enigma2/cert.pem &
+	rm -rf /etc/enigma2/key.pem &
+fi
+
+# remove annoying WebInterface relicts
+if [ -d @libdir@/enigma2/python/Plugins/Extensions/WebInterface/ ]; then
+	rm -rf @libdir@/enigma2/python/Plugins/Extensions/WebInterface/
+fi
+
+if [ -e /proc/stb/info/boxtype ]; then
+	stbcheck=`cat /proc/stb/info/boxtype | cut -c1-3`
+	if [ $stbcheck == "cc1" ]; then
+		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
+		if [ 0 == $count ];then
+			libreader 720P_50
+		fi
+	fi
+	stbcheck=`cat /proc/stb/info/boxtype | cut -c1-6`
+	if [ $stbcheck == "sf8008" ]; then
+		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
+		if [ 0 == $count ];then
+			libreader 720P_50
+		fi
+	fi
+fi
+
+if [ -x @bindir@/showiframe ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+		if [ ! $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 1
+		fi
+		if [ $stbcheck == "cc" ]; then
+			killall -9 libreader; sleep 5
+		fi
+	else
+		killall -9 showiframe; sleep 1
+	fi
+	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
+		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
+	elif [ -f @datadir@/backdrop.mvi ]; then
+		@bindir@/showiframe @datadir@/backdrop.mvi
+	fi
+fi
+
+# hook to execute scripts always before enigma2 start
+if [ -x @bindir@/enigma2_pre_start.sh ]; then
+	@bindir@/enigma2_pre_start.sh
+fi
+
+if [ -e /proc/stb/info/hwmodel ]; then
+	stbcheck=`cat /proc/stb/info/hwmodel | cut -c1-8`
+	if [ $stbcheck == "optimuss" ]; then
+		string=`mount | grep 'sda1' | cut -d " " -f3`
+		if [ -e $string/sat-soft/settings.sh ]; then
+			chmod 755 $string/sat-soft/settings.sh
+			$string/sat-soft/settings.sh
+		fi
+	fi
+fi
+
+if [ -d /home/root ]; then
+	cd /home/root
+	export HOME=/home/root
+fi
+
+#check for sundtek tuner helper lib
+if [ -e /opt/lib/libmediaclient.so ]; then
+	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
+else
+	LIBS="@libdir@/libopen.so.0.0.0"
+fi
+
+#check for specific pagecache helper lib
+if [ -e @libdir@/libpagecache.so ]; then
+	LIBS="$LIBS @libdir@/libpagecache.so"
+fi
+
+#check for receiver specific passthrough helper lib
+if [ -e @libdir@/libpassthrough.so ]; then
+	LIBS="$LIBS @libdir@/libpassthrough.so"
+fi
+
+#check for settings files
+if [ ! -e /etc/enigma2/settings ]; then
+	touch /etc/enigma2/settings
+fi
+
+#check for default sat settings
+stbcheck=00
+if [ -e /proc/stb/info/subtype ]; then
+	stbcheck=`cat /proc/stb/info/subtype`
+fi
+
+if [ -e /proc/stb/info/boxtype ] && [ -e /proc/stb/info/chipset ]; then
+	boxtype=`cat /proc/stb/info/boxtype`
+	chipset=`cat /proc/stb/info/chipset`
+	if [ $boxtype == "et7000" ] && [ $chipset == "bcm73625" ]; then
+		stbcheck=01
+	fi
+fi
+
+if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ] && [ ! $stbcheck == "1" ]; then
+	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
+fi
+
+sync
+
+# in case sysctl.conf is not properly loaded - load sysctl.conf here again...
+sysctl -p
+
+(sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
+        [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
+
+if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=True" ]; then
+	RANDOMIZE1970=''
+	time=`date +%Y` ;
+	if [ "$time" = 1970 ]; then
+		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
+	fi
+	LOGFOLDER="/home/root/logs/"
+	if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
+	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
+		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
+	fi
+	LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+else
+	# in case $TERM is "linux" the serial output is activated - discard debug output
+	if [ "$TERM" = linux ]; then
+		LD_PRELOAD=$LIBS @bindir@/enigma2 2> /dev/null
+	else
+		LD_PRELOAD=$LIBS @bindir@/enigma2
+	fi
+fi
+
+# enigma2 exit codes:
+#
+# 1 - halt
+# 2 - reboot
+# 3 - restart enigma
+#
+# >128 signal
+
+ret=$?
+
+if [ "$ret" -ne "1" ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+		if [ $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 5
+		fi
+	fi
+fi
+
+case $ret in
+	1)
+		/sbin/halt
+		;;
+	2)
+		if [ -f /proc/stb/fp/force_restart ]; then
+			echo 1 > /proc/stb/fp/force_restart
+		fi
+		/sbin/reboot
+		;;
+	3)
+		rm -fR /home/root/.gstreamer-0.10
+		rm -f /tmp/.listen.camd.socket.ignore
+		;;
+	4)
+		/sbin/rmmod lcd
+		/usr/sbin/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
+		sleep 1;
+		/sbin/rmmod fp
+		/sbin/modprobe fp
+		/sbin/reboot
+		;;
+	16)
+		echo "rescue" > /proc/stb/fp/boot_mode
+		/sbin/reboot
+		;;
+	42)
+		python @libdir@/enigma2/python/upgrade.pyo
+		;;
+	43)
+		init 1
+		;;
+	44)
+		# little hack but it will be fixed soon in drivers
+		@libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
+		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
+		echo fpupload >/proc/vfd && sleep 3 && dd bs=256k if=/tmp/micom.bin of=/dev/mcu
+		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi
+		# Wait forever for the user to power off
+		while(true) ; do sleep 60 ; done
+		;;
+	45)
+		echo "    " > /dev/lcd0
+		/usr/bin/gigablue_wol
+		;;
+	*)
+		rm -f /tmp/.listen.camd.socket.ignore
+		;;
+esac
