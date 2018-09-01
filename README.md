@@ -4,7 +4,7 @@
 
 ## OpenSPA 7.3 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.1](https://github.com/oe-alliance/oe-alliance-core/tree/4.1 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.2](https://github.com/oe-alliance/oe-alliance-core/tree/4.2 "OE-Alliance")
 > 
 > [https://github.com/OpenSPA/dvbapp](https://github.com/OpenSPA/dvbapp "OpenSPA E2")
 > 
