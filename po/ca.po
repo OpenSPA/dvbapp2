@@ -17532,3 +17532,60 @@ msgstr "Posa en marxa la TV desde repòs amb el temporitzador 'fes zàping y gra
 
 msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
 msgstr "Si has activat HDMI-CEC, pots especificar aquí si un temporitzador 'fes zàping y grava' també engega la TV"
+
+msgid "Wait for timesync at startup"
+msgstr "Esperar la sincronització de l'hora en arrancar"
+
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
+msgstr "Si l'alternativa a repòs profund' està habilitada, espera fins que es sincronitzi l'hora del sistema abans d'encendre la TV. D'aquesta forma, es pot preveure l'encesa si tenim un temporitzador a continuació. La sincronització pren un màxim de 2 minuts."
+
+msgid "TV was not in standby mode at startup"
+msgstr "La TV no estava en mode repòs en en arrancar"
+
+msgid "TV has another input active"
+msgstr "La TV té una altra entrada activa"
+
+msgid "Start a 'zap' recording timer"
+msgstr "Iniciar un temporitzador de gravació de 'fer zàping'"
+
+msgid "Start a 'zap and record' recording timer"
+msgstr "Iniciar un temporitzador de gravació de 'fer zàping i gravar'"
+
+msgid "Start a 'wakeup' power timer"
+msgstr "Iniciar un temporitzador d'alimentació de 'despertar'"
+
+msgid "TV was already on powered"
+msgstr "La TV ja estava encesa"
+
+msgid "Send repeated standby and wakeup messages"
+msgstr "Enviar missatges repetits de repòs i despertar"
+
+msgid "Try to send more messages if not all commands are executed.\n"
+msgstr "Intenta enviar més missatges si no s'executen totes les ordres.\n"
+
+msgid "(e.g. TV wakeup, but not switched to correct input)"
+msgstr "(ex. despertar TV, però no connectat a l'entrada correcta"
+
+msgid "Check power state from TV"
+msgstr "Comprovar estat de la TV"
+
+msgid "If the power state is reached, the repeated messages are stopped."
+msgstr "Si s'aconsegueix l'estat, els missatges repetits es pararan"
+
+msgid "Handle input from TV"
+msgstr "Gestionar entrada des de la TV"
+
+msgid "Put from standby to deep standby"
+msgstr "Posar en repòs profund des de repòs"
+
+msgid "If the receiver in standby, then switch to deep standby?"
+msgstr "Si el receptor està en repòs, llavors canvia a repòs profund?"
+
+msgid "Time delay to handle the TV event"
+msgstr "Retard per a gestionar l'event de la TV"
+
+msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+msgstr "'Gestió de repòs des de la TV' té més prioritat que 'Gestió entrada des de la TV'"
+
+msgid "Try to slow down the send interval if not all commands are executed.\n"
+msgstr "Intenta rebaixar l'interval d'envíament si no s'han executat totes les ordres.\n"

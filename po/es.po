@@ -17531,3 +17531,60 @@ msgstr "Enciende la TV desde reposo con el temporizador 'zapea y graba'"
 
 msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
 msgstr "Si has activado HDMI-CEC, puedes especificar aquí si un temporizador 'zapea y graba' también enciende la TV"
+
+msgid "Wait for timesync at startup"
+msgstr "Esperar la sincronización de la hora en el arranque"
+
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
+msgstr "Si la 'alternativa a reposo profundo' está habilitada, espera hasta que se sincronice la hora del sistema antes de encender la TV. De esta forma, el encendido puede ser prevenido si tenemos temporizador a continuación. La sincronización toma un máximo de 2 minutos."
+
+msgid "TV was not in standby mode at startup"
+msgstr "La TV no estaba en modo reposo en el arranque"
+
+msgid "TV has another input active"
+msgstr "La TV tiene otra entrada activa"
+
+msgid "Start a 'zap' recording timer"
+msgstr "Iniciar un temporizador de grabación de 'zapear'"
+
+msgid "Start a 'zap and record' recording timer"
+msgstr "Iniciar un temporizador de grabación de 'zapear y grabar'"
+
+msgid "Start a 'wakeup' power timer"
+msgstr "Iniciar un temporizador de alimentación de 'despertar'"
+
+msgid "TV was already on powered"
+msgstr "La TV ya estaba encendida"
+
+msgid "Send repeated standby and wakeup messages"
+msgstr "Enviar mesajes repetidos de reposo y despertar"
+
+msgid "Try to send more messages if not all commands are executed.\n"
+msgstr "Intenta enviar más mensajes si no se ejecutan todos los comandos.\n"
+
+msgid "(e.g. TV wakeup, but not switched to correct input)"
+msgstr "(ej. despertar TV, pero no enchufado a la entrada correcta"
+
+msgid "Check power state from TV"
+msgstr "Comprobar estado de la TV"
+
+msgid "If the power state is reached, the repeated messages are stopped."
+msgstr "Si se consigue el estado, los mensajes repetidos se pararán"
+
+msgid "Handle input from TV"
+msgstr "Gestionar entrada desde la TV"
+
+msgid "Put from standby to deep standby"
+msgstr "Poner en reposo profundo desde reposo"
+
+msgid "If the receiver in standby, then switch to deep standby?"
+msgstr "Si el receptor está en reposo, entonces cambia a reposo profundo?"
+
+msgid "Time delay to handle the TV event"
+msgstr "Retardo para gestionar el evento de la TV"
+
+msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+msgstr "'Gestión de reposo desde la TV' tiene más prioridad que 'Gestión entrada desde la TV'"
+
+msgid "Try to slow down the send interval if not all commands are executed.\n"
+msgstr "Intenta rebajar el intervalo de envío si no se han ejecutado todos los comandos.\n"
