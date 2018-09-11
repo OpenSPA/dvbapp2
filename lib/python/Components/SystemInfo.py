@@ -5,7 +5,7 @@ from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck
 from Tools.HardwareInfo import HardwareInfo
 
-from boxbranding import getBoxType, getMachineBuild
+from boxbranding import getBoxType, getMachineBuild, getDisplayType, getHaveRCA, getHaveDVI
 
 SystemInfo = {}
 
@@ -87,3 +87,5 @@ SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_to
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
 SystemInfo["CanDoTranscodeAndPIP"] = getBoxType() in ('vusolo4k', 'gbquad4k')
 SystemInfo["HDMIin"] = getMachineBuild() in ('inihdp', 'hd2400', 'et10000', 'dm7080', 'dm820', 'dm900', 'dm920', 'vuultimo4k', 'et13000', 'sf5008', 'vuuno4kse') or getBoxType() in ('spycat4k','spycat4kcombo','gbquad4k')
+SystemInfo["HaveRCA"] = getHaveRCA() in ('True')
+SystemInfo["HaveDVI"] = getHaveDVI() in ('True')
