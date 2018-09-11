@@ -16239,7 +16239,7 @@ msgstr "Després de gravar"
 msgid "Default 'Timer type' *"
 msgstr "'Tipus de programació' per defecte*"
 
-msgid "Default 'After event'"
+msgid "Default 'After event'*"
 msgstr "Acció 'Després de l'event'"
 
 msgid "Configure default setting for new timers. Need a restart after changing."
@@ -16665,6 +16665,9 @@ msgstr "Tipus sintonitzador (DVB-T2, DVB-C, DVB-S2)"
 
 msgid "Tuner type (DVB-T2, DVB-C)"
 msgstr "Tipus sintonitzador (DVB-T2, DVB-C)"
+
+msgid "Tuner type (DVB-T, DVB-C)"
+msgstr "Tipus sintonitzador (DVB-T, DVB-C)"
 
 msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
 msgstr "Si s'ajusta a 'sí', la barra d'informació romandrà sempre en estat de 'pausa' (sense temps de fi)."
@@ -17517,3 +17520,15 @@ msgstr "Mode per defecte seleccionat."
 
 msgid "Auto Modes Selected."
 msgstr "Mode automàtic seleccionat."
+
+msgid "Show True/False as graphical switch"
+msgstr "Mostrar Si/No en mode gràfic"
+
+msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
+msgstr "Habilita que es mostri qualsevol opció de configuració Verdader/Fals, si/no, on/off y habilitat/deshabilitat com interruptor gràfic"
+
+msgid "Turn on the TV from standby with 'zap and record' timer"
+msgstr "Posa en marxa la TV desde repòs amb el temporitzador 'fes zàping y grava'"
+
+msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
+msgstr "Si has activat HDMI-CEC, pots especificar aquí si un temporitzador 'fes zàping y grava' també engega la TV"
