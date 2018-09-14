@@ -5,7 +5,7 @@ from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck
 from Tools.HardwareInfo import HardwareInfo
 
-from boxbranding import getBoxType, getMachineBuild, getDisplayType, getHaveRCA, getHaveDVI
+from boxbranding import getBoxType, getMachineBuild, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART
 
 SystemInfo = {}
 
@@ -51,8 +51,8 @@ SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_l
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
 SystemInfo["VuplusVFD"] = getBoxType() in ('vuduo2')
 SystemInfo["XcoreVFD"] = getMachineBuild() in ('xc7346', 'xc7439')
-SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and getBoxType() in ('et8500', 'et10000', 'gb800ue', 'gb800ueplus', 'gbquad', 'gbquad4k', 'gbquadplus', 'gbue4k', 'gbultraue', 'gbultraueh', 'sf208', 'sf228', 'vusolo4k', 'vuuno4kse', 'vuultimo4k') and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.pyo") or SystemInfo["VuplusVFD"]
-SystemInfo["LCDClockSetup"] = path.exists("/usr/share/enigma2/display") and getBoxType() in ('gb800ue', 'gb800ueplus', 'gbquad', 'gbquad4k', 'gbquadplus', 'gbue4k', 'gbultraue', 'gbultraueh', 'sf208', 'sf228', 'vuuno4kse', 'vuultimo4k') and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.pyo")
+SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('7segment') and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.pyo") or SystemInfo["VuplusVFD"]
+SystemInfo["LCDClockSetup"] = path.exists("/usr/share/enigma2/display") and and getDisplayType() not in ('7segment') and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.pyo")
 SystemInfo["VFD_scroll_repeats"] = fileCheck("/proc/stb/lcd/scroll_repeats")
 SystemInfo["VFD_scroll_delay"] = fileCheck("/proc/stb/lcd/scroll_delay")
 SystemInfo["VFD_initial_scroll_delay"] = fileCheck("/proc/stb/lcd/initial_scroll_delay")
