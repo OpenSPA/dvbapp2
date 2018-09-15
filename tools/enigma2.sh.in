@@ -67,9 +67,6 @@ if [ -x @bindir@/showiframe ]; then
 		if [ ! $stbcheck == "u5" ]; then
 			killall -9 showiframe; sleep 1
 		fi
-		if [ $stbcheck == "cc" ]; then
-			killall -9 libreader; sleep 5
-		fi
 	else
 		killall -9 showiframe; sleep 1
 	fi
