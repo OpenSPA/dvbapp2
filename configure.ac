@@ -885,6 +885,7 @@ data/display480/Makefile
 data/display720/Makefile
 data/display800/Makefile
 data/display800/Default_with_Picon_Fullscreen/Makefile
+data/display800/Default_with_Picon_elduque/Makefile
 data/grautec70x0/Makefile
 data/grautec70x0/fonts/Makefile
 data/grautec8000/Makefile
