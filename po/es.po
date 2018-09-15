@@ -17535,8 +17535,8 @@ msgstr "Si has activado HDMI-CEC, puedes especificar aquí si un temporizador 'z
 msgid "Wait for timesync at startup"
 msgstr "Esperar la sincronización de la hora en el arranque"
 
-msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
-msgstr "Si la 'alternativa a reposo profundo' está habilitada, espera hasta que se sincronice la hora del sistema antes de encender la TV. De esta forma, el encendido puede ser prevenido si tenemos temporizador a continuación. La sincronización toma un máximo de 2 minutos."
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."
+msgstr "Si la 'alternativa a reposo profundo' está habilitada, espera hasta que se sincronice la hora del sistema. Dependiendo del requerimiento, el arranque de los dispositivos continuará después de un máximo de 2 minutos."
 
 msgid "TV was not in standby mode at startup"
 msgstr "La TV no estaba en modo reposo en el arranque"
@@ -17580,11 +17580,35 @@ msgstr "Poner en reposo profundo desde reposo"
 msgid "If the receiver in standby, then switch to deep standby?"
 msgstr "Si el receptor está en reposo, entonces cambia a reposo profundo?"
 
-msgid "Time delay to handle the TV event"
-msgstr "Retardo para gestionar el evento de la TV"
+msgid "Time delay until standby or deep standby"
+msgstr "Retardo hasta el reposo o reposo profundo"
 
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr "'Gestión de reposo desde la TV' tiene más prioridad que 'Gestión entrada desde la TV'"
 
 msgid "Try to slow down the send interval if not all commands are executed.\n"
 msgstr "Intenta rebajar el intervalo de envío si no se han ejecutado todos los comandos.\n"
+
+msgid "Even if TV has another input active?"
+msgstr "Incluso si la TV tiene otra entrada activa?"
+
+msgid "Even if a 'zap' recording timer starting?"
+msgstr "Incluso si hay un temporizador de zapeo arrancando?"
+
+msgid "Even if a 'zap and record' recording timer starting?"
+msgstr "Incluso si hay un temporizador de zapeo y grabación arrancando?"
+
+msgid "Even if a 'wakeup' power timer starting?"
+msgstr "Incluso si hay un temporizador de 'despertar' arrancando?"
+
+msgid "Repeat the sent standby and wakeup commands"
+msgstr "Repetir los comandos enviados de reposo y despertar"
+
+msgid "Try to send repeated commands if not all commands are executed. This is done at a slower send interval."
+msgstr "Intenta enviar comandos repetidos si no se han ejecutado todos. Esto se hace en un intervalo de envío más lento."
+
+msgid "Check power and input state from TV"
+msgstr "Comprobar estado de encendido y entrada de la TV"
+
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
+msgstr "Se hace un intento de capturar el estado actual de la TV. Si no es posible debido a mensajes de estado incorrectos o perdidos, puede causar que el receptor responda de manera inesperada."

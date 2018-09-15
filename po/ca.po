@@ -17536,8 +17536,8 @@ msgstr "Si has activat HDMI-CEC, pots especificar aquí si un temporitzador 'fes
 msgid "Wait for timesync at startup"
 msgstr "Esperar la sincronització de l'hora en arrancar"
 
-msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
-msgstr "Si l'alternativa a repòs profund' està habilitada, espera fins que es sincronitzi l'hora del sistema abans d'encendre la TV. D'aquesta forma, es pot preveure l'encesa si tenim un temporitzador a continuació. La sincronització pren un màxim de 2 minuts."
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."
+msgstr "Si l'alternativa a repòs profund' està habilitada, espera fins que es sincronitzi l'hora del sistema. Dependent del requeriment, l'arranc dels dispositius continuarà després d'un màxim de 2 minuts."
 
 msgid "TV was not in standby mode at startup"
 msgstr "La TV no estava en mode repòs en en arrancar"
@@ -17589,3 +17589,27 @@ msgstr "'Gestió de repòs des de la TV' té més prioritat que 'Gestió entrada
 
 msgid "Try to slow down the send interval if not all commands are executed.\n"
 msgstr "Intenta rebaixar l'interval d'envíament si no s'han executat totes les ordres.\n"
+
+msgid "Even if TV has another input active?"
+msgstr "Fins i tot si la TV té una altra entrada activa?"
+
+msgid "Even if a 'zap' recording timer starting?"
+msgstr "Fins i tot si hi ha un temporitzador de zàping arrancat?"
+
+msgid "Even if a 'zap and record' recording timer starting?"
+msgstr "Fins i tot si hi ha un temporitzador de zàping i gravació arrancant?"
+
+msgid "Even if a 'wakeup' power timer starting?"
+msgstr "Fins i tot si hi ha un temporitzador de 'despertar' arrancant?"
+
+msgid "Repeat the sent standby and wakeup commands"
+msgstr "Repetir les ordres enviades de repòs i despertar"
+
+msgid "Try to send repeated commands if not all commands are executed. This is done at a slower send interval."
+msgstr "Intenta enviar ordres repetides si no s'han executat totes. Això es fa en un interval d'enviament més lent."
+
+msgid "Check power and input state from TV"
+msgstr "Comprovar estat d'alimentació i entrada de la TV"
+
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
+msgstr "Es fa un intent de capturar l'estat actual de la TV. Si no és possible degut a missatges d'estat incorrectes o perduts, pot causar que el receptor respongui de forma inesperada."
