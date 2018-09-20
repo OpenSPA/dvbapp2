@@ -18299,3 +18299,11 @@ msgstr "Umschalten von 12 nach 8 Display Zeichen"
 
 msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, zeigt latin-1 Zeichensatz außer griechisch und kyrillisch, umschalten auf 8 wenn benötigt."
+
+#: python\Plugins\Extensions\QuadPip
+msgid "Enable Quad PIP"
+msgstr "Aktiviere Quad-PIP"
+
+#: python\Plugins\Extensions\QuadPip
+msgid "Input channel name."
+msgstr "Gebe einen Kanalnamen ein:"
