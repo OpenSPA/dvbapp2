@@ -17611,5 +17611,40 @@ msgstr "Intenta enviar ordres repetides si no s'han executat totes. Això es fa 
 msgid "Check power and input state from TV"
 msgstr "Comprovar estat d'alimentació i entrada de la TV"
 
-msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
-msgstr "Es fa un intent de capturar l'estat actual de la TV. Si no és possible degut a missatges d'estat incorrectes o perduts, pot causar que el receptor respongui de forma inesperada."
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions."
+msgstr "Es fa un intent de capturar l'estat actual de la TV. Si no és possible degut a missatges d'estat incorrectes o perduts, pot causar que el receptor respongui de forma inesperada.\nD'altra banda, intenta respondre millor a diferents condicions operatives."
+
+msgid "Slowing down for the send interval"
+msgstr "Disminució de la velocitat per a l'interval d'enviament"
+
+msgid "Repeat the standby commands?"
+msgstr "¿Repetir les ordres de repòs?"
+
+msgid "Is not necessary in most cases."
+msgstr "No és necessari en la majoria de casos."
+
+msgid "The time is multiplied by the repeat counter and added to the minimum send interval."
+msgstr "El temps es multiplica pel contador de repetició y s'afegeix a l'interval mínim d'enviament."
+
+#: python\Plugins\Extensions\QuadPip
+msgid " <No Channel>"
+msgstr " <Cap canal>"
+
+#: python\Plugins\Extensions\QuadPip
+msgid "No channel"
+msgstr "Cap canal"
+
+#: python\Plugins\Extensions\QuadPip
+msgid " <empty>"
+msgstr " <buit>"
+
+#: python\Plugins\Extensions\QuadPip
+msgid " (current channel)"
+msgstr " (canal actual)"
+
+#: python\Plugins\Extensions\QuadPip
+msgid "Really delete this entry?"
+msgstr "Segur que vols eliminar aquesta entrada?"
+
+msgid "Blinking REC"
+msgstr "REC parpellejant"

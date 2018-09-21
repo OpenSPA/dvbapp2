@@ -10213,6 +10213,12 @@ msgid ""
 "If you get an \"enabled\" message:\n"
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
+"Este test comprueba si tu adaptador LAN está configurado para IP automática con DHCP.\n"
+"Si obtienes un mensaje \"deshabilitado"\ :\n"
+" - entonces el adaptador está configurado para IP manual\n"
+"- verifica que hayas introducido los datos correctos de IP en el cuadro de diálogo del adaptador.\n"
+"Si obtienes un mensaje \"habilitado\" :\n"
+"- verifica que hayas configurado y tengas funcionando DHCP en tu router.\n"
 
 #
 msgid "This test detects your configured LAN adapter."
@@ -10222,6 +10228,8 @@ msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
+"Esto (re)calculará todas las posiciones de tu motor y puede borrar posiciones y movimientos finos previamente memorizados!\n"
+"¿Estás seguro?"
 
 #
 msgid "Three"
@@ -17139,28 +17147,6 @@ msgstr "Centrar subt DVB en este canal"
 msgid "Enable Quad PIP"
 msgstr "Activar Quad PIP"
 
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-"Botón EPG : Cambia a entrada Quad PiP\n"
-"Botón Ok :  Añadir a nueva entrada\n"
-"Botón PVR : Nombre canal de entrada\n"
-"Botón Exit : Finalizar edición de canal"
-
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-"Botón EPG : Cambiar a lista de canales\n"
-"Botón Ok : Borrar canal seleccionado\n"
-"Botón PVR : Nombre canal de entrada\n"
-"Botón Exit : Finalizar edición de canal"
-
 msgid "Choice where to put \"%s\""
 msgstr "Escoger donde poner \"%s\""
 
@@ -17610,5 +17596,48 @@ msgstr "Intenta enviar comandos repetidos si no se han ejecutado todos. Esto se 
 msgid "Check power and input state from TV"
 msgstr "Comprobar estado de encendido y entrada de la TV"
 
-msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
-msgstr "Se hace un intento de capturar el estado actual de la TV. Si no es posible debido a mensajes de estado incorrectos o perdidos, puede causar que el receptor responda de manera inesperada."
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions."
+msgstr "Se hace un intento de capturar el estado actual de la TV. Si no es posible debido a mensajes de estado incorrectos o perdidos, puede causar que el receptor responda de manera inesperada.\nDe otra forma, intenta responder mejor a diferentes condiciones operativas."
+
+msgid "Slowing down for the send interval"
+msgstr "Disminución de la velocidad para el intervalo de envío"
+
+msgid "Repeat the standby commands?"
+msgstr "¿Repetir los comandos de reposo?"
+
+msgid "Is not necessary in most cases."
+msgstr "No es necesario en la mayoría de casos."
+
+msgid "The time is multiplied by the repeat counter and added to the minimum send interval."
+msgstr "El tiempo se multiplica por el contador de repetición y se añade al intervalo mínimo de envío."
+
+#: python\Plugins\Extensions\QuadPip
+msgid " <No Channel>"
+msgstr " <Ningún canal>"
+
+#: python\Plugins\Extensions\QuadPip
+msgid "No channel"
+msgstr "Ningún canal"
+
+#: python\Plugins\Extensions\QuadPip
+msgid " <empty>"
+msgstr " <vacío>"
+
+#: python\Plugins\Extensions\QuadPip
+msgid " (current channel)"
+msgstr " (canal actual)"
+
+#: python\Plugins\Extensions\QuadPip
+msgid "Really delete this entry?"
+msgstr "¿Seguro que quieres borrar esta entrada?"
+
+msgid "Blinking REC"
+msgstr "REC parpadeando"
+
+#: python\Plugins\Extensions\QuadPip
+msgid "EPG key : Switch to quad PiP entry\nOk key : Add to new entry\nPVR key : Input channel name\nExit key : Finish channel edit"
+msgstr "Botón EPG : Cambia a entrada Quad PiP\nBotón Ok :  Añadir a nueva entrada\nBotón PVR : Nombre canal de entrada\nBotón Exit : Finalizar edición de canal"
+
+#: python\Plugins\Extensions\QuadPip
+msgid "EPG key : Switch to channel list\nOk key : Remove selected channel\nPVR key : Input channel name\nExit key : Finish channel edit"
+msgstr "Botón EPG : Cambiar a lista de canales\nBotón Ok : Borrar canal seleccionado\nBotón PVR : Nombre canal de entrada\nBotón Exit : Finalizar edición de canal"
