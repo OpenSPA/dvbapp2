@@ -5930,6 +5930,10 @@ msgid ""
 "The following methods of freeing a tuner were tried without success:\n"
 "\n"
 msgstr ""
+"Ningún sintonizador disponible para iniciar un temporizador de grabación!\n"
+"\n"
+"Los siguientes métodos de liberar un sintonizador se probaron sin éxito:\n"
+"\n"
 
 #
 msgid "No tuner is configured for use with a diseqc positioner!"
