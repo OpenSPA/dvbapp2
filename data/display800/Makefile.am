@@ -1,4 +1,4 @@
-SUBDIRS = Default_with_Picon_Fullscreen Default_with_Picon_elduque
+SUBDIRS = Default_with_Picon_Fullscreen
 
 installdir = $(pkgdatadir)/display/skin_default
 dist_install_DATA = *.png *.ttf
