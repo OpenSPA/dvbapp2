@@ -187,14 +187,14 @@ class WlanScan(Screen):
 			<widget source="list" render="Listbox" position="5,40" size="550,300" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
-							MultiContentEntryText(pos = (0, 0), size = (550, 30), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the essid
+							MultiContentEntryText(pos = (0, 0), size = (550, 34), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the essid
 							MultiContentEntryText(pos = (0, 30), size = (175, 20), font=1, flags = RT_HALIGN_LEFT, text = 5), # index 5 is the interface
 							MultiContentEntryText(pos = (175, 30), size = (175, 20), font=1, flags = RT_HALIGN_LEFT, text = 4), # index 0 is the encryption
 							MultiContentEntryText(pos = (350, 0), size = (200, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 0 is the signal
 							MultiContentEntryText(pos = (350, 30), size = (200, 20), font=1, flags = RT_HALIGN_LEFT, text = 3), # index 0 is the maxrate
 							MultiContentEntryPixmapAlphaTest(pos = (0, 52), size = (550, 2), png = 6), # index 6 is the div pixmap
 						],
-					"fonts": [gFont("Regular", 28),gFont("Regular", 18)],
+					"fonts": [gFont("Regular", 25),gFont("Regular", 18)],
 					"itemHeight": 54
 					}
 				</convert>
