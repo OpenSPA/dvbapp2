@@ -432,10 +432,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
 			self.hideTimer.stop()
-			idx = config.usage.infobar_timeout.index - 1
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				self.hideTimer.stop()
 				idx = config.usage.show_second_infobar.index - 1
+			else:
+				idx = config.usage.infobar_timeout.index
 			if idx:
 				self.hideTimer.startLongTimer(idx)
 		elif hasattr(self, "pvrStateDialog"):
