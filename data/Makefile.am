@@ -51,11 +51,12 @@ SUBDIRS += display390
 endif
 
 if HAVE_COLORLCD400
-SUBDIRS += display400 clock400
+SUBDIRS += display400
+if VUUNO4KSE
+SUBDIRS += clock400s
+else
+SUBDIRS += clock400
 endif
-
-if HAVE_COLORLCD400S
-SUBDIRS += display400 clock400s
 endif
 
 if HAVE_COLORLCD480
