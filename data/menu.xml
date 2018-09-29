@@ -84,6 +84,7 @@
 				<item weight="5" level="0" text="Skin setup" entryID="lcd_skin_setup" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 				<item weight="10" level="0" text="LCD Clock selection" requires="LCDClockSetup"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item>
 			</menu>
+			<item weight="35" level="2" text="Hotkey Setup" entryID="buttonsetup_setup"><screen module="ButtonSetup" screen="ButtonSetup"/></item>
 			<!-- Menu / Settings / System / Extended System / OSD settings -->
 			<menu weight="40" level="1" text="Extended GUI" entryID="osd_setup">
 				<id val="osd_menu" />

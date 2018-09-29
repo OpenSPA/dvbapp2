@@ -26,6 +26,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarSleepTimer, InfoBarOpenOnTopHelper, \
 	InfoBarHdmi, setResumePoint, delResumePoint
+from Screens.ButtonSetup import InfoBarButtonSetup
 
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
@@ -43,7 +44,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport, InfoBarBuffer,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
 	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarSleepTimer, InfoBarOpenOnTopHelper,
-	InfoBarHdmi, Screen):
+	InfoBarHdmi, InfoBarButtonSetup, Screen):
 
 	ALLOW_SUSPEND = True
 	instance = None
@@ -76,7 +77,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, InfoBarAspectSelection, InfoBarBuffer, \
 				InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport, InfoBarSummarySupport, InfoBarTimeshiftState, \
 				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarZoom, InfoBarSleepTimer, InfoBarOpenOnTopHelper, \
-				InfoBarHdmi, InfoBarPlugins, InfoBarServiceErrorPopupSupport:
+				InfoBarHdmi, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarButtonSetup:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Watch recordings..."))]))
@@ -263,7 +264,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, InfoBarResolutionSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
-		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarHdmi):
+		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarHdmi, InfoBarButtonSetup):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -307,7 +308,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, \
-				InfoBarPlugins, InfoBarPiP, InfoBarZoom:
+				InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarButtonSetup:
 			x.__init__(self)
 
 		self.onChangedEntry = [ ]
