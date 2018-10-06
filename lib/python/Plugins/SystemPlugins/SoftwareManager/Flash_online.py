@@ -412,7 +412,7 @@ class FlashOnline(Screen):
 							cmdline = self.find_rootfs_dev(name)
 						except IndexError:
 							continue
-						cmdline_startup = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+						cmdline_startup = self.find_rootfs_dev("STARTUP")
 						if (cmdline != cmdline_startup) and (name != "STARTUP"):
 							files.append(name)
 				files.insert(0,"STARTUP")
@@ -423,7 +423,7 @@ class FlashOnline(Screen):
 							cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
 						except IndexError:
 							continue
-						cmdline_startup = self.find_rootfs_dev("STARTUP")
+						cmdline_startup = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
 						if (cmdline != cmdline_startup) and (name != "cmdline.txt"):
 							files.append(name)
 				files.insert(0,"cmdline.txt")
