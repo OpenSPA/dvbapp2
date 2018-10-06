@@ -1236,9 +1236,9 @@ def main(session, **kwargs):
 
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name=_("OpenSPA Panel"), description="OpenSPA Panel", where = PluginDescriptor.WHERE_MENU, fnc = panel),
-		PluginDescriptor(name=_("OpenSPA Panel"), description="OpenSPA Panel", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main),
-		PluginDescriptor(name=_("TimeJump Setup"), description="Step back/forward in time playing movies", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = TimeJumpMain),
+		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where = PluginDescriptor.WHERE_MENU, fnc = panel),
+		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main),
+		PluginDescriptor(name=_("TimeJump Setup"), description=_("Step back/forward in time playing movies"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = TimeJumpMain),
 		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
 		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = TimeJumpAutostart),]

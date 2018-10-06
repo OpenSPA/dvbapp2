@@ -1871,3 +1871,31 @@ msgstr "Ningún dispositivo encontrado"
 #: plugin.py:1093 plugin.py:1102 plugin.py:1103
 msgid "OpenSPA Panel"
 msgstr "Panel OpenSPA"
+
+#: plugin.py:1241
+msgid "Step back/forward in time playing movies"
+msgstr "Retroceder/Avanzar tiempo reproduciendo películas"
+
+#: TimeJump.py:68
+msgid "Jump video time:"
+msgstr "Saltar tiempo vídeo:"
+
+#: TimeJump.py:71
+msgid "Go to position:"
+msgstr "Ir a posición:"
+
+#: plugin.py:1241 TimeJump.py:179
+msgid "TimeJump Setup"
+msgstr "Configuración TimeJump"
+
+#: TimeJump.py:186
+msgid "Enable TimeJump (need restart):"
+msgstr "Activar TimeJump (necesita reinicio GUI):"
+
+#: TimeJump.py:187
+msgid "Default skip time:"
+msgstr "Tiempo salto por defecto:"
+
+#: TimeJump.py:188
+msgid "Cursor Sensibility in slider (1-30):"
+msgstr "Sensibilidad cursor en barra deslizante (1-30):"
