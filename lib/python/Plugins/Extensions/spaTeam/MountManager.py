@@ -49,8 +49,8 @@ class HddMount(Screen):
 		Screen.setTitle(self, _("Mount Manager"))
 		self['key_red'] = Label(" ")
 		self['key_green'] = Label(_("Setup Mounts"))
-		self['key_yellow'] = Label("Unmount")
-		self['key_blue'] = Label("Mount")
+		self['key_yellow'] = Label(_("Unmount"))
+		self['key_blue'] = Label(_("Mount"))
 		self['lab1'] = Label()
 		self.onChangedEntry = [ ]
 		self.list = []
