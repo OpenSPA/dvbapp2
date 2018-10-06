@@ -41,6 +41,7 @@ from Plugins.Extensions.spaTeam.CamCheck import *
 from Plugins.Extensions.spaTeam.CamStart import *
 from Plugins.Extensions.spaTeam.SwapManager import Swap, SwapAutostart
 from Plugins.Extensions.spaTeam.SoftwarePanel import SoftwarePanel
+from Plugins.Extensions.spaTeam.TimeJump import TimeJumpAutostart, TimeJumpMain
 from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup
@@ -1237,6 +1238,8 @@ def Plugins(**kwargs):
 	return [
 		PluginDescriptor(name=_("OpenSPA Panel"), description="OpenSPA Panel", where = PluginDescriptor.WHERE_MENU, fnc = panel),
 		PluginDescriptor(name=_("OpenSPA Panel"), description="OpenSPA Panel", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main),
+		PluginDescriptor(name=_("TimeJump Setup"), description="Step back/forward in time playing movies", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = TimeJumpMain),
 		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
-		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),]
+		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
+		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = TimeJumpAutostart),]
 
