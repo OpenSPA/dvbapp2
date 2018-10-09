@@ -865,11 +865,11 @@ class doFlashImage(Screen):
 				text += _("Simulate (no write)")
 				if SystemInfo["HaveMultiBoot"]:
 					if getMachineBuild() in ("cc1","sf8008","ustym4kpro"):
-						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
+						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, self.flashTmp))
 					else:
-						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
+						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, self.flashTmp))
 				elif getMachineBuild() in ("u51", "u52", "u53", "u5", "u5pvr", "cc1", "sf8008", "ustym4kpro"):
-					cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
+					cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, self.flashTmp))
 				elif getMachineBuild() in ("h9", "i55plus"):
 					cmdlist.append("%s -n -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, self.flashTmp))
 				else:
@@ -884,11 +884,11 @@ class doFlashImage(Screen):
 					if self.List not in ("STARTUP","cmdline.txt"):
 						os.system('mkfs.ext4 -F ' + self.devrootfs)
 					if getMachineBuild() in ("cc1","sf8008","ustym4kpro"):
-						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
+						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, self.flashTmp))
 					else:
-						cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
+						cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, self.flashTmp))
 				elif getMachineBuild() in ("u51", "u52", "u53", "u5", "u5pvr", "cc1", "sf8008", "ustym4kpro"):
-					cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
+					cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, self.flashTmp))
 				elif getMachineBuild() in ("h9", "i55plus"):
 					cmdlist.append("%s -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, self.flashTmp))
 				else:
