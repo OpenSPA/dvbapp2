@@ -905,12 +905,12 @@ class doFlashImage(Screen):
 					if self.box() == 'gb800solo':
 						message += _('GB800SOLO takes about 20 mins !!\n')
 				message += "'"
-			cmdlist.append(message)
-			self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
-			if not self.simulate:
-				fbClass.getInstance().lock()
-			if self.List not in ("STARTUP","cmdline.txt"):
-				self.close()
+				cmdlist.append(message)
+				self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
+				if not self.simulate:
+					fbClass.getInstance().lock()
+				if self.List not in ("STARTUP","cmdline.txt"):
+					self.close()
 
 	def prepair_flashtmp(self, tmpPath):
 		if os.path.exists(self.flashTmp):
