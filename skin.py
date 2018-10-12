@@ -33,7 +33,7 @@ fonts = {
 parameters = {}
 constant_widgets = {}
 variables = {}
-DEFAULT_SKIN = "Spa24HD/skin.xml"
+DEFAULT_SKIN = "MetrixHD/skin.xml"
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 if SystemInfo["grautec"]:
 	DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml"
