@@ -239,8 +239,20 @@ class AVSwitch:
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(mode_50)
 				f.close()
+				#### ALIEN5 fullhd skin fix
+				if getMachineBuild() in ('alien5'):
+					f = open("/sys/class/graphics/fb0/virtual_size")
+					self.fbres = f.read()
+					f.close()
+					if '1920' in (self.fbres):
+						os.system('echo 0 > /sys/class/graphics/fb0/free_scale')
+						os.system('echo "0 0 1919 1079" > /sys/class/graphics/fb0/free_scale_axis')
+						os.system('echo "0 0 1919 1079" > /sys/class/graphics/fb0/window_axis')
+						os.system('echo "0x1001" > /sys/class/graphics/fb0/free_scale')
+
 			except IOError:
 				print "[AVSwitch] setting videomode failed."
+
 
 		if SystemInfo["have24hz"]:
 			try:
