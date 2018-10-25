@@ -251,6 +251,7 @@ class AVSwitch:
 						os.system('echo "0x1001" > /sys/class/graphics/fb0/free_scale')
 			except IOError:
 				print "[AVSwitch] setting videomode failed."
+
 		if SystemInfo["have24hz"]:
 			try:
 				open("/proc/stb/video/videomode_24hz", "w").write(mode_24)
