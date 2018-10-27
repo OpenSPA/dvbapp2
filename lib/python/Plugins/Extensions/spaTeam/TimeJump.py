@@ -252,8 +252,9 @@ def init_timejump():
 		SimplePlayer.seekFwd = timejump
 
 def TimeJumpAutostart(reason, **kwargs):
-	if reason == 0: # startup
-		init_timejump()
+	if config.plugins.timejump.activate.value:
+		if reason == 0: # startup
+			init_timejump()
 
 def TimeJumpMain(session, **kwargs):
 	session.open(TimeJumpSetup)
