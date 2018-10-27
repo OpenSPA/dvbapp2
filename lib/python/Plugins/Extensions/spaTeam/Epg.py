@@ -3,7 +3,7 @@
 from . import _
 from enigma import eTimer, eEPGCache
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import inStandby, TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -27,6 +27,7 @@ config.epg.freesat = ConfigYesNo(default = True)
 config.epg.viasat = ConfigYesNo(default = True)
 config.epg.netmed = ConfigYesNo(default = True)
 config.epg.virgin = ConfigYesNo(default = False)
+config.epg.restartgui = ConfigYesNo(default = False)
 
 hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 for p in harddiskmanager.getMountedPartitions():
@@ -90,7 +91,7 @@ def _(txt):
 class Ttimer(Screen):
 	skin = """<screen name="Ttimer" position="center,center" zPosition="10" size="1280,720" title="Update EPG" backgroundColor="#ff000000" flags="wfNoBorder">
 					<ePixmap name="background" position="40,40" size="410,130" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/icons/background.png" zPosition="-1" alphatest="off" />
-					<widget name="srclabel" halign="left" valign="center" position="49,46" size="289,20" font="Regular;17" foregroundColor="#dfdfdf" transparent="1" backgroundColor="#000000" borderColor="black" borderWidth="1" noWrap="1"/>
+					<widget name="srclabel" halign="left" valign="center" position="49,46" size="289,30" font="Regular;17" foregroundColor="#dfdfdf" transparent="1" backgroundColor="#000000" borderColor="black" borderWidth="1" noWrap="1"/>
 					<widget name="srcwait" valign="center" halign="center" position="60,82" size="360,20" font="Regular;15" foregroundColor="#dfdfdf" transparent="1" backgroundColor="#000000" borderColor="black" borderWidth="1" noWrap="1"/>
 					<widget name="progress" position="60,105" size="360,8" borderWidth="1" borderColor="#1143495b" backgroundColor="#1143495b" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/icons/progreso.png" zPosition="2" alphatest="blend" />
 			</screen>"""
@@ -126,11 +127,19 @@ class Ttimer(Screen):
 			rDialog.stopDialog(self.session)
 			epgcache = new.instancemethod(_enigma.eEPGCache_load, None, eEPGCache)
 			epgcache = eEPGCache.getInstance().save()
-			from Screens.Standby import inStandby
 			if inStandby:
 				self.session.nav.stopService()
+			else:
+				if config.epg.restartgui.value:
+					self.session.openWithCallback(self.restartCB,MessageBox,_("Need restart GUI to apply changes\n Restart now?"), MessageBox.TYPE_YESNO,timeout = 15)
 			self.close()
 		return
+
+	def restartCB(self, retval):
+		if retval:
+			self.TimerTemp = eTimer()
+			self.TimerTemp.callback.append(self.session.open(TryQuitMainloop, 3))
+			self.TimerTemp.startLongTimer(2)
 
 pdialog = ''
 
@@ -154,7 +163,7 @@ rDialog = runDialog()
 class EPGScreen(Screen, ConfigListScreen):
 	skin = """
 			<screen name="EPGScreen" position="center,center" size="710,500">
-				<widget position="15,50" size="680,420" name="config" scrollbarMode="showOnDemand" />
+				<widget position="15,50" size="680,400" name="config" scrollbarMode="showOnDemand" />
 				<eLabel backgroundColor="red" position="15,490" size="165,3" zPosition="0" />
 				<eLabel backgroundColor="green" position="185,490" size="165,3" zPosition="0" />
 				<eLabel backgroundColor="yellow" position="355,490" size="165,3" zPosition="0" />
@@ -198,6 +207,7 @@ class EPGScreen(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_('Enable Virgin EPG'), config.epg.virgin))
 		self.list.append(getConfigListEntry(_('Maximum number of days in EPG'), config.epg.maxdays))
 		self.list.append(getConfigListEntry(_('Maintain old EPG data for'), config.epg.histminutes))
+		self.list.append(getConfigListEntry(_('Restart GUI after download EPG?'), config.epg.restartgui))
 		self.list.append(getConfigListEntry(_('Include EIT in http streams'), config.streaming.stream_eit))
 		self.list.append(getConfigListEntry(_('Include AIT in http streams'), config.streaming.stream_ait))
 		self.list.append(getConfigListEntry(_('Country for EPG event rating information'), config.misc.epgratingcountry))
@@ -241,6 +251,7 @@ class EPGScreen(Screen, ConfigListScreen):
 		epgcache = new.instancemethod(_enigma.eEPGCache_save, None, eEPGCache)
 		epgcache = eEPGCache.getInstance().save()
 		config.epg.mhw.wait.save()
+		config.epg.restartgui.save()
 		config.epg.save()
 		config.epg.maxdays.save()
 		configfile.save()
