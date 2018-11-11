@@ -17661,27 +17661,3 @@ msgstr "Segur que vols eliminar aquesta entrada?"
 
 msgid "Blinking REC"
 msgstr "REC parpellejant"
-
-#: python\Plugins\Extensions\QuadPip
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-"Botó EPG : Canvia a entrada Quad PiP\n"
-"Botó Ok :  Afegir a nova entrada\n"
-"Botó PVR : Nom canal d'entrada\n"
-"Botó Exit : Finalitzar edició de canal"
-
-#: python\Plugins\Extensions\QuadPip
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-"Botó EPG : Canviar a llista de canals\n"
-"Botó Ok : Esborrar canal sel·leccionat\n"
-"Botó PVR : Nom canal d'entrada\n"
-"Botó Exit : Finalitzar edició de canal"
