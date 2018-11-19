@@ -11662,6 +11662,10 @@ msgid ""
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
+"Tu %s %s está listo para usarse.\n"
+"\n"
+"Tu conexión a internet es correcta.\n"
+"\n"
 
 #, python-format
 msgid "Your %s %s is rebooting"
