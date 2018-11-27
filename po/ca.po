@@ -16840,6 +16840,15 @@ msgstr "Algoritme de sintonització"
 msgid "reliable"
 msgstr "confiable"
 
+msgid "traditional (fast)"
+msgstr "tradicional (ràpid)"
+
+msgid "reliable, retune"
+msgstr "confiable, reajust"
+
+msgid "traditional (fast), retune"
+msgstr "tradicional (ràpid), reajust"
+
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "Temps d'arranc LNB/Switch [ms]"
 

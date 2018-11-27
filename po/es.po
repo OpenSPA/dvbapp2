@@ -4518,7 +4518,7 @@ msgid "Horizontal"
 msgstr "Horizontal"
 
 msgid "Horizontal turning speed"
-msgstr ""
+msgstr "Velocidad de giro horizontal"
 
 msgid "Hostname:"
 msgstr "Nombre del host: "
@@ -6879,7 +6879,7 @@ msgid "Positioner"
 msgstr "Motor"
 
 msgid "Positioner (selecting satellites)"
-msgstr "Motor (seleccionando satélites)"
+msgstr "Motor(selecc sats)"
 
 msgid "Positioner Setup"
 msgstr "Configurar motor"
@@ -10620,7 +10620,7 @@ msgid "Turn on HDMI-IN PiP mode"
 msgstr "Activar el modo PiP para HDMI-IN"
 
 msgid "Turning step size"
-msgstr ""
+msgstr "Tamaño del paso de giro"
 
 #
 msgid "Two"
@@ -11018,7 +11018,7 @@ msgid "Vertical"
 msgstr "Vertical"
 
 msgid "Vertical turning speed"
-msgstr ""
+msgstr "Velocidad de giro vertical"
 
 msgid "Very short filenames"
 msgstr "Nombres muy cortos"
@@ -16828,6 +16828,15 @@ msgstr "Algoritmo de sintonización"
 
 msgid "reliable"
 msgstr "confiable"
+
+msgid "traditional (fast)"
+msgstr "tradicional (rápido)"
+
+msgid "reliable, retune"
+msgstr "confiable, reajuste"
+
+msgid "traditional (fast), retune"
+msgstr "tradicional (rápido), reajuste"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "Tiempo de arranque LNB/Switch [ms]"
