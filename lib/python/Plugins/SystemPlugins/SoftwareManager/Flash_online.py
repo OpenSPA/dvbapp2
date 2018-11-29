@@ -493,10 +493,10 @@ class getDevices(Screen):
 
 	def green(self):
 		try:
-			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/plugin.pyo"):
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/plugin.pyo") and not fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo"):
 				from Plugins.Extensions.spaTeam.MountManager import HddMount
 				self.session.openWithCallback(self.back,HddMount)
-			elif fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo"):
+			elif fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo") and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/plugin.pyo"):
 				from Plugins.SystemPlugins.DeviceManager.HddSetup import HddSetup
 				self.session.openWithCallback(self.back,HddSetup)
 		except:

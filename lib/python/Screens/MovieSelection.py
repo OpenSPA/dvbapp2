@@ -29,7 +29,7 @@ from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 import Screens.InfoBar
 from Tools import NumericalTextInput
-from Tools.Directories import resolveFilename, SCOPE_HDD
+from Tools.Directories import resolveFilename, fileExists, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
 import Tools.CopyFiles
 import Tools.Trashcan
@@ -2111,8 +2111,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.session.open(NetworkSetup.NetworkMountsMenu)
 
 	def showDeviceMounts(self):
-		from Plugins.SystemPlugins.DeviceManager.HddSetup import HddSetup
-		self.session.open(HddSetup)
+		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/plugin.pyo") and not fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo"):
+			from Plugins.Extensions.spaTeam.MountManager import HddMount
+			self.session.open(HddMount)
+		elif fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo") and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/plugin.pyo"):
+			from Plugins.SystemPlugins.DeviceManager.HddSetup import HddSetup
+			self.session.open(HddSetup)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
