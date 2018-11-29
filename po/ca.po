@@ -16852,9 +16852,6 @@ msgstr "tradicional (ràpid), reajust"
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "Temps d'arranc LNB/Switch [ms]"
 
-msgid "traditional (fast)"
-msgstr "tradicional (ràpid)"
-
 msgid "Please press OK to start Kodi..."
 msgstr "Si us plau, prem OK per a iniciar Kodi..."
 
