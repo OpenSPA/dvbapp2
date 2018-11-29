@@ -444,8 +444,8 @@ class Network:
 	def checkNetworkState(self,statecallback):
 		self.NetworkState = 0
 		cmd1 = "ping -c 1 openspa.info"
-		cmd2 = "ping -c 1 www.google.es"
-		cmd3 = "ping -c 1 www.google.com"
+		cmd2 = "ping -c 1 duckduckgo.com"
+		cmd3 = "ping -c 1 www.linuxfoundation.org"
 		self.PingConsole = Console()
 		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
 		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
