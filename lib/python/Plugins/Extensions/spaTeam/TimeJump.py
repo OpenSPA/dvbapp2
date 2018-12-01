@@ -86,6 +86,11 @@ class TimeJump(ConfigListScreen, Screen):
 
 	def updateCursor(self):
 		if self.length:
+			if self.percent>100.0:
+				self.percent=100.0
+			elif self.percent<0.0:
+				self.percent=0.0
+
 			x = 119 + int(2.66 * self.percent)
 			posy = self["cursor"].instance.position().y()
 			self["cursor"].moveTo(x-8, posy, 1)
