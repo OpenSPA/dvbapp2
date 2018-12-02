@@ -921,6 +921,11 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				addFont(resolved_font, "RegularHD", 150, False, render) 
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
+
+		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=path_prefix)
+		if fileExists(fallbackFont):
+			addFont(fallbackFont, "Fallback", 100, -1, 0)
+
 		for alias in c.findall("alias"):
 			get = alias.attrib.get
 			try:
