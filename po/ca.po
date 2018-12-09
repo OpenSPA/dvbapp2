@@ -17671,3 +17671,21 @@ msgstr "Segur que vols eliminar aquesta entrada?"
 
 msgid "Blinking REC"
 msgstr "REC parpellejant"
+
+msgid "Handle Python crashes"
+msgstr "Gestionar errors de Python"
+
+msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
+msgstr "Intenta prevenir reinicis per error de software i manté la disponibilitat del receptor."
+
+msgid "Show crash info on screen and write crash log for x times"
+msgstr "Mostrar info bloqueig en pantalla i escriure log d'errors després de x vegades"
+
+msgid "If 'never', will write crash log despite that for the first crash."
+msgstr "Si 'mai', escriurà el log d'errors des del primer bloqueig."
+
+msgid "Restart GUI after x crashes"
+msgstr "Reiniciar GUI després de x bloquejos"
+
+msgid "If 'never', will force restart despite that after 100 crashes."
+msgstr "Si 'mai', forçarà el reinici després de 100 bloquejos."

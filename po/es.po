@@ -17698,3 +17698,21 @@ msgstr ""
 "Botón Ok : Borrar canal seleccionado\n"
 "Botón PVR : Nombre canal de entrada\n"
 "Botón Exit : Finalizar edición de canal"
+
+msgid "Handle Python crashes"
+msgstr "Manejar fallos de Python"
+
+msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
+msgstr "Intenta prevenir reinicios por error de software y mantiene la disponibilidad del receptor."
+
+msgid "Show crash info on screen and write crash log for x times"
+msgstr "Mostrar info bloqueo en pantalla y escribir log de fallos después de x veces"
+
+msgid "If 'never', will write crash log despite that for the first crash."
+msgstr "Si 'nunca', escribirá el log de fallos desde el primer bloqueo."
+
+msgid "Restart GUI after x crashes"
+msgstr "Reiniciar GUI después de x bloqueos"
+
+msgid "If 'never', will force restart despite that after 100 crashes."
+msgstr "Si 'nunca', forzará el reinicio después de 100 bloqueos."
