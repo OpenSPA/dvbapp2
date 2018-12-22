@@ -43,6 +43,8 @@
 #include <lib/base/eerroroutput.h>
 ePtr<eErrorOutput> m_erroroutput;
 
+bool verbose = false;
+
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
 
@@ -229,6 +231,16 @@ void quitMainloop(int exitCode)
 	eApp->quit(0);
 }
 
+void pauseInit()
+{
+	eInit::pauseInit();
+}
+
+void resumeInit()
+{
+	eInit::resumeInit();
+}
+
 static void sigterm_handler(int num)
 {
 	quitMainloop(128 + num);
@@ -264,6 +276,11 @@ int main(int argc, char **argv)
 		if (!(strcmp(argv[i], "--debug-no-color")) or !(strcmp(argv[i], "--nc")))
 		{
 			logOutputColors = 0;
+		}
+
+		if (!(strcmp(argv[i], "--verbose")))
+		{
+			verbose = true;
 		}
 	}
 

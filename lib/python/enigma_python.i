@@ -147,6 +147,7 @@ is usually caused by not marking PSignals as immutable.
 typedef long time_t;
 %include "typemaps.i"
 %include "std_string.i"
+%include "stdint.i"
 %include <lib/python/swig.h>
 %include <lib/base/object.h>
 %include <lib/base/eenv.h>
@@ -455,6 +456,8 @@ extern void dump_malloc_stats(void);
 extern void setAnimation_current(int a);
 extern void setAnimation_speed(int speed);
 #endif
+extern void pauseInit(void);
+extern void resumeInit(void);
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
@@ -471,6 +474,8 @@ extern void dump_malloc_stats(void);
 extern void setAnimation_current(int a);
 extern void setAnimation_speed(int speed);
 #endif
+extern void pauseInit(void);
+extern void resumeInit(void);
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>
