@@ -17689,3 +17689,6 @@ msgstr "Reiniciar GUI després de x bloquejos"
 
 msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr "Si 'mai', forçarà el reinici després de 100 bloquejos."
+
+msgid "Configure if and how service quality type icons will be shown."
+msgstr "Configura si es mostraran i com, les icones de la qualitat del canal."
