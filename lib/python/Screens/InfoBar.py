@@ -60,6 +60,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"toggleTvRadio": (self.toggleTvRadio, _("Toggle the tv and the radio player...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"openTimerList": (self.openTimerList, _("Open Timerlist...")),
+				"openSimpleUnmount": (self.openSimpleUnmount, _("Simple umounter mass storage device.")),
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -185,6 +186,15 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
+
+	def openSimpleUnmount(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("SimpleUmount"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The SimpleUmount plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 def setAudioTrack(service):
 	try:

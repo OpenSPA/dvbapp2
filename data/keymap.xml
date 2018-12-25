@@ -204,6 +204,7 @@
 		<key id="KEY_TV" mapto="showTv" flags="m" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
+		<key id="KEY_EJECTCD" mapto="openSimpleUnmount" flags="b" />
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
