@@ -4069,7 +4069,7 @@ msgid "Flash and restore settings and no plugins"
 msgstr "Actualizar y restaurar ajustes, los plugins no"
 
 msgid "Flash and restore settings and selected plugins (ask user)"
-msgstr "Atualizar, restaurar ajustes y plugins (preguntar al usuario)"
+msgstr "Actualizar, restaurar ajustes y plugins (preguntar al usuario)"
 
 msgid "Flash and start installation wizard"
 msgstr "Actualizar e iniciar el asistente de instalación"
