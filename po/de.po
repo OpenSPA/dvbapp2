@@ -13449,6 +13449,18 @@ msgstr "Zeige Scart-Videorekorder im Hauptmenü"
 msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr "Bei Aktivierung wird die Option Scart-Videorekorder im Hauptmenü angezeigt."
 
+msgid "Show True/False as graphical switch"
+msgstr "Zeige \"Ja / Nein\" als grafischen Schalter"
+
+msgid "Show additional slider value"
+msgstr "Zeige zusätzlichen Schiebereglerwert"
+
+msgid "Enable the current value of the slider at end of the slider bar."
+msgstr "Aktivieren Sie den aktuellen Wert des Schiebereglers am Ende des Schiebereglers."
+
+msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
+msgstr "Aktivieren Sie diese Option, um alle Optionen für \"Wahr / Falsch\", \"Ja / Nein\", \"Ein / Aus\" und \"Ein- / Ausschalten\" als grafischen Schalter anzuzeigen."
+
 msgid "Show alternative radio mode"
 msgstr "Zeige alternativen Radio Modus"
 
