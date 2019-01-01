@@ -834,7 +834,24 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def ConfigfinishedCB(self,data):
 		if data is not None:
 			if data is True:
-				self.close('ok')
+				if iNetwork.isWirelessInterface(self.iface):
+					try:
+						from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
+						iStatus.getDataForInterface(self.iface,self.getInfoCB)
+					except:
+						self.close('ok')
+				else:
+					self.close('ok')
+					
+	def getInfoCB(self,data,status):
+		if data is not None:
+			if data is True:
+				if status is not None:
+					if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
+						pass
+					else:
+						self.SaveAP()
+		self.close('ok')
 
 	def keyCancelConfirm(self, result):
 		if not result:
