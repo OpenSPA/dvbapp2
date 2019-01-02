@@ -2001,7 +2001,7 @@ msgid "CHANGE BOUQUET"
 msgstr "CANVIAR LLISTA"
 
 msgid "CI (Common Interface) Setup"
-msgstr "Configurar interfície comú"
+msgstr "Configurar interfície comuna"
 
 #
 msgid "CI assignment"
@@ -2399,14 +2399,14 @@ msgstr "Tipus d'ordre"
 
 #
 msgid "Common Interface"
-msgstr "Interfície comú"
+msgstr "Interfície comuna"
 
 #
 msgid "Common Interface Assignment"
-msgstr "Assignació d'interfície comú"
+msgstr "Assignació d'interfície comuna"
 
 msgid "Common Interface assignment"
-msgstr "Assignació d'interfície comú"
+msgstr "Assignació d'interfície comuna"
 
 #
 msgid "Communication"
@@ -11151,7 +11151,7 @@ msgstr "Mostrar llista de disponibles "
 
 #
 msgid "View list of available CommonInterface extensions"
-msgstr "Mostrar llista d'extensions disponibles de la interfície comú"
+msgstr "Mostrar llista d'extensions disponibles de la interfície comuna"
 
 #
 msgid "View list of available EPG extensions."
@@ -11925,11 +11925,11 @@ msgstr "[mode moviment]"
 
 #
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "Una interfície per assignar canals/proveïdors a mòduls d'interfície comú"
+msgstr "Una interfície per assignar canals/proveïdors a mòduls d'interfície comuna"
 
 #
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "Una interfície per assignar canals/proveïdors/CAIDs a mòduls d'interfície comú"
+msgstr "Una interfície per assignar canals/proveïdors/CAIDs a mòduls d'interfície comuna"
 
 #
 msgid "abort alternatives edit"
@@ -13575,7 +13575,7 @@ msgid "CIFS/Samba Setup"
 msgstr "Configurar Samba"
 
 msgid "Common interface"
-msgstr "Interfície comú"
+msgstr "Interfície comuna"
 
 msgid "Convert ext3 filesystem to ext4"
 msgstr "Convertir sistema d'arxius ext3 a ext4"
