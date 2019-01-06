@@ -144,7 +144,7 @@ if [ "$(grep config.log.level /etc/enigma2/settings)" == "config.log.level=3" ];
 	VERBOSE='--verbose'
 fi
 
-if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=True" ]; then
 	RANDOMIZE1970=''
 	time=`date +%Y` ;
 	if [ "$time" = 1970 ]; then
