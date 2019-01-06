@@ -1,5 +1,6 @@
 #include <lib/base/eerror.h>
                 /* avoid warnigs :) */
+#include <lib/base/nconfig.h>
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
 extern "C" void init_enigma();
