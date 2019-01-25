@@ -69,7 +69,9 @@ def getChipSetString():
 			return _("unavailable")
 
 def getCPUSpeedString():
-	if getMachineBuild() in ('wetekplay'):
+	if getMachineBuild() in ('u41'):
+		return "1,0 GHz"
+	elif getMachineBuild() in ('wetekplay'):
 		return "1,2 GHz"
 	elif getMachineBuild() in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k'):
 		return "1,5 GHz"
@@ -147,6 +149,8 @@ def getCpuCoresString():
 				if splitted[0].startswith("processor"):
 					if getMachineBuild() in ('u51', 'u52', 'u53', 'u54', 'u55', 'vuultimo4k', 'u5', 'u5pvr', 'h9', 'h9combo', 'alien5', 'cc1', 'sf8008', 'sf8008s', 'sf8008t', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'v8plus', 'vuduo4k', 'multibox'):
 						cores = 4
+					elif getMachineBuild() in ('u41'):
+						cores = 2
 					elif int(splitted[1]) > 0:
 						cores = 2
 					else:
