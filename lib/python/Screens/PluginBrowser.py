@@ -25,13 +25,17 @@ from Tools.LoadPixmap import LoadPixmap
 from time import time
 
 config.pluginfilter = ConfigSubsection()
+config.pluginfilter.openspadisplay = ConfigYesNo(default = True)
 config.pluginfilter.kernel = ConfigYesNo(default = False)
 config.pluginfilter.kodiaddon = ConfigYesNo(default = False)
 config.pluginfilter.drivers = ConfigYesNo(default = True)
 config.pluginfilter.extensions = ConfigYesNo(default = True)
+config.pluginfilter.packagegroup = ConfigYesNo(default = False)
+config.pluginfilter.python = ConfigYesNo(default = True)
 config.pluginfilter.po = ConfigYesNo(default = True)
 config.pluginfilter.m2k = ConfigYesNo(default = False)
 config.pluginfilter.picons = ConfigYesNo(default = True)
+config.pluginfilter.gstreamer = ConfigYesNo(default = False)
 config.pluginfilter.pli = ConfigYesNo(default = False)
 config.pluginfilter.security = ConfigYesNo(default = True)
 config.pluginfilter.settings = ConfigYesNo(default = True)
@@ -91,7 +95,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self["key_red"] = self["red"] = Label(_("Remove plugins"))
 		self["key_green"] = self["green"] = Label(_("Download plugins"))
 		self["key_yellow"] = self["yellow"] = Label("")
-		self["key_blue"] = self["blue"] = Label("")
+		self["key_blue"] = self["blue"] = Label("Hold plugins")
 
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -362,6 +366,9 @@ class PluginBrowser(Screen, ProtectedScreen):
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
 
+	def toogle(self):
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.TOOGLE)
+
 	def download(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
 		self.firsttime = False
@@ -383,6 +390,7 @@ class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
 	REMOVE = 1
 	UPDATE = 2
+	TOOGLE = 3
 	PLUGIN_PREFIX = 'enigma2-plugin-'
 	PLUGIN_PREFIX2 = []
 	lastDownloadDate = None
@@ -418,7 +426,9 @@ class PluginDownloadBrowser(Screen):
 
 		if self.type == self.DOWNLOAD:
 			self["text"] = Label(_("Downloading plugin information. Please wait..."))
-		elif self.type == self.REMOVE:
+		if self.type == self.REMOVE:
+			self["text"] = Label(_("Getting plugin information. Please wait..."))
+		elif self.type == self.TOOGLE:
 			self["text"] = Label(_("Getting plugin information. Please wait..."))
 
 		self.run = 0
@@ -432,10 +442,12 @@ class PluginDownloadBrowser(Screen):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
 			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-depends'
+			self.ipkg_toogle =  self.ipkg + ' flag hold'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
 			self.ipkg_remove =  self.ipkg + ' remove'
+			self.ipkg_toogle =  self.ipkg + ' flag hold'
 
 	def createSummary(self):
 		return PluginBrowserSummary
@@ -459,6 +471,8 @@ class PluginDownloadBrowser(Screen):
 	def createPluginFilter(self):
 		#Create Plugin Filter
 		self.PLUGIN_PREFIX2 = []
+		if config.pluginfilter.openspadisplay.value:
+			self.PLUGIN_PREFIX2.append('openspa-display-')
 		if config.pluginfilter.drivers.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
 		if config.pluginfilter.extensions.value:
@@ -476,7 +490,7 @@ class PluginDownloadBrowser(Screen):
 		if config.pluginfilter.settings.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'settings')
 		if config.pluginfilter.skins.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skins')
+			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skin')
 		if config.pluginfilter.skincomponents.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skincomponents')
 		if config.pluginfilter.display.value:
@@ -491,6 +505,12 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append('kernel-module-')
 		if config.pluginfilter.kodiaddon.value:
 			self.PLUGIN_PREFIX2.append('kodi-addon-')
+		if config.pluginfilter.packagegroup.value:
+			self.PLUGIN_PREFIX2.append('packagegroup')
+		if config.pluginfilter.python.value:
+			self.PLUGIN_PREFIX2.append('python-')
+		if config.pluginfilter.gstreamer.value:
+			self.PLUGIN_PREFIX2.append('gstreamer1.0-')
 
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()
@@ -509,9 +529,15 @@ class PluginDownloadBrowser(Screen):
 			if self.type == self.DOWNLOAD:
 				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
 				mbox.setTitle(_("Download plugins"))
-			elif self.type == self.REMOVE:
+			if self.type == self.REMOVE:
 				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default = False)
 				mbox.setTitle(_("Remove plugins"))
+			elif self.type == self.TOOGLE:
+				if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + sel.name).read():
+					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to unhold the plugin \"%s\"?") % sel.name, default = False)
+				else:
+					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default = False)
+				mbox.setTitle(_("Hold plugins"))
 
 	def requestClose(self):
 		if self.plugins_changed:
@@ -589,15 +615,25 @@ class PluginDownloadBrowser(Screen):
 					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name + " --force-remove --force-depends")
 				else:
 					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
+			elif self.type == self.TOOGLE:
+				self.doToogle(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
 
 	def doRemove(self, callback, pkgname):
-		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('kodi-'):
+		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-') or pkgname.startswith('openspa-display-'):
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + pkgname, "sync"], closeOnSuccess = False)
 		else:
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
 
+	def doToogle(self, callback, pkgname):
+		if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname).read():
+			self.ipkg_toogle = self.ipkg + ' flag user'
+			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
+		else:
+			self.ipkg_toogle = self.ipkg + ' flag hold'
+			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
+
 	def doInstall(self, callback, pkgname):
-		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('kodi-'):
+		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-') or pkgname.startswith('openspa-display-'):
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_install + " " + pkgname, "sync"], closeOnSuccess = False)
 		else:
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_install + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
@@ -618,9 +654,15 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Install plugins"))
 		elif self.type == self.REMOVE:
 			self.setTitle(_("Remove plugins"))
+		elif self.type == self.TOOGLE:
+			self.setTitle(_("Hold plugins"))
+
 
 	def startIpkgListInstalled(self, pkgname = PLUGIN_PREFIX + '*'):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed")
+
+	def startIpkgListAvailable(self):
+		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list")
 
 	def startRun(self):
 		listsize = self["list"].instance.size()
@@ -632,6 +674,9 @@ class PluginDownloadBrowser(Screen):
 			self.container.execute(self.ipkg + " update")
 		elif self.type == self.REMOVE:
 			self.run = 1
+			self.startIpkgListInstalled()
+		elif self.type == self.TOOGLE:
+			self.run =1
 			self.startIpkgListInstalled()
 
 	def installFinished(self):
@@ -645,10 +690,11 @@ class PluginDownloadBrowser(Screen):
 			os.unlink('/tmp/opkg.conf')
 		except:
 			pass
-		for plugin in self.pluginlist:
-			if plugin[3] == self["list"].l.getCurrentSelection()[0].name or plugin[0] == self["list"].l.getCurrentSelection()[0].name:
-				self.pluginlist.remove(plugin)
-				break
+		if self.type != self.TOOGLE:
+			for plugin in self.pluginlist:
+				if plugin[3] == self["list"].l.getCurrentSelection()[0].name or plugin[0] == self["list"].l.getCurrentSelection()[0].name:
+					self.pluginlist.remove(plugin)
+					break
 		self.plugins_changed = True
 		if self["list"].l.getCurrentSelection()[0].name.startswith("settings-"):
 			self.reload_settings = True
@@ -673,23 +719,7 @@ class PluginDownloadBrowser(Screen):
 				self.startIpkgListInstalled()
 		elif self.run == 1 and self.type == self.DOWNLOAD:
 			self.run = 2
-			from Components import opkg
-			pluginlist = []
-			self.pluginlist = pluginlist
-			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
-				if not plugin[0].endswith('-common') and not plugin[0].endswith('-meta') and plugin[0] not in self.installedplugins and ((not config.pluginbrowser.po.value and not plugin[0].endswith('-po')) or config.pluginbrowser.po.value) and ((not config.pluginbrowser.src.value and not plugin[0].endswith('-src')) or config.pluginbrowser.src.value):
-					
-					for s in self.PLUGIN_PREFIX2:
-						if plugin[0].startswith(s):
-							if plugin not in pluginlist:
-								pluginlist.append(plugin + (plugin[0][15:],))
-			if pluginlist:
-				self["text"].hide()
-				pluginlist.sort()
-				self.updateList()
-				self["list"].instance.show()
-			else:
-				self["text"].setText(_("No new plugins found"))
+			self.startIpkgListAvailable()
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()
@@ -770,20 +800,37 @@ class PluginDownloadBrowser(Screen):
 
 		for x in self.pluginlist:
 			split = x[3].split('-', 1)
+			# print x, split
 			if x[0][0:14] == 'kernel-module-':
-				split[0] = "kernel modules"
+				split[0] = "kernel-modules"
 			elif x[0][0:15] == 'enigma2-locale-':
 				split[0] = "languages"
+			elif x[0][0:13] == 'packagegroup-':
+				split[0] = "packagegroup"
+			elif x[0][0:7] == 'python-':
+				split[0] = "python"
 			elif x[0][0:5] == 'kodi-':
 				split[0] = "kodi-addon"
+			elif x[0][0:13] == 'gstreamer1.0-':
+				split[0] = "gstreamer"
+			elif x[0][0:16] == 'openspa-display-':
+				split[0] = "display"
 
 			if not self.plugins.has_key(split[0]):
 				self.plugins[split[0]] = []
 
-			if split[0] == "kernel modules":
+			if split[0] == "kernel-modules":
 				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][14:], x[1]))
+			elif split[0] == "packagegroup":
+				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
+			elif split[0] == "python":
+				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][07:], x[1]))
+			elif split[0] == "gstreamer":
+				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
 			elif split[0] == "kodi-addon":
 				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][11:], x[1]))
+			elif split[0] == "display":
+				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][16:], x[1]))
 			elif split[0] == "languages":
 				for t in self.LanguageList:
 					if len(x[2])>2:
@@ -814,7 +861,15 @@ class PluginDownloadBrowser(Screen):
 		for x in temp:
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
-				list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth) for plugin in self.plugins[x]])
+				for plugin in self.plugins[x]:
+					if self.type == self.TOOGLE or self.type == self.REMOVE:
+						if "hold" in os.popen("opkg status " + self.PLUGIN_PREFIX + "*" + plugin[1]).read():
+							list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
+						else:
+							list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
+					else:
+						list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
+
 			else:
 				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
 		self.list = list
@@ -857,22 +912,26 @@ class PluginFilter(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("drivers"), config.pluginfilter.drivers, _("This allows you to show drivers modules in downloads")))
-		self.list.append(getConfigListEntry(_("extensions"), config.pluginfilter.extensions, _("This allows you to show extensions modules in downloads")))
-		self.list.append(getConfigListEntry(_("kodi addons"), config.pluginfilter.kodiaddon, _("This allows you to show kodi addons in downloads")))
-		self.list.append(getConfigListEntry(_("languages"), config.pluginfilter.po, _("This allows you to show languages in downloads")))
-		self.list.append(getConfigListEntry(_("systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
-		self.list.append(getConfigListEntry(_("skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
-		self.list.append(getConfigListEntry(_("display"), config.pluginfilter.skins, _("This allows you to show lcd skins in downloads")))
-		self.list.append(getConfigListEntry(_("skincomponents"), config.pluginfilter.skincomponents, _("This allows you to show skins components in downloads")))
-		self.list.append(getConfigListEntry(_("picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
-		self.list.append(getConfigListEntry(_("settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
+		self.list.append(getConfigListEntry(_("OpenSPA Display"), config.pluginfilter.openspadisplay, _("This allows you to show OpenSPA display modules in downloads")))
+		self.list.append(getConfigListEntry(_("Drivers"), config.pluginfilter.drivers, _("This allows you to show drivers modules in downloads")))
+		self.list.append(getConfigListEntry(_("Extensions"), config.pluginfilter.extensions, _("This allows you to show extensions modules in downloads")))
+		self.list.append(getConfigListEntry(_("Kodi Addons"), config.pluginfilter.kodiaddon, _("This allows you to show kodi addons in downloads")))
+		self.list.append(getConfigListEntry(_("Packagegroup"), config.pluginfilter.packagegroup, _("This allows you to show packagegroups in downloads")))
+		self.list.append(getConfigListEntry(_("Python"), config.pluginfilter.python, _("This allows you to show python packages in downloads")))
+		self.list.append(getConfigListEntry(_("Languages"), config.pluginfilter.po, _("This allows you to show languages in downloads")))
+		self.list.append(getConfigListEntry(_("Systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
+		self.list.append(getConfigListEntry(_("Skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
+		self.list.append(getConfigListEntry(_("SkinComponents"), config.pluginfilter.skincomponents, _("This allows you to show skins components in downloads")))
+		self.list.append(getConfigListEntry(_("Display"), config.pluginfilter.skins, _("This allows you to show lcd skins in downloads")))
+		self.list.append(getConfigListEntry(_("Picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
+		self.list.append(getConfigListEntry(_("Settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
+		self.list.append(getConfigListEntry(_("GStreamer"), config.pluginfilter.gstreamer, _("This allows you to show gstreamer plugins in downloads")))
 		self.list.append(getConfigListEntry(_("m2k"), config.pluginfilter.m2k, _("This allows you to show m2k modules in downloads")))
-		self.list.append(getConfigListEntry(_("weblinks"), config.pluginfilter.weblinks, _("This allows you to show weblinks modules in downloads")))
-		self.list.append(getConfigListEntry(_("pli"), config.pluginfilter.pli, _("This allows you to show pli modules in downloads")))
-		self.list.append(getConfigListEntry(_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
-		self.list.append(getConfigListEntry(_("kernel modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
-		self.list.append(getConfigListEntry(_("user feed url"), config.pluginfilter.userfeed, _("Please enter the your personal feed URL")))
+		self.list.append(getConfigListEntry(_("Weblinks"), config.pluginfilter.weblinks, _("This allows you to show weblinks modules in downloads")))
+		self.list.append(getConfigListEntry(_("PLi"), config.pluginfilter.pli, _("This allows you to show pli modules in downloads")))
+		self.list.append(getConfigListEntry(_("Security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
+		self.list.append(getConfigListEntry(_("Kernel Modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
+		self.list.append(getConfigListEntry(_("User Feed URL"), config.pluginfilter.userfeed, _("Please enter the your personal feed URL")))
 
 		self["config"].list = self.list
 		self["config"].setList(self.list)
