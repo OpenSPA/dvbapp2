@@ -25,7 +25,6 @@ from Tools.LoadPixmap import LoadPixmap
 from time import time
 
 config.pluginfilter = ConfigSubsection()
-config.pluginfilter.openspadisplay = ConfigYesNo(default = True)
 config.pluginfilter.kernel = ConfigYesNo(default = False)
 config.pluginfilter.kodiaddon = ConfigYesNo(default = False)
 config.pluginfilter.drivers = ConfigYesNo(default = True)
@@ -471,8 +470,6 @@ class PluginDownloadBrowser(Screen):
 	def createPluginFilter(self):
 		#Create Plugin Filter
 		self.PLUGIN_PREFIX2 = []
-		if config.pluginfilter.openspadisplay.value:
-			self.PLUGIN_PREFIX2.append('openspa-display-')
 		if config.pluginfilter.drivers.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
 		if config.pluginfilter.extensions.value:
@@ -619,7 +616,7 @@ class PluginDownloadBrowser(Screen):
 				self.doToogle(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
 
 	def doRemove(self, callback, pkgname):
-		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-') or pkgname.startswith('openspa-display-'):
+		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-'):
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + pkgname, "sync"], closeOnSuccess = False)
 		else:
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
@@ -633,7 +630,7 @@ class PluginDownloadBrowser(Screen):
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
 
 	def doInstall(self, callback, pkgname):
-		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-') or pkgname.startswith('openspa-display-'):
+		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-'):
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_install + " " + pkgname, "sync"], closeOnSuccess = False)
 		else:
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_install + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
@@ -813,8 +810,6 @@ class PluginDownloadBrowser(Screen):
 				split[0] = "kodi-addon"
 			elif x[0][0:13] == 'gstreamer1.0-':
 				split[0] = "gstreamer"
-			elif x[0][0:16] == 'openspa-display-':
-				split[0] = "display"
 
 			if not self.plugins.has_key(split[0]):
 				self.plugins[split[0]] = []
@@ -829,8 +824,6 @@ class PluginDownloadBrowser(Screen):
 				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
 			elif split[0] == "kodi-addon":
 				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][11:], x[1]))
-			elif split[0] == "display":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][16:], x[1]))
 			elif split[0] == "languages":
 				for t in self.LanguageList:
 					if len(x[2])>2:
@@ -912,7 +905,6 @@ class PluginFilter(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("OpenSPA Display"), config.pluginfilter.openspadisplay, _("This allows you to show OpenSPA display modules in downloads")))
 		self.list.append(getConfigListEntry(_("Drivers"), config.pluginfilter.drivers, _("This allows you to show drivers modules in downloads")))
 		self.list.append(getConfigListEntry(_("Extensions"), config.pluginfilter.extensions, _("This allows you to show extensions modules in downloads")))
 		self.list.append(getConfigListEntry(_("Kodi Addons"), config.pluginfilter.kodiaddon, _("This allows you to show kodi addons in downloads")))
