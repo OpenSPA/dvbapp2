@@ -17561,7 +17561,7 @@ msgstr "La TV ya estaba encendida"
 msgid "Send repeated standby and wakeup messages"
 msgstr "Enviar mesajes repetidos de reposo y despertar"
 
-msgid "Try to send more messages if not all commands are executed.\n"
+msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr "Intenta enviar más mensajes si no se ejecutan todos los comandos.\n"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
@@ -17628,7 +17628,7 @@ msgid "Activation takes place immediately. If it does feature not work, then try
 msgstr "La activación se realizará inmediatamente. Si esta característica no funciona, vuelve a intentarlo con un intervalo de envío menor."
 
 msgid "Choose a setting where your receiver wakes up from standby."
-msgstr "Escoge un ajuste donde tu receptor despierte desde reposo."
+msgstr "Escoge un ajuste por el que tu receptor despierte desde reposo."
 
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "Con esta configuración, probablemente podrás mejorar la calidad de la señal o eliminar problemas que pueden provocar cables HDMI largos."
@@ -17716,3 +17716,33 @@ msgstr "Reiniciar GUI después de x bloqueos"
 
 msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr "Si 'nunca', forzará el reinicio después de 100 bloqueos."
+
+msgid "Ignore unexpectedly wakeup and stay in standby"
+msgstr "Ignorar despertado inesperado y mantener en standby"
+
+msgid "This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."
+msgstr "Esto es una solución para algunos dispositivos que despiertan de nuevo después de cambiar a standby. Los comandos de despertar de otros dispositivos serán ignorados durante unos segundos."
+
+msgid "Time delay for the repeated transmission"
+msgstr "Intervalo de tiempo para transmisiones repetidas"
+
+msgid "Advanced Settings"
+msgstr "Ajustes avanzados"
+
+msgid "Load Default Settings"
+msgstr "Cargar ajustes por defecto"
+
+msgid "Activation takes place immediately. If this feature is not supported, the volume keys has no function!"
+msgstr "La activación se hace inmediatamente. Si esta característica no está soportada, las teclas de volumen no funcionarán!"
+
+msgid "Try to slow down the send interval if not all commands are executed."
+msgstr "Intenta disminuir el intervalo de envío si no se ejecutar todos los comandos."
+
+msgid "Try to send repeated commands if not all commands are executed.\n(e.g. TV wakeup, but not switched to correct input)"
+msgstr "Intenta enviar comandos repetidos si no se ejecutan todos los comandos.\n(por ejemplo despertado TV, pero no está cambiada a la entrada correcta)"
+
+msgid "Show additional slider value"
+msgstr "Muestra valor de deslizamiento adicional"
+
+msgid "Enable the current value of the slider at end of the slider bar."
+msgstr "Activa el valor actual de deslizamiento al final de la barra de deslizamiento."

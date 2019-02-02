@@ -17629,7 +17629,7 @@ msgid "Activation takes place immediately. If it does feature not work, then try
 msgstr "L'activació es realitzarà immediatament. Si aquesta característica no funciona, torna a intentar-ho amb un interval d'enviament més lent."
 
 msgid "Choose a setting where your receiver wakes up from standby."
-msgstr "Tria una configuració on el teu receptor desperti des de repòs."
+msgstr "Tria una configuració per la qual el teu receptor desperti des de repòs."
 
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "Amb aquesta configuració, probablement podràs millorar la qualitat de la senyal o eliminar problemes que poden provocar cables HDMI llargs."
@@ -17692,3 +17692,33 @@ msgstr "Si 'mai', forçarà el reinici després de 100 bloquejos."
 
 msgid "Configure if and how service quality type icons will be shown."
 msgstr "Configura si es mostraran i com, les icones de la qualitat del canal."
+
+msgid "Ignore unexpectedly wakeup and stay in standby"
+msgstr "Ignorar despertat inesperat i mantenir en standby"
+
+msgid "This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."
+msgstr "Això és una solució per alguns dispositius que desperten de nou després de canviar a standby. Les ordres de despertar d'altres dispositius seran ignorats durant uns segons."
+
+msgid "Time delay for the repeated transmission"
+msgstr "Interval de temps per a transmissions repetides"
+
+msgid "Advanced Settings"
+msgstr "Configuracions avançades"
+
+msgid "Load Default Settings"
+msgstr "Carregar configuracions per defecte"
+
+msgid "Activation takes place immediately. If this feature is not supported, the volume keys has no function!"
+msgstr "L'activació es fa immediatament. Si aquesta característica no està soportada, els botons de volum no funcionaran!"
+
+msgid "Try to slow down the send interval if not all commands are executed."
+msgstr "Intenta disminuir l'interval d'enviament si no s'executen totes les ordres."
+
+msgid "Try to send repeated commands if not all commands are executed.\n(e.g. TV wakeup, but not switched to correct input)"
+msgstr "Intenta enviar ordres repetides si no s'executen totes les ordres.\n(per exemple despertar TV, però no està canviada a l'entrada correcta)"
+
+msgid "Show additional slider value"
+msgstr "Mostra valor de lliscament adicional"
+
+msgid "Enable the current value of the slider at end of the slider bar."
+msgstr "Activa el valor actual de lliscament al final de la barra de lliscament."
