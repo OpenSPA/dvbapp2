@@ -17722,3 +17722,34 @@ msgstr "Mostra valor de lliscament adicional"
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr "Activa el valor actual de lliscament al final de la barra de lliscament."
+
+msgid ": 0000 - default (disabled)"
+msgstr ": 0000 - per defecte (desactivat)"
+
+msgid "Set PIN"
+msgstr "Establir PIN"
+
+msgid "Hide parentel locked services"
+msgstr "Amagar canals bloquejats"
+
+msgid "Allow unsupported modes"
+msgstr "Permetre modes no suportats"
+
+msgid "This option allows you to use all HDMI Modes"
+msgstr "Aquesta opció et permet utilitzar tots els modes HDMI"
+
+msgid "Hide mute notification"
+msgstr "Amaga notificació mute"
+
+msgid "Subtitle black transparency"
+msgstr "Transparència del fons de subtítols"
+
+msgid "Configure the transparency of the black background of subtitles."
+msgstr "Configura la transparència del fons negre dels subtítols."
+
+msgid "Auto Detect"
+msgstr "Auto-detecta"
+
+msgid "Generic"
+msgstr "Genèric"
+

@@ -8283,7 +8283,7 @@ msgstr "Configurar interfaz como interfaz por defecto"
 msgid "Set limits"
 msgstr "Configurar límites"
 
-msgid "Set pin"
+msgid "Set PIN"
 msgstr "Establecer PIN"
 
 msgid "Set pin code persistent"
@@ -16212,8 +16212,8 @@ msgstr "Después de grabar"
 msgid "Default 'Timer type' *"
 msgstr "'Tipo programación' por defecto*"
 
-msgid "Default 'After event'*"
-msgstr "Acción 'Despúes del evento'"
+msgid "Default 'After event' *"
+msgstr "Acción 'Despúes del evento' *"
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Configurar ajustes por defecto para nuevas programaciones. Necesita reinicio después del cambio."
@@ -17746,3 +17746,30 @@ msgstr "Muestra valor de deslizamiento adicional"
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr "Activa el valor actual de deslizamiento al final de la barra de deslizamiento."
+
+msgid ": 0000 - default (disabled)"
+msgstr ": 0000 - por defecto (desactivado)"
+
+msgid "Hide parentel locked services"
+msgstr "Ocultar canales bloqueados"
+
+msgid "Allow unsupported modes"
+msgstr "Permitir modos no soportados"
+
+msgid "This option allows you to use all HDMI Modes"
+msgstr "Esta opción te permite usar todos los modos HDMI"
+
+msgid "Hide mute notification"
+msgstr "Oculta notificación mute"
+
+msgid "Subtitle black transparency"
+msgstr "Transparencia del fondo de subtítulos"
+
+msgid "Configure the transparency of the black background of subtitles."
+msgstr "Configura la transparencia del fondo negro de los subtítulos."
+
+msgid "Auto Detect"
+msgstr "Auto-detecta"
+
+msgid "Generic"
+msgstr "Genérico"
