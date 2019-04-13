@@ -374,7 +374,7 @@ class FlashOnline(Screen):
 				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		elif getMachineBuild() in ("osmio4k"):
+		elif getMachineBuild() in ("osmio4k","osmio4kplus"):
 			if self.list[self.selection] == "Recovery":
 				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 			else:
@@ -405,7 +405,7 @@ class FlashOnline(Screen):
 		files = []
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
-			if getMachineBuild() in ("gbmv200","ustym4kpro","hd51","vs1500","h7","8100s","gb7252","cc1","sf8008","osmio4k"):
+			if getMachineBuild() in ("gbmv200","ustym4kpro","hd51","vs1500","h7","8100s","gb7252","cc1","sf8008","osmio4k","osmio4kplus"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
