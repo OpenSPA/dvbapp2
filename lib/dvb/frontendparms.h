@@ -16,7 +16,6 @@
 
 extern int roundMulti(int value, int m);//round value to multiple of m
 
-
 class eDVBFrontendParametersSatellite
 {
 public:

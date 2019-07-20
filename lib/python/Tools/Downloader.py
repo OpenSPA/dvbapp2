@@ -9,7 +9,6 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 		self.status = None
 		self.progress_callback = None
 		self.deferred = defer.Deferred()
-		return
 
 	def noPage(self, reason):
 		if self.status == "304":
@@ -35,10 +34,13 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 		return client.HTTPDownloader.pagePart(self, packet)
 
 	def pageEnd(self):
-		return client.HTTPDownloader.pageEnd(self)
+		ret = client.HTTPDownloader.pageEnd(self)
+		if self.end_callback:
+			self.end_callback()
+		return ret
 
 class downloadWithProgress:
-	def __init__(self, url, outputfile, contextFactory = None, *args, **kwargs):
+	def __init__(self, url, outputfile, contextFactory=None, *args, **kwargs):
 		if hasattr(client, '_parse'):
 			scheme, host, port, path = client._parse(url)
 		else:
@@ -50,15 +52,12 @@ class downloadWithProgress:
  			uri = URI.fromBytes(url)
 			scheme = uri.scheme
 			host = uri.host
-			port = uri.port or (443 if scheme == 'https' else 80)
+			port = uri.port
 			path = uri.path
 
 		self.factory = HTTPProgressDownloader(url, outputfile, *args, **kwargs)
 		if scheme == "https":
-			from twisted.internet import ssl
-			if contextFactory is None:
-				contextFactory = ssl.ClientContextFactory()
-			self.connection = reactor.connectSSL(host, port, self.factory, contextFactory)
+			self.connection = reactor.connectSSL(host, port, self.factory, ssl.ClientContextFactory())
 		else:
 			self.connection = reactor.connectTCP(host, port, self.factory)
 
@@ -67,9 +66,14 @@ class downloadWithProgress:
 
 	def stop(self):
 		if self.connection:
-			print "[stop]"
+			self.factory.progress_callback = self.factory.end_callback = self.factory.error_callback = None
 			self.connection.disconnect()
 
 	def addProgress(self, progress_callback):
-		print "[addProgress]"
 		self.factory.progress_callback = progress_callback
+
+	def addEnd(self, end_callback):
+		self.factory.end_callback = end_callback
+
+	def addError(self, error_callback):
+		self.factory.error_callback = error_callback

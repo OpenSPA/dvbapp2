@@ -233,7 +233,6 @@
 			</widget>
 		</panel>
 	</screen>
-
 	<screen name="EMCSelectionSummary" position="fill">
 		<panel name="EMCSelection_summary" />
 	</screen>

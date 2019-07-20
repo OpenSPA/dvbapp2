@@ -137,7 +137,7 @@ class EventViewBase:
 				break
 		else:
 			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
-			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry, True)
 
 	def ChoiceBoxCB(self, choice):
 		if choice:
@@ -272,6 +272,7 @@ class EventViewBase:
 		if fail:
 			print 'wrong timestamp detected: source = %s ,date = %s ,time = %s' %(beginTimeString,begindate,begintime)
 			return
+		###
 
 		nowt = time()
 		now = localtime(nowt)

@@ -248,7 +248,7 @@ void eFilePushThread::thread()
 							continue;
 						}
 #if HAVE_ALIEN5
-							usleep(50000);
+						usleep(50000);
 #endif
 						eDebug("[eFilePushThread] write: %m");
 						sendEvent(evtWriteError);
@@ -267,7 +267,7 @@ void eFilePushThread::thread()
 					current_span_remaining -= buf_end;
 			}
 #if HAVE_ALIEN5
-				usleep(10);
+			usleep(10);
 #endif
 		}
 #if defined(__sh__) // closes video device for the reverse playback workaround

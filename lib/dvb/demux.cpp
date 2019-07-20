@@ -561,7 +561,6 @@ int eDVBRecordFileThread::asyncWrite(int len)
 	suseconds_t diff;
 	gettimeofday(&starttime, NULL);
 #endif
-
 	if(!getProtocol())
 		m_ts_parser.parseData(m_current_offset, m_buffer, len);
 
@@ -634,7 +633,7 @@ void eDVBRecordFileThread::flush()
 		it->wait();
 	}
 	int bufferCount = m_aio.size();
-	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %zd kB)", bufferCount, m_buffersize>>10);
+	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %d kB)", bufferCount, m_buffersize>>10);
 	for (int i=0; i <= bufferCount; ++i)
 	{
 		if (m_buffer_use_histogram[i] != 0)

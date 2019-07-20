@@ -9,7 +9,7 @@ MANDATORY_RIGHTS = "chown -R root:root /home/root /etc/auto.network /etc/default
 # BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly
 BLACKLISTED = ['home/root/.cache', 'etc/passwd', 'etc/shadow', 'etc/group', 'etc/samba/distro', 'etc/samba/smb.conf', 'home/root/FastRestore.log']
 
-IMAGE_INSTALL = ['openspa-base', 'run-postinsts']
+IMAGE_INSTALL = ['openspa-base', 'enigma2-plugin-settings-defaultsat', 'run-postinsts']
 
 PACKAGES = '/var/lib/opkg/lists'
 INSTALLEDPACKAGES = '/var/lib/opkg/status'

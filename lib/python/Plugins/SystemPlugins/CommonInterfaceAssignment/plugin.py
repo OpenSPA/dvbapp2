@@ -16,7 +16,7 @@ from Tools.CIHelper import cihelper
 from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
 
 from os import system, path as os_path
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 import os
 
 class CIselectMainMenu(Screen):
@@ -44,7 +44,10 @@ class CIselectMainMenu(Screen):
 				"cancel": self.close
 			}, -1)
 
-		NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
+		if getBoxType() in ('zgemmah9combo',):
+			NUM_CI = 1
+		else:
+			NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
 
 		print "[CI_Wizzard] FOUND %d CI Slots " % NUM_CI
 
@@ -109,7 +112,7 @@ class CIconfigMenu(Screen):
 		</screen>"""
 
 	def __init__(self, session, ci_slot="9"):
-
+		Screen.setTitle(self, _("CIselectMainMenu"))
 		Screen.__init__(self, session)
 		self.ci_slot=ci_slot
 		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(self.ci_slot) + ".xml"
@@ -430,7 +433,7 @@ class myProviderSelection(ChannelSelectionBase):
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self["introduction"] = StaticText(_("Press OK to select a service."))
+		self["introduction"] = StaticText(_("Press OK to select a provider."))
 
 	def showProviders(self):
 		pass
@@ -447,8 +450,7 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
-		if ref is None:
-			return
+		if ref is None: return
 		if not (ref.flags & 64):
 			splited_ref = ref.toString().split(":")
 			if ref.flags == 7 and splited_ref[6] != "0":
@@ -569,7 +571,7 @@ class myChannelSelection(ChannelSelectionBase):
 		self["key_green"] = StaticText(_("Close"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(_("Favourites"))
-		self["introduction"] = StaticText(_("Press OK to select a provider."))
+		self["introduction"] = StaticText(_("Press OK to select a service."))
 
 	def __onExecCallback(self):
 		self.setModeTv()

@@ -229,6 +229,7 @@ class Setup(ConfigListScreen, Screen):
 				item_tunerlevel = int(x.get("tunerlevel", 0))
 				item_rectunerlevel = int(x.get("rectunerlevel", 0))
 				item_tuxtxtlevel = int(x.get("tt_level", 0))
+				item_Qlevel = int(x.get("Q_level",0))
 
 				if not self.onNotifiers:
 					self.onNotifiers.append(self.levelChanged)
@@ -245,6 +246,8 @@ class Setup(ConfigListScreen, Screen):
 				if item_rectunerlevel == 1 and not config.usage.recording_frontend_priority.value in ("expert_mode", "experimental_mode"):
 					continue
 				if item_rectunerlevel == 2 and not config.usage.recording_frontend_priority.value == "experimental_mode":
+					continue
+				if item_Qlevel == 1 and config.usage.quality_icon_mode.value == "0":
 					continue
 
 				requires = x.get("requires")

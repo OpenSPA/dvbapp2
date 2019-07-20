@@ -47,6 +47,7 @@ public:
 	PyObject *getCachedPid(const eServiceReference &service, int id);
 	bool isCrypted(const eServiceReference &service);
 	bool hasCAID(const eServiceReference &service, unsigned int caid);
+	bool HasFlag(const eServiceReference &ref, unsigned int flagmask);
 	RESULT addCAID(const eServiceReference &service, unsigned int caid);
 	RESULT addFlag(const eServiceReference &service, unsigned int flagmask);
 	RESULT removeFlag(const eServiceReference &service, unsigned int flagmask);
@@ -89,6 +90,7 @@ public:
 	void saveServicelist();
 	void saveServicelist(const char *file);
 	void reloadBouquets();
+	bool isValidService(int tsid, int onid, int sid);
 	void parseServiceData(ePtr<eDVBService> s, std::string str);
 };
 

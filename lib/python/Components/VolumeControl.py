@@ -150,7 +150,6 @@ class VolumeControl:
 			if self.volctrl.isMuted():
 				if showMuteSymbol:
 					self.showMute()
-					self.volumeDialog.hide()
 				self.volumeDialog.setValue(0)
 			else:
 				self.muteDialog.hide()

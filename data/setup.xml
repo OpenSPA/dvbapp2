@@ -1,11 +1,15 @@
 <!--suppress XmlUnboundNsPrefix -->
 <setupxml>
 	<setup key="time" title="Time settings">
-		<item level="0" text="Timezone area" description="Setup your timezone area.">config.timezone.area</item>
-		<item level="0" text="Timezone" description="Your timezone in the area.">config.timezone.val</item>
+		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
 		<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
+		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
+		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
+	</setup>
+	<setup key="timezone" title="Time zone settings">
+		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
 	</setup>
 	<setup key="audio_setup">
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
@@ -52,7 +56,7 @@
 		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
 		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item>
 		<item level="2" text="Wakeup time before a timer begins [mins]" description="The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)">config.workaround.wakeuptime</item>
-		<item level="1" text="Use workaround for wakeup from deep-standby?" description="If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)">config.workaround.deeprecord</item>
+		<item level="1" text="Use workaround for wakeup from deep-standby?" description="If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails.">config.workaround.deeprecord</item>
 		<item level="2" text="Time window for detection of the wakeup by a timer [mins]" description="The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers." requires="config.workaround.deeprecord">config.workaround.wakeupwindow</item>
 		<item level="2" text="Remote control model shown" description="Which remote control gets shown. Only influences graphical representation.">config.usage.rc_model</item>
 		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files. (e.g. mp4)">config.usage.useVideoCuesheet</item>
@@ -109,7 +113,7 @@
 		<item level="1" text="Channel list service mode*" description="This option allows you to choose from the two channel lists that are available.">config.usage.servicelist_mode</item>
 		<item level="1" text="Channel list on mode change" description="If set to 'yes' the channel list will be shown after switching between radio and TV modes.">config.usage.show_servicelist</item>
 		<item level="1" text="Channel list cursor behavior" description="Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons.">config.usage.servicelist_cursor_behavior</item>
-		<item level="1" text="Channel list show MiniTV" description="Channel list show MiniTV when Skin use ">config.usage.use_pig</item>
+		<item level="1" text="Channel list show MiniTV" description="Channel list show MiniTV when Skin use.">config.usage.use_pig</item>
 		<item level="1" text="Enable multiple bouquets" description="Services may be grouped in bouquets. When enabled, you can use more than one bouquet.">config.usage.multibouquet</item>
 		<item level="2" text="Enable unlinked bouquets" description="When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
 		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
@@ -119,8 +123,15 @@
 		<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
 		<item level="1" text="Show crypto icons" description="Configure if and how crypto icons will be shown in the channel selection list.">config.usage.crypto_icon_mode</item>
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
+		<item level="1" text="Show service quality icons" description="Configure if and how service quality type icons will be shown.">config.usage.quality_icon_mode</item>
+		<item level="1" Q_level="1" text="  Show icons for SD services" description="Configure if icons for SD services will be shown.">config.usage.quality_SDicon</item>
+		<item level="1" Q_level="1" text="  Show icons for HD services" description="Configure if icons for HD services will be shown.">config.usage.quality_HDicon</item>
+		<item level="1" Q_level="1" text="  Show icons for 4K services" description="Configure if icons for 4K services will be shown.">config.usage.quality_4Kicon</item>
+		<item level="1" Q_level="1" text="  Show icons for 3D services" description="Configure if icons for 3D services will be shown.">config.usage.quality_3Dicon</item>
+		<item level="1" Q_level="1" text="  Show icons for IPTV services" description="Configure if icons for IPTV services will be shown.">config.usage.quality_IPTVicon</item>
 		<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.usage.record_indicator_mode</item>
 		<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the servicelist.">config.usage.service_icon_enable</item>
+		<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
 		<item level="1" text="Service picons downsize" description="Reduce the size of the service picons for more line spacing between them." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_downsize</item>
 		<item level="2" text="show picons in quickzap" description="Configure if service picons will be shown in quickzap.">config.usage.numzappicon</item>
 		<item level="1" text="Show columns" description="Configure if and how wide the service name column will be shown in the channel selection list.">config.usage.servicelist_column</item>
@@ -191,7 +202,7 @@
 		<item level="1" text="Subtitle language selection 2" description="Configure the second subtitle language.">config.autolanguage.subtitle_autoselect2</item>
 		<item level="1" text="Subtitle language selection 3" description="Configure the third subtitle language.">config.autolanguage.subtitle_autoselect3</item>
 		<item level="1" text="Subtitle language selection 4" description="Configure the fourth subtitle language.">config.autolanguage.subtitle_autoselect4</item>
-		<item level="1" text="Allow subtitle language to equal audio language" description="Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used.">config.autolanguage.equal_languages</item>
+		<item level="1" text="Allow subtitle language to equal audio language" conditional="config.autolanguage.subtitle_autoselect1.value" description="Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used.">config.autolanguage.equal_languages</item>
 		<item level="1" text="Allow subtitles for hearing impaired" description="When enabled, subtitles for the hearing impaired can be used.">config.autolanguage.subtitle_hearingimpaired</item>
 		<item level="1" text="Prefer subtitles for hearing impaired" description="When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available.">config.autolanguage.subtitle_defaultimpaired</item>
 		<item level="1" text="Prefer graphical DVB subtitles" description="When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available.">config.autolanguage.subtitle_defaultdvb</item>
@@ -208,6 +219,7 @@
 		<item level="1" text="Recordings abort PIP" description="When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners.">config.recording.ask_to_abort_pip</item>
 		<item level="1" text="Recordings abort pseudo recordings" description="When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners.">config.recording.ask_to_abort_pseudo_rec</item>
 		<item level="1" text="Recordings abort streaming" description="When enabled, a recording is allowed to abort streaming, when there are no free tuners.">config.recording.ask_to_abort_streaming</item>
+		<item level="0" text="Preparation time for recording (seconds)" description="During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased.">config.recording.prepare_time</item>
 		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start earlier than the starting time indicated by the EPG.">config.recording.margin_before</item>
 		<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop later than the ending time indicated by the EPG.">config.recording.margin_after</item>
 		<item level="2" text="Show message when recording starts" description="When enabled, a popup message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
@@ -240,7 +252,7 @@
 		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
 		<item level="1" text="Use trash can in movielist" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
 		<item level="1" text="Remove items from trash can after (days)" description="Configure the number of days after which items are automaticaly removed from the trash can.">config.usage.movielist_trashcan_days</item>
-		<item level="1" text="Clean network trash can's" description="When enabled, network trash can's are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
+		<item level="1" text="Clean network trash cans" description="When enabled, network trash can's are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
 		<item level="1" text="Disk space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
@@ -251,8 +263,8 @@
 		<item level="2" text="Default 'Timer type' *" description="Configure default setting for new timers. Need a restart after changing.">config.recording.default_timertype</item>  
 		<item level="2" text="Default 'After event' *" description="Configure default setting for new timers. Need a restart after changing.">config.recording.default_afterevent</item>  
 		<item level="2" text="Include AIT in recordings" description="If enabled, AIT data is included in recordings.">config.recording.include_ait</item>
-		<item level="2" text="Show recording symbol depending on recording type" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
-		<item level="2" text="Show warning before box restart based on recording type" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI.">config.recording.warn_box_restart_rec_types</item>
+		<item level="2" text="Show recording symbol" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
+		<item level="2" text="Show warning before restart" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI.">config.recording.warn_box_restart_rec_types</item>
 	</setup>
 	<setup key="HDMIRecord" title="HDMI Recording">
 		<item level="0" text="Bitrate" description="The bitrate of the video encoder. Larger value improves quality and increases file size.">config.hdmirecord.bitrate</item>
@@ -292,39 +304,46 @@
 		<item level="0" text="Brightness (Dimmed)" description="Configure the brightness level of the front panel display for dimmed operation.">config.lcd.dimbright</item>
 		<item level="0" text="Dim delay" description="Dim the LCD after specified time.">config.lcd.dimdelay</item>
 		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for standby.">config.lcd.standby</item>
-		<item level="0" text="Contrast" description="Configure the contrast level of the front panel display.">config.lcd.contrast</item>
+		<item level="0" requires="ConfigDisplay" text="Contrast" description="Configure the contrast level of the front panel display.">config.lcd.contrast</item>
 		<item level="0" text="LED Normal" description="LED brightness during normal operations.">config.lcd.ledbrightness</item>
 		<item level="0" text="LED Standby" description="LED brightness during standby.">config.lcd.ledbrightnessstandby</item>
 		<item level="0" text="LED Deep Standby" description="LED brightness during deep standby.">config.lcd.ledbrightnessdeepstandby</item>
 		<item level="0" requires="PowerLed" text="Turn on the power LED." description="Power LED can be turned on or off here.">config.usage.lcd_powerled</item>
 		<item level="0" requires="StandbyPowerLed" text="Power LED State in Standby" description="Power LED state during standby.">config.usage.lcd_standbypowerled</item>
 		<item level="0" requires="SuspendPowerLed" text="Power LED State in Deep-Standby" description="Power LED state during deep-standby.">config.usage.lcd_deepstandbypowerled</item>
-		<item level="2" text="Initial scroll delay" description="Delay in miliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
-		<item level="2" text="Final scroll delay" description="Delay in miliseconds after finish scrolling text on display." requires="VFD_final_scroll_delay">config.usage.vfd_final_scroll_delay</item>
-		<item level="1" text="Repeat Display Message" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):" requires="VFD_scroll_repeats">config.usage.vfd_scroll_repeats</item>
-		<item level="1" text="Scrolling Speed" description="Set the scrolling speed of text on the front display." requires="VFD_scroll_delay">config.usage.vfd_scroll_delay</item>
+		<item level="0" requires="LedPowerColor" text="Operating LED status while running" description="With this option you can switch the LED color or deactivate the LED.">config.usage.lcd_ledpowercolor</item>
+		<item level="0" requires="LedStandbyColor" text="Operating LED status in standby mode" description="With this option you can switch the LED color or deactivate the LED.">config.usage.lcd_ledstandbycolor</item>
+		<item level="0" requires="LedSuspendColor" text="Operating LED status in deep standby mode" description="With this option you can switch the LED color or deactivate the LED.">config.usage.lcd_ledsuspendcolor</item>
+		<item level="0" requires="Power4x7On" text="Status of the display during operation" description="With this option you can switch off the display during operation.">config.usage.lcd_power4x7on</item>
+		<item level="0" requires="Power4x7Standby" text="Status of the display in standby mode" description="With this option you can switch off the display in Standby Mode.">config.usage.lcd_power4x7standby</item>
+		<item level="0" requires="Power4x7Suspend" text="Status of the display in deep standby" description="With this option you can switch off the display in Deep Standby Mode.">config.usage.lcd_power4x7suspend</item>
+		<item level="0" requires="7segment" text="Show in Standby" description="This option allows you choose how to display the Time or nothing in Standby">config.usage.show_in_standby</item>
+		<item level="2" requires="VFD_initial_scroll_delay" text="Initial scroll delay" description="Delay in miliseconds before start of scrolling text on display.">config.usage.vfd_initial_scroll_delay</item>
+		<item level="2" requires="VFD_final_scroll_delay" text="Final scroll delay" description="Delay in miliseconds after finish scrolling text on display.">config.usage.vfd_final_scroll_delay</item>
+		<item level="1" requires="VFD_scroll_repeats" text="Repeat Display Message" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):">config.usage.vfd_scroll_repeats</item>
+		<item level="1" requires="VFD_scroll_delay" text="Scrolling Speed" description="Set the scrolling speed of text on the front display.">config.usage.vfd_scroll_delay</item>
 		<item level="1" requires="GraphicLCD" text="LCD scroll speed" description="Set the scrolling speed of text on the front display.">config.usage.lcd_scroll_speed</item>
 		<item level="1" requires="GraphicLCD" text="Time for next LCD scrolling" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):">config.usage.lcd_scroll_delay</item>
 		<item level="1" requires="LCDMiniTV" text="Show MiniTV in the Front Display" description="You can Display MiniTV with or without OSD Menu">config.lcd.modeminitv</item>
 		<item level="1" requires="LCDMiniTV" text="Show PIP in the Front Display" description="You can Display PIP with or without OSD Menu">config.lcd.modepip</item>
 		<item level="1" requires="LCDMiniTV" text="Set Framerate for MiniTV" description="Lower Framerate save CPU Time">config.lcd.fpsminitv</item>
-		<item level="1" requires="LCDMiniTV" text="Show blinking rec symbol on Display during recording" description="Enable blinking rec symbol on the LCD Display">config.usage.blinking_rec_symbol_during_recording</item>
 		<item level="2" requires="LCDMiniTV" text="Screenshot of LCD in /tmp" description="Enable screenshot of LCD in /tmp">config.lcd.screenshot</item>
-		<item level="1" requires="LcdLiveTV" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD.">config.lcd.showTv</item>
-		<item level="1" requires="OledDisplay" text="Show blinking rec symbol on Display during recording" description="Enable blinking rec symbol on the LCD Display">config.usage.blinking_rec_symbol_during_recording</item>
-		<item level="1" requires="OledDisplay" text="Show blinking Clock in Standby on Display during recording" description="In the Standby blinking Clock on the LCD Display">config.usage.blinking_display_clock_during_recording</item>
+		<item level="1" text="REC Symbol in use" description="Enable blinking rec symbol on the LCD Display">config.usage.blinking_rec_symbol_during_recording</item>
+		<item level="1" text="REC Symbol in Standby" description="In the Standby Record on the LCD Display">config.usage.blinking_display_clock_during_recording</item>
 		<item level="1" requires="XcoreVFD" text="switch 12 to 8 character display mode" description="12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed.">config.usage.vfd_xcorevfd</item>
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the frontpanel.">config.lcd.mode</item>
-		<item level="1" text="Show Time Remaining/Elapsed" description="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
-		<item level="1" text="Show Transponder Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_vfd</item>
-		<item level="1" text="Show Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for Media playback.">config.usage.swap_media_time_display_on_vfd</item>
-		<item level="0" text="Show time elapsed as positive" description="This option allows you choose how to display elapsed time  as + or -">config.usage.elapsed_time_positive_vfd</item>
-		<item level="0" text="Power On Display" description="This option allows you to Power Off the display.">config.lcd.power</item>
-		<item level="0" text="Show HDMI-Output Res" description="Show HDMI Output Resulution">config.lcd.showoutputresolution</item>
-		<item level="0" text="Show HDD progress" description="Disable the HDD Process on VFD">config.lcd.hdd</item>
-		<item level="0" text="Show on Display" description="Disable all VFD Symbols">config.vfd.show</item>
-		<item level="1" text="Scrolling speed (software renderer)" description="Set the scrolling speed of text on the front display, this is used by software renderer in some skins.">config.lcd.scroll_speed</item>
-		<item level="1" text="Scrolling delay (software renderer)" description="Set the delay time between repeated loops, this is used by software renderer in some skins.">config.lcd.scroll_delay</item>
+		<item level="1" requires="ConfigDisplay" text="Show Time Remaining/Elapsed" description="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
+		<item level="1" requires="ConfigDisplay" text="Show Transponder Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_vfd</item>
+		<item level="1" requires="ConfigDisplay" text="Show Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for Media playback.">config.usage.swap_media_time_display_on_vfd</item>
+		<item level="0" requires="ConfigDisplay" text="Show time elapsed as positive" description="This option allows you choose how to display elapsed time  as + or -">config.usage.elapsed_time_positive_vfd</item>
+		<item level="0" requires="ConfigDisplay" text="Power On Display" description="This option allows you to Power Off the display.">config.lcd.power</item>
+		<item level="0" requires="ConfigDisplay" text="Show HDMI-Output Res" description="Show HDMI Output Resulution">config.lcd.showoutputresolution</item>
+		<item level="0" requires="ConfigDisplay" text="Show HDD progress" description="Disable the HDD Process on VFD">config.lcd.hdd</item>
+		<item level="0" requires="ConfigDisplay" text="Show on Display" description="Disable all VFD Symbols">config.vfd.show</item>
+		<item level="1" requires="ConfigDisplay" text="Scrolling speed (software renderer)" description="Set the scrolling speed of text on the front display, this is used by software renderer in some skins.">config.lcd.scroll_speed</item>
+		<item level="1" requires="ConfigDisplay" text="Scrolling delay (software renderer)" description="Set the delay time between repeated loops, this is used by software renderer in some skins.">config.lcd.scroll_delay</item>
+		<item level="0" text="Date style" description="Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled_display">config.usage.date.display</item>
+		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 		<item level="1" text="Date/Time Format in Standby" description="Set the Date/Time Format in VFD in standby mode (A = Alternate data every 15sg).">config.usage.lcd_dateformat</item>
 	</setup>
 	<setup key="specialfeatures" title="Special Features">
@@ -361,6 +380,7 @@
 	<setup level="2" key="softcamsetup" title="Softcam settings">
 		<item level="2" text="Show CCcam in extensions ?" description="Allows you to show/hide CCcam in extensions (blue button).">config.cccaminfo.showInExtensions</item>
 		<item level="2" text="Show OScam in extensions ?" description="Allows you to show/hide OScam in extensions (blue button).">config.oscaminfo.showInExtensions</item>
+		<item level="2" text="Show Ncam in extensions ?" description="Allows you to show/hide Ncam in extensions (blue button).">config.ncaminfo.showInExtensions</item>
 	</setup>
 	<setup level="2" key="logs" title="Logs settings">
 		<item level="2" text="Logs location" description="Choose the location for crash and debuglogs.">config.crash.debug_path</item>
@@ -368,7 +388,7 @@
 		<item level="2" text="Show crash info on screen and write crash log for x times" description="If 'never', will write crash log despite that for the first crash." requires="config.crash.bsodpython">config.crash.bsodhide</item>
 		<item level="2" text="Restart GUI after x crashes" description="If 'never', will force restart despite that after 100 crashes." requires="config.crash.bsodpython">config.crash.bsodmax</item>
 		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
-		<item level="2" text="Enable twisted log *" description="Allows you to enable the twisted log. They contain very detailed information of everything the twisted does.">config.misc.enabletwistedlog</item>
+		<item level="2" text="Enable twisted log *" description="Allows you to enable the twisted log. They contain very detailed information of everything the twisted does. ('/tmp/twisted.log')">config.misc.enabletwistedlog</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Maximum no of days:" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>

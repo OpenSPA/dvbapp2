@@ -1,5 +1,5 @@
 import os
-from boxbranding import getBoxType, getBrandOEM
+from boxbranding import getBoxType, getBrandOEM, getMachineBrand
 from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
@@ -663,7 +663,7 @@ class SecConfigure:
 			tmp.positions[PN].append(ConfigInteger(default=positions, limits = (positions, positions)))
 
 			tmp.bootuptime[PN] = ConfigSubList()
-			tmp.bootuptime[PN].append(ConfigInteger(default=0, limits = (0, 0)))
+			tmpbootuptime[PN].append(ConfigInteger(default=0, limits = (0, 0)))
 
 			positionsoffsetlist=[0,]	##adenin_todo
 			positionsoffset = int(positionsoffsetlist[0])
@@ -850,6 +850,18 @@ class NIM(object):
 		if not multistream and "TBS" in self.description:
 			multistream = True
 		return multistream
+
+	def isFBCTuner(self):
+		return (self.frontend_id is not None) and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
+
+	def isFBCRoot(self):
+		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
+
+	def isFBCLink(self):
+		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
+
+	def isNotFirstFBCTuner(self):
+		return self.isFBCTuner() and self.slot % 8 and True
 
 	def isT2MI(self):
 		return os.path.exists("/proc/stb/frontend/%d/t2mi" % self.frontend_id)
@@ -1625,7 +1637,8 @@ jess_alias = ("JESS","UNICABLE2","SCD2","EN50607","EN 50607")
 
 lscr = [("scr%d" % i) for i in range(1,33)]
 
-def InitNimManager(nimmgr, update_slots = []):
+def InitNimManager(nimmgr, update_slots=None):
+	update_slots = [] if update_slots is None else update_slots
 	hw = HardwareInfo()
 	addNimConfig = False
 	try:
@@ -2218,12 +2231,13 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.connectedTo.addNotifier(boundFunction(connectedToChanged, x, nimmgr), initial_call = False)
 		if slot.canBeCompatible("DVB-C"):
 			nim = config.Nims[x].dvbc
+			default = getMachineBrand() == "Beyonwiz" and "nothing" or "enabled"
 			nim.configMode = ConfigSelection(
 				choices = {
 					"enabled": _("enabled"),
 					"nothing": _("nothing connected"),
 					},
-				default = "enabled")
+				default = default)
 			createCableConfig(nim, x)
 		if slot.canBeCompatible("DVB-T"):
 			nim = config.Nims[x].dvbt
@@ -2252,7 +2266,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	nimmgr.sec = SecConfigure(nimmgr)
 
 	def tunerTypeChanged(nimmgr, configElement):
-		if int(iDVBFrontend.dvb_api_version) < 5 or getBrandOEM() in ('vuplus'):
+		if int(iDVBFrontend.dvb_api_version) < 5 or getBrandOEM() in ('vuplus',):
 			print "dvb_api_version ",iDVBFrontend.dvb_api_version
 			print "api < 5 or old style tuner driver"
 			fe_id = configElement.fe_id
@@ -2332,10 +2346,13 @@ def InitNimManager(nimmgr, update_slots = []):
 				addMultiType = True
 		if slot.isMultiType() and addMultiType:
 			typeList = []
+			default = "0"
 			for id in slot.getMultiTypeList().keys():
 				type = slot.getMultiTypeList()[id]
 				typeList.append((id, type))
-			nim.multiType = ConfigSelection(typeList, "0")
+				if getMachineBrand() == "Beyonwiz" and type.startswith("DVB-T"):
+					default = id
+			nim.multiType = ConfigSelection(typeList, default)
 
 			nim.multiType.fe_id = x - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))

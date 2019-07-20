@@ -46,7 +46,7 @@ fi
 
 if [ -e /proc/stb/info/boxtype ]; then
 	stbcheck=`cat /proc/stb/info/boxtype`
-		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbmv200" ]; then
+	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ]; then
 		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
 		if [ 0 == $count ];then
 			libreader 720P_50
@@ -127,10 +127,6 @@ if [ -e /proc/stb/info/boxtype ] && [ -e /proc/stb/info/chipset ]; then
 	fi
 fi
 
-if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ] && [ ! $stbcheck == "1" ]; then
-	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
-fi
-
 sync
 
 # in case sysctl.conf is not properly loaded - load sysctl.conf here again...
@@ -178,11 +174,11 @@ ret=$?
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-		if [ ! $stbcheck == "u5" ] && [ ! $stbcheck == "u4" ]; then
+		if [ $stbcheck == "u5" ] || [ $stbcheck == "u4" ]; then
 			killall -9 showiframe; sleep 5
 		fi
 		stbcheck=`cat /proc/stb/info/boxtype`
-				if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbmv200" ]; then
+		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ]; then
 			killall -9 libreader; sleep 5
 		fi
 	fi
@@ -190,12 +186,14 @@ fi
 
 case $ret in
 	1)
+		touch /etc/enigma2/.deep
 		/sbin/halt
 		;;
 	2)
 		if [ -f /proc/stb/fp/force_restart ]; then
 			echo 1 > /proc/stb/fp/force_restart
 		fi
+		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
 		;;
 	3)
@@ -208,10 +206,18 @@ case $ret in
 		sleep 1;
 		/sbin/rmmod fp
 		/sbin/modprobe fp
+		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
 		;;
 	16)
-		echo "rescue" > /proc/stb/fp/boot_mode
+		if [ -e /dev/block/by-name/bootoptions ]; then
+			mkdir -p /tmp/bootoptions
+			mount /dev/block/by-name/bootoptions /tmp/bootoptions
+			cp -f /tmp/bootoptions/STARTUP_RECOVERY /tmp/bootoptions/STARTUP_ONCE
+		else
+			echo "rescue" > /proc/stb/fp/boot_mode
+		fi
+		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
 		;;
 	42)
@@ -226,6 +232,7 @@ case $ret in
 		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
 		echo fpupload >/proc/vfd && sleep 3 && dd bs=256k if=/tmp/micom.bin of=/dev/mcu
 		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi
+		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		# Wait forever for the user to power off
 		while(true) ; do sleep 60 ; done
 		;;

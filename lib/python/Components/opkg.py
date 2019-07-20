@@ -1,4 +1,5 @@
 import os
+from boxbranding import getImageVersion
 
 def enumFeeds():
 	for fn in os.listdir('/etc/opkg'):

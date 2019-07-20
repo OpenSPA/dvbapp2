@@ -1462,7 +1462,6 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 //				eDebug("[eDVBScan] corrected freq for tsid %04x, onid %04x, ns %08x is %d, old was %d",
 //					ch->first.transport_stream_id.get(), ch->first.original_network_id.get(),
 //					ch->first.dvbnamespace.get(), freq, parm.frequency);
-				//register system DVB_T_T2 as DVB_T for fix tune by OpenSPA
 				parm.frequency = freq;
 				p->setDVBT(parm);
 				break;

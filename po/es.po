@@ -1698,7 +1698,7 @@ msgstr "USB trasero superior"
 #
 #, python-format
 msgid "Back-up Tool for a %s\n"
-msgstr "Herramienta de copias de seguridad para %s\n"
+msgstr "Herramienta backup para %s\n"
 
 msgid "Back/Recall"
 msgstr "Volver/Recuperar"
@@ -1724,7 +1724,7 @@ msgid "Backup Date: %s\n"
 msgstr "Fecha del backup: %s\n"
 
 msgid "Backup Image"
-msgstr "Backup de la imagen"
+msgstr "Backup completo"
 
 msgid "Backup Location"
 msgstr "Ubicación del backup"
@@ -4193,7 +4193,7 @@ msgstr "Copia completa de imagen"
 #
 #, python-format
 msgid "Full back-up on %s"
-msgstr "backup completo en %s"
+msgstr "Backup completo en %s"
 
 msgid "Full transparency"
 msgstr "Transparencia completa"
@@ -4400,7 +4400,7 @@ msgid ""
 "HDD = Do you want to make an USB-back-up image on HDD? \n"
 "This only takes 1 or 10 minutes and is fully automatic."
 msgstr ""
-"HDD = ¿Quieres realizar un backup de la imagen en el HDD?\n"
+"HDD = ¿Quieres realizar un backup completo de la imagen en el HDD?\n"
 "Tardará de 1 a 10 minutos y es automático."
 
 msgid "HDMI"
@@ -6416,11 +6416,11 @@ msgstr "Directorio inicial"
 
 #
 msgid "Parental control"
-msgstr "Control paterno"
+msgstr "Control parental"
 
 #
 msgid "Parental control setup"
-msgstr "Configurar control paterno"
+msgstr "Configurar control parental"
 
 # InfoPanel
 msgid "Partitions"
@@ -6718,14 +6718,6 @@ msgstr "Selecciona una etiqueta para filtrar..."
 msgid "Please select the movie path..."
 msgstr "Selecciona un directorio de películas..."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
-msgstr ""
-"Selecciona qué hacer después de flashear la imagen:\n"
-"(Además, si existe, se ejecutará un script local en /media/hdd/images/config/myrestore.sh)"
-
-#
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press green to continue."
@@ -11973,7 +11965,7 @@ msgstr "Añadir canal a favoritos"
 
 #
 msgid "add to parental protection"
-msgstr "Añadir a control paterno"
+msgstr "Añadir a control parental"
 
 msgid "address:"
 msgstr "Dirección:"
@@ -12996,7 +12988,7 @@ msgid "remove bookmark"
 msgstr "Borrar marcador"
 
 msgid "remove bouquet from parental protection"
-msgstr "eliminar lista del control paterno"
+msgstr "eliminar lista del control parental"
 
 msgid "remove cable services"
 msgstr "eliminar canales de cable"
@@ -13011,7 +13003,7 @@ msgstr "Eliminar entrada"
 
 #
 msgid "remove from parental protection"
-msgstr "Eliminar del control paterno"
+msgstr "Eliminar del control parental"
 
 #
 msgid "remove new found flag"
@@ -13359,7 +13351,7 @@ msgstr "Esta grabación"
 
 #
 msgid "this service is protected by a parental control pin"
-msgstr "Este canal está protegido por el pin de control paterno"
+msgstr "Este canal está protegido por el pin de control parental"
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
@@ -13486,7 +13478,7 @@ msgid "width"
 msgstr "Ancho"
 
 msgid "will take about 1-15 minutes for this system\n"
-msgstr "tardará aproximadamente 1-15 minutos\n"
+msgstr "tardará alrededor de 1-15 minutos\n"
 
 msgid "winter sport"
 msgstr "deportes de invierno"
@@ -13929,6 +13921,9 @@ msgstr "Configura si se va a recordar el último canal en PIP y durante cuanto t
 
 msgid "Configure if and how service type icons will be shown."
 msgstr "Configura si los iconos del tipo de servicio se mostrarán."
+ 
+msgid "Configure if and how service quality type icons will be shown."
+msgstr "Configura si los iconos de la calidad del servicio se mostrarán."
 
 msgid "Configure if and how the record indicator will be shown in the channel selection list."
 msgstr "Configura si y como se mostrará el indicador de grabación en la lista de canales."
@@ -14633,11 +14628,11 @@ msgstr "Ajustes del explorador de plugins"
 msgid "Position of finished Timers in Timerlist"
 msgstr "Posición temporizadores finalizados en lista temporizadores"
 
-msgid "Power LED State in Deep-Standby/Standby"
-msgstr "Estado del LED en reposo/apagado"
+msgid "Power LED State in Standby"
+msgstr "Estado del LED de encendido en reposo"
 
-msgid "Power LED state during deep-standby/standby."
-msgstr "Estado del LED en reposo/reposo profundo."
+msgid "Turn on the power LED."
+msgstr "Abrir el LED de encendido"
 
 msgid "Power On Display"
 msgstr "Encender pantalla"
@@ -14898,7 +14893,7 @@ msgid "Setup the interval to check for online updates. (in hours)"
 msgstr "Configurar el intervalo de comprobación de actualizaciones online (en horas)"
 
 # Zeitenstellung
-msgid "Setup your timezone."
+msgid "Setup your timezone area."
 msgstr "Configura tu zona horaria"
 
 msgid "Show CCcam in extensions ?"
@@ -15046,13 +15041,31 @@ msgid "Show record indicator"
 msgstr "Mostrar indicador de grabación"
 
 msgid "Show recording symbol depending on recording type"
-msgstr "Mostrar símbolo de grabación según tipo grabación"
+msgstr "Mostrar símbolo según tipo grabación"
 
 msgid "Show screensaver"
 msgstr "Mostrar salvapantallas"
 
 msgid "Show service type icons"
 msgstr "Mostrar iconos de tipo de servicio"
+
+msgid "Show service quality icons"
+msgstr "Mostrar iconos de calidad de servicio"
+
+msgid "  Show icons for SD services"
+msgstr " Mostrar iconos para canales SD"
+
+msgid "  Show icons for HD services"
+msgstr " Mostrar iconos para canales HD"
+
+msgid "  Show icons for 4K services"
+msgstr " Mostrar iconos para canales 4K"
+
+msgid "  Show icons for 3D services"
+msgstr " Mostrar iconos para canales 3D"
+
+msgid "  Show icons for IPTV services"
+msgstr " Mostrar iconos para canales IPTV"
 
 msgid "Show source packages"
 msgstr "Mostrar paquetes de fuente"
@@ -15080,7 +15093,7 @@ msgid "Show transponder remaining/elapsed as"
 msgstr "Tiempo rest./transcurr. del evento en"
 
 msgid "Show warning before box restart based on recording type"
-msgstr "Mostrar aviso antes de reiniciar según tipo grabación"
+msgstr "Mostrar aviso al reiniciar según tipo grabación"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Mostrar advertencia cuando se detiene timeshift"
@@ -15234,10 +15247,6 @@ msgstr "Esta opción te permite elegir el color de fondo de los picons transpare
 
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr "Esta opción te permite elegir configurar la vista de composición (texto o gráfico)."
-
-# Box Display
-msgid "This option allows you to Power Off the display."
-msgstr "Esta opción te permite apagar el LCD."
 
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Esta opción te permite elegir entre las dos listas de canales disponibles."
@@ -15674,7 +15683,7 @@ msgid "PIN code needed"
 msgstr "Es necesario el código PIN"
 
 msgid "Parental control services editor"
-msgstr "Editor del control paterno"
+msgstr "Editor del control parental"
 
 msgid "PiP-Zap"
 msgstr "PiP-Zap"
@@ -16420,9 +16429,6 @@ msgstr "Mezcla AC3"
 msgid "CI Operation Mode"
 msgstr "Modo funcionamiento CI"
 
-msgid "CI settings"
-msgstr "Configuración CI"
-
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Su Hardware puede detectar él mismo el modo ci o trabajar sólo en modo heredado."
 
@@ -17132,7 +17138,7 @@ msgstr "Eliminando dependencias del ipk %s"
 msgid "Force Removing ipk %s"
 msgstr "Forzar borrado de ipk %s"
 
-msgid "Force Legacy Signal Stats"
+msgid "Force Legacy Signal stats"
 msgstr "Forzar estadísticas de señales heredadas"
 
 msgid "Ignore DVB-T namespace sub network"
@@ -17481,7 +17487,7 @@ msgstr ""
 " Reiniciar ahora?"
 
 msgid "HDMI-IN Recording settings"
-msgstr "Coniguración grabaciones HDMI-IN"
+msgstr "Conf. grabaciones HDMI-IN"
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "El bitrate del codificador de video. Un valor mayor mejora la calidad y aumenta el tamaño del archivo."
@@ -17706,7 +17712,7 @@ msgid "Try to prevent reboots for software errors and maintain of the availabili
 msgstr "Intenta prevenir reinicios por error de software y mantiene la disponibilidad del receptor."
 
 msgid "Show crash info on screen and write crash log for x times"
-msgstr "Mostrar info bloqueo en pantalla y escribir log de fallos después de x veces"
+msgstr "Mostrar info bloqueo y escribir log de fallos después de x veces"
 
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Si 'nunca', escribirá el log de fallos desde el primer bloqueo."
@@ -17773,3 +17779,367 @@ msgstr "Auto-detecta"
 
 msgid "Generic"
 msgstr "Genérico"
+
+msgid "Your timezone in the area."
+msgstr "La zona horaria de tu región"
+
+msgid "Multiboot Manager"
+msgstr "Administrador Multiboot"
+
+msgid "\nMaintain your multiboot device."
+msgstr "\nMantiene tu dispositivo multiboot."
+
+msgid "Use the cursor keys to select an installed image and then Reboot button."
+msgstr "Usa las flechas para seleccionar una imagen instalada y entonces botón Reiniciar."
+
+msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
+msgstr "Tarjeta SD no está inicializada para multiboot - Salir y usar Administrador de Imágenes Multiboot para inicializar"
+
+msgid "Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work."
+msgstr "Modo 1 soporta Kodi, PiP puede no funcionar.\nModo 12 soporta PiP, Kodi puede no funcionar."
+
+msgid "Retrieving image slots - Please wait..."
+msgstr "Recuperando boots de imágenes - Por favor espere..."
+
+msgid "Empty slot"
+msgstr "Boot vacío"
+
+msgid "slot%s - %s - %s (current image)"
+msgstr "Boot%s -%s - %s (imagen actual)"
+
+msgid "slot%s - %s- %s "
+msgstr "Boot%s -%s - %s "
+
+msgid "slot%s - %s mode 1 (current image)"
+msgstr "Boot%s - %s modo 1 (imagen actual)"
+
+msgid "slot%s - %s mode 1"
+msgstr "Boot%s - %s modo 1"
+
+msgid "slot%s - %s mode 12 (current image)"
+msgstr "Boot%s - %s modo 12 (imagen actual)"
+
+msgid "slot%s - %s mode 12"
+msgstr "Boot%s - %s modo 12"
+
+msgid "No images found"
+msgstr "No se encuentran imágenes"
+
+msgid "No images found for this device. More info in openspa.info"
+msgstr "No se encuentran imágenes en este dispositivo. Más info en openspa.info"
+
+msgid "No images found for"
+msgstr "No se encuentran imágenes en"
+
+msgid "Do you want to reboot now the image in slot %s?"
+msgstr "Quieres reiniciar ahora la imagen de la Boot %s?"
+
+msgid "Multiboot ERROR! - no %s in boot partition."
+msgstr "ERROR Multiboot! - %s no está en Boot de arranque."
+
+msgid "MultiBoot Image Manager"
+msgstr "Administrador imágenes Multiboot"
+
+msgid "Press Init to format SDcard."
+msgstr "Pulsa Inicializar para formatear tarjeta SD."
+
+msgid "Init SDcard"
+msgstr "Inicializar tarjeta SD"
+
+msgid "Use the cursor keys to select an installed image and then Erase button."
+msgstr "Usa las flechas para seleccionar una imagen instalada y entonces botón Borrar."
+
+msgid "Note: slot list does not show current image or empty slots."
+msgstr "Nota: lista de particiones no muestra imagen actual ni particiones vacías."
+
+msgid "Erase"
+msgstr "Borrar"
+
+msgid "slot%s - %s"
+msgstr "Boot%s - %s"
+
+msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
+msgstr "La eliminación de este boot no se mostrará en el GUI de %s. Estás seguro que quieres eliminar el boot de la imagen %s ?"
+
+msgid "Remove confirmation"
+msgstr "Eliminar confirmación"
+
+msgid "Are you sure you want to delete image slot %s ?"
+msgstr "Estás seguro que quieres eliminar el boot de la imagen %s ?"
+
+msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
+msgstr "Administrador Multiboot - No se puede inicializar tarjeta SD ejecutando imagen en tarjeta SD."
+
+msgid "Multiboot manager - The SDcard must be at least 8MB."
+msgstr "Administrador Multiboot - La tarjeta SD debe ser mínimo de 8 Mb."
+
+msgid "Cannot find images - please try later"
+msgstr "No se encuentran imágenes - por favor inténtalo más tarde"
+
+msgid "Cannot delete downloaded image"
+msgstr "No se puede borrar imagen descargada"
+
+msgid "Delete image"
+msgstr "Borrar imagen"
+
+msgid "Flash Image"
+msgstr "Instalar imagen"
+
+msgid "Save settings and EPG data"
+msgstr "Guardar configuraciones y EPG"
+
+msgid "Do you want to flash image\n%s"
+msgstr "Quieres instalar la imagen\n%s"
+
+msgid "slot%s - %s (current image)"
+msgstr "Boot%s - %s (imagen actual)"
+
+msgid "No, do not flash an image"
+msgstr "No instalar ninguna imagen"
+
+msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"
+msgstr "Solo se encuentra una unidad de red para guardar el backup, esto significa que después de instalar, la autorestauración no funcionará. Alternativamente puedes montar la unidad de red después de la instalación y realizar un reinicio de fábrica para autorestaurar"
+
+msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
+msgstr "Imposible crear las carpetas requeridas en el dispositivo (por ej. pendrive USB o disco duro) - Por favor, verifica dispositivo y vuelve a intentarlo!"
+
+msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficiant free space and try again!"
+msgstr "No se encuentran dispositivos adecuados - Por favor, elimina algunas imágenes descargadas o inserta otro dispositivo (por ej. pendrive USB) con suficiente espacio libre y vuelve a intentarlo!"
+
+msgid "Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgstr "Por favor, selecciona qué hacer después de instalar la imagen:\n(Además, si existe, también se ejecutará un script local en /media/hdd/images/config/myrestore.sh)"
+
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr "Actualizar (Backup, Instalar y Restaurar)"
+
+msgid "Clean (Just flash and start clean)"
+msgstr "Instalación limpia (solo instalar y arranque limpio)"
+
+msgid "Backup, flash and restore settings and no plugins"
+msgstr "Backup, instalar y restaurar ajustes pero no plugins"
+
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr "Backup, instalar y restaurar ajustes y plugins seleccionados"
+
+msgid "Downloading Image"
+msgstr "Descargando imagen"
+
+msgid "Error during downloading image\n%s\n%s"
+msgstr "Error durante la descarga\n%s\n%s"
+
+msgid "Unzipping Image"
+msgstr "Descomprimiendo imagen"
+
+msgid "Error during unzipping image\n%s"
+msgstr "Error al descomprimir imagen\n%s"
+
+msgid "Flashing Image"
+msgstr "Instalando imagen"
+
+msgid "Image to install is invalid\n%s"
+msgstr "Imagen a instalar es inválida\n%s"
+
+msgid "Flashing image successful"
+msgstr "Imagen instalada con éxito"
+
+msgid "%s\nPress ok to close"
+msgstr "%s\nPulsa ok para cerrar"
+
+msgid "Flashing image was not successful\n%s"
+msgstr "La instalación de la imagen ha fallado\n%s"
+
+msgid "Multiboot Image Selector"
+msgstr "Multiboot"
+
+msgid "Please wait"
+msgstr "Por favor espera"
+
+msgid "Recovery Mode"
+msgstr "Modo recuperación"
+
+msgid "Decryption & Parental Control"
+msgstr "Desencriptado y Control Parental "
+
+msgid "Retrieving image list - Please wait..."
+msgstr "Recuperando lista de imágenes - Por favor espere..."
+
+msgid "Downloaded Images"
+msgstr "Imágenes descargadas"
+
+msgid "CI Basic settings"
+msgstr "Ajustes básicos CI"
+
+msgid "STB Display"
+msgstr "Display receptor"
+
+msgid "Downloaded"
+msgstr "Descargadas"
+
+msgid "Images %s"
+msgstr "Imágenes %s"
+
+msgid "Collapse"
+msgstr "Reducir"
+
+msgid "Expand"
+msgstr "Expandir"
+
+msgid "Show icons for SD services"
+msgstr "Mostrar iconos de canales SD"
+
+msgid "Show icons for HD services"
+msgstr "Mostrar iconos de canales HD"
+
+msgid "Show icons for 4K services"
+msgstr "Mostrar iconos de canales 4K"
+
+msgid "Show icons for 3D services"
+msgstr "Mostrar iconos de canales 3D"
+
+msgid "Show icons for IPTV services"
+msgstr "Mostrar iconos de canales IPTV"
+
+msgid "Configure if icons for SD services will be shown."
+msgstr "Configura si se mostrarán los iconos de canales SD"
+
+msgid "Configure if icons for HD services will be shown."
+msgstr "Configura si se mostrarán los iconos de canales HD"
+
+msgid "Configure if icons for 4K services will be shown."
+msgstr "Configura si se mostrarán los iconos de canales 4K"
+
+msgid "Configure if icons for 3D services will be shown."
+msgstr "Configura si se mostrarán los iconos de canales 3D"
+
+msgid "Configure if icons for IPTV services will be shown."
+msgstr "Configura si se mostrarán los iconos de canales IPTV"
+
+msgid "Image Backup "
+msgstr "Backup completo"
+
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr "Usa las flechas para seleccionar una imagen instalada y entonces botón Inicio."
+
+msgid "Please select a backup destination"
+msgstr "Por favor, selecciona un destino para el backup"
+
+msgid "Backup to destination: %s"
+msgstr "Backup en ruta: %s"
+
+msgid "No, do not backup a image"
+msgstr "No, no hacer backup completo"
+
+msgid "Cannot create backup directory"
+msgstr "No se puede crear la carpeta para el backup"
+
+msgid "Back-up Tool for an %s\n"
+msgstr "Herramienta backup para un %s\n"
+
+msgid "will take about 30 minutes for this system\n"
+msgstr "tardará alrededor de 30 minutos\n"
+
+msgid "Create:"
+msgstr "Crear:"
+
+msgid "Create: Recovery Fullbackup %s"
+msgstr "Crear : Backup completo de recuperación %s"
+
+msgid "Multiboot Image created on: %s/%s-%s.%s-%s-backup-%s_usb.zip"
+msgstr "Imagen Multiboot creada en: %s/%s-%s.%s-%s-backup-%s_usb.zip"
+
+msgid "Image created on: %s/%s-%s.%s-%s-backup-%s_recovery.zip"
+msgstr "Imagen creada en: %s/%s-%s.%s-%s-backup-%s_recovery.zip"
+
+msgid "Image created on: %s/%s-%s.%s-%s-backup-%s_mmc.zip"
+msgstr "Imagen creada en: %s/%s-%s.%s-%s-backup-%s_mmc.zip"
+
+msgid "Version %s %s"
+msgstr "Versión %s %s"
+
+msgid "slot%s - %s - %s as USB Recovery"
+msgstr "Boot%s - %s - %s como USB de recuperación"
+
+msgid "internal flash: %s %s as USB Recovery"
+msgstr "Flash interna: %s %s como USB de recuperación"
+
+msgid "internal flash:  %s %s "
+msgstr "Flash interna: %s %s "
+
+msgid "Full backup"
+msgstr "Backup completo"
+
+msgid "violet"
+msgstr "violeta"
+
+msgid "Power LED can be turned on or off here."
+msgstr "LED de encendido puede encenderse o apagarse aquí"
+
+msgid "Power LED state during standby."
+msgstr "Estado LED de encendido durante reposo."
+
+msgid "Power LED state during deep-standby."
+msgstr "Estado LED de encendido durante reposo profundo."
+
+msgid "Operating LED status while running"
+msgstr "Color LED de encendido durante el funcionamiento"
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr "Con esta opción puedes cambiar el color del LED o desactivarlo."
+
+msgid "Operating LED status in deep standby mode"
+msgstr "Color LED de encendido en reposo profundo"
+
+msgid "Status of the display during operation"
+msgstr "Estado del display durante el funcionamiento."
+
+msgid "Status of the display in standby mode"
+msgstr "Estado del display en reposo"
+
+msgid "Status of the display in deep standby"
+msgstr "Estado del display en reposo profundo."
+
+msgid "With this option you can switch off the display during operation."
+msgstr "Con esta opción puedes desconectar el display durante el funcionamiento."
+
+msgid "Switch off the display during Standby Mode"
+msgstr "Desconecta el display en reposo"
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr "Con esta opción puedes desconectar el display en reposo."
+
+msgid "Switch off the display during Suspend Mode"
+msgstr "Desconecta el display en reposo profundo"
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr "Con esta opción puedes desconectar el display en reposo profundo."
+
+msgid "Operating LED status in standby mode"
+msgstr "Color LED de encendido en reposo"
+
+msgid "Show in Standby"
+msgstr "Mostrar en reposo"
+
+msgid "This option allows you choose how to display the Time or nothing in Standby"
+msgstr "Esta opción te permite escoger como mostrar la hora en el display o no mostrar nada en reposo"
+
+msgid "REC Symbol in use"
+msgstr "Símbolo REC en uso"
+
+msgid "REC Symbol in Standby"
+msgstr "Símbolo REC en reposo"
+
+msgid "In the Standby Record on the LCD Display"
+msgstr "Mostrar símbolo de grabación en el display LCD"
+
+msgid "Show NcamInfo in Extensions Menu?"
+msgstr "Mostrar NcamInfo en el menú de extensiones"
+
+msgid "Enable BT Audio"
+msgstr "Habilitar audio BT"
+
+msgid "Enable twisted log *"
+msgstr "Acivar log de red *"
+
+msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
+msgstr "Te permite activar el log de red. Contiene información muy detallada de todo lo que hace en red"
+

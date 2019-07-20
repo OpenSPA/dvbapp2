@@ -47,6 +47,7 @@ class Language:
 		self.addLanguage("Hebrew", "he", "IL", "ISO-8859-15")
 		self.addLanguage("Hrvatski", "hr", "HR", "ISO-8859-15")
 		self.addLanguage("Magyar", "hu", "HU", "ISO-8859-15")
+		self.addLanguage("Indonesian", "id", "ID", "ISO-8859-15")
 		self.addLanguage("Íslenska", "is", "IS", "ISO-8859-15")
 		self.addLanguage("Italiano", "it", "IT", "ISO-8859-15")
 		self.addLanguage("Kurdish", "ku", "KU", "ISO-8859-15")
@@ -66,7 +67,7 @@ class Language:
 		self.addLanguage("Svenska", "sv", "SE", "ISO-8859-15")
 		self.addLanguage("ภาษาไทย", "th", "TH", "ISO-8859-15")
 		self.addLanguage("Türkçe", "tr", "TR", "ISO-8859-15")
-		self.addLanguage("Ukrainian", "uk", "UA", "ISO-8859-15")
+		self.addLanguage("Українська", "uk", "UA", "ISO-8859-15")
 
 	def addLanguage(self, name, lang, country, encoding):
 		try:
@@ -80,6 +81,9 @@ class Language:
 
 	def activateLanguage(self, index):
 		try:
+			if index not in self.lang:
+				print "Selected language %s is not installed, fallback to en_US!" % index
+				index = "en_US"
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
 			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index], fallback=True)
@@ -180,7 +184,7 @@ class Language:
 
 		if delLang:
 			print"DELETE LANG", delLang
-			if delLang == "en_US":
+			if delLang == "en_US" or delLang == "es_ES":
 				print"Default Language can not be deleted !!"
 				return
 			elif delLang == "en_GB" or delLang == "pt_BR":
@@ -194,12 +198,12 @@ class Language:
 			ll = os.listdir(LPATH)
 			for x in ll:
 				if len(x) > 2:
-					if x != lang:
+					if x != lang and x != "es":
 						x = x.lower()
 						x = x.replace('_','-')
 						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 				else:
-					if x != lang[:2] and x != "en":
+					if x != lang[:2] and x != "en" and x != "es":
 						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 					elif x == "pt":
 						if x != lang:

@@ -10,7 +10,8 @@ def row_delta_y():
 	font = skin.fonts["ChoiceList"]
 	return (int(font[2]) - int(font[1]))/2
 
-def ChoiceEntryComponent(key = None, text = ["--"]):
+def ChoiceEntryComponent(key = None, text=None):
+	text = ["--"] if text is None else text
 	res = [ text ]
 	if text[0] == "--":
 		x, y, w, h = skin.parameters.get("ChoicelistDash",(0, 2, 800, 25))
@@ -32,6 +33,10 @@ def ChoiceEntryComponent(key = None, text = ["--"]):
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
 				x, y, w, h = skin.parameters.get("ChoicelistIcon",(5, 0, 35, 25))
+				if key in ("verticalline", "expanded"):
+					h = 100
+					if key == "verticalline":
+						y = 0
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	return res
 

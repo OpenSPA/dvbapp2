@@ -41,9 +41,9 @@ class Volume_adjust(Screen):
 			<eLabel backgroundColor="yellow" position="300,447" size="140,3" zPosition="0" />
 			<eLabel backgroundColor="blue" position="445,447" size="140,3" zPosition="0" />
 			<widget source="key_red" render="Label" position="10,425" zPosition="1" size="140,22" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_green" render="Label" position="155,425" zPosition="1" size="140,22" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_green" render="Label" position="155,426" zPosition="1" size="140,22" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_yellow" render="Label" position="300,425" zPosition="1" size="140,22" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_blue" render="Label" position="445,425" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_blue" render="Label" position="445,406" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session):

@@ -13,7 +13,7 @@ from os import access, R_OK
 from boxbranding import getBoxType, getBrandOEM
 
 def getFilePath(setting):
-	if getBrandOEM() in ('dreambox'):
+	if getBrandOEM() in ('dreambox',):
 		return "/proc/stb/vmpeg/0/dst_%s" % (setting)
 	else:
 		return "/proc/stb/fb/dst_%s" % (setting)
@@ -37,11 +37,11 @@ def InitOsd():
 	else:
 		SystemInfo["OsdMenu"] = False
 
-	if getBrandOEM() in ('fulan'):
+	if getBrandOEM() in ('fulan',):
 		SystemInfo["CanChangeOsdPosition"] = False
 		SystemInfo["CanChange3DOsd"] = False
 
-	if getBrandOEM() in ('dreambox'):
+	if getBrandOEM() in ('dreambox',):
 		SystemInfo["CanChangeOsdPosition"] = True
 
 	def setOSDLeft(configElement):
@@ -258,7 +258,8 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
-
+		self["key_blue"] = StaticText()
+		
 		self["title"] = StaticText(_("OSD Adjustment"))
 		self["text"] = Label(_("Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\nWhen you are ready press green to continue."))
 

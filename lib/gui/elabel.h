@@ -33,9 +33,9 @@ public:
 	void setBorderWidth(int size);
 	void setNoWrap(int nowrap);
 	void clearForegroundColor();
-	int getNoWrap() { return m_nowrap; }
 
 	eSize calculateSize();
+	static eSize calculateTextSize(gFont* font, const std::string &string, eSize targetSize, bool nowrap = false);
 protected:
 	ePtr<gFont> m_font;
 	int m_valign, m_halign;

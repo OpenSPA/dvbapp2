@@ -22,7 +22,7 @@ def to_unsigned(x):
 	return x & 0xFFFFFFFF
 
 def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
-	screenwidth = getDesktop(0).size().width()
+	#screenwidth = getDesktop(0).size().width()
 	if not isinstance(b, str):
 		if valueType == TYPE_VALUE_HEX:
 			b = ("0x%0" + str(param) + "x") % to_unsigned(b)
@@ -250,8 +250,8 @@ class ServiceInfo(Screen):
 						(_("Input Stream ID"), frontendData.get("is_id", 0), TYPE_VALUE_DEC),
 						(_("PLS Mode"), frontendData.get("pls_mode", None), TYPE_TEXT),
 						(_("PLS Code"), frontendData.get("pls_code", 0), TYPE_VALUE_DEC),
-					(_("T2MI PLP ID"), t2mi(frontendData.get("t2mi_plp_id", -1)), TYPE_TEXT),
-					(_("T2MI PID"), None if frontendData.get("t2mi_plp_id", -1) == -1 else str(frontendData.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)), TYPE_TEXT))
+						(_("T2MI PLP ID"), t2mi(frontendData.get("t2mi_plp_id", -1)), TYPE_TEXT),
+						(_("T2MI PID"), None if frontendData.get("t2mi_plp_id", -1) == -1 else str(frontendData.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)), TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-C":
 				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
 						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),

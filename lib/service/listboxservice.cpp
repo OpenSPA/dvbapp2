@@ -5,9 +5,11 @@
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/db.h>
 #include <lib/nav/core.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
+#include <lib/base/nconfig.h>
 #include <ctype.h>
 
 ePyObject eListboxServiceContent::m_GetPiconNameFunc;
@@ -152,10 +154,7 @@ int eListboxServiceContent::getNextBeginningWithChar(char c)
 	{
 		std::string text;
 		ePtr<iStaticServiceInformation> service_info;
-		if (m_service_center->info(*i, service_info))
-		{
-			continue; // failed to find service handler
-		}
+		m_service_center->info(*i, service_info);
 		service_info->getName(*i, text);
 //		printf("%c\n", text.c_str()[0]);
 		int idx=0;
@@ -316,7 +315,7 @@ DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
 	:m_visual_mode(visModeSimple),m_cursor_number(0), m_saved_cursor_number(0), m_size(0), m_current_marked(false),
-	m_itemheight(25), m_hide_number_marker(false), m_service_picon_downsize(0), m_servicetype_icon_mode(0),
+	m_itemheight(25), m_hide_number_marker(false), m_service_picon_downsize(0), m_service_picon_ratio(167), m_servicetype_icon_mode(0), m_quality_icon_mode(0),
 	m_crypto_icon_mode(0), m_record_indicator_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2),
 	m_nonplayable_margins(10), m_items_distances(8)
 {
@@ -788,6 +787,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					if (service_info)
 						service_info->getName(*m_cursor, text);
+#ifdef USE_LIBVUGLES2
+					painter.setFlush(text == "<n/a>");
+#endif
 					if (!isPlayable)
 					{
 						area.setWidth(area.width() + m_element_position[celServiceEventProgressbar].width() +  m_nonplayable_margins);
@@ -905,7 +907,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							 * bit wider in case the icons are diffently
 							 * shaped, and to add a bit of margin between
 							 * icon and text. */
-							const int iconWidth = (area.height() + m_service_picon_downsize * 2) * 1.67 + m_items_distances;
+							const int iconWidth = (area.height() + m_service_picon_downsize * 2) * (m_service_picon_ratio * 0.01) + m_items_distances;
 							m_element_position[celServiceInfo].setLeft(area.left() + iconWidth);
 							m_element_position[celServiceInfo].setWidth(area.width() - iconWidth);
 							area = m_element_position[celServiceName];
@@ -917,7 +919,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								painter.blitScale(piconPixmap,
 									eRect(area.left(), area.top() - m_service_picon_downsize, iconWidth, area.height() + m_service_picon_downsize * 2),
 									area,
-									gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO);
+									gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO | gPainter::BT_HALIGN_CENTER | gPainter::BT_VALIGN_CENTER);
 								painter.clippop();
 							}
 						}
@@ -955,6 +957,48 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							}
 						}
 
+						//service quality stuff
+						if (m_quality_icon_mode)
+						{
+							if (service_info)
+								service_info->getName(*m_cursor, text);
+							bool is3D = (eDVBDB::getInstance()->HasFlag(ref, 128) | text.find("3D") != std::string::npos) ? true: false;
+
+							ePtr<gPixmap> &pixmap =
+								(is3D & eConfigManager::getConfigBoolValue("config.usage.quality_3Dicon", true)) ? m_pixmaps[pic3D] :
+								(ref.data[0] == 31 & eConfigManager::getConfigBoolValue("config.usage.quality_4Kicon", true)) ? m_pixmaps[pic4K] :
+								((ref.data[0] == 25 | text.find(" HD") != std::string::npos) & eConfigManager::getConfigBoolValue("config.usage.quality_HDicon", true)) ? m_pixmaps[picHD] :
+								(ref.type == eServiceReference::idServiceMP3 & eConfigManager::getConfigBoolValue("config.usage.quality_IPTVicon", true)) ? m_pixmaps[picIPTV] : 
+								(ref.data[0] == 1 & ref.type != eServiceReference::idServiceMP3 & eConfigManager::getConfigBoolValue("config.usage.quality_SDicon", false)) ? m_pixmaps[picSD]: m_pixmaps[picNone];
+							eSize pixmap_size = m_pixmaps[picHD]->size();
+
+							eRect area = m_element_position[celServiceInfo];
+							int offs = 0;
+							if (m_quality_icon_mode == 1)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
+								area = m_element_position[celServiceName];
+								offs = xoffs;
+								xoffs += pixmap_size.width() + m_items_distances;
+							}
+							int correction = (area.height() - pixmap_size.height()) / 2;
+							area.moveBy(offset);
+							if (pixmap)
+							{
+								if (m_quality_icon_mode == 2)
+								{
+									m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
+									if (m_crypto_icon_mode == 1 && m_pixmaps[picCrypto])
+										offs = offs + m_pixmaps[picCrypto]->size().width() + m_items_distances;
+								}
+								painter.clip(area);
+								painter.blit(pixmap, ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
+								painter.clippop();
+ 							}
+ 						}
+ 
 						//crypto icon stuff
 						if (m_crypto_icon_mode && m_pixmaps[picCrypto])
 						{

@@ -233,10 +233,11 @@ int eDVBServiceRecord::doPrepare()
 				/*
 				* streams are considered to be descrambled by default;
 				* user can indicate a stream is scrambled, by using servicetype id + 0x100
+				* (or idDVB + idServiceIsScrambled == idDVBScrambled)
 				*/
 				bool config_descramble_client = eConfigManager::getConfigBoolValue("config.streaming.descramble_client", false);
 
-				m_descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
+				m_descramble = (m_ref.type == eServiceReference::idDVBScrambled);
 
 				if(config_descramble_client)
 					m_descramble = true;
@@ -603,7 +604,7 @@ void eDVBServiceRecord::saveCutlist()
 				eDebug("[eDVBServiceRecord] fixing up PTS failed, not saving");
 				continue;
 			}
-			eDebug("[eDVBServiceRecord] fixed up %llx to %llx (offset %jx)", i->second, p, (intmax_t)offset);
+			eDebug("[eDVBServiceRecord] fixed up %llx to %llx (offset %llx)", i->second, p, offset);
 			where = htobe64(p);
 			what = htonl(2); /* mark */
 			fwrite(&where, sizeof(where), 1, f);

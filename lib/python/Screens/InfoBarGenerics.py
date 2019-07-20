@@ -46,6 +46,7 @@ from Screens.TimerEntry import TimerEntry as TimerEntry
 from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
+from Tools.ServiceReference import hdmiInServiceRef
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
 from boxbranding import getBoxType, getMachineProcModel, getMachineBuild, getMachineBrand, getMachineName
 
@@ -54,6 +55,7 @@ from bisect import insort
 from keyids import KEYIDS
 from datetime import datetime
 import itertools, datetime
+from sys import maxint
 
 import os, cPickle
 
@@ -68,8 +70,6 @@ jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
 
-# sys.maxint on 64bit (2**63-1) fails with OverflowError on eActionMap.bindAction use 32bit value (2**31-1)
-maxint = 2147483647
 
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
@@ -1867,6 +1867,7 @@ class InfoBarSeek:
 				"pauseServiceYellow": (self.pauseServiceYellow, _("Pause playback")),
 				"unPauseService": (self.unPauseService, _("Continue playback")),
 				"okButton": (self.okButton, _("Continue playback")),
+
 				"seekFwd": (self.seekFwd, _("Seek forward")),
 				"seekFwdManual": (self.seekFwdManual, _("Seek forward (enter time)")),
 				"seekBack": (self.seekBack, _("Seek backward")),
@@ -1999,23 +2000,24 @@ class InfoBarSeek:
 			hdd = 1
 			if self.activity >= 100:
 				self.activity = 0
-			if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
-				if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-					if config.lcd.hdd.value == "1":
-						file = open("/proc/stb/lcd/symbol_hdd", "w")
-						file.write('%d' % int(hdd))
-						file.close()
-				if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-					if config.lcd.hdd.value == "1":
-						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-						file.write('%d' % int(self.activity))
-						file.close() 
+			SystemInfo["SeekStatePlay"] = True
+			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+				if config.lcd.hdd.value == "1":
+					file = open("/proc/stb/lcd/symbol_hdd", "w")
+					file.write('%d' % int(hdd))
+					file.close()
+			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+				if config.lcd.hdd.value == "1":
+					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+					file.write('%d' % int(self.activity))
+					file.close() 
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
 			hdd = 0
 			self.seekAction = 0
 
+		SystemInfo["SeekStatePlay"] = True
 		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
 			if config.lcd.hdd.value == "1":
 				file = open("/proc/stb/lcd/symbol_hdd", "w")
@@ -2119,6 +2121,7 @@ class InfoBarSeek:
 				self.unPauseService()
 
 	def pauseService(self):
+		SystemInfo["StatePlayPause"] = True
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
 		self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -2132,6 +2135,7 @@ class InfoBarSeek:
 			self.playpauseService()
 
 	def unPauseService(self):
+		SystemInfo["StatePlayPause"] = False
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction <> 0: self.playpauseService()
 			#return 0 # if 'return 0', plays timeshift again from the beginning
@@ -2635,6 +2639,7 @@ class InfoBarExtensions:
 		self.addExtension(extension = self.getOsd3DSetup, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getCCcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension = self.getNcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension = self.getIpkUninstall, type = InfoBarExtensions.EXTENSION_LIST)
 
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_EXTENSIONSINGLE):
@@ -2679,6 +2684,18 @@ class InfoBarExtensions:
 		for softcam in softcams:
 			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
+		else:
+			return []
+
+	def getNname(self):
+		return _("Ncam Info")
+
+	def getNcamInfo(self):
+		if pathExists('/usr/bin/'):
+			softcams = os.listdir('/usr/bin/')
+		for softcam in softcams:
+			if softcam.lower().startswith('ncam') and config.ncaminfo.showInExtensions.value:
+				return [((boundFunction(self.getNname), boundFunction(self.openNcamInfo), lambda: True), None)] or []
 		else:
 			return []
 
@@ -2763,6 +2780,10 @@ class InfoBarExtensions:
 	def openOScamInfo(self):
 		from Screens.OScamInfo import OscamInfoMenu
 		self.session.open(OscamInfoMenu)
+
+	def openNcamInfo(self):
+		from Screens.NcamInfo import NcamInfoMenu
+		self.session.open(NcamInfoMenu)
 
 	def openIpkUninstall(self):
 		from Screens.Ipkuninstall import Ipkuninstall
@@ -3579,8 +3600,10 @@ class InfoBarSubserviceSelection:
 			self.bouquets = self.bsel = self.selectedSubservice = None
 
 	def GreenPressed(self):
-		if not config.plisettings.Subservice.value:
+		if config.plisettings.Subservice.value == "0":
 			self.openTimerList()
+		elif config.plisettings.Subservice.value == "1":
+			self.openPluginBrowser()
 		else:
 			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
 			if serviceRef:
@@ -3588,9 +3611,15 @@ class InfoBarSubserviceSelection:
 				if subservices and len(subservices) > 1 and serviceRef.toString() in [x[1] for x in subservices]:
 					self.subserviceSelection()
 				else:
-					self.openPluginBrowser()
+					if config.plisettings.Subservice.value == "2":
+						self.openTimerList()
+					else:
+						self.openPluginBrowser()
 			else:
-				self.openPluginBrowser()
+				if config.plisettings.Subservice.value == "2":
+					self.openTimerList()
+				else:
+					self.openPluginBrowser()
 
 	def openPluginBrowser(self):
 		try:
@@ -3975,10 +4004,9 @@ class InfoBarCueSheetSupport:
 			seekable = self.__getSeekable()
 			if seekable is None:
 				return # Should not happen?
-			length = seekable.getLength()
-			if length[0]:
-				length = (-1, 0) #  Set length 0 if error in getLength()
-			print "seekable.getLength() returns:", length
+			length = seekable.getLength() or (None,0)
+#			print "seekable.getLength() returns:", length
+			# Hmm, this implies we don't resume if the length is unknown...
 			if (last > 900000) and (not length[1]  or (last < length[1] - 900000)):
 				self.resume_point = last
 				l = last / 90000
@@ -4422,14 +4450,14 @@ class InfoBarHdmi:
 		if self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				self.session.pip.playService(hdmiInServiceRef())
 				self.session.pip.show()
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
 				curref = self.session.pip.getCurrentService()
-				if curref and curref.type != 8192:
-					self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				if curref and curref.type != eServiceReference.idServiceHDMIIn:
+					self.session.pip.playService(hdmiInServiceRef())
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 				else:
 					self.session.pipshown = False
@@ -4439,8 +4467,8 @@ class InfoBarHdmi:
 		if not self.LongButtonPressed:
 			slist = self.servicelist
 			curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if curref and curref.type != 8192:
-				self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			if curref and curref.type != eServiceReference.idServiceHDMIIn:
+				self.session.nav.playService(hdmiInServiceRef())
 			else:
 				self.session.nav.playService(slist.servicelist.getCurrent())
 
@@ -4479,15 +4507,15 @@ class InfoBarHdmi:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.hdmi_enabled_pip = True
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				self.session.pip.playService(hdmiInServiceRef())
 				self.session.pip.show()
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
 				curref = self.session.pip.getCurrentService()
-				if curref and curref.type != 8192:
+				if curref and curref.type != eServiceReference.idServiceHDMIIn:
 					self.hdmi_enabled_pip = True
-					self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+					self.session.pip.playService(hdmiInServiceRef())
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 				else:
 					self.hdmi_enabled_pip = False
@@ -4540,9 +4568,9 @@ class InfoBarHdmi:
 		else:
 			slist = self.servicelist
 			curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if curref and curref.type != 8192:
+			if curref and curref.type != eServiceReference.idServiceHDMIIn:
 				self.hdmi_enabled_full = True
-				self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				self.session.nav.playService(hdmiInServiceRef())
 			else:
 				self.hdmi_enabled_full = False
 				self.session.nav.playService(slist.servicelist.getCurrent())

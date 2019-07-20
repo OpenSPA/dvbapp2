@@ -30,7 +30,7 @@ private:
 	void evFlip();
 
 public:
-	void setResolution(int xres, int yres, int bpp = 32);
+	void setResolution(int xres, int yres);
 	gSDLDC();
 	virtual ~gSDLDC();
 	int islocked() const { return 0; }

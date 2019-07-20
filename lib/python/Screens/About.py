@@ -16,8 +16,10 @@ from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion
 
-from os import path
+from os import path,popen
 from re import search
+
+import time
 
 def parse_ipv4(ip):
 	ret = ""
@@ -51,6 +53,15 @@ def parseLines(filename):
 		print "[ERROR] failed to open file %s" % filename
 	return ret
 
+def MyDateConverter(StringDate):
+	## StringDate must be a string "YYYY-MM-DD"
+	try:
+		StringDate = StringDate.replace("-"," ")
+		StringDate = time.strftime(_("%Y-%m-%d"), time.strptime(StringDate, "%Y %m %d"))
+		return StringDate
+	except:
+		return _("unknown")
+
 def getAboutText():
 	AboutText = ""
 	AboutText += _("Model:\t\t%s %s\n") % (getMachineBrand(), getMachineName())
@@ -67,29 +78,29 @@ def getAboutText():
 		AboutText += _("Chipset:\t\t%s") % about.getChipSetString() + "\n"
 
 	cpuMHz = ""
-	if getMachineBuild() in ('u41'):
+	if getMachineBuild() in ('u41','u42','u43'):
 		cpuMHz = "   (1,0 GHz)"
-	elif getMachineBuild() in ('vusolo4k', 'vuultimo4k', 'vuzero4k'):
+	elif getMachineBuild() in ('vusolo4k','vuultimo4k','vuzero4k'):
 		cpuMHz = "   (1,5 GHz)"
-	elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
+	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
 		cpuMHz = "   (1,3 GHz)"
-	elif getMachineBuild() in ('gbmv200', 'u51', 'u5', 'u53', 'u54', 'u55', 'u56', 'u52', 'u5pvr', 'h9', 'h9combo', 'cc1', 'sf8008', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'v8plus', 'multibox'):
+	elif getMachineBuild() in ('gbmv200','u51','u5','u53','u52','u54','u55','u56','u5pvr','h9','h9combo','h10','cc1','sf8008','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','multibox'):
 		cpuMHz = "   (1,6 GHz)"
-	elif getMachineBuild() in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
+	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		cpuMHz = "   (1,7 GHz)"
-	elif getMachineBuild() in ('alien5'):
+	elif getMachineBuild() in ('alien5',):
 		cpuMHz = "   (2,0 GHz)"
-	elif getMachineBuild() in ('vuduo4k'):
+	elif getMachineBuild() in ('vuduo4k',):
 		cpuMHz = "   (2,1 GHz)"
-	elif getMachineBuild() in ('sf5008', 'et13000', 'et1x000', 'hd52', 'hd51', 'sf4008', 'vs1500', 'h7', 'osmio4k', 'osmio4kplus'):
+	elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k','osmio4kplus'):
 		try:
 			import binascii
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			cpuMHz = "   (%s MHz)" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			cpuMHz = _("   (%s MHz)") % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
 		except:
-			cpuMHz = "   (1,7 GHz)"
+			cpuMHz = _("   (1,7 GHz)")
 	else:
 		if path.exists('/proc/cpuinfo'):
 			f = open('/proc/cpuinfo', 'r')
@@ -114,8 +125,10 @@ def getAboutText():
 		f = open('/boot/bootname', 'r')
 		bootname = f.readline().split('=')[1]
 		f.close()
-
-	if getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro'):
+	if SystemInfo["HasRootSubdir"]:
+		image = find_rootfssubdir("STARTUP")
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image[-1:] + bootname + "\n"
+	elif getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2',"viper4k"):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(5)
@@ -135,29 +148,29 @@ def getAboutText():
 					image = "5"
 			f.close()
 			if bootname: bootname = "   (%s)" %bootname 
-			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
-	elif getMachineBuild() in ('osmio4k', 'osmio4kplus'):
+			AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
+	elif getMachineBuild() in ('osmio4k','osmio4kplus'):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(38)
 			image = f.read(1) 
 			f.close()
 			if bootname: bootname = "   (%s)" %bootname 
-			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+			AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
 	elif path.exists('/boot/STARTUP'):
 		f = open('/boot/STARTUP', 'r')
 		f.seek(22)
 		image = f.read(1) 
 		f.close()
 		if bootname: bootname = "   (%s)" %bootname 
-		AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
 	elif path.exists('/boot/cmdline.txt'):
 		f = open('/boot/cmdline.txt', 'r')
 		f.seek(38)
 		image = f.read(1) 
 		f.close()
 		if bootname: bootname = "   (%s)" %bootname 
-		AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + bootname + "\n"
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
 
 	AboutText += _("Version:\t\t%s") % getImageVersion() + "\n"
 	AboutText += _("Build:\t\t%s") % getImageBuild() + "\n"
@@ -168,15 +181,16 @@ def getAboutText():
 	month = string[4:6]
 	day = string[6:8]
 	driversdate = '-'.join((year, month, day))
-	AboutText += _("Drivers:\t\t%s") % driversdate + "\n"
+	AboutText += _("Drivers:\t\t%s") % MyDateConverter(driversdate) + "\n"
 
 	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('gbmv200', 'multibox', 'vuduo4k', 'v8plus', 'ustym4kpro', 'hd60', 'hd61', 'i55plus', 'osmio4k', 'osmio4kplus', 'h9', 'h9combo', 'vuzero4k', 'sf5008', 'et13000', 'et1x000', 'hd51', 'hd52', 'vusolo4k', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'sf4008', 'dm820', 'dm7080', 'dm900', 'dm920', 'gb7252', 'dags7252', 'vs1500', 'h7', 'xc7439', '8100s', 'u5', 'u5pvr', 'u52', 'u53', 'u54', 'u55', 'u56', 'u51', 'cc1', 'sf8008'):
-		AboutText += _("Installed:\t\t%s") % about.getFlashDateString() + "\n"
+	MyFlashDate = about.getFlashDateString()
+	if MyFlashDate != _("unknown"):
+		AboutText += _("Installed:\t\t%s") % MyFlashDate + "\n"
 
-	AboutText += _("Last update:\t\t%s") % getEnigmaVersionString() + "\n"
+	AboutText += _("Last update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
 
 	fp_version = getFPVersion()
 	if fp_version is None:
@@ -207,6 +221,10 @@ def getAboutText():
 		f = open('/proc/stb/fp/temp_sensor_avs', 'r')
 		tempinfo = f.read()
 		f.close()
+	elif path.exists('/proc/stb/power/avs'):
+		f = open('/proc/stb/power/avs', 'r')
+		tempinfo = f.read()
+		f.close()
 	elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
 		try:
 			f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
@@ -232,6 +250,24 @@ def getAboutText():
 
 	return AboutText, AboutLcdText
 
+def find_rootfssubdir(file):
+	startup_content = read_startup("/boot/" + file)
+	rootsubdir = startup_content[startup_content.find("rootsubdir=")+11:].split()[0]
+	if rootsubdir.startswith("linuxrootfs"):
+		return rootsubdir
+	return
+
+def read_startup(FILE):
+	file = FILE
+	try:
+		with open(file, 'r') as myfile:
+			data=myfile.read().replace('\n', '')
+		myfile.close()
+	except IOError:
+		print "[ERROR] failed to open file %s" % file
+		data = " "
+	return data
+
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -239,6 +275,7 @@ class About(Screen):
 		self.skinName = ["AboutOE","About"]
 		self.populate()
 
+		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Translations"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
@@ -248,6 +285,7 @@ class About(Screen):
 				"info": self.showAboutReleaseNotes,
 				"up": self.pageUp,
 				"down": self.pageDown,
+				"red": self.close,
 				"green": self.showTranslationInfo,
 				"0": self.showID,
 			})
@@ -361,20 +399,20 @@ class Devices(Screen):
 				free = Harddisk(device).free()
 
 				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("TB")
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) +  " " + _("GB")
 				elif size >= 1:
-					sizeline = _("Size: ") + str(size) + _("MB")
+					sizeline = _("Size: ") + str(size) +  " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) +  " " + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) +  " " + _("GB")
 				elif free >= 1:
-					freeline = _("Free: ") + str(free) + _("MB")
+					freeline = _("Free: ") + str(free) +  " " + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
@@ -479,11 +517,24 @@ class SystemMemoryInfo(Screen):
 		self.Console = Console()
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
+	def MySize(self, RamText):
+		RamText_End = RamText[len(RamText)-1]
+		RamText_End2 = RamText_End
+		if RamText_End == "G":
+			RamText_End = _("GB")
+		elif RamText_End == "M":
+			RamText_End = _("MB")
+		elif RamText_End == "K":
+			RamText_End = _("KB")
+		if RamText_End != RamText_End2:
+			RamText = RamText[0:len(RamText)-1] + " " + RamText_End
+		return RamText
+
 	def Stage1Complete(self, result, retval, extra_args=None):
 		flash = str(result).replace('\n', '')
 		flash = flash.split()
-		RamTotal = flash[1]
-		RamFree = flash[3]
+		RamTotal = self.MySize(flash[1])
+		RamFree = self.MySize(flash[3])
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
@@ -551,59 +602,87 @@ class SystemNetworkInfo(Screen):
 			})
 
 	def createscreen(self):
+		def netspeed():
+			netspeed=""
+			for line in popen('ethtool eth0 |grep Speed','r'):
+				line = line.strip().split(":")
+				line =line[1].replace(' ','')
+				netspeed += line
+				return str(netspeed)
+
+		def netspeed_eth1():
+			netspeed=""
+			for line in popen('ethtool eth1 |grep Speed','r'):
+				line = line.strip().split(":")
+				line =line[1].replace(' ','')
+				netspeed += line
+				return str(netspeed)
+
 		self.AboutText = ""
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
+			if eth0.has_key('ifname'):
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + eth0['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + eth0['addr'] + "\n"
 			if eth0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth0['netmask'] + "\n"
 			if eth0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth0['hwaddr'] + "\n"
+			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'eth0'
 
 		eth1 = about.getIfConfig('eth1')
 		if eth1.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + eth1['addr'] + "\n"
+			if eth1.has_key('ifname'):
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + eth1['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + eth1['addr'] + "\n"
 			if eth1.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth1['netmask'] + "\n"
 			if eth1.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth1['hwaddr'] + "\n"
+			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed_eth1() + "\n"
 			self.iface = 'eth1'
 
 		ra0 = about.getIfConfig('ra0')
 		if ra0.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + ra0['addr'] + "\n"
+			if ra0.has_key('ifname'):
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + ra0['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + ra0['addr'] + "\n"
 			if ra0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + ra0['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + ra0['netmask'] + "\n"
 			if ra0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + ra0['hwaddr'] + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + ra0['hwaddr'] + "\n"
 			self.iface = 'ra0'
 
 		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
+			if wlan0.has_key('ifname'):
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + wlan0['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + wlan0['addr'] + "\n"
 			if wlan0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan0['netmask'] + "\n"
 			if wlan0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
 		wlan1 = about.getIfConfig('wlan1')
 		if wlan1.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + wlan1['addr'] + "\n"
+			if wlan1.has_key('ifname'):
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + wlan1['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + wlan1['addr'] + "\n"
 			if wlan1.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + wlan1['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan1['netmask'] + "\n"
 			if wlan1.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + wlan1['hwaddr'] + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan1['hwaddr'] + "\n"
 			self.iface = 'wlan1'
 
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
-		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
-		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
+		self.AboutText += "\n" + '{:<35}'.format(_("Bytes received:")) + "\t" + rx_bytes + "\n"
+		self.AboutText += '{:<35}'.format(_("Bytes sent:")) + "\t" + tx_bytes + "\n"
 
 		hostname = file('/proc/sys/kernel/hostname').read()
-		self.AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
+		self.AboutText += "\n" + '{:<35}'.format(_("Hostname:")) + "\t" + hostname + "\n"
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 
 	def cleanup(self):
@@ -793,7 +872,7 @@ class ViewGitLog(Screen):
 		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))
 
 	def closeRecursive(self):
-		self.close()
+		self.close((_("Cancel"), ""))
 
 class TranslationInfo(Screen):
 	def __init__(self, session):

@@ -157,6 +157,16 @@ RESULT eBouquet::setListName(const std::string &name)
 	return 0;
 }
 
+const eDVBService::cacheID eDVBService::audioCacheTags[] = {
+	eDVBService::cMPEGAPID, eDVBService::cAC3PID,
+	eDVBService::cAACHEAPID, eDVBService::cDDPPID,
+	eDVBService::cDTSPID, eDVBService::cAACAPID,
+	eDVBService::cLPCMPID, eDVBService::cDTSHDPID,
+};
+
+const int eDVBService::nAudioCacheTags = sizeof(eDVBService::audioCacheTags) / sizeof(eDVBService::audioCacheTags[0]);
+
+
 eDVBService::eDVBService()
 	:m_cache(0), m_flags(0)
 {
@@ -363,6 +373,15 @@ bool eDVBService::cacheEmpty()
 	if (m_cache)
 		for (int i=0; i < cacheMax; ++i)
 			if (m_cache[i] != -1)
+				return false;
+	return true;
+}
+
+bool eDVBService::cacheAudioEmpty()
+{
+	if (m_cache)
+		for (int i=0; i < nAudioCacheTags; ++i)
+			if (m_cache[audioCacheTags[i]] != -1)
 				return false;
 	return true;
 }
@@ -678,7 +697,7 @@ void eDVBDB::loadServiceListV5(FILE * f)
 			scount++;
 		}
 	}
-	eDebug("loaded %d channels/transponders and %d services", tcount, scount);
+	eDebug("[eDVBDB] loaded %d channels/transponders and %d services", tcount, scount);
 }
 
 void eDVBDB::loadServicelist(const char *file)
@@ -2189,6 +2208,18 @@ RESULT eDVBDB::removeFlag(const eServiceReference &ref, unsigned int flagmask)
 	return -1;
 }
 
+bool eDVBDB::HasFlag(const eServiceReference &ref, unsigned int flagmask)
+{
+	if (ref.type == eServiceReference::idDVB)
+	{
+		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+		if (it != m_services.end())
+			return (it->second->m_flags & flagmask);
+	}
+	return false;
+}
+
 void eDVBDB::removeServicesFlag(unsigned int flagmask)
 {
 	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator i(m_services.begin());
@@ -2367,6 +2398,22 @@ RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q
 	else
 		query = new eDVBDBQuery(this, source, q);
 	return 0;
+}
+
+bool eDVBDB::isValidService(int tsid, int onid, int sid)
+{
+	eServiceID Sid(sid);
+	eTransportStreamID Tsid(tsid);
+	eOriginalNetworkID Onid(onid);
+	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator sit(m_services.begin());
+		sit != m_services.end(); ++sit)
+	{
+		if (sit->first.getTransportStreamID() == Tsid &&
+			sit->first.getOriginalNetworkID() == Onid &&
+			sit->first.getServiceID() == Sid)
+			return true;
+	}
+	return false;
 }
 
 eServiceReference eDVBDB::searchReference(int tsid, int onid, int sid)

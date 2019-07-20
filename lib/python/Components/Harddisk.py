@@ -57,6 +57,36 @@ def findMountPoint(path):
 		path = os.path.dirname(path)
 	return path
 
+def getFolderSize(path):
+	if os.path.islink(path):
+		return (os.lstat(path).st_size, 0)
+	if os.path.isfile(path):
+		st = os.lstat(path)
+		return (st.st_size, st.st_blocks * 512)
+	total_bytes = 0
+	have = []
+	for dirpath, dirnames, filenames in os.walk(path):
+		total_bytes += os.lstat(dirpath).st_blocks * 512
+		for f in filenames:
+			fp = os.path.join(dirpath, f)
+			if os.path.islink(fp):
+				continue
+			st = os.lstat(fp)
+			if st.st_ino in have:
+				continue  # skip hardlinks which were already counted
+			have.append(st.st_ino)
+			total_bytes += st.st_blocks * 512
+		for d in dirnames:
+			dp = os.path.join(dirpath, d)
+	return total_bytes
+
+def Freespace(dev):
+	try:
+		statdev = os.statvfs(dev)
+		space = (statdev.f_bavail * statdev.f_frsize) / 1024
+	except:
+		space = 0
+	return space
 
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
@@ -172,8 +202,8 @@ class Harddisk:
 		if cap == 0:
 			return ""
 		if cap < 1000:
-			return "%03d MB" % cap
-		return "%d.%03d GB" % (cap/1000, cap%1000)
+			return _("%03d MB") % cap
+		return _("%d.%03d GB") % (cap/1000, cap%1000)
 
 	def model(self):
 		try:
@@ -194,8 +224,11 @@ class Harddisk:
 	def free(self):
 		dev = self.findMount()
 		if dev:
-			stat = os.statvfs(dev)
-			return int((stat.f_bfree/1000) * (stat.f_bsize/1024))
+			try:
+				stat = os.statvfs(dev)
+				return int((stat.f_bfree/1000) * (stat.f_bsize/1024))
+			except:
+				pass
 		return -1
 
 	def numPartitions(self):
@@ -227,7 +260,6 @@ class Harddisk:
 				self.mount_device = parts[0]
 				self.mount_path = parts[1]
 				return parts[1]
-		return None
 
 	def enumMountDevices(self):
 		for parts in getProcMounts():
@@ -362,10 +394,10 @@ class Harddisk:
 			if size > 128000:
 				# Start at sector 8 to better support 4k aligned disks
 				print "[Harddisk] Detected >128GB disk, using 4k alignment"
-				task.initial_input = "8,,L\n;0,0\n;0,0\n;0,0\ny\n"
+				task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
 			else:
 				# Smaller disks (CF cards, sticks etc) don't need that
-				task.initial_input = ",,L\n;\n;\n;\ny\n"
+				task.initial_input = "0,\n;\n;\n;\ny\n"
 
 		task = Task.ConditionTask(job, _("Waiting for partition"))
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
@@ -388,7 +420,7 @@ class Harddisk:
 		elif size > 2048:
 			# Over 2GB: 32 i-nodes per megabyte
 			task.args += ["-T", "largefile", "-N", str(size * 32)]
-		task.args += ["-m0", "-O", ",".join(big_o_options), self.partitionPath("1")]
+		task.args += ["-m0", "-O ^metadata_csum", "-O", ",".join(big_o_options), self.partitionPath("1")]
 
 		task = MountTask(job, self)
 		task.weighting = 3
@@ -825,7 +857,7 @@ class HarddiskManager:
 		error = False
 		removable = False
 		BLACKLIST=[]
-		if getMachineBuild() in ('gbmv200','multibox','h9combo','v8plus','hd60','hd61','vuduo4k','ustym4kpro','dags72604','u51','u52','u53','u54','u56','u5','u5pvr','cc1','sf8008','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
+		if getMachineBuild() in ('gbmv200','multibox','h9combo','h10','v8plus','hd60','hd61','vuduo4k','ustym4kpro','beyonwizv2','viper4k','dags72604','u51','u52','u53','u54','u56','u5','u5pvr','cc1','sf8008','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
 			BLACKLIST=["mmcblk0"]
 		elif getMachineBuild() in ('xc7439','osmio4k','osmio4kplus'):
 			BLACKLIST=["mmcblk1"]
@@ -893,7 +925,7 @@ class HarddiskManager:
 		netmount = (os.path.exists('/media/net') and os.listdir('/media/net')) or ""
 		if len(netmount) > 0:
 			for fil in netmount:
-				if os.path.ismount('/media/net/' + fil):
+				if os.path.ismount('/media/net/' + fil) and len(os.listdir('/media/net/' + fil)) > 0:
 					print "new Network Mount", fil, '->', os.path.join('/media/net/',fil)
 					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil), description = fil))
 		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
@@ -1008,6 +1040,7 @@ class HarddiskManager:
 			dev, part = self.splitDeviceName(devname)
 			if part and dev in devs: # if this is a partition and we still have the wholedisk, remove wholedisk
 				devs.remove(dev)
+
 		# return all devices which are not removed due to being a wholedisk when a partition exists
 		return [x for x in parts if not x.device or x.device in devs]
 

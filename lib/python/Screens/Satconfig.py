@@ -17,7 +17,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.ServiceStopScreen import ServiceStopScreen
 from Screens.AutoDiseqc import AutoDiseqc
 from Tools.BoundFunction import boundFunction
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBrand
 
 from time import mktime, localtime
 from datetime import datetime
@@ -27,21 +27,27 @@ from  Tools.BugHunting import printCallSequence
 
 def setForceLNBPowerChanged(configElement):
 	f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
-	f.write(configElement.value)
+	if configElement.value:
+		f.write("on")
+	else:
+		f.write("off")
 	f.close()
 
 def setForceToneBurstChanged(configElement):
 	f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
-	f.write(configElement.value)
+	if configElement.value:
+		f.write("enable")
+	else:
+		f.write("disable")
 	f.close()
 
 config.tunermisc = ConfigSubsection()
 if SystemInfo["ForceLNBPowerChanged"]:
-	config.tunermisc.forceLnbPower = ConfigSelection(default = "off", choices = [ ("on", _("Yes")), ("off", _("No"))] )
+	config.tunermisc.forceLnbPower = ConfigYesNo(default=False)
 	config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
 
 if SystemInfo["ForceToneBurstChanged"]:
-	config.tunermisc.forceToneBurst = ConfigSelection(default = "disable", choices = [ ("enable", _("Yes")), ("disable", _("No"))] )
+	config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
 	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
 
 class TunerSetup(Screen, ConfigListScreen):
@@ -325,7 +331,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						cablecountrycodelist = nimmanager.getCablesCountrycodeList()
 						cablecountrycode = nimmanager.getCableCountrycode(self.slotid)
 						default = cablecountrycode in cablecountrycodelist and cablecountrycode or None
-						choices = [("all", _("All"))] + sorted([(x, self.countrycodeToCountry(x)) for x in cablecountrycodelist], key=lambda listItem: listItem[1])
+						choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in cablecountrycodelist], key=lambda listItem: listItem[1])
 						self.cableCountries = ConfigSelection(default = default, choices = choices)
 						self.cableCountriesEntry = getConfigListEntry(_("Country"), self.cableCountries, _("Select your country. If not available select 'all'."))
 						self.originalCableRegion = self.nimConfig.dvbc.scan_provider.value
@@ -382,6 +388,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					terrestrialcountrycodelist = nimmanager.getTerrestrialsCountrycodeList()
 					terrestrialcountrycode = nimmanager.getTerrestrialCountrycode(self.slotid)
 					default = terrestrialcountrycode in terrestrialcountrycodelist and terrestrialcountrycode or None
+					if terrestrialcountrycode is None and getMachineBrand() == "Beyonwiz" and "AUS" in terrestrialcountrycodelist:
+						default = "AUS"
 					choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
 					self.terrestrialCountries = ConfigSelection(default = default, choices = choices)
 					self.terrestrialCountriesEntry = getConfigListEntry(_("Country"), self.terrestrialCountries, _("Select your country. If not available select 'all'."))
@@ -392,6 +400,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				else:
 					terrstrialNames = sorted([x[0] for x in nimmanager.getTerrestrialsByCountrycode(self.terrestrialCountries.value)])
 				default = self.nimConfig.dvbt.terrestrial.value in terrstrialNames and self.nimConfig.dvbt.terrestrial.value or None
+				if default is None and getMachineBrand() == "Beyonwiz" and "All regions, Australia, (DVB-T)" in terrstrialNames:
+					default = "All regions, Australia, (DVB-T)"
 				self.terrestrialRegions = ConfigSelection(default = default, choices = terrstrialNames)
 				def updateTerrestrialProvider(configEntry):
 					self.nimConfig.dvbt.terrestrial.value = configEntry.value
@@ -400,7 +410,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.terrestrialRegionsEntry = getConfigListEntry(_("Region"), self.terrestrialRegions, _("Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."))
 				self.list.append(self.terrestrialCountriesEntry)
 				self.list.append(self.terrestrialRegionsEntry)
-				if not getBoxType() in ('spycat'):
+				if not getBoxType() in ('spycat',):
 					self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.dvbt.terrestrial_5V, _("Enable this setting if your aerial system needs power")))
 		elif self.nim.isCompatible("ATSC"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.atsc.configMode, _("Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."))
@@ -1152,7 +1162,7 @@ class SelectSatsEntryScreen(Screen):
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Button(_("Sort by"))
-		self["key_blue"] = Button(_("Select all"))
+		self["key_blue"] = Button(_("Invert"))
 		self["hint"] = Label(_("Press OK to toggle the selection"))
 		SatList = []
 		for sat in nimmanager.getSatList():

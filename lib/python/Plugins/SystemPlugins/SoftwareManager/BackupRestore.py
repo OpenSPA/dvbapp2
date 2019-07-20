@@ -47,7 +47,7 @@ def InitConfig():
 		'/etc/enigma2/timers.xml', '/etc/enigma2/LCD4linux*.lcd', '/etc/enigma2/lcd4config', '/etc/wifi/*.wifi', 
 		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', '/etc/vtuner.conf',
 		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
-		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
+		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', 
 		'/etc/wpa_supplicant.wlan0.conf', '/etc/wpa_supplicant.wlan1.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
 		'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
 		'/usr/share/enigma2/picon/', '/usr/share/enigma2/piconlcd/', '/usr/share/enigma2/vfd_icons/', '/usr/share/enigma2/XPicons/',
@@ -56,15 +56,16 @@ def InitConfig():
 		'/usr/share/enigma2/display/userskin.png',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
-		+eEnv_resolve_multi('/usr/bin/*cam*')\
-		+eEnv_resolve_multi('/etc/*.emu')\
-		+eEnv_resolve_multi('/etc/cron*')\
-		+eEnv_resolve_multi('/etc/init.d/softcam*')\
-		+eEnv_resolve_multi('/etc/init.d/cardserver*')\
-		+eEnv_resolve_multi('/etc/sundtek.*')\
-		+eEnv_resolve_multi('/usr/sundtek/*')\
-		+eEnv_resolve_multi('/opt/bin/*')\
-		+eEnv_resolve_multi('/usr/script/*')
+		+eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
+		+eEnv_resolve_multi("/usr/bin/*cam*")\
+		+eEnv_resolve_multi("${sysconfdir}/*.emu")\
+		+eEnv_resolve_multi("${sysconfdir}/cron*")\
+		+eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\
+		+eEnv_resolve_multi("${sysconfdir}/init.d/cardserver*")\
+		+eEnv_resolve_multi("${sysconfdir}/sundtek.*")\
+		+eEnv_resolve_multi("/usr/sundtek/*")\
+		+eEnv_resolve_multi("/opt/bin/*")\
+		+eEnv_resolve_multi("/usr/script/*")
 
 	# Drop non existant paths from list
 	tmpfiles=[]
@@ -175,11 +176,12 @@ class BackupScreen(Screen, ConfigListScreen):
 			installed.write('\n'.join(pkgs))
 			installed.close()
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
-			cmd3 = "tar -C / -czvf " + self.fullbackupfilename + " " + self.backupdirs
+			cmd3 = "tar -C / -czvf " + self.fullbackupfilename
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
 			for f in BLACKLISTED:
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
+			cmd3 = cmd3 + " " + self.backupdirs
 			cmd = [cmd2, cmd3]
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
@@ -518,7 +520,7 @@ class RestartNetwork(Screen):
 	def restartLan(self):
 		print"[SOFTWARE MANAGER] Restart Network"
 		iNetwork.restartNetwork(self.restartLanDataAvail)
-		
+
 	def restartLanDataAvail(self, data):
 		if data is True:
 			iNetwork.getInterfaces(self.getInterfacesDataAvail)
@@ -644,25 +646,45 @@ class RestorePlugins(Screen):
 		self.close()
 
 	def green(self):
-		pluginlist = []
+		self.pluginlist = []
+		self.pluginlistfirst = []
 		self.myipklist = []
+		self.myipklistfirst = []
 		for x in self.list:
 			if x[2]:
 				myipk = self.SearchIPK(x[0])
 				if myipk:
-					self.myipklist.append(myipk)
+					if "-feed-" in myipk:
+						self.myipklistfirst.append(myipk)
+					else:
+						self.myipklist.append(myipk)
 				else:
-					pluginlist.append(x[0])
-		if len(pluginlist) > 0:
-			if len(self.myipklist) > 0:
-				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
-			else:
-				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
-		elif len(self.myipklist) > 0:
-			self.installLocalIPK()
+					if "-feed-" in x[0]:
+						self.pluginlistfirst.append(x[0])
+					else:
+						self.pluginlist.append(x[0])
+
+		# Install previously installed feeds first, they might be required for the other packages to install ...
+		if len(self.pluginlistfirst) > 0:
+			self.session.open(Console, title = _("Installing feeds from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlistfirst) + ' ; opkg update'], finishedCallback = self.installLocalIPKFeeds, closeOnSuccess = True)
+		else:
+			self.installLocalIPKFeeds()
+
+	def installLocalIPKFeeds(self):
+		if len(self.myipklistfirst) > 0:
+			self.session.open(Console, title = _("Installing feeds from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
+		else:
+			self.installPlugins()
 
 	def installLocalIPK(self):
-		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
+		if len(self.myipklist) > 0:
+			self.session.open(Console, title = _("Installing plugins from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklist)], finishedCallback = self.installPlugins, closeOnSuccess = True)
+		else:
+			self.installPlugins()
+
+	def installPlugins(self):
+		if len(self.pluginlist) > 0:
+			self.session.open(Console, title = _("Installing plugins from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
 
 	def ok(self):
 		index = self["menu"].getIndex()
@@ -693,7 +715,7 @@ class RestorePlugins(Screen):
 
 	def SearchIPK(self, ipkname):
 		ipkname = ipkname + "*"
-		search_dirs = [ "/media/hdd", "/media/usb" ]
+		search_dirs = [ "/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk" ]
 		sdirs = " ".join(search_dirs)
 		cmd = 'find %s -name "%s" | grep -iv "./open-multiboot/*" | head -n 1' % (sdirs, ipkname)
 		res = popen(cmd).read()

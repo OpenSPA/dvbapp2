@@ -139,6 +139,12 @@ class Network:
 		fp.write("auto lo\n")
 		fp.write("iface lo inet loopback\n\n")
 		for ifacename, iface in self.ifaces.items():
+			if iface.has_key('dns-nameservers') and iface['dns-nameservers']:
+				dns = []
+				for s in iface['dns-nameservers'].split()[1:]:
+					dns.append((self.convertIP(s)))
+				if dns:
+					self.nameservers = dns
 			WoW = False
 			if self.onlyWoWifaces.has_key(ifacename):
 				WoW = self.onlyWoWifaces[ifacename]
@@ -151,7 +157,6 @@ class Network:
 				fp.write("#only WakeOnWiFi " + ifacename + "\n")
 			if iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet dhcp\n")
-				fp.write("udhcpc_opts -T1 -t9\n")
 			if not iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet static\n")
 				fp.write("  hostname $(hostname)\n")
@@ -335,6 +340,8 @@ class Network:
 				name = 'Intel'
 			elif name.startswith('brcm') or name.startswith('bcm'):
 				name = 'Broadcom'
+			elif name  == 'wlan':
+				name = name.upper()
 		else:
 			name = _('Unknown')
 
@@ -553,8 +560,8 @@ class Network:
 
 	def checkDNSLookup(self,statecallback):
 		cmd1 = "nslookup openspa.info"
-		cmd2 = "nslookup www.google.es"
-		cmd3 = "nslookup www.google.com"
+		cmd2 = "nslookup duckduckgo.com"
+		cmd3 = "nslookup www.linuxfoundation.org"
 		self.DnsConsole = Console()
 		self.DnsConsole.ePopen(cmd1, self.checkDNSLookupFinished,statecallback)
 		self.DnsConsole.ePopen(cmd2, self.checkDNSLookupFinished,statecallback)

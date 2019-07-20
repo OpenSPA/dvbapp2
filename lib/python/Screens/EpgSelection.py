@@ -397,7 +397,7 @@ class EPGSelection(Screen):
 			self.session.openWithCallback(timerAction, ChoiceBox, title=title_text + _("Select action for timer '%s'.") % timer.name, list=menu, keys=buttons)
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(event))
-			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry, True)
 
 	def finishedEdit(self, answer=None):
 		if answer[0]:

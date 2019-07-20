@@ -148,7 +148,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 		if base and pathExists(tmp + base):
 			path = tmp
 		elif base and pathExists(defaultPaths[SCOPE_LCDSKIN][0] + base):
-			path = defaultPaths[SCOPE_LCDSKIN][0]
+			path = defaultPaths[SCOPE_SKIN][0]
 		else:
 			tmp = defaultPaths[SCOPE_LCDSKIN][0]
 			pos = config.skin.display_skin.value.rfind('/')
@@ -248,7 +248,7 @@ def defaultRecordingLocation(candidate=None):
 		havelocal = False
 		for candidate in mounts:
 			try:
-				islocal = candidate[0].startswith('/dev/') # Good enough
+				islocal = candidate[1].startswith('/dev/') # Good enough
 				stat = os.statvfs(candidate[1])
 				# Free space counts double
 				size = (stat.f_blocks + stat.f_bavail) * stat.f_bsize
@@ -299,6 +299,9 @@ def fileExists(f, mode='r'):
 def fileCheck(f, mode='r'):
 	return fileExists(f, mode) and f
 
+def fileHas(f, content, mode='r'):
+	return fileExists(f, mode) and content in open(f, mode).read()
+
 def getRecordingFilename(basename, dirname = None):
 	# filter out non-allowed characters
 	non_allowed_characters = "/.\\:*?<>|\""
@@ -312,10 +315,7 @@ def getRecordingFilename(basename, dirname = None):
 		filename += c
 
 	# max filename length for ext4 is 255 (minus 8 characters for .ts.meta)
-	# But must not truncate in the middle of a multi-byte utf8 character!
-	# So convert the truncation to unicode and back, ignoring errors.
-	# The result will be valid utf8 and so xml parsing will be OK.
-	filename = unicode(filename[:247], 'utf8', 'ignore').encode('utf8', 'ignore')
+	filename = filename[:247]
 
 	if dirname is not None:
 		if not dirname.startswith('/'):
@@ -445,3 +445,6 @@ def getSize(path, pattern=".*"):
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
 	return path_size
+
+def shellquote(s):
+    return "'" + s.replace("'", "'\\''") + "'"

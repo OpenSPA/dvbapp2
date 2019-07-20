@@ -709,7 +709,7 @@ class PliExtraInfo(Poll, Converter, object):
 				return ""
 				
 		if self.type == "CryptoTandberg":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if config.usage.show_cryptoinfo.value:
 				self.getCryptoInfo(info)
 				return self.createCryptoTandberg(info)
 			else:
@@ -723,7 +723,7 @@ class PliExtraInfo(Poll, Converter, object):
 				return ""
 
 		if self.type == "CryptoNameCaid":
-			if int(config.usage.show_cryptoinfo.value) > 0:
+			if config.usage.show_cryptoinfo.value:
 				self.getCryptoInfo(info)
 				return self.createCryptoNameCaid(info)
 			else:

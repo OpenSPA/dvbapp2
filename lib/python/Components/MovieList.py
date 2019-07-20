@@ -2,7 +2,7 @@ import os
 import struct
 import random
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer, getDesktop, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
@@ -154,13 +154,12 @@ class MovieList(GUIComponent):
 	def __init__(self, root, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
 		self.list = []
-		self.screenwidth = getDesktop(0).size().width()
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
 		self.sort_type = sort_type or self.SORT_GROUPWISE
 		self.firstFileEntry = 0
 		self.parentDirectory = 0
 		self.fontName = "Regular"
-		if self.screenwidth and self.screenwidth == 1920:
+		if skin.getSkinFactor() == 1.5:
 			self.fontSize = 28
 		else:
 			self.fontSize = 20
@@ -313,7 +312,7 @@ class MovieList(GUIComponent):
 		else:
 			ih = self.itemHeight
 
-		if self.screenwidth and self.screenwidth == 1920:
+		if skin.getSkinFactor() == 1.5:
 			listBeginX = 3
 			listEndX = 3
 			listMarginX = 12
@@ -366,10 +365,7 @@ class MovieList(GUIComponent):
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
 			x = self.list[cur_idx] # x = ref,info,begin,...
-			if config.usage.load_length_of_movies_in_moviellist.value:
-				data.len = x[1].getLength(x[0]) #recalc the movie length...
-			else:
-				data.len = 0 #dont recalc movielist to speedup loading the list
+			data.len = 0 #dont recalc movielist to speedup loading the list
 			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
 			data.txt = info.getName(serviceref)
 			if config.movielist.hide_extensions.value:
@@ -607,10 +603,11 @@ class MovieList(GUIComponent):
 				# enigma wants an extra '/' appended
 				if not parent.endswith('/'):
 					parent += '/'
-				ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent)
-				ref.flags = eServiceReference.flagDirectory
-				self.list.append((ref, None, 0, -1))
-				numberOfDirs += 1
+			ref = eServiceReference(eServiceReference.idFile, eServiceReference.flagDirectory, eServiceReferenceFS.directory)
+			ref.setPath(parent)
+			ref.flags = eServiceReference.flagDirectory
+			self.list.append((ref, None, 0, -1))
+			numberOfDirs += 1
 		while 1:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():

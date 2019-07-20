@@ -19,7 +19,6 @@ public:
 	static std::string getConfigValue(const char *key);
 	static int getConfigIntValue(const char *key, int defaultvalue = 0);
 	static bool getConfigBoolValue(const char *key, bool defaultvalue = false);
-	static const std::string getConfigString(const std::string &key, const std::string &defaultValue);
 };
 
 #endif /* __lib_base_nconfig_h_ */

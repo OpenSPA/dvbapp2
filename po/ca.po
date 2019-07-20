@@ -2418,7 +2418,7 @@ msgstr "Completat"
 
 #
 msgid "Complete Backup"
-msgstr "Backup complet"
+msgstr "Backup completat"
 
 #
 msgid "Complex (allows mixing audio tracks and aspects)"
@@ -4216,7 +4216,7 @@ msgstr "Còpia completa d'imatge"
 #
 #, python-format
 msgid "Full back-up on %s"
-msgstr "Backup complet en %s"
+msgstr "Backup sencer a %s"
 
 msgid "Full transparency"
 msgstr "Transparència completa"
@@ -4569,7 +4569,7 @@ msgid "Hours Mins"
 msgstr "Hores Minuts"
 
 msgid "Hours Mins Secs"
-msgstr "Hors Minuts Segons"
+msgstr "Hores Mins Segs"
 
 msgid "How many minutes do you want to record?"
 msgstr "Quants minuts vols gravar?"
@@ -5594,7 +5594,7 @@ msgid "NFI image flashing"
 msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "Imagen NFI flasheada. Prem la tecla amarilla per a reiniciar."
+msgstr "imatge NFI flasheada. Prem la tecla amarilla per a reiniciar."
 
 msgid "NFS"
 msgstr ""
@@ -5819,7 +5819,7 @@ msgid ""
 "\n"
 "\n"
 msgstr ""
-"No s'ha trobat cap dispositiu USB per al backup complet !!\n"
+"No s'ha trobat cap dispositiu USB per al backup sencer !!\n"
 "\n"
 "\n"
 
@@ -6494,7 +6494,7 @@ msgid "Percentage right"
 msgstr "Percentatge dreta"
 
 msgid "Perform a full image backup"
-msgstr "Realitzar backup complet de la imatge"
+msgstr "Realitzar backup sencer de la imatge"
 
 msgid "Perform a settings backup,"
 msgstr "Realitzar backup de configuracions"
@@ -6745,14 +6745,6 @@ msgstr "Sel·lecciona una etiqueta per a filtrar..."
 msgid "Please select the movie path..."
 msgstr "Sel·lecciona un directori de pel·lícules..."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
-msgstr ""
-"Sel·lecciona qué fer després d'instalar la imatge:\n"
-"(A més, si existeix, s'executarà un script local a /media/hdd/images/config/myrestore.sh)"
-
-#
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press green to continue."
@@ -7072,7 +7064,7 @@ msgid "Progress bar left"
 msgstr "Barra de progrès a l'esq."
 
 msgid "Progress bar right"
-msgstr "Barra de progrès a la dreta"
+msgstr "Barra progrès a la dreta"
 
 #
 msgid "Properties of current title"
@@ -7800,7 +7792,7 @@ msgid "Samba Setup"
 msgstr "Configurar Samba"
 
 msgid "Same as in active"
-msgstr "Igual que en actiu"
+msgstr "Igual que actiu"
 
 msgid "Same resolution as skin"
 msgstr "Mateixa resolució que el skin"
@@ -10341,11 +10333,11 @@ msgid "Timer overview"
 msgstr "Vista de temporitzadors"
 
 msgid "Timer record location"
-msgstr "Ubicació dels temporitzadors de gravació"
+msgstr "Ubicació temporitzadors gravació"
 
 #
 msgid "Timer recording location"
-msgstr "Ubicació dels temporitzadors de gravació"
+msgstr "Ubicació temporitzadors gravació"
 
 #
 msgid "Timer sanity error"
@@ -14389,7 +14381,7 @@ msgid "Hard disk standby after"
 msgstr "Disc dur en repòs després de"
 
 msgid "Hard disk standby in box standby after"
-msgstr "Disc dur en repòs amb el decodificador en repòs després de"
+msgstr "Disc dur en repòs amb receptor en repòs després de"
 
 msgid "Hid'any zap error messages."
 msgstr "amagar missatges d'error de zàping."
@@ -14654,13 +14646,7 @@ msgid "Pluginbrowser Settings"
 msgstr "Configuració de l'explorador de plugins"
 
 msgid "Position of finished Timers in Timerlist"
-msgstr "Posició dels temporitzadors finalitzats a la llista de temporitzadors"
-
-msgid "Power LED State in Deep-Standby/Standby"
-msgstr "Estat del LED en Repòs/Apagat profund"
-
-msgid "Power LED state during deep-standby/standby."
-msgstr "Estat del LED en Repòs/Apagat profund."
+msgstr "Posició temporitzadors finalitzats en llista temporitzadors"
 
 msgid "Power On Display"
 msgstr "Encendre pantalla"
@@ -14921,7 +14907,7 @@ msgid "Setup the interval to check for online updates. (in hours)"
 msgstr "Configurar l'interval de comprovació d'actualitzacions online (en hores)"
 
 # Zeitenstellung
-msgid "Setup your timezone."
+msgid "Setup your timezone area."
 msgstr "Configura la teva zona horària"
 
 msgid "Show CCcam in extensions ?"
@@ -14954,7 +14940,7 @@ msgid "Show Log Manager in extensions list ?"
 msgstr "Mostrar l'administrador de log a la llista d'extensions?"
 
 msgid "Show Media playback Remaining/Elapsed as"
-msgstr "Mostrar reproducció multimèdia restant/transcorreguda com"
+msgstr "Mostrar temps reproducció restant/transcorregut com"
 
 #
 msgid "Show MiniTV in the Front Display"
@@ -14997,10 +14983,10 @@ msgid "Show blinking Clock on Display during recording"
 msgstr "Mostrar el rellotge parpellejant al LCD durant la gravació"
 
 msgid "Show blinking rec symbol on Display during recording"
-msgstr "Mostrar símbol de gravació parpellejant al LCD durant una gravació"
+msgstr "Mostrar símbol de gravació parpellejant durant una gravació"
 
 msgid "Show blinking Clock in Standby on Display during recording"
-msgstr "Mostrar rellotge parpellejant en standby a la pantalla durant una gravació"
+msgstr "Mostrar rellotge parpellejant en repòs durant una gravació"
 
 msgid "Show bouquet on launch"
 msgstr "Mostrar llista en iniciar"
@@ -15026,7 +15012,7 @@ msgstr "Mostrar informació de xifrat a la barra d'informació (quan el skin ho 
 
 #
 msgid "Show event-progress in channel selection"
-msgstr "Mostrar progrès del programa en la selecció de canals"
+msgstr "Mostrar progrès del programa a la llista canals"
 
 msgid "Show infobar lite *"
 msgstr "Mostrar barra d'informació reduida *"
@@ -15069,7 +15055,7 @@ msgid "Show record indicator"
 msgstr "Mostrar indicador de gravació"
 
 msgid "Show recording symbol depending on recording type"
-msgstr "Mostrar símbol de gravació segons tipus de gravació"
+msgstr "Mostrar símbol segons tipus de gravació"
 
 msgid "Show screensaver"
 msgstr "Mostrar salvapantalles"
@@ -15103,7 +15089,7 @@ msgid "Show transponder remaining/elapsed as"
 msgstr "Mostrar transpondedor rest./transcorr. en"
 
 msgid "Show warning before box restart based on recording type"
-msgstr "Mostrar avís abans de reiniciar basant-se en tipus gravació"
+msgstr "Mostrar avís en reiniciar segons tipus gravació"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Mostrar advertència quan es para timeshift"
@@ -15257,10 +15243,6 @@ msgstr "Aquesta opció et permet triar el color de fons dels picon transparents.
 
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr "Aquesta opció et permet configurar la vista (texto o gràfic)."
-
-# Box Display
-msgid "This option allows you to Power Off the display."
-msgstr "Aquesta opció et permet apagar el LCD."
 
 msgid "This option allows you to choose from the two channel lists that are available."
 msgstr "Aquesta opció et permet triar entre les dos llistes de canals disponibles."
@@ -16443,6 +16425,9 @@ msgstr "Barreja AC3"
 msgid "CI Operation Mode"
 msgstr "Mode funcionament CI"
 
+msgid "CI Basic settings"
+msgstr "Configuració bàsica CI"
+
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "El teu Hardware pot detectar ell mateix el mode ci o només treballar en mode heredat."
 
@@ -17137,7 +17122,7 @@ msgstr "Eliminant dependencies de l'ipk %s"
 msgid "Force Removing ipk %s"
 msgstr "Forçar esborrat de l'ipk %s"
 
-msgid "Force Legacy Signal Stats"
+msgid "Force Legacy Signal stats"
 msgstr "Forçar estadístiques de senyals heredades"
 
 msgid "Ignore DVB-T namespace sub network"
@@ -17488,7 +17473,7 @@ msgid "Need reboot to apply changes\n Reboot now?"
 msgstr "Es necessita reinici complet\n Reiniciar ara?"
 
 msgid "HDMI-IN Recording settings"
-msgstr "Coniguració gravacions HDMI-IN"
+msgstr "Conf. gravacions HDMI-IN"
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "El bitrate del codificador de video. Un valor major millora la qualitat i augmenta el tamany de l'arxiu."
@@ -17679,7 +17664,7 @@ msgid "Try to prevent reboots for software errors and maintain of the availabili
 msgstr "Intenta prevenir reinicis per error de software i manté la disponibilitat del receptor."
 
 msgid "Show crash info on screen and write crash log for x times"
-msgstr "Mostrar info bloqueig en pantalla i escriure log d'errors després de x vegades"
+msgstr "Mostrar info bloqueig en pantalla i escriure log d'errors durant x cops"
 
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Si 'mai', escriurà el log d'errors des del primer bloqueig."
@@ -17753,3 +17738,365 @@ msgstr "Auto-detecta"
 msgid "Generic"
 msgstr "Genèric"
 
+msgid "Your timezone in the area."
+msgstr "La zona horària de la teva regió"
+
+msgid "Multiboot Manager"
+msgstr "Administrador Multiboot"
+
+msgid "\nMaintain your multiboot device."
+msgstr "\nManté el teu dispositiu multiboot"
+
+msgid "Use the cursor keys to select an installed image and then Reboot button."
+msgstr "Utilitza les fletxes per a sel·leccionar una imatge instal·lada i llavors botó Reiniciar"
+
+msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
+msgstr "Tarjeta SD no està inicialitzada per a multiboot - Sortir i utilitzar l'Administrador d'imatges Multiboot per a inicialitzar"
+
+msgid "Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work."
+msgstr "Mode 1 soporta Kodi, PiP pot no funcionar.\nMode 12 soporta PiP, Kodi pot no funcionar."
+
+msgid "Retrieving image slots - Please wait..."
+msgstr "Recuperant particions d'imatges - Si us plau espera..."
+
+msgid "Empty slot"
+msgstr "Partició buida"
+
+msgid "slot%s - %s - %s (current image)"
+msgstr "Partició%s -%s - %s (imatge actual)"
+
+msgid "slot%s - %s- %s "
+msgstr "Partició%s -%s - %s "
+
+msgid "slot%s - %s mode 1 (current image)"
+msgstr "Partició%s - %s mode 1 (imatge actual)"
+
+msgid "slot%s - %s mode 1"
+msgstr "Partició%s - %s mode 1"
+
+msgid "slot%s - %s mode 12 (current image)"
+msgstr "Partició%s - %s mode 12 (imatge actual)"
+
+msgid "slot%s - %s mode 12"
+msgstr "Partició%s - %s mode 12"
+
+msgid "No images found"
+msgstr "No es troben imatges"
+
+msgid "No images found for this device. More info in openspa.info"
+msgstr "No es troben imatges en aquest dispositiu. Més info a openspa.info"
+
+msgid "No images found for"
+msgstr "No es troben imatges a"
+
+msgid "Do you want to reboot now the image in slot %s?"
+msgstr "Vols reiniciar ara la imatge de la partició %s?"
+
+msgid "Multiboot ERROR! - no %s in boot partition."
+msgstr "ERROR Multiboot! - %s no està en partició d'arranc"
+
+msgid "MultiBoot Image Manager"
+msgstr "Administrador imatges Multiboot"
+
+msgid "Press Init to format SDcard."
+msgstr "Prèmer Inicialitzar per a formatar tarjeta SD"
+
+msgid "Init SDcard"
+msgstr "Inicialitzar tarjeta SD"
+
+msgid "Use the cursor keys to select an installed image and then Erase button."
+msgstr "Utilitza les fletxes per a sel·leccionar una imatge instal·lada i llavors botó Eliminar."
+
+msgid "Note: slot list does not show current image or empty slots."
+msgstr "Nota: llista de particions no mostra imatge actual ni particions buides"
+
+msgid "Erase"
+msgstr "Eliminar"
+
+msgid "slot%s - %s"
+msgstr "Partició%s - %s"
+
+msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
+msgstr "L'eliminació d'aquesta partició no es mostrarà al GUI de %s. Estàs segur que vols eliminar la partició de la imatge %s ?"
+
+msgid "Remove confirmation"
+msgstr "Elimina confirmació"
+
+msgid "Are you sure you want to delete image slot %s ?"
+msgstr "Estàs segur que vols eliminar la partició de la imatge %s ?"
+
+msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
+msgstr "Administrador Multiboot - No es pot inicialitzar tarjeta SD executant la imatge en tarjeta SD."
+
+msgid "Multiboot manager - The SDcard must be at least 8MB."
+msgstr "Administrador Multiboot - La tarjeta SD ha de ser mínim de 8 Mb."
+
+msgid "Cannot find images - please try later"
+msgstr "No es troben imatges - si us plau intenta-ho més tard"
+
+msgid "Cannot delete downloaded image"
+msgstr "No es pot eliminar imatge descarregada"
+
+msgid "Delete image"
+msgstr "Eliminar imatge"
+
+msgid "Flash Image"
+msgstr "Instal·lar imatge"
+
+msgid "Save settings and EPG data"
+msgstr "Guardar configuracions i EPG"
+
+msgid "Do you want to flash image\n%s"
+msgstr "Vols instal·lar la imatge\n%s"
+
+msgid "slot%s - %s (current image)"
+msgstr "Ranura%s - %s (imatge actual)"
+
+msgid "No, do not flash an image"
+msgstr "No instal·lar cap imatge"
+
+msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"
+msgstr "Només es troba una unitat de red per a guardar el backup, això significa que després d'instal·lar, l'autorestauració no funcionarà. Alternativament pots muntar la unitat de red després de la instal·lació i realitzar un reinici de fàbrica per autorestaurar"
+
+msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
+msgstr "Impossible crear les carpetes requerides al dispositiu (per ex. pendrive USB o disc dur) - Si us plau, verifica dispositiu i torna a intentar-ho!"
+
+msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficiant free space and try again!"
+msgstr "No es troben dispositius adequats - Si us plau, elimina algunes imatges descarregades o inserta un altre dispositiu (per ex. pendrive USB) amb suficient espai lliure i torna a intentar-ho!"
+
+msgid "Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgstr "Si us plau, sel·lecciona qué fer després d'instal·lar la imatge:\n(A més, si existeix, també s'executarà un script local a /media/hdd/images/config/myrestore.sh)"
+
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr "Actualitzar (Backup, Instal·lar i Restaurar"
+
+msgid "Clean (Just flash and start clean)"
+msgstr "Instal·lació neta (només instal·lar i arranc net)"
+
+msgid "Backup, flash and restore settings and no plugins"
+msgstr "Backup, instal·lar i restaurar configuracions però no plugins"
+
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr "Backup, instal·lar i restaurar configuracions i plugins sel·leccionats"
+
+msgid "Downloading Image"
+msgstr "Descarregant imatge"
+
+msgid "Error during downloading image\n%s\n%s"
+msgstr "Error durant la descàrrega\n%s\n%s"
+
+msgid "Unzipping Image"
+msgstr "Descomprimint imatge"
+
+msgid "Error during unzipping image\n%s"
+msgstr "Error en descomprimir imatge\n%s"
+
+msgid "Flashing Image"
+msgstr "Instal·lant imatge"
+
+msgid "Image to install is invalid\n%s"
+msgstr "Imatge a instal·lar és invàlida\n%s"
+
+msgid "Flashing image successful"
+msgstr "Imatge instal·lada amb èxit"
+
+msgid "%s\nPress ok to close"
+msgstr "%s\nPrem ok per a tancar"
+
+msgid "Flashing image was not successful\n%s"
+msgstr "La instal·lació de la imatge ha fallat\n%s"
+
+msgid "Multiboot Image Selector"
+msgstr "Multiboot"
+
+msgid "Please wait"
+msgstr "Si us plau espera"
+
+msgid "Recovery Mode"
+msgstr "Mode recuperació"
+
+msgid "Decryption & Parental Control"
+msgstr "Desencriptat i Control Parental "
+
+msgid "Retrieving image list - Please wait..."
+msgstr "Recuperant llista d'imatges - Si us plau espera..."
+
+msgid "Downloaded Images"
+msgstr "Imatges descarregades"
+
+msgid "STB Display"
+msgstr "Display receptor"
+
+msgid "Downloaded"
+msgstr "Descarregades"
+
+msgid "Images %s"
+msgstr "Imatges %s"
+
+msgid "Collapse"
+msgstr "Reduir"
+
+msgid "Expand"
+msgstr "Expandir"
+
+msgid "Show service quality icons"
+msgstr "Mostrar icones de qualitat del canal"
+
+msgid "Show icons for SD services"
+msgstr "Mostrar icones de canals SD"
+
+msgid "Show icons for HD services"
+msgstr "Mostrar icones de canals HD"
+
+msgid "Show icons for 4K services"
+msgstr "Mostrar icones de canals 4K"
+
+msgid "Show icons for 3D services"
+msgstr "Mostrar icones de canals 3D"
+
+msgid "Show icons for IPTV services"
+msgstr "Mostrar icones de canals IPTV"
+
+msgid "Configure if icons for SD services will be shown."
+msgstr "Configura si es mostraran les icones de canals SD"
+
+msgid "Configure if icons for HD services will be shown."
+msgstr "Configura si se mostraran les icones de canals HD"
+
+msgid "Configure if icons for 4K services will be shown."
+msgstr "Configura si se mostraran les icones de canals 4K"
+
+msgid "Configure if icons for 3D services will be shown."
+msgstr "Configura si se mostraran les icones de canals 3D"
+
+msgid "Configure if icons for IPTV services will be shown."
+msgstr "Configura si se mostraran les icones de canals IPTV"
+
+msgid "Image Backup "
+msgstr "Backup sencer"
+
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr "Utilitza les fletxes per a sel·leccionar una imatge instal·lada i llavors botó Inici."
+
+msgid "Please select a backup destination"
+msgstr "Si us plau, sel·lecciona una destinació per al backup"
+
+msgid "Backup to destination: %s"
+msgstr "Backup a la ruta: %s"
+
+msgid "No, do not backup a image"
+msgstr "No, no fer backup"
+
+msgid "Cannot create backup directory"
+msgstr "No es pot crear la carpeta per al backup"
+
+msgid "Back-up Tool for an %s\n"
+msgstr "Eina backup per un %s\n"
+
+msgid "will take about 30 minutes for this system\n"
+msgstr "tardarà al voltant de 30 minuts\n"
+
+msgid "Create:"
+msgstr "Crear:"
+
+msgid "Create: Recovery Fullbackup %s"
+msgstr "Crear : Backup sencer de recuperació %s"
+
+msgid "Multiboot Image created on: %s/%s-%s.%s-%s-backup-%s_usb.zip"
+msgstr "Imatge Multiboot creada a: %s/%s-%s.%s-%s-backup-%s_usb.zip"
+
+msgid "Image created on: %s/%s-%s.%s-%s-backup-%s_recovery.zip"
+msgstr "Imatge creada a: %s/%s-%s.%s-%s-backup-%s_recovery.zip"
+
+msgid "Image created on: %s/%s-%s.%s-%s-backup-%s_mmc.zip"
+msgstr "Imatge creada a: %s/%s-%s.%s-%s-backup-%s_mmc.zip"
+
+msgid "Version %s %s"
+msgstr "Versió %s %s"
+
+msgid "slot%s - %s - %s as USB Recovery"
+msgstr "Boot%s - %s - %s com USB de recuperació"
+
+msgid "internal flash: %s %s as USB Recovery"
+msgstr "Flash interna: %s %s com USB de recuperació"
+
+msgid "internal flash:  %s %s "
+msgstr "Flash interna: %s %s "
+
+msgid "Full backup"
+msgstr "Backup sencer"
+
+msgid "violet"
+msgstr "violeta"
+
+msgid "Power LED can be turned on or off here."
+msgstr "LED d'encesa pot encendre's o apagar-se aquí"
+
+msgid "Power LED state during standby."
+msgstr "Estat LED d'encesa durant repòs."
+
+msgid "Power LED state during deep-standby."
+msgstr "Estat LED d'encesa durant repòs profund."
+
+msgid "Operating LED status while running"
+msgstr "Color LED d'encesa durant el funcionament"
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr "Amb aquesta opció pots canviar el color del LED o desactivar-lo."
+
+msgid "Operating LED status in deep standby mode"
+msgstr "Color LED d'encesa en repòs profund"
+
+msgid "Status of the display during operation"
+msgstr "Estat del display durant el funcionament"
+
+msgid "Status of the display in standby mode"
+msgstr "Estat del display en repòs"
+
+msgid "Status of the display in deep standby"
+msgstr "Estat del display en repòs profund"
+
+msgid "With this option you can switch off the display during operation."
+msgstr "Amb aquesta opció pots desconectar el display durant el funcionament."
+
+msgid "Switch off the display during Standby Mode"
+msgstr "Desconecta el display en repòs"
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr "Amb aquesta opció pots desconectar el display en repòs."
+
+msgid "Switch off the display during Suspend Mode"
+msgstr "Desconecta el display en repòs profund"
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr "Amb aquesta opció pots desconectar el display en repòs profund."
+
+msgid "Operating LED status in standby mode"
+msgstr "Color LED d'encesa en repòs"
+
+msgid "Show in Standby"
+msgstr "Mostrar en repòs"
+
+msgid "This option allows you choose how to display the Time or nothing in Standby"
+msgstr "Aquesta opció et permet escollir com mostrar l'hora al display o no mostrar res en repòs"
+
+msgid "REC Symbol in use"
+msgstr "Símbol REC en ús"
+
+msgid "REC Symbol in Standby"
+msgstr "Símbol REC en repòs"
+
+msgid "In the Standby Record on the LCD Display"
+msgstr "Mostrar símbol de gravació al display LCD"
+
+msgid "Show NcamInfo in Extensions Menu?"
+msgstr "Mostrar NcamInfo al menú extensions"
+
+msgid "Enable BT Audio"
+msgstr "Habilitar audio BT"
+
+msgid "Enable twisted log *"
+msgstr "Acivar log de xarxa *"
+
+msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
+msgstr "Et permet activar el log de xarxa. Conté informació molt detallada de tot el que fa en xarxa"
