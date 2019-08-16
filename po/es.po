@@ -13615,7 +13615,7 @@ msgid "Save EPG"
 msgstr "Guardar EPG"
 
 #
-msgid "Service searching"
+msgid "Reception"
 msgstr "Sintonización"
 
 #
@@ -18077,6 +18077,9 @@ msgstr "LED de encendido puede encenderse o apagarse aquí"
 msgid "Power LED state during standby."
 msgstr "Estado LED de encendido durante reposo."
 
+msgid "Power LED State in Deep-Standby."
+msgstr "Estado LED de encendido durante reposo."
+
 msgid "Power LED state during deep-standby."
 msgstr "Estado LED de encendido durante reposo profundo."
 
@@ -18142,4 +18145,40 @@ msgstr "Acivar log de red *"
 
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
 msgstr "Te permite activar el log de red. Contiene información muy detallada de todo lo que hace en red"
+
+msgid "H9 SDcard manager"
+msgstr "Administrador Tarjeta SD"
+
+msgid "H9SDroot"
+msgstr "Arranque SD/Nand"
+
+msgid "Install image to SD or USB"
+msgstr "Instalar imagen en SD o USB"
+
+msgid "Press appropiate Init to move Nand root to SDcard."
+msgstr "Pulsa en Iniciar SD para mover la raiz de la Nand flash a la SD"
+
+msgid "Init Zgemma H9 SDCARD - please reboot after use."
+msgstr "Iniciar SD del Zgemma H9 - por favor, reinicia receptor al acabar."
+
+msgid "Init Zgemma H9 USB/SDA1 - please reboot after use."
+msgstr "Iniciar USB/SDA1 en Zgemma H9 - por favor, reinicia receptor al acabar."
+
+msgid "H9 switch Nand and SDcard"
+msgstr "Cambiar entre Nand Flash y SD"
+
+msgid "SwaptoNand"
+msgstr "Arrancar con Nand Flash"
+
+msgid "SwaptoSD"
+msgstr "Arrancar con SD"
+
+msgid "H9 SDcard switch ERROR! - already on Nand"
+msgstr "ERROR en el cambio! - ya en Nand"
+
+msgid "H9 SDcard switch ERROR! - already on mmc"
+msgstr "ERROR en el cambio! - ya en SD"
+
+msgid "H9 SDcard switch ERROR! - H9 root files not transferred to SD card"
+msgstr "ERROR en el cambio!- No se han transferido los archivos de la raiz del H9 a la SD"
 

@@ -2,9 +2,9 @@
 
 > Ubuntu 16.04.1 LTS (GNU/3.14.32-xxxx-grs-ipv6-64)
 
-## OpenSPA 7.3 is build using oe-alliance build-environment and several git repositories: ##
+## OpenSPA 7.4 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.2](https://github.com/oe-alliance/oe-alliance-core/tree/4.2 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.3](https://github.com/oe-alliance/oe-alliance-core/tree/4.3 "OE-Alliance")
 > 
 > [https://github.com/OpenSPA/dvbapp](https://github.com/OpenSPA/dvbapp "OpenSPA E2")
 > 
@@ -19,10 +19,10 @@
 
 1 - Install packages on your buildserver
 
-    sudo apt-get install -y autoconf automake bison bzip2 curl cvs diffstat flex g++ gawk gcc gettext git-core gzip help2man ncurses-bin ncurses-dev libc6-dev libtool make texinfo patch perl pkg-config subversion tar texi2html wget zlib1g-dev chrpath libxml2-utils xsltproc libglib2.0-dev python-setuptools zip info coreutils diffstat chrpath libproc-processtable-perl libperl4-corelibs-perl sshpass default-jre default-jre-headless java-common libserf-dev qemu quilt libssl-dev
+    sudo apt-get install -y autoconf automake bison bzip2 curl cvs diffstat flex g++ gawk gcc gettext git-core gzip help2man ncurses-bin ncurses-dev libc6-dev libtool make texinfo patch perl pkg-config subversion tar texi2html wget zlib1g-dev chrpath libxml2-utils xsltproc libglib2.0-dev python-setuptools zip info coreutils diffstat chrpath libproc-processtable-perl libperl4-corelibs-perl sshpass default-jre default-jre-headless java-common libserf-dev qemu quilt libssl-dev ----------
 
-----------
-2 - Set your shell to /bin/bash
+---------
+2 - Set your shell to /bin/bash.
 
     sudo dpkg-reconfigure dash
     When asked: Install dash as /bin/sh?
@@ -56,7 +56,7 @@
 ----------
 8 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.2
+    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.3
 
 ----------
 9 - Switch to folder build-enviroment
@@ -71,7 +71,7 @@
 ----------
 11 - Finally you can start building a image
 
-    make MACHINE=zgemmah9s DISTRO=openspa DISTRO_TYPE=release image
+    MACHINE=zgemmah9s DISTRO=openspa DISTRO_TYPE=release make image
 
 ----------
 12 - Optional Infos

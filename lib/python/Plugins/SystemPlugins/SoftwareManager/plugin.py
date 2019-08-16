@@ -41,13 +41,14 @@ from twisted.internet import reactor
 
 from ImageBackup import ImageBackup
 from Flash_online import FlashOnline
+from H9SDmanager import H9SDmanager
 from ImageWizard import ImageWizard
 from Multibootmgr import MultiBootWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from BackupRestore import InitConfig as BackupRestore_InitConfig
 from SoftwareTools import iSoftwareTools
 import os
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getMachineBuild
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()
@@ -182,6 +183,8 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if not boxtype.startswith('az') and not boxtype in ('dm500hd','dm500hdv2','dm520','dm800','dm800se','dm800sev2','dm820','dm7020hd','dm7020hdv2','dm7080','dm8000') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("flash-online", _("Flash Online/Local"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			if getMachineBuild() in 'h9':
+				self.list.append(("h9sdmanager", _("H9 SDcard manager"), _("\nInstall image to SD or USB") + self.oktext, None))
 			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if SystemInfo["canMultiBoot"]:
@@ -323,6 +326,8 @@ class UpdatePluginMenu(Screen):
 					self.session.open(PluginManager, self.skin_path)
 				elif (currentEntry == "flash-online"):
 					self.session.open(FlashOnline)
+				elif (currentEntry == "h9sdmanager"):
+					self.session.open(H9SDmanager)
 				elif (currentEntry == "multiboot-manager"):
 					self.session.open(MultiBootWizard)
 				elif (currentEntry == "backup-image"):

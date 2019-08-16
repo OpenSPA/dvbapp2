@@ -52,6 +52,7 @@ class ImageBackup(Screen):
 		self["key_green"] = StaticText(_("Start"))
 		self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image slots - Please wait...")), "Queued"))])
 		imagedict = []
+		self.MODEL = GetBoxName()
 		self.getImageList = None
 		self.startit()
 
@@ -93,7 +94,10 @@ class ImageBackup(Screen):
 		else:
 			if SystemInfo["canRecovery"]:
 				list.append(ChoiceEntryComponent('',(_("internal flash: %s %s as USB Recovery") %(getImageDistro(), getImageVersion()),"1","1",True)))
-			list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s ") %(getImageDistro(), getImageVersion()),"1","1",False)))
+			if self.MODEL in ("vuultimo4k","vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno", "vuzero" , "vusolose", "vuuno4k", "vuzero4k"):
+				list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s ") %(getImageDistro(), getImageVersion()),"1",None,False)))
+			else:
+				list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s ") %(getImageDistro(), getImageVersion()),"1","1",False)))
 		self["config"].setList(list)
 
 	def start(self):
@@ -101,6 +105,7 @@ class ImageBackup(Screen):
 		title = _("Please select a backup destination")
 		choices = []
 		retval = []
+		print 'answer3: ', self.currentSelected[0][2]
 		if self.currentSelected[0][1] != "Queued":
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if Harddisk.Freespace(media) > 300000:
@@ -129,6 +134,7 @@ class ImageBackup(Screen):
 
 	def doFullBackup(self, answer):
 		if answer is not None:
+			print 'answer : ', answer
 			if answer[1]:
 				self.RECOVERY = answer[3]
 				self.DIRECTORY = "%s/images" %answer[2]
@@ -208,6 +214,8 @@ class ImageBackup(Screen):
 				print "[FULL BACKUP] USB RECOVERY = >%s< " %self.RECOVERY
 				print "[FULL BACKUP] DESTINATION = >%s< " %self.DIRECTORY
 				print "[FULL BACKUP] SLOT = >%s< " %self.SLOT
+				print "[FULL BACKUP] RECOVERY = >%s<" %answer[3]
+				print "[FULL BACKUP] DIRECTORY = >%s/images<" %answer[2]
 
 				self.TITLE = _("Full back-up on %s") % (self.DIRECTORY)
 				self.START = time()
@@ -225,6 +233,10 @@ class ImageBackup(Screen):
 				self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 				self.MAINDEST = "%s/build_%s/%s" % (self.DIRECTORY, self.MODEL, self.IMAGEFOLDER)
 				self.MAINDESTROOT = "%s/build_%s" % (self.DIRECTORY, self.MODEL)
+
+				print "[FULL BACKUP] SHOWNAME = >%s %s<" %(self.MACHINEBRAND, self.MODEL)
+				print "[FULL BACKUP] MAINDEST = >%s/build_%s/%s<" % (self.DIRECTORY, self.MODEL, self.IMAGEFOLDER)
+				print "[FULL BACKUP] MAINDESTROOT = >%s/build_%s<" % (self.DIRECTORY, self.MODEL)
 
 				self.message = "echo -e '\n"
 				if getMachineBrand().startswith('A') or getMachineBrand().startswith('E') or getMachineBrand().startswith('I') or getMachineBrand().startswith('O') or getMachineBrand().startswith('U') or getMachineBrand().startswith('Xt'):

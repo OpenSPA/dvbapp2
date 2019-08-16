@@ -80,8 +80,8 @@ SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_l
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
 SystemInfo["VuplusVFD"] = getBoxType() in ('vuduo2',)
 SystemInfo["XcoreVFD"] = getMachineBuild() in ('xc7346','xc7439')
-SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('7segment','textlcd7segment') and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.pyo") or SystemInfo["VuplusVFD"]
-SystemInfo["LCDClockSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('textlcd','7segment','textlcd7segment') and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.pyo")
+SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.pyo") or SystemInfo["VuplusVFD"]
+SystemInfo["LCDClockSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('textlcd','7segment') and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.pyo")
 SystemInfo["VFD_scroll_repeats"] = fileCheck("/proc/stb/lcd/scroll_repeats")
 SystemInfo["VFD_scroll_delay"] = fileCheck("/proc/stb/lcd/scroll_delay")
 SystemInfo["VFD_initial_scroll_delay"] = fileCheck("/proc/stb/lcd/initial_scroll_delay")
@@ -121,6 +121,7 @@ SystemInfo["HAVEEDIDDECODE"] = fileCheck("/proc/stb/hdmi/raw_edid") and fileChec
 SystemInfo["canMultiBoot"] = getMachineBuild() in ('hd51','vs1500','h7','h9combo','h10','hd60','hd61','multibox','8100s') and (1, 4, 'mmcblk0p') or getMachineBuild() in ('gb7252',) and (3, 3, 'mmcblk0p') or getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2','viper4k') and fileCheck("/dev/sda") and (0, 3, 'sda') or getMachineBuild() in ('osmio4k','osmio4kplus','xc7439') and (1, 4, 'mmcblk1p')
 SystemInfo["canMode12"] = getMachineBuild() in ('hd51','vs1500','h7') and ('brcm_cma=440M@328M brcm_cma=192M@768M', 'brcm_cma=520M@248M brcm_cma=200M@768M')
 SystemInfo["HAScmdline"] = fileCheck("/boot/cmdline.txt")
+SystemInfo["HasH9SD"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or SystemInfo["canMultiBoot"] and fileHas("/proc/cmdline", "root=/dev/sda")
 SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canMultiBoot"][2] and "mmcblk" in getMachineMtdRoot() 
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")

@@ -856,12 +856,14 @@ class HarddiskManager:
 		devpath = "/sys/block/" + blockdev
 		error = False
 		removable = False
+		z = open('/proc/cmdline', 'r').read()
 		BLACKLIST=[]
-		if getMachineBuild() in ('gbmv200','multibox','h9combo','h10','v8plus','hd60','hd61','vuduo4k','ustym4kpro','beyonwizv2','viper4k','dags72604','u51','u52','u53','u54','u56','u5','u5pvr','cc1','sf8008','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
+		if getMachineBuild() in ('gbmv200','multibox','h9combo','h10','v8plus','hd60','hd61','vuduo4k','ustym4kpro','beyonwizv2','viper4k','dags72604','u51','u52','u53','u532','u533','u54','u56','u5','u5pvr','cc1','sf8008','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
 			BLACKLIST=["mmcblk0"]
 		elif getMachineBuild() in ('xc7439','osmio4k','osmio4kplus'):
 			BLACKLIST=["mmcblk1"]
-
+		elif SystemInfo["HasMMC"] and "root=/dev/mmcblk0p1" in z:
+			BLACKLIST=["mmcblk0p1"]
 		blacklisted = False
 		if blockdev[:7] in BLACKLIST:
 			blacklisted = True

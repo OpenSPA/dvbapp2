@@ -11,7 +11,8 @@ install_PYTHON =	\
 	ImageBackup.py \
 	Flash_online.py \
 	ShellCompatibleFunctions.py \
-	Multibootmgr.py
+	Multibootmgr.py \
+	H9SDmanager.py
 
 dist_install_DATA = \
 	imagewizard.xml \

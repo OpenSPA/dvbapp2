@@ -24,8 +24,8 @@ class MultiBootWizard(Screen):
 		<eLabel name="line" position="1,60" size="748,1" backgroundColor="#00ffffff" zPosition="1" />
 		<eLabel name="line2" position="1,250" size="748,4" backgroundColor="#00ffffff" zPosition="1" />
 		<widget name="config" position="17,280" size="715,380" itemHeight="30" halign="center" font="Regular; 22" backgroundColor="#00000000" foregroundColor="#00e5b243" />
-		<widget source="description" render="Label" position="12,73" size="730,60" halign="left" font="Regular; 22" backgroundColor="#00000000" foregroundColor="#00ffffff" />
-		<widget source="options" render="Label" position="12,138" size="730,60" halign="left" font="Regular; 22" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<widget source="description" render="Label" position="2,80" size="730,30" halign="center" font="Regular; 22" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<widget source="options" render="Label" position="2,130" size="730,60" halign="center" font="Regular; 22" backgroundColor="#00000000" foregroundColor="#00ffffff" />
 		<widget source="key_red" render="Label" position="30,205" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
 		<widget source="key_green" render="Label" position="200,205" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
 		<widget source="key_yellow" render="Label" position="370,205" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />

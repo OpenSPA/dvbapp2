@@ -13638,7 +13638,7 @@ msgid "Save EPG"
 msgstr "Guardar EPG"
 
 #
-msgid "Service searching"
+msgid "Reception"
 msgstr "Sintonització"
 
 #
@@ -18038,6 +18038,9 @@ msgstr "Estat LED d'encesa durant repòs."
 msgid "Power LED state during deep-standby."
 msgstr "Estat LED d'encesa durant repòs profund."
 
+msgid "Power LED State in Deep-Standby."
+msgstr "Estat LED d'encesa en repòs profund."
+
 msgid "Operating LED status while running"
 msgstr "Color LED d'encesa durant el funcionament"
 
@@ -18100,3 +18103,36 @@ msgstr "Acivar log de xarxa *"
 
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
 msgstr "Et permet activar el log de xarxa. Conté informació molt detallada de tot el que fa en xarxa"
+
+msgid "H9 SDcard manager"
+msgstr "Administrador Tarjeta SD"
+
+msgid "Install image to SD or USB"
+msgstr "Instal·lar imatge a SD o USB"
+
+msgid "Press appropiate Init to move Nand root to SDcard."
+msgstr "Prem a Iniciar SD per a moure l'arrel de la Nand flash a la SD"
+
+msgid "Init Zgemma H9 SDCARD - please reboot after use."
+msgstr "Iniciar SD del Zgemma H9 - si us plau, reinicia receptor en acabar."
+
+msgid "Init Zgemma H9 USB/SDA1 - please reboot after use."
+msgstr "Iniciar USB/SDA1 del Zgemma H9 - si us plau, reinicia receptor en acabar."
+
+msgid "H9 switch Nand and SDcard"
+msgstr "Canviar entre Nand Flash i SD"
+
+msgid "SwaptoNand"
+msgstr "Arrancar amb Nand Flash"
+
+msgid "SwaptoSD"
+msgstr "Arrancar amb SD"
+
+msgid "H9 SDcard switch ERROR! - already on Nand"
+msgstr "ERROR en canviar! - ja en Nand"
+
+msgid "H9 SDcard switch ERROR! - already on mmc"
+msgstr "ERROR en canviar! - ja en SD"
+
+msgid "H9 SDcard switch ERROR! - H9 root files not transferred to SD card"
+msgstr "ERROR en canviar!- No s'han transferit els arxius de l'arrel del H9 a la SD"

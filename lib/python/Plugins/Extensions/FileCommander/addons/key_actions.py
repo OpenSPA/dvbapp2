@@ -294,11 +294,11 @@ class key_actions(stat_info):
 			sizes = ("", "", "")
 		else:
 			bytesize = "%s" % "{:n}".format(st.st_size)
-			scaledsize = ' '.join(self.SIZESCALER.scale(st.st_size))
+			scaledsize = ' '.join(self.SIZESCALER.scale(st.st_size)) + 'B'
 			sizes = (
 				bytesize,  # 10
-				_("%sB") % scaledsize,  # 11
-				_("%s (%sB") % (bytesize, scaledsize)  # 12
+				_("%s") % scaledsize,  # 11
+				_("%s (%s") % (bytesize, scaledsize)  # 12
 			)
 
 		return [modes + (
@@ -393,7 +393,7 @@ class key_actions(stat_info):
 			if (yfile.st_size < 1000000):
 				self.session.open(vEditor, self.commando)
 
-		if answer and answer != "VIEW":
+		if answer and answer not in ("NO","VIEW"):
 			if answer.endswith('_BG'):
 				global task_Stout, task_Sterr
 				task_Stout = []
