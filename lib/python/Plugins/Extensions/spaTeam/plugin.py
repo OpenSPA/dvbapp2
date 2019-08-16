@@ -23,6 +23,7 @@ from Screens.LanguageSelection import LanguageSelection
 from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Setup import Setup, getSetupTitle
+from Screens.SoftcamSetup import *
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup, AudioSetup
@@ -34,13 +35,9 @@ from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.Extensions.spaTeam.Epg import EPGScreen
 from Plugins.Extensions.spaTeam.RestartNetwork import RestartNetwork
 from Plugins.Extensions.spaTeam.MountManager import HddMount
-from Plugins.Extensions.spaTeam.SoftcamPanel import *
 from Plugins.Extensions.spaTeam.CronManager import *
 from Plugins.Extensions.spaTeam.ScriptRunner import *
-from Plugins.Extensions.spaTeam.CamCheck import *
-from Plugins.Extensions.spaTeam.CamStart import *
 from Plugins.Extensions.spaTeam.SwapManager import Swap, SwapAutostart
-from Plugins.Extensions.spaTeam.SoftwarePanel import SoftwarePanel
 from Plugins.Extensions.spaTeam.TimeJump import TimeJumpAutostart, TimeJumpMain
 from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
@@ -109,11 +106,30 @@ def Check_Softcam():
 	if fileExists("/etc/enigma2/noemu"):
 		found = False
 	else:
-		for x in listdir('/etc'):
-			if x.find('.emu') > -1:
+		for cam in os.listdir("/etc/init.d"):
+			if cam.startswith('softcam.') and not cam.endswith('None'):
 				found = True
-				break;
+				break
+			elif cam.startswith('cardserver.') and not cam.endswith('None'):
+				found = True
+				break
 	return found
+
+def Check_SysSoftcam():
+	syscam="none"
+	if os.path.isfile('/etc/init.d/softcam'):
+		if (os.path.islink('/etc/init.d/softcam') and not os.readlink('/etc/init.d/softcam').lower().endswith('none')):
+			try:
+				syscam = os.readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
+				if syscam.lower().startswith('oscam'):
+					syscam="oscam"
+				if syscam.lower().startswith('ncam'):
+					syscam="ncam"
+				if syscam.lower().startswith('cccam'):
+					syscam="cccam"
+			except:
+				pass
+	return syscam
 
 # Hide Keymap selection when no other keymaps installed.
 if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
@@ -486,8 +502,11 @@ class spaMenu(Screen, ProtectedScreen):
 	def Qsoftcam(self):
 		self.sublist = []
 		if Check_Softcam(): # show only when there is a softcam installed
-			self.sublist.append(spaMenuEntryComponent("Softcam Panel",_("Control your Softcams"),_("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
-			self.sublist.append(spaMenuEntryComponent("Softcam-Panel Setup",_("Softcam-Panel Setup"),_('Softcam-Panel Setup')))
+			self.sublist.append(spaMenuEntryComponent("SoftcamSetup", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
+		if Check_SysSoftcam() is "oscam":
+			self.sublist.append(spaMenuEntryComponent("OScamInfo", _("Show OScam Info"), _("Show more detailed information of OScam")))
+		if Check_SysSoftcam() is "ncam":
+			self.sublist.append(spaMenuEntryComponent("NcamInfo", _("Show Ncam Info"), _("Show more detailed information of Ncam")))
 		self.sublist.append(spaMenuEntryComponent("Download Softcams",_("Download and install cam"),_("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -703,12 +722,16 @@ class spaMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Device Manager"):
 			self.session.open(HddMount)
 ######## Select Softcam Menu ##############################
-		elif item[0] == _("Softcam Panel"):
-			self.session.open(SoftcamPanel)
-		elif item[0] == _("Softcam-Panel Setup"):
-			self.session.open(ShowSoftcamPanelExtensions)
+		elif item[0] == "SoftcamSetup":
+			self.session.open(SoftcamSetup)
+		elif item[0] == "OScamInfo":
+			from Screens.OScamInfo import OscamInfoMenu
+			self.session.open(OscamInfoMenu)
+		elif item[0] == "NcamInfo":
+			from Screens.NcamInfo import NcamInfoMenu
+			self.session.open(NcamInfoMenu)
 		elif item[0] == _("Download Softcams"):
-			self.session.open(ShowSoftcamPackages)
+			self.session.open(PluginDownloadBrowser)
 ######## Select AV Setup Menu ##############################
 		elif item[0] == _("Video Settings"):
 			self.session.open(VideoSetup)
@@ -1206,25 +1229,6 @@ class KeymapSel(ConfigListScreen, Screen):
 		else:
 			self.close()
 
-def camstart(reason, **kwargs):
-	if not config.plugins.spateam_frozencheck.list.value == '0':
-		CamCheck()
-	try:
-		f = open("/proc/stb/video/alpha", "w")
-		f.write(str(config.osd.alpha.value))
-		f.close()
-	except:
-		print "[spaTeam] failed to write /proc/stb/video/alpha"
-
-	try:
-		if config.softcam.camstartMode.value == "0":
-			global timerInstance
-			if timerInstance is None:
-				timerInstance = CamStart(None)
-			timerInstance.startTimer()
-	except:
-		print "[spaTeam] failed to run CamStart"
-
 def panel(menuid, **kwargs):
 	if menuid == "mainmenu":
 		return [(_("OpenSPA Panel"), main, "spaTeam", 3)]
@@ -1239,7 +1243,5 @@ def Plugins(**kwargs):
 		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where = PluginDescriptor.WHERE_MENU, fnc = panel),
 		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main),
 		PluginDescriptor(name=_("TimeJump Setup"), description=_("Step back/forward in time playing movies"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = TimeJumpMain),
-		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
 		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = TimeJumpAutostart),]
-
