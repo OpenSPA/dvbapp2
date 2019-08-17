@@ -242,7 +242,7 @@ def init_timejump():
 
 	videodb = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/VideoDB/plugin.pyo")
 	if fileExists(videodb):
-		from Plugins.Extensions.VideoDB.Player import VideoDBPlayerz
+		from Plugins.Extensions.VideoDB.Player import VideoDBPlayer
 		VideoDBPlayer.seekFwdManual = timejump
 		VideoDBPlayer.seekBackManual = timejumpBack
 
