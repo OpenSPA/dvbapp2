@@ -18182,3 +18182,32 @@ msgstr "ERROR en el cambio! - ya en SD"
 msgid "H9 SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "ERROR en el cambio!- No se han transferido los archivos de la raiz del H9 a la SD"
 
+msgid "Resolution : "
+msgstr "Resolución : "
+
+msgid "Aspect Ratio : "
+msgstr "Relación de aspecto : "
+
+msgid "Start: "
+msgstr "Inicio: "
+
+msgid "End: "
+msgstr "Final: "
+
+msgid "Picon folder: %s"
+msgstr "Ruta picons: %s"
+
+msgid "Power: "
+msgstr "Señal: "
+
+msgid "Quality: "
+msgstr "Calidad: "
+
+msgid "Current location: %s"
+msgstr "Ruta actual: %s"
+
+msgid "EPG Days: %s"
+msgstr "Días de EPG: %s"
+
+msgid ". Device %s in %s mounted as %s"
+msgstr ". Dispositivo %s en %s montado en %s"
