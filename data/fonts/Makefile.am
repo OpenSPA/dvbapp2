@@ -73,3 +73,7 @@ endif
 if HAVE_COLORLCD400S
 dist_install_DATA += hd2.ttf tuxtxt2.ttf robotobold.ttf robotoregular.ttf verdana.ttf
 endif
+
+if OSMIO4KPLUS
+dist_install_DATA += analog.ttf MyriadPro-Regular.otf MyriadPro-Semibold.otf MyriadPro-SemiboldIt.otf
+endif
