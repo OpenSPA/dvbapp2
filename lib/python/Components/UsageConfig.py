@@ -881,6 +881,7 @@ def InitUsageConfig():
 	config.epg.viasat = ConfigYesNo(default = True)
 	config.epg.netmed = ConfigYesNo(default = True)
 	config.epg.virgin = ConfigYesNo(default = False)
+	config.epg.opentv = ConfigYesNo(default = True)
 	config.epg.saveepg = ConfigYesNo(default = True)
 
 	def EpgSettingsChanged(configElement):
@@ -898,6 +899,8 @@ def InitUsageConfig():
 			mask &= ~(eEPGCache.NETMED_SCHEDULE | eEPGCache.NETMED_SCHEDULE_OTHER)
 		if not config.epg.virgin.value:
 			mask &= ~(eEPGCache.VIRGIN_NOWNEXT | eEPGCache.VIRGIN_SCHEDULE)
+		if not config.epg.opentv.value:
+			mask &= ~eEPGCache.OPENTV
 		eEPGCache.getInstance().setEpgSources(mask)
 	config.epg.eit.addNotifier(EpgSettingsChanged)
 	config.epg.mhw.addNotifier(EpgSettingsChanged)
@@ -905,6 +908,7 @@ def InitUsageConfig():
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
 	config.epg.virgin.addNotifier(EpgSettingsChanged)
+	config.epg.opentv.addNotifier(EpgSettingsChanged)
 
 	config.epg.maxdays = ConfigSelectionNumber(min = 1, max = 365, stepwidth = 1, default = 3, wraparound = True)
 	def EpgmaxdaysChanged(configElement):
