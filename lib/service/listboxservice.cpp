@@ -943,6 +943,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								xoffs += pixmap_size.width() + m_items_distances;
 							}
 							int correction = (area.height() - pixmap_size.height()) / 2;
+							if (m_show_two_lines && m_record_indicator_mode == 2)
+								correction = (((area.height()/2) - pixmap_size.height()) / 2) + 2;
 							area.moveBy(offset);
 							if (m_record_indicator_mode == 2)
 							{
@@ -980,6 +982,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								else if (m_crypto_icon_mode == 1 && m_pixmaps[picCrypto])
 									offs = offs + m_pixmaps[picCrypto]->size().width() + m_items_distances;
 								int correction = (area.height() - pixmap_size.height()) / 2;
+								if (m_show_two_lines && m_servicetype_icon_mode == 2)
+									correction = (((area.height()/2) - pixmap_size.height()) / 2) + 2;
 								area.moveBy(offset);
 								painter.clip(area);
 								painter.blit(pixmap, ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
@@ -1044,6 +1048,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								xoffs += pixmap_size.width() + m_items_distances;
 							}
 							int correction = (area.height() - pixmap_size.height()) / 2;
+							if (m_show_two_lines && m_crypto_icon_mode == 2)
+								correction = (((area.height()/2) - pixmap_size.height()) / 2) + 2;
 							area.moveBy(offset);
 							if (service_info && service_info->isCrypted())
 							{
