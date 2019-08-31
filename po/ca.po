@@ -18136,3 +18136,48 @@ msgstr "ERROR en canviar! - ja en SD"
 
 msgid "H9 SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "ERROR en canviar!- No s'han transferit els arxius de l'arrel del H9 a la SD"
+
+msgid "Resolution : "
+msgstr "Resolució : "
+
+msgid "Aspect Ratio : "
+msgstr "Relació d'aspecte : "
+
+msgid "Start: "
+msgstr "Inici: "
+
+msgid "End: "
+msgstr "Final: "
+
+msgid "Picon folder: %s"
+msgstr "Ruta picons: %s"
+
+msgid "Power: "
+msgstr "Senyal: "
+
+msgid "Quality: "
+msgstr "Qualitat: "
+
+msgid "Current location: %s"
+msgstr "Ruta actual: %s"
+
+msgid "EPG Days: %s"
+msgstr "Dies d'EPG: %s"
+
+msgid ". Device %s in %s mounted as %s"
+msgstr ". Dispositiu %s en %s muntat a %s"
+
+msgid "Tomorrow"
+msgstr "Demà"
+
+msgid "Time delay of the shutdown messages"
+msgstr "Retard dels missatges"
+
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgstr "Estableix el temps a esperar per a executar l'acció per defecte als missatges d'apagat, repòs o reinici (per ex. utilitzat a Temporitzadors, Temporitzadors d'alimentació, Temporitzadors d'apagat,...)"
+
+msgid "Yes, but if not available show the plugin browser"
+msgstr "Si, però mostra els plugins si no està habilitat"
+
+msgid "Yes, but if not available show the timer list"
+msgstr "Si, però mostra els temporitzadors si no està habilitat"

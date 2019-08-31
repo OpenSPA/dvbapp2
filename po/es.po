@@ -16270,7 +16270,7 @@ msgid "Enable OK for channel selection"
 msgstr "Abrir lista de canales con OK"
 
 msgid "Enable Subservice mode in green button"
-msgstr "Habilitar el modo Subservicio para el botón verde"
+msgstr "Habilitar Subservicio al botón verde"
 
 msgid "When enabled you can zap channels with the  CH+/-, B+/-, P+/- buttons instead of opening the channel selection list."
 msgstr "Si se habilita, permite cambiar los canales con las teclas CH+/-, B+/-, P+/- en lugar de abrir la lista de canales."
@@ -18211,3 +18211,18 @@ msgstr "Días de EPG: %s"
 
 msgid ". Device %s in %s mounted as %s"
 msgstr ". Dispositivo %s en %s montado en %s"
+
+msgid "Tomorrow"
+msgstr "Mañana"
+
+msgid "Time delay of the shutdown messages"
+msgstr "Retardo de los mensajes"
+
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgstr "Establece el tiempo a esperar para ejecutar la acción por defecto en los mensajes de apagado, reposo o reinicio (por ej. utilizado en Temporizadores, Temporizadores de alimentación, Temporizadores de apagado,...)"
+
+msgid "Yes, but if not available show the plugin browser"
+msgstr "Si, pero muestra los plugins si no está habilitado"
+
+msgid "Yes, but if not available show the timer list"
+msgstr "Si, pero muestra los temporizadores si no está habilitado"
