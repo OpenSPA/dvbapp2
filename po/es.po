@@ -18216,13 +18216,16 @@ msgid "Tomorrow"
 msgstr "Mañana"
 
 msgid "Time delay of the shutdown messages"
-msgstr "Retardo de los mensajes"
+msgstr "Tiempo de retardo de los mensajes de apagado"
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
 msgstr "Establece el tiempo a esperar para ejecutar la acción por defecto en los mensajes de apagado, reposo o reinicio (por ej. utilizado en Temporizadores, Temporizadores de alimentación, Temporizadores de apagado,...)"
 
 msgid "Yes, but if not available show the plugin browser"
-msgstr "Si, pero muestra los plugins si no está habilitado"
+msgstr "Si, pero si no disponible muestra los plugins"
 
 msgid "Yes, but if not available show the timer list"
-msgstr "Si, pero muestra los temporizadores si no está habilitado"
+msgstr "Si, pero si no disponible muestra temporizadores"
+
+msgid "No, show always the timer list"
+msgstr "No, muestra siempre lista temporizadores"

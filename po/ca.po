@@ -18171,13 +18171,16 @@ msgid "Tomorrow"
 msgstr "Demà"
 
 msgid "Time delay of the shutdown messages"
-msgstr "Retard dels missatges"
+msgstr "Temps de retard dels missatges d'apagat"
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
 msgstr "Estableix el temps a esperar per a executar l'acció per defecte als missatges d'apagat, repòs o reinici (per ex. utilitzat a Temporitzadors, Temporitzadors d'alimentació, Temporitzadors d'apagat,...)"
 
 msgid "Yes, but if not available show the plugin browser"
-msgstr "Si, però mostra els plugins si no està habilitat"
+msgstr "Si, però si no disponible mostra els plugins"
 
 msgid "Yes, but if not available show the timer list"
-msgstr "Si, però mostra els temporitzadors si no està habilitat"
+msgstr "Si, però si no disponible mostra els temporitzadors"
+
+msgid "No, show always the timer list"
+msgstr "No, mostra sempre llista temporitzadors"
