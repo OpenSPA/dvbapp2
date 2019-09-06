@@ -60,7 +60,7 @@ SUBDIRS += display400 clock400s
 endif
 
 if HAVE_COLORLCD480
-SUBDIRS += display480
+SUBDIRS += display480 clock480
 endif
 
 if HAVE_COLORLCD720
