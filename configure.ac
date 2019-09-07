@@ -878,6 +878,7 @@ data/7segment/ChannelNumber/Makefile
 data/clock220/Makefile
 data/clock400/Makefile
 data/clock400s/Makefile
+data/clock480/Makefile
 data/clock800/Makefile
 data/displaytext/Makefile
 data/displaydualtext/Makefile
