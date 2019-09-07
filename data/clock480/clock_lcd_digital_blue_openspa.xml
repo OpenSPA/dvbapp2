@@ -1,17 +1,17 @@
-<screen position="0,0" size="800,480">
-	<widget source="global.CurrentTime" render="Label" position="50,45" foregroundColor="#0065b0fe" size="600,120" font="LCD;100" halign="left" zPosition="1" transparent="1">
-		<convert type="ClockToText">Format:%d   %m   %Y</convert>
+<screen position="0,0" size="480,320">
+	<widget source="global.CurrentTime" render="Label" position="20,30" foregroundColor="#0065b0fe" size="360,80" font="LCD;66" halign="left" zPosition="1" transparent="1">
+		<convert type="ClockToText">Format:%d  %m  %Y</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="630,45" foregroundColor="#0065b0fe" size="200,120" font="LCD;100" halign="left" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="358,30" foregroundColor="#0065b0fe" size="120,80" font="LCD;66" halign="left" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%a</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="30,187" size="460,200" font="LCD; 180" foregroundColor="#0065b0fe" valign="center" halign="right" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="38,114" size="296,143" font="LCD; 116" foregroundColor="#0065b0fe" valign="center" halign="right" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%H:%M</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="500,267" size="130,100" font="LCD; 100" foregroundColor="#0065b0fe" halign="left" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="350,168" size="108,113" font="LCD; 66" foregroundColor="#0065b0fe" halign="left" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%S</convert>
 	</widget>
-	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="40,360" size="70,70" zPosition="4" alphatest="blend">
+	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="20,178" size="42,46" zPosition="4" alphatest="blend">
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>

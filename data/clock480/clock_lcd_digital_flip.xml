@@ -1,18 +1,18 @@
-<screen position="0,0" size="800,480">
-	<ePixmap pixmap="display/clock_skin/digital_lcd_flip.png" position="0,0" size="800,480" zPosition="0" />
-	<widget source="global.CurrentTime" render="Label" position="65,360" foregroundColor="white" size="650,120" font="FdLcD;70" halign="center" zPosition="1" transparent="1">
+<screen position="0,0" size="480,320">
+	<ePixmap pixmap="display/clock_skin/digital_lcd_flip.png" position="0,0" size="480,320" zPosition="0" />
+	<widget source="global.CurrentTime" render="Label" position="44,232" foregroundColor="white" size="390,80" font="FdLcD;44" halign="center" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%a, %b %d, %Y</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="70,130" size="200,200" font="FdLcD; 155" foregroundColor="black" valign="center" halign="right" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="34,86" size="120,133" font="FdLcD; 76" foregroundColor="black" valign="center" halign="right" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%H</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="303,128" size="200,200" font="FdLcD; 155" foregroundColor="black" valign="center" halign="left" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="190,86" size="120,133" font="FdLcD; 76" foregroundColor="black" valign="center" halign="left" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%M</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="505,141" size="200,200" font="FdLcD; 155" foregroundColor="black" halign="left" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="312,86" size="120,133" font="FdLcD; 76" foregroundColor="black" valign="center" halign="left" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%S</convert>
 	</widget>
-	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="40,20"  size="70,70" zPosition="4" alphatest="blend">
+	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="18,16"  size="42,46" zPosition="4" alphatest="blend">
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>

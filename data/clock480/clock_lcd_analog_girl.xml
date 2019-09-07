@@ -1,15 +1,15 @@
-<screen position="0,0" size="800,480">
-	<ePixmap pixmap="display/clock_skin/analog_lcd_girl.png" position="0,0" size="800,480" zPosition="0" />
-	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="120,center" size="425,420" hColor="black" positionwidth="195" positionheight="420" linewidth="10" linesize="100" zPosition="3" alphatest="on">
+<screen position="0,0" size="480,320">
+	<ePixmap pixmap="display/clock_skin/analog_lcd_girl.png" position="0,0" size="480,320" zPosition="0" />
+	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="4,4" size="472,312" hColor="black" positionwidth="250" positionheight="320" linewidth="10" linesize="90" zPosition="3" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="120,center" size="425,420" mColor="black" positionwidth="195" positionheight="420" linewidth="9" linesize="150" zPosition="4" alphatest="on">
+	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="4,4" size="472,312" mColor="black" positionwidth="250" positionheight="320" linewidth="8" linesize="120" zPosition="4" alphatest="on">
 		<convert type="OMaclock">Minutes</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="120,center" size="425,420" sColor="red" positionwidth="195" positionheight="420" linewidth="6" linesize="150" zPosition="5" alphatest="on">
+	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="4,4" size="472,312" sColor="red" positionwidth="250" positionheight="320" linewidth="6" linesize="120" zPosition="5" alphatest="on">
 		<convert type="OMaclock">Seconds</convert>
 	</widget>
-	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="40,20" size="70,70" zPosition="4" alphatest="blend">
+	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="24,13" size="42,46" zPosition="4" alphatest="blend">
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>

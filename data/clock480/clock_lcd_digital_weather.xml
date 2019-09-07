@@ -1,24 +1,24 @@
-<screen position="0,0" size="800,480">
-	<ePixmap pixmap="display/clock_skin/digital_lcd_weather.png" position="0,0" size="800,480" zPosition="0" />
-	<widget source="session.RecordState" render="Label" position="540,280" size="300,150" font="FdLcD; 100" halign="left" foregroundColor="white" transparent="1" zPosition="4" valign="center">
+<screen position="0,0" size="480,320">
+	<ePixmap pixmap="display/clock_skin/digital_lcd_weather.png" position="0,0" size="480,320" zPosition="0" />
+	<widget source="session.RecordState" render="Label" position="318,176" size="180,100" font="FdLcD; 78" halign="left" foregroundColor="white" transparent="1" zPosition="4" valign="center">
 		<convert type="wheaterSpzVfd">TemperaturaGrados</convert>
 	</widget>
-	<widget source="session.RecordState" render="spzWfLcd" position="260,200" size="250,250" zPosition="4" transparent="1" alphatest="blend">
+	<widget source="session.RecordState" render="spzWfLcd" position="156,133" size="150,166" zPosition="4" transparent="1" alphatest="blend">
 		<convert type="wheaterSpzVfd">IconoHoyLcd</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="40,280" foregroundColor="white" size="290,180" font="FdLcD;70" halign="center" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="24,186" foregroundColor="white" size="174,120" font="FdLcD;46" halign="center" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%a</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="40,360" foregroundColor="white" size="290,100" font="FdLcD;70" halign="center" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="24,238" foregroundColor="white" size="174,66" font="FdLcD;44" halign="center" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%b %d</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="145,53" size="200,200" font="FdLcD; 170" foregroundColor="black" valign="center" halign="right" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="50,26" size="156,160" font="FdLcD; 96" foregroundColor="black" valign="center" halign="right" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%H</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="426,34" size="260,240" font="FdLcD; 170" foregroundColor="black" valign="center" halign="left" zPosition="1" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="258,26" size="156,160" font="FdLcD; 96" foregroundColor="black" valign="center" halign="left" zPosition="1" transparent="1">
 		<convert type="ClockToText">Format:%M</convert>
 	</widget>
-	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="40,20" zPosition="4" size="70,70" alphatest="blend" >
+	<widget source="session.RecordState" render="Pixmap" pixmap="display/skin_default/record.png" position="18,16" zPosition="4" size="42,46" alphatest="blend" >
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>
