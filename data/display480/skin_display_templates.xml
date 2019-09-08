@@ -509,3 +509,4 @@
 		<widget source="parent.Title" render="Label" position="24,13" size="432,166" font="FdLcD; 53" halign="center" valign="center" foregroundColor="white" />
 	</screen> 
 </skin>
+

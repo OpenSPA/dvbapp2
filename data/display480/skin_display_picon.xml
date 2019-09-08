@@ -35,14 +35,15 @@
 	
 	<!-- CHANNEL SELECTION-->
 	<screen name="ChannelSelection_summary" position="0,0" size="480,320"> 
-		<panel name="LCDChannelSelectionChannelName" />
-		<panel name="LCDChannelSelectionProgramName" />
-		<panel name="LCDChannelSelectionProgress" />
-		<panel name="LCDChannelSelectionRemainingTime" />
-		<panel name="LCDChannelSelectionStartTime" />
-		<eLabel text="-" position="312,260" size="42,46" foregroundColor="white" font="FdLcD; 40" halign="center" valign="center" />
-		<panel name="LCDChannelSelectionEndTime" />
+		<panel name="LCDPiconChannelSelectionProgramName" />
+		<panel name="LCDPiconChannelSelectionProgress" />
+		<panel name="LCDPiconChannelSelectionRemainingTime" />
+		<panel name="LCDChannelSelectionPicon" />
+		<panel name="LCDPiconStatusIcons" />
 		<panel name="LCDRecordIcon" />
+		<panel name="LCDPiconChannelSelectionStartTime" />
+		<eLabel text="-" position="312,260" size="42,46" foregroundColor="white" font="FdLcD; 40" halign="center" valign="center" />
+        <panel name="LCDPiconChannelSelectionEndTime" />
 	</screen>
 	<screen name="ChannelSelectionRadio_summary" position="0,0" size="480,320">
 		<widget source="parent.RdsDecoder" render="Label" position="24,133" size="432,100" foregroundColor="white" font="FdLcDLight; 43" halign="center" valign="center" zPosition="2">
@@ -52,14 +53,15 @@
 	
 	<!-- EPG -->
 	<screen name="GraphicalEPGPIG_summary" position="0,0" size="480,320">
-		<panel name="LCDEPGChannelName" />
-		<panel name="LCDEPGProgramName" />
-		<panel name="LCDEPGProgress" />
-		<panel name="LCDEPGRemainingTime" />
-		<panel name="LCDEPGStartTime" />
-		<eLabel text="-" position="312,260" size="42,46" foregroundColor="white" font="FdLcD; 40" halign="center" valign="center" />
-		<panel name="LCDEPGEndTime" />
+		<panel name="LCDPiconEPGProgramName" />
+		<panel name="LCDPiconEPGProgress" />
+		<panel name="LCDPiconEPGRemainingTime" />
+		<panel name="LCDEPGPicon" />
+		<panel name="LCDPiconStatusIcons" />
 		<panel name="LCDRecordIcon" />
+		<panel name="LCDPiconEPGStartTime" />
+		<eLabel text="-" position="312,260" size="42,46" foregroundColor="white" font="FdLcD; 40" halign="center" valign="center" />
+        <panel name="LCDPiconEPGSEndTime" />
 	</screen>
 	<screen name="GraphicalEPG_summary" position="0,0" size="480,320">
 		<panel name="GraphicalEPGPIG_summary" />
@@ -73,24 +75,41 @@
 	
 	<!-- INFOBAR -->
 	<screen name="InfoBarSummary" position="0,0" size="480,320"> 
-		<panel name="LCDInfoBarChannelName" />
-		<panel name="LCDInfoBarProgramName" />
-		<panel name="LCDInfoBarProgress" />
-		<panel name="LCDInfoBarRemainingTime" />
-		<panel name="LCDInfoBarStartTime" />
-		<eLabel text="-" position="312,260" size="42,46" foregroundColor="white" font="FdLcD; 40" halign="center" valign="center" />
-		<panel name="LCDInfoBarEndTime" />
+		<panel name="LCDPiconInfoBarProgramName" />
+		<panel name="LCDPiconInfoBarProgress" />
+        <panel name="LCDPiconInfoBarRemainingTime" />
+		<panel name="LCDPicon" />
+		<panel name="LCDPiconStatusIcons" />
 		<panel name="LCDRecordIcon" />
+        <panel name="LCDPiconInfoBarStartTime" />
+		<eLabel text="-" position="312,260" size="42,46" foregroundColor="white" font="FdLcD; 40" halign="center" valign="center" />
+        <panel name="LCDPiconInfoBarEndTime" />
 	</screen>
 	
 	<!-- STANDBY 
 	<screen name="StandbySummary" position="0,0" size="480,320"> 
-		<widget source="global.CurrentTime" render="Label" position="24,46" size="432,120" font="FdLcD; 66" foregroundColor="yellow" halign="center" valign="center" zPosition="10">
+		<panel name="AnalogueClock" />
+		<widget source="global.CurrentTime" render="Label" position="282,16" foregroundColor="white" size="180,33" font="FdLcD; 30" halign="right">
+			<convert type="ClockToText">Format:%d.%m.%Y</convert>
+		</widget>
+ 		<widget source="global.CurrentTime" render="Label" position="12,246" foregroundColor="white" size="168,53" font="FdLcD; 46" halign="left">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="24,13" zPosition="3" size="42,46" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="24,13"  size="42,46" >
+			<convert type="ConditionalShowHide" />
+		</widget>-->
+        <!--        
+		<widget source="global.CurrentTime" render="Label" position="24,46" size="432,120" foregroundColor="white" font="FdLcD; 66" halign="center" valign="center" zPosition="10">
 			<convert type="ClockToText">Mixed</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="24,180" size="432,50" font="FdLcD; 46" foregroundColor="white" halign="center" zPosition="10">
-			<convert type="ClockToText">FullDate</convert>
+			<convert type="ClockToText">ShortFullDate</convert>
 		</widget>
+        
 	</screen>-->
 		
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
