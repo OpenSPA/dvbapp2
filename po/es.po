@@ -10554,10 +10554,10 @@ msgstr "Sintonizador"
 
 #
 msgid "Tuner "
-msgstr "Sintonizador "
+msgstr "Sint. "
 
 msgid "Tuner :"
-msgstr "Sintonizador :"
+msgstr "Sint. :"
 
 #
 msgid "Tuner Configuration"
