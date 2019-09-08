@@ -1,9 +1,9 @@
 <screen position="0,0" size="800,480">
 	<ePixmap pixmap="display/clock_skin/analog_lcd.png" position="0,0" size="800,480" zPosition="0" />
-	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="425,420" hColor="black" positionwidth="425" positionheight="420" linewidth="10" linesize="120" zPosition="3" alphatest="on">
+	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="425,420" hColor="white" positionwidth="425" positionheight="420" linewidth="10" linesize="120" zPosition="3" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="425,420" mColor="black" positionwidth="425" positionheight="420" linewidth="9" linesize="170" zPosition="4" alphatest="on">
+	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="425,420" mColor="white" positionwidth="425" positionheight="420" linewidth="9" linesize="170" zPosition="4" alphatest="on">
 		<convert type="OMaclock">Minutes</convert>
 	</widget>
 	<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="425,420" sColor="red" positionwidth="425" positionheight="420" linewidth="6" linesize="170" zPosition="5" alphatest="on">
