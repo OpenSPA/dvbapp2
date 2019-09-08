@@ -14118,7 +14118,7 @@ msgid "Configure the slow motion speeds."
 msgstr "Configura les velocitats a càmara lenta."
 
 msgid "Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
-msgstr "Configura la font de dades del 'frontend' com es mostra a la barra d'informació. 'Ajustos' són com estan guardats a configuracions. 'Sintonitzador' és com estàmreportat pel sintonitzador."
+msgstr "Configura la font de dades del 'frontend' com es mostra a la barra d'informació. 'Ajustos' són com estan guardats a configuracions. 'Sintonitzador' és com està reportat pel sintonitzador."
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Configura el retard dels subtítols quan no hi ha informació de sincronització."
@@ -18184,3 +18184,15 @@ msgstr "Si, però si no disponible mostra els temporitzadors"
 
 msgid "No, show always the timer list"
 msgstr "No, mostra sempre llista temporitzadors"
+
+msgid "Preparation time for recording (seconds)"
+msgstr "Temps de preparació per a gravacions (segons)"
+
+msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
+msgstr "Durant aquest temps, la destinació de la transmisió i la gravació es comproven. Si la destinació de la gravació (ex. NAS) no està preparat a l'hora de la gravació, es pot incrementar el temps"
+
+msgid "Show recording symbol"
+msgstr "Mostrar símbol de gravació"
+
+msgid "Show warning before restart"
+msgstr "Mostrar avís abans de reiniciar"

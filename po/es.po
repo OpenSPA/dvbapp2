@@ -16904,6 +16904,9 @@ msgstr "Esta opción configura la nitidez de la imagen."
 msgid "This option allows you can config the Colorimetry for HDR"
 msgstr "Esta opción te permite configurar la colorimetría para HDR"
 
+msgid "This option allows you can config the Colorspace from Auto to RGB"
+msgstr "Esta opción te permite configurar el espacio de color de auto a RGB"
+
 msgid "This option allows you can config the Colordepth for UHD"
 msgstr "Esta opción te permite configurar la profundidad de color para UHD"
 
@@ -18229,3 +18232,15 @@ msgstr "Si, pero si no disponible muestra temporizadores"
 
 msgid "No, show always the timer list"
 msgstr "No, muestra siempre lista temporizadores"
+
+msgid "Preparation time for recording (seconds)"
+msgstr "Tiempo de preparación para grabaciones (segundos)"
+
+msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
+msgstr "Durante ese tiempo, el destino de la transmisión y la grabación se chequean. Si el destino de la grabación (ej. NAS) no está preparado a la hora de la grabación, se puede incrementar el tiempo"
+
+msgid "Show recording symbol"
+msgstr "Mostrar símbolo de grabación"
+
+msgid "Show warning before restart"
+msgstr "Mostrar aviso antes de reiniciar"
