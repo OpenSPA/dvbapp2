@@ -18244,3 +18244,36 @@ msgstr "Mostrar símbolo de grabación"
 
 msgid "Show warning before restart"
 msgstr "Mostrar aviso antes de reiniciar"
+
+msgid "Please set your time zone"
+msgstr "Por favor, configura tu zona horaria"
+
+msgid "HDMI HDR Type"
+msgstr "Tipo HDR"
+
+msgid "HLG Support"
+msgstr "Soporte HLG"
+
+msgid "HDR10 Support"
+msgstr "Soporte HDR10"
+
+msgid "Allow 12bit"
+msgstr "Permitir 12bit"
+
+msgid "Allow 10bit"
+msgstr "Permitir 10bit"
+
+msgid "This option allows you can force the HDR Modes for UHD"
+msgstr "Esta opción permite forzar los modos HDR para UHD"
+
+msgid "This option allows you can force the HLG Modes for UHD"
+msgstr "Esta opción permite forzar los modos HLG para UHD"
+
+msgid "This option allows you can force the HDR10 Modes for UHD"
+msgstr "Esta opción permite forzar los modos HDR10 para UHD"
+
+msgid "This option allows you can enable or disable the 12 Bit Color Mode"
+msgstr "Esta opción permite activar o desactivar el modo color 12 Bit"
+
+msgid "This option allows you can enable or disable the 10 Bit Color Mode"
+msgstr "Esta opción permite activar o desactivar el modo color 10 Bit"

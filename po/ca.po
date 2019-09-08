@@ -2748,7 +2748,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DLNA support"
-msgstr "Soport DLNA"
+msgstr "Suport DLNA"
 
 msgid "DMM advanced"
 msgstr "DMM avançat"
@@ -4507,7 +4507,7 @@ msgstr "Informació jeràrquica"
 
 #
 msgid "High bitrate support"
-msgstr "Soport de bitrate alt"
+msgstr "Suport de bitrate alt"
 
 msgid "History back"
 msgstr "Historial anterior"
@@ -5571,7 +5571,7 @@ msgstr "Multimèdia"
 
 #
 msgid "Multiple service support"
-msgstr "Soport de canals múltiples"
+msgstr "Suport de canals múltiples"
 
 msgid "Multiplex"
 msgstr "Multiplex"
@@ -9708,7 +9708,7 @@ msgstr ""
 "Si us plau, instal·la'l."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
-msgstr "El DVD estàndar no soporta streams de vídeo H.264 (HDTV)"
+msgstr "El DVD estàndar no suporta streams de vídeo H.264 (HDTV)"
 
 msgid ""
 "The DreamPlex plugin is not installed!\n"
@@ -15267,7 +15267,7 @@ msgid "This option allows you to disable sorting of the plugin browser."
 msgstr "Aquesta opció et permet desactivar l'opció d'ordenar a l'explorador de plugins"
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
-msgstr "Aquesta opció permet visualitzar SNR com percentatge (no tots els receptors ho soporten)."
+msgstr "Aquesta opció permet visualitzar SNR com percentatge (no tots els receptors ho suporten)."
 
 msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
 msgstr "Aquesta opció trasllada l'estat PVR de d'una finestra separada a la barra d'informació del reproductor de pel·lícules."
@@ -17204,7 +17204,7 @@ msgid "Quad PiP is not available."
 msgstr "Quad PiP no està disponible."
 
 msgid "Box or driver is not support Quad PiP."
-msgstr "El receptor o driver no soporta Quad PiP"
+msgstr "El receptor o driver no suporta Quad PiP"
 
 msgid "Input channel name."
 msgstr "Nom canal d'entrada."
@@ -17694,7 +17694,7 @@ msgid "Load Default Settings"
 msgstr "Carregar configuracions per defecte"
 
 msgid "Activation takes place immediately. If this feature is not supported, the volume keys has no function!"
-msgstr "L'activació es fa immediatament. Si aquesta característica no està soportada, els botons de volum no funcionaran!"
+msgstr "L'activació es fa immediatament. Si aquesta característica no està suportada, els botons de volum no funcionaran!"
 
 msgid "Try to slow down the send interval if not all commands are executed."
 msgstr "Intenta disminuir l'interval d'enviament si no s'executen totes les ordres."
@@ -17754,7 +17754,7 @@ msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Ma
 msgstr "Tarjeta SD no està inicialitzada per a multiboot - Sortir i utilitzar l'Administrador d'imatges Multiboot per a inicialitzar"
 
 msgid "Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work."
-msgstr "Mode 1 soporta Kodi, PiP pot no funcionar.\nMode 12 soporta PiP, Kodi pot no funcionar."
+msgstr "Mode 1 suporta Kodi, PiP pot no funcionar.\nMode 12 suporta PiP, Kodi pot no funcionar."
 
 msgid "Retrieving image slots - Please wait..."
 msgstr "Recuperant particions d'imatges - Si us plau espera..."
@@ -18196,3 +18196,36 @@ msgstr "Mostrar símbol de gravació"
 
 msgid "Show warning before restart"
 msgstr "Mostrar avís abans de reiniciar"
+
+msgid "Please set your time zone"
+msgstr "Si us plau, configura la teva zona horària"
+
+msgid "HDMI HDR Type"
+msgstr "Tipus HDR"
+
+msgid "HLG Support"
+msgstr "Suport HLG"
+
+msgid "HDR10 Support"
+msgstr "Suport HDR10"
+
+msgid "Allow 12bit"
+msgstr "Permetre 12bit"
+
+msgid "Allow 10bit"
+msgstr "Permetre 10bit"
+
+msgid "This option allows you can force the HDR Modes for UHD"
+msgstr "Aquesta opció permet forçar els modes HDR per a UHD"
+
+msgid "This option allows you can force the HLG Modes for UHD"
+msgstr "Aquesta opció permet forçar els modes HLG per a UHD"
+
+msgid "This option allows you can force the HDR10 Modes for UHD"
+msgstr "Aquesta opció permet forçar els modes HDR10 per a UHD"
+
+msgid "This option allows you can enable or disable the 12 Bit Color Mode"
+msgstr "Aquesta opció permet activar o desactivar el mode color 12 Bit"
+
+msgid "This option allows you can enable or disable the 10 Bit Color Mode"
+msgstr "Aquesta opció permet activar o desactivar el mode color 10 Bit"
