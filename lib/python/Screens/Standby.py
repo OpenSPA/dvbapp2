@@ -297,7 +297,7 @@ class Standby(Standby2):
 		Notifications.AddNotification(Screens.Standby.Standby2)
 
 class StandbySummary(Screen):
-	if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbquad', 'gbquad4k', 'gbquadplus', 'gbue4k', 'gbultraue', 'gbultraueh', 'sf208', 'sf228', 'vuuno4kse', 'vuultimo4k', 'vuduo4k'):
+	if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbquad', 'gbquad4k', 'gbquadplus', 'gbue4k', 'gbultraue', 'gbultraueh', 'sf208', 'sf228', 'vusolo4k', 'vuuno4kse', 'vuultimo4k', 'vuduo4k'):
 		def __init__(self, session, what = None):
 			root = "/usr/share/enigma2/display/clock_skin/"
 			try:

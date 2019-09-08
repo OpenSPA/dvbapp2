@@ -286,8 +286,8 @@
 		<widget source="entry" render="Label" position="0,52" size="471,45" font="FdLcD;30" noWrap="1" halign="center" valign="center" transparent="1" />
 		<eLabel position="0,97" size="471,1" backgroundColor="white" />
 		<widget source="desc" render="Label" position="0,100" size="471,220" font="FdLcD;30" halign="center" valign="center" transparent="1" />
-	</screen>	
-<!-- standby -->
+	</screen>
+<!-- standby >
 	<screen name="StandbySummary" position="5,0" size="471,320">
 		<widget source="global.CurrentTime" render="Label" position="center,67" size="265,133" font="FdLcD;85" halign="center" transparent="1" noWrap="1" >
 			<convert type="ClockToText">Format:%H:%M</convert>
@@ -298,7 +298,7 @@
 		</widget>
 		<panel name="MeinRecordingPanel" />
 		<panel name="MeinTunerInfoPanel" />
-	</screen>
+	</screen-->
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,28" font="FdLcD;25" noWrap="1" />
