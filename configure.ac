@@ -894,8 +894,8 @@ data/display400/openSPA_classic/Makefile
 data/display400/openSPA_modern/Makefile
 data/display400/openSPA_modern_plus/Makefile
 data/display480/Makefile
-data/display/skin_default/Makefile
-data/display/Fullscreen_Picon/Makefile
+data/display480/skin_default/Makefile
+data/display480/Fullscreen_Picon/Makefile
 data/display720/Makefile
 data/display800/Makefile
 data/display800/Default_with_Picon_Fullscreen/Makefile
