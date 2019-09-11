@@ -519,5 +519,41 @@
 	<screen name="EPGExtensionsList_summary" position="0,0" size="480,320">
 		<widget source="parent.Title" render="Label" position="24,13" size="432,166" font="FdLcD; 46" halign="center" valign="center" foregroundColor="white" />
 	</screen> 
+
+<!-- OpenSPA -->
+	<screen name="newChannelSelection_summary" position="0,0" size="480,320">
+		<widget source="parent.ServiceEvent" render="Label" position="4,6" size="472,70" font="FdLcD; 50" halign="center" foregroundColor="yellow" zPosition="2">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Label" position="4,80" size="472,180" font="FdLcDLight; 36" halign="center" valign="center" foregroundColor="white" zPosition="2">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="270,278" size="190,60" font="FdLcD;36" halign="right">
+			<convert type="ClockToText">Format:%d.%m.%Y</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="10,264" size="150,60" font="FdLcD;52" halign="center" valign="center">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="record2.png" position="190,286" size="50,30" zPosition="1" alphatest="blend">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+	<screen name="newChannelSelectionNOPIP_summary" position="0,0" size="480,320">
+		<widget source="parent.ServiceEvent" render="Label" position="4,6" size="472,70" font="FdLcD; 50" halign="center" foregroundColor="yellow" zPosition="2">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Label" position="4,80" size="472,180" font="FdLcDLight; 36" halign="center" valign="center" foregroundColor="white" zPosition="2">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="270,278" size="190,60" font="FdLcD;36" halign="right">
+			<convert type="ClockToText">Format:%d.%m.%Y</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="10,264" size="150,60" font="FdLcD;52" halign="center" valign="center">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="record2.png" position="190,286" size="50,30" zPosition="1" alphatest="blend">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
 </skin>
 
