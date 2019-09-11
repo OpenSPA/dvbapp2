@@ -1799,7 +1799,7 @@ msgstr "Tiempo de inicio"
 
 #
 msgid "Behavior when a movie reaches the end"
-msgstr "Comportamiento con película terminando"
+msgstr "Comportamiento con película acabada"
 
 msgid "Big PiP"
 msgstr "PiP grande"
@@ -6558,10 +6558,10 @@ msgid "Play next"
 msgstr "Reproducir siguiente"
 
 msgid "Play next (return to movie list)"
-msgstr "Reproducir siguiente (volver a la lista de películas)"
+msgstr "Reproducir siguiente (volver a la lista)"
 
 msgid "Play next (return to previous service)"
-msgstr "Reproducir siguiente (volver al canal anterior)"
+msgstr "Reproducir siguiente (volver al canal)"
 
 msgid "Play previous"
 msgstr "Reproducir anterior"
@@ -16637,13 +16637,13 @@ msgid "In expert mode, configure which tuners will be preferred for recordings, 
 msgstr "En modo experto, configura que sintonizadores serán los preferidos para grabaciones, cuando esté disponible más de un sintonizador."
 
 msgid "Experimental: strict limitation to preferred tuners for recordings"
-msgstr "Experimental: limitación estricta a sintonizadores preferidos para grabaciones"
+msgstr "Experimental: limitación estricta a sint. preferidos para grabaciones"
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active recording the same channel."
 msgstr "Configura si se asigna otro sintonizador de la lista de preferidos para grabaciones en lugar de compartir un sintonizador que ya esté activo grabando el mismo canal."
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr "Sintonizadores preferidos para grabaciones, selección múltiple permitida"
+msgstr "Sint. preferidos para grabaciones, selección múltiple permitida"
 
 msgid "Experimental mode"
 msgstr "Modo experimental"
@@ -18233,6 +18233,9 @@ msgstr "Si, pero si no disponible muestra temporizadores"
 msgid "No, show always the timer list"
 msgstr "No, muestra siempre lista temporizadores"
 
+msgid "No, show always the plugin browser"
+msgstr "No, muestra siempre lista de plugins"
+
 msgid "Preparation time for recording (seconds)"
 msgstr "Tiempo de preparación para grabaciones (segundos)"
 
@@ -18277,3 +18280,18 @@ msgstr "Esta opción permite activar o desactivar el modo color 12 Bit"
 
 msgid "This option allows you can enable or disable the 10 Bit Color Mode"
 msgstr "Esta opción permite activar o desactivar el modo color 10 Bit"
+
+msgid "force enabled"
+msgstr "forzado activado"
+
+msgid "force disabled"
+msgstr "forzado desactivado"
+
+msgid "If muted, hide mute icon or mute information after few seconds."
+msgstr "Si está en mute, oculta el icono o la información mute pasados unos segundos"
+
+msgid "Toggle Pillarbox<>Pan&Scan"
+msgstr "Cambia Pillarbox<>Pan&Scan"
+
+msgid "Behave like stop-button"
+msgstr "Comportamiento como botón stop"

@@ -18185,6 +18185,9 @@ msgstr "Si, però si no disponible mostra els temporitzadors"
 msgid "No, show always the timer list"
 msgstr "No, mostra sempre llista temporitzadors"
 
+msgid "No, show always the plugin browser"
+msgstr "No, mostra sempre llista de plugins"
+
 msgid "Preparation time for recording (seconds)"
 msgstr "Temps de preparació per a gravacions (segons)"
 
@@ -18229,3 +18232,18 @@ msgstr "Aquesta opció permet activar o desactivar el mode color 12 Bit"
 
 msgid "This option allows you can enable or disable the 10 Bit Color Mode"
 msgstr "Aquesta opció permet activar o desactivar el mode color 10 Bit"
+
+msgid "force enabled"
+msgstr "forçat activat"
+
+msgid "force disabled"
+msgstr "forçat desactivat"
+
+msgid "If muted, hide mute icon or mute information after few seconds."
+msgstr "Si està en mute, oculta l'icona o la informació mute passats uns segons"
+
+msgid "Toggle Pillarbox<>Pan&Scan"
+msgstr "Canvia Pillarbox<>Pan&Scan"
+
+msgid "Behave like stop-button"
+msgstr "Comportament com botó stop"
