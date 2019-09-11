@@ -1,7 +1,4 @@
 SUBDIRS = skin_default Fullscreen_Picon
 
-installdir = $(pkgdatadir)/display/skin_default
-dist_install_DATA = *.png*.ttf
-
 datainstalldir = $(pkgdatadir)/display
 dist_datainstall_DATA = *.xml piconprev.png prev.png
