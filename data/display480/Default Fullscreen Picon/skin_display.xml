@@ -34,43 +34,37 @@
 	<!-- MAIN -->
 	
 	<!-- CHANNEL SELECTION-->
-	<screen name="ChannelSelection_summary" position="0,0" size="800,480"> 
+	<screen name="ChannelSelection_summary" position="0,0" size="480,320"> 
 		<panel name="LCDFullChannelSelectionPicon" />
 	</screen>
-	<screen name="ChannelSelectionRadio_summary" position="0,0" size="800,480">
-		<widget source="parent.RdsDecoder" render="Label" position="40,200" size="720,150" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="center" zPosition="2">
+	<screen name="ChannelSelectionRadio_summary" position="0,0" size="480,320">
+		<widget source="parent.RdsDecoder" render="Label" position="24,133" size="432,100" foregroundColor="white" font="FdLcDLight;56" halign="center" valign="center" zPosition="2">
 			<convert type="RdsInfo">RtpText</convert>
 		</widget>
+		<panel name="LCDRecordIcon3" />
 	</screen>
 	
 	<!-- EPG -->
-	<screen name="GraphicalEPGPIG_summary" position="0,0" size="800,480">
+	<screen name="GraphicalEPGPIG_summary" position="0,0" size="480,320">
 		<panel name="LCDFullEPGPicon" />
 	</screen>
-	<screen name="GraphicalEPG_summary" position="0,0" size="800,480">
+	<screen name="GraphicalEPG_summary" position="0,0" size="480,320">
 		<panel name="GraphicalEPGPIG_summary" />
 	</screen>
-	<screen name="GraphicalInfoBarEPG_summary" position="0,0" size="800,480">
+	<screen name="GraphicalInfoBarEPG_summary" position="0,0" size="480,320">
 		<panel name="GraphicalEPGPIG_summary" />
 	</screen>
-	<screen name="EPGSelectionMulti_summary" position="0,0" size="800,480">
+	<screen name="EPGSelectionMulti_summary" position="0,0" size="480,320">
 		<panel name="GraphicalEPGPIG_summary" />
+		<panel name="LCDRecordIcon3" />
 	</screen>
 	
 	<!-- INFOBAR -->
-	<screen name="InfoBarSummary" position="0,0" size="800,480"> 
+	<screen name="InfoBarSummary" position="0,0" size="480,320"> 
 		<panel name="LCDFullPicon" />
-	</screen>
-	
-	<!-- STANDBY -->
-	<screen name="StandbySummary" position="0,0" size="800,480"> 
-		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,180" foregroundColor="yellow" font="FdLcD;100" halign="center" valign="center" zPosition="10">
-			<convert type="ClockToText">Format:%H:%M:%S</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" position="40,270" size="720,75" font="FdLcD;70" foregroundColor="white" halign="center" valign="center" zPosition="10">
-			<convert type="ClockToText">Format:%a  %d.%m.%Y</convert>
-		</widget>
+		<panel name="LCDRecordIcon3" />
 	</screen>
 		
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
 </skin>
+
