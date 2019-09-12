@@ -103,15 +103,15 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
-    #two lines options
-    config.usage.servicelist_twolines = ConfigYesNo(default = False)
+	#two lines options
+	config.usage.servicelist_twolines = ConfigYesNo(default = False)
 	config.usage.servicelist_twolines.addNotifier(refreshServiceList)
-    config.usage.serviceitems_per_page_twolines = ConfigSelectionNumber(default = 12, stepwidth = 1, min = 4, max = 20, wraparound = True)
-    config.usage.servicelist_servicenumber_valign = ConfigSelection(default = "0", choices = [("0", _("centered")), ("1", _("upper line"))])
+	config.usage.serviceitems_per_page_twolines = ConfigSelectionNumber(default = 12, stepwidth = 1, min = 4, max = 20, wraparound = True)
+	config.usage.servicelist_servicenumber_valign = ConfigSelection(default = "0", choices = [("0", _("centered")), ("1", _("upper line"))])
 	config.usage.servicelist_servicenumber_valign.addNotifier(refreshServiceList)
 	config.usage.servicelist_eventprogress_valign = ConfigSelection(default = "0", choices = [("0", _("centered")), ("1", _("upper line"))])
 	config.usage.servicelist_eventprogress_valign.addNotifier(refreshServiceList)
-    config.usage.servicelist_eventprogress_view_mode = ConfigSelection(default = "0_barright", choices = [
+	config.usage.servicelist_eventprogress_view_mode = ConfigSelection(default = "0_barright", choices = [
 #		single
 		('0_no', _("No")),
 		('0_barleft', _("Progress bar left")),
@@ -330,6 +330,7 @@ def InitUsageConfig():
 			os.mkdir(resolveFilename(SCOPE_AUTORECORD),0755)
 		except:
 			pass
+
 	config.usage.autorecord_path = ConfigText(default = resolveFilename(SCOPE_AUTORECORD))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.autorecord_path.value
@@ -342,7 +343,6 @@ def InitUsageConfig():
 			config.usage.autorecord_path.save()
 	config.usage.autorecord_path.addNotifier(autorecordpathChanged, immediate_feedback = False)
 	config.usage.allowed_autorecord_paths = ConfigLocations(default = [resolveFilename(SCOPE_AUTORECORD)])
-
 
 	config.usage.movielist_trashcan = ConfigYesNo(default = True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default = False)
@@ -495,7 +495,7 @@ def InitUsageConfig():
 		('barright', _("Progress bar right")),
 		('percleft', _("Percentage left")),
 		('percright', _("Percentage right")),
-        ('minsleft', _("Remaining minutes left")),
+		('minsleft', _("Remaining minutes left")),
 		('minsright', _("Remaining minutes right")),
 		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
@@ -903,8 +903,6 @@ def InitUsageConfig():
 	else:
 		config.usage.time.enabled_display.value = False
 		config.usage.time.display.value = config.usage.time.display.default
-
-
 
 	config.usage.boolean_graphic = ConfigYesNo(default=False)
 	config.usage.show_slider_value = ConfigYesNo(default=True)
