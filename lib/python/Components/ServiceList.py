@@ -411,7 +411,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setServicePiconDownsize(int(config.usage.servicelist_picon_downsize.value))
 		self.l.setServicePiconRatio(int(config.usage.servicelist_picon_ratio.value))
 
-        twoLines = config.usage.servicelist_twolines.value
+		twoLines = config.usage.servicelist_twolines.value
 		self.l.setShowTwoLines(twoLines)
 
 		if config.usage.service_icon_enable.value:
