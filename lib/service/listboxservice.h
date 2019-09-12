@@ -114,6 +114,8 @@ public:
 	void setNonplayableMargins(int value) { m_nonplayable_margins = value; }
 	void setItemsDistances(int value) { m_items_distances = value; }
 
+	void setProgressUnit(const std::string &string) { m_progress_unit = string; }
+
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
 
 	enum {
