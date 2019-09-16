@@ -302,7 +302,7 @@ class FlashImage(Screen):
 
 			def findmedia(path):
 				def avail(path):
-					if not '/mmc' in path and os.path.isdir(path) and os.access(path, os.W_OK):
+					if os.path.isdir(path) and os.access(path, os.W_OK):
 						try:
 							statvfs = os.statvfs(path)
 							return (statvfs.f_bavail * statvfs.f_frsize) / (1 << 20)
@@ -313,7 +313,7 @@ class FlashImage(Screen):
 					st_dev = os.stat(path).st_dev
 					return (os.major(st_dev), os.minor(st_dev)) in diskstats
 
-				diskstats = [(int(x[0]), int(x[1])) for x in [x.split()[0:3] for x in open('/proc/diskstats').readlines()] if x[2].startswith("sd")]
+				diskstats = [(int(x[0]), int(x[1])) for x in [x.split()[0:3] for x in open('/proc/diskstats').readlines()] if x[2].startswith("sd") or x[2].startswith("mmc")]
 				if os.path.isdir(path) and checkIfDevice(path, diskstats) and avail(path) > 500:
 					return (path, True)
 				mounts = []
