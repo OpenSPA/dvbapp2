@@ -18295,3 +18295,9 @@ msgstr "Cambia Pillarbox<>Pan&Scan"
 
 msgid "Behave like stop-button"
 msgstr "Comportamiento como botón stop"
+
+msgid "Show two lines per entry"
+msgstr "Mostrar dos líneas por entrada"
+
+msgid "Progress info font size"
+msgstr "Tamaño fuente info de progreso"
