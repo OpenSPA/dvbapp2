@@ -18529,6 +18529,9 @@ msgstr "Prüfung im Hintergrund"
 msgid "Base time"
 msgstr "Zeitraster"
 
+msgid "\n* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
+msgstr "\n* Logs Speicherort: Log Einstellungen, Dateiname: Enigma2-hdmicec-[Datum].log"
+
 #
 msgid "Behavior of 'pause' when paused"
 msgstr "Verhalten der Play oder Play/Pausetaste bei Standbild"
