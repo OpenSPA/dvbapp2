@@ -13,7 +13,6 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, fileExists, SCOPE_SKIN, SCOPE_CURRENT_SKIN
 from enigma import eTimer
 from Components.Pixmap import Pixmap, MovingPixmap
-from Components.Sources.StaticText import StaticText
 from Components.Button import Button
 from Tools.LoadPixmap import LoadPixmap
 import os
@@ -39,7 +38,7 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 		if png is None:
 			if lastMenuID is not None:
 				png = png_cache.get(lastMenuID, None)
-		png_cache[entryID] = png
+			png_cache[entryID] = png
 	if png is None:
 		png = png_cache.get('missing', None)
 		if png is None:
@@ -315,16 +314,16 @@ class Menu(Screen, ProtectedScreen):
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
-		skfile = '/usr/share/enigma2/' + config.skin.primary_skin.value
-		f1 = open(skfile, 'r')
-		self.sktxt = f1.read()
-		f1.close()
+		if 'horz' in config.usage.menutype.value:
+			skfile = '/usr/share/enigma2/' + config.skin.primary_skin.value
+			f1 = open(skfile, 'r')
+			self.sktxt = f1.read()
+			f1.close()
 		if menuID is not None:
-			if '<screen name="Animmain" ' in self.sktxt and config.usage.menutype.value == 'horzanim':
+			if config.usage.menutype.value == 'horzanim' and '<screen name="Animmain" ' in self.sktxt:
 				self.skinName.append('Animmain')
-			elif '<screen name="Iconmain" ' in self.sktxt and config.usage.menutype.value == 'horzicon':
-				if '<screen name="Iconmain" ' in self.sktxt:
-					self.skinName.append('Iconmain')
+			elif config.usage.menutype.value == 'horzicon' and '<screen name="Iconmain" ' in self.sktxt:
+				self.skinName.append('Iconmain')
 			else:
 				self.skinName.append('menu_' + menuID)
 		self.skinName.append("Menu")
@@ -439,11 +438,10 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			t_history.thistory = t_history.thistory + str(a) + ' > '
 
-		if '<screen name="Animmain" ' in self.sktxt and config.usage.menutype.value == 'horzanim':
+		if config.usage.menutype.value == 'horzanim' and '<screen name="Animmain" ' in self.sktxt:
 			self.onShown.append(self.openTestA)
-		elif '<screen name="Iconmain" ' in self.sktxt and config.usage.menutype.value == 'horzicon':
-			if '<screen name="Iconmain" ' in self.sktxt:
-				self.onShown.append(self.openTestB)
+		elif config.usage.menutype.value == 'horzicon' and '<screen name="Iconmain" ' in self.sktxt:
+			self.onShown.append(self.openTestB)
 
 		self.number = 0
 		self.nextNumberTimer = eTimer()
@@ -618,9 +616,9 @@ class Menu(Screen, ProtectedScreen):
 			idx = 0
 			for x in self.list:
 				self.sub_menu_sort.changeConfigValue(x[2], "sort", i)
-				if len(x) >= 5:
+				if len(x) >= 7:
 					entry = list(x)
-					entry[4] = i
+					entry[6] = i
 					entry = tuple(entry)
 					self.list.pop(idx)
 					self.list.insert(idx, entry)
@@ -653,7 +651,7 @@ class Menu(Screen, ProtectedScreen):
 				if entry in m_list:
 					m_list.remove(entry)
 		if not len(m_list):
-			m_list.append(('', None, 'dummy', '10', 10, '', None))
+			m_list.append(('', None, 'dummy', '10', '', None, 10))
 		m_list.sort(key=lambda listweight: int(listweight[6]))
 		self.list = list(m_list)
 
@@ -716,17 +714,17 @@ class AnimMain(Screen):
 		self.nop = nop
 		nh = 1
 		if nop == 1:
-			nh = 1
+				nh = 1
 		elif nop == 2:
-			nh = 2
+				nh = 2
 		elif nop == 3:
-			nh = 2
+				nh = 2
 		elif nop == 4:
-			nh = 3
+				nh = 3
 		elif nop == 5:
-			nh = 3
+				nh = 3
 		else:
-			nh = int(float(nop) / 2)
+				nh = int(float(nop) / 2)
 		self.index = nh
 		i = 0
 		self.onShown.append(self.openTest)
@@ -796,30 +794,21 @@ class AnimMain(Screen):
 	def key_right(self):
 		self.index += 1
 		if self.index > self.nop:
-			self.index = self.nop
-			return
+				self.index = self.nop
+				return
 		self.openTest()
 
 	def key_up(self):
-		pass
+		self.key_left()
 
 	def key_down(self):
-		pass
+		self.key_right()
 
 	def keyNumberGlobal(self, number):
 		number -= 1
 		if len(self['menu'].list) > number:
 			self['menu'].setIndex(number)
 			self.okbuttonClick()
-
-	def closeNonRecursive(self):
-		self.close(False)
-
-	def closeRecursive(self):
-		self.close(True)
-
-	def createSummary(self):
-		pass
 
 	def keyNumberGlobal(self, number):
 		number -= 1
@@ -956,13 +945,13 @@ class IconMain(Screen):
 				else:
 					name = name[:14] + '/' + name[12:]
 			if 'A/V' not in name:
-					name = name.replace('/', '\n')
+				name = name.replace('/', '\n')
 			if j == self.index + 1:
-					self['label' + str(j)].setText(' ')
-					self['label' + str(j) + 's'].setText(name)
+				self['label' + str(j)].setText(' ')
+				self['label' + str(j) + 's'].setText(name)
 			else:
-					self['label' + str(j)].setText(name)
-					self['label' + str(j) + 's'].setText(' ')
+				self['label' + str(j)].setText(name)
+				self['label' + str(j) + 's'].setText(' ')
 			i = i + 1
 
 		j = 0
@@ -1000,8 +989,8 @@ class IconMain(Screen):
 		if self.index < 0:
 			if inum < 5:
 				self.index = inum
-		else:
-			self.index = 5
+			else:
+				self.index = 5
 		self.openTest()
 
 	def key_right(self):
@@ -1012,6 +1001,8 @@ class IconMain(Screen):
 		self.openTest()
 
 	def key_up(self):
+		self.key_left()
+		return
 		self.ipage = self.ipage - 1
 		if self.ipage < 1 and 7 > self.picnum > 0:
 			self.ipage = 1
@@ -1027,6 +1018,8 @@ class IconMain(Screen):
 		self.openTest()
 
 	def key_down(self):
+		self.key_right()
+		return
 		self.ipage = self.ipage + 1
 		if self.ipage == 2 and 7 > self.picnum > 0:
 			self.ipage = 1
@@ -1046,15 +1039,6 @@ class IconMain(Screen):
 		if len(self['menu'].list) > number:
 			self['menu'].setIndex(number)
 			self.okbuttonClick()
-
-	def closeNonRecursive(self):
-		self.close(False)
-
-	def closeRecursive(self):
-		self.close(True)
-
-	def createSummary(self):
-		pass
 
 	def keyNumberGlobal(self, number):
 		number -= 1
