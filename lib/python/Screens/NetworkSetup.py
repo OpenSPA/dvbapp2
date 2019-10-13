@@ -1,6 +1,7 @@
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
+import string
 import time
 import glob
 import os
@@ -29,6 +30,7 @@ from Components.FileList import MultiFileSelectList
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
+from random import Random
 from Plugins.Plugin import PluginDescriptor
 from datetime import datetime
 
