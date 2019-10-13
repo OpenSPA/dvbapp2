@@ -31,12 +31,11 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		# for the skin: first try ParentalControlSetup, then Setup, this allows individual skinning
 		self.skinName = ["ParentalControlSetup", "Setup" ]
 		self.setup_title = _("Parental control setup")
-		self.setTitle(self.setup_title)
 		self.onChangedEntry = [ ]
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup(initial=True)
+		self.createSetup()
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
 		{
@@ -57,16 +56,13 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 			(not config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.configuration.value) or\
 			(not config.ParentalControl.config_sections.configuration.value and config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value)
 
-	def createSetup(self, initial=False):
+	def createSetup(self):
+		self.changePin = None
 		self.reloadLists = None
 		self.list = []
-		if config.ParentalControl.servicepin[0].value or config.ParentalControl.servicepinactive.value or config.ParentalControl.setuppinactive.value or not initial:
-			if config.ParentalControl.servicepin[0].value:
-				pin_entry_text = _("Change PIN") + _(": 0000 - default (disabled)")
-			else:
-				pin_entry_text = _("Set PIN")
-			self.changePin = getConfigListEntry(pin_entry_text, NoSave(ConfigNothing()))
-			self.list.append(self.changePin)
+		self.changePin = getConfigListEntry(_("Change PIN"), NoSave(ConfigNothing()))
+		self.list.append(self.changePin)
+		if config.ParentalControl.servicepin[0].value:
 			self.list.append(getConfigListEntry(_("Protect services"), config.ParentalControl.servicepinactive))
 			if config.ParentalControl.servicepinactive.value:
 				self.list.append(getConfigListEntry(_("Remember service PIN"), config.ParentalControl.storeservicepin))
@@ -86,9 +82,6 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 				self.list.append(getConfigListEntry(_("Protect manufacturer reset screen"), config.ParentalControl.config_sections.manufacturer_reset))
 				self.list.append(getConfigListEntry(_("Protect movie list"), config.ParentalControl.config_sections.movie_list))
 				self.list.append(getConfigListEntry(_("Protect context menus"), config.ParentalControl.config_sections.context_menus))
-		else:
-			self.changePin = getConfigListEntry(_("Enable parental protection"), NoSave(ConfigNothing()))
-			self.list.append(self.changePin)
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -173,10 +166,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def confirmNewPinEntered(self, answer1, answer2):
 		if answer2 is not None:
 			if answer1 == answer2:
-				warning_text = ""
-				if not answer2:
-					warning_text = _("You PIN code is 0000. This is the default PIN code and it disable parental control!\n")
-				self.session.open(MessageBox, warning_text + _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO, timeout=3)
+				self.session.open(MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_ERROR, timeout=3)
 				config.ParentalControl.servicepin[0].value = answer1
 				config.ParentalControl.servicepin[0].save()
 				self.createSetup()
