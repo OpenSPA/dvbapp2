@@ -893,6 +893,7 @@ data/display400/openSPA_simple/Makefile
 data/display400/openSPA_classic/Makefile
 data/display400/openSPA_modern/Makefile
 data/display400/openSPA_modern_plus/Makefile
+data/display400/openSPA_modern_19/Makefile
 data/display480/Makefile
 data/display480/skin_default/Makefile
 data/display480/Fullscreen_Picon/Makefile
