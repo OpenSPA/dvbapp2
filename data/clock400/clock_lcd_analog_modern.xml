@@ -1,4 +1,4 @@
-<screen position="0,0" size="400,240">
+<screen position="0,0" size="400,240" backgroundColor="black">
 	<ePixmap pixmap="display/clock_skin/analog_lcd_min.png" position="18,0" size="363,200" zPosition="0" />
 	<widget source="global.CurrentTime" render="OMaClockLcd" position="18,0" size="363,200" hColor="white" linewidth="6" zPosition="40" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
@@ -29,7 +29,7 @@
     <widget source="session.spaUpdates" render="Pixmap" position="362,202" size="42,34" pixmap="display/clock_skin/vfd_icon_upt.png" zPosition="2">
       <convert type="ConditionalShowHide" />
     </widget>
-    <widget source="global.CurrentTime" render="Label" position="210,196" size="144,39" font="Regular; 30" halign="left" transparent="1" foregroundColor="#00777777" zPosition="1">
+    <widget source="global.CurrentTime" render="Label" position="210,196" size="144,39" font="Regular; 30" halign="left" transparent="1" foregroundColor="#00777777" zPosition="1" backgroundColor="black">
       <convert type="ClockToText">Format:%d-%b</convert>
     </widget>
 
