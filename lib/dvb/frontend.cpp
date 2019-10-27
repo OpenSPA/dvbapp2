@@ -1405,6 +1405,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (snr * 100) >> 8;
 	}
+	else if (!strcmp(m_description, "DVB-S2 NIM")) // dinobot
+	{
+		ret = (int)(snr / 8);
+	}
 	else if (!strcmp(m_description, "ATBM781x"))
 	{
 		ret = snr*10;
