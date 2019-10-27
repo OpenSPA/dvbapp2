@@ -495,6 +495,22 @@ class FlashImage(Screen):
 		epgcache.save()
 
 	def startDownload(self, reply=True):
+		if reply:
+			if fileExists(self.zippedimage):
+				self.session.openWithCallback(self.FileExistsConfirmation, MessageBox, _("The %s\nfile already exists. Do you want to overwrite it?") % self.zippedimage, type=MessageBox.TYPE_YESNO, simple=True)
+			else:
+				self.DownloadFile(True)
+		else:
+			self.abort()
+
+	def FileExistsConfirmation(self, reply=True):
+		if reply:
+			os.remove(self.zippedimage)
+			self.DownloadFile(True)
+		else:
+			self.unzip()
+
+	def DownloadFile(self, reply=True):
 		self.show()
 		if reply:
 			if "://" in self.source:
