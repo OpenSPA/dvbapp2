@@ -141,7 +141,7 @@ class FlashOnline(Screen):
 				print "FEEDSERVER ERROR: %s" %e
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
-				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
+				if os.path.isdir(media):
 					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
 					if "images" in os.listdir(media):
 						media = os.path.join(media, "images")
