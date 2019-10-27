@@ -22,7 +22,7 @@ from time import time
 import os, urllib2, shutil, math, zipfile, shutil
 
 
-from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName
+from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineProcModel
 
 feedserver = 'openspa.webhop.info'
 feedurl = 'https://%s/' % feedserver
@@ -77,7 +77,7 @@ class FlashOnline(Screen):
 
 	def getImagesList(self):
 		def getImages(path, files):
-			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
+			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x)]:
 				try:
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
 						imagetyp = _("Downloaded Images")
@@ -85,12 +85,13 @@ class FlashOnline(Screen):
 							imagetyp = _("Fullbackup Images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
-						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1]}
+						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1][:-4]}
 				except:
 					pass
 
 		if not self.imagesList:
 			box = GetBoxName()
+			boxname = getMachineProcModel().lower()
 			try:
 				import socket
 				socket.getaddrinfo(feedserver, None)
@@ -142,11 +143,11 @@ class FlashOnline(Screen):
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if os.path.isdir(media):
-					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
+					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x)])
 					if "images" in os.listdir(media):
 						media = os.path.join(media, "images")
 						if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
-							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
+							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x)])
 							for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
 								shutil.rmtree(dir)
 
