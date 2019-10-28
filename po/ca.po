@@ -18253,3 +18253,9 @@ msgstr "Mostrar dos línies per entrada"
 
 msgid "Progress info font size"
 msgstr "Tamany font info de progrès"
+
+msgid "Hide number markers"
+msgstr "Ocultar marcadors numèrics"
+
+msgid "When enabled, numer markers will be hidden."
+msgstr "Quan s'activi, els marcadors numèrics s'ocultaran."
