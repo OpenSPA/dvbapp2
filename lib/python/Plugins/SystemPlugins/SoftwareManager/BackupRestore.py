@@ -232,11 +232,12 @@ class BackupSelection(Screen):
 		self.configBackupDirs = configBackupDirs
 		if self.readOnly:
 			self["key_red"] = StaticText(_("Exit"))
-			self["key_green"] = StaticText(_("Exit"))
+			self["key_green"] = StaticText()
+			self["key_yellow"] = StaticText(_("Info"))
 		else:
 			self["key_red"] = StaticText(_("Cancel"))
 			self["key_green"] = StaticText(_("Save"))
-		self["key_yellow"] = StaticText()
+			self["key_yellow"] = StaticText()
 		self["summary_description"] = StaticText(_("default"))
 		self["title_text"] = StaticText(title)
 
@@ -277,6 +278,8 @@ class BackupSelection(Screen):
 			self["summary_description"].text =self["checkList"].getCurrentDirectory()+".."
 		else:
 			self["summary_description"].text =self["checkList"].getCurrentDirectory()+current[3]
+		if self.readOnly:
+			return
 		if current[2] is True:
 			self["key_yellow"].setText(_("Deselect"))
 		else:
@@ -303,7 +306,8 @@ class BackupSelection(Screen):
 
 	def saveSelection(self):
 		if self.readOnly:
-			self.close(None)
+			pass
+			#self.close(None)
 		else:
 			self.selectedFiles = self["checkList"].getSelectedList()
 			self.configBackupDirs.setValue(self.selectedFiles)
