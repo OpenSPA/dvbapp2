@@ -18259,3 +18259,30 @@ msgstr "Ocultar marcadors numèrics"
 
 msgid "When enabled, numer markers will be hidden."
 msgstr "Quan s'activi, els marcadors numèrics s'ocultaran."
+
+msgid "Channel list show MiniTV when Skin use."
+msgstr "Lista de canales muestra MiniTV cuando el skin la usa (solo se usa con la selección de canales de enigma2, con la selección de canales OpenSPA queda la función anulada)."
+
+msgid "When enabled, number markers will be hidden."
+msgstr "Quan està actiu, els marcadors numèrics s'ocultaran."
+
+msgid "Service picons aspect ratio"
+msgstr "Relació d'aspecte picons de canals"
+
+msgid "Set the aspect ratio of the service picons."
+msgstr "Estableix la relació d'aspecte dels picons de canals."
+
+msgid "Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required."
+msgstr "Mostra el nom de canal i descripció d'event uno damunt de l'altre en lloc de costat a costat. Després del canvi, es requireix un ajust del número de línies."
+
+msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
+msgstr "Si està activat, utilitza una finestra de temps per a detectar un despertar des de repòs profund per un temporitzador. La configuració per defecte es desactiva i s'utilitza una senyal especial del receptor. Però alguns dispositius estableixen una senyal errònia o inexistent i la detecció de despertar pot fallar."
+
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
+msgstr "Atenuar la pantalla LCD al nivell de 'Brillantor (atenuada)' després del temps especificat."
+
+msgid "Enable OpenTV EPG"
+msgstr "Habilitar EPG OpenTV"
+
+msgid "Use OpenTV EPG information when it is available."
+msgstr "Utilitza informació EPG OpenTV quan estigui disponible."

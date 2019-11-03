@@ -18307,3 +18307,12 @@ msgstr "Ocultar marcadores numéricos"
 
 msgid "When enabled, numer markers will be hidden."
 msgstr "Cuando se active, los marcadores numéricos se ocultarán."
+
+msgid "Channel list show MiniTV when Skin use."
+msgstr "Lista de canales muestra MiniTV cuando el skin la usa (solo se usa con la selección de canales de enigma2, con la selección de canales OpenSPA queda la función anulada)."
+
+msgid "Hide number markers"
+msgstr "Ocultar marcadores numéricos"
+
+msgid "Hide number markers"
+msgstr "Ocultar marcadores numéricos"
