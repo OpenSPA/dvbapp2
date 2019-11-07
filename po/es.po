@@ -18313,6 +18313,3 @@ msgstr "Lista de canales muestra MiniTV cuando el skin la usa (solo se usa con l
 
 msgid "Hide number markers"
 msgstr "Ocultar marcadores numéricos"
-
-msgid "Hide number markers"
-msgstr "Ocultar marcadores numéricos"
