@@ -64,6 +64,8 @@ def GetBoxName():
 		box = 'maram9'
 	elif box.startswith('hitube'):
 		box = "HITUBE4K combo"
+	elif box.startswith('sf8008m'):
+		box = "sf8008m"
 	elif box.startswith('sf8008'):
 		box = "sf8008"
 	elif box.startswith('twinboxlcdci'):
