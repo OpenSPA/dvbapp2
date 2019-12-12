@@ -85,7 +85,7 @@ public:
 		pic3D,
 		picIPTV,
 		picNone,
-		picElements,
+		picElements
 	};
 
 	void setElementPosition(int element, eRect where);
@@ -109,7 +109,7 @@ public:
 	void setCryptoIconMode(int mode) { m_crypto_icon_mode = mode; }
 	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
 	void setColumnWidth(int value) { m_column_width = value; }
-	void setProgressbarHeight(int value) {	m_progressbar_height = value; }
+	void setProgressbarHeight(int value) { m_progressbar_height = value; }
 	void setProgressbarBorderWidth(int value) { m_progressbar_border_width = value; }
 	void setNonplayableMargins(int value) { m_nonplayable_margins = value; }
 	void setItemsDistances(int value) { m_items_distances = value; }
