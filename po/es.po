@@ -2431,9 +2431,6 @@ msgstr "Configurar la duración en minutos del temporizador de apagado."
 msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
 msgstr "Configurar el espacio en disco mínimo disponible para grabaciones. Cuando el espacio caiga por debajo de ese valor, los programas borrados se eliminarán de la papelera."
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr ""
-
 msgid "Configure the refresh rate of the screen."
 msgstr "Configurar la velocidad de refresco de la pantalla."
 
@@ -14054,7 +14051,7 @@ msgstr "Configurar el servidor de nombres (DNS)."
 msgid "Configure the netmask."
 msgstr "Configurar la máscara de red."
 
-msgid "Configure the number of days after which items are automaticaly removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr "Configurar el número de días tras los cuales se borrarán automáticamente los archivos de la papelera."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -14198,10 +14195,10 @@ msgstr "Define qué velocidad de avance rápido se para usa el CUE. El resto de 
 msgid "Delay for external subtitles"
 msgstr "Retraso para subtítulos externos"
 
-msgid "Delay in miliseconds after finish scrolling text on display."
+msgid "Delay in milliseconds after finish scrolling text on display."
 msgstr "Atenuación en milisegundos después del desplazamiento de texto en la pantalla."
 
-msgid "Delay in miliseconds before start of scrolling text on display."
+msgid "Delay in milliseconds before start of scrolling text on display."
 msgstr "Atenuación en milisegundos antes del desplazamiento de texto en la pantalla."
 
 msgid "Descramble http streams"
@@ -14915,7 +14912,7 @@ msgid "Show HDD progress"
 msgstr "Mostrar progreso de HDD"
 
 # Box Display
-msgid "Show HDMI Output Resulution"
+msgid "Show HDMI Output Resolution"
 msgstr "Mostrar resolución de salida HDMI"
 
 msgid "Show HDMI-Output Res"
@@ -15147,7 +15144,7 @@ msgstr "Características especiales"
 msgid "Stop timeshift while recording?"
 msgstr "¿Detener Timeshift durante la grabación?"
 
-msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
+msgid "Stop's timeshift being used if a recording is in progress. (advisable for usb sticks)"
 msgstr "Detener timeshift si se ejecuta a la par que se está grabando (aconsejable para memoria USB)"
 
 msgid "Subservice mode"
@@ -15512,7 +15509,7 @@ msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr "Cuando está activado, se mostrará en el menú la opción del euroconector VCR"
 
 #
-msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
+msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Cuando está activado, la duración de cada grabación aparecerá en la lista de películas (puede tardar más en cargar)."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
@@ -18310,3 +18307,36 @@ msgstr "Cuando se active, los marcadores numéricos se ocultarán."
 
 msgid "Channel list show MiniTV when Skin use."
 msgstr "Lista de canales muestra MiniTV cuando el skin la usa (solo se usa con la selección de canales de enigma2, con la selección de canales OpenSPA queda la función anulada)."
+
+msgid "Service picons aspect ratio"
+msgstr "Relación de aspecto picons de canales"
+
+msgid "Set the aspect ratio of the service picons."
+msgstr "Establece la relación de aspecto de los picons de canales."
+
+msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
+msgstr "Si está activado, utiliza una ventana de tiempo para detectar un despertar desde reposo profundo por un temporizador. La configuración por defecto se desactiva y se utiliza una señal especial del receptor. Pero algunos dispositivos establecen una señal errónea o inexistente y la detección de despertar puede fallar."
+
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
+msgstr "Atenuar la pantalla LCD al nivel de 'Brillo (atenuada)' después del tiempo especificado."
+
+msgid "Enable OpenTV EPG"
+msgstr "Habilitar EPG OpenTV"
+
+msgid "Use OpenTV EPG information when it is available."
+msgstr "Utiliza información EPG OpenTV cuando esté disponible."
+
+msgid "Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required."
+msgstr "Muestra nombre de canal y descripción de evento uno encima de otro excepto lado a lado. Después del cambio, se requiere un ajuste del número de líneas."
+
+msgid "Alignment channel number"
+msgstr "Alineación número de canal"
+
+msgid "Alignment event-progress"
+msgstr "Alineación progreso de evento"
+
+msgid "Vertical alignement for the service number."
+msgstr "Alineación vertical para el nombre de canal"
+
+msgid "Vertical alignement for the event-progress."
+msgstr "Alineación vertical para el progreso de evento"
