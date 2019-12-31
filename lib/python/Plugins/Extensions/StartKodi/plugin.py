@@ -19,7 +19,7 @@ from Plugins.Extensions.StartKodi.installsomething import InstallSomething
 
 class StartKodi2(Screen):
 
-	kodi_name = "kodi-amlogic"
+	kodi_name = "stb-kodi-wetekplay"
 	kodineeds = 200             # TODO: check real needs, more likely to be ~ 300MB
 	caninstall = False
 	isinstalled = False
@@ -136,7 +136,7 @@ class StartKodi2(Screen):
 
 ### not very clever...
 	def isKodiInstalled(self):
-		if os.path.exists("/usr/lib/kodi/kodi.bin"):
+		if os.path.exists("/usr/lib/kodi/kodi-aml"):
 			self.isinstalled = True
 			return True
 		else:
