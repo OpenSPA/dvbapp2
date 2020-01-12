@@ -18340,3 +18340,26 @@ msgstr "Alineación vertical para el nombre de canal"
 
 msgid "Vertical alignement for the event-progress."
 msgstr "Alineación vertical para el progreso de evento"
+
+msgid "Password Setup"
+msgstr "Configuración de contraseña"
+
+msgid "Random password"
+msgstr "Contraseña aleatoria"
+
+msgid "You must set a root password in order to be able to use network services,"
+" such as FTP, telnet or ssh."
+msgstr "Debes configurar una contraseña root para poder usar los servicios de red,"
+"como FTP, telnet o ssh."
+
+msgid "New password"
+msgstr "Nueva contraseña"
+
+msgid "The password can not be blank."
+msgstr "La contraseña no puede estar vacía."
+
+msgid "Unable to change password"
+msgstr "No se puede cambiar contraseña"
+
+msgid "Password changed"
+msgstr "Contraseña cambiada"
