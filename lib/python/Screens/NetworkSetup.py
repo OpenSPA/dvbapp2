@@ -4289,7 +4289,7 @@ class NetworkXupnpd(Screen):
 	def activateXupnpd(self):
 		commands = []
 		if fileExists('/etc/init.d/xupnpd'):
-			if fileExists('/etc/rc3.d/S30xupnpd'):
+			if len(glob.glob('/etc/rc3.d/S*0xupnpd')):
 				commands.append('update-rc.d -f xupnpd remove')
 			else:
 				commands.append('update-rc.d -f xupnpd defaults 30')
@@ -4306,7 +4306,7 @@ class NetworkXupnpd(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_xupnpd_active = False
 		self.my_xupnpd_run = False
-		if fileExists('/etc/rc3.d/S30xupnpd'):
+		if len(glob.glob('/etc/rc3.d/S*0xupnpd')):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_xupnpd_active = True
