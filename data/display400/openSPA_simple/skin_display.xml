@@ -37,7 +37,7 @@
     <font filename="hd2.ttf" name="VFD" scale="120" />
 	<font filename="robotobold.ttf" name="Bold1" scale="120" />
 	<font filename="robotoregular.ttf" name="Fine" scale="120" />
-    <font filename="/usr/share/enigma2/MetrixJRSD/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
+    <font filename="DejaVuSans.ttf" name="RegularLCD" scale="95"/>
   </fonts>
   <screen name="InfoBarSummary" position="0,0" size="400,240">
   <widget source="session.CurrentService" render="Label" position="61,106" size="337,40" font="VFD; 33" halign="left" transparent="1" noWrap="1" valign="center">

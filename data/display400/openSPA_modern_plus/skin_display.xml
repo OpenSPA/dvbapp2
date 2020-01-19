@@ -13,7 +13,6 @@
 		<color name="foreground" value="#00ffffff" />
 		<color name="gray" value="#00aaaaaa" />
 		<color name="green" value="#0000ff00" />
-
 		<color name="naranja" value="#00ffcc00" />
 		<color name="naranja2" value="#00eebb00" />
 		<color name="rojotm2" value="#00ff6666" />
@@ -39,7 +38,7 @@
 		<font filename="robotobold.ttf" name="VFD" scale="120" />
 		<font filename="robotobold.ttf" name="Bold1" scale="120" />
 		<font filename="robotoregular.ttf" name="Fine" scale="120" />
-		<font filename="/usr/share/enigma2/MetrixJRSD/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
+		<font filename="DejaVuSans.ttf" name="RegularLCD" scale="95"/>
 	</fonts>
 	<!-- panels -->
 	<screen name="RelojAbajo">
