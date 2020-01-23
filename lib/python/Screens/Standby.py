@@ -17,6 +17,7 @@ import Components.RecordingConfig
 
 inStandby = None
 TVinStandby = None
+StartWithPower = False
 
 QUIT_SHUTDOWN = 1
 QUIT_REBOOT = 2
@@ -100,6 +101,15 @@ def setLCDModeMinitTV(value):
 		pass
 
 class Standby2(Screen):
+	################################################
+	# openspa: added StartWithPower variable 
+	# to detect when starting with the power button
+	################################################
+	def Powerb(self):
+		global StartWithPower
+		StartWithPower = True
+		self.Power()
+
 	def Power(self):
 		print "[Standby] leave standby"
 		SystemInfo["StandbyState"] = False
@@ -173,12 +183,12 @@ class Standby2(Screen):
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
-			"power": self.Power,
+			"power": self.Powerb,
 			"power_make": self.Power_make,
 			"power_break": self.Power_break,
 			"power_long": self.Power_long,
 			"power_repeat": self.Power_repeat,
-			"discrete_on": self.Power
+			"discrete_on": self.Powerb
 		}, -1)
 
 		globalActionMap.setEnabled(False)
@@ -264,6 +274,8 @@ class Standby2(Screen):
 
 	def __onFirstExecBegin(self):
 		global inStandby
+		global StartWithPower
+		StartWithPower = False
 		inStandby = self
 		self.session.screen["Standby"].boolean = True
 		config.misc.standbyCounter.value += 1
