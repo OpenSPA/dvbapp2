@@ -78,6 +78,7 @@ config.misc.NTPserver = ConfigText(default = 'pool.ntp.org', fixed_size=False)
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
 config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandby
+config.misc.StartMode = ConfigInteger(default=0) #Detect enigma start mode
 
 #demo code for use of standby enter leave callbacks
 #def leaveStandby():

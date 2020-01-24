@@ -444,6 +444,8 @@ class TryQuitMainloop(MessageBox):
 			self.hide()
 			if self.retval == QUIT_SHUTDOWN:
 				config.misc.DeepStandby.value = True
+			config.misc.StartMode.value = self.retval
+			config.misc.StartMode.save()
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
