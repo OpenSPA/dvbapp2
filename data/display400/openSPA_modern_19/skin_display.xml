@@ -42,7 +42,7 @@
     <font filename="robotobold.ttf" name="VFD" scale="110" />
     <font filename="robotobold.ttf" name="Bold1" scale="120" />
     <font filename="robotoregular.ttf" name="Fine" scale="110" />
-    <font filename="DejaVuSans.ttf" name="RegularLCD" scale="95"/>																										
+    <font filename="OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
   </fonts>
  <screen name="NumberZap_summary" position="0,0" size="400,240" backgroundColor="black">
     <widget source="parent.channel_summary" render="Label" position="400,240" size="1,1" noWrap="1" foregroundColor="black" backgroundColor="black" />

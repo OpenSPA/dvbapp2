@@ -12,6 +12,7 @@ dist_install_DATA = \
 	LiberationSans-BoldItalic.ttf \
 	LiberationSans-Italic.ttf \
 	LiberationSans-Regular.ttf \
+	OpenSans-Regular.ttf \
 	wqy-microhei.ttc
 
 install-data-hook:
@@ -67,7 +68,7 @@ dist_install_DATA += hd2.ttf tuxtxt2.ttf
 endif
 
 if HAVE_COLORLCD400
-dist_install_DATA += hd2.ttf tuxtxt2.ttf robotobold.ttf robotoregular.ttf verdana.ttf
+dist_install_DATA += hd2.ttf tuxtxt2.ttf robotobold.ttf robotoregular.ttf OpenSans-Regular.ttf verdana.ttf
 endif
 
 if HAVE_COLORLCD400S

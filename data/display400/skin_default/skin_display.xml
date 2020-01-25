@@ -39,7 +39,7 @@
     <font filename="hd2.ttf" name="VFD" scale="120" />
 	<font filename="robotobold.ttf" name="Bold1" scale="120" />
 	<font filename="robotoregular.ttf" name="Fine" scale="120" />
-    <font filename="DejaVuSans.ttf" name="RegularLCD" scale="95"/>
+    <font filename="OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
   </fonts>
   
 <screen name="NumberZap_summary" position="0,0" size="400,240" backgroundColor="black">
