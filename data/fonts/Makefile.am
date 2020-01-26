@@ -12,7 +12,6 @@ dist_install_DATA = \
 	LiberationSans-BoldItalic.ttf \
 	LiberationSans-Italic.ttf \
 	LiberationSans-Regular.ttf \
-	OpenSans-Regular.ttf \
 	wqy-microhei.ttc
 
 install-data-hook:
