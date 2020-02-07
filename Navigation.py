@@ -224,6 +224,9 @@ class Navigation:
 	def wasPowerTimerWakeup(self):
 		return self.__wasPowerTimerWakeup
 
+	def getWakeupTime(self):
+		return self.wakeuptime
+
 	def TimeSynctimer(self):
 		now = time()
 		self.syncCount += 1
