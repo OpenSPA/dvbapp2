@@ -71,7 +71,7 @@ dist_install_DATA += hd2.ttf tuxtxt2.ttf robotobold.ttf robotoregular.ttf OpenSa
 endif
 
 if HAVE_COLORLCD400S
-dist_install_DATA += hd2.ttf tuxtxt2.ttf robotobold.ttf robotoregular.ttf verdana.ttf
+dist_install_DATA += hd2.ttf tuxtxt2.ttf robotobold.ttf robotoregular.ttf OpenSans-Regular.ttf verdana.ttf
 endif
 
 if OSMIO4KPLUS
