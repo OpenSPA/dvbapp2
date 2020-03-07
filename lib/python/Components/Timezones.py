@@ -20,7 +20,7 @@ from Tools.StbHardware import setRTCoffset
 #
 # The DEFAULT_ZONE is used to select the default timezone if the "Timezone
 # area" is selected to be "Europe".  This allows OpenViX to have the
-# European default of "London" while OpenATV and OpenPLi can select "Berlin",
+# European default of "London" while OpenSPA can select "Madrid",
 # etc. (These are only examples.)  Images can select any defaults they deem
 # appropriate.
 #
@@ -33,7 +33,7 @@ from Tools.StbHardware import setRTCoffset
 # and OpenPLi would use "Europe".  If the "Europe" option is selected then
 # the DEFAULT_ZONE can be used to select a more appropriate timezone 
 # selection for the image.  For example, OpenATV and OpenPLi may prefer
-# "Berlin" while OpenViX may prefer "London".
+# "Berlin" while OpenViX may prefer "London" and OpenSPA may prefer "Madrid".
 #
 # Please ensure that any defaults selected are valid, unique and available
 # in the "/usr/share/zoneinfo/" directory tree.
