@@ -83,7 +83,6 @@ class ImageBackup(Screen):
 	def ImageList(self, imagedict):
 		self.saveImageList = imagedict
 		list = []
-		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage() or 1
 		if imagedict:
 			for x in sorted(imagedict.keys()):
@@ -93,11 +92,8 @@ class ImageBackup(Screen):
 					list.append(ChoiceEntryComponent('',((_("slot%s - %s - %s (current image)") if x == currentimageslot else _("slot%s - %s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, False)))
 		else:
 			if SystemInfo["canRecovery"]:
-				list.append(ChoiceEntryComponent('',(_("internal flash: %s %s as USB Recovery") %(getImageDistro(), getImageVersion()),"1","1",True)))
-			if self.MODEL in ("vuultimo4k","vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno", "vuzero" , "vusolose", "vuuno4k", "vuzero4k"):
-				list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s ") %(getImageDistro(), getImageVersion()),"1",None,False)))
-			else:
-				list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s ") %(getImageDistro(), getImageVersion()),"1","1",False)))
+				list.append(ChoiceEntryComponent('',(_("internal flash: %s %s as USB Recovery") %(getImageDistro(), getImageVersion()),"x",True)))
+			list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s ") %(getImageDistro(), getImageVersion()),"x",False)))
 		self["config"].setList(list)
 
 	def start(self):
@@ -303,7 +299,7 @@ class ImageBackup(Screen):
 					cmdlist.append(cmd2)
 				if cmd3:
 					cmdlist.append(cmd3)
-				cmdlist.append("chmod 644 %s/root.%s" %(self.WORKDIR, self.ROOTFSTYPE))
+				#cmdlist.append("chmod 644 %s/root.%s" %(self.WORKDIR, self.ROOTFSTYPE))
 
 				if self.MODEL in ("gbquad4k","gbue4k","gbx34k"):
 					cmdlist.append('echo "' + _("Create:") + " boot dump" + '"')
