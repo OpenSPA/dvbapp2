@@ -490,6 +490,7 @@ class HdmiCec:
 
 			config.hdmicec.commandline.addNotifier(self.CECcmdstart)
 
+			self.timerwakeup = True
 			self.checkTVstate('firstrun')
 
 	def getPhysicalAddress(self):
@@ -632,7 +633,11 @@ class HdmiCec:
 			cmd = 0
 			data = ''
 			if message == "wakeup":
-				cmd = 0x04
+				from Screens.InfoBar import InfoBar
+				noaction = InfoBar and InfoBar.instance and self.timerwakeup and InfoBar.instance.session.nav.wasTimerWakeup() and abs(time() - InfoBar.instance.session.nav.getWakeupTime()) <= 250
+				self.timerwakeup = False
+				if not noaction:
+					cmd = 0x04
 			elif message == "sourceactive":
 				address = 0x0f # use broadcast address
 				cmd = 0x82
