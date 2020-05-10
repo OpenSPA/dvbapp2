@@ -72,7 +72,7 @@ fi
 
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
-	@bindir@/enigma2_pre_start.sh
+	@bindir@/enigma2_pre_start.sh &
 fi
 
 if [ -e /proc/stb/info/hwmodel ]; then
