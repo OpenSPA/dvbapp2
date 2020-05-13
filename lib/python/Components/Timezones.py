@@ -44,7 +44,7 @@ from Tools.StbHardware import setRTCoffset
 #
 # DEFAULT_AREA = "Classic"  # Use the classic time zone based list of time zones.
 # DEFAULT_AREA = "Australia"  # Beyonwiz
-# DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenViX, OpenSPA
+DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenViX, OpenSPA
 # DEFAULT_ZONE = "Amsterdam"  # OpenPLi
 # DEFAULT_ZONE = "Berlin"  # OpenATV
 DEFAULT_ZONE = "Madrid"  # OpenSPA
