@@ -4,8 +4,7 @@ import xml.etree.cElementTree
 from os import environ, path, symlink, unlink, walk
 from time import gmtime, localtime, strftime, time
 
-from Components.config import ConfigSelection, ConfigSubsection, config
-from Tools.Geolocation import geolocation
+from Components.config import ConfigSelection, ConfigSubsection, ConfigYesNo, config
 from Tools.StbHardware import setRTCoffset
 
 # The DEFAULT_AREA setting is usable by the image maintainers to select the
@@ -41,20 +40,24 @@ from Tools.StbHardware import setRTCoffset
 # feature that will try and determine the appropriate time zone for the user
 # based on their WAN IP address.  If the receiver is not connected to the
 # Internet the defaults described above and listed below will be used.
-#
-# DEFAULT_AREA = "Classic"  # Use the classic time zone based list of time zones.
-# DEFAULT_AREA = "Australia"  # Beyonwiz
+
 DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenViX, OpenSPA
-# DEFAULT_ZONE = "Amsterdam"  # OpenPLi
-# DEFAULT_ZONE = "Berlin"  # OpenATV
 DEFAULT_ZONE = "Madrid"  # OpenSPA
-# DEFAULT_ZONE = "London"  # OpenViX
 TIMEZONE_FILE = "/etc/timezone.xml"  # This should be SCOPE_TIMEZONES_FILE!  This file moves arond the filesystem!!!  :(
 TIMEZONE_DATA = "/usr/share/zoneinfo/"  # This should be SCOPE_TIMEZONES_DATA!
 
+config.timezone = ConfigSubsection()
+config.timezone.geolocation = ConfigYesNo(default=False)
+
 def InitTimeZones():
-	tz = geolocation.get("timezone", None)
-	proxy = geolocation.get("proxy", False)
+	if config.timezone.geolocation.value == True:
+		from Tools.Geolocation import geolocation
+		tz = geolocation.get("timezone", None)
+		proxy = geolocation.get("proxy", False)
+	else:
+		tz = None
+		proxy = False
+
 	if tz is None or proxy is True:
 		area = DEFAULT_AREA
 		zone = timezones.getTimezoneDefault(area=area)
@@ -70,7 +73,6 @@ def InitTimeZones():
 	else:
 		area, zone = tz.split("/", 1)
 		print "[Timezones] Modern mode with geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone)
-	config.timezone = ConfigSubsection()
 	config.timezone.area = ConfigSelection(default=area, choices=timezones.getTimezoneAreaList())
 	config.timezone.val = ConfigSelection(default=timezones.getTimezoneDefault(), choices=timezones.getTimezoneList())
 	if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
