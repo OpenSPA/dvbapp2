@@ -13,7 +13,7 @@ import os
 import socket
 
 
-tmdb_api = "3c3efcf47c3577558812bb9d64019d65"
+tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
 
 if os.path.isdir("/media/hdd"):
 	path_folder = "/media/hdd/backdrop/"
