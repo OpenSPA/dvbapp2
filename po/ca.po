@@ -18318,3 +18318,45 @@ msgstr "No es pot canviar contrasenya"
 
 msgid "Password changed"
 msgstr "Contrasenya canviada"
+
+msgid "Enable Geolocation"
+msgstr "Activar geolocalització"
+
+msgid "Configure if you like detect online your timezone."
+msgstr "Configura si t'agradaria detectar online la teva zona horària"
+
+msgid "Time zone area"
+msgstr "Regió"
+
+msgid "Time zone"
+msgstr "Zona horària"
+
+msgid "Select the time zone within the area or region."
+msgstr "Selecciona la zona horària dins de l'àrea o regió"
+
+msgid "%s\nPress ok for multiboot selection\nPress exit to close"
+msgstr "%s\nPrem ok per a seleccionar multiboot\nPrem exit per a tancar"
+
+msgid "Backup Mode: USB Recovery\n"
+msgstr "Mode backup: Recuperació USB
+
+msgid "Backup Mode: Flash Online\n"
+msgstr "Mode backup: Flash Online\n"
+
+msgid "Show Main Menu as"
+msgstr "Mostra menú principal com"
+
+msgid "Choose style of main menus"
+msgstr "Tria estil del menú principal"
+
+msgid "Standard menu"
+msgstr "Menú estàndar"
+
+msgid "Horizontal menu"
+msgstr "Menú horitzontal"
+
+msgid "Horizontal icons"
+msgstr "Horitzontal amb icones"
+
+msgid "Choose style of main menus"
+msgstr "Tria estil del menú principal"

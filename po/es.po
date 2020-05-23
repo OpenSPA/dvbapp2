@@ -16690,7 +16690,7 @@ msgstr "Transcodificación AC3+"
 msgid "always"
 msgstr "Siempre"
 
-msgid "Channel list show MiniTV"
+msgid "Channel list show MiniTV*"
 msgstr "Mostrar MiniTV en lista de canales"
 
 msgid "Channel list show MiniTV when Skin use "
@@ -18363,3 +18363,45 @@ msgstr "No se puede cambiar contraseña"
 
 msgid "Password changed"
 msgstr "Contraseña cambiada"
+
+msgid "Enable Geolocation"
+msgstr "Activar geolocalización"
+
+msgid "Configure if you like detect online your timezone."
+msgstr "Configura si te gustaría detectar online tu zona horaria"
+
+msgid "Time zone area"
+msgstr "Región"
+
+msgid "Time zone"
+msgstr "Zona horaria"
+
+msgid "Select the time zone within the area or region."
+msgstr "Selecciona la zona horaria dentro del área o región"
+
+msgid "%s\nPress ok for multiboot selection\nPress exit to close"
+msgstr "%s\nPulsa ok para seleccionar multiboot\nPulsa exit para cerrar"
+
+msgid "Backup Mode: USB Recovery\n"
+msgstr "Modo backup: Recuperación USB
+
+msgid "Backup Mode: Flash Online\n"
+msgstr "Modo backup: Flash Online\n"
+
+msgid "Show Main Menu as"
+msgstr "Muestra menú principal como"
+
+msgid "Choose style of main menus"
+msgstr "Escoge estilo del menú principal"
+
+msgid "Standard menu"
+msgstr "Menú estándar"
+
+msgid "Horizontal menu"
+msgstr "Menú horizontal"
+
+msgid "Horizontal icons"
+msgstr "Horizontal con iconos"
+
+msgid "Choose style of main menus"
+msgstr "Escoge estilo del menú principal"
