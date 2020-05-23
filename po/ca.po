@@ -18338,7 +18338,7 @@ msgid "%s\nPress ok for multiboot selection\nPress exit to close"
 msgstr "%s\nPrem ok per a seleccionar multiboot\nPrem exit per a tancar"
 
 msgid "Backup Mode: USB Recovery\n"
-msgstr "Mode backup: Recuperació USB
+msgstr "Mode backup: Recuperació USB\n"
 
 msgid "Backup Mode: Flash Online\n"
 msgstr "Mode backup: Flash Online\n"
@@ -18358,5 +18358,5 @@ msgstr "Menú horitzontal"
 msgid "Horizontal icons"
 msgstr "Horitzontal amb icones"
 
-msgid "Choose style of main menus"
-msgstr "Tria estil del menú principal"
+msgid "The %s\nfile already exists. Do you want to overwrite it?"
+msgstr "L'arxiu %s\nja existeix. Vols sobreescriure'l?"

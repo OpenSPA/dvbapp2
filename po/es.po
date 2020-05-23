@@ -18383,7 +18383,7 @@ msgid "%s\nPress ok for multiboot selection\nPress exit to close"
 msgstr "%s\nPulsa ok para seleccionar multiboot\nPulsa exit para cerrar"
 
 msgid "Backup Mode: USB Recovery\n"
-msgstr "Modo backup: Recuperación USB
+msgstr "Modo backup: Recuperación USB\n"
 
 msgid "Backup Mode: Flash Online\n"
 msgstr "Modo backup: Flash Online\n"
@@ -18403,5 +18403,5 @@ msgstr "Menú horizontal"
 msgid "Horizontal icons"
 msgstr "Horizontal con iconos"
 
-msgid "Choose style of main menus"
-msgstr "Escoge estilo del menú principal"
+msgid "The %s\nfile already exists. Do you want to overwrite it?"
+msgstr "El archivo %s\nya exite. Quieres sobreescribirlo?"
