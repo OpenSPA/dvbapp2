@@ -16686,7 +16686,7 @@ msgstr "Transcodificació AC3+"
 msgid "always"
 msgstr "Sempre"
 
-msgid "Channel list show MiniTV"
+msgid "Channel list show MiniTV*"
 msgstr "Mostrar MiniTV a la llista de canals"
 
 msgid "Channel list show MiniTV when Skin use "
