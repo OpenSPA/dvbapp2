@@ -7,14 +7,17 @@ from Renderer import Renderer
 from enigma import ePixmap, ePicLoad, eTimer
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
+from Components.config import config
 from urllib2 import urlopen, quote
 import json
 import re
 import os
 import socket
 
-
-tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
+if config.plugins.blackpanel.apitmdb.value != "":
+	tmdb_api = config.plugins.blackpanel.apitmdb.value
+else:
+	tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
 
 if os.path.isdir("/media/hdd"):
 	path_folder = "/media/hdd/poster/"

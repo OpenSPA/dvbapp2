@@ -6,10 +6,16 @@ from Renderer import Renderer
 from enigma import ePixmap, ePicLoad, eTimer
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
+from Components.config import config
 import json
 import re
 import os
 import urllib2
+
+if config.plugins.blackpanel.apitmdb.value != "":
+	tmdb_api = config.plugins.blackpanel.apitmdb.value
+else:
+	tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
 
 if os.path.isdir("/media/hdd"):
 	path_folder = "/media/hdd/banner/"
@@ -103,7 +109,7 @@ class banner(Renderer):
 						self.saveBanner()
 					except:
 						try:
-							url_tmdb = "https://api.themoviedb.org/3/search/multi?api_key=8fedefb08d7138abbb6d19ff66c9170c&query={}".format(self.evntNm)
+							url_tmdb = "https://api.themoviedb.org/3/search/multi?api_key="+tmdb_api+"&query={}".format(self.evntNm)
 							if len(year) > 0:
 								url_tmdb += "&primary_release_year={}&year={}".format(year, year)
 							jp = json.load(urllib2.urlopen(url_tmdb))
