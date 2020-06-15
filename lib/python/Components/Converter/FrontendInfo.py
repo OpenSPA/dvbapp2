@@ -92,7 +92,7 @@ class FrontendInfo(Converter, object):
 			return string
 		if percent is None:
 			return "N/A"
-		return "%d %%" % (percent * 100 / 65535)
+		return "%d %%" % (percent * 100 / 65536)
 
 	@cached
 	def getBool(self):
@@ -139,5 +139,5 @@ class FrontendInfo(Converter, object):
 			num = self.source.slot_number
 			return num is None and -1 or num
 
-	range = 65535
+	range = 65536
 	value = property(getValue)

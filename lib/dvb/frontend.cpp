@@ -591,8 +591,8 @@ int eDVBFrontend::PreferredFrontendIndex = -1;
 
 eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
 	:m_simulate(simulate), m_enabled(false), m_fbc(false), m_simulate_fe(simulate_fe), m_type(-1), m_dvbid(fe), m_slotid(fe)
-	,m_fd(-1), m_teakover(0), m_waitteakover(0), m_break_teakover(0), m_break_waitteakover(0), m_dvbversion(0), m_configRetuneNoPatEntry(0), m_rotor_mode(false)
-	,m_need_rotor_workaround(false), m_need_delivery_system_workaround(false), m_multitype(false), m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
+	,m_fd(-1), m_teakover(0), m_waitteakover(0), m_break_teakover(0), m_break_waitteakover(0), m_dvbversion(0), m_rotor_mode(false)
+	,m_need_rotor_workaround(false), m_need_delivery_system_workaround(false), m_multitype(false), m_state(stateClosed), m_timeout(0), m_tuneTimer(0), m_configRetuneNoPatEntry(0)
 #if HAVE_ALIEN5
 	,m_looptimeout(100)
 #endif
@@ -1405,10 +1405,6 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (snr * 100) >> 8;
 	}
-	else if (!strcmp(m_description, "DVB-S2 NIM")) // dinobot
-	{
-		ret = (int)(snr / 8);
-	}
 	else if (!strcmp(m_description, "ATBM781x"))
 	{
 		ret = snr*10;
@@ -1576,7 +1572,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (!strcmp(m_description, "Si21682") || !strcmp(m_description, "Si2168")) // SF4008 T/T2/C and Zgemma TC Models
 	{
-	    int type = -1;
+		int type = -1;
 		oparm.getSystem(type);
 		switch (type)
 		{
@@ -1623,6 +1619,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (!strncmp(m_description, "Si216", 5)) // all new Models with SI Tuners
 	{
 		ret = snr;
+	}
+	else if (!strcmp(m_description, "DVB-S2 NIM")) // dinobot
+	{
+		ret = (int)(snr / 8);
 	}
 
 	signalqualitydb = ret;
@@ -2147,7 +2147,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					else if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x03", 3))
 						eDebugNoSimulateNoNewLineEnd("(DiSEqC peripherial power on)");
 					else
-						eDebugNoSimulateNoNewLineEnd("");
+						eDebugNoSimulateNoNewLineEnd("%s", "");
 					duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000;
 					duration_est = (m_sec_sequence.current()->diseqc.len * 14) + 10;
 					eDebugNoSimulateNoNewLineStart("[eDVBFrontend] [SEC] diseqc ioctl duration: %d ms", duration);
@@ -2157,7 +2157,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					if (delay)
 						eDebugNoSimulateNoNewLineEnd(" -> extra guard delay %d ms",delay);
 					else
-						eDebugNoSimulateNoNewLineEnd("");
+						eDebugNoSimulateNoNewLineEnd("%s", "");
 				}
 				++m_sec_sequence.current();
 				break;
@@ -3515,6 +3515,7 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 	}
 	if (m_simulate)
 		return 0;
+	eDebug("[eDVBFrontend%d] setVoltage FE_ENABLE_HIGH_LNB_VOLTAGE %d FE_SET_VOLTAGE %d", m_dvbid, increased, vlt);
 	::ioctl(m_fd, FE_ENABLE_HIGH_LNB_VOLTAGE, increased);
 	return ::ioctl(m_fd, FE_SET_VOLTAGE, vlt);
 }
