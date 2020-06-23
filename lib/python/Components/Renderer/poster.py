@@ -8,21 +8,27 @@ from enigma import ePixmap, ePicLoad, eTimer
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
 from Components.config import config
+from Components.Language import language
 from urllib2 import urlopen, quote
 import json
 import re
 import os
 import socket
 
-if config.plugins.blackpanel.apitmdb.value != "":
-	tmdb_api = config.plugins.blackpanel.apitmdb.value
-else:
-	tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
 
-if os.path.isdir("/media/hdd"):
-	path_folder = "/media/hdd/poster/"
-else:
+try:
+	if config.plugins.blackpanel.apitmdb.value != "":
+		tmdb_api = config.plugins.blackpanel.apitmdb.value
+	else:
+		tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
+except:
+	tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
+print 'apitmdb: ',tmdb_api
+
+if os.path.isdir("/media/usb"):
 	path_folder = "/media/usb/poster/"
+else:
+	path_folder = "/media/hdd/poster/"
 
 try:
 	folder_size=sum([sum(map(lambda fname: os.path.getsize(os.path.join(path_folder, fname)), files)) for path_folder, folders, files in os.walk(path_folder)])
@@ -71,8 +77,8 @@ class poster(Renderer):
 			except:
 				evntNm = evnt
 			self.evntNm = evntNm
-			self.dwn_poster = path_folder + "{}.jpg".format(evntNm)
-			pstrNm = path_folder + evntNm + ".jpg"
+			self.dwn_poster = path_folder + "{}.jpg".format(evntNm.replace(':','-').replace('¿','').replace('?',''))
+			pstrNm = path_folder + evntNm.replace(':','-').replace('¿','').replace('?','')+ ".jpg"
 			if os.path.exists(pstrNm):
 				size = self.instance.size()
 				self.picload = ePicLoad()
@@ -102,7 +108,7 @@ class poster(Renderer):
 		try:
 			if self.intCheck():
 				self.year = self.filterSearch()
-				url_tmdb = "https://api.themoviedb.org/3/search/{}?api_key={}&query={}".format(self.srch, tmdb_api, quote(self.evntNm))
+				url_tmdb = "https://api.themoviedb.org/3/search/{}?api_key={}&query={}&language={}".format(self.srch, tmdb_api, quote(self.evntNm), language.getLanguage().replace('_', '-'))
 				if self.year:
 					url_tmdb += "&primary_release_year={}&year={}".format(self.year, self.year)
 				poster = json.load(urlopen(url_tmdb))['results'][0]['poster_path']
@@ -114,7 +120,7 @@ class poster(Renderer):
 		except:
 			try:
 				if not os.path.exists(path_folder + self.evntNm + ".jpg"):
-					url_tmdb = "https://api.themoviedb.org/3/search/tv?api_key={}&query={}".format(tmdb_api, quote(self.evntNm))
+					url_tmdb = "https://api.themoviedb.org/3/search/{}?api_key={}&query={}&language={}".format(self.srch, tmdb_api, quote(self.evntNm), language.getLanguage().replace('_', '-'))
 					if self.year:
 						url_tmdb += "&primary_release_year={}&year={}".format(self.year, self.year)
 					poster = json.load(urlopen(url_tmdb))['results'][0]['poster_path']

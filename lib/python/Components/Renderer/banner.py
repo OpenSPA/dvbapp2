@@ -12,15 +12,18 @@ import re
 import os
 import urllib2
 
-if config.plugins.blackpanel.apitmdb.value != "":
-	tmdb_api = config.plugins.blackpanel.apitmdb.value
-else:
+try:
+	if config.plugins.blackpanel.apitmdb.value != "":
+		tmdb_api = config.plugins.blackpanel.apitmdb.value
+	else:
+		tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
+except:
 	tmdb_api = "8fedefb08d7138abbb6d19ff66c9170c"
 
-if os.path.isdir("/media/hdd"):
-	path_folder = "/media/hdd/banner/"
-else:
+if os.path.isdir("/media/usb"):
 	path_folder = "/media/usb/banner/"
+else:
+	path_folder = "/media/hdd/banner/"
 
 try:
 	folder_size=sum([sum(map(lambda fname: os.path.getsize(os.path.join(path_folder, fname)), files)) for path_folder, folders, files in os.walk(path_folder)])
@@ -93,7 +96,7 @@ class banner(Renderer):
 			url_tvdb = "https://thetvdb.com/api/GetSeries.php?seriesname={}".format(self.evntNm)
 			if year:
 				url_tvdb += "&primary_release_year={}&year={}".format(year, year)
-			url_read = urllib2.urlopen(url_tvdb).read()			
+			url_read = urllib2.urlopen(url_tvdb).read()
 			series_id = re.findall('<seriesid>(.*?)</seriesid>', url_read, re.I)[0]
 			if series_id:
 				try:
@@ -109,7 +112,7 @@ class banner(Renderer):
 						self.saveBanner()
 					except:
 						try:
-							url_tmdb = "https://api.themoviedb.org/3/search/multi?api_key="+tmdb_api+"&query={}".format(self.evntNm)
+							url_tmdb = "https://api.themoviedb.org/3/search/multi?api_key={}&query={}".format( tmdb_api, quote(self.evntNm))
 							if len(year) > 0:
 								url_tmdb += "&primary_release_year={}&year={}".format(year, year)
 							jp = json.load(urllib2.urlopen(url_tmdb))
