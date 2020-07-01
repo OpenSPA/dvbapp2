@@ -1,7 +1,7 @@
 <!--suppress XmlUnboundNsPrefix -->
 <setupxml>
 	<setup key="time" title="Time settings">
-		<item level="0" text="Enable Geolocation" description="Configure if you like detect online your timezone.">config.timezone.geolocation</item>
+		<item level="0" text="Enable Geolocation" description="Configure if you like detect online your timezone.">config.misc.enableGeolocation</item>
 		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
 		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>

@@ -1,10 +1,12 @@
 import errno
+import time
 import xml.etree.cElementTree
 
+from enigma import eTimer  # This is for AutoTimers!
 from os import environ, path, symlink, unlink, walk
-from time import gmtime, localtime, strftime, time
 
-from Components.config import ConfigSelection, ConfigSubsection, ConfigYesNo, config
+from Components.config import ConfigSelection, ConfigSubsection, config
+from Tools.Geolocation import geolocation
 from Tools.StbHardware import setRTCoffset
 
 # The DEFAULT_AREA setting is usable by the image maintainers to select the
@@ -45,60 +47,52 @@ DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenViX, OpenSPA
 DEFAULT_ZONE = "Madrid"  # OpenSPA
 TIMEZONE_FILE = "/etc/timezone.xml"  # This should be SCOPE_TIMEZONES_FILE!  This file moves arond the filesystem!!!  :(
 TIMEZONE_DATA = "/usr/share/zoneinfo/"  # This should be SCOPE_TIMEZONES_DATA!
-
-config.timezone = ConfigSubsection()
-config.timezone.geolocation = ConfigYesNo(default=False)
+AT_POLL_DELAY = 3  # Minutes - This is for AutoTimers!
 
 def InitTimeZones():
-	if config.timezone.geolocation.value == True:
-		from Tools.Geolocation import geolocation
-		tz = geolocation.get("timezone", None)
+	config.timezone = ConfigSubsection()
+	config.timezone.area = ConfigSelection(default=DEFAULT_AREA, choices=timezones.getTimezoneAreaList())
+	config.timezone.val = ConfigSelection(default=DEFAULT_ZONE, choices=timezones.getTimezoneList())
+	if config.misc.firstrun.value:
 		proxy = geolocation.get("proxy", False)
-	else:
-		tz = None
-		proxy = False
-
-	if tz is None or proxy is True:
-		area = DEFAULT_AREA
-		zone = timezones.getTimezoneDefault(area=area)
-		if proxy:
-			msg = " - proxy in use"
+		tz = geolocation.get("timezone", None)
+		if proxy is True or tz is None:
+			msg = " - proxy in use" if proxy else ""
+			print "[Timezones] Warning: Geolocation not available%s!  (area='%s', zone='%s')" % (msg, config.timezone.area.value, config.timezone.val.value)
 		else:
-			msg = ""
-		print "[Timezones] Geolocation not available%s!  (area='%s', zone='%s')" % (msg, area, zone)
-	elif DEFAULT_AREA == "Classic":
-		area = "Classic"
-		zone = tz
-		print "[Timezones] Classic mode with geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone)
+			area, zone = tz.split("/", 1)
+			if area != DEFAULT_AREA:
+				config.timezone.area.value = area
+				choices = timezones.getTimezoneList(area=area)
+				config.timezone.val.setChoices(choices, default=timezones.getTimezoneDefault(area, choices))
+			config.timezone.val.value = zone
+			config.timezone.save()
+			print "[Timezones] Initial time zone set by geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone)
 	else:
-		area, zone = tz.split("/", 1)
-		print "[Timezones] Modern mode with geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone)
-	config.timezone.area = ConfigSelection(default=area, choices=timezones.getTimezoneAreaList())
-	config.timezone.val = ConfigSelection(default=timezones.getTimezoneDefault(), choices=timezones.getTimezoneList())
-	if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
-		config.timezone.area.value = "Generic"
-	try:
-		tzLink = path.realpath("/etc/localtime")[20:]
-		msgs = []
-		if config.timezone.area.value == "Classic":
-			if config.timezone.val.value != tzLink:
-				msgs.append("time zone '%s' != '%s'" % (config.timezone.val.value, tzLink))
-		else:
-			tzSplit = tzLink.find("/")
-			if tzSplit == -1:
-				tzArea = "Generic"
-				tzVal = tzLink
+		if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
+			config.timezone.area.value = "Generic"
+		try:
+			tzLink = path.realpath("/etc/localtime")[20:]
+			msgs = []
+			if config.timezone.area.value == "Classic":
+				if config.timezone.val.value != tzLink:
+					msgs.append("time zone '%s' != '%s'" % (config.timezone.val.value, tzLink))
 			else:
-				tzArea = tzLink[:tzSplit]
-				tzVal = tzLink[tzSplit + 1:]
-			if config.timezone.area.value != tzArea:
-				msgs.append("area '%s' != '%s'" % (config.timezone.area.value, tzArea))
-			if config.timezone.val.value != tzVal:
-				msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
-		if len(msgs):
-			print "[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs)
-	except (IOError, OSError):
-		pass
+				tzSplit = tzLink.find("/")
+				if tzSplit == -1:
+					tzArea = "Generic"
+					tzVal = tzLink
+				else:
+					tzArea = tzLink[:tzSplit]
+					tzVal = tzLink[tzSplit + 1:]
+				if config.timezone.area.value != tzArea:
+					msgs.append("area '%s' != '%s'" % (config.timezone.area.value, tzArea))
+				if config.timezone.val.value != tzVal:
+					msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
+			if len(msgs):
+				print "[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs)
+		except (IOError, OSError):
+			pass
 
 	def timezoneAreaChoices(configElement):
 		choices = timezones.getTimezoneList(area=configElement.value)
@@ -119,12 +113,11 @@ class Timezones:
 		self.timezones = {}
 		self.loadTimezones()
 		self.readTimezones()
-		self.callbacks = []
-		# This is a work around to maintain support of AutoTimers
-		# until AutoTimers are updated to use the Timezones
-		# callbacks.  Once AutoTimers are updated *all* AutoTimer
-		# code should be removed from the Timezones.py code!
-		self.autotimerInit()
+		self.autotimerCheck()
+		if self.autotimerPollDelay is None:
+			self.autotimerPollDelay = AT_POLL_DELAY
+		self.timer = eTimer()
+		self.autotimerUpdate = False
 
 	# Scan the zoneinfo directory tree and all load all time zones found.
 	#
@@ -274,7 +267,14 @@ class Timezones:
 			choices = self.getTimezoneList(area=area)
 		return areaDefaultZone.setdefault(area, choices[0][0])
 
-	def activateTimezone(self, zone, area, runCallbacks=True):
+	def activateTimezone(self, zone, area):
+		# print "[Timezones] activateTimezone DEBUG: Area='%s', Zone='%s'" % (area, zone)
+		self.autotimerCheck()
+		if self.autotimerAvailable and config.plugins.autotimer.autopoll.value:
+			print "[Timezones] Trying to stop main AutoTimer poller."
+			if self.autotimerPoller is not None:
+				self.autotimerPoller.stop()
+			self.autotimerUpdate = True
 		tz = zone if area in ("Classic", "Generic") else path.join(area, zone)
 		file = path.join(TIMEZONE_DATA, tz)
 		if not path.isfile(file):
@@ -304,58 +304,47 @@ class Timezones:
 			e_tzset()
 		if path.exists("/proc/stb/fp/rtc_offset"):
 			setRTCoffset()
-		now = int(time())
-		timeFormat = "%a %d-%b-%Y %H:%M:%S"
-		print "[Timezones] Local time is '%s'  -  UTC time is '%s'." % (strftime(timeFormat, localtime(now)), strftime(timeFormat, gmtime(now)))
-		if runCallbacks:
-			for method in self.callbacks:
-				if method:
-					method()
+		if self.autotimerAvailable and config.plugins.autotimer.autopoll.value:
+			if self.autotimerUpdate:
+				self.timer.stop()
+			if self.autotimeQuery not in self.timer.callback:
+				self.timer.callback.append(self.autotimeQuery)
+			print "[Timezones] AutoTimer poller will be run in %d minutes." % AT_POLL_DELAY
+			self.timer.startLongTimer(AT_POLL_DELAY * 60)
 
-	def addCallback(self, callback):
-		if callback not in self.callbacks:
-			self.callbacks.append(callback)
-
-	def removeCallback(self, callback):
-		if callback in self.callbacks:
-			self.callbacks.remove(callback)
-
-	def autotimerInit(self):  # This code should be moved into the AutoTimer plugin!
+	def autotimerCheck(self):
+		self.autotimerAvailable = False
+		self.autotimerPollDelay = None
+		return None
 		try:
 			# Create attributes autotimer & autopoller for backwards compatibility.
 			# Their use is deprecated.
-			from enigma import eTimer
 			from Plugins.Extensions.AutoTimer.plugin import autotimer, autopoller
 			self.autotimerPoller = autopoller
 			self.autotimerTimer = autotimer
-			self.pollDelay = 3  # Poll delay in minutes.
-			try:
-				self.autotimerPollDelay = config.plugins.autotimer.delay.value
-			except AttributeError:
-				self.autotimerPollDelay = self.pollDelay
-			self.timer = eTimer()
-			self.timer.callback.append(self.autotimeQuery)
-			self.addCallback(self.autotimerCallback)
+			self.autotimerAvailable = True
 		except ImportError:
 			self.autotimerPoller = None
 			self.autotimerTimer = None
-
-	def autotimerCallback(self):
-		if config.plugins.autotimer.autopoll.value:
-			self.timer.stop()
-			print "[Timezones] Trying to stop main AutoTimer poller."
-			if self.autotimerPoller is not None:
-				self.autotimerPoller.stop()
-			print "[Timezones] AutoTimer poller will be run in %d minutes." % self.pollDelay
-			self.timer.startLongTimer(self.pollDelay * 60)
+			self.autotimerAvailable = False
+		try:
+			self.autotimerPollDelay = config.plugins.autotimer.delay.value
+		except AttributeError:
+			self.autotimerPollDelay = None
 
 	def autotimeQuery(self):
 		print "[Timezones] AutoTimer poll is running."
-		if self.autotimerTimer is not None:
-			print "[Timezones] AutoTimer is parsing the EPG."
-			self.autotimerTimer.parseEPG(autoPoll=True)
-		if self.autotimerPoller is not None:
-			self.autotimerPoller.start()
+		self.autotimerUpdate = False
+		if self.autotimeQuery in self.timer.callback:
+			self.timer.callback.remove(self.autotimeQuery)
+		self.timer.stop()
+		self.autotimerCheck()
+		if self.autotimerAvailable:
+			if self.autotimerTimer is not None:
+				print "[Timezones] AutoTimer is parsing the EPG."
+				self.autotimerTimer.parseEPG(autoPoll=True)
+			if self.autotimerPoller is not None:
+				self.autotimerPoller.start()
 
 
 timezones = Timezones()
