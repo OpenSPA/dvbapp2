@@ -26,7 +26,10 @@ class FrontendInfop(Converter, object):
 	NIMACTIVEK = 18
 	NIMACTIVEL = 19
 	NIMACTIVEM = 20
-	NIMACTIVEN = 21
+	NIMACTIVEO = 21
+	NIMACTIVEP = 22
+	NIMACTIVEQ = 23
+	NIMACTIVER = 24
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -72,6 +75,14 @@ class FrontendInfop(Converter, object):
 			self.type = self.NIMACTIVEM
 		elif type == "NIMACTIVEN":
 			self.type = self.NIMACTIVEN
+		elif type == "NIMACTIVEO":
+			self.type = self.NIMACTIVEO
+		elif type == "NIMACTIVEP":
+			self.type = self.NIMACTIVEP
+		elif type == "NIMACTIVEQ":
+			self.type = self.NIMACTIVEQ
+		elif type == "NIMACTIVER":
+			self.type = self.NIMACTIVER
 		else:
 			self.type = self.LOCK
 
@@ -153,7 +164,15 @@ class FrontendInfop(Converter, object):
 				return nims > 12
 			elif self.type == self.NIMACTIVEN:
 				return nims > 13
-
+			elif self.type == self.NIMACTIVEO:
+				return nims > 14
+			elif self.type == self.NIMACTIVEP:
+				return nims > 15
+			elif self.type == self.NIMACTIVEQ:
+				return nims > 16
+			elif self.type == self.NIMACTIVER:
+				return nims > 17
+			
 		else:
 			ber = self.source.ber
 			if ber is None:
