@@ -26,10 +26,11 @@ class FrontendInfop(Converter, object):
 	NIMACTIVEK = 18
 	NIMACTIVEL = 19
 	NIMACTIVEM = 20
-	NIMACTIVEO = 21
-	NIMACTIVEP = 22
-	NIMACTIVEQ = 23
-	NIMACTIVER = 24
+	NIMACTIVEN = 21
+	NIMACTIVEO = 22
+	NIMACTIVEP = 23
+	NIMACTIVEQ = 24
+	NIMACTIVER = 25
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
