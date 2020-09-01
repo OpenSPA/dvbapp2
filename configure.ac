@@ -946,6 +946,7 @@ lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/StartKodi/Makefile
 lib/python/Plugins/Extensions/QuadPip/Makefile
+lib/python/Plugins/Extensions/xtraEvent/Makefile
 lib/python/Plugins/Extensions/spaTeam/Makefile
 lib/python/Plugins/Extensions/spaTeam/bitratetool/Makefile
 lib/python/Plugins/Extensions/spaTeam/Daemons/Makefile
