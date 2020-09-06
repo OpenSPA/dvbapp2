@@ -18360,3 +18360,57 @@ msgstr "Horitzontal amb icones"
 
 msgid "The %s\nfile already exists. Do you want to overwrite it?"
 msgstr "L'arxiu %s\nja existeix. Vols sobreescriure'l?"
+
+msgid "Now in"
+msgstr "Ara en"
+
+msgid "After"
+msgstr "Després"
+
+msgid "Temperature:"
+msgstr "Temperatura:"
+
+msgid "Feels Like:"
+msgstr "Sensació:"
+
+msgid "Humidity:"
+msgstr "Humitat:"
+
+msgid "Wind:"
+msgstr "Vent:"
+
+msgid "Size:"
+msgstr "Tamany:"
+
+msgid "Duration:"
+msgstr "Duració:"
+
+msgid "RAM-Free: %s MB"
+msgstr "RAM lliure: %s MB"
+
+msgid "CPU-Speed: %s MHz"
+msgstr "Vel. CPU: %s"
+
+msgid "Flash Memory free: %s MByte"
+msgstr "Flash lliure: %s MB"
+
+msgid "SYS-Temp: %s"
+msgstr "Temp SIS: %s"
+
+msgid "CPU-Temp: %s"
+msgstr "Temp. CPU: %s"
+
+msgid "CPU-Load: %s"
+msgstr "Càrrega CPU: %s"
+
+msgid "FAN: "
+msgstr "Vent:"
+
+msgid "Program Duration:"
+msgstr "Duració Programa:"
+
+msgid "You're watching..."
+msgstr "Estàs veient..."
+
+msgid "Playback Time:"
+msgstr "Temps Reproducció:"
