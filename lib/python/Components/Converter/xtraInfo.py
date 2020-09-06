@@ -12,11 +12,12 @@ from Tools.Directories import fileExists
 import re
 import json
 
+
 try:
 	from Plugins.Extensions.xtraEvent.xtra import xtra
 	pathLoc = config.plugins.xtraEvent.loc.value
 except:
-	pass
+	pathLoc = "/media/hdd/"
 
 
 class xtraInfo(Converter, object):
