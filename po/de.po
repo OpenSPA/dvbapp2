@@ -25688,3 +25688,57 @@ msgstr "Violett"
 #~ msgstr ""
 #~ "Es wurde kein gültiger Wert eingegeben: '%s'\n"
 #~ "Sprung wird abgebrochen."
+
+msgid "Now in"
+msgstr "Jetzt in"
+
+msgid "After"
+msgstr "Danach"
+
+msgid "Temperature:"
+msgstr "Temperatur:"
+
+msgid "Feels Like:"
+msgstr "Temp. Empf.:"
+
+msgid "Humidity:"
+msgstr "Luftfeuchtigkeit:"
+
+msgid "Wind:"
+msgstr "Wind:"
+
+msgid "Size:"
+msgstr "Größe:"
+
+msgid "Duration:"
+msgstr "Dauer:"
+
+msgid "RAM-Free: %s MB"
+msgstr "RAM-frei: %s MB"
+
+msgid "CPU-Speed: %s MHz"
+msgstr "CPU-Geschwindigkeit: %s MHz"
+
+msgid "Flash Memory free: %s MByte"
+msgstr "Flash-Speicher frei: %s MByte"
+
+msgid "SYS-Temp: %s"
+msgstr "SYS-Temp: %s"
+
+msgid "CPU-Temp: %s"
+msgstr ""
+
+msgid "CPU-Load: %s"
+msgstr "CPU-Last: %s"
+
+msgid "FAN: "
+msgstr ""
+
+msgid "Program Duration:"
+msgstr "Programmdauer:"
+
+msgid "You're watching..."
+msgstr "Du schaust..."
+
+msgid "Playback Time:"
+msgstr "Wiedergabezeit:"

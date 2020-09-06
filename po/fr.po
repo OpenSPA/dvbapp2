@@ -16003,3 +16003,57 @@ msgid ""
 msgstr ""
 "Votre sauvegarde a réussi. Nous allons continuer à expliquer la procédure de "
 "mise à jour."
+
+msgid "Now in"
+msgstr "Maintenant en"
+
+msgid "After"
+msgstr "Après"
+
+msgid "Temperature:"
+msgstr "Température:"
+
+msgid "Feels Like:"
+msgstr "Se sent comme:"
+
+msgid "Humidity:"
+msgstr "Humidité:"
+
+msgid "Wind:"
+msgstr "Vent:"
+
+msgid "Size:"
+msgstr "Taille:"
+
+msgid "Duration:"
+msgstr "Durée:"
+
+msgid "RAM-Free: %s MB"
+msgstr "RAM libre: %s MB"
+
+msgid "CPU-Speed: %s MHz"
+msgstr "Vitesse du processeur CPU:% s MHz"
+
+msgid "Flash Memory free: %s MByte"
+msgstr "Mémoire flash libre:% s Mo"
+
+msgid "SYS-Temp: %s"
+msgstr "Temp. SIS: %s"
+
+msgid "CPU-Temp: %s"
+msgstr "Temp. CPU: %s"
+
+msgid "CPU-Load: %s"
+msgstr "Charge CPU: %s"
+
+msgid "FAN: "
+msgstr "Ventilateur:"
+
+msgid "Program Duration:"
+msgstr "Durée du programme:"
+
+msgid "You're watching..."
+msgstr "Vous regardez ..."
+
+msgid "Playback Time:"
+msgstr "Temps de reproduction:"
