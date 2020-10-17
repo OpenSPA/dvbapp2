@@ -19668,10 +19668,10 @@ msgstr "Acivar log de red *"
 
 msgid ""
 "Allows you to enable the twisted log. They contain very detailed information "
-"of everything the twisted does."
+"of everything the twisted does. ('/tmp/twisted.log')"
 msgstr ""
 "Te permite activar el log de red. Contiene información muy detallada de todo "
-"lo que hace en red"
+"lo que hace en red. ('/tmp/twisted.log')"
 
 msgid "H9 SDcard manager"
 msgstr "Administrador Tarjeta SD"
