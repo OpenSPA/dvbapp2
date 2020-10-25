@@ -6,7 +6,7 @@ from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Screens.MessageBox import MessageBox
 import Tools.Notifications
-import os, re, random
+import os, re, random, datetime
 from Components.SelectionList import SelectionList, SelectionEntryComponent
 from Components.config import config, configfile, ConfigYesNo, ConfigSubsection, getConfigListEntry, ConfigSelection, ConfigText, ConfigInteger, ConfigSelectionNumber, ConfigDirectory
 from Components.ConfigList import ConfigListScreen
@@ -173,7 +173,7 @@ class xtra(Screen, ConfigListScreen):
 		list = []
 		ConfigListScreen.__init__(self, list, session=session)
 
-		self['key_red'] = Label(_('Close'))
+		self['key_red'] = Label(_('Delete files'))
 		self['key_green'] = Label(_('Search'))
 		self['key_yellow'] = Label(_('Download'))
 		self['key_blue'] = Label(_('Manuel Search'))
@@ -184,7 +184,7 @@ class xtra(Screen, ConfigListScreen):
 			"down": self.keyDown,
 			"up": self.keyUp,
 			"right": self.keyRight,
-			"red": self.exit,
+			"red": self.erase,
 			"green": self.search,
 			"yellow": self.dwnldFileld,
 			"blue": self.ms,
@@ -364,6 +364,25 @@ class xtra(Screen, ConfigListScreen):
 		if cur:
 			self["help"].text = cur[2]
 
+	def erase(self):
+		path = [pathLoc+'poster', pathLoc+'banner', pathLoc+'infos']
+		formato = '%d-%m-%y'
+		hoy = datetime.datetime.now()
+		dia = hoy - datetime.timedelta(days=30)
+		print hoy
+		print dia
+		for folder in path :
+			print folder
+			llista = os.listdir(folder)
+			for file in llista:
+				print file
+				archivo = folder + os.sep + file
+				estado = os.stat(archivo)
+				modificado = datetime.datetime.fromtimestamp(estado.st_mtime)
+				print modificado
+				if modificado < dia :
+					os.remove(archivo)
+	
 	def search(self):
 		if config.plugins.xtraEvent.searchMOD.value == "Current Channel":
 			self.currentChEpgs() 
@@ -400,6 +419,7 @@ class xtra(Screen, ConfigListScreen):
 	def compressImg(self):
 		import sys
 		filepath = pathLoc + config.plugins.xtraEvent.cnfgSel.value
+		print "filepath : ", filepath
 		folder_size = sum([sum(map(lambda fname: os.path.getsize(os.path.join(filepath, fname)), files)) for filepath, folders, files in os.walk(filepath)])
 		old_size = "%0.1f" % (folder_size/(1024))
 		if os.path.exists(filepath):
