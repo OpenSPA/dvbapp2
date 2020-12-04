@@ -18414,3 +18414,21 @@ msgstr "Estàs veient..."
 
 msgid "Playback Time:"
 msgstr "Temps Reproducció:"
+
+msgid "Used: %s\nFree: %s"
+msgstr "Usat: %s\Lliure: %s"
+
+msgid "Speed: "
+msgstr "Velocitat: "
+
+msgid "Sensation:"
+msgstr "Sensació:"
+
+msgid "Used: "
+msgstr "Usat: "
+
+msgid "Set to yes for debugging the root cause of a spinner."
+msgstr "Configurar en Si per a depuració python durant els spinners."
+
+msgid "When enabled, number markers will be hidden."
+msgstr "Quan s'habiliti, els marcadors numèrics s'ocultaran."

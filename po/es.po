@@ -20032,3 +20032,21 @@ msgstr "Estás viendo..."
 
 msgid "Playback Time:"
 msgstr "Tiempo  Reproducción:"
+
+msgid "Used: %s\nFree: %s"
+msgstr "Usado: %s\nLibre: %s"
+
+msgid "Speed: "
+msgstr "Velocidad: "
+
+msgid "Sensation:"
+msgstr "Sensación:"
+
+msgid "Used: "
+msgstr "Usado: "
+
+msgid "Set to yes for debugging the root cause of a spinner."
+msgstr "Configurar en Si para depuración python durante los spinners."
+
+msgid "When enabled, number markers will be hidden."
+msgstr "Cuando se habilite, los marcadores numéricos se ocultarán."
