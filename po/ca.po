@@ -18416,7 +18416,7 @@ msgid "Playback Time:"
 msgstr "Temps Reproducció:"
 
 msgid "Used: %s\nFree: %s"
-msgstr "Usat: %s\Lliure: %s"
+msgstr "Usat: %s\nLliure: %s"
 
 msgid "Speed: "
 msgstr "Velocitat: "
