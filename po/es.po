@@ -20050,3 +20050,6 @@ msgstr "Configurar en Si para depuración python durante los spinners."
 
 msgid "When enabled, number markers will be hidden."
 msgstr "Cuando se habilite, los marcadores numéricos se ocultarán."
+
+msgid "Flash free: %s MByte"
+msgstr "Flash Libre: %s MB"
