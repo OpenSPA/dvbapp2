@@ -10,7 +10,6 @@ import re
 from Tools.Directories import fileExists
 
 try:
-	from Plugins.Extensions.xtraEvent.xtra import xtra
 	pathLoc = config.plugins.xtraEvent.loc.value
 except:
 	pass
@@ -20,13 +19,14 @@ class xtraPoster(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.delayPicTime = 100
-
+		self.timer = eTimer()
+		self.timer.callback.append(self.showPicture)
+		
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]
 		for attrib, value in self.skinAttributes:
 			if attrib == 'delayPic':          # delay time(ms) for poster showing...
 				self.delayPicTime = int(value)
-			
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
@@ -36,7 +36,7 @@ class xtraPoster(Renderer):
 			return
 		else:
 			if what[0] != self.CHANGED_CLEAR:
-				self.delay()
+				self.timer.start(self.delayPicTime, True)
 
 	def showPicture(self):
 		evnt = ''
@@ -46,7 +46,7 @@ class xtraPoster(Renderer):
 			event = self.source.event
 			if event:
 				evnt = event.getEventName()
-				evntNm = re.sub("([\(\[]).*?([\)\]])|(: odc.\d+)|(\d+: odc.\d+)|(\d+ odc.\d+)|(:)|( -(.*?).*)|(,)|!", "", evnt).rstrip().lower()
+				evntNm = re.sub("([\(\[]).*?([\)\]])|(: odc.\d+)|(\d+: odc.\d+)|(\d+ odc.\d+)|(:)|( -(.*?).*)|(,)|!", "", evnt).rstrip()
 				pstrNm = "{}xtraEvent/poster/{}.jpg".format(pathLoc, evntNm)
 				if fileExists(pstrNm):
 					size = self.instance.size()
@@ -68,8 +68,3 @@ class xtraPoster(Renderer):
 			return
 		except:
 			pass
-
-	def delay(self):
-		self.timer = eTimer()
-		self.timer.callback.append(self.showPicture)
-		self.timer.start(self.delayPicTime, True)

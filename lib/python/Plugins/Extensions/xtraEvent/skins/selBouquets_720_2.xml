@@ -1,0 +1,17 @@
+<screen name="selBouquets" position="0,0" size="1280,720" title="bouquets..." backgroundColor="transparent">
+	<widget source="Title" render="Label" position="45,40" size="745,40" font="Console; 30" foregroundColor="#ffffff" backgroundColor="30000000" transparent="1" />
+	<widget name="list" position="45,100" size="740,510" itemHeight="30" font="Regular;22" foregroundColor="#ffffff" scrollbarMode="showOnDemand" transparent="1" backgroundColor="30000000" backgroundColorSelected="#565d6d" foregroundColorSelected="#ffffff" />
+	<widget name="status" position="845,100" size="400,30" transparent="1" font="Regular;22" foregroundColor="#92f1fc" backgroundColor="30000000" />
+	<widget name="info" position="845,145" size="400,390" transparent="1" font="Regular;22" foregroundColor="#ffffff" backgroundColor="30000000" halign="left" valign="top" />
+	<eLabel name="new eLabel" position="45,640" size="10,30" backgroundColor="#d90000" zPosition="2" />
+	<eLabel name="new eLabel" position="225,640" size="10,30" backgroundColor="#2db300" zPosition="2" />
+	<eLabel name="new eLabel" position="410,640" size="10,30" backgroundColor="#ffd24c" zPosition="2" />
+	<eLabel name="new eLabel" position="600,640" size="10,30" backgroundColor="#00a3d9" zPosition="2" />
+	<widget source="key_red" render="Label" font="Regular;20" foregroundColor="#ffffff" backgroundColor="30000000" position="65,645" size="150,30" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_green" render="Label" font="Regular;20" foregroundColor="#ffffff" backgroundColor="30000000" position="245,645" size="150,30" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_yellow" render="Label" font="Regular;20" foregroundColor="#ffffff" backgroundColor="30000000" position="430,645" size="150,30" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_blue" render="Label" font="Regular; 20" foregroundColor="#ffffff" backgroundColor="30000000" position="620,645" size="150,30" halign="left" transparent="1" zPosition="1" />
+	<eLabel name="" position="30,30" size="771,660" backgroundColor="#30000000" zPosition="-1" />
+	<eLabel name="" position="45,90" size="740,2" backgroundColor="#666666" zPosition="1" />
+	<eLabel name="" position="45,620" size="740,2" backgroundColor="#666666" zPosition="1" />
+</screen>

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# by digiteng...07.2020
+# by digiteng...07.2020 - 11.2020
 
 # <widget source="session.Event_Now" render="Label" position="50,545" size="930,400" font="Regular; 32" halign="left" transparent="1" zPosition="2" backgroundColor="back_color" valign="center">
   	# <convert type="xtraInfo">Title,Year,Description</convert>
@@ -12,12 +12,10 @@ from Tools.Directories import fileExists
 import re
 import json
 
-
 try:
-	from Plugins.Extensions.xtraEvent.xtra import xtra
 	pathLoc = config.plugins.xtraEvent.loc.value
 except:
-	pathLoc = "/media/hdd/"
+	pass
 
 
 class xtraInfo(Converter, object):
@@ -51,7 +49,7 @@ class xtraInfo(Converter, object):
 		if event:
 			if self.types:
 				evnt = event.getEventName()
-				evntNm = re.sub("([\(\[]).*?([\)\]])|(: odc.\d+)|(\d+: odc.\d+)|(\d+ odc.\d+)|(:)|( -(.*?).*)|(,)|!", "", evnt).rstrip().lower()
+				evntNm = re.sub("([\(\[]).*?([\)\]])|(: odc.\d+)|(\d+: odc.\d+)|(\d+ odc.\d+)|(:)|( -(.*?).*)|(,)|!", "", evnt).rstrip()
 				rating_json = "{}xtraEvent/infos/{}.json".format(pathLoc, evntNm)
 				if fileExists(rating_json):
 					with open(rating_json) as f:

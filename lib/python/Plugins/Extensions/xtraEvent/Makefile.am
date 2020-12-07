@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/xtraEvent
 
-SUBDIRS = pic
+SUBDIRS = pic skins
 
 
 install_PYTHON = *.py

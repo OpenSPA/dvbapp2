@@ -1,0 +1,18 @@
+<screen name="xtra" position="0,0" size="1280,720" title="xtraEvent..." flags="wfNoBorder">
+  <ePixmap position="0,0" size="1280,720" zPosition="-1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/xtraEvent/pic/xtra_hd3.png" transparent="1" />
+  <widget source="Title" render="Label" position="40,35" size="745,40" font="Console; 30" foregroundColor="#c5c5c5" backgroundColor="#23262e" transparent="1" />
+  <widget name="config" position="40,95" size="745,510" itemHeight="30" font="Regular;24" foregroundColor="#c5c5c5" scrollbarMode="showOnDemand" transparent="1" backgroundColor="#23262e" backgroundColorSelected="#565d6d" foregroundColorSelected="#ffffff" />
+  <widget source="help" position="840,600" size="400,26" render="Label" font="Regular;22" foregroundColor="#f3fc92" backgroundColor="#23262e" halign="left" valign="center" transparent="1" />
+  <widget name="status" position="840,300" size="400,30" transparent="1" font="Regular;22" foregroundColor="#92f1fc" backgroundColor="#23262e" />
+  <widget name="info" position="840,330" size="400,260" transparent="1" font="Regular;22" foregroundColor="#c5c5c5" backgroundColor="#23262e" halign="left" valign="top" />
+  <widget name="int_statu" position="1209,40" size="30,30" transparent="1" text="●" font="Regular; 30" foregroundColor="#1edb76" backgroundColor="#23262e" zPosition="2" halign="center" />
+  <widget source="key_red" render="Label" font="Regular;22" foregroundColor="#c5c5c5" backgroundColor="#23262e" position="45,640" size="170,30" halign="left" transparent="1" zPosition="1" />
+  <widget source="key_green" render="Label" font="Regular;22" foregroundColor="#c5c5c5" backgroundColor="#23262e" position="235,640" size="170,30" halign="left" transparent="1" zPosition="1" />
+  <widget source="key_yellow" render="Label" font="Regular;22" foregroundColor="#c5c5c5" backgroundColor="#23262e" position="425,640" size="170,30" halign="left" transparent="1" zPosition="1" />
+  <widget source="key_blue" render="Label" font="Regular; 20" foregroundColor="#c5c5c5" backgroundColor="#23262e" position="615,640" size="170,30" halign="left" transparent="1" zPosition="1" />
+  <widget source="global.CurrentTime" render="Label" position="839,40" size="400,30" font="Console; 25" valign="center" halign="center" transparent="1" foregroundColor="#c5c5c5" backgroundColor="#23262e" zPosition="2">
+    <convert type="ClockToText">Default</convert>
+  </widget>
+  <eLabel name="" text=" MENU" position="800,640" size="150,30" transparent="1" halign="center" font="Console; 20" />
+  <eLabel name="" text=" INFO" position="1155,640" size="100,30" transparent="1" halign="center" font="Console; 20" />
+</screen>

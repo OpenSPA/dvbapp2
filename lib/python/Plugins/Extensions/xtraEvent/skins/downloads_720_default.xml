@@ -1,0 +1,16 @@
+<screen name="downloads" position="0,0" size="1280,720" title="downloads..." flags="wfNoBorder" backgroundColor="transparent">
+	<ePixmap position="0,0" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/xtraEvent/pic/xtra_hd.png" zPosition="-1" transparent="1" />
+	<widget source="Title" render="Label" position="40,35" size="745,40" font="Console; 30" foregroundColor="#ffffff" backgroundColor="#23262e" transparent="1" />
+	<widget name="progress" position="40,100" size="740,20" foregroundColor="#ffffff" borderColor="#ffffff" borderWidth="1"  backgroundColor="#23262e" />
+	<widget name="status" position="40,130" size="740,30" transparent="1" font="Regular; 24" foregroundColor="#92f1fc" backgroundColor="#23262e" />
+	<widget name="info" position="40,175" size="740,40" transparent="1" font="Regular; 24" foregroundColor="#ffffff" backgroundColor="#23262e" />
+	<widget name="info2" position="40,220" size="740,400" transparent="1" font="Regular; 24" foregroundColor="#ffffff" backgroundColor="#23262e" />
+	<widget source="key_red" render="Label" font="Regular;22" foregroundColor="#ffffff" backgroundColor="#23262e" position="45,640" size="170,30" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_green" render="Label" font="Regular;22" foregroundColor="#ffffff" backgroundColor="#23262e" position="235,640" size="170,30" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_yellow" render="Label" font="Regular;22" foregroundColor="#ffffff" backgroundColor="#23262e" position="425,640" size="170,30" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_blue" render="Label" font="Regular; 20" foregroundColor="#ffffff" backgroundColor="#23262e" position="615,640" size="170,30" halign="left" transparent="1" zPosition="1" />
+	<widget source="global.CurrentTime" render="Label" position="839,40" size="400,30" font="Console; 25" valign="center" halign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#23262e" zPosition="2">
+		<convert type="ClockToText">Default</convert>
+	</widget>
+	<eLabel name="" text=" INFO" position="1150,640" size="100,30" transparent="1" halign="center" font="Console; 20" />
+</screen>

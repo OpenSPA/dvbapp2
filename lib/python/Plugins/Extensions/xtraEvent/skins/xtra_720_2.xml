@@ -1,0 +1,29 @@
+<screen name="xtra" position="0,0" size="1280,720" title="xtraEvent..." flags="wfNoBorder" backgroundColor="transparent">
+	<widget source="Title" render="Label" position="45,40" size="740,40" font="Console; 30" foregroundColor="fc" backgroundColor="30000000" transparent="1" />
+	<widget name="config" position="45,100" size="740,510" itemHeight="30" font="Regular;20" foregroundColor="fc" scrollbarMode="showOnDemand" transparent="1" backgroundColor="30000000" backgroundColorSelected="#0d71aa" foregroundColorSelected="#ffffff" />
+	<widget source="help" position="845,560" size="400,52" render="Label" font="Regular;20" foregroundColor="#f3fc92" backgroundColor="30000000" halign="left" valign="center" transparent="1" />
+	<widget name="status" position="845,100" size="400,30" transparent="1" font="Regular;20" foregroundColor="#92f1fc" backgroundColor="30000000" />
+	<widget name="info" position="845,145" size="400,390" transparent="1" font="Regular;20" foregroundColor="fc" backgroundColor="30000000" halign="left" valign="top" />
+	<widget name="int_statu" position="1214,45" size="30,30" transparent="1" text="●" font="Regular; 30" foregroundColor="#1edb76" backgroundColor="#23262e" zPosition="2" halign="center" />
+	<eLabel name="new eLabel" position="45,680" size="185,10" backgroundColor="#d90000" zPosition="2" />
+	<eLabel name="new eLabel" position="230,680" size="185,10" backgroundColor="#2db300" zPosition="2" />
+	<eLabel name="new eLabel" position="415,680" size="185,10" backgroundColor="#ffd24c" zPosition="2" />
+	<eLabel name="new eLabel" position="600,680" size="185,10" backgroundColor="#a3d9" zPosition="2" />
+	<widget source="key_red" render="Label" font="Regular;20" foregroundColor="fc" backgroundColor="30000000" position="45,647" size="185,30" halign="center" transparent="1" zPosition="1" />
+	<widget source="key_green" render="Label" font="Regular;20" foregroundColor="fc" backgroundColor="30000000" position="230,647" size="185,30" halign="center" transparent="1" zPosition="1" />
+	<widget source="key_yellow" render="Label" font="Regular;20" foregroundColor="fc" backgroundColor="30000000" position="416,647" size="185,30" halign="center" transparent="1" zPosition="1" />
+	<widget source="key_blue" render="Label" font="Regular; 20" foregroundColor="fc" backgroundColor="30000000" position="600,647" size="185,30" halign="center" transparent="1" zPosition="1" />
+	<widget source="global.CurrentTime" render="Label" position="845,40" size="400,40" font="Console; 30" valign="center" halign="center" transparent="1" foregroundColor="fc" backgroundColor="30000000" zPosition="0">
+	  <convert type="ClockToText">Default</convert>
+	</widget>
+	<eLabel name="" text=" Info" position="1140,647" size="100,30" backgroundColor="30000000" transparent="1" halign="right" font="Console; 20" />
+	<eLabel name="new eLabel" position="845,680" size="400,10" backgroundColor="#666666" zPosition="2" />
+	<eLabel name="" text=" Menu" position="840,647" size="100,30" backgroundColor="30000000" transparent="1" halign="left" font="Console; 20" />
+	<eLabel name="" position="30,30" size="770,660" backgroundColor="#30000000" zPosition="-1" />
+	<eLabel name="" position="825,30" size="440,660" backgroundColor="#30000000" zPosition="-1" />
+	<eLabel name="" position="45,90" size="740,2" backgroundColor="#666666" zPosition="1" />
+	<eLabel name="" position="45,620" size="740,2" backgroundColor="#666666" zPosition="1" />
+	<eLabel name="" position="845,90" size="400,2" backgroundColor="#666666" zPosition="1" />
+	<eLabel name="" position="845,620" size="400,2" backgroundColor="#666666" zPosition="1" />
+	<eLabel name="" position="845,550" size="400,2" backgroundColor="#666666" zPosition="1" />
+</screen>

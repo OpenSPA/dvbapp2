@@ -1,0 +1,18 @@
+  <screen name="downloads" position="0,0" size="1280,720" title="downloads..." flags="wfNoBorder" backgroundColor="transparent">
+    <widget source="Title" render="Label" position="45,35" size="745,40" font="Console; 30" foregroundColor="#ffffff" backgroundColor="30000000" transparent="1" />
+    <widget name="progress" position="45,100" size="740,20" foregroundColor="#ffffff" borderColor="#ffffff" borderWidth="1" backgroundColor="30000000" />
+    <widget name="status" position="45,130" size="740,30" transparent="1" font="Regular; 22" foregroundColor="#92f1fc" backgroundColor="30000000" />
+    <widget name="info" position="45,175" size="740,40" transparent="1" font="Regular; 22" foregroundColor="#ffffff" backgroundColor="30000000" valign="top" />
+	<widget name="info2" position="40,220" size="740,400" transparent="1" font="Regular; 24" foregroundColor="#ffffff" backgroundColor="30000000" />
+    <eLabel name="new eLabel" position="45,640" size="10,30" backgroundColor="#d90000" zPosition="2" />
+    <eLabel name="new eLabel" position="225,640" size="10,30" backgroundColor="#2db300" zPosition="2" />
+    <eLabel name="new eLabel" position="410,640" size="10,30" backgroundColor="#ffd24c" zPosition="2" />
+    <eLabel name="new eLabel" position="600,640" size="10,30" backgroundColor="#00a3d9" zPosition="2" />
+    <widget source="key_red" render="Label" font="Regular;20" foregroundColor="#ffffff" backgroundColor="30000000" position="65,645" size="150,30" halign="left" transparent="1" zPosition="1" />
+    <widget source="key_green" render="Label" font="Regular;20" foregroundColor="#ffffff" backgroundColor="30000000" position="245,645" size="150,30" halign="left" transparent="1" zPosition="1" />
+    <widget source="key_yellow" render="Label" font="Regular;20" foregroundColor="#ffffff" backgroundColor="30000000" position="430,645" size="150,30" halign="left" transparent="1" zPosition="1" />
+    <widget source="key_blue" render="Label" font="Regular; 20" foregroundColor="#ffffff" backgroundColor="30000000" position="620,645" size="150,30" halign="left" transparent="1" zPosition="1" />
+    <eLabel name="" position="30,30" size="770,660" backgroundColor="#30000000" zPosition="-1" />
+    <eLabel name="" position="45,90" size="740,2" backgroundColor="#666666" zPosition="1" />
+    <eLabel name="" position="45,620" size="740,2" backgroundColor="#666666" zPosition="1" />
+  </screen>

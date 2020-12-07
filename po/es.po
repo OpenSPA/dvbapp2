@@ -20053,3 +20053,137 @@ msgstr "Cuando se habilite, los marcadores numéricos se ocultarán."
 
 msgid "Flash free: %s MByte"
 msgstr "Flash Libre: %s MB"
+
+msgid "Delete files"
+msgstr "Borrar archivos"
+
+msgid "Manual Search"
+msgstr "Búsqueda manual"
+
+msgid "adjust your settings and close ... your settings are valid ..."
+msgstr "ajuste la configuración y cierre ... su configuración es válida ..."
+
+msgid "'OK' select location downloads..."
+msgstr "'OK' seleccionar ubicación de las descargas..."
+
+msgid "* reOpen plugin..."
+msgstr "* Reabrir plugin..."
+
+msgid "optimize images..."
+msgstr "optimizar imágenes..."
+
+msgid "'OK' select for optimize images..."
+msgstr "'OK' para optimizar imágenes..."
+
+msgid "enter your own api key..."
+msgstr "Introduzca su propia clave api..."
+
+msgid "select search mode..."
+msgstr "Seleccionar modo de búsqueda..."
+
+msgid "enter the number of next events..."
+msgstr "Introduzca el número de próximos eventos..."
+
+msgid "select search language..."
+msgstr "Selecciona idioma para búsqueda"
+
+msgid "select timer update for events.."
+msgstr "seleccione la actualización del temporizador para los eventos..."
+
+msgid "source for poster..."
+msgstr "fuente para póster..."
+
+msgid "source tvmovie.de..."
+msgstr "fuente tvmovie.de..."
+
+msgid "source google search images..."
+msgstr "fuente google search images..."
+
+msgid "Program information with OMDB..."
+msgstr "Información del programa con OMDB ..."
+
+msgid "CONFIG MENU"
+msgstr "MENÚ DE CONFIGURACIÓN"
+
+msgid "Removed Broken Images : {}"
+msgstr "Imágenes rotas eliminadas : {}"
+
+msgid "Manuel Search Events..."
+msgstr "Búsqueda manual de Eventos..."
+
+msgid "Append"
+msgstr "añadir"
+
+msgid "Default Folder"
+msgstr "Carpeta predeterminada"
+
+msgid "NOW AND RESTART TO SEARCH AND DOWNLOAD IN BACKGROUND WITH TIMER?"
+msgstr ""
+"¿QUIERE REINICIAR AHORA PARA BUSCAR Y DESCARGAR CON EL TEMPORIZADOR, EN "
+"SEGUNDO PLANO?"
+
+msgid "All Select"
+msgstr "Selec. Todo"
+
+msgid "Bouquet Selection"
+msgstr "Selección Favoritos"
+
+msgid "Select(OK)"
+msgstr "Selec.(OK)"
+
+msgid "PLEASE TURN ON AND SET THE TIMER! ..."
+msgstr "POR FAVOR PON EN ON Y AJUSTA EL TIMER! ..."
+
+msgid "Event to be Scanned : {}"
+msgstr "Evento a Escanear : {}"
+
+msgid "CH / EMC-MoviePlayer"
+msgstr "CH / EMC-MoviePlayer"
+
+msgid "Events Next"
+msgstr "Eventos Siguientes"
+
+msgid "Movies List Location -OK Select-"
+msgstr "Listado de Películas -OK Selec.-"
+
+msgid "Search Language"
+msgstr "Buscar Lenguaje"
+
+msgid "Search Image"
+msgstr "Buscar Imágen"
+
+msgid "Search Source"
+msgstr "Buscar Fuente"
+
+msgid "\tSearch Type"
+msgstr "\tTipo de Búsqueda"
+
+msgid "\tSize"
+msgstr "\tTamaño"
+
+msgid "Show Images"
+msgstr "Mostar Imágenes"
+
+msgid "Search : {}"
+msgstr "Busqueda : {}"
+
+msgid "Download : 0"
+msgstr "Descargas : 0"
+
+msgid "With Timer Download"
+msgstr "Descargar desde Temporizador"
+
+msgid "With Plugin Download"
+msgstr "Descargar desde el Plugin"
+
+msgid "No(Exit)"
+msgstr "No(Salir)"
+
+msgid "Download ?"
+msgstr "Descargar?"
+
+msgid "Storage ;"
+msgstr "Almacenamiento ;"
+
+msgid "Broken Images Remove"
+msgstr "Eliminar imágenes rotas"

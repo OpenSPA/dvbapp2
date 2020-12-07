@@ -1,0 +1,16 @@
+<screen name="downloads" position="0,0" size="1920,1080" title="downloads..." flags="wfNoBorder" backgroundColor="transparent">
+	<ePixmap position="0,0" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/xtraEvent/pic/xtra_fhd.png" zPosition="-1" transparent="1" />
+	<widget source="Title" render="Label" position="60,53" size="1118,60" font="Console; 45" foregroundColor="#c5c5c5" backgroundColor="#23262e" transparent="1" />
+	<widget name="progress" position="60,148" size="1100,20" foregroundColor="#ffffff" borderColor="#ffffff" borderWidth="1" backgroundColor="#23262e" />
+	<widget name="status" position="60,190" size="1100,44" transparent="1" font="Regular;33" foregroundColor="#92f1fc" backgroundColor="#23262e" />
+	<widget name="info" position="60,270" size="1100,44" transparent="1" font="Regular;33" foregroundColor="#c5c5c5" backgroundColor="#23262e" />
+	<widget name="info2" position="60,350" size="1100,600" transparent="1" font="Regular; 33" foregroundColor="#ffffff" backgroundColor="#23262e" />
+	<widget source="key_red" render="Label" font="Regular;33" foregroundColor="#c5c5c5" backgroundColor="#23262e" position="68,960" size="255,45" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_green" render="Label" font="Regular;33" foregroundColor="#c5c5c5" backgroundColor="#23262e" position="353,960" size="255,45" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_yellow" render="Label" font="Regular;33" foregroundColor="#c5c5c5" backgroundColor="#23262e" position="638,960" size="255,45" halign="left" transparent="1" zPosition="1" />
+	<widget source="key_blue" render="Label" font="Regular; 30" foregroundColor="#c5c5c5" backgroundColor="#23262e" position="923,960" size="255,45" halign="left" transparent="1" zPosition="1" />
+	<widget source="global.CurrentTime" render="Label" position="1259,60" size="600,45" font="Console; 38" transparent="1" foregroundColor="#c5c5c5" backgroundColor="#23262e" zPosition="2">
+		<convert type="ClockToText">Default</convert>
+	</widget>
+
+</screen>

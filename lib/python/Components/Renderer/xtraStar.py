@@ -13,7 +13,6 @@ import re
 import json
 
 try:
-	from Plugins.Extensions.xtraEvent.xtra import xtra
 	pathLoc = config.plugins.xtraEvent.loc.value
 except:
 	pass
@@ -38,7 +37,7 @@ class xtraStar(VariableValue, Renderer):
 			event = self.source.event
 			if event:
 				evnt = event.getEventName()
-				evntNm = re.sub("([\(\[]).*?([\)\]])|(: odc.\d+)|(\d+: odc.\d+)|(\d+ odc.\d+)|(:)|( -(.*?).*)|(,)|!", "", evnt).rstrip().lower()
+				evntNm = re.sub("([\(\[]).*?([\)\]])|(: odc.\d+)|(\d+: odc.\d+)|(\d+ odc.\d+)|(:)|( -(.*?).*)|(,)|!", "", evnt).rstrip()
 				rating_json = "{}xtraEvent/infos/{}.json".format(pathLoc, evntNm)
 				if rating_json:
 					with open(rating_json) as f:
