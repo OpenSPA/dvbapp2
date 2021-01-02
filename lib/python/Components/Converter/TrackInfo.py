@@ -2,6 +2,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Poll import Poll
 from Tools.ISO639 import LanguageCodes
+from Tools.Directories import fileExists
 
 class TrackInfo(Poll,Converter, object):
 	AUDIO = 0
@@ -93,7 +94,7 @@ class TrackInfo(Poll,Converter, object):
 					kodi = KodiVideoPlayer.instance
 				except:
 					kodi = None
-				if kodi:
+				if kodi and fileExists("/usr/lib/enigma2/python/Plugins/Extensions/SubsSupport/plugin.pyo"):
 					if kodi.embeddedEnabled:
 						selectedSubtitle = kodi.selected_subtitle
 						enabled = kodi.subtitle_window.shown
