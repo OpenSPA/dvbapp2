@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2020-12-25 17:21+0100\n"
+"PO-Revision-Date: 2021-01-26 21:30+0100\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -20209,3 +20209,13 @@ msgstr "PRÓXIMO EVENTO"
 
 msgid "HUMIDITY :"
 msgstr "HUMEDAD:"
+
+#, fuzzy
+msgid "Next program..."
+msgstr "A continuación..."
+
+msgid "Tomorrow at... "
+msgstr "Mañana a las... "
+
+msgid "Tonight at... "
+msgstr "Esta noche a las... "

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2020-12-25 17:20+0100\n"
+"PO-Revision-Date: 2021-01-26 21:33+0100\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: ca\n"
@@ -2310,14 +2310,16 @@ msgstr "Tria entre Diari, Setmanal, Dies de la setmana o definit per usuari."
 msgid "Choose where to mount your devices to:"
 msgstr "Tria on muntar els teus dispositius:"
 
+#, fuzzy
 msgid ""
 "Choose whether DTS channel sound tracks should be downmixed or transcoded."
-msgstr ""
+msgstr "Tria si les pistes d'àudio DTS han de ser barrejades a estèreo."
 
+#, fuzzy
 msgid ""
 "Choose whether WMA Pro channel sound tracks should be downmixed or "
 "transcoded."
-msgstr ""
+msgstr "Tria si les pistes d'àudio DTS han de ser barrejades a estèreo."
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Tria si les pistes d'audio AAC han de transcodificar-se."
@@ -4141,8 +4143,9 @@ msgstr "Actualització d'imatge"
 msgid "Flash On the fly (select a image)"
 msgstr "Actualitzar la imatge (selecciona una imatge)"
 
+#, fuzzy
 msgid "Flash Online"
-msgstr ""
+msgstr "Actualitzar online des de "
 
 #
 msgid "Flash Online a new image"
@@ -20091,7 +20094,6 @@ msgstr ""
 msgid "'OK' select location downloads..."
 msgstr ""
 
-#| msgid "Show the plugins..."
 msgid "* reOpen plugin..."
 msgstr "* reObrir plugin..."
 
@@ -20151,12 +20153,10 @@ msgstr ""
 msgid "All Select"
 msgstr "Sel·leccionar tot"
 
-#| msgid "Audio Selection"
 msgid "Bouquet Selection"
 msgstr "Seleció de favorits"
 
 #
-#| msgid "Select"
 msgid "Select(OK)"
 msgstr "Selec.(OK)"
 
@@ -20195,7 +20195,6 @@ msgstr "Tamany"
 msgid "Show Images"
 msgstr "Mostrar Imatges"
 
-#| msgid "Search"
 msgid "Search : {}"
 msgstr "Cercar : {}"
 
@@ -20210,7 +20209,6 @@ msgid "With Plugin Download"
 msgstr ""
 
 #
-#| msgid "Exit"
 msgid "No(Exit)"
 msgstr "No(SORTIR)"
 
@@ -20242,6 +20240,15 @@ msgstr "PROPER PROGRAMA"
 
 msgid "HUMIDITY :"
 msgstr "HUMITAT:"
+
+msgid "Next program..."
+msgstr "A continuació... "
+
+msgid "Tomorrow at... "
+msgstr "Demà a les... "
+
+msgid "Tonight at... "
+msgstr "Aquesta nit a les... "
 
 #~ msgid ""
 #~ "\n"

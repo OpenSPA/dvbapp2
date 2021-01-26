@@ -18814,3 +18814,13 @@ msgstr ""
 
 msgid "HUMIDITY :"
 msgstr ""
+
+msgid "Next program..."
+msgstr ""
+
+msgid "Tomorrow at... "
+msgstr ""
+
+msgid "Tonight at... "
+msgstr ""
+
