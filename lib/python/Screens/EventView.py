@@ -262,7 +262,6 @@ class EventViewBase:
 				begindate.reverse()
 		###check
 		fail = False
-
 		try:
 			if len(begintime) < 2 and len(begindate) < 2 or int(begintime[0]) > 23 or int(begintime[1]) > 59 or int(begindate[0]) > 31 or int(begindate[1]) > 12:
 				fail = True
@@ -280,7 +279,7 @@ class EventViewBase:
 		begin = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))))
 		end = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration())
 
-		self["datetime"].setText(strftime(_("%d.%m.   "), begin) + strftime(_("%-H:%M - "), begin) + strftime(_("%-H:%M"), end))
+		self["datetime"].setText("%s - %s" % (strftime("%s, %s" % (config.usage.date.short.value, config.usage.time.short.value), begin), strftime(config.usage.time.short.value, end)))
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
@@ -322,7 +321,7 @@ class EventViewBase:
 			ret.sort(self.sort_func)
 			for x in ret:
 				t = localtime(x[1])
-				text += strftime(_("\n%Y/%m/%d  %H:%M - "), t) + x[0]
+				text += "\n%s - %s" % (strftime(config.usage.date.long.value + ", " + config.usage.time.short.value, t), x[0])
 			descr = self["epg_description"]
 			descr.setText(descr.getText()+text)
 			descr = self["FullDescription"]

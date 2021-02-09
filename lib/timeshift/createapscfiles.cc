@@ -11,7 +11,9 @@
   * GNU General Public License for more details.
   */
 
+#ifndef _LARGEFILE64_SOURCE
 #define _LARGEFILE64_SOURCE
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -157,7 +159,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
     }
 
     progress = bytecount/filesize*100;
-    cout << "\rcreating ap&sc files: ";
+    cout << "\rcreating ap&sc files:  ";
     cout.width(2);
     cout << (int)progress << "%";
 

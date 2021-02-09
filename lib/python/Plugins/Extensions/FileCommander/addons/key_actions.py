@@ -128,7 +128,6 @@ class task_postconditions(Condition):
 		global task_Stout, task_Sterr
 		message = ''
 		lines = config.plugins.filecommander.script_messagelen.value*-1
-		msg_out = ''
 		if task_Stout:
 			msg_out = '\n\n' + _("script 'stout':") + '\n' + '\n'.join(task_Stout[lines:])
 		if task_Sterr:
@@ -149,7 +148,10 @@ class task_postconditions(Condition):
 		timeout = 0
 		if not message and task.returncode == 0 and config.plugins.filecommander.showScriptCompleted_message.value:
 			timeout = 30
-			message += _("Run script") + _(" ('%s') ends successefully.") %task.name + msg_out
+			msg_out = ''
+			if task_Stout:
+				msg_out = '\n\n' + '\n'.join(task_Stout[lines:])
+			message += _("Run script") + _(" ('%s') ends successfully.") %task.name + msg_out
 
 		task_Stout = []
 		task_Sterr = []
@@ -180,7 +182,7 @@ def task_processSterr(data):
 		if line:
 			task_Sterr.append(line)
 	while len(task_Sterr) > 10:
-		task_Stout.pop(0)
+		task_Sterr.pop(0)
 
 class key_actions(stat_info):
 	hashes = {
@@ -223,7 +225,7 @@ class key_actions(stat_info):
 		self.longname = sourceDir + filename
 		if not dirsource.canDescent():
 			askList = [(_("Set archive mode (644)"), "CHMOD644"), (_("Set executable mode (755)"), "CHMOD755"), (_("Cancel"), "NO")]
-			self.session.openWithCallback(self.do_change_mod, ChoiceBox, title=(_("Do you want change rights?\\n") + filename), list=askList)
+			self.session.openWithCallback(self.do_change_mod, ChoiceBox, title=(_("Do you want change rights?\n") + filename), list=askList)
 		else:
 			self.session.open(MessageBox, _("Not allowed with folders"), type=MessageBox.TYPE_INFO, close_on_any_key=True)
 

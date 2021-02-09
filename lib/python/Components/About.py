@@ -81,7 +81,11 @@ def getCPUSpeedString():
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			return "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			CPUSpeed_Int = round(int(binascii.hexlify(clockfrequency), 16)/1000000,1)
+			if CPUSpeed_Int >= 1000:
+				return _("%s GHz") % str(round(CPUSpeed_Int/1000,1))
+			else:
+				return _("%s MHz") % str(round(CPUSpeed_Int,1))
 		except:
 			return "1,7 GHz"
 	else:
@@ -95,9 +99,9 @@ def getCPUSpeedString():
 					if splitted[0].startswith("cpu MHz"):
 						mhz = float(splitted[1].split(' ')[0])
 						if mhz and mhz >= 1000:
-							mhz = "%s GHz" % str(round(mhz/1000,1))
+							mhz = _("%s GHz") % str(round(mhz/1000,1))
 						else:
-							mhz = "%s MHz" % str(round(mhz,1))
+							mhz = _("%s MHz") % str(round(mhz,1))
 			file.close()
 			return mhz
 		except IOError:

@@ -112,8 +112,8 @@ class CIconfigMenu(Screen):
 		</screen>"""
 
 	def __init__(self, session, ci_slot="9"):
-		Screen.setTitle(self, _("CIselectMainMenu"))
 		Screen.__init__(self, session)
+		self.setTitle(_("CIselectMainMenu"))
 		self.ci_slot=ci_slot
 		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(self.ci_slot) + ".xml"
 
@@ -341,10 +341,9 @@ class easyCIconfigMenu(CIconfigMenu):
 		</screen>"""
 
 	def __init__(self, session, ci_slot="9"):
-		Screen.setTitle(self, _("CI assignment"))
-
 		ci=ci_slot
 		CIconfigMenu.__init__(self, session, ci_slot)
+		self.setTitle(_("CI assignment"))
 
 		self["actions"] = ActionMap(["ColorActions","SetupActions"],
 		{
@@ -457,7 +456,7 @@ class myProviderSelection(ChannelSelectionBase):
 				self.dvbnamespace = splited_ref[6]
 				self.enterPath(ref)
 			elif (ref.flags & 7) == 7 and 'provider' in ref.toString():
-				menu = [(_("Provider"), "provider"),(_("All services provider"), "providerlist")]
+				menu = [(_("Only provider"), "provider"),(_("All services provider"), "providerlist")]
 				def addAction(choice):
 					if choice is not None:
 						if choice[1] == "provider":

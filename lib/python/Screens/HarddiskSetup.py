@@ -12,8 +12,8 @@ import Screens.InfoBar
 
 class HarddiskSetup(Screen):
 	def __init__(self, session, hdd, action, text, question):
-		self.setTitle(_("Setup Harddisk"))
 		Screen.__init__(self, session)
+		self.setTitle(_("Setup Harddisk"))
 		self.action = action
 		self.question = question
 		self.curentservice = None
@@ -35,7 +35,7 @@ class HarddiskSetup(Screen):
 	def hddQuestion(self, answer=False):
 		print 'answer:',answer
 		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
-			message = self.question + "\n\n" + _("You seem to be in timeshft, the service wil breifly stop as timeshfit stops.")
+			message = self.question + "\n\n" + _("You seem to be in timeshft, the service will briefly stop as timeshfit stops.")
 			message += '\n' + _("Do you want to continue?")
 			self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
 		else:

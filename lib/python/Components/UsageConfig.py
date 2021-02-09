@@ -36,10 +36,6 @@ def InitUsageConfig():
 	config.usage.useChapterInfo = ConfigYesNo(default = True) 		#show chapter positions (gst >= 1 and supported media files)
 	###
 
-	config.usage.subnetwork = ConfigYesNo(default = True)
-	config.usage.subnetwork_cable = ConfigYesNo(default = True)
-	config.usage.subnetwork_terrestrial = ConfigYesNo(default = True)
-
 	config.usage.shutdownOK = ConfigBoolean(default = True)
 	config.usage.shutdownNOK_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby")), ("deepstandby", _("goto deep-standby"))])
 	config.usage.boot_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby"))])
@@ -52,6 +48,10 @@ def InitUsageConfig():
 	config.usage.use_pig = ConfigYesNo(default = False)
 	config.usage.numzappicon = ConfigYesNo(default = False)
 	config.usage.menu_show_numbers = ConfigYesNo(default = False)
+	config.usage.showScreenPath = ConfigSelection(default="off", choices=[("off", _("None")), ("small", _("Small")), ("large", _("Large"))])
+	config.usage.subnetwork = ConfigYesNo(default = True)
+	config.usage.subnetwork_cable = ConfigYesNo(default = True)
+	config.usage.subnetwork_terrestrial = ConfigYesNo(default = True)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):
@@ -606,13 +606,19 @@ def InitUsageConfig():
 	# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 	config.usage.date.dayfull = ConfigSelection(default=_("%A %-d %B %Y"), choices=[
 		(_("%A %d %B %Y"), _("Dayname DD Month Year")),
+		(_("%A %d. %B %Y"), _("Dayname DD. Month Year")),
 		(_("%A %-d %B %Y"), _("Dayname D Month Year")),
+		(_("%A %-d. %B %Y"), _("Dayname D. Month Year")),
 		(_("%A %d-%B-%Y"), _("Dayname DD-Month-Year")),
 		(_("%A %-d-%B-%Y"), _("Dayname D-Month-Year")),
 		(_("%A %d/%m/%Y"), _("Dayname DD/MM/Year")),
+		(_("%A %d.%m.%Y"), _("Dayname DD.MM.Year")),
 		(_("%A %-d/%m/%Y"), _("Dayname D/MM/Year")),
+		(_("%A %-d.%m.%Y"), _("Dayname D.MM.Year")),
 		(_("%A %d/%-m/%Y"), _("Dayname DD/M/Year")),
+		(_("%A %d.%-m.%Y"), _("Dayname DD.M.Year")),
 		(_("%A %-d/%-m/%Y"), _("Dayname D/M/Year")),
+		(_("%A %-d.%-m.%Y"), _("Dayname D.M.Year")),
 		(_("%A %B %d %Y"), _("Dayname Month DD Year")),
 		(_("%A %B %-d %Y"), _("Dayname Month D Year")),
 		(_("%A %B-%d-%Y"), _("Dayname Month-DD-Year")),
@@ -659,13 +665,19 @@ def InitUsageConfig():
 		dateStyles = {
 			# dayfull            shortdayfull      daylong           dayshortfull   dayshort       daysmall    full           long           short
 			_("%A %d %B %Y"): (_("%a %d %B %Y"), _("%a %d %b %Y"), _("%A %d %B"), _("%a %d %b"), _("%a %d"), _("%d %B %Y"), _("%d %b %Y"), _("%d %b")),
+			_("%A %d. %B %Y"): (_("%a %d. %B %Y"), _("%a %d. %b %Y"), _("%A %d. %B"), _("%a %d. %b"), _("%a %d"), _("%d. %B %Y"), _("%d. %b %Y"), _("%d. %b")),
 			_("%A %-d %B %Y"): (_("%a %-d %B %Y"), _("%a %-d %b %Y"), _("%A %-d %B"), _("%a %-d %b"), _("%a %-d"), _("%-d %B %Y"), _("%-d %b %Y"), _("%-d %b")),
+			_("%A %-d. %B %Y"): (_("%a %-d. %B %Y"), _("%a %-d. %b %Y"), _("%A %-d. %B"), _("%a %-d. %b"), _("%a %-d"), _("%-d. %B %Y"), _("%-d. %b %Y"), _("%-d. %b")),
 			_("%A %d-%B-%Y"): (_("%a %d-%B-%Y"), _("%a %d-%b-%Y"), _("%A %d-%B"), _("%a %d-%b"), _("%a %d"), _("%d-%B-%Y"), _("%d-%b-%Y"), _("%d-%b")),
 			_("%A %-d-%B-%Y"): (_("%a %-d-%B-%Y"), _("%a %-d-%b-%Y"), _("%A %-d-%B"), _("%a %-d-%b"), _("%a %-d"), _("%-d-%B-%Y"), _("%-d-%b-%Y"), _("%-d-%b")),
 			_("%A %d/%m/%Y"): (_("%a %d/%m/%Y"), _("%a %d/%m/%Y"), _("%A %d/%m"), _("%a %d/%m"), _("%a %d"), _("%d/%m/%Y"), _("%d/%m/%Y"), _("%d/%m")),
+			_("%A %d.%m.%Y"): (_("%a %d.%m.%Y"), _("%a %d.%m.%Y"), _("%A %d.%m"), _("%a %d.%m"), _("%a %d"), _("%d.%m.%Y"), _("%d.%m.%Y"), _("%d.%m")),
 			_("%A %-d/%m/%Y"): (_("%a %-d/%m/%Y"), _("%a %-d/%m/%Y"), _("%A %-d/%m"), _("%a %-d/%m"), _("%a %-d"), _("%-d/%m/%Y"), _("%-d/%m/%Y"), _("%-d/%m")),
+			_("%A %-d.%m.%Y"): (_("%a %-d.%m.%Y"), _("%a %-d.%m.%Y"), _("%A %-d.%m"), _("%a %-d.%m"), _("%a %-d"), _("%-d.%m.%Y"), _("%-d.%m.%Y"), _("%-d.%m")),
 			_("%A %d/%-m/%Y"): (_("%a %d/%-m/%Y"), _("%a %d/%-m/%Y"), _("%A %d/%-m"), _("%a %d/%-m"), _("%a %d"), _("%d/%-m/%Y"), _("%d/%-m/%Y"), _("%d/%-m")),
+			_("%A %d.%-m.%Y"): (_("%a %d.%-m.%Y"), _("%a %d.%-m.%Y"), _("%A %d.%-m"), _("%a %d.%-m"), _("%a %d"), _("%d.%-m.%Y"), _("%d.%-m.%Y"), _("%d.%-m")),
 			_("%A %-d/%-m/%Y"): (_("%a %-d/%-m/%Y"), _("%a %-d/%-m/%Y"), _("%A %-d/%-m"), _("%a %-d/%-m"), _("%a %-d"), _("%-d/%-m/%Y"), _("%-d/%-m/%Y"), _("%-d/%-m")),
+			_("%A %-d.%-m.%Y"): (_("%a %-d.%-m.%Y"), _("%a %-d.%-m.%Y"), _("%A %-d.%-m"), _("%a %-d.%-m"), _("%a %-d"), _("%-d.%-m.%Y"), _("%-d.%-m.%Y"), _("%-d.%-m")),
 			_("%A %B %d %Y"): (_("%a %B %d %Y"), _("%a %b %d %Y"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%B %d %Y"), _("%b %d %Y"), _("%b %d")),
 			_("%A %B %-d %Y"): (_("%a %B %-d %Y"), _("%a %b %-d %Y"), _("%A %B %-d"), _("%a %b %-d"), _("%a %-d"), _("%B %-d %Y"), _("%b %-d %Y"), _("%b %-d")),
 			_("%A %B-%d-%Y"): (_("%a %B-%d-%Y"), _("%a %b-%d-%Y"), _("%A %B-%d"), _("%a %b-%d"), _("%a %d"), _("%B-%d-%Y"), _("%b-%d-%Y"), _("%b-%d")),

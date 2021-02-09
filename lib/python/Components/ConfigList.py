@@ -11,7 +11,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session = None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
-		seperation, = skin.parameters.get("ConfigListSeperator", (350, ))
+		seperation = skin.parameters.get("ConfigListSeperator", 350)
 		self.l.setSeperation(seperation)
 		height, space = skin.parameters.get("ConfigListSlider",(17, 0))
 		self.l.setSlider(height, space)
@@ -286,7 +286,8 @@ class ConfigListScreen:
 			self.session.openWithCallback(self.handleKeyFileCallback, ChoiceBox, selection[0],
 				list=zip(selection[1].description, selection[1].choices),
 				selection=selection[1].choices.index(selection[1].value),
-				keys=[])
+				keys=[],
+				text=self.getCurrentDescription())
 
 	def handleKeyFileCallback(self, answer):
 		if answer:

@@ -3,11 +3,13 @@ import time
 from Directories import resolveFilename, SCOPE_CONFIG
 from boxbranding import getBoxType
 
-PERCENTAGE_START = 0
+boxtype = getBoxType()
+
+PERCENTAGE_START = 50
 PERCENTAGE_END = 100
 
 profile_start = time.time()
-
+ 
 profile_data = {}
 total_time = 1
 profile_file = None
@@ -33,28 +35,6 @@ except IOError:
 
 def profile(id):
 	now = time.time() - profile_start
-
-	box_type = getBoxType()
-	if box_type in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6"):
-		dev_fmt = ("/dev/dbox/oled0", "%d")
-	elif box_type in ("marvel1", "enfinity"):
-		dev_fmt = ("/dev/dbox/oled0", "  %d ")
-	elif box_type in ("formuler1", "formuler3", "formuler4", "formuler4turbo"):
-		dev_fmt = ("/dev/dbox/oled0", "  %d ")
-	elif box_type in ('gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'):
-		dev_fmt = ("/dev/mcu", "%d \n")
-	elif box_type in ("mixosf5", "gi9196m", "osmini", "spycatmini", "osminiplus", "spycatminiplus"):
-		dev_fmt = ("/proc/progress", "%d")
-	elif box_type in ("xpeedlx3", "sezammarvel", "atemionemesis", "fegasusx3", "fegasusx5s", "fegasusx5t"):
-		dev_fmt = ("/proc/vfd", "Loading %d %%")
-	elif box_type in ("azboxhd", "azboxme", "azboxminime"):
-		dev_fmt = ("/proc/vfd", "Loading %d%%")
-	elif box_type in ('amikomini', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120'):
-		dev_fmt = ("/proc/vfd", "%d \n")
-	else:
-		dev_fmt = ("/proc/progress", "%d \n")
-	(dev, fmt) = dev_fmt
-
 	if profile_file:
 		profile_file.write("%7.3f\t%s\n" % (now, id))
 
@@ -65,8 +45,24 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				f = open(dev, "w")
-				f.write(fmt % perc)
+				if boxtype in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6" ):
+					f = open("/dev/dbox/oled0", "w")
+					f.write("%d" % perc)
+				elif boxtype in ('gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'):
+					f = open("/dev/mcu", "w")
+					f.write("%d  \n" % perc)
+				elif boxtype in ("mixosf5", "gi9196m", "osmini", "spycatmini", "osminiplus", "spycatminiplus"):
+					f = open("/proc/progress", "w")
+					f.write("%d" % perc)
+				elif boxtype in ("xpeedlx3", "sezammarvel", "atemionemesis", "fegasusx3", "fegasusx5s", "fegasusx5t"):
+					f = open("/proc/vfd", "w")
+					f.write("Loading %d %%" % perc)
+				elif boxtype in ('amikomini', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120'):
+					f = open("/proc/vfd", "w")
+					f.write("%d \n" % perc)
+				else:
+					f = open("/proc/progress", "w")
+					f.write("%d \n" % perc)
 				f.close()
 			except IOError:
 				pass
