@@ -26,6 +26,10 @@ if DM920
 SUBDIRS += FSBLUpdater
 endif
 
+if DUAL
+SUBDIRS += DualBoot
+endif
+
 if WETEKPLAY
 SUBDIRS += WetekFRQ
 endif
