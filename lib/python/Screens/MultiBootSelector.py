@@ -134,9 +134,9 @@ class MultiBootSelector(Screen, HelpableScreen):
 					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
 			else:
 				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
-			if pathExists('/dev/block/by-name/flag') or getBoxtype() in ('dual'):
-				with open('/dev/block/by-name/flag', 'wb') as f:
-					f.write(struct.pack("B", int(slot)))
+				if SystemInfo["canDualBoot"]:
+					with open('/dev/block/by-name/flag', 'wb') as f:
+						f.write(struct.pack("B", int(slot)))
 			self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def selectionChanged(self):
