@@ -148,7 +148,7 @@ def loadSkinData(desktop):
 
 # Method to load a skin XML file into the skin data structures.
 #
-def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
+def loadSkin(filename, replace = False, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
 	global windowStyles
 	filename = resolveFilename(scope, filename)
 	print("[Skin] Loading skin file '%s'." % filename)
@@ -166,8 +166,9 @@ def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screen
 						if name:  # Without a name, it's useless!
 							scrnID = element.attrib.get("id", None)
 							if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
-								# print("[Skin] DEBUG: Extracting screen '%s' from '%s'.  (scope='%s')" % (name, filename, scope))
-								domScreens[name] = (element, "%s/" % dirname(filename))
+								if scope == SCOPE_CURRENT_SKIN or name not in domScreens or replace:
+									# print("[Skin] DEBUG: Extracting screen '%s' from '%s'.  (scope='%s')" % (name, filename, scope))
+									domScreens[name] = (element, "%s/" % dirname(filename))
 					elif element.tag == "windowstyle":  # Process the windowstyle element.
 						scrnID = element.attrib.get("id", None)
 						if scrnID is not None:  # Without an scrnID, it is useless!
