@@ -161,9 +161,11 @@ class GetImagelist():
 					if os.path.isfile("%s/etc/image-version" % self.OsPath):
 						f = open("%s/etc/image-version" % self.OsPath, "r")
 						for line in f.readlines():
-							if line.startswith("build"): Build=line[6:].strip()
+							if line.startswith("build"):
+								Build=line[6:].strip()
 							#if line.startswith("date="): Date = "%s-%s-%s" % (line[11:2], line[8:2], line[5:4])
-							if line.startswith("feedsurl") and "beta" in line: Build = Build + " BETA"
+							if line.startswith("feedsurl") and "beta" in line:
+								Build = Build + " BETA"
 						f.close()
 					
 					BuildVersion = "%s.%s" % (Creator, Build)

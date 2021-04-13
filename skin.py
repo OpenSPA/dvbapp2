@@ -782,20 +782,31 @@ from enigma import eListbox
 def fixScrollOpenSpa(guiObject, attributes):
 	hayscroll = haybordescroll = haycolorscroll = hayanchoscroll = haycolorborde = haysliderpixmap = False
 	for attrib, value in attributes:
-		if not hayscroll and ("scrollbarMode" in attrib or "itemHeight" in attrib or isinstance(guiObject, eListbox)): hayscroll = True
-		if "scrollbarSliderBorderWidth" in attrib: haybordescroll = True
-		if "scrollbarSliderForegroundColor" in attrib: haycolorscroll = True
-		if "scrollbarWidth" in attrib: hayanchoscroll = True
-		if "scrollbarSliderBorderColor" in attrib: haycolorborde = True
-		if "scrollbarSliderPicture" in attrib: haysliderpixmap = True
+		if not hayscroll and ("scrollbarMode" in attrib or "itemHeight" in attrib or isinstance(guiObject, eListbox)):
+			hayscroll = True
+		if "scrollbarSliderBorderWidth" in attrib:
+			haybordescroll = True
+		if "scrollbarSliderForegroundColor" in attrib:
+			haycolorscroll = True
+		if "scrollbarWidth" in attrib:
+			hayanchoscroll = True
+		if "scrollbarSliderBorderColor" in attrib:
+			haycolorborde = True
+		if "scrollbarSliderPicture" in attrib:
+			haysliderpixmap = True
 		# open("/tmp/test.log","a").write("-------- HAY ----------\n"+str(attributes)+" type["+str(type(guiObject))+"] obj["+str(guiObject)+"]"+"\n")
 		# if isinstance(guiObject, ScrollLabel): open("/tmp/test.log","a").write("****** ES SCROLL *******\n")
 	if hayscroll:
-		if not haybordescroll and not defaultSliderBorderWidth == None: attributes.append(("scrollbarSliderBorderWidth", defaultSliderBorderWidth))
-		if not haycolorscroll and not defaultSliderForegroundColor == None: attributes.append(("scrollbarSliderForegroundColor", defaultSliderForegroundColor))
-		if not hayanchoscroll and not defaultWidth == None: attributes.append(("scrollbarWidth", defaultWidth))
-		if not haycolorborde and not defaultSliderBorderColor == None: attributes.append(("scrollbarSliderBorderColor", defaultSliderBorderColor))
-		if not haysliderpixmap and not defaultSliderPixmap == None: attributes.append(("scrollbarSliderPicture", defaultSliderPixmap))
+		if not haybordescroll and not defaultSliderBorderWidth == None:
+			attributes.append(("scrollbarSliderBorderWidth", defaultSliderBorderWidth))
+		if not haycolorscroll and not defaultSliderForegroundColor == None:
+			attributes.append(("scrollbarSliderForegroundColor", defaultSliderForegroundColor))
+		if not hayanchoscroll and not defaultWidth == None:
+			attributes.append(("scrollbarWidth", defaultWidth))
+		if not haycolorborde and not defaultSliderBorderColor == None:
+			attributes.append(("scrollbarSliderBorderColor", defaultSliderBorderColor))
+		if not haysliderpixmap and not defaultSliderPixmap == None:
+			attributes.append(("scrollbarSliderPicture", defaultSliderPixmap))
 
 def addOpenSpaDefaults(skin):
 	global defaultSliderBorderWidth, defaultSliderForegroundColor, defaultWidth, defaultSliderBorderColor, defaultSliderPixmap
@@ -805,11 +816,16 @@ def addOpenSpaDefaults(skin):
 			try:
 				name = get("name")
 				value = get("value")
-				if name == "SliderBorderWidth": defaultSliderBorderWidth = value
-				if name == "SliderForegroundColor": defaultSliderForegroundColor = value
-				if name == "Width": defaultWidth = value
-				if name == "SliderBorderColor": defaultSliderBorderColor = value
-				if name == "SliderPicture": defaultSliderPixmap = value
+				if name == "SliderBorderWidth":
+					defaultSliderBorderWidth = value
+				if name == "SliderForegroundColor":
+					defaultSliderForegroundColor = value
+				if name == "Width":
+					defaultWidth = value
+				if name == "SliderBorderColor":
+					defaultSliderBorderColor = value
+				if name == "SliderPicture":
+					defaultSliderPixmap = value
 			except:
 				pass
 	
@@ -882,7 +898,8 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			name = get_attr("name")
 			color = get_attr("value")
 			if name and color:
-				if name == "foreground": defaultSliderForegroundColor = defaultSliderBorderColor = color # mpiero fix scrollbar default color
+				if name == "foreground":
+					defaultSliderForegroundColor = defaultSliderBorderColor = color # mpiero fix scrollbar default color
 				colorNames[name] = parseColor(color)
 				if color[0] != '#':
 					for key in colorNames:

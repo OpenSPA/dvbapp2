@@ -8,8 +8,10 @@ import enigma
 class ChoiceBox(Screen):
 	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text=""):
 		self.setTitle(_("Choice Box"))
-		if not list: list = []
-		if not skin_name: skin_name = []
+		if not list:
+			list = []
+		if not skin_name:
+			skin_name = []
 		Screen.__init__(self, session)
 
 		if isinstance(skin_name, str):

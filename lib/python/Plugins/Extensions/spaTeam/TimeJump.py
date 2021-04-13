@@ -119,7 +119,7 @@ class TimeJump(ConfigListScreen, Screen):
 					self.seek.seekTo(int(float(self.length[1]) / 100.0 * self.percent))
 				self.exit()
 		elif sel == self.minuteInput:
-			pts = int(float(self.minuteInput.value) * 60 * 90000);
+			pts = int(float(self.minuteInput.value) * 60 * 90000)
 			if self.dvd:
 				global DVDPlayer
 				DVDPlayer.doSeekRelative(self.infobarInstance, pts)
@@ -139,7 +139,7 @@ class TimeJump(ConfigListScreen, Screen):
 		else:
 			ConfigListScreen.keyLeft(self)
 			if sel == self.minuteInput:
-				pts = int(float(self.minuteInput.value) * 60 * 90000);
+				pts = int(float(self.minuteInput.value) * 60 * 90000)
 				length = float(self.length[1])
 				if length <= 0:
 					length = 1
@@ -158,7 +158,7 @@ class TimeJump(ConfigListScreen, Screen):
 		else:
 			ConfigListScreen.keyRight(self)
 			if sel == self.minuteInput:
-				pts = int(float(self.minuteInput.value) * 60 * 90000);
+				pts = int(float(self.minuteInput.value) * 60 * 90000)
 				length = float(self.length[1])
 				if length <= 0:
 					length = 1

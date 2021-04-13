@@ -272,7 +272,7 @@ class Setup(ConfigListScreen, Screen):
 				item_text = item_text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				try:
-					b = eval(x.text or "");
+					b = eval(x.text or "")
 				except:
 					b = ""
 				if b == "":
