@@ -19,7 +19,12 @@ from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, 
 from Tools.Directories import fileExists
 from enigma import eTimer, fbClass
 from time import time
-import os, urllib2, shutil, math, zipfile, shutil
+import os
+import urllib2
+import shutil
+import math
+import zipfile
+import shutil
 
 
 from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineProcModel

@@ -15,7 +15,11 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
-import gettext, new, _enigma, enigma, time
+import gettext
+import new
+import _enigma
+import enigma
+import time
 from enigma import * 
 import os
 

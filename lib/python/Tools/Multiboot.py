@@ -2,7 +2,8 @@ from Components.SystemInfo import SystemInfo
 from Components.Console import Console
 from boxbranding import getMachineMtdRoot,getMachineMtdKernel,getBoxType,getMachineName
 from Tools.Directories import pathExists
-import os, time
+import os
+import time
 import shutil
 import subprocess
 
