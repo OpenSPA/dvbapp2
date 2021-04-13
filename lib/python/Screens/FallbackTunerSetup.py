@@ -66,20 +66,20 @@ class FallbackTunerSetup(ConfigListScreen, Screen):
 		if self.peerExist:
 			if config.usage.remote_fallback.value in peerStreamingBoxes:
 				peerDefault = config.usage.remote_fallback.value
-			self.peer = ConfigSelection(default=peerDefault, choices=[(x,x) for x in peerStreamingBoxes])
+			self.peer = ConfigSelection(default=peerDefault, choices=[(x, x) for x in peerStreamingBoxes])
 
-		ipDefault = [0,0,0,0]
+		ipDefault = [0, 0, 0, 0]
 		self.portDefault = portDefault = 8001
 		if config.usage.remote_fallback.value:
 			result = re.search("(\d+)[.](\d+)[.](\d+)[.](\d+)", config.usage.remote_fallback.value)
 			if result is not None:
-				ipDefault = [int(result.group(1)),int(result.group(2)),int(result.group(3)),int(result.group(4))]
+				ipDefault = [int(result.group(1)), int(result.group(2)), int(result.group(3)), int(result.group(4))]
 			result = re.search("[:](\d+)$", config.usage.remote_fallback.value)
 			if result is not None:
 				portDefault = int(result.group(1))
 		self.ip = ConfigIP(default=ipDefault, auto_jump=True)
 
-		self.port = ConfigInteger(default=portDefault, limits=(1,65535))
+		self.port = ConfigInteger(default=portDefault, limits=(1, 65535))
 
 		fallbackAddressChoices = [("ip", _("IP")), ("domain", _("URL"))]
 		if self.peerExist:
@@ -87,16 +87,16 @@ class FallbackTunerSetup(ConfigListScreen, Screen):
 		fallbackAddressTypeDefault = "domain"
 		if peerDefault or self.peerExist and self.domain.value == "":
 			fallbackAddressTypeDefault = "peer"
-		if ipDefault != [0,0,0,0]:
+		if ipDefault != [0, 0, 0, 0]:
 			fallbackAddressTypeDefault = "ip"
 		self.fallbackAddressType = ConfigSelection(default=fallbackAddressTypeDefault, choices=fallbackAddressChoices)
 
-		self.enabledEntry = getConfigListEntry(_("Enable fallback remote receiver"), self.enabled,_('Enable usage of tuners from another Enigma2 receiver on the local network. Remote tuners will be used when tuners are not available on this receiver. (No free tuner or service type is not available.)'))
-		self.addressTypeEntry = getConfigListEntry(_("Fallback address type"), self.fallbackAddressType,_("'Network peer' automatically detects other Enigma2 receivers on the local network. You can also manually enter the URL or IP address."))
-		self.peerEntry = self.peer and getConfigListEntry(_("Network peers"), self.peer,_("Select a receiver to use for fallback tuners. If the host receiver is not listed, manually enter the URL or IP address"))
-		self.ipEntry = getConfigListEntry(_("Fallback receiver IP address"), self.ip,_("Enter the IP address of the receiver to use for fallback tuners."))
-		self.domainEntry = getConfigListEntry(_("Fallback remote receiver URL"), self.domain,_("Enter the URL/IP of the fallback remote receiver, e.g. '192.168.0.1'. The other details such as 'http://' and port number will be filled in automatically when you select save."))
-		self.portEntry = getConfigListEntry(_("Fallback receiver streaming port"), self.port,_("Default port is '%d'. Change if required.") % self.portDefault)
+		self.enabledEntry = getConfigListEntry(_("Enable fallback remote receiver"), self.enabled, _('Enable usage of tuners from another Enigma2 receiver on the local network. Remote tuners will be used when tuners are not available on this receiver. (No free tuner or service type is not available.)'))
+		self.addressTypeEntry = getConfigListEntry(_("Fallback address type"), self.fallbackAddressType, _("'Network peer' automatically detects other Enigma2 receivers on the local network. You can also manually enter the URL or IP address."))
+		self.peerEntry = self.peer and getConfigListEntry(_("Network peers"), self.peer, _("Select a receiver to use for fallback tuners. If the host receiver is not listed, manually enter the URL or IP address"))
+		self.ipEntry = getConfigListEntry(_("Fallback receiver IP address"), self.ip, _("Enter the IP address of the receiver to use for fallback tuners."))
+		self.domainEntry = getConfigListEntry(_("Fallback remote receiver URL"), self.domain, _("Enter the URL/IP of the fallback remote receiver, e.g. '192.168.0.1'. The other details such as 'http://' and port number will be filled in automatically when you select save."))
+		self.portEntry = getConfigListEntry(_("Fallback receiver streaming port"), self.port, _("Default port is '%d'. Change if required.") % self.portDefault)
 
 	def createSetup(self):
 		self.list = [self.enabledEntry]

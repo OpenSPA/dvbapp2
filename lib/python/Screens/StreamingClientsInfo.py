@@ -73,11 +73,11 @@ class StreamingClientsInfo(Screen):
 						except:
 							host = ""
 						info = ("T %s %s %s %s") % (ip, host, service_name, _("(VU+ type)"))
-						if not (info,(-1, x)) in self.clients:
+						if not (info, (-1, x)) in self.clients:
 							append = True
 							break
 				if append:
-					self.clients.append((info,(-1, x)))
+					self.clients.append((info, (-1, x)))
 		self["menu"].setList(self.clients)
 		if self.clients:
 			self["info"].setText("")

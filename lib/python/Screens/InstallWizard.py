@@ -30,7 +30,7 @@ class InstallWizard(Screen, ConfigListScreen):
 			config.misc.installwizard.ipkgloaded.value = False
 			modes = {0: " "}
 			self.enabled = ConfigSelection(choices=modes, default=0)
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 			is_found = False
 			for x in self.adapters:
 				if x[1] == 'eth0' or x[1] == 'eth1':
@@ -45,7 +45,7 @@ class InstallWizard(Screen, ConfigListScreen):
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.enabled = ConfigYesNo(default=True)
-			modes = {"default": _("default Astra (13e-19e)"),"scan": _("scan new")}
+			modes = {"default": _("default Astra (13e-19e)"), "scan": _("scan new")}
 			self.channellist_type = ConfigSelection(choices=modes, default="default")
 			self.createMenu()
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM:

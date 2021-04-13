@@ -157,19 +157,19 @@ class SoftwarePanel(Screen):
 #			self['a_off'].show()
 #		socket.setdefaulttimeout(currentTimeoutDefault)
 
-	def setStatus(self,status=None):
+	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Package list update"), '', _("Trying to download a new updatelist. Please wait..."),'',statuspng, divpng))
+				self.statuslist.append((_("Package list update"), '', _("Trying to download a new updatelist. Please wait..."), '', statuspng, divpng))
 			elif status == 'error':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), '', _("There was an error downloading the updatelist. Please try again."),'',statuspng, divpng))
+				self.statuslist.append((_("Error"), '', _("There was an error downloading the updatelist. Please try again."), '', statuspng, divpng))
 			elif status == 'noupdate':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-				self.statuslist.append((_("Nothing to upgrade"), '', _("There are no updates available."),'',statuspng, divpng))
+				self.statuslist.append((_("Nothing to upgrade"), '', _("There are no updates available."), '', statuspng, divpng))
 
 			self['list'].setList(self.statuslist)
 

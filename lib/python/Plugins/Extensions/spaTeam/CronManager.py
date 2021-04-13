@@ -14,12 +14,12 @@ from os import system, listdir, rename, symlink, unlink, path, mkdir
 from time import sleep
 
 config.spateam = ConfigSubsection()
-config.spateam.cronmanager_commandtype = NoSave(ConfigSelection(choices=[('custom',_("Custom")),('predefined',_("Predefined"))]))
+config.spateam.cronmanager_commandtype = NoSave(ConfigSelection(choices=[('custom', _("Custom")), ('predefined', _("Predefined"))]))
 config.spateam.cronmanager_cmdtime = NoSave(ConfigClock(default=0))
 config.spateam.cronmanager_cmdtime.value, mytmpt = ([0, 0], [0, 0])
 config.spateam.cronmanager_user_command = NoSave(ConfigText(fixed_size=False))
-config.spateam.cronmanager_runwhen = NoSave(ConfigSelection(default='Daily', choices=[('Hourly', _("Hourly")),('Daily', _("Daily")),('Weekly', _("Weekly")),('Monthly', _("Monthly"))]))
-config.spateam.cronmanager_dayofweek = NoSave(ConfigSelection(default='Monday', choices=[('Monday', _("Monday")),('Tuesday', _("Tuesday")),('Wednesday', _("Wednesday")),('Thursday', _("Thursday")),('Friday', _("Friday")),('Saturday', _("Saturday")),('Sunday', _("Sunday"))]))
+config.spateam.cronmanager_runwhen = NoSave(ConfigSelection(default='Daily', choices=[('Hourly', _("Hourly")), ('Daily', _("Daily")), ('Weekly', _("Weekly")), ('Monthly', _("Monthly"))]))
+config.spateam.cronmanager_dayofweek = NoSave(ConfigSelection(default='Monday', choices=[('Monday', _("Monday")), ('Tuesday', _("Tuesday")), ('Wednesday', _("Wednesday")), ('Thursday', _("Thursday")), ('Friday', _("Friday")), ('Saturday', _("Saturday")), ('Sunday', _("Sunday"))]))
 config.spateam.cronmanager_dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
 
 class CronManager(Screen):
@@ -253,7 +253,7 @@ class CronManager(Screen):
 			if mysel:
 				myline = mysel[1]
 				file('/etc/cron/crontabs/root.tmp', 'w').writelines([l for l in file('/etc/cron/crontabs/root').readlines() if myline not in l])
-				rename('/etc/cron/crontabs/root.tmp','/etc/cron/crontabs/root')
+				rename('/etc/cron/crontabs/root.tmp', '/etc/cron/crontabs/root')
 				rc = system('crontab /etc/cron/crontabs/root -c /etc/cron/crontabs')
 				self.updateList()
 

@@ -193,7 +193,7 @@ class LCD:
 
 	def setMode(self, value):
 		if fileExists("/proc/stb/lcd/show_symbols"):
-			print 'setLCDMode',value
+			print 'setLCDMode', value
 			f = open("/proc/stb/lcd/show_symbols", "w")
 			f.write(value)
 			f.close()
@@ -231,39 +231,39 @@ class LCD:
 
 	def setPower(self, value):
 		if fileExists("/proc/stb/power/vfd"):
-			print 'setLCDPower',value
+			print 'setLCDPower', value
 			f = open("/proc/stb/power/vfd", "w")
 			f.write(value)
 			f.close()
 		elif fileExists("/proc/stb/lcd/vfd"):
-			print 'setLCDPower',value
+			print 'setLCDPower', value
 			f = open("/proc/stb/lcd/vfd", "w")
 			f.write(value)
 			f.close()
 
 	def setShowoutputresolution(self, value):
 		if fileExists("/proc/stb/lcd/show_outputresolution"):
-			print 'setLCDShowoutputresolution',value
+			print 'setLCDShowoutputresolution', value
 			f = open("/proc/stb/lcd/show_outputresolution", "w")
 			f.write(value)
 			f.close()
 
 	def setfblcddisplay(self, value):
-		print 'setfblcddisplay',value
+		print 'setfblcddisplay', value
 		f = open("/proc/stb/fb/sd_detach", "w")
 		f.write(value)
 		f.close()
 
 	def setRepeat(self, value):
 		if fileExists("/proc/stb/lcd/scroll_repeats"):
-			print 'setLCDRepeat',value
+			print 'setLCDRepeat', value
 			f = open("/proc/stb/lcd/scroll_repeats", "w")
 			f.write(value)
 			f.close()
 
 	def setScrollspeed(self, value):
 		if fileExists("/proc/stb/lcd/scroll_delay"):
-			print 'setLCDScrollspeed',value
+			print 'setLCDScrollspeed', value
 			f = open("/proc/stb/lcd/scroll_delay", "w")
 			f.write(str(value))
 			f.close()
@@ -278,16 +278,16 @@ class LCD:
 		eDBoxLCD.getInstance().setLED(value, 2)
 
 	def setLCDMiniTVMode(self, value):
-		print 'setLCDMiniTVMode',value
+		print 'setLCDMiniTVMode', value
 		f = open('/proc/stb/lcd/mode', "w")
 		f.write(value)
 		f.close()
 
 	def setLCDMiniTVPIPMode(self, value):
-		print 'setLCDMiniTVPIPMode',value
+		print 'setLCDMiniTVPIPMode', value
 
 	def setLCDMiniTVFPS(self, value):
-		print 'setLCDMiniTVFPS',value
+		print 'setLCDMiniTVFPS', value
 		f = open('/proc/stb/lcd/fps', "w")
 		f.write("%d \n" % value)
 		f.close()
@@ -304,7 +304,7 @@ def standbyCounterChanged(configElement):
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if getBoxType() in ('gbx34k','force4','alien5','viperslim','lunix','lunix4k','purehdse','vipert2c','evoslimse','evoslimt2c','valalinux','tmtwin4k','tmnanom3','mbmicrov2','revo4k','force3uhd','force2nano','evoslim','wetekplay', 'wetekplay2', 'wetekhub', 'ultrabox', 'novaip', 'dm520', 'dm525', 'purehd', 'mutant11', 'xpeedlxpro', 'zgemmai55', 'sf98', 'et7x00mini', 'xpeedlxcs2', 'xpeedlxcc', 'e4hd', 'e4hdhybrid', 'mbmicro', 'beyonwizt2', 'amikomini', 'dynaspark', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'arguspinguluxplus', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120', 'gb800se', 'gb800solo', 'gb800seplus', 'gbultrase', 'gbipbox', 'tmsingle', 'tmnano2super', 'iqonios300hd', 'iqonios300hdv2', 'optimussos1plus', 'optimussos1', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'et7000', 'et7100', 'et7x00mini', 'mixosf7', 'mixoslumi', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
+	if getBoxType() in ('gbx34k', 'force4', 'alien5', 'viperslim', 'lunix', 'lunix4k', 'purehdse', 'vipert2c', 'evoslimse', 'evoslimt2c', 'valalinux', 'tmtwin4k', 'tmnanom3', 'mbmicrov2', 'revo4k', 'force3uhd', 'force2nano', 'evoslim', 'wetekplay', 'wetekplay2', 'wetekhub', 'ultrabox', 'novaip', 'dm520', 'dm525', 'purehd', 'mutant11', 'xpeedlxpro', 'zgemmai55', 'sf98', 'et7x00mini', 'xpeedlxcs2', 'xpeedlxcc', 'e4hd', 'e4hdhybrid', 'mbmicro', 'beyonwizt2', 'amikomini', 'dynaspark', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'arguspinguluxplus', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120', 'gb800se', 'gb800solo', 'gb800seplus', 'gbultrase', 'gbipbox', 'tmsingle', 'tmnano2super', 'iqonios300hd', 'iqonios300hdv2', 'optimussos1plus', 'optimussos1', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'et7000', 'et7100', 'et7x00mini', 'mixosf7', 'mixoslumi', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
@@ -324,7 +324,7 @@ def InitLcd():
 		if can_lcdmodechecking:
 			def setLCDModeMinitTV(configElement):
 				try:
-					print 'setLCDModeMinitTV',configElement.value
+					print 'setLCDModeMinitTV', configElement.value
 					f = open("/proc/stb/lcd/mode", "w")
 					f.write(configElement.value)
 					f.close()
@@ -332,7 +332,7 @@ def InitLcd():
 					pass
 			def setMiniTVFPS(configElement):
 				try:
-					print 'setMiniTVFPS',configElement.value
+					print 'setMiniTVFPS', configElement.value
 					f = open("/proc/stb/lcd/fps", "w")
 					f.write("%d \n" % configElement.value)
 					f.close()
@@ -526,13 +526,13 @@ def InitLcd():
 		config.usage.lcd_deepstandbypowerled = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
 
-		config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 		config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
 
-		config.usage.lcd_ledstandbycolor = ConfigSelection(default="3", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.usage.lcd_ledstandbycolor = ConfigSelection(default="3", choices=[("0", _("off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 		config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
 
-		config.usage.lcd_ledsuspendcolor = ConfigSelection(default="2", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.usage.lcd_ledsuspendcolor = ConfigSelection(default="2", choices=[("0", _("off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 		config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
 
 		config.usage.lcd_power4x7on = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
@@ -555,51 +555,51 @@ def InitLcd():
 		# 8 digit
 		if getBoxType() in ('formuler1', 'osminiplus'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M", choices=[
-				("OFF","Off"),
-				("%H:%M",str(ntime.strftime(_("%H:%M")))),
-				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
-				("A%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
-				("A%H:%M %d %b",str(ntime.strftime(_("%H:%M <A> %d %b")))),
-				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d"))))])
+				("OFF", "Off"),
+				("%H:%M", str(ntime.strftime(_("%H:%M")))),
+				("A%H:%M %d/%m", str(ntime.strftime(_("%H:%M <A> %d/%m")))),
+				("A%H:%M %d/%m/%y", str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
+				("A%H:%M %d %b", str(ntime.strftime(_("%H:%M <A> %d %b")))),
+				("A%H:%M %a %d", str(ntime.strftime(_("%H:%M <A> %a %d"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		#12 digit
 		elif getBoxType() in ('vusolo2', 'osmega'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m", choices=[
-				("OFF","Off"),
-				("%H:%M",str(ntime.strftime(_("%H:%M")))),
-				("%H:%M %d/%m",str(ntime.strftime(_("%H:%M %d/%m")))),
-				("%H:%M %d %b",str(ntime.strftime(_("%H:%M %d %b")))),
-				("%H:%M %a %d",str(ntime.strftime(_("%H:%M %a %d")))),
-				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
-				("A%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
-				("A%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))), 
-				("A%H:%M %d %b",str(ntime.strftime(_("%H:%M <A> %d %b")))),
-				("A%H:%M %d %b %y",str(ntime.strftime(_("%H:%M <A> %d %b %y")))),
-				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d")))),
-				("A%H:%M %a %d/%m",str(ntime.strftime(_("%H:%M <A> %a %d/%m")))),
-				("A%H:%M %a %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %a %d/%m/%y"))))])
+				("OFF", "Off"),
+				("%H:%M", str(ntime.strftime(_("%H:%M")))),
+				("%H:%M %d/%m", str(ntime.strftime(_("%H:%M %d/%m")))),
+				("%H:%M %d %b", str(ntime.strftime(_("%H:%M %d %b")))),
+				("%H:%M %a %d", str(ntime.strftime(_("%H:%M %a %d")))),
+				("A%H:%M %d/%m", str(ntime.strftime(_("%H:%M <A> %d/%m")))),
+				("A%H:%M %d/%m/%y", str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
+				("A%H:%M %d/%m/%Y", str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))), 
+				("A%H:%M %d %b", str(ntime.strftime(_("%H:%M <A> %d %b")))),
+				("A%H:%M %d %b %y", str(ntime.strftime(_("%H:%M <A> %d %b %y")))),
+				("A%H:%M %a %d", str(ntime.strftime(_("%H:%M <A> %a %d")))),
+				("A%H:%M %a %d/%m", str(ntime.strftime(_("%H:%M <A> %a %d/%m")))),
+				("A%H:%M %a %d/%m/%y", str(ntime.strftime(_("%H:%M <A> %a %d/%m/%y"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		#16 digit
-		elif getBoxType() in ('sf3038', 'sf4008','mutant51'):
+		elif getBoxType() in ('sf3038', 'sf4008', 'mutant51'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m/%Y", choices=[
-				("OFF","Off"),
-				("%H:%M",str(ntime.strftime(_("%H:%M")))),
-				("%H:%M %d/%m",str(ntime.strftime(_("%H:%M %d/%m")))),
-				("%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M %d/%m/%y")))),
-				("%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M %d/%m/%Y")))), 
-				("%H:%M %d %b",str(ntime.strftime(_("%H:%M %d %b")))),
-				("%H:%M %d %b %y",str(ntime.strftime(_("%H:%M %d %b %y")))),
-				("%H:%M %a %d",str(ntime.strftime(_("%H:%M %a %d")))),
-				("%H:%M %a %d/%m",str(ntime.strftime(_("%H:%M %a %d/%m")))),
-				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
-				("A%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
-				("A%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))), 
-				("A%H:%M %d %b",str(ntime.strftime(_("%H:%M <A> %d %b")))),
-				("A%H:%M %d %b %y",str(ntime.strftime(_("%H:%M <A> %d %b %y")))),
-				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d")))),
-				("A%H:%M %a %d/%m",str(ntime.strftime(_("%H:%M <A> %a %d/%m")))),
-				("A%H:%M %a %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %a %d/%m/%y")))),
-				("A%H:%M %a %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %a %d/%m/%Y"))))])
+				("OFF", "Off"),
+				("%H:%M", str(ntime.strftime(_("%H:%M")))),
+				("%H:%M %d/%m", str(ntime.strftime(_("%H:%M %d/%m")))),
+				("%H:%M %d/%m/%y", str(ntime.strftime(_("%H:%M %d/%m/%y")))),
+				("%H:%M %d/%m/%Y", str(ntime.strftime(_("%H:%M %d/%m/%Y")))), 
+				("%H:%M %d %b", str(ntime.strftime(_("%H:%M %d %b")))),
+				("%H:%M %d %b %y", str(ntime.strftime(_("%H:%M %d %b %y")))),
+				("%H:%M %a %d", str(ntime.strftime(_("%H:%M %a %d")))),
+				("%H:%M %a %d/%m", str(ntime.strftime(_("%H:%M %a %d/%m")))),
+				("A%H:%M %d/%m", str(ntime.strftime(_("%H:%M <A> %d/%m")))),
+				("A%H:%M %d/%m/%y", str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
+				("A%H:%M %d/%m/%Y", str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))), 
+				("A%H:%M %d %b", str(ntime.strftime(_("%H:%M <A> %d %b")))),
+				("A%H:%M %d %b %y", str(ntime.strftime(_("%H:%M <A> %d %b %y")))),
+				("A%H:%M %a %d", str(ntime.strftime(_("%H:%M <A> %a %d")))),
+				("A%H:%M %a %d/%m", str(ntime.strftime(_("%H:%M <A> %a %d/%m")))),
+				("A%H:%M %a %d/%m/%y", str(ntime.strftime(_("%H:%M <A> %a %d/%m/%y")))),
+				("A%H:%M %a %d/%m/%Y", str(ntime.strftime(_("%H:%M <A> %a %d/%m/%Y"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		else:
 			config.usage.lcd_dateformat = ConfigNothing()
@@ -762,16 +762,16 @@ def InitLcd():
 			config.lcd.showoutputresolution = ConfigNothing()
 
 		if getBoxType() == 'vuultimo':
-			config.lcd.ledblinkingtime = ConfigSlider(default=5, increment=1, limits=(0,15))
+			config.lcd.ledblinkingtime = ConfigSlider(default=5, increment=1, limits=(0, 15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime)
-			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default=1, increment=1, limits=(0,15))
+			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDnormalstate)
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby)
 			config.lcd.ledbrightnessdeepstandby.apply = lambda: setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
-			config.lcd.ledbrightnessstandby = ConfigSlider(default=1, increment=1, limits=(0,15))
+			config.lcd.ledbrightnessstandby = ConfigSlider(default=1, increment=1, limits=(0, 15))
 			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate)
 			config.lcd.ledbrightnessstandby.apply = lambda: setLEDnormalstate(config.lcd.ledbrightnessstandby)
-			config.lcd.ledbrightness = ConfigSlider(default=3, increment=1, limits=(0,15))
+			config.lcd.ledbrightness = ConfigSlider(default=3, increment=1, limits=(0, 15))
 			config.lcd.ledbrightness.addNotifier(setLEDnormalstate)
 			config.lcd.ledbrightness.apply = lambda: setLEDnormalstate(config.lcd.ledbrightness)
 			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True

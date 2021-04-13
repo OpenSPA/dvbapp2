@@ -52,7 +52,7 @@ class TransponderInfo(Converter, object):
 			except:
 				return ""
 		if ref:
-			result = ref.toString().replace("%3a",":")
+			result = ref.toString().replace("%3a", ":")
 		else:
 			result = info.getInfoString(iServiceInformation.sServiceref)
 		if "@" in result:

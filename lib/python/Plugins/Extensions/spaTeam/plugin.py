@@ -435,67 +435,67 @@ class spaMenu(Screen, ProtectedScreen):
 		self.menu = 0
 		self.list = []
 		self.oldlist = []
-		self.list.append(spaMenuEntryComponent("Software Manager",_("Update/Backup/Restore your box"),_("Update/Backup your firmware, Backup/Restore settings")))
+		self.list.append(spaMenuEntryComponent("Software Manager", _("Update/Backup/Restore your box"), _("Update/Backup your firmware, Backup/Restore settings")))
 		if Check_Softcam():
-			self.list.append(spaMenuEntryComponent("Softcam",_("Start/stop/select cam"),_("Start/stop/select your cam, You need to install first a softcam")))
-		self.list.append(spaMenuEntryComponent("System",_("System Setup"),_("Setup your System")))
-		self.list.append(spaMenuEntryComponent("Mounts",_("Mount Setup"),_("Setup your mounts for network")))
-		self.list.append(spaMenuEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
-		self.list.append(spaMenuEntryComponent("AV Setup",_("Setup Video/Audio"),_("Setup your Video Mode, Video Output and other Video Settings")))
-		self.list.append(spaMenuEntryComponent("Tuner Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels")))
-		self.list.append(spaMenuEntryComponent("Plugins",_("Setup Plugins"),_("Shows available pluigns. Here you can download and install them")))
-		self.list.append(spaMenuEntryComponent("Additional Features",_("Additional Features"),_("Shows available additional pluigns")))
-		self.list.append(spaMenuEntryComponent("Harddisk",_("Harddisk Setup"),_("Setup your Harddisk")))
+			self.list.append(spaMenuEntryComponent("Softcam", _("Start/stop/select cam"), _("Start/stop/select your cam, You need to install first a softcam")))
+		self.list.append(spaMenuEntryComponent("System", _("System Setup"), _("Setup your System")))
+		self.list.append(spaMenuEntryComponent("Mounts", _("Mount Setup"), _("Setup your mounts for network")))
+		self.list.append(spaMenuEntryComponent("Network", _("Setup your local network"), _("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
+		self.list.append(spaMenuEntryComponent("AV Setup", _("Setup Video/Audio"), _("Setup your Video Mode, Video Output and other Video Settings")))
+		self.list.append(spaMenuEntryComponent("Tuner Setup", _("Setup Tuner"), _("Setup your Tuner and search for channels")))
+		self.list.append(spaMenuEntryComponent("Plugins", _("Setup Plugins"), _("Shows available pluigns. Here you can download and install them")))
+		self.list.append(spaMenuEntryComponent("Additional Features", _("Additional Features"), _("Shows available additional pluigns")))
+		self.list.append(spaMenuEntryComponent("Harddisk", _("Harddisk Setup"), _("Setup your Harddisk")))
 		self["list"].l.setList(self.list)
 
 ######## System Setup Menu ##############################
 	def Qsystem(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Customise",_("Setup Enigma2"),_("Customise enigma2 personal settings")))
-		self.sublist.append(spaMenuEntryComponent("OSD settings",_("OSD Setup"),_("Setup your OSD")))
+		self.sublist.append(spaMenuEntryComponent("Customise", _("Setup Enigma2"), _("Customise enigma2 personal settings")))
+		self.sublist.append(spaMenuEntryComponent("OSD settings", _("OSD Setup"), _("Setup your OSD")))
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
-			self.sublist.append(spaMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
+			self.sublist.append(spaMenuEntryComponent("Display Settings", _("Display Setup"), _("Setup your display")))
 		if SystemInfo["LCDSKINSetup"]:
-			self.sublist.append(spaMenuEntryComponent("LCD Skin Setup",_("Select LCD Skin"),_("Setup your LCD")))
-		self.sublist.append(spaMenuEntryComponent("Skin Setup",_("Select Enigma2 Skin"),_("Setup your Skin")))
-		self.sublist.append(spaMenuEntryComponent("Keymap Selection",_("Select Keymap"),_("Select your keymap style")))
-		self.sublist.append(spaMenuEntryComponent("Recording settings",_("Recording Setup"),_("Setup your recording config")))
-		self.sublist.append(spaMenuEntryComponent("EPG settings",_("EPG Setup"),_("Setup your EPG config")))
+			self.sublist.append(spaMenuEntryComponent("LCD Skin Setup", _("Select LCD Skin"), _("Setup your LCD")))
+		self.sublist.append(spaMenuEntryComponent("Skin Setup", _("Select Enigma2 Skin"), _("Setup your Skin")))
+		self.sublist.append(spaMenuEntryComponent("Keymap Selection", _("Select Keymap"), _("Select your keymap style")))
+		self.sublist.append(spaMenuEntryComponent("Recording settings", _("Recording Setup"), _("Setup your recording config")))
+		self.sublist.append(spaMenuEntryComponent("EPG settings", _("EPG Setup"), _("Setup your EPG config")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Network Menu ##############################
 	def Qnetwork(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Network Wizard",_("Configure your Network"),_("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
+		self.sublist.append(spaMenuEntryComponent("Network Wizard", _("Configure your Network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
 		if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed
-			self.sublist.append(spaMenuEntryComponent("Network Adapter Selection",_("Select Lan/Wlan"),_("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
+			self.sublist.append(spaMenuEntryComponent("Network Adapter Selection", _("Select Lan/Wlan"), _("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
 		if not self.activeInterface == None: # show only if there is already a adapter up
-			self.sublist.append(spaMenuEntryComponent("Network Interface",_("Setup interface"),_("Setup network. Here you can setup DHCP, IP, DNS")))
-		self.sublist.append(spaMenuEntryComponent("Network Restart",_("Restart network to with current setup"),_("Restart network and remount connections")))
-		self.sublist.append(spaMenuEntryComponent("Network Services",_("Setup Network Services"),_("Setup Network Services (Samba, Ftp, NFS, ...)")))
+			self.sublist.append(spaMenuEntryComponent("Network Interface", _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
+		self.sublist.append(spaMenuEntryComponent("Network Restart", _("Restart network to with current setup"), _("Restart network and remount connections")))
+		self.sublist.append(spaMenuEntryComponent("Network Services", _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)")))
 		self["sublist"].l.setList(self.sublist)
 
 #### Network Services Menu ##############################
 	def Qnetworkservices(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Samba",_("Setup Samba"),_("Setup Samba")))
-		self.sublist.append(spaMenuEntryComponent("NFS",_("Setup NFS"),_("Setup NFS")))
-		self.sublist.append(spaMenuEntryComponent("FTP",_("Setup FTP"),_("Setup FTP")))
-		self.sublist.append(spaMenuEntryComponent("AFP",_("Setup AFP"),_("Setup AFP")))
-		self.sublist.append(spaMenuEntryComponent("OpenVPN",_("Setup OpenVPN"),_("Setup OpenVPN")))
-		self.sublist.append(spaMenuEntryComponent("MiniDLNA",_("Setup MiniDLNA"),_("Setup MiniDLNA")))
-		self.sublist.append(spaMenuEntryComponent("Inadyn",_("Setup Inadyn"),_("Setup Inadyn")))
-		self.sublist.append(spaMenuEntryComponent("SABnzbd",_("Setup SABnzbd"),_("Setup SABnzbd")))
-		self.sublist.append(spaMenuEntryComponent("uShare",_("Setup uShare"),_("Setup uShare")))
-		self.sublist.append(spaMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
+		self.sublist.append(spaMenuEntryComponent("Samba", _("Setup Samba"), _("Setup Samba")))
+		self.sublist.append(spaMenuEntryComponent("NFS", _("Setup NFS"), _("Setup NFS")))
+		self.sublist.append(spaMenuEntryComponent("FTP", _("Setup FTP"), _("Setup FTP")))
+		self.sublist.append(spaMenuEntryComponent("AFP", _("Setup AFP"), _("Setup AFP")))
+		self.sublist.append(spaMenuEntryComponent("OpenVPN", _("Setup OpenVPN"), _("Setup OpenVPN")))
+		self.sublist.append(spaMenuEntryComponent("MiniDLNA", _("Setup MiniDLNA"), _("Setup MiniDLNA")))
+		self.sublist.append(spaMenuEntryComponent("Inadyn", _("Setup Inadyn"), _("Setup Inadyn")))
+		self.sublist.append(spaMenuEntryComponent("SABnzbd", _("Setup SABnzbd"), _("Setup SABnzbd")))
+		self.sublist.append(spaMenuEntryComponent("uShare", _("Setup uShare"), _("Setup uShare")))
+		self.sublist.append(spaMenuEntryComponent("Telnet", _("Setup Telnet"), _("Setup Telnet")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Mount Settings Menu ##############################
 	def Qmount(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Mount Manager",_("Manage network mounts"),_("Setup your network mounts")))
-		self.sublist.append(spaMenuEntryComponent("Network Browser",_("Search for network shares"),_("Search for network shares")))
-		self.sublist.append(spaMenuEntryComponent("Device Manager",_("Mounts Devices"),_("Setup your Device mounts (USB, HDD, others...)")))
+		self.sublist.append(spaMenuEntryComponent("Mount Manager", _("Manage network mounts"), _("Setup your network mounts")))
+		self.sublist.append(spaMenuEntryComponent("Network Browser", _("Search for network shares"), _("Search for network shares")))
+		self.sublist.append(spaMenuEntryComponent("Device Manager", _("Mounts Devices"), _("Setup your Device mounts (USB, HDD, others...)")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Softcam Menu ##############################
@@ -507,67 +507,67 @@ class spaMenu(Screen, ProtectedScreen):
 			self.sublist.append(spaMenuEntryComponent("OScamInfo", _("Show OScam Info"), _("Show more detailed information of OScam")))
 		if Check_SysSoftcam() is "ncam":
 			self.sublist.append(spaMenuEntryComponent("NcamInfo", _("Show Ncam Info"), _("Show more detailed information of Ncam")))
-		self.sublist.append(spaMenuEntryComponent("Download Softcams",_("Download and install cam"),_("Shows available softcams. Here you can download and install them")))
+		self.sublist.append(spaMenuEntryComponent("Download Softcams", _("Download and install cam"), _("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## A/V Settings Menu ##############################
 	def Qavsetup(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Video Settings",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings")))
-		self.sublist.append(spaMenuEntryComponent("Audio Settings",_("Setup Audiomode"),_("Setup your Audio Mode")))
+		self.sublist.append(spaMenuEntryComponent("Video Settings", _("Setup Videomode"), _("Setup your Video Mode, Video Output and other Video Settings")))
+		self.sublist.append(spaMenuEntryComponent("Audio Settings", _("Setup Audiomode"), _("Setup your Audio Mode")))
 		if AUDIOSYNC == True:
-			self.sublist.append(spaMenuEntryComponent("Audio Sync",_("Setup Audio Sync"),_("Setup Audio Sync settings")))
-		self.sublist.append(spaMenuEntryComponent("Auto Language",_("Auto Language Selection"),_("Select your Language for Audio/Subtitles")))
+			self.sublist.append(spaMenuEntryComponent("Audio Sync", _("Setup Audio Sync"), _("Setup Audio Sync settings")))
+		self.sublist.append(spaMenuEntryComponent("Auto Language", _("Auto Language Selection"), _("Select your Language for Audio/Subtitles")))
 		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
-			self.sublist.append(spaMenuEntryComponent("VideoEnhancement",_("VideoEnhancement Setup"),_("VideoEnhancement Setup")))
+			self.sublist.append(spaMenuEntryComponent("VideoEnhancement", _("VideoEnhancement Setup"), _("VideoEnhancement Setup")))
 
 		self["sublist"].l.setList(self.sublist)
 
 ######## Tuner Menu ##############################
 	def Qtuner(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
+		self.sublist.append(spaMenuEntryComponent("Tuner Configuration", _("Setup tuner(s)"), _("Setup each tuner for your satellite system")))
 		if POSSETUP == True:
-			self.sublist.append(spaMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
-		self.sublist.append(spaMenuEntryComponent("Automatic Scan",_("Automatic Service Searching"),_("Automatic scan for services")))
-		self.sublist.append(spaMenuEntryComponent("Manual Scan",_("Manual Service Searching"),_("Manual scan for services")))
+			self.sublist.append(spaMenuEntryComponent("Positioner Setup", _("Setup rotor"), _("Setup your positioner for your satellite system")))
+		self.sublist.append(spaMenuEntryComponent("Automatic Scan", _("Automatic Service Searching"), _("Automatic scan for services")))
+		self.sublist.append(spaMenuEntryComponent("Manual Scan", _("Manual Service Searching"), _("Manual scan for services")))
 		if SATFINDER == True:
-			self.sublist.append(spaMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
+			self.sublist.append(spaMenuEntryComponent("Sat Finder", _("Search Sats"), _("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Software Manager Menu ##############################
 	def Qsoftware(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Software Update",_("Online software update"),_("Check/Install online updates (you must have a working internet connection)")))
-		if not getBoxType().startswith('az') and not getBoxType() in ('dm500hd','dm500hdv2','dm520','dm800','dm800se','dm800sev2','dm820','dm7020hd','dm7020hdv2','dm7080','dm8000') and not getBrandOEM().startswith('cube'):
-			self.sublist.append(spaMenuEntryComponent("Flash Online",_("Flash Online a new image"),_("Flash on the fly your your Receiver software.")))
+		self.sublist.append(spaMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working internet connection)")))
+		if not getBoxType().startswith('az') and not getBoxType() in ('dm500hd', 'dm500hdv2', 'dm520', 'dm800', 'dm800se', 'dm800sev2', 'dm820', 'dm7020hd', 'dm7020hdv2', 'dm7080', 'dm8000') and not getBrandOEM().startswith('cube'):
+			self.sublist.append(spaMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
 		if not getBoxType().startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek'):
-			self.sublist.append(spaMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
-		self.sublist.append(spaMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
-		self.sublist.append(spaMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
-		self.sublist.append(spaMenuEntryComponent("Show default backup files",_("Show files backed up by default"),_("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).")))
-		self.sublist.append(spaMenuEntryComponent("Select additional backup files",_("Select additional files to backup"),_("Here you can specify additional files that should be added to the backup file.")))
-		self.sublist.append(spaMenuEntryComponent("Select excluded backup files",_("Select files to exclude from backup"),_("Here you can select which files should be excluded from the backup.")))
-		self.sublist.append(spaMenuEntryComponent("Software Manager Setup",_("Manage your online update files"),_("Here you can select which files should be updated with a online update")))
+			self.sublist.append(spaMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
+		self.sublist.append(spaMenuEntryComponent("Backup Settings", _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
+		self.sublist.append(spaMenuEntryComponent("Restore Settings", _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
+		self.sublist.append(spaMenuEntryComponent("Show default backup files", _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).")))
+		self.sublist.append(spaMenuEntryComponent("Select additional backup files", _("Select additional files to backup"), _("Here you can specify additional files that should be added to the backup file.")))
+		self.sublist.append(spaMenuEntryComponent("Select excluded backup files", _("Select files to exclude from backup"), _("Here you can select which files should be excluded from the backup.")))
+		self.sublist.append(spaMenuEntryComponent("Software Manager Setup", _("Manage your online update files"), _("Here you can select which files should be updated with a online update")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Plugins Menu ##############################
 	def Qplugin(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Plugin Browser",_("Open the Plugin Browser"),_("Shows Plugins Browser. Here you can setup installed Plugin")))
-		self.sublist.append(spaMenuEntryComponent("Download Plugins",_("Download and install Plugins"),_("Shows available plugins. Here you can download and install them")))
-		self.sublist.append(spaMenuEntryComponent("Remove Plugins",_("Delete Plugins"),_("Delete and unstall Plugins. This will remove the Plugin from your box")))
-		self.sublist.append(spaMenuEntryComponent("Plugin Filter",_("Setup Plugin filter"),_("Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser")))
-		self.sublist.append(spaMenuEntryComponent("IPK Installer",_("Install local extension"),_("Scan for local extensions and install them")))
-		self.sublist.append(spaMenuEntryComponent("IPK Uninstaller",_("Delete installed ipls"),_("Search package ipk installed and delete them")))
+		self.sublist.append(spaMenuEntryComponent("Plugin Browser", _("Open the Plugin Browser"), _("Shows Plugins Browser. Here you can setup installed Plugin")))
+		self.sublist.append(spaMenuEntryComponent("Download Plugins", _("Download and install Plugins"), _("Shows available plugins. Here you can download and install them")))
+		self.sublist.append(spaMenuEntryComponent("Remove Plugins", _("Delete Plugins"), _("Delete and unstall Plugins. This will remove the Plugin from your box")))
+		self.sublist.append(spaMenuEntryComponent("Plugin Filter", _("Setup Plugin filter"), _("Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser")))
+		self.sublist.append(spaMenuEntryComponent("IPK Installer", _("Install local extension"), _("Scan for local extensions and install them")))
+		self.sublist.append(spaMenuEntryComponent("IPK Uninstaller", _("Delete installed ipls"), _("Search package ipk installed and delete them")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Additional Features Menu ###################
 	def Qadditional(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Cron Manager",_("Open the Plugin Browser"),_("Shows Plugins Browser. Here you can setup installed Plugin")))
-		self.sublist.append(spaMenuEntryComponent("Job Manager",_("Open the Plugin Browser"),_("Shows Plugins Browser. Here you can setup installed Plugin")))
-		self.sublist.append(spaMenuEntryComponent("Swap Manager",_("Open the Plugin Browser"),_("Shows Plugins Browser. Here you can setup installed Plugin")))
+		self.sublist.append(spaMenuEntryComponent("Cron Manager", _("Open the Plugin Browser"), _("Shows Plugins Browser. Here you can setup installed Plugin")))
+		self.sublist.append(spaMenuEntryComponent("Job Manager", _("Open the Plugin Browser"), _("Shows Plugins Browser. Here you can setup installed Plugin")))
+		self.sublist.append(spaMenuEntryComponent("Swap Manager", _("Open the Plugin Browser"), _("Shows Plugins Browser. Here you can setup installed Plugin")))
 		self["sublist"].l.setList(self.sublist)
 
 #####################################################
@@ -575,11 +575,11 @@ class spaMenu(Screen, ProtectedScreen):
 ######## Harddisk Menu ##############################
 	def Qharddisk(self):
 		self.sublist = []
-		self.sublist.append(spaMenuEntryComponent("Harddisk Setup",_("Harddisk Setup"),_("Setup your Harddisk")))
-		self.sublist.append(spaMenuEntryComponent("Initialization",_("Format HDD"),_("Format your Harddisk")))
-		self.sublist.append(spaMenuEntryComponent("Filesystem Check",_("Check HDD"),_("Filesystem check your Harddisk")))
+		self.sublist.append(spaMenuEntryComponent("Harddisk Setup", _("Harddisk Setup"), _("Setup your Harddisk")))
+		self.sublist.append(spaMenuEntryComponent("Initialization", _("Format HDD"), _("Format your Harddisk")))
+		self.sublist.append(spaMenuEntryComponent("Filesystem Check", _("Check HDD"), _("Filesystem check your Harddisk")))
 		if isFileSystemSupported("ext4"):
-			self.sublist.append(spaMenuEntryComponent("Convert ext3 to ext4",_("Convert filesystem ext3 to ext4"),_("Convert filesystem ext3 to ext4")))
+			self.sublist.append(spaMenuEntryComponent("Convert ext3 to ext4", _("Convert filesystem ext3 to ext4"), _("Convert filesystem ext3 to ext4")))
 		self["sublist"].l.setList(self.sublist)
 
 	def ok(self):
@@ -641,7 +641,7 @@ class spaMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Network Adapter Selection"):
 			self.session.open(NetworkAdapterSelection)
 		elif item[0] == _("Network Interface"):
-			self.session.open(AdapterSetup,self.activeInterface)
+			self.session.open(AdapterSetup, self.activeInterface)
 		elif item[0] == _("Network Restart"):
 			self.session.open(RestartNetwork)
 		elif item[0] == _("Network Services"):
@@ -767,7 +767,7 @@ class spaMenu(Screen, ProtectedScreen):
 			else:
 				self.session.open(ImageBackup)
 		elif item[0] == _("Backup Settings"):
-			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup=True)
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif item[0] == _("Restore Settings"):
 			self.backuppath = getBackupPath()
 			if not path.isdir(self.backuppath):
@@ -775,15 +775,15 @@ class spaMenu(Screen, ProtectedScreen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()),default=False)
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()), default=False)
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("Show default backup files"):
-			self.session.open(BackupSelection,title=_("Default files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_default,readOnly=True)
+			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
 		elif item[0] == _("Select additional backup files"):
-			self.session.open(BackupSelection,title=_("Additional files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs,readOnly=False)
+			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
 		elif item[0] == _("Select excluded backup files"):
-			self.session.open(BackupSelection,title=_("Files/folders to exclude from backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude,readOnly=False)
+			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
 		elif item[0] == _("Software Manager Setup"):
 			self.session.open(SoftwareManagerSetup)
 ######## Select PluginDownloadBrowser Menu ##############################
@@ -833,13 +833,13 @@ class spaMenu(Screen, ProtectedScreen):
 
 ######## NETWORK TOOLS #######################
 	def GetNetworkInterfaces(self):
-		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+		self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 
 		if not self.adapters:
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getConfiguredAdapters()]
+			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getConfiguredAdapters()]
 
 		if len(self.adapters) == 0:
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getInstalledAdapters()]
+			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
 
 		self.activeInterface = None
 	
@@ -880,13 +880,13 @@ class spaMenu(Screen, ProtectedScreen):
 		if len(nimList) == 0:
 			self.session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
 		else:
-			if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
+			if len(NavigationInstance.instance.getRecordings(False, pNavigation.isAnyRecording)) > 0:
 				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 			else:
 				self.session.open(Satfinder)
 
 ######## SOFTWARE MANAGER TOOLS #######################
-	def backupDone(self,retval=None):
+	def backupDone(self, retval=None):
 		if retval is True:
 			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:
@@ -900,7 +900,7 @@ class spaMenu(Screen, ProtectedScreen):
 
 ######## Create MENULIST format #######################
 def spaMenuEntryComponent(name, description, long_description=None, width=540):
-	pngname = name.replace(" ","_") 
+	pngname = name.replace(" ", "_") 
 	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/icons/" + pngname + ".png")
 	if png is None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/icons/empty.png")
@@ -1016,7 +1016,7 @@ class spaMenuDevices(Screen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]',device):
+			if not search('sd[a-z][1-9]', device):
 				continue
 			if device in list2:
 				continue
@@ -1051,7 +1051,7 @@ class spaMenuDevices(Screen):
 		f = open('/tmp/devices.tmp', 'r')
 		swapdevices = f.read()
 		f.close()
-		swapdevices = swapdevices.replace('\n','')
+		swapdevices = swapdevices.replace('\n', '')
 		swapdevices = swapdevices.split('/')
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
@@ -1125,13 +1125,13 @@ class KeymapSel(ConfigListScreen, Screen):
 		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
 		u80key = eEnv.resolve("${datadir}/enigma2/keymap.u80")
 		self.actkeymap = self.getKeymap(config.usage.keymap.value)
-		keySel = [('keymap.xml',_("Default  (keymap.xml)"))]
+		keySel = [('keymap.xml', _("Default  (keymap.xml)"))]
 		if path.isfile(usrkey):
-			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
+			keySel.append(('keymap.usr', _("User  (keymap.usr)")))
 		if path.isfile(ntrkey):
-			keySel.append(('keymap.ntr',_("Neutrino  (keymap.ntr)")))
+			keySel.append(('keymap.ntr', _("Neutrino  (keymap.ntr)")))
 		if path.isfile(u80key):
-			keySel.append(('keymap.u80',_("UP80  (keymap.u80)")))
+			keySel.append(('keymap.u80', _("UP80  (keymap.u80)")))
 		if self.actkeymap == usrkey and not path.isfile(usrkey):
 			setDefaultKeymap()
 		if self.actkeymap == ntrkey and not path.isfile(ntrkey):
@@ -1243,5 +1243,5 @@ def Plugins(**kwargs):
 		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where=PluginDescriptor.WHERE_MENU, fnc=panel),
 		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main),
 		PluginDescriptor(name=_("TimeJump Setup"), description=_("Step back/forward in time playing movies"), where=PluginDescriptor.WHERE_PLUGINMENU, fnc=TimeJumpMain),
-		PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc=SwapAutostart),
-		PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc=TimeJumpAutostart),]
+		PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=SwapAutostart),
+		PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=TimeJumpAutostart), ]

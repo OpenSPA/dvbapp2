@@ -50,7 +50,7 @@ class LCDClockSelector(Screen):
 
 	def layoutFinished(self):
 		try:
-			what = open(self.root + 'active','r').read()
+			what = open(self.root + 'active', 'r').read()
 		except:
 			what = "clock_lcd_analog.xml"
 		tmp = what
@@ -97,7 +97,7 @@ class LCDClockSelector(Screen):
 
 	def ok(self):
 		clockfile = self["ClockList"].getCurrent()
-		fp = open(self.root + 'active','w')
+		fp = open(self.root + 'active', 'w')
 		fp.write(clockfile)
 		fp.close()
 		self.close()

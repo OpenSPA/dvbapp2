@@ -23,13 +23,13 @@ class Keyboard:
 						if key == 'name':
 							mapname = val
 						if (mapfile is not None) and (mapname is not None):
-							self.keyboardmaps.append((mapfile,mapname))
+							self.keyboardmaps.append((mapfile, mapname))
 				f.close()
 
 	def activateKeyboardMap(self, index):
 		try:
 			keymap = self.keyboardmaps[index]
-			print "Activating keymap:",keymap[1]
+			print "Activating keymap:", keymap[1]
 			keymappath = eEnv.resolve('${datadir}/keymaps/') + keymap[0]
 			if os_path.exists(keymappath):
 				Console().ePopen(("loadkmap < " + str(keymappath)))

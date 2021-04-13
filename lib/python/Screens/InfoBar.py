@@ -188,12 +188,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def openSimpleUnmount(self):
 		try:
-			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("SimpleUmount"):
 					self.runPlugin(plugin)
 					break
 		except Exception, e:
-			self.session.open(MessageBox, _("The SimpleUmount plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The SimpleUmount plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 def setAudioTrack(service):
 	try:
@@ -501,7 +501,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		elif answer == "restart":
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
-		elif answer in ("playlist","playlistquit","loop"):
+		elif answer in ("playlist", "playlistquit", "loop"):
 			(next_service, item, length) = self.getPlaylistServiceInfo(self.cur_service)
 			if next_service is not None:
 				if config.usage.next_movie_msg.value:
@@ -510,11 +510,11 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 				self.cur_service = next_service
 			else:
 				if answer == "playlist":
-					self.leavePlayerConfirmed([True,"movielist"])
+					self.leavePlayerConfirmed([True, "movielist"])
 				elif answer == "loop" and length > 0:
-					self.leavePlayerConfirmed([True,"loop"])
+					self.leavePlayerConfirmed([True, "loop"])
 				else:
-					self.leavePlayerConfirmed([True,"quit"])
+					self.leavePlayerConfirmed([True, "quit"])
 		elif answer in ("repeatcurrent"):
 			if config.usage.next_movie_msg.value:
 				(item, length) = self.getPlaylistServiceInfo(self.cur_service)

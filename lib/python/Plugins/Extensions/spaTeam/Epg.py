@@ -42,7 +42,7 @@ for p in harddiskmanager.getMountedPartitions():
 
 config.misc.epgcachepath = ConfigSelection(default='/etc/enigma2/', choices=hddchoises)
 config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
-config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 
 def EpgSettingsChanged(configElement):
 	mask = 0xffffffff
@@ -135,7 +135,7 @@ class Ttimer(Screen):
 				self.session.nav.stopService()
 			else:
 				if config.epg.restartgui.value:
-					self.session.openWithCallback(self.restartCB,MessageBox,_("Need restart GUI to apply changes\n Restart now?"), MessageBox.TYPE_YESNO,timeout=15)
+					self.session.openWithCallback(self.restartCB, MessageBox, _("Need restart GUI to apply changes\n Restart now?"), MessageBox.TYPE_YESNO, timeout=15)
 			self.close()
 		return
 

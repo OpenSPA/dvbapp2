@@ -162,5 +162,5 @@ class IpkuninstallList(Screen):
 				cmd = "opkg remove --force-remove " + self.ipk
 				title = (_("Force Removing ipk %s") % (self.ipk))
 
-			self.session.open(Console,_(title),[cmd])
+			self.session.open(Console, _(title), [cmd])
 			self.close()

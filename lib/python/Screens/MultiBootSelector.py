@@ -45,7 +45,7 @@ class MultiBootSelector(Screen):
 		self["key_green"] = StaticText(_("Reboot"))
 		if SystemInfo["canMode12"]:
 			self["options"] = StaticText(_("Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work."))
-		self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image slots - Please wait...")), "Queued"))])
+		self["config"] = ChoiceList(list=[ChoiceEntryComponent('', ((_("Retrieving image slots - Please wait...")), "Queued"))])
 		imagedict = []
 		self.mtdboot = "%s1" % SystemInfo["canMultiBoot"][2]
  		if SystemInfo["canMultiBoot"][2] == "sda":
@@ -87,18 +87,18 @@ class MultiBootSelector(Screen):
 			if not SystemInfo["canMode12"]:
 				for x in sorted(imagedict.keys()):
 					if imagedict[x]["imagename"] != _("Empty slot"):
-						list.append(ChoiceEntryComponent('',((_("slot%s - %s - %s (current image)") if x == currentimageslot else _("slot%s - %s - %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x)))
+						list.append(ChoiceEntryComponent('', ((_("slot%s - %s - %s (current image)") if x == currentimageslot else _("slot%s - %s - %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x)))
 			else:
 				for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
 					if imagedict[x]["imagename"] != _("Empty slot"):
-						list.append(ChoiceEntryComponent('',((_("slot%s - %s mode 1 (current image)") if x == currentimageslot and mode != 12 else _("slot%s - %s mode 1")) % (x, imagedict[x]['imagename']), x)))
+						list.append(ChoiceEntryComponent('', ((_("slot%s - %s mode 1 (current image)") if x == currentimageslot and mode != 12 else _("slot%s - %s mode 1")) % (x, imagedict[x]['imagename']), x)))
 				list.append("                                 ")
 				list.append("                                 ")
 				for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
 						if SystemInfo["canMode12"] and imagedict[x]["imagename"] != _("Empty slot"):
-							list.append(ChoiceEntryComponent('',((_("slot%s - %s mode 12 (current image)") if x == currentimageslot and mode == 12 else _("slot%s - %s mode 12")) % (x, imagedict[x]['imagename']), x)))
+							list.append(ChoiceEntryComponent('', ((_("slot%s - %s mode 12 (current image)") if x == currentimageslot and mode == 12 else _("slot%s - %s mode 12")) % (x, imagedict[x]['imagename']), x)))
 		else:
-			list.append(ChoiceEntryComponent('',((_("No images found")), "Waiter")))
+			list.append(ChoiceEntryComponent('', ((_("No images found")), "Waiter")))
 		self["config"].setList(list)
 
 	def reboot(self):
@@ -125,10 +125,10 @@ class MultiBootSelector(Screen):
 		if pathExists("/tmp/startupmount/%s" % GetSTARTUPFile()):
 			if currentimageslot == slot and SystemInfo["canMode12"]:
 				if mode == 12:
-					startupFileContents = ReadSTARTUP().replace("boxmode=12'","boxmode=1'").replace(SystemInfo["canMode12"][1],SystemInfo["canMode12"][0])
+					startupFileContents = ReadSTARTUP().replace("boxmode=12'", "boxmode=1'").replace(SystemInfo["canMode12"][1], SystemInfo["canMode12"][0])
 					open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'w').write(startupFileContents)
 				else:
-					startupFileContents = ReadSTARTUP().replace("boxmode=1'","boxmode=12'").replace(SystemInfo["canMode12"][0],SystemInfo["canMode12"][1])
+					startupFileContents = ReadSTARTUP().replace("boxmode=1'", "boxmode=12'").replace(SystemInfo["canMode12"][0], SystemInfo["canMode12"][1])
 					open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'w').write(startupFileContents)
 			elif fileExists("/tmp/startupmount/STARTUP_1"):
 				copyfile("/tmp/startupmount/STARTUP_%s" % slot, "/tmp/startupmount/%s" % GetSTARTUPFile())
@@ -141,7 +141,7 @@ class MultiBootSelector(Screen):
 				copyfile("/tmp/startupmount/STARTUP_LINUX_%s" % slot, "/tmp/startupmount/%s" % GetSTARTUPFile())
 
 			message = _("Do you want to reboot now the image in slot %s?") % slot
-			self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
+			self.session.openWithCallback(self.restartImage, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 		else:
 			self.session.open(MessageBox, _("Multiboot ERROR! - no %s in boot partition.") % GetSTARTUPFile(), MessageBox.TYPE_INFO, timeout=20)
 

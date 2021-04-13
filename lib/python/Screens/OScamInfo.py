@@ -78,7 +78,7 @@ class OscamInfo:
 				if 'oscamymod' in data2.lower():
 					opath = '/etc/tuxbox/config/oscam-ymod/oscam.conf'
 		if owebif == "yes" and oport is not "0":
-			opath = opath.replace('//','/')
+			opath = opath.replace('//', '/')
 			return opath, ipcompiled
 		else:
 			return None, None
@@ -105,16 +105,16 @@ class OscamInfo:
 					pwd = i.split("=")[1].strip()
 				elif "httpport" in i.lower():
 					port = i.split("=")[1].strip()
-					ret = ret.replace(_("oscam webif disabled"),"").strip()
+					ret = ret.replace(_("oscam webif disabled"), "").strip()
 					if ret.startswith(", "):
-						ret = ret.replace(", ","")
+						ret = ret.replace(", ", "")
 				elif "httpallowed" in i.lower():
 					allowed = i.split("=")[1].strip()
 					if "::1" in allowed or "127.0.0.1" in allowed:
 						blocked = False
-						ret = ret.replace(_("oscam webif blocking localhost (::1 and 127.0.0.1)"),"").replace(_("oscam webif blocking localhost (127.0.0.1)"),"")
+						ret = ret.replace(_("oscam webif blocking localhost (::1 and 127.0.0.1)"), "").replace(_("oscam webif blocking localhost (127.0.0.1)"), "")
 						if ret.endswith(", "):
-							ret = ret.replace(", ","")
+							ret = ret.replace(", ", "")
 					if "::1" in allowed and ipcompiled == "yes":
 						ipconfigured = "yes"
 			if not port == "0":
@@ -155,7 +155,7 @@ class OscamInfo:
 
 		if self.port.startswith('+'):
 			self.proto = "https"
-			self.port.replace("+","")
+			self.port.replace("+", "")
 
 		if part is None:
 			self.url = "%s://%s:%s/oscamapi.html?part=status" % (self.proto, self.ip, self.port)
@@ -449,7 +449,7 @@ class OscamInfoMenu(Screen):
 	def down(self):
 		pass
 	def goEntry(self, entry):
-		if entry in (1,2,3) and config.oscaminfo.userdatafromconf.value and self.osc.confPath()[0] is None:
+		if entry in (1, 2, 3) and config.oscaminfo.userdatafromconf.value and self.osc.confPath()[0] is None:
 			config.oscaminfo.userdatafromconf.setValue(False)
 			config.oscaminfo.userdatafromconf.save()
 			self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
@@ -510,24 +510,24 @@ class OscamInfoMenu(Screen):
 				if fileExists(png):
 					png = LoadPixmap(png)
 				if png is not None:
-					x, y, w, h = skin.parameters.get("ChoicelistDash",(0, 2 * f, 800 * f, 2 * f))
+					x, y, w, h = skin.parameters.get("ChoicelistDash", (0, 2 * f, 800 * f, 2 * f))
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP, x, y, w, h, png))
-					x, y, w, h = skin.parameters.get("ChoicelistName",(45 * f, 2 * f, 800 * f, 25 * f))
+					x, y, w, h = skin.parameters.get("ChoicelistName", (45 * f, 2 * f, 800 * f, 25 * f))
 					res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t[2:]))
 					png2 = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_" + keys[k] + ".png")
 					if fileExists(png2):
 						png2 = LoadPixmap(png2)
 					if png2 is not None:
-						x, y, w, h = skin.parameters.get("ChoicelistIcon",(5 * f, 0, 35 * f, 25 * f))
+						x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * f, 0, 35 * f, 25 * f))
 						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
 			else:
-				x, y, w, h = skin.parameters.get("ChoicelistName",(45 * f, 2 * f, 800 * f, 25 * f))
+				x, y, w, h = skin.parameters.get("ChoicelistName", (45 * f, 2 * f, 800 * f, 25 * f))
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t))
 				png2 = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_" + keys[k] + ".png")
 				if fileExists(png2):
 					png2 = LoadPixmap(png2)
 				if png2 is not None:
-					x, y, w, h = skin.parameters.get("ChoicelistIcon",(5 * f, 0, 35 * f, 25 * f))
+					x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * f, 0, 35 * f, 25 * f))
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
 			menuentries.append(res)
 			if k < len(keys) - 1:
@@ -760,7 +760,7 @@ class oscInfo(Screen, OscamInfo):
 		res = [""]
 		for i in listentry:
 			if i.strip() != "" or i is not None:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 5 * f, 0, self.sizeLH,self.itemheight * f, 2, RT_HALIGN_LEFT, i))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 5 * f, 0, self.sizeLH, self.itemheight * f, 2, RT_HALIGN_LEFT, i))
 		return res
 
 	def showData(self):
@@ -771,7 +771,7 @@ class oscInfo(Screen, OscamInfo):
 			data = self.readXML(typ=self.what)
 		self.out = []
 		self.itemheight = 25
-		if not isinstance(data,str):
+		if not isinstance(data, str):
 			if self.what != "l":
 				heading = (self.HEAD[self.NAME], self.HEAD[self.PROT], self.HEAD[self.CAID_SRVID],
 						self.HEAD[self.SRVNAME], self.HEAD[self.ECMTIME], self.HEAD[self.IP_PORT], "")
@@ -916,7 +916,7 @@ class oscEntitlements(Screen, OscamInfo):
 				providertxt += "%s - %s%s" % (j[0], j[1], linefeed)
 			res.append((ca_id,
 					csystem,
-					str(hops[1]),str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
+					str(hops[1]), str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
 					providertxt[:-1]
 					))
 			outlist.append(res)
@@ -1055,7 +1055,7 @@ class oscReaderStats(Screen, OscamInfo):
 				providertxt += "%s - %s%s" % (j[0], j[1], linefeed)
 			res.append((ca_id,
 					csystem,
-					str(hops[1]),str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
+					str(hops[1]), str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
 					providertxt[:-1]
 					))
 			outlist.append(res)
@@ -1106,7 +1106,7 @@ class oscReaderStats(Screen, OscamInfo):
 								try:
 									last_req = lastreq.split("T")[1][:-5]
 								except IndexError:
-									last_req = time.strftime("%H:%M:%S",time.localtime(float(lastreq)))
+									last_req = time.strftime("%H:%M:%S", time.localtime(float(lastreq)))
 							else:
 								last_req = ""
 						else:

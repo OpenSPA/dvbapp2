@@ -17,7 +17,7 @@ class EnigmaOutput:
 				frame = sys._getframe(1)
 				filename = frame.f_code.co_filename
 				if 'BugHunting' in filename:
-					ePythonOutput('',0,'',self.buf)
+					ePythonOutput('', 0, '', self.buf)
 				else:
 					if '/usr/lib/enigma2/python/' in filename:
 						filename = filename.replace('/usr/lib/enigma2/python/', '')
@@ -25,7 +25,7 @@ class EnigmaOutput:
 						filename = filename.split('/git/')[1]
 					ePythonOutput(filename, frame.f_lineno, frame.f_code.co_name, self.buf)
 			else:
-				ePythonOutput('',0,'',self.buf)
+				ePythonOutput('', 0, '', self.buf)
 			if self.isTraceback and self.buf[0] != ' ' and 'Traceback (most recent call last):\n' != self.buf:
 				self.isTraceback = False
 			self.buf = ''

@@ -35,7 +35,7 @@ class MultiBootWizard(Screen):
 	</screen>
 	"""
 
-	def __init__(self, session,menu_path=""):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("MultiBoot Image Manager"))
 		if SystemInfo["HasSDmmc"] and not pathExists('/dev/sda4'):
@@ -43,7 +43,7 @@ class MultiBootWizard(Screen):
 			self["description"] = StaticText(_("Press Init to format SDcard."))
 			self["options"] = StaticText("")
 			self["key_yellow"] = StaticText(_("Init SDcard"))
-			self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((""), "Queued"))])
+			self["config"] = ChoiceList(list=[ChoiceEntryComponent('', ((""), "Queued"))])
 			self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
 			{
 				"red": boundFunction(self.close, None),
@@ -69,7 +69,7 @@ class MultiBootWizard(Screen):
 				self["key_yellow"] = StaticText(_("Init SDcard"))
 			else:
 				self["key_yellow"] = StaticText("")
-			self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image slots - Please wait...")), "Queued"))])
+			self["config"] = ChoiceList(list=[ChoiceEntryComponent('', ((_("Retrieving image slots - Please wait...")), "Queued"))])
 			imagedict = []
 			self.getImageList = None
 			self.startit()
@@ -107,7 +107,7 @@ class MultiBootWizard(Screen):
 			currentimageslot += 1
 		for x in sorted(imagedict.keys()):
 			if imagedict[x]["imagename"] != _("Empty slot") and x != currentimageslot:
-				list.append(ChoiceEntryComponent('',((_("slot%s - %s ")) % (x, imagedict[x]['imagename']), x)))
+				list.append(ChoiceEntryComponent('', ((_("slot%s - %s ")) % (x, imagedict[x]['imagename']), x)))
 		self["config"].setList(list)
 
 	def erase(self):
@@ -163,15 +163,15 @@ class MultiBootWizard(Screen):
 						self.session.open(MessageBox, _("Multiboot manager - SDcard initialization run, please restart your Image."), MessageBox.TYPE_INFO, timeout=10)
 						cmdlist = []
 						cmdlist.append("for n in /dev/%s* ; do umount $n > /dev/null 2>&1 ; done" % sda)
-						cmdlist.append("for n in /dev/%s* ; do parted -s /dev/%s rm  ${n:8} > /dev/null 2>&1; done" % (sda,sda))
+						cmdlist.append("for n in /dev/%s* ; do parted -s /dev/%s rm  ${n:8} > /dev/null 2>&1; done" % (sda, sda))
 						cmdlist.append("dd if=/dev/zero of=/dev/%s bs=512 count=10240 conv=notrunc" % sda)
 						cmdlist.append("partprobe /dev/%s" % sda)
 						cmdlist.append("parted -s /dev/%s mklabel gpt" % sda)
-						cmdlist.append("parted -s /dev/%s unit KiB mkpart kernel2 ext2 %s %s" % (sda,PARTED_START_KERNEL2,PARTED_END_KERNEL2))
-						cmdlist.append("parted -s /dev/%s unit KiB mkpart rootfs2 ext2 %s %s " % (sda,PARTED_START_ROOTFS2,PARTED_END_ROOTFS2))
-						cmdlist.append("parted -s /dev/%s unit KiB mkpart kernel3 ext2 %s %s" % (sda,PARTED_START_KERNEL3,PARTED_END_KERNEL3))
-						cmdlist.append("parted -s /dev/%s unit KiB mkpart rootfs3 ext2 %s %s " % (sda,PARTED_START_ROOTFS3,PARTED_END_ROOTFS3))
-						cmdlist.append("parted -s /dev/%s unit KiB mkpart userdata ext2 %s 100%% " % (sda,PARTED_END_ROOTFS3))  ### Tech note: should be 95% for new mSD cards with discard"
+						cmdlist.append("parted -s /dev/%s unit KiB mkpart kernel2 ext2 %s %s" % (sda, PARTED_START_KERNEL2, PARTED_END_KERNEL2))
+						cmdlist.append("parted -s /dev/%s unit KiB mkpart rootfs2 ext2 %s %s " % (sda, PARTED_START_ROOTFS2, PARTED_END_ROOTFS2))
+						cmdlist.append("parted -s /dev/%s unit KiB mkpart kernel3 ext2 %s %s" % (sda, PARTED_START_KERNEL3, PARTED_END_KERNEL3))
+						cmdlist.append("parted -s /dev/%s unit KiB mkpart rootfs3 ext2 %s %s " % (sda, PARTED_START_ROOTFS3, PARTED_END_ROOTFS3))
+						cmdlist.append("parted -s /dev/%s unit KiB mkpart userdata ext2 %s 100%% " % (sda, PARTED_END_ROOTFS3))  ### Tech note: should be 95% for new mSD cards with discard"
 
 						cmdlist.append("for n in /dev/%s{1..5} ; do mkfs.ext4 $n ; done" % sda)  ###  we should do kernels in ext2, but ok for small kernel partitions 
 

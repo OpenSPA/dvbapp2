@@ -20,7 +20,7 @@ import skin
 AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".wma", ".ac3", ".mka", ".aac", ".ape", ".alac"))
 DVD_EXTENSIONS = frozenset((".iso", ".img", ".nrg"))
 IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
-MOVIE_EXTENSIONS = frozenset((".mpg", ".mpeg",".vob", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".asf", ".webm", ".3gp", ".3g2", ".mpe", ".rm", ".rmvb", ".ogm", ".ogv", ".m2ts", ".mts"))
+MOVIE_EXTENSIONS = frozenset((".mpg", ".mpeg", ".vob", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".asf", ".webm", ".3gp", ".3g2", ".mpe", ".rm", ".rmvb", ".ogm", ".ogv", ".m2ts", ".mts"))
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
 RECORD_EXTENSIONS = (".ts")
 
@@ -197,11 +197,11 @@ class MovieList(GUIComponent):
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					font = skin.parseFont(value, ((1,1),(1,1)))
+					font = skin.parseFont(value, ((1, 1), (1, 1)))
 					self.fontName = font.family
 					self.fontSize = font.pointSize
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 			self.setFontsize()
 		rc = GUIComponent.applySkin(self, desktop, parent)
@@ -352,12 +352,12 @@ class MovieList(GUIComponent):
 				txt = p[1]
 				if txt == ".Trash":
 					dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Trashcan")).width()
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX,iconPosY), size=(iconSize,iconSize), png=self.iconTrash))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconTrash))
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Deleted items")))
 					res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
 					return res
 			dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Directory")).width()
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX,iconPosY), size=(iconSize,iconSize), png=self.iconFolder))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconFolder))
 			res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
 			res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Directory")))
 			return res
@@ -417,7 +417,7 @@ class MovieList(GUIComponent):
 			iconPosY = ih / 2 - iconSize / 2
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX,iconPosY), size=(iconSize,iconSize), png=data.icon))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon))
 		elif switch == 'p':
 			if data.part is not None and data.part > 0:
 				iconSize = progressBarSize
@@ -425,14 +425,14 @@ class MovieList(GUIComponent):
 				iconPosY = ih / 2 - iconSize / 8
 				if iconPosY < iconPosX:
 					iconPosY = iconPosX
-				res.append(MultiContentEntryProgress(pos=(iconPosX,iconPosY), size=(iconSize,iconSize / 4), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(iconPosX, iconPosY), size=(iconSize, iconSize / 4), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
 				iconSize = dataIconSize
 				iconPosX = listBeginX
 				iconPosY = ih / 2 - iconSize / 2
 				if iconPosY < iconPosX:
 					iconPosY = iconPosX
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX,iconPosY), size=(iconSize,iconSize), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon))
 		elif switch == 's':
 			iconSize = progressIconSize
 			iconPosX = listBeginX
@@ -440,9 +440,9 @@ class MovieList(GUIComponent):
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
 			if data.part is not None and data.part > 0:
-				res.append(MultiContentEntryProgress(pos=(iconPosX,iconPosY), size=(iconSize,iconSize), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX,iconPosY), size=(iconSize,iconSize), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
@@ -632,7 +632,7 @@ class MovieList(GUIComponent):
 
 			if this_tags == ['']:
 				# No tags? Auto tag!
-				this_tags = name.replace(',',' ').replace('.',' ').replace('_',' ').replace(':',' ').split()
+				this_tags = name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
 			else:
 				realtags.update(this_tags)
 			for tag in this_tags:

@@ -49,7 +49,7 @@ class H9SDmanager(Screen):
 		<ePixmap pixmap="buttons/green.png" position="205,200" size="150,40" alphatest="blend" />
 		</screen>"""
 
-	def __init__(self, session,menu_path=""):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		self.skinName = "H9SDmanager"
 		screentitle = _("H9 SDcard manager")

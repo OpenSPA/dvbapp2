@@ -144,7 +144,7 @@ class EPGSelection(Screen):
 			if menu:
 				text += _(": %s") % event.getEventName()
 		if self.type == EPG_TYPE_MULTI:
-			menu.append((_("Goto specific date/time"),self.enterDateTime))
+			menu.append((_("Goto specific date/time"), self.enterDateTime))
 		menu.append((_("Timer Overview"), self.openTimerOverview))
 		if len(menu) == 1:
 			menu and menu[0][1]()
@@ -300,12 +300,12 @@ class EPGSelection(Screen):
 		if repeat:
 			if record:
 				title_text = _("Repeating event currently recording.\nWhat do you want to do?")
-				menu = [(_("Stop current event but not coming events"), "stoponlycurrent"),(_("Stop current event and disable coming events"), "stopall")]
+				menu = [(_("Stop current event but not coming events"), "stoponlycurrent"), (_("Stop current event and disable coming events"), "stopall")]
 				if not timer.disabled:
 					menu.append((_("Don't stop current event but disable coming events"), "stoponlycoming"))
 			else:
 				title_text = _("Attention, this is repeated timer!\nWhat do you want to do?")
-				menu = [(_("Disable current event but not coming events"), "nextonlystop"),(_("Disable timer"), "simplestop")]
+				menu = [(_("Disable current event but not coming events"), "nextonlystop"), (_("Disable timer"), "simplestop")]
 			self.session.openWithCallback(boundFunction(self.runningEventCallback, timer, state), ChoiceBox, title=title_text, list=menu)
 		elif timer.state == state:
 			timer.disable()
@@ -359,7 +359,7 @@ class EPGSelection(Screen):
 				break
 		if not isRecordEvent:
 			x = self.session.nav.RecordTimer.isInTimer(eventid, begin, duration, refstr, True)
-			if x and x[1][0] in (2,7,12):
+			if x and x[1][0] in (2, 7, 12):
 				isRecordEvent = True
 				timer = x[3]
 		if isRecordEvent:
@@ -368,7 +368,7 @@ class EPGSelection(Screen):
 			isRunning = prev_state in (1, 2)
 			title_text = isRepeat and _("Attention, this is repeated timer!\n") or ""
 			firstNextRepeatEvent = isRepeat and (begin < timer.begin <= end or timer.begin <= begin <= timer.end) and not timer.justplay
-			menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+			menu = [(_("Delete timer"), "delete"), (_("Edit timer"), "edit")]
 			buttons = ["red", "green"]
 			if not isRunning:
 				if firstNextRepeatEvent and timer.isFindRunningEvent() and not timer.isFindNextEvent():
@@ -571,7 +571,7 @@ class EPGSelection(Screen):
 				break
 		if not isRecordEvent:
 			x = self.session.nav.RecordTimer.isInTimer(eventid, begin, duration, refstr)
-			if x and x[1][0] in (2,7,12):
+			if x and x[1][0] in (2, 7, 12):
 				isRecordEvent = True
 
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:

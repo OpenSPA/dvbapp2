@@ -29,10 +29,10 @@ class WizardSDCardUse(Screen, ConfigListScreen):
 
 	def createconfig(self):
 		if not path.exists("/.kodi"):
-			self.list.append(getConfigListEntry(_("Use SDCard for %s storage folder") % "kodi",config.plugins.sdcard.kodi))
-		self.list.append(getConfigListEntry(_("Use SDCard for movies storage"),config.plugins.sdcard.movie))
-		self.list.append(getConfigListEntry(_("Use SDCard for timeshift storage"),config.plugins.sdcard.timeshift))
-		self.list.append(getConfigListEntry(_("Use SDCard for epg storage path"),config.plugins.sdcard.epg))
+			self.list.append(getConfigListEntry(_("Use SDCard for %s storage folder") % "kodi", config.plugins.sdcard.kodi))
+		self.list.append(getConfigListEntry(_("Use SDCard for movies storage"), config.plugins.sdcard.movie))
+		self.list.append(getConfigListEntry(_("Use SDCard for timeshift storage"), config.plugins.sdcard.timeshift))
+		self.list.append(getConfigListEntry(_("Use SDCard for epg storage path"), config.plugins.sdcard.epg))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 

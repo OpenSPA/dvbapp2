@@ -108,7 +108,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		else:
 			self.startActualUpdate(answer)
 
-	def startActualUpdate(self,answer):
+	def startActualUpdate(self, answer):
 		if answer:
 			self.updating = True
 			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
@@ -227,7 +227,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.close()
 			return
 		if answer[1] == "cold":
-			self.session.open(TryQuitMainloop,retvalue=42)
+			self.session.open(TryQuitMainloop, retvalue=42)
 			self.close()
 		elif answer[1] == "channels":
 			self.channellist_only = 1

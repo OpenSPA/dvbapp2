@@ -16,7 +16,7 @@ from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion
 
-from os import path,popen
+from os import path, popen
 from re import search
 
 import time
@@ -56,7 +56,7 @@ def parseLines(filename):
 def MyDateConverter(StringDate):
 	## StringDate must be a string "YYYY-MM-DD"
 	try:
-		StringDate = StringDate.replace("-"," ")
+		StringDate = StringDate.replace("-", " ")
 		StringDate = time.strftime(_("%Y-%m-%d"), time.strptime(StringDate, "%Y %m %d"))
 		return StringDate
 	except:
@@ -78,27 +78,27 @@ def getAboutText():
 		AboutText += _("Chipset:\t\t%s") % about.getChipSetString() + "\n"
 
 	cpuMHz = ""
-	if getMachineBuild() in ('u41','u42','u43'):
+	if getMachineBuild() in ('u41', 'u42', 'u43'):
 		cpuMHz = _("   (1.0 GHz)")
-	elif getMachineBuild() in ('dags72604','vusolo4k','vuultimo4k','vuzero4k','gb72604'):
+	elif getMachineBuild() in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604'):
 		cpuMHz = _("   (1.5 GHz)")
-	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
+	elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
 		cpuMHz = _("   (1.3 GHz)")
-	elif getMachineBuild() in ('gbmv200','u51','u5','u53','u532','u533','u52','u54','u55','u56','u5pvr','h9','h9combo','h10','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','multibox'):
+	elif getMachineBuild() in ('gbmv200', 'u51', 'u5', 'u53', 'u532', 'u533', 'u52', 'u54', 'u55', 'u56', 'u5pvr', 'h9', 'h9combo', 'h10', 'cc1', 'sf8008', 'sf8008m', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'v8plus', 'multibox'):
 		cpuMHz = _("   (1.6 GHz)")
-	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
+	elif getMachineBuild() in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
 		cpuMHz = _("   (1.7 GHz)")
 	elif getMachineBuild() in ('alien5',):
 		cpuMHz = _("   (2.0 GHz)")
 	elif getMachineBuild() in ('vuduo4k',):
 		cpuMHz = _("   (2.1 GHz)")
-	elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k','osmio4kplus','osmini4k'):
+	elif getMachineBuild() in ('sf5008', 'et13000', 'et1x000', 'hd52', 'hd51', 'sf4008', 'vs1500', 'h7', 'osmio4k', 'osmio4kplus', 'osmini4k'):
 		try:
 			import binascii
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			cpuMHz = _("   (%s MHz)") % str(round(int(binascii.hexlify(clockfrequency), 16) / 1000000,1))
+			cpuMHz = _("   (%s MHz)") % str(round(int(binascii.hexlify(clockfrequency), 16) / 1000000, 1))
 		except:
 			cpuMHz = _("   (1.7 GHz)")
 	else:
@@ -128,7 +128,7 @@ def getAboutText():
 	if SystemInfo["HasRootSubdir"]:
 		image = find_rootfssubdir("STARTUP")
 		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image[-1:] + bootname + "\n"
-	elif getMachineBuild() in ('gbmv200','cc1','sf8008','sf8008m','ustym4kpro','beyonwizv2',"viper4k"):
+	elif getMachineBuild() in ('gbmv200', 'cc1', 'sf8008', 'sf8008m', 'ustym4kpro', 'beyonwizv2', "viper4k"):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(5)
@@ -150,7 +150,7 @@ def getAboutText():
 			if bootname:
 				bootname = "   (%s)" % bootname 
 			AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
-	elif getMachineBuild() in ('osmio4k','osmio4kplus','osmini4k'):
+	elif getMachineBuild() in ('osmio4k', 'osmio4kplus', 'osmini4k'):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(38)
@@ -190,7 +190,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('gbmv200','vuduo4k','v8plus','ustym4kpro','beyonwizv2','viper4k','hd60','hd61','i55plus','osmio4k','osmio4kplus','h9','h9combo','h10','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u532','u533','u54','u55','u56','u51','cc1','sf8008'):
+	if getMachineBuild() not in ('gbmv200', 'vuduo4k', 'v8plus', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'hd60', 'hd61', 'i55plus', 'osmio4k', 'osmio4kplus', 'h9', 'h9combo', 'h10', 'vuzero4k', 'sf5008', 'et13000', 'et1x000', 'hd51', 'hd52', 'vusolo4k', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'sf4008', 'dm820', 'dm7080', 'dm900', 'dm920', 'gb7252', 'dags7252', 'vs1500', 'h7', 'xc7439', '8100s', 'u5', 'u5pvr', 'u52', 'u53', 'u532', 'u533', 'u54', 'u55', 'u56', 'u51', 'cc1', 'sf8008'):
 		AboutText += _("Installed:\t\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
@@ -217,7 +217,7 @@ def getAboutText():
 		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 
 	tempinfo = ""
 	if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -244,13 +244,13 @@ def getAboutText():
 					temp = line[1].split("=")
 					temp = line[1].split(" ")
 					tempinfo = temp[2]
-					if getMachineBuild() in ('u41','u42','u43'):
+					if getMachineBuild() in ('u41', 'u42', 'u43'):
 						tempinfo = str(int(tempinfo) - 15)
 		except:
 			tempinfo = ""
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 	AboutLcdText = AboutText.replace('\t', ' ')
 
 	return AboutText, AboutLcdText
@@ -277,7 +277,7 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Image Information"))
-		self.skinName = ["AboutOE","About"]
+		self.skinName = ["AboutOE", "About"]
 		self.populate()
 
 		self["key_red"] = Button(_("Exit"))
@@ -311,7 +311,7 @@ class About(Screen):
 				id = f.read()[:-1].split('=')
 				f.close()
 				from Screens.MessageBox import MessageBox
-				self.session.open(MessageBox,id[1], type=MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, id[1], type=MessageBox.TYPE_INFO)
 			except:
 				pass
 
@@ -609,17 +609,17 @@ class SystemNetworkInfo(Screen):
 	def createscreen(self):
 		def netspeed():
 			netspeed = ""
-			for line in popen('ethtool eth0 |grep Speed','r'):
+			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line = line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 
 		def netspeed_eth1():
 			netspeed = ""
-			for line in popen('ethtool eth1 |grep Speed','r'):
+			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line = line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 
@@ -835,7 +835,7 @@ class ViewGitLog(Screen):
 			"right": self.pageDown,
 			"down": self.pageDown,
 			"up": self.pageUp
-		},-1)
+		}, -1)
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):
