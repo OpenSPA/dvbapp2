@@ -29,7 +29,7 @@ class StandbyClockVFD(Converter, object):
 		elif dformat[0] == "A":
 			f = dformat.find(" ")
 			format1 = dformat[1:f]
-			format2 = dformat[f + 1:] 
+			format2 = dformat[f + 1:]
 
 			self.seg += 1
 			if self.seg == 15:

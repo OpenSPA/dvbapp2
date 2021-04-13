@@ -181,8 +181,8 @@ class TimeJumpSetup(ConfigListScreen, Screen):
 	skin = """
 		<screen name="TimeJumpSetup" position="center,center" size="574,165" title="%s">
 			<widget name="config" position="10,10" size="554,100" scrollbarMode="showOnDemand" transparent="1" />
-			<widget name="key_red" position="157,121" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;18" transparent="1" /> 
-			<widget name="key_green" position="317,121" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;18" transparent="1" /> 
+			<widget name="key_red" position="157,121" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;18" transparent="1" />
+			<widget name="key_green" position="317,121" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;18" transparent="1" />
 			<ePixmap name="red" position="156,121" zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 			<ePixmap name="green" position="317,121" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 		</screen>""" % _("TimeJump Setup")

@@ -62,5 +62,3 @@ class WizardSDCardUse(Screen, ConfigListScreen):
 			config.misc.epgcache_filename.save()
 			eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
 		self.close()
-
-

@@ -129,7 +129,7 @@ class NcamInfo:
 				c = line.split('inet addr:')[1].split(' ')[0]
 				if c != '127.0.0.1':
 					return c
-			
+
 	def openWebIF(self, part=None, reader=None):
 		self.proto = "http"
 		if config.ncaminfo.userdatafromconf.value:

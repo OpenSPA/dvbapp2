@@ -105,7 +105,7 @@ def setLCDModeMinitTV(value):
 
 class Standby2(Screen):
 	################################################
-	# openspa: added StartWithPower variable 
+	# openspa: added StartWithPower variable
 	# to detect when starting with the power button
 	################################################
 	def Powerb(self):
@@ -460,7 +460,7 @@ class TryQuitMainloop(MessageBox):
 			print "[Standby] quitMainloop #1"
 			quitMainloopCode = self.retval
 			if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
-				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k 
+				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k
 				print "[Standby] LCDminiTV off"
 				setLCDModeMinitTV("0")
 			if getBoxType() == "vusolo4k":  #workaround for white display flash

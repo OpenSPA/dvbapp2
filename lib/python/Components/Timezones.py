@@ -11,7 +11,7 @@ from Tools.StbHardware import setRTCoffset
 
 # The DEFAULT_AREA setting is usable by the image maintainers to select the
 # default UI mode and location settings used by their image.  If the value
-# of "Classic" is used then images that use the "Timezone area" and 
+# of "Classic" is used then images that use the "Timezone area" and
 # "Timezone" settings will have the "Timezone area" set to "Classic" and the
 # "Timezone" field will be an expanded version of the classic list of GMT
 # related offsets.  Images that only use the "Timezone" setting should use
@@ -31,7 +31,7 @@ from Tools.StbHardware import setRTCoffset
 # options then the DEFAULT_AREA can be set to an area most appropriate for
 # the image.  For example, Beyonwiz would use "Australia", OpenATV, OpenViX
 # and OpenPLi would use "Europe".  If the "Europe" option is selected then
-# the DEFAULT_ZONE can be used to select a more appropriate timezone 
+# the DEFAULT_ZONE can be used to select a more appropriate timezone
 # selection for the image.  For example, OpenATV and OpenPLi may prefer
 # "Berlin" while OpenViX may prefer "London" and OpenSPA may prefer "Madrid".
 #

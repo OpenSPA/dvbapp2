@@ -80,7 +80,7 @@ try:
 except Exception as e:
 	print "[ML] BlurayPlayer not installed:", e
 	BlurayPlayer = None
-	
+
 
 def defaultMoviePath():
 	result = config.usage.default_path.value

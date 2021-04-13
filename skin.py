@@ -870,7 +870,7 @@ def addOpenSpaDefaults(skin):
 					defaultSliderPixmap = value
 			except:
 				pass
-	
+
 
 def applyAllAttributes(guiObject, desktop, attributes, scale):
 	#mpiero fix
@@ -1000,7 +1000,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					resolved_font = resolveFilename(SCOPE_CURRENT_LCDSKIN, filename)
 			#mpiero regularHD compatibility add font RegularHD for plugins in external skin
 			if name == "Regular" and spaRegularHD == 1:
-				addFont(resolved_font, "RegularHD", 150, False, render) 
+				addFont(resolved_font, "RegularHD", 150, False, render)
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 
@@ -1362,7 +1362,7 @@ def readSkin(screen, skin, names, desktop):
 		print "[SKIN] No skin to read..."
 		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring("<screen></screen>")
 
-	#mpiero sdhd convert 
+	#mpiero sdhd convert
 	try:
 		if config.plugins.sdhdmaster.enable.value and config.plugins.sdhdmaster.ready.value:
 			from Plugins.Extensions.spazeMenu.spacvsd.spacvsd import openspa_sdhd

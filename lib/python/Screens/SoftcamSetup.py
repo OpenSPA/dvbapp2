@@ -191,4 +191,3 @@ class SoftcamSetup(Screen, ConfigListScreen):
 
 	def cancel(self):
 		self.close()
-

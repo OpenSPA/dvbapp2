@@ -848,7 +848,7 @@ class spaMenu(Screen, ProtectedScreen):
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
 
 		self.activeInterface = None
-	
+
 		for x in self.adapters:
 			if iNetwork.getAdapterAttribute(x[1], 'up') is True:
 				self.activeInterface = x[1]
@@ -906,7 +906,7 @@ class spaMenu(Screen, ProtectedScreen):
 
 ######## Create MENULIST format #######################
 def spaMenuEntryComponent(name, description, long_description=None, width=540):
-	pngname = name.replace(" ", "_") 
+	pngname = name.replace(" ", "_")
 	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/icons/" + pngname + ".png")
 	if png is None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/icons/empty.png")
@@ -1003,7 +1003,7 @@ class spaMenuDevices(Screen):
 		self.devicelist = []
 		self['devicelist'] = List(self.devicelist)
 
-		self['actions'] = ActionMap(['WizardActions'], 
+		self['actions'] = ActionMap(['WizardActions'],
 		{
 			'back': self.close,
 		})

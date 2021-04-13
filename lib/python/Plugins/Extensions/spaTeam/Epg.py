@@ -20,7 +20,7 @@ import new
 import _enigma
 import enigma
 import time
-from enigma import * 
+from enigma import *
 import os
 
 config.epg = ConfigSubsection()
@@ -318,7 +318,7 @@ class ViewLog(Screen):
 
 		self['text'].setText(list)
 
-		self['actions'] = ActionMap(['OkCancelActions', 'DirectionActions'], 
+		self['actions'] = ActionMap(['OkCancelActions', 'DirectionActions'],
 		{
 			'cancel': self.close,
 			'up': self['text'].pageUp,

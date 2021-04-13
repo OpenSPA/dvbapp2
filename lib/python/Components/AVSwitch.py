@@ -627,7 +627,7 @@ def InitAVSwitch():
 	if "pillarbox" in policy_choices_raw and not "panscan" in policy_choices_raw:
 		# Very few boxes support "pillarbox" as an alias for "panscan" (Which in fact does pillarbox)
 		# So only add "pillarbox" if "panscan" is not listed in choices
-		
+
 		# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 		policy_choices.update({"pillarbox": _("Pillarbox")})
 
@@ -642,7 +642,7 @@ def InitAVSwitch():
 		# DRIVER BUG:	"letterbox" in /proc actually does pan&scan
 		#		"letterbox" and 4:3 content on 16:9 TVs is mutually exclusive, as "letterbox" is the method to show wide content on narrow TVs
 		#		Probably the bug arose as the driver actually does the same here as it would for wide content on narrow TVs (It stretches the picture to fit width)
-		
+
 		# TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
 		policy_choices.update({"letterbox": _("Pan&scan")})
 
@@ -687,7 +687,7 @@ def InitAVSwitch():
 			iAVSwitch.setColorFormat(0)
 		else:
 			if getBoxType() == 'et6x00':
-				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
+				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
 			elif getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus' or getBoxType().startswith('et'):
 				map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
 			else:
@@ -910,13 +910,13 @@ def InitAVSwitch():
 	if have_HDRSupport:
 		def setHlgSupport(configElement):
 			open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
-		config.av.hlg_support = ConfigSelection(default="auto(EDID)", 
+		config.av.hlg_support = ConfigSelection(default="auto(EDID)",
 			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
 		config.av.hlg_support.addNotifier(setHlgSupport)
 
 		def setHdr10Support(configElement):
 			open("/proc/stb/hdmi/hdr10_support", "w").write(configElement.value)
-		config.av.hdr10_support = ConfigSelection(default="auto(EDID)", 
+		config.av.hdr10_support = ConfigSelection(default="auto(EDID)",
 			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
 		config.av.hdr10_support.addNotifier(setHdr10Support)
 

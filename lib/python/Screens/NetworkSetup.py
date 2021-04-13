@@ -847,7 +847,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						self.close('ok')
 				else:
 					self.close('ok')
-					
+
 	def getInfoCB(self, data, status):
 		if data is not None:
 			if data is True:
@@ -2467,7 +2467,7 @@ class Networksimpleconf(Screen):
 
 	def check(self):
 		if (os.path.exists("/etc/openvpn/client1-android/client.ovpn")):
-			self.session.openWithCallback(self.checkf, MessageBox, _("The configuration has already been created, do you want to overwrite?"), MessageBox.TYPE_YESNO)                         
+			self.session.openWithCallback(self.checkf, MessageBox, _("The configuration has already been created, do you want to overwrite?"), MessageBox.TYPE_YESNO)
 		else:
 			self.create()
 
@@ -2475,7 +2475,7 @@ class Networksimpleconf(Screen):
 		if val:
 			self.create()
 		else:
-			self.close() 
+			self.close()
 
 	def create(self, value=1):
 		try:
@@ -2484,11 +2484,11 @@ class Networksimpleconf(Screen):
 		except IOError:
 			self.session.open(MessageBox, _("Error: File Not created."), MessageBox.TYPE_INFO, timeout=10)
 			print "Error: File Not created."
-			return 0    
+			return 0
 
 		resultext = "Building server and clients in the background... \nOnce finished, you will see a message on the screen, and the configurations will already be created. \n\nYou can transfer the settings from: \netc/openvpn/client1-android \netc/openvpn/client2-ipad \netc/openvpn/client3-pc_lin \n\nYou should now configure your IP range in the server.conf eg: push route 192.168.1.0 255.255.255.0 in /etc/openvpn. Then on each generated client.ovpn remember to put the public ip or Dyndns where the server is hosted and the port if you want to change it, (remember to open it on the router for the IP of the server) eg: remote my.dyndns.org 1194. \n\nNote: Be sure to restart the OpenVPN Server after you make the changes. And to automatically start OpenVPN, choose the option in the OpenSPA graphical user interface!"
 		self.session.open(MessageBox, _("Building server and clients..."), MessageBox.TYPE_INFO, timeout=10)
-		self['data'].setText(_(resultext)) 
+		self['data'].setText(_(resultext))
 
 	def exit(self):
 		self.close()
@@ -4914,10 +4914,10 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
 
-	def GeneratePassword(self): 
+	def GeneratePassword(self):
 		passwdChars = string.letters + string.digits
 		passwdLength = 10
-		return ''.join(Random().sample(passwdChars, passwdLength)) 
+		return ''.join(Random().sample(passwdChars, passwdLength))
 
 	def SetPasswd(self):
 		self.hideHelpWindow()
@@ -4925,7 +4925,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		if not password:
 			self.session.openWithCallback(self.showHelpWindow, MessageBox, _("The password can not be blank."), MessageBox.TYPE_ERROR)
 			return
-		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password) 
+		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password)
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)

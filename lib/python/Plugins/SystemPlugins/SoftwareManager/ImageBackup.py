@@ -382,7 +382,7 @@ class ImageBackup(Screen):
 					PARTED_END_KERNEL4 = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 					cmdlist.append('parted -s %s unit KiB mkpart linuxkernel4 %s %s' % (EMMC_IMAGE, FOURTH_KERNEL_PARTITION_OFFSET, PARTED_END_KERNEL4))
 					rd = open("/proc/swaps", "r").read()
-					if "mmcblk0p7" in rd: 
+					if "mmcblk0p7" in rd:
 						SWAP_PARTITION_OFFSET = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 						SWAP_PARTITION_SIZE = int(262144)
 						MULTI_ROOTFS_PARTITION_OFFSET = int(SWAP_PARTITION_OFFSET) + int(SWAP_PARTITION_SIZE)
@@ -663,7 +663,7 @@ class ImageBackup(Screen):
 						f.close()
 		except:
 			AboutText += _("Error reading bouquets.tv")
-			
+
 		AboutText += _("\n[User - bouquets (RADIO)]\n")
 		try:
 			f = open("/etc/enigma2/bouquets.radio", "r")

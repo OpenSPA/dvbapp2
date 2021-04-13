@@ -60,7 +60,7 @@ class CronManager(Screen):
 		self.Console = Console()
 		self.my_crond_active = False
 		self.my_crond_run = False
-		
+
 		self['key_red'] = Label(_("Add"))
 		self['key_green'] = Label(_("Delete"))
 		self['key_yellow'] = Label(_("Start"))

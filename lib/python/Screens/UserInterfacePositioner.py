@@ -264,7 +264,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 		self["key_blue"] = StaticText()
-		
+
 		self["title"] = StaticText(_("OSD Adjustment"))
 		self["text"] = Label(_("Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\nWhen you are ready press green to continue."))
 

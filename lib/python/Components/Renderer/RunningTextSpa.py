@@ -1,5 +1,5 @@
 ﻿################################################################################
-#    RunningTextSpa.py - based en RunningText.py Running Text Renderer for Enigma2 
+#    RunningTextSpa.py - based en RunningText.py Running Text Renderer for Enigma2
 #    by vlamo
 #    Thanks to autor for share your job
 #    Version: 1.0 (03.02.2017 23:40)
@@ -139,7 +139,7 @@ class RunningTextSpa(Renderer):
 							opt, val = (x.strip() for x in o.split('=', 1))
 						else:
 							opt, val = o.strip(), ""
-						
+
 						if opt == "":
 							continue
 						elif opt in ("wrap", "nowrap"):
@@ -178,17 +178,17 @@ class RunningTextSpa(Renderer):
 						self.scroll_label.setBackgroundColor(parseColor(value))
 					elif attrib == "transparent":
 						self.scroll_label.setTransparent(int(value))
-					
+
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)
-		
+
 		if self.mOneShot:
 			self.mOneShot = max(self.mStepTimeout, self.mOneShot)
 		if self.mLoopTimeout:
 			self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
 		if self.mPageDelay:
 			self.mPageDelay = max(self.mStepTimeout, self.mPageDelay)
-		
+
 		self.scroll_label.setFont(self.txfont)
 		if not (self.txtflags & RT_WRAP):
 			self.scroll_label.setNoWrap(1)
@@ -240,7 +240,7 @@ class RunningTextSpa(Renderer):
 			self.txtext = self.txtext.replace("\xe0\x8a", " ").replace(chr(0x8A), " ").replace("\n", " ").replace("\r", " ")
 
 		self.scroll_label.setText(self.txtext)
-	
+
 		if self.txtext == "" or \
 		   self.type == NONE or \
 		   self.scroll_label is None:
@@ -248,20 +248,20 @@ class RunningTextSpa(Renderer):
 
 		if self.direction in (LEFT, RIGHT) or not (self.txtflags & RT_WRAP):
 			self.scroll_label.resize(eSize(self.txfont.pointSize * len(self.txtext), self.H)) # stupid workaround, have no better idea right now...
-		
+
 		text_size = self.scroll_label.calculateSize()
 		text_width = text_size.width()
 		text_height = text_size.height()
 
 		if self.direction in (LEFT, RIGHT) or not (self.txtflags & RT_WRAP):
 			text_width += 10
-		
+
 		self.mStop = None
 		# text height correction if necessary:
 		if self.lineHeight and self.direction in (TOP, BOTTOM):
 			text_height = max(text_height, (text_height + self.lineHeight - 1) / self.lineHeight * self.lineHeight)
-			
-		
+
+
 #		self.type =		0 - NONE; 1 - RUNNING; 2 - SWIMMING; 3 - AUTO(???)
 #		self.direction =	0 - LEFT; 1 - RIGHT;   2 - TOP;      3 - BOTTOM
 #		self.halign =		0 - LEFT; 1 - RIGHT;   2 - CENTER;   3 - BLOCK
@@ -357,7 +357,7 @@ class RunningTextSpa(Renderer):
 						self.P = self.A
 						self.mStep = abs(self.mStep)
 						self.mStop = self.A
-					
+
 			else:
 				return False
 		else:
@@ -365,15 +365,15 @@ class RunningTextSpa(Renderer):
 
 		self.xW = max(self.W, text_width)
 		self.xH = max(self.H, text_height)
-		
+
 		self.scroll_label.resize(eSize(self.xW, self.xH))
-		
+
 		if self.mStartDelay:
 			if self.direction in (LEFT, RIGHT):
 				self.moveLabel(self.P, self.Y)
 			else: # if self.direction in (TOP,BOTTOM):
 				self.moveLabel(self.X, self.P)
-				
+
 		self.mTimer.stop()
 		self.mCount = self.mRepeat
 		self.mTimer.start(self.mStartDelay, True)
@@ -429,7 +429,7 @@ class RunningTextSpa(Renderer):
 						self.addstep = 0
 				else:
 					self.mStep = -(self.mStep)
-				
+
 		self.P += (self.mStep + int(self.addstep))
 		if self.addstep > 0:
 			self.addstep = self.addstep + 0.2

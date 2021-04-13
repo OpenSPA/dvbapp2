@@ -32,7 +32,7 @@ class Ipkuninstall(Screen):
 			</widget>
 			<widget source="info" render="Label" position="150,10" size="450,25" zPosition="1" font="Regular;22" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />
 		</screen>"""
-    
+
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
@@ -99,11 +99,11 @@ class IpkuninstallList(Screen):
 			<widget name="list" position="10,50" size="510,360" zPosition="1" scrollbarMode="showOnDemand" />
 			<widget source="info" render="Label" position="center,10" size="450,25" zPosition="1" font="Regular;22" foregroundColor="#ffffff" transparent="1" halign="left" valign="center" />
 		</screen>"""
-    
+
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.skinName = "IpkuninstallList" 
+		self.skinName = "IpkuninstallList"
 
 		self['actions'] = ActionMap(['OkCancelActions'],
 		{
@@ -150,17 +150,17 @@ class IpkuninstallList(Screen):
 	def cancel(self):
 		self.close()
 
-	def delete(self, answer): 
+	def delete(self, answer):
 		cmd = " "
 		title = " "
 		if answer is not None:
 			if answer[1] == "rem":
 				cmd = "opkg remove " + self.ipk
 				title = (_("Removing ipk %s") % (self.ipk))
-			elif answer[1] == "force-depens":            
+			elif answer[1] == "force-depens":
 				cmd = "opkg remove --autoremove --force-depends " + self.ipk
 				title = (_("Removing Depends of ipk %s") % (self.ipk))
-			elif answer[1] == "force-remove":            
+			elif answer[1] == "force-remove":
 				cmd = "opkg remove --force-remove " + self.ipk
 				title = (_("Force Removing ipk %s") % (self.ipk))
 

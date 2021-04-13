@@ -132,7 +132,7 @@ class GetImagelist():
 
 	def appClosed(self, data, retval, extra_args):
 		if retval == 0 and self.phase == self.MOUNT:
-			BuildVersion = "  "	
+			BuildVersion = "  "
 			Build = " "
 			Dev = " "
 			Creator = " "
@@ -154,7 +154,7 @@ class GetImagelist():
 					Creator = open("%s/etc/issue" % self.OsPath).readlines()[-2].capitalize().strip()[:-6].replace("-release", " rel")
 				except:
 					Creator = _("unknow")
-				print "Tools/Multiboot Creator %s" % Creator 
+				print "Tools/Multiboot Creator %s" % Creator
 				if Creator.startswith("Openpli"):
 					build = [x.split("-")[-2:-1][0][-8:] for x in open("%s/var/lib/opkg/info/openpli-bootlogo.control" % self.OsPath).readlines() if x.startswith("Version:")]
 					Date = "%s-%s-%s" % (build[0][6:], build[0][4:6], build[0][2:4])
@@ -175,7 +175,7 @@ class GetImagelist():
 							if line.startswith("feedsurl") and "beta" in line:
 								Build = Build + " BETA"
 						f.close()
-					
+
 					BuildVersion = "%s.%s" % (Creator, Build)
 				else:
 					try:
@@ -205,7 +205,7 @@ class GetImagelist():
 			self.callback(self.imagelist)
 
 
-class boxbranding_reader:		# many thanks to Huevos for creating this reader - well beyond my skill levels! 
+class boxbranding_reader:		# many thanks to Huevos for creating this reader - well beyond my skill levels!
 	def __init__(self, OsPath):
 		if pathExists('%s/usr/lib64' % OsPath):
 			self.branding_path = "%s/usr/lib64/enigma2/python/" % OsPath
@@ -255,7 +255,7 @@ class boxbranding_reader:		# many thanks to Huevos for creating this reader - we
 				self.output[att] = output[att]
 
 	def addBrandingMethods(self): # this creates reader.getBoxType(), reader.getImageDevBuild(), etc
-		l = {}                
+		l = {}
 		for att in self.output.keys():
 			exec("def %s(self): return self.output['%s']" % (att, att), None, l)
 		for name, value in l.items():
