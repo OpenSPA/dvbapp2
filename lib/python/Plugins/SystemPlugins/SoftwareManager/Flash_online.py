@@ -102,8 +102,8 @@ class FlashOnline(Screen):
 				socket.getaddrinfo(feedserver, None)
 
 				for version in sorted(imagecat):
-					newversion = _("Images %s") %version  #Oficial, Descargadas, Full backup
-					the_page =""
+					newversion = _("Images %s") % version  #Oficial, Descargadas, Full backup
+					the_page = ""
 					url = '%s/Alliance/getfirm.php?box=%s' % (feedurl,box)
 					try:
 						req = urllib2.Request(url)
@@ -120,11 +120,11 @@ class FlashOnline(Screen):
 
 					lines = the_page.split('\n')
 					try:
-						l=lines[0]
+						l = lines[0]
 						self.feedurl = l.split("<a href='")[1].split("openspa-")[0]
 					except:
-						self["info"].setText("BOX: ["+box+"]\n"+_("No images found for this device. More info in openspa.info"))
-						list.append("("+_("No images found for")+" "+box+")")
+						self["info"].setText("BOX: [" + box + "]\n" + _("No images found for this device. More info in openspa.info"))
+						list.append("(" + _("No images found for") + " " + box + ")")
 					countimage = []
 					for line in lines:
 						if line.find(".zip") > -1 and not "recovery" in line:
@@ -132,8 +132,8 @@ class FlashOnline(Screen):
 								self.feedurl = line.split("<a href='")[1].split("openspa-")[0]
 							except:
 								pass
-							name=line.split(">")[1].split("<")[0]
-							name=name.replace(" ("," ").replace(" - "," - ").replace(")","").replace(".zip"," ->")
+							name = line.split(">")[1].split("<")[0]
+							name = name.replace(" ("," ").replace(" - "," - ").replace(")","").replace(".zip"," ->")
 							#self.urllist[name]=line.split("<a href='")[1].split("openspa-")[0]
 							countimage.append(name.split(' ->')[0])
 					if len(countimage) >= 1:
@@ -144,7 +144,7 @@ class FlashOnline(Screen):
 							self.imagesList[newversion][image]["link"] = '%s%s.zip' % (self.feedurl,image)
 
 			except socket.error as e:
-				print "FEEDSERVER ERROR: %s" %e
+				print "FEEDSERVER ERROR: %s" % e
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if os.path.isdir(media):
@@ -191,7 +191,7 @@ class FlashOnline(Screen):
 			self.session.openWithCallback(self.getImagesList, FlashImage, currentSelected[0][0], currentSelected[0][1])
 
 	def keyDelete(self):
-		currentSelected= self["list"].l.getCurrentSelection()[0][1]
+		currentSelected = self["list"].l.getCurrentSelection()[0][1]
 		if not("://" in currentSelected or currentSelected in ["Expander", "Waiter"]):
 			try:
 				os.remove(currentSelected)
@@ -243,7 +243,7 @@ class FlashImage(Screen):
 		<widget name="progress" position="5,e-39" size="e-10,24" backgroundColor="#54242424"/>
 	</screen>"""
 
-	def __init__(self, session,  imagename, source):
+	def __init__(self, session, imagename, source):
 		Screen.__init__(self, session)
 		self.containerbackup = None
 		self.containerofgwrite = None
@@ -368,7 +368,7 @@ class FlashImage(Screen):
 	def flashPostAction(self, retval=True):
 		if retval:
 			self.recordcheck = False
-			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
+			title = _("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
 			choices = ((_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
 			(_("Clean (Just flash and start clean)"), "wizard"),
 			(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
@@ -407,7 +407,7 @@ class FlashImage(Screen):
 			self.abort()
 
 	def postFlashActionCallback(self, answer):
-		restoreSettings   = False
+		restoreSettings = False
 		restoreAllPlugins = False
 		restoreSettingsnoPlugin = False
 		if answer is not None:
@@ -420,12 +420,12 @@ class FlashImage(Screen):
 					self.session.openWithCallback(self.recordWarning, MessageBox, _("Recording(s) are in progress or coming up in few seconds!") + '\n' + _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()), default=False)
 					return
 			if answer[1] == "restoresettings":
-				restoreSettings   = True
+				restoreSettings = True
 			if answer[1] == "restoresettingsnoplugin":
 				restoreSettings = True
 				restoreSettingsnoPlugin = True
 			if answer[1] == "restoresettingsandallplugins":
-				restoreSettings   = True
+				restoreSettings = True
 				restoreAllPlugins = True
 			if restoreSettings:
 				self.SaveEPG()
@@ -547,7 +547,7 @@ class FlashImage(Screen):
 	def unzip(self):
 		self["header"].setText(_("Unzipping Image"))
 		self["summary_header"].setText(self["header"].getText())
-		self["info"].setText("%s\n%s"% (self.imagename, _("Please wait")))
+		self["info"].setText("%s\n%s" % (self.imagename, _("Please wait")))
 		self["progress"].hide()
 		self.delay.callback.remove(self.confirmation)
 		self.delay.callback.append(self.doUnzip)
@@ -574,8 +574,8 @@ class FlashImage(Screen):
 			self.MTDROOTFS = GetCurrentRoot()
 			if SystemInfo["canMultiBoot"]:
 				if "sd" in self.getImageList[self.multibootslot]['part']:
-					self.MTDKERNEL = "%s%s" %(SystemInfo["canMultiBoot"][2], int(self.getImageList[self.multibootslot]['part'][3])-1)
-					self.MTDROOTFS = "%s" %(self.getImageList[self.multibootslot]['part'])
+					self.MTDKERNEL = "%s%s" % (SystemInfo["canMultiBoot"][2], int(self.getImageList[self.multibootslot]['part'][3]) - 1)
+					self.MTDROOTFS = "%s" % (self.getImageList[self.multibootslot]['part'])
 			if SystemInfo["canMultiBoot"]:
 				if getMachineBuild() in ("gbmv200","cc1","sf8008","sf8008m","ustym4kpro","beyonwizv2","viper4k"): # issue detect kernel device and rootfs on sda
 					print "[FlashImage] detect Kernel:",self.MTDKERNEL
@@ -588,8 +588,8 @@ class FlashImage(Screen):
 				print "[FlashImage] detect rootfs:",self.MTDROOTFS
 				command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
 			else:
-				if fileExists("%s/rootfs.ubi" %imagefiles) and fileExists("%s/rootfs.tar.bz2" %imagefiles):
-					os.rename('%s/rootfs.tar.bz2' %imagefiles, '%s/xx.txt' %imagefiles)
+				if fileExists("%s/rootfs.ubi" % imagefiles) and fileExists("%s/rootfs.tar.bz2" % imagefiles):
+					os.rename('%s/rootfs.tar.bz2' % imagefiles, '%s/xx.txt' % imagefiles)
 				command = "/usr/bin/ofgwrite -r -k %s" % imagefiles
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(command, self.FlashimageDone)

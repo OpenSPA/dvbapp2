@@ -88,7 +88,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
 			})
 
-		self.current_begin_time=0
+		self.current_begin_time = 0
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
 
@@ -123,7 +123,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		new = self.servicelist.newServicePlayed()
 		if self.execing:
 			InfoBarShowHide.serviceStarted(self)
-			self.current_begin_time=0
+			self.current_begin_time = 0
 		elif not self.__checkServiceStarted in self.onShown and new:
 			self.onShown.append(self.__checkServiceStarted)
 
@@ -210,7 +210,7 @@ def setAudioTrack(service):
 			if langC.has_key(lang):
 				lang = langC[lang][0]
 			desc = audioInfo.getDescription()
-			track = idx, lang,  desc
+			track = idx, lang, desc
 			idx += 1
 			trackList += [track]
 		seltrack = tracks.getCurrentTrack()
@@ -301,7 +301,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
 				"InfoButtonPressed": (self.openEventView, _("open Info...")),
-				"EPGButtonPressed": (self.showDefaultEPG,  _("open EPG...")),
+				"EPGButtonPressed": (self.showDefaultEPG, _("open EPG...")),
 				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
 				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player...")),
 				"channelUp": (self.channelUp, _("when PiPzap enabled zap channel up...")),
@@ -626,7 +626,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 							slist.moveDown()
 						cur = slist.getCurrentSelection()
 						if cur:
-							playable = not (cur.flags & (64|8)) and hasattr(self.session, "pip") and self.session.pip.isPlayableForPipService(cur)
+							playable = not (cur.flags & (64 | 8)) and hasattr(self.session, "pip") and self.session.pip.isPlayableForPipService(cur)
 							if cur.toString() == prev or playable:
 								break
 			else:
@@ -696,10 +696,10 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":
-					return (i+1, len(playlist))
+					return (i + 1, len(playlist))
 				i += 1
 				if i < len(playlist):
-					return (playlist[i], i+1, len(playlist))
+					return (playlist[i], i + 1, len(playlist))
 				elif config.usage.on_movie_eof.value == "loop":
 					return (playlist[0], 1, len(playlist))
 		return (None, 0, 0)

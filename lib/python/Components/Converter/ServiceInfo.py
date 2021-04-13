@@ -329,11 +329,11 @@ class ServiceInfo(Poll, Converter, object):
 					video_rate = int(self.getServiceInfoString(info, iServiceInformation.sFrameRate))
 				except:
 					return "N/A fps"
-			return video_rate, lambda x: "%d fps" % ((x+500)/1000)
+			return video_rate, lambda x: "%d fps" % ((x + 500) / 1000)
 		elif self.type == self.PROGRESSIVE:
 			return self._getProgressiveStr(info)
 		elif self.type == self.TRANSFERBPS:
-			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
+			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x / 1024))
 		elif self.type == self.HAS_HBBTV:
 			return info.getInfoString(iServiceInformation.sHBBTVUrl)
 		elif self.type == self.VIDEO_PARAMS:
@@ -343,7 +343,7 @@ class ServiceInfo(Poll, Converter, object):
 			print "yres", yres, "frame_rate", frame_rate, "progressive", progressive
 			if not progressive:
 				frame_rate *= 2
-			frame_rate = (frame_rate+500)/1000
+			frame_rate = (frame_rate + 500) / 1000
 			return "%d%s%d" % (yres, 'p' if progressive else 'i', frame_rate)
 		elif self.type == self.FREQ_INFO:
 			feinfo = service.frontendInfo()

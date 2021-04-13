@@ -274,7 +274,7 @@ class SysInfo(Screen):
 		self["acur"].setText(str(self.bitrate.acur))
 
 	def getCPUInfo(self):
-		cmd =('mpstat | grep "all" | awk \'{print $3 " " $5}\' > /tmp/cpuinfo.tmp')
+		cmd = ('mpstat | grep "all" | awk \'{print $3 " " $5}\' > /tmp/cpuinfo.tmp')
 		system(cmd)
 		if fileExists('/tmp/cpuinfo.tmp'):
 			f = open('/tmp/cpuinfo.tmp', 'r')

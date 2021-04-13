@@ -116,17 +116,17 @@ def Check_Softcam():
 	return found
 
 def Check_SysSoftcam():
-	syscam="none"
+	syscam = "none"
 	if os.path.isfile('/etc/init.d/softcam'):
 		if (os.path.islink('/etc/init.d/softcam') and not os.readlink('/etc/init.d/softcam').lower().endswith('none')):
 			try:
 				syscam = os.readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
 				if syscam.lower().startswith('oscam'):
-					syscam="oscam"
+					syscam = "oscam"
 				if syscam.lower().startswith('ncam'):
-					syscam="ncam"
+					syscam = "ncam"
 				if syscam.lower().startswith('cccam'):
-					syscam="cccam"
+					syscam = "cccam"
 			except:
 				pass
 	return syscam
@@ -910,16 +910,16 @@ def spaMenuEntryComponent(name, description, long_description=None, width=540):
 		width *= 1.5
 		return [
 			_(name),
-			MultiContentEntryText(pos=(90, 5), size=(width-90, 38), font=0, text=_(name)),
-			MultiContentEntryText(pos=(90, 38), size=(width-90, 30), font=1, text=_(description)),
+			MultiContentEntryText(pos=(90, 5), size=(width - 90, 38), font=0, text=_(name)),
+			MultiContentEntryText(pos=(90, 38), size=(width - 90, 30), font=1, text=_(description)),
 			MultiContentEntryPixmapAlphaBlend(pos=(15, 8), size=(60, 60), png=png, backcolor=0x000000),
 			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 	else:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(60, 3), size=(width-60, 25), font=0, text=_(name)),
-			MultiContentEntryText(pos=(60, 25), size=(width-60, 20), font=1, text=_(description)),
+			MultiContentEntryText(pos=(60, 3), size=(width - 60, 25), font=0, text=_(name)),
+			MultiContentEntryText(pos=(60, 25), size=(width - 60, 20), font=1, text=_(description)),
 			MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png=png, backcolor=0x000000),
 			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
@@ -930,15 +930,15 @@ def spaSubMenuEntryComponent(name, description, long_description=None, width=540
 		width *= 1.5
 		return [
 			_(name),
-			MultiContentEntryText(pos=(15, 5), size=(width-15, 38), font=0, text=_(name)),
-			MultiContentEntryText(pos=(15, 38), size=(width-15, 30), font=1, text=_(description)),
+			MultiContentEntryText(pos=(15, 5), size=(width - 15, 38), font=0, text=_(name)),
+			MultiContentEntryText(pos=(15, 38), size=(width - 15, 30), font=1, text=_(description)),
 			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 	else:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(10, 3), size=(width-10, 25), font=0, text=_(name)),
-			MultiContentEntryText(pos=(10, 25), size=(width-10, 20), font=1, text=_(description)),
+			MultiContentEntryText(pos=(10, 3), size=(width - 10, 25), font=0, text=_(name)),
+			MultiContentEntryText(pos=(10, 25), size=(width - 10, 20), font=1, text=_(description)),
 			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 
@@ -1114,7 +1114,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = ["SetupInfo", "Setup"]
 		Screen.setTitle(self, _("Keymap Selection") + "...")
-		self.setup_title =  _("Keymap Selection") + "..."
+		self.setup_title = _("Keymap Selection") + "..."
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
@@ -1217,10 +1217,10 @@ class KeymapSel(ConfigListScreen, Screen):
 			self.close()
 
 	def getKeymap(self, file):
-		return file[file.rfind('/') +1:]
+		return file[file.rfind('/') + 1:]
 
 	def changedFinished(self):
-		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the GUI") +"\n"+_("Do you want to restart now?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the GUI") + "\n" + _("Do you want to restart now?"), MessageBox.TYPE_YESNO)
 		self.close()
 
 	def ExecuteRestart(self, result):

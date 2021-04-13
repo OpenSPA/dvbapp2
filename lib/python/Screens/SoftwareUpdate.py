@@ -69,7 +69,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and\
-			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value  or hasattr(self.session, 'infobar') and self.session.infobar is None) and\
+			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value or hasattr(self.session, 'infobar') and self.session.infobar is None) and\
 			config.ParentalControl.config_sections.software_update.value
 
 	def checkTraficLight(self):
@@ -207,7 +207,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 					error = _("No updates available. Please try again later.")
 				if self.updating:
 					error = _("Update failed. Your %s %s does not have a working internet connection.") % (getMachineBrand(), getMachineName())
-				self.status.setText(_("Error") +  " - " + error)
+				self.status.setText(_("Error") + " - " + error)
 		elif event == IpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
 				self.channellist_name = param[0]

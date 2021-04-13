@@ -73,7 +73,7 @@ config.epg.maxdays.addNotifier(EpgmaxdaysChanged)
 
 config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
 def EpgHistorySecondsChanged(configElement):
-	eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
+	eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue() * 60)
 config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
 def mountp():

@@ -5,7 +5,7 @@ from Components.config import config, NoSave, ConfigYesNo, getConfigListEntry, C
 from os import path, system
 from enigma import eEPGCache
 
-config.plugins.sdcard  = ConfigSubsection()
+config.plugins.sdcard = ConfigSubsection()
 config.plugins.sdcard.kodi = NoSave(ConfigYesNo(default=True))
 config.plugins.sdcard.movie = NoSave(ConfigYesNo(default=True))
 config.plugins.sdcard.timeshift = NoSave(ConfigYesNo(default=True))
@@ -60,7 +60,7 @@ class WizardSDCardUse(Screen, ConfigListScreen):
 				name = config.misc.epgcache_filename.value.split("/")[-1]
 			except:
 				pass
-			config.misc.epgcache_filename.value = "/media/uSDextra/"+name
+			config.misc.epgcache_filename.value = "/media/uSDextra/" + name
 			config.misc.epgcache_filename.save()
 			eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
 		self.close()

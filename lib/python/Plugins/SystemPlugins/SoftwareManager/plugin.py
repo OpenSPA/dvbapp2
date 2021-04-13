@@ -192,7 +192,7 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("multiboot-manager", _("Multiboot Manager"), _("\nMaintain your multiboot device.") + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them.") + self.oktext, None))
+			self.list.append(("ipkg-install", _("Install local extension"), _("\nScan for local extensions and install them.") + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("SoftwareSupported"):
 					callFnc = p.__call__["SoftwareSupported"](None)
@@ -210,12 +210,12 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings.") + self.oktext, None))
 		elif self.menu == 1:
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date.") + self.oktext, None))
-			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: ") + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
-			self.list.append(("backupfiles", _("Show default backup files"),  _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("backupfiles_addon", _("Select additional backup files"),  _("Here you can specify additional files that should be added to the backup file.") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("backupfiles_exclude", _("Select excluded backup files"),  _("Here you can select which files should be excluded from the backup.") + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("backuplocation", _("Select backup location"), _("\nSelect your backup device.\nCurrent device: ") + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
+			self.list.append(("backupfiles", _("Show default backup files"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).") + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("backupfiles_addon", _("Select additional backup files"), _("Here you can specify additional files that should be added to the backup file.") + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("backupfiles_exclude", _("Select excluded backup files"), _("Here you can select which files should be excluded from the backup.") + self.oktext + "\n\n" + self.infotext, None))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages.") + self.oktext, None))
+				self.list.append(("ipkg-manager", _("Packet management"), _("\nView, install and remove available or installed packages.") + self.oktext, None))
 			self.list.append(("ipkg-source",_("Select upgrade source"), _("\nEdit the upgrade source address.") + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("AdvancedSoftwareSupported"):
@@ -362,7 +362,7 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "backuplocation"):
 					parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 					for x in parts:
-						if not access(x[1], F_OK|R_OK|W_OK) or x[1] == '/':
+						if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
 							parts.remove(x)
 					if len(parts):
 						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
@@ -478,8 +478,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
 		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
-		self.restoremodeEntry  = getConfigListEntry(_("Mode for autorestore"), config.plugins.softwaremanager.restoremode)
-		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
+		self.restoremodeEntry = getConfigListEntry(_("Mode for autorestore"), config.plugins.softwaremanager.restoremode)
+		self.updatetypeEntry = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		if boxtype.startswith('et'): 
 			self.list.append(self.updatetypeEntry)
 		self.list.append(self.overwriteConfigfilesEntry)
@@ -1092,7 +1092,7 @@ class PluginManager(Screen, PackageInfoHandler):
 	def runExecuteFinished(self):
 		self.reloadPluginlist()
 		if plugins.restartRequired or self.restartRequired:
-			self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") +" "+_("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 		else:
 			self.selectedFiles = []
 			self.restartRequired = False
@@ -1344,8 +1344,8 @@ class PluginDetails(Screen, PackageInfoHandler):
 			"red": self.exit,
 			"green": self.go,
 			"up": self.pageUp,
-			"down":	self.pageDown,
-			"left":	self.pageUp,
+			"down": self.pageDown,
+			"left": self.pageUp,
 			"right": self.pageDown,
 		}, -1)
 
@@ -1489,7 +1489,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 	def runUpgradeFinished(self):
 		self.reloadPluginlist()
 		if plugins.restartRequired or self.restartRequired:
-			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") +" "+_("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)
 	def UpgradeReboot(self, result):
@@ -1608,13 +1608,13 @@ class IPKGSource(Screen):
 				pass
 
 		desk = getDesktop(0)
-		x= int(desk.size().width())
-		y= int(desk.size().height())
+		x = int(desk.size().width())
+		y = int(desk.size().height())
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 
-		if (y>=720):
+		if (y >= 720):
 			self["text"] = Input(text, maxSize=False, type=Input.TEXT)
 		else:
 			self["text"] = Input(text, maxSize=False, visible_width=55, type=Input.TEXT)
@@ -1857,7 +1857,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self.session.openWithCallback(self.runRemoveFinished, Ipkg, cmdList=self.cmdList)
 
 	def runRemoveFinished(self):
-		self.session.openWithCallback(self.RemoveReboot, MessageBox, _("Remove finished.") +" "+_("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.RemoveReboot, MessageBox, _("Remove finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 
 	def RemoveReboot(self, result):
 		if result is None:
@@ -1879,7 +1879,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self.session.openWithCallback(self.runUpgradeFinished, Ipkg, cmdList=self.cmdList)
 
 	def runUpgradeFinished(self):
-		self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 
 	def UpgradeReboot(self, result):
 		if result is None:
@@ -2044,7 +2044,7 @@ class IpkgInstaller(Screen):
 			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
 
 		for listindex in range(len(list)):
-			self.list.addSelection(list[listindex][p+1:], list[listindex], listindex, False)
+			self.list.addSelection(list[listindex][p + 1:], list[listindex], listindex, False)
 		self.list.sort()
 
 		self["key_red"] = StaticText(_("Close"))

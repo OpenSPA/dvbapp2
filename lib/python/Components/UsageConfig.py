@@ -20,7 +20,7 @@ import os
 
 def InitUsageConfig():
 
-	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 
 	config.workaround = ConfigSubsection()
@@ -137,7 +137,7 @@ def InitUsageConfig():
 
 	choicelist = []
 	for i in range(10, 310,10):
-		choicelist.append(("%d" % i, "%d " % i  + _("seconds")))
+		choicelist.append(("%d" % i, "%d " % i + _("seconds")))
 	config.usage.shutdown_msgbox_timeout = ConfigSelection(default="180", choices=choicelist)
 
 	choicelist = [("0", _("No timeout"))]
@@ -161,7 +161,7 @@ def InitUsageConfig():
 		("standard", _("Standard")),
 		("neutrino", _("Neutrino")),
 		("openspa", _("OpenSPA"))])
-	config.usage.oldstyle_channel_select_controls =  ConfigYesNo(default=False)
+	config.usage.oldstyle_channel_select_controls = ConfigYesNo(default=False)
 	config.usage.zap_with_ch_buttons = ConfigYesNo(default=False)
 	config.usage.ok_is_channelselection = ConfigYesNo(default=False)
 
@@ -241,7 +241,7 @@ def InitUsageConfig():
 		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup"))])
 	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
 	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
-		m = i/60
+		m = i / 60
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choicelist)
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
@@ -258,9 +258,9 @@ def InitUsageConfig():
 		tmpvalue = config.usage.default_path.value
 		try:
 			if not os.path.exists(tmpvalue):
-				os.system("mkdir -p %s" %tmpvalue)
+				os.system("mkdir -p %s" % tmpvalue)
 		except:
-			print "Failed to create recording path: %s" %tmpvalue
+			print "Failed to create recording path: %s" % tmpvalue
 		if not config.usage.default_path.value.endswith('/'):
 			config.usage.default_path.setValue(tmpvalue + '/')
 			config.usage.default_path.save()
@@ -417,7 +417,7 @@ def InitUsageConfig():
 		slotx = 2**i
 		slots_x.append(slotx)
 		multi.append((str(slotx), slotname))
-		for x in range(i+1,slots):
+		for x in range(i + 1,slots):
 			slotx += 2**x
 			name = nimmanager.nim_slots[x].getSlotName()
 			if len(name.split()) == 2:
@@ -449,14 +449,14 @@ def InitUsageConfig():
 	rec_nims_multi.extend(multi)
 
 	priority_strictly_choices = [("no", _("No")), ("yes", _("Yes")), ("while_available", _("While available"))]
-	config.usage.frontend_priority                       = ConfigSelection(default="-1", choices=nims)
-	config.usage.frontend_priority_multiselect           = ConfigSelection(default="-1", choices=nims_multi)
-	config.usage.frontend_priority_strictly              = ConfigSelection(default="no", choices=priority_strictly_choices)
-	config.usage.frontend_priority_intval                = NoSave(ConfigInteger(default=0, limits=(-99, maxint)))
-	config.usage.recording_frontend_priority             = ConfigSelection(default="-2", choices=rec_nims)
+	config.usage.frontend_priority = ConfigSelection(default="-1", choices=nims)
+	config.usage.frontend_priority_multiselect = ConfigSelection(default="-1", choices=nims_multi)
+	config.usage.frontend_priority_strictly = ConfigSelection(default="no", choices=priority_strictly_choices)
+	config.usage.frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxint)))
+	config.usage.recording_frontend_priority = ConfigSelection(default="-2", choices=rec_nims)
 	config.usage.recording_frontend_priority_multiselect = ConfigSelection(default="-2", choices=rec_nims_multi)
-	config.usage.recording_frontend_priority_strictly    = ConfigSelection(default="no", choices=priority_strictly_choices)
-	config.usage.recording_frontend_priority_intval      = NoSave(ConfigInteger(default=0, limits=(-99, maxint)))
+	config.usage.recording_frontend_priority_strictly = ConfigSelection(default="no", choices=priority_strictly_choices)
+	config.usage.recording_frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxint)))
 	config.misc.disable_background_scan = ConfigYesNo(default=False)
 	
 	config.usage.menutype = ConfigSelection(default='standard', choices=[('horzanim', _('Horizontal menu')), ('horzicon', _('Horizontal icons')), ('standard', _('Standard menu'))])
@@ -936,7 +936,7 @@ def InitUsageConfig():
 
 	config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
 	def EpgHistorySecondsChanged(configElement):
-		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value*60)
+		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value * 60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
 	config.epg.cacheloadsched = ConfigYesNo(default=False)
@@ -1070,10 +1070,10 @@ def InitUsageConfig():
 
 	config.seek.withjumps = ConfigYesNo(default=True)
 	config.seek.withjumps_after_ff_speed = ConfigSelection([("1", _("never")), ("2", _("2x")), ("4", _("2x, 4x")), ("6", _("2x, 4x, 6x")), ("8", _("2x, 4x, 6x, 8x"))], default="4")
-	config.seek.withjumps_forwards_ms  = ConfigSelection([("200", _("0.2s")), ("300", _("0.3s")), ("400", _("0.4s")), ("500", _("0.5s")), ("600", _("0.6s")), ("700", _("0.7s")), ("800", _("0.8s")), ("900", _("0.9s")), ("1000", _("1s")), ("1200", _("1.2s")), ("1500", _("1.5s")), ("1700", _("1.7s")), ("2000", _("2s")), ("2500", _("2.5s")), ("3000", _("3s")), ("3500", _("3.5s")), ("4000", _("4s")), ("5000", _("5s"))], default="700")
+	config.seek.withjumps_forwards_ms = ConfigSelection([("200", _("0.2s")), ("300", _("0.3s")), ("400", _("0.4s")), ("500", _("0.5s")), ("600", _("0.6s")), ("700", _("0.7s")), ("800", _("0.8s")), ("900", _("0.9s")), ("1000", _("1s")), ("1200", _("1.2s")), ("1500", _("1.5s")), ("1700", _("1.7s")), ("2000", _("2s")), ("2500", _("2.5s")), ("3000", _("3s")), ("3500", _("3.5s")), ("4000", _("4s")), ("5000", _("5s"))], default="700")
 	config.seek.withjumps_backwards_ms = ConfigSelection([("200", _("0.2s")), ("300", _("0.3s")), ("400", _("0.4s")), ("500", _("0.5s")), ("600", _("0.6s")), ("700", _("0.7s")), ("800", _("0.8s")), ("900", _("0.9s")), ("1000", _("1s")), ("1200", _("1.2s")), ("1500", _("1.5s")), ("1700", _("1.7s")), ("2000", _("2s")), ("2500", _("2.5s")), ("3000", _("3s")), ("3500", _("3.5s")), ("4000", _("4s")), ("5000", _("5s"))], default="700")
-	config.seek.withjumps_repeat_ms    = ConfigSelection([("200", _("0.2s")), ("300", _("0.3s")), ("400", _("0.4s")), ("500", _("0.5s")), ("600", _("0.6s")), ("700", _("0.7s")), ("800", _("0.8s")), ("900", _("0.9s")), ("1000", _("1s"))], default="200")
-	config.seek.withjumps_avoid_zero   = ConfigYesNo(default=True)
+	config.seek.withjumps_repeat_ms = ConfigSelection([("200", _("0.2s")), ("300", _("0.3s")), ("400", _("0.4s")), ("500", _("0.5s")), ("600", _("0.6s")), ("700", _("0.7s")), ("800", _("0.8s")), ("900", _("0.9s")), ("1000", _("1s"))], default="200")
+	config.seek.withjumps_avoid_zero = ConfigYesNo(default=True)
 
 	config.crash = ConfigSubsection()
 	#// handle python crashes
@@ -1107,7 +1107,7 @@ def InitUsageConfig():
 			try:
 				os.mkdir(config.crash.debug_path.value,0755)
 			except:
-				print "Failed to create log path: %s" %config.crash.debug_path.value
+				print "Failed to create log path: %s" % config.crash.debug_path.value
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback=False)
 
 	crashlogheader = _("We are really sorry. Your receiver encountered "
@@ -1191,7 +1191,7 @@ def InitUsageConfig():
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default=False)
 	config.subtitles.colourise_dialogs = ConfigYesNo(default=False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices=["1", "2", "3", "4", "5"], default="3")
-	config.subtitles.subtitle_fontsize  = ConfigSelection(choices=["%d" % x for x in range(16,101) if not x % 2], default="40")
+	config.subtitles.subtitle_fontsize = ConfigSelection(choices=["%d" % x for x in range(16,101) if not x % 2], default="40")
 	backtrans = [
 		("0", _("No transparency")),
 		("12", "5%"),
@@ -1238,7 +1238,7 @@ def InitUsageConfig():
 	config.subtitles.pango_autoturnon = ConfigYesNo(default=True)
 
 	config.autolanguage = ConfigSubsection()
-	audio_language_choices=[
+	audio_language_choices = [
 		("", _("None")),
 		("und", _("Undetermined")),
 		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
@@ -1325,7 +1325,7 @@ def InitUsageConfig():
 		for y in range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0)))):
 			choicelist.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
-			choicelist.append((str(y+1), _("All")))
+			choicelist.append((str(y + 1), _("All")))
 		config.autolanguage.equal_languages.setChoices(choicelist, default="0")
 	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in range(0, 16)])
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="")
@@ -1514,18 +1514,18 @@ def patchTuxtxtConfFile(dummyConfigElement):
 		           ["TTFWidthFactor16",26],
 		           ["TTFHeightFactor16",14]]
 	elif config.usage.tuxtxt_font_and_res.value == "expert_mode":
-		tuxtxt2 = [["UseTTF",            int(config.usage.tuxtxt_UseTTF.value)],
-		           ["TTFBold",           int(config.usage.tuxtxt_TTFBold.value)],
-		           ["TTFScreenResX",     int(config.usage.tuxtxt_TTFScreenResX.value)],
-		           ["StartX",            config.usage.tuxtxt_StartX.value],
-		           ["EndX",              config.usage.tuxtxt_EndX.value],
-		           ["StartY",            config.usage.tuxtxt_StartY.value],
-		           ["EndY",              config.usage.tuxtxt_EndY.value],
-		           ["TTFShiftY",         int(config.usage.tuxtxt_TTFShiftY.value)],
-		           ["TTFShiftX",         int(config.usage.tuxtxt_TTFShiftX.value)],
-		           ["TTFWidthFactor16",  config.usage.tuxtxt_TTFWidthFactor16.value],
+		tuxtxt2 = [["UseTTF", int(config.usage.tuxtxt_UseTTF.value)],
+		           ["TTFBold", int(config.usage.tuxtxt_TTFBold.value)],
+		           ["TTFScreenResX", int(config.usage.tuxtxt_TTFScreenResX.value)],
+		           ["StartX", config.usage.tuxtxt_StartX.value],
+		           ["EndX", config.usage.tuxtxt_EndX.value],
+		           ["StartY", config.usage.tuxtxt_StartY.value],
+		           ["EndY", config.usage.tuxtxt_EndY.value],
+		           ["TTFShiftY", int(config.usage.tuxtxt_TTFShiftY.value)],
+		           ["TTFShiftX", int(config.usage.tuxtxt_TTFShiftX.value)],
+		           ["TTFWidthFactor16", config.usage.tuxtxt_TTFWidthFactor16.value],
 		           ["TTFHeightFactor16", config.usage.tuxtxt_TTFHeightFactor16.value]]
-	tuxtxt2.append(["CleanAlgo",         config.usage.tuxtxt_CleanAlgo.value])
+	tuxtxt2.append(["CleanAlgo", config.usage.tuxtxt_CleanAlgo.value])
 
 	TUXTXT_CFG_FILE = "/etc/tuxtxt/tuxtxt2.conf"
 	command = "sed -i -r '"
@@ -1535,7 +1535,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 	command += "' %s" % TUXTXT_CFG_FILE
 	for f in tuxtxt2:
 		#if keyword is not found in file, append keyword and value
-		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi"  % (f[0],TUXTXT_CFG_FILE,f[0],f[1],TUXTXT_CFG_FILE)
+		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi" % (f[0],TUXTXT_CFG_FILE,f[0],f[1],TUXTXT_CFG_FILE)
 	try:
 		os.system(command)
 	except:

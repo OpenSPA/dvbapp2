@@ -285,7 +285,7 @@ class HddMount(Screen):
 			#des += '\t' + _("Mount: ") + d1 + '\n' + _("Device: ") + '/dev/' + device + '\t' + _("Type: ") + dtype + rw
 			png = LoadPixmap(mypixmap)
 			mountP = _("Mount: ") + d1
-			deviceP =  _("Device: ") + '/dev/' + device
+			deviceP = _("Device: ") + '/dev/' + device
 			typ = _("Type: ") + dtype + rw
 			res = (name, des, png, mountP, deviceP, typ)
 			self.list.append(res)

@@ -109,7 +109,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
+				_("The directory %s is not writable.\nMake sure you select a writable directory instead.") % dir,
 				type=MessageBox.TYPE_ERROR
 				)
 			return False
@@ -123,7 +123,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 			tmp = tmp[:]
 			tmp.append(default)
 		print "Picon Path: ", default, tmp
-		self.picon_dirname = ConfigSelection(default=default, choices=self.styles+tmp)
+		self.picon_dirname = ConfigSelection(default=default, choices=self.styles + tmp)
 
 		#self.picon_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 
@@ -187,7 +187,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
-				self.picon_dirname.setChoices(self.styles+tmp, default=default)
+				self.picon_dirname.setChoices(self.styles + tmp, default=default)
 				self.entrydirname.value = res
 
 	def saveAll(self):

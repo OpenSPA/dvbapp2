@@ -37,7 +37,7 @@ class MultiBootSelector(Screen):
 		Screen.__init__(self, session)
 		screentitle = _("Multiboot Image Selector")
 		self["key_red"] = StaticText(_("Cancel"))
-		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' %(SystemInfo["canMultiBoot"][2])):
+		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' % (SystemInfo["canMultiBoot"][2])):
 			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Reboot button."))
 		else:
 			self["description"] = StaticText(_("SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"))
@@ -49,10 +49,10 @@ class MultiBootSelector(Screen):
 		imagedict = []
 		self.mtdboot = "%s1" % SystemInfo["canMultiBoot"][2]
  		if SystemInfo["canMultiBoot"][2] == "sda":
-			self.mtdboot = "%s3" %getMachineMtdRoot()[0:8]
+			self.mtdboot = "%s3" % getMachineMtdRoot()[0:8]
 		self.getImageList = None
 		self.title = screentitle
-		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' %(SystemInfo["canMultiBoot"][2])):
+		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' % (SystemInfo["canMultiBoot"][2])):
 			self.startit()
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
@@ -122,28 +122,28 @@ class MultiBootSelector(Screen):
 		slot = self.currentSelected[0][1]
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage() or 1
-		if pathExists("/tmp/startupmount/%s" %GetSTARTUPFile()):
+		if pathExists("/tmp/startupmount/%s" % GetSTARTUPFile()):
 			if currentimageslot == slot and SystemInfo["canMode12"]:
 				if mode == 12:
 					startupFileContents = ReadSTARTUP().replace("boxmode=12'","boxmode=1'").replace(SystemInfo["canMode12"][1],SystemInfo["canMode12"][0])
-					open('/tmp/startupmount/%s'%GetSTARTUPFile(), 'w').write(startupFileContents)
+					open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'w').write(startupFileContents)
 				else:
 					startupFileContents = ReadSTARTUP().replace("boxmode=1'","boxmode=12'").replace(SystemInfo["canMode12"][0],SystemInfo["canMode12"][1])
-					open('/tmp/startupmount/%s'%GetSTARTUPFile(), 'w').write(startupFileContents)
-			elif  fileExists("/tmp/startupmount/STARTUP_1"):
-				copyfile("/tmp/startupmount/STARTUP_%s" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
+					open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'w').write(startupFileContents)
+			elif fileExists("/tmp/startupmount/STARTUP_1"):
+				copyfile("/tmp/startupmount/STARTUP_%s" % slot, "/tmp/startupmount/%s" % GetSTARTUPFile())
 			elif fileExists("/tmp/startupmount/STARTUP_LINUX_4_BOXMODE_12"):
 				if mode == 1:
-					copyfile("/tmp/startupmount/STARTUP_LINUX_%s_BOXMODE_1" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
+					copyfile("/tmp/startupmount/STARTUP_LINUX_%s_BOXMODE_1" % slot, "/tmp/startupmount/%s" % GetSTARTUPFile())
 				else:
-					copyfile("/tmp/startupmount/STARTUP_LINUX_%s_BOXMODE_12" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
+					copyfile("/tmp/startupmount/STARTUP_LINUX_%s_BOXMODE_12" % slot, "/tmp/startupmount/%s" % GetSTARTUPFile())
 			elif fileExists("/tmp/startupmount/STARTUP_LINUX_4"):
-				copyfile("/tmp/startupmount/STARTUP_LINUX_%s" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
+				copyfile("/tmp/startupmount/STARTUP_LINUX_%s" % slot, "/tmp/startupmount/%s" % GetSTARTUPFile())
 
-			message = _("Do you want to reboot now the image in slot %s?") %slot
+			message = _("Do you want to reboot now the image in slot %s?") % slot
 			self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 		else:
-			self.session.open(MessageBox, _("Multiboot ERROR! - no %s in boot partition.") %GetSTARTUPFile(), MessageBox.TYPE_INFO, timeout=20)
+			self.session.open(MessageBox, _("Multiboot ERROR! - no %s in boot partition.") % GetSTARTUPFile(), MessageBox.TYPE_INFO, timeout=20)
 
 	def restartImage(self, answer):
 		if answer is True:

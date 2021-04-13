@@ -12,7 +12,7 @@ from Screens.Screen import Screen
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from enigma import eTimer
 
-time_options = [("-180", _("-3 h.")),("-150", _("-2 h. 30 "+_("min."))),("-120", _("-2 h.")),("-110", _("-1 h. 50 "+_("min."))),("-100", _("-1 h. 40 "+_("min."))),("-90", _("-1 h. 30 "+_("min."))),("-85", _("-1 h. 25 "+_("min."))),("-80", _("-1 h. 20 "+_("min."))),("-75", _("-1 h. 15 "+_("min."))),("-70", _("-1 h. 10 "+_("min."))),("-65", _("-1 h. 5 "+_("min."))),("-60", _("-1 h.")),("-55", _("-55 "+_("min."))),("-50", _("-50 "+_("min."))),("-45", _("-45 "+_("min."))),("-40", _("-40 "+_("min."))),("-35", _("-35 "+_("min."))),("-30", _("-30 "+_("min."))),("-25", _("-25 "+_("min."))),("-20", _("-20 "+_("min."))),("-15", _("-15 "+_("min."))),("-10", _("-10 "+_("min."))),("-9", _("-9 "+_("min."))),("-8", _("-8 "+_("min."))),("-7", _("-7 "+_("min."))),("-6", _("-6 "+_("min."))),("-5", _("-5 "+_("min."))),("-4", _("-4 "+_("min."))),("-3", _("-3 "+_("min."))),("-2", _("-2 "+_("min."))),("-1", _("-1 "+_("min."))),("-0.5", _("-30 "+_("sec."))),("-0.25", _("-15 "+_("sec."))),("-0.083", _("-5 "+_("sec."))),("0.083", _("+5 "+_("sec."))),("0.25", _("+15 "+_("sec."))),("0.5", _("+30 "+_("sec."))),("1", _("+1 "+_("min."))),("1.5", _("+1 "+_("min.")+" 30 "+_("sec."))),("2", _("+2 "+_("min."))),("3", _("+3 "+_("min."))),("4", _("+4 "+_("min."))),("5", _("+5 "+_("min."))),("6", _("+6 "+_("min."))),("7", _("+7 "+_("min."))),("8", _("+8 "+_("min."))),("9", _("+9 "+_("min."))),("10", _("+10 "+_("min."))),("15", _("+15 "+_("min."))),("20", _("+20 "+_("min."))),("25", _("+25 "+_("min."))),("30", _("+30 "+_("min."))),("35", _("+35 "+_("min."))),("40", _("+40 "+_("min."))),("45", _("+45 "+_("min."))),("50", _("+50 "+_("min."))),("55", _("+55 "+_("min."))),("60", _("+1 h.")),("65", _("+1 h. 5 "+_("min."))),("70", _("+1 h. 10 "+_("min."))),("75", _("+1 h. 15 "+_("min."))),("80", _("+1 h. 20 "+_("min."))),("85", _("+1 h. 25 "+_("min."))),("90", _("+1 h. 30 "+_("min."))),("100", _("+1 h. 40 "+_("min."))),("110", _("+1 h. 50 "+_("min."))),("120", _("+2 h.")),("150", _("+2 h. 30 "+_("min."))),("180", _("+3 h."))]
+time_options = [("-180", _("-3 h.")),("-150", _("-2 h. 30 " + _("min."))),("-120", _("-2 h.")),("-110", _("-1 h. 50 " + _("min."))),("-100", _("-1 h. 40 " + _("min."))),("-90", _("-1 h. 30 " + _("min."))),("-85", _("-1 h. 25 " + _("min."))),("-80", _("-1 h. 20 " + _("min."))),("-75", _("-1 h. 15 " + _("min."))),("-70", _("-1 h. 10 " + _("min."))),("-65", _("-1 h. 5 " + _("min."))),("-60", _("-1 h.")),("-55", _("-55 " + _("min."))),("-50", _("-50 " + _("min."))),("-45", _("-45 " + _("min."))),("-40", _("-40 " + _("min."))),("-35", _("-35 " + _("min."))),("-30", _("-30 " + _("min."))),("-25", _("-25 " + _("min."))),("-20", _("-20 " + _("min."))),("-15", _("-15 " + _("min."))),("-10", _("-10 " + _("min."))),("-9", _("-9 " + _("min."))),("-8", _("-8 " + _("min."))),("-7", _("-7 " + _("min."))),("-6", _("-6 " + _("min."))),("-5", _("-5 " + _("min."))),("-4", _("-4 " + _("min."))),("-3", _("-3 " + _("min."))),("-2", _("-2 " + _("min."))),("-1", _("-1 " + _("min."))),("-0.5", _("-30 " + _("sec."))),("-0.25", _("-15 " + _("sec."))),("-0.083", _("-5 " + _("sec."))),("0.083", _("+5 " + _("sec."))),("0.25", _("+15 " + _("sec."))),("0.5", _("+30 " + _("sec."))),("1", _("+1 " + _("min."))),("1.5", _("+1 " + _("min.") + " 30 " + _("sec."))),("2", _("+2 " + _("min."))),("3", _("+3 " + _("min."))),("4", _("+4 " + _("min."))),("5", _("+5 " + _("min."))),("6", _("+6 " + _("min."))),("7", _("+7 " + _("min."))),("8", _("+8 " + _("min."))),("9", _("+9 " + _("min."))),("10", _("+10 " + _("min."))),("15", _("+15 " + _("min."))),("20", _("+20 " + _("min."))),("25", _("+25 " + _("min."))),("30", _("+30 " + _("min."))),("35", _("+35 " + _("min."))),("40", _("+40 " + _("min."))),("45", _("+45 " + _("min."))),("50", _("+50 " + _("min."))),("55", _("+55 " + _("min."))),("60", _("+1 h.")),("65", _("+1 h. 5 " + _("min."))),("70", _("+1 h. 10 " + _("min."))),("75", _("+1 h. 15 " + _("min."))),("80", _("+1 h. 20 " + _("min."))),("85", _("+1 h. 25 " + _("min."))),("90", _("+1 h. 30 " + _("min."))),("100", _("+1 h. 40 " + _("min."))),("110", _("+1 h. 50 " + _("min."))),("120", _("+2 h.")),("150", _("+2 h. 30 " + _("min."))),("180", _("+3 h."))]
 
 config.plugins.timejump = ConfigSubsection()
 config.plugins.timejump.activate = ConfigYesNo(default=True)
@@ -86,17 +86,17 @@ class TimeJump(ConfigListScreen, Screen):
 
 	def updateCursor(self):
 		if self.length:
-			if self.percent>100.0:
-				self.percent=100.0
-			elif self.percent<0.0:
-				self.percent=0.0
+			if self.percent > 100.0:
+				self.percent = 100.0
+			elif self.percent < 0.0:
+				self.percent = 0.0
 
 			x = 119 + int(2.66 * self.percent)
 			posy = self["cursor"].instance.position().y()
-			self["cursor"].moveTo(x-8, posy, 1)
+			self["cursor"].moveTo(x - 8, posy, 1)
 			self["cursor"].startMoving()
 			pts = int(float(self.length[1]) / 100.0 * self.percent)
-			self["time"].setText("%d:%02d" % ((pts/60/90000), ((pts/90000)%60)))
+			self["time"].setText("%d:%02d" % ((pts / 60 / 90000), ((pts / 90000) % 60)))
 
 	def exit(self):
 		self.cursorTimer.stop()
@@ -113,7 +113,7 @@ class TimeJump(ConfigListScreen, Screen):
 					if newPosition > oldPosition:
 						pts = newPosition - oldPosition
 					else:
-						pts = -1*(oldPosition - newPosition)
+						pts = -1 * (oldPosition - newPosition)
 					DVDPlayer.doSeekRelative(self.infobarInstance, pts)
 				else:
 					self.seek.seekTo(int(float(self.length[1]) / 100.0 * self.percent))
@@ -232,27 +232,27 @@ def init_timejump():
 	MoviePlayer.seekFwdManual = timejump
 	MoviePlayer.seekBackManual = timejumpBack
 
-	dvdPlayer = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.pyo")
-	if fileExists(dvdPlayer) or fileExists("%sc"%dvdPlayer):
+	dvdPlayer = "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.pyo")
+	if fileExists(dvdPlayer) or fileExists("%sc" % dvdPlayer):
 		from Plugins.Extensions.DVDPlayer.plugin import DVDPlayer
 		DVDPlayer.seekFwdManual = timejump
 		DVDPlayer.seekBackManual = timejumpBack
 	else:
 		DVDPlayer = None
 
-	videodb = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/VideoDB/plugin.pyo")
+	videodb = "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/VideoDB/plugin.pyo")
 	if fileExists(videodb):
 		from Plugins.Extensions.VideoDB.Player import VideoDBPlayer
 		VideoDBPlayer.seekFwdManual = timejump
 		VideoDBPlayer.seekBackManual = timejumpBack
 
-	youtube = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/YouTube/plugin.pyo")
+	youtube = "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/YouTube/plugin.pyo")
 	if fileExists(youtube):
 		from Plugins.Extensions.YouTube.YouTubeUi import YouTubePlayer
 		YouTubePlayer.left = timejumpBack
 		YouTubePlayer.right = timejump
 
-	mediaportal = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/MediaPortal/resources/simpleplayer.pyo")
+	mediaportal = "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/MediaPortal/resources/simpleplayer.pyo")
 	if fileExists(mediaportal):
 		from Plugins.Extensions.MediaPortal.resources.simpleplayer import SimplePlayer
 		SimplePlayer.seekBack = timejumpBack

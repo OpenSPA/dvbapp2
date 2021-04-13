@@ -35,9 +35,9 @@ from Plugins.Plugin import PluginDescriptor
 from datetime import datetime
 
 def getSSID(ssid_value):
-	file = '/etc/wifis/'+ssid_value+'.wifi'
+	file = '/etc/wifis/' + ssid_value + '.wifi'
 	if fileExists(file):
-		f=open(file,'r')
+		f = open(file,'r')
 		line = f.readlines()
 		f.close()
 		hiddenessid = line[0].replace("\n","")
@@ -535,9 +535,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		wifis = '/etc/wifis/' + config.plugins.wlan.essid.value + '.wifi'
 		lista = [config.plugins.wlan.hiddenessid.value, config.plugins.wlan.essid.value, config.plugins.wlan.encryption.value, config.plugins.wlan.wepkeytype.value, config.plugins.wlan.psk.value]
 		info = '\n#Line 1 : Hidden network?\n#Line 2 : Network name\n#Line 3 : Encryption type\n#Line 4 : WEP type\n#Line 5 : Wifi password'
-		g=open(wifis, 'w')
+		g = open(wifis, 'w')
 		for x in lista:
-			g.writelines(str(x)+'\n')
+			g.writelines(str(x) + '\n')
 		g.write(info)
 		g.close()
 
@@ -622,9 +622,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0,0,0,0]))
 		if iNetwork.getAdapterAttribute(self.iface, "dns-nameservers"):
-			self.dnsconfigdefault=True
+			self.dnsconfigdefault = True
 		else:
-			self.dnsconfigdefault=False
+			self.dnsconfigdefault = False
 		self.hasDNSConfigEntry = NoSave(ConfigYesNo(default=self.dnsconfigdefault or False))
 		manualNameservers = (iNetwork.getInterfacesNameserverList(self.iface) + [[0,0,0,0]] * 2)[0:2]
 		self.manualPrimaryDNS = NoSave(ConfigIP(default=manualNameservers[0]))
@@ -654,7 +654,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
 
-			self.DNSConfigEntry =  getConfigListEntry(_("Use Manual dns-nameserver"), self.hasDNSConfigEntry)
+			self.DNSConfigEntry = getConfigListEntry(_("Use Manual dns-nameserver"), self.hasDNSConfigEntry)
 			if self.dhcpConfigEntry.value:
 				self.list.append(self.DNSConfigEntry)
 			if self.hasDNSConfigEntry.value or not self.dhcpConfigEntry.value:
@@ -797,7 +797,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 				self.ws.writeConfig(self.iface)
 
-			if self.activateInterfaceEntry.value is False and not  (self.onlyWakeOnWiFi and self.onlyWakeOnWiFi.value is True):
+			if self.activateInterfaceEntry.value is False and not (self.onlyWakeOnWiFi and self.onlyWakeOnWiFi.value is True):
 				iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
 				iNetwork.writeNetworkConfig()
 				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type=MessageBox.TYPE_INFO, enable_input=False)
@@ -906,7 +906,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		line = ""
 		entry = ' '.join([("%d.%d.%d.%d" % tuple(x)) for x in nameservers if x != [0, 0, 0, 0]])
 		if len(entry):
-			line+="\tdns-nameservers %s\n" % entry
+			line += "\tdns-nameservers %s\n" % entry
 		return line
 
 
@@ -1330,13 +1330,13 @@ class NetworkAdapterTest(Screen):
 
 	def updownhandler(self,direction):
 		if direction == 'up':
-			if self.activebutton >=2:
+			if self.activebutton >= 2:
 				self.activebutton -= 1
 			else:
 				self.activebutton = 6
 			self.setActiveButton(self.activebutton)
 		if direction == 'down':
-			if self.activebutton <=5:
+			if self.activebutton <= 5:
 				self.activebutton += 1
 			else:
 				self.activebutton = 1
@@ -1901,13 +1901,13 @@ class NetworkAfp(Screen):
 			self['labactive'].show()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
-			status_summary= self['lab2'].text + ' ' + self['labrun'].text
+			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
-			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+			status_summary = self['lab2'].text + ' ' + self['labstop'].text
 		title = _("AFP Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
@@ -2046,13 +2046,13 @@ class NetworkSABnzbd(Screen):
 			self['labactive'].show()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
-			status_summary= self['lab2'].text + ' ' + self['labrun'].text
+			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
-			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+			status_summary = self['lab2'].text + ' ' + self['labstop'].text
 		title = _("SABnzbd Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
@@ -2074,7 +2074,7 @@ class NetworkFtp(Screen):
 		self['key_green'] = Label(_("Start"))
 		self["key_red"] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
-		self["key_blue"] =  Label()
+		self["key_blue"] = Label()
 		self.Console = Console()
 		self.my_ftp_active = False
 		self.my_ftp_run = False
@@ -2184,7 +2184,7 @@ class NetworkNfs(Screen):
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
 		if val:
@@ -2265,12 +2265,12 @@ class NetworkNfs(Screen):
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
-			status_summary= self['lab2'].text + ' ' + self['labrun'].text
+			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
-			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+			status_summary = self['lab2'].text + ' ' + self['labstop'].text
 		title = _("NFS Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
@@ -2412,12 +2412,12 @@ class NetworkOpenvpn(Screen):
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
-			status_summary= self['lab2'].text + ' ' + self['labrun'].text
+			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
-			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+			status_summary = self['lab2'].text + ' ' + self['labstop'].text
 		title = _("OpenVpn Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
@@ -3230,12 +3230,12 @@ class NetworkuShare(Screen):
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
-			status_summary= self['status'].text + ' ' + self['labstop'].text
+			status_summary = self['status'].text + ' ' + self['labstop'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
-			status_summary= self['status'].text + ' ' + self['labstop'].text
+			status_summary = self['status'].text + ' ' + self['labstop'].text
 
 		if fileExists('/etc/ushare.conf'):
 			f = open('/etc/ushare.conf', 'r')
@@ -3338,8 +3338,8 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		self.ushare_telnetport = NoSave(ConfigNumber())
 		self.ushare_web = NoSave(ConfigYesNo(default='True'))
 		self.ushare_telnet = NoSave(ConfigYesNo(default='True'))
-		self.ushare_xbox= NoSave(ConfigYesNo(default='True'))
-		self.ushare_ps3= NoSave(ConfigYesNo(default='True'))
+		self.ushare_xbox = NoSave(ConfigYesNo(default='True'))
+		self.ushare_ps3 = NoSave(ConfigYesNo(default='True'))
 		self.ushare_system = NoSave(ConfigSelection(default="dyndns@dyndns.org", choices=[("dyndns@dyndns.org", "dyndns@dyndns.org"), ("statdns@dyndns.org", "statdns@dyndns.org"), ("custom@dyndns.org", "custom@dyndns.org")]))
 
 		if fileExists('/etc/ushare.conf'):
@@ -3819,8 +3819,8 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self.minidlna_serialno = NoSave(ConfigNumber())
 		self.minidlna_web = NoSave(ConfigYesNo(default='True'))
 		self.minidlna_inotify = NoSave(ConfigYesNo(default='True'))
-		self.minidlna_tivo= NoSave(ConfigYesNo(default='True'))
-		self.minidlna_strictdlna= NoSave(ConfigYesNo(default='True'))
+		self.minidlna_tivo = NoSave(ConfigYesNo(default='True'))
+		self.minidlna_strictdlna = NoSave(ConfigYesNo(default='True'))
 
 		if fileExists('/etc/minidlna.conf'):
 			f = open('/etc/minidlna.conf', 'r')
@@ -4077,7 +4077,7 @@ class NetworkUdpxy(Screen):
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
 		if val:
@@ -4225,7 +4225,7 @@ class NetworkXupnpd(Screen):
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
 		if val:
@@ -4373,7 +4373,7 @@ class NetworkDjmount(Screen):
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
 		if val:
@@ -4521,7 +4521,7 @@ class NetworkMediatomb(Screen):
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of service\nReady to install %s ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 
 	def InstallPackage(self, val):
 		if val:
@@ -4855,7 +4855,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 
-		self.user="root"
+		self.user = "root"
 		self.output_line = ""
 
 		self.updateList()
@@ -4894,12 +4894,12 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
-		retval = self.container.execute("echo -e '%s\n%s' | (passwd %s)"  % (password, password, self.user))
+		retval = self.container.execute("echo -e '%s\n%s' | (passwd %s)" % (password, password, self.user))
 		if retval:
-			message=_("Unable to change password")
+			message = _("Unable to change password")
 			self.session.openWithCallback(self.showHelpWindow, MessageBox, message, MessageBox.TYPE_ERROR)
 		else:
-			message=_("Password changed")
+			message = _("Password changed")
 			self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=5)
 			self.close()
 
@@ -4932,8 +4932,8 @@ class NetworkPassword(ConfigListScreen, Screen):
 			i = self.output_line.find('\n')
 			if i == -1:
 				break
-			self.processOutputLine(self.output_line[:i+1])
-			self.output_line = self.output_line[i+1:]
+			self.processOutputLine(self.output_line[:i + 1])
+			self.output_line = self.output_line[i + 1:]
 
 	def processOutputLine(self,line):
 		if line.find('password: '):

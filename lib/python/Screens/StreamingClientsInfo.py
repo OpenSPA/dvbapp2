@@ -91,7 +91,7 @@ class StreamingClientsInfo(Screen):
 		if self.clients:
 			client = self["menu"].l.getCurrentSelection()
 			if client:
-				self.session.openWithCallback(self.stopCurrentStreamCallback, MessageBox, client[0] +" \n\n" + _("Stop current stream") + "?", MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.stopCurrentStreamCallback, MessageBox, client[0] + " \n\n" + _("Stop current stream") + "?", MessageBox.TYPE_YESNO)
 
 	def stopCurrentStreamCallback(self, answer):
 		if answer:
@@ -102,12 +102,12 @@ class StreamingClientsInfo(Screen):
 						for x in self.streamServer.getConnectedClients():
 							if client[1][0] == x[0] and client[1][1] == x[1]:
 								if not self.streamServer.stopStreamClient(client[1][0], client[1][1]):
-									self.session.open(MessageBox,  client[0] +" \n\n" + _("Error stop stream!"), MessageBox.TYPE_WARNING)
+									self.session.open(MessageBox, client[0] + " \n\n" + _("Error stop stream!"), MessageBox.TYPE_WARNING)
 				elif StreamServiceList and streamList:
 					for x in streamList[:]:
 						if hasattr(x, 'getService') and x.getService() and x.getService().__deref__() == client[1][1]:
 							x.request.write("-STOP STREAM\n")
-							service=x.getService()
+							service = x.getService()
 							self.nav.stopRecordService(service)
 							x.request.finish()
 							if x in streamList:
@@ -129,7 +129,7 @@ class StreamingClientsInfo(Screen):
 				for x in streamList[:]:
 					if hasattr(x, 'execEnd'):
 						x.request.write("-STOP STREAM\n")
-						service=x.getService()
+						service = x.getService()
 						self.nav.stopRecordService(service)
 						x.request.finish()
 						if x in streamList:
