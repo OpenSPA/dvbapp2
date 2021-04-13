@@ -651,52 +651,52 @@ class spaMenu(Screen, ProtectedScreen):
 			try:
 				self.session.open(NetworkSamba)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("NFS"):
 			try:
 				self.session.open(NetworkNfs)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("FTP"):
 			try:
 				self.session.open(NetworkFtp)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("AFP"):
 			try:
 				self.session.open(NetworkAfp)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("OpenVPN"):
 			try:
 				self.session.open(NetworkOpenvpn)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("MiniDLNA"):
 			try:
 				self.session.open(NetworkMiniDLNA)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("Inadyn"):
 			try:
 				self.session.open(NetworkInadyn)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("SABnzbd"):
 			try:
 				self.session.open(NetworkSABnzbd)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("uShare"):
 			try:
 				self.session.open(NetworkuShare)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("Telnet"):
 			try:
 				self.session.open(NetworkTelnet)
 			except:
-				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry not found!"), MessageBox.TYPE_INFO, timeout=10)
 ######## Select System Setup Menu ##############################
 		elif item[0] == _("Customise"):
 			self.openSetup("usage")
@@ -767,7 +767,7 @@ class spaMenu(Screen, ProtectedScreen):
 			else:
 				self.session.open(ImageBackup)
 		elif item[0] == _("Backup Settings"):
-			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup=True)
 		elif item[0] == _("Restore Settings"):
 			self.backuppath = getBackupPath()
 			if not path.isdir(self.backuppath):
@@ -775,9 +775,9 @@ class spaMenu(Screen, ProtectedScreen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()),default = False)
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()),default=False)
 			else:
-				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("Show default backup files"):
 			self.session.open(BackupSelection,title=_("Default files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_default,readOnly=True)
 		elif item[0] == _("Select additional backup files"):
@@ -800,13 +800,13 @@ class spaMenu(Screen, ProtectedScreen):
 				from Plugins.Extensions.MediaScanner.plugin import main
 				main(self.session)
 			except:
-				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("IPK Uninstaller"):
 			try:
 				from Screens.Ipkuninstall import Ipkuninstall
 				self.session.open(Ipkuninstall)
 			except:
-				self.session.open(MessageBox, _("Sorry IPK Uninstaller is not installed!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry IPK Uninstaller is not installed!"), MessageBox.TYPE_INFO, timeout=10)
 ######## Select Addition Features Menu ###################################
 		elif item[0] == _("Cron Manager"):
 			self.session.open(CronManager)
@@ -886,20 +886,20 @@ class spaMenu(Screen, ProtectedScreen):
 				self.session.open(Satfinder)
 
 ######## SOFTWARE MANAGER TOOLS #######################
-	def backupDone(self,retval = None):
+	def backupDone(self,retval=None):
 		if retval is True:
-			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
 
-	def startRestore(self, ret = False):
+	def startRestore(self, ret=False):
 		if (ret == True):
 			self.exe = True
-			self.session.open(RestoreScreen, runRestore = True)
+			self.session.open(RestoreScreen, runRestore=True)
 
 
 ######## Create MENULIST format #######################
-def spaMenuEntryComponent(name, description, long_description = None, width=540):
+def spaMenuEntryComponent(name, description, long_description=None, width=540):
 	pngname = name.replace(" ","_") 
 	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/icons/" + pngname + ".png")
 	if png is None:
@@ -910,36 +910,36 @@ def spaMenuEntryComponent(name, description, long_description = None, width=540)
 		width *= 1.5
 		return [
 			_(name),
-			MultiContentEntryText(pos=(90, 5), size=(width-90, 38), font=0, text = _(name)),
-			MultiContentEntryText(pos=(90, 38), size=(width-90, 30), font=1, text = _(description)),
-			MultiContentEntryPixmapAlphaBlend(pos=(15, 8), size=(60, 60), png = png, backcolor=0x000000),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
+			MultiContentEntryText(pos=(90, 5), size=(width-90, 38), font=0, text=_(name)),
+			MultiContentEntryText(pos=(90, 38), size=(width-90, 30), font=1, text=_(description)),
+			MultiContentEntryPixmapAlphaBlend(pos=(15, 8), size=(60, 60), png=png, backcolor=0x000000),
+			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 	else:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(60, 3), size=(width-60, 25), font=0, text = _(name)),
-			MultiContentEntryText(pos=(60, 25), size=(width-60, 20), font=1, text = _(description)),
-			MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png = png, backcolor=0x000000),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
+			MultiContentEntryText(pos=(60, 3), size=(width-60, 25), font=0, text=_(name)),
+			MultiContentEntryText(pos=(60, 25), size=(width-60, 20), font=1, text=_(description)),
+			MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png=png, backcolor=0x000000),
+			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 
-def spaSubMenuEntryComponent(name, description, long_description = None, width=540):
+def spaSubMenuEntryComponent(name, description, long_description=None, width=540):
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
 		width *= 1.5
 		return [
 			_(name),
-			MultiContentEntryText(pos=(15, 5), size=(width-15, 38), font=0, text = _(name)),
-			MultiContentEntryText(pos=(15, 38), size=(width-15, 30), font=1, text = _(description)),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
+			MultiContentEntryText(pos=(15, 5), size=(width-15, 38), font=0, text=_(name)),
+			MultiContentEntryText(pos=(15, 38), size=(width-15, 30), font=1, text=_(description)),
+			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 	else:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(10, 3), size=(width-10, 25), font=0, text = _(name)),
-			MultiContentEntryText(pos=(10, 25), size=(width-10, 20), font=1, text = _(description)),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
+			MultiContentEntryText(pos=(10, 3), size=(width-10, 25), font=0, text=_(name)),
+			MultiContentEntryText(pos=(10, 25), size=(width-10, 20), font=1, text=_(description)),
+			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 
 class spaMenuList(MenuList):
@@ -1001,7 +1001,7 @@ class spaMenuDevices(Screen):
 		self.activityTimer.timeout.get().append(self.updateList2)
 		self.updateList()
 
-	def updateList(self, result = None, retval = None, extra_args = None):
+	def updateList(self, result=None, retval=None, extra_args=None):
 		scanning = _("Wait please while scanning for devices...")
 		self['lab1'].setText(scanning)
 		self.activityTimer.start(10)
@@ -1143,7 +1143,7 @@ class KeymapSel(ConfigListScreen, Screen):
 
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
@@ -1240,8 +1240,8 @@ def main(session, **kwargs):
 
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where = PluginDescriptor.WHERE_MENU, fnc = panel),
-		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main),
-		PluginDescriptor(name=_("TimeJump Setup"), description=_("Step back/forward in time playing movies"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = TimeJumpMain),
-		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
-		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = TimeJumpAutostart),]
+		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where=PluginDescriptor.WHERE_MENU, fnc=panel),
+		PluginDescriptor(name=_("OpenSPA Panel"), description=_("OpenSPA Panel"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main),
+		PluginDescriptor(name=_("TimeJump Setup"), description=_("Step back/forward in time playing movies"), where=PluginDescriptor.WHERE_PLUGINMENU, fnc=TimeJumpMain),
+		PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc=SwapAutostart),
+		PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc=TimeJumpAutostart),]

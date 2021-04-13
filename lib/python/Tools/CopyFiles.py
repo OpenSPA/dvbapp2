@@ -116,7 +116,7 @@ class DownloadTask(Task):
 
 	def download_finished(self, string=""):
 		if self.aborted:
-			self.finish(aborted = True)
+			self.finish(aborted=True)
 		else:
 			Task.processFinished(self, 0)
 

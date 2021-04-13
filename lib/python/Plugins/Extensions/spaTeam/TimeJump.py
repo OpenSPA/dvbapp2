@@ -16,7 +16,7 @@ time_options = [("-180", _("-3 h.")),("-150", _("-2 h. 30 "+_("min."))),("-120",
 
 config.plugins.timejump = ConfigSubsection()
 config.plugins.timejump.activate = ConfigYesNo(default=True)
-config.plugins.timejump.defaulttime = ConfigSelection(default = "0.5", choices = time_options)
+config.plugins.timejump.defaulttime = ConfigSelection(default="0.5", choices=time_options)
 config.plugins.timejump.sensibility = ConfigInteger(default=10, limits=(1, 30))
 
 class TimeJump(ConfigListScreen, Screen):
@@ -63,7 +63,7 @@ class TimeJump(ConfigListScreen, Screen):
 					if int(position[1]) > 0:
 						self.percent = float(position[1]) * 100.0 / float(self.length[1])
 
-		self.minuteInput = ConfigSelection(default = config.plugins.timejump.defaulttime.value, choices = time_options)
+		self.minuteInput = ConfigSelection(default=config.plugins.timejump.defaulttime.value, choices=time_options)
 		self.positionEntry = ConfigSelection(choices=["<>"], default="<>")
 		txt = _("Jump video time:")
 		ConfigListScreen.__init__(self, [
@@ -185,7 +185,7 @@ class TimeJumpSetup(ConfigListScreen, Screen):
 			<ePixmap name="green" position="317,121" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 		</screen>""" % _("TimeJump Setup")
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
 

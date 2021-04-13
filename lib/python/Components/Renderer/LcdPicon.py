@@ -11,8 +11,8 @@ from ServiceReference import ServiceReference
 from Components.SystemInfo import SystemInfo
 from Components.config import config, ConfigText, ConfigYesNo
 
-config.misc.picon_path = ConfigText(default = "/usr/share/enigma2/picon/")
-config.misc.picon_search_hdd = ConfigYesNo (default = False)
+config.misc.picon_path = ConfigText(default="/usr/share/enigma2/picon/")
+config.misc.picon_search_hdd = ConfigYesNo (default=False)
 
 searchPaths = []
 lastLcdPiconPath = None

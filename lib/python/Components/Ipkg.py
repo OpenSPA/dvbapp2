@@ -61,7 +61,7 @@ class IpkgComponent:
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
 
-	def __init__(self, ipkg = 'opkg'):
+	def __init__(self, ipkg='opkg'):
 		self.ipkg = ipkg
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
@@ -70,7 +70,7 @@ class IpkgComponent:
 		self.excludeList = []
 		self.setCurrentCommand()
 
-	def setCurrentCommand(self, command = None):
+	def setCurrentCommand(self, command=None):
 		self.currentCommand = command
 
 	def runCmdEx(self, cmd):
@@ -83,7 +83,7 @@ class IpkgComponent:
 		if self.cmd.execute(self.ipkg + " " + cmd):
 			self.cmdFinished(-1)
 
-	def startCmd(self, cmd, args = None):
+	def startCmd(self, cmd, args=None):
 		if cmd == self.CMD_UPDATE:
 			self.runCmdEx("update")
 		elif cmd == self.CMD_UPGRADE:
@@ -176,7 +176,7 @@ class IpkgComponent:
 			print "[Ipkg] Failed to parse: '%s'" % data
 			print "[Ipkg]", ex
 
-	def callCallbacks(self, event, param = None):
+	def callCallbacks(self, event, param=None):
 		for callback in self.callbackList:
 			callback(event, param)
 

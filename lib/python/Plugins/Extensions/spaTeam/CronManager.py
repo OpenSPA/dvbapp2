@@ -14,12 +14,12 @@ from os import system, listdir, rename, symlink, unlink, path, mkdir
 from time import sleep
 
 config.spateam = ConfigSubsection()
-config.spateam.cronmanager_commandtype = NoSave(ConfigSelection(choices = [ ('custom',_("Custom")),('predefined',_("Predefined")) ]))
+config.spateam.cronmanager_commandtype = NoSave(ConfigSelection(choices=[ ('custom',_("Custom")),('predefined',_("Predefined")) ]))
 config.spateam.cronmanager_cmdtime = NoSave(ConfigClock(default=0))
 config.spateam.cronmanager_cmdtime.value, mytmpt = ([0, 0], [0, 0])
 config.spateam.cronmanager_user_command = NoSave(ConfigText(fixed_size=False))
-config.spateam.cronmanager_runwhen = NoSave(ConfigSelection(default='Daily', choices = [('Hourly', _("Hourly")),('Daily', _("Daily")),('Weekly', _("Weekly")),('Monthly', _("Monthly"))]))
-config.spateam.cronmanager_dayofweek = NoSave(ConfigSelection(default='Monday', choices = [('Monday', _("Monday")),('Tuesday', _("Tuesday")),('Wednesday', _("Wednesday")),('Thursday', _("Thursday")),('Friday', _("Friday")),('Saturday', _("Saturday")),('Sunday', _("Sunday"))]))
+config.spateam.cronmanager_runwhen = NoSave(ConfigSelection(default='Daily', choices=[('Hourly', _("Hourly")),('Daily', _("Daily")),('Weekly', _("Weekly")),('Monthly', _("Monthly"))]))
+config.spateam.cronmanager_dayofweek = NoSave(ConfigSelection(default='Monday', choices=[('Monday', _("Monday")),('Tuesday', _("Tuesday")),('Wednesday', _("Wednesday")),('Thursday', _("Thursday")),('Friday', _("Friday")),('Saturday', _("Saturday")),('Sunday', _("Sunday"))]))
 config.spateam.cronmanager_dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
 
 class CronManager(Screen):
@@ -282,7 +282,7 @@ class SetupCronConf(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Cron Manager"))
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self['key_red'] = Label(_("Save"))
 		self['key_blue'] = Label(_("Keyboard"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions', "MenuActions"], {'red': self.checkentry, 'back': self.close, 'blue': self.KeyText, "menu": self.closeRecursive})
@@ -302,7 +302,7 @@ class SetupCronConf(Screen, ConfigListScreen):
 				if pkg.find('.sh') >= 0:
 					predefinedlist.append((description, pkg))
 			predefinedlist.sort()
-		config.spateam.cronmanager_predefined_command = NoSave(ConfigSelection(choices = predefinedlist))
+		config.spateam.cronmanager_predefined_command = NoSave(ConfigSelection(choices=predefinedlist))
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Run how often ?"), config.spateam.cronmanager_runwhen))
@@ -336,9 +336,9 @@ class SetupCronConf(Screen, ConfigListScreen):
 			self.vkvar = sel[0]
 			if self.vkvar == _("Command To Run"):
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
 
-	def VirtualKeyBoardCallback(self, callback = None):
+	def VirtualKeyBoardCallback(self, callback=None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].value = callback
 			self["config"].invalidate(self["config"].getCurrent())

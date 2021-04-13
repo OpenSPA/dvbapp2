@@ -24,14 +24,14 @@ from enigma import *
 import os
 
 config.epg = ConfigSubsection()
-config.epg.eit = ConfigYesNo(default = True)
-config.epg.mhw = ConfigYesNo(default = True)
+config.epg.eit = ConfigYesNo(default=True)
+config.epg.mhw = ConfigYesNo(default=True)
 config.epg.mhw.wait = ConfigNumber(default=400)
-config.epg.freesat = ConfigYesNo(default = True)
-config.epg.viasat = ConfigYesNo(default = True)
-config.epg.netmed = ConfigYesNo(default = True)
-config.epg.virgin = ConfigYesNo(default = False)
-config.epg.restartgui = ConfigYesNo(default = False)
+config.epg.freesat = ConfigYesNo(default=True)
+config.epg.viasat = ConfigYesNo(default=True)
+config.epg.netmed = ConfigYesNo(default=True)
+config.epg.virgin = ConfigYesNo(default=False)
+config.epg.restartgui = ConfigYesNo(default=False)
 
 hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 for p in harddiskmanager.getMountedPartitions():
@@ -40,9 +40,9 @@ for p in harddiskmanager.getMountedPartitions():
 		if p.mountpoint != '/':
 			hddchoises.append((p.mountpoint, d))
 
-config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
+config.misc.epgcachepath = ConfigSelection(default='/etc/enigma2/', choices=hddchoises)
 config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
-config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 
 def EpgSettingsChanged(configElement):
 	mask = 0xffffffff
@@ -66,12 +66,12 @@ config.epg.viasat.addNotifier(EpgSettingsChanged)
 config.epg.netmed.addNotifier(EpgSettingsChanged)
 config.epg.virgin.addNotifier(EpgSettingsChanged)
 
-config.epg.maxdays = ConfigSelectionNumber(min = 1, max = 30, stepwidth = 1, default = 3, wraparound = True)
+config.epg.maxdays = ConfigSelectionNumber(min=1, max=30, stepwidth=1, default=3, wraparound=True)
 def EpgmaxdaysChanged(configElement):
 	eEPGCache.getInstance().setEpgmaxdays(config.epg.maxdays.getValue())
 config.epg.maxdays.addNotifier(EpgmaxdaysChanged)
 
-config.epg.histminutes = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 15, default = 0, wraparound = True)
+config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
 def EpgHistorySecondsChanged(configElement):
 	eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
 config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
@@ -135,7 +135,7 @@ class Ttimer(Screen):
 				self.session.nav.stopService()
 			else:
 				if config.epg.restartgui.value:
-					self.session.openWithCallback(self.restartCB,MessageBox,_("Need restart GUI to apply changes\n Restart now?"), MessageBox.TYPE_YESNO,timeout = 15)
+					self.session.openWithCallback(self.restartCB,MessageBox,_("Need restart GUI to apply changes\n Restart now?"), MessageBox.TYPE_YESNO,timeout=15)
 			self.close()
 		return
 

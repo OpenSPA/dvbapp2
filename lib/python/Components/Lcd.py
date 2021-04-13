@@ -96,7 +96,7 @@ class LCD:
 		self.autoDimUpLCDTimer.callback.append(self.autoDimUpLCD)
 		self.currBrightness = self.dimBrightness = self.Brightness = None
 		self.dimDelay = 0
-		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call = False)
+		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call=False)
 
 	def standbyCounterChanged(self, configElement):
 		Screens.Standby.inStandby.onClose.append(self.leaveStandby)
@@ -347,7 +347,7 @@ def InitLcd():
 					"0": _("off"),
 					"5": _("PIP"),
 					"7": _("PIP with OSD")},
-					default = "0")
+					default="0")
 			if config.misc.boxtype.value in ( 'gbquad', 'gbquadplus'):
 				config.lcd.modepip.addNotifier(setLCDModePiP)
 			else:
@@ -361,7 +361,7 @@ def InitLcd():
 					"1": _("MiniTV"),
 					"2": _("OSD"),
 					"3": _("MiniTV with OSD")},
-					default = "0")
+					default="0")
 			config.lcd.fpsminitv = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
 			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)
@@ -370,11 +370,11 @@ def InitLcd():
 			config.lcd.screenshot = ConfigNothing()
 			config.lcd.fpsminitv = ConfigNothing()
 
-		config.lcd.scroll_speed = ConfigSelection(default = "300", choices = [
+		config.lcd.scroll_speed = ConfigSelection(default="300", choices=[
 			("500", _("slow")),
 			("300", _("normal")),
 			("100", _("fast"))])
-		config.lcd.scroll_delay = ConfigSelection(default = "10000", choices = [
+		config.lcd.scroll_delay = ConfigSelection(default="10000", choices=[
 			("10000", "10 " + _("seconds")),
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
@@ -511,37 +511,37 @@ def InitLcd():
 				f.write(configElement.value)
 				f.close()
 
-		config.usage.vfd_xcorevfd = ConfigSelection(default = "0", choices = [("0", _("12 character")), ("1", _("8 character"))])
+		config.usage.vfd_xcorevfd = ConfigSelection(default="0", choices=[("0", _("12 character")), ("1", _("8 character"))])
 		config.usage.vfd_xcorevfd.addNotifier(setXcoreVFD)
 
-		config.usage.lcd_powerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_powerled = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_powerled.addNotifier(setPowerLEDstate)
 
-		config.usage.lcd_powerled2 = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_powerled2 = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_powerled2.addNotifier(setPowerLEDstate2)
 
-		config.usage.lcd_standbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_standbypowerled = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
 
-		config.usage.lcd_deepstandbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_deepstandbypowerled = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
 
-		config.usage.lcd_ledpowercolor = ConfigSelection(default = "1", choices = [("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 		config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
 
-		config.usage.lcd_ledstandbycolor = ConfigSelection(default = "3", choices = [("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.usage.lcd_ledstandbycolor = ConfigSelection(default="3", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 		config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
 
-		config.usage.lcd_ledsuspendcolor = ConfigSelection(default = "2", choices = [("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+		config.usage.lcd_ledsuspendcolor = ConfigSelection(default="2", choices=[("0", _("off")),("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
 		config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
 
-		config.usage.lcd_power4x7on = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_power4x7on = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_power4x7on.addNotifier(setPower4x7On)
 
-		config.usage.lcd_power4x7standby = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_power4x7standby = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_power4x7standby.addNotifier(setPower4x7Standby)
 
-		config.usage.lcd_power4x7suspend = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_power4x7suspend = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
 
 		def setDateOnStandby(configElement):
@@ -554,7 +554,7 @@ def InitLcd():
 		ntime=datetime.now()
 		# 8 digit
 		if getBoxType() in ('formuler1', 'osminiplus'):
-			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M", choices = [
+			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M", choices=[
 				("OFF","Off"),
 				("%H:%M",str(ntime.strftime(_("%H:%M")))),
 				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
@@ -564,7 +564,7 @@ def InitLcd():
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		#12 digit
 		elif getBoxType() in ('vusolo2', 'osmega'):
-			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m", choices = [
+			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m", choices=[
 				("OFF","Off"),
 				("%H:%M",str(ntime.strftime(_("%H:%M")))),
 				("%H:%M %d/%m",str(ntime.strftime(_("%H:%M %d/%m")))),
@@ -581,7 +581,7 @@ def InitLcd():
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		#16 digit
 		elif getBoxType() in ('sf3038', 'sf4008','mutant51'):
-			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m/%Y", choices = [
+			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m/%Y", choices=[
 				("OFF","Off"),
 				("%H:%M",str(ntime.strftime(_("%H:%M")))),
 				("%H:%M %d/%m",str(ntime.strftime(_("%H:%M %d/%m")))),
@@ -635,7 +635,7 @@ def InitLcd():
 			config.lcd.bright = ConfigSlider(default=SystemInfo["DefaultDisplayBrightness"], limits=(0, 10))
 		config.lcd.dimbright.addNotifier(setLCDdimbright)
 		config.lcd.dimbright.apply = lambda : setLCDdimbright(config.lcd.dimbright)
-		config.lcd.dimdelay = ConfigSelection(default = "0", choices = [
+		config.lcd.dimdelay = ConfigSelection(default="0", choices=[
 			("5", "5 " + _("seconds")),
 			("10", "10 " + _("seconds")),
 			("15", "15 " + _("seconds")),
@@ -663,7 +663,7 @@ def InitLcd():
 				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
 				InfoBarInstance = InfoBar.instance
 				InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
-			config.lcd.showTv = ConfigYesNo(default = False)
+			config.lcd.showTv = ConfigYesNo(default=False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
 
 		if SystemInfo["LCDMiniTV"] and config.misc.boxtype.value not in ( 'gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
@@ -678,8 +678,8 @@ def InitLcd():
 			def scroll_repeats(el):
 				open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
 			choicelist = [("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))]
-			config.usage.vfd_scroll_repeats = ConfigSelection(default = "3", choices = choicelist)
-			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback = False)
+			config.usage.vfd_scroll_repeats = ConfigSelection(default="3", choices=choicelist)
+			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback=False)
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
@@ -690,8 +690,8 @@ def InitLcd():
 					open(SystemInfo["VFD_scroll_delay"], "w").write(hex(int(el.value)))
 				else:
 					open(SystemInfo["VFD_scroll_delay"], "w").write(str(el.value))
-			config.usage.vfd_scroll_delay = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
-			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback = False)
+			config.usage.vfd_scroll_delay = ConfigSlider(default=150, increment=10, limits=(0, 500))
+			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback=False)
 			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 		else:
 			config.lcd.hdd = ConfigNothing()
@@ -712,8 +712,8 @@ def InitLcd():
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
 			("0", _("no delay"))]
-			config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "10000", choices = choicelist)
-			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
+			config.usage.vfd_initial_scroll_delay = ConfigSelection(default="10000", choices=choicelist)
+			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback=False)
 		else:
 			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
@@ -732,8 +732,8 @@ def InitLcd():
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
 			("0", _("no delay"))]
-			config.usage.vfd_final_scroll_delay = ConfigSelection(default = "10000", choices = choicelist)
-			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
+			config.usage.vfd_final_scroll_delay = ConfigSelection(default="10000", choices=choicelist)
+			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback=False)
 		else:
 			config.usage.vfd_final_scroll_delay = ConfigNothing()
 
@@ -762,16 +762,16 @@ def InitLcd():
 			config.lcd.showoutputresolution = ConfigNothing()
 
 		if getBoxType() == 'vuultimo':
-			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
+			config.lcd.ledblinkingtime = ConfigSlider(default=5, increment=1, limits=(0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime)
-			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default=1, increment=1, limits=(0,15))
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDnormalstate)
 			config.lcd.ledbrightnessdeepstandby.addNotifier(setLEDdeepstandby)
 			config.lcd.ledbrightnessdeepstandby.apply = lambda : setLEDdeepstandby(config.lcd.ledbrightnessdeepstandby)
-			config.lcd.ledbrightnessstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
+			config.lcd.ledbrightnessstandby = ConfigSlider(default=1, increment=1, limits=(0,15))
 			config.lcd.ledbrightnessstandby.addNotifier(setLEDnormalstate)
 			config.lcd.ledbrightnessstandby.apply = lambda : setLEDnormalstate(config.lcd.ledbrightnessstandby)
-			config.lcd.ledbrightness = ConfigSlider(default = 3, increment = 1, limits = (0,15))
+			config.lcd.ledbrightness = ConfigSlider(default=3, increment=1, limits=(0,15))
 			config.lcd.ledbrightness.addNotifier(setLEDnormalstate)
 			config.lcd.ledbrightness.apply = lambda : setLEDnormalstate(config.lcd.ledbrightness)
 			config.lcd.ledbrightness.callNotifiersOnSaveAndCancel = True
@@ -797,11 +797,11 @@ def InitLcd():
 		config.lcd.fblcddisplay = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.hdd = ConfigNothing()
-		config.lcd.scroll_speed = ConfigSelection(default = "300", choices = [
+		config.lcd.scroll_speed = ConfigSelection(default="300", choices=[
 		("500", _("slow")),
 		("300", _("normal")),
 		("100", _("fast"))])
-		config.lcd.scroll_delay = ConfigSelection(default = "10000", choices = [
+		config.lcd.scroll_delay = ConfigSelection(default="10000", choices=[
 		("10000", "10 " + _("seconds")),
 		("20000", "20 " + _("seconds")),
 		("30000", "30 " + _("seconds")),
@@ -817,7 +817,7 @@ def InitLcd():
 		config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
 		config.lcd.ledblinkingtime = ConfigNothing()
 
-	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
+	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
 
 def setLCDLiveTv(value):
 	if "live_enable" in SystemInfo["LcdLiveTV"]:

@@ -21,7 +21,7 @@ class LCDClockSelector(Screen):
 	clocklist = []
 	root = eEnv.resolve("${datadir}/enigma2/display/clock_skin/")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 
 		Screen.__init__(self, session)
 

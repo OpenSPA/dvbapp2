@@ -131,7 +131,7 @@ class OscamInfo:
 				if c!='127.0.0.1':
 					return c
 			
-	def openWebIF(self, part = None, reader = None):
+	def openWebIF(self, part=None, reader=None):
 		self.proto = "http"
 		if config.oscaminfo.userdatafromconf.value:
 			udata = self.getUserData()
@@ -298,7 +298,7 @@ class OscamInfo:
 		return self.version
 
 	def getTotalCards(self, reader):
-		xmldata = self.openWebIF(part = "entitlement", reader = reader)
+		xmldata = self.openWebIF(part="entitlement", reader=reader)
 		if xmldata[0]:
 			xmld = ElementTree.XML(xmldata[1])
 			cards = xmld.find("reader").find("cardlist")
@@ -306,7 +306,7 @@ class OscamInfo:
 			return cardTotal
 		else:
 			return None
-	def getReaders(self, spec = None):
+	def getReaders(self, spec=None):
 		xmldata = self.openWebIF()
 		readers = []
 		if xmldata[0]:
@@ -370,7 +370,7 @@ class OscamInfo:
 			return "%s not found" % self.ecminfo
 
 class oscMenuList(MenuList):
-	def __init__(self, list, itemH = 30):
+	def __init__(self, list, itemH=30):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
 		self.l.setItemHeight(int(itemH*f))
 		self.l.setFont(0, gFont("Regular", int(20*f)))
@@ -472,7 +472,7 @@ class OscamInfoMenu(Screen):
 					self.session.open(oscEntitlements, reader[0][1])
 				else:
 					self.callbackmode = "cccam"
-					self.session.openWithCallback(self.chooseReaderCallback, ChoiceBox, title = _("Please choose CCcam-Reader"), list=reader)
+					self.session.openWithCallback(self.chooseReaderCallback, ChoiceBox, title=_("Please choose CCcam-Reader"), list=reader)
 		elif entry == 5:
 			osc = OscamInfo()
 			reader = osc.getReaders()
@@ -483,7 +483,7 @@ class OscamInfoMenu(Screen):
 						self.session.open(oscReaderStats, reader[0][1])
 					else:
 						self.callbackmode = "readers"
-						self.session.openWithCallback(self.chooseReaderCallback, ChoiceBox, title = _("Please choose reader"), list=reader)
+						self.session.openWithCallback(self.chooseReaderCallback, ChoiceBox, title=_("Please choose reader"), list=reader)
 		elif entry == 6:
 			self.session.open(OscamInfoConfigScreen)
 
@@ -592,7 +592,7 @@ class oscInfo(Screen, OscamInfo):
 		self.firstrun = True
 		self.listchange = True
 		self.scrolling = False
-		self.webif_data = self.readXML(typ = self.what)
+		self.webif_data = self.readXML(typ=self.what)
 		ypos = 10
 		ysize = 350
 		self.rows = 12
@@ -714,7 +714,7 @@ class oscInfo(Screen, OscamInfo):
 			self.loop.stop()
 		self.close()
 
-	def buildListEntry(self, listentry, heading = False):
+	def buildListEntry(self, listentry, heading=False):
 		res = [""]
 		x = 0
 		if not HDSKIN:
@@ -768,7 +768,7 @@ class oscInfo(Screen, OscamInfo):
 			data = self.webif_data
 			self.firstrun = False
 		else:
-			data = self.readXML(typ = self.what)
+			data = self.readXML(typ=self.what)
 		self.out = []
 		self.itemheight = 25
 		if not isinstance(data,str):
@@ -923,7 +923,7 @@ class oscEntitlements(Screen, OscamInfo):
 		return res
 
 	def showData(self):
-		xmldata_for_reader = self.openWebIF(part = "entitlement", reader = self.cccamreader)
+		xmldata_for_reader = self.openWebIF(part="entitlement", reader=self.cccamreader)
 		xdata = ElementTree.XML(xmldata_for_reader[1])
 		reader = xdata.find("reader")
 		if reader.attrib.has_key("hostaddress"):
@@ -1061,15 +1061,15 @@ class oscReaderStats(Screen, OscamInfo):
 			outlist.append(res)
 		return res
 
-	def sortData(self, datalist, sort_col, reverse = False):
-		return sorted(datalist, key=itemgetter(sort_col), reverse = reverse)
+	def sortData(self, datalist, sort_col, reverse=False):
+		return sorted(datalist, key=itemgetter(sort_col), reverse=reverse)
 
 	def showData(self):
 		readers = self.getReaders()
 		result = []
 		title2 = ""
 		for i in readers:
-			xmldata = self.openWebIF(part = "readerstats", reader = i[1])
+			xmldata = self.openWebIF(part="readerstats", reader=i[1])
 			emm_wri = emm_ski = emm_blk = emm_err = ""
 			if xmldata[0]:
 				xdata = ElementTree.XML(xmldata[1])
@@ -1145,7 +1145,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 		<widget source="key_green" render="Label" position="%s,e-40" zPosition="1" size="%s,%s" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1"/>
 	</screen>
 	""" % (int(760*f), int(550*f), int(760*f), int(250*f), int(390*f), int(703*f), int(240*f), int(140*f), int(40*f), int(140*f), int(40*f), int(140*f), int(140*f), int(40*f), int(140*f), int(140*f), int(40*f))
-	def __init__(self, session, msg = None):
+	def __init__(self, session, msg=None):
 		Screen.__init__(self, session)
 		self.session = session
 		if msg is not None:
@@ -1165,10 +1165,10 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"ok": self.save,
 		}, -2)
-		ConfigListScreen.__init__(self, self.oscamconfig, session = self.session)
+		ConfigListScreen.__init__(self, self.oscamconfig, session=self.session)
 		self.createSetup()
-		config.oscaminfo.userdatafromconf.addNotifier(self.elementChanged, initial_call = False)
-		config.oscaminfo.autoupdate.addNotifier(self.elementChanged, initial_call = False)
+		config.oscaminfo.userdatafromconf.addNotifier(self.elementChanged, initial_call=False)
+		config.oscaminfo.autoupdate.addNotifier(self.elementChanged, initial_call=False)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def elementChanged(self, instance):

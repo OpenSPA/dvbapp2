@@ -25,7 +25,7 @@ for p in harddiskmanager.getMountedPartitions():
 
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
@@ -86,7 +86,7 @@ class EPGPathsSetup(Screen,ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.setup = "epgsettings"
 		list = []
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
@@ -110,7 +110,7 @@ class EPGPathsSetup(Screen,ConfigListScreen):
 			self.session.open(
 				MessageBox,
 				_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
-				type = MessageBox.TYPE_ERROR
+				type=MessageBox.TYPE_ERROR
 				)
 			return False
 
@@ -123,7 +123,7 @@ class EPGPathsSetup(Screen,ConfigListScreen):
 			tmp = tmp[:]
 			tmp.append(default)
 		print "EPG Location Path: ", default, tmp
-		self.epg_dirname = ConfigSelection(default = default, choices = self.styles+tmp)
+		self.epg_dirname = ConfigSelection(default=default, choices=self.styles+tmp)
 
 		#self.epg_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 
@@ -211,7 +211,7 @@ class EPGPathsSetup(Screen,ConfigListScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.close()
 

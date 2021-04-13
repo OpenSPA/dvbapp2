@@ -89,7 +89,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.showDisclaimer()
 		else:
 			message += "\n" + _("Do you want to update your receiver?")
-			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default = default, picon = picon)
+			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default=default, picon=picon)
 
 	def showDisclaimer(self, justShow=False):
 		if config.usage.show_update_disclaimer.value or justShow:
@@ -232,7 +232,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		elif answer[1] == "channels":
 			self.channellist_only = 1
 			self.slider.setValue(1)
-			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args = {'installed_only': True})
+			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args={'installed_only': True})
 		elif answer[1] == "disclaimer":
 			self.showDisclaimer(justShow=True)
 		elif answer[1] == "showlist":
@@ -241,7 +241,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				text = text and text + "\n" + i or i
 			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), TextBox, text, _("Packages to update"))
 		else:
-			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args={'test_only': False})
 
 	def modificationCallback(self, res):
 		self.ipkg.write(res and "N" or "Y")

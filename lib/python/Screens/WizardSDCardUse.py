@@ -6,16 +6,16 @@ from os import path, system
 from enigma import eEPGCache
 
 config.plugins.sdcard  = ConfigSubsection()
-config.plugins.sdcard.kodi = NoSave(ConfigYesNo(default = True))
-config.plugins.sdcard.movie = NoSave(ConfigYesNo(default = True))
-config.plugins.sdcard.timeshift = NoSave(ConfigYesNo(default = True))
-config.plugins.sdcard.epg = NoSave(ConfigYesNo(default = True))
+config.plugins.sdcard.kodi = NoSave(ConfigYesNo(default=True))
+config.plugins.sdcard.movie = NoSave(ConfigYesNo(default=True))
+config.plugins.sdcard.timeshift = NoSave(ConfigYesNo(default=True))
+config.plugins.sdcard.epg = NoSave(ConfigYesNo(default=True))
 
 
 class WizardSDCardUse(Screen, ConfigListScreen):
 
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 
 		self.list = []

@@ -55,7 +55,7 @@ class DaemonsList(Screen):
 			<widget name="key_blue" position="420,360" zPosition="2" size="140,26" valign="center" halign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen> """
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 		self.running = list()
 		self.installed = list()
@@ -104,7 +104,7 @@ class DaemonsList(Screen):
 				else:
 					self['key_green'].setText('')
 
-	def drawList(self, ret = None):
+	def drawList(self, ret=None):
 		self.session.open(ExtraActionBox, _('Checking services status...'), _('Services'), self.actionDrawList)
 
 	def actionDrawList(self):

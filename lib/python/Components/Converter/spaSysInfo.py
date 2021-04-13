@@ -264,7 +264,7 @@ def getTemperatura():
     return cret
 
 
-def devDiskInfo(ruta = '/', txtini = '', sidormido = False):
+def devDiskInfo(ruta='/', txtini='', sidormido=False):
     if not txtini == '':
         txtini = txtini + ': '
     if sidormido and ruta == '/hdd/':
@@ -297,7 +297,7 @@ def devDiskInfo(ruta = '/', txtini = '', sidormido = False):
         return ''
 
 
-def Humanizer(size, ndec = 2):
+def Humanizer(size, ndec=2):
     if size < 1024:
         humansize = str(size) + ' bytes'
     elif size < 1048576:

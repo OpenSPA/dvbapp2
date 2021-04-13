@@ -187,7 +187,7 @@ class MultiBootWizard(Screen):
 #						cmdlist.append("/tmp/init.sh")
 
 						cmdlist.append("partprobe /dev/%s"%sda)
-						self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = True)
+						self.session.open(Console, title=self.TITLE, cmdlist=cmdlist, closeOnSuccess=True)
 		else:
 			self.close()
 

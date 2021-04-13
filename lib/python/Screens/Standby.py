@@ -310,7 +310,7 @@ class Standby(Standby2):
 
 class StandbySummary(Screen):
 	if getBoxType() in ('gb800ue', 'gb800ueplus', 'gbquad', 'gbquad4k', 'gbquadplus', 'gbue4k', 'gbultraue', 'gbultraueh', 'sf208', 'sf228', 'vusolo4k', 'vuuno4kse', 'vuultimo4k', 'vuduo4k'):
-		def __init__(self, session, what = None):
+		def __init__(self, session, what=None):
 			root = "/usr/share/enigma2/display/clock_skin/"
 			try:
 				what = open(root+"active").read()
@@ -362,7 +362,7 @@ inTryQuitMainloop = False
 quitMainloopCode = 1
 
 class TryQuitMainloop(MessageBox):
-	def __init__(self, session, retvalue=QUIT_SHUTDOWN, timeout=-1, default_yes = True):
+	def __init__(self, session, retvalue=QUIT_SHUTDOWN, timeout=-1, default_yes=True):
 		self.retval = retvalue
 		self.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings(False,Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
@@ -408,7 +408,7 @@ class TryQuitMainloop(MessageBox):
 				QUIT_WOLSHUTDOWN: _("Really WOL now?")
 				}.get(retvalue)
 			if text:
-				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				MessageBox.__init__(self, session, reason+text, type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)
 				self.skinName = "MessageBoxSimple"
 				session.nav.record_event.append(self.getRecordEvent)
 				self.connected = True
