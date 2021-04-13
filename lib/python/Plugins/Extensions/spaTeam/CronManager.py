@@ -14,7 +14,7 @@ from os import system, listdir, rename, symlink, unlink, path, mkdir
 from time import sleep
 
 config.spateam = ConfigSubsection()
-config.spateam.cronmanager_commandtype = NoSave(ConfigSelection(choices=[ ('custom',_("Custom")),('predefined',_("Predefined")) ]))
+config.spateam.cronmanager_commandtype = NoSave(ConfigSelection(choices=[('custom',_("Custom")),('predefined',_("Predefined"))]))
 config.spateam.cronmanager_cmdtime = NoSave(ConfigClock(default=0))
 config.spateam.cronmanager_cmdtime.value, mytmpt = ([0, 0], [0, 0])
 config.spateam.cronmanager_user_command = NoSave(ConfigText(fixed_size=False))
@@ -280,7 +280,7 @@ class SetupCronConf(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Cron Manager"))
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self['key_red'] = Label(_("Save"))

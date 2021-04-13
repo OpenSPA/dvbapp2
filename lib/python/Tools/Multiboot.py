@@ -109,7 +109,7 @@ class GetImagelist():
 				self.part2 = os.readlink("/dev/block/by-name/userdata")[5:]
 				self.container.ePopen('mount /dev/block/by-name/userdata /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
 			if self.phase == self.MOUNT:
-				self.imagelist[self.slot2] = { 'imagename': _("Empty slot"), 'part': '%s' %self.part2 }
+				self.imagelist[self.slot2] = {'imagename': _("Empty slot"), 'part': '%s' %self.part2}
 		else:
 			if self.SDmmc == self.LastRun:
 				self.part2 = getMachineMtdRoot()	# process mmc slot
@@ -119,7 +119,7 @@ class GetImagelist():
 				if self.SDmmc == self.FirstRun:
 					self.slot2 += 1			# allow for mmc slot"
 			if self.phase == self.MOUNT:
-				self.imagelist[self.slot2] = { 'imagename': _("Empty slot"), 'part': '%s' %self.part2 }
+				self.imagelist[self.slot2] = {'imagename': _("Empty slot"), 'part': '%s' %self.part2}
 			self.container.ePopen('mount /dev/%s /tmp/testmount' %self.part2 if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
 
 	def appClosed(self, data, retval, extra_args):
@@ -178,7 +178,7 @@ class GetImagelist():
 					except:
 						pass
 					BuildVersion = _("%s build date %s") % (Creator, Date)
-				self.imagelist[self.slot2] =  { 'imagename': '%s' %BuildVersion, 'part': '%s' %self.part2 }
+				self.imagelist[self.slot2] =  {'imagename': '%s' %BuildVersion, 'part': '%s' %self.part2}
 			self.phase = self.UNMOUNT
 			self.run()
 		elif self.slot < self.numberofslots:

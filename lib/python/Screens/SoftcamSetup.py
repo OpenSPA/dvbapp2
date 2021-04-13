@@ -45,7 +45,7 @@ class SoftcamSetup(Screen, ConfigListScreen):
 				"blue": self.ppanelShortcut,
 			},-1)
 
-		self.list = [ ]
+		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		self.softcam = CamControl('softcam')
@@ -86,11 +86,11 @@ class SoftcamSetup(Screen, ConfigListScreen):
 				config.plugins.softcam.ncaminfo.value = True
 
 		if config.plugins.softcam.cccaminfo.value:
-			self.list.append(getConfigListEntry(_("Show CCcamInfo in extensions menu?"), config.cccaminfo.showInExtensions, None, None ))
+			self.list.append(getConfigListEntry(_("Show CCcamInfo in extensions menu?"), config.cccaminfo.showInExtensions, None, None))
 		if config.plugins.softcam.oscaminfo.value:
-			self.list.append(getConfigListEntry(_("Show OScamInfo in extensions menu?"), config.oscaminfo.showInExtensions, None, None ))
+			self.list.append(getConfigListEntry(_("Show OScamInfo in extensions menu?"), config.oscaminfo.showInExtensions, None, None))
 		if config.plugins.softcam.ncaminfo.value:
-			self.list.append(getConfigListEntry(_("Show NcamInfo in extensions menu?"), config.ncaminfo.showInExtensions, None, None ))
+			self.list.append(getConfigListEntry(_("Show NcamInfo in extensions menu?"), config.ncaminfo.showInExtensions, None, None))
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))

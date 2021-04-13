@@ -324,7 +324,7 @@ def ddevcaos():
 def getInfoNet():
     ret = ''
     from Components.Network import iNetwork
-    adapters = [ (iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList() ]
+    adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
     if not adapters:
         return ''
     else:

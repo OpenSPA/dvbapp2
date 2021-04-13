@@ -56,16 +56,16 @@ config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default="picon+servic
 	("picon+servicename", _("Picon and servicename")),
 	("number+servicename", _("Channelnumber and servicename")),
 	("number+picon", _("Channelnumber and picon")),
-	("number+picon+servicename", _("Channelnumber, picon and servicename")) ])
+	("number+picon+servicename", _("Channelnumber, picon and servicename"))])
 config.misc.graph_mepg.roundTo = ConfigSelection(default="900", choices=[("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 config.misc.graph_mepg.OKButton = ConfigSelection(default="info", choices=[("info", _("Show detailed event info")), ("zap", _("Zap to selected channel"))])
 possibleAlignmentChoices = [
-	( str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER          ) , _("left")),
-	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER          ) , _("centered")),
-	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER          ) , _("right")),
-	( str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER | RT_WRAP) , _("left, wrapped")),
-	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP) , _("centered, wrapped")),
-	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP) , _("right, wrapped"))]
+	(str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER), _("left")),
+	(str(RT_HALIGN_CENTER | RT_VALIGN_CENTER), _("centered")),
+	(str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER), _("right")),
+	(str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER | RT_WRAP), _("left, wrapped")),
+	(str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP), _("centered, wrapped")),
+	(str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP), _("right, wrapped"))]
 config.misc.graph_mepg.event_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
 config.misc.graph_mepg.show_timelines = ConfigSelection(default="all", choices=[("nothing", _("no")), ("all", _("all")), ("now", _("actual time only"))])
 config.misc.graph_mepg.servicename_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
@@ -83,7 +83,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.offs = 0
 		self.timer = timer
 		self.last_time = time()
-		self.onSelChanged = [ ]
+		self.onSelChanged = []
 		if selChangedCB is not None:
 			self.onSelChanged.append(selChangedCB)
 		self.l = eListboxPythonMultiContent()
@@ -91,7 +91,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.setOverjump_Empty(overjump_empty)
 		self.epg_bouquet = epg_bouquet
 		self.epgcache = eEPGCache.getInstance()
-		self.clocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
+		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')),
@@ -120,7 +120,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/repzaprecclock_pre.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/repzaprecclock.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/repzaprecclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/repzaprecclock_post.png')) ]
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/repzaprecclock_post.png'))]
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None
@@ -182,7 +182,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		def EntryBorderColor(value):
 			self.borderColor = parseColor(value).argb()
 		def EntryFont(value):
-			font = parseFont(value, ((1,1),(1,1)) )
+			font = parseFont(value, ((1,1),(1,1)))
 			self.entryFontName = font.family
 			self.entryFontSize = font.pointSize
 		def ServiceForegroundColor(value):
@@ -206,7 +206,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		def ServiceBorderColor(value):
 			self.borderColorService = parseColor(value).argb()
 		def ServiceFont(value):
-			self.serviceFont = parseFont(value, ((1,1),(1,1)) )
+			self.serviceFont = parseFont(value, ((1,1),(1,1)))
 		def EntryBackgroundColorNow(value):
 			self.backColorNow = parseColor(value).argb()
 		def EntryForegroundColorNow(value):
@@ -441,7 +441,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			bgpng = self.othEvPix
 			currentservice = False
 
-		res = [ None ]
+		res = [None]
 		if bgpng is not None:    # bacground for service rect
 			res.append(MultiContentEntryPixmapAlphaTest(
 					pos=(r1.x + self.serviceBorderVerWidth, r1.y + self.serviceBorderHorWidth),
@@ -641,7 +641,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs*self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.select_rect = Rect(xpos ,0, width, self.event_rect.height)
+			self.select_rect = Rect(xpos,0, width, self.event_rect.height)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
 			self.select_rect = self.event_rect
@@ -654,21 +654,21 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.time_base = int(stime)
 		if services is None:
 			time_base = self.time_base + self.offs * self.time_epoch * 60
-			test = [ (service[0], 0, time_base, self.time_epoch) for service in self.list ]
+			test = [(service[0], 0, time_base, self.time_epoch) for service in self.list]
 			serviceList = self.list
 			piconIdx = 3
 			channelIdx = 4
 		else:
 			self.cur_event = None
 			self.cur_service = None
-			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
+			test = [(service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services]
 			serviceList = services
 			piconIdx = 0
 			channelIdx = None
 
 		test.insert(0, 'XRnITBD') #return record, service ref, service name, event id, event title, begin time, duration
 		epg_data = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
-		self.list = [ ]
+		self.list = []
 		tmp_list = None
 		service = ""
 		sname = ""
@@ -682,7 +682,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					serviceIdx += 1
 				service = x[0]
 				sname = x[1]
-				tmp_list = [ ]
+				tmp_list = []
 			tmp_list.append((x[2], x[3], x[4], x[5])) #(event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
 			picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
@@ -694,11 +694,11 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def getEventRect(self):
 		rc = self.event_rect
-		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+		return Rect(rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height())
 
 	def getServiceRect(self):
 		rc = self.service_rect
-		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+		return Rect(rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height())
 
 	def getTimeEpoch(self):
 		return self.time_epoch
@@ -729,7 +729,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		def backgroundColor(value):
 			self.backColor = parseColor(value).argb()
 		def font(value):
-			self.font = parseFont(value,  ((1, 1), (1, 1)) )
+			self.font = parseFont(value,  ((1, 1), (1, 1)))
 		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
@@ -757,7 +757,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			return
 
 		eventLeft = event_rect.left()
-		res = [ None ]
+		res = [None]
 
 		# Note: event_rect and service_rect are relative to the timeline_text position
 		#       while the time lines are relative to the GraphEPG screen position!
@@ -775,23 +775,23 @@ class TimelineText(HTMLComponent, GUIComponent):
 				tlMove = 0
 				tlFlags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 
-				res.append( MultiContentEntryText(
+				res.append(MultiContentEntryText(
 					pos=(0, 0),
 					size=(service_rect.width(), itemHeight),
 					font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 					text=strftime(self.datefmt, localtime(time_base)),
 					color=self.foreColor, color_sel=self.foreColor,
-					backcolor=self.backColor, backcolor_sel=self.backColor) )
+					backcolor=self.backColor, backcolor_sel=self.backColor))
 
 			xpos = 0 # eventLeft
 			for x in range(0, num_lines):
-				res.append( MultiContentEntryText(
+				res.append(MultiContentEntryText(
 					pos=(service_rect.width() + xpos-tlMove, 0),
 					size=(incWidth, itemHeight),
 					font=0, flags=tlFlags,
-					text=strftime("%H:%M", localtime( time_base + x*timeStepsCalc )),
+					text=strftime("%H:%M", localtime(time_base + x*timeStepsCalc)),
 					color=self.foreColor, color_sel=self.foreColor,
-					backcolor=self.backColor, backcolor_sel=self.backColor) )
+					backcolor=self.backColor, backcolor_sel=self.backColor))
 				line = time_lines[x]
 				old_pos = line.position
 				line.setPosition(xpos + eventLeft, old_pos[1])
@@ -849,7 +849,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["timeline_text"] = TimelineText()
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
-		self.time_lines = [ ]
+		self.time_lines = []
 		for x in range(0, MAX_TIMELINES):
 			pm = Pixmap()
 			self.time_lines.append(pm)
@@ -860,7 +860,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if bouquetname != "":
 			Screen.setTitle(self, bouquetname)
 
-		self["list"] = EPGList( selChangedCB=self.onSelectionChanged,
+		self["list"] = EPGList(selChangedCB=self.onSelectionChanged,
 					timer=self.session.nav.RecordTimer,
 					time_epoch=config.misc.graph_mepg.prev_time_period.value,
 					overjump_empty=config.misc.graph_mepg.overjump.value,

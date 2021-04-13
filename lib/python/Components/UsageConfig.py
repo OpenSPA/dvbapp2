@@ -131,7 +131,7 @@ def InitUsageConfig():
 	config.usage.showpicon = ConfigYesNo(default=True)
 
 	config.usage.panicbutton = ConfigYesNo(default=False)
-	config.usage.panicchannel = ConfigInteger(default=1, limits=(1,5000) )
+	config.usage.panicchannel = ConfigInteger(default=1, limits=(1,5000))
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default=False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default=True)
 
@@ -160,7 +160,7 @@ def InitUsageConfig():
 	config.usage.oldstyle_zap_controls = ConfigSelection(default="standard", choices=[
 		("standard", _("Standard")),
 		("neutrino", _("Neutrino")),
-		("openspa", _("OpenSPA")) ])
+		("openspa", _("OpenSPA"))])
 	config.usage.oldstyle_channel_select_controls =  ConfigYesNo(default=False)
 	config.usage.zap_with_ch_buttons = ConfigYesNo(default=False)
 	config.usage.ok_is_channelselection = ConfigYesNo(default=False)
@@ -210,7 +210,7 @@ def InitUsageConfig():
 		("default", _("Default")),
 		("user", _("user defined")),])
 	config.usage.plugin_sort_weight = ConfigDictionarySet()
-	config.usage.menu_sort_weight = ConfigDictionarySet(default={ "mainmenu" : {"submenu" : {} }})
+	config.usage.menu_sort_weight = ConfigDictionarySet(default={"mainmenu": {"submenu": {}}})
 	config.usage.menu_sort_mode = ConfigSelection(default="user", choices=[
 		("a_z", _("alphabetical")),
 		("default", _("Default")),
@@ -232,13 +232,13 @@ def InitUsageConfig():
 	config.usage.hdd_standby_in_standby = ConfigSelection(default="-1", choices=[("-1", _("Same as in active")), ("0", _("No standby"))] + choicelist)
 	config.usage.hdd_timer = ConfigYesNo(default=False)
 	config.usage.output_12V = ConfigSelection(default="do not change", choices=[
-		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On")) ])
+		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On"))])
 
 	config.usage.pip_zero_button = ConfigSelection(default="standard", choices=[
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
-		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
+		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP"))])
 	config.usage.pip_hideOnExit = ConfigSelection(default="no", choices=[
-		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
+		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup"))])
 	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
 	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
 		m = i/60
@@ -306,7 +306,7 @@ def InitUsageConfig():
 	config.misc.picon_path.addNotifier(piconpathChanged, immediate_feedback=False)
 	config.misc.allowed_picon_paths = ConfigLocations(default=[resolveFilename(SCOPE_PICON)])
 
-	config.misc.picon_search_hdd = ConfigYesNo (default=False)
+	config.misc.picon_search_hdd = ConfigYesNo(default=False)
 
 	if not os.path.exists(resolveFilename(SCOPE_AUTORECORD)):
 		try:
@@ -337,19 +337,19 @@ def InitUsageConfig():
 		("resume", _("Resume from last position")),
 		("beginning", _("Start from the beginning"))])
 	config.usage.on_movie_stop = ConfigSelection(default="movielist", choices=[
-		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")) ])
+		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service"))])
 	config.usage.on_movie_eof = ConfigSelection(default="movielist", choices=[
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")), ("playlist", _("Play next (return to movie list)")),
 		("playlistquit", _("Play next (return to previous service)")), ("loop", _("Continues play (loop)")), ("repeatcurrent", _("Repeat"))])
 	config.usage.next_movie_msg = ConfigYesNo(default=True)
 	config.usage.last_movie_played = ConfigText()
 	config.usage.leave_movieplayer_onExit = ConfigSelection(default="popup", choices=[
-		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")), ("stop", _("Behave like stop-button")) ])
+		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")), ("stop", _("Behave like stop-button"))])
 
 	config.usage.setup_level = ConfigSelection(default="expert", choices=[
 		("simple", _("Simple")),
 		("intermediate", _("Intermediate")),
-		("expert", _("Expert")) ])
+		("expert", _("Expert"))])
 
 	choicelist = [("standby", _("Standby")),("deepstandby", _("Deep Standby"))]
 	config.usage.sleep_timer_action = ConfigSelection(default="deepstandby", choices=choicelist)
@@ -376,7 +376,7 @@ def InitUsageConfig():
 		(str(KEYIDS["KEY_INFO"]), _("Info (EPG)")),
 		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
 		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
-		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites")) ])
+		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites"))])
 
 	choicelist = [("0", _("Disabled"))]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
@@ -397,7 +397,7 @@ def InitUsageConfig():
 		("3", "DVB-C/-T/-S"),
 		("4", "DVB-T/-C/-S"),
 		("5", "DVB-T/-S/-C"),
-		("127", _("No priority")) ])
+		("127", _("No priority"))])
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
 	config.usage.remote_fallback = ConfigText(default="http://IP-ADDRESS:8001", fixed_size=False)
@@ -471,7 +471,7 @@ def InitUsageConfig():
 	config.usage.show_servicelist = ConfigYesNo(default=True)
 	config.usage.servicelist_mode = ConfigSelection(default="standard", choices=[
 		("standard", _("Standard")),
-		("simple", _("Simple")) ] )
+		("simple", _("Simple"))])
 	config.usage.servicelistpreview_mode = ConfigYesNo(default=False)
 
 	config.usage.show_bouquetalways = ConfigYesNo(default=False)
@@ -482,7 +482,7 @@ def InitUsageConfig():
 		('percright', _("Percentage right")),
 		('minsleft', _("Remaining minutes left")),
 		('minsright', _("Remaining minutes right")),
-		('no', _("No")) ])
+		('no', _("No"))])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default=True)
 	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="quick", choices=[
 					("quick", _("Quick Actions")),
@@ -964,7 +964,7 @@ def InitUsageConfig():
 	config.osd.threeDznorm = ConfigSlider(default=50, increment=1, limits=(0, 100))
 	config.osd.show3dextensions = ConfigYesNo(default=False)
 	choiceoptions = [("mode1", _("Mode 1")), ("mode2", _("Mode 2"))]
-	config.osd.threeDsetmode = ConfigSelection(default='mode1' , choices=choiceoptions )
+	config.osd.threeDsetmode = ConfigSelection(default='mode1', choices=choiceoptions)
 
 	config.misc.epgcachepath = ConfigText(default='/etc/enigma2/')
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
@@ -1066,7 +1066,7 @@ def InitUsageConfig():
 	config.seek.on_pause = ConfigSelection(default="play", choices=[
 		("play", _("Play")),
 		("step", _("Single step (GOP)")),
-		("last", _("Last speed")) ])
+		("last", _("Last speed"))])
 
 	config.seek.withjumps = ConfigYesNo(default=True)
 	config.seek.withjumps_after_ff_speed = ConfigSelection([("1", _("never")), ("2", _("2x")), ("4", _("2x, 4x")), ("6", _("2x, 4x, 6x")), ("8", _("2x, 4x, 6x, 8x"))], default="4")
@@ -1079,7 +1079,7 @@ def InitUsageConfig():
 	#// handle python crashes
 	config.crash.bsodpython = ConfigYesNo(default=True)
 	config.crash.bsodpython_ready = NoSave(ConfigYesNo(default=False))
-	choicelist = [("0", _("never")), ("1", "1") , ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9"), ("10", "10")]
+	choicelist = [("0", _("never")), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9"), ("10", "10")]
 	config.crash.bsodhide = ConfigSelection(default="1", choices=choicelist)
 	config.crash.bsodmax = ConfigSelection(default="3", choices=choicelist)
 	#//
@@ -1184,9 +1184,9 @@ def InitUsageConfig():
 		("6", _("green")),
 		("7", _("brown")),
 		("8", _("turquoise")),
-		("9", _("pink")) ])
+		("9", _("pink"))])
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default=False)
-	config.subtitles.subtitle_position = ConfigSelection( choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default="50")
+	config.subtitles.subtitle_position = ConfigSelection(choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default="50")
 	config.subtitles.subtitle_alignment = ConfigSelection(choices=[("left", _("left")), ("center", _("center")), ("right", _("right"))], default="center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default=False)
 	config.subtitles.colourise_dialogs = ConfigYesNo(default=False)
@@ -1224,7 +1224,7 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitle_colors = ConfigSelection(default="1", choices=[
 		("0", _("alternative")),
 		("1", _("white")),
-		("2", _("yellow")) ])
+		("2", _("yellow"))])
 	config.subtitles.pango_subtitle_fontswitch = ConfigYesNo(default=True)
 	config.subtitles.pango_subtitles_delay = ConfigSelection(default="0", choices=subtitle_delay_choicelist)
 	config.subtitles.pango_subtitles_fps = ConfigSelection(default="1", choices=[
@@ -1279,7 +1279,7 @@ def InitUsageConfig():
 		("tur Audio_TUR", _("Turkish")),
 		("ukr Ukr", _("Ukrainian"))]
 
-	epg_language_choices = audio_language_choices[:1] + audio_language_choices [2:]
+	epg_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
 	def setEpgLanguageAlternative(configElement):
@@ -1313,7 +1313,7 @@ def InitUsageConfig():
 	config.autolanguage.audio_defaultddp = ConfigYesNo(default=False)
 	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
 
-	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices [2:]
+	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 	def getselectedsublanguages(range):
 		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
 	def autolanguagesub(configElement):
@@ -1365,8 +1365,8 @@ def InitUsageConfig():
 	config.oscaminfo.autoupdate = ConfigYesNo(default=False)
 	config.oscaminfo.username = ConfigText(default="username", fixed_size=False, visible_width=12)
 	config.oscaminfo.password = ConfigPassword(default="password", fixed_size=False)
-	config.oscaminfo.ip = ConfigIP( default=[ 127,0,0,1 ], auto_jump=True)
-	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0,65536) )
+	config.oscaminfo.ip = ConfigIP(default=[127,0,0,1], auto_jump=True)
+	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0,65536))
 	config.oscaminfo.intervall = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=10, wraparound=True)
 	SystemInfo["OScamInstalled"] = False
 
@@ -1376,8 +1376,8 @@ def InitUsageConfig():
 	config.ncaminfo.autoupdate = ConfigYesNo(default=False)
 	config.ncaminfo.username = ConfigText(default="username", fixed_size=False, visible_width=12)
 	config.ncaminfo.password = ConfigPassword(default="password", fixed_size=False)
-	config.ncaminfo.ip = ConfigIP( default=[ 127,0,0,1 ], auto_jump=True)
-	config.ncaminfo.port = ConfigInteger(default=16002, limits=(0,65536) )
+	config.ncaminfo.ip = ConfigIP(default=[127,0,0,1], auto_jump=True)
+	config.ncaminfo.port = ConfigInteger(default=16002, limits=(0,65536))
 	config.ncaminfo.intervall = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=10, wraparound=True)
 	SystemInfo["NcamInstalled"] = False
 
@@ -1525,7 +1525,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 		           ["TTFShiftX",         int(config.usage.tuxtxt_TTFShiftX.value)],
 		           ["TTFWidthFactor16",  config.usage.tuxtxt_TTFWidthFactor16.value],
 		           ["TTFHeightFactor16", config.usage.tuxtxt_TTFHeightFactor16.value]]
-	tuxtxt2.append(    ["CleanAlgo",         config.usage.tuxtxt_CleanAlgo.value] )
+	tuxtxt2.append(["CleanAlgo",         config.usage.tuxtxt_CleanAlgo.value])
 
 	TUXTXT_CFG_FILE = "/etc/tuxtxt/tuxtxt2.conf"
 	command = "sed -i -r '"

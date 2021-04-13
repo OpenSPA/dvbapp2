@@ -16,7 +16,7 @@ def InitRecordingConfig():
 		("veryshort", _("Very short filenames")),
 		("shortwithtime", _("Short filenames with time")),
 		("short", _("Short filenames")),
-		("long", _("Long filenames")) ] )
+		("long", _("Long filenames"))])
 	config.recording.always_ecm = ConfigYesNo(default=False)
 	config.recording.never_decrypt = ConfigYesNo(default=False)
 	config.recording.offline_decode_delay = ConfigSelectionNumber(min=1, max=10000, stepwidth=10, default=1000, wraparound=True)

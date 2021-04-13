@@ -29,7 +29,7 @@ def getExtendedMovieDescription(ref):
 					f = info_file + ext
 					break
 	if f:
-		with open (f, "r") as txtfile:
+		with open(f, "r") as txtfile:
 			extended_desc = txtfile.read()
 
 	return (name, extended_desc)

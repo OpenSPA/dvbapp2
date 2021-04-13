@@ -83,7 +83,7 @@ class EPGPathsSetup(Screen,ConfigListScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label(_(""))
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.setup = "epgsettings"
 		list = []
 		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)

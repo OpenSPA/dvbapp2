@@ -34,7 +34,7 @@ def zapToService(service, preview=False, zapback=False):
 		Servicelist.startRoot = None
 
 def getBouquetServices(bouquet):
-	services = [ ]
+	services = []
 	Servicelist = eServiceCenter.getInstance().list(bouquet)
 	if not Servicelist is None:
 		while True:
@@ -106,7 +106,7 @@ def runGraphMultiEpg():
 	global bouquets
 	global epg_bouquet
 	if epg_bouquet is not None:
-		if len(bouquets) > 1 :
+		if len(bouquets) > 1:
 			cb = changeBouquetCB
 		else:
 			cb = None

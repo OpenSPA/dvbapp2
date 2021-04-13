@@ -353,7 +353,7 @@ class Menu(Screen, ProtectedScreen):
 					m_list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50, description, menupng))
 
 		# for the skin: first try a menu_<menuID>, then Menu
-		self.skinName = [ ]
+		self.skinName = []
 		if menuID is not None:
 			if config.usage.menutype.value == 'horzanim' and skin.dom_screens.has_key("Animmain"):
 				self.skinName.append('Animmain')
@@ -368,7 +368,7 @@ class Menu(Screen, ProtectedScreen):
 		if config.usage.menu_sort_mode.value == "user" and menuID == "mainmenu":
 			plugin_list = []
 			id_list = []
-			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				l.id = (l.name.lower()).replace(' ','_')
 				if l.id not in id_list:
 					id_list.append(l.id)
@@ -458,9 +458,9 @@ class Menu(Screen, ProtectedScreen):
 		self["title0"] = StaticText('')
 		self["title1"] = StaticText('')
 		self["title2"] = StaticText('')
-		if history_len < 13 :
+		if history_len < 13:
 			self["title0"] = StaticText(a)
-		elif history_len < 21 :
+		elif history_len < 21:
 			self["title0"] = StaticText('')
 			self["title1"] = StaticText(a)
 		else:
@@ -662,7 +662,7 @@ class Menu(Screen, ProtectedScreen):
 			self.closeNonRecursive()
 
 	def resetSortOrder(self, key=None):
-		config.usage.menu_sort_weight.value = { "mainmenu" : {"submenu" : {} }}
+		config.usage.menu_sort_weight.value = {"mainmenu": {"submenu": {}}}
 		config.usage.menu_sort_weight.save()
 		self.closeRecursive()
 

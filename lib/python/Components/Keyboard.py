@@ -23,7 +23,7 @@ class Keyboard:
 						if key == 'name':
 							mapname = val
 						if (mapfile is not None) and (mapname is not None):
-							self.keyboardmaps.append(( mapfile,mapname))
+							self.keyboardmaps.append((mapfile,mapname))
 				f.close()
 
 	def activateKeyboardMap(self, index):

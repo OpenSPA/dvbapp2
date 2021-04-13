@@ -7,7 +7,7 @@ from Tools.HardwareInfo import HardwareInfo
 
 from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK, getHaveSCARTYUV, getHaveHDMI, getMachineMtdKernel, getMachineMtdRoot
 
-SystemInfo = { }
+SystemInfo = {}
 
 #FIXMEE...
 def getNumVideoDecoders():

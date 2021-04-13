@@ -1112,7 +1112,7 @@ class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		self.skinName = ["SetupInfo", "Setup" ]
+		self.skinName = ["SetupInfo", "Setup"]
 		Screen.setTitle(self, _("Keymap Selection") + "...")
 		self.setup_title =  _("Keymap Selection") + "..."
 		self["HelpWindow"] = Pixmap()
@@ -1125,7 +1125,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
 		u80key = eEnv.resolve("${datadir}/enigma2/keymap.u80")
 		self.actkeymap = self.getKeymap(config.usage.keymap.value)
-		keySel = [ ('keymap.xml',_("Default  (keymap.xml)"))]
+		keySel = [('keymap.xml',_("Default  (keymap.xml)"))]
 		if path.isfile(usrkey):
 			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
 		if path.isfile(ntrkey):
@@ -1141,7 +1141,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		self.keyshow = ConfigSelection(keySel)
 		self.keyshow.value = self.actkeymap
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
