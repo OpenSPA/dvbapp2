@@ -3,6 +3,7 @@ from skin import applyAllAttributes
 from Tools.CList import CList
 from Sources.StaticText import StaticText
 
+
 class GUISkin:
 	__module__ = __name__
 

@@ -23,6 +23,7 @@ for p in harddiskmanager.getMountedPartitions():
 		if p.mountpoint != '/':
 			hddchoises.append((p.mountpoint, d + '/picon/'))
 
+
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -51,6 +52,7 @@ class SetupSummary(Screen):
 				self.parent['footnote'].text = (_("* = Restart Required"))
 			else:
 				self.parent['footnote'].text = (_(" "))
+
 
 class PiconPathsSetup(Screen, ConfigListScreen):
 	def removeNotifier(self):

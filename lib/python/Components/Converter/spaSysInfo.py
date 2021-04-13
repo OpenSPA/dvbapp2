@@ -5,6 +5,7 @@ from Poll import Poll
 from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName
 from os import path, statvfs
 
+
 class spaSysInfo(Poll, Converter, object):
     HDD = -2
     DISKS = -1

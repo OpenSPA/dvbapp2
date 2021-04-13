@@ -44,6 +44,7 @@ BOTTOM = 3
 CENTER = 2
 BLOCK = 3
 
+
 class RunningTextSpa(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -66,7 +67,6 @@ class RunningTextSpa(Renderer):
 		self.addstep = 0
 		self.addtime = 1
 		self.backtime = 0
-
 
 	GUI_WIDGET = eWidget
 
@@ -97,6 +97,7 @@ class RunningTextSpa(Renderer):
 			except:
 					x = default
 			return x
+
 		def setWrapFlag(attrib, value):
 			if (attrib.lower() == "wrap" and value == "0") or \
 			   (attrib.lower() == "nowrap" and value != "0"):
@@ -178,8 +179,6 @@ class RunningTextSpa(Renderer):
 					elif attrib == "transparent":
 						self.scroll_label.setTransparent(int(value))
 					
-						
-						
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)
 		
@@ -375,8 +374,6 @@ class RunningTextSpa(Renderer):
 			else: # if self.direction in (TOP,BOTTOM):
 				self.moveLabel(self.X, self.P)
 				
-		
-			
 		self.mTimer.stop()
 		self.mCount = self.mRepeat
 		self.mTimer.start(self.mStartDelay, True)

@@ -39,6 +39,7 @@ from urllib2 import URLError, urlopen
 
 geolocation = {}
 
+
 def InitGeolocation():
 	global geolocation
 	if len(geolocation) == 0:
@@ -57,6 +58,7 @@ def InitGeolocation():
 				print "[Geolocation] Error : Geolocation data not available! (Code: %s)" % err.code
 			if hasattr(err, 'reason'):
 				print "[Geolocation] Error : Geolocation data not available! (Reason: %s)" % err.reason
+
 
 def RefreshGeolocation():
 	global geolocation

@@ -68,6 +68,7 @@ else:
 
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
+
 def Load_defaults():
 	config.plugins.softwaremanager = ConfigSubsection()
 	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
@@ -95,7 +96,9 @@ def Load_defaults():
 					], "turbo")
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
+
 Load_defaults()
+
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
@@ -107,6 +110,7 @@ def write_cache(cache_file, cache_data):
 	fd = open(cache_file, 'w')
 	dump(cache_data, fd, -1)
 	fd.close()
+
 
 def valid_cache(cache_file, cache_ttl):
 	#See if the cache file exists and is still living
@@ -120,12 +124,14 @@ def valid_cache(cache_file, cache_ttl):
 	else:
 		return 1
 
+
 def load_cache(cache_file):
 	#Does a cPickle load
 	fd = open(cache_file)
 	cache_data = load(fd)
 	fd.close()
 	return cache_data
+
 
 def Check_Softcam():
 	found = False
@@ -137,6 +143,7 @@ def Check_Softcam():
 				found = True
 				break
 	return found
+
 
 class UpdatePluginMenu(Screen):
 	skin = """
@@ -411,6 +418,7 @@ class UpdatePluginMenu(Screen):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
 
+
 class SoftwareManagerSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen name="SoftwareManagerSetup" position="center,center" size="560,440" title="SoftwareManager setup">
@@ -568,6 +576,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+
 class SoftwareManagerInfo(Screen):
 	skin = """
 		<screen name="SoftwareManagerInfo" position="center,center" size="560,440" title="SoftwareManager information">
@@ -636,6 +645,7 @@ class SoftwareManagerInfo(Screen):
 			for entry in backupfiles:
 				self.list.append((entry,))
 			self['list'].setList(self.list)
+
 
 class PluginManager(Screen, PackageInfoHandler):
 	skin = """
@@ -770,7 +780,6 @@ class PluginManager(Screen, PackageInfoHandler):
 				self.statuslist.append((_("Error"), '', _("An error occurred while downloading the packetlist. Please try again."), '', '', statuspng, divpng, None, ''))
 			self["list"].style = "default"
 			self['list'].setList(self.statuslist)
-
 
 	def getUpdateInfos(self):
 		if (iSoftwareTools.lastDownloadDate is not None and iSoftwareTools.NetworkConnectionAvailable is False):
@@ -1109,6 +1118,7 @@ class PluginManager(Screen, PackageInfoHandler):
 	def reloadPluginlist(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
+
 class PluginManagerInfo(Screen):
 	skin = """
 		<screen name="PluginManagerInfo" position="center,center" size="560,450" >
@@ -1222,6 +1232,7 @@ class PluginManagerInfo(Screen):
 					self.list.append((entry))
 		self.close((False, self.list))
 
+
 class PluginManagerHelp(Screen):
 	skin = """
 		<screen name="PluginManagerHelp" position="center,center" size="560,450" >
@@ -1307,6 +1318,7 @@ class PluginManagerHelp(Screen):
 	def exit(self):
 		self.close()
 
+
 class PluginDetails(Screen, PackageInfoHandler):
 	skin = """
 		<screen name="PluginDetails" position="center,center" size="600,440" >
@@ -1320,6 +1332,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			<widget name="detailtext" position="10,90" size="270,330" zPosition="10" font="Regular;21" transparent="1" halign="left" valign="top"/>
 			<widget name="screenshot" position="290,90" size="300,330" alphatest="on"/>
 		</screen>"""
+
 	def __init__(self, session, plugin_path, packagedata=None):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin details"))
@@ -1492,6 +1505,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)
+
 	def UpgradeReboot(self, result):
 		if result:
 			self.session.open(TryQuitMainloop, retvalue=3)
@@ -1510,6 +1524,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 	def fetchFailed(self, string):
 		self.setThumbnail(noScreenshot=True)
 		print "[PluginDetails] fetch failed " + string.getErrorMessage()
+
 
 class IPKGMenu(Screen):
 	skin = """
@@ -1581,6 +1596,7 @@ class IPKGMenu(Screen):
 
 	def Exit(self):
 		self.close()
+
 
 class IPKGSource(Screen):
 	skin = """
@@ -1681,6 +1697,7 @@ class IPKGSource(Screen):
 
 	def keyNumberGlobal(self, number):
 		self["text"].number(number)
+
 
 class PacketManager(Screen, NumericalTextInput):
 	skin = """
@@ -2015,6 +2032,7 @@ class PacketManager(Screen, NumericalTextInput):
 	def reloadPluginlist(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
+
 class IpkgInstaller(Screen):
 	skin = """
 		<screen name="IpkgInstaller" position="center,center" size="550,450" title="Install extensions" >
@@ -2069,9 +2087,11 @@ class IpkgInstaller(Screen):
 			cmdList.append((IpkgComponent.CMD_INSTALL, {"package": item[1]}))
 		self.session.open(Ipkg, cmdList=cmdList)
 
+
 def filescan_open(list, session, **kwargs):
 	filelist = [x.path for x in list]
 	session.open(IpkgInstaller, filelist) # list
+
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -2085,13 +2105,16 @@ def filescan(**kwargs):
 			description=_("Install extensions."),
 			openfnc=filescan_open, )
 
+
 def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
+
 
 def startSetup(menuid):
 	if menuid != "setup":
 		return []
 	return [(_("Software management"), UpgradeMain, "software_manager", 50)]
+
 
 def Plugins(path, **kwargs):
 	global plugin_path

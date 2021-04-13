@@ -75,6 +75,7 @@ config.misc.graph_mepg.zap_blind_bouquets = ConfigYesNo(default=False)
 
 listscreen = config.misc.graph_mepg.default_mode.value
 
+
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, selChangedCB=None, timer=None, time_epoch=120, overjump_empty=True, epg_bouquet=None):
 		GUIComponent.__init__(self)
@@ -171,62 +172,90 @@ class EPGList(HTMLComponent, GUIComponent):
 	def applySkin(self, desktop, screen):
 		def EntryForegroundColor(value):
 			self.foreColor = parseColor(value).argb()
+
 		def EntryForegroundColorSelected(value):
 			self.foreColorSelected = parseColor(value).argb()
+
 		def EntryForegroundColorSelectedRec(value):
 			self.foreColorSelectedRec = parseColor(value).argb()
+
 		def EntryBackgroundColor(value):
 			self.backColor = parseColor(value).argb()
+
 		def EntryBackgroundColorSelected(value):
 			self.backColorSelected = parseColor(value).argb()
+
 		def EntryBorderColor(value):
 			self.borderColor = parseColor(value).argb()
+
 		def EntryFont(value):
 			font = parseFont(value, ((1, 1), (1, 1)))
 			self.entryFontName = font.family
 			self.entryFontSize = font.pointSize
+
 		def ServiceForegroundColor(value):
 			self.foreColorService = parseColor(value).argb()
+
 		def ServiceNameForegroundColor(value):
 			self.foreColorService = parseColor(value).argb()
+
 		def ServiceForegroundColorSelected(value):
 			self.foreColorServiceSelected = parseColor(value).argb()
+
 		def ServiceBackgroundColor(value):
 			self.backColorService = parseColor(value).argb()
+
 		def ServiceNameBackgroundColor(value):
 			self.backColorService = parseColor(value).argb()
+
 		def ServiceBackgroundColorSelected(value):
 			self.backColorServiceSelected = parseColor(value).argb()
+
 		def ServiceBackgroundColorRecording(value):
 			self.backColorRec = parseColor(value).argb()
+
 		def ServiceNameBackgroundColor(value):
 			self.backColorRec = parseColor(value).argb()
+
 		def ServiceForegroundColorRecording(value):
 			self.foreColorRec = parseColor(value).argb()
+
 		def ServiceBorderColor(value):
 			self.borderColorService = parseColor(value).argb()
+
 		def ServiceFont(value):
 			self.serviceFont = parseFont(value, ((1, 1), (1, 1)))
+
 		def EntryBackgroundColorNow(value):
 			self.backColorNow = parseColor(value).argb()
+
 		def EntryForegroundColorNow(value):
 			self.foreColorNow = parseColor(value).argb()
+
 		def ServiceBorderVerWidth(value):
 			self.serviceBorderVerWidth = int(value)
+
 		def ServiceBorderHorWidth(value):
 			self.serviceBorderHorWidth = int(value)
+
 		def ServiceNamePadding(value):
 			self.serviceNamePadding = int(value)
+
 		def EventBorderHorWidth(value):
 			self.eventBorderHorWidth = int(value)
+
 		def EventBorderVerWidth(value):
 			self.eventBorderVerWidth = int(value)
+
 		def EventNamePadding(value):
 			self.eventNamePadding = int(value)
+
 		def RecIconSize(value):
 			self.recIconSize = int(value)
+
 		def IconXPadding(value):
 			self.iconXPadding = int(value)
+
 		def IconYPadding(value):
 			self.iconYPadding = int(value)
 		for (attrib, value) in list(self.skinAttributes):
@@ -709,6 +738,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def resetOffset(self):
 		self.offs = 0
 
+
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
@@ -726,8 +756,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 	def applySkin(self, desktop, screen):
 		def foregroundColor(value):
 			self.foreColor = parseColor(value).argb()
+
 		def backgroundColor(value):
 			self.backColor = parseColor(value).argb()
+
 		def font(value):
 			self.font = parseFont(value, ((1, 1), (1, 1)))
 		for (attrib, value) in list(self.skinAttributes):
@@ -813,6 +845,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			timeline_now.visible = config.misc.graph_mepg.show_timelines.value in ("all", "now")
 		else:
 			timeline_now.visible = False
+
 
 class GraphMultiEPG(Screen, HelpableScreen):
 	EMPTY = 0
@@ -1113,6 +1146,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow"][:len(menu)] + (len(menu) - 13) * [""] + keys
 		menu.append((_("Timer Overview"), self.openTimerOverview))
 		menu.append((_("Setup menu"), self.showSetup, "menu"))
+
 		def boxAction(choice):
 			if choice:
 				choice[1]()
@@ -1300,6 +1334,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				menu.append((_("Options disable timer"), "disablerepeatrunning"))
 				buttons.append("yellow")
 			menu.append((_("Timer Overview"), "timereditlist"))
+
 			def timerAction(choice):
 				if choice is not None:
 					if choice[1] == "delete":

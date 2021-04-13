@@ -39,6 +39,7 @@ elif screenwidth and screenwidth > 1024:
 	HDSKIN = True
 ###global
 
+
 class OscamInfo:
 	def __init__(self):
 		pass
@@ -284,6 +285,7 @@ class OscamInfo:
 
 		else:
 			return result[1]
+
 	def getVersion(self):
 		xmldata = self.openWebIF()
 		if xmldata[0]:
@@ -306,6 +308,7 @@ class OscamInfo:
 			return cardTotal
 		else:
 			return None
+
 	def getReaders(self, spec=None):
 		xmldata = self.openWebIF()
 		readers = []
@@ -369,6 +372,7 @@ class OscamInfo:
 		else:
 			return "%s not found" % self.ecminfo
 
+
 class oscMenuList(MenuList):
 	def __init__(self, list, itemH=30):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
@@ -379,6 +383,7 @@ class oscMenuList(MenuList):
 		self.l.setFont(2, self.clientFont)
 		self.l.setFont(3, gFont("Regular", int(12 * f)))
 
+
 class OscamInfoMenu(Screen):
 	sizeX = int(560 * f)
 	sizeY = int(550 * f)
@@ -387,6 +392,7 @@ class OscamInfoMenu(Screen):
 		<widget name="mainmenu" position="0,0" size="%s,%s" transparent="0"/>
 	</screen>
 	""" % (sizeX, sizeY, sizeX, int(450 * f))
+
 	def __init__(self, session):
 		self.session = session
 		self.menu = [_("Show /tmp/ecm.info"), _("Show Clients"), _("Show Readers/Proxies"), _("Show Log"), _("Card infos (CCcam-Reader)"), _("ECM Statistics"), _("Setup")]
@@ -419,10 +425,13 @@ class OscamInfoMenu(Screen):
 	def ok(self):
 		selected = self["mainmenu"].getSelectedIndex()
 		self.goEntry(selected)
+
 	def cancel(self):
 		self.close()
+
 	def exit(self):
 		self.close()
+
 	def keyNumberGlobal(self, num):
 		if num == 0:
 			numkey = 10
@@ -435,19 +444,25 @@ class OscamInfoMenu(Screen):
 	def red(self):
 		self["mainmenu"].moveToIndex(0)
 		self.goEntry(0)
+
 	def green(self):
 		self["mainmenu"].moveToIndex(1)
 		self.goEntry(1)
+
 	def yellow(self):
 		self["mainmenu"].moveToIndex(2)
 		self.goEntry(2)
+
 	def blue(self):
 		self["mainmenu"].moveToIndex(3)
 		self.goEntry(3)
+
 	def up(self):
 		pass
+
 	def down(self):
 		pass
+
 	def goEntry(self, entry):
 		if entry in (1, 2, 3) and config.oscaminfo.userdatafromconf.value and self.osc.confPath()[0] is None:
 			config.oscaminfo.userdatafromconf.setValue(False)
@@ -540,12 +555,14 @@ class OscamInfoMenu(Screen):
 		self["mainmenu"].l.setList(entr)
 		self["mainmenu"].moveToIndex(0)
 
+
 class oscECMInfo(Screen, OscamInfo):
 	skin = """
 	<screen name="oscECMInfo" position="center,center" size="%s,%s">
 		<widget name="output" position="0,0" size="%s,%s" transparent="0"/>
 	</screen>
 	""" % (int(560 * f), int(550 * f), int(560 * f), int(450 * f))
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.ecminfo = "/tmp/ecm.info"
@@ -583,6 +600,7 @@ class oscECMInfo(Screen, OscamInfo):
 		self["output"].l.setItemHeight(int(30 * f))
 		self["output"].l.setList(out)
 		self["output"].selectionEnabled(False)
+
 
 class oscInfo(Screen, OscamInfo):
 	def __init__(self, session, what):
@@ -838,6 +856,7 @@ class oscInfo(Screen, OscamInfo):
 			else:
 				self["output"].moveToIndex(len(self.out) - 1)
 
+
 class oscEntitlements(Screen, OscamInfo):
 	global HDSKIN, sizeH
 	sizeLH = sizeH - 20
@@ -877,6 +896,7 @@ class oscEntitlements(Screen, OscamInfo):
 				</convert>
 			</widget>
 		</screen>""" % (sizeH, sizeLH)
+
 	def __init__(self, session, reader):
 		global HDSKIN, sizeH
 		Screen.__init__(self, session)
@@ -978,6 +998,7 @@ class oscEntitlements(Screen, OscamInfo):
 		title = [_("Reader"), self.cccamreader, _("Cards:"), cardTotal, _("Server:"), hostadr]
 		self.setTitle(" ".join(title))
 
+
 class oscReaderStats(Screen, OscamInfo):
 	global HDSKIN, sizeH
 	sizeLH = sizeH - 20
@@ -1012,6 +1033,7 @@ class oscReaderStats(Screen, OscamInfo):
 				</convert>
 			</widget>
 		</screen>""" % (sizeH, sizeLH)
+
 	def __init__(self, session, reader):
 		global HDSKIN, sizeH
 		Screen.__init__(self, session)
@@ -1134,6 +1156,7 @@ class oscReaderStats(Screen, OscamInfo):
 		title = [_("Reader Statistics"), title2]
 		self.setTitle(" ".join(title))
 
+
 class OscamInfoConfigScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen name="OscamInfoConfigScreen" position="center,center" size="%s,%s">
@@ -1145,6 +1168,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 		<widget source="key_green" render="Label" position="%s,e-40" zPosition="1" size="%s,%s" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1"/>
 	</screen>
 	""" % (int(760 * f), int(550 * f), int(760 * f), int(250 * f), int(390 * f), int(703 * f), int(240 * f), int(140 * f), int(40 * f), int(140 * f), int(40 * f), int(140 * f), int(140 * f), int(40 * f), int(140 * f), int(140 * f), int(40 * f))
+
 	def __init__(self, session, msg=None):
 		Screen.__init__(self, session)
 		self.session = session

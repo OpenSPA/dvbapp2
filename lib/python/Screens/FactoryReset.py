@@ -3,6 +3,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Components.config import config
 from boxbranding import getMachineBrand, getMachineName
 
+
 class FactoryReset(MessageBox, ProtectedScreen):
 	def __init__(self, session):
 		MessageBox.__init__(self, session, _("When you do a factory reset, you will lose ALL your configuration data\n"

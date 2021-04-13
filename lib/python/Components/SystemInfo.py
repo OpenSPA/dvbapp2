@@ -10,11 +10,14 @@ from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType
 SystemInfo = {}
 
 #FIXMEE...
+
+
 def getNumVideoDecoders():
 	idx = 0
 	while fileExists("/dev/dvb/adapter0/video%d" % idx, 'f'):
 		idx += 1
 	return idx
+
 
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
 SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
@@ -31,6 +34,7 @@ def countFrontpanelLEDs():
 
 	return leds
 
+
 def haveInitCam():
 	for cam in listdir("/etc/init.d"):
 		if cam.startswith('softcam.') and not cam.endswith('None'):
@@ -40,6 +44,7 @@ def haveInitCam():
 		else:
 			pass
 	return False
+
 
 SystemInfo["HasTuners"] = fileCheck("/dev/dvb/adapter0/frontend0") and fileCheck("/proc/bus/nim_sockets")
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()

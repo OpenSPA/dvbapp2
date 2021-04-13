@@ -44,6 +44,7 @@ config.misc.epgcachepath = ConfigSelection(default='/etc/enigma2/', choices=hddc
 config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 
+
 def EpgSettingsChanged(configElement):
 	mask = 0xffffffff
 	if not config.epg.eit.value:
@@ -59,6 +60,8 @@ def EpgSettingsChanged(configElement):
 	if not config.epg.virgin.value:
 		mask &= ~(eEPGCache.VIRGIN_NOWNEXT | eEPGCache.VIRGIN_SCHEDULE)
 	eEPGCache.getInstance().setEpgSources(mask)
+
+
 config.epg.eit.addNotifier(EpgSettingsChanged)
 config.epg.mhw.addNotifier(EpgSettingsChanged)
 config.epg.freesat.addNotifier(EpgSettingsChanged)
@@ -67,14 +70,23 @@ config.epg.netmed.addNotifier(EpgSettingsChanged)
 config.epg.virgin.addNotifier(EpgSettingsChanged)
 
 config.epg.maxdays = ConfigSelectionNumber(min=1, max=30, stepwidth=1, default=3, wraparound=True)
+
+
 def EpgmaxdaysChanged(configElement):
 	eEPGCache.getInstance().setEpgmaxdays(config.epg.maxdays.getValue())
+
+
 config.epg.maxdays.addNotifier(EpgmaxdaysChanged)
 
 config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
+
+
 def EpgHistorySecondsChanged(configElement):
 	eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue() * 60)
+
+
 config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
+
 
 def mountp():
 	pathmp = []
@@ -86,11 +98,13 @@ def mountp():
 	pathmp.append('/usr/share/enigma2/')
 	return pathmp
 
+
 def _(txt):
 	t = gettext.dgettext('messages', txt)
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
+
 
 class Ttimer(Screen):
 	skin = """<screen name="Ttimer" position="center,center" zPosition="10" size="1280,720" title="Update EPG" backgroundColor="#ff000000" flags="wfNoBorder">
@@ -145,7 +159,9 @@ class Ttimer(Screen):
 			self.TimerTemp.callback.append(self.session.open(TryQuitMainloop, 3))
 			self.TimerTemp.startLongTimer(2)
 
+
 pdialog = ''
+
 
 class runDialog:
 
@@ -163,6 +179,7 @@ class runDialog:
 
 
 rDialog = runDialog()
+
 
 class EPGScreen(Screen, ConfigListScreen):
 	skin = """
@@ -263,6 +280,7 @@ class EPGScreen(Screen, ConfigListScreen):
 
 	def restart(self):
 		self.session.open(TryQuitMainloop, 3)
+
 
 class ViewLog(Screen):
 	skin = """

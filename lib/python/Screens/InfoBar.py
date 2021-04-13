@@ -37,6 +37,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 profile("LOAD:HelpableScreen")
 from Screens.HelpMenu import HelpableScreen
 
+
 class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
 	InfoBarInstantRecord, InfoBarAudioSelection, InfoBarRedButton, InfoBarTimerButton, InfoBarResolutionSelection, InfoBarAspectSelection, InfoBarVmodeButton,
@@ -195,6 +196,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		except Exception, e:
 			self.session.open(MessageBox, _("The SimpleUmount plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
+
 def setAudioTrack(service):
 	try:
 		from Tools.ISO639 import LanguageCodes as langC
@@ -246,6 +248,7 @@ def setAudioTrack(service):
 	except Exception, e:
 		print("[MoviePlayer] audioTrack exception:\n" + str(e))
 
+
 def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
 	for entry in audiolang:
 		if caudiolang:
@@ -273,6 +276,7 @@ def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
 					tracks.selectTrack(x[0])
 					return True
 	return False
+
 
 class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
 		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, InfoBarResolutionSelection, HelpableScreen, InfoBarNotifications,

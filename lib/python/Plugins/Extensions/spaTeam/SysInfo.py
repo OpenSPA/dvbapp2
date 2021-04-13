@@ -13,6 +13,7 @@ from os import system, path, remove
 from bitrate import Bitrate
 from time import *
 
+
 class SysInfo(Screen):
 	skin = """
 		<screen name="SySInfo" position="0,0" size="1280,720" flags="wfNoBorder" backgroundColor="background" title="">

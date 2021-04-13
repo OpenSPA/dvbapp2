@@ -21,6 +21,7 @@ from re import search
 
 import time
 
+
 def parse_ipv4(ip):
 	ret = ""
 	idx = 0
@@ -33,6 +34,7 @@ def parse_ipv4(ip):
 			idx += 1
 	return ret
 
+
 def parseFile(filename):
 	ret = "N/A"
 	try:
@@ -42,6 +44,7 @@ def parseFile(filename):
 	except IOError:
 		print "[ERROR] failed to open file %s" % filename
 	return ret
+
 
 def parseLines(filename):
 	ret = ["N/A"]
@@ -53,6 +56,7 @@ def parseLines(filename):
 		print "[ERROR] failed to open file %s" % filename
 	return ret
 
+
 def MyDateConverter(StringDate):
 	## StringDate must be a string "YYYY-MM-DD"
 	try:
@@ -61,6 +65,7 @@ def MyDateConverter(StringDate):
 		return StringDate
 	except:
 		return _("unknown")
+
 
 def getAboutText():
 	AboutText = ""
@@ -255,12 +260,14 @@ def getAboutText():
 
 	return AboutText, AboutLcdText
 
+
 def find_rootfssubdir(file):
 	startup_content = read_startup("/boot/" + file)
 	rootsubdir = startup_content[startup_content.find("rootsubdir=") + 11:].split()[0]
 	if rootsubdir.startswith("linuxrootfs"):
 		return rootsubdir
 	return
+
 
 def read_startup(FILE):
 	file = FILE
@@ -272,6 +279,7 @@ def read_startup(FILE):
 		print "[ERROR] failed to open file %s" % file
 		data = " "
 	return data
+
 
 class About(Screen):
 	def __init__(self, session):
@@ -294,7 +302,6 @@ class About(Screen):
 				"green": self.showTranslationInfo,
 				"0": self.showID,
 			})
-
 
 	def populate(self):
 		self["lab1"] = StaticText(_("openSPA"))
@@ -329,6 +336,7 @@ class About(Screen):
 
 	def pageDown(self):
 		self["AboutScrollLabel"].pageDown()
+
 
 class Devices(Screen):
 	def __init__(self, session):
@@ -474,6 +482,7 @@ class Devices(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -556,6 +565,7 @@ class SystemMemoryInfo(Screen):
 
 	def pageDown(self):
 		self["AboutScrollLabel"].pageDown()
+
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
@@ -804,6 +814,7 @@ class SystemNetworkInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -812,6 +823,7 @@ class AboutSummary(Screen):
 		AboutText = getAboutText()[1]
 
 		self["AboutText"] = StaticText(AboutText)
+
 
 class ViewGitLog(Screen):
 	def __init__(self, session, args=None):
@@ -878,6 +890,7 @@ class ViewGitLog(Screen):
 
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
+
 
 class TranslationInfo(Screen):
 	def __init__(self, session):

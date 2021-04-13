@@ -26,6 +26,7 @@ from enigma import eServiceCenter, eEPGCache
 import Tools.CopyFiles
 import os
 
+
 class TimerEditList(Screen):
 	EMPTY = 0
 	ENABLE = 1
@@ -454,7 +455,6 @@ class TimerEditList(Screen):
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
 
-
 	def finishedEdit(self, answer):
 		if answer[0]:
 			entry = answer[1]
@@ -507,6 +507,7 @@ class TimerEditList(Screen):
 	def onStateChange(self, entry):
 		self.refill()
 		self.updateState()
+
 
 class TimerSanityConflict(Screen):
 	EMPTY = 0
@@ -656,6 +657,7 @@ class TimerSanityConflict(Screen):
 				self.removeAction("blue")
 				self["key_blue"].setText(" ")
 				self.key_blue_choice = self.EMPTY
+
 
 class TimerEditListSummary(Screen):
 	def __init__(self, session, parent):

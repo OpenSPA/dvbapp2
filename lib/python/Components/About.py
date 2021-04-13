@@ -6,11 +6,14 @@ import struct
 import time
 import os
 
+
 def getImageVersionString():
 	return getImageVersion()
 
+
 def getVersionString():
 	return getImageVersion()
+
 
 def getFlashDateString():
 	try:
@@ -22,12 +25,15 @@ def getFlashDateString():
 	except:
 		return _("unknown")
 
+
 def getEnigmaVersionString():
 	return getImageVersion()
+
 
 def getGStreamerVersionString():
 	import enigma
 	return enigma.getGStreamerVersionString()
+
 
 def getKernelVersionString():
 	try:
@@ -38,9 +44,11 @@ def getKernelVersionString():
 	except:
 		return _("unknown")
 
+
 def getModelString():
 	model = getBoxType()
 	return model
+
 
 def getChipSetString():
 	if getMachineBuild() in ('dm7080', 'dm820'):
@@ -61,6 +69,7 @@ def getChipSetString():
 			return str(chipset.lower().replace('\n', '').replace('bcm', '').replace('brcm', '').replace('sti', ''))
 		except IOError:
 			return _("unavailable")
+
 
 def getCPUSpeedString():
 	if getMachineBuild() in ('u41', 'u42', 'u43'):
@@ -107,6 +116,7 @@ def getCPUSpeedString():
 		except IOError:
 			return _("unavailable")
 
+
 def getCPUString():
 	if getMachineBuild() in ('vuduo4k', 'osmio4k', 'osmio4kplus', 'osmini4k', 'dags72604', 'vuuno4kse', 'vuuno4k', 'vuultimo4k', 'vusolo4k', 'vuzero4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'et1x000', 'xc7439', 'h7', '8100s', 'et13000', 'sf5008'):
 		return "Broadcom"
@@ -132,6 +142,7 @@ def getCPUString():
 		except IOError:
 			return _("unavailable")
 
+
 def getCpuCoresString():
 	try:
 		file = open('/proc/cpuinfo', 'r')
@@ -154,6 +165,7 @@ def getCpuCoresString():
 	except IOError:
 		return _("unavailable")
 
+
 def _ifinfo(sock, addr, ifname):
 	iface = struct.pack('256s', ifname[:15])
 	info = fcntl.ioctl(sock.fileno(), addr, iface)
@@ -161,6 +173,7 @@ def _ifinfo(sock, addr, ifname):
 		return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1].upper()
 	else:
 		return socket.inet_ntoa(info[20:24])
+
 
 def getIfConfig(ifname):
 	ifreq = {'ifname': ifname}
@@ -179,6 +192,7 @@ def getIfConfig(ifname):
 	sock.close()
 	return ifreq
 
+
 def getIfTransferredData(ifname):
 	f = open('/proc/net/dev', 'r')
 	for line in f:
@@ -187,6 +201,7 @@ def getIfTransferredData(ifname):
 			rx_bytes, tx_bytes = (data[0], data[8])
 			f.close()
 			return rx_bytes, tx_bytes
+
 
 def getHardwareTypeString():
 	try:
@@ -202,12 +217,14 @@ def getHardwareTypeString():
 		pass
 	return _("unavailable")
 
+
 def getImageTypeString():
 	try:
 		return open("/etc/issue").readlines()[-2].capitalize().strip()[:-6]
 	except:
 		pass
 	return _("undefined")
+
 
 def getPythonVersionString():
 	try:
@@ -216,6 +233,7 @@ def getPythonVersionString():
 		return output.split(' ')[1]
 	except:
 		return _("unknown")
+
 
 # For modules that do "from About import about"
 about = modules[__name__]

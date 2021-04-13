@@ -65,6 +65,7 @@ class ActionMap:
 	def destroy(self):
 		pass
 
+
 class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		if action in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9") and action in self.actions:

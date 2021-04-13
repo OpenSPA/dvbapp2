@@ -3,6 +3,7 @@ from os import listdir as os_listdir, path as os_path
 from re import compile as re_compile
 from enigma import eEnv
 
+
 class Keyboard:
 	def __init__(self):
 		self.keyboardmaps = []
@@ -41,5 +42,6 @@ class Keyboard:
 
 	def getDefaultKeyboardMap(self):
 		return 'default.kmap'
+
 
 keyboard = Keyboard()

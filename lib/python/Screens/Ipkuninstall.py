@@ -13,6 +13,7 @@ from os import system
 
 menuid = 0
 
+
 class Ipkuninstall(Screen):
 	skin = """
 		<screen name="Ipkuninstall" position="center,center" size="530,400" title="Ipk Uninstaller - Main Menu" >
@@ -90,6 +91,7 @@ class Ipkuninstall(Screen):
 
 	def exit(self):
 		self.close()
+
 
 class IpkuninstallList(Screen):
 	skin = """

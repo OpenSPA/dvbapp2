@@ -13,6 +13,7 @@ try:
 except:
 	streamList = []
 
+
 class StreamingClientsInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -113,7 +114,6 @@ class StreamingClientsInfo(Screen):
 							if x in streamList:
 								streamList.remove(x)
 				self.updateClients()
-
 
 	def stopAllStreams(self):
 		self.updateClients()

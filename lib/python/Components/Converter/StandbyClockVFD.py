@@ -3,6 +3,7 @@ from Components.Element import cached
 from time import localtime, strftime
 from Components.config import config
 
+
 class StandbyClockVFD(Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)

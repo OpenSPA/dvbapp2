@@ -16,6 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
+
 def getButtonSetupKeys():
 	return [(_("Red"), "red", ""),
 		(_("Red long"), "red_long", ""),
@@ -146,10 +147,12 @@ def getButtonSetupKeys():
 		(_("ZOOM"), "zoom", ""),
 		(_("ZOOM long"), "zoom_long", "")]
 
+
 config.misc.ButtonSetup = ConfigSubsection()
 config.misc.ButtonSetup.additional_keys = ConfigYesNo(default=True)
 for x in getButtonSetupKeys():
 	exec "config.misc.ButtonSetup." + x[1] + " = ConfigText(default='" + x[2] + "')"
+
 
 def getButtonSetupFunctions():
 	ButtonSetupFunctions = []
@@ -284,6 +287,7 @@ def getButtonSetupFunctions():
 		ButtonSetupFunctions.append((_("Youtube TV"), "YoutubeTV/", "Plugins"))
 	return ButtonSetupFunctions
 
+
 class ButtonSetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
@@ -350,6 +354,7 @@ class ButtonSetup(Screen):
 				if function:
 					selected.append(ChoiceEntryComponent('', ((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
+
 
 class ButtonSetupSelect(Screen):
 	def __init__(self, session, key, args=None):
@@ -500,6 +505,7 @@ class ButtonSetupSelect(Screen):
 	def cancelCallback(self, answer):
 		answer and self.close()
 
+
 class ButtonSetupActionMap(ActionMap):
 	def action(self, contexts, action):
 		if (action in tuple(x[1] for x in getButtonSetupKeys()) and self.actions.has_key(action)):
@@ -510,6 +516,7 @@ class ButtonSetupActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+
 class helpableButtonSetupActionMap(HelpableActionMap):
 	def action(self, contexts, action):
 		if (action in tuple(x[1] for x in getButtonSetupKeys()) and self.actions.has_key(action)):
@@ -519,6 +526,7 @@ class helpableButtonSetupActionMap(HelpableActionMap):
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
+
 
 class InfoBarButtonSetup():
 	def __init__(self):

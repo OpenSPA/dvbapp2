@@ -1,6 +1,7 @@
 import sys
 from enigma import ePythonOutput
 
+
 class EnigmaOutput:
 	def __init__(self):
 		self.buf = ''
@@ -35,5 +36,6 @@ class EnigmaOutput:
 
 	def isatty(self):
 		return True
+
 
 sys.stdout = sys.stderr = EnigmaOutput()

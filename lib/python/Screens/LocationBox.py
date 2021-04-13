@@ -31,6 +31,7 @@ from enigma import eTimer
 
 defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 
+
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
 
@@ -521,8 +522,10 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def __repr__(self):
 		return str(type(self)) + "(" + self.text + ")"
 
+
 def MovieLocationBox(session, text, dir, minFree=None):
 	return LocationBox(session, text=text, currDir=dir, bookmarks=config.movielist.videodirs, autoAdd=True, editDir=True, inhibitDirs=defaultInhibitDirs, minFree=minFree)
+
 
 class EPGLocationBox(LocationBox):
 	def __init__(self, session):
@@ -549,6 +552,7 @@ class EPGLocationBox(LocationBox):
 			config.misc.epgcachepath.save()
 			LocationBox.selectConfirmed(self, ret)
 
+
 class PiconLocationBox(LocationBox):
 	def __init__(self, session):
 		LocationBox.__init__(
@@ -574,6 +578,7 @@ class PiconLocationBox(LocationBox):
 			config.misc.picon_path.save()
 			LocationBox.selectConfirmed(self, ret)
 
+
 class TimeshiftLocationBox(LocationBox):
 	def __init__(self, session):
 		LocationBox.__init__(
@@ -598,6 +603,7 @@ class TimeshiftLocationBox(LocationBox):
 			config.usage.timeshift_path.value = self.getPreferredFolder()
 			config.usage.timeshift_path.save()
 			LocationBox.selectConfirmed(self, ret)
+
 
 class AutorecordLocationBox(LocationBox):
 	def __init__(self, session):

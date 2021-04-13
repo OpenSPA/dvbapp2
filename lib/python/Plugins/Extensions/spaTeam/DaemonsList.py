@@ -16,6 +16,7 @@ from enigma import *
 import os
 import sys
 
+
 def DaemonEntry(name, picture, description, started, installed):
 	res = [(name,
 		picture,
@@ -40,6 +41,7 @@ def DaemonEntry(name, picture, description, started, installed):
 		res.append(MultiContentEntryPixmapAlphaTest(pos=(500, 10), size=(24, 24), png=loadPNG(picture2)))
 
 	return res
+
 
 class DaemonsList(Screen):
 	skin = """

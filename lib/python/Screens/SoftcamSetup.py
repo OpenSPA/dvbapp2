@@ -17,6 +17,7 @@ config.plugins.softcam.cccaminfo = ConfigYesNo(default=False)
 config.plugins.softcam.oscaminfo = ConfigYesNo(default=False)
 config.plugins.softcam.ncaminfo = ConfigYesNo(default=False)
 
+
 class SoftcamSetup(Screen, ConfigListScreen):
 	skin = """
 	<screen name="SoftcamSetup" position="center,center" size="560,550" >
@@ -31,6 +32,7 @@ class SoftcamSetup(Screen, ConfigListScreen):
 			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 

@@ -26,6 +26,7 @@ from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImage
 
 VERSION = _("Version %s %s") % (getImageDistro(), getImageVersion())
 
+
 class ImageBackup(Screen):
 
 	skin = """

@@ -15,6 +15,7 @@ config.misc.picon_search_hdd = ConfigYesNo(default=False)
 searchPaths = []
 lastPiconPath = None
 
+
 def initPiconPaths():
 	global searchPaths
 	searchPaths = []
@@ -25,6 +26,7 @@ def initPiconPaths():
 		if not part.mountpoint.startswith('/media/hdd/') or config.misc.picon_search_hdd.value == True: 
 			onMountpointAdded(part.mountpoint)
 			onMountpointAdded(mp)
+
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
@@ -60,6 +62,7 @@ def onMountpointAdded(mountpoint):
 	except Exception, ex:
 		print "[Picon] Failed to investigate %s:" % mountpoint, ex
 
+
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	path = os.path.join(mountpoint, 'picon') + '/'
@@ -69,11 +72,13 @@ def onMountpointRemoved(mountpoint):
 	except:
 		pass
 
+
 def onPartitionChange(why, part):
 	if why == 'add':
 		onMountpointAdded(part.mountpoint)
 	elif why == 'remove':
 		onMountpointRemoved(part.mountpoint)
+
 
 def findPicon(serviceName):
 	global lastPiconPath
@@ -97,6 +102,7 @@ def findPicon(serviceName):
 	if pathExists(pngname):
 		return pngname
 	return ""
+
 
 def getPiconName(serviceName):
 	#remove the path and name fields, and replace ':' by '_'
@@ -125,6 +131,7 @@ def getPiconName(serviceName):
 			if not pngname and len(name) > 2 and name.endswith('hd'):
 				pngname = findPicon(name[:-2])
 	return pngname
+
 
 class Picon(Renderer):
 	def __init__(self):
@@ -195,10 +202,12 @@ class Picon(Renderer):
 						self.instance.hide()
 					self.pngname = pngname
 
+
 def setPiconPath():
 	global lastPiconPath
 	lastPiconPath = None
 	initPiconPaths()
+
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()

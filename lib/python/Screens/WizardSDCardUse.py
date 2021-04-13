@@ -14,7 +14,6 @@ config.plugins.sdcard.epg = NoSave(ConfigYesNo(default=True))
 
 class WizardSDCardUse(Screen, ConfigListScreen):
 
-
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 
@@ -25,7 +24,6 @@ class WizardSDCardUse(Screen, ConfigListScreen):
 			self.createconfig()
 		else:
 			self.close()
-
 
 	def createconfig(self):
 		if not path.exists("/.kodi"):

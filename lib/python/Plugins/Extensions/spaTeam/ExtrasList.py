@@ -8,6 +8,7 @@ from Tools.Directories import fileExists
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from enigma import *
 
+
 def SimpleEntry(name, picture):
 	res = [(name, picture)]
 	picture = '/usr/lib/enigma2/python/Plugins/Extensions/spaTeam/icons/' + picture
@@ -20,6 +21,7 @@ def SimpleEntry(name, picture):
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(48, 48), png=loadPNG(picture)))
 		res.append(MultiContentEntryText(pos=(60, 10), size=(420, 38), font=0, text=name))
 	return res
+
 
 class ExtrasList(MenuList, HTMLComponent, GUIComponent):
 	def __init__(self, list, enableWrapAround=False):

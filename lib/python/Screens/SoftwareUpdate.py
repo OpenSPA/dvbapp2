@@ -17,6 +17,7 @@ from Tools.HardwareInfo import HardwareInfo
 from enigma import eTimer, eDVBDB
 from boxbranding import getBoxType
 
+
 class UpdatePlugin(Screen, ProtectedScreen):
 	skin = """
 		<screen name="UpdatePlugin" position="center,center" size="550,300">

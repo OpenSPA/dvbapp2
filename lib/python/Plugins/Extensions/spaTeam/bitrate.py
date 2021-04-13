@@ -2,6 +2,7 @@
 
 from enigma import eConsoleAppContainer, iServiceInformation
 
+
 class Bitrate:
 	def __init__(self, session, refresh_func=None, finished_func=None):
 		self.session = session

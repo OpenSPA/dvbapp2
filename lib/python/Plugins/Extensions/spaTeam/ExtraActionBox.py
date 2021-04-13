@@ -5,6 +5,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from enigma import eTimer
 
+
 class ExtraActionBox(Screen):
 	skin = """
 		<screen name="ExtraActionBox" position="360,325" size="560,70" title=" ">

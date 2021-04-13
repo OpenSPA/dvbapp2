@@ -13,6 +13,7 @@ from enigma import getPeerStreamingBoxes
 
 import re
 
+
 class FallbackTunerSetup(ConfigListScreen, Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)

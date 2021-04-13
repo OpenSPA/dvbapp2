@@ -1,5 +1,6 @@
 from Components.Element import Element
 
+
 class Source(Element):
 	def execBegin(self):
 		pass
@@ -17,6 +18,7 @@ class Source(Element):
 		self.__dict__.clear()
 
 	boolean = True
+
 
 class ObsoleteSource(Source):
 	def __init__(self, new_source, description=None, removal_date="as soon as possible"):

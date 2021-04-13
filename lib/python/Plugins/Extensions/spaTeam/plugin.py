@@ -92,6 +92,7 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.p
 else:
 	SATFINDER = False
 
+
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -100,6 +101,7 @@ def isFileSystemSupported(filesystem):
 		return False
 	except Exception, ex:
 		print "[Harddisk] Failed to read /proc/filesystems:", ex
+
 
 def Check_Softcam():
 	found = False
@@ -114,6 +116,7 @@ def Check_Softcam():
 				found = True
 				break
 	return found
+
 
 def Check_SysSoftcam():
 	syscam = "none"
@@ -131,6 +134,7 @@ def Check_SysSoftcam():
 				pass
 	return syscam
 
+
 # Hide Keymap selection when no other keymaps installed.
 if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
 	if not path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.usr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.usr"):
@@ -140,10 +144,12 @@ if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
 	if not path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
 		setDefaultKeymap()
 
+
 def setDefaultKeymap():
 	print "[spaTeam] Set Keymap to Default"
 	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 	config.save()
+
 
 class spaMenu(Screen, ProtectedScreen):
 	skin = """
@@ -924,6 +930,7 @@ def spaMenuEntryComponent(name, description, long_description=None, width=540):
 			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 
+
 def spaSubMenuEntryComponent(name, description, long_description=None, width=540):
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
@@ -942,6 +949,7 @@ def spaSubMenuEntryComponent(name, description, long_description=None, width=540
 			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 		]
 
+
 class spaMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
@@ -955,6 +963,7 @@ class spaMenuList(MenuList):
 			self.l.setFont(1, gFont("Regular", 16))
 			self.l.setItemHeight(50)
 
+
 class spaMenuSubList(MenuList):
 	def __init__(self, sublist, enableWrapAround=True):
 		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
@@ -967,6 +976,7 @@ class spaMenuSubList(MenuList):
 			self.l.setFont(0, gFont("Regular", 20))
 			self.l.setFont(1, gFont("Regular", 16))
 			self.l.setItemHeight(50)
+
 
 class spaMenuDevices(Screen):
 	skin = """
@@ -1108,6 +1118,7 @@ class spaMenuDevices(Screen):
 			res = (name, des, png)
 			self.devicelist.append(res)
 
+
 class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -1229,14 +1240,17 @@ class KeymapSel(ConfigListScreen, Screen):
 		else:
 			self.close()
 
+
 def panel(menuid, **kwargs):
 	if menuid == "mainmenu":
 		return [(_("OpenSPA Panel"), main, "spaTeam", 3)]
 	else:
 		return []
 
+
 def main(session, **kwargs):
 	session.open(spaMenu)
+
 
 def Plugins(**kwargs):
 	return [

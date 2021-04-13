@@ -47,6 +47,8 @@ SPACE = u"SPACEICON"  # Symbol to be used for a SPACE on the keyboard.  Must be 
 
 # For more information about using VirtualKeyBoard see /doc/VIRTUALKEYBOARD
 #
+
+
 class VirtualKeyBoard(Screen, HelpableScreen):
 	def __init__(self, session, title=_("Virtual KeyBoard Text:"), text="", maxSize=False, visible_width=False, type=Input.TEXT, currPos=-1, allMarked=False, style=VKB_ENTER_ICON):
 		Screen.__init__(self, session)

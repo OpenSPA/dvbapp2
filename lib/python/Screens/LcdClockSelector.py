@@ -8,6 +8,7 @@ from Tools.Directories import resolveFilename
 from os import path, walk
 from enigma import eEnv
 
+
 class LCDClockSelector(Screen):
 	skin = """
 		<screen name="LCDClockSelector" position="center,center" size="700,350" title="LCD Clock-Selector" >

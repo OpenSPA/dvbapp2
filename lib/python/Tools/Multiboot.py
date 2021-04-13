@@ -7,6 +7,7 @@ import time
 import shutil
 import subprocess
 
+
 def GetCurrentImage():
 	if SystemInfo["canMultiBoot"]:
 		if SystemInfo["HasRootSubdir"]:
@@ -18,18 +19,22 @@ def GetCurrentImage():
 			else:
 				return 0	# if media not in SystemInfo["canMultiBoot"], then using SDcard and Image is in eMMC (1st slot) so tell caller with 0 return
 
+
 def GetCurrentKern():
 	if SystemInfo["HasRootSubdir"]:
 		return SystemInfo["HasRootSubdir"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("kernel=/dev/mmcblk0p")[1].split(' ')[0]))
 	return getMachineMtdKernel()
+
 
 def GetCurrentRoot():
 	if SystemInfo["HasRootSubdir"]:
 		return SystemInfo["HasRootSubdir"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("root=/dev/mmcblk0p")[1].split(' ')[0]))
 	return getMachineMtdRoot()
 
+
 def GetCurrentImageMode():
 	return SystemInfo["canMultiBoot"] and SystemInfo["canMode12"] and int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read().replace('\0', '').split('=')[-1])
+
 
 def GetSTARTUPFile():
 	if SystemInfo["HAScmdline"]:
@@ -37,8 +42,10 @@ def GetSTARTUPFile():
 	else:
 		return "STARTUP"
 
+
 def ReadSTARTUP():
 	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'r').read()
+
 
 def GetBoxName():
 	box = getBoxType()
@@ -70,6 +77,7 @@ def GetBoxName():
 	elif box.startswith('twinboxlcdci'):
 		box = "twinboxlcd"
 	return box
+
 
 class GetImagelist():
 	MOUNT = 0
@@ -289,6 +297,7 @@ class boxbranding_reader:		# many thanks to Huevos for creating this reader - we
 class EmptySlot():
 	MOUNT = 0
 	UNMOUNT = 1
+
 	def __init__(self, Contents, callback):
 		self.callback = callback
 		self.container = Console()
@@ -318,7 +327,6 @@ class EmptySlot():
 		else:
 			self.container.ePopen('mount /dev/%s /tmp/testmount' % self.part if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
 
-	
 	def appClosed(self, data, retval, extra_args):
 		if retval == 0 and self.phase == self.MOUNT:
 			if SystemInfo["HasRootSubdir"]:

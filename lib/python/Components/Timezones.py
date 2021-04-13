@@ -52,6 +52,7 @@ TIMEZONE_FILE = "/etc/timezone.xml"  # This should be SCOPE_TIMEZONES_FILE!  Thi
 TIMEZONE_DATA = "/usr/share/zoneinfo/"  # This should be SCOPE_TIMEZONES_DATA!
 AT_POLL_DELAY = 3  # Minutes
 
+
 def InitTimeZones():
 	tz = geolocation.get("timezone", None)
 	if tz is None:

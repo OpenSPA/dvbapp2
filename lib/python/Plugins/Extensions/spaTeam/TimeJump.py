@@ -19,6 +19,7 @@ config.plugins.timejump.activate = ConfigYesNo(default=True)
 config.plugins.timejump.defaulttime = ConfigSelection(default="0.5", choices=time_options)
 config.plugins.timejump.sensibility = ConfigInteger(default=10, limits=(1, 30))
 
+
 class TimeJump(ConfigListScreen, Screen):
 	skin = """
 	<screen name="TimeJump" position="49,68" size="501,92" title="%s">
@@ -175,6 +176,7 @@ class TimeJump(ConfigListScreen, Screen):
 		else:
 			ConfigListScreen.keyNumberGlobal(self, number)
 
+
 class TimeJumpSetup(ConfigListScreen, Screen):
 	skin = """
 		<screen name="TimeJumpSetup" position="center,center" size="574,165" title="%s">
@@ -220,12 +222,15 @@ class TimeJumpSetup(ConfigListScreen, Screen):
 ##############################################
 # This hack overwrites the functions seekFwdManual and seekBackManual of the InfoBarSeek class (MoviePlayer and DVDPlayer)
 
+
 def timejump(instance, fwd=True):
 	if instance and instance.session:
 		instance.session.open(TimeJump, instance, fwd)
 
+
 def timejumpBack(instance):
 	timejump(instance, False)
+
 
 def init_timejump():
 	global DVDPlayer
@@ -258,10 +263,12 @@ def init_timejump():
 		SimplePlayer.seekBack = timejumpBack
 		SimplePlayer.seekFwd = timejump
 
+
 def TimeJumpAutostart(reason, **kwargs):
 	if config.plugins.timejump.activate.value:
 		if reason == 0: # startup
 			init_timejump()
+
 
 def TimeJumpMain(session, **kwargs):
 	session.open(TimeJumpSetup)

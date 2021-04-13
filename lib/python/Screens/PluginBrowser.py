@@ -46,9 +46,11 @@ config.pluginfilter.systemplugins = ConfigYesNo(default=True)
 config.pluginfilter.weblinks = ConfigYesNo(default=False)
 config.pluginfilter.userfeed = ConfigText(default='http://', fixed_size=False)
 
+
 def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
 
 def CreateFeedConfig():
 	fileconf = "/etc/opkg/user-feed.conf"
@@ -57,6 +59,7 @@ def CreateFeedConfig():
 	f.write(feedurl)
 	f.close()
 	os.system("ipkg update")
+
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
@@ -385,6 +388,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 			else:
 				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
 
+
 class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
 	REMOVE = 1
@@ -654,7 +658,6 @@ class PluginDownloadBrowser(Screen):
 		elif self.type == self.TOOGLE:
 			self.setTitle(_("Hold plugins"))
 
-
 	def startIpkgListInstalled(self, pkgname=PLUGIN_PREFIX + '*'):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed")
 
@@ -868,6 +871,7 @@ class PluginDownloadBrowser(Screen):
 		self.list = list
 		self["list"].l.setList(list)
 
+
 class PluginFilter(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -978,5 +982,6 @@ class PluginFilter(ConfigListScreen, Screen):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].value = callback
 			self["config"].invalidate(self["config"].getCurrent())
+
 
 language.addCallback(languageChanged)

@@ -5,6 +5,7 @@ from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
 import enigma
 
+
 class ChoiceBox(Screen):
 	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text=""):
 		self.setTitle(_("Choice Box"))

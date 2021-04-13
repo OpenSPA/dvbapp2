@@ -22,6 +22,7 @@ config.spateam.cronmanager_runwhen = NoSave(ConfigSelection(default='Daily', cho
 config.spateam.cronmanager_dayofweek = NoSave(ConfigSelection(default='Monday', choices=[('Monday', _("Monday")), ('Tuesday', _("Tuesday")), ('Wednesday', _("Wednesday")), ('Thursday', _("Thursday")), ('Friday', _("Friday")), ('Saturday', _("Saturday")), ('Sunday', _("Sunday"))]))
 config.spateam.cronmanager_dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
 
+
 class CronManager(Screen):
 	skin = """
 		<screen position="center,center" size="590,400" title="Cron Manager">
@@ -43,7 +44,6 @@ class CronManager(Screen):
 			<widget name="key_green" position="300,350" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 			<widget name="key_blue" position="450,350" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		</screen>"""
-
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -265,6 +265,7 @@ class CronManager(Screen):
 
 	def closeRecursive(self):
 		self.close(True)
+
 
 class SetupCronConf(Screen, ConfigListScreen):
 	skin = """

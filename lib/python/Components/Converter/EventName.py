@@ -6,6 +6,7 @@ from Components.Converter.genre import getGenreStringSub
 from Components.config import config
 from time import localtime, mktime
 
+
 class ETSIClassifications(dict):
 	def shortRating(self, age):
 		if age == 0:
@@ -23,6 +24,7 @@ class ETSIClassifications(dict):
 
 	def __init__(self):
 		self.update([(i, (self.shortRating(c), self.longRating(c))) for i, c in enumerate(range(0, 15))])
+
 
 class AusClassifications(dict):
 	# In Australia "Not Classified" (NC) is to be displayed as an empty string.
@@ -51,10 +53,12 @@ class AusClassifications(dict):
 #
 # If there is no matching country then the default ETSI should be selected.
 
+
 countries = {
 	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age)),
 	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age))
 }
+
 
 class EventName(Converter, object):
 	NAME = 0

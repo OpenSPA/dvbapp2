@@ -30,6 +30,7 @@ if getBrandOEM() in ('azbox',):
 else:
 	config.av.edid_override = ConfigYesNo(default=False)
 
+
 class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
 	rates = {} # high-level, use selectable modes.
@@ -76,7 +77,6 @@ class AVSwitch:
 								"60Hz": {60: "2160p"},
 								"multi": {50: "2160p50", 60: "2160p"},
 								"auto": {50: "2160p50", 60: "2160p", 24: "2160p24"}}
-
 
 	rates["2160p30"] = {"25Hz": {50: "2160p25"},
 							"30Hz": {60: "2160p30"},
@@ -491,7 +491,9 @@ class AVSwitch:
 			val = 6
 		return val
 
+
 iAVSwitch = AVSwitch()
+
 
 def InitAVSwitch():
 	if getBoxType() == 'vuduo' or getBoxType().startswith('ixuss'):
@@ -1277,6 +1279,7 @@ def InitAVSwitch():
 
 	iAVSwitch.setConfiguredMode()
 
+
 class VideomodeHotplug:
 	def __init__(self):
 		pass
@@ -1304,16 +1307,20 @@ class VideomodeHotplug:
 			print "[AVSwitch] setting %s/%s/%s" % (port, mode, rate)
 			iAVSwitch.setMode(port, mode, rate)
 
+
 hotplug = None
+
 
 def startHotplug():
 	global hotplug
 	hotplug = VideomodeHotplug()
 	hotplug.start()
 
+
 def stopHotplug():
 	global hotplug
 	hotplug.stop()
+
 
 def InitiVideomodeHotplug(**kwargs):
 	startHotplug()

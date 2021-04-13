@@ -27,6 +27,7 @@ from Tools.BoundFunction import boundFunction
 
 mepg_config_initialized = False
 
+
 class EPGSelection(Screen):
 	EMPTY = 0
 	ADD_TIMER = 1
@@ -380,6 +381,7 @@ class EPGSelection(Screen):
 				menu.append((_("Options disable timer"), "disablerepeatrunning"))
 				buttons.append("yellow")
 			menu.append((_("Timer Overview"), "timereditlist"))
+
 			def timerAction(choice):
 				if choice is not None:
 					if choice[1] == "delete":

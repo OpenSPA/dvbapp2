@@ -9,6 +9,7 @@ from Components.GUIComponent import GUIComponent
 profile("LOAD:eRCInput")
 from enigma import eRCInput
 
+
 class Screen(dict, GUISkin):
 
 	False, SUSPEND_STOPS, SUSPEND_PAUSES = range(3)

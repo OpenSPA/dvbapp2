@@ -17,6 +17,7 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRE
 import os
 from boxbranding import getMachineBrand, getMachineName
 
+
 class SoftwarePanel(Screen):
 
 	def __init__(self, session, *args):
