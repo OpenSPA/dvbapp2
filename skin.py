@@ -729,6 +729,22 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				# print("[Skin] DEBUG: Color name='%s', color='%s'." % (name, color))
 			else:
 				raise SkinError("Tag 'color' needs a name and color, got name='%s' and color='%s'" % (name, color))
+	#mpiero regularHD compatibility check resolution and RegularHD font exist
+	spaRegularHD = 0
+	for tag in domSkin.findall("output"):
+		if str(tag.attrib.get('id')) == "0":
+			for res in tag.findall("resolution"):
+				xres = res.attrib.get("xres")
+				if xres and int(xres) > 1400:
+					spaRegularHD = 1
+	if spaRegularHD == 1:
+		for tag in domSkin.findall("fonts"):
+			for font in tag.findall("font"):
+				if font.attrib.get("name") == "RegularHD":
+					spaRegularHD = 2
+					break
+			if spaRegularHD == 2:
+				break
 	for tag in domSkin.findall("fonts"):
 		for font in tag.findall("font"):
 			filename = font.attrib.get("filename", "<NONAME>")
@@ -748,6 +764,9 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				# print("[Skin] Add font: Font path='%s', name='%s', scale=%d, isReplacement=%s, render=%d." % (filename, name, scale, isReplacement, render))
 			else:
 				raise SkinError("Font file '%s' not found" % filename)
+			#mpiero regularHD compatibility add font RegularHD for plugins in external skin
+			if name == "Regular" and spaRegularHD == 1:
+				addFont(filename, "RegularHD", 150, False, render) 
 		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=pathSkin)
 		if isfile(fallbackFont):
 			addFont(fallbackFont, "Fallback", 100, -1, 0)
