@@ -269,6 +269,9 @@ class Session:
 				import traceback
 				traceback.print_exc()
 
+		from Components.Network import iNetwork
+		iNetwork.getInterfaces()
+
 	def processDelay(self):
 		callback = self.current_dialog.callback
 
