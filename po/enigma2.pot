@@ -18824,3 +18824,24 @@ msgstr ""
 msgid "Tonight at... "
 msgstr ""
 
+msgid "Extra downloads panel"
+msgstr ""
+
+msgid "Change boot video"
+msgstr ""
+
+msgid "Try skin for panel info"
+msgstr ""
+
+msgid "Flash free: "
+msgstr ""
+
+msgid "Dual Mode"
+msgstr ""
+
+msgid ""
+"\n"
+" Do you want to switch Enigma2 with Android...?"
+msgstr ""
+"\n"
+""

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2021-01-26 23:10+0100\n"
+"PO-Revision-Date: 2021-07-07 17:39+0200\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: ca\n"
@@ -6491,7 +6491,7 @@ msgstr "PAL"
 
 #, fuzzy
 msgid "PCM"
-msgstr "Retard general PCM"
+msgstr "convertir a PCM multicanal"
 
 msgid "PCM Multichannel"
 msgstr "PCM Multicanal"
@@ -6642,7 +6642,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Picon"
-msgstr "Sobreescriure els picon?"
+msgstr "Configura l'amplada assignada al picon."
 
 #
 msgid "Picon and Service Name"
@@ -20249,6 +20249,29 @@ msgstr "Demà a les... "
 
 msgid "Tonight at... "
 msgstr "Aquesta nit a les... "
+
+msgid "Extra downloads panel"
+msgstr "Panell de descàrregues extra"
+
+# GraphMultiEpg.py
+msgid "Change boot video"
+msgstr "Canviar bootvideo"
+
+msgid "Try skin for panel info"
+msgstr ""
+
+msgid "Flash free: "
+msgstr "Flash Lliure: "
+
+msgid "Dual Mode"
+msgstr "Anar a Android"
+
+msgid ""
+"\n"
+" Do you want to switch Enigma2 with Android...?"
+msgstr ""
+"\n"
+" Vols canviar d'Enigma2 a Android?"
 
 #~ msgid ""
 #~ "\n"
