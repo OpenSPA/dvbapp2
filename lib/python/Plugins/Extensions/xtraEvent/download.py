@@ -455,40 +455,13 @@ class downloads(Screen):
 					info_files = pathLoc + "infos/{}.json".format(title)
 					if not os.path.exists(info_files):
 						try:
-							url = 'https://www.oscobo.com/search.php?q={}+imdb'.format(title.replace(" ", "+"))
-							headers = {"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"}
-							ff = requests.get(url, stream=True, headers=headers).text
-							p = 'https://www.imdb.com/title/(.*?)</div>'
-							parse = re.search(p, ff)
-							imdb_id = parse.group(1)	
-							if imdb_id:
-								# omdb info(english)
-								url = 'https://www.omdbapi.com/?apikey={}&i={}'.format(str(omdb_api), str(imdb_id))
-								info_omdb = requests.get(url).json()
-								open(info_files,"wb").write(json.dumps(info_omdb))
-								info_downloaded += 1
-								downloaded = info_downloaded
-								self.prgrs(downloaded, n)
-								self['info'].setText(_("{}, downloaded from INFO(OMDB)...".format(title.upper())))
-								
-								# tvdb info(other languages support, just for series)
-								type = info_omdb["Type"]
-								if type == "series":
-									url = "https://thetvdb.com/api/GetSeriesByRemoteID.php?imdbid={}".format(str(imdb_id))
-									url = requests.get(url).text
-									series_id = re.findall('<seriesid>(.*?)</seriesid>', url)[0]
-									if series_id:
-										lang = config.plugins.xtraEvent.searchLang.value
-										if lang == "":
-											lang = "en"
-										url = "https://thetvdb.com/api/{}/series/{}/{}.xml".format(tvdb_api, series_id, lang)
-										u = requests.get(url).text
-										u = u.encode('utf8')
-										info_files = pathLoc + "infos/{}.xml".format(title)
-										open(info_files, "wb").write(u)
-										info_downloaded = downloaded
-										self.prgrs(downloaded, n)
-										self['info'].setText(_("{}, downloaded from INFO(TVDB)...".format(title.upper())))
+							url = "http://www.omdbapi.com/?apikey={}&t={}".format(omdb_api, title)
+							info_omdb = requests.get(url).json()
+							open(info_files,"wb").write(json.dumps(info_omdb))
+							info_downloaded += 1
+							downloaded = info_downloaded
+							self.prgrs(downloaded, n)
+							self['info'].setText(_("{}, downloaded from INFO(OMDB)...".format(title.upper())))
 						except:
 							pass
 					else:
