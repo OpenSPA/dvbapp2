@@ -4667,6 +4667,12 @@ msgstr ""
 msgid "Installing plugins..."
 msgstr ""
 
+msgid "Installing plugins from feed ..."
+msgstr ""
+
+msgid "Installing plugins from IPK ..."
+msgstr ""
+
 msgid "Instant record"
 msgstr ""
 
@@ -15708,6 +15714,9 @@ msgid "Index"
 msgstr ""
 
 msgid "Installing software..."
+msgstr ""
+
+msgid "Installing Software"
 msgstr ""
 
 msgid "Job overview"

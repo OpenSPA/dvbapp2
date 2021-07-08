@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2021-07-03 13:38+0200\n"
+"PO-Revision-Date: 2021-07-08 22:32+0200\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -4895,6 +4895,12 @@ msgstr "Instalando servicio"
 
 msgid "Installing plugins..."
 msgstr "Instalando plugins..."
+
+msgid "Installing plugins from feed ..."
+msgstr "Instalando plugins desde feed..."
+
+msgid "Installing plugins from IPK ..."
+msgstr "Instalando plugins desde IPK ..."
 
 msgid "Instant record"
 msgstr "Grabación instantánea"
@@ -16715,6 +16721,9 @@ msgstr "Índice"
 
 msgid "Installing software..."
 msgstr "Instalando plugins..."
+
+msgid "Installing Software"
+msgstr "Instalando Software"
 
 msgid "Job overview"
 msgstr "Resumen de trabajo"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2021-07-07 17:39+0200\n"
+"PO-Revision-Date: 2021-07-08 22:33+0200\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: ca\n"
@@ -4143,9 +4143,8 @@ msgstr "Actualització d'imatge"
 msgid "Flash On the fly (select a image)"
 msgstr "Actualitzar la imatge (selecciona una imatge)"
 
-#, fuzzy
 msgid "Flash Online"
-msgstr "Actualitzar online des de "
+msgstr "Actualitzar online"
 
 #
 msgid "Flash Online a new image"
@@ -4889,6 +4888,12 @@ msgstr "Instal·lant servei"
 
 msgid "Installing plugins..."
 msgstr "Instal·lant plugins..."
+
+msgid "Installing plugins from feed ..."
+msgstr "Instal·lant plugins desde feed..."
+
+msgid "Installing plugins from IPK ..."
+msgstr "Instal·lant plugins desde IPK..."
 
 msgid "Instant record"
 msgstr "Gravació instantània"
@@ -6491,7 +6496,7 @@ msgstr "PAL"
 
 #, fuzzy
 msgid "PCM"
-msgstr "convertir a PCM multicanal"
+msgstr "Retard general PCM"
 
 msgid "PCM Multichannel"
 msgstr "PCM Multicanal"
@@ -6642,7 +6647,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Picon"
-msgstr "Configura l'amplada assignada al picon."
+msgstr "Sobreescriure els picon?"
 
 #
 msgid "Picon and Service Name"
@@ -16708,6 +16713,9 @@ msgstr "Índex"
 
 msgid "Installing software..."
 msgstr "Instal·lant software..."
+
+msgid "Installing Software"
+msgstr "Instal·lant Software..."
 
 msgid "Job overview"
 msgstr "Resum de tasca"
