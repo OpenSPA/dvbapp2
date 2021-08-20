@@ -1,6 +1,10 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions
 
-SUBDIRS = TuxboxPlugins CutListEditor PicturePlayer MediaScanner MediaPlayer GraphMultiEPG SocketMMI DVDBurn Volume_adjust FileCommander spaTeam xtraEvent
+<<<<<<< HEAD
+SUBDIRS = TuxboxPlugins CutListEditor PicturePlayer MediaScanner MediaPlayer GraphMultiEPG SocketMMI DVDBurn Volume_adjust FileCommander spaTeam
+=======
+SUBDIRS = TuxboxPlugins CutListEditor PicturePlayer MediaScanner MediaPlayer GraphMultiEPG SocketMMI DVDBurn Volume_adjust FileCommander
+>>>>>>> e0e9dfe0e... [xtraEvents] Remove plugin to e2.
 
 if HAVE_LIBDDVD
 SUBDIRS += DVDPlayer

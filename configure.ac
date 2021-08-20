@@ -951,9 +951,6 @@ lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/StartKodi/Makefile
 lib/python/Plugins/Extensions/QuadPip/Makefile
-lib/python/Plugins/Extensions/xtraEvent/Makefile
-lib/python/Plugins/Extensions/xtraEvent/pic/Makefile
-lib/python/Plugins/Extensions/xtraEvent/skins/Makefile
 lib/python/Plugins/Extensions/spaTeam/Makefile
 lib/python/Plugins/Extensions/spaTeam/bitratetool/Makefile
 lib/python/Plugins/Extensions/spaTeam/Daemons/Makefile
@@ -971,7 +968,6 @@ lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
-lib/python/Plugins/SystemPlugins/DualBoot/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/meta/Makefile
