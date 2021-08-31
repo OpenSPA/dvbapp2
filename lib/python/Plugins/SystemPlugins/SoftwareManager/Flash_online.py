@@ -13,21 +13,22 @@ from Components.ProgressBar import ProgressBar
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
+from Screens.MultiBootSelector import MultiBootSelector
 from Components.Console import Console
 from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
+from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetBoxName
 from Tools.Directories import fileExists
 from enigma import eTimer, fbClass
 from time import time
 import os, urllib2, shutil, math, zipfile, shutil
 
 
-from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineProcModel
+from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel, getMachineProcModel
 
 feedserver = 'openspa.webhop.info'
-feedurl = 'https://%s/' % feedserver
+feedurl = 'https://%s/' %feedserver
 
-imagecat = ["Online"]
+imagecat = ['Online', _('Downloaded'), _('Full backup')]
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_kernel.bin', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi','rootfs.bin')]) >= 2
@@ -38,13 +39,14 @@ class FlashOnline(Screen):
 		<widget name="list" position="fill" scrollbarMode="showOnDemand"/>
 	</screen>"""
 
-	def __init__(self, session):
+	def __init__(self, session, destpath=None):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
 		self.imagesList = {}
 		self.setIndex = 0
 		self.expanded = []
+		self.destpath=destpath
 		Screen.setTitle(self, _("Flash On the Fly"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText()
@@ -68,35 +70,41 @@ class FlashOnline(Screen):
 			"downRepeated": self.keyDown,
 			"leftRepeated": self.keyLeft,
 			"rightRepeated": self.keyRight,
-			"menu": boundFunction(self.close, True),
+			"prevService": self.kright,
+			"nextService": self.kleft,
 		}, -1)
-
 		self.delay = eTimer()
 		self.delay.callback.append(self.getImagesList)
 		self.delay.start(0, True)
 
+	def getstamp(self):
+		ts=time()
+		return "&stamp="+str(ts)
+
 	def getImagesList(self):
-		def getImages(path, files):
-			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x)]:
+
+		def getImages(version, path, files):
+			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x) or ("openatv" in x and boxname in x)]:
 				try:
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
-						imagetyp = _("Downloaded Images")
-						if 'backup' in file.split(os.sep)[-1]:
-							imagetyp = _("Fullbackup Images")
-						if imagetyp not in self.imagesList:
-							self.imagesList[imagetyp] = {}
-						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1][:-4]}
+						if 'backup' in version.lower():
+							if 'backup' in file.split(os.sep)[-1]:
+								self.imagesList[version][file] = {}
+								self.imagesList[version][file] = {'link': file, 'name': file.split(os.sep)[-1][:-4]}
+						else:
+							if not 'backup' in file.split(os.sep)[-1]:
+								self.imagesList[version][file] = {}
+								self.imagesList[version][file] = {'link': file, 'name': file.split(os.sep)[-1][:-4]}
 				except:
 					pass
-
+		list = []
 		if not self.imagesList:
 			box = GetBoxName()
 			boxname = getMachineProcModel().lower()
 			try:
 				import socket
 				socket.getaddrinfo(feedserver, None)
-
-				for version in sorted(imagecat):
+				for version in imagecat:
 					newversion = _("Images %s") %version  #Oficial, Descargadas, Full backup
 					the_page =""
 					url = '%s/Alliance/getfirm.php?box=%s' % (feedurl,box)
@@ -104,13 +112,13 @@ class FlashOnline(Screen):
 						req = urllib2.Request(url)
 						response = urllib2.urlopen(req)
 					except urllib2.URLError as e:
-						print "URL ERROR: %s\n%s" % (e,url)
+						print "[FlashOnline] URL ERROR: %s\n%s" % (e,url)
 						continue
 
 					try:
 						the_page = response.read()
 					except urllib2.HTTPError as e:
-						print "HTTP download ERROR: %s" % e.code
+						print "[FlashOnline] HTTP download ERROR: %s" % e.code
 						continue
 
 					lines = the_page.split('\n')
@@ -118,11 +126,10 @@ class FlashOnline(Screen):
 						l=lines[0]
 						self.feedurl = l.split("<a href='")[1].split("openspa-")[0]
 					except:
-						self["info"].setText("BOX: ["+box+"]\n"+_("No images found for this device. More info in openspa.info"))
 						list.append("("+_("No images found for")+" "+box+")")
 					countimage = []
 					for line in lines:
-						if line.find(".zip") > -1 and not "recovery" in line:
+						if line.find(".zip") > -1 and not "recovery" in line and not "restore" in line:
 							try:
 								self.feedurl = line.split("<a href='")[1].split("openspa-")[0]
 							except:
@@ -137,20 +144,19 @@ class FlashOnline(Screen):
 							self.imagesList[newversion][image] = {}
 							self.imagesList[newversion][image]["name"] = image
 							self.imagesList[newversion][image]["link"] = '%s%s.zip' % (self.feedurl,image)
-
+					if _('Downloaded') in version or _('Full backup') in version:
+						self.imagesList[newversion] = {}
+						for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
+							if os.path.isdir(media):
+								getImages(newversion, media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x) or ("openatv" in x and boxname in x)])
+								if "images" in os.listdir(media):
+									media = os.path.join(media, "images")
+									if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
+										getImages(newversion, media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x) or ("openatv" in x and boxname in x)])
+										for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
+											shutil.rmtree(dir)
 			except socket.error as e:
-				print "FEEDSERVER ERROR: %s" %e
-
-			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
-				if os.path.isdir(media):
-					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x)])
-					if "images" in os.listdir(media):
-						media = os.path.join(media, "images")
-						if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
-							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x or ("openpli" in x and boxname in x)])
-							for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
-								shutil.rmtree(dir)
-
+				print "[FlashOnline] FEEDSERVER ERROR: %s" %e
 		list = []
 		for catagorie in self.imagesList.keys():
 			if catagorie in self.expanded:
@@ -183,7 +189,13 @@ class FlashOnline(Screen):
 				self.expanded.append(currentSelected[0][0])
 			self.getImagesList()
 		elif currentSelected[0][1] != "Waiter":
-			self.session.openWithCallback(self.getImagesList, FlashImage, currentSelected[0][0], currentSelected[0][1])
+			self.session.openWithCallback(self.getImagesList, FlashImage, currentSelected[0][0], currentSelected[0][1], self.destpath)
+
+	def kright(self):
+		self["info"].pageDown()
+	
+	def kleft(self):
+		self["info"].pageUp()
 
 	def keyDelete(self):
 		currentSelected= self["list"].l.getCurrentSelection()[0][1]
@@ -238,14 +250,14 @@ class FlashImage(Screen):
 		<widget name="progress" position="5,e-39" size="e-10,24" backgroundColor="#54242424"/>
 	</screen>"""
 
-	def __init__(self, session,  imagename, source):
+	def __init__(self, session,  imagename, source, destpath=None):
 		Screen.__init__(self, session)
 		self.containerbackup = None
 		self.containerofgwrite = None
 		self.getImageList = None
-		self.saveImageList = None
 		self.downloader = None
-		self.source = source
+		self.destpath = destpath
+		self.source = source.replace("Descarga de Im&aacute;genes","Descarga de Imágenes").replace(" ","%20")
 		self.imagename = imagename
 		if self.imagename[:-4] != ".zip":
 			self.imagename = self.imagename + ".zip"
@@ -277,12 +289,13 @@ class FlashImage(Screen):
 			self.checkMedia(True)
 
 	def getImagelistCallback(self, imagedict):
-		self.saveImageList = imagedict
 		self.getImageList = None
 		choices = []
+		HIslot = len(imagedict) + 1
 		currentimageslot = GetCurrentImage()
 
-		for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
+		print "[FlashOnline] Current Image Slot %s, Imagelist %s"% ( currentimageslot, imagedict)
+		for x in range(1,HIslot):
 			choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]['imagename']), (x,True)))
 		choices.append((_("No, do not flash an image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
@@ -295,9 +308,9 @@ class FlashImage(Screen):
 
 	def checkMedia(self, retval):
 		if retval:
-			if not 'backup' in str(retval):
-				if SystemInfo["canMultiBoot"]:
-					self.multibootslot = retval[0]
+			if SystemInfo["canMultiBoot"] and not 'backup' in retval:
+				self.multibootslot = retval[0]
+			if not 'backup' in str(retval) and not self.destpath:
 				self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Backup Settings') + '?', default=True, timeout=10)
 				return
 
@@ -327,9 +340,10 @@ class FlashImage(Screen):
 				devices.sort(key=lambda x: x[1], reverse=True)
 				mounts.sort(key=lambda x: x[1], reverse=True)
 				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
-
-			self.destination, isDevice = findmedia("/media/hdd" or "/media/usb")
-
+			if self.destpath:
+				self.destination, isDevice = findmedia(self.destpath)
+			else:
+				self.destination, isDevice = findmedia("/media/hdd" or "/media/usb")
 			if self.destination:
 				destination = os.path.join(self.destination, 'images')
 				self.zippedimage = "://" in self.source and os.path.join(destination, self.imagename) or self.source
@@ -339,10 +353,14 @@ class FlashImage(Screen):
 						os.remove(destination)
 					if not os.path.isdir(destination):
 						os.mkdir(destination)
-					if isDevice or 'no_backup' == retval:
-						self.startBackupsettings(retval)
+					if not self.destpath and 'backup' == retval:
+						if isDevice:
+							self.startBackupsettings(retval)
+						else:
+							self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
 					else:
-						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
+						self.session.openWithCallback(self.startDownload, MessageBox, self.message, default=True)
+						#self.startDownload()
 				except:
 					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 			else:
@@ -431,7 +449,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/settings','w').close()
 					except:
-						print "postFlashActionCallback: failed to create /media/hdd/images/config/settings"
+						print "[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/settings"
 				else:
 					if os.path.exists('/media/hdd/images/config/settings'):
 						os.unlink('/media/hdd/images/config/settings')
@@ -441,7 +459,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/plugins','w').close()
 					except:
-						print "postFlashActionCallback: failed to create /media/hdd/images/config/plugins"
+						print "[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/plugins"
 				else:
 					if os.path.exists('/media/hdd/images/config/plugins'):
 						os.unlink('/media/hdd/images/config/plugins')
@@ -451,7 +469,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/noplugins','w').close()
 					except:
-						print "postFlashActionCallback: failed to create /media/hdd/images/config/noplugins"
+						print "[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/noplugins"
 				else:
 					if os.path.exists('/media/hdd/images/config/noplugins'):
 						os.unlink('/media/hdd/images/config/noplugins')
@@ -482,7 +500,7 @@ class FlashImage(Screen):
 								if os.path.exists('/media/hdd/images/config/fast'):
 									os.unlink('/media/hdd/images/config/fast')
 						except:
-							print "postFlashActionCallback: failed to create restore mode flagfile"
+							print "[FlashOnline] postFlashActionCallback: failed to create restore mode flagfile"
 				self.startDownload()
 			else:
 				self.abort()
@@ -517,7 +535,6 @@ class FlashImage(Screen):
 				from Tools.Downloader import downloadWithProgress
 				self["header"].setText(_("Downloading Image"))
 				self["info"].setText(self.imagename)
-				self["summary_header"].setText(self["header"].getText())
 				self.downloader = downloadWithProgress(self.source, self.zippedimage)
 				self.downloader.addProgress(self.downloadProgress)
 				self.downloader.addEnd(self.downloadEnd)
@@ -534,6 +551,9 @@ class FlashImage(Screen):
 	def downloadError(self, reason, status):
 		self.downloader.stop()
 		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, reason), type=MessageBox.TYPE_ERROR, simple=True)
+
+	def betaEnd(self):
+		self.unzip()
 
 	def downloadEnd(self):
 		self.downloader.stop()
@@ -564,30 +584,23 @@ class FlashImage(Screen):
 					return checkimagefiles(files) and path
 		imagefiles = findimagefiles(self.unzippedimage)
 		if imagefiles:
-			self.getImageList = self.saveImageList
-			self.MTDKERNEL = GetCurrentKern()
-			self.MTDROOTFS = GetCurrentRoot()
+			self.ROOTFSSUBDIR = "none"
 			if SystemInfo["canMultiBoot"]:
-				if "sd" in self.getImageList[self.multibootslot]['part']:
-					self.MTDKERNEL = "%s%s" %(SystemInfo["canMultiBoot"][2], int(self.getImageList[self.multibootslot]['part'][3])-1)
-					self.MTDROOTFS = "%s" %(self.getImageList[self.multibootslot]['part'])
-			if SystemInfo["canMultiBoot"]:
-				if getMachineBuild() in ("gbmv200","cc1","sf8008","sf8008m","ustym4kpro","beyonwizv2","viper4k"): # issue detect kernel device and rootfs on sda
-					print "[FlashImage] detect Kernel:",self.MTDKERNEL
-					print "[FlashImage] detect rootfs:",self.MTDROOTFS
-					command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
-				else:
-					command = "/usr/bin/ofgwrite -r -k -m%s %s" % (self.multibootslot, imagefiles)
-			elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u532","u533","u54","u56"): # issue detect kernel device
-				print "[FlashImage] detect Kernel:",self.MTDKERNEL
-				print "[FlashImage] detect rootfs:",self.MTDROOTFS
-				command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
+				self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2] 
+				self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2] 
+				if SystemInfo["HasRootSubdir"]:
+					self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.multibootslot]['rootsubdir']
 			else:
-				if fileExists("%s/rootfs.ubi" %imagefiles) and fileExists("%s/rootfs.tar.bz2" %imagefiles):
-					os.rename('%s/rootfs.tar.bz2' %imagefiles, '%s/xx.txt' %imagefiles)
-				command = "/usr/bin/ofgwrite -r -k %s" % imagefiles
+				self.MTDKERNEL = getMachineMtdKernel()
+				self.MTDROOTFS = getMachineMtdRoot()
+			CMD = "/usr/bin/ofgwrite -r -k '%s'" % imagefiles	#normal non multiboot receiver
+			if SystemInfo["canMultiBoot"]:
+				if (self.ROOTFSSUBDIR) is None:	# receiver with SD card multiboot
+					CMD = "/usr/bin/ofgwrite -r%s -k%s -m0 '%s'" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
+				else:
+					CMD = "/usr/bin/ofgwrite -r -k -m%s '%s'" % (self.multibootslot, imagefiles)
 			self.containerofgwrite = Console()
-			self.containerofgwrite.ePopen(command, self.FlashimageDone)
+			self.containerofgwrite.ePopen(CMD, self.FlashimageDone)
 			fbClass.getInstance().lock()
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Image to install is invalid\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
@@ -598,12 +611,12 @@ class FlashImage(Screen):
 		if retval == 0:
 			self["header"].setText(_("Flashing image successful"))
 			self["summary_header"].setText(self["header"].getText())
-			self["info"].setText(_("%s\nPress ok to close") % self.imagename)
+			self["info"].setText(_("%s\nPress ok for multiboot selection\nPress exit to close") % self.imagename)
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
 	def abort(self, reply=None):
-		if self.getImageList:
+		if self.getImageList or self.containerofgwrite:
 			return 0
 		if self.downloader:
 			self.downloader.stop()
@@ -612,6 +625,9 @@ class FlashImage(Screen):
 	def ok(self):
 		fbClass.getInstance().unlock()
 		if self["header"].text == _("Flashing image successful"):
-			self.close()
+			if SystemInfo["canMultiBoot"]:
+				self.session.openWithCallback(self.abort, MultiBootSelector)
+			else:
+				self.close()
 		else:
 			return 0

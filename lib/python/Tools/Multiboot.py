@@ -29,7 +29,7 @@ def getMBbootdevice():
 		rmdir(Imagemount)
 
 def getparam(line, param):
-	return line.rsplit("%s=" % param, 1)[1].split(" ", 1)[0]
+	return line.replace("userdataroot", "rootuserdata").rsplit('%s=' % param, 1)[1].split(' ', 1)[0]
 
 def getMultibootslots():
 	bootslots = {}
@@ -129,6 +129,8 @@ def GetBoxName():
 		box = "sf8008m"
 	elif box.startswith('sf8008'):
 		box = "sf8008"
+	elif box.startswith('ustym4kprotwin'):
+		box = "ustym4kpro"
 	elif box.startswith('twinboxlcdci'):
 		box = "twinboxlcd"
 	return box
@@ -179,6 +181,24 @@ class GetImagelist():
 					Build = reader.getImageBuild()
 					Dev = BuildType != "release" and " %s" % reader.getImageDevBuild() or ""
 					BuildVersion = "%s %s %s %s" % (Creator, BuildType[0:3], Build, Dev)
+				elif Creator.startswith("Openspa"):
+					imagedata=open(path.join(imagedir, "etc/image-version"))
+					for line in imagedata.readlines():
+						data = line.split("=")
+						if data[0] == "build":
+							Build = data[1].strip()
+						if data[0] == "feedsurl":
+							dev = data[1].strip()
+						if data[0] == "date":
+							Date = data[1].strip()
+							Date = "%s-%s-%s" % (Date[:4],Date[4:2],Date[6:2])
+					if len(Date)<8:
+						try:
+							from datetime import datetime
+							Date = datetime.fromtimestamp(stat(path.join(imagedir, "usr/bin/enigma2")).st_mtime).strftime("%Y-%m-%d")
+						except Exception:
+							Date = _("Unknown")
+					BuildVersion = "%s.%s %s (%s)" % (Creator,Build,Dev,Date)
 				else:
 					try:
 						from datetime import datetime
