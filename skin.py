@@ -670,51 +670,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale=((1, 1), (1, 1
 	# Is anyone still using applySingleAttribute?
 	AttributeParser(guiObject, desktop, scale).applyOne(attrib, value)
 
-#mpiero fix scroll
-defaultSliderBorderWidth = 0
-defaultSliderForegroundColor = None
-defaultWidth = 4
-defaultSliderBorderColor = None
-defaultSliderPixmap = None
-from enigma import eListbox
-
-def fixScrollOpenSpa(guiObject, attributes):
-	hayscroll = haybordescroll = haycolorscroll = hayanchoscroll = haycolorborde = haysliderpixmap = False
-	for attrib, value in attributes:
-		if not hayscroll and ("scrollbarMode" in attrib or "itemHeight" in attrib or isinstance(guiObject, eListbox)): hayscroll = True
-		if "scrollbarSliderBorderWidth" in attrib: haybordescroll = True
-		if "scrollbarSliderForegroundColor" in attrib: haycolorscroll = True
-		if "scrollbarWidth" in attrib: hayanchoscroll = True
-		if "scrollbarSliderBorderColor" in attrib: haycolorborde = True
-		if "scrollbarSliderPicture" in attrib: haysliderpixmap = True
-		# open("/tmp/test.log","a").write("-------- HAY ----------\n"+str(attributes)+" type["+str(type(guiObject))+"] obj["+str(guiObject)+"]"+"\n")
-		# if isinstance(guiObject, ScrollLabel): open("/tmp/test.log","a").write("****** ES SCROLL *******\n")
-	if hayscroll:
-		if not haybordescroll and not defaultSliderBorderWidth == None: attributes.append(("scrollbarSliderBorderWidth", defaultSliderBorderWidth))
-		if not haycolorscroll and not defaultSliderForegroundColor == None: attributes.append(("scrollbarSliderForegroundColor", defaultSliderForegroundColor))
-		if not hayanchoscroll and not defaultWidth == None: attributes.append(("scrollbarWidth", defaultWidth))
-		if not haycolorborde and not defaultSliderBorderColor == None: attributes.append(("scrollbarSliderBorderColor", defaultSliderBorderColor))
-		if not haysliderpixmap and not defaultSliderPixmap == None: attributes.append(("scrollbarSliderPicture", defaultSliderPixmap))
-
-def addOpenSpaDefaults(skin):
-	global defaultSliderBorderWidth, defaultSliderForegroundColor, defaultWidth, defaultSliderBorderColor, defaultSliderPixmap
-	for c in skin.findall("openspadefaults"):
-		for elemento in c.findall("scrollbar"):
-			get = elemento.attrib.get
-			try:
-				name = get("name")
-				value = get("value")
-				if name == "SliderBorderWidth": defaultSliderBorderWidth = value
-				if name == "SliderForegroundColor": defaultSliderForegroundColor = value
-				if name == "Width": defaultWidth = value
-				if name == "SliderBorderColor": defaultSliderBorderColor = value
-				if name == "SliderPicture": defaultSliderPixmap = value
-			except:
-				pass
-	
 def applyAllAttributes(guiObject, desktop, attributes, scale):
-	#mpiero fix
-	fixScrollOpenSpa(guiObject, attributes)
 	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
 
 def reloadWindowStyles():
@@ -770,27 +726,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			if name and color:
 				colors[name] = parseColor(color)
 				# print("[Skin] DEBUG: Color name='%s', color='%s'." % (name, color))
-
-	# mpiero fix scrollbar
-	addOpenSpaDefaults(skin)
-
-	#mpiero regularHD compatibility check resolution and RegularHD font exist
-	spaRegularHD = 0
-	for c in skin.findall("output"):
-		if str(c.attrib.get('id')) == "0":
-			for res in c.findall("resolution"):
-				xres = res.attrib.get("xres")
-				if xres and int(xres) > 1400:
-					spaRegularHD = 1
-	if spaRegularHD == 1:
-		for c in skin.findall("fonts"):
-			for font in c.findall("font"):
-				if font.attrib.get("name") == "RegularHD":
-					spaRegularHD = 2
-					break
-			if spaRegularHD == 2:
-				break
-
 			else:
 				raise SkinError("Tag 'color' needs a name and color, got name='%s' and color='%s'" % (name, color))
 	for tag in domSkin.findall("fonts"):
@@ -812,11 +747,6 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				# print("[Skin] Add font: Font path='%s', name='%s', scale=%d, isReplacement=%s, render=%d." % (filename, name, scale, isReplacement, render))
 			else:
 				raise SkinError("Font file '%s' not found" % filename)
-			#mpiero regularHD compatibility add font RegularHD for plugins in external skin
-			if name == "Regular" and spaRegularHD == 1:
-				addFont(resolved_font, "RegularHD", 150, False, render) 
-			addFont(resolved_font, name, scale, is_replacement, render)
-
 		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=pathSkin)
 		if isfile(fallbackFont):
 			addFont(fallbackFont, "Fallback", 100, -1, 0)
