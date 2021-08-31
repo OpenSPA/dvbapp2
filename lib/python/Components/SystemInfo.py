@@ -29,7 +29,6 @@ SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
 SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
 SystemInfo["CanMeasureFrontendInputPower"] = eDVBResourceManager.getInstance().canMeasureFrontendInputPower()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
-SystemInfo["HAVEINITCAM"] = haveInitCam()
 SystemInfo["7segment"] = getDisplayType() in ("7segment",)
 SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and getDisplayType() not in ("7segment",)
 SystemInfo["LCDSKINSetup"] = fileExists("/usr/share/enigma2/display")
