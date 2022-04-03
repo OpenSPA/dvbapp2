@@ -192,7 +192,8 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 				active_int = True
 			else:
 				active_int = False
-			self.list.append(self.buildInterfaceList(x[1], _(x[0]), default_int, active_int))
+			if "eth" in x[1] or "wlan" in x[1]:
+				self.list.append(self.buildInterfaceList(x[1], _(x[0]), default_int, active_int))
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			self["key_blue"].setText(_("Network wizard"))
