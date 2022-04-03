@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from __future__ import print_function
-from base64 import encodestring
+from base64 import encodebytes
 from os import listdir, remove, rename, system, popen, path
 
 from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT, getDesktop
@@ -81,7 +81,7 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 
 	if username and password:
 		url = scheme + '://' + host + ':' + str(port) + path
-		basicAuth = encodestring("%s:%s" % (username, password))
+		basicAuth = encodebytes("%s:%s" % (username, password))
 		authHeader = "Basic " + basicAuth.strip()
 		AuthHeaders = {"Authorization": authHeader}
 
