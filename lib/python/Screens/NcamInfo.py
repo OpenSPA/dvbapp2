@@ -173,13 +173,13 @@ class NcamInfo:
 		try:
 			data = urllib2.urlopen( request ).read()
 			# print data
-		except urllib2.URLError, e:
+		except urllib2.URLError as e:
 			if hasattr(e, "reason"):
 				err = str(e.reason)
 			elif hasattr(e, "code"):
 				err = str(e.code)
 		if err is not False:
-			print "[openWebIF] Fehler: %s" % err
+			print ("[openWebIF] Fehler: %s") % err
 			return False, err
 		else:
 			return True, data
@@ -485,7 +485,7 @@ class NcamInfoMenu(Screen):
 			self.session.open(NcamInfoConfigScreen)
 
 	def chooseReaderCallback(self, retval):
-		print retval
+		print (retval)
 		if retval is not None:
 			if self.callbackmode == "cccam":
 				self.session.open(ncEntitlements, retval[1])
@@ -493,7 +493,7 @@ class NcamInfoMenu(Screen):
 				self.session.open(ncReaderStats, retval[1])
 
 	def ErrMsgCallback(self, retval):
-		print retval
+		print (retval)
 		self.session.open(NcamInfoConfigScreen)
 
 	def buildMenu(self, mlist):

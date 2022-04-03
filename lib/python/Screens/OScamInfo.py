@@ -500,7 +500,7 @@ class OscamInfoMenu(Screen):
 				self.session.open(oscReaderStats, retval[1])
 
 	def ErrMsgCallback(self, retval):
-		print retval
+		print (retval)
 		self.session.open(OscamInfoConfigScreen)
 
 	def buildMenu(self, mlist):
