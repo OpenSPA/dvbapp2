@@ -28,7 +28,7 @@ LANG_TEXT = {
 	 "T4": "Save",
 },
 "ca_AD": {
-	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
+	 "T1": "Si us plau, utilitza els botons amunt y avall per seleccionar idioma. Després presiona el botó OK.",
 	 "T2": "Selecció d'idioma",
 	 "T3": "Cancel·lar",
 	 "T4": "Save",

@@ -20,8 +20,6 @@ def InitSetupDevices():
 	config.osd = ConfigSubsection()
 	if getMachineBrand() == 'Atto.TV':
 		defaultLanguage = "pt_BR"
-	elif getMachineBrand() == 'Zgemma':
-		defaultLanguage = "en_US"
 	elif getMachineBrand() == 'Beyonwiz':
 		defaultLanguage = "en_GB"
 	else:
