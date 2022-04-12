@@ -446,21 +446,22 @@ class CCcamInfoMain(Screen):
 		password = None
 
 		try:
-			f = open(CFG, 'r')
+			if CFG:
+				f = open(CFG, 'r')
 
-			for l in f:
-				if l.startswith('WEBINFO LISTEN PORT :'):
-					port = getConfigValue(l)
-					if port != "":
-						self.url = self.url.replace('16001', port)
+				for l in f:
+					if l.startswith('WEBINFO LISTEN PORT :'):
+						port = getConfigValue(l)
+						if port != "":
+							self.url = self.url.replace('16001', port)
 
-				elif l.startswith('WEBINFO USERNAME :'):
-					username = getConfigValue(l)
+					elif l.startswith('WEBINFO USERNAME :'):
+						username = getConfigValue(l)
 
-				elif l.startswith('WEBINFO PASSWORD :'):
-					password = getConfigValue(l)
+					elif l.startswith('WEBINFO PASSWORD :'):
+						password = getConfigValue(l)
 
-			f.close()
+				f.close()
 		except (IOError, OSError):
 			pass
 
