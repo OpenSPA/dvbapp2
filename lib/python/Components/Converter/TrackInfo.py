@@ -95,19 +95,22 @@ class TrackInfo(Poll, Converter, object):
 					kodi = KodiVideoPlayer.instance
 				except:
 					kodi = None
-				if kodi and isPluginInstalled("SubsSupport"):
-					if kodi.embeddedEnabled:
-						selectedSubtitle = kodi.selected_subtitle
-						enabled = kodi.subtitle_window.shown
+				if kodi:
+					if isPluginInstalled("SubsSupport"):
+						if kodi.embeddedEnabled:
+							selectedSubtitle = kodi.selected_subtitle
+							enabled = kodi.subtitle_window.shown
+						else:
+							selectedSubtitle = kodi.getSubsPath()
+							if selectedSubtitle:
+								if self.type == self.SUBTITLE:
+									return _("External") + " | " + selectedSubtitle
+								elif self.type == self.SUBTITLE_TYPE:
+									return _("External")
+								else:
+									return selectedSubtitle
 					else:
-						selectedSubtitle = kodi.getSubsPath()
-						if selectedSubtitle:
-							if self.type == self.SUBTITLE:
-								return _("External") + " | " + selectedSubtitle
-							elif self.type == self.SUBTITLE_TYPE:
-								return _("External")
-							else:
-								return selectedSubtitle
+						selectedSubtitle = kodi.selected_subtitle
 			##############################
 			if selectedSubtitle and enabled:
 				subtitlelist = subtitle and subtitle.getSubtitleList()
