@@ -74,7 +74,6 @@ class SysInfo(Poll, Converter):
 	@cached
 	def getText(self):
 		text = "N/A"
-		print('tipo: ', self.type)
 		if self.type == self.HDDTEMP:
 			text = self.getHddTemp()
 		elif self.type == self.LOADAVG:
@@ -183,7 +182,7 @@ class SysInfo(Poll, Converter):
 				if check > 1:
 					if result[0] > 0:
 						result[1] = result[0] - result[2]	# used
-						result[3] = result[1] * 100 / result[0]	# use%
+						result[3] = round(result[1] * 100 / result[0],2)	# use%
 					break
 			fd.close()
 		except:
@@ -213,7 +212,7 @@ class SysInfo(Poll, Converter):
 				result[0] = st.f_bsize * st.f_blocks	# size
 				result[2] = st.f_bsize * st.f_bavail	# avail
 				result[1] = result[0] - result[2]	# used
-				result[3] = result[1] * 100 / result[0]	# use%
+				result[3] = round(result[1] * 100 / result[0],2)	# use%
 		return result
 
 	def getSizeStr(self, value, u=0):
