@@ -236,7 +236,10 @@ else:
 
 def getConfigNameAndContent(fileName):
 	try:
-		f = open(fileName, "r")
+		try:
+			f = open(fileName, "r", encoding="iso-8859-1")
+		except:
+			f = open(fileName, "r")
 		content = f.read()
 		f.close()
 	except (IOError, OSError):
@@ -340,7 +343,10 @@ def CCcamConfigListEntry(file):
 	res = [file]
 
 	try:
-		f = open(CFG, "r")
+		try:
+			f = open(CFG, 'r', encoding="iso-8859-1")
+		except:
+			f = open(CFG, "r")
 		org = f.read()
 		f.close()
 	except (IOError, OSError):
@@ -447,7 +453,10 @@ class CCcamInfoMain(Screen):
 
 		try:
 			if CFG:
-				f = open(CFG, 'r')
+				try:
+					f = open(CFG, 'r', encoding="iso-8859-1")
+				except:
+					f = open(CFG, 'r')
 
 				for l in f:
 					if l.startswith('WEBINFO LISTEN PORT :'):
