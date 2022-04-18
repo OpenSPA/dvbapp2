@@ -20,7 +20,7 @@ from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
-import os
+import os,subprocess
 import datetime
 import sys
 from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem, getImageDistro
@@ -77,6 +77,7 @@ class ImageBackup(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
+		print('kk6')
 		self.setTitle(self.title)
 
 	def startit(self):
@@ -100,10 +101,12 @@ class ImageBackup(Screen):
 		self["config"].setList(list)
 
 	def start(self):
+		print('kk4')
 		self.currentSelected = self["config"].l.getCurrentSelection()
 		title = _("Please select a backup destination")
 		choices = []
 		retval = []
+		print('kk3')
 		if self.currentSelected[0][1] != "Queued":
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if Harddisk.Freespace(media) > 300000:
@@ -132,7 +135,9 @@ class ImageBackup(Screen):
 
 	def doFullBackup(self, answer):
 		if answer is not None:
+			print('kk1')
 			if answer[1]:
+				print('kk2')
 				self.RECOVERY = answer[3]
 				self.DIRECTORY = "%s/images" % answer[2]
 				if not os.path.exists(self.DIRECTORY):
@@ -156,6 +161,7 @@ class ImageBackup(Screen):
 				self.ROOTFSTYPE = getImageFileSystem().strip()
 				self.IMAGEDISTRO = getImageDistro()
 				self.DISTROVERSION = getImageVersion()
+				self.IMAGEBUILD = getImageBuild()
 
 				if SystemInfo["canRecovery"]:
 					self.EMMCIMG = SystemInfo["canRecovery"][0]
