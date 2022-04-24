@@ -64,24 +64,24 @@ class Ipkuninstall(Screen):
 			menu = cur[1]
 			global menuid
 			if menu == 'CamSelectMenu':
-				print '[IPKUninstall] open menu %s linked to %s ' % (menu, name)
+				print('[IPKUninstall] open menu %s linked to %s ' % (menu, name))
 				menuid = 1
 				self.session.open(IpkuninstallList)
 			elif menu == 'DriversSelectMenu':
-				print '[IPKUninstall] open menu %s linked to %s ' % (menu, name)
+				print('[IPKUninstall] open menu %s linked to %s ' % (menu, name))
 				menuid = 2
 				self.session.open(IpkuninstallList)
 			elif menu == 'ExtSelectMenu':
 				menuid = 3
-				print '[IPKUninstall] open menu %s linked to %s ' % (menu, name)
+				print('[IPKUninstall] open menu %s linked to %s ' % (menu, name))
 				self.session.open(IpkuninstallList)
 			elif menu == 'SysSelectMenu':
 				menuid = 4
-				print '[IPKUninstall] open menu %s linked to %s ' % (menu, name)
+				print('[IPKUninstall] open menu %s linked to %s ' % (menu, name))
 				self.session.open(IpkuninstallList)
 			elif menu == 'SkinSelectMenu':
 				menuid = 5
-				print '[IPKUninstall] open menu %s linked to %s ' % (menu, name)
+				print('[IPKUninstall] open menu %s linked to %s ' % (menu, name))
 				self.session.open(IpkuninstallList)
 			else:
 				menuid = 0
