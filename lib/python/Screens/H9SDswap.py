@@ -91,7 +91,7 @@ class H9SDswap(Screen):
 	def SwaptoSD(self):
 		self.switchtype = "mmc"
 		f = open('/proc/cmdline', 'r').read()
-		print "[H9SDswap] switchtype %s cmdline %s" %(self.switchtype, f) 
+		print("[H9SDswap] switchtype %s cmdline %s" %(self.switchtype, f))
 		if "root=/dev/mmcblk0p1" in f:
 			self.session.open(MessageBox, _("H9 SDcard switch ERROR! - already on mmc"), MessageBox.TYPE_INFO, timeout=20)
 		elif os.path.isfile("/media/mmc/usr/bin/enigma2"):
@@ -103,7 +103,7 @@ class H9SDswap(Screen):
 	def SwaptoUSB(self):
 		self.switchtype = "usb"
 		f = open('/proc/cmdline', 'r').read()
-		print "[H9SDswap] switchtype %s cmdline %s" %(self.switchtype, f) 
+		print("[H9SDswap] switchtype %s cmdline %s" %(self.switchtype, f))
 		if "root=/dev/SDA1" in f:
 			self.session.open(MessageBox, _("H9 USB switch ERROR! - already on USB"), MessageBox.TYPE_INFO, timeout=20)
 		elif os.path.isfile("/media/mmc/usr/bin/enigma2"):

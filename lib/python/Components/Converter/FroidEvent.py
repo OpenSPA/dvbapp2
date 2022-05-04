@@ -21,7 +21,7 @@ class FroidEvent(Converter, object):
 		try:
 			for type in self.tip: 
 				type.strip()
- 				if type == "SESSION_EPISODE":
+				if type == "SESSION_EPISODE":
 					ses_ep = self.sessionEpisode(event)
 					if ses_ep != "" and len(ses_ep) > 0:
 						evnt.append(ses_ep)
