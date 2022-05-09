@@ -91,6 +91,21 @@ class Ipkuninstall(Screen):
 	def exit(self):
 		self.close()
 
+def Command(command):
+	import shlex
+	import subprocess
+	comm = command.strip().split("| ")
+	old = None
+	out = ""
+	for cmd in comm:
+#		open("/tmp/prueba","a").write(str(cmd)+"\n")
+		cmd = shlex.split(cmd.strip())
+		process = subprocess.Popen(cmd, stdin=old, stdout=subprocess.PIPE)
+		old=process.stdout
+	for ex in old:
+		out = out + ex.decode("utf-8")
+	return out.rstrip("\n")
+
 class IpkuninstallList(Screen):
 	skin = """
 		<screen name="IpkuninstallList" position="center,center" size="530,400" title="Ipk Uninstaller - List installed packages" >
@@ -117,19 +132,18 @@ class IpkuninstallList(Screen):
 		self.ipklist = []
 		self.ipklist1 = []
 		if menuid == 1:
-			cmd = 'opkg list_installed | grep ^cam > /tmp/ipkdb'
+			cmd = 'opkg list_installed | grep cam'
 		elif menuid == 2:
-			cmd = 'opkg list_installed | grep enigma2-plugin-drivers > /tmp/ipkdb'
+			cmd = 'opkg list_installed | grep enigma2-plugin-drivers'
 		elif menuid == 3:
-			cmd = 'opkg list_installed | grep enigma2-plugin-extensions > /tmp/ipkdb'
+			cmd = 'opkg list_installed | grep enigma2-plugin-extensions'
 		elif menuid == 4:
-			cmd = 'opkg list_installed | grep enigma2-plugin-systemplugins > /tmp/ipkdb'
+			cmd = 'opkg list_installed | grep enigma2-plugin-systemplugins'
 		elif menuid == 5:
-			cmd = 'opkg list_installed | grep -e enigma2-plugin-skins -e skin > /tmp/ipkdb'
-		system(cmd)
-		out_lines = []
-		out_lines = open('/tmp/ipkdb').readlines()
-		for filename in out_lines:
+			cmd = 'opkg list_installed | grep -e enigma2-plugin-skins -e skin'
+		com = Command(cmd)
+		line=com.split('\n')
+		for filename in line:
 			self.ipklist.append(filename[:-1].split(' - ')[0])
 			self.ipklist1.append(filename[:-1])
 
