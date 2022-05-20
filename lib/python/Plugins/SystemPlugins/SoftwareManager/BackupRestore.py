@@ -569,7 +569,7 @@ class installedPlugins(Screen):
 
 	def dataAvail(self, strData):
 		if self.type == self.LIST:
-			strData = self.remainingdata + strData
+			strData = self.remainingdata + str(strData)
 			lines = strData.split('\n')
 			if len(lines[-1]):
 				self.remainingdata = lines[-1]
