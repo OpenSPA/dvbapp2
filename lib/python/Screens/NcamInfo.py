@@ -1165,7 +1165,7 @@ class NcamInfoConfigScreen(Screen, ConfigListScreen):
 		}, -2)
 		ConfigListScreen.__init__(self, self.ncamconfig, session = self.session)
 		self.createSetup()
-		config.ncaminfo.userdatafromconf.addNotifier(self.elementChanged, initial_call = False)
+		config.ncaminfo.userdatafromconf.addNotifier(self.elementChanged, initial_call = True)
 		config.ncaminfo.autoupdate.addNotifier(self.elementChanged, initial_call = False)
 		self.onLayoutFinish.append(self.layoutFinished)
 
