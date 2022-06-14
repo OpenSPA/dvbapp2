@@ -1,5 +1,4 @@
 def elementsWithTag(el, tag):
-
 	"""filters all elements of childNode with the specified function
 	example: nodes = elementsWithTag(childNodes, lambda x: x == "bla")"""
 

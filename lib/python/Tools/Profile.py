@@ -1,6 +1,8 @@
+from __future__ import print_function
+from __future__ import absolute_import
 # the implementation here is a bit crappy.
 import time
-from Directories import resolveFilename, SCOPE_CONFIG
+from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from boxbranding import getBoxType
 
 boxtype = getBoxType()
@@ -9,7 +11,7 @@ PERCENTAGE_START = 50
 PERCENTAGE_END = 100
 
 profile_start = time.time()
- 
+
 profile_data = {}
 total_time = 1
 profile_file = None
@@ -26,12 +28,12 @@ try:
 		total_time = t
 		profile_data[id] = t
 except:
-	print "[Profile] no profile data available"
+	print("no profile data available")
 
 try:
 	profile_file = open(resolveFilename(SCOPE_CONFIG, "profile"), "w")
 except IOError:
-	print "[Profile] WARNING: couldn't open profile file!"
+	print("WARNING: couldn't open profile file!")
 
 def profile(id):
 	now = time.time() - profile_start
@@ -45,7 +47,7 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				if boxtype in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6" ):
+				if boxtype in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6"):
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d" % perc)
 				elif boxtype in ('gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'):

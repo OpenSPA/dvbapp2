@@ -1,3 +1,6 @@
+from __future__ import print_function
+
+
 class UnitMultipliers:
 	Si = (
 		("", 10 ** 0),
@@ -85,4 +88,4 @@ if __name__ == "__main__":
 	scaler = UnitScaler(**kwargs)
 	for arg in sys.argv:
 		val = eval(arg)
-		print arg, val, scaler(val)
+		print(arg, val, scaler(val))

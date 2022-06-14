@@ -1,3 +1,4 @@
+from __future__ import print_function
 from time import localtime, time
 
 def FuzzyTime(t, inPast = False):
@@ -12,7 +13,7 @@ def FuzzyTime(t, inPast = False):
 	elif d[0] == n[0] and d[7] == n[7] - 1 and inPast:
 		# won't work on New Year's day
 		date = _("Yesterday")
-	elif ((t - nt) < 7*86400) and (nt < t) and not inPast:
+	elif ((t - nt) < 7 * 86400) and (nt < t) and not inPast:
 		# same week (must be future)
 		date = dayOfWeek[d[6]]
 	elif d[0] == n[0]:
@@ -31,8 +32,8 @@ def FuzzyTime(t, inPast = False):
 
 if __name__ == "__main__":
 	def _(x): return x
-	print "now: %s %s" % FuzzyTime(time())
-	for i in range(1, 14):
-		print "+%2s day(s):  %s " % (i, FuzzyTime(time() + 86400 * i))
-	for i in range(1, 14):
-		print "-%2s day(s):  %s " % (i, FuzzyTime(time() - 86400 * i, True))
+	print("now: %s %s" % FuzzyTime(time()))
+	for i in list(range(1, 14)):
+		print("+%2s day(s):  %s " % (i, FuzzyTime(time() + 86400 * i)))
+	for i in list(range(1, 14)):
+		print("-%2s day(s):  %s " % (i, FuzzyTime(time() - 86400 * i, True)))

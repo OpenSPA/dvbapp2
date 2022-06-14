@@ -1,7 +1,11 @@
+from __future__ import print_function
 from json import loads
-from urllib2 import URLError, urlopen
 
 from Components.config import ConfigYesNo, config
+from six.moves.urllib.request import urlopen
+
+from six.moves.urllib.error import URLError
+
 
 # Data available from http://ip-api.com/json/:
 #
@@ -28,7 +32,7 @@ from Components.config import ConfigYesNo, config
 # 	isp		ISP name				Google			string
 # 	org		Organization name			Google			string
 # 	as		AS number and organization, separated
-# 			by space (RIR). Empty for IP blocks 
+# 			by space (RIR). Empty for IP blocks
 # 			not being announced in BGP tables.	AS15169 Google Inc.	string
 # 	asname		AS name (RIR). Empty for IP blocks not
 # 			being announced in BGP tables.		GOOGLE			string
@@ -53,23 +57,24 @@ def InitGeolocation():
 					geolocation = loads(response)
 				status = geolocation.get("status", None)
 				if status and status == "success":
-					print "[Geolocation] Geolocation data initialised."
+					print("[Geolocation] Geolocation data initialised.")
 					config.misc.enableGeolocation.value = False
 					config.misc.enableGeolocation.save()
 				else:
-					print "[Geolocation] Error: Geolocation lookup returned a '%s' status!  Message '%s' returned." % (status, geolocation.get("message", None))
+					print("[Geolocation] Error: Geolocation lookup returned a '%s' status!  Message '%s' returned." % (status, geolocation.get("message", None)))
 			except URLError as err:
 				if hasattr(err, 'code'):
-					print "[Geolocation] Error: Geolocation data not available! (Code: %s)" % err.code
+					print("[Geolocation] Error: Geolocation data not available! (Code: %s)" % err.code)
 				if hasattr(err, 'reason'):
-					print "[Geolocation] Error: Geolocation data not available! (Reason: %s)" % err.reason
+					print("[Geolocation] Error: Geolocation data not available! (Reason: %s)" % err.reason)
 			except ValueError:
-				print "[Geolocation] Error: Geolocation data returned can not be processed!"
+				print("[Geolocation] Error: Geolocation data returned can not be processed!")
 		else:
-			print "[Geolocation] Note: Geolocation has already been run for this boot."
+			print("[Geolocation] Note: Geolocation has already been run for this boot.")
 	else:
 		geolocation = {}
-		print "[Geolocation] Warning: Geolocation has been disabled by user configuration!"
+		print("[Geolocation] Warning: Geolocation has been disabled by user configuration!")
+
 
 def RefreshGeolocation():
 	global geolocation

@@ -1,4 +1,5 @@
-from Components.Task import PythonTask, Task, Job, job_manager as JobManager, Condition
+from __future__ import print_function
+from Components.Task import PythonTask, Task, Job, Condition, job_manager as JobManager
 from Tools.Directories import fileExists
 from enigma import eTimer
 from os import path
@@ -9,11 +10,11 @@ class DeleteFolderTask(PythonTask):
 		self.fileList = fileList
 
 	def work(self):
-		print "[DeleteFolderTask] files ", self.fileList
+		print("[DeleteFolderTask] files ", self.fileList)
 		errors = []
 		try:
 			rmtree(self.fileList)
-		except Exception, e:
+		except Exception as e:
 			errors.append(e)
 		if errors:
 			raise errors[0]
@@ -21,13 +22,13 @@ class DeleteFolderTask(PythonTask):
 class CopyFileJob(Job):
 	def __init__(self, srcfile, destfile, name):
 		Job.__init__(self, _("Copying files"))
-		cmdline = 'cp -Rf "%s" "%s"' % (srcfile,destfile)
+		cmdline = 'cp -Rf "%s" "%s"' % (srcfile, destfile)
 		AddFileProcessTask(self, cmdline, srcfile, destfile, name)
 
 class MoveFileJob(Job):
 	def __init__(self, srcfile, destfile, name):
 		Job.__init__(self, _("Moving files"))
-		cmdline = 'mv -f "%s" "%s"' % (srcfile,destfile)
+		cmdline = 'mv -f "%s" "%s"' % (srcfile, destfile)
 		AddFileProcessTask(self, cmdline, srcfile, destfile, name)
 
 class AddFileProcessTask(Task):
@@ -44,7 +45,7 @@ class AddFileProcessTask(Task):
 		if self.srcsize <= 0 or not fileExists(self.destfile, 'r'):
 			return
 
-		self.setProgress(int((path.getsize(self.destfile)/float(self.srcsize))*100))
+		self.setProgress(int((path.getsize(self.destfile) / float(self.srcsize)) * 100))
 		self.ProgressTimer.start(5000, True)
 
 	def prepare(self):
@@ -87,10 +88,10 @@ class DownloadTask(Task):
 		self.download = downloadWithProgress(self.url,self.path)
 		self.download.addProgress(self.download_progress)
 		self.download.start().addCallback(self.download_finished).addErrback(self.download_failed)
-		print "[DownloadTask] downloading", self.url, "to", self.path
+		print ("[DownloadTask] downloading ", self.url, "to ", self.path)
 
 	def abort(self):
-		print "[DownloadTask] aborting", self.url
+		print ("[DownloadTask] aborting ", self.url)
 		if self.download:
 			self.download.stop()
 		self.aborted = True
@@ -122,14 +123,14 @@ class DownloadTask(Task):
 
 def copyFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src))/1000/1000 > 100:
+		if path.isdir(src) or int(path.getsize(src)) / 1000 / 1000 > 100:
 			JobManager.AddJob(CopyFileJob(src, dst, name))
 		else:
 			copy2(src, dst)
 
 def moveFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src))/1000/1000 > 100:
+		if path.isdir(src) or int(path.getsize(src)) / 1000 / 1000 > 100:
 			JobManager.AddJob(MoveFileJob(src, dst, name))
 		else:
 			move(src, dst)
