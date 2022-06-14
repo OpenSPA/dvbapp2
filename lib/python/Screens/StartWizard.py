@@ -1,4 +1,5 @@
-from Wizard import wizardManager
+from __future__ import absolute_import
+from Screens.Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
 from Screens.VideoWizard import VideoWizard
 from Screens.Rc import Rc
@@ -8,7 +9,7 @@ from boxbranding import getBoxType
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
 
-from LanguageSelection import LanguageWizard
+from Screens.LanguageSelection import LanguageWizard
 
 config.misc.firstrun = ConfigBoolean(default = True)
 config.misc.languageselected = ConfigBoolean(default = True)
@@ -37,6 +38,6 @@ class StartWizard(WizardLanguage, Rc):
 		config.misc.firstrun.save()
 		configfile.save()
 
-wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.getValue(), priority = 0)
-wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.getValue(), priority = 2)
-wizardManager.registerWizard(StartWizard, config.misc.firstrun.getValue(), priority = 20)
+wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority = 0)
+wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority = 2)
+wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 20)

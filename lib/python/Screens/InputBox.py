@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import getPrevAsciiCode
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -90,8 +91,9 @@ class InputBox(Screen):
 
 class PinInput(InputBox):
 	def __init__(self, session, service="", triesEntry=None, pinList=None, popup=False, simple=True, *args, **kwargs):
-		if not pinList: pinList = []
-		InputBox.__init__(self, session = session, text = "    ", maxSize = True, type = Input.PIN, *args, **kwargs)
+		if not pinList:
+			pinList = []
+		InputBox.__init__(self, session=session, text="    ", maxSize=True, type=Input.PIN, *args, **kwargs)
 
 		self.waitTime = 15
 		self.triesEntry = triesEntry
@@ -157,7 +159,7 @@ class PinInput(InputBox):
 				self.close(None)
 
 	def closePinWrong(self, *args):
-		print "args:", args
+		print("args:", args)
 		self.close(False)
 
 	def closePinCorrect(self, *args):

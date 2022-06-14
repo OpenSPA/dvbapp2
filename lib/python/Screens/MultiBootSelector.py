@@ -1,5 +1,7 @@
+from __future__ import print_function
 from enigma import getDesktop
-from os import mkdir, path
+from os import mkdir, rmdir
+from os.path import ismount, isdir, join as pathjoin
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
@@ -10,11 +12,9 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import copyfile, pathExists
+from Tools.Directories import copyfile
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
-from boxbranding import getBoxType
 import struct
-
 
 class MultiBootSelector(Screen, HelpableScreen):
 	skinTemplate = """
@@ -73,16 +73,16 @@ class MultiBootSelector(Screen, HelpableScreen):
 
 	def unmountCallback(self, value, data=None, retval=None, extra_args=None):
 		self.container.killAll()
-		if not path.ismount(self.mountDir):
+		if not ismount(self.mountDir):
 			rmdir(self.mountDir)
 		self.close(value)
 
 	def getBootOptions(self, value=None):
 		self.container = Console()
-		if path.isdir(self.mountDir) and path.ismount(self.mountDir):
+		if isdir(self.mountDir) and ismount(self.mountDir):
 			self.getImagesList()
 		else:
-			if not path.isdir(self.mountDir):
+			if not isdir(self.mountDir):
 				mkdir(self.mountDir)
 			self.container.ePopen("mount %s %s" % (SystemInfo["MBbootdevice"], self.mountDir), self.getImagesList)
 
@@ -94,7 +94,7 @@ class MultiBootSelector(Screen, HelpableScreen):
 		list = []
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage()
-		print "[MultiBootSelector] reboot1 slot:", currentimageslot
+		print("[MultiBootSelector] reboot1 slot:", currentimageslot)
 		current = "  %s" % _("(current image)")
 		slotSingle = _("Slot %s: %s%s")
 		slotMulti = _("Slot %s: %s - Mode %d%s")
@@ -120,20 +120,20 @@ class MultiBootSelector(Screen, HelpableScreen):
 		if self.currentSelected[0][1] != "Queued":
 			slot = self.currentSelected[0][1][0]
 			boxmode = self.currentSelected[0][1][1]
-			print "[MultiBootSelector] reboot2 reboot slot = %s, " % slot
-			print "[MultiBootSelector] reboot2 reboot boxmode = %s, " % boxmode
-			print "[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"]
+			print("[MultiBootSelector] reboot2 reboot slot = %s, " % slot)
+			print("[MultiBootSelector] reboot2 reboot boxmode = %s, " % boxmode)
+			print("[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"])
 			if SystemInfo["canMode12"]:
 				if "BOXMODE" in SystemInfo["canMultiBoot"][slot]['startupfile']:
 					startupfile = path.join(self.mountDir, "%s_%s" % (SystemInfo["canMultiBoot"][slot]['startupfile'].rsplit('_', 1)[0], boxmode))
-					copyfile(startupfile, path.join(self.mountDir, "STARTUP"))
+					copyfile(startupfile, pathjoin(self.mountDir, "STARTUP"))
 				else:
-					f = open(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]['startupfile']), "r").read()
+					f = open(pathjoin(self.mountDir, SystemInfo["canMultiBoot"][slot]['startupfile']), "r").read()
 					if boxmode == 12:
 						f = f.replace("boxmode=1'", "boxmode=12'").replace("%s" % SystemInfo["canMode12"][0], "%s" % SystemInfo["canMode12"][1])
-					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
+					open(pathjoin(self.mountDir, "STARTUP"), "w").write(f)
 			else:
-				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
+				copyfile(pathjoin(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), pathjoin(self.mountDir, "STARTUP"))
 				if SystemInfo["canDualBoot"]:
 					with open('/dev/block/by-name/flag', 'wb') as f:
 						f.write(struct.pack("B", int(slot)))

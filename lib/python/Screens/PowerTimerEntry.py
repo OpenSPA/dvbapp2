@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigIP
@@ -81,10 +82,10 @@ class TimerEntry(Screen, ConfigListScreen):
 			}[self.timer.timerType]
 
 		weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
-		time_table = [(1,"1"),(3,"3"),(5,"5"),(10,"10"),(15,"15"),(30,"30"),(45,"45"),(60,"60"),
-					(75,"75"),(90,"90"),(105,"105"),(120,"120"),(135,"135"),(150,"150"),(165,"165"),(180,"180"),
-					(195,"195"),(210,"210"),(225,"225"),(240,"240"),(255,"255"),(270,"270"),(285,"285"),(300,"300")]
-		traffic_table = [(10,"10"),(50,"50"),(100,"100"),(500,"500"),(1000,"1000")]
+		time_table = [(1, "1"), (3, "3"), (5, "5"), (10, "10"), (15, "15"), (30, "30"), (45, "45"), (60, "60"),
+					(75, "75"), (90, "90"), (105, "105"), (120, "120"), (135, "135"), (150, "150"), (165, "165"), (180, "180"),
+					(195, "195"), (210, "210"), (225, "225"), (240, "240"), (255, "255"), (270, "270"), (285, "285"), (300, "300")]
+		traffic_table = [(10, "10"), (50, "50"), (100, "100"), (500, "500"), (1000, "1000")]
 
 		# calculate default values
 		day = []
@@ -103,7 +104,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				count = 0
 				for x in (0, 1, 2, 3, 4, 5, 6):
 					if flags == 1: # weekly
-						print "Set to weekday " + str(x)
+						print("Set to weekday " + str(x))
 						weekday = x
 					if flags & 1 == 1: # set user defined flags
 						day[x] = 1
@@ -138,7 +139,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = config.usage.date.full.value, increment = 86400)
 		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default = self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default = (((self.timer.end - self.timer.begin) /60 ) > 4), choices = [(True, _("yes")), (False, _("no"))])
+		self.timerentry_showendtime = ConfigSelection(default = (((self.timer.end - self.timer.begin) / 60 ) > 4), choices = [(True, _("yes")), (False, _("no"))])
 
 		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = config.usage.date.full.value, increment = 86400)
 
@@ -157,9 +158,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.ipadressEntry = ConfigSubList()
 		for x in (0, 1, 2, 3, 4, 5):
 			try:
-				self.ipadressEntry.append(ConfigIP(default = [int(n) for n in self.timerrntry_ipadress[x].split('.')] or [0,0,0,0]))
+				self.ipadressEntry.append(ConfigIP(default = [int(n) for n in self.timerrntry_ipadress[x].split('.')] or [0, 0, 0, 0]))
 			except:
-				self.ipadressEntry.append(ConfigIP(default = [0,0,0,0]))
+				self.ipadressEntry.append(ConfigIP(default = [0, 0, 0, 0]))
 
 	def createSetup(self, widget):
 		self.list = []
@@ -200,8 +201,8 @@ class TimerEntry(Screen, ConfigListScreen):
 					self.list.append(self.netipEntry)
 					if self.timerrntry_netip.value == "yes":
 						self.list.append(self.ipcountEntry)
-						for x in range(0,self.ipcount.value):
-							self.list.append(getConfigListEntry(("%d. " + _("IP address")) %(x+1), self.ipadressEntry[x]))
+						for x in list(range(0, self.ipcount.value)):
+							self.list.append(getConfigListEntry(("%d. " + _("IP address")) % (x + 1), self.ipadressEntry[x]))
 
 		else:
 			self.list.append(self.timerTypeEntry)
@@ -343,11 +344,11 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.timer.end += 86400
 
 		endaction = self.timerentry_showendtime.value
-		if (self.timer.end - self.timer.begin )/60 < 5 or self.timerentry_showendtime.value is False:
+		if (self.timer.end - self.timer.begin) / 60 < 5 or self.timerentry_showendtime.value is False:
 			self.timerentry_afterevent.value = "nothing"
 			self.timer.end = self.timer.begin
 			if endaction:
-				self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") %5, MessageBox.TYPE_INFO, timeout=30)
+				self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") % 5, MessageBox.TYPE_INFO, timeout=30)
 
 		self.timer.timerType = {
 			"nothing": TIMERTYPE.NONE,
@@ -376,9 +377,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.nettraffic = self.timerrntry_nettraffic.value
 		self.timer.trafficlimit = self.timerrntry_trafficlimit.value
 		self.timer.netip = self.timerrntry_netip.value
-		self.timer.ipadress = "%d.%d.%d.%d" % (self.ipadressEntry[0].value[0],self.ipadressEntry[0].value[1],self.ipadressEntry[0].value[2],self.ipadressEntry[0].value[3])
-		for x in range(1,self.ipcount.value):
-			self.timer.ipadress += ",%d.%d.%d.%d" % (self.ipadressEntry[x].value[0],self.ipadressEntry[x].value[1],self.ipadressEntry[x].value[2],self.ipadressEntry[x].value[3])
+		self.timer.ipadress = "%d.%d.%d.%d" % (self.ipadressEntry[0].value[0], self.ipadressEntry[0].value[1], self.ipadressEntry[0].value[2], self.ipadressEntry[0].value[3])
+		for x in list(range(1, self.ipcount.value)):
+			self.timer.ipadress += ",%d.%d.%d.%d" % (self.ipadressEntry[x].value[0], self.ipadressEntry[x].value[1], self.ipadressEntry[x].value[2], self.ipadressEntry[x].value[3])
 
 		self.saveTimer()
 		self.close((True, self.timer))

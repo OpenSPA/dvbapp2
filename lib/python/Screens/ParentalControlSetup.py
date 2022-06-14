@@ -1,7 +1,8 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, configfile
+from Tools.Directories import fileExists
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import PinInput
@@ -29,9 +30,9 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 		# for the skin: first try ParentalControlSetup, then Setup, this allows individual skinning
-		self.skinName = ["ParentalControlSetup", "Setup" ]
+		self.skinName = ["ParentalControlSetup", "Setup"]
 		self.setup_title = _("Parental control setup")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)

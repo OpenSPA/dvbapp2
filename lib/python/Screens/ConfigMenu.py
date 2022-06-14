@@ -1,4 +1,5 @@
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 from Components.ConfigList import ConfigList
 from Components.ActionMap import ActionMap
 
@@ -21,7 +22,6 @@ class configTest(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-
 		self["config"] = ConfigList(
 			[
 				configEntry("HKEY_LOCAL_ENIGMA/IMPORTANT/USER_ANNOYING_STUFF/SDTV/FLASHES/GREEN"),
@@ -33,4 +33,3 @@ class configTest(Screen):
 				"ok": self["config"].toggle,
 				"cancel": self.close
 			})
-

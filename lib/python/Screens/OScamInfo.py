@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -16,9 +17,13 @@ from enigma import eTimer, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont, ge
 from xml.etree import ElementTree
 
 from operator import itemgetter
-import os, time
-import urllib2
+import os
+import time
 import skin
+
+from six.moves import urllib
+from six.moves.urllib.request import HTTPHandler, HTTPDigestAuthHandler
+
 
 ###global
 f = 1
@@ -163,25 +168,25 @@ class OscamInfo:
 		if part is not None and reader is not None:
 			self.url = "%s://%s:%s/oscamapi.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, part, reader )
 
-		opener = urllib2.build_opener( urllib2.HTTPHandler )
+		opener = urllib.request.build_opener(HTTPHandler)
 		if not self.username == "":
-			pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
-			pwman.add_password( None, self.url, self.username, self.password )
-			handlers = urllib2.HTTPDigestAuthHandler( pwman )
-			opener = urllib2.build_opener( urllib2.HTTPHandler, handlers )
-			urllib2.install_opener( opener )
-		request = urllib2.Request( self.url )
+			pwman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
+			pwman.add_password(None, self.url, self.username, self.password)
+			handlers = HTTPDigestAuthHandler(pwman)
+			opener = urllib.request.build_opener(HTTPHandler, handlers)
+			urllib.request.install_opener(opener)
+		request = urllib.request.Request(self.url)
 		err = False
 		try:
-			data = urllib2.urlopen( request ).read()
+			data = urllib.request.urlopen(request).read()
 			# print data
-		except urllib2.URLError, e:
+		except urllib.error.URLError as e:
 			if hasattr(e, "reason"):
 				err = str(e.reason)
 			elif hasattr(e, "code"):
 				err = str(e.code)
 		if err is not False:
-			print "[openWebIF] Fehler: %s" % err
+			print("[openWebIF] error: %s" % err)
 			return False, err
 		else:
 			return True, data
@@ -200,7 +205,7 @@ class OscamInfo:
 			if not self.showLog:
 				data = ElementTree.XML(result[1])
 #				if typ=="version":
-#					if data.attrib.has_key("version"):
+#					if "version" in data.attrib:
 #						self.version = data.attrib["version"]
 #					else:
 #						self.version = "n/a"
@@ -210,13 +215,13 @@ class OscamInfo:
 				for cl in clients:
 					name = cl.attrib["name"]
 					proto = cl.attrib["protocol"]
-					if cl.attrib.has_key("au"):
+					if "au" in cl.attrib:
 						au = cl.attrib["au"]
 					else:
 						au = ""
 					caid = cl.find("request").attrib["caid"]
 					srvid = cl.find("request").attrib["srvid"]
-					if cl.find("request").attrib.has_key("ecmtime"):
+					if "ecmtime" in cl.find("request").attrib:
 						ecmtime = cl.find("request").attrib["ecmtime"]
 						if ecmtime == "0" or ecmtime == "":
 							ecmtime = _("n/a")
@@ -257,14 +262,14 @@ class OscamInfo:
 				log = data.find("log")
 				logtext = log.text
 			if typ == "s":
-				if tmp.has_key("r"):
+				if "r" in tmp:
 					for i in tmp["r"]:
 						retval.append(i)
-				if tmp.has_key("p"):
+				if "p" in tmp:
 					for i in tmp["p"]:
 						retval.append(i)
 			elif typ == "c":
-				if tmp.has_key("c"):
+				if "c" in tmp:
 					for i in tmp["c"]:
 						retval.append(i)
 			elif typ == "l":
@@ -277,7 +282,7 @@ class OscamInfo:
 						txt = ""
 						for j in tmp2:
 							txt += "%s " % j.strip()
-						retval.append( txt )
+						retval.append(txt)
 
 			return retval
 
@@ -287,7 +292,7 @@ class OscamInfo:
 		xmldata = self.openWebIF()
 		if xmldata[0]:
 			data = ElementTree.XML(xmldata[1])
-			if data.attrib.has_key("version"):
+			if "version" in data.attrib:
 				self.version = data.attrib["version"]
 			else:
 				self.version = _("n/a")
@@ -313,7 +318,7 @@ class OscamInfo:
 			status = data.find("status")
 			clients = status.findall("client")
 			for cl in clients:
-				if cl.attrib.has_key("type"):
+				if "type" in cl.attrib:
 					if cl.attrib["type"] == "p" or cl.attrib["type"] == "r":
 						if spec is not None:
 							proto = cl.attrib["protocol"]
@@ -336,7 +341,7 @@ class OscamInfo:
 			status = data.find("status")
 			clients = status.findall("client")
 			for cl in clients:
-				if cl.attrib.has_key("type"):
+				if "type" in cl.attrib:
 					if cl.attrib["type"] == "c":
 						readers.append( (cl.attrib["name"], cl.attrib["name"]) )  # return tuple for later use in Choicebox
 			return clientnames
@@ -487,7 +492,7 @@ class OscamInfoMenu(Screen):
 			self.session.open(OscamInfoConfigScreen)
 
 	def chooseReaderCallback(self, retval):
-		print retval
+		print(retval)
 		if retval is not None:
 			if self.callbackmode == "cccam":
 				self.session.open(oscEntitlements, retval[1])
@@ -503,7 +508,7 @@ class OscamInfoMenu(Screen):
 		menuentries = []
 		k = 0
 		for t in mlist:
-			res = [ t ]
+			res = [t]
 			if t.startswith("--"):
 				png = resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png")
 				if fileExists(png):
@@ -682,7 +687,7 @@ class oscInfo(Screen, OscamInfo):
 
 	def key_moveDown(self):
 		self.enableScrolling()
-		self["output"].moveToIndex(len(self.out)-1)
+		self["output"].moveToIndex(len(self.out) - 1)
 
 	def key_green(self):
 		if self.what == "c":
@@ -732,7 +737,7 @@ class oscInfo(Screen, OscamInfo):
 			useFont = 1
 			ypos = -2
 		if not heading:
-			status = listentry[len(listentry)-1]
+			status = listentry[len(listentry) - 1]
 			colour = "0xffffff"
 			if status == "OK" or "CONNECTED" or status == "CARDOK":
 				colour = "0x389416"
@@ -770,17 +775,17 @@ class oscInfo(Screen, OscamInfo):
 			data = self.readXML(typ = self.what)
 		self.out = []
 		self.itemheight = 25
-		if not isinstance(data,str):
+		if not isinstance(data, str):
 			if self.what != "l":
-				heading = ( self.HEAD[self.NAME], self.HEAD[self.PROT], self.HEAD[self.CAID_SRVID],
+				heading = (self.HEAD[self.NAME], self.HEAD[self.PROT], self.HEAD[self.CAID_SRVID],
 						self.HEAD[self.SRVNAME], self.HEAD[self.ECMTIME], self.HEAD[self.IP_PORT], "")
-				self.out = [ self.buildListEntry(heading, heading=True)]
+				self.out = [self.buildListEntry(heading, heading=True)]
 				for i in data:
 					self.out.append(self.buildListEntry(i))
 			else:
 				for i in data:
 					if i != "":
-						self.out.append( self.buildLogListEntry( (i,) ))
+						self.out.append(self.buildLogListEntry((i,)))
 			if self.what == "c":
 				self.setTitle(_("Client Info ( Oscam-Version: %s )") % self.getVersion())
 				self["key_green"].setText("")
@@ -802,7 +807,7 @@ class oscInfo(Screen, OscamInfo):
 			if config.oscaminfo.autoupdate.value:
 				self.loop.stop()
 			for i in self.errmsg:
-				self.out.append( self.buildListEntry( (i,) ))
+				self.out.append(self.buildListEntry((i,)))
 			self.setTitle(_("Error") + ": " + data)
 			self["key_green"].setText(_("Clients"))
 			self["key_yellow"].setText(_("Servers"))
@@ -835,7 +840,8 @@ class oscInfo(Screen, OscamInfo):
 			if self.what != "l":
 				self["output"].moveToIndex(1)
 			else:
-				self["output"].moveToIndex(len(self.out)-1)
+				self["output"].moveToIndex(len(self.out) - 1)
+
 
 class oscEntitlements(Screen, OscamInfo):
 	global HDSKIN, sizeH
@@ -875,13 +881,14 @@ class oscEntitlements(Screen, OscamInfo):
 				}
 				</convert>
 			</widget>
-		</screen>""" % ( sizeH, sizeLH)
+		</screen>""" % (sizeH, sizeLH)
+
 	def __init__(self, session, reader):
 		global HDSKIN, sizeH
 		Screen.__init__(self, session)
 		self.mlist = oscMenuList([])
 		self.cccamreader = reader
-		self["output"] = List([ ])
+		self["output"] = List([])
 		self["actions"] = ActionMap(["OkCancelActions"],
 					{
 						"ok": self.showData,
@@ -893,10 +900,10 @@ class oscEntitlements(Screen, OscamInfo):
 		self.close()
 
 	def buildList(self, data):
-		caids = data.keys()
+		caids = list(data.keys())
 		caids.sort()
 		outlist = []
-		res = [ ("CAID", _("System"), "1", "2", "3", "4", "5", "Total", _("Reshare"), "") ]
+		res = [("CAID", _("System"), "1", "2", "3", "4", "5", "Total", _("Reshare"), "")]
 		for i in caids:
 			csum = 0
 			ca_id = i
@@ -912,12 +919,12 @@ class oscEntitlements(Screen, OscamInfo):
 				providertxt = ""
 				linefeed = "\n"
 			for j in prov:
-				providertxt += "%s - %s%s" % ( j[0], j[1], linefeed )
-			res.append( ( 	ca_id,
+				providertxt += "%s - %s%s" % (j[0], j[1], linefeed)
+			res.append((ca_id,
 					csystem,
-					str(hops[1]),str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
+					str(hops[1]), str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
 					providertxt[:-1]
-					) )
+					))
 			outlist.append(res)
 		return res
 
@@ -925,7 +932,7 @@ class oscEntitlements(Screen, OscamInfo):
 		xmldata_for_reader = self.openWebIF(part = "entitlement", reader = self.cccamreader)
 		xdata = ElementTree.XML(xmldata_for_reader[1])
 		reader = xdata.find("reader")
-		if reader.attrib.has_key("hostaddress"):
+		if "hostaddress" in reader.attrib:
 			hostadr = reader.attrib["hostaddress"]
 			host_ok = True
 		else:
@@ -943,30 +950,30 @@ class oscEntitlements(Screen, OscamInfo):
 			chop = int(i.attrib["hop"])
 			if chop > 5:
 				chop = 5
-			if caid.has_key(ccaid):
-				if caid[ccaid].has_key("hop"):
+			if ccaid in caid:
+				if "hop" in caid[ccaid]:
 					caid[ccaid]["hop"][chop] += 1
 				else:
-					caid[ccaid]["hop"] = [ 0, 0, 0, 0, 0, 0 ]
+					caid[ccaid]["hop"] = [0, 0, 0, 0, 0, 0]
 					caid[ccaid]["hop"][chop] += 1
 				caid[ccaid]["reshare"] = creshare
-				caid[ccaid]["provider"] = [ ]
+				caid[ccaid]["provider"] = []
 				provs = i.find("providers")
 				for prov in provs.findall("provider"):
-					caid[ccaid]["provider"].append( (prov.attrib["provid"], prov.text) )
+					caid[ccaid]["provider"].append((prov.attrib["provid"], prov.text))
 				caid[ccaid]["system"] = csystem
 			else:
 				caid[ccaid] = {}
-				if caid[ccaid].has_key("hop"):
+				if "hop" in caid[ccaid]:
 					caid[ccaid]["hop"][chop] += 1
 				else:
-					caid[ccaid]["hop"] = [ 0, 0, 0, 0, 0, 0]
+					caid[ccaid]["hop"] = [0, 0, 0, 0, 0, 0]
 					caid[ccaid]["hop"][chop] += 1
 				caid[ccaid]["reshare"] = creshare
-				caid[ccaid]["provider"] = [ ]
+				caid[ccaid]["provider"] = []
 				provs = i.find("providers")
 				for prov in provs.findall("provider"):
-					caid[ccaid]["provider"].append( (prov.attrib["provid"], prov.text) )
+					caid[ccaid]["provider"].append((prov.attrib["provid"], prov.text))
 				caid[ccaid]["system"] = csystem
 		result = self.buildList(caid)
 		if HDSKIN:
@@ -974,8 +981,9 @@ class oscEntitlements(Screen, OscamInfo):
 		else:
 			self["output"].setStyle("default")
 		self["output"].setList(result)
-		title = [ _("Reader"), self.cccamreader, _("Cards:"), cardTotal, _("Server:"), hostadr ]
-		self.setTitle( " ".join(title))
+		title = [_("Reader"), self.cccamreader, _("Cards:"), cardTotal, _("Server:"), hostadr]
+		self.setTitle(" ".join(title))
+
 
 class oscReaderStats(Screen, OscamInfo):
 	global HDSKIN, sizeH
@@ -1010,7 +1018,8 @@ class oscReaderStats(Screen, OscamInfo):
 				}
 				</convert>
 			</widget>
-		</screen>""" % ( sizeH, sizeLH)
+		</screen>""" % (sizeH, sizeLH)
+
 	def __init__(self, session, reader):
 		global HDSKIN, sizeH
 		Screen.__init__(self, session)
@@ -1020,7 +1029,7 @@ class oscReaderStats(Screen, OscamInfo):
 			self.allreaders = False
 		self.reader = reader
 		self.mlist = oscMenuList([])
-		self["output"] = List([ ])
+		self["output"] = List([])
 		self["actions"] = ActionMap(["OkCancelActions"],
 					{
 						"ok": self.showData,
@@ -1032,10 +1041,10 @@ class oscReaderStats(Screen, OscamInfo):
 		self.close()
 
 	def buildList(self, data):
-		caids = data.keys()
+		caids = list(data.keys())
 		caids.sort()
 		outlist = []
-		res = [ ("CAID", "System", "1", "2", "3", "4", "5", "Total", "Reshare", "") ]
+		res = [("CAID", "System", "1", "2", "3", "4", "5", "Total", "Reshare", "")]
 		for i in caids:
 			csum = 0
 			ca_id = i
@@ -1051,12 +1060,12 @@ class oscReaderStats(Screen, OscamInfo):
 				providertxt = ""
 				linefeed = "\n"
 			for j in prov:
-				providertxt += "%s - %s%s" % ( j[0], j[1], linefeed )
-			res.append( ( 	ca_id,
+				providertxt += "%s - %s%s" % (j[0], j[1], linefeed)
+			res.append((ca_id,
 					csystem,
-					str(hops[1]),str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
+					str(hops[1]), str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
 					providertxt[:-1]
-					) )
+					))
 			outlist.append(res)
 		return res
 
@@ -1074,18 +1083,18 @@ class oscReaderStats(Screen, OscamInfo):
 				xdata = ElementTree.XML(xmldata[1])
 				rdr = xdata.find("reader")
 #					emms = rdr.find("emmstats")
-#					if emms.attrib.has_key("totalwritten"):
+#					if "totalwritten" in emms.attrib:
 #						emm_wri = emms.attrib["totalwritten"]
-#					if emms.attrib.has_key("totalskipped"):
+#					if "totalskipped" in emms.attrib:
 #						emm_ski = emms.attrib["totalskipped"]
-#					if emms.attrib.has_key("totalblocked"):
+#					if "totalblocked" in emms.attrib:
 #						emm_blk = emms.attrib["totalblocked"]
-#					if emms.attrib.has_key("totalerror"):
+#					if "totalerror" in emms.attrib:
 #						emm_err = emms.attrib["totalerror"]
 
 				ecmstat = rdr.find("ecmstats")
 				totalecm = ecmstat.attrib["totalecm"]
-				ecmcount = ecmstat.attrib["count"]
+				ecmcount = int(ecmstat.attrib["count"])
 				lastacc = ecmstat.attrib["lastaccess"]
 				ecm = ecmstat.findall("ecm")
 				if ecmcount > 0:
@@ -1100,12 +1109,12 @@ class oscReaderStats(Screen, OscamInfo):
 						if rcs == "found":
 							avg_time = str(float(avgtime) / 1000)[:5]
 							last_time = str(float(lasttime) / 1000)[:5]
-							if j.attrib.has_key("lastrequest"):
+							if "lastrequest" in j.attrib:
 								lastreq = j.attrib["lastrequest"]
 								try:
 									last_req = lastreq.split("T")[1][:-5]
 								except IndexError:
-									last_req = time.strftime("%H:%M:%S",time.localtime(float(lastreq)))
+									last_req = time.strftime("%H:%M:%S", time.localtime(float(lastreq)))
 							else:
 								last_req = ""
 						else:
@@ -1113,25 +1122,26 @@ class oscReaderStats(Screen, OscamInfo):
 #						if lastreq != "":
 #							last_req = lastreq.split("T")[1][:-5]
 						if self.allreaders:
-							result.append( (i[1], caid, channel, avg_time, last_time, rcs, last_req, int(num)) )
+							result.append((i[1], caid, channel, avg_time, last_time, rcs, last_req, int(num)))
 							title2 = _("( All readers)")
 						else:
 							if i[1] == self.reader:
-								result.append( (i[1], caid, channel, avg_time, last_time, rcs, last_req, int(num)) )
-							title2 =_("(Show only reader:") + "%s )" % self.reader
+								result.append((i[1], caid, channel, avg_time, last_time, rcs, last_req, int(num)))
+							title2 = _("(Show only reader:") + "%s )" % self.reader
 
 		outlist = self.sortData(result, 7, True)
-		out = [ ( _("Label"), _("CAID"), _("Channel"), _("ECM avg"), _("ECM last"), _("Status"), _("Last Req."), _("Total") ) ]
+		out = [(_("Label"), _("CAID"), _("Channel"), _("ECM avg"), _("ECM last"), _("Status"), _("Last Req."), _("Total"))]
 		for i in outlist:
-			out.append( (i[0], i[1], i[2], i[3], i[4], i[5], i[6], str(i[7])) )
+			out.append((i[0], i[1], i[2], i[3], i[4], i[5], i[6], str(i[7])))
 
 		if HDSKIN:
 			self["output"].setStyle("HD")
 		else:
 			self["output"].setStyle("default")
 		self["output"].setList(out)
-		title = [ _("Reader Statistics"), title2 ]
-		self.setTitle( " ".join(title))
+		title = [_("Reader Statistics"), title2]
+		self.setTitle(" ".join(title))
+
 
 class OscamInfoConfigScreen(Screen, ConfigListScreen):
 	skin = """
@@ -1151,7 +1161,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 			self.msg = "Error:\n%s" % msg
 		else:
 			self.msg = ""
-		self.oscamconfig = [ ]
+		self.oscamconfig = []
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["status"] = StaticText(self.msg)

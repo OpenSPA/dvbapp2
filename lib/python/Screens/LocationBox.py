@@ -19,7 +19,7 @@ import os
 from Tools.NumericalTextInput import NumericalTextInput
 
 # GUI (Components)
-from Components.ActionMap import NumberActionMap, HelpableActionMap
+from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Button import Button
@@ -52,8 +52,10 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def __init__(self, session, text = "", filename = "", currDir = None, bookmarks = None, userMode = False, windowTitle = "Select location", minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
 		# Init parents
-		if not inhibitDirs: inhibitDirs = []
-		if not inhibitMounts: inhibitMounts = []
+		if not inhibitDirs:
+			inhibitDirs = []
+		if not inhibitMounts:
+			inhibitMounts = []
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self, handleTimeout = False)
 		HelpableScreen.__init__(self)
@@ -113,7 +115,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Custom Action Handler
 		class LocationBoxActionMap(HelpableActionMap):
 			def __init__(self, parent, context, actions=None, prio=0):
-				if not actions: actions = {}
+				if not actions:
+					actions = {}
 				HelpableActionMap.__init__(self, parent, context, actions, prio)
 				self.box = parent
 
@@ -158,19 +161,19 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			}, -2)
 
 		# Actions used by quickselect
-		self["NumberActions"] = NumberActionMap(["NumberActions"],
-		{
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
-		})
+		smsMsg = _("SMS style QuickSelect location selection")
+		self["numberActions"] = HelpableNumberActionMap(self, "NumberActions", {
+			"1": (self.keyNumberGlobal, smsMsg),
+			"2": (self.keyNumberGlobal, smsMsg),
+			"3": (self.keyNumberGlobal, smsMsg),
+			"4": (self.keyNumberGlobal, smsMsg),
+			"5": (self.keyNumberGlobal, smsMsg),
+			"6": (self.keyNumberGlobal, smsMsg),
+			"7": (self.keyNumberGlobal, smsMsg),
+			"8": (self.keyNumberGlobal, smsMsg),
+			"9": (self.keyNumberGlobal, smsMsg),
+			"0": (self.keyNumberGlobal, smsMsg)
+		}, prio=0, description=_("Quick Select Actions"))
 
 		# Run some functions when shown
 		self.onShown.extend((
@@ -402,7 +405,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			free = ""
 			try:
 				stat = os.statvfs(currFolder)
-				free = ("%0.f GB " + _("free")) % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024)
+				free = ("%0.f GB " + _("free")) % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 / 1024)
 			except:
 				pass
 			self["targetfreespace"].setText(free)
@@ -462,7 +465,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Get char and append to text
 		char = self.getKey(number)
-		self.quickselect = self.quickselect[:self.curr_pos] + unicode(char)
+		self.quickselect = self.quickselect[:self.curr_pos] + six.text_type(char)
 
 		# Start Timeout
 		self.qs_timer_type = 0

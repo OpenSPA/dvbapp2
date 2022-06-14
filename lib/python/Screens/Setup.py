@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword
@@ -14,15 +15,17 @@ from gettext import dgettext
 from boxbranding import getMachineBrand, getMachineName
 
 import xml.etree.cElementTree
+import six
+
 
 def setupdom(plugin=None):
 	# read the setupmenu
 	if plugin:
 		# first we search in the current path
-		setupfile = file(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/setup.xml'), 'r')
+		setupfile = open(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/setup.xml'), 'r')
 	else:
 		# if not found in the current path, we use the global datadir-path
-		setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
+		setupfile = open(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
 	setupfiledom = xml.etree.cElementTree.parse(setupfile)
 	setupfile.close()
 	return setupfiledom
@@ -46,31 +49,32 @@ class SetupSummary(Screen):
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.onShow.append(self.addWatcher)
 			self.onHide.append(self.removeWatcher)
 
 	def addWatcher(self):
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.parent.onChangedEntry.append(self.selectionChanged)
 			self.parent["config"].onSelectionChanged.append(self.selectionChanged)
 			self.selectionChanged()
 
 	def removeWatcher(self):
-		if hasattr(self.parent,"onChangedEntry"):
+		if hasattr(self.parent, "onChangedEntry"):
 			self.parent.onChangedEntry.remove(self.selectionChanged)
 			self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentDescription") and self.parent.has_key("description"):
+		if hasattr(self.parent, "getCurrentDescription") and "description" in self.parent:
 			self.parent["description"].text = self.parent.getCurrentDescription()
-		if self.parent.has_key('footnote'):
+		if 'footnote' in self.parent:
 			if self.parent.getCurrentEntry().endswith('*'):
 				self.parent['footnote'].text = (_("* = Restart Required"))
 			else:
 				self.parent['footnote'].text = (_(" "))
+
 
 class Setup(ConfigListScreen, Screen):
 
@@ -80,41 +84,41 @@ class Setup(ConfigListScreen, Screen):
 		self.onNotifiers.remove(self.levelChanged)
 
 	def levelChanged(self, configElement):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
+		listItems = []
+		self.refill(listItems)
+		self["config"].setList(listItems)
 
-	def refill(self, list):
+	def refill(self, listItems):
 		xmldata = setupdom(self.plugin).getroot()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
-			self.addItems(list, x)
-			self.setup_title = x.get("title", "").encode("UTF-8")
+			self.addItems(listItems, x)
+			self.setup_title = six.ensure_str(x.get("title", ""))
 			self.seperation = int(x.get('separation', '0'))
 
 	def __init__(self, session, setup, plugin=None, PluginLanguageDomain=None):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
-		self.skinName = ["setup_" + setup, "Setup" ]
+		self.skinName = ["setup_" + setup, "Setup"]
 
 		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self["status"] = StaticText()
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.item = None
 		self.setup = setup
 		self.plugin = plugin
 		self.PluginLanguageDomain = PluginLanguageDomain
-		list = []
-		self.onNotifiers = [ ]
-		self.refill(list)
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		listItems = []
+		self.onNotifiers = []
+		self.refill(listItems)
+		ConfigListScreen.__init__(self, listItems, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
-		#check for list.entries > 0 else self.close
+		#check for listItems.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["description"] = Label("")
@@ -123,6 +127,7 @@ class Setup(ConfigListScreen, Screen):
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"ok": self.keySave,
 				"menu": self.closeRecursive,
 			}, -2)
 
@@ -139,16 +144,16 @@ class Setup(ConfigListScreen, Screen):
 		self.onClose.append(self.HideHelp)
 
 	def createSetup(self):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
+		listItems = []
+		self.refill(listItems)
+		self["config"].setList(listItems)
 		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 		self.moveToItem(self.item)
 
 	def getIndexFromItem(self, item):
-		if item is not None:
-			for x in range(len(self["config"].list)):
+		if item != None:
+			for x in list(range(len(self["config"].list))):
 				if self["config"].list[x][0] == item[0]:
 					return x
 		return None
@@ -164,24 +169,24 @@ class Setup(ConfigListScreen, Screen):
 		if self["config"].getCurrent() is not None:
 			try:
 				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-					if self.has_key("VKeyIcon"):
+					if "VKeyIcon" in self:
 						self["VirtualKB"].setEnabled(True)
 						self["VKeyIcon"].boolean = True
-					if self.has_key("HelpWindow"):
+					if "HelpWindow" in self:
 						if self["config"].getCurrent()[1].help_window.instance is not None:
 							helpwindowpos = self["HelpWindow"].getPosition()
 							from enigma import ePoint
-							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
 				else:
-					if self.has_key("VKeyIcon"):
+					if "VKeyIcon" in self:
 						self["VirtualKB"].setEnabled(False)
 						self["VKeyIcon"].boolean = False
 			except:
-				if self.has_key("VKeyIcon"):
+				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(False)
 					self["VKeyIcon"].boolean = False
 		else:
-			if self.has_key("VKeyIcon"):
+			if "VKeyIcon" in self:
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
 
@@ -200,7 +205,7 @@ class Setup(ConfigListScreen, Screen):
 			if self["config"].getCurrent()[1].help_window.instance is not None:
 				self["config"].getCurrent()[1].help_window.hide()
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
@@ -220,7 +225,7 @@ class Setup(ConfigListScreen, Screen):
 		except:
 			pass
 
-	def addItems(self, list, parentNode):
+	def addItems(self, listItems, parentNode):
 		for x in parentNode:
 			if not x.tag:
 				continue
@@ -251,26 +256,40 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				requires = x.get("requires")
-				value = x.get("value")
-				if requires and requires.startswith('config.'):
-					item = eval(requires or "")
-					if value and str(item.value) == value or not value and item.value and not item.value == "0":
-						SystemInfo[requires] = True
-					else:
-						SystemInfo[requires] = False
+				if requires:
+					meets = True
+					for requires in requires.split(';'):
+						negate = requires.startswith('!')
+						if negate:
+							requires = requires[1:]
+						if requires.startswith('config.'):
+							try:
+								item = eval(requires)
+								SystemInfo[requires] = True if item.value and item.value not in ("0", "False", "false", "off") else False
+							except AttributeError:
+								print('[Setup] unknown "requires" config element:', requires)
 
-				if requires and not SystemInfo.get(requires, False):
-					continue
+						if requires:
+							if not SystemInfo.get(requires, False):
+								if not negate:
+									meets = False
+									break
+							else:
+								if negate:
+									meets = False
+									break
+					if not meets:
+						continue
 
 				if self.PluginLanguageDomain:
-					item_text = dgettext(self.PluginLanguageDomain, x.get("text", "??").encode("UTF-8"))
-					item_description = dgettext(self.PluginLanguageDomain, x.get("description", " ").encode("UTF-8"))
+					item_text = dgettext(self.PluginLanguageDomain, six.ensure_str(x.get("text", "??")))
+					item_description = dgettext(self.PluginLanguageDomain, six.ensure_str(x.get("description", " ")))
 				else:
-					item_text = _(x.get("text", "??").encode("UTF-8"))
-					item_description = _(x.get("description", " ").encode("UTF-8"))
+					item_text = _(six.ensure_str(x.get("text", "??")))
+					item_description = _(six.ensure_str(x.get("description", " ")))
 
-				item_text = item_text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
-				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
+				item_text = item_text.replace("%s %s", "%s %s" % (getMachineBrand(), getMachineName()))
+				item_description = item_description.replace("%s %s", "%s %s" % (getMachineBrand(), getMachineName()))
 				try:
 					b = eval(x.text or "");
 				except:
@@ -282,20 +301,22 @@ class Setup(ConfigListScreen, Screen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append((item_text, item, item_description))
+					listItems.append((item_text, item, item_description))
 
-def getSetupTitle(id):
+
+def getSetupTitle(setupId):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
-		if x.get("key") == id:
-			if _(x.get("title", "").encode("UTF-8")) == _("OSD Settings") or _(x.get("title", "").encode("UTF-8")) == _("Softcam Setup") or _(x.get("title", "").encode("UTF-8")) == _("EPG settings"):
+		if x.get("key") == setupId:
+			if _(six.ensure_str(x.get("title", ""))) == _("OSD Settings") or _(six.ensure_str(x.get("title", ""))) == _("Softcam Setup") or _(six.ensure_str(x.get("title", ""))) == _("EPG settings"):
 				return _("Settings...")
-			return x.get("title", "").encode("UTF-8")
-	raise SetupError("unknown setup id '%s'!" % repr(id))
+			return six.ensure_str(x.get("title", ""))
+	raise SetupError("unknown setup id '%s'!" % repr(setupId))
 
-def getSetupTitleLevel(id):
+
+def getSetupTitleLevel(setupId):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
-		if x.get("key") == id:
+		if x.get("key") == setupId:
 			return int(x.get("level", 0))
 	return 0

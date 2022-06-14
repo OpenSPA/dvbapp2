@@ -15,6 +15,7 @@ from Components.SystemInfo import SystemInfo
 from Components.Harddisk import harddiskmanager
 from boxbranding import getMachineBrand, getMachineName
 import os
+import six
 
 hddchoises = []
 for p in harddiskmanager.getMountedPartitions():
@@ -46,7 +47,7 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 		if hasattr(self.parent,"getCurrentDescription"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
-		if self.parent.has_key('footnote'):
+		if 'footnote' in self.parent:
 			if self.parent.getCurrentEntry().endswith('*'):
 				self.parent['footnote'].text = (_("* = Restart Required"))
 			else:
@@ -68,7 +69,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 			if x.get("key") != self.setup:
 				continue
 			self.addItems(list, x)
-			self.setup_title = x.get("title", "").encode("UTF-8")
+			self.setup_title = six.ensure_str(x.get("title", ""))
 			self.seperation = int(x.get('separation', '0'))
 
 	def __init__(self, session):
@@ -100,7 +101,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def checkReadWriteDir(self, configele):
-		print "checkReadWrite: ", configele.value
+		print("checkReadWrite: ", configele.value)
 		if configele.value in [x[0] for x in self.styles] or fileExists(configele.value, "w"):
 			configele.last_value = configele.value
 			return True
@@ -122,7 +123,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
-		print "Picon Path: ", default, tmp
+		print("Picon Path: ", default, tmp)
 		self.picon_dirname = ConfigSelection(default = default, choices = self.styles+tmp)
 
 		#self.picon_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
@@ -249,12 +250,15 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 				if requires and not SystemInfo.get(requires, False):
 					continue
 
-				item_text = _(x.get("text", "??").encode("UTF-8"))
-				item_description = _(x.get("description", " ").encode("UTF-8"))
+				item_text = _(six.ensure_str(x.get("text", "??")))
+				item_description = _(six.ensure_str(x.get("description", " ")))
 
 				item_text = item_text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
-				b = eval(x.text or "")
+				try:
+					b = eval(x.text or "");
+				except:
+					b = ""
 				if b == "":
 					continue
 				#add to configlist
