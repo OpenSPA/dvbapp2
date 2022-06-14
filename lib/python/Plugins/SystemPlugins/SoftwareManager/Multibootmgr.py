@@ -1,11 +1,9 @@
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-from boxbranding import getMachineBuild
+from boxbranding import getMachineName
 from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.config import config
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
@@ -35,7 +33,7 @@ class MultiBootWizard(Screen):
 	</screen>
 	"""
 
-	def __init__(self, session,menu_path=""):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("MultiBoot Image Manager"))
 		self["key_red"] = StaticText(_("Cancel"))
@@ -43,7 +41,7 @@ class MultiBootWizard(Screen):
 		self["options"] = StaticText(_("Note: slot list does not show current image or empty slots."))
 		self["key_green"] = StaticText(_("Erase"))
 		self["key_yellow"] = StaticText("")
-		self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image slots - Please wait...")), "Queued"))])
+		self["config"] = ChoiceList(list=[ChoiceEntryComponent('', ((_("Retrieving image slots - Please wait...")), "Queued"))])
 		imagedict = []
 		self.getImageList = None
 		self.startit()
@@ -80,18 +78,18 @@ class MultiBootWizard(Screen):
 			currentimageslot += 1
 		for x in sorted(imagedict.keys()):
 			if imagedict[x]["imagename"] != _("Empty slot") and x != currentimageslot:
-				list.append(ChoiceEntryComponent('',((_("slot%s - %s ")) % (x, imagedict[x]['imagename']), x)))
+				list.append(ChoiceEntryComponent('', ((_("slot%s - %s ")) % (x, imagedict[x]['imagename']), x)))
 		self["config"].setList(list)
 
 	def erase(self):
 		self.currentSelected = self["config"].l.getCurrentSelection()
 		if self.currentSelected[0][1] != "Queued":
 			if SystemInfo["HasRootSubdir"]:
-				message = _("Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?") %(getMachineBuild(), self.currentSelected[0][1])
+				message = _("Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?") % (getMachineName(), self.currentSelected[0][1])
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))
 			else:
-				message = _("Are you sure you want to delete image slot %s ?") %self.currentSelected[0][1]
+				message = _("Are you sure you want to delete image slot %s ?") % self.currentSelected[0][1]
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))
 		self.startit()
