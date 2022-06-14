@@ -26,7 +26,6 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 
 		from Components.ActionMap import ActionMap
-		from Components.Button import Button
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 
@@ -87,14 +86,14 @@ def applySettings(mode, znorm, setmode):
 			file.write('%d' % znorm)
 			file.close()
 		elif setmode == "mode2":
-			file = open("/proc/stb/fb/primary/3d","w")
-			if mode == "sidebyside" :
+			file = open("/proc/stb/fb/primary/3d", "w")
+			if mode == "sidebyside":
 				mode = "sbs"
 			elif mode == "topandbottom":
 				mode = "tab"
 			file.write(mode)
 			file.close()
-			file = open("/proc/stb/fb/primary/zoffset","w")
+			file = open("/proc/stb/fb/primary/zoffset", "w")
 			file.write('%d' % znorm)
 			file.close()
 	except:

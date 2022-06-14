@@ -1,3 +1,4 @@
+from __future__ import print_function
 from boxbranding import getImageVersion
 
 from enigma import eConsoleAppContainer, eEnv
@@ -19,7 +20,7 @@ class md5Postcondition(Condition):
 		pass
 
 	def check(self, task):
-		print "md5Postcondition::check", task.returncode
+		print("md5Postcondition::check", task.returncode)
 		return task.returncode == 0
 
 	def getErrorMessage(self, task):
@@ -39,18 +40,19 @@ class md5verify(Task):
 
 	def writeInput(self, input):
 		self.container.dataSent.append(self.md5ready)
-		print "[writeInput]", input
+		print("[writeInput]", input)
 		Task.writeInput(self, input)
 
 	def md5ready(self, retval):
 		self.container.sendEOF()
 
 	def processOutput(self, data):
-		print "[md5sum]",
+		print("[md5sum]", end=' ')
+
 
 class writeNAND(Task):
 	def __init__(self, job, param, box):
-		Task.__init__(self,job, "Writing image file to NAND Flash")
+		Task.__init__(self, job, "Writing image file to NAND Flash")
 		self.setTool(eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NFIFlash/writenfi-mipsel-2.6.18-r1"))
 		if box == "dm7025":
 			self.end = 256
@@ -60,11 +62,11 @@ class writeNAND(Task):
 		self.weighting = 95
 
 	def processOutput(self, data):
-		print "[writeNand] " + data
+		print("[writeNand] " + data)
 		if data == "." or data.endswith(" ."):
 			self.progress += 1
 		elif data.find("*** done!") > 0:
-			print "data.found done"
+			print("data.found done")
 			self.setProgress(self.end)
 		else:
 			self.output_line = data
@@ -121,9 +123,9 @@ class NFIFlash(Screen):
 	def autostart(self):
 		self.onShown.remove(self.autostart)
 		self.check_for_NFO()
-		print "[[layoutFinished]]", len(self["filelist"].getFileList())
+		print("[[layoutFinished]]", len(self["filelist"].getFileList()))
 		if len(self["filelist"].getFileList()) == 1:
-			print "==1"
+			print("==1")
 			self.keyOk()
 
 	def keyUp(self):
@@ -148,10 +150,10 @@ class NFIFlash(Screen):
 				self["filelist"].descent()
 				self.check_for_NFO()
 			elif self["filelist"].getFilename():
-				self.session.openWithCallback(self.queryCB, MessageBox, _("Shall the USB stick wizard proceed and program the image file %s into flash memory?" % self.nfifile.rsplit('/',1)[-1]), MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.queryCB, MessageBox, _("Shall the USB stick wizard proceed and program the image file %s into flash memory?" % self.nfifile.rsplit('/', 1)[-1]), MessageBox.TYPE_YESNO)
 
 	def check_for_NFO(self, nfifile=None):
-		print "check_for_NFO", self["filelist"].getFilename(), self["filelist"].getCurrentDirectory()
+		print("check_for_NFO", self["filelist"].getFilename(), self["filelist"].getCurrentDirectory())
 		self["infolabel"].text = ""
 		self["key_green"].text = ""
 
@@ -159,21 +161,21 @@ class NFIFlash(Screen):
 			if self["filelist"].getFilename() is None:
 				return
 			if self["filelist"].getCurrentDirectory() is not None:
-				self.nfifile = self["filelist"].getCurrentDirectory()+self["filelist"].getFilename()
+				self.nfifile = self["filelist"].getCurrentDirectory() + self["filelist"].getFilename()
 		else:
 			self.nfifile = nfifile
 
 		if self.nfifile.upper().endswith(".NFI"):
 			self["key_green"].text = _("Flash")
-			nfofilename = self.nfifile[0:-3]+"nfo"
-			print nfofilename, fileExists(nfofilename)
+			nfofilename = self.nfifile[0:-3] + "nfo"
+			print(nfofilename, fileExists(nfofilename))
 			if fileExists(nfofilename):
 				nfocontent = open(nfofilename, "r").read()
-				print "nfocontent:", nfocontent
+				print("nfocontent:", nfocontent)
 				self["infolabel"].text = nfocontent
 				pos = nfocontent.find("MD5:")
 				if pos > 0:
-					self.md5sum = nfocontent[pos+5:pos+5+32] + "  " + self.nfifile
+					self.md5sum = nfocontent[pos + 5:pos + 5 + 32] + "  " + self.nfifile
 				else:
 					self.md5sum = ""
 			else:
@@ -197,12 +199,13 @@ class NFIFlash(Screen):
 		self.session.openWithCallback(self.flashed, JobView, self.job, cancelable = False, backgroundable = False, afterEventChangeable = False)
 
 	def flashed(self, bg):
-		print "[flashed]"
+		print("[flashed]")
 		if self.job.status == self.job.FINISHED:
 			self["status"].text = _("NFI image flashing completed. Press Yellow to Reboot!")
-			filename = self.usbmountpoint+'enigma2settingsbackup.tar.gz'
+			filename = self.usbmountpoint + 'enigma2settingsbackup.tar.gz'
 			if fileExists(filename):
-				import os.path, time
+				import os.path
+				import time
 				date = time.ctime(os.path.getmtime(filename))
 				self.session.openWithCallback(self.askRestoreCB, MessageBox, _("The wizard found a configuration backup. Do you want to restore your old settings from %s?") % date, MessageBox.TYPE_YESNO)
 			else:

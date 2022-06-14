@@ -1,3 +1,4 @@
+from __future__ import print_function
 # plugin from Sif Team
 
 from enigma import eDVBDB, eServiceReference, eServiceCenter
@@ -40,7 +41,7 @@ class LCN():
 		if lcn == 0:
 			return
 
-		for i in range(0, len(self.lcnlist)):
+		for i in list(range(0, len(self.lcnlist))):
 			if self.lcnlist[i][0] == lcn:
 				if self.lcnlist[i][5] > signal:
 					self.addLcnToList(namespace, nid, tsid, sid, lcn + 16536, signal)
@@ -76,9 +77,9 @@ class LCN():
 				value = x[0]
 				cmd = "x[0] = " + rule
 				try:
-					exec cmd
-				except Exception, e:
-					print e
+					exec(cmd)
+				except Exception as e:
+					print(e)
 
 	def addMarker(self, position, text):
 		self.markers.append([position, text])
@@ -88,8 +89,8 @@ class LCN():
 
 		try:
 			f = open(self.dbfile)
-		except Exception, e:
-			print e
+		except Exception as e:
+			print(e)
 			return
 
 		while True:
@@ -122,9 +123,9 @@ class LCN():
 	def readE2Services(self, serviceType):
 		self.e2services = []
 		if serviceType == "TV":
-			refstr = '%s ORDER BY name'%(self.service_types_tv)
+			refstr = '%s ORDER BY name' % (self.service_types_tv)
 		elif serviceType == "RADIO":
-			refstr = '%s ORDER BY name'%(self.service_types_radio)
+			refstr = '%s ORDER BY name' % (self.service_types_radio)
 		ref = eServiceReference(refstr)
 		serviceHandler = eServiceCenter.getInstance()
 		servicelist = serviceHandler.list(ref)
@@ -141,8 +142,8 @@ class LCN():
 	def writeTVBouquet(self):
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.tv', "w")
-		except Exception, e:
-			print e
+		except Exception as e:
+			print(e)
 			return
 
 		self.newlist = []
@@ -160,7 +161,6 @@ class LCN():
 
 		#for x in self.e2services:
 			#print " self.e2services:", x
-
 
 		#for x in self.newlist:
 			#print " NEW LIST LCN :", x
@@ -181,7 +181,7 @@ class LCN():
 					f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0:\n")
 					f.write("#DESCRIPTION ------- " + self.markers[0][1] + " -------\n")
 					self.markers.remove(self.markers[0])
-			refstr = "1:0:1:%x:%x:%x:%x:0:0:0:" % (x[4],x[3],x[2],x[1]) # temporary ref
+			refstr = "1:0:1:%x:%x:%x:%x:0:0:0:" % (x[4], x[3], x[2], x[1]) # temporary ref
 			refsplit = eServiceReference(refstr).toString().split(":")
 			added = False
 			for tref in self.e2services:
@@ -209,18 +209,18 @@ class LCN():
 			i += 1
 
 		f = open('/etc/enigma2/bouquets.tv', 'w')
-		f.write(ret[0]+"\n")
+		f.write(ret[0] + "\n")
 		f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.terrestrial_lcn.tv" ORDER BY bouquet\n')
 		i = 1
 		while i < len(ret):
-			f.write(ret[i]+"\n")
+			f.write(ret[i] + "\n")
 			i += 1
 
 	def writeRadioBouquet(self):
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.radio', "w")
-		except Exception, e:
-			print e
+		except Exception as e:
+			print(e)
 			return
 
 		self.newlist = []
@@ -238,7 +238,6 @@ class LCN():
 
 		#for x in self.e2services:
 			#print " self.e2services:", x
-
 
 		#for x in self.newlist:
 			#print " NEW LIST LCN :", x
@@ -259,7 +258,7 @@ class LCN():
 					f.write("#SERVICE 1:64:0:0:0:0:0:0:0:0:\n")
 					f.write("#DESCRIPTION ------- " + self.markers[0][1] + " -------\n")
 					self.markers.remove(self.markers[0])
-			refstr = "1:0:2:%x:%x:%x:%x:0:0:0:" % (x[4],x[3],x[2],x[1]) # temporary ref
+			refstr = "1:0:2:%x:%x:%x:%x:0:0:0:" % (x[4], x[3], x[2], x[1]) # temporary ref
 			refsplit = eServiceReference(refstr).toString().split(":")
 			added = False
 			for tref in self.e2services:
@@ -287,11 +286,11 @@ class LCN():
 			i += 1
 
 		f = open('/etc/enigma2/bouquets.radio', 'w')
-		f.write(ret[0]+"\n")
+		f.write(ret[0] + "\n")
 		f.write('#SERVICE 1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.terrestrial_lcn.radio" ORDER BY bouquet\n')
 		i = 1
 		while i < len(ret):
-			f.write(ret[i]+"\n")
+			f.write(ret[i] + "\n")
 			i += 1
 
 	def reloadBouquets(self):
@@ -323,8 +322,8 @@ class LCNBuildHelper():
 	def readBouquetsList(self, pwd, bouquetname):
 		try:
 			f = open(pwd + "/" + bouquetname)
-		except Exception, e:
-			print e
+		except Exception as e:
+			print(e)
 			return
 
 		ret = []
@@ -338,7 +337,7 @@ class LCNBuildHelper():
 				continue
 
 			tmp = line.strip().split(":")
-			line = tmp[len(tmp)-1]
+			line = tmp[len(tmp) - 1]
 
 			filename = None
 			if line[:12] == "FROM BOUQUET":
@@ -350,8 +349,8 @@ class LCNBuildHelper():
 			if filename:
 				try:
 					fb = open(pwd + "/" + filename)
-				except Exception, e:
-					print e
+				except Exception as e:
+					print(e)
 					continue
 
 				tmp = fb.readline().strip()

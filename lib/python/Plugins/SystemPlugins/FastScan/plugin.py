@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
@@ -175,7 +176,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.config_autoproviders = {}
 		auto_providers = config.misc.fastscan.autoproviders.value.split(",")
 		for provider in self.providers:
-			self.config_autoproviders[provider[0]] = ConfigYesNo(default=provider[0] in auto_providers )
+			self.config_autoproviders[provider[0]] = ConfigYesNo(default=provider[0] in auto_providers)
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.createSetup()
@@ -206,7 +207,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.createSetup()
 
 	def saveConfiguration(self):
-		config.misc.fastscan.last_configuration.value = `(self.scan_nims.value, self.scan_provider.value, self.scan_hd.value, self.scan_keepnumbering.value, self.scan_keepsettings.value, self.scan_create_radio_bouquet.value)`
+		config.misc.fastscan.last_configuration.value = repr((self.scan_nims.value, self.scan_provider.value, self.scan_hd.value, self.scan_keepnumbering.value, self.scan_keepsettings.value, self.scan_create_radio_bouquet.value))
 		auto_providers = []
 		for provider in self.providers:
 			if self.config_autoproviders[provider[0]].value:
@@ -257,11 +258,11 @@ class FastScanScreen(ConfigListScreen, Screen):
 class FastScanAutoScreen(FastScanScreen):
 
 	def __init__(self, session, lastConfiguration):
-		print "[AutoFastScan] start %s" % lastConfiguration[1]
+		print("[AutoFastScan] start %s" % lastConfiguration[1])
 		Screen.__init__(self, session)
-		self.skinName="Standby"
+		self.skinName = "Standby"
 
-		self["actions"] = ActionMap( [ "StandbyActions" ],
+		self["actions"] = ActionMap(["StandbyActions"],
 		{
 			"power": self.Power,
 			"discrete_on": self.Power
@@ -288,14 +289,14 @@ class FastScanAutoScreen(FastScanScreen):
 			del self.scan
 
 	def scanCompleted(self, result):
-		print "[AutoFastScan] completed result = ", result
+		print("[AutoFastScan] completed result = ", result)
 		refreshServiceList()
 		self.close(result)
 
 	def Power(self):
 		from Screens.Standby import inStandby
 		inStandby.Power()
-		print "[AutoFastScan] aborted due to power button pressed"
+		print("[AutoFastScan] aborted due to power button pressed")
 		self.close(True)
 
 	def createSummary(self):
@@ -329,7 +330,7 @@ autoproviders = []
 
 def restartScanAutoStartTimer(reply=False):
 	if not reply:
-		print "[AutoFastScan] Scan was not succesfully retry in one hour"
+		print("[AutoFastScan] Scan was not succesfully retry in one hour")
 		FastScanAutoStartTimer.startLongTimer(3600)
 	elif reply is not True:
 		global autoproviders

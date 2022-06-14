@@ -1,3 +1,4 @@
+from __future__ import print_function
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 from os import system
 
@@ -11,6 +12,7 @@ from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+
 
 class NetworkWizard(WizardLanguage, Rc):
 	skin = """
@@ -35,7 +37,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		</screen>"""
 	def __init__(self, session, interface = None):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")
-		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
+		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		Rc.__init__(self)
 		Screen.setTitle(self, _("NetworkWizard"))
 		self.session = session
@@ -97,11 +99,11 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def getInstalledInterfaceCount(self):
 		self.originalInterfaceState = {}
-		self.Adapterlist = iNetwork.getAdapterList()
+		self.Adapterlist = list(iNetwork.getAdapterList())
 		self.InstalledInterfaceCount = len(self.Adapterlist)
 		if self.Adapterlist is not None:
 			if self.InstalledInterfaceCount == 1 and self.selectedInterface is None:
-					self.selectedInterface = self.Adapterlist[0]
+				self.selectedInterface = self.Adapterlist[0]
 		for interface in iNetwork.getAdapterList():
 			self.originalInterfaceState[interface] = {}
 			self.originalInterfaceState[interface]["up"] = iNetwork.getAdapterAttribute(interface, 'up')
@@ -129,7 +131,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def checkOldInterfaceState(self):
 		# disable up interface if it was originally down and config is unchanged.
 		if self.originalInterfaceStateChanged is False:
-			for interface in self.originalInterfaceState.keys():
+			for interface in list(self.originalInterfaceState.keys()):
 				if interface == self.selectedInterface:
 					if self.originalInterfaceState[interface]["up"] is False:
 						if iNetwork.checkforInterface(interface) is True:
@@ -137,7 +139,7 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def listInterfaces(self):
 		self.checkOldInterfaceState()
-		list = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+		list = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 		list.append((_("Exit network wizard"), "end"))
 		return list
 
@@ -158,15 +160,15 @@ class NetworkWizard(WizardLanguage, Rc):
 	def InterfaceSelectionMoved(self):
 		self.InterfaceSelect(self.selection)
 
-	def checkInterface(self,iface):
+	def checkInterface(self, iface):
 		self.stopScan()
 		if self.Adapterlist is None:
 			self.Adapterlist = iNetwork.getAdapterList()
-		if self.NextStep is not 'end':
+		if self.NextStep != 'end':
 			if len(self.Adapterlist) == 0:
 				#Reset Network to defaults if network broken
 				iNetwork.resetNetworkConfig('lan', self.resetNetworkConfigCB)
-				self.resetRef = self.session.openWithCallback(self.resetNetworkConfigFinished, MessageBox, _("Please wait while we prepare your network interfaces..."), type = MessageBox.TYPE_INFO, enable_input = False)
+				self.resetRef = self.session.openWithCallback(self.resetNetworkConfigFinished, MessageBox, _("Please wait while we prepare your network interfaces..."), type=MessageBox.TYPE_INFO, enable_input=False)
 			if iface in iNetwork.getInstalledAdapters():
 				if iface in iNetwork.configuredNetworkAdapters and len(iNetwork.configuredNetworkAdapters) == 1:
 					if iNetwork.getAdapterAttribute(iface, 'up') is True:
@@ -182,7 +184,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		else:
 			self.resetNetworkConfigFinished(False)
 
-	def resetNetworkConfigFinished(self,data):
+	def resetNetworkConfigFinished(self, data):
 		if data is True:
 			self.currStep = self.getStepWithID(self.NextStep)
 			self.afterAsyncCode()
@@ -190,7 +192,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.currStep = self.getStepWithID(self.NextStep)
 			self.afterAsyncCode()
 
-	def resetNetworkConfigCB(self,callback,iface):
+	def resetNetworkConfigCB(self, callback, iface):
 		if callback is not None:
 			if callback is True:
 				iNetwork.getInterfaces(self.getInterfacesFinished)
@@ -203,23 +205,23 @@ class NetworkWizard(WizardLanguage, Rc):
 				self.isInterfaceUp = False
 			self.resetRef.close(True)
 		else:
-			print "we should never come here!"
+			print("we should never come here!")
 
 	def AdapterSetupEnd(self, iface):
 		self.originalInterfaceStateChanged = True
 		if iNetwork.getAdapterAttribute(iface, "dhcp") is True:
 			iNetwork.checkNetworkState(self.AdapterSetupEndFinished)
-			self.AdapterRef = self.session.openWithCallback(self.AdapterSetupEndCB, MessageBox, _("Please wait while we test your network..."), type = MessageBox.TYPE_INFO, enable_input = False)
+			self.AdapterRef = self.session.openWithCallback(self.AdapterSetupEndCB, MessageBox, _("Please wait while we test your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
 		else:
 			self.currStep = self.getStepWithID("confdns")
 			self.afterAsyncCode()
 
-	def AdapterSetupEndCB(self,data):
+	def AdapterSetupEndCB(self, data):
 		if data is True:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
 				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
-					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
+					iStatus.getDataForInterface(self.selectedInterface, self.checkWlanStateCB)
 				else:
 					self.currStep = self.getStepWithID("checklanstatusend")
 					self.afterAsyncCode()
@@ -227,26 +229,26 @@ class NetworkWizard(WizardLanguage, Rc):
 				self.currStep = self.getStepWithID("checklanstatusend")
 				self.afterAsyncCode()
 
-	def AdapterSetupEndFinished(self,data):
+	def AdapterSetupEndFinished(self, data):
 		if data <= 2:
 			self.InterfaceState = True
 		else:
 			self.InterfaceState = False
 		self.AdapterRef.close(True)
 
-	def checkWlanStateCB(self,data,status):
+	def checkWlanStateCB(self, data, status):
 		if data is not None:
 			if data is True:
 				if status is not None:
 					text1 = _("Your %s %s is now ready to be used.\n\nYour internet connection is working now.\n\n") % (getMachineBrand(), getMachineName())
 					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
-					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"])+ "\n"
+					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"]) + "\n"
 					text5 = _('Signal strength:') + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
 					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
 					text7 = _('Encryption:') + " " + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
-					infotext = text1 + text2 + text3 + text4 + text5 + text7 +"\n" + text8
+					infotext = text1 + text2 + text3 + text4 + text5 + text7 + "\n" + text8
 					self.currStep = self.getStepWithID("checkWlanstatusend")
 					self.Text = infotext
 					if str(status[self.selectedInterface]["accesspoint"]) == "Not-Associated":
@@ -255,14 +257,14 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def checkNetwork(self):
 		iNetwork.checkNetworkState(self.checkNetworkStateCB)
-		self.checkRef = self.session.openWithCallback(self.checkNetworkCB, MessageBox, _("Please wait while we test your network..."), type = MessageBox.TYPE_INFO, enable_input = False)
+		self.checkRef = self.session.openWithCallback(self.checkNetworkCB, MessageBox, _("Please wait while we test your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
 
-	def checkNetworkCB(self,data):
+	def checkNetworkCB(self, data):
 		if data is True:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
 				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
-					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
+					iStatus.getDataForInterface(self.selectedInterface, self.checkWlanStateCB)
 				else:
 					self.currStep = self.getStepWithID("checklanstatusend")
 					self.afterAsyncCode()
@@ -270,7 +272,7 @@ class NetworkWizard(WizardLanguage, Rc):
 				self.currStep = self.getStepWithID("checklanstatusend")
 				self.afterAsyncCode()
 
-	def checkNetworkStateCB(self,data):
+	def checkNetworkStateCB(self, data):
 		if data <= 2:
 			self.InterfaceState = True
 		else:
@@ -297,14 +299,14 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.newAPlist.append(newentry)
 
 		if len(self.newAPlist):
-			if self.wizard[self.currStep].has_key("dynamiclist"):
+			if "dynamiclist" in self.wizard[self.currStep]:
 				currentListEntry = self["list"].getCurrent()
 				if currentListEntry is not None:
 					idx = 0
 					for entry in self.newAPlist:
 						if entry == currentListEntry:
 							newListIndex = idx
-						idx +=1
+						idx += 1
 				self.wizard[self.currStep]["evaluatedlist"] = self.newAPlist
 				self['list'].setList(self.newAPlist)
 				if newListIndex is not None:
@@ -314,21 +316,21 @@ class NetworkWizard(WizardLanguage, Rc):
 	def listAccessPoints(self):
 		self.APList = []
 		if self.WlanPluginInstalled is False:
-			self.APList.append( ( _("No networks found"), None ) )
+			self.APList.append((_("No networks found"), None))
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan
 			iWlan.setInterface(self.selectedInterface)
 			self.w = iWlan.getInterface()
 			aps = iWlan.getNetworkList()
 			if aps is not None:
-				print "[NetworkWizard.py] got Accespoints!"
+				print("[NetworkWizard.py] got Accespoints!")
 				tmplist = []
 				complist = []
 				for ap in aps:
 					a = aps[ap]
 					if a['active']:
-						tmplist.append( (a['bssid'], a['essid']) )
-						complist.append( (a['bssid'], a['essid']) )
+						tmplist.append((a['bssid'], a['essid']))
+						complist.append((a['bssid'], a['essid']))
 
 				for entry in tmplist:
 					if entry[1] == "":
@@ -336,13 +338,12 @@ class NetworkWizard(WizardLanguage, Rc):
 							if compentry[0] == entry[0]:
 								complist.remove(compentry)
 				for entry in complist:
-					self.APList.append( (entry[1], entry[1]) )
+					self.APList.append((entry[1], entry[1]))
 			if not len(aps):
-				self.APList.append( ( _("No networks found"), None ) )
+				self.APList.append((_("No networks found"), None))
 
 		self.rescanTimer.start(4000)
 		return self.APList
-
 
 	def AccessPointsSelectionMoved(self):
 		self.ap = self.selection

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
@@ -16,7 +17,7 @@ from Components.Sources.List import List
 try:
 	from Plugins.Extensions.MovieCut.plugin import main as MovieCut
 except:
-	print "[CutListEditor] import MovieCut failed"
+	print("[CutListEditor] import MovieCut failed")
 
 import bisect
 
@@ -103,7 +104,7 @@ class CutListContextMenu(FixedMenu):
 		menu.append((_("execute cuts (requires MovieCut plugin)"), self.callMovieCut))
 
 		FixedMenu.__init__(self, session, _("Cut"), menu)
-		self.skinName = ["CutListContextMenu", "Menu" ]
+		self.skinName = ["CutListContextMenu", "Menu"]
 
 	def startCut(self):
 		self.close(self.RET_STARTCUT)
@@ -185,7 +186,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		cue = service and service.cueSheet()
 		if cue is not None:
 			# disable cutlists. we want to freely browse around in the movie
-			print "cut lists disabled!"
+			print("cut lists disabled!")
 			cue.setCutListEnable(0)
 
 		self.downloadCuesheet()
@@ -215,8 +216,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.tutorial_seen = False
 
 		self.onExecBegin.append(self.showTutorial)
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evCuesheetChanged: self.refillList
 			})
 
@@ -236,7 +236,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def showTutorial(self):
 		if config.plugins.CutListEditor.showIntro.value and not self.tutorial_seen:
 			self.tutorial_seen = True
-			self.session.open(MessageBox,_("Welcome to the Cutlist editor.\n\nSeek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n\nThen seek to the end, press OK, select 'end cut'. That's it."), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Welcome to the Cutlist editor.\n\nSeek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n\nThen seek to the end, press OK, select 'end cut'. That's it."), MessageBox.TYPE_INFO)
 
 	def checkSkipShowHideLock(self):
 		pass
@@ -283,7 +283,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.close()
 
 	def getCutlist(self):
-		r = [ ]
+		r = []
 		for e in self.cut_list:
 			r.append(CutListEntry(*e))
 		return r
@@ -292,17 +292,17 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		if not self.inhibit_seek:
 			where = self["cutlist"].getCurrent()
 			if where is None:
-				print "no selection"
+				print("no selection")
 				return
 			pts = where[0][0]
 			seek = self.getSeek()
 			if seek is None:
-				print "no seek"
+				print("no seek")
 				return
 			seek.seekTo(pts)
 
 	def refillList(self):
-		print "cue sheet changed, refilling"
+		print("cue sheet changed, refilling")
 		self.downloadCuesheet()
 
 		# get the first changed entry, counted from the end, and select it
@@ -311,9 +311,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		l1 = len(new_list)
 		l2 = len(self.last_cuts)
-		for i in range(min(l1, l2)):
-			if new_list[l1-i-1] != self.last_cuts[l2-i-1]:
-				self["cutlist"].setIndex(l1-i-1)
+		for i in list(range(min(l1, l2))):
+			if new_list[l1 - i - 1] != self.last_cuts[l2 - i - 1]:
+				self["cutlist"].setIndex(l1 - i - 1)
 				break
 		self.last_cuts = new_list
 
@@ -344,13 +344,13 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		cur_state = self.getStateForPosition(curpos)
 		if cur_state == 0:
-			print "currently in 'IN'"
+			print("currently in 'IN'")
 			if self.cut_start is None or self.context_position < self.cut_start:
 				state = CutListContextMenu.SHOW_STARTCUT
 			else:
 				state = CutListContextMenu.SHOW_ENDCUT
 		else:
-			print "currently in 'OUT'"
+			print("currently in 'OUT'")
 			state = CutListContextMenu.SHOW_DELETECUT
 
 		if self.context_nearest_mark is None:
@@ -370,7 +370,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		elif result == CutListContextMenu.RET_ENDCUT:
 			# remove in/out marks between the new cut
 			for (where, what) in self.cut_list[:]:
-				if self.cut_start <= where <= self.context_position and what in (0,1):
+				if self.cut_start <= where <= self.context_position and what in (0, 1):
 					self.cut_list.remove((where, what))
 
 			bisect.insort(self.cut_list, (self.cut_start, 1))
@@ -407,7 +407,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		elif result == CutListContextMenu.RET_REMOVEBEFORE:
 			# remove in/out marks before current position
 			for (where, what) in self.cut_list[:]:
-				if where <= self.context_position and what in (0,1):
+				if where <= self.context_position and what in (0, 1):
 					self.cut_list.remove((where, what))
 			# add 'in' point
 			bisect.insort(self.cut_list, (self.context_position, 0))
@@ -417,7 +417,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		elif result == CutListContextMenu.RET_REMOVEAFTER:
 			# remove in/out marks after current position
 			for (where, what) in self.cut_list[:]:
-				if where >= self.context_position and what in (0,1):
+				if where >= self.context_position and what in (0, 1):
 					self.cut_list.remove((where, what))
 			# add 'out' point
 			bisect.insort(self.cut_list, (self.context_position, 1))
@@ -442,7 +442,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			try:
 				MovieCut(session=self.session, service=cservice)
 			except:
-				print "[CutListEditor] calling MovieCut failed"
+				print("[CutListEditor] calling MovieCut failed")
 
 	def crashFix(self):
 		# fix possible box freeze (e.g. OS1+)
@@ -461,7 +461,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		path = self.session.nav.getCurrentlyPlayingServiceReference().getPath()
 		from Components.Console import Console
 		grabConsole = Console()
-		cmd = 'grab -vblpr%d "%s"' % (180, path.rsplit('.',1)[0] + ".png")
+		cmd = 'grab -vblpr%d "%s"' % (180, path.rsplit('.', 1)[0] + ".png")
 		grabConsole.ePopen(cmd)
 		self.playpauseService()
 

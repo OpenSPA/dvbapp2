@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
@@ -18,17 +19,17 @@ plugin_path = ""
 
 # FIXME: harddiskmanager has a better overview about available mointpoints!
 BackupPath = {
-		"mtd" : "/media/backup",
-		"hdd" : "/media/hdd/backup",
-		"usb" : "/media/usb/backup",
-		"cf" : "/media/cf/backup"
+		"mtd": "/media/backup",
+		"hdd": "/media/hdd/backup",
+		"usb": "/media/usb/backup",
+		"cf": "/media/cf/backup"
 	}
 
 MountPoints = {
-		"mtd" : "/media/backup",
-		"hdd" : "/media/hdd",
-		"usb" : "/media/usb",
-		"cf" : "/media/cf"
+		"mtd": "/media/backup",
+		"hdd": "/media/hdd",
+		"usb": "/media/usb",
+		"cf": "/media/cf"
 	}
 
 class BackupSetup(Screen):
@@ -52,9 +53,9 @@ class BackupSetup(Screen):
 		self["config"].handleKey(KEY_RIGHT)
 
 	def keyNumberGlobal(self, number):
-		print "You pressed number", number
+		print("You pressed number", number)
 		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(KEY_0+number)
+			self["config"].handleKey(KEY_0 + number)
 
 	def keyCancel(self):
 		for x in self["config"].list:
@@ -102,8 +103,8 @@ class BackupSetup(Screen):
 
 
 	def createSetup(self):
-		print "Creating BackupSetup"
-		self.list = [ ]
+		print("Creating BackupSetup")
+		self.list = []
 		self["config"] = ConfigList(self.list)
 		self.backup = ConfigSubsection()
 		self.backup.type = ConfigSelection(choices = [("settings", _("enigma2 and network")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
@@ -113,16 +114,16 @@ class BackupSetup(Screen):
 
 	def createBackupfolders(self):
 		self.path = BackupPath[self.backup.location.value]
-		print "Creating Backup Folder if not already there..."
+		print("Creating Backup Folder if not already there...")
 		if (path.exists(self.path) == False):
 			makedirs(self.path)
 
 	def Backup(self):
-		print "this will start the backup now!"
+		print("this will start the backup now!")
 		self.session.openWithCallback(self.runBackup, MessageBox, _("Do you want to backup now?\nAfter pressing OK, please wait!"))
 
 	def Restore(self):
-		print "this will start the restore now!"
+		print("this will start the restore now!")
 		self.session.open(RestoreMenu, self.backup)
 
 	def runBackup(self, result):
@@ -133,14 +134,14 @@ class BackupSetup(Screen):
 				dt = date(d.tm_year, d.tm_mon, d.tm_mday)
 				self.path = BackupPath[self.backup.location.value]
 				if self.backup.type.value == "settings":
-					print "Backup Mode: Settings"
+					print("Backup Mode: Settings")
 					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"])
 				elif self.backup.type.value == "var":
-					print "Backup Mode: var"
+					print("Backup Mode: var")
 					self.session.open(Console, title = "Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
 				elif self.backup.type.value == "skin":
-					print "Backup Mode: skin"
-					self.session.open(Console, title ="Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
+					print("Backup Mode: skin")
+					self.session.open(Console, title = "Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
 			else:
 				self.session.open(MessageBox, _("Sorry your Backup destination does not exist\n\nPlease choose an other one."), MessageBox.TYPE_INFO)
 
@@ -220,4 +221,4 @@ def BackupMain(session, **kwargs):
 def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
-	return PluginDescriptor(name="Backup/Restore", description="Backup and Restore your Settings", icon="backup.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=BackupMain)
+	return PluginDescriptor(name = "Backup/Restore", description = "Backup and Restore your Settings", icon = "backup.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = BackupMain)

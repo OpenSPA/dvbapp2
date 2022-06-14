@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
-from SocketMMI import SocketMMIMessageHandler
+from .SocketMMI import SocketMMIMessageHandler
 
 socketHandler = None
 
@@ -9,7 +10,8 @@ def main(session, **kwargs):
 def menu(menuid, **kwargs):
 	if menuid == "cam" and socketHandler and socketHandler.connected():
 		return [(socketHandler.getName(), main, "socket_mmi", 0)]
-	return [ ]
+	return []
+
 
 def sessionstart(reason, session):
 	global socketHandler
@@ -23,6 +25,6 @@ def autostart(reason, **kwargs):
 		socketHandler = None
 
 def Plugins(**kwargs):
-	return [ PluginDescriptor(name = "SocketMMI", description = _("Python frontend for /tmp/mmi.socket"), where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc = menu),
+	return [PluginDescriptor(name = "SocketMMI", description = _("Python frontend for /tmp/mmi.socket"), where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc = menu),
 		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = True, fnc = sessionstart),
-		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc = autostart) ]
+		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc = autostart)]

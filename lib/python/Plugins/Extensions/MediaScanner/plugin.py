@@ -21,12 +21,12 @@ def mountpoint_choosen(option):
 	(description, mountpoint, session) = option
 	res = scanDevice(mountpoint)
 
-	list = [ (r.description, r, res[r], session) for r in res ]
+	list = [(r.description, r, res[r], session) for r in res]
 
 	if not list:
 		from Screens.MessageBox import MessageBox
-		if os.access(mountpoint, os.F_OK|os.R_OK):
-			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple = True, timeout = 5)
+		if os.access(mountpoint, os.F_OK | os.R_OK):
+			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple=True, timeout=5)
 		#else:
 		#	print "ignore", mountpoint, "because its not accessible"
 		return
@@ -37,9 +37,10 @@ def mountpoint_choosen(option):
 
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
-	parts = [ (r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False) if os.access(r.mountpoint, os.F_OK|os.R_OK) ]
-	parts.append( (_("Memory") + "\t/tmp", "/tmp", session) )
-	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please select medium to be scanned"), list = parts)
+	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
+	parts.append((_("Memory") + "\t/tmp", "/tmp", session))
+	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
+
 
 def main(session, **kwargs):
 	scan(session)
@@ -51,9 +52,10 @@ from Components.Harddisk import harddiskmanager
 
 def menuHook(menuid):
 	if menuid != "mainmenu":
-		return [ ]
+		return []
 	from Tools.BoundFunction import boundFunction
-	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
+
 
 global_session = None
 

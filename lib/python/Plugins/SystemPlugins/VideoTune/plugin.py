@@ -1,12 +1,13 @@
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
 def videoFinetuneMain(session, **kwargs):
-	from VideoFinetune import VideoFinetune
+	from .VideoFinetune import VideoFinetune
 	session.open(VideoFinetune)
 
 def startSetup(menuid):
 	if menuid != "video_menu":
-		return [ ]
+		return []
 
 	return [(_("Testscreens"), videoFinetuneMain, "video_finetune", 10)]
 

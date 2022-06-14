@@ -26,12 +26,4 @@ if DM920
 SUBDIRS += FSBLUpdater
 endif
 
-if DUAL
-SUBDIRS += DualBoot
-endif
-
-if WETEKPLAY
-SUBDIRS += WetekFRQ
-endif
-
 install_PYTHON = __init__.py

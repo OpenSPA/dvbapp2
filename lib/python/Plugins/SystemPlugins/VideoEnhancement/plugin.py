@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from os import path as os_path
 
 from Plugins.Plugin import PluginDescriptor
@@ -10,26 +12,26 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-import VideoEnhancement
+from . import VideoEnhancement
 
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.skinName = ["VideoEnhancementSetup"]
 		self.setup_title = _("Video enhancement setup")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label()
-		self["description"] = Label(_(""))
+		self["description"] = Label("")
 		self["introduction"] = StaticText()
 
-		self.list = [ ]
-		self.xtdlist = [ ]
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		self.list = []
+		self.xtdlist = []
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
@@ -159,7 +161,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def confirm(self, confirmed):
 		if not confirmed:
-			print "not confirmed"
+			print("not confirmed")
 		else:
 			if self.splitEntry is not None:
 				config.pep.split.setValue('off')
@@ -182,7 +184,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyYellowConfirm(self, confirmed):
 		if not confirmed:
-			print "not confirmed"
+			print("not confirmed")
 		else:
 			if self.contrastEntry is not None:
 				config.pep.contrast.setValue(self.oldContrast)
@@ -225,7 +227,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyBlueConfirm(self, confirmed):
 		if not confirmed:
-			print "not confirmed"
+			print("not confirmed")
 		else:
 			if self.contrastEntry is not None:
 				config.pep.contrast.setValue(128)
@@ -300,14 +302,14 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 	def __init__(self, session, configEntry = None, oldSplitMode = None, maxValue = None):
 		Screen.__init__(self, session)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.setup_title = "Videoenhancement"
 		self.oldSplitMode = oldSplitMode
 		self.maxValue = maxValue
 		self.configStepsEntry = None
 		self.isStepSlider = None
 
-		self.list = [ ]
+		self.list = []
 		self.configEntry = configEntry
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 
@@ -328,7 +330,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 		self.setTitle(_("Video enhancement preview"))
 
 	def createSetup(self):
-		self.list = [ ]
+		self.list = []
 		if self.maxValue == 255:
 			self.configStepsEntry = getConfigListEntry(_("Change step size"), config.pep.configsteps)
 
@@ -347,13 +349,13 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 	def selectionChanged(self):
 		self["introduction"].setText(_("Current value: ") + self.getCurrentValue())
 		try:
-			max_avail=self["config"].getCurrent()[1].max
+			max_avail = self["config"].getCurrent()[1].max
 			if max_avail == 255:
 				self.isStepSlider = True
 			else:
 				self.isStepSlider = False
 		except AttributeError:
-			print "no max value"
+			print("no max value")
 
 	def keyLeft(self):
 		if self.isStepSlider is True:
@@ -406,8 +408,8 @@ def videoEnhancementSetupMain(session, **kwargs):
 
 def startSetup(menuid):
 	if menuid != "video_menu":
-		return [ ]
-	return [(_("Extended settings") , videoEnhancementSetupMain, "videoenhancement_setup", 5)]
+		return []
+	return [(_("Extended settings"), videoEnhancementSetupMain, "videoenhancement_setup", 5)]
 
 def Plugins(**kwargs):
 	list = []

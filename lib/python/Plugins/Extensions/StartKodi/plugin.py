@@ -3,7 +3,7 @@
 ### main work done in enigma2.sh, here we do just a touch
 ### TODO: installation error checking is missing, network state...
 
-
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -13,8 +13,7 @@ import os
 #from Components.Ipkg import IpkgComponent
 #from Screens.Ipkg import Ipkg
 from enigma import quitMainloop
-from Plugins.Extensions.StartKodi.installsomething import InstallSomething
-
+from .installsomething import InstallSomething
 
 
 class StartKodi2(Screen):
@@ -104,11 +103,11 @@ class StartKodi2(Screen):
 
 ### TODO: check portability (busybox vs coreutils)
 	def getFreeNand(self):
-		os.system('sync ; sync ; sync' )
+		os.system('sync ; sync ; sync')
 		sizeread = os.popen("df | grep %s | tr -s ' '" % 'root')
 		c = sizeread.read().strip().split(" ")
 		sizeread.close()
-		free = int(c[3])/1024
+		free = int(c[3]) / 1024
 		if (free > self.kodineeds):
 			self.caninstall = True
 		else:
@@ -128,7 +127,7 @@ class StartKodi2(Screen):
 		c = sizeread.read().strip().split(" ")
 		sizeread.close()
 		if os.path.exists("/media/uSDextra"):
-			free = int(c[3])/1024
+			free = int(c[3]) / 1024
 		else:
 			free = "Not available"
 		return free

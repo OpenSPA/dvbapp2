@@ -1,3 +1,4 @@
+from __future__ import print_function
 import random
 
 from Screens.Satconfig import NimSelection
@@ -58,14 +59,14 @@ class ResultParser:
 				reasons[transponder[2]] = reasons.get(transponder[2], [])
 				reasons[transponder[2]].append(transponder)
 				if transponder[2] == "pids_failed":
-					print transponder[2], "-", transponder[3]
+					print(transponder[2], "-", transponder[3])
 
 			text += "The %d unsuccessful tuning attempts failed for the following reasons:\n" % countfailed
 
-			for reason in reasons.keys():
+			for reason in list(reasons.keys()):
 				text += "%s: %d transponders failed\n" % (reason, len(reasons[reason]))
 
-			for reason in reasons.keys():
+			for reason in list(reasons.keys()):
 				text += "\n"
 				text += "%s previous planes:\n" % reason
 				for transponder in reasons[reason]:
@@ -111,13 +112,13 @@ class ResultParser:
 		if self.type == self.TYPE_BYINDEX:
 			text += self.getTextualResultForIndex(self.index)
 		elif self.type == self.TYPE_BYORBPOS:
-			for index in self.results.keys():
+			for index in list(self.results.keys()):
 				if index[2] == self.orbpos:
 					text += self.getTextualResultForIndex(index)
 					text += "\n-----------------------------------------------------\n"
 		elif self.type == self.TYPE_ALL:
 			orderedResults = {}
-			for index in self.results.keys():
+			for index in list(self.results.keys()):
 				orbpos = index[2]
 				orderedResults[orbpos] = orderedResults.get(orbpos, [])
 				orderedResults[orbpos].append(index)
@@ -130,7 +131,6 @@ class ResultParser:
 				for index in orderedResults[orbpos]:
 					text += self.getTextualResultForIndex(index, logfulltransponders = True)
 					text += "\n-----------------------------------------------------\n"
-
 
 		return text
 
@@ -184,7 +184,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		</widget>
 		<widget name="Overall_progress" position="20,162" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="overall_progress" render="Progress" position="20,192" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
-		
+
 		<widget name="Progress" position="20,222" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="sub_progress" render="Progress" position="20,252" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
 
@@ -219,7 +219,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self["Failed"] = Label(_("Failed:"))
 		self["Succeeded"] = Label(_("Succeeded:"))
 		self["Not_tested"] = Label(_("Not tested:"))
-		self["With_errors"] = Label (_("With errors:"))
+		self["With_errors"] = Label(_("With errors:"))
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.select,
@@ -315,7 +315,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 
 	# returns a string for the user representing a human readable output for index
 	def getTextualIndexRepresentation(self, index):
-		print "getTextualIndexRepresentation:", index
+		print("getTextualIndexRepresentation:", index)
 		text = ""
 
 		text += nimmanager.getSatDescription(index[2]) + ", "
@@ -333,14 +333,14 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 
 	def fillTransponderList(self):
 		self.clearTransponder()
-		print "----------- fillTransponderList"
-		print "index:", self.currentlyTestedIndex
+		print("----------- fillTransponderList")
+		print("index:", self.currentlyTestedIndex)
 		keys = self.indexlist.keys()
 		if self.getContinueScanning():
-			print "index:", self.getTextualIndexRepresentation(self.currentlyTestedIndex)
+			print("index:", self.getTextualIndexRepresentation(self.currentlyTestedIndex))
 			for transponder in self.indexlist[self.currentlyTestedIndex]:
 				self.addTransponder(transponder)
-			print "transponderList:", self.transponderlist
+			print("transponderList:", self.transponderlist)
 			return True
 		else:
 			return False
@@ -356,8 +356,8 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		# TODO use other function to scan more randomly
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex = 0
-			keys = self.indexlist.keys()
-			keys.sort(key = lambda a: a[2]) # sort by orbpos
+			keys = list(self.indexlist.keys())
+			keys.sort(key=lambda a: a[2]) # sort by orbpos
 			self["overall_progress"].setRange(len(keys))
 			self["overall_progress"].setValue(self.myindex)
 			return keys[0]
@@ -369,8 +369,8 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["overall_progress"].setValue(self.myindex)
 			return self.randomkeys[0]
 		elif self.test_type == self.TEST_TYPE_COMPLETE:
-			keys = self.indexlist.keys()
-			print "keys:", keys
+			keys = list(self.indexlist.keys())
+			print("keys:", keys)
 			successorindex = {}
 			for index in keys:
 				successorindex[index] = []
@@ -384,7 +384,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			while not stop:
 				if currindex is None or len(successorindex[currindex]) == 0:
 					oldindex = currindex
-					for index in successorindex.keys():
+					for index in list(successorindex.keys()):
 						if len(successorindex[index]) > 0:
 							currindex = index
 							self.keylist.append(currindex)
@@ -394,20 +394,20 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 				else:
 					currindex = successorindex[currindex].pop()
 					self.keylist.append(currindex)
-			print "self.keylist:", self.keylist
+			print("self.keylist:", self.keylist)
 			self.myindex = 0
 			self["overall_progress"].setRange(len(self.keylist))
 			self["overall_progress"].setValue(self.myindex)
 			return self.keylist[0]
 
-
 	# after each index is finished, getNextIndex is called to get the next index to scan
+
 	def getNextIndex(self):
 		# TODO use other function to scan more randomly
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex += 1
-			keys = self.indexlist.keys()
-			keys.sort(key = lambda a: a[2]) # sort by orbpos
+			keys = list(self.indexlist.keys())
+			keys.sort(key=lambda a: a[2]) # sort by orbpos
 
 			self["overall_progress"].setValue(self.myindex)
 			if self.myindex < len(keys):
@@ -486,10 +486,10 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.resultsstatus[status].append(index)
 
 	def finishedChecking(self):
-		print "finishedChecking"
+		print("finishedChecking")
 		TuneTest.finishedChecking(self)
 
-		if not self.results.has_key(self.currentlyTestedIndex):
+		if self.currentlyTestedIndex not in self.results:
 			self.results[self.currentlyTestedIndex] = {"failed": [], "successful": [], "status": None, "internalstatus": None}
 
 		if len(self.failedTune) > 0 and len(self.successfullyTune) > 0:
@@ -511,7 +511,6 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + 1))
 			self.addResult(self.currentlyTestedIndex, _("successful"), self.failedTune, self.successfullyTune)
 
-
 		#self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
 		#self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + len(self.successfullyTune)))
 		#if len(self.failedTune) == 0 and len(self.successfullyTune) == 0:
@@ -525,14 +524,14 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		else:
 			self.running = False
 			self["progress_list"].setIndex(0)
-			print "results:", self.results
-			print "resultsstatus:", self.resultsstatus
+			print("results:", self.results)
+			print("resultsstatus:", self.resultsstatus)
 			if self.log:
 				file = open("/media/hdd/diseqctester.log", "w")
 				self.setResultType(ResultParser.TYPE_ALL)
 				file.write(self.getTextualResult())
 				file.close()
-				self.session.open(MessageBox, text=_("The results have been written to %s.") % "/media/hdd/diseqctester.log", type = MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, text=_("The results have been written to %s.") % "/media/hdd/diseqctester.log", type=MessageBox.TYPE_INFO)
 
 	def go(self):
 		self.running = True
@@ -551,7 +550,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.close()
 
 	def select(self):
-		print "selectedIndex:", self["progress_list"].getCurrent()[0]
+		print("selectedIndex:", self["progress_list"].getCurrent()[0])
 		if not self.running:
 			index = self["progress_list"].getCurrent()[0]
 			self.setResultType(ResultParser.TYPE_BYORBPOS)
@@ -562,7 +561,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self.session.open(TextBox, self.getTextualResult())
 
 	def selectionChanged(self):
-		print "selection changed"
+		print("selection changed")
 		if len(self.list) > 0 and not self.running:
 			self["CmdText"].setText(_("Press OK to get further details for %s") % str(self["progress_list"].getCurrent()[1]))
 
@@ -571,9 +570,9 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 	def __init__(self, session, feid):
 		Screen.__init__(self, session)
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
-		self.skinName = ["DiseqcTesterTestTypeSelection", "Setup" ]
+		self.skinName = ["DiseqcTesterTestTypeSelection", "Setup"]
 		self.setup_title = _("DiSEqC-tester settings")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.feid = feid
 
 		self.list = []
@@ -618,7 +617,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		self["config"].l.setList(self.list)
 
 	def keyOK(self):
-		print self.testtype.value
+		print(self.testtype.value)
 		testtype = DiseqcTester.TEST_TYPE_QUICK
 		if self.testtype.value == "quick":
 			testtype = DiseqcTester.TEST_TYPE_QUICK
@@ -687,5 +686,5 @@ def autostart(reason, **kwargs):
 	resourcemanager.addResource("DiseqcTester", DiseqcTesterMain)
 
 def Plugins(**kwargs):
-	return [ PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=DiseqcTesterMain),
+	return [PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=DiseqcTesterMain),
 			PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart)]

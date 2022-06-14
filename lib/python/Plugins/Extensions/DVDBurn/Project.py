@@ -1,12 +1,17 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
-import Title
+from . import Title
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
+import six
+
 
 class ConfigColor(ConfigSequence):
-	def __init__(self, default = [128,128,128]):
-		ConfigSequence.__init__(self, seperator = "#", limits = [(0,255),(0,255),(0,255)], default = default)
+	def __init__(self, default=[128, 128, 128]):
+		ConfigSequence.__init__(self, seperator="#", limits=[(0, 255), (0, 255), (0, 255)], default=default)
+
 
 class ConfigFilename(ConfigText):
 	def __init__(self):
@@ -14,21 +19,23 @@ class ConfigFilename(ConfigText):
 
 	def getMulti(self, selected):
 		if self.text == "":
-			return ("mtext"[1-selected:], "", 0)
-		cut_len = min(len(self.text),40)
-		filename = (self.text.rstrip("/").rsplit("/",1))[1].encode("utf-8")[:cut_len] + " "
+			return ("mtext"[1 - selected:], "", 0)
+		cut_len = min(len(self.text), 40)
+		filename = six.ensure_str((self.text.rstrip("/").rsplit("/", 1))[1])[:cut_len] + " "
 		if self.allmarked:
-			mark = range(0, len(filename))
+			mark = list(range(0, len(filename)))
 		else:
 			mark = [filename]
-		return ("mtext"[1-selected:], filename, mark)
+		return ("mtext"[1 - selected:], filename, mark)
+
 
 class Project:
 	MAX_SL = 4480
 	MAX_DL = 8150
 	MAX_BD = 24220
+
 	def __init__(self):
-		self.titles = [ ]
+		self.titles = []
 		self.target = None
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size = False, visible_width = 40)
@@ -57,8 +64,8 @@ class Project:
 		list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
 		list.append('<DreamDVDBurnerProject>\n')
 		list.append('\t<settings ')
-		for key, val in self.settings.dict().iteritems():
-			list.append( key + '="' + str(val.getValue()) + '" ' )
+		for key, val in six.iteritems(self.settings.dict()):
+			list.append(key + '="' + str(val.getValue()) + '" ')
 		list.append('/>\n')
 		list.append('\t<titles>\n')
 		for title in self.titles:
@@ -68,17 +75,17 @@ class Project:
 			list.append('</path>\n')
 			list.append('\t\t\t<properties ')
 			audiotracks = []
-			for key, val in title.properties.dict().iteritems():
-				if type(val) is ConfigSubList:
+			for key, val in six.iteritems(title.properties.dict()):
+				if isinstance(val, ConfigSubList):
 					audiotracks.append('\t\t\t<audiotracks>\n')
 					for audiotrack in val:
 						audiotracks.append('\t\t\t\t<audiotrack ')
-						for subkey, subval in audiotrack.dict().iteritems():
-							audiotracks.append( subkey + '="' + str(subval.getValue()) + '" ' )
+						for subkey, subval in six.iteritems(audiotrack.dict()):
+							audiotracks.append(subkey + '="' + str(subval.getValue()) + '" ')
 						audiotracks.append(' />\n')
 					audiotracks.append('\t\t\t</audiotracks>\n')
 				else:
-					list.append( key + '="' + str(val.getValue()) + '" ' )
+					list.append(key + '="' + str(val.getValue()) + '" ')
 			list.append('/>\n')
 			for line in audiotracks:
 				list.append(line)
@@ -90,7 +97,7 @@ class Project:
 		i = 0
 		filename = path + name + ".ddvdp.xml"
 		while fileExists(filename):
-			i = i+1
+			i = i + 1
 			filename = path + name + str(i).zfill(3) + ".ddvdp.xml"
 		try:
 			file = open(filename, "w")
@@ -114,25 +121,25 @@ class Project:
 				self.error = "xml file not found!"
 				#raise AttributeError
 			file = open(filename, "r")
-			data = file.read().decode("utf-8").replace('&',"&amp;").encode("ascii",'xmlcharrefreplace')
+			data = file.read().decode("utf-8").replace('&', "&amp;").encode("ascii", 'xmlcharrefreplace')
 			file.close()
 			projectfiledom = xml.dom.minidom.parseString(data)
 			for node in projectfiledom.childNodes[0].childNodes:
-			  print "node:", node
-			  if node.nodeType == xml.dom.minidom.Element.nodeType:
-			    if node.tagName == 'settings':
-				self.xmlAttributesToConfig(node, self.settings)
-			    elif node.tagName == 'titles':
-				self.xmlGetTitleNodeRecursive(node)
+				print("node:", node)
+				if node.nodeType == xml.dom.minidom.Element.nodeType:
+					if node.tagName == 'settings':
+						self.xmlAttributesToConfig(node, self.settings)
+					elif node.tagName == 'titles':
+						self.xmlGetTitleNodeRecursive(node)
 
 			for key in self.filekeys:
 				val = self.settings.dict()[key].getValue()
 				if not fileExists(val):
 					if val[0] != "/":
 						if key.find("font") == 0:
-							val = resolveFilename(SCOPE_FONTS)+val
+							val = resolveFilename(SCOPE_FONTS) + val
 						else:
-							val = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/"+val
+							val = resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/" + val
 						if fileExists(val):
 							self.settings.dict()[key].setValue(val)
 							continue
@@ -151,44 +158,44 @@ class Project:
 				#raise AttributeError
 			while i < node.attributes.length:
 				item = node.attributes.item(i)
-				key = item.name.encode("utf-8")
+				key = six.ensure_str(item.name)
 				try:
 					val = eval(item.nodeValue)
 				except (NameError, SyntaxError):
-					val = item.nodeValue.encode("utf-8")
+					val = six.ensure_str(item.nodeValue)
 				try:
-					print "config[%s].setValue(%s)" % (key, val)
+					print("config[%s].setValue(%s)" % (key, val))
 					config.dict()[key].setValue(val)
 				except (KeyError):
 					self.error = "unknown attribute '%s'" % (key)
-					print "KeyError", self.error
+					print("KeyError", self.error)
 					raise AttributeError
 				i += 1
 		except AttributeError:
 			self.error += (" XML attribute error '%s'") % node.toxml()
 			return False
 
-	def xmlGetTitleNodeRecursive(self, node, title_idx = -1):
-		print "[xmlGetTitleNodeRecursive]", title_idx, node
-		print node.childNodes
+	def xmlGetTitleNodeRecursive(self, node, title_idx=-1):
+		print("[xmlGetTitleNodeRecursive]", title_idx, node)
+		print(node.childNodes)
 		for subnode in node.childNodes:
-		  print "xmlGetTitleNodeRecursive subnode:", subnode
-		  if subnode.nodeType == xml.dom.minidom.Element.nodeType:
-		    if subnode.tagName == 'title':
-			title_idx += 1
-			title = Title.Title(self)
-			self.titles.append(title)
-			self.xmlGetTitleNodeRecursive(subnode, title_idx)
-		    if subnode.tagName == 'path':
-			print "path:", subnode.firstChild.data
-			filename = subnode.firstChild.data
-			self.titles[title_idx].addFile(filename.encode("utf-8"))
-		    if subnode.tagName == 'properties':
-			self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
-		    if subnode.tagName == 'audiotracks':
-			self.xmlGetTitleNodeRecursive(subnode, title_idx)
-		    if subnode.tagName == 'audiotrack':
-			print "audiotrack...", subnode.toxml()
+			print("xmlGetTitleNodeRecursive subnode:", subnode)
+			if subnode.nodeType == xml.dom.minidom.Element.nodeType:
+				if subnode.tagName == 'title':
+					title_idx += 1
+					title = Title.Title(self)
+					self.titles.append(title)
+					self.xmlGetTitleNodeRecursive(subnode, title_idx)
+				if subnode.tagName == 'path':
+					print("path:", subnode.firstChild.data)
+					filename = subnode.firstChild.data
+					self.titles[title_idx].addFile(six.ensure_str(filename))
+				if subnode.tagName == 'properties':
+					self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
+				if subnode.tagName == 'audiotracks':
+					self.xmlGetTitleNodeRecursive(subnode, title_idx)
+				if subnode.tagName == 'audiotrack':
+					print("audiotrack...", subnode.toxml())
 
 	def getSize(self):
 		totalsize = 0

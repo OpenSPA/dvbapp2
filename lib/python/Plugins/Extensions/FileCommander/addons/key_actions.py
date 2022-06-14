@@ -2,6 +2,8 @@
 # -*- coding: iso-8859-1 -*-
 
 # Components
+from __future__ import print_function
+from __future__ import absolute_import
 from Components.config import config
 from Components.Scanner import openFile
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
@@ -17,12 +19,12 @@ from Screens.InfoBar import InfoBar
 # Tools
 from Tools.Directories import fileExists
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
-from Tools import Notifications
+import Tools.Notifications
 
 # Various
 from mimetypes import guess_type
 from enigma import eServiceReference, eActionMap
-from sys import maxint
+from sys import maxsize
 
 import stat
 import pwd
@@ -33,19 +35,19 @@ import re
 import os
 
 # Addons
-from unrar import RarMenuScreen
-from tar import TarMenuScreen
-from unzip import UnzipMenuScreen
-from gz import GunzipMenuScreen
-from ipk import ipkMenuScreen
-from type_utils import ImageViewer, MoviePlayer, vEditor
+from .unrar import RarMenuScreen
+from .tar import TarMenuScreen
+from .unzip import UnzipMenuScreen
+from .gz import GunzipMenuScreen
+from .ipk import ipkMenuScreen
+from .type_utils import ImageViewer, MoviePlayer, vEditor
 
 TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))
 
 try:
 	from Screens import DVD
 	DVDPlayerAvailable = True
-except Exception, e:
+except Exception as e:
 	DVDPlayerAvailable = False
 
 ##################################
@@ -53,6 +55,7 @@ except Exception, e:
 pname = _("File Commander - Addon Movieplayer")
 pdesc = _("play Files")
 last_service = None
+
 
 class stat_info:
 	def __init__(self):
@@ -120,24 +123,26 @@ class stat_info:
 	def formatTime(t):
 		return time.strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time.localtime(t))
 
+
 task_Stout = []
 task_Sterr = []
+
 
 class task_postconditions(Condition):
 	def check(self, task):
 		global task_Stout, task_Sterr
 		message = ''
-		lines = config.plugins.filecommander.script_messagelen.value*-1
+		lines = config.plugins.filecommander.script_messagelen.value * -1
 		if task_Stout:
 			msg_out = '\n\n' + _("script 'stout':") + '\n' + '\n'.join(task_Stout[lines:])
 		if task_Sterr:
 			msg_err = '\n\n' + _("script 'sterr':") + '\n' + '\n'.join(task_Sterr[lines:])
 		if task.returncode != 0:
 			messageboxtyp = MessageBox.TYPE_ERROR
-			msg_msg = _("Run script") + _(" ('%s') ends with error number [%d].") %(task.name, task.returncode)
+			msg_msg = _("Run script") + _(" ('%s') ends with error number [%d].") % (task.name, task.returncode)
 		else:
 			messageboxtyp = MessageBox.TYPE_INFO
-			msg_msg = _("Run script") + _(" ('%s') ends with error messages.") %task.name
+			msg_msg = _("Run script") + _(" ('%s') ends with error messages.") % task.name
 		if task_Stout and (task.returncode != 0 or task_Sterr):
 			message += msg_msg + msg_out
 		if task_Sterr:
@@ -151,7 +156,7 @@ class task_postconditions(Condition):
 			msg_out = ''
 			if task_Stout:
 				msg_out = '\n\n' + '\n'.join(task_Stout[lines:])
-			message += _("Run script") + _(" ('%s') ends successfully.") %task.name + msg_out
+			message += _("Run script") + _(" ('%s') ends successfully.") % task.name + msg_out
 
 		task_Stout = []
 		task_Sterr = []
@@ -166,7 +171,8 @@ class task_postconditions(Condition):
 		if InfoBar.instance and not inStandby:
 			InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 		else:
-			Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+			Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+
 
 def task_processStdout(data):
 	global task_Stout
@@ -176,6 +182,7 @@ def task_processStdout(data):
 	while len(task_Stout) > 10:
 		task_Stout.pop(0)
 
+
 def task_processSterr(data):
 	global task_Sterr
 	for line in data.split('\n'):
@@ -183,6 +190,7 @@ def task_processSterr(data):
 			task_Sterr.append(line)
 	while len(task_Sterr) > 10:
 		task_Sterr.pop(0)
+
 
 class key_actions(stat_info):
 	hashes = {
@@ -348,13 +356,11 @@ class key_actions(stat_info):
 		stxt = _('python')
 		if self.commando.endswith('.sh'):
 			stxt = _('shell')
-		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
-		if self.commando.endswith('.pyo'):
-			askList.remove((_("View or edit this %s script") %stxt, "VIEW"))
+		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") % stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
 		if self.parameter:
 			askList.append((_("Run script with optional parameter"), "PAR"))
 			askList.append((_("Run script with optional parameter in background"), "PAR_BG"))
-			filename += _('\noptional parameter:\n%s') %self.parameter
+			filename += _('\noptional parameter:\n%s') % self.parameter
 		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n") + filename, list=askList)
 
 	def do_run_script(self, answer):
@@ -366,26 +372,26 @@ class key_actions(stat_info):
 			nice = config.plugins.filecommander.script_priority_nice.value or ''
 			ionice = config.plugins.filecommander.script_priority_ionice.value or ''
 			if nice:
-				nice = 'nice -n %d ' %nice
+				nice = 'nice -n %d ' % nice
 			if ionice:
-				ionice = 'ionice -c %d ' %ionice
-			priority = '%s%s' %(nice,ionice)
+				ionice = 'ionice -c %d ' % ionice
+			priority = '%s%s' % (nice, ionice)
 			if self.commando.endswith('.sh'):
 				if os.access(self.commando, os.X_OK):
 					if 'PAR' in answer:
-						cmdline = "%s%s '%s'" %(priority, self.commando, self.parameter)
+						cmdline = "%s%s '%s'" % (priority, self.commando, self.parameter)
 					else:
-						cmdline = "%s%s" %(priority, self.commando)
+						cmdline = "%s%s" % (priority, self.commando)
 				else:
 					if 'PAR' in answer:
-						cmdline = "%s/bin/sh %s '%s'" %(priority, self.commando, self.parameter)
+						cmdline = "%s/bin/sh %s '%s'" % (priority, self.commando, self.parameter)
 					else:
-						cmdline = "%s/bin/sh %s" %(priority, self.commando)
+						cmdline = "%s/bin/sh %s" % (priority, self.commando)
 			else:
 				if 'PAR' in answer:
-					cmdline = "%s/usr/bin/python %s '%s'" %(priority, self.commando, self.parameter)
+					cmdline = "%s/usr/bin/python %s '%s'" % (priority, self.commando, self.parameter)
 				else:
-					cmdline = "%s/usr/bin/python %s" %(priority, self.commando)
+					cmdline = "%s/usr/bin/python %s" % (priority, self.commando)
 		elif answer == "VIEW":
 			try:
 				yfile = os.stat(self.commando)
@@ -395,16 +401,16 @@ class key_actions(stat_info):
 			if (yfile.st_size < 1000000):
 				self.session.open(vEditor, self.commando)
 
-		if answer and answer not in ("NO","VIEW"):
+		if answer and answer not in ("NO", "VIEW"):
 			if answer.endswith('_BG'):
 				global task_Stout, task_Sterr
 				task_Stout = []
 				task_Sterr = []
 				if 'PAR' in answer:
-					name = '%s%s %s' %(priority, self.commando, self.parameter)
+					name = '%s%s %s' % (priority, self.commando, self.parameter)
 				else:
-					name = '%s%s' %(priority, self.commando)
-				job = Job(_("Run script") + " ('%s')" %name)
+					name = '%s%s' % (priority, self.commando)
+				job = Job(_("Run script") + " ('%s')" % name)
 				task = Task(job, name)
 				task.postconditions.append(task_postconditions())
 				task.processStdout = task_processStdout
@@ -565,7 +571,7 @@ class key_actions(stat_info):
 	def play_music(self, dirsource):
 		self.sourceDir = dirsource
 		askList = [(_("Play title"), "SINGLE"), (_("Play folder"), "LIST"), (_("Cancel"), "NO")]
-		self.session.openWithCallback(self.do_play_music, ChoiceBox, title=_("What do you want to play?\n" + self.sourceDir.getFilename()), list=askList)
+		self.session.openWithCallback(self.do_play_music, ChoiceBox, title=_("What do you want to play?\n") + self.sourceDir.getFilename(), list=askList)
 
 	def do_play_music(self, answer):
 		longname = self.sourceDir.getCurrentDirectory() + self.sourceDir.getFilename()
@@ -636,7 +642,7 @@ class key_actions(stat_info):
 		testFileName = filename.lower()
 		filetype = os.path.splitext(testFileName)[1]
 		longname = sourceDir + filename
-		print "[Filebrowser]:", filename, sourceDir, testFileName
+		print("[Filebrowser]:", filename, sourceDir, testFileName)
 		if not fileExists(longname):
 			self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
 			return
@@ -675,15 +681,15 @@ class key_actions(stat_info):
 			self.run_script(self.SOURCELIST, self.TARGETLIST)
 		elif filetype == ".mvi":
 			self.file_name = longname
-			self.tmp_file = '/tmp/grab_%s_mvi.png' %filename[:-4]
+			self.tmp_file = '/tmp/grab_%s_mvi.png' % filename[:-4]
 			choice = [(_("No"), "no"),
 					(_("Show as Picture (press any key to close)"), "show")]
 			savetext = ''
 			stat = os.statvfs('/tmp/')
 			if stat.f_bavail * stat.f_bsize > 1000000:
-				choice.append((_("Show as Picture and save as file ('%s')")%self.tmp_file , "save"))
+				choice.append((_("Show as Picture and save as file ('%s')") % self.tmp_file, "save"))
 				savetext = _(" or save additional the picture to a file")
-			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") %(longname,savetext), simple=True, list=choice)
+			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") % (longname, savetext), simple=True, list=choice)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
 				xfile = os.stat(longname)
@@ -696,25 +702,25 @@ class key_actions(stat_info):
 		else:
 			try:
 				found_viewer = openFile(self.session, guess_type(longname)[0], longname)
-			except TypeError, e:
+			except TypeError as e:
 				found_viewer = False
 			if not found_viewer:
 				self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
 
-	def mviFileCB(self, ret = None):
+	def mviFileCB(self, ret=None):
 		if ret and ret != 'no':
 			global last_service
 			last_service = self.session.nav.getCurrentlyPlayingServiceReference()
-			cmd = "/usr/bin/showiframe '%s'" %self.file_name
+			cmd = "/usr/bin/showiframe '%s'" % self.file_name
 			self.session.nav.stopService()
 			self.hide()
 		if ret == 'show':
-			eActionMap.getInstance().bindAction('', -maxint - 1, self.showCB)
+			eActionMap.getInstance().bindAction('', -maxsize - 1, self.showCB)
 			console().ePopen(cmd)
 		elif ret == 'save':
 			if os.path.isfile(self.tmp_file):
 				os.remove(self.tmp_file)
-			cmd = [cmd, "/usr/bin/grab -v -p %s" %self.tmp_file]
+			cmd = [cmd, "/usr/bin/grab -v -p %s" % self.tmp_file]
 			console().eBatch(cmd, self.saveCB)
 			self.disableActions_Timer.startLongTimer(10)
 
@@ -722,25 +728,25 @@ class key_actions(stat_info):
 		self.show()
 		self.session.nav.playService(last_service)
 		eActionMap.getInstance().unbindAction('', self.showCB)
-		self.disableActions_Timer.start(100,True)
+		self.disableActions_Timer.start(100, True)
 
 	def saveCB(self, extra_args):
+		global last_service
 		if hasattr(self, 'session'):
 			self.disableActions_Timer.startLongTimer(1)
 			self.session.nav.playService(last_service)
 			self.show()
 			if os.path.isfile(self.tmp_file):
 				filename = self.tmp_file.split('/')[-1]
-				self.session.open(ImageViewer, [((filename,''),'')],0, self.tmp_file.replace(filename,''), filename)
+				self.session.open(ImageViewer, [((filename, ''), '')], 0, self.tmp_file.replace(filename, ''), filename)
 			else:
-				self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("File not found: %s") % self.tmp_file, type=MessageBox.TYPE_ERROR)
 		else:
 			import NavigationInstance
 			if last_service and NavigationInstance.instance:
 				NavigationInstance.instance.playService(last_service)
-				global last_service
 				last_service = None
-			Notifications.AddNotification(MessageBox, _("The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"), type=MessageBox.TYPE_ERROR, timeout=10)
+			Tools.Notifications.AddNotification(MessageBox, _("The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"), type=MessageBox.TYPE_ERROR, timeout=10)
 
 	def onFileActionCB(self, result):
 		# os.system('echo %s > /tmp/test.log' % (result))
