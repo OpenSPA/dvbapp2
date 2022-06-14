@@ -126,7 +126,6 @@ eHdmiCEC::eHdmiCEC()
 
 	if (!linuxCEC)
 	{
-
 #ifdef DREAMBOX
 #define HDMIDEV "/dev/misc/hdmi_cec0"
 #else
@@ -188,7 +187,6 @@ void eHdmiCEC::getAddressInfo()
 	if (hdmiFd >= 0)
 	{
 		bool hasdata = false;
-                
 		struct addressinfo addressinfo;
 
 		if (linuxCEC)

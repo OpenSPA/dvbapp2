@@ -2447,6 +2447,38 @@ void eDVBDB::searchAllReferences(std::vector<eServiceReference> &result, int tsi
 	}
 }
 
+void eDVBDB::searchAllIPTVReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid)
+{
+	for (auto& x: m_bouquets)
+	{
+		eBouquet bouquet = x.second;
+		std::list<eServiceReference> &list = bouquet.m_services;
+		for (std::list<eServiceReference>::iterator it = list.begin(); it != list.end(); ++it)
+		{
+			eServiceReference &ref = *it;
+			std::string s = ref.getPath();
+			bool found = false;
+			for (unsigned int i = 0; i < result.size(); i++)
+			{
+				eServiceReference reference = result[i];
+				if (reference.getData(2) == tsid &&
+					reference.getData(3) == onid &&
+					reference.getData(1) == sid)
+						found = true;
+			}
+			if (ref.getData(2) == tsid &&
+				ref.getData(3) == onid &&
+				ref.getData(1) == sid &
+				s.size() > 0 &&
+				found == false)
+			{
+				result.push_back(ref);
+				break;
+			}
+		}
+        }
+}
+
 DEFINE_REF(eDVBDBQueryBase);
 
 eDVBDBQueryBase::eDVBDBQueryBase(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)

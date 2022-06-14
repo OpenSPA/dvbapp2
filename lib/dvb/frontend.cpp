@@ -34,7 +34,7 @@
 #define eDebugNoSimulateNoNewLineEnd(x...) \
 	do { \
 		if (!m_simulate) \
-			eDebugNoNewLineEnd(x); \
+			eDebugNoNewLine(x); \
 	} while(0)
 
 #define eDebugNoSimulate(x...) \
@@ -1656,7 +1656,6 @@ int eDVBFrontend::readFrontendData(int type)
 {
 	char force_legacy_signal_stats[64];
 	sprintf(force_legacy_signal_stats, "config.Nims.%d.force_legacy_signal_stats", m_slotid);
-
 	switch(type)
 	{
 		case iFrontendInformation_ENUMS::bitErrorRate:  // N.B. This uses the legacy API. The DVB API 5.10 defines two different error rates which currently cannot be accessed from here
@@ -3936,7 +3935,7 @@ void eDVBFrontend::setDeliverySystemWhitelist(const std::vector<fe_delivery_syst
 
 bool eDVBFrontend::setDeliverySystem(fe_delivery_system_t delsys)
 {
-	eDebugDeliverySystem("frontend %d setDeliverySystem %d", m_slotid, delsys);
+	eDebugDeliverySystem("[eDVBFrontend] frontend %d setDeliverySystem %d", m_slotid, delsys);
 	struct dtv_property p[2];
 	memset(p, 0, sizeof(p));
 	struct dtv_properties cmdseq;

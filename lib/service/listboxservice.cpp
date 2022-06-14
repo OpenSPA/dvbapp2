@@ -990,7 +990,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							eSize pixmap_size = m_pixmaps[picHD]->size();
 
 							eRect area = m_element_position[celServiceInfo];
-							int offs = rec_pixmap_xoffs;
+							int offs = 0;
 							if (m_quality_icon_mode == 1)
 							{
 								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);

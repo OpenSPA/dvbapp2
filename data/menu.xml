@@ -222,11 +222,11 @@ from Screens.FactoryReset import FactoryReset
 def msgClosed(ret):
 	if ret:
 		from os import system, path, _exit
-		print"[FACTORY RESET] remove dir /etc/enigma2"
+		print("[FACTORY RESET] remove dir /etc/enigma2")
 		system("rm -R /etc/enigma2")
 		if path.exists("/media/hdd/images/config"):
 			system("rm -R /media/hdd/images/config")
-		print"[FACTORY RESET] set network to DHCP"
+		print("[FACTORY RESET] set network to DHCP")
 		system("cp -f /usr/share/enigma2/defaults/interfaces /etc/network/interfaces")
 		system("/etc/init.d/networking restart")
 		_exit(0)
@@ -269,7 +269,7 @@ else:
 		<item weight="25" level="0" text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 		<item weight="30" level="0" text="Restart Gui" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 		<item weight="24" level="0" text="Recovery Mode" requires="RecoveryMode" entryID="maintenance_mode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
-		<item weight="24" level="0" text="Dual Mode" requires="canDualBoot" entryID="dual_mode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
+		<item weight="24" level="0" text="Dual Mode" requires="canDualBoot" entryID="dual_mode"><screen module="Standby" screen="DualMode" /></item>
 	</menu>
 
 </menu>

@@ -22,6 +22,12 @@
 #ifndef AUDIO_SOURCE_HDMI
 #define AUDIO_SOURCE_HDMI 2
 #endif
+#ifndef AUDIO_GET_PTS
+#define AUDIO_GET_PTS _IOR('o', 19, __u64)
+#endif
+#ifndef VIDEO_GET_FRAME_RATE
+#define VIDEO_GET_FRAME_RATE _IOR('o', 56, unsigned int)
+#endif
 
 DEFINE_REF(eDVBAudio);
 
@@ -1315,7 +1321,6 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					streamtype = VIDEO_STREAMTYPE_MPEG4_H264;
 				else
 					streamtype = VIDEO_STREAMTYPE_MPEG2;
-
 #if HAVE_HISILICON
 				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, 0xff) < 0)
 					eDebug("[eTSMPEGDecoder] VIDEO_SELECT_SOURCE MEMORY failed: %m");

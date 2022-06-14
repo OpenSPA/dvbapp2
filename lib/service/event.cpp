@@ -160,6 +160,22 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 
 						data.m_country_code = (*it)->getCountryCode();
 						data.m_rating = (*it)->getRating();
+						/* hack for M+ - epg with parental_rating = 0 */
+						if ( data.m_rating == 0)
+						{
+							std::string description = m_short_description + m_extended_description;
+							std::size_t found1 = description.find("(+");
+							if (found1!=std::string::npos)
+							{
+								std::size_t found2 = description.find(")",found1+1);
+								if (found2!=std::string::npos)
+								{
+									std::string newstr = description.substr(found1+2,found2-found1+2);
+									int r = std::stoi(newstr);
+									data.m_rating = r-3;
+								}
+							}
+						}
 						m_ratings.push_back(data);
 					}
 					break;

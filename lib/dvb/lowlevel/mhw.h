@@ -13,6 +13,8 @@ typedef struct {
    u_char	channel_id_hi;
    u_char	channel_id_lo;
    u_char	name[16];
+   u_char	tmp;
+   u_char	data;
 
    int getNetworkId() const         { return network_id_hi << 8 | network_id_lo; };
    int getTransportStreamId() const { return transport_stream_id_hi << 8 | transport_stream_id_lo; };
@@ -95,6 +97,7 @@ typedef struct {
 
    int getDuration() const     { return duration_hi << 8 | duration_lo; };
    int getMhw2Duration() const { return mhw2_duration_hi << 8 | mhw2_duration_lo; };
+   u_char title2                               [30];
 } mhw_title_t;
 
 typedef struct mhw_summary {

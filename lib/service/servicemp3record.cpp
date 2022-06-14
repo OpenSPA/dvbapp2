@@ -147,6 +147,7 @@ int eServiceMP3Record::doPrepare()
 				else
 					m_useragent = m_extra_headers.substr(hpos_start);
 			}
+
 		}
 		else
 		{

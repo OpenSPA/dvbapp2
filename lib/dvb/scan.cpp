@@ -31,7 +31,7 @@
 #define SCAN_eDebug(x...) do { if (m_scan_debug) eDebug(x); } while(0)
 #define SCAN_eDebugNoNewLineStart(x...) do { if (m_scan_debug) eDebugNoNewLineStart(x); } while(0)
 #define SCAN_eDebugNoNewLine(x...) do { if (m_scan_debug) eDebugNoNewLine(x); } while(0)
-#define SCAN_eDebugNoNewLineEnd(x...) do { if (m_scan_debug) eDebugNoNewLineEnd(x); } while(0)
+#define SCAN_eDebugNoNewLine(x...) do { if (m_scan_debug) eDebugNoNewLine(x); } while(0)
 
 DEFINE_REF(eDVBScan);
 
@@ -1256,6 +1256,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 		transponderlist = &m_ch_blindscan;
 	}
 
+
 	for (eSmartPtrList<iDVBFrontendParameters>::const_iterator i(known_transponders.begin()); i != known_transponders.end(); ++i)
 	{
 		bool exist=false;
@@ -1518,11 +1519,11 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 		{
 			if (it->second.scrambled)
 			{
-				SCAN_eDebugNoNewLineEnd("is scrambled!");
+				SCAN_eDebugNoNewLine("is scrambled!");
 				is_crypted = true;
 			}
 			else
-				SCAN_eDebugNoNewLineEnd("is free");
+				SCAN_eDebugNoNewLine("is free");
 		}
 		SCAN_eDebugNoNewLine("\n");
 

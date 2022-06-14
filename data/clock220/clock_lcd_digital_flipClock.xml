@@ -9,14 +9,14 @@
 	<!--rad center-->
 	<ePixmap pixmap="display/clock_skin/clock_lcd_digital_flipClock_rad.png" position="103,8" size="14,114" zPosition="12" transparent="1" alphatest="on" />
 	<!--TIME-->
-	<widget source="global.CurrentTime" render="Label" position="23,21" size="76,134" font="RegularLCD;70" halign="center" valign="top" noWrap="1" zPosition="1" transparent="1" foregroundColor="#ffffff">
+	<widget source="global.CurrentTime" render="Label" position="23,21" size="76,134" font="VFD;70" halign="center" valign="top" noWrap="1" zPosition="1" transparent="1" foregroundColor="#ffffff">
 		<convert type="ClockToText">Format:%H</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="Label" position="123,21" size="76,134" font="RegularLCD;70" halign="center" valign="top" noWrap="1" zPosition="1" transparent="1" foregroundColor="#ffffff">
+	<widget source="global.CurrentTime" render="Label" position="123,21" size="76,134" font="VFD;70" halign="center" valign="top" noWrap="1" zPosition="1" transparent="1" foregroundColor="#ffffff">
 		<convert type="ClockToText">Format:%M</convert>
 	</widget>
 	<!--DATE-->
-	<widget source="global.CurrentTime" render="Label" position="center,122" size="220,50" font="RegularLCD;32" halign="center" valign="center" zPosition="1" foregroundColor="#ffffff" transparent="1">
+	<widget source="global.CurrentTime" render="Label" position="center,122" size="220,50" font="VFD;32" halign="center" valign="center" zPosition="1" foregroundColor="#ffffff" transparent="1">
 		<convert type="ClockToText">ShortDate</convert>
 	</widget>
 	<!--RECORD LED-->

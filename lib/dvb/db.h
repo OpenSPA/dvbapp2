@@ -76,6 +76,7 @@ public:
 //////
 	void loadBouquet(const char *path);
 	void searchAllReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
+	void searchAllIPTVReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
 	eDVBDB();
 	virtual ~eDVBDB();
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
