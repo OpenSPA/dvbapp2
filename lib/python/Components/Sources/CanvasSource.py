@@ -1,4 +1,6 @@
-from Source import Source
+from __future__ import absolute_import
+from Components.Sources.Source import Source
+
 
 class CanvasSource(Source):
 	def __init__(self):
@@ -8,7 +10,7 @@ class CanvasSource(Source):
 
 	def clear(self):
 		self.sequence += 1
-		self._drawlist = (self.sequence, [ ])
+		self._drawlist = (self.sequence, [])
 
 	def get_drawlist(self):
 		return self._drawlist

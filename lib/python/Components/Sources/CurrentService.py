@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 from Components.PerServiceDisplay import PerServiceBase
 from enigma import iPlayableService
-from Source import Source
+from Components.Sources.Source import Source
 from Components.Element import cached
 import NavigationInstance
 
@@ -29,7 +30,7 @@ class CurrentService(PerServiceBase, Source):
 	@cached
 	def getCurrentService(self):
 		return self.navcore.getCurrentService()
-	
+
 	def getCurrentServiceReference(self):
 		return self.navcore.getCurrentlyPlayingServiceReference()
 

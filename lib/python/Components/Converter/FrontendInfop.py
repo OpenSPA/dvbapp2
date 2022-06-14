@@ -129,7 +129,7 @@ class FrontendInfop(Converter, object):
 
 	@cached
 	def getBool(self):
-		assert self.type in (self.LOCK, self.BER, self.NIMACTIVEA, self.NIMACTIVEB, self.NIMACTIVEC, self.NIMACTIVED, self.NIMACTIVEE, self.NIMACTIVEF, self.NIMACTIVEG, self.NIMACTIVEH, self.NIMACTIVEI, self.NIMACTIVEJ, self.NIMACTIVEK,self.NIMACTIVEL,self.NIMACTIVEM,self.NIMACTIVEN ), "the boolean output of FrontendInfo can only be used for lock, BER info or NIMACTIVE"
+		assert self.type in (self.LOCK, self.BER, self.NIMACTIVEA, self.NIMACTIVEB, self.NIMACTIVEC, self.NIMACTIVED, self.NIMACTIVEE, self.NIMACTIVEF, self.NIMACTIVEG, self.NIMACTIVEH, self.NIMACTIVEI, self.NIMACTIVEJ, self.NIMACTIVEK,self.NIMACTIVEL,self.NIMACTIVEM,self.NIMACTIVEN, self.NIMACTIVEO, self.NIMACTIVEP, self.NIMACTIVEQ, self.NIMACTIVER ), "the boolean output of FrontendInfo can only be used for lock, BER info or NIMACTIVE"
 		if self.type == self.LOCK:
 			lock = self.source.lock
 			if lock is None:

@@ -1,4 +1,5 @@
-from Source import Source
+from __future__ import absolute_import
+from Components.Sources.Source import Source
 from enigma import eTimer
 
 class FrontendStatus(Source):
@@ -33,7 +34,7 @@ class FrontendStatus(Source):
 	def getFrontendStatus(self):
 		if self.frontend_source:
 			frontend = self.frontend_source()
-			dict = { }
+			dict = {}
 			if frontend:
 				frontend.getFrontendStatus(dict)
 			return dict

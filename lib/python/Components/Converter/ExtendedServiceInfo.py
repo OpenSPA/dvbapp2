@@ -120,7 +120,7 @@ class ExtendedServiceInfo(Converter, object):
             list = self.tv_list
         number = ''
         if name in list:
-            for idx in range(1, len(list)):
+            for idx in list(range(1, len(list))):
                 if name == list[idx - 1]:
                     number = str(idx)
                     break
@@ -133,7 +133,7 @@ class ExtendedServiceInfo(Converter, object):
         if transponderData is not None:
             if isinstance(transponderData, float):
                 return ''
-            if transponderData.has_key('tuner_type'):
+            if 'tuner_type' in transponderData:
                 if transponderData['tuner_type'] == 'DVB-S' or transponderData['tuner_type'] == 'DVB-S2':
                     orbital = transponderData['orbital_position']
                     orbital = int(orbital)

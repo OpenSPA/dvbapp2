@@ -1,10 +1,11 @@
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from Poll import Poll
+from Components.Converter.Poll import Poll
 from Tools.ISO639 import LanguageCodes
-from Tools.Directories import fileExists
+from Tools.Directories import isPluginInstalled
 
-class TrackInfo(Poll,Converter, object):
+class TrackInfo(Poll, Converter, object):
 	AUDIO = 0
 	SUBTITLE = 1
 	AUDIO_CODEC = 2
@@ -33,7 +34,7 @@ class TrackInfo(Poll,Converter, object):
 		else:
 			self.type = self.AUDIO
 
-	@cached	
+	@cached
 	def getText(self):
 		service = self.source.service
 		if self.type == self.AUDIO or self.type == self.AUDIO_CODEC or self.type == self.AUDIO_LANG:
@@ -43,13 +44,13 @@ class TrackInfo(Poll,Converter, object):
 					selectedAudio = audio.getCurrentTrack()
 					i = audio.getTrackInfo(selectedAudio)
 					languages = i.getLanguage().split('/')
-					description = i.getDescription().replace(" audio","") or ""
+					description = i.getDescription().replace(" audio", "") or ""
 					cnt = 0
 					language = ''
 					for lang in languages:
 						if cnt:
 							language += ' / '
-						if LanguageCodes.has_key(lang):
+						if lang in LanguageCodes:
 							language += _(LanguageCodes[lang][0])
 						else:
 							language += lang
@@ -94,7 +95,7 @@ class TrackInfo(Poll,Converter, object):
 					kodi = KodiVideoPlayer.instance
 				except:
 					kodi = None
-				if kodi and fileExists("/usr/lib/enigma2/python/Plugins/Extensions/SubsSupport/plugin.pyo"):
+				if kodi and isPluginInstalled("SubsSupport"):
 					if kodi.embeddedEnabled:
 						selectedSubtitle = kodi.selected_subtitle
 						enabled = kodi.subtitle_window.shown
@@ -116,7 +117,7 @@ class TrackInfo(Poll,Converter, object):
 						language = _("Unknown")
 						try:
 							if x[4] != "und":
-								if LanguageCodes.has_key(x[4]):
+								if x[4] in LanguageCodes:
 									language = _(LanguageCodes[x[4]][0])
 								else:
 									language = x[4]
@@ -144,10 +145,8 @@ class TrackInfo(Poll,Converter, object):
 							return language
 			return _("None")
 
-
 	text = property(getText)
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:
 			Converter.changed(self, what)
-

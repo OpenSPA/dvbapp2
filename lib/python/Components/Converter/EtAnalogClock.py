@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 # original code is from openmips gb Team: [OMaclock] Converter #
 # Thx to arn354 #
 
-from Converter import Converter
+from Components.Converter.Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
 
@@ -35,7 +36,7 @@ class EtAnalogClock(Converter, object):
 		elif self.type == self.OMA_MIN:
 			return "%02d,min" % t.tm_min
 		elif self.type == self.OMA_HOUR:
-			ret = (t.tm_hour*5)+(t.tm_min/12);
+			ret = (t.tm_hour * 5) + (t.tm_min / 12)
 			return "%02d,hour" % ret
 		else:
 			return "???"
