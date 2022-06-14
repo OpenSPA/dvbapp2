@@ -233,7 +233,7 @@ class EPGScreen(Screen, ConfigListScreen):
 			else:
 				self.mbox = self.session.open(MessageBox, _('EPG Download Cancelled - Recording active'), MessageBox.TYPE_ERROR, timeout=5)
 		except:
-			print 'Error download EPG, record active?'
+			print('Error download EPG, record active?')
 
 	def log(self):
 		self.session.open(ViewLog)

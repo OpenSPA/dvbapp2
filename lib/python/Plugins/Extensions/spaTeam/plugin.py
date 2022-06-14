@@ -28,6 +28,7 @@ from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, Hard
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup, AudioSetup
 
+from Screens.CronTimer import *
 from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
@@ -35,7 +36,6 @@ from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.Extensions.spaTeam.Epg import EPGScreen
 from Plugins.Extensions.spaTeam.RestartNetwork import RestartNetwork
 from Plugins.Extensions.spaTeam.MountManager import HddMount
-from Plugins.Extensions.spaTeam.CronManager import *
 from Plugins.Extensions.spaTeam.ScriptRunner import *
 from Plugins.Extensions.spaTeam.SwapManager import Swap, SwapAutostart
 from Plugins.Extensions.spaTeam.TimeJump import TimeJumpAutostart, TimeJumpMain
@@ -98,8 +98,8 @@ def isFileSystemSupported(filesystem):
 			if fs.strip().endswith(filesystem):
 				return True
 		return False
-	except Exception, ex:
-		print "[Harddisk] Failed to read /proc/filesystems:", ex
+	except Exception as ex:
+		print("[Harddisk] Failed to read /proc/filesystems:", ex)
 
 def Check_Softcam():
 	found = False
@@ -141,7 +141,7 @@ if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
 		setDefaultKeymap()
 
 def setDefaultKeymap():
-	print "[spaTeam] Set Keymap to Default"
+	print("[spaTeam] Set Keymap to Default")
 	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 	config.save()
 
@@ -809,7 +809,7 @@ class spaMenu(Screen, ProtectedScreen):
 				self.session.open(MessageBox, _("Sorry IPK Uninstaller is not installed!"), MessageBox.TYPE_INFO, timeout = 10)
 ######## Select Addition Features Menu ###################################
 		elif item[0] == _("Cron Manager"):
-			self.session.open(CronManager)
+			self.session.open(CronTimers)
 		elif item[0] == _("Job Manager"):
 			self.session.open(ScriptRunner)
 		elif item[0] == _("Swap Manager"):

@@ -1,15 +1,13 @@
 def CRONDStatus():
-	import os
 	ret = False
-	pids = os.popen("ps -aux | grep crond | grep -v grep | wc -l")
+	pids = Command("ps -aux | grep crond | grep -v grep | wc -l")
 	try:
-		count = int(pids.read())
+		count = int(pids)
 		if count > 0:
 			ret = True
-	except Exception, e:
+	except Exception as e:
 		pass
 
-	pids.close()
 	return ret
 
 def CRONDStop():
@@ -38,7 +36,7 @@ def CRONDInstalled():
 
 daemon_name = "Crond"
 daemon_description = "Cronjob Daemon"
-daemon_icon = "Cron_Manager.png"
+daemon_icon = "crond.png"
 daemon_package = "cronie"
 daemon_fnc_status = CRONDStatus
 daemon_fnc_installed = CRONDInstalled

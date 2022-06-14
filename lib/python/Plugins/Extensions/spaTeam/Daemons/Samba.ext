@@ -3,17 +3,15 @@ from Components.ConfigList import *
 from Screens.Screen import Screen
 
 def SambaStatus():
-	import os
 	ret = False
-	pids = os.popen("ps -aux | grep smbd | grep -v grep | wc -l")
+	pids = Command("ps -aux | grep smbd | grep -v grep | wc -l")
 	try:
-		count = int(pids.read())
+		count = int(pids)
 		if count > 0:
 			ret = True
-	except Exception, e:
+	except Exception as e:
 		pass
-
-	pids.close()
+	
 	return ret
 
 def SambaStop():
@@ -55,7 +53,7 @@ def SambaBoot(enabled):
 
 daemon_name = "Samba"
 daemon_description = "Share files with MS Windows"
-daemon_icon = "Samba.png"
+daemon_icon = "samba.png"
 daemon_package = "samba"
 daemon_fnc_status = SambaStatus
 daemon_fnc_installed = SambaInstalled

@@ -1,15 +1,13 @@
 def VSFTPDStatus():
-	import os
 	ret = False
-	pids = os.popen("ps -aux | grep vsftpd | grep -v grep | wc -l")
+	pids = Command("ps -aux | grep vsftpd | grep -v grep | wc -l")
 	try:
-		count = int(pids.read())
+		count = int(pids)
 		if count > 0:
 			ret = True
-	except Exception, e:
+	except Exception as e:
 		pass
 
-	pids.close()
 	return ret
 
 def VSFTPDStop():
@@ -45,7 +43,7 @@ def VSFTPDInstalled():
 
 daemon_name = "Vsftpd"
 daemon_description = "FTP Daemon"
-daemon_icon = "FTP.png"
+daemon_icon = "vsftpd.png"
 daemon_package = "vsftpd"
 daemon_fnc_status = VSFTPDStatus
 daemon_fnc_installed = VSFTPDInstalled

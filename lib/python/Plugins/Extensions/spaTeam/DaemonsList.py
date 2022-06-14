@@ -16,6 +16,22 @@ from enigma import *
 import os
 import sys
 
+def Command(command):
+	import shlex
+	import subprocess
+	comm = command.strip().split("| ")
+	old = None
+	out = ""
+	for cmd in comm:
+		cmd = shlex.split(cmd.strip())
+		process = subprocess.Popen(cmd, stdin=old, stdout=subprocess.PIPE)
+		old=process.stdout
+
+	for ex in old:
+		out = out + ex.decode("utf-8")
+
+	return out.rstrip("\n")
+
 def DaemonEntry(name, picture, description, started, installed):
 	res = [(name,
 		picture,
@@ -152,7 +168,7 @@ class DaemonsList(Screen):
 						daemon_fnc_boot,
 						daemon_package))
 				except TypeError:
-					print '[spaTeam] Could not parse servicelist while Directory crawl. Please check .ext Files for errors.'
+					print('[spaTeam] Could not parse servicelist while Directory crawl. Please check .ext Files for errors.')
 
 	def yellow(self):
 		index = self['menu'].getSelectionIndex()
@@ -201,7 +217,7 @@ class DaemonsList(Screen):
 					elif self.daemons[index][6] == 'NTPdConf':
 						self.session.open(MessageBox, _('Please visit the following Website:\nhttp://linux-fuer-alle.de/doc_show.php?docid=7\nto gain further instructions how to configure your STB as NTP-Client/Server.'), MessageBox.TYPE_INFO)
 		except IndexError:
-			print '[spaTeam] no Service .ext files found.'
+			print('[spaTeam] no Service .ext files found.')
 
 	def green(self):
 		index = self['menu'].getSelectionIndex()

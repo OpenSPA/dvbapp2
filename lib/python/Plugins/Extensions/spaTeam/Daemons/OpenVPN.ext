@@ -1,21 +1,19 @@
 def OpenVPNStatus():
-	import os
 	ret = False
-	pids = os.popen("ps -aux | grep openvpn | grep -v grep | wc -l")
+	pids = Command("ps -aux | grep openvpn | grep -v grep | wc -l")
 	try:
-		count = int(pids.read())
+		count = int(pids)
 		if count > 0:
 			ret = True
-	except Exception, e:
+	except Exception as e:
 		pass
-
-	pids.close()
+	
 	return ret
-
+	
 def OpenVPNStop():
 	import os
 	os.system("/usr/bin/openvpn_script.sh stop")
-
+	
 def OpenVPNStart():
 	from enigma import eConsoleAppContainer
 	import os
@@ -25,11 +23,11 @@ def OpenVPNStart():
 	cmd.execute("/usr/bin/openvpn_script.sh start")
 	import time
 	time.sleep(2)
-
+	
 def OpenVPNInstalled():
 	from Tools.Directories import fileExists
 	return fileExists("/usr/sbin/openvpn")
-
+	
 def OpenVPNBoot(enabled):
 	import os
 	if enabled:
@@ -38,10 +36,10 @@ def OpenVPNBoot(enabled):
 	else:
 		os.system("rm -f /etc/rc3.d/S60openvpn")
 		os.system("rm -f /etc/rc3.d/K60openvpn")
-
+	
 daemon_name = "OpenVPN"
 daemon_description = "A secure VPN server"
-daemon_icon = "OpenVPN.png"
+daemon_icon = "openvpn.png"
 daemon_package = "openvpn"
 daemon_fnc_status = OpenVPNStatus
 daemon_fnc_installed = OpenVPNInstalled

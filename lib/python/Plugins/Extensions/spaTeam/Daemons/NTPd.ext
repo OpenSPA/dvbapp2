@@ -1,25 +1,23 @@
-﻿def NTPDStatus():
-	import os
+def NTPDStatus():
 	ret = False
-	pids = os.popen("ps -aux | grep ntpd | grep -v grep | wc -l")
+	pids = Command("ps -aux | grep ntpd | grep -v grep | wc -l")
 	try:
-		count = int(pids.read())
+		count = int(pids)
 		if count > 0:
 			ret = True
-	except Exception, e:
+	except Exception as e:
 		pass
-
-	pids.close()
+	
 	return ret
-
+	
 def NTPDStop():
 	import os
 	os.system("/etc/init.d/ntpd stop")
-
+	
 def NTPDStart():
 	import os
 	os.system("/etc/init.d/ntpd start")
-
+	
 def NTPDInstalled():
 	from Tools.Directories import fileExists
 	return fileExists("/usr/bin/ntpd")
@@ -42,7 +40,7 @@ def NTPDBoot(enabled):
 		os.system("rm -f /etc/rc4.d/S20ntpd")
 		os.system("rm -f /etc/rc5.d/S20ntpd")
 		os.system("rm -f /etc/rc6.d/K20ntpd")
-
+		
 daemon_name = "NTPd"
 daemon_description = "NTP-Client/Server"
 daemon_icon = "ntpd.png"

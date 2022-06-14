@@ -1,15 +1,13 @@
 def TELNETDStatus():
-	import os
 	ret = False
-	pids = os.popen("ps -aux | grep telnetd | grep -v grep | wc -l")
+	pids = Command("ps -aux | grep telnetd | grep -v grep | wc -l")
 	try:
-		count = int(pids.read())
+		count = int(pids)
 		if count > 0:
 			ret = True
-	except Exception, e:
+	except Exception as e:
 		pass
 
-	pids.close()
 	return ret
 
 def TELNETDStop():
@@ -45,7 +43,7 @@ def TELNETDInstalled():
 
 daemon_name = "Telnetd"
 daemon_description = "Telnet Daemon"
-daemon_icon = "Telnet.png"
+daemon_icon = "telnetd.png"
 daemon_package = "telnet"
 daemon_fnc_status = TELNETDStatus
 daemon_fnc_installed = TELNETDInstalled

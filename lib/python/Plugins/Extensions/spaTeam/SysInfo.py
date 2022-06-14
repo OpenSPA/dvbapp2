@@ -305,7 +305,7 @@ class SysInfo(Screen):
 		minutes = int(total_seconds / 60 - days * 1440 - hours * 60)
 		seconds = int(total_seconds % 60)
 		if days > 0:
-			print days
+			print(days)
 			if days == 1:
 				days = str(days)
 				self['utday'].setText(_('Day'))

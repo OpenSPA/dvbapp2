@@ -232,7 +232,7 @@ def init_timejump():
 	MoviePlayer.seekFwdManual = timejump
 	MoviePlayer.seekBackManual = timejumpBack
 
-	dvdPlayer = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.pyo")
+	dvdPlayer = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.pyc")
 	if fileExists(dvdPlayer) or fileExists("%sc"%dvdPlayer):
 		from Plugins.Extensions.DVDPlayer.plugin import DVDPlayer
 		DVDPlayer.seekFwdManual = timejump
@@ -240,19 +240,19 @@ def init_timejump():
 	else:
 		DVDPlayer = None
 
-	videodb = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/VideoDB/plugin.pyo")
+	videodb = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/VideoDB/plugin.pyc")
 	if fileExists(videodb):
 		from Plugins.Extensions.VideoDB.Player import VideoDBPlayer
 		VideoDBPlayer.seekFwdManual = timejump
 		VideoDBPlayer.seekBackManual = timejumpBack
 
-	youtube = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/YouTube/plugin.pyo")
+	youtube = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/YouTube/plugin.pyc")
 	if fileExists(youtube):
 		from Plugins.Extensions.YouTube.YouTubeUi import YouTubePlayer
 		YouTubePlayer.left = timejumpBack
 		YouTubePlayer.right = timejump
 
-	mediaportal = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/MediaPortal/resources/simpleplayer.pyo")
+	mediaportal = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/MediaPortal/resources/simpleplayer.pyc")
 	if fileExists(mediaportal):
 		from Plugins.Extensions.MediaPortal.resources.simpleplayer import SimplePlayer
 		SimplePlayer.seekBack = timejumpBack

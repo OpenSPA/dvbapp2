@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from . import _
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -15,6 +16,7 @@ from os import system, stat as mystat, path, remove, rename
 from enigma import eTimer
 from glob import glob
 import stat
+import six
 
 config.plugins.spateam = ConfigSubsection()
 config.plugins.spateam.swapautostart = ConfigYesNo(default = False)
@@ -25,10 +27,10 @@ def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
 	if reason == 0:
 		if config.plugins.spateam.swapautostart.value:
-			print "[SwapManager] autostart"
+			print("[SwapManager] autostart")
 			startswap = StartSwap()
 			startswap.start()
-	
+
 class StartSwap:
 	def __init__(self):
 		self.Console = Console()
@@ -36,16 +38,18 @@ class StartSwap:
 	def start(self):
 	 	self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.startSwap2)
 
-	def startSwap2(self, result = None, retval = None, extra_args = None):
+	def startSwap2(self, result=None, retval=None, extra_args=None):
+		if result != None:
+			result = six.ensure_str(result)
 		swap_place = ""
 		if result and result.find('sd') != -1:
 			for line in result.split('\n'):
 				if line.find('sd') != -1:
 					parts = line.strip().split()
 					swap_place = parts[0]
-					file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if swap_place not in l])
-					rename('/etc/fstab.tmp','/etc/fstab')
-					print "[SwapManager] Found a swap partition:", swap_place
+					open('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if swap_place not in l])
+					rename('/etc/fstab.tmp', '/etc/fstab')
+					print("[SwapManager] Found a swap partition:", swap_place)
 		else:
 			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
@@ -57,15 +61,15 @@ class StartSwap:
 					for filename in glob(device[1] + '/swap*'):
 						if path.exists(filename):
 							swap_place = filename
-							print "[SwapManager] Found a swapfile on ", swap_place
+							print("[SwapManager] Found a swapfile on ", swap_place)
 
-		f = file('/proc/swaps').read()
+		f = open('/proc/swaps').read()
 		if f.find(swap_place) == -1:
-			print "[SwapManager] Starting swapfile on ", swap_place
+			print("[SwapManager] Starting swapfile on ", swap_place)
 			system('swapon ' + swap_place)
 		else:
-			print "[SwapManager] Swapfile is already active on ", swap_place
-	
+			print("[SwapManager] Swapfile is already active on ", swap_place)
+
 #######################################################################
 class Swap(Screen):
 	skin = """
@@ -138,7 +142,9 @@ class Swap(Screen):
 			remove('/tmp/swapdevices.tmp')
 		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.updateSwap2)
 
-	def updateSwap2(self, result = None, retval = None, extra_args = None):
+	def updateSwap2(self, result=None, retval=None, extra_args=None):
+		if result != None:
+			result = six.ensure_str(result)
 		self.swapsize = 0
 		self.swap_place = ''
 		self.swap_active = False
@@ -268,10 +274,10 @@ class Swap(Screen):
 		parts = []
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'vfat'))
 		candidates = []
-		mounts = getProcMounts() 
+		mounts = getProcMounts()
 		for partition in harddiskmanager.getMountedPartitions(False, mounts):
 			if partition.filesystem(mounts) in supported_filesystems:
-				candidates.append((partition.description, partition.mountpoint)) 
+				candidates.append((partition.description, partition.mountpoint))
 		if len(candidates):
 			self.session.openWithCallback(self.doCSplace, ChoiceBox, title = _("Please select device to use as swapfile location"), list = candidates)
 		else:
@@ -295,7 +301,7 @@ class Swap(Screen):
 			self.commands.append('dd if=/dev/zero of=' + myfile + ' bs=1024 count=' + swapsize + ' 2>/dev/null')
 			self.commands.append('mkswap ' + myfile)
 			self.Console.eBatch(self.commands, self.updateSwap, debug=True)
-		
+
 	def autoSsWap(self):
 		if self.swap_place:
 			if config.plugins.spateam.swapautostart.value:
