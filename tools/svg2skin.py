@@ -9,6 +9,7 @@
 #
 # tested only with a single inkscape-generated SVG.
 
+from __future__ import print_function
 import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
@@ -23,7 +24,7 @@ def parsedict(attrs):
 	if not attrs:
 		return []
 	d = attrs.split(';')
-	r = { }
+	r = {}
 	for x in d:
 		(key, val) = x.split(':')
 		r[key] = val
@@ -77,7 +78,8 @@ class parseXML(ContentHandler):
 			font = ' font="Regular;%d"' % px(styles["font-size"])
 		else:
 			font = ""
-		print """\t\t<widget source="%s" render="Label" position="%d,%d" size="%d,%d" %s />""" % (id, x, y, width, height, font)
+		print("""\t\t<widget source="%s" render="Label" position="%d,%d" size="%d,%d" %s />""" % (id, x, y, width, height, font))
+
 
 parser = make_parser()
 contentHandler = parseXML()
@@ -86,6 +88,6 @@ contentHandler.find_bbox = True
 parser.parse(sys.argv[1])
 bboxi = tuple([int(x) for x in contentHandler.bbox])
 contentHandler.find_bbox = False
-print '\t<screen name="" position="%d,%d" size="%d,%d" title="">' % bboxi
+print('\t<screen name="" position="%d,%d" size="%d,%d" title="">' % bboxi)
 parser.parse(sys.argv[1])
-print '\t</screen>'
+print('\t</screen>')

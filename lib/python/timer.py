@@ -1,14 +1,15 @@
+from __future__ import print_function
 from bisect import insort
 from time import time, localtime, mktime
 from enigma import eTimer, eActionMap
 import datetime
 
 class TimerEntry:
-	StateWaiting  = 0
+	StateWaiting = 0
 	StatePrepared = 1
-	StateRunning  = 2
-	StateEnded    = 3
-	StateFailed   = 4
+	StateRunning = 2
+	StateEnded = 3
+	StateFailed = 4
 
 	def __init__(self, begin, end):
 		self.begin = begin
@@ -45,7 +46,7 @@ class TimerEntry:
 
 	def addOneDay(self, timedatestruct):
 		oldHour = timedatestruct.tm_hour
-		newdate =  (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
+		newdate = (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
 		if localtime(mktime(newdate)).tm_hour != oldHour:
 			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()
 		return newdate
@@ -81,7 +82,7 @@ class TimerEntry:
 
 			# if day is NOT in the list of repeated days
 			# OR if the day IS in the list of the repeated days, check, if event is currently running... then if findRunningEvent is false, go to the next event
-			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin))  or
+			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin)) or
 				(day[localbegin.tm_wday] == 0 and (findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow))):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
@@ -108,10 +109,10 @@ class TimerEntry:
 	# check if a timer entry must be skipped
 	def shouldSkip(self):
 		if self.disabled:
-			if self.end <= time() and not "PowerTimerEntry" in `self`:
+			if self.end <= time() and not "PowerTimerEntry" in repr(self):
 				self.disabled = False
 			return True
-		if "PowerTimerEntry" in `self`:
+		if "PowerTimerEntry" in repr(self):
 			if (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat != 'once':
 				return False
 			elif self.begin >= time() and (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat == 'once':
@@ -159,15 +160,15 @@ class Timer:
 	MaxWaitTime = 100
 
 	def __init__(self):
-		self.timer_list = [ ]
-		self.processed_timers = [ ]
+		self.timer_list = []
+		self.processed_timers = []
 
 		self.timer = eTimer()
 		self.timer.callback.append(self.calcNextActivation)
 		self.lastActivation = time()
 
 		self.calcNextActivation()
-		self.on_state_change = [ ]
+		self.on_state_change = []
 
 	def stateChanged(self, entry):
 		for f in self.on_state_change:
@@ -228,9 +229,9 @@ class Timer:
 	def calcNextActivation(self):
 		now = time()
 		if self.lastActivation > now:
-			print "[timer.py] timewarp - re-evaluating all processed timers."
+			print("[timer.py] timewarp - re-evaluating all processed timers.")
 			tl = self.processed_timers
-			self.processed_timers = [ ]
+			self.processed_timers = []
 			for x in tl:
 				# simulate a "waiting" state to give them a chance to re-occure
 				x.resetState()
@@ -262,12 +263,12 @@ class Timer:
 			try:
 				self.timer_list.remove(timer)
 			except:
-				print "[timer] Failed to remove, not in list"
+				print("[timer] Failed to remove, not in list")
 				return
 		# give the timer a chance to re-enqueue
 		if timer.state == TimerEntry.StateEnded:
 			timer.state = TimerEntry.StateWaiting
-		elif "PowerTimerEntry" in `timer` and (timer.timerType == 3 or timer.timerType == 4):
+		elif "PowerTimerEntry" in repr(timer) and (timer.timerType == 3 or timer.timerType == 4):
 			if timer.state > 0:
 				eActionMap.getInstance().unbindAction('', timer.keyPressed)
 			timer.state = TimerEntry.StateWaiting

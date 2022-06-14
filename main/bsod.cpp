@@ -9,14 +9,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
-
-#if defined(__MIPSEL__)
 #include <asm/ptrace.h>
-#else
-#warning "no oops support!"
-#define NO_OOPS_SUPPORT
-#endif
-
 #include "version_info.h"
 
 /************************************************/
@@ -138,7 +131,6 @@ void bsodFatal(const char *component)
 	/* show no more than one bsod while shutting down/crashing */
 	if (bsodhandled) {
 		if (component) {
-			eSyncLog();
 			sleep(1);
 			raise(SIGKILL);
 		}
@@ -150,10 +142,10 @@ void bsodFatal(const char *component)
 		component = "Enigma2";
 
 	/* Retrieve current ringbuffer state */
-	const char* logp1;
-	unsigned int logs1;
-	const char* logp2;
-	unsigned int logs2;
+	const char* logp1 = NULL;
+	unsigned int logs1 = 0;
+	const char* logp2 = NULL;
+	unsigned int logs2 = 0;
 	retrieveLogBuffer(&logp1, &logs1, &logp2, &logs2);
 
 	FILE *f;
@@ -230,7 +222,6 @@ void bsodFatal(const char *component)
 
 		/* dump the kernel log */
 		getKlog(f);
-
 		fsync(fileno(f));
 		fclose(f);
 	}
@@ -239,11 +230,9 @@ void bsodFatal(const char *component)
 	{
 		bsodrestart = false;
 		bsodhandled = false;
-		eSyncLog();
 		sleep(1);
 		return;
 	}
-
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
 
@@ -252,11 +241,10 @@ void bsodFatal(const char *component)
 	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
 	p.setBackgroundColor(gRGB(0x27408B));
 	p.setForegroundColor(gRGB(0xFFFFFF));
-	p.clear();
-
 	int hd =  my_dc->size().width() == 1920;
 	ePtr<gFont> font = new gFont("Regular", hd ? 30 : 20);
 	p.setFont(font);
+	p.clear();
 
 	eRect usable_area = eRect(hd ? 30 : 100, hd ? 30 : 70, my_dc->size().width() - (hd ? 60 : 150), hd ? 150 : 100);
 
@@ -271,7 +259,7 @@ void bsodFatal(const char *component)
 			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
 			"Your receiver restarts in 10 seconds!\n"
 			"Component: " << component;
-	
+
 		os << getConfigString("config.crash.debug_text", os_text.str());
 	}
 	else
@@ -343,7 +331,6 @@ void bsodFatal(const char *component)
 		usable_area = eRect(hd ? 30 : 100, hd ? 180 : 170, my_dc->size().width() - (hd ? 60 : 180), my_dc->size().height() - (hd ? 30 : 20));
 		p.renderText(usable_area, logtail, gPainter::RT_HALIGN_LEFT);
 	}
-	eSyncLog();
 	sleep(10);
 
 	/*
@@ -357,7 +344,7 @@ void bsodFatal(const char *component)
 	 * executing here.
 	 */
 
-	if (bsodpython)	
+	if (bsodpython)
 	{
 		bsodrestart = false;
 		bsodhandled = false;
@@ -368,19 +355,25 @@ void bsodFatal(const char *component)
 	if (component) raise(SIGKILL);
 }
 
-#if defined(__MIPSEL__)
 void oops(const mcontext_t &context)
 {
-	eDebug("PC: %08lx", (unsigned long)context.pc);
+#if defined(__MIPSEL__)
+	eLog(lvlFatal, "PC: %08lx", (unsigned long)context.pc);
 	int i;
 	for (i=0; i<32; i += 4)
 	{
-		eDebug("%08x %08x %08x %08x",
+		eLog(lvlFatal, "    %08x %08x %08x %08x",
 			(int)context.gregs[i+0], (int)context.gregs[i+1],
 			(int)context.gregs[i+2], (int)context.gregs[i+3]);
 	}
-}
+#elif defined(__arm__)
+	eLog(lvlFatal, "PC: %08lx", (unsigned long)context.arm_pc);
+	eLog(lvlFatal, "Fault Address: %08lx", (unsigned long)context.fault_address);
+	eLog(lvlFatal, "Error Code:: %lu", (unsigned long)context.error_code);
+#else
+	eLog(lvlFatal, "FIXME: no oops support!");
 #endif
+}
 
 /* Use own backtrace print procedure because backtrace_symbols_fd
  * only writes to files. backtrace_symbols cannot be used because
@@ -391,30 +384,28 @@ void print_backtrace()
 {
 	void *array[15];
 	size_t size;
-	int cnt;
+	size_t cnt;
 
 	size = backtrace(array, 15);
-	eDebug("Backtrace:");
-	for (cnt = 1; static_cast<unsigned>(cnt) < size; ++cnt)
+	eLog(lvlFatal, "Backtrace:");
+	for (cnt = 1; cnt < size; ++cnt)
 	{
 		Dl_info info;
 
 		if (dladdr(array[cnt], &info)
 			&& info.dli_fname != NULL && info.dli_fname[0] != '\0')
 		{
-			eDebug("%s(%s) [0x%X]", info.dli_fname, info.dli_sname != NULL ? info.dli_sname : "n/a", (unsigned long int) array[cnt]);
+			eLog(lvlFatal, "%s(%s) [0x%lX]", info.dli_fname, info.dli_sname != NULL ? info.dli_sname : "n/a", (unsigned long int) array[cnt]);
 		}
 	}
 }
 
 void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 {
-#ifndef NO_OOPS_SUPPORT
 	ucontext_t *uc = (ucontext_t*)ctx;
 	oops(uc->uc_mcontext);
-#endif
 	print_backtrace();
-	eDebug("-------FATAL SIGNAL");
+	eLog(lvlFatal, "-------FATAL SIGNAL");
 	bsodFatal("enigma2, signal");
 }
 

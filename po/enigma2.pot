@@ -18854,9 +18854,3 @@ msgid ""
 msgstr ""
 "\n"
 ""
-
-msgid "Match"
-msgstr ""
-
-msgid "LOAD THE EPG FIRST\nNO EPG PRIMETIME ON CHANNEL"
-msgstr ""

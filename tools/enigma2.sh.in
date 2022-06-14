@@ -33,6 +33,11 @@ if [ ! -d /usr/share/enigma2/picon ] ; then
 	mkdir -p /usr/share/enigma2/picon
 fi
 
+#check for /proc/self/fd exist for wireguard
+if [ -d /proc/self/fd ]; then
+	ln -sf /proc/self/fd /dev/fd
+fi
+
 # workaround for corrupt ssl files
 if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firstrun=False" ]; then
 	rm -rf /etc/enigma2/cert.pem &
@@ -72,7 +77,7 @@ fi
 
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
-	@bindir@/enigma2_pre_start.sh &
+	@bindir@/enigma2_pre_start.sh
 fi
 
 if [ -e /proc/stb/info/hwmodel ]; then
@@ -91,6 +96,13 @@ if [ -d /home/root ]; then
 	export HOME=/home/root
 fi
 
+# any debuglevel passed?
+if [ -z $ENIGMA_DEBUG_LVL ]; then
+	DEBUG_LVL=3
+else
+	DEBUG_LVL=$ENIGMA_DEBUG_LVL
+fi
+
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
 	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
@@ -104,9 +116,9 @@ if [ -e @libdir@/libpagecache.so ]; then
 fi
 
 #check for receiver specific passthrough helper lib
-if [ -e @libdir@/libpassthrough.so ]; then
-	LIBS="$LIBS @libdir@/libpassthrough.so"
-fi
+#if [ -e @libdir@/libpassthrough.so ]; then
+#	LIBS="$LIBS @libdir@/libpassthrough.so"
+#fi
 
 #check for settings files
 if [ ! -e /etc/enigma2/settings ]; then
@@ -135,12 +147,10 @@ sysctl -p
 (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
 
-VERBOSE=''
-if [ "$(grep config.log.level /etc/enigma2/settings)" == "config.log.level=3" ]; then
-	VERBOSE='--verbose'
-fi
+export LC_CTYPE="en_US.UTF-8"
 
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=True" ]; then
+	DEBUG_LVL='4'
 	RANDOMIZE1970=''
 	time=`date +%Y` ;
 	if [ "$time" = 1970 ]; then
@@ -151,14 +161,9 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
 		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 	fi
-	LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color $VERBOSE &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 else
-	# in case $TERM is "linux" the serial output is activated - discard debug output
-	if [ "$TERM" = linux ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 $VERBOSE 2> /dev/null
-	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 $VERBOSE
-	fi
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
 fi
 
 # enigma2 exit codes:
@@ -210,8 +215,8 @@ case $ret in
 		/sbin/reboot
 		;;
 	16)
-		if [ -e dev/block/by-name/flag ]; then
-			echo -n "0" > dev/block/by-name/flag
+		if [ -e /dev/block/by-name/flag ]; then
+			echo -n "0" > /dev/block/by-name/flag
 		elif [ -e /dev/block/by-name/bootoptions ]; then
 			mkdir -p /tmp/bootoptions
 			mount /dev/block/by-name/bootoptions /tmp/bootoptions

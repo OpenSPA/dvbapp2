@@ -40,11 +40,6 @@
 
 #include <gst/gst.h>
 
-#include <lib/base/eerroroutput.h>
-ePtr<eErrorOutput> m_erroroutput;
-
-bool verbose = false;
-
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
 
@@ -129,7 +124,10 @@ void keyEvent(const eRCKey &key)
 #include <lib/dvb/db.h>
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/dvb/epgtransponderdatareader.h>
 
+/* Defined in eerror.cpp */
+void setDebugTime(bool enable);
 class eMain: public eApplication, public sigc::trackable
 {
 	eInit init;
@@ -139,6 +137,7 @@ class eMain: public eApplication, public sigc::trackable
 	ePtr<eDVBResourceManager> m_mgr;
 	ePtr<eDVBLocalTimeHandler> m_locale_time_handler;
 	ePtr<eEPGCache> m_epgcache;
+	ePtr<eEPGTransponderDataReader> m_epgtransponderdatareader;
 
 public:
 	eMain()
@@ -151,6 +150,7 @@ public:
 		m_mgr = new eDVBResourceManager();
 		m_locale_time_handler = new eDVBLocalTimeHandler();
 		m_epgcache = new eEPGCache();
+		m_epgtransponderdatareader = new eEPGTransponderDataReader();
 		m_mgr->setChannelList(m_dvbdb);
 	}
 
@@ -271,27 +271,18 @@ int main(int argc, char **argv)
 
 	gst_init(&argc, &argv);
 
-	for (int i = 0; i < argc; i++)
-	{
-		if (!(strcmp(argv[i], "--debug-no-color")) or !(strcmp(argv[i], "--nc")))
-		{
-			logOutputColors = 0;
-		}
-
-		if (!(strcmp(argv[i], "--verbose")))
-		{
-			verbose = true;
-		}
-	}
-
-	m_erroroutput = new eErrorOutput();
-	m_erroroutput->run();
-
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
 	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
 	printf("DVB_API_VERSION %d DVB_API_VERSION_MINOR %d\n", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 
+	// get enigma2 debug level settings
+	debugLvl = getenv("ENIGMA_DEBUG_LVL") ? atoi(getenv("ENIGMA_DEBUG_LVL")) : 4;
+	if (debugLvl < 0)
+		debugLvl = 0;
+	printf("ENIGMA_DEBUG_LVL=%d\n", debugLvl);
+	if (getenv("ENIGMA_DEBUG_TIME"))
+		setDebugTime(atoi(getenv("ENIGMA_DEBUG_TIME")) != 0);
 	ePython python;
 	eMain main;
 
@@ -395,7 +386,7 @@ int main(int argc, char **argv)
 	eVideoWidget::setFullsize(true);
 
 	//	python.execute("mytest", "__main__");
-	python.execFile(eEnv::resolve("${libdir}/enigma2/python/mytest.py").c_str());
+	python.execFile(eEnv::resolve("${libdir}/enigma2/python/StartEnigma.py").c_str());
 
 	/* restore both decoders to full size */
 	eVideoWidget::setFullsize(true);
@@ -415,7 +406,6 @@ int main(int argc, char **argv)
 		p.clear();
 		p.flush();
 	}
-	m_erroroutput = NULL;
 	return exit_code;
 }
 
@@ -438,6 +428,11 @@ void runMainloop()
 const char *getEnigmaVersionString()
 {
 	return enigma2_date;
+}
+
+const char *getE2Rev()
+{
+	return E2REV;
 }
 
 const char *getGStreamerVersionString()

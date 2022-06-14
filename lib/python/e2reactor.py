@@ -9,7 +9,9 @@ Maintainer: U{Felix Domke<mailto:tmbinc@elitedvb.net>}
 """
 
 # System imports
-import select, errno, sys
+import select
+import errno
+import sys
 
 # Twisted imports
 from twisted.python import log, failure
@@ -27,7 +29,7 @@ POLL_DISCONNECTED = (select.POLLHUP | select.POLLERR | select.POLLNVAL)
 
 class E2SharedPoll:
 	def __init__(self):
-		self.dict = { }
+		self.dict = {}
 		self.eApp = getApplication()
 
 	def register(self, fd, eventmask = select.POLLIN | select.POLLERR | select.POLLOUT):
@@ -96,7 +98,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		fd = reader.fileno()
 		if fd not in reads:
 			selectables[fd] = reader
-			reads[fd] =  1
+			reads[fd] = 1
 			self._updateRegistration(fd)
 
 	def addWriter(self, writer, writes=writes, selectables=selectables):
@@ -105,7 +107,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		fd = writer.fileno()
 		if fd not in writes:
 			selectables[fd] = writer
-			writes[fd] =  1
+			writes[fd] = 1
 			self._updateRegistration(fd)
 
 	def removeReader(self, reader, reads=reads):
@@ -152,8 +154,8 @@ class PollReactor(posixbase.PosixReactorBase):
 			if l is None:
 				if self.running:
 					self.stop()
-				l = [ ]
-		except select.error, e:
+				l = []
+		except select.error as e:
 			if e[0] == errno.EINTR:
 				return
 			else:
@@ -171,7 +173,8 @@ class PollReactor(posixbase.PosixReactorBase):
 	doIteration = doPoll
 
 	def _doReadOrWrite(self, selectable, fd, event, POLLIN, POLLOUT, log, faildict=None):
-		if not faildict: faildict = {
+		if not faildict:
+			faildict = {
 		error.ConnectionDone: failure.Failure(error.ConnectionDone()),
 		error.ConnectionLost: failure.Failure(error.ConnectionLost())
 		}
@@ -190,8 +193,8 @@ class PollReactor(posixbase.PosixReactorBase):
 				if not selectable.fileno() == fd:
 					why = error.ConnectionFdescWentAway('Filedescriptor went away')
 					inRead = False
-			except AttributeError, ae:
-				if "'NoneType' object has no attribute 'writeHeaders'" not in ae.message:
+			except AttributeError as ae:
+				if "'NoneType' object has no attribute 'writeHeaders'" not in six.text_type(ae):
 					log.deferr()
 					why = sys.exc_info()[1]
 				else:
