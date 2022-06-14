@@ -262,7 +262,7 @@ class FlashImage(Screen):
 		self.getImageList = None
 		self.downloader = None
 		self.destpath = destpath
-		self.source = source.replace("Descarga de Im&aacute;genes","Descarga de Imágenes").replace(" ","%20")
+		self.source = source.replace("Descarga de Im&aacute;genes","Descarga%20de%20Im%C3%A1genes").replace(" ","%20")
 		self.imagename = imagename
 		if self.imagename[:-4] != ".zip":
 			self.imagename = self.imagename + ".zip"
