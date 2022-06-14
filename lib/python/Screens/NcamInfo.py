@@ -171,7 +171,7 @@ class NcamInfo:
 		request = urllib2.Request( self.url )
 		err = False
 		try:
-			data = urllib2.urlopen( request ).read()
+			data = urllib.request.urlopen(request).read()
 			# print data
 		except urllib2.URLError as e:
 			if hasattr(e, "reason"):
@@ -179,7 +179,8 @@ class NcamInfo:
 			elif hasattr(e, "code"):
 				err = str(e.code)
 		if err is not False:
-			print ("[openWebIF] Fehler: %s") % err
+			if err is not None:
+				print("[openWebIF] Fehler: %s" % err)
 			return False, err
 		else:
 			return True, data
