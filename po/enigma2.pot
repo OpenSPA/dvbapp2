@@ -3144,6 +3144,10 @@ msgid "Do you want to continue?"
 msgstr ""
 
 # python\Screens\LanguageSelection.py
+msgid "Do you want to delete all other languages?\nExcept English, French, German and your selection:\n\n"
+msgstr ""
+
+# python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
 msgstr ""
 
@@ -14193,6 +14197,12 @@ msgstr ""
 msgid "Enable EIT EPG"
 msgstr ""
 
+msgid "Show Items in EIT"
+msgstr ""
+
+msgid "Append Items in description for EIT events when is available."
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr ""
 
@@ -15032,6 +15042,9 @@ msgstr ""
 msgid "Show recording symbol depending on recording type"
 msgstr ""
 
+msgid "Show screen menu path"
+msgstr ""
+
 msgid "Show screensaver"
 msgstr ""
 
@@ -15222,6 +15235,9 @@ msgstr ""
 msgid ""
 "This allows you to set the number of digits to 5, if you have more than 9999 "
 "channels."
+msgstr ""
+
+msgid "This option allows you to show the screen menu path history."
 msgstr ""
 
 msgid "This option allows you choose how to display elapsed time  as + or -"
@@ -18848,9 +18864,18 @@ msgstr ""
 msgid "Dual Mode"
 msgstr ""
 
+msgid "SATPI Setup"
+msgstr ""
+
 msgid ""
 "\n"
 " Do you want to switch Enigma2 with Android...?"
 msgstr ""
 "\n"
 ""
+
+msgid "Match"
+msgstr ""
+
+msgid "LOAD THE EPG FIRST\nNO EPG PRIMETIME ON CHANNEL"
+msgstr ""

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2021-07-08 22:32+0200\n"
+"PO-Revision-Date: 2022-05-14 11:08+0200\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3331,6 +3331,16 @@ msgid "Do you want to continue?"
 msgstr "¿Quieres continuar?"
 
 # python\Screens\LanguageSelection.py
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
+msgstr ""
+"¿Quieres borrar el resto de idiomas?\n"
+"Excepto Inglés, Francés, Alemán y tu selección:\n"
+"\n"
+
+#
 msgid "Do you want to delete all other languages?"
 msgstr "¿Quieres borrar el resto de idiomas?"
 
@@ -15003,6 +15013,13 @@ msgstr "Habilitar grabación automática"
 msgid "Enable EIT EPG"
 msgstr "Habilitar EPG EIT"
 
+msgid "Show Items in EIT"
+msgstr "Ver Items en el EIT"
+
+msgid "Append Items in description for EIT events when is available."
+msgstr ""
+"Añadir los Items en la descripción para eventos EIT si estan disponibles."
+
 msgid "Enable MHW EPG"
 msgstr "Habilitar EPG MHW"
 
@@ -15918,6 +15935,9 @@ msgstr "Mostrar indicador de grabación"
 msgid "Show recording symbol depending on recording type"
 msgstr "Mostrar símbolo según tipo grabación"
 
+msgid "Show screen menu path"
+msgstr "Mostrar ruta completa del menú"
+
 msgid "Show screensaver"
 msgstr "Mostrar salvapantallas"
 
@@ -16118,6 +16138,11 @@ msgid ""
 msgstr ""
 "Esta opción te permite establecer el número de dígitos a 5, si tienes más de "
 "9999 canales."
+
+msgid "This option allows you to show the screen menu path history."
+msgstr ""
+"Esta opción permite mostrar la ruta completa del menú en el título de la "
+"pantalla."
 
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr ""
@@ -20243,12 +20268,25 @@ msgstr "Flash libre: "
 msgid "Dual Mode"
 msgstr "Ir a Android"
 
+msgid "SATPI Setup"
+msgstr "Configurar SATPI"
+
 msgid ""
 "\n"
 " Do you want to switch Enigma2 with Android...?"
 msgstr ""
 "\n"
 " Quieres cambiar de Enigma2 a Android?"
+
+msgid "Match"
+msgstr "Partidos"
+
+msgid ""
+"LOAD THE EPG FIRST\n"
+"NO EPG PRIMETIME ON CHANNEL"
+msgstr ""
+"CARGUE EPG PRIMERO\n"
+"NO HAY EPG PRIMETIME EN EL CANAL "
 
 #~ msgid "Flash free: %s MB"
 #~ msgstr "Flash Libre: %s MB"

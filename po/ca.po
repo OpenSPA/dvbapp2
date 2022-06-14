@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2021-07-08 22:33+0200\n"
+"PO-Revision-Date: 2022-05-14 11:15+0200\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: ca\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -78,7 +78,7 @@ msgid ""
 "Flash on the fly your %s %s."
 msgstr ""
 "\n"
-"Actualitza la imatge del teu %s %s"
+"Actualitza la imatge del teu %s %s."
 
 #
 #, python-format
@@ -1385,7 +1385,7 @@ msgstr "Preguntar sempre"
 
 # MediaPlayer/settings.py
 msgid "Always hide infobar"
-msgstr "amagar sempre la barra d'informació"
+msgstr "Amagar sempre la barra d'informació"
 
 msgid "Always use smart1080p mode"
 msgstr "Utilitzar sempre el mode smart1080p"
@@ -1400,10 +1400,10 @@ msgstr ""
 "intentar-ho."
 
 msgid "An unknown error occured!"
-msgstr "S'ha produit un error desconegut."
+msgstr "S'ha produit un error desconegut!"
 
 msgid "An unknown error occurred!"
-msgstr "S'ha produit un error desconegut."
+msgstr "S'ha produit un error desconegut!"
 
 msgid "Animation Setup"
 msgstr "Ajustos d'animació"
@@ -1467,7 +1467,7 @@ msgstr "Segur que vols eliminar aquest historial?\n"
 msgid ""
 "Are you sure you want to delete this:\n"
 " "
-msgstr "Segur que vols eliminar esto?"
+msgstr "Segur que vols eliminar això?"
 
 #
 msgid "Are you sure you want to exit this wizard?"
@@ -1495,7 +1495,7 @@ msgstr ""
 "Segur que vols restaurar\n"
 "el següent backup?\n"
 "%s\n"
-"El teu receptor es reiniciarà quan es restauri el backup."
+"El teu receptor es reiniciarà quan es restauri el backup!"
 
 #
 msgid ""
@@ -1503,7 +1503,7 @@ msgid ""
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
 "Segur que vols restaurar el backup?\n"
-"El teu receptor es reiniciarà quan es restauri el backup."
+"El teu receptor es reiniciarà quan es restauri el backup!"
 
 # InfoPanel restore settings
 #, python-format
@@ -2010,7 +2010,7 @@ msgid "CF Drive"
 msgstr "Unitat CF"
 
 msgid "CH"
-msgstr "CANAL "
+msgstr "CANAL"
 
 #, python-format
 msgid "CH%s"
@@ -2027,7 +2027,7 @@ msgid "CI assignment"
 msgstr "Asignació CI"
 
 msgid "CI slot: "
-msgstr "Ranura CI:"
+msgstr "Ranura CI: "
 
 msgid "CIHelper Setup"
 msgstr "Configurar CIHelper"
@@ -2093,7 +2093,8 @@ msgstr ""
 "Canvia a TV en directe i reinicia Timeshift?"
 
 msgid "Can't play the previous timeshift file! You can try again."
-msgstr "No es pot reproduir l'anterior arxiu timeshift"
+msgstr ""
+"No es pot reproduir l'anterior arxiu timeshift! Pots intentar-ho de nou."
 
 msgid ""
 "Can't unmount partiton, make sure it is not being used for swap or record/"
@@ -2310,30 +2311,30 @@ msgstr "Tria entre Diari, Setmanal, Dies de la setmana o definit per usuari."
 msgid "Choose where to mount your devices to:"
 msgstr "Tria on muntar els teus dispositius:"
 
-#, fuzzy
 msgid ""
 "Choose whether DTS channel sound tracks should be downmixed or transcoded."
-msgstr "Tria si les pistes d'àudio DTS han de ser barrejades a estèreo."
+msgstr ""
+"Tria si les pistes d'àudio DTS han de ser barrejades o transcodificades."
 
-#, fuzzy
 msgid ""
 "Choose whether WMA Pro channel sound tracks should be downmixed or "
 "transcoded."
-msgstr "Tria si les pistes d'àudio DTS han de ser barrejades a estèreo."
+msgstr ""
+"Tria si les pistes d'àudio WMA Pro han de ser barrejades o transcodificades."
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Tria si les pistes d'audio AAC han de transcodificar-se."
 
 msgid ""
 "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
-msgstr "Tria si les pistes d'audio multicanal han de sortir com PCM o SPDIF"
+msgstr "Tria si les pistes d'audio multicanal han de sortir com PCM o SPDIF."
 
 msgid ""
 "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Tria si les pistes d'audio multicanal han de barrejar-se a estéreo."
 
 msgid "Choose whether multi channel sound tracks should be output as PCM."
-msgstr "Tria si les pistes d'audio multicanal han de sortir com PCM"
+msgstr "Tria si les pistes d'audio multicanal han de sortir com PCM."
 
 msgid "Chose between record and ZAP."
 msgstr "Tria entre gravar i fer zàping."
@@ -2510,7 +2511,7 @@ msgstr ""
 msgid "Configure which color format should be used on the SCART output."
 msgstr ""
 "Configurar quin format de color ha de ser utilitzat en la sortida "
-"d'euroconector"
+"d'euroconector."
 
 msgid "Configure your Network"
 msgstr "Configura la teva xarxa"
@@ -2519,11 +2520,11 @@ msgid "Configure your internal LAN"
 msgstr "Configurar LAN interna"
 
 msgid "Configure your network settings, and press OK to start the scan"
-msgstr "Configura els ajustos de xarxa. Prem OK per a iniciar la recerca."
+msgstr "Configura els ajustos de xarxa, i prem OK per a iniciar la recerca"
 
 #
 msgid "Configure your wireless LAN again"
-msgstr "Torna a configurar la xarxa inalàmbrica."
+msgstr "Torna a configurar la xarxa inalàmbrica"
 
 msgid "Configures which video output connector will be used."
 msgstr "Configura quina sortida de vídeo s'utilitzarà."
@@ -2653,7 +2654,7 @@ msgstr "No s'ha pogut carregar el mitjà. Hi ha algún disc insertat?"
 
 #
 msgid "Could not open Picture in Picture"
-msgstr "No s'ha pogut obrir el PIP."
+msgstr "No s'ha pogut obrir el PIP"
 
 #, python-format
 msgid "Could not open the file %s!"
@@ -2697,10 +2698,10 @@ msgid "Create directory"
 msgstr "Crear directori"
 
 msgid "Creating AP and SC Files"
-msgstr "Creant arxius AP i SC."
+msgstr "Creant arxius AP i SC"
 
 msgid "Creating Hardlink to Timeshift file failed!"
-msgstr "Ha fallat la creació de Hardlink en l'arxiu Timeshift."
+msgstr "Ha fallat la creació de Hardlink en l'arxiu Timeshift!"
 
 #
 #, python-format
@@ -2785,7 +2786,7 @@ msgid "Cutlist editor"
 msgstr "Editor de llistes de tall"
 
 msgid "Cutlist editor..."
-msgstr "Editor de llistes de tall"
+msgstr "Editor de llistes de tall..."
 
 msgid "Czech"
 msgstr "Txec"
@@ -2986,7 +2987,7 @@ msgstr "Eliminar entrada"
 
 #
 msgid "Delete failed!"
-msgstr "No s'ha pogut eliminar."
+msgstr "No s'ha pogut eliminar!"
 
 # Mediaplayer Filelist Menue
 msgid "Delete file"
@@ -3110,7 +3111,7 @@ msgid ""
 msgstr ""
 "La diferència entre l'inici i final d'un temporitzador ha de ser igual o "
 "major a %d minuts.\n"
-"Acció final desactivada."
+"Acció final desactivada!"
 
 #
 msgid "Digital contour removal"
@@ -3257,7 +3258,7 @@ msgid ""
 "All data on the disk will be lost!"
 msgstr ""
 "Segur que vols inicialitzar el dispositiu?\n"
-"Es perdran totes les dades."
+"Es perdran totes les dades!"
 
 msgid "Do you really want to move to trashcan ?"
 msgstr "Segur que ho vols moure a la paperera?"
@@ -3324,6 +3325,16 @@ msgid "Do you want to continue?"
 msgstr "Vols continuar?"
 
 # python\Screens\LanguageSelection.py
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
+msgstr ""
+"Vols eliminar la resta d'idiomes?\n"
+"Excepte anglès, francès, alemany i la teva sel·lecció:\n"
+"\n"
+
+#
 msgid "Do you want to delete all other languages?"
 msgstr "Vols eliminar la resta d'idiomes?"
 
@@ -3416,7 +3427,7 @@ msgstr "No guardar"
 
 #
 msgid "Don't stop current event but disable coming events"
-msgstr "No parar el programa actual; desactivar els següents."
+msgstr "No parar el programa actual; desactivar els següents"
 
 #
 #, python-format
@@ -3850,7 +3861,7 @@ msgstr ""
 
 #
 msgid "Exceeds dual layer medium!"
-msgstr "Excedeix el disc de doble capa."
+msgstr "Excedeix el disc de doble capa!"
 
 msgid "Execute after current event"
 msgstr "Executar després de l'event actual"
@@ -4178,7 +4189,7 @@ msgstr "Instal·lant: "
 
 #
 msgid "Following tasks will be done after you press OK!"
-msgstr "Les següents tasques es realitzaran després de prémer 'OK'."
+msgstr "Les següents tasques es realitzaran després de prémer 'OK'!"
 
 msgid "Fontsize"
 msgstr "Tamany de lletra"
@@ -4276,7 +4287,7 @@ msgid "Frozen Cam Check"
 msgstr "Comprovació de CAM"
 
 msgid "Full Image Backup "
-msgstr "Còpia completa d'imatge"
+msgstr "Còpia completa d'imatge "
 
 #
 #, python-format
@@ -4344,10 +4355,10 @@ msgid "Get latest experimental image"
 msgstr "Obtenir l'última imatge experimental"
 
 msgid "Get latest release image"
-msgstr "Obtenir l'última versió de la imatge "
+msgstr "Obtenir l'última versió de la imatge"
 
 msgid "Getting Event Info failed!"
-msgstr "Ha fallat l'obtenció de la informació del programa"
+msgstr "Ha fallat l'obtenció de la informació del programa!"
 
 msgid "Getting Softcam list. Please wait..."
 msgstr "Obtenint llista de Softcam. Espera..."
@@ -4472,7 +4483,7 @@ msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Cada hora / D: = Diari / W: = Setmanal / M: = Mensual"
 
 msgid "HARD DISK: "
-msgstr "DISC DUR:"
+msgstr "DISC DUR: "
 
 msgid "HD list"
 msgstr "Llista HD"
@@ -4616,7 +4627,7 @@ msgid "Horizontal turning speed"
 msgstr "Velocitat de gir horitzontal"
 
 msgid "Hostname:"
-msgstr "Nom del host: "
+msgstr "Nom del host:"
 
 msgid "Hostname: "
 msgstr "Nom del host: "
@@ -5642,9 +5653,8 @@ msgstr "Movent a l'oest..."
 msgid "Mtd"
 msgstr "Mtd"
 
-#, fuzzy
 msgid "Multi EPG"
-msgstr "Mostrar MultiEPG"
+msgstr "MultiEPG"
 
 msgid "MultiQuickButton"
 msgstr "Configuració botons comandament"
@@ -6024,9 +6034,8 @@ msgstr "Sense servei"
 msgid "No services/providers selected"
 msgstr "Cap canal/proveïdor sel·leccionat"
 
-#, fuzzy
 msgid "No standby"
-msgstr "Repòs"
+msgstr "No repòs"
 
 msgid "No suitable sat tuner found!"
 msgstr "Cap sintonitzador adequat de satèl·lit trobat!"
@@ -6264,9 +6273,8 @@ msgstr "OK llarg"
 msgid "ONID"
 msgstr "ONID"
 
-#, fuzzy
 msgid "OSD"
-msgstr "Configurar OSD 3D"
+msgstr "OSD"
 
 msgid "OSD 3D Setup"
 msgstr "Configurar OSD 3D"
@@ -6399,9 +6407,8 @@ msgstr "Obrir explorador de plugins"
 msgid "Open the movie list"
 msgstr "Obrir la llista de pel·lícules"
 
-#, fuzzy
 msgid "OpenVPN"
-msgstr "Log OpenVPN"
+msgstr "OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "Log OpenVPN"
@@ -6421,9 +6428,8 @@ msgstr "Informació Oscam - Configuració"
 msgid "Oscam Info - Main Menu"
 msgstr "Informació Oscam - Menú principal"
 
-#, fuzzy
 msgid "OscamInfo"
-msgstr "Mostrar OscamInfo al menú Extensions"
+msgstr "OscamInfo"
 
 msgid "OscamInfo Mainmenu"
 msgstr "Menú principal OscamInfo"
@@ -6494,9 +6500,8 @@ msgstr "PÀG. DALT/BAIX"
 msgid "PAL"
 msgstr "PAL"
 
-#, fuzzy
 msgid "PCM"
-msgstr "Retard general PCM"
+msgstr "PCM"
 
 msgid "PCM Multichannel"
 msgstr "PCM Multicanal"
@@ -6523,9 +6528,8 @@ msgstr "PMT PID"
 msgid "PPanel"
 msgstr ""
 
-#, fuzzy
 msgid "PRIMETIME"
-msgstr "Configura l'hora de màxima audiència."
+msgstr "Hora de màxima audiència."
 
 msgid "PVR"
 msgstr ""
@@ -6564,7 +6568,6 @@ msgstr "Pàgina amunt"
 msgid "Pan&scan"
 msgstr ""
 
-#, fuzzy
 msgid "Panic to"
 msgstr "Habilitar botó de pànic"
 
@@ -6645,9 +6648,8 @@ msgstr "Persa"
 msgid "PiP"
 msgstr ""
 
-#, fuzzy
 msgid "Picon"
-msgstr "Sobreescriure els picon?"
+msgstr "Picon"
 
 #
 msgid "Picon and Service Name"
@@ -7006,7 +7008,6 @@ msgstr "Polac"
 msgid "Popup"
 msgstr "Emergent"
 
-#, fuzzy
 msgid "Port"
 msgstr "Port:"
 
@@ -9144,9 +9145,8 @@ msgid "Similar broadcasts:"
 msgstr "Emissions similars:"
 
 #
-#, fuzzy
 msgid "Simple"
-msgstr "simple"
+msgstr "Simple"
 
 msgid "Simple fade"
 msgstr "Esvaiment simple"
@@ -9186,11 +9186,8 @@ msgid "Size: "
 msgstr "Tamany: "
 
 #
-#, fuzzy
 msgid "Skin"
-msgstr ""
-"Error al crear skin FullHD\n"
-"S'utilitzarà el skin HD!"
+msgstr "Skin"
 
 #
 msgid "Skin Selector"
@@ -9750,8 +9747,6 @@ msgstr "Canviar entre àudio i subtítols"
 msgid "Switch between filelist/playlist"
 msgstr "Canviar entre llista d'arxius i llista de reproducció"
 
-#, fuzzy
-#| msgid "Switch between normal mod'and list mode"
 msgid "Switch between normal mode and list mode"
 msgstr "Canviar entre mode normal i mode de llista"
 
@@ -11169,8 +11164,6 @@ msgstr "Actualitzant ubicacions de muntatge"
 msgid "Updating software catalog"
 msgstr "Actualizant el catàleg de software"
 
-#, fuzzy
-#| msgid "Upgrad'and reboot system"
 msgid "Upgrade and reboot system"
 msgstr "Actualitza i reinicia sistema"
 
@@ -11178,11 +11171,7 @@ msgstr "Actualitza i reinicia sistema"
 msgid "Upgrade finished."
 msgstr "Actualització finalitzada."
 
-#, fuzzy, python-format
-#| msgid ""
-#| "Upgrad'in progress\n"
-#| "Please wait until your %s %s reboots\n"
-#| "This may take a few minutes"
+#, python-format
 msgid ""
 "Upgrade in progress\n"
 "Please wait until your %s %s reboots\n"
@@ -11190,7 +11179,7 @@ msgid ""
 msgstr ""
 "Actualització en procès\n"
 "Espera fins que el %s %s es reiniciï\n"
-"Pot tardar uns pocs minuts"
+"Pot tardar uns minuts"
 
 #
 msgid "Upgrade with GUI"
@@ -11742,7 +11731,6 @@ msgstr "Setmanal"
 msgid "Weighted position"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
@@ -11751,12 +11739,13 @@ msgid ""
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
-"Benvingut a l'editor de llistes de tall.\n"
+"Benvingut a l'editor de Cutlist.\n"
 "\n"
 "Ves al principi del material que vulguis tallar. Prem 'OK' i sel·lecciona "
-"'inici del tall'.\n"
+"'inici del tall (start cut)'.\n"
 "\n"
-"Ves fins el final, prem 'OK' i sel·lecciona 'final del tall'. Això és tot."
+"Ves fins el final, prem 'OK' i sel·lecciona 'final del tall (end cut)'. Això "
+"és tot."
 
 #
 msgid ""
@@ -12743,9 +12732,8 @@ msgstr "Desconnectat"
 msgid "discussion/interview/debate"
 msgstr "debat/entrevista/discussió"
 
-#, fuzzy
 msgid "display"
-msgstr "LCD"
+msgstr "display"
 
 #
 msgid "do nothing"
@@ -12974,9 +12962,8 @@ msgstr "Espai lliure en disc"
 msgid "from"
 msgstr "des de"
 
-#, fuzzy
 msgid "full"
-msgstr "Tamany de fotograma en vista completa"
+msgstr "complet"
 
 msgid "further education"
 msgstr "educació"
@@ -13194,9 +13181,8 @@ msgstr "pujar fins a l'anterior entrada"
 msgid "movie/drama (general)"
 msgstr "pel·lícula/drama"
 
-#, fuzzy
 msgid "ms"
-msgstr "Temps d'arranc LNB/Switch [ms]"
+msgstr "ms"
 
 #
 msgid "multinorm"
@@ -13711,9 +13697,8 @@ msgstr "Apagar"
 msgid "simple"
 msgstr "simple"
 
-#, fuzzy
 msgid "skins"
-msgstr "Skins"
+msgstr "skins"
 
 #
 msgid "skip backward"
@@ -14574,11 +14559,6 @@ msgstr "Configura el color dels subtítols del teletext."
 msgid "Configure the contrast level of the front panel display."
 msgstr "Condigura el nivell de contrast del display frontal"
 
-#, fuzzy
-#| msgid ""
-#| "Configure the cursr behaviour in the channel selection list. When opening "
-#| "the channel selection list you can remain on the current service or "
-#| "already select up/down and you are able to revert the B+/B- buttons."
 msgid ""
 "Configure the cursor behaviour in the channel selection list. When opening "
 "the channel selection list you can remain on the current service or already "
@@ -14898,13 +14878,9 @@ msgstr ""
 msgid "Delay for external subtitles"
 msgstr "Retard per a subtítols externs"
 
-#, fuzzy
-#| msgid "Delay in miliseconds after finish scrolling text on display."
 msgid "Delay in milliseconds after finish scrolling text on display."
 msgstr "Retard en milisegons després del desplaçament de text a la pantalla."
 
-#, fuzzy
-#| msgid "Delay in miliseconds before start of scrolling text on display."
 msgid "Delay in milliseconds before start of scrolling text on display."
 msgstr "Retard en milisegons abans del desplaçament de text a la pantalla."
 
@@ -14945,15 +14921,11 @@ msgid "Display the EIT now/next eventdata in infobar."
 msgstr ""
 "Visualitzar dades EIT de programa actual/següent a la barra d'informació."
 
-#, fuzzy
-#| msgid ""
-#| "ECM data will be included in the stream. This enables a client receiver "
-#| "to decod'it."
 msgid ""
 "ECM data will be included in the stream. This enables a client receiver to "
 "decode it."
 msgstr ""
-"Les dades ECM s'inclouran en l'stream. Permet que un receptor client els "
+"Les dades ECM s'inclouran en el stream. Permet que un receptor client els "
 "decodifiqui."
 
 msgid "EPG button mode"
@@ -14976,6 +14948,12 @@ msgstr "Habilitar gravació automàtica"
 
 msgid "Enable EIT EPG"
 msgstr "Habilitar EPG EIT"
+
+msgid "Show Items in EIT"
+msgstr ""
+
+msgid "Append Items in description for EIT events when is available."
+msgstr ""
 
 msgid "Enable MHW EPG"
 msgstr "Habilitar EPG MHW"
@@ -15092,10 +15070,8 @@ msgstr "Disc dur en repòs després de"
 msgid "Hard disk standby in box standby after"
 msgstr "Disc dur en repòs amb receptor en repòs després de"
 
-#, fuzzy
-#| msgid "Hid'any zap error messages."
 msgid "Hide any zap error messages."
-msgstr "amagar missatges d'error de zàping."
+msgstr "Amagar missatges d'error de zàping."
 
 msgid "Hide zap errors"
 msgstr "Amagar errors de zàping"
@@ -15425,8 +15401,6 @@ msgstr "Configuració de l'explorador de plugins"
 msgid "Position of finished Timers in Timerlist"
 msgstr "Posició temporitzadors finalitzats en llista temporitzadors"
 
-#, fuzzy
-#| msgid "Power LED State in Deep-Standby."
 msgid "Power LED State in Standby"
 msgstr "Estat LED d'encesa durant repòs."
 
@@ -15764,8 +15738,6 @@ msgid "Show HDD progress"
 msgstr "Mostrar progrès del HDD"
 
 # Box Display
-#, fuzzy
-#| msgid "Show HDMI Output Resulution"
 msgid "Show HDMI Output Resolution"
 msgstr "Mostrar resolució de sortida HDMI"
 
@@ -15896,6 +15868,9 @@ msgstr "Mostrar indicador de gravació"
 msgid "Show recording symbol depending on recording type"
 msgstr "Mostrar símbol segons tipus de gravació"
 
+msgid "Show screen menu path"
+msgstr "Mostrar ruta completa del menú"
+
 msgid "Show screensaver"
 msgstr "Mostrar salvapantalles"
 
@@ -15905,28 +15880,18 @@ msgstr "Mostrar icones de tipus de canal"
 msgid "Show service quality icons"
 msgstr "Mostrar icones de qualitat del canal"
 
-#, fuzzy
-#| msgid "Show icons for SD services"
 msgid "  Show icons for SD services"
 msgstr "Mostrar icones de canals SD"
 
-#, fuzzy
-#| msgid "Show icons for HD services"
 msgid "  Show icons for HD services"
 msgstr "Mostrar icones de canals HD"
 
-#, fuzzy
-#| msgid "Show icons for 4K services"
 msgid "  Show icons for 4K services"
 msgstr "Mostrar icones de canals 4K"
 
-#, fuzzy
-#| msgid "Show icons for 3D services"
 msgid "  Show icons for 3D services"
 msgstr "Mostrar icones de canals 3D"
 
-#, fuzzy
-#| msgid "Show icons for IPTV services"
 msgid "  Show icons for IPTV services"
 msgstr "Mostrar icones de canals IPTV"
 
@@ -16010,10 +15975,6 @@ msgstr "Característiques especials"
 msgid "Stop timeshift while recording?"
 msgstr "Parar Timeshift durant la gravació?"
 
-#, fuzzy
-#| msgid ""
-#| "Stop's timeshift being used if a recording is in progress. (adviseable "
-#| "for usb sticks)"
 msgid ""
 "Stop's timeshift being used if a recording is in progress. (advisable for "
 "usb sticks)"
@@ -16110,6 +16071,11 @@ msgid ""
 msgstr ""
 "Aquesta opció et permet establir el número de dígits a 5, si tens més de "
 "9999 canals."
+
+msgid "This option allows you to show the screen menu path history."
+msgstr ""
+"Aquesta opció et permet mostrar la ruta completa del menú al títol de la "
+"pantalla."
 
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr ""
@@ -16546,10 +16512,6 @@ msgstr ""
 "principal"
 
 #
-#, fuzzy
-#| msgid ""
-#| "When enabled, the lenght of each recording will be shown in the movielist "
-#| "(this might cause some additional loading time)."
 msgid ""
 "When enabled, the length of each recording will be shown in the movielist "
 "(this might cause some additional loading time)."
@@ -17342,10 +17304,8 @@ msgstr "Després de gravar"
 msgid "Default 'Timer type' *"
 msgstr "'Tipus de programació' per defecte*"
 
-#, fuzzy
-#| msgid "Default 'After event'*"
 msgid "Default 'After event' *"
-msgstr "Acció 'Després de l'event'"
+msgstr "Acció per defecte 'Després de l'event'"
 
 msgid ""
 "Configure default setting for new timers. Need a restart after changing."
@@ -17375,13 +17335,9 @@ msgstr "Ordenar entrades menú"
 msgid "Sort plug-in browser entries"
 msgstr "Ordenar entrades explorador plugins"
 
-#, fuzzy
-#| msgid "This option allows you to hid'and sorting of the menus"
 msgid "This option allows you to hide and sorting of the menus"
 msgstr "Aquesta opció permet amagar i ordenar les entrades dels menús"
 
-#, fuzzy
-#| msgid "This option allows you to hid'and sorting of the plugin browser."
 msgid "This option allows you to hide and sorting of the plugin browser."
 msgstr ""
 "Aquesta opció permet amagar i ordenar les entrades de l'explorador de "
@@ -17414,8 +17370,6 @@ msgstr "Habilitar zàping amb CH+/-, B+/-, P+/-"
 msgid "Enable OK for channel selection"
 msgstr "Obrir llista de canals amb OK"
 
-#, fuzzy
-#| msgid "Enable Subservice mod'in green button"
 msgid "Enable Subservice mode in green button"
 msgstr "Habilitar el mode Subservei per al botó verd"
 
@@ -17661,18 +17615,14 @@ msgstr "Tria retard d'espera dvb per a resposta ci. "
 msgid "CI Legacy"
 msgstr "CI heredat"
 
-#, fuzzy
-#| msgid "Enable parental protection"
 msgid "Enable parental control"
-msgstr "Habilitar protecció parental"
+msgstr "Habilitar control parental"
 
 msgid "Enable parental protection"
 msgstr "Habilitar protecció parental"
 
-#, fuzzy
-#| msgid "Please enter the old PIN code"
 msgid "Please enter the new PIN code"
-msgstr "Introdueix el PIN anterior"
+msgstr "Introdueix el nou PIN"
 
 msgid "Protect setup"
 msgstr "Protegir configuració"
@@ -17954,10 +17904,8 @@ msgstr "Mostrar MiniTV a la llista de canals quan estigui inclosa al skin"
 msgid "controlled by HDMI"
 msgstr "controlat per HDMI"
 
-#, fuzzy
-#| msgid "controlled by HDMI"
 msgid "use best / controlled by HDMI"
-msgstr "controlat per HDMI"
+msgstr "utilitzar millor /controlat per HDMI"
 
 msgid "convert to AC3"
 msgstr "convertir a AC3"
@@ -18053,10 +18001,8 @@ msgstr "Mode PLS"
 msgid "PLS Code"
 msgstr "Codi PLS"
 
-#, fuzzy
-#| msgid "Use SDCard for kodi storage folder"
 msgid "Use SDCard for %s storage folder"
-msgstr "Utilitza la tarjeta SD per emmagatzematge de kodi"
+msgstr "Utilitza la tarjeta SD per carpeta d'emmagatzematge %s"
 
 msgid "Use SDCard for movies storage"
 msgstr "Utilitza la tarjeta SD per emmagatzematge de pel·lícules"
@@ -18970,12 +18916,9 @@ msgstr "La TV ja estava encesa"
 msgid "Send repeated standby and wakeup messages"
 msgstr "Enviar missatges repetits de repòs i despertar"
 
-#, fuzzy
-#| msgid "Try to send more messages if not all commands are executed.\n"
 msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr ""
-"Intenta enviar ordres repetides si no s'han executat totes. Això es fa en un "
-"interval d'enviament més lent."
+"Intenta enviar ordres repetides si no s'han executat totes les ordres.\n"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(ex. despertar TV, però no connectat a l'entrada correcta"
@@ -18995,10 +18938,8 @@ msgstr "Posar en repòs profund des de repòs"
 msgid "If the receiver in standby, then switch to deep standby?"
 msgstr "Si el receptor està en repòs, llavors canvia a repòs profund?"
 
-#, fuzzy
-#| msgid "Put from standby to deep standby"
 msgid "Time delay until standby or deep standby"
-msgstr "Posar en repòs profund des de repòs"
+msgstr "Marge de temps per anar a repòs o repòs profund"
 
 msgid ""
 "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
@@ -19693,16 +19634,13 @@ msgstr "Habilitar audio BT"
 msgid "Enable twisted log *"
 msgstr "Acivar log de xarxa *"
 
-#, fuzzy
-#| msgid ""
-#| "Allows you to enable the twisted log. They contain very detailed "
-#| "information of everything the twisted does."
 msgid ""
 "Allows you to enable the twisted log. They contain very detailed information "
 "of everything the twisted does. ('/tmp/twisted.log')"
 msgstr ""
 "Et permet activar el log de xarxa. Conté informació molt detallada de tot el "
-"que fa en xarxa"
+"que fa en xarxa.\n"
+"('/tmp/twisted.log')"
 
 msgid "H9 SDcard manager"
 msgstr "Administrador Tarjeta SD"
@@ -20274,12 +20212,25 @@ msgstr "Flash Lliure: "
 msgid "Dual Mode"
 msgstr "Anar a Android"
 
+msgid "SATPI Setup"
+msgstr "Configurar SATPI"
+
 msgid ""
 "\n"
 " Do you want to switch Enigma2 with Android...?"
 msgstr ""
 "\n"
 " Vols canviar d'Enigma2 a Android?"
+
+msgid "Match"
+msgstr "Partits"
+
+msgid ""
+"LOAD THE EPG FIRST\n"
+"NO EPG PRIMETIME ON CHANNEL"
+msgstr ""
+"CARREGA PRIMER L'EPG\n"
+"NO HI HA EPG PRIMETIME AL CANAL"
 
 #~ msgid ""
 #~ "\n"
