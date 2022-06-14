@@ -1,11 +1,13 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, config, configfile, ConfigElement, ConfigText, ConfigPassword
+from __future__ import absolute_import
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
+from Components.config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, config, configfile, ConfigElement, ConfigText, ConfigPassword
 from Components.ActionMap import NumberActionMap, ActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer, quitMainloop
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 import skin
+from six.moves import zip
 
 class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session = None):
@@ -13,11 +15,11 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.l = eListboxPythonConfigContent()
 		seperation = skin.parameters.get("ConfigListSeperator", 350)
 		self.l.setSeperation(seperation)
-		height, space = skin.parameters.get("ConfigListSlider",(17, 0))
+		height, space = skin.parameters.get("ConfigListSlider", (17, 0))
 		self.l.setSlider(height, space)
 		self.timer = eTimer()
 		self.list = list
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 		self.current = None
 		self.session = session
 
@@ -69,10 +71,10 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 
 	def selectionChanged(self):
-		if isinstance(self.current,tuple) and len(self.current) >= 2:
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
 			self.current[1].onDeselect(self.session)
 		self.current = self.getCurrent()
-		if isinstance(self.current,tuple) and len(self.current) >= 2:
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
 			self.current[1].onSelect(self.session)
 		else:
 			return
@@ -85,7 +87,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
-		if isinstance(self.current,tuple) and len(self.current) >= 2:
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
 			self.current[1].onDeselect(self.session)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 		instance.setContent(None)
@@ -160,7 +162,7 @@ class ConfigListScreen:
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal,
-			"file" : self.keyFile
+			"file": self.keyFile
 		}, -1) # to prevent left/right overriding the listbox
 
 		self.onChangedEntry = []
@@ -203,30 +205,30 @@ class ConfigListScreen:
 		if self["config"].getCurrent() is not None:
 			try:
 				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-					if self.has_key("VKeyIcon"):
+					if "VKeyIcon" in self:
 						self["VirtualKB"].setEnabled(True)
 						self["VKeyIcon"].boolean = True
-					if self.has_key("HelpWindow"):
+					if "HelpWindow" in self:
 						if self["config"].getCurrent()[1].help_window.instance is not None:
 							helpwindowpos = self["HelpWindow"].getPosition()
 							from enigma import ePoint
-							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
 				else:
-					if self.has_key("VKeyIcon"):
+					if "VKeyIcon" in self:
 						self["VirtualKB"].setEnabled(False)
 						self["VKeyIcon"].boolean = False
 			except:
-				if self.has_key("VKeyIcon"):
+				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(False)
 					self["VKeyIcon"].boolean = False
 		else:
-			if self.has_key("VKeyIcon"):
+			if "VKeyIcon" in self:
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
@@ -284,7 +286,7 @@ class ConfigListScreen:
 		selection = self["config"].getCurrent()
 		if selection and selection[1].enabled and hasattr(selection[1], "description"):
 			self.session.openWithCallback(self.handleKeyFileCallback, ChoiceBox, selection[0],
-				list=zip(selection[1].description, selection[1].choices),
+				list=list(zip(selection[1].description, selection[1].choices)),
 				selection=selection[1].choices.index(selection[1].value),
 				keys=[],
 				text=self.getCurrentDescription())
@@ -340,7 +342,7 @@ class ConfigListScreen:
 		except:
 			pass
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			try:
 				self.close(recursive)

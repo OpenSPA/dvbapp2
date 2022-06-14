@@ -1,6 +1,8 @@
+from __future__ import print_function
+from __future__ import absolute_import
 import os
 import re
-from MenuList import MenuList
+from Components.MenuList import MenuList
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename, fileExists, pathExists
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
@@ -38,20 +40,20 @@ EXTENSIONS = {
 	}
 
 def FileEntryComponent(name, absolute = None, isDir = False):
-	res = [ (absolute, isDir) ]
-	x, y, w, h = skin.parameters.get("FileListName",(35, 1, 470, 20))
+	res = [(absolute, isDir)]
+	x, y, w, h = skin.parameters.get("FileListName", (35, 1, 470, 20))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
-		if EXTENSIONS.has_key(extension):
+		if extension in EXTENSIONS:
 			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
 	if png is not None:
-		x, y, w, h = skin.parameters.get("FileListIcon",(10, 2, 20, 20))
+		x, y, w, h = skin.parameters.get("FileListIcon", (10, 2, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 
 	return res
@@ -148,11 +150,11 @@ class FileList(MenuList):
 				path = os.path.join(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(FileEntryComponent(name = p.description, absolute = path, isDir = True))
-			files = [ ]
-			directories = [ ]
+			files = []
+			directories = []
 		elif directory is None:
-			files = [ ]
-			directories = [ ]
+			files = []
+			directories = []
 		elif self.useServiceRef:
 			# we should not use the 'eServiceReference(string)' constructor, because it doesn't allow ':' in the directoryname
 			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
@@ -162,7 +164,7 @@ class FileList(MenuList):
 			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(root)
 
-			while 1:
+			while True:
 				s = list.getNext()
 				if not s.valid():
 					del list
@@ -188,9 +190,9 @@ class FileList(MenuList):
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(FileEntryComponent(name = "<" +_("List of storage devices") + ">", absolute = None, isDir = True))
+				self.list.append(FileEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
 			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(FileEntryComponent(name = "<" +_("Parent directory") + ">", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
+				self.list.append(FileEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
 
 		if self.showDirectories:
 			for x in directories:
@@ -273,27 +275,27 @@ class FileList(MenuList):
 
 
 def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected = False):
-	res = [ (absolute, isDir, selected, name) ]
-	x, y, w, h = skin.parameters.get("FileListMultiName",(55, 0, 470, 25))
+	res = [(absolute, isDir, selected, name)]
+	x, y, w, h = skin.parameters.get("FileListMultiName", (55, 0, 470, 25))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
-		if EXTENSIONS.has_key(extension):
+		if extension in EXTENSIONS:
 			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
 	if png is not None:
-		x, y, w, h = skin.parameters.get("FileListMultiIcon",(30, 2, 20, 20))
+		x, y, w, h = skin.parameters.get("FileListMultiIcon", (30, 2, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	if not name.startswith('<'):
 		if selected:
 			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
 		else:
 			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
-		x, y, w, h = skin.parameters.get("FileListMultiLock",(2, 0, 25, 25))
+		x, y, w, h = skin.parameters.get("FileListMultiLock", (2, 0, 25, 25))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon))
 	return res
 
@@ -309,7 +311,7 @@ class MultiFileSelectList(FileList):
 		font = skin.fonts.get("FileListMulti", ("Regular", 20, 25))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 
 	def selectionChanged(self):
 		for f in self.onSelectionChanged:
@@ -333,7 +335,7 @@ class MultiFileSelectList(FileList):
 						try:
 							self.selectedFiles.remove(os.path.normpath(realPathname))
 						except:
-							print "Couldn't remove:", realPathname
+							print("Couldn't remove:", realPathname)
 				else:
 					SelectState = True
 					if (realPathname not in self.selectedFiles) and (os.path.normpath(realPathname) not in self.selectedFiles):
@@ -367,11 +369,11 @@ class MultiFileSelectList(FileList):
 				path = os.path.join(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(MultiFileSelectEntryComponent(name = p.description, absolute = path, isDir = True))
-			files = [ ]
-			directories = [ ]
+			files = []
+			directories = []
 		elif directory is None:
-			files = [ ]
-			directories = [ ]
+			files = []
+			directories = []
 		elif self.useServiceRef:
 			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 			root.setPath(directory)
@@ -380,7 +382,7 @@ class MultiFileSelectList(FileList):
 			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(root)
 
-			while 1:
+			while True:
 				s = list.getNext()
 				if not s.valid():
 					del list
@@ -406,9 +408,9 @@ class MultiFileSelectList(FileList):
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(MultiFileSelectEntryComponent(name = "<" +_("List of storage devices") + ">", absolute = None, isDir = True))
+				self.list.append(MultiFileSelectEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
 			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(MultiFileSelectEntryComponent(name = "<" +_("Parent directory") + ">", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
+				self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
 
 		if self.showDirectories:
 			for x in directories:
@@ -447,4 +449,3 @@ class MultiFileSelectList(FileList):
 				if p == select:
 					self.moveToIndex(i)
 				i += 1
-

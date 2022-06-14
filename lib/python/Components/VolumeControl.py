@@ -1,9 +1,10 @@
+from __future__ import absolute_import
 from enigma import eDVBVolumecontrol, eTimer
 from Tools.Profile import profile
 from Screens.Volume import Volume
 from Screens.Mute import Mute
 from GlobalActions import globalActionMap
-from config import config, ConfigSubsection, ConfigInteger
+from Components.config import config, ConfigSubsection, ConfigInteger
 
 profile("VolumeControl")
 #TODO .. move this to a own .py file
@@ -11,11 +12,12 @@ class VolumeControl:
 	instance = None
 	"""Volume control, handles volUp, volDown, volMute actions and display
 	a corresponding dialog"""
+
 	def __init__(self, session):
 		global globalActionMap
-		globalActionMap.actions["volumeUp"]=self.volUp
-		globalActionMap.actions["volumeDown"]=self.volDown
-		globalActionMap.actions["volumeMute"]=self.volMute
+		globalActionMap.actions["volumeUp"] = self.volUp
+		globalActionMap.actions["volumeDown"] = self.volDown
+		globalActionMap.actions["volumeMute"] = self.volMute
 
 		assert not VolumeControl.instance, "only one VolumeControl instance is allowed!"
 		VolumeControl.instance = self
@@ -54,12 +56,15 @@ class VolumeControl:
 		if vol < 3:
 			step = 1
 		elif vol < 9:
-			if step > 2: step = 2
+			if step > 2:
+				step = 2
 		elif vol < 18:
-			if step > 3: step = 3
+			if step > 3:
+				step = 3
 		elif vol < 30:
-			if step > 4: step = 4
-		self.setVolume(int(vol) + int(step))
+			if step > 4:
+				step = 4
+		self.setVolume(vol + step)
 
 	def volDown(self):
 		vol = self.volctrl.getVolume()
@@ -67,12 +72,15 @@ class VolumeControl:
 		if vol <= 3:
 			step = 1
 		elif vol <= 9:
-			if step > 2: step = 2
+			if step > 2:
+				step = 2
 		elif vol <= 18:
-			if step > 3: step = 3
+			if step > 3:
+				step = 3
 		elif vol <= 30:
-			if step > 4: step = 4
-		self.setVolume(int(vol) - int(step))
+			if step > 4:
+				step = 4
+		self.setVolume(vol - step)
 
 	def stepVolume(self):
 		if self.stepVolTimer.isActive():
@@ -80,7 +88,7 @@ class VolumeControl:
 		else:
 			self.getInputConfig()
 			step = config.av.volume_stepsize.value
-		self.stepVolTimer.start(self.repeat,True)
+		self.stepVolTimer.start(self.repeat, True)
 		return step
 
 	def getInputConfig(self):
@@ -94,7 +102,8 @@ class VolumeControl:
 		delay = 0
 		repeat = 0
 
-		for device in inputconfig.itervalues():
+		import six
+		for device in six.itervalues(inputconfig):
 			if "enabled" in device and bool(device["enabled"]):
 				if "delay" in device:
 					val = int(device["delay"])
@@ -154,5 +163,3 @@ class VolumeControl:
 			else:
 				self.muteDialog.hide()
 				self.volumeDialog.setValue(vol)
-				self.volumeDialog.show()
-				self.hideVolTimer.start(3000, True)

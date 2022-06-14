@@ -1,5 +1,5 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
 
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
@@ -393,11 +393,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			l.sort(key=lambda x: x[2])
 		self.l.setList(l)
 		self.selectionChanged()
-		print time() - t
+		print (time() - t)
 
 	def applySkin(self, desktop, parent):
 		def warningWrongSkinParameter(string):
-			print "[EPGList] wrong '%s' skin parameters" % string
+			print ("[EPGList] wrong '%s' skin parameters" % string)
 		def setEventItemFont(value):
 			self.eventItemFont = parseFont(value, ((1,1),(1,1)))
 		def setEventTimeFont(value):

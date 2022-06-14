@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from time import time
 from boxbranding import getImageVersion
 
@@ -57,9 +59,9 @@ class OnlineUpdateCheckPoller:
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
+				print('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
-					from urllib import urlopen
+					from six.moves.urllib.request import urlopen
 					import socket
 					currentTimeoutDefault = socket.getdefaulttimeout()
 					socket.setdefaulttimeout(3)

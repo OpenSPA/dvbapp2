@@ -1,3 +1,7 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
@@ -257,7 +261,7 @@ add_type("application/x-dream-package", ".dmpkg")
 add_type("application/x-dream-image", ".nfi")
 
 def getType(file):
-	(type, _) = guess_type(file)
+	(type, _) = guess_type(file, strict = False)
 	if type is None:
 		# Detect some unknown types
 		if file[-12:].lower() == "video_ts.ifo":
@@ -268,7 +272,10 @@ def getType(file):
 		p = file.rfind('.')
 		if p == -1:
 			return None
-		ext = file[p+1:].lower()
+		ext = file[p + 1:].lower()
+
+		if ext == "ipk":
+			return "application/x-debian-package"
 
 		if ext == "dat" and file[-11:-6].lower() == "avseq":
 			return "video/x-vcd"
@@ -308,13 +315,15 @@ class ScanPath:
 	def __hash__(self):
 		return self.path.__hash__() ^ self.with_subdirs.__hash__()
 
-	def __cmp__(self, other):
-		if self.path < other.path:
-			return -1
-		elif self.path > other.path:
-			return +1
-		else:
-			return self.with_subdirs.__cmp__(other.with_subdirs)
+	def __eq__(self, other):
+		return ((self.with_subdirs, self.path) == (other.with_subdirs, other.path))
+
+	def __lt__(self, other):
+		return ((self.with_subdirs, self.path) < (other.with_subdirs, other.path))
+
+	def __gt__(self, other):
+		return ((self.with_subdirs, self.path) > (other.with_subdirs, other.path))
+
 
 class ScanFile:
 	def __init__(self, path, mimetype = None, size = None, autodetect = True):
@@ -329,7 +338,7 @@ class ScanFile:
 		return "<ScanFile " + self.path + " (" + str(self.mimetype) + ", " + str(self.size) + " MB)>"
 
 def execute(option):
-	print "execute", option
+	print("[Scanner] execute", option)
 	if option is None:
 		return
 
@@ -337,7 +346,7 @@ def execute(option):
 	scanner.open(files, session)
 
 def scanDevice(mountpoint):
-	scanner = [ ]
+	scanner = []
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
@@ -345,9 +354,9 @@ def scanDevice(mountpoint):
 			l = [l]
 		scanner += l
 
-	print "scanner:", scanner
+	print("[Scanner] ", scanner)
 
-	res = { }
+	res = {}
 
 	# merge all to-be-scanned paths, with priority to
 	# with_subdirs.
@@ -365,7 +374,7 @@ def scanDevice(mountpoint):
 			paths_to_scan.remove(ScanPath(path=p.path))
 
 	from Components.Harddisk import harddiskmanager
-	blockdev = mountpoint.rstrip("/").rsplit('/',1)[-1]
+	blockdev = mountpoint.rstrip("/").rsplit('/', 1)[-1]
 	error, blacklisted, removable, is_cdrom, partitions, medium_found = harddiskmanager.getBlockDevInfo(blockdev)
 
 	# now scan the paths
@@ -391,9 +400,9 @@ def scanDevice(mountpoint):
 
 def openList(session, files):
 	if not isinstance(files, list):
-		files = [ files ]
+		files = [files]
 
-	scanner = [ ]
+	scanner = []
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
@@ -402,15 +411,15 @@ def openList(session, files):
 		else:
 			scanner += l
 
-	print "scanner:", scanner
+	print("[Scanner] ", scanner)
 
-	res = { }
+	res = {}
 
 	for file in files:
 		for s in scanner:
 			s.handleFile(res, file)
 
-	choices = [ (r.description, r, res[r], session) for r in res ]
+	choices = [(r.description, r, res[r], session) for r in res]
 	Len = len(choices)
 	if Len > 1:
 		from Screens.ChoiceBox import ChoiceBox

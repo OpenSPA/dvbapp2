@@ -1,7 +1,10 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
+from __future__ import absolute_import
+from __future__ import print_function
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
 
 from enigma import eListboxPythonStringContent, eListbox
+
 
 class MenuList(HTMLComponent, GUIComponent):
 	def __init__(self, list, enableWrapAround=True, content=eListboxPythonStringContent):
@@ -9,7 +12,7 @@ class MenuList(HTMLComponent, GUIComponent):
 		self.list = list
 		self.l = content()
 		self.l.setList(self.list)
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 		self.enableWrapAround = enableWrapAround
 
 	def getCurrent(self):
@@ -42,25 +45,27 @@ class MenuList(HTMLComponent, GUIComponent):
 		self.l.setList(self.list)
 
 	def moveToIndex(self, idx):
-		if self.instance is not None:
+		if self.instance != None:
 			self.instance.moveSelectionTo(idx)
 
 	def pageUp(self):
-		if self.instance is not None:
+		print("menulist pageUp")
+		if self.instance != None:
 			self.instance.moveSelection(self.instance.pageUp)
 
 	def pageDown(self):
-		if self.instance is not None:
+		print("menulist pageDown")
+		if self.instance != None:
 			self.instance.moveSelection(self.instance.pageDown)
 
 	def up(self):
-		if self.instance is not None:
+		if self.instance != None:
 			self.instance.moveSelection(self.instance.moveUp)
 
 	def down(self):
-		if self.instance is not None:
+		if self.instance != None:
 			self.instance.moveSelection(self.instance.moveDown)
 
 	def selectionEnabled(self, enabled):
-		if self.instance is not None:
+		if self.instance != None:
 			self.instance.setSelectionEnable(enabled)
