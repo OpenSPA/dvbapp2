@@ -95,10 +95,7 @@ class LanguageSelection(Screen):
 		global inWizzard
 		if inWizzard:
 			inWizzard = False
-			#self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to delete all other languages?"), default = False)
-			if self.oldActiveLanguage != config.osd.language.value:
-				self.session.open(TryQuitMainloop, 3)
-			self.close()
+			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to delete all other languages?"), default = False)
 		else:
 			if self.oldActiveLanguage != config.osd.language.value:
 				self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
@@ -111,10 +108,10 @@ class LanguageSelection(Screen):
 		else:
 			self.close()
 
-	#def deletelanguagesCB(self, anwser):
-		#if anwser:
-			#language.delLanguage()
-		#self.close()
+	def deletelanguagesCB(self, anwser):
+		if anwser:
+			language.delLanguage()
+		self.close()
 
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
