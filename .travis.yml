@@ -30,6 +30,7 @@ matrix:
             - libavahi-client-dev
             - libjpeg-turbo8-dev
             - libgif-dev
+            - uchardet
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && PYTHON=3.8"
       before_install:
@@ -60,6 +61,7 @@ matrix:
             - libavahi-client-dev
             - libjpeg-turbo8-dev
             - libgif-dev
+            - uchardet
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
     - os: linux
@@ -87,6 +89,7 @@ matrix:
             - libavahi-client-dev
             - libjpeg-turbo8-dev
             - libgif-dev
+            - uchardet
       env:
         - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10 && PYTHON=3.8"
       before_install:
@@ -117,6 +120,7 @@ matrix:
             - libavahi-client-dev
             - libjpeg-turbo8-dev
             - libgif-dev
+            - uchardet
       env:
         - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10"
 git:
