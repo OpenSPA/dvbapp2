@@ -125,7 +125,7 @@ class MultiBootSelector(Screen, HelpableScreen):
 			print("[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"])
 			if SystemInfo["canMode12"]:
 				if "BOXMODE" in SystemInfo["canMultiBoot"][slot]['startupfile']:
-					startupfile = path.join(self.mountDir, "%s_%s" % (SystemInfo["canMultiBoot"][slot]['startupfile'].rsplit('_', 1)[0], boxmode))
+					startupfile = pathjoin(self.mountDir, "%s_%s" % (SystemInfo["canMultiBoot"][slot]['startupfile'].rsplit('_', 1)[0], boxmode))
 					copyfile(startupfile, pathjoin(self.mountDir, "STARTUP"))
 				else:
 					f = open(pathjoin(self.mountDir, SystemInfo["canMultiBoot"][slot]['startupfile']), "r").read()
