@@ -31,6 +31,7 @@ matrix:
             - libjpeg-turbo8-dev
             - libgif-dev
             - uchardet
+            - libuchardet-dev
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && PYTHON=3.8"
       before_install:
@@ -62,6 +63,7 @@ matrix:
             - libjpeg-turbo8-dev
             - libgif-dev
             - uchardet
+            - libuchardet-dev
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
     - os: linux
@@ -90,6 +92,7 @@ matrix:
             - libjpeg-turbo8-dev
             - libgif-dev
             - uchardet
+            - libuchardet-dev
       env:
         - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10 && PYTHON=3.8"
       before_install:
@@ -121,6 +124,7 @@ matrix:
             - libjpeg-turbo8-dev
             - libgif-dev
             - uchardet
+            - libuchardet-dev
       env:
         - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10"
 git:

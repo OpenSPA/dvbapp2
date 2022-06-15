@@ -38,6 +38,7 @@ jobs:
           sudo apt-get install libjpeg-turbo8-dev
           sudo apt-get install libgif-dev
           sudo apt-get install uchardet
+          sudo apt-get install libuchardet-dev
 
       - uses: actions/checkout@v2
         with:
