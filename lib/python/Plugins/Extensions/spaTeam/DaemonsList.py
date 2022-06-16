@@ -155,7 +155,7 @@ class DaemonsList(Screen):
 			if daemon[1][:1] != '.':
 				try:
 					src = open(os.path.join(daemon[0], daemon[1]))
-					exec src.read()
+					exec(src.read())
 					src.close()
 					self.daemons.append((daemon_name,
 						daemon_description,

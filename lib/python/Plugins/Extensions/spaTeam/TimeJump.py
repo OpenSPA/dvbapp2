@@ -121,10 +121,8 @@ class TimeJump(ConfigListScreen, Screen):
 		elif sel == self.minuteInput:
 			pts = int(float(self.minuteInput.value) * 60 * 90000);
 			if self.dvd:
-				global DVDPlayer
 				DVDPlayer.doSeekRelative(self.infobarInstance, pts)
 			elif self.vdb:
-				global VideoDBPlayer
 				VideoDBPlayer.doSeekRelative(self.infobarInstance, pts)
 			else:
 				self.seek.seekTo(self.seek.getPlayPosition()[1] + pts)

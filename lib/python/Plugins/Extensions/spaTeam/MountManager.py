@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from . import _
-from __future__ import print_function
 from Screens.Screen import Screen
 from enigma import eTimer
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineBuild
