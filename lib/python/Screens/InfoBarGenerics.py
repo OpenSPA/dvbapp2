@@ -1640,7 +1640,7 @@ class InfoBarEPG:
 			answer[1]()
 
 	def SelectDefaultInfoPlugin(self):
-		self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(True), skin_name = "EPGExtensionsList")
+		self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
 
 	def DefaultInfoPluginChosen(self, answer):
 		if answer is not None:
@@ -1661,7 +1661,7 @@ class InfoBarEPG:
 			answer[1]()
 
 	def SelectDefaultGuidePlugin(self):
-		self.session.openWithCallback(self.DefaultGuidePluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(True), skin_name = "EPGExtensionsList")
+		self.session.openWithCallback(self.DefaultGuidePluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
 
 	def DefaultGuidePluginChosen(self, answer):
 		if answer is not None:
