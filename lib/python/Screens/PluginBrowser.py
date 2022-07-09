@@ -281,7 +281,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 			select = False
 			if self.selected_plugin is None:
 				select = True
-			elif  self.selected_plugin != plugin:
+			elif self.selected_plugin != plugin:
 				select = True
 			if not select:
 				self.selected_plugin = None
@@ -344,9 +344,9 @@ class PluginBrowser(Screen, ProtectedScreen):
 				self.list.append(PluginEntryComponent(plugin, self.listWidth))
 			i += 10
 		if config.usage.plugins_sort_mode.value == "a_z" or (not empty_sort_order and config.usage.plugins_sort_mode.value == "user"):
-			self.list.sort(key=lambda p_name : p_name[0].name.lower())
+			self.list.sort(key=lambda p_name: p_name[0].name.lower())
 		elif config.usage.plugins_sort_mode.value == "user":
-			self.list.sort(key=lambda listweight : listweight[0].listweight)
+			self.list.sort(key=lambda listweight: listweight[0].listweight)
 		self["list"].l.setList(self.list)
 		if self.sort_mode:
 			self["key_blue"].setText(_("Edit mode off"))
@@ -870,25 +870,25 @@ class PluginDownloadBrowser(Screen):
 					continue
 				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
-		temp = self.plugins.keys()
+		temp = list(self.plugins.keys())
 		if config.usage.sort_pluginlist.value:
 			temp.sort()
 		for x in temp:
 			if x in self.expanded:
-				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
+				_list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
 				for plugin in self.plugins[x]:
 					if self.type == self.TOOGLE or self.type == self.REMOVE:
 						if "hold" in os.popen("opkg status " + self.PLUGIN_PREFIX + "*" + plugin[1]).read():
-							list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
+							_list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
 						else:
-							list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
+							_list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
 					else:
-						list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
+						_list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
 
 			else:
-				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
-		self.list = list
-		self["list"].l.setList(list)
+				_list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
+		self.list = _list
+		self["list"].l.setList(_list)
 
 class PluginFilter(ConfigListScreen, Screen):
 	def __init__(self, session):
