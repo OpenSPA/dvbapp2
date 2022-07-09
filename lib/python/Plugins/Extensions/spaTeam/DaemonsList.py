@@ -154,9 +154,8 @@ class DaemonsList(Screen):
 		for daemon in tdaemons:
 			if daemon[1][:1] != '.':
 				try:
-					src = open(os.path.join(daemon[0], daemon[1]))
-					exec(src.read())
-					src.close()
+					src = os.path.join(daemon[0], daemon[1])
+					exec(open(src).read(),globals())
 					self.daemons.append((daemon_name,
 						daemon_description,
 						daemon_icon,
@@ -175,7 +174,7 @@ class DaemonsList(Screen):
 		try:
 			if self.installed[index]:
 				if self.daemons[index][6]:
-					if self.daemons[index][6] == 'NFSServerSetup' and fileExists('/usr/lib/enigma2/python/Plugins/PLi/NFSServer/plugin.pyo'):
+					if self.daemons[index][6] == 'NFSServerSetup' and fileExists('/usr/lib/enigma2/python/Plugins/PLi/NFSServer/plugin.pyc'):
 						from Plugins.PLi.NFSServer.plugin import NFSServerSetup
 						self.session.open(NFSServerSetup)
 					elif self.daemons[index][6] == 'NFSServerSetup':

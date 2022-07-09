@@ -15,7 +15,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
-import gettext, new, _enigma, enigma, time
+import gettext, _enigma, enigma, time
 from enigma import * 
 import os
 
@@ -125,7 +125,8 @@ class Ttimer(Screen):
 			self.ctimer.stop()
 			self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
 			rDialog.stopDialog(self.session)
-			epgcache = new.instancemethod(_enigma.eEPGCache_load, None, eEPGCache)
+			#epgcache = new.instancemethod(_enigma.eEPGCache_load, None, eEPGCache)
+			epgcache = type(_enigma.eEPGCache_load, None, eEPGCache)
 			epgcache = eEPGCache.getInstance().save()
 			if inStandby:
 				self.session.nav.stopService()
@@ -248,7 +249,8 @@ class EPGScreen(Screen, ConfigListScreen):
 		config.misc.epgcache_filename.save()
 		config.misc.epgcachefilename.save()
 		config.misc.epgcachepath.save()
-		epgcache = new.instancemethod(_enigma.eEPGCache_save, None, eEPGCache)
+		#epgcache = new.instancemethod(_enigma.eEPGCache_save, None, eEPGCache)
+		epgcache = type(_enigma.eEPGCache_save, None, eEPGCache)
 		epgcache = eEPGCache.getInstance().save()
 		config.epg.mhw.wait.save()
 		config.epg.restartgui.save()

@@ -10,7 +10,7 @@ from Components.ScrollLabel import ScrollLabel
 from Tools.Directories import fileExists
 from enigma import ePoint, eSize, eTimer, getDesktop
 from os import system, path, remove
-from bitrate import Bitrate
+from Plugins.Extensions.spaTeam.bitrate import Bitrate
 from time import *
 
 class SysInfo(Screen):
