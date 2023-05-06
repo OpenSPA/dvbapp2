@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-04-28 15:56+0200\n"
+"PO-Revision-Date: 2023-05-06 21:34+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -5247,8 +5247,8 @@ msgstr "Configura el color dels subtítols del teletext."
 msgid "Configure the contrast level of the front panel display."
 msgstr "Configureu el nivell de contrast de la pantalla del panell frontal."
 
-msgid "Configure the current keymap file."
-msgstr "Configura l'arxiu keymap actual."
+msgid "Configure the current key map file."
+msgstr "Configurar l'arxiu keymap actual."
 
 msgid ""
 "Configure the cursor behavior in the channel selection list. When opening "
@@ -8018,7 +8018,7 @@ msgstr ""
 "Activar aquesta opció per afegir dades extra d'EPG a l'arxiu del log de "
 "depuració."
 
-msgid "Enable this option to add keyboard keymap data to the debug log file."
+msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr ""
 "Activar aquesta opció per afegir dades de mapejat del teclat a l'arxiu del "
 "log de depuració."
@@ -17149,7 +17149,7 @@ msgstr ""
 
 msgid ""
 "Select 'Yes' to remove all user interface data. Selecting this option will "
-"remove all keymap, menu and setup override data and restore the default "
+"remove all key map, menu and setup override data and restore the default "
 "definitions."
 msgstr ""
 
@@ -20664,7 +20664,7 @@ msgstr "Error de sincronització en tornar a l’origen!"
 msgid "Sync time using"
 msgstr ""
 
-msgid "Synchronize systemtime using transponder or Internet."
+msgid "Synchronize system time using transponder or Internet."
 msgstr ""
 
 msgid "Syrian Arab Republic"
@@ -22881,7 +22881,7 @@ msgstr "Utilitzar HDMI-preemphasis"
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Utilitzar temporitzador de repòs per hardware del disc dur"
 
-msgid "Use Keymap *"
+msgid "Use key map *"
 msgstr "Utilitzar Keymap *"
 
 msgid "Use MHW EPG information when it is available."
@@ -26991,46 +26991,34 @@ msgstr "Executa la instal·lació/eliminació dels elements seleccionats"
 msgid "Cancel / Close the screen"
 msgstr "Cancel·lar/Tancar la pantalla"
 
-#, fuzzy
-#| msgid "Flash Manager Actions"
 msgid "Plugin Manager Actions"
-msgstr "Accions a l'administrador d'instalal·lació "
+msgstr "Administrador de plugins"
 
 msgid "Add Extra USB slots"
 msgstr ""
 
 #
-#, fuzzy
-#| msgid "Type of scan"
 msgid "Type of LNB/Device"
-msgstr "Tipus de recerca"
+msgstr "Tipus de LNB/dispositiu"
 
-#, fuzzy
-#| msgid "Button Setup"
 msgid "Xupnpd Setup"
-msgstr "Configuració de botons"
+msgstr "Configuració de Xupnpd"
 
-#, fuzzy
-#| msgid "Usage Setup"
 msgid "Udpxy Setup"
-msgstr "Configuració d’ús"
+msgstr "Configuració d'Udpxy"
 
 msgid "The '%s' file already exists. Do you want to overwrite it?"
 msgstr ""
 
 #
-#, fuzzy
-#| msgid "Do you want to install a channel list?"
 msgid "Do you want to Install OpenSPA Extra Plugins?"
-msgstr "Voleu instal·lar una llista de canals?"
+msgstr "Voleu instal·lar plugins adicionals d'OpenSPA?"
 
 msgid "It does not decrypt, or there is no active EMU"
 msgstr ""
 
-#, fuzzy
-#| msgid "AutoMountManager"
 msgid "Vu+ MultiBoot Manager"
-msgstr "Administrador de muntatges automàtic"
+msgstr "Administrador MultiBoot Vu+"
 
 msgid ""
 "Press Green key to enable MultiBoot\n"
@@ -27041,16 +27029,12 @@ msgid ""
 msgstr ""
 
 #
-#, fuzzy
-#| msgid "Enable Vu+ MultiBoot"
 msgid "Init Vu+ MultiBoot"
-msgstr "Activar MultiBoot Vu+"
+msgstr "Iniciar MultiBoot Vu+"
 
 #
-#, fuzzy
-#| msgid "Initialization"
 msgid "Vu+ MultiBoot Initialisation"
-msgstr "Inicialització"
+msgstr "Inicialització Multiboot Vu+"
 
 msgid ""
 "Vu+ MultiBoot Initialisation in progress\n"
@@ -27063,3 +27047,16 @@ msgid ""
 "[VuplusKexec][create Vu+ Multiboot environment] - Unable to complete, Vu+ "
 "Multiboot files missing"
 msgstr ""
+
+msgid "All regions, Spain, (Europe DVB-T/T2)"
+msgstr ""
+
+msgid "Include international data *"
+msgstr "Incloure dades d'idioma *"
+
+msgid ""
+"Enable this option to add international language and country load "
+"information detected during system boot to the debug log file."
+msgstr ""
+"Activar aquesta opció per afegir informació de càrrega d'idioma i país "
+"durant l'arrencada del sistema a l'arxiu del log de depuració."
