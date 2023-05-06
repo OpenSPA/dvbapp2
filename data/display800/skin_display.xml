@@ -84,14 +84,14 @@
 	</screen>
 	
 	<!-- STANDBY -->
-	<screen name="StandbySummary" position="0,0" size="800,480"> 
+	<!-- <screen name="StandbySummary" position="0,0" size="800,480"> 
 		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,180" font="FdLcD;100" foregroundColor="yellow" halign="center" valign="center" zPosition="10">
 			<convert type="ClockToText">Mixed</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="40,270" size="720,75" font="FdLcD;70" foregroundColor="white" halign="center" zPosition="10">
 			<convert type="ClockToText">FullDate</convert>
 		</widget>
-	</screen>
+	</screen -->
 		
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
 </skin>
