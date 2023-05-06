@@ -16,6 +16,7 @@ from Components.Harddisk import harddiskmanager
 
 lastpath = ""
 
+
 class DVDSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
@@ -29,8 +30,9 @@ class DVDSummary(Screen):
 	def setTitle(self, title):
 		self["Title"].setText(title)
 
+
 class DVDOverlay(Screen):
-	def __init__(self, session, args = None, height = None):
+	def __init__(self, session, args=None, height=None):
 		desktop_size = getDesktop(0).size()
 		w = desktop_size.width()
 		h = desktop_size.height()
@@ -38,6 +40,7 @@ class DVDOverlay(Screen):
 			h = height
 		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" % (w, h)
 		Screen.__init__(self, session)
+
 
 class ChapterZap(Screen):
 	skin = """
@@ -89,6 +92,7 @@ class ChapterZap(Screen):
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
 
+
 class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport, InfoBarAudioSelection, InfoBarSubtitleSupport):
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
 	ENABLE_RESUME_SUPPORT = True
@@ -133,11 +137,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, dvd_device = None, dvd_filelist = [ ], args = None):
+	def __init__(self, session, dvd_device=None, dvd_filelist=[], args=None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
-		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
+		InfoBarCueSheetSupport.__init__(self, actionmap="MediaPlayerCueSheetActions")
 		InfoBarShowHide.__init__(self)
 		InfoBarAudioSelection.__init__(self)
 		InfoBarSubtitleSupport.__init__(self)
@@ -440,7 +444,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			cur = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
 				choices.insert(0, (_("Play DVD"), "playPhysical"))
-		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list = choices)
+		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list=choices)
 
 	def sendKey(self, key):
 		keys = self.getServiceInterface("keys")

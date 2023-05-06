@@ -68,6 +68,7 @@ public:
 	void addAudio(int pid, std::string lang, std::string desc, int type);
 };
 
+
 class eStreamThreadWeb;
 class eServiceWebTS: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService,
@@ -107,6 +108,7 @@ public:
 	// iPausableService
 	RESULT pause();
 	RESULT unpause();
+
 
 	// iSeekableService
 	RESULT getLength(pts_t &SWIG_OUTPUT);

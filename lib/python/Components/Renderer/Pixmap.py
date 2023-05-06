@@ -1,7 +1,7 @@
-from __future__ import absolute_import
+from enigma import ePixmap
+
 from Components.Renderer.Renderer import Renderer
 
-from enigma import ePixmap
 
 class Pixmap(Renderer):
 	def __init__(self):

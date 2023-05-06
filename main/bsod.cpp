@@ -3,10 +3,12 @@
 #include <csignal>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 #include <execinfo.h>
 #include <dlfcn.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
 #include <asm/ptrace.h>
@@ -16,7 +18,7 @@
 
 static const char *crash_emailaddr =
 #ifndef CRASH_EMAILADDR
-	"the openSPA forum";
+	"the OpenSPA forum";
 #else
 	CRASH_EMAILADDR;
 #endif
@@ -24,32 +26,15 @@ static const char *crash_emailaddr =
 /* Defined in bsod.cpp */
 void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsigned int *s2);
 
-static const std::string getConfigString(const std::string &key, const std::string &defaultValue)
+static const std::string getConfigString(const char* key, const char* defaultValue)
 {
-	std::string value = eConfigManager::getConfigValue(key.c_str());
+	std::string value = eConfigManager::getConfigValue(key);
 
 	//we get at least the default value if python is still alive
 	if (!value.empty())
 		return value;
 
-	value = defaultValue;
-
-	// get value from enigma2 settings file
-	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
-	if (in.good()) {
-		do {
-			std::string line;
-			std::getline(in, line);
-			size_t size = key.size();
-			if (!line.compare(0, size, key) && line[size] == '=') {
-				value = line.substr(size + 1);
-				break;
-			}
-		} while (in.good());
-		in.close();
-	}
-
-	return value;
+	return eSimpleConfig::getString(key, defaultValue);
 }
 
 /* get the kernel log aka dmesg */
@@ -89,25 +74,44 @@ static void stringFromFile(FILE* f, const char* context, const char* filename)
 		std::string line;
 		std::getline(in, line);
 		fprintf(f, "%s=%s\n", context, line.c_str());
+		in.close();
 	}
 }
+
+static void dumpFile(FILE* f, const char* filename)
+{
+	std::ifstream in(filename);
+	if (in.good()) {
+		do
+		{
+			std::string line;
+			std::getline(in, line);
+			fprintf(f, "%s\n", line.c_str());
+		}
+		while (in.good());
+		in.close();
+	}
+}
+
 
 static bool bsodhandled = false;
 static bool bsodrestart =  true;
 static int bsodcnt = 0;
+
 int getBsodCounter()
 {
 	return bsodcnt;
 }
+
 void resetBsodCounter()
 {
 	bsodcnt = 0;
 }
+
 bool bsodRestart()
 {
 	return bsodrestart;
 }
-
 void bsodFatal(const char *component)
 {
 	//handle python crashes	
@@ -118,6 +122,7 @@ void bsodFatal(const char *component)
 	int bsodmax = eConfigManager::getConfigIntValue("config.crash.bsodmax", 5);
 	//force restart after max crashes
 	int bsodmaxmax = 100;
+
 	bsodcnt++;
 	if ((bsodmax && bsodcnt > bsodmax) || component || bsodcnt > bsodmaxmax)
 		bsodpython = false;
@@ -152,10 +157,16 @@ void bsodFatal(const char *component)
 	std::string crashlog_name;
 	std::ostringstream os;
 	std::ostringstream os_text;
+
+	char dated[22];
+	time_t now_time = time(0);
+	struct tm loctime;
+	localtime_r(&now_time, &loctime);
+	strftime (dated, 21, "%Y%m%d-%H%M%S", &loctime);
+
 	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
-	os << "enigma2_crash_";
-	os << time(0);
-	os << ".log";
+	os << dated;
+	os << "-enigma2-crash.log";
 	crashlog_name = os.str();
 	f = fopen(crashlog_name.c_str(), "wb");
 
@@ -187,7 +198,7 @@ void bsodFatal(const char *component)
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
 		fprintf(f,
-			"openSPA Enigma2 crash log\n\n"
+			"OpenSPA Enigma2 crash log\n\n"
 			"crashdate=%s\n"
 			"compiledate=%s\n"
 			"skin=%s\n"
@@ -200,18 +211,41 @@ void bsodFatal(const char *component)
 			getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
 			enigma2_date,
 			enigma2_branch,
-			enigma2_rev,
+			E2REV,
 			component);
 
-		stringFromFile(f, "stbmodel", "/proc/stb/info/boxtype");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/vumodel");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/model");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/hwmodel");
-		stringFromFile(f, "stbmodel", "/proc/stb/info/gbmodel");
+
+		std::ifstream in(eEnv::resolve("${libdir}/enigma.info").c_str());
+		const std::list<std::string> enigmainfovalues {
+			"model=",
+			"machinebuild=",
+			"imageversion=",
+			"imagebuild="
+		};
+
+		if (in.good()) {
+			do
+			{
+				std::string line;
+				std::getline(in, line);
+				for(std::list<std::string>::const_iterator i = enigmainfovalues.begin(); i != enigmainfovalues.end(); ++i)
+				{
+					if (line.find(i->c_str()) != std::string::npos) {
+						line.erase(std::remove( line.begin(), line.end(), '\"' ),line.end());
+						line.erase(std::remove( line.begin(), line.end(), '\'' ),line.end());
+						fprintf(f, "%s\n", line.c_str());
+						break;
+					}
+				}
+			}
+			while (in.good());
+			in.close();
+		}
+
+		fprintf(f, "\n");
 		stringFromFile(f, "kernelcmdline", "/proc/cmdline");
-		stringFromFile(f, "nimsockets", "/proc/bus/nim_sockets");
-		stringFromFile(f, "imageversion", "/etc/image-version");
-		stringFromFile(f, "imageissue", "/etc/issue.net");
+		fprintf(f, "\nnimsockets:\n");
+		dumpFile(f, "/proc/bus/nim_sockets");
 
 		/* dump the log ringbuffer */
 		fprintf(f, "\n\n");
@@ -260,7 +294,7 @@ void bsodFatal(const char *component)
 			"Your receiver restarts in 10 seconds!\n"
 			"Component: " << component;
 
-		os << getConfigString("config.crash.debug_text", os_text.str());
+		os << getConfigString("config.crash.debug_text", os_text.str().c_str());
 	}
 	else
 	{

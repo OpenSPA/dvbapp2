@@ -3,7 +3,8 @@ from enigma import iRdsDecoder, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
-class RdsInfo(Converter, object):
+
+class RdsInfo(Converter):
 	RASS_INTERACTIVE_AVAILABLE = 0
 	RTP_TEXT_CHANGED = 1
 	RADIO_TEXT_CHANGED = 2
@@ -26,7 +27,7 @@ class RdsInfo(Converter, object):
 			elif self.type == self.RTP_TEXT_CHANGED:
 				text = decoder.getText(iRdsDecoder.RtpText)
 			else:
-				print("unknown RdsInfo Converter type", self.type)
+				print("[RdsInfo] unknown RdsInfo Converter type", self.type)
 		return text
 
 	text = property(getText)

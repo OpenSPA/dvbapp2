@@ -1,17 +1,17 @@
+from Screens.HelpMenu import ShowRemoteControl
 from Screens.Screen import Screen
 from Screens.WizardLanguage import WizardLanguage
-from Screens.Rc import Rc
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
-from Tools.Directories import resolveFilename, SCOPE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_SKINS
 from Components.Console import Console
 
 
-class UserInterfacePositionerWizard(WizardLanguage, Rc):
+class UserInterfacePositionerWizard(WizardLanguage, ShowRemoteControl):
 	def __init__(self, session, interface=None):
-		self.xmlfile = resolveFilename(SCOPE_SKIN, "userinterfacepositionerwizard.xml")
+		self.xmlfile = resolveFilename(SCOPE_SKINS, "userinterfacepositionerwizard.xml")
 		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
-		Rc.__init__(self)
+		ShowRemoteControl.__init__(self)
 		self.skinName = "StartWizard"
 		self.session = session
 		Screen.setTitle(self, _("Welcome..."))
@@ -30,7 +30,7 @@ class UserInterfacePositionerWizard(WizardLanguage, Rc):
 	def layoutFinished(self):
 		self.Console.ePopen('/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi')
 
-	def exitWizardQuestion(self, ret = False):
+	def exitWizardQuestion(self, ret=False):
 		if ret:
 			self.markDone()
 			self.close()

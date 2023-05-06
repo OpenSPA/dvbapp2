@@ -102,6 +102,7 @@ private:
 	bool m_simulate;
 	bool m_enabled;
 	bool m_fbc;
+	bool m_is_usbtuner;
 	eDVBFrontend *m_simulate_fe; // only used to set frontend type in dvb.cpp
 	int m_type;
 #if HAVE_ALIEN5
@@ -146,6 +147,7 @@ private:
 	int m_timeoutCount; // needed for timeout
 	int m_retryCount; // diseqc retry for rotor
 	int m_configRetuneNoPatEntry;
+	int m_debuglevel;
 
 	void feEvent(int);
 	void timeout();
@@ -227,9 +229,9 @@ public:
 	void setFBCTuner(bool enable) { m_fbc = enable; }
 	bool getEnabled() { return m_enabled; }
 	void setEnabled(bool enable) { m_enabled = enable; }
+	void setUSBTuner(bool yesno) { m_is_usbtuner = yesno; }
 	bool is_multistream();
 	std::string getCapabilities();
-	std::string getCapabilities(fe_delivery_system_t delsys);
 	bool has_prev() { return (m_data[LINKED_PREV_PTR] != -1); }
 	bool has_next() { return (m_data[LINKED_NEXT_PTR] != -1); }
 

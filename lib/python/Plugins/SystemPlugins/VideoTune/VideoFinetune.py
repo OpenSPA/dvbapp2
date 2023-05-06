@@ -1,16 +1,16 @@
-from __future__ import division
 from Screens.Screen import Screen
 from Components.config import config
 from Components.Sources.CanvasSource import CanvasSource
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Console import Console
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
 
 def RGB(r, g, b):
 	return (r << 16) | (g << 8) | b
+
 
 class OverscanTestScreen(Screen):
 	def __init__(self, session):
@@ -43,6 +43,7 @@ class OverscanTestScreen(Screen):
 
 	def keyNumber(self, key):
 		self.close(key)
+
 
 class FullHDTestScreen(OverscanTestScreen):
 	skin = """
@@ -79,6 +80,7 @@ class FullHDTestScreen(OverscanTestScreen):
 		gMainDC.getInstance().setResolution(self.xres, self.yres)
 		getDesktop(0).resize(eSize(self.xres, self.yres))
 
+
 class FullUHDTestScreen(OverscanTestScreen):
 	skin = """<screen position="0,0" size="0,0"/>"""
 
@@ -108,6 +110,7 @@ class FullUHDTestScreen(OverscanTestScreen):
 
 	def __close(self):
 		self.session.nav.playService(self.oldref)
+
 
 class VideoFinetune(Screen):
 	skin = """
@@ -379,12 +382,12 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_overscan(self):
-		self.next = SystemInfo["HasFullHDSkinSupport"] and self.testpic_fullhd or self.testpic_pixels
+		self.next = BoxInfo.getItem("HasFullHDSkinSupport") and self.testpic_fullhd or self.testpic_pixels
 		self.hide()
 		self.session.openWithCallback(self.testpicCallback, OverscanTestScreen)
 
 	def testpic_fullhd(self):
-		if SystemInfo["HasFullHDSkinSupport"]:
+		if BoxInfo.getItem("HasFullHDSkinSupport"):
 			self.next = self.hasUHD and self.testpic_uhd or self.testpic_pixels
 			self.hide()
 			self.session.openWithCallback(self.testpicCallback, FullHDTestScreen)
@@ -412,6 +415,7 @@ class VideoFinetune(Screen):
 				self.keyNumber(key)
 		else:
 			self.close()
+
 
 class PixelsTestScreen(Screen):
 	skin = """

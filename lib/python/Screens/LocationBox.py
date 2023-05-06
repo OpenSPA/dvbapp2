@@ -1,168 +1,157 @@
-#
-# Generic Screen to select a path/filename combination
-#
+from os import sep, stat, statvfs
+from os.path import exists, isdir, join as pathjoin, splitext
 
-# GUI (Screens)
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
-from Screens.HelpMenu import HelpableScreen
-from Screens.ChoiceBox import ChoiceBox
-
-# Generic
-from Tools.BoundFunction import boundFunction
-from Tools.Directories import pathExists, createDir, removeDir
-from Components.config import config
-import os
-
-# Quickselect
-from Tools.NumericalTextInput import NumericalTextInput
-
-# GUI (Components)
-from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
-from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Components.Button import Button
-from Components.FileList import FileList
-from Components.MenuList import MenuList
-
-# Timer
 from enigma import eTimer
 
-defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
+from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
+from Components.config import config
+from Components.FileList import FileList
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
+from Screens.ChoiceBox import ChoiceBox
+from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import createDir, removeDir, renameDir
+from Tools.NumericalTextInput import NumericalTextInput
 
+
+DEFAULT_INHIBIT_DIRECTORIES = ("/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/picon", "/piconlcd", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
+defaultInhibitDirs = list(DEFAULT_INHIBIT_DIRECTORIES)
+DEFAULT_INHIBIT_DEVICES = []
+for dir in DEFAULT_INHIBIT_DIRECTORIES + ("/", "/media"):
+	if isdir(dir):
+		device = stat(dir).st_dev
+		if device not in DEFAULT_INHIBIT_DEVICES:
+			DEFAULT_INHIBIT_DEVICES.append(device)
+DEFAULT_INHIBIT_DEVICES = tuple(DEFAULT_INHIBIT_DEVICES)
+
+
+# Generic screen to select a path/filename combination.
+#
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
-	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
+	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a directory/pathname combination"""
 
-	skin = """<screen name="LocationBox" position="100,75" size="540,460" >
-			<widget name="text" position="0,2" size="540,22" font="Regular;22" />
-			<widget name="target" position="0,23" size="540,22" valign="center" font="Regular;22" />
-			<widget name="filelist" position="0,55" zPosition="1" size="540,210" scrollbarMode="showOnDemand" selectionDisabled="1" />
-			<widget name="textbook" position="0,272" size="540,22" font="Regular;22" />
-			<widget name="booklist" position="5,302" zPosition="2" size="535,100" scrollbarMode="showOnDemand" />
-			<widget name="red" position="0,415" zPosition="1" size="135,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<widget name="key_red" position="0,415" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="green" position="135,415" zPosition="1" size="135,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<widget name="key_green" position="135,415" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="yellow" position="270,415" zPosition="1" size="135,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-			<widget name="key_yellow" position="270,415" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="blue" position="405,415" zPosition="1" size="135,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-			<widget name="key_blue" position="405,415" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		</screen>"""
+	skin = """
+	<screen name="LocationBox" position="center,center" size="1000,570" resolution="1280,720">
+		<widget name="text" position="0,0" size="e,25" font="Regular;20" transparent="1" valign="center" />
+		<widget name="targetfreespace" position="0,0" size="e,25" font="Regular;20" halign="right" transparent="1" valign="center" />
+		<widget name="target" position="0,25" size="e,25" font="Regular;20" transparent="1" valign="center" />
+		<widget name="fileheading" position="0,60" size="e,25" backgroundColor="#00ffffff" font="Regular;20" foregroundColor="#00000000" valign="center" />
+		<widget name="filelist" position="0,85" size="e,245" font="Regular;20" itemHeight="25" scrollbarMode="showOnDemand" transparent="1" />
+		<widget name="quickselect" position="0,85" size="e,245" font="Regular;100" foregroundColor="#0000ffff" halign="center" transparent="1" valign="center" zPosition="+1" />
+		<widget name="bookmarkheading" position="0,345" size="e,25" backgroundColor="#00ffffff" font="Regular;20" foregroundColor="#00000000" valign="center" />
+		<widget name="bookmarklist" position="0,370" size="e,150" font="Regular;20" itemHeight="25" scrollbarMode="showOnDemand" transparent="1" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_menu" render="Label" position="e-170,e-40" size="80,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
 
-	def __init__(self, session, text = "", filename = "", currDir = None, bookmarks = None, userMode = False, windowTitle = "Select location", minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
-		# Init parents
+	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, windowTitle=_("Select Location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
+		Screen.__init__(self, session, mandatoryWidgets=["fileheading", "quickselect"])
+		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
+		HelpableScreen.__init__(self)
+		self.text = text
+		self.filename = filename  # Filename is a proposed filename to be created/used by the *calling* code, it is not created here!
+		self.bookmarks = bookmarks
+		self.bookmarksList = bookmarks and bookmarks.value[:] or []
+		self.minFree = minFree
+		self.autoAdd = autoAdd
+		self.editDir = editDir
 		if not inhibitDirs:
 			inhibitDirs = []
 		if not inhibitMounts:
 			inhibitMounts = []
-		Screen.__init__(self, session)
-		NumericalTextInput.__init__(self, handleTimeout = False)
-		HelpableScreen.__init__(self)
-
-		# Set useable chars
-		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
-
-		# Quickselect Timer
-		self.qs_timer = eTimer()
-		self.qs_timer.callback.append(self.timeout)
-		self.qs_timer_type = 0
-
-		# Initialize Quickselect
-		self.curr_pos = -1
-		self.quickselect = ""
-
-		# Set Text
 		self["text"] = Label(text)
-		self["textbook"] = Label(_("Bookmarks"))
-
-		# Save parameters locally
-		self.text = text
-		self.filename = filename
-		self.minFree = minFree
-		self.realBookmarks = bookmarks
-		self.bookmarks = bookmarks and bookmarks.value[:] or []
-		self.userMode = userMode
-		self.autoAdd = autoAdd
-		self.editDir = editDir
-		self.inhibitDirs = inhibitDirs
-
-		# Initialize FileList
-		self["filelist"] = FileList(currDir, showDirectories = True, showFiles = False, inhibitMounts = inhibitMounts, inhibitDirs = inhibitDirs)
-
-		# Initialize BookList
-		self["booklist"] = MenuList(self.bookmarks)
-
-		# Buttons
-		self["key_green"] = Button(_("OK"))
-		self["key_yellow"] = Button(_("Rename"))
-		self["key_blue"] = Button(_("Remove bookmark"))
-		self["key_red"] = Button(_("Cancel"))
-
-		# Background for Buttons
-		self["green"] = Pixmap()
-		self["yellow"] = Pixmap()
-		self["blue"] = Pixmap()
-		self["red"] = Pixmap()
-
-		# Initialize Target
 		self["target"] = Label()
 		self["targetfreespace"] = Label()
+		self["fileheading"] = Label(_("Directories"))
+		self["filelist"] = FileList(currDir, showDirectories=True, showFiles=False, inhibitMounts=inhibitMounts, inhibitDirs=inhibitDirs, showCurrentDirectory=True)
+		self["quickselect"] = Label("")
+		self["quickselect"].visible = False
+		self["bookmarkheading"] = Label(_("Bookmarks"))
+		self["bookmarklist"] = MenuList(self.bookmarksList)
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Select"))
+		self["key_yellow"] = StaticText(_("Remove Bookmark"))
+		self["key_blue"] = StaticText(_("Rename"))
+		self.currList = None
 
-		if self.userMode:
-			self.usermodeOn()
-
-		# Custom Action Handler
-		class LocationBoxActionMap(HelpableActionMap):
-			def __init__(self, parent, context, actions=None, prio=0):
+		class LocationBoxActionMap(HelpableActionMap):  # Custom action handler.
+			def __init__(self, parent, context, actions=None, prio=0, description=None):
 				if not actions:
 					actions = {}
-				HelpableActionMap.__init__(self, parent, context, actions, prio)
+				HelpableActionMap.__init__(self, parent, context, actions, prio, description)
 				self.box = parent
 
 			def action(self, contexts, action):
-				# Reset Quickselect
-				self.box.timeout(force = True)
-
+				self.box.timeout(force=True)  # Reset QuickSelect.
 				return HelpableActionMap.action(self, contexts, action)
 
-		# Actions that will reset quickselect
-		self["WizardActions"] = LocationBoxActionMap(self, "WizardActions",
-			{
-				"ok": (self.ok, _("select")),
-				"back": (self.cancel, _("Cancel")),
-			}, -2)
+		def getOkHelpText():
+			return {
+				"filelist": _("Navigate to the selected directory"),
+				"bookmarklist": _("Select the current bookmarked location and exit")
+			}.get(self.currList, _("Help text uninitialized"))
 
-		self["DirectionActions"] = LocationBoxActionMap(self, "DirectionActions",
-			{
-				"left": self.left,
-				"right": self.right,
-				"up": self.up,
-				"down": self.down,
-			}, -2)
+		def getYellowHelpText():
+			return {
+				"filelist": _("Add the current directory as a bookmark"),
+				"bookmarklist": _("Remove the current bookmark")
+			}.get(self.currList, _("Help text uninitialized"))
 
-		self["ColorActions"] = LocationBoxActionMap(self, "ColorActions",
-			{
-				"red": self.cancel,
-				"green": self.select,
-				"yellow": self.changeName,
-				"blue": self.addRemoveBookmark,
-			}, -2)
-
-		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions",
-			{
-				"prevService": (self.switchToBookList, _("switch to bookmarks")),
-				"nextService": (self.switchToFileList, _("switch to filelist")),
-			}, -2)
-
-		self["MenuActions"] = LocationBoxActionMap(self, "MenuActions",
-			{
-				"menu": (self.showMenu, _("menu")),
-			}, -2)
-
-		# Actions used by quickselect
+		self["actions"] = LocationBoxActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions", "NavigationActions"], {  # Actions that will reset QuickSelect.
+			"cancel": (self.keyCancel, _("Cancel selection and exit")),
+			"ok": (self.keyOk, getOkHelpText),
+			"menu": (self.keyShowMenu, _("Display context menu")),
+			"red": (self.keyCancel, _("Cancel selection and exit")),
+			"green": (self.keySelect, _("Use the current selection and exit")),
+			"yellow": (self.addRemoveBookmark, getYellowHelpText),
+			"top": (self.keyGoTop, _("Move to first line / screen in the panel")),
+			"pageUp": (self.keyGoPageUp, _("Move up a screen in the panel")),
+			"up": (self.keyGoLineUp, _("Move up a line in the panel")),
+			"down": (self.keyGoLineDown, _("Move down a line in the panel")),
+			"pageDown": (self.keyGoPageDown, _("Move down a screen in the panel")),
+			"bottom": (self.keyGoBottom, _("Move to last line / screen in the panel"))
+		}, prio=0, description=_("Location Selection Actions"))
+		self["panelActions"] = LocationBoxActionMap(self, ["NavigationActions"], {  # Actions that will reset QuickSelect.
+			"left": (self.switchToFileList, _("Switch to file list panel")),
+			"right": (self.switchToBookmarkList, _("Switch to bookmarks panel")),
+		}, prio=0, description=_("Location Selection Actions"))
+		self["panelActions"].setEnabled(True)
+		self["moveUpAction"] = HelpableActionMap(self, ["NavigationActions"], {  # Actions that will reset QuickSelect.
+			"first": (self.keyMoveBookmarkUp, _("Move the current bookmark up"))
+		}, prio=0, description=_("Bookmark Sequence Actions"))
+		self["moveUpAction"].setEnabled(True)
+		self["moveDownAction"] = HelpableActionMap(self, ["NavigationActions"], {  # Actions that will reset QuickSelect.
+			"last": (self.keyMoveBookmarkDown, _("Move the current bookmark down"))
+		}, prio=0, description=_("Bookmark Sequence Actions"))
+		self["moveDownAction"].setEnabled(True)
+		self["renameActions"] = LocationBoxActionMap(self, ["ColorActions"], {  # Actions that will reset QuickSelect.
+			"blue": (self.renameProposedFile, _("Rename the proposed file to be created"))
+		}, prio=0, description=_("Location Selection Actions"))
+		self["renameActions"].setEnabled(True)
 		smsMsg = _("SMS style QuickSelect location selection")
-		self["numberActions"] = HelpableNumberActionMap(self, "NumberActions", {
+		self["numberActions"] = HelpableNumberActionMap(self, "NumberActions", {  # Action used by QuickSelect.
 			"1": (self.keyNumberGlobal, smsMsg),
 			"2": (self.keyNumberGlobal, smsMsg),
 			"3": (self.keyNumberGlobal, smsMsg),
@@ -173,382 +162,387 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			"8": (self.keyNumberGlobal, smsMsg),
 			"9": (self.keyNumberGlobal, smsMsg),
 			"0": (self.keyNumberGlobal, smsMsg)
-		}, prio=0, description=_("Quick Select Actions"))
+		}, prio=0, description=_("QuickSelect Actions"))
+		self["numberActions"].setEnabled(True)
+		self.setTitle(windowTitle)
+		self.timer = eTimer()  # Initialize QuickSelect timer.
+		self.timer.callback.append(self.timeout)
+		self.timerType = 0
+		self.quickSelect = ""
+		self.quickSelectPos = -1
+		self.onLayoutFinish.append(self.layoutFinished)
 
-		# Run some functions when shown
-		self.onShown.extend((
-			boundFunction(self.setTitle, _("Select Location")),
-			self.updateTarget,
-			self.showHideRename,
-		))
+	def __repr__(self):
+		return "%s(%s)" % (type(self), self.text)
 
-		self.onLayoutFinish.append(self.switchToFileListOnStart)
+	def layoutFinished(self):
+		self["filelist"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		self["bookmarklist"].instance.enableAutoNavigation(False)  # Override listbox navigation.
+		if self.bookmarksList:
+			self.switchToBookmarkList()
+			directory = self["filelist"].getCurrentDirectory()
+			if directory in self.bookmarksList:
+				self["bookmarklist"].setCurrentIndex(self.bookmarksList.index(directory))
+		else:
+			self.switchToFileList()
+		self.updateState()
+		self.showHideRename()
 
-		# Make sure we remove our callback
-		self.onClose.append(self.disableTimer)
+	def updateState(self):
+		directory = self.getSelectedDirectory()
+		if directory:  # Write combination of directory & filename when directory is valid.
+			self["target"].setText("".join((directory, self.filename)))
+			try:
+				status = statvfs(directory)
+				free = ("%0.f GB " + _("Free")) % (float(status.f_bavail) * status.f_bsize / 1024 / 1024 / 1024)
+			except OSError as err:
+				print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, directory, err.strerror))
+				free = ""
+			self["targetfreespace"].setText(free)
+		else:  # Display a warning otherwise.
+			self["target"].setText(_("Invalid location!"))
+			self["targetfreespace"].setText("")
+		if self.currList == "filelist":
+			if self.bookmarksList:
+				self["panelActions"].setEnabled(True)
+			self["key_yellow"].setText(_("Add Bookmark"))
+			self["moveUpAction"].setEnabled(False)
+			self["moveDownAction"].setEnabled(False)
+		else:
+			if self.bookmarksList:
+				self["panelActions"].setEnabled(True)
+				self["key_yellow"].setText(_("Remove Bookmark"))
+				count = self["bookmarklist"].count()
+				if count > 1:
+					index = self["bookmarklist"].getCurrentIndex()
+					self["moveUpAction"].setEnabled(index > 0)
+					self["moveDownAction"].setEnabled(index < count - 1)
+			else:
+				self["panelActions"].setEnabled(False)
+				self.switchToFileList()
 
-	def switchToFileListOnStart(self):
-		self.switchToFileList()
-
-	def disableTimer(self):
-		self.qs_timer.callback.remove(self.timeout)
+	def getSelectedDirectory(self):
+		if self.currList == "filelist":
+			return self["filelist"].getPath() if self["filelist"].getPath() else self["filelist"].getCurrentDirectory()
+		else:
+			return self["bookmarklist"].getCurrent()
 
 	def showHideRename(self):
-		# Don't allow renaming when filename is empty
-		if self.filename == "":
-			self["key_yellow"].hide()
-
-	def switchToFileList(self):
-		if not self.userMode:
-			self.currList = "filelist"
-			self["filelist"].selectionEnabled(1)
-			self["booklist"].selectionEnabled(0)
-			self["key_blue"].text = _("Add bookmark")
-			self.updateTarget()
-
-	def switchToBookList(self):
-		self.currList = "booklist"
-		self["filelist"].selectionEnabled(0)
-		self["booklist"].selectionEnabled(1)
-		self["key_blue"].text = _("Remove bookmark")
-		self.updateTarget()
-
-	def addRemoveBookmark(self):
-		if self.currList == "filelist":
-			# add bookmark
-			folder = self["filelist"].getSelection()[0]
-			if folder is not None and not folder in self.bookmarks:
-				self.bookmarks.append(folder)
-				self.bookmarks.sort()
-				self["booklist"].setList(self.bookmarks)
+		if self.filename:  # Don't allow renaming when filename is empty.
+			self["key_blue"].setText(_("Rename"))
+			self["renameActions"].setEnabled(True)
 		else:
-			# remove bookmark
-			if not self.userMode:
-				name = self["booklist"].getCurrent()
-				self.session.openWithCallback(
-					boundFunction(self.removeBookmark, name),
-					MessageBox,
-					_("Do you really want to remove your bookmark of %s?") % name,
-				)
+			self["key_blue"].setText("")
+			self["renameActions"].setEnabled(False)
 
-	def removeBookmark(self, name, ret):
-		if not ret:
-			return
-		if name in self.bookmarks:
-			self.bookmarks.remove(name)
-			self["booklist"].setList(self.bookmarks)
+	def keyCancel(self):
+		self.disableTimer()
+		self.close(None)
 
-	def createDir(self):
-		if self["filelist"].current_directory is not None:
-			self.session.openWithCallback(
-				self.createDirCallback,
-				InputBox,
-				title = _("Please enter name of the new directory"),
-				text = ""
-			)
-
-	def createDirCallback(self, res):
-		if res:
-			path = os.path.join(self["filelist"].current_directory, res)
-			if not pathExists(path):
-				if not createDir(path):
-					self.session.open(
-						MessageBox,
-						_("Creating directory %s failed.") % path,
-						type = MessageBox.TYPE_ERROR,
-						timeout = 5
-					)
-				self["filelist"].refresh()
-			else:
-				self.session.open(
-					MessageBox,
-					_("The path %s already exists.") % path,
-					type = MessageBox.TYPE_ERROR,
-					timeout = 5
-				)
-
-	def removeDir(self):
-		sel = self["filelist"].getSelection()
-		if sel and pathExists(sel[0]):
-			self.session.openWithCallback(
-				boundFunction(self.removeDirCallback, sel[0]),
-				MessageBox,
-				_("Do you really want to remove directory %s from the disk?") % (sel[0]),
-				type = MessageBox.TYPE_YESNO
-			)
-		else:
-			self.session.open(
-				MessageBox,
-				_("Invalid directory selected: %s") % (sel[0]),
-				type = MessageBox.TYPE_ERROR,
-				timeout = 5
-			)
-
-	def removeDirCallback(self, name, res):
-		if res:
-			if not removeDir(name):
-				self.session.open(
-					MessageBox,
-					_("Removing directory %s failed. (Maybe not empty.)") % name,
-					type = MessageBox.TYPE_ERROR,
-					timeout = 5
-				)
-			else:
-				self["filelist"].refresh()
-				self.removeBookmark(name, True)
-				val = self.realBookmarks and self.realBookmarks.value
-				if val and name in val:
-					val.remove(name)
-					self.realBookmarks.value = val
-					self.realBookmarks.save()
-
-	def up(self):
-		self[self.currList].up()
-		self.updateTarget()
-
-	def down(self):
-		self[self.currList].down()
-		self.updateTarget()
-
-	def left(self):
-		self[self.currList].pageUp()
-		self.updateTarget()
-
-	def right(self):
-		self[self.currList].pageDown()
-		self.updateTarget()
-
-	def ok(self):
+	def keyOk(self):
 		if self.currList == "filelist":
 			if self["filelist"].canDescent():
 				self["filelist"].descent()
-				self.updateTarget()
+				self.updateState()
 		else:
-			self.select()
+			self.keySelect()
 
-	def cancel(self):
-		self.close(None)
-
-	def getPreferredFolder(self):
-		if self.currList == "filelist":
-			# XXX: We might want to change this for parent folder...
-			return self["filelist"].getSelection()[0]
-		else:
-			return self["booklist"].getCurrent()
-
-	def selectConfirmed(self, ret):
-		if ret:
-			ret = ''.join((self.getPreferredFolder(), self.filename))
-			if self.realBookmarks:
-				if self.autoAdd and not ret in self.bookmarks:
-					self.bookmarks.append(self.getPreferredFolder())
-					self.bookmarks.sort()
-
-				if self.bookmarks != self.realBookmarks.value:
-					self.realBookmarks.value = self.bookmarks
-					self.realBookmarks.save()
-			self.close(ret)
-
-	def select(self):
-		currentFolder = self.getPreferredFolder()
-		# Do nothing unless current Directory is valid
-		if currentFolder is not None:
-			# Check if we need to have a minimum of free Space available
-			if self.minFree is not None:
-				# Try to read fs stats
+	def keySelect(self):
+		currentFolder = self.getSelectedDirectory()
+		if currentFolder is not None:  # Do nothing unless current directory is valid.
+			if self.minFree is not None:  # Check if we need to have a minimum of free space available.
 				try:
-					s = os.statvfs(currentFolder)
-					if (s.f_bavail * s.f_bsize) / 1000000 > self.minFree:
-						# Automatically confirm if we have enough free disk Space available
-						return self.selectConfirmed(True)
-				except OSError:
-					pass
+					status = statvfs(currentFolder)  # Try to read file system status.
+					if (status.f_bavail * status.f_bsize) / 1000000 > self.minFree:
+						return self.keySelectCallback(True)  # Automatically confirm if we have enough free disk space available.
+				except OSError as err:
+					print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, currentFolder, err.strerror))
+				self.session.openWithCallback(self.keySelectCallback, MessageBox, _("There might not be enough space on the selected partition. Do you really want to continue?"), type=MessageBox.TYPE_YESNO)
+			else:  # No minimum free space means we can safely close.
+				self.keySelectCallback(True)
 
-				# Ask User if he really wants to select this folder
-				self.session.openWithCallback(
-					self.selectConfirmed,
-					MessageBox,
-					_("There might not be enough space on the selected partition..\nDo you really want to continue?"),
-					type = MessageBox.TYPE_YESNO
-				)
-			# No minimum free Space means we can safely close
-			else:
-				self.selectConfirmed(True)
+	def keySelectCallback(self, answer):
+		if answer:
+			answer = self.getSelectedDirectory()
+			if self.bookmarks:
+				if self.autoAdd and answer not in self.bookmarksList:
+					self.bookmarksList.insert(0, self.getSelectedDirectory())
+				if self.bookmarksList != self.bookmarks.value:
+					self.bookmarks.value = self.bookmarksList
+					self.bookmarks.save()
+			self.disableTimer()
+			self.close(answer)
 
-	def changeName(self):
-		if self.filename != "":
-			# TODO: Add Information that changing extension is bad? disallow?
-			self.session.openWithCallback(
-				self.nameChanged,
-				InputBox,
-				title = _("Please enter a new filename"),
-				text = self.filename
-			)
-
-	def nameChanged(self, res):
-		if res is not None:
-			if len(res):
-				self.filename = res
-				self.updateTarget()
-			else:
-				self.session.open(
-					MessageBox,
-					_("An empty filename is illegal."),
-					type = MessageBox.TYPE_ERROR,
-					timeout = 5
-				)
-
-	def updateTarget(self):
-		# Write Combination of Folder & Filename when Folder is valid
-		currFolder = self.getPreferredFolder()
-		if currFolder is not None:
-			free = ""
-			try:
-				stat = os.statvfs(currFolder)
-				free = ("%0.f GB " + _("free")) % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 / 1024)
-			except:
-				pass
-			self["targetfreespace"].setText(free)
-			self["target"].setText(''.join((currFolder, self.filename)))
-		# Display a Warning otherwise
-		else:
-			self["target"].setText(_("Invalid location"))
-
-	def showMenu(self):
-		if not self.userMode and self.realBookmarks:
+	def keyShowMenu(self):
+		if self.bookmarks:
 			if self.currList == "filelist":
 				menu = [
-					(_("switch to bookmarks"), self.switchToBookList),
-					(_("add bookmark"), self.addRemoveBookmark)
+					(_("Switch To Bookmarks Panel"), self.switchToBookmarkList),
+					(_("Add Bookmark"), self.addRemoveBookmark),
+					(_("Reload Bookmarks"), self.reloadBookmarks)
 				]
 				if self.editDir:
 					menu.extend((
-						(_("create directory"), self.createDir),
-						(_("remove directory"), self.removeDir)
+						(_("Create Directory"), self.createDirectory),
+						(_("Rename Directory"), self.renameDirectory),
+						(_("Delete Directory"), self.deleteDirectory)
 					))
 			else:
 				menu = (
-					(_("switch to filelist"), self.switchToFileList),
-					(_("remove bookmark"), self.addRemoveBookmark)
+					(_("Switch To File List Panel"), self.switchToFileList),
+					(_("Remove Bookmark"), self.addRemoveBookmark),
+					(_("Sort Bookmarks"), self.sortBookmarks),
+					(_("Reload Bookmarks"), self.reloadBookmarks)
 				)
+			self.session.openWithCallback(self.keyShowMenuCallback, ChoiceBox, title="Location Box Context Menu", list=menu)
 
-			self.session.openWithCallback(
-				self.menuCallback,
-				ChoiceBox,
-				title = "",
-				list = menu
-			)
-
-	def menuCallback(self, choice):
+	def keyShowMenuCallback(self, choice):
 		if choice:
 			choice[1]()
 
-	def usermodeOn(self):
-		self.switchToBookList()
-		self["filelist"].hide()
-		self["key_blue"].hide()
+	def switchToFileList(self):
+		self.currList = "filelist"
+		self["filelist"].selectionEnabled(True)
+		self["bookmarklist"].selectionEnabled(False)
+		self["numberActions"].setEnabled(True)
+		self.updateState()
 
-	def keyNumberGlobal(self, number):
-		# Cancel Timeout
-		self.qs_timer.stop()
+	def switchToBookmarkList(self):
+		self.currList = "bookmarklist"
+		self["filelist"].selectionEnabled(False)
+		self["bookmarklist"].selectionEnabled(True)
+		self["numberActions"].setEnabled(False)
+		self.updateState()
 
-		# See if another key was pressed before
-		if number != self.lastKey:
-			# Reset lastKey again so NumericalTextInput triggers its keychange
-			self.nextKey()
+	def addRemoveBookmark(self):
+		current = self.getSelectedDirectory()
+		if self.currList == "filelist":  # Add bookmark.
+			if current not in self.bookmarksList:
+				self.bookmarksList.insert(0, current)
+				self["bookmarklist"].setList(self.bookmarksList)
+				self.updateState()
+		else:  # Remove bookmark.
+			self.session.openWithCallback(boundFunction(self.removeBookmarkCallback, current), MessageBox, _("Do you really want to remove your bookmark for '%s'?") % current)
 
-			# Try to select what was typed
-			self.selectByStart()
+	def removeBookmarkCallback(self, bookmark, answer):
+		if answer and bookmark in self.bookmarksList:
+			self.bookmarksList.remove(bookmark)
+			self["bookmarklist"].setList(self.bookmarksList)
+			self.updateState()
 
-			# Increment position
-			self.curr_pos += 1
+	def sortBookmarks(self):
+		bookmark = self["bookmarklist"].getCurrent()
+		self.bookmarksList.sort()
+		self["bookmarklist"].setList(self.bookmarksList)
+		self["bookmarklist"].setCurrentIndex(self.bookmarksList.index(bookmark))
+		self.updateState()
 
-		# Get char and append to text
-		char = self.getKey(number)
-		self.quickselect = self.quickselect[:self.curr_pos] + six.text_type(char)
+	def reloadBookmarks(self):
+		self.bookmarksList = self.bookmarks and self.bookmarks.value[:] or []
+		self["bookmarklist"].setList(self.bookmarksList)
+		self.updateState()
 
-		# Start Timeout
-		self.qs_timer_type = 0
-		self.qs_timer.start(1000, 1)
-
-	def selectByStart(self):
-		# Don't do anything on initial call
-		if not self.quickselect:
-			return
-
-		# Don't select if no dir
+	def createDirectory(self):
 		if self["filelist"].getCurrentDirectory():
-			# TODO: implement proper method in Components.FileList
-			files = self["filelist"].getFileList()
+			self.session.openWithCallback(self.createDirCallback, VirtualKeyBoard, title=_("Please enter a name for the new directory:"), text="")
 
-			# Initialize index
-			idx = 0
+	def createDirCallback(self, directory):
+		if directory:
+			path = pathjoin(self["filelist"].getCurrentDirectory(), directory)
+			if not exists(path):
+				if not createDir(path):
+					self.session.open(MessageBox, _("Error: Creating directory '%s' failed!") % path, type=MessageBox.TYPE_ERROR, timeout=5)
+				self["filelist"].refresh()
+			else:
+				self.session.open(MessageBox, _("Error: The path '%s' already exists!") % path, type=MessageBox.TYPE_ERROR, timeout=5)
 
-			# We select by filename which is absolute
-			lookfor = self["filelist"].getCurrentDirectory() + self.quickselect
-
-			# Select file starting with generated text
-			for file in files:
-				if file[0][0] and file[0][0].lower().startswith(lookfor):
-					self["filelist"].instance.moveSelectionTo(idx)
-					break
-				idx += 1
-
-	def timeout(self, force = False):
-		# Timeout Key
-		if not force and self.qs_timer_type == 0:
-			# Try to select what was typed
-			self.selectByStart()
-
-			# Reset Key
-			self.lastKey = -1
-
-			# Change type
-			self.qs_timer_type = 1
-
-			# Start timeout again
-			self.qs_timer.start(1000, 1)
-		# Timeout Quickselect
+	def renameDirectory(self):
+		directory = self["filelist"].getCurrentDirectory()
+		if isdir(directory):
+			name = directory[:-1].split(sep)[-1]  # Extract the directory name, not the absolute path.
+			self.session.openWithCallback(boundFunction(self.renameDirectoryCallback, directory), VirtualKeyBoard, title=_("Enter new directory name:"), text=name)
 		else:
-			# Eventually stop Timer
-			self.qs_timer.stop()
+			self.session.open(MessageBox, _("Error: Invalid directory '%s' selected!") % directory, type=MessageBox.TYPE_ERROR, timeout=5)
 
-			# Invalidate
-			self.lastKey = -1
-			self.curr_pos = -1
-			self.quickselect = ""
+	def renameDirectoryCallback(self, directory, newName):
+		if newName:
+			path = pathjoin(self["filelist"].getCurrentDirectory(), newName)
+			if exists(path):
+				self.session.open(MessageBox, _("Error: File or directory '%s' already exists!") % path, type=MessageBox.TYPE_ERROR, timeout=5)
+			elif renameDir(directory, path):
+				self["filelist"].refresh()
+			else:
+				self.session.open(MessageBox, _("Error: Unable to rename directory '%s' to '%s'!") % (directory, path), type=MessageBox.TYPE_ERROR, timeout=5)
 
-	def __repr__(self):
-		return str(type(self)) + "(" + self.text + ")"
+	def deleteDirectory(self):
+		directory = self["filelist"].getCurrentDirectory()
+		if isdir(directory):
+			self.session.openWithCallback(boundFunction(self.deleteDirectoryCallback, directory), MessageBox, _("Do you really want to remove directory '%s' from the disk?") % directory, type=MessageBox.TYPE_YESNO)
+		else:
+			self.session.open(MessageBox, _("Error: Invalid directory '%s' selected!") % directory, type=MessageBox.TYPE_ERROR, timeout=5)
 
-def MovieLocationBox(session, text, dir, minFree = None):
-	return LocationBox(session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = defaultInhibitDirs, minFree = minFree)
+	def deleteDirectoryCallback(self, directory, answer):
+		if answer:
+			if not removeDir(directory):
+				self.session.open(MessageBox, _("Error: Removing directory '%s' failed! (Maybe the directory is not empty.)") % directory, type=MessageBox.TYPE_ERROR, timeout=5)
+			else:
+				self["filelist"].refresh()
+				self.removeBookmarkCallback(directory, True)
+				values = self.bookmarks and self.bookmarks.value
+				if values and directory in values:
+					values.remove(directory)
+					self.bookmarks.value = values
+					self.bookmarks.save()
 
-class EPGLocationBox(LocationBox):
+	def keyGoTop(self):
+		self[self.currList].goTop()
+		self.updateState()
+
+	def keyGoPageUp(self):
+		self[self.currList].goPageUp()
+		self.updateState()
+
+	def keyGoLineUp(self):
+		self[self.currList].goLineUp()
+		self.updateState()
+
+	def keyGoLineDown(self):
+		self[self.currList].goLineDown()
+		self.updateState()
+
+	def keyGoPageDown(self):
+		self[self.currList].goPageDown()
+		self.updateState()
+
+	def keyGoBottom(self):
+		self[self.currList].goBottom()
+		self.updateState()
+
+	def renameProposedFile(self):
+		filename = splitext(self.filename)[0]
+		self.session.openWithCallback(self.renameFileCallback, VirtualKeyBoard, title=_("Please enter a new filename, the extension may not be changed:"), text=filename)
+
+	def renameProposedFileCallback(self, filename):
+		if filename is not None:
+			if len(filename):
+				extension = splitext(self.filename)[1]
+				self.filename = "%s%s" % (filename, extension)
+				self.updateState()
+			else:
+				self.session.open(MessageBox, _("Error: An empty filename is illegal!"), type=MessageBox.TYPE_ERROR, timeout=5)
+
+	def keyMoveBookmarkUp(self):
+		self.moveBookmark(-1)
+
+	def keyMoveBookmarkDown(self):
+		self.moveBookmark(+1)
+
+	def moveBookmark(self, direction):
+		index = self["bookmarklist"].getCurrentIndex() + direction
+		self.bookmarksList.insert(index, self.bookmarksList.pop(index - direction))
+		self["bookmarklist"].setList(self.bookmarksList)
+		self["bookmarklist"].setCurrentIndex(index)
+		self.updateState()
+
+	def keyNumberGlobal(self, digit):
+		self.timer.stop()
+		if self.lastKey != digit:  # Is this a different digit?
+			self.nextKey()  # Reset lastKey again so NumericalTextInput triggers its keychange.
+			self.selectByStart()
+			self.quickSelectPos += 1
+		char = self.getKey(digit)  # Get char and append to text.
+		self.quickSelect = "%s%s" % (self.quickSelect[:self.quickSelectPos], str(char))
+		self["quickselect"].setText(self.quickSelect)
+		self["quickselect"].visible = True
+		self.timerType = 0
+		self.timer.start(1000, True)  # Allow 1 second to select the desired character for the QuickSelect text.
+
+	def timeout(self, force=False):
+		if not force and self.timerType == 0:
+			self.selectByStart()
+			self.timerType = 1
+			self.timer.start(2000, True)  # Allow 2 seconds before reseting the QuickSelect text.
+		else:  # Timeout QuickSelect
+			self.timer.stop()
+			self.quickSelect = ""
+			self.quickSelectPos = -1
+		self.lastKey = -1  # Finalize current character.
+
+	def selectByStart(self):  # Try to select what was typed so far.
+		currentDir = self["filelist"].getCurrentDirectory()
+		if currentDir and self.quickSelect:  # Don't try to select if there is no directory or QuickSelect text.
+			self["quickselect"].visible = False
+			self["quickselect"].setText("")
+			pattern = pathjoin(currentDir, self.quickSelect).lower()
+			files = self["filelist"].getFileList()  # Files returned by getFileList() are absolute paths.
+			for index, file in enumerate(files):
+				if file[0][0] and file[0][0].lower().startswith(pattern):  # Select first file starting with case insensitive QuickSelect text.
+					self["filelist"].setCurrentIndex(index)
+					self.updateState()
+					break
+
+	def disableTimer(self):
+		self.timer.stop()
+		self.timer.callback.remove(self.timeout)
+
+
+class MovieLocationBox(LocationBox):
+	def __init__(self, session, text, currDir, minFree=None):
+		LocationBox.__init__(
+			self,
+			session,
+			text=text,
+			# filename="",
+			currDir=currDir,
+			bookmarks=config.movielist.videodirs,
+			windowTitle=_("Select Media Location"),
+			minFree=minFree,
+			autoAdd=True,
+			editDir=True,
+			inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
+			# inhibitMounts=None
+		)
+		self.skinName = ["MovieLocationBox", "LocationBox"]
+
+
+class PlaybackLocationBox(LocationBox):
 	def __init__(self, session):
 		LocationBox.__init__(
-				self,
-				session,
-				text = _("Where to save temporary EPG?"),
-				currDir = config.misc.epgcachepath.value,
-				bookmarks = config.misc.allowed_epgcachepath,
-				autoAdd = True,
-				editDir = True,
-				inhibitDirs = ["/bin", "/boot", "/dev", "/proc", "/sbin", "/sys"],
-				minFree = None
+			self,
+			session,
+			text=_("What do you want to set as the default movie location?"),
+			# filename="",
+			currDir=config.usage.default_path.value,
+			bookmarks=config.movielist.videodirs,
+			windowTitle=_("Select Playback Location"),
+			# minFree=None,
+			autoAdd=True,
+			editDir=True,
+			inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
+			# inhibitMounts=None
 		)
-		self.skinName = "LocationBox"
+		self.skinName = ["PlaybackLocationBox", "LocationBox"]
 
-	def cancel(self):
-		config.misc.epgcachepath.cancel()
-		LocationBox.cancel(self)
 
-	def selectConfirmed(self, ret):
-		if ret:
-			config.misc.epgcachepath.value = self.getPreferredFolder()
-			config.misc.epgcachepath.save()
-			LocationBox.selectConfirmed(self, ret)
+class TimeshiftLocationBox(LocationBox):
+	def __init__(self, session):
+		LocationBox.__init__(
+			self,
+			session,
+			text=_("Where do you want to save temporary time shift recordings?"),
+			# filename="",
+			currDir=config.timeshift.path.value,
+			bookmarks=config.timeshift.allowedPaths,
+			windowTitle=_("Select Time Shift Location"),
+			minFree=1024,  # The same minFree requirement is hard-coded in servicedvb.cpp.
+			autoAdd=True,
+			editDir=True,
+			inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
+			# inhibitMounts=None
+		)
+		self.skinName = ["TimeshiftLocationBox", "LocationBox"]
 
+#OPENSPA [morser] Append for change picon path
 class PiconLocationBox(LocationBox):
 	def __init__(self, session):
 		LocationBox.__init__(
@@ -564,62 +558,13 @@ class PiconLocationBox(LocationBox):
 		)
 		self.skinName = "LocationBox"
 
-	def cancel(self):
+	def keyCancel(self):
 		config.misc.picon_path.cancel()
-		LocationBox.cancel(self)
+		LocationBox.keyCancel(self)
 
-	def selectConfirmed(self, ret):
+	def keySelectCallback(self, ret):
 		if ret:
-			config.misc.picon_path.value = self.getPreferredFolder()
+			config.misc.picon_path.value = self.getSelectedDirectory()
 			config.misc.picon_path.save()
-			LocationBox.selectConfirmed(self, ret)
+			LocationBox.keySelectCallback(self, ret)
 
-class TimeshiftLocationBox(LocationBox):
-	def __init__(self, session):
-		LocationBox.__init__(
-				self,
-				session,
-				text = _("Where to save temporary timeshift recordings?"),
-				currDir = config.usage.timeshift_path.value,
-				bookmarks = config.usage.allowed_timeshift_paths,
-				autoAdd = True,
-				editDir = True,
-				inhibitDirs = defaultInhibitDirs,
-				minFree = 1024 # the same requirement is hardcoded in servicedvb.cpp
-		)
-		self.skinName = "LocationBox"
-
-	def cancel(self):
-		config.usage.timeshift_path.cancel()
-		LocationBox.cancel(self)
-
-	def selectConfirmed(self, ret):
-		if ret:
-			config.usage.timeshift_path.value = self.getPreferredFolder()
-			config.usage.timeshift_path.save()
-			LocationBox.selectConfirmed(self, ret)
-
-class AutorecordLocationBox(LocationBox):
-	def __init__(self, session):
-		LocationBox.__init__(
-				self,
-				session,
-				text = _("Where to save temporary timeshift recordings?"),
-				currDir = config.usage.autorecord_path.value,
-				bookmarks = config.usage.allowed_autorecord_paths,
-				autoAdd = True,
-				editDir = True,
-				inhibitDirs = defaultInhibitDirs,
-				minFree = 1024 # the same requirement is hardcoded in servicedvb.cpp
-		)
-		self.skinName = "LocationBox"
-
-	def cancel(self):
-		config.usage.autorecord_path.cancel()
-		LocationBox.cancel(self)
-
-	def selectConfirmed(self, ret):
-		if ret:
-			config.usage.autorecord_path.setValue(self.getPreferredFolder())
-			config.usage.autorecord_path.save()
-			LocationBox.selectConfirmed(self, ret)

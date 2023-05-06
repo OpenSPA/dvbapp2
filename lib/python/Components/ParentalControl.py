@@ -1,55 +1,56 @@
 from __future__ import absolute_import
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger
 from Components.ServiceList import refreshServiceList
+#from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 import Tools.Notifications
-from Tools.Directories import resolveFilename, fileExists, SCOPE_CONFIG
-from Tools.Notifications import AddPopup
+from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
 import time
+
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
 TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
 
-FLAG_IS_PARENTAL_PROTECTED_HIDDEN = 256
 
 def InitParentalControl():
 	config.ParentalControl = ConfigSubsection()
-	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5", _("%d minutes") % 5), ("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("120", _("%d minutes") % 120), ("standby", _("until standby/restart"))])
-	config.ParentalControl.configured = ConfigYesNo(default = False)
-	config.ParentalControl.setuppinactive = ConfigYesNo(default = False)
+	config.ParentalControl.storeservicepin = ConfigSelection(default="never", choices=[("never", _("Never")), ("5", _("5 minutes")), ("30", _("30 minutes")), ("60", _("60 minutes")), ("standby", _("until standby/restart"))])
+	config.ParentalControl.configured = ConfigYesNo(default=False)
+	config.ParentalControl.setuppinactive = ConfigYesNo(default=False)
 	config.ParentalControl.retries = ConfigSubsection()
 	config.ParentalControl.retries.servicepin = ConfigSubsection()
-	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default = 3)
-	config.ParentalControl.retries.servicepin.time = ConfigInteger(default = 3)
+	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default=3)
+	config.ParentalControl.retries.servicepin.time = ConfigInteger(default=3)
 	config.ParentalControl.servicepin = ConfigSubList()
-	config.ParentalControl.servicepin.append(ConfigPIN(default = 0))
-	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
-	config.ParentalControl.hideBlacklist = ConfigYesNo(default = False)
+	config.ParentalControl.servicepin.append(ConfigPIN(default=0))
+	config.ParentalControl.age = ConfigSelection(default="18", choices=[("0", _("No age block"))] + list((str(x), "%d+" % x) for x in list(range(3, 19))))
+	config.ParentalControl.hideBlacklist = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections = ConfigSubsection()
-	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default = False)
-	config.ParentalControl.config_sections.configuration = ConfigYesNo(default = False)
-	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default = False)
-	config.ParentalControl.config_sections.plugin_browser = ConfigYesNo(default = False)
-	config.ParentalControl.config_sections.standby_menu = ConfigYesNo(default = False)
-	config.ParentalControl.config_sections.software_update = ConfigYesNo(default = False)
-	config.ParentalControl.config_sections.manufacturer_reset = ConfigYesNo(default = True)
-	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default = False)
-	config.ParentalControl.config_sections.context_menus = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default=False)
+	config.ParentalControl.config_sections.configuration = ConfigYesNo(default=False)
+	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default=False)
+	config.ParentalControl.config_sections.plugin_browser = ConfigYesNo(default=False)
+	config.ParentalControl.config_sections.standby_menu = ConfigYesNo(default=False)
+	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default=False)
+	config.ParentalControl.config_sections.context_menus = ConfigYesNo(default=False)
+	#config.ParentalControl.config_sections.infopanel = ConfigYesNo(default=False)
+	config.ParentalControl.config_sections.software_update = ConfigYesNo(default=False)
 
 	#Added for backwards compatibility with some 3rd party plugins that depend on this config
 	config.ParentalControl.servicepinactive = config.ParentalControl.configured
 	config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]
 	config.ParentalControl.retries.setuppin = config.ParentalControl.retries.servicepin
-	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [(LIST_BLACKLIST, _("blacklist"))])
+	config.ParentalControl.type = ConfigSelection(default="blacklist", choices=[(LIST_BLACKLIST, _("blacklist"))])
 
 	global parentalControl
 	parentalControl = ParentalControl()
+
 
 class ParentalControl:
 	def __init__(self):
@@ -80,38 +81,30 @@ class ParentalControl:
 			sRef = str(ref)
 			method(sRef, TYPE_SERVICE, *args)
 
-	def isProtected(self, ref):
-		if not config.ParentalControl.servicepin[0].value or not config.ParentalControl.servicepinactive.value or not ref:
-			return False
+	def isServicePlayable(self, ref, callback, session=None):
+		self.session = session
+		if not config.ParentalControl.servicepinactive.value:
+			return True
+		#Check if configuration has already been read or if the significant values have changed.
+		#If true: read the configuration
 		if self.storeServicePin != config.ParentalControl.storeservicepin.value:
 			self.getConfigValues()
 		service = ref.toCompareString()
-		path = ref.getPath()
 		info = eServiceCenter.getInstance().info(ref)
 		age = 0
-		if path.startswith("/"):
-			if service.startswith("1:"):
-				refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
-				service = refstr and eServiceReference(refstr).toCompareString()
-			if [x for x in path[1:].split("/") if x.startswith(".") and not x == ".Trash"]:
-				age = 18
-		if int(config.ParentalControl.age.value) and age == 0:
-			try:
-				event = info and info.getEvent(ref)
-				rating = event and event.getParentalData()
-				age = rating and rating.getRating()
-				age = age and age <= 15 and age + 3 or 0
-			except:
-				pass
-		return (age and age >= int(config.ParentalControl.age.value)) or service and service in self.blacklist
-
-	def isServicePlayable(self, ref, callback, session=None):
-		self.session = session
-		if self.isProtected(ref):
+		if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
+			refstr = info and info.getInfoString(ref, iServiceInformation.sServiceref)
+			service = refstr and eServiceReference(refstr).toCompareString()
+		elif int(config.ParentalControl.age.value):
+			event = info and info.getEvent(ref)
+			rating = event and event.getParentalData()
+			age = rating and rating.getRating()
+			age = age and age <= 15 and age + 3 or 0
+		if (age and age >= int(config.ParentalControl.age.value)) or service and service in self.blacklist:
+			#Check if the session pin is cached
 			if self.sessionPinCached:
 				return True
 			self.callback = callback
-			service = ref.toCompareString()
 			title = 'FROM BOUQUET "userbouquet.' in service and _("this bouquet is protected by a parental control pin") or _("this service is protected by a parental control pin")
 			if session:
 				Tools.Notifications.RemovePopup("Parental control")
@@ -127,8 +120,8 @@ class ParentalControl:
 	def protectService(self, service):
 		if service not in self.blacklist:
 			self.serviceMethodWrapper(service, self.addServiceToList, self.blacklist)
-			if config.ParentalControl.hideBlacklist.value and not self.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
-				eDVBDB.getInstance().addFlag(eServiceReference(service), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
+			if config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
+				eDVBDB.getInstance().addFlag(eServiceReference(service), 2)
 
 	def unProtectService(self, service):
 		if service in self.blacklist:
@@ -136,9 +129,6 @@ class ParentalControl:
 
 	def getProtectionLevel(self, service):
 		return service not in self.blacklist and -1 or 0
-
-	def isServiceProtectionBouquet(self, service):
-		return service in self.blacklist and TYPE_BOUQUETSERVICE in self.blacklist[service]
 
 	def getConfigValues(self):
 		#Read all values from configuration
@@ -152,9 +142,11 @@ class ParentalControl:
 
 		self.storeServicePin = config.ParentalControl.storeservicepin.value
 
-		if self.storeServicePin == "standby":
+		if self.storeServicePin == "never":
+			pass
+		elif self.storeServicePin == "standby":
 			self.checkSessionPin = True
-		elif self.storeServicePin != "never":
+		else:
 			self.checkPinInterval = True
 			iMinutes = float(self.storeServicePin)
 			iSeconds = int(iMinutes * 60)
@@ -185,22 +177,25 @@ class ParentalControl:
 		if result is not None and result:
 			self.setSessionPinCached()
 			self.hideBlacklist()
-			self.callback(ref = service)
-		#This is the new function of caching cancelling of service pin
-		elif result is not None:
-			messageText = _("The pin code you entered is wrong.")
-			if self.session:
-				self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
-			else:
-				AddPopup(messageText, MessageBox.TYPE_ERROR, timeout = 3)
+			self.callback(ref=service)
+		else:
+			#This is the new function of caching cancelling of service pin
+			if result is not None:
+				messageText = _("The pin code you entered is wrong.")
+				if self.session:
+					self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
+				else:
+					Tools.Notifications.AddPopup(messageText, MessageBox.TYPE_ERROR, timeout=3)
 
 	def saveListToFile(self, sWhichList, vList):
 		#Replaces saveWhiteList and saveBlackList:
 		#I don't like to have two functions with identical code...
 		file = open(resolveFilename(SCOPE_CONFIG, sWhichList), 'w')
-		import six
-		for sService, sType in six.iteritems(vList):
-			if (TYPE_SERVICE in sType or TYPE_BOUQUET in sType) and not sService.startswith("-"):
+		for sService, sType in vList.items():
+			#Only Services that are selected directly and Bouqets are saved.
+			#Services that are added by a bouquet are not saved.
+			#This is the reason for the change in self.whitelist and self.blacklist
+			if TYPE_SERVICE in sType or TYPE_BOUQUET in sType:
 				file.write(str(sService) + "\n")
 		file.close()
 
@@ -241,11 +236,10 @@ class ParentalControl:
 		serviceHandler = eServiceCenter.getInstance()
 		refstr = sBouquetSelection
 		root = eServiceReference(refstr)
-		list = serviceHandler and serviceHandler.list(root)
-		if list:
-			services = list.getContent("CN", True)
+		list = serviceHandler.list(root)
+		if list is not None:
+			services = list.getContent("CN", True)  # (servicecomparestring, name)
 			return services
-		return []
 
 	def save(self):
 		self.saveListToFile(LIST_BLACKLIST, self.blacklist)
@@ -273,9 +267,9 @@ class ParentalControl:
 			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never" and config.ParentalControl.hideBlacklist.value and not self.sessionPinCached:
 				for ref in self.blacklist:
 					if TYPE_BOUQUET not in ref:
-						eDVBDB.getInstance().addFlag(eServiceReference(ref), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
+						eDVBDB.getInstance().addFlag(eServiceReference(ref), 2)
 			else:
 				for ref in self.blacklist:
 					if TYPE_BOUQUET not in ref:
-						eDVBDB.getInstance().removeFlag(eServiceReference(ref), FLAG_IS_PARENTAL_PROTECTED_HIDDEN)
+						eDVBDB.getInstance().removeFlag(eServiceReference(ref), 2)
 			refreshServiceList()

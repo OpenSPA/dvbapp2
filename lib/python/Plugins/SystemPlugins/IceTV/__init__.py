@@ -8,10 +8,11 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
 from enigma import eEPGCache
-from boxbranding import getMachineBrand, getMachineName
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
     ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo, \
     ConfigSelectionNumber
+from Components.SystemInfo import getBoxDisplayName
+
 
 def getIceTVDeviceType():
     return {
@@ -20,7 +21,8 @@ def getIceTVDeviceType():
         ("Beyonwiz", "T4"): 30,
         ("Beyonwiz", "U4"): 36,
         ("Beyonwiz", "V2"): 38,
-    }.get((getMachineBrand(), getMachineName()), 39)
+    }.get(getBoxDisplayName(), 39)
+
 
 config.plugins.icetv = ConfigSubsection()
 
@@ -28,17 +30,17 @@ config.plugins.icetv.server = ConfigSubsection()
 config.plugins.icetv.server.name = ConfigText(default="api.icetv.com.au")
 
 config.plugins.icetv.member = ConfigSubsection()
-config.plugins.icetv.member.email_address = ConfigText(show_help=False, fixed_size=False)
+config.plugins.icetv.member.email_address = ConfigText(fixed_size=False)
 config.plugins.icetv.member.token = ConfigText()
 config.plugins.icetv.member.id = ConfigNumber()
 config.plugins.icetv.member.region_id = ConfigNumber()
 config.plugins.icetv.member.country = ConfigText(default="AUS")
 config.plugins.icetv.member.send_logs = ConfigYesNo(default=True)
 
-config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", show_help=False, fixed_size=False))
+config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", fixed_size=False))
 
 config.plugins.icetv.device = ConfigSubsection()
-config.plugins.icetv.device.label = ConfigText(default="%s %s" % (getMachineBrand(), getMachineName()), show_help=False)
+config.plugins.icetv.device.label = ConfigText(default="%s %s" % getBoxDisplayName())
 config.plugins.icetv.device.id = ConfigNumber()
 config.plugins.icetv.device.type_id = ConfigNumber(default=getIceTVDeviceType())
 
@@ -47,7 +49,7 @@ if config.plugins.icetv.last_update_time.value != 0:
     config.plugins.icetv.last_update_time.value = 0
     config.plugins.icetv.last_update_time.save()
     configfile.save()
-config.plugins.icetv.last_update_time.disableSave()
+config.plugins.icetv.last_update_time.saveDisabled = True
 
 config.plugins.icetv.enable_epg = ConfigYesNo(default=False)
 config.plugins.icetv.configured = ConfigYesNo(default=False)
@@ -81,9 +83,11 @@ config.plugins.icetv.refresh_interval = ConfigSelection(default="%d" % int(minut
 
 config.plugins.icetv.batchsize = ConfigSelectionNumber(0, 50, 1, default=30)
 
+
 def saveConfigFile():
     config.plugins.icetv.save()
     configfile.save()
+
 
 def enableIceTV():
     epgcache = eEPGCache.getInstance()
@@ -92,6 +96,7 @@ def enableIceTV():
     epgcache.save()
     setIceTVDefaults()
     saveConfigFile()
+
 
 def disableIceTV():
     epgcache = eEPGCache.getInstance()
@@ -102,6 +107,7 @@ def disableIceTV():
     restoreDefaults()
     saveConfigFile()
 
+
 def setIceTVDefaults():
     config.plugins.icetv.enable_epg.value = True
     config.plugins.icetv.last_update_time.value = 0
@@ -109,6 +115,7 @@ def setIceTVDefaults():
     config.epg.save()
     config.usage.show_eit_nownext.value = False
     config.usage.show_eit_nownext.save()
+
 
 def restoreDefaults():
     config.usage.show_eit_nownext.value = True

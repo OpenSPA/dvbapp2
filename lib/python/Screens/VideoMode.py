@@ -5,7 +5,7 @@ from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter
 
 from Screens.Screen import Screen
 from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry, ConfigNothing
 from Components.Label import Label
@@ -13,17 +13,19 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import isPluginInstalled
 from Tools.HardwareInfo import HardwareInfo
 from Components.AVSwitch import iAVSwitch
 
 resolutionlabel = None
+
 
 def getAutoresPlugin_enabled():
 	try:
 		return config.plugins.autoresolution.enable.value
 	except:
 		return False
+
 
 def getConfig_videomode(getmode, getrate):
 	port = config.av.videoport.value
@@ -32,6 +34,7 @@ def getConfig_videomode(getmode, getrate):
 	pol = mode.replace('p30', 'p')[-1:]
 	rate = getrate[mode].value.replace('Hz', '')
 	return port, mode, res, pol, rate
+
 
 def setProgressiveRate(vid_rate, new_rate, new_res, config_res, config_rate):
 	if vid_rate == 24:
@@ -53,12 +56,13 @@ def setProgressiveRate(vid_rate, new_rate, new_res, config_res, config_rate):
 		new_rate = config_rate
 	return new_rate
 
+
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
 		self.skinName = ["VideoSetup", "Setup"]
-		self.setup_title = _("Video settings")
+		self.setTitle(_("Video Settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -72,34 +76,34 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.onHide.append(self.stopHotplug)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
 		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
-				"menu": self.closeRecursive,
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
+		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label("")
 
 		config.av.autores_preview.value = False
 		self.current_mode = None
 		self.createSetup()
 		self.grabLastGoodMode()
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
+		self["config"].onSelectionChanged.append(self.selectionChanged)
 
 	def startHotplug(self):
-		self.hw.on_hotplug.append(self.createSetup)
+		self.hw.on_hotplug.append(self._createSetup)
 
 	def stopHotplug(self):
-		self.hw.on_hotplug.remove(self.createSetup)
+		self.hw.on_hotplug.remove(self._createSetup)
+
+	# FIXME
+	def _createSetup(self, what):
+		self.createSetup()
 
 	def createSetup(self):
 		level = config.usage.setup_level.index
@@ -107,13 +111,13 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.list = [
 			getConfigListEntry(_("Video output"), config.av.videoport, _("Configures which video output connector will be used."))
 		]
-		if config.av.videoport.value in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not getAutoresPlugin_enabled(): #path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
+		if config.av.videoport.value in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not getAutoresPlugin_enabled():  # path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores, _("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 			if config.av.autores.value in ('all', 'hd'):
 				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay, _("Set the time before checking video source for resolution information.")))
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout, _("Allows you to adjust the amount of time the resolution information display on screen.")))
 				self.list.append(getConfigListEntry(_("Force de-interlace"), config.av.autores_deinterlace, _("If enabled the video will always be de-interlaced.")))
-				self.list.append(getConfigListEntry(_('Always use smart1080p mode'), config.av.smart1080p, _("This option allows you to always use e.g. 1080p50 for TV/.ts, and 1080p24/p50/p60 for videos")))
+				self.list.append(getConfigListEntry(_("Always use smart1080p mode"), config.av.smart1080p, _("This option allows you to always use e.g. 1080p50 for TV/.ts, and 1080p24/p50/p60 for videos")))
 				if config.av.autores.value in 'hd':
 					self.list.append(getConfigListEntry(_("Show SD as"), config.av.autores_sd, _("This option allows you to choose how to display standard definition video on your TV.")))
 				self.list.append(getConfigListEntry(_("Show 480/576p 24fps as"), config.av.autores_480p24, _("This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)")))
@@ -222,31 +226,31 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen.")))
-				if SystemInfo["ScartSwitch"]:
-					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
+				if BoxInfo.getItem("ScartSwitch"):
+					self.list.append(getConfigListEntry(_("Auto SCART switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
-		if not isinstance(config.av.scaler_sharpness, ConfigNothing) and not path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py"):
+		if not isinstance(config.av.scaler_sharpness, ConfigNothing) and not isPluginInstalled("VideoEnhancement"):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
 
-		if SystemInfo["havecolorspace"]:
-			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace, _("This option allows you can config the Colorspace from Auto to RGB")))
+		if BoxInfo.getItem("havecolorspace"):
+			self.list.append(getConfigListEntry(_("HDMI color space"), config.av.hdmicolorspace, _("This option allows you can config the Colorspace from Auto to RGB")))
 
-		if SystemInfo["havecolorimetry"]:
+		if BoxInfo.getItem("havecolorimetry"):
 			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry, _("This option allows you can config the Colorimetry for HDR")))
 
-		if SystemInfo["havehdmicolordepth"]:
-			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth, _("This option allows you can config the Colordepth for UHD")))
+		if BoxInfo.getItem("havehdmicolordepth"):
+			self.list.append(getConfigListEntry(_("HDMI color depth"), config.av.hdmicolordepth, _("This option allows you can config the Colordepth for UHD")))
 
-		if SystemInfo["havehdmihdrtype"]:
+		if BoxInfo.getItem("havehdmihdrtype"):
 			self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype, _("This option allows you can force the HDR Modes for UHD")))
 
-		if SystemInfo["Canedidchecking"]:
+		if BoxInfo.getItem("Canedidchecking"):
 			self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking, _("This option allows you to bypass HDMI EDID check")))
 
-		if SystemInfo["haveboxmode"]:
-			self.list.append(getConfigListEntry(_("Change Boxmode to control Hardware Chip Modes*"), config.av.boxmode, _("Switch Mode to enable HDR Modes or PIP Functions")))
+		if BoxInfo.getItem("haveboxmode"):
+			self.list.append(getConfigListEntry(_("Change Boxmode to control Hardware Chip Modes*"), config.av.boxmode, _("Switch Mode to enable HDR Modes or PiP Functions")))
 
-		if SystemInfo["HDRSupport"]:
+		if BoxInfo.getItem("HDRSupport"):
 			self.list.append(getConfigListEntry(_("HLG Support"), config.av.hlg_support, _("This option allows you can force the HLG Modes for UHD")))
 			self.list.append(getConfigListEntry(_("HDR10 Support"), config.av.hdr10_support, _("This option allows you can force the HDR10 Modes for UHD")))
 			self.list.append(getConfigListEntry(_("Allow 12bit"), config.av.allow_12bit, _("This option allows you can enable or disable the 12 Bit Color Mode")))
@@ -368,7 +372,7 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.reset_mode = 1
 			if autores_sd.find('1080') >= 0:
 				self.hw.setMode(port, '1080p', '50Hz')
-			elif (smart1080p == '1080p50') or (smart1080p == 'true'): # for compatibility with old ConfigEnableDisable
+			elif (smart1080p == '1080p50') or (smart1080p == 'true'):  # for compatibility with old ConfigEnableDisable
 				self.hw.setMode(port, '1080p', '50Hz')
 			elif smart1080p == '2160p50':
 				self.hw.setMode(port, '2160p', '50Hz')
@@ -439,135 +443,12 @@ class VideoSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
-class AudioSetup(Screen, ConfigListScreen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		# for the skin: first try AudioSetup, then Setup, this allows individual skinning
-		self.skinName = ["AudioSetup", "Setup"]
-		self.setup_title = _("Audio settings")
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Boolean(False)
-		self['footnote'] = Label()
+	def selectionChanged(self):
+		if self["config"]:
+			self["description"].text = self.getCurrentDescription()
+		else:
+			self["description"].text = _("There are no items currently available for this screen.")
 
-		self.hw = iAVSwitch
-		self.onChangedEntry = []
-
-		# handle hotplug by re-creating setup
-		self.onShow.append(self.startHotplug)
-		self.onHide.append(self.stopHotplug)
-
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
-
-		from Components.ActionMap import ActionMap
-		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.apply,
-				"menu": self.closeRecursive,
-			}, -2)
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		self["description"] = Label("")
-
-		self.createSetup()
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
-
-	def startHotplug(self):
-		self.hw.on_hotplug.append(self.createSetup)
-
-	def stopHotplug(self):
-		self.hw.on_hotplug.remove(self.createSetup)
-
-	def createSetup(self):
-		level = config.usage.setup_level.index
-
-		self.list = []
-
-		if level >= 1:
-			if SystemInfo["CanPcmMultichannel"]:
-				self.list.append(getConfigListEntry(_("PCM Multichannel"), config.av.pcm_multichannel, _("Choose whether multi channel sound tracks should be output as PCM.")))
-			if SystemInfo["CanDownmixAC3"]:
-				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3, _("Choose whether AC3 sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanAC3plusTranscode"]:
-				self.list.append(getConfigListEntry(_("AC3 plus transcoding"), config.av.transcodeac3plus, _("Choose whether AC3 Plus sound tracks should be transcoded to AC3.")))
-			if SystemInfo["CanDownmixDTS"]:
-				self.list.append(getConfigListEntry(_("DTS downmix"), config.av.downmix_dts, _("Choose whether DTS channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDTSHD"]:
-				self.list.append(getConfigListEntry(_("DTS/DTS-HD HR/DTS-HD MA/DTS:X"), config.av.dtshd, _("Choose whether DTS channel sound tracks should be downmixed or transcoded.")))
-			if SystemInfo["CanWMAPRO"]:
-				self.list.append(getConfigListEntry(_("WMA Pro"), config.av.wmapro, _("Choose whether WMA Pro channel sound tracks should be downmixed or transcoded.")))
-			if SystemInfo["CanDownmixAAC"]:
-				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixAACPlus"]:
-				self.list.append(getConfigListEntry(_("AAC plus downmix"), config.av.downmix_aacplus, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["Canaudiosource"]:
-				self.list.append(getConfigListEntry(_("Audio Source"), config.av.audio_source, _("Choose whether multi channel sound tracks should be convert to PCM or SPDIF.")))
-			if SystemInfo["CanAACTranscode"]:
-				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
-			self.list.extend((
-				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital sound tracks.")),
-				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
-			))
-
-			if SystemInfo["Can3DSurround"]:
-				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d, _("This option allows you to enable 3D Surround Sound.")))
-
-			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
-				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker, _("This option allows you to change the virtuell loadspeaker position.")))
-
-			if SystemInfo["CanAutoVolume"]:
-				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume, _("This option configures you can set Auto Volume Level.")))
-			self.list.append(getConfigListEntry(_("Audio volume step size"), config.av.volume_stepsize, _("Configure the general audio volume step size (limit 1-10).")))
-			self.list.append(getConfigListEntry(_("Audio volume step size fast mode"), config.av.volume_stepsize_fastmode, _("Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row.")))
-			self.list.append(getConfigListEntry(_("Hide mute notification"), config.av.volume_hide_mute, _("If muted, hide mute icon or mute information after few seconds.")))
-
-			if SystemInfo["CanBTAudio"]:
-				self.list.append(getConfigListEntry(_("Enable BT Audio"), config.av.btaudio, _("This Option allows you to switch Audio to BT Speakers.")))
-			if SystemInfo["CanBTAudioDelay"]:
-				self.list.append(getConfigListEntry(_("General BT Audio delay"), config.av.btaudiodelay, _("This option configures the general audio delay for BT Speakers.")))
-
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.createSetup()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.createSetup()
-
-	def confirm(self, confirmed):
-		self.keySave()
-
-	def apply(self):
-		self.keySave()
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
 
 class AutoVideoModeLabel(Screen):
 	def __init__(self, session):
@@ -591,13 +472,14 @@ class AutoVideoModeLabel(Screen):
 previous = None
 isDedicated3D = False
 
+
 def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
 	global previous, isDedicated3D
 	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
 	if previous != (mode, znorm):
 		try:
 			previous = (mode, znorm)
-			if SystemInfo["CanUse3DModeChoices"]:
+			if BoxInfo.getItem("CanUse3DModeChoices"):
 				f = open("/proc/stb/fb/3dmode_choices", "r")
 				choices = f.readlines()[0].split()
 				f.close()
@@ -608,10 +490,11 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 						mode = "tab"
 					elif mode == "auto":
 						mode = "off"
-			open(SystemInfo["3DMode"], "w").write(mode)
-			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
+			open(BoxInfo.getItem("3DMode"), "w").write(mode)
+			open(BoxInfo.getItem("3DZNorm"), "w").write('%d' % znorm)
 		except:
 			return
+
 
 class AutoVideoMode(Screen):
 	def __init__(self, session):
@@ -680,11 +563,11 @@ class AutoVideoMode(Screen):
 			delay = config.av.autores_delay.value * 2
 		if not self.detecttimer.isActive() and not self.delay:
 			self.delay = True
-			self.detecttimer.start(int(delay))
+			self.detecttimer.start(delay)
 		else:
 			self.delay = True
 			self.detecttimer.stop()
-			self.detecttimer.start(int(delay))
+			self.detecttimer.start(delay)
 
 	def VideoChangeDetect(self):
 		# info: autoresolution preview or save settings call this function with session = None / ~338, ~374
@@ -800,21 +683,21 @@ class AutoVideoMode(Screen):
 			elif config.av.autores.value == 'simple':
 				autorestyp = 'simple'
 				new_rate = (video_rate + 500) / 1000
-				if video_height <= 576 and int(config_res) >= 576: #sd
+				if video_height <= 576 and int(config_res) >= 576:  # sd
 					if config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value in ("auto", "multi"):
 						if video_pol == 'i':
 							new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value.replace('Hz', '')
 					new_mode = config.av.autores_mode_sd[config_port].value.replace('p30', 'p')
-				elif video_height <= 720 and int(config_res) >= 720: #hd
+				elif video_height <= 720 and int(config_res) >= 720:  # hd
 					if config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value].value in ("auto", "multi"):
 						if video_pol == 'i':
 							new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value].value.replace('Hz', '')
 					new_mode = config.av.autores_mode_hd[config_port].value.replace('p30', 'p')
-				elif video_height <= 1080 and int(config_res) >= 1080: #fhd
+				elif video_height <= 1080 and int(config_res) >= 1080:  # fhd
 					if config.av.autores_rate_fhd[config.av.autores_mode_fhd[config.av.videoport.value].value].value in ("auto", "multi"):
 						if video_pol == 'i':
 							new_rate *= 2
@@ -823,7 +706,7 @@ class AutoVideoMode(Screen):
 					new_mode = config.av.autores_mode_fhd[config_port].value.replace('p30', 'p')
 					if new_mode == '1080p' and not config.av.autores_1080i_deinterlace.value and video_height == 1080 and video_pol == 'i':
 						new_mode = '1080i'
-				elif video_height <= 2160 and int(config_res) >= 2160: #uhd
+				elif video_height <= 2160 and int(config_res) >= 2160:  # uhd
 					if config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value].value in ("auto", "multi"):
 						if video_pol == 'i':
 							new_rate *= 2
@@ -834,7 +717,7 @@ class AutoVideoMode(Screen):
 					if config_rate not in ("auto", "multi"):
 						new_rate = config_rate
 					new_mode = config_mode
-				new_rate = str(new_rate)
+				new_rate = str(int(new_rate))
 
 				if new_mode[-1:] == 'p':
 					new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_mode[:-1], config_res, config_rate)
@@ -873,7 +756,7 @@ class AutoVideoMode(Screen):
 						new_pol = config_pol
 					if config_rate not in ("auto", "multi") and int(config_rate) < new_rate:
 						new_rate = config_rate
-				new_rate = str(new_rate)
+				new_rate = str(int(new_rate))
 
 				if new_pol == 'p':
 					new_rate = setProgressiveRate((video_rate + 500) / 1000 * (int(video_pol == 'i') + 1), new_rate, new_res, config_res, config_rate)
@@ -918,7 +801,7 @@ class AutoVideoMode(Screen):
 
 			elif config.av.autores.value == 'all' or (config.av.autores.value == 'hd' and int(new_res) >= 720):
 				autorestyp = 'all or hd'
-				if (config.av.autores_deinterlace.value and HardwareInfo().is_nextgen()) or (config.av.autores_deinterlace.value and not HardwareInfo().is_nextgen() and int(new_res) <= 720):
+				if config.av.autores_deinterlace.value:
 					new_pol = new_pol.replace('i', 'p')
 				if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
 					new_mode = new_res + new_pol + new_rate
@@ -948,13 +831,14 @@ class AutoVideoMode(Screen):
 				write_mode = new_mode
 			elif config.av.autores.value == 'hd' and int(new_res) <= 576:
 				autorestyp = 'hd'
-				if (config.av.autores_deinterlace.value and HardwareInfo().is_nextgen()) or (config.av.autores_deinterlace.value and not HardwareInfo().is_nextgen() and not config.av.autores_sd.value == '1080i'):
+				if new_pol == "p":
 					new_mode = config.av.autores_sd.value.replace('i', 'p') + new_rate
 				else:
-					if new_pol in 'p':
-						new_mode = config.av.autores_sd.value.replace('i', 'p') + new_rate
-					else:
-						new_mode = config.av.autores_sd.value + new_rate
+					new_mode = config.av.autores_sd.value + new_rate
+					if config.av.autores_deinterlace.value:
+						test_new_mode = config.av.autores_sd.value.replace('i', 'p') + new_rate
+						if test_new_mode in iAVSwitch.readAvailableModes():
+							new_mode = test_new_mode
 
 				if new_mode == '720p24':
 					new_mode = config.av.autores_720p24.value
@@ -1009,28 +893,28 @@ class AutoVideoMode(Screen):
 				elif (mypath.find('p60.') >= 0) or (mypath.find('60p.') >= 0):
 					new_rate = '60'
 				elif new_rate in ("auto", "multi"):
-					new_rate = '' # omit frame rate specifier, e.g. '1080p' instead of '1080p50' if there is no clue
+					new_rate = ''  # omit frame rate specifier, e.g. '1080p' instead of '1080p50' if there is no clue
 				if mypath != '':
 					if mypath.endswith('.ts'):
 						print("DEBUG VIDEOMODE/ playing .ts file")
-						new_rate = '50' # for .ts files
+						new_rate = '50'  # for .ts files
 					else:
 						print("DEBUG VIDEOMODE/ playing other (non .ts) file")
 						# new_rate from above for all other videos
 				else:
 					print("DEBUG VIDEOMODE/ no path or no service reference, presumably live TV")
-					new_rate = '50' # for TV / or no service reference, then stay at 1080p50
+					new_rate = '50'  # for TV / or no service reference, then stay at 1080p50
 
 				new_rate = new_rate.replace('25', '50')
 				new_rate = new_rate.replace('30', '60')
 
-				if (config.av.smart1080p.value == '1080p50') or (config.av.smart1080p.value == 'true'): # for compatibility with old ConfigEnableDisable
+				if (config.av.smart1080p.value == '1080p50') or (config.av.smart1080p.value == 'true'):  # for compatibility with old ConfigEnableDisable
 					write_mode = '1080p' + new_rate
 				elif config.av.smart1080p.value == '2160p50':
 					write_mode = '2160p' + new_rate
 				elif config.av.smart1080p.value == '1080i50':
 					if new_rate == '24':
-						write_mode = '1080p24' # instead of 1080i24
+						write_mode = '1080p24'  # instead of 1080i24
 					else:
 						write_mode = '1080i' + new_rate
 				elif config.av.smart1080p.value == '720p50':
@@ -1117,9 +1001,10 @@ class AutoVideoMode(Screen):
 		self.delay = False
 		self.detecttimer.stop()
 
+
 def autostart(session):
 	global resolutionlabel
-	if not getAutoresPlugin_enabled(): #path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
+	if not getAutoresPlugin_enabled():  # path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 		if resolutionlabel is None:
 			resolutionlabel = session.instantiateDialog(AutoVideoModeLabel)
 		AutoVideoMode(session)

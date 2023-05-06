@@ -15,6 +15,7 @@ from enigma import eServiceReference, eServiceReferenceDVB
 # Generate an eServiceRef query path containing
 # '(type == serviceTypes[0]) || (type == serviceTypes[1]) || ...'
 
+
 def makeServiceQueryStr(serviceTypes):
 	return ' || '.join(['(type == %d)' % x for x in serviceTypes])
 
@@ -23,6 +24,7 @@ def serviceRefAppendPath(sref, path):
 	nsref = eServiceReference(sref)
 	nsref.setPath(nsref.getPath() + path)
 	return nsref
+
 
 service_types_tv_ref = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
 
@@ -42,6 +44,7 @@ service_types_radio_ref.setPath(makeServiceQueryStr((
 	eServiceReferenceDVB.dRadio,
 	eServiceReferenceDVB.dRadioAvc,
 )))
+
 
 def hdmiInServiceRef():
 	return eServiceReference(eServiceReference.idServiceHDMIIn, eServiceReference.noFlags, eServiceReferenceDVB.dTv)

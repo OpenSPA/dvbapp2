@@ -1,20 +1,20 @@
 from __future__ import print_function
-from boxbranding import getMachineBrand, getMachineName, getBoxType
 from os import system
 
 from enigma import eTimer
 
+from Screens.HelpMenu import ShowRemoteControl
 from Screens.WizardLanguage import WizardLanguage
-from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 
-class NetworkWizard(WizardLanguage, Rc):
+class NetworkWizard(WizardLanguage, ShowRemoteControl):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,40" size="340,300" font="Regular;22" />
@@ -35,10 +35,11 @@ class NetworkWizard(WizardLanguage, Rc):
 			</widget>
 			<widget name="HelpWindow" pixmap="buttons/key_text.png" position="125,170" zPosition="1" size="1,1" transparent="1" alphatest="on" />
 		</screen>"""
-	def __init__(self, session, interface = None):
+
+	def __init__(self, session, interface=None):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")
 		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
-		Rc.__init__(self)
+		ShowRemoteControl.__init__(self)
 		Screen.setTitle(self, _("NetworkWizard"))
 		self.session = session
 		self["wizard"] = Pixmap()
@@ -73,7 +74,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.getInstalledInterfaceCount()
 		self.isWlanPluginInstalled()
 
-	def exitWizardQuestion(self, ret = False):
+	def exitWizardQuestion(self, ret=False):
 		if ret:
 			self.markDone()
 			self.close()
@@ -152,7 +153,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.NextStep = 'end'
 		elif index == 'eth0':
 			self.NextStep = 'nwconfig'
-		elif index == 'eth1' and getBoxType() == "et10000":
+		elif index == 'eth1' and BoxInfo.getItem("machinebuild") == "et10000":
 			self.NextStep = 'nwconfig'
 		else:
 			self.NextStep = 'asknetworktype'
@@ -240,13 +241,13 @@ class NetworkWizard(WizardLanguage, Rc):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					text1 = _("Your %s %s is now ready to be used.\n\nYour internet connection is working now.\n\n") % (getMachineBrand(), getMachineName())
-					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
-					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
-					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"]) + "\n"
-					text5 = _('Signal strength:') + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
-					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
-					text7 = _('Encryption:') + " " + str(status[self.selectedInterface]["encryption"]) + "\n"
+					text1 = _("Your %s %s is now ready to be used.\n\nYour Internet connection is working now.\n\n") % getBoxDisplayName()
+					text2 = _("Access point:") + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
+					text3 = _("SSID:") + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
+					text4 = _("Link quality:") + "\t" + str(status[self.selectedInterface]["quality"]) + "\n"
+					text5 = _("Signal strength:") + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
+					text6 = _("Bitrate:") + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
+					text7 = _("Encryption:") + " " + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
 					infotext = text1 + text2 + text3 + text4 + text5 + text7 + "\n" + text8
 					self.currStep = self.getStepWithID("checkWlanstatusend")

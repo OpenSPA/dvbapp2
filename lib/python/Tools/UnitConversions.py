@@ -51,6 +51,7 @@ class UnitMultipliers:
 
 	Default = Si
 
+
 class UnitScaler:
 	def __init__(self, scaleTable=UnitMultipliers.Default, firstScaleIndex=1, maxNumLen=4, decimals=0):
 		self.scaleTable = scaleTable
@@ -77,6 +78,7 @@ class UnitScaler:
 
 	def __call__(self, num):
 		return self.scale(num)
+
 
 if __name__ == "__main__":
 	import sys

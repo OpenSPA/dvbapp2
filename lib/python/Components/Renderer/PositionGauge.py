@@ -1,6 +1,6 @@
-from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import ePositionGauge
+
 
 class PositionGauge(Renderer):
 	def __init__(self):
@@ -20,7 +20,7 @@ class PositionGauge(Renderer):
 
 	def changed(self, what):
 		if what[0] == self.CHANGED_CLEAR:
-			(self.length, self.position) = 0
+			(self.length, self.position) = (0, 0)
 		else:
 			(self.length, self.position) = (self.source.length or 0, self.source.position or 0)
 
@@ -52,7 +52,8 @@ class PositionGauge(Renderer):
 
 	def setCutlist(self, cutlist):
 		if self.__cutlist != cutlist:
-			self.__cutlist = cutlist
+			# E2 Bug: Use a list copy instead of a reference
+			self.__cutlist = cutlist[:]
 			if self.instance is not None:
 				self.instance.setInOutList(cutlist)
 

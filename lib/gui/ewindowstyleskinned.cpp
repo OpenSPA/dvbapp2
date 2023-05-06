@@ -8,9 +8,20 @@ DEFINE_REF(eWindowStyleSkinned);
 
 eWindowStyleSkinned::eWindowStyleSkinned()
 {
-	// m_background_color = gRGB(0x808080);
-
 	// TODO: initialize colors!!
+
+	m_color[colForeground] = gRGB(0xFFFFFF);
+	m_color[colScrollbarForeground] = gRGB(0xFFFFFF);
+	m_color[colScrollbarBorder] = gRGB(0xFFFFFF);
+	m_color[colWindowTitleForeground] = gRGB(0xFFFFFF);
+	m_color[colSliderForeground] = gRGB(0xFFFFFF);
+	m_color[colSliderBorder] = gRGB(0xFFFFFF);
+
+	m_labelfnt = new gFont("Regular", 12);
+	m_listboxfnt = new gFont("Regular", 20);
+	m_entryfnt = new gFont("Regular", 20);
+	m_valuefnt = new gFont(m_entryfnt->family, m_entryfnt->pointSize - m_entryfnt->pointSize/5);
+
 }
 
 void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
@@ -34,7 +45,7 @@ void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset
 
 void eWindowStyleSkinned::paintWindowDecoration(eWindow *wnd, gPainter &painter, const std::string &title)
 {
-	drawBorder(painter, eRect(ePoint(0, 0), wnd->size()), m_border[bsWindow], bpAll);
+	drawBorder(painter, eRect(ePoint(0, 0), wnd->size()), m_border[bsWindow], bpAll, 0);
 
 	if (m_fnt)
 	{
@@ -56,25 +67,48 @@ void eWindowStyleSkinned::setStyle(gPainter &painter, int what)
 	switch (what)
 	{
 	case styleLabel:
-		painter.setForegroundColor(m_color[colLabelForeground]);
+		painter.setForegroundColor(m_color[colForeground]);
 		break;
 	case styleListboxSelected:
-		painter.setForegroundColor(m_color[colListboxSelectedForeground]);
-		painter.setBackgroundColor(m_color[colListboxSelectedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundSelected]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundSelected]);
 		break;
 	case styleListboxNormal:
 		painter.setForegroundColor(m_color[colListboxForeground]);
 		painter.setBackgroundColor(m_color[colListboxBackground]);
 		break;
 	case styleListboxMarked:
-		painter.setForegroundColor(m_color[colListboxMarkedForeground]);
-		painter.setBackgroundColor(m_color[colListboxMarkedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundMarked]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundMarked]);
 		break;
 	case styleListboxMarkedAndSelected:
-		painter.setForegroundColor(m_color[colListboxMarkedAndSelectedForeground]);
-		painter.setBackgroundColor(m_color[colListboxMarkedAndSelectedBackground]);
+		painter.setForegroundColor(m_color[colListboxForegroundMarkedSelected]);
+		painter.setBackgroundColor(m_color[colListboxBackgroundMarkedSelected]);
+		break;
+	case styleScollbar:
+		if (m_color[colScrollbarBackground].argb() != 0)
+		{
+			painter.setBackgroundColor(m_color[colScrollbarBackground]);
+			painter.clear();
+		}
+		painter.setForegroundColor(m_color[colScrollbarForeground]);
+		break;
+	case styleScollbarBorder:
+		painter.setForegroundColor(m_color[colScrollbarBorder]);
+		break;
+	case styleSlider:
+		if (m_color[colSliderBackground].argb() != 0)
+		{
+			painter.setBackgroundColor(m_color[colSliderBackground]);
+			painter.clear();
+		}
+		painter.setForegroundColor(m_color[colSliderForeground]);
+		break;
+	case styleSliderBorder:
+		painter.setForegroundColor(m_color[colSliderBorder]);
 		break;
 	}
+
 }
 
 void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int what)
@@ -92,10 +126,10 @@ void eWindowStyleSkinned::drawFrame(gPainter &painter, const eRect &frame, int w
 		eWarning("[eWindowStyleSkinned] invalid frame style %d", what);
 		return;
 	}
-	drawBorder(painter, frame, m_border[bs], bpAll);
+	drawBorder(painter, frame, m_border[bs], bpAll, gPainter::BT_ALPHABLEND);
 }
 
-void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct borderSet &border, int what)
+void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct borderSet &border, int what, int flags)
 {
 	int x = pos.left(), xm = pos.right();
 
@@ -111,21 +145,21 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct
 
 	if (tl)
 	{
-		painter.blit(tl, ePoint(x, pos.top()));
+		painter.blit(tl, ePoint(x, pos.top()), eRect(), flags);
 		x += tl->size().width();
 	}
 
 	if (tr)
 	{
 		xm -= tr->size().width();
-		painter.blit(tr, ePoint(xm, pos.top()), pos);
+		painter.blit(tr, ePoint(xm, pos.top()), pos, flags);
 	}
 
 	if (t)
 	{
 		while (x < xm)
 		{
-			painter.blit(t, ePoint(x, pos.top()), eRect(x, pos.top(), xm - x, pos.height()));
+			painter.blit(t, ePoint(x, pos.top()), eRect(x, pos.top(), xm - x, pos.height()), flags);
 			x += t->size().width();
 		}
 	}
@@ -135,21 +169,21 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct
 
 	if (bl)
 	{
-		painter.blit(bl, ePoint(pos.left(), pos.bottom()-bl->size().height()));
+		painter.blit(bl, ePoint(pos.left(), pos.bottom()-bl->size().height()), eRect(), flags);
 		x += bl->size().width();
 	}
 
 	if (br)
 	{
 		xm -= br->size().width();
-		painter.blit(br, ePoint(xm, pos.bottom()-br->size().height()), eRect(x, pos.bottom()-br->size().height(), pos.width() - x, bl->size().height()));
+		painter.blit(br, ePoint(xm, pos.bottom()-br->size().height()), eRect(x, pos.bottom()-br->size().height(), pos.width() - x, bl->size().height()), flags);
 	}
 
 	if (b)
 	{
 		while (x < xm)
 		{
-			painter.blit(b, ePoint(x, pos.bottom()-b->size().height()), eRect(x, pos.bottom()-b->size().height(), xm - x, pos.height()));
+			painter.blit(b, ePoint(x, pos.bottom()-b->size().height()), eRect(x, pos.bottom()-b->size().height(), xm - x, pos.height()), flags);
 			x += b->size().width();
 		}
 	}
@@ -168,7 +202,7 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct
 	{
 		while (y < ym)
 		{
-			painter.blit(l, ePoint(pos.left(), y), eRect(pos.left(), y, pos.width(), ym - y));
+			painter.blit(l, ePoint(pos.left(), y), eRect(pos.left(), y, pos.width(), ym - y), flags);
 			y += l->size().height();
 		}
 	}
@@ -188,7 +222,7 @@ void eWindowStyleSkinned::drawBorder(gPainter &painter, const eRect &pos, struct
 	{
 		while (y < ym)
 		{
-			painter.blit(r, ePoint(pos.right() - r->size().width(), y), eRect(pos.right()-r->size().width(), y, r->size().width(), ym - y));
+			painter.blit(r, ePoint(pos.right() - r->size().width(), y), eRect(pos.right()-r->size().width(), y, r->size().width(), ym - y), flags);
 			y += r->size().height();
 		}
 	}
@@ -199,8 +233,17 @@ RESULT eWindowStyleSkinned::getFont(int what, ePtr<gFont> &fnt)
 	fnt = 0;
 	switch (what)
 	{
+	case fontListbox:
+		fnt = m_listboxfnt;
+		break;
 	case fontStatic:
-		fnt = new gFont("Regular", 12);
+		fnt = m_labelfnt;
+		break;
+	case fontEntry:
+		fnt = m_entryfnt;
+		break;
+	case fontValue:
+		fnt = m_valuefnt;
 		break;
 	case fontButton:
 		fnt = new gFont("Regular", 20);
@@ -278,3 +321,22 @@ void eWindowStyleSkinned::setTitleFont(gFont *fnt)
 	m_fnt = fnt;
 }
 
+void eWindowStyleSkinned::setLabelFont(gFont *fnt)
+{
+	m_labelfnt = fnt;
+}
+
+void eWindowStyleSkinned::setListboxFont(gFont *fnt)
+{
+	m_listboxfnt = fnt;
+}
+
+void eWindowStyleSkinned::setEntryFont(gFont *fnt)
+{
+	m_entryfnt = fnt;
+}
+
+void eWindowStyleSkinned::setValueFont(gFont *fnt)
+{
+	m_valuefnt = fnt;
+}

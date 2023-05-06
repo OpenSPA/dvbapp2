@@ -16,8 +16,9 @@ from enigma import eTimer, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont, ge
 from xml.etree import ElementTree
 
 from operator import itemgetter
+from six.moves import urllib
+from six.moves.urllib.request import HTTPHandler, HTTPDigestAuthHandler
 import os, time
-import urllib2
 import skin
 
 ###global
@@ -161,26 +162,26 @@ class NcamInfo:
 		if part is not None and reader is not None:
 			self.url = "%s://%s:%s/ncamapi.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, part, reader )
 
-		opener = urllib2.build_opener( urllib2.HTTPHandler )
+		opener = urllib.request.build_opener( HTTPHandler )
 		if not self.username == "":
-			pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
+			pwman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
 			pwman.add_password( None, self.url, self.username, self.password )
-			handlers = urllib2.HTTPDigestAuthHandler( pwman )
-			opener = urllib2.build_opener( urllib2.HTTPHandler, handlers )
-			urllib2.install_opener( opener )
-		request = urllib2.Request( self.url )
+			handlers = HTTPDigestAuthHandler( pwman )
+			opener = urllib.request.build_opener( HTTPHandler, handlers )
+			urllib.request.install_opener( opener )
+		request = urllib.request.Request( self.url )
 		err = False
 		try:
 			data = urllib.request.urlopen(request).read()
 			# print data
-		except urllib2.URLError as e:
+		except urllib.error.URLError as e:
 			if hasattr(e, "reason"):
 				err = str(e.reason)
 			elif hasattr(e, "code"):
 				err = str(e.code)
 		if err is not False:
 			if err is not None:
-				print("[openWebIF] Fehler: %s" % err)
+				print("[openWebIF] Fehler: %s" %err)
 			return False, err
 		else:
 			return True, data
@@ -209,13 +210,13 @@ class NcamInfo:
 				for cl in clients:
 					name = cl.attrib["name"]
 					proto = cl.attrib["protocol"]
-					if cl.attrib.has_key("au"):
+					if "au" in cl.attrib:
 						au = cl.attrib["au"]
 					else:
 						au = ""
 					caid = cl.find("request").attrib["caid"]
 					srvid = cl.find("request").attrib["srvid"]
-					if cl.find("request").attrib.has_key("ecmtime"):
+					if "ecmtime" in cl.find("request").attrib:
 						ecmtime = cl.find("request").attrib["ecmtime"]
 						if ecmtime == "0" or ecmtime == "":
 							ecmtime = _("n/a")
@@ -248,7 +249,7 @@ class NcamInfo:
 							tmp[cl.attrib["type"]] = []
 							tmp[cl.attrib["type"]].append( (name, proto, "%s:%s" % (caid, srvid), srvname_short, ecmtime, ip, connstatus) )
 			else:
-				if "<![CDATA" not in result[1]:
+				if b"<![CDATA" not in result[1]:
 					tmp = result[1].replace("<log>", "<log><![CDATA[").replace("</log>", "]]></log>")
 				else:
 					tmp = result[1]
@@ -256,14 +257,14 @@ class NcamInfo:
 				log = data.find("log")
 				logtext = log.text
 			if typ == "s":
-				if tmp.has_key("r"):
+				if "r" in tmp:
 					for i in tmp["r"]:
 						retval.append(i)
-				if tmp.has_key("p"):
+				if "p" in tmp:
 					for i in tmp["p"]:
 						retval.append(i)
 			elif typ == "c":
-				if tmp.has_key("c"):
+				if "c" in tmp:
 					for i in tmp["c"]:
 						retval.append(i)
 			elif typ == "l":
@@ -286,7 +287,7 @@ class NcamInfo:
 		xmldata = self.openWebIF()
 		if xmldata[0]:
 			data = ElementTree.XML(xmldata[1])
-			if data.attrib.has_key("version"):
+			if "version" in data.attrib:
 				self.version = data.attrib["version"]
 			else:
 				self.version = _("n/a")
@@ -312,7 +313,7 @@ class NcamInfo:
 			status = data.find("status")
 			clients = status.findall("client")
 			for cl in clients:
-				if cl.attrib.has_key("type"):
+				if "type" in cl.attrib:
 					if cl.attrib["type"] == "p" or cl.attrib["type"] == "r":
 						if spec is not None:
 							proto = cl.attrib["protocol"]
@@ -335,7 +336,7 @@ class NcamInfo:
 			status = data.find("status")
 			clients = status.findall("client")
 			for cl in clients:
-				if cl.attrib.has_key("type"):
+				if "type" in cl.attrib:
 					if cl.attrib["type"] == "c":
 						readers.append( (cl.attrib["name"], cl.attrib["name"]) )  # return tuple for later use in Choicebox
 			return clientnames
@@ -893,7 +894,7 @@ class ncEntitlements(Screen, NcamInfo):
 
 	def buildList(self, data):
 		caids = data.keys()
-		caids.sort()
+		sorted(caids)
 		outlist = []
 		res = [ ("CAID", _("System"), "1", "2", "3", "4", "5", "Total", _("Reshare"), "") ]
 		for i in caids:
@@ -924,7 +925,7 @@ class ncEntitlements(Screen, NcamInfo):
 		xmldata_for_reader = self.openWebIF(part = "entitlement", reader = self.cccamreader)
 		xdata = ElementTree.XML(xmldata_for_reader[1])
 		reader = xdata.find("reader")
-		if reader.attrib.has_key("hostaddress"):
+		if "hostaddress" in reader.attrib:
 			hostadr = reader.attrib["hostaddress"]
 			host_ok = True
 		else:
@@ -942,8 +943,8 @@ class ncEntitlements(Screen, NcamInfo):
 			chop = int(i.attrib["hop"])
 			if chop > 5:
 				chop = 5
-			if caid.has_key(ccaid):
-				if caid[ccaid].has_key("hop"):
+			if ccaid in caid:
+				if "hop" in caid[ccaid]:
 					caid[ccaid]["hop"][chop] += 1
 				else:
 					caid[ccaid]["hop"] = [ 0, 0, 0, 0, 0, 0 ]
@@ -956,7 +957,7 @@ class ncEntitlements(Screen, NcamInfo):
 				caid[ccaid]["system"] = csystem
 			else:
 				caid[ccaid] = {}
-				if caid[ccaid].has_key("hop"):
+				if "hop" in caid[ccaid]:
 					caid[ccaid]["hop"][chop] += 1
 				else:
 					caid[ccaid]["hop"] = [ 0, 0, 0, 0, 0, 0]
@@ -1087,7 +1088,7 @@ class ncReaderStats(Screen, NcamInfo):
 				ecmcount = ecmstat.attrib["count"]
 				lastacc = ecmstat.attrib["lastaccess"]
 				ecm = ecmstat.findall("ecm")
-				if ecmcount > 0:
+				if int(ecmcount) > 0:
 					for j in ecm:
 						caid = j.attrib["caid"]
 						channel = j.attrib["channelname"]
@@ -1099,7 +1100,7 @@ class ncReaderStats(Screen, NcamInfo):
 						if rcs == "found":
 							avg_time = str(float(avgtime) / 1000)[:5]
 							last_time = str(float(lasttime) / 1000)[:5]
-							if j.attrib.has_key("lastrequest"):
+							if "lastrequest" in j.attrib:
 								lastreq = j.attrib["lastrequest"]
 								try:
 									last_req = lastreq.split("T")[1][:-5]

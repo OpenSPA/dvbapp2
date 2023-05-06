@@ -64,7 +64,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 		self["config"].setList(list)
 
 	def refill(self, list):
-		xmldata = setupdom().getroot()
+		xmldata = setupdom()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
@@ -85,7 +85,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 		self["description"] = Label(_(""))
 
 		self.onChangedEntry = [ ]
-		self.setup = "userinterface"
+		self.setup = "UserInterface"
 		list = []
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
 		self.createSetup()
@@ -198,6 +198,11 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 		config.misc.picon_search_hdd.save()
 		from Components.Renderer import Picon
 		Picon.setPiconPath()
+		try:
+			from Components.Renderer import Picon
+			Picon.setPiconPath()
+		except:
+			pass
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()

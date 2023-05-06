@@ -1,5 +1,4 @@
 from __future__ import print_function
-from __future__ import division
 import Screens.InfoBar
 from enigma import eServiceReference, eTimer
 
@@ -8,9 +7,31 @@ from Components.ServiceScan import ServiceScan as CScan
 from Components.ProgressBar import ProgressBar
 from Components.Label import Label
 from Components.ActionMap import ActionMap
-from Components.FIFOList import FIFOList
+from Components.MenuList import MenuList
 from Components.Sources.FrontendInfo import FrontendInfo
 from Components.config import config
+
+
+class FIFOList(MenuList):
+	def __init__(self, len=10):
+		self.len = len
+		self.list = []
+		MenuList.__init__(self, self.list)
+
+	def addItem(self, item):
+		self.list.append(item)
+		self.l.setList(self.list[-self.len:])
+
+	def clear(self):
+		del self.list[:]
+		self.l.setList(self.list)
+
+	def getCurrentSelection(self):
+		return self.list and self.getCurrent() or None
+
+	def listAll(self):
+		self.l.setList(self.list)
+		self.selectionEnabled(True)
 
 
 class ServiceScanSummary(Screen):
@@ -21,7 +42,7 @@ class ServiceScanSummary(Screen):
 		<widget name="Service" position="6,22" size="120,26" font="Regular;12" transparent="1" />
 	</screen>"""
 
-	def __init__(self, session, parent, showStepSlider = True):
+	def __init__(self, session, parent, showStepSlider=True):
 		Screen.__init__(self, session, parent)
 
 		self["Title"] = Label(parent.title or _("Service scan"))
@@ -33,6 +54,7 @@ class ServiceScanSummary(Screen):
 
 	def updateService(self, name):
 		self["Service"].setText(name)
+
 
 class ServiceScan(Screen):
 

@@ -1,109 +1,87 @@
-# -*- coding: utf-8 -*-
-from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
+
+from bisect import insort
+from datetime import datetime
+from itertools import groupby
+from os import listdir
+from os.path import exists, isfile, ismount, realpath, splitext
+import pickle
+from sys import maxsize
+from time import localtime, strftime, time
+
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
+
+from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
+from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
+from ServiceReference import ServiceReference, isPlayableForCur
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap, NumberActionMap
-from Components.Harddisk import harddiskmanager, findMountPoint
+from Components.config import ConfigBoolean, ConfigClock, config, configfile
+from Components.Harddisk import findMountPoint, harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
-from Components.MovieList import AUDIO_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
+from Components.MovieList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, MOVIE_EXTENSIONS
+from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.PluginComponent import plugins
+from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.ServiceEvent import ServiceEvent
-from Components.Sources.Boolean import Boolean
-from Components.Sources.List import List
-from Components.config import config, configfile, ConfigBoolean, ConfigClock, ConfigText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.TimerList import TimerList  # Deprecated!
+from Components.Timeshift import InfoBarTimeshift
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
 from Components.VolumeControl import VolumeControl
-from Components.Pixmap import MovingPixmap, MultiPixmap
+from Components.Sources.Boolean import Boolean
+from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from Components.ScrollLabel import ScrollLabel
 from Plugins.Plugin import PluginDescriptor
-
-from Components.Timeshift import InfoBarTimeshift
-
-from Screens.Screen import Screen
-from Screens import ScreenSaver
-from Screens.ChannelSelection import ChannelSelection, PiPZapSelection, BouquetSelector, SilentBouquetSelector, service_types_tv
+from Screens.ChannelSelection import ChannelSelection, PiPZapSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector, service_types_tv
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
-from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.EpgSelection import EPGSelection
+from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.InputBox import InputBox
+from Screens.Menu import Menu, findMenu
 from Screens.MessageBox import MessageBox
 from Screens.MinuteInput import MinuteInput
-from Screens.TimerSelection import TimerSelection
 from Screens.PictureInPicture import PictureInPicture
 from Screens.PVRState import PVRState, TimeshiftState
 from Screens.SubtitleDisplay import SubtitleDisplay
-from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
-from Screens.Standby import Standby, TryQuitMainloop
-from Screens.TimeDateInput import TimeDateInput
-from Screens.TimerEdit import TimerEditList
-from Screens.UnhandledKey import UnhandledKey
-from ServiceReference import ServiceReference, isPlayableForCur
-from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
-from Screens.TimerEntry import TimerEntry as TimerEntry
-
-from Tools import Directories, Notifications
-from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN, isPluginInstalled
-from Tools.KeyBindings import getKeyDescription
-from Tools.ServiceReference import hdmiInServiceRef
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
-from boxbranding import getMachineProcModel, getMachineBuild, getMachineBrand, getMachineName
-
-from time import time, localtime, strftime
-from bisect import insort
-from keyids import KEYIDS
-from datetime import datetime
-import itertools
-import datetime
-from sys import maxsize
-
-import os
-from six.moves import cPickle as pickle
-import six
-
-# hack alert!
-from Screens.Menu import MainMenu, Menu, mdom
+from Screens.RdsDisplay import RassInteractive, RdsInfoDisplay
+from Screens.Screen import Screen
+from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
 import Screens.Standby
+from Screens.Standby import Standby, TryQuitMainloop
+from Screens.TimeDateInput import TimeDateInput
+from Screens.Timers import RecordTimerEdit, RecordTimerOverview
+from Screens.UnhandledKey import UnhandledKey
+from Tools import Notifications
+from Tools.Directories import pathExists, fileReadLine, fileWriteLine, isPluginInstalled
+from Tools.ServiceReference import hdmiInServiceRef
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-
-    def disable(self):
-        self.HEADER = ''
-        self.OKBLUE = ''
-        self.OKGREEN = ''
-        self.WARNING = ''
-        self.FAIL = ''
-        self.ENDC = ''
+MODULE_NAME = __name__.split(".")[-1]
 
 AUDIO = False
 seek_withjumps_muted = False
 jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
+keyPressCallback = []
 
 
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
 
+
 def isMoviePlayerInfoBar(self):
 	return self.__class__.__name__ == "MoviePlayer"
+
 
 def setResumePoint(session):
 	global resumePointCache, resumePointCacheLast
 	service = session.nav.getCurrentService()
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
-	if (service is not None) and (ref is not None): # and (ref.type != 1):
+	if (service is not None) and (ref is not None):  # and (ref.type != 1):
 		# ref type 1 has its own memory...
 		seek = service.seek()
 		if seek:
@@ -120,11 +98,12 @@ def setResumePoint(session):
 				for k, v in list(resumePointCache.items()):
 					if v[0] < lru:
 						candidate = k
-						filepath = os.path.realpath(candidate.split(':')[-1])
+						filepath = realpath(candidate.split(':')[-1])
 						mountpoint = findMountPoint(filepath)
-						if os.path.ismount(mountpoint) and not os.path.exists(filepath):
+						if ismount(mountpoint) and not exists(filepath):
 							del resumePointCache[candidate]
 				saveResumePoints()
+
 
 def delResumePoint(ref):
 	global resumePointCache, resumePointCacheLast
@@ -134,16 +113,18 @@ def delResumePoint(ref):
 		pass
 	saveResumePoints()
 
+
 def getResumePoint(session):
 	global resumePointCache
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (ref is not None) and (ref.type != 1):
 		try:
 			entry = resumePointCache[ref.toString()]
-			entry[0] = int(time()) # update LRU timestamp
+			entry[0] = int(time())  # update LRU timestamp
 			return entry[1]
 		except KeyError:
 			return None
+
 
 def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
@@ -155,6 +136,7 @@ def saveResumePoints():
 		print("[InfoBarGenerics] Failed to write resumepoints:", ex)
 	resumePointCacheLast = int(time())
 
+
 def loadResumePoints():
 	try:
 		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
@@ -165,9 +147,11 @@ def loadResumePoints():
 		print("[InfoBarGenerics] Failed to load resumepoints:", ex)
 		return {}
 
+
 def updateresumePointCache():
 	global resumePointCache
 	resumePointCache = loadResumePoints()
+
 
 def ToggleVideo():
 	mode = open("/proc/stb/video/policy").read()[:-1]
@@ -185,21 +169,28 @@ def ToggleVideo():
 		f = open("/proc/stb/video/policy", "w")
 		f.write("panscan")
 		f.close()
+
+
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
 subservice_groupslist = None
+
+
 def reload_subservice_groupslist(force=False):
 	global subservice_groupslist
 	if subservice_groupslist is None or force:
 		try:
 			groupedservices = "/etc/enigma2/groupedservices"
-			if not os.path.isfile(groupedservices):
+			if not isfile(groupedservices):
 				groupedservices = "/usr/share/enigma2/groupedservices"
-			subservice_groupslist = [list(g) for k, g in itertools.groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
+			subservice_groupslist = [list(g) for k, g in groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
 		except:
 			subservice_groupslist = []
+
+
 reload_subservice_groupslist()
+
 
 def getPossibleSubservicesForCurrentChannel(current_service):
 	if current_service and subservice_groupslist:
@@ -207,6 +198,7 @@ def getPossibleSubservicesForCurrentChannel(current_service):
 		if ref_in_subservices_group:
 			return ref_in_subservices_group[0]
 	return []
+
 
 def getActiveSubservicesForCurrentChannel(current_service):
 	if current_service:
@@ -220,74 +212,116 @@ def getActiveSubservicesForCurrentChannel(current_service):
 				event = events[0]
 				title = event[2]
 				if title and "Sendepause" not in title:
-					starttime = datetime.datetime.fromtimestamp(event[0]).strftime('%H:%M')
-					endtime = datetime.datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
-					current_show_name = title + " " + str(starttime) + "-" + str(endtime)
-					activeSubservices.append((current_show_name, subservice))
+					starttime = datetime.fromtimestamp(event[0]).strftime('%H:%M')
+					endtime = datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
+					servicename = ServiceReference(subservice).getServiceName()
+					schedule = str(starttime) + "-" + str(endtime)
+					activeSubservices.append((servicename + " " + schedule + " " + title, subservice))
 		return activeSubservices
+
 
 def hasActiveSubservicesForCurrentChannel(current_service):
 	activeSubservices = getActiveSubservicesForCurrentChannel(current_service)
 	return bool(activeSubservices and len(activeSubservices) > 1)
+
+
+class TimerSelection(Screen):
+	def __init__(self, session, list):
+		Screen.__init__(self, session)
+		self.setTitle(_("Timer selection"))
+		self.list = list
+		self["timerlist"] = TimerList(self.list)
+		self["actions"] = ActionMap(["OkCancelActions"],
+			{
+				"ok": self.selected,
+				"cancel": self.leave,
+			}, -1)
+
+	def leave(self):
+		self.close(None)
+
+	def selected(self):
+		self.close(self["timerlist"].getCurrentIndex())
+
 
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
 		self.dishDialog.setAnimationMode(0)
 
+
 class InfoBarLongKeyDetection:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxsize - 1, self.detection) #highest prio
+		eActionMap.getInstance().bindAction('', -maxsize - 1, self.detection)  # Highest priority.
 		self.LongButtonPressed = False
 
-	#this function is called on every keypress!
-	def detection(self, key, flag):
+	def detection(self, key, flag):  # This function is called on every key press!
 		if flag == 3:
 			self.LongButtonPressed = True
 		elif flag == 0:
 			self.LongButtonPressed = False
 
+
 class InfoBarUnhandledKey:
 	def __init__(self):
-		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
-		self.unhandledKeyDialog.setAnimationMode(0)
-		self.hideUnhandledKeySymbolTimer = eTimer()
-		self.hideUnhandledKeySymbolTimer.callback.append(self.unhandledKeyDialog.hide)
+		self.unhandledKey = self.session.instantiateDialog(UnhandledKey)
+		eActionMap.getInstance().bindAction("", -maxsize - 1, self.processKeyA)  # Highest priority.
+		eActionMap.getInstance().bindAction("", maxsize, self.processKeyB)  # Lowest priority.
 		self.checkUnusedTimer = eTimer()
-		self.checkUnusedTimer.callback.append(self.checkUnused)
-		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
-		eActionMap.getInstance().bindAction('', -maxsize - 1, self.actionA) #highest prio
-		eActionMap.getInstance().bindAction('', maxsize, self.actionB) #lowest prio
-		self.flags = (1 << 1)
-		self.uflags = 0
+		self.checkUnusedTimer.callback.append(self.isUnhandledKey)
+		self.flagBitmap = 0b0010
+		self.prevBitmap = 0b0000
+		self.sibIgnoreKeys = (
+			KEYIDS["KEY_VOLUMEDOWN"],  # 114.
+			KEYIDS["KEY_VOLUMEUP"],  # 115.
+			KEYIDS["KEY_INFO"],  # 358.
+			KEYIDS["KEY_OK"],  # 352.
+			KEYIDS["KEY_UP"],  # 103.
+			KEYIDS["KEY_DOWN"],  # 108.
+			KEYIDS["KEY_CHANNELUP"],  # 402.
+			KEYIDS["KEY_CHANNELDOWN"],  # 403.
+			KEYIDS["KEY_NEXT"],  #407.
+			KEYIDS["KEY_PREVIOUS"]  # 412.
+		)
 
-	#this function is called on every keypress!
-	def actionA(self, key, flag):
-		try:
-			print('[InfoBarGenerics] KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value == key), getKeyDescription(key)[0]))
-		except:
-			try:
-				print('[InfoBarGenerics] KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value == key))) # inverse dictionary lookup in KEYIDS
-			except:
-				print('[InfoBarGenerics] KEY: %s %s' % (key, flag))
-		self.unhandledKeyDialog.hide()
+	# Flags:
+	# 	0 = Make.
+	# 	1 = Break.
+	# 	2 = Repeat.
+	# 	3 = Long.
+	# 	4 = ASCII.
+	def processKeyA(self, key, flag):  # This function is called on every key press!
+		print("[InfoBarGenerics] Key '%s' (%s) %s." % (KEYIDNAMES.get(key, _("Unknown")), key, KEYFLAGS.get(flag, _("Unknown"))))
+		for callback in keyPressCallback:
+			callback()
+		if self.closeSecondInfoBar(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if flag != 4:
-			if self.flags & (1 << 1):
-				self.flags = self.uflags = 0
-			self.flags |= (1 << flag)
-			if flag == 1: # break
+			if flag == 0:
+				self.unhandledKey.hide()
+			if self.flagBitmap & 0b0010:  # The button is repeating.
+				self.flagBitmap = 0b0000
+				self.prevBitmap = 0b0000
+			self.flagBitmap |= (1 << flag)
+			if flag == 1:
 				self.checkUnusedTimer.start(0, True)
 		return 0
 
-	#this function is only called when no other action has handled this key
-	def actionB(self, key, flag):
+	def processKeyB(self, key, flag):  # This function is only called when no other action has handled this key.
 		if flag != 4:
-			self.uflags |= (1 << flag)
+			self.prevBitmap |= (1 << flag)
 
-	def checkUnused(self):
-		if self.flags == self.uflags:
-			self.unhandledKeyDialog.show()
-			self.hideUnhandledKeySymbolTimer.start(2000, True)
+	def closeSecondInfoBar(self, key):
+		return key >= 12 and key not in self.sibIgnoreKeys
+
+	def isUnhandledKey(self):
+		if self.flagBitmap == self.prevBitmap:
+			self.unhandledKey.show()
+
+	def showUnhandledKey(self):
+		self.unhandledKey.show()
+
 
 class InfoBarScreenSaver:
 	def __init__(self):
@@ -295,7 +329,7 @@ class InfoBarScreenSaver:
 		self.onExecEnd.append(self.__onExecEnd)
 		self.screenSaverTimer = eTimer()
 		self.screenSaverTimer.callback.append(self.screensaverTimeout)
-		self.screensaver = self.session.instantiateDialog(ScreenSaver.Screensaver)
+		self.screensaver = self.session.instantiateDialog(ScreenSaver)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
@@ -317,7 +351,7 @@ class InfoBarScreenSaver:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref and not (hasattr(self.session, "pipshown") and self.session.pipshown):
 				ref = ref.toString().split(":")
-				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
+				flag = ref[2] == "2" or ref[2] == "A" or splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
 		if time and flag:
 			self.screenSaverTimer.startLongTimer(time)
 		else:
@@ -341,16 +375,255 @@ class InfoBarScreenSaver:
 			self.ScreenSaverTimerStart()
 			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
+
 class HideVBILine(Screen):
 	skin = """<screen position="0,0" size="%s,%s" backgroundColor="#000000" flags="wfNoBorder"/>""" % (getDesktop(0).size().width(), getDesktop(0).size().height() / 360)
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
+
 
 class SecondInfoBar(Screen):
+	ADD_TIMER = 0
+	REMOVE_TIMER = 1
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skin = None
+		if config.usage.show_second_infobar.value == "3":
+			self.skinName = "SecondInfoBarECM"
+		else:
+			self.skinName = "SecondInfoBar"
+		self["epg_description"] = ScrollLabel()
+		self["FullDescription"] = ScrollLabel()
+		self["channel"] = Label()
+		self["key_red"] = Label()
+		self["key_green"] = Label()
+		self["key_yellow"] = Label()
+		self["key_blue"] = Label()
+		self["SecondInfoBar"] = HelpableActionMap(self, ["2ndInfobarActions"], {
+			"pageUp": (self.pageUp, _("Switch EPG Page Up")),
+			"pageDown": (self.pageDown, _("Switch EPG Page Down")),
+			"prevPage": (self.pageUp, _("Switch EPG Page Up")),
+			"nextPage": (self.pageDown, _("Switch EPG Page Down")),
+			"prevEvent": (self.prevEvent, _("Switch to previous EPG Event")),
+			"nextEvent": (self.nextEvent, _("Switch to next EPG Event")),
+			"timerAdd": (self.timerAdd, _("Add Timer")),
+			"openSimilarList": (self.openSimilarList, _("Open Similar List Channel List")),
+		}, prio=-1, description=_("2nd InfoBar Actions"))
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+				iPlayableService.evUpdatedEventInfo: self.getEvent
+			})
+
+		self.onShow.append(self.__Show)
+		self.onHide.append(self.__Hide)
+
+	def pageUp(self):
+		self["epg_description"].pageUp()
+		self["FullDescription"].pageUp()
+
+	def pageDown(self):
+		self["epg_description"].pageDown()
+		self["FullDescription"].pageDown()
+
+	def __Show(self):
+		if config.plisettings.ColouredButtons.value:
+			self["key_yellow"].setText(_("Search"))
+		self["key_red"].setText(_("Similar"))
+		self["key_blue"].setText(_("Extensions"))
+		self["SecondInfoBar"].doBind()
+		self.getEvent()
+
+	def __Hide(self):
+		if self["SecondInfoBar"].bound:
+			self["SecondInfoBar"].doUnbind()
+
+	def getEvent(self):
+		self["epg_description"].setText("")
+		self["FullDescription"].setText("")
+		self["channel"].setText("")
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.getNowNext()
+		epglist = self.epglist
+		if not epglist:
+			self.is_now_next = False
+			epg = eEPGCache.getInstance()
+			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
+			if ptr:
+				epglist.append(ptr)
+				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
+				if ptr:
+					epglist.append(ptr)
+		else:
+			self.is_now_next = True
+		if epglist:
+			Event = self.epglist[0]
+			Ref = ServiceReference(ref)
+			callback = self.eventViewCallback
+			self.cbFunc = callback
+			self.currentService = Ref
+			self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
+			self.event = Event
+			self.key_green_choice = self.ADD_TIMER
+			if self.isRecording:
+				self["key_green"].setText("")
+			else:
+				self["key_green"].setText(_("Add Timer"))
+			self.setEvent(self.event)
+
+	def getNowNext(self):
+		epglist = []
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		ptr = info and info.getEvent(0)
+		if ptr:
+			epglist.append(ptr)
+		ptr = info and info.getEvent(1)
+		if ptr:
+			epglist.append(ptr)
+		self.epglist = epglist
+
+	def eventViewCallback(self, setEvent, setService, val):  # used for now/next displaying
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
+
+	def prevEvent(self):
+		if self.cbFunc is not None:
+			self.cbFunc(self.setEvent, self.setService, -1)
+
+	def nextEvent(self):
+		if self.cbFunc is not None:
+			self.cbFunc(self.setEvent, self.setService, +1)
+
+	def removeTimer(self, timer):
+		timer.afterEvent = AFTEREVENT.NONE
+		self.session.nav.RecordTimer.removeEntry(timer)
+		self["key_green"].setText(_("Add Timer"))
+		self.key_green_choice = self.ADD_TIMER
+
+	def timerAdd(self):
+		self.hide()
+		self.secondInfoBarWasShown = False
+		if self.isRecording:
+			return
+		event = self.event
+		serviceref = self.currentService
+		if event is None:
+			return
+		eventid = event.getEventId()
+		refstr = serviceref.ref.toString()
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				cb_func = lambda ret: not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete '%s'?") % event.getEventName())
+				break
+		else:
+			newEntry = RecordTimerEntry(self.currentService, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(self.event))
+			self.session.openWithCallback(self.finishedAdd, RecordTimerEdit, newEntry)
+
+	def finishedAdd(self, answer):
+		# print "finished add"
+		if not isinstance(answer, bool) and answer[0]:
+			entry = answer[1]
+			simulTimerList = self.session.nav.RecordTimer.record(entry)
+			if simulTimerList is not None:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
+					if not entry.repeated and not config.recording.margin_before.value and not config.recording.margin_after.value and len(simulTimerList) > 1:
+						change_time = False
+						conflict_begin = simulTimerList[1].begin
+						conflict_end = simulTimerList[1].end
+						if conflict_begin == entry.end:
+							entry.end -= 30
+							change_time = True
+						elif entry.begin == conflict_end:
+							entry.begin += 30
+							change_time = True
+						if change_time:
+							simulTimerList = self.session.nav.RecordTimer.record(entry)
+					if simulTimerList is not None:
+						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
+		else:
+			self["key_green"].setText(_("Add Timer"))
+			self.key_green_choice = self.ADD_TIMER
+			# print "Timeredit aborted"
+
+	def finishSanityCorrection(self, answer):
+		self.finishedAdd(answer)
+
+	def setService(self, service):
+		self.currentService = service
+		if self.isRecording:
+			self["channel"].setText(_("Recording"))
+		else:
+			name = self.currentService.getServiceName()
+			if name is not None:
+				self["channel"].setText(name)
+			else:
+				self["channel"].setText(_("Unknown Service"))
+
+	def sort_func(self, x, y):
+		if x[1] < y[1]:
+			return -1
+		elif x[1] == y[1]:
+			return 0
+		else:
+			return 1
+
+	def setEvent(self, event):
+		if event is None:
+			return
+		self.event = event
+		try:
+			name = event.getEventName()
+			self["channel"].setText(name)
+		except:
+			pass
+		description = event.getShortDescription()
+		extended = event.getExtendedDescription()
+		if description and extended:
+			description += '\n'
+		elif description and not extended:
+			extended = description
+		if description == extended:
+			text = description
+		else:
+			text = description + extended
+		self.setTitle(event.getEventName())
+		self["epg_description"].setText(text)
+		self["FullDescription"].setText(extended)
+		serviceref = self.currentService
+		eventid = self.event.getEventId()
+		refstr = serviceref.ref.toString()
+		isRecordEvent = False
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				isRecordEvent = True
+				break
+		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
+		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
+			self["key_green"].setText(_("Add Timer"))
+			self.key_green_choice = self.ADD_TIMER
+
+	def openSimilarList(self):
+		id = self.event and self.event.getEventId()
+		refstr = str(self.currentService)
+		if id is not None:
+			self.hide()
+			self.secondInfoBarWasShown = False
+			self.session.open(EPGSelection, refstr, None, id)
+
 
 class InfoBarShowHide(InfoBarScreenSaver):
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -363,15 +636,16 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	skipToggleShow = False
 
 	def __init__(self):
-		self["ShowHideActions"] = ActionMap(["InfobarShowHideActions"],
+		self["ShowHideActions"] = HelpableActionMap(self, ["InfobarShowHideActions"],
 			{
-				"toggleShow": self.okButtonCheck,
-				"hide": self.keyHide,
-			}, 1)
+			"LongOKPressed": (self.toggleShowLong, _("Toggle display of the InfoBar")),
+			"toggleShow": (self.OkPressed, _("Toggle display of the InfoBar")),
+			"hide": (self.keyHide, _("Hide the InfoBar")),
+		}, prio=1, description=_("InfoBar Show/Hide Actions"))  # lower prio to make it possible to override ok and cancel..
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				iPlayableService.evStart: self.serviceStarted,
-			})
+			iPlayableService.evStart: self.serviceStarted,
+		})
 
 		InfoBarScreenSaver.__init__(self)
 		self.__state = self.STATE_SHOWN
@@ -392,15 +666,20 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.onShowHideNotifiers = []
 
 		self.standardInfoBar = False
+		self.lastSecondInfoBar = 0
 		self.lastResetAlpha = True
-
 		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
-			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-			self.secondInfoBarScreen.show()
-
+			self.SwitchSecondInfoBarScreen()
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.__onExecBegin)
+		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_INFOBARLOADED):
+			plugin(reason=1, session=self.session, instance=self, typeInfoBar=self.__class__.__name__)
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_INFOBARLOADED):
+			plugin(reason=0, session=self.session, instance=self, typeInfoBar=self.__class__.__name__)
 
 	def __onExecBegin(self):
 		self.showHideVBI()
@@ -409,12 +688,34 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.secondInfoBarScreen:
 			self.secondInfoBarScreen.hide()
 			self.standardInfoBar = True
+		self.secondInfoBarWasShown = False
+		self.EventViewIsShown = False
 		self.hideVBILineScreen.hide()
 		try:
 			if self.pvrStateDialog:
 				pass
 		except:
 			self.pvrStateDialog = None
+
+	def OkPressed(self):
+		if config.usage.okbutton_mode.value == "0":
+			self.toggleShow()
+		elif config.usage.okbutton_mode.value == "1":
+			try:
+				self.openServiceList()
+			except:
+				self.toggleShow()
+
+	def SwitchSecondInfoBarScreen(self):
+		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
+			return
+		self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
+		self.lastSecondInfoBar = int(config.usage.show_second_infobar.value)
+
+#	def LongOKPressed(self):
+#		if isinstance(self, InfoBarEPG):
+#			if config.plisettings.InfoBarEpg_mode.value == "1":
+#				self.openInfoBarEPG()
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
@@ -436,7 +737,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.doWriteAlpha(config.av.osd_alpha.value)
 
 	def doWriteAlpha(self, value):
-		if fileExists("/proc/stb/video/alpha"):
+		if exists("/proc/stb/video/alpha"):
 			f = open("/proc/stb/video/alpha", "w")
 			f.write("%i" % (value))
 			f.close()
@@ -447,8 +748,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
-		if self.secondInfoBarScreen:
-			self.secondInfoBarScreen.hide()
 		self.resetAlpha()
 		for x in self.onShowHideNotifiers:
 			x(False)
@@ -459,14 +758,26 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.unDimmingTimer.callback.append(self.unDimming)
 			self.unDimmingTimer.start(300, True)
 
-	def keyHide(self):
-		if self.__state == self.STATE_HIDDEN and self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
-			if config.usage.pip_hideOnExit.value == "popup":
-				self.session.openWithCallback(self.hidePipOnExitCallback, MessageBox, _("Disable Picture in Picture"), simple=True)
+	def keyHide(self, SHOW=True):
+		if self.__state == self.STATE_HIDDEN:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref:
+				ref = ref.toString()
 			else:
-				self.hidePipOnExitCallback(True)
-		elif config.usage.ok_is_channelselection.value and hasattr(self, "openServiceList"):
-			self.toggleShow()
+				ref = " "
+#			if SHOW and config.plisettings.InfoBarEpg_mode.value == "2" and not ref[1:].startswith(":0:0:0:0:0:0:0:0:0:"):
+#				self.openInfoBarEPG()
+#			else:
+			if not SHOW:
+				self.hide()
+				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+					self.secondInfoBarScreen.hide()
+					self.secondInfoBarWasShown = False
+			if self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
+				if config.usage.pip_hideOnExit.value == "popup":
+					self.session.openWithCallback(self.hidePipOnExitCallback, MessageBox, _("Disable Picture in Picture"), simple=True)
+				else:
+					self.hidePipOnExitCallback(True)
 		else:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
@@ -496,14 +807,19 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
 			self.hideTimer.stop()
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				idx = config.usage.show_second_infobar.index - 1
-			else:
-				idx = config.usage.infobar_timeout.index
+			idx = config.usage.infobar_timeout.index
 			if idx:
-				self.hideTimer.startLongTimer(idx)
+				self.hideTimer.start(idx * 1000, True)
+		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or ((not config.usage.show_second_infobar.value or isMoviePlayerInfoBar(self)) and self.EventViewIsShown):
+			self.hideTimer.stop()
+			idx = config.usage.second_infobar_timeout.index
+			if idx:
+				self.hideTimer.start(idx * 1000, True)
 		elif hasattr(self, "pvrStateDialog"):
 			self.hideTimer.stop()
+			#idx = config.usage.infobar_timeout.index
+			#if idx:
+			#	self.hideTimer.start(idx*1000, True)
 		self.skipToggleShow = False
 
 	def doShow(self):
@@ -536,14 +852,22 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
 				self.resetAlpha()
-
-	def okButtonCheck(self):
-		if config.usage.ok_is_channelselection.value and hasattr(self, "openServiceList"):
-			if isinstance(self, InfoBarTimeshift) and self.timeshiftEnabled() and isinstance(self, InfoBarSeek) and self.seekstate == self.SEEK_STATE_PAUSE:
-				return
-			self.openServiceList()
-		else:
-			self.toggleShow()
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
+			try:
+				self.eventView.close()
+			except:
+				pass
+			self.EventViewIsShown = False
+#		elif hasattr(self, "pvrStateDialog"):
+#			if self.dimmed > 0:
+#				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+#				self.DimmingTimer.start(5, True)
+#			else:
+#				self.DimmingTimer.stop()
+#				try:
+#					self.pvrStateDialog.hide()
+#				except:
+#					pass
 
 	def toggleShow(self):
 		if self.skipToggleShow:
@@ -553,18 +877,48 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
 			if self.__state == self.STATE_HIDDEN:
-				self.show()
+				if not self.secondInfoBarWasShown or (config.usage.show_second_infobar.value == "1" and not self.EventViewIsShown):
+					self.show()
 				if self.secondInfoBarScreen:
 					self.secondInfoBarScreen.hide()
-			elif isStandardInfoBar(self) and config.usage.show_second_infobar.value == "EPG":
-				self.showDefaultEPG()
-			elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
+				self.secondInfoBarWasShown = False
+				self.EventViewIsShown = False
+			elif self.secondInfoBarScreen and (config.usage.show_second_infobar.value == "2" or config.usage.show_second_infobar.value == "3") and not self.secondInfoBarScreen.shown:
+				self.SwitchSecondInfoBarScreen()
+				self.hide()
 				self.secondInfoBarScreen.show()
+				self.secondInfoBarWasShown = True
+				self.startHideTimer()
+			elif (config.usage.show_second_infobar.value == "1" or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
+				self.hide()
+				try:
+					self.openEventView()
+				except:
+					pass
+				self.EventViewIsShown = True
+				self.hideTimer.stop()
+			elif isMoviePlayerInfoBar(self) and not self.EventViewIsShown and config.usage.show_second_infobar.value:
+				self.hide()
+				self.openEventView(True)
+				self.EventViewIsShown = True
 				self.startHideTimer()
 			else:
 				self.hide()
-				self.hideTimer.stop()
+				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+					self.secondInfoBarScreen.hide()
+				elif self.EventViewIsShown:
+					try:
+						self.eventView.close()
+					except:
+						pass
+					self.EventViewIsShown = False
 
+	def toggleShowLong(self):
+		# OPENSPA [morser] change option for long press
+		if self.LongButtonPressed:
+			self.longpress(config.usage.oklong.value)
+		###############################################
+		
 	def lockShow(self):
 		try:
 			self.__locked += 1
@@ -587,6 +941,66 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.execing:
 			self.startHideTimer()
 
+	def openEventView(self, simple=False):
+		try:
+			if self.servicelist is None:
+				return
+		except:
+			simple = True
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.getNowNext()
+		epglist = self.epglist
+		if not epglist:
+			self.is_now_next = False
+			epg = eEPGCache.getInstance()
+			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
+			if ptr:
+				epglist.append(ptr)
+				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
+				if ptr:
+					epglist.append(ptr)
+		else:
+			self.is_now_next = True
+		if epglist:
+			if not simple:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+				self.dlg_stack.append(self.eventView)
+			else:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
+				self.dlg_stack = None
+
+	def getNowNext(self):
+		epglist = []
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		ptr = info and info.getEvent(0)
+		if ptr:
+			epglist.append(ptr)
+		ptr = info and info.getEvent(1)
+		if ptr:
+			epglist.append(ptr)
+		self.epglist = epglist
+
+	def closed(self, ret=False):
+		if not self.dlg_stack:
+			return
+		closedScreen = self.dlg_stack.pop()
+		if self.eventView and closedScreen == self.eventView:
+			self.eventView = None
+		if ret == True or ret == 'close':
+			dlgs = len(self.dlg_stack)
+			if dlgs > 0:
+				self.dlg_stack[dlgs - 1].close(dlgs > 1)
+		self.reopen(ret)
+
+	def eventViewCallback(self, setEvent, setService, val):  # used for now/next displaying
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
+
 	def checkHideVBI(self):
 		service = self.session.nav.getCurrentlyPlayingServiceReference()
 		servicepath = service and service.getPath()
@@ -607,6 +1021,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.hideVBILineScreen.show()
 		else:
 			self.hideVBILineScreen.hide()
+
 
 class BufferIndicator(Screen):
 	def __init__(self, session):
@@ -638,10 +1053,12 @@ class BufferIndicator(Screen):
 		self.mayShow = False
 		self.hide()
 
+
 class InfoBarBuffer():
 	def __init__(self):
 		self.bufferScreen = self.session.instantiateDialog(BufferIndicator)
 		self.bufferScreen.hide()
+
 
 class NumberZap(Screen):
 	def quit(self):
@@ -654,7 +1071,7 @@ class NumberZap(Screen):
 
 	def handleServiceName(self):
 		if self.searchNumber:
-			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
+			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), recursive=True)
 			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 			if not self.startBouquet:
 				self.startBouquet = self.bouquet
@@ -663,7 +1080,7 @@ class NumberZap(Screen):
 		self.Timer.start(3000, True)
 		if self.searchNumber:
 			if self.startBouquet == self.bouquet:
-				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly = True)
+				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly=True)
 			else:
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
 			self["servicename"].setText(ServiceReference(self.service).getServiceName())
@@ -693,7 +1110,7 @@ class NumberZap(Screen):
 	def showPicon(self):
 		self["Service"].newService(self.service)
 
-	def __init__(self, session, number, searchNumberFunction = None):
+	def __init__(self, session, number, searchNumberFunction=None):
 		Screen.__init__(self, session)
 
 		if config.usage.numzappicon.value:
@@ -718,22 +1135,21 @@ class NumberZap(Screen):
 		self.handleServiceName()
 		self["service_summary"].setText(self["servicename"].getText())
 
-		self["actions"] = NumberActionMap(["SetupActions", "ShortcutActions"],
-			{
-				"cancel": self.quit,
-				"ok": self.keyOK,
-				"blue": self.keyBlue,
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal
-			})
+		self["actions"] = HelpableNumberActionMap(self, ["SetupActions", "ShortcutActions"], {
+			"cancel": (self.quit, _("Cancel selection")),
+			"ok": (self.keyOK, _("Select/Zap to selected service")),
+			"blue": (self.keyBlue, _("Toggle service name display")),
+			"1": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"2": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"3": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"4": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"5": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"6": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"7": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"8": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"9": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"0": (self.keyNumberGlobal, _("Digit entry for service selection"))
+		}, prio=0, description=_("Service Selection/Zap Actions"))
 
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
@@ -745,22 +1161,23 @@ class NumberZap(Screen):
 			else:
 				self.Timer.start(config.usage.numzaptimeout1.value, True)
 
+
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
+
 	def __init__(self):
-		self["NumberActions"] = NumberActionMap(["NumberActions"],
-			{
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal,
-			})
+		self["NumberActions"] = HelpableNumberActionMap(self, ["NumberActions"], {
+			"1": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"2": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"3": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"4": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"5": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"6": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"7": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"8": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"9": (self.keyNumberGlobal, _("Digit entry for service selection")),
+			"0": (self.keyNumberGlobal, _("Digit entry for service selection"))
+		}, prio=0, description=_("Service Zap Actions"))
 
 	def keyNumberGlobal(self, number):
 		if "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
@@ -770,6 +1187,19 @@ class InfoBarNumberZap:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
 			return
+
+		seekable = self.getSeek()
+		if seekable:
+			length = seekable.getLength() or (None, 0)
+			if length[1] > 0:
+				key = int(number)
+				time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
+					-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
+					-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key - 1]
+
+				time = time * 90000
+				seekable.seekRelative(time < 0 and -1 or 1, abs(time))
+				return
 
 		if self.pts_blockZap_timer.isActive():
 			return
@@ -796,20 +1226,10 @@ class InfoBarNumberZap:
 				if self.session.pipshown:
 					del self.session.pip
 					self.session.pipshown = False
-				try:
-					if config.misc.spazeChannelSelection.value:
-						from Screens.newChannelSelection import newChannelSelection
-						self.servicelist = self.session.instantiateDialog(newChannelSelection)
-					else:
-						self.servicelist = self.session.instantiateDialog(ChannelSelection)
-				except:
-					self.servicelist = self.session.instantiateDialog(ChannelSelection)
-
 				self.servicelist.history_tv = []
 				self.servicelist.history_radio = []
 				self.servicelist.history = self.servicelist.history_tv
 				self.servicelist.history_pos = 0
-				self.servicelist2 = self.session.instantiateDialog(PiPZapSelection)
 				self.servicelist2.history_tv = []
 				self.servicelist2.history_radio = []
 				self.servicelist2.history = self.servicelist.history_tv
@@ -850,9 +1270,24 @@ class InfoBarNumberZap:
 			else:
 				self.servicelist.recallPrevService()
 
-	def numberEntered(self, service = None, bouquet = None):
+	def numberEntered(self, service=None, bouquet=None):
 		if service:
 			self.selectAndStartService(service, bouquet)
+
+	def searchNumberHelperRecursive(self, serviceHandler, num, bouquet):
+		# print("searchNumberHelperRecursive %s" % bouquet.toString())
+		servicelist = serviceHandler.list(bouquet)
+		if servicelist:
+			serviceIterator = servicelist.getNext()
+			while serviceIterator.valid():
+				if num == serviceIterator.getChannelNum():
+					return (serviceIterator, "%s;" % bouquet.toString())
+				if serviceIterator.flags & eServiceReference.isDirectory:
+					result = self.searchNumberHelperRecursive(serviceHandler, num, serviceIterator)
+					if result[0]:
+						return (result[0], "%s;%s" % (bouquet.toString(), result[1]))
+				serviceIterator = servicelist.getNext()
+		return (None, None)
 
 	def searchNumberHelper(self, serviceHandler, num, bouquet):
 		servicelist = serviceHandler.list(bouquet)
@@ -864,7 +1299,8 @@ class InfoBarNumberZap:
 				serviceIterator = servicelist.getNext()
 		return None
 
-	def searchNumber(self, number, firstBouquetOnly=False, bouquet=None):
+	def searchNumber(self, number, firstBouquetOnly=False, bouquet=None, recursive=False):
+		servicepath = None
 		bouquet = bouquet or self.servicelist.getRoot()
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
@@ -877,7 +1313,10 @@ class InfoBarNumberZap:
 				bouquet = bouquetlist.getNext()
 				while bouquet.valid():
 					if bouquet.flags & eServiceReference.isDirectory:
-						service = self.searchNumberHelper(serviceHandler, number, bouquet)
+						if recursive:
+							service, servicepath = self.searchNumberHelperRecursive(serviceHandler, number, bouquet)
+						else:
+							service = self.searchNumberHelper(serviceHandler, number, bouquet)
 						if service:
 							playable = not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
 							if not playable:
@@ -886,17 +1325,23 @@ class InfoBarNumberZap:
 						if config.usage.alternative_number_mode.value or firstBouquetOnly:
 							break
 					bouquet = bouquetlist.getNext()
-		return service, bouquet
+		if servicepath:
+			return service, "%s;%s" % (self.servicelist.bouquet_root.toString(), servicepath)
+		else:
+			return service, bouquet
 
 	def selectAndStartService(self, service, bouquet):
 		if service:
-			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
+			if isinstance(bouquet, str):
+				self.servicelist.lastroot.value = bouquet
+				self.servicelist.restoreRoot()
+			elif self.servicelist.getRoot() != bouquet:  # already in correct bouquet?
 				self.servicelist.clearPath()
 				if self.servicelist.bouquet_root != bouquet:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
 				self.servicelist.enterPath(bouquet)
-			self.servicelist.setCurrentSelection(service) #select the service in servicelist
-			self.servicelist.zap(enable_pipzap = True)
+			self.servicelist.setCurrentSelection(service)  # select the service in servicelist
+			self.servicelist.zap(enable_pipzap=True)
 			self.servicelist.correctChannelNumber()
 			self.servicelist.startRoot = None
 
@@ -904,13 +1349,17 @@ class InfoBarNumberZap:
 		service, bouquet = self.searchNumber(number)
 		self.selectAndStartService(service, bouquet)
 
-config.misc.initialchannelselection = ConfigBoolean(default = True)
+
+config.misc.initialchannelselection = ConfigBoolean(default=True)
+
 
 class InfoBarChannelSelection:
 	""" ChannelSelection - handles the channelSelection dialog and the initial
 	channelChange actions which open the channelSelection dialog """
+
 	def __init__(self):
 		#instantiate forever
+		####### OPENSPA [morser] Support NewChannelSelection #####################################
 		try:
 			if config.misc.spazeChannelSelection.value:
 				from Screens.newChannelSelection import newChannelSelection
@@ -919,33 +1368,88 @@ class InfoBarChannelSelection:
 				self.servicelist = self.session.instantiateDialog(ChannelSelection)
 		except:
 			self.servicelist = self.session.instantiateDialog(ChannelSelection)
+		##########################################################################################3
 		self.servicelist2 = self.session.instantiateDialog(PiPZapSelection)
 		self.tscallback = None
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
 
-		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
-			{
-				"keyUp": (self.keyUpCheck, self.getKeyUpHelptext),
-				"keyDown": (self.keyDownCheck, self.getKeyDownHelptext),
-				"keyLeft": (self.keyLeftCheck, self.getKeyLeftHelptext),
-				"keyRight": (self.keyRightCheck, self.getKeyRightHelptext),
-				"zapUp": (self.zapUp, _("Switch to previous channel")),
-				"zapDown": (self.zapDown, _("Switch next channel")),
-				"volumeUp": (self.volumeUp, _("change Volume up")),
-				"volumeDown": (self.volumeDown, _("change Volume down")),
-				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
-				"historyNext": (self.historyNext, _("Switch to next channel in history")),
-				"keyChannelUp": (self.keyChannelUpCheck, self.getKeyChannelUpHelptext),
-				"keyChannelDown": (self.keyChannelDownCheck, self.getKeyChannelDownHelptext),
-			})
+		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection", {
+			"switchChannelUp": (self.UpPressed, _("Open service list and select previous channel")),
+			"switchChannelDown": (self.DownPressed, _("Open service list and select next channel")),
+			"switchChannelUpLong": (self.switchChannelUp, _("Open service list and select previous channel for PiP")),
+			"switchChannelDownLong": (self.switchChannelDown, _("Open service list and select next channel for PiP")),
+			"zapUp": (self.zapUp, _("Switch to previous channel")),
+			"zapDown": (self.zapDown, _("Switch next channel")),
+			"volumeUp": (self.volumeUp, _("change Volume up")),
+			"volumeDown": (self.volumeDown, _("change Volume down")),
+			"historyBack": (self.historyBack, _("Switch to previous channel in history")),
+			"historyNext": (self.historyNext, _("Switch to next channel in history")),
+			"openServiceList": (self.openServiceList, _("Open service list")),
+			"openSatellites": (self.openSatellites, _("Open satellites list")),
+			"openBouquets": (self.openBouquets, _("Open favorites list")),
+			"LeftPressed": self.LeftPressed,
+			"RightPressed": self.RightPressed,
+			"ChannelPlusPressed": self.ChannelPlusPressed,
+			"ChannelMinusPressed": self.ChannelMinusPressed,
+			"ChannelPlusPressedLong": self.ChannelPlusPressed,
+			"ChannelMinusPressedLong": self.ChannelMinusPressed,
+		}, prio=0, description=_("Service Selection Actions"))
 
 	def firstRun(self):
 		self.onShown.remove(self.firstRun)
 		config.misc.initialchannelselection.value = False
 		config.misc.initialchannelselection.save()
 		self.openServiceList()
+
+	def LeftPressed(self):
+		if config.usage.leftrightmode.value == "1":
+			self.servicelist.historyBack()   #OPENSPA [morser] History zap with <>
+		elif config.usage.leftrightmode.value == "2":
+			self.openInfoBarEPG()
+		else:
+			self.zapUp()
+
+	def RightPressed(self):
+		if config.usage.leftrightmode.value == "1":
+			self.servicelist.historyNext()   #OPENSPA [morser] History zap with <>
+		elif config.usage.leftrightmode.value == "2":
+			self.openInfoBarEPG()
+		else:
+			self.zapDown()
+
+	def UpPressed(self):
+		if config.usage.updownbutton_mode.value == "0":
+			self.zapDown()
+		elif config.usage.updownbutton_mode.value == "1":
+			self.switchChannelUp()
+
+	def DownPressed(self):
+		if config.usage.updownbutton_mode.value == "0":
+			self.zapUp()
+		elif config.usage.updownbutton_mode.value == "1":
+			self.switchChannelDown()
+
+	def ChannelPlusPressed(self):
+		if config.usage.channelbutton_mode.value == "0":
+			self.zapDown()
+		elif config.usage.channelbutton_mode.value == "1" or config.usage.channelbutton_mode.value == "3":
+			self.openServiceList()
+		elif config.usage.channelbutton_mode.value == "2":
+			self.serviceListType = "Norm"
+			self.servicelist.showFavourites()
+			self.session.execDialog(self.servicelist)
+
+	def ChannelMinusPressed(self):
+		if config.usage.channelbutton_mode.value == "0":
+			self.zapUp()
+		elif config.usage.channelbutton_mode.value == "1" or config.usage.channelbutton_mode.value == "3":
+			self.openServiceList()
+		elif config.usage.channelbutton_mode.value == "2":
+			self.serviceListType = "Norm"
+			self.servicelist.showFavourites()
+			self.session.execDialog(self.servicelist)
 
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
@@ -973,96 +1477,10 @@ class InfoBarChannelSelection:
 		else:
 			self.servicelist.historyZap(+1)
 
-	def keyUpCheck(self):
-		if config.usage.oldstyle_zap_controls.value == "neutrino" or config.usage.oldstyle_zap_controls.value == "openspa":
-			self.zapDown()
-		else:
-			self.switchChannelUp()
-
-	def keyDownCheck(self):
-		if config.usage.oldstyle_zap_controls.value == "neutrino" or config.usage.oldstyle_zap_controls.value == "openspa":
-			self.zapUp()
-		else:
-			self.switchChannelDown()
-
-	def keyLeftCheck(self):
-		if config.usage.oldstyle_zap_controls.value == "neutrino":
-			self.switchChannelUp()
-		elif config.usage.oldstyle_zap_controls.value == "openspa":
-			self.volumeDown()
-		else:
-			self.zapUp()
-
-	def keyRightCheck(self):
-		if config.usage.oldstyle_zap_controls.value == "neutrino":
-			self.switchChannelDown()
-		elif config.usage.oldstyle_zap_controls.value == "openspa":
-			self.volumeUp()
-		else:
-			self.zapDown()
-
-	def keyChannelUpCheck(self):
-		if config.usage.zap_with_ch_buttons.value:
-			self.zapDown()
-		else:
-			self.openServiceList()
-
-	def keyChannelDownCheck(self):
-		if config.usage.zap_with_ch_buttons.value:
-			self.zapUp()
-		else:
-			self.openServiceList()
-
-	def getKeyUpHelptext(self):
-		if config.usage.oldstyle_zap_controls.value == "neutrino" or config.usage.oldstyle_zap_controls.value == "openspa":
-			value = _("Switch to next channel")
-		else:
-			value = _("Open service list")
-			if not "keep" in config.usage.servicelist_cursor_behavior.value:
-				value += " " + _("and select previous channel")
-		return value
-
-	def getKeyDownHelptext(self):
-		if config.usage.oldstyle_zap_controls.value == "neutrino" or config.usage.oldstyle_zap_controls.value == "openspa":
-			value = _("Switch to previous channel")
-		else:
-			value = _("Open service list")
-			if not "keep" in config.usage.servicelist_cursor_behavior.value:
-				value += " " + _("and select next channel")
-		return value
-
-	def getKeyLeftHelptext(self):
-		if config.usage.oldstyle_zap_controls.value == "neutrino":
-			value = _("Open service list")
-			if not "keep" in config.usage.servicelist_cursor_behavior.value:
-				value += " " + _("and select previous channel")
-		elif config.usage.oldstyle_zap_controls.value == "openspa":
-			value = _("Volume down")
-		else:
-			value = _("Switch to previous channel")
-		return value
-
-	def getKeyRightHelptext(self):
-		if config.usage.oldstyle_zap_controls.value == "nuetrino":
-			value = _("Open service list")
-			if not "keep" in config.usage.servicelist_cursor_behavior.value:
-				value += " " + _("and select next channel")
-		elif config.usage.oldstyle_zap_controls.value == "openspa":
-			value = _("Volume up")
-		else:
-			value = _("Switch to next channel")
-		return value
-
-	def getKeyChannelUpHelptext(self):
-		return config.usage.zap_with_ch_buttons.value and _("Switch to next channel") or _("Open service list")
-
-	def getKeyChannelDownHelptext(self):
-		return config.usage.zap_with_ch_buttons.value and _("Switch to previous channel") or _("Open service list")
-
 	def switchChannelUp(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
-			self.keyHide()
-			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+			self.keyHide(False)
+			if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
 						self.servicelist.moveUp()
@@ -1081,8 +1499,8 @@ class InfoBarChannelSelection:
 
 	def switchChannelDown(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
-			self.keyHide()
-			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+			self.keyHide(False)
+			if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
 						self.servicelist.moveDown()
@@ -1114,9 +1532,7 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)
 
 	def zapUp(self):
-		if not hasattr(self, "LongButtonPressed"):
-			self.LongButtonPressed = False
-		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+		if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
 
@@ -1141,7 +1557,7 @@ class InfoBarChannelSelection:
 							break
 			else:
 				self.servicelist.moveUp()
-			self.servicelist.zap(enable_pipzap = True)
+			self.servicelist.zap(enable_pipzap=True)
 
 		elif self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
@@ -1171,15 +1587,13 @@ class InfoBarChannelSelection:
 							break
 			else:
 				self.servicelist2.moveUp()
-			self.servicelist2.zap(enable_pipzap = True)
+			self.servicelist2.zap(enable_pipzap=True)
 			ChannelSelectionInstance.dopipzap = False
 		if self.timeshiftEnabled() and self.isSeekable():
 			self["SeekActionsPTS"].setEnabled(True)
 
 	def zapDown(self):
-		if not hasattr(self, "LongButtonPressed"):
-			self.LongButtonPressed = False
-		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+		if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
 
@@ -1204,7 +1618,7 @@ class InfoBarChannelSelection:
 							break
 			else:
 				self.servicelist.moveDown()
-			self.servicelist.zap(enable_pipzap = True)
+			self.servicelist.zap(enable_pipzap=True)
 		elif self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
@@ -1233,7 +1647,7 @@ class InfoBarChannelSelection:
 							break
 			else:
 				self.servicelist2.moveDown()
-			self.servicelist2.zap(enable_pipzap = True)
+			self.servicelist2.zap(enable_pipzap=True)
 			ChannelSelectionInstance.dopipzap = False
 		if self.timeshiftEnabled() and self.isSeekable():
 			self["SeekActionsPTS"].setEnabled(True)
@@ -1244,33 +1658,57 @@ class InfoBarChannelSelection:
 	def volumeDown(self):
 		VolumeControl.instance.volDown()
 
+
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
+
 	def __init__(self):
-		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
-			{
-				"mainMenu": (self.mainMenu, _("Enter main menu...")),
-				"showNetworkSetup": (self.showNetworkMounts, _("Show network mounts ...")),
-				"showSystemSetup": (self.showSystemMenu, _("Show network mounts ...")),
-				"showRFmod": (self.showRFSetup, _("Show RFmod setup...")),
-				"showHDMIRecord": (self.showHDMiRecordSetup, _("Show HDMIRecord setup...")),
-				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
-			}, prio=0, description=_("Menu Actions"))
+		# "MenuActions" is also used by EMC
+		self["MenuActions"] = HelpableActionMap(self, ["InfoBarMenuActions"], {
+			"showMenu": (self.showMainMenu, _("Enter main menu...")),
+			"showSetup": (self.showSetupMenu, _("Show setup menu...")),
+			"showNetworkSetup": (self.showNetworkMenu, _("Show network setup menu...")),
+			"showSystemSetup": (self.showSystemMenu, _("Show usage and GUI menu...")),
+			"showHDMIRecord": (self.showHDMIRecordSetup, _("Show HDMIRecord setup...")),
+			"showRFmod": (self.showRFSetup, _("Show RFmod setup...")),
+			"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
+		}, prio=0, description=_("Menu Actions"))
 		self.session.infobar = None
 
-	def mainMenu(self):
-		# print "loading mainmenu XML..."
-		menu = mdom.getroot()
-		assert menu.tag == "menu", "root element in menu must be 'menu'!"
+	def showMainMenu(self):
+		# print("[InfoBarGenerics] Loading menu XML...")
+		menu = findMenu("mainmenu")
+		if menu:
+			self.session.infobar = self
+			# So we can access the currently active InfoBar from screens opened from
+			# within the menu at the moment used from the SubserviceSelection.
+			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
 
-		self.session.infobar = self
-		# so we can access the currently active infobar from screens opened from within the mainmenu
-		# at the moment used from the SubserviceSelection
-
-		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
-
-	def mainMenuClosed(self, *val):
+	def showMenuCallback(self, *val):
 		self.session.infobar = None
+
+	def showSetupMenu(self):
+		menu = findMenu("setup")
+		if menu:
+			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+
+	def showNetworkMenu(self):
+		menu = findMenu("network")
+		if menu:
+			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+
+	def showSystemMenu(self):
+		menu = findMenu("system")
+		if menu:
+			self.session.openWithCallback(self.showMenuCallback, Menu, menu)
+
+	def showHDMIRecordSetup(self):
+		if BoxInfo.getItem("HDMIin"):
+			self.session.openWithCallback(self.showMenuCallback, Setup, "HDMIRecord")
+
+	def showRFSetup(self):
+		if BoxInfo.getItem("RfModulator"):
+			self.session.openWithCallback(self.showMenuCallback, Setup, "RFmod")
 
 	def toggleAspectRatio(self):
 		ASPECT = ["auto", "16:9", "4:3"]
@@ -1281,53 +1719,50 @@ class InfoBarMenu:
 		else:
 			config.av.aspect.value = "auto"
 		config.av.aspect.save()
-		self.session.open(MessageBox, _("AV aspect is %s.") % ASPECT_MSG[config.av.aspect.value], MessageBox.TYPE_INFO, timeout=5)
+		self.session.open(MessageBox, _("A/V aspect ratio is '%s'.") % ASPECT_MSG[config.av.aspect.value], MessageBox.TYPE_INFO, timeout=5)
 
-	def showSystemMenu(self):
-		menulist = mdom.getroot().findall('menu')
-		for item in menulist:
-			if item.attrib['entryID'] == 'setup_selection':
-				menulist = item.findall('menu')
-				for item in menulist:
-					if item.attrib['entryID'] == 'system_selection':
-						menu = item
-		assert menu.tag == "menu", "root element in menu must be 'menu'!"
-		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
-
-	def showNetworkMounts(self):
-		menulist = mdom.getroot().findall('menu')
-		for item in menulist:
-			if item.attrib['entryID'] == 'setup_selection':
-				menulist = item.findall('menu')
-				for item in menulist:
-					if item.attrib['entryID'] == 'extended_selection':
-						menulist = item.findall('menu')
-						for item in menulist:
-							if item.attrib['entryID'] == 'network_menu':
-								menu = item
-		assert menu.tag == "menu", "root element in menu must be 'menu'!"
-		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
-
-	def showRFSetup(self):
-		if SystemInfo["RfModulator"]:
-			self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
-
-	def showHDMiRecordSetup(self):
-		if SystemInfo["HDMIin"]:
-			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
-
-	def mainMenuClosed(self, *val):
-		self.session.infobar = None
 
 class InfoBarSimpleEventView:
 	""" Opens the Eventview for now/next """
+
 	def __init__(self):
-		self["EventViewActions"] = HelpableActionMap(self, "InfobarEPGActions",
-			{
-				"showEventInfo": (self.openEventView, _("Show event details")),
-				"showEventInfoSingleEPG": (self.openEventView, _("Show event details")),
-				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
-			}, prio=0, description=_("InfoBar Event View Actions"))
+		self["EventViewActions"] = HelpableActionMap(self, "InfobarEPGActions", {
+			"showEventInfo": (self.openEventView, _("show event details")),
+			"InfoPressed": (self.openEventView, _("show event details")),
+			"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
+		}, prio=0, description=_("InfoBar Event View Actions"))
+
+	def openEventView(self, simple=False):
+		if self.servicelist is None:
+			return
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.getNowNext()
+		epglist = self.epglist
+		if not epglist:
+			self.is_now_next = False
+			epg = eEPGCache.getInstance()
+			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
+			if ptr:
+				epglist.append(ptr)
+				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
+				if ptr:
+					epglist.append(ptr)
+		else:
+			self.is_now_next = True
+		if epglist:
+			if not simple:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+			else:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
+			self.dlg_stack.append(self.eventView)
+
+	def eventViewCallback(self, setEvent, setService, val):  # used for now/next displaying
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -1336,34 +1771,9 @@ class InfoBarSimpleEventView:
 			self.toggleShow()
 			return 1
 
-	def openEventView(self):
-		epglist = [ ]
-		self.epglist = epglist
-		service = self.session.nav.getCurrentService()
-		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		info = service.info()
-		ptr=info.getEvent(0)
-		if ptr:
-			epglist.append(ptr)
-		ptr=info.getEvent(1)
-		if ptr:
-			epglist.append(ptr)
-		if epglist:
-			self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
-
-	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0] = epglist[1]
-			epglist[1] = tmp
-			setEvent(epglist[0])
 
 class SimpleServicelist:
 	def __init__(self, services):
-		self.setServices(services)
-
-	def setServices(self, services):
 		self.services = services
 		self.length = len(services)
 		self.current = 0
@@ -1401,57 +1811,145 @@ class SimpleServicelist:
 			return None
 		return self.services[self.current]
 
+
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
+
 	def __init__(self):
 		self.is_now_next = False
 		self.dlg_stack = []
 		self.bouquetSel = None
 		self.eventView = None
+		self.isInfo = None
 		self.epglist = []
-		self.defaultEPGType = self.getDefaultEPGtype()
 		self.defaultGuideType = self.getDefaultGuidetype()
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
 			})
 
-		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
-			{
-				"showEventInfo": (self.showDefaultEPG, _("Show EPG...")),
-				"showEventInfoSingleEPG": (self.showSingleEPG, _("Show single service EPG")),
-				"showEventInfoMultiEPG": (self.showMultiEPG, _("Show multi channel EPG")),
-				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
-				"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
-				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
-			}, prio=0, description=_("InfoBar EPG Actions"))
+		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions", {
+			"IPressed": (self.IPressed, _("show program information...")),
+			"InfoPressed": (self.InfoPressed, _("show program information...")),
+			"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
+			"EPGPressed": (self.EPGPressed, _("show EPG...")),
+			"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
+			"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
+		}, prio=0, description=_("InfoBar EPG Actions"))
 
 	def getEPGPluginList(self):
-		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
+		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EVENTINFO)]
 		if pluginlist:
 			pluginlist.append((_("Event Info"), self.openEventView))
+			pluginlist.append((_("Graphical EPG"), self.openGraphEPG))
 			pluginlist.append((_("Vertical EPG"), self.openVerticalEPG))
-			pluginlist.append((_("Infobar EPG"), self.openInfoBarEPG))
+			pluginlist.append((_("InfoBar EPG"), self.openInfoBarEPG))
 			pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG))
 			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG))
 		return pluginlist
 
+	def showEventInfoPlugins(self):
+		if isMoviePlayerInfoBar(self):
+			self.openEventView()
+		else:
+			pluginlist = self.getEPGPluginList()
+			if pluginlist:
+				self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list=pluginlist, skin_name="EPGExtensionsList")
+			else:
+				self.openSingleServiceEPG()
 
-	def getDefaultEPGtype(self):
-		config.usage.defaultEPGType=ConfigSelection(default = "None", choices = self.getEPGPluginList())
-		for plugin in self.getEPGPluginList():
-			if plugin[0] == config.usage.defaultEPGType.value:
+	def getDefaultGuidetype(self):
+		pluginlist = self.getEPGPluginList()
+		config.usage.defaultGuideType = ConfigSelection(default="None", choices=pluginlist)
+		for plugin in pluginlist:
+			if plugin[0] == config.usage.defaultGuideType.value:
 				return plugin[1]
 		return None
 
-	def getDefaultGuidetype(self):
-		config.usage.defaultGuideType=ConfigText(default="/usr/lib/enigma2/python/Plugins/Extensions/GraphMultiEPG")
-		for plugin in self.getEPGPluginList():
-			try:
-				if plugin[2] == config.usage.defaultGuideType.value.split("@")[0] and plugin[0] == config.usage.defaultGuideType.value.split("@")[1]:
-					return plugin[1]
-			except:
-					pass
-		return None
+	def showEventGuidePlugins(self):
+		if isMoviePlayerInfoBar(self):
+			self.openEventView()
+		else:
+			pluginlist = self.getEPGPluginList()
+			if pluginlist:
+				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultGuidePlugin))
+				self.session.openWithCallback(self.EventGuidePluginChosen, ChoiceBox, title=_("Please choose an extension..."), list=pluginlist, skin_name="EPGExtensionsList")
+			else:
+				self.openSingleServiceEPG()
+
+	def SelectDefaultGuidePlugin(self):
+		self.session.openWithCallback(self.DefaultGuidePluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list=self.getEPGPluginList(), skin_name="EPGExtensionsList")
+
+	def DefaultGuidePluginChosen(self, answer):
+		if answer is not None:
+			self.defaultGuideType = answer[1]
+			config.usage.defaultGuideType.value = answer[0]
+			config.usage.defaultGuideType.save()
+
+	def EventGuidePluginChosen(self, answer):
+		if answer is not None:
+			answer[1]()
+
+	def runPlugin(self, plugin):
+		plugin(session=self.session, servicelist=self.servicelist)
+
+	def EventInfoPluginChosen(self, answer):
+		if answer is not None:
+			answer[1]()
+
+	def InfoPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.PLIINFO_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.PLIINFO_mode.value == "epgpress":
+				self.EPGPressed()
+			elif config.plisettings.PLIINFO_mode.value == "single":
+				self.openSingleServiceEPG()
+			### OPENSPA {morser] Add openspa Guide & single epg
+			elif config.plisettings.PLIINFO_mode.value == "spaguide":
+				self.openSpaGuideEPG()
+			elif config.plisettings.PLIINFO_mode.value == "spasingle":
+				self.openSpaSingleEPG()
+			###################################################
+			else:
+				if config.plisettings.PLIINFO_mode.value != "infobar":
+					self.EPGPressed()
+
+	def IPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			self.openEventView()
+
+	def EPGPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.PLIEPG_mode.value == "pliepg":
+				self.openGraphEPG()
+			elif config.plisettings.PLIEPG_mode.value == "multi":
+				self.openMultiServiceEPG()
+			elif config.plisettings.PLIEPG_mode.value == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.PLIEPG_mode.value == "vertical":
+				self.openVerticalEPG()
+			### OPENSPA {morser] Add openspa Guide & single epg
+			elif config.plisettings.PLIEPG_mode.value == "spaguide":
+				self.openSpaGuideEPG()
+			elif config.plisettings.PLIEPG_mode.value == "spasingle":
+				self.openSpaSingleEPG()
+			###################################################
+			elif config.plisettings.PLIEPG_mode.value == "eventview":
+				self.openEventView()
+			else:
+				self.openSingleServiceEPG()
+
+	### OPENSPA {morser] Add openspa Guide & single epg
+	def openSpaGuideEPG(self):
+		if isPluginInstalled("spazeMenu"):
+			from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.plugin import main
+			main(self.session, self.servicelist)
+
+	def openSpaSingleEPG(self):
+		if isPluginInstalled("spazeMenu"):
+			from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSimple import spaEPGSelection
+			self.session.open(spaEPGSelection)
+	######################################################
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -1460,18 +1958,19 @@ class InfoBarEPG:
 			self.toggleShow()
 			return 1
 
-	def zapToService(self, service, preview = False, zapback = False):
+	def zapToService(self, service, bouquet=None, preview=False, zapback=False):
 		if self.servicelist.startServiceRef is None:
 			self.servicelist.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.servicelist.currentServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if service is not None:
-			if self.servicelist.getRoot() != self.epg_bouquet: #already in correct bouquet?
+			if self.servicelist.getRoot() != bouquet:  # already in correct bouquet?
 				self.servicelist.clearPath()
-				if self.servicelist.bouquet_root != self.epg_bouquet:
+				if self.servicelist.bouquet_root != bouquet:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
-				self.servicelist.enterPath(self.epg_bouquet)
-			self.servicelist.setCurrentSelection(service) #select the service in servicelist
+				self.servicelist.enterPath(bouquet)
+			self.servicelist.setCurrentSelection(service)  # select the service in servicelist
 		if not zapback or preview:
-			self.servicelist.zap(enable_pipzap = True)
+			self.servicelist.zap(preview_zap=preview)
 		if (self.servicelist.dopipzap or zapback) and not preview:
 			self.servicelist.zapBack()
 		if not preview:
@@ -1484,104 +1983,72 @@ class InfoBarEPG:
 		if not servicelist is None:
 			while True:
 				service = servicelist.getNext()
-				if not service.valid(): #check if end of list
+				if not service.valid():  # check if end of list
 					break
-				if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker): #ignore non playable services
+				if service.flags & (eServiceReference.isDirectory | eServiceReference.isMarker):  # ignore non playable services
 					continue
 				services.append(ServiceReference(service))
 		return services
 
-	def openBouquetEPG(self, bouquet, withCallback=True):
-		services = self.getBouquetServices(bouquet)
-		if services:
-			self.epg_bouquet = bouquet
-			if withCallback:
-				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.changeBouquetCB))
-			else:
-				self.session.open(EPGSelection, services, self.zapToService, None, self.changeBouquetCB)
-
-	def changeBouquetCB(self, direction, epg):
-		if self.bouquetSel:
-			if direction > 0:
-				self.bouquetSel.down()
-			else:
-				self.bouquetSel.up()
-			bouquet = self.bouquetSel.getCurrent()
-			services = self.getBouquetServices(bouquet)
-			if services:
-				self.epg_bouquet = bouquet
-				epg.setServices(services)
-
-	def selectBouquet(self, bouquetref, epg):
-		services = self.getBouquetServices(bouquetref)
-		if services:
-			self.epg_bouquet = bouquetref
-			self.serviceSel.setServices(services)
-			epg.setServices(services)
-
-	def setService(self, service):
-		if service:
-			self.serviceSel.selectService(service)
+	def openBouquetEPG(self, bouquet=None, bouquets=None):
+		if bouquet:
+			self.StartBouquet = bouquet
+		self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, None, zapFunc=self.zapToService, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquets=bouquets))
 
 	def closed(self, ret=False):
+		if not self.dlg_stack:
+			return
 		closedScreen = self.dlg_stack.pop()
 		if self.bouquetSel and closedScreen == self.bouquetSel:
 			self.bouquetSel = None
 		elif self.eventView and closedScreen == self.eventView:
 			self.eventView = None
-		if ret:
-			dlgs=len(self.dlg_stack)
+		if ret == True or ret == 'close':
+			dlgs = len(self.dlg_stack)
 			if dlgs > 0:
-				self.dlg_stack[dlgs-1].close(dlgs > 1)
+				self.dlg_stack[dlgs - 1].close(dlgs > 1)
+		self.reopen(ret)
 
-	def openMultiServiceEPG(self, withCallback=True):
+	def MultiServiceEPG(self):
 		bouquets = self.servicelist.getBouquetList()
 		if bouquets is None:
 			cnt = 0
 		else:
 			cnt = len(bouquets)
-		if config.usage.multiepg_ask_bouquet.value:
-			self.openMultiServiceEPGAskBouquet(bouquets, cnt, withCallback)
-		else:
-			self.openMultiServiceEPGSilent(bouquets, cnt, withCallback)
-
-	def openMultiServiceEPGAskBouquet(self, bouquets, cnt, withCallback):
-		if cnt > 1: # show bouquet list
-			if withCallback:
-				self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
+		if (self.EPGtype == "multi" and config.epgselection.multi_showbouquet.value) or (self.EPGtype == "graph" and config.epgselection.graph_showbouquet.value):
+			if cnt > 1:  # show bouquet list
+				self.bouquetSel = self.session.openWithCallback(self.closed, EpgBouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
 				self.dlg_stack.append(self.bouquetSel)
-			else:
-				self.bouquetSel = self.session.open(BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
-		elif cnt == 1:
-			self.openBouquetEPG(bouquets[0][1], withCallback)
+			elif cnt == 1:
+				self.openBouquetEPG(bouquets=bouquets)
+		else:
+			self.openBouquetEPG(bouquets=bouquets)
 
-	def openMultiServiceEPGSilent(self, bouquets, cnt, withCallback):
-		root = self.servicelist.getRoot()
-		rootstr = root.toCompareString()
-		current = 0
-		for bouquet in bouquets:
-			if bouquet[1].toCompareString() == rootstr:
-				break
-			current += 1
-		if current >= cnt:
-			current = 0
-		if cnt > 1: # create bouquet list for bouq+/-
-			self.bouquetSel = SilentBouquetSelector(bouquets, True, self.servicelist.getBouquetNumOffset(root))
-		if cnt >= 1:
-			self.openBouquetEPG(root, withCallback)
-	
-	def openInfoBarEPG(self, reopen=False):
+	def openMultiServiceEPG(self):
 		if self.servicelist is None:
 			return
+		self.EPGtype = "multi"
+		self.StartBouquet = self.servicelist.getRoot()
+		if isMoviePlayerInfoBar(self):
+			self.StartRef = self.lastservice
+		else:
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.MultiServiceEPG()
+
+	def openGraphEPG(self, reopen=False):
+		if self.servicelist is None:
+			return
+		self.EPGtype = "graph"
 		if not reopen:
 			self.StartBouquet = self.servicelist.getRoot()
 			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if config.epgselection.infobar_type_mode.value == 'single':
-			self.EPGtype = "infobar"
-			self.SingleServiceEPG()
-		else:
-			self.EPGtype = "infobargraph"
-			self.MultiServiceEPG()
+		self.MultiServiceEPG()
+
+	def openSingleServiceEPG(self, reopen=False):
+		if self.servicelist is None:
+			return
+		self.EPGtype = "enhanced"
+		self.SingleServiceEPG()
 
 	def openVerticalEPG(self, reopen=False):
 		if self.servicelist is None:
@@ -1596,7 +2063,35 @@ class InfoBarEPG:
 		#self.StartBouquet = self.servicelist.getRoot()
 		#self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		bouquets = self.servicelist.getBouquetList()
-		self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, self.servicelist, zapFunc=self.zapToService, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquets = bouquets))
+		self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, self.servicelist, zapFunc=self.zapToService, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquets=bouquets))
+
+	def openInfoBarEPG(self, reopen=False):
+		if self.servicelist is None:
+			return
+		if not reopen:
+			self.StartBouquet = self.servicelist.getRoot()
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if config.epgselection.infobar_type_mode.value == 'single':
+			self.EPGtype = "infobar"
+			self.SingleServiceEPG()
+		else:
+			self.EPGtype = "infobargraph"
+			self.MultiServiceEPG()
+
+	def SingleServiceEPG(self):
+		self.StartBouquet = self.servicelist.getRoot()
+		self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isMoviePlayerInfoBar(self):
+			ref = self.lastservice
+		else:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if ref:
+			services = self.getBouquetServices(self.StartBouquet)
+			self.serviceSel = SimpleServicelist(services)
+			if self.serviceSel.selectService(ref):
+				self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, self.servicelist, zapFunc=self.zapToService, serviceChangeCB=self.changeServiceCB, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef)
+			else:
+				self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref)
 
 	def changeServiceCB(self, direction, epg):
 		if self.serviceSel:
@@ -1608,69 +2103,32 @@ class InfoBarEPG:
 
 	def SingleServiceEPGClosed(self, ret=False):
 		self.serviceSel = None
+		self.reopen(ret)
 
-	def openSingleServiceEPG(self):
-		ref = self.servicelist.getCurrentSelection()
-		if ref:
-			if self.servicelist.getMutableList(): # bouquet in channellist
-				current_path = self.servicelist.getRoot()
-				services = self.getBouquetServices(current_path)
-				self.serviceSel = SimpleServicelist(services)
-				if self.serviceSel.selectService(ref):
-					self.epg_bouquet = current_path
-					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, self.zapToService, serviceChangeCB=self.changeServiceCB, parent=self)
-				else:
-					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref)
-			else:
-				self.session.open(EPGSelection, ref)
+	def reopen(self, answer):
+		if answer == 'reopengraph':
+			self.openGraphEPG(True)
+		elif answer == 'reopenvertical':
+			self.openVerticalEPG(True)
+		elif answer == 'reopeninfobargraph' or answer == 'reopeninfobar':
+			self.openInfoBarEPG(True)
+		elif answer == 'close' and isMoviePlayerInfoBar(self):
+			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.close()
 
-	def runPlugin(self, plugin):
-		plugin(session = self.session, servicelist = self.servicelist)
-
-	def showEventInfoPlugins(self):
-		pluginlist = self.getEPGPluginList()
-		if pluginlist:
-			pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
-			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list=pluginlist, skin_name="EPGExtensionsList")
+	def openMerlinEPGCenter(self):
+		if self.servicelist is None:
+			return
+		if isPluginInstalled("MerlinEPGCenter"):
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Merlin EPG Center"):
+					self.runPlugin(plugin)
+					break
 		else:
-			self.openSingleServiceEPG()
-
-	def EventInfoPluginChosen(self, answer):
-		if answer is not None:
-			answer[1]()
-
-	def SelectDefaultInfoPlugin(self):
-		self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
-
-	def DefaultInfoPluginChosen(self, answer):
-		if answer is not None:
-			self.defaultEPGType = answer[1]
-			config.usage.defaultEPGType.value = answer[2]
-			config.usage.defaultEPGType.save()
-
-	def showEventGuidePlugins(self):
-		pluginlist = self.getEPGPluginList()
-		if pluginlist:
-			pluginlist.append((_("Select default EPG type..."), self.SelectDefaultGuidePlugin))
-			self.session.openWithCallback(self.EventGuidePluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = pluginlist, skin_name = "EPGExtensionsList")
-		else:
-			self.openSingleServiceEPG()
-
-	def EventGuidePluginChosen(self, answer):
-		if answer is not None:
-			answer[1]()
-
-	def SelectDefaultGuidePlugin(self):
-		self.session.openWithCallback(self.DefaultGuidePluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list = self.getEPGPluginList(), skin_name = "EPGExtensionsList")
-
-	def DefaultGuidePluginChosen(self, answer):
-		if answer is not None:
-			self.defaultGuideType = answer[1]
-			config.usage.defaultGuideType.value = answer[2] + "@" + answer[0]
-			config.usage.defaultGuideType.save()
+			self.session.open(MessageBox, _("The Merlin EPG Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSimilarList(self, eventid, refstr):
-		self.session.open(EPGSelection, refstr, None, eventid)
+		self.session.open(EPGSelection, refstr, eventid=eventid)
 
 	def getNowNext(self):
 		epglist = []
@@ -1685,68 +2143,37 @@ class InfoBarEPG:
 		self.epglist = epglist
 
 	def __evEventInfoChanged(self):
+		self.isInfo = True
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
 			if self.eventView and self.epglist:
 				self.eventView.setEvent(self.epglist[0])
 
-	def showDefaultEPG(self):
-		if self.defaultEPGType:
-			self.defaultEPGType()
-		else:
-			self.openEventView()
-
-	def showSingleEPG(self):
-		if self.defaultGuideType:
-			self.defaultGuideType()
-		else:
-			self.openSingleServiceEPG()
-
-	def showMultiEPG(self):
-		if self.defaultGuideType:
-			self.defaultGuideType()
-		else:
-			self.openMultiServiceEPG()
-
-	def openEventView(self):
-		from Components.ServiceEventTracker import InfoBarCount
-		if InfoBarCount > 1:
-			epglist = [ ]
-			self.epglist = epglist
-			service = self.session.nav.getCurrentService()
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			info = service.info()
-			ptr=info.getEvent(0)
+	def openEventView(self, simple=False):
+		if self.servicelist is None:
+			return
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.getNowNext()
+		epglist = self.epglist
+		if not epglist:
+			self.is_now_next = False
+			epg = eEPGCache.getInstance()
+			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
 			if ptr:
 				epglist.append(ptr)
-			ptr=info.getEvent(1)
-			if ptr:
-				epglist.append(ptr)
-			if epglist:
-				self.session.open(EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
-		else:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			self.getNowNext()
-			epglist = self.epglist
-			if not epglist:
-				self.is_now_next = False
-				epg = eEPGCache.getInstance()
-				ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
+				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
 				if ptr:
 					epglist.append(ptr)
-					ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
-					if ptr:
-						epglist.append(ptr)
-			else:
-				self.is_now_next = True
-			if epglist:
+		else:
+			self.is_now_next = True
+		if epglist:
+			if not simple:
 				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
-				self.dlg_stack.append(self.eventView)
-		if not epglist:
-			print ("no epg for the service avail.. so we show multiepg instead of eventinfo")
-			self.openMultiServiceEPG(False)
+			else:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
+			self.dlg_stack.append(self.eventView)
 
-	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
+	def eventViewCallback(self, setEvent, setService, val):  # used for now/next displaying
 		epglist = self.epglist
 		if len(epglist) > 1:
 			tmp = epglist[0]
@@ -1754,8 +2181,10 @@ class InfoBarEPG:
 			epglist[1] = tmp
 			setEvent(epglist[0])
 
+
 class InfoBarRdsDecoder:
 	"""provides RDS and Rass support/display"""
+
 	def __init__(self):
 		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
 		self.session.instantiateSummaryDialog(self.rds_display)
@@ -1767,7 +2196,7 @@ class InfoBarRdsDecoder:
 				iPlayableService.evUpdatedRassSlidePic: self.RassSlidePicChanged
 			})
 
-		self["RdsActions"] = HelpableActionMap(self, ["InfobarRdsActions"],{
+		self["RdsActions"] = HelpableActionMap(self, ["InfobarRdsActions"], {
 			"startRassInteractive": (self.startRassInteractive, _("Start RDS interactive"))
 		}, prio=-1, description=_("InfoBar RDS Actions"))
 
@@ -1802,11 +2231,11 @@ class InfoBarRdsDecoder:
 			self.RassSlidePicChanged()
 		self.rds_display.show()
 
+
 class Seekbar(Screen):
 	def __init__(self, session, fwd):
 		Screen.__init__(self, session)
 		self.setTitle(_("Seek"))
-		self.session = session
 		self.fwd = fwd
 		self.percent = 0.0
 		self.length = None
@@ -1875,6 +2304,7 @@ class Seekbar(Screen):
 		else:
 			ConfigListScreen.keyNumberGlobal(self, number)
 
+
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
 
@@ -1927,7 +2357,7 @@ class InfoBarSeek:
 
 				"SeekbarFwd": self.seekFwdSeekbar,
 				"SeekbarBack": self.seekBackSeekbar
-			}, prio=-1) # give them a little more priority to win over color buttons
+			}, prio=-1)  # give them a little more priority to win over color buttons
 		self["SeekActions"].setEnabled(False)
 
 		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
@@ -1941,7 +2371,7 @@ class InfoBarSeek:
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": (self.seekBack, _("skip backward")),
 				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
-			}, prio=-1) # give them a little more priority to win over color buttons
+			}, prio=-1)  # give them a little more priority to win over color buttons
 		self["SeekActionsPTS"].setEnabled(False)
 
 		self.activity = 0
@@ -2021,18 +2451,20 @@ class InfoBarSeek:
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			pass
 		elif not self.isSeekable():
-			SystemInfo["SeekStatePlay"] = False
-			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+			BoxInfo.setItem("SeekStatePlay", False)
+			if exists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")
 				f.close()
-			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+			if exists("/proc/stb/lcd/symbol_hddprogress"):
 				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
 				f.write("0")
 				f.close()
+#			print "not seekable, return to play"
 			self["SeekActions"].setEnabled(False)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		else:
+#			print "seekable"
 			self["SeekActions"].setEnabled(True)
 			self.activityTimer.start(int(config.seek.withjumps_repeat_ms.getValue()), False)
 			for c in self.onPlayStateChanged:
@@ -2050,14 +2482,15 @@ class InfoBarSeek:
 			hdd = 1
 			if self.activity >= 100:
 				self.activity = 0
-			SystemInfo["SeekStatePlay"] = True
-			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-				if config.lcd.hdd.value == "1":
+
+			BoxInfo.setItem("SeekStatePlay", True)
+			if exists("/proc/stb/lcd/symbol_hdd"):
+				if config.lcd.hdd.value:
 					file = open("/proc/stb/lcd/symbol_hdd", "w")
 					file.write('%d' % int(hdd))
 					file.close()
-			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-				if config.lcd.hdd.value == "1":
+			if exists("/proc/stb/lcd/symbol_hddprogress"):
+				if config.lcd.hdd.value:
 					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 					file.write('%d' % int(self.activity))
 					file.close()
@@ -2067,14 +2500,14 @@ class InfoBarSeek:
 			hdd = 0
 			self.seekAction = 0
 
-		SystemInfo["SeekStatePlay"] = True
-		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-			if config.lcd.hdd.value == "1":
+		BoxInfo.setItem("SeekStatePlay", True)
+		if exists("/proc/stb/lcd/symbol_hdd"):
+			if config.lcd.hdd.value:
 				file = open("/proc/stb/lcd/symbol_hdd", "w")
 				file.write('%d' % int(hdd))
 				file.close()
-		if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-			if config.lcd.hdd.value == "1":
+		if exists("/proc/stb/lcd/symbol_hddprogress"):
+			if config.lcd.hdd.value:
 				file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 				file.write('%d' % int(self.activity))
 				file.close()
@@ -2099,27 +2532,35 @@ class InfoBarSeek:
 		pauseable = service.pause()
 
 		if pauseable is None:
+#			print "not pauseable."
 			state = self.SEEK_STATE_PLAY
 
 		self.seekstate = state
 
 		if pauseable is not None:
 			if self.seekstate[0] and self.seekstate[3] == '||':
+#				print "resolved to PAUSE"
 				self.activityTimer.stop()
 				pauseable.pause()
 			elif self.seekstate[0] and self.seekstate[3] == 'END':
+#				print "resolved to STOP"
 				self.activityTimer.stop()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
 					pass
+					# print "resolved to FAST FORWARD"
 				else:
 					self.seekstate = self.SEEK_STATE_PLAY
+					# print "FAST FORWARD not possible: resolved to PLAY"
 			elif self.seekstate[2]:
 				if not pauseable.setSlowMotion(self.seekstate[2]):
 					pass
+					# print "resolved to SLOW MOTION"
 				else:
 					self.seekstate = self.SEEK_STATE_PAUSE
+					# print "SLOW MOTION not possible: resolved to PAUSE"
 			else:
+#				print "resolved to PLAY"
 				self.activityTimer.start(int(config.seek.withjumps_repeat_ms.getValue()), False)
 				pauseable.unpause()
 
@@ -2163,31 +2604,31 @@ class InfoBarSeek:
 				self.unPauseService()
 
 	def pauseService(self):
-		SystemInfo["StatePlayPause"] = True
+		BoxInfo.setItem("StatePlayPause", True)
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def pauseServiceYellow(self):
-		if config.usage.on_short_yellow_key.value == '0':
-			self.audioSelection()
-		elif config.usage.on_short_yellow_key.value == '2':
-			ToggleVideo()
-		else:
-			self.playpauseService()
+		#if config.plugins.infopanel_yellowkey.list.value == '0':
+		self.audioSelection()
+		#elif config.plugins.infopanel_yellowkey.list.value == '2':
+		#	ToggleVideo()
+		#else:
+		#	self.playpauseService()
 
 	def unPauseService(self):
-		SystemInfo["StatePlayPause"] = False
+		BoxInfo.setItem("StatePlayPause", False)
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction != 0:
 				self.playpauseService()
-			#return 0 # if 'return 0', plays timeshift again from the beginning
+			#return 0 # if 'return 0', plays time shift again from the beginning
 			return
 		self.doPause(False)
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		if config.usage.show_infobar_on_skip.value and not config.usage.show_infobar_locked_on_pause.value:
 			self.showAfterSeek()
-		self.skipToggleShow = True # skip 'break' action (toggleShow) after 'make' action (unPauseService)
+		self.skipToggleShow = True  # skip 'break' action (toggleShow) after 'make' action (unPauseService)
 
 	def doPause(self, pause):
 		if pause:
@@ -2208,10 +2649,11 @@ class InfoBarSeek:
 		global jump_last_pts
 		global jump_last_pos
 		seekable = self.getSeek()
+		#when config.seek.withjumps, avoid that jumps smaller than the time between I-frames result in hanging, by increasing pts when stalled
 		if seekable and config.seek.withjumps_avoid_zero.getValue():
 			position = seekable.getPlayPosition()
 			if jump_last_pos and jump_last_pts:
-				if (abs(position[1] - jump_last_pos[1]) < 100 * 90) and (pts == jump_last_pts): # stalled?
+				if (abs(position[1] - jump_last_pos[1]) < 100 * 90) and (pts == jump_last_pts):  # stalled?
 					jump_pts_adder += pts
 					jump_last_pts = pts
 					pts += jump_pts_adder
@@ -2264,9 +2706,9 @@ class InfoBarSeek:
 			self.doSeekRelativeAvoidStall(self.seekAction * int(config.seek.withjumps_backwards_ms.getValue()) * 90)
 
 		for c in self.onPlayStateChanged:
-			if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()): # Forward
+			if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()):  # Forward
 				c((0, self.seekAction, 0, ">> %dx" % self.seekAction))
-			elif self.seekAction < 0: # Backward
+			elif self.seekAction < 0:  # Backward
 				c((0, self.seekAction, 0, "<< %dx" % abs(self.seekAction)))
 
 		if self.seekAction == 0:
@@ -2306,9 +2748,9 @@ class InfoBarSeek:
 			self.seekAction = self.getHigher(abs(self.seekAction), config.seek.speeds_forward.value) or config.seek.speeds_forward.value[-1]
 		else:
 			self.seekAction = -self.getLower(abs(self.seekAction), config.seek.speeds_backward.value)
-		if (self.seekAction > 1) and (self.seekAction <= int(config.seek.withjumps_after_ff_speed.getValue())): # use fastforward for the configured speeds
+		if (self.seekAction > 1) and (self.seekAction <= int(config.seek.withjumps_after_ff_speed.getValue())):  # use fastforward for the configured speeds
 			self.setSeekState(self.makeStateForward(self.seekAction))
-		elif self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()): # we first need to go the play state, to stop fastforward
+		elif self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()):  # we first need to go the play state, to stop fastforward
 			self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def seekBack_new(self):
@@ -2320,7 +2762,7 @@ class InfoBarSeek:
 			self.seekAction = -self.getHigher(abs(self.seekAction), config.seek.speeds_backward.value) or -config.seek.speeds_backward.value[-1]
 		else:
 			self.seekAction = self.getLower(abs(self.seekAction), config.seek.speeds_forward.value)
-		if (self.seekAction > 1) and (self.seekAction <= int(config.seek.withjumps_after_ff_speed.getValue())): # use fastforward for the configured forwards speeds
+		if (self.seekAction > 1) and (self.seekAction <= int(config.seek.withjumps_after_ff_speed.getValue())):  # use fastforward for the configured forwards speeds
 			self.setSeekState(self.makeStateForward(self.seekAction))
 
 	def seekFwd_old(self):
@@ -2330,7 +2772,7 @@ class InfoBarSeek:
 				self.session.open(MessageBox, _("No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"), MessageBox.TYPE_INFO, timeout=10)
 				self.fast_winding_hint_message_showed = True
 				return
-			return 0 # trade as unhandled action
+			return 0  # trade as unhandled action
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.value)))
 		elif self.seekstate == self.SEEK_STATE_PAUSE:
@@ -2366,7 +2808,7 @@ class InfoBarSeek:
 				self.session.open(MessageBox, _("No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"), MessageBox.TYPE_INFO, timeout=10)
 				self.fast_winding_hint_message_showed = True
 				return
-			return 0 # trade as unhandled action
+			return 0  # trade as unhandled action
 		seekstate = self.seekstate
 		if seekstate == self.SEEK_STATE_PLAY:
 			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
@@ -2436,6 +2878,7 @@ class InfoBarSeek:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
 
 	def rwdSeekTo(self, minutes):
+#		print "rwdSeekTo"
 		self.doSeekRelative(-minutes * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
@@ -2493,12 +2936,12 @@ class InfoBarSeek:
 		if self.seekstate != self.SEEK_STATE_PAUSE:
 			self.setSeekState(self.SEEK_STATE_EOF)
 
-		if seekstate not in (self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE): # if we are seeking
+		if seekstate not in (self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE):  # if we are seeking
 			seekable = self.getSeek()
 			if seekable is not None:
 				seekable.seekTo(-1)
 				self.doEofInternal(True)
-		if seekstate == self.SEEK_STATE_PLAY: # regular EOF
+		if seekstate == self.SEEK_STATE_PLAY:  # regular EOF
 			self.doEofInternal(True)
 		else:
 			self.doEofInternal(False)
@@ -2510,8 +2953,9 @@ class InfoBarSeek:
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		self.doSeek(0)
 
+
 class InfoBarPVRState:
-	def __init__(self, screen=PVRState, force_show = False):
+	def __init__(self, screen=PVRState, force_show=False):
 		self.onChangedEntry = []
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(screen)
@@ -2605,16 +3049,17 @@ class InfoBarPVRState:
 		else:
 			self._mayShow()
 
+
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
-		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show = True)
+		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show=True)
 		self.onPlayStateChanged.append(self.__timeshiftEventName)
 		self.onHide.append(self.__hideTimeshiftState)
 
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
-			if config.timeshift.showinfobar.value:
+			if config.timeshift.showInfoBar.value:
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
 		if not self.isSeekable():
@@ -2625,8 +3070,8 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self, state):
-		if self.timeshiftEnabled() and os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying)):
-			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying), "r")
+		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):
+			readmetafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
@@ -2634,12 +3079,13 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		else:
 			self.pvrStateDialog["eventname"].setText("")
 
+
 class InfoBarShowMovies:
 	# i don't really like this class.
 	# it calls a not further specified "movie list" on up/down/movieList,
 	# so this is not more than an action map
 	def __init__(self):
-		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions",{
+		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions", {
 			"movieList": (self.showMovies, _("Open the movie list")),
 			"up": (self.up, _("Open the movie list")),
 			"down": (self.down, _("Open the movie list"))
@@ -2647,6 +3093,8 @@ class InfoBarShowMovies:
 
 
 from Screens.PiPSetup import PiPSetup
+
+
 class InfoBarExtensions:
 	EXTENSION_SINGLE = 0
 	EXTENSION_LIST = 1
@@ -2655,33 +3103,34 @@ class InfoBarExtensions:
 		self.list = []
 
 		if config.plisettings.ColouredButtons.value:
-			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
-				{
-					"extensions": (self.bluekey_ex, _("Show extensions...")),
-					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
-					"openTimerList": (self.showTimerList, _("Show the list of timers.")),
-					"openAutoTimerList": (self.showAutoTimerList, _("Show the list of AutoTimers.")),
-					"openEPGSearch": (self.showEPGSearch, _("Search the epg for current event.")),
-					"openIMDB": (self.showIMDB, _("Search IMDb for information about current event.")),
-					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-					"openDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
-				}, prio=1, description=_("Extension Actions")) # lower priority
+			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", {
+				"extensions": (self.bluekey_ex, _("Show extensions...")),
+				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
+				"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
+				"openTimerList": (self.showTimerList, _("Show the list of timers.")),
+				"openAutoTimerList": (self.showAutoTimerList, _("Show the list of AutoTimers.")),
+				"openEPGSearch": (self.showEPGSearch, _("Search the epg for current event.")),
+				"openIMDB": (self.showIMDB, _("Search IMDb for information about current event.")),
+				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
+				"openDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
+			}, prio=1, description=_("Extension Actions"))  # lower priority
 		else:
-			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
-				{
-					"extensions": (self.bluekey_ex, _("view extensions...")),
-					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
-					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
-					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-				}, prio=1, description=_("Extension Actions")) # lower priority
+			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", {
+				"extensions": (self.bluekey_ex, _("view extensions...")),
+				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
+				"showDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
+				"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
+				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
+			}, prio=1, description=_("Extension Actions"))  # lower priority
 
-		self.addExtension(extension = self.getOsd3DSetup, type = InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension = self.getCCcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension = self.getOScamInfo, type = InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension = self.getNcamInfo, type = InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension = self.getIpkUninstall, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getLogManager, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getOScamInfo, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getNcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getIpkUninstall, type=InfoBarExtensions.EXTENSION_LIST)
+		if config.usage.show_restart_network_extensionslist.getValue() is True:
+			self.addExtension(extension=self.getRestartNetwork, type=InfoBarExtensions.EXTENSION_LIST)
 
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_EXTENSIONSINGLE):
 			p(self)
@@ -2695,8 +3144,26 @@ class InfoBarExtensions:
 		except:
 			pass
 
+	def getLMname(self):
+		return _("Log Manager")
+
+	def getLogManager(self):
+		if config.logmanager.showinextensions.value:
+			return [((boundFunction(self.getLMname), boundFunction(self.openLogManager), lambda: True), None)]
+		else:
+			return []
+
+	def getSoftcamSetupname(self):
+		return _("Softcam Settings")
+
+	def getRestartNetworkname(self):
+		return _("Restart Network")
+
+	def getRestartNetwork(self):
+		return [((boundFunction(self.getRestartNetworkname), boundFunction(self.openRestartNetwork), lambda: True), None)]
+
 	def get3DSetupname(self):
-		return _("OSD 3D Setup")
+		return _("OSD 3D Settings")
 
 	def getOsd3DSetup(self):
 		if config.osd.show3dextensions.value:
@@ -2709,7 +3176,7 @@ class InfoBarExtensions:
 
 	def getCCcamInfo(self):
 		if pathExists('/usr/bin/'):
-			softcams = os.listdir('/usr/bin/')
+			softcams = listdir('/usr/bin/')
 		for softcam in softcams:
 			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
 				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
@@ -2721,25 +3188,28 @@ class InfoBarExtensions:
 
 	def getOScamInfo(self):
 		if pathExists('/usr/bin/'):
-			softcams = os.listdir('/usr/bin/')
+			softcams = listdir('/usr/bin/')
 		for softcam in softcams:
 			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
 		else:
 			return []
 
+	## OPENSPA [morser] Add Ncam
 	def getNname(self):
 		return _("Ncam Info")
 
 	def getNcamInfo(self):
 		if pathExists('/usr/bin/'):
-			softcams = os.listdir('/usr/bin/')
+			softcams = listdir('/usr/bin/')
 		for softcam in softcams:
 			if softcam.lower().startswith('ncam') and config.ncaminfo.showInExtensions.value:
 				return [((boundFunction(self.getNname), boundFunction(self.openNcamInfo), lambda: True), None)] or []
 		else:
 			return []
-
+	########################################
+	
+	## OPENSPA [evox] Add Ipk Uninstall Tool
 	def getIpkUninstallname(self):
 		return _("Ipk Uninstall Tool")
 
@@ -2747,11 +3217,24 @@ class InfoBarExtensions:
 		return [((boundFunction(self.getIpkUninstallname), boundFunction(self.openIpkUninstall), lambda: True), None)]
 
 	def addExtension(self, extension, key = None, type = EXTENSION_SINGLE):
+		def get_name(elem):
+			name = ""
+			if elem[0] == self.EXTENSION_SINGLE:
+				name = str(elem[1][0]())
+			else:
+				for y in elem[1]():
+					name =str(y[0][0]())
+			return name			
+	########################################
+
+	def addExtension(self, extension, key=None, type=EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
 		if config.usage.sort_extensionslist.value:
-			self.list.sort()
+			print("[InfoBarExtensions] sort_extensionslist not supported yet")
+			# FIME sort extensions
+			# self.list.sort()
 
-	def updateExtension(self, extension, key = None):
+	def updateExtension(self, extension, key=None):
 		self.extensionsList.append(extension)
 		if key is not None:
 			if key in self.extensionKeys:
@@ -2798,13 +3281,15 @@ class InfoBarExtensions:
 				else:
 					extensionsList.remove(extension)
 		if config.usage.sort_extensionslist.value:
-			list.sort()
+			print("[InfoBarExtensions] sort_extensionslist not supported yet")
+			# FIME sort extensions
+			# list.sort()
 		for x in colorlist:
 			list.append(x)
 		list.extend([(x[0](), x) for x in extensionsList])
 
 		keys += [""] * len(extensionsList)
-		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list, keys = keys, skin_name = "ExtensionsList")
+		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list=list, keys=keys, skin_name="ExtensionsList")
 
 	def extensionCallback(self, answer):
 		if answer is not None:
@@ -2831,11 +3316,22 @@ class InfoBarExtensions:
 		self.session.open(Ipkuninstall)
 
 	def showTimerList(self):
-		self.session.open(TimerEditList)
+		self.session.open(RecordTimerOverview)
+
+	def openLogManager(self):
+		from Screens.LogManager import LogManager
+		self.session.open(LogManager)
 
 	def open3DSetup(self):
-		from Screens.UserInterfacePositioner import OSD3DSetupScreen
-		self.session.open(OSD3DSetupScreen)
+		from Screens.Setup import Setup
+		self.session.open(Setup, "OSD3D")
+
+	def openRestartNetwork(self):
+		try:
+			from Screens.RestartNetwork import RestartNetwork
+			self.session.open(RestartNetwork)
+		except:
+			print('[INFOBARGENERICS] failed to restart network')
 
 	def showAutoTimerList(self):
 		if isPluginInstalled("AutoTimer"):
@@ -2850,8 +3346,8 @@ class InfoBarExtensions:
 				self.session.open(
 					MessageBox,
 					_("Your config file is not well-formed:\n%s") % (str(se)),
-					type = MessageBox.TYPE_ERROR,
-					timeout = 10
+					type=MessageBox.TYPE_ERROR,
+					timeout=10
 				)
 				return
 
@@ -2866,7 +3362,7 @@ class InfoBarExtensions:
 				self.autotimer
 			)
 		else:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def editCallback(self, session):
 		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
@@ -2893,7 +3389,7 @@ class InfoBarExtensions:
 		s = self.session.nav.getCurrentService()
 		if s:
 			info = s.info()
-			event = info.getEvent(0) # 0 = now, 1 = next
+			event = info.getEvent(0)  # 0 = now, 1 = next
 			if event:
 				name = event and event.getEventName() or ''
 			else:
@@ -2918,63 +3414,68 @@ class InfoBarExtensions:
 			s = self.session.nav.getCurrentService()
 			if s:
 				info = s.info()
-				event = info.getEvent(0) # 0 = now, 1 = next
+				event = info.getEvent(0)  # 0 = now, 1 = next
 				name = event and event.getEventName() or ''
 				self.session.open(IMDB, name)
 		else:
-			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showMediaPlayer(self):
 		if isinstance(self, InfoBarExtensions):
 			if isinstance(self, InfoBar):
-				try: # falls es nicht installiert ist
+				try:  # falls es nicht installiert ist
 					from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 					self.session.open(MediaPlayer)
 					no_plugin = False
 				except Exception as e:
-					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showDreamPlex(self):
 		if isPluginInstalled("DreamPlex"):
 			from Plugins.Extensions.DreamPlex.plugin import DPS_MainMenu
 			self.session.open(DPS_MainMenu)
 		else:
-			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+
 
 from Tools.BoundFunction import boundFunction
 import inspect
 
 # depends on InfoBarExtensions
+
+
 class InfoBarPlugins:
 	def __init__(self):
-		self.addExtension(extension = self.getPluginList, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getPluginList, type=InfoBarExtensions.EXTENSION_LIST)
 
 	def getPluginName(self, name):
 		return name
 
 	def getPluginList(self):
 		l = []
-		for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EXTENSIONSMENU):
-			args = inspect.getargspec(p.__call__)[0]
+		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
+			args = inspect.getfullargspec(p.__call__)[0]
 			if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
 				l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
-		l.sort(key = lambda e: e[2]) # sort by name
+		l.sort(key=lambda e: e[2])  # sort by name
 		return l
 
 	def runPlugin(self, plugin):
 		if isinstance(self, InfoBarChannelSelection):
-			plugin(session = self.session, servicelist = self.servicelist)
+			plugin(session=self.session, servicelist=self.servicelist)
 		else:
 			try:
-				plugin(session = self.session)
+				plugin(session=self.session)
 			except Exception as err:
 				print('[InfoBarGenerics] Error: ', err)
 
 
 from Components.Task import job_manager
+
+
 class InfoBarJobman:
 	def __init__(self):
-		self.addExtension(extension = self.getJobList, type = InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getJobList, type=InfoBarExtensions.EXTENSION_LIST)
 
 	def getJobList(self):
 		if config.usage.jobtaksextensions.value:
@@ -2983,7 +3484,7 @@ class InfoBarJobman:
 			return []
 
 	def getJobName(self, job):
-		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
+		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100 * job.progress / float(job.end)))
 
 	def showJobView(self, job):
 		from Screens.TaskView import JobView
@@ -2994,6 +3495,8 @@ class InfoBarJobman:
 		job_manager.in_background = in_background
 
 # depends on InfoBarExtensions
+
+
 class InfoBarPiP:
 	def __init__(self):
 		try:
@@ -3003,11 +3506,10 @@ class InfoBarPiP:
 
 		self.lastPiPService = None
 
-		if SystemInfo["PIPAvailable"]:
-			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
-				{
-					"activatePiP": (self.activePiP, self.activePiPName),
-				}, prio=0, description=_("PiP Actions"))
+		if BoxInfo.getItem("PIPAvailable") and isinstance(self, InfoBarEPG):
+			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions", {
+				"activatePiP": (self.activePiP, self.activePiPName),
+			}, prio=0, description=_("PiP Actions"))
 			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
@@ -3068,12 +3570,11 @@ class InfoBarPiP:
 					if lastPiPServiceTimeout:
 						self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
 				del self.session.pip
-				if SystemInfo["LCDMiniTV"]:
-					if config.lcd.modepip.value >= "1":
-						print('[InfoBarGenerics] [LCDMiniTV] disable PIP')
-						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modeminitv.value)
-						f.close()
+				if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
+					print('[InfoBarGenerics] [LCDMiniTV] disable PiP')
+					f = open("/proc/stb/lcd/mode", "w")
+					f.write(config.lcd.modeminitv.value)
+					f.close()
 				self.session.pipshown = False
 			if hasattr(self, "ScreenSaverTimerStart"):
 				self.ScreenSaverTimerStart()
@@ -3082,7 +3583,7 @@ class InfoBarPiP:
 			info = service and service.info()
 			if info:
 				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-			if info and int(xres) <= 720 or getMachineBuild() != 'blackbox7405':
+			if info and int(xres) <= 720 or BoxInfo.getItem("model") != 'blackbox7405':
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
@@ -3090,8 +3591,8 @@ class InfoBarPiP:
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
-						print('[InfoBarGenerics] [LCDMiniTV] enable PIP')
+					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
+						print('[InfoBarGenerics] [LCDMiniTV] enable PiP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modepip.value)
 						f.close()
@@ -3109,8 +3610,8 @@ class InfoBarPiP:
 					if self.session.pip.playService(newservice):
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-						if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
-							print('[InfoBarGenerics] [LCDMiniTV] enable PIP')
+						if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
+							print('[InfoBarGenerics] [LCDMiniTV] enable PiP')
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.modepip.value)
 							f.close()
@@ -3128,9 +3629,9 @@ class InfoBarPiP:
 						self.session.pipshown = False
 						del self.session.pip
 			elif info:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5)
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
 			else:
-				self.session.open(MessageBox, _("No active channel found."), type = MessageBox.TYPE_INFO,timeout = 5)
+				self.session.open(MessageBox, _("No active channel found."), type=MessageBox.TYPE_INFO, timeout=5)
 		if self.session.pipshown and hasattr(self, "screenSaverTimer"):
 			self.screenSaverTimer.stop()
 
@@ -3160,7 +3661,7 @@ class InfoBarPiP:
 				currentBouquet = self.servicelist and self.servicelist.getRoot()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 				self.session.pip.playService(swapservice)
-				self.session.nav.stopService() # stop portal
+				self.session.nav.stopService()  # stop portal
 				self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
 				self.session.pip.servicePath = currentServicePath
 				self.session.pip.servicePath[1] = currentBouquet
@@ -3170,7 +3671,7 @@ class InfoBarPiP:
 
 	def movePiP(self):
 		if self.pipShown():
-			self.session.open(PiPSetup, pip = self.session.pip)
+			self.session.open(PiPSetup, pip=self.session.pip)
 
 	def pipDoHandle0Action(self):
 		use = config.usage.pip_zero_button.value
@@ -3185,10 +3686,17 @@ class InfoBarPiP:
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to
 	start/stop instant records"""
+
 	def __init__(self):
-		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",{
+		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord", {
 			"instantRecord": (self.instantRecord, _("Instant recording...")),
 		}, prio=0, description=_("Recording Actions"))
+		self["RedActions"] = HelpableActionMap(self, "InfobarExtensions", {
+			"RedPressed": (self.instantRecord, _("Instant recording...")),
+			"RedLong": (self.redKey_Long, _("Red Long press")),
+			"YellowLong": (self.yellowKey_Long, _("Yellow Long press")),
+			"BlueLong": (self.blueKey_Long, _("Blue Long press")),
+		}, prio=0, description=_("Red Actions"))
 		self.SelectedInstantServiceRef = None
 		if isStandardInfoBar(self):
 			self.recording = []
@@ -3199,7 +3707,72 @@ class InfoBarInstantRecord:
 				self.recording = InfoBarInstance.recording
 		self.saveTimeshiftEventPopupActive = False
 
-	def stopCurrentRecording(self, entry = -1):
+	#### OPENSPA [morser] Add new actions for long pressed ################
+	def longpress(self,value):
+		if value == "videoset":
+			from Screens.VideoMode import VideoSetup
+			self.session.open(VideoSetup)
+		elif value == "audioset":
+			from Screens.Setup import Setup
+			self.session.open(Setup,"Audio")
+		elif value == "timers":
+			from Screens.TimerEdit import TimerEditList
+			self.session.open(TimerEditList)
+		elif value == "resolution":
+			self.ExGreen_toggleGreen()		
+		elif value == "camdmanager":
+			try:
+				from Plugins.Extensions.spazeMenu.spzPlugins.spzCAMD.plugin import startConfig
+				startConfig(self.session)
+			except:
+				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "spzCAMD"), type=MessageBox.TYPE_INFO, timeout=10)
+		elif value == "meteo":
+			try:
+				from Plugins.Extensions.spzWeather.plugin import main
+				main(self.session)
+			except:
+				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "spzWeather"), type=MessageBox.TYPE_INFO, timeout=10)
+		elif value == "infobarepg":
+			self.openInfoBarEPG()
+		elif value == "movies":
+			self.showMovies()
+		elif value == "mediacenter":
+			try:
+				if config.plugins.mc_vp.style.value == "3":
+					from Plugins.Extensions.MediaCenter.MC_VideoPlayerK import MC_VideoPlayerK
+					self.session.open(MC_VideoPlayerK)
+				else:
+					from Plugins.Extensions.MediaCenter.MC_VideoPlayer import MC_VideoPlayer
+					self.session.open(MC_VideoPlayer)
+			except:
+				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "MediaCenter"), type=MessageBox.TYPE_INFO, timeout=10)
+		elif value == "panelextra":
+			try:
+				from Plugins.Extensions.PanelExtra.plugin import main
+				main(self.session)
+			except:
+				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "PanelExtra"), type=MessageBox.TYPE_INFO, timeout=10)
+		elif value == "kodi":
+			try:
+				from Plugins.Extensions.Kodi.plugin import startLauncher
+				startLauncher(self.session)
+			except:
+				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "Kodi"), type=MessageBox.TYPE_INFO, timeout=10)
+
+	def yellowKey_Long(self):
+		if self.LongButtonPressed:
+			self.longpress(config.usage.yellowlong.value)
+
+	def redKey_Long(self):
+		if self.LongButtonPressed:
+			self.longpress(config.usage.redlong.value)
+
+	def blueKey_Long(self):
+		if self.LongButtonPressed:
+			self.longpress(config.usage.bluelong.value)
+	########################################################################
+
+	def stopCurrentRecording(self, entry=-1):
 		if entry is not None and entry != -1:
 			self.session.nav.RecordTimer.removeEntry(self.recording[entry])
 			self.recording.remove(self.recording[entry])
@@ -3234,9 +3807,9 @@ class InfoBarInstantRecord:
 			info["eventid"] = curEvent[4]
 			info["end"] = curEvent[1]
 
-	def startInstantRecording(self, limitEvent = False):
+	def startInstantRecording(self, limitEvent=False):
 		begin = int(time())
-		end = begin + 3600 # dummy
+		end = begin + 3600  # dummy
 		name = "instant record"
 		info = {}
 
@@ -3254,8 +3827,15 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
-		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], afterEvent = AFTEREVENT.AUTO, justplay = False, always_zap = False, dirname = preferredInstantRecordPath())
+		if not limitEvent:
+			end = begin + (60 * 60 * 24)  # 24h
+
+		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=preferredInstantRecordPath())
+		recording.marginBefore = 0
 		recording.dontSave = True
+		recording.eventBegin = recording.begin
+		recording.marginAfter = (config.recording.margin_after.value * 60) if event and limitEvent else 0
+		recording.eventEnd = recording.end - recording.marginAfter
 
 		if event is None or limitEvent == False:
 			recording.autoincrease = True
@@ -3263,15 +3843,15 @@ class InfoBarInstantRecord:
 
 		simulTimerList = self.session.nav.RecordTimer.record(recording)
 
-		if simulTimerList is None:	# no conflict
+		if simulTimerList is None:  # no conflict
 			recording.autoincrease = False
 			self.recording.append(recording)
 		else:
-			if len(simulTimerList) > 1: # with other recording
+			if len(simulTimerList) > 1:  # with other recording
 				name = simulTimerList[1].name
 				name_date = ' '.join((name, strftime('%F %T', localtime(simulTimerList[1].begin))))
 				# print "[TIMER] conflicts with", name_date
-				recording.autoincrease = True	# start with max available length, then increment
+				recording.autoincrease = True  # start with max available length, then increment
 				if recording.setAutoincreaseEnd():
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
@@ -3282,7 +3862,11 @@ class InfoBarInstantRecord:
 				self.session.open(MessageBox, _("Could not record due to invalid service %s") % serviceref, MessageBox.TYPE_INFO)
 			recording.autoincrease = False
 
+	def startRecordingCurrentEvent(self):
+		self.startInstantRecording(True)
+
 	def isInstantRecordRunning(self):
+#		print "self.recording:", self.recording
 		if self.recording:
 			for x in self.recording:
 				if x.isRunning():
@@ -3290,8 +3874,12 @@ class InfoBarInstantRecord:
 		return False
 
 	def recordQuestionCallback(self, answer):
+		# print 'recordQuestionCallback'
+#		print "pre:\n", self.recording
 
+		# print 'test1'
 		if answer is None or answer[1] == "no":
+			# print 'test2'
 			self.saveTimeshiftEventPopupActive = False
 			return
 		list = []
@@ -3313,16 +3901,15 @@ class InfoBarInstantRecord:
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
 		elif answer[1] == "timer":
-			from Screens.TimerEdit import TimerEditList
-			self.session.open(TimerEditList)
+			self.session.open(RecordTimerOverview)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
 			from Components.About import about
-			if len(list) >= 2 and about.getChipSetString() in ('meson-6', 'meson-64'):
-				Notifications.AddNotification(MessageBox, _("Sorry only possible to record 2 channels at once"), MessageBox.TYPE_ERROR, timeout = 5)
+			if len(list) >= 2 and BoxInfo.getItem("ChipsetString") in ('meson-6', 'meson-64'):
+				Notifications.AddNotification(MessageBox, _("Sorry only possible to record 2 channels at once"), MessageBox.TYPE_ERROR, timeout=5)
 				return
-			self.startInstantRecording(limitEvent = answer[1] in ("event", "manualendtime") or False)
+			self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime") or False)
 			if answer[1] == "manualduration":
 				self.changeDuration(len(self.recording) - 1)
 			elif answer[1] == "manualendtime":
@@ -3334,7 +3921,7 @@ class InfoBarInstantRecord:
 				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
 				# print 'test3'
-				Notifications.AddNotification(MessageBox, _("Timeshift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
+				Notifications.AddNotification(MessageBox, _("Time shift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
 				self.save_current_timeshift = True
 				config.timeshift.isRecording.value = True
 		elif answer[1] == "savetimeshiftEvent":
@@ -3351,17 +3938,19 @@ class InfoBarInstantRecord:
 	def setEndtime(self, entry):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.endtime = ConfigClock(default = self.recording[self.selectedEntry].end)
+			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].end)
 			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
 			dlg.setTitle(_("Please change recording endtime"))
 
 	def TimeDateInputClosed(self, ret):
-		if len(ret) > 1:
-			if ret[0]:
-				if self.recording[self.selectedEntry].end != ret[1]:
-					self.recording[self.selectedEntry].autoincrease = False
-				self.recording[self.selectedEntry].end = ret[1]
-				self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
+		if len(ret) > 1 and ret[0]:
+			print("stop recording at %s " % strftime("%F %T", localtime(ret[1])))
+			entry = self.recording[self.selectedEntry]
+			if entry.end != ret[1]:
+				entry.autoincrease = False
+			entry.end = ret[1]
+			entry.eventEnd = entry.end
+			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
 		if entry is not None and entry >= 0:
@@ -3371,16 +3960,15 @@ class InfoBarInstantRecord:
 	def inputCallback(self, value):
 		entry = self.recording[self.selectedEntry]
 		if value is not None:
+			print("stop recording after %s minutes." % int(value))
 			value = value.replace(" ", "")
 			if value == "":
 				value = "0"
 			if int(value) != 0:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
-		#else:
-		#	if entry.end != int(time()):
-		#		entry.autoincrease = False
-		#	entry.end = int(time())
+			entry.eventBegin = entry.begin
+			entry.eventEnd = entry.end
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def isTimerRecordRunning(self):
@@ -3408,10 +3996,10 @@ class InfoBarInstantRecord:
 			common = ((_("Add recording (stop after current event)"), "event"),
 				(_("Add recording (indefinitely)"), "indefinitely"),
 				(_("Add recording (enter recording duration)"), "manualduration"),
-				(_("Add recording (enter recording endtime)"), "manualendtime"),)
+				(_("Add recording (enter recording end time)"), "manualendtime"),)
 
-			timeshiftcommon = ((_("Timeshift save recording (stop after current event)"), "savetimeshift"),
-				(_("Timeshift save recording (Select event)"), "savetimeshiftEvent"),)
+			timeshiftcommon = ((_("Time shift save recording (stop after current event)"), "savetimeshift"),
+				(_("Time shift save recording (Select event)"), "savetimeshiftEvent"),)
 		else:
 			common = ()
 			timeshiftcommon = ()
@@ -3420,7 +4008,7 @@ class InfoBarInstantRecord:
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			list = ((_("Stop recording"), "stop"),) + common + \
 				((_("Change recording (duration)"), "changeduration"),
-				(_("Change recording (endtime)"), "changeendtime"),)
+				(_("Change recording (end time)"), "changeendtime"),)
 			if self.isTimerRecordRunning():
 				list += ((_("Stop timer recording"), "timer"),)
 		else:
@@ -3436,48 +4024,53 @@ class InfoBarInstantRecord:
 			list = list + ((_("Do not record"), "no"),)
 
 		if list:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title = title, list = list)
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=list)
 		else:
 			return 0
 
+
 class InfoBarAudioSelection:
 	def __init__(self):
-		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",{
+		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions", {
 			"audioSelection": (self.audioSelection, _("Audio options...")),
 			"yellow_key": (self.yellow_key, _("Audio options...")),
 			"audioSelectionLong": (self.audioDownmixToggle, _("Toggle Digital downmix...")),
 		}, prio=0, description=_("Audio Actions"))
 
 	def yellow_key(self):
-		if not hasattr(self, "LongButtonPressed"):
-			self.LongButtonPressed = False
-		global AUDIO
-		if not self.LongButtonPressed:
-			if config.usage.on_short_yellow_key.value == '0':
-				self.audioSelection()
-			elif config.usage.on_short_yellow_key.value == '2':
-				AUDIO = True
-				ToggleVideo()
-			elif config.usage.on_short_yellow_key.value == '3':
-				self.startTeletext()
-			else:
-				try:
-					self.startTimeshift()
-				except:
-					pass
-		else:
-			if config.usage.on_long_yellow_key.value == '0':
-				self.audioSelection()
-			elif config.usage.on_long_yellow_key.value == '2':
-				AUDIO = True
-				ToggleVideo()
-			elif config.usage.on_long_yellow_key.value == '3':
-				self.startTeletext()
-			else:
-				try:
-					self.startTimeshift()
-				except:
-					pass
+		from Screens.AudioSelection import AudioSelection
+		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		#if not hasattr(self, "LongButtonPressed"):
+		#	self.LongButtonPressed = False
+		#global AUDIO
+		#if not self.LongButtonPressed:
+		#	if config.plugins.infopanel_yellowkey.list.value == '0':
+		#		from Screens.AudioSelection import AudioSelection
+		#		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		#	elif config.plugins.infopanel_yellowkey.list.value == '2':
+		#		AUDIO = True
+		#		ToggleVideo()
+		#	elif config.plugins.infopanel_yellowkey.list.value == '3':
+		#		self.startTeletext()
+		#	else:
+		#		try:
+		#			self.startTimeshift()
+		#		except:
+		#			pass
+		#else:
+		#	if config.plugins.infopanel_yellowkey.listLong.value == '0':
+		#		from Screens.AudioSelection import AudioSelection
+		#		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		#	elif config.plugins.infopanel_yellowkey.listLong.value == '2':
+		#		AUDIO = True
+		#		ToggleVideo()
+		#	elif config.plugins.infopanel_yellowkey.listLong.value == '3':
+		#		self.startTeletext()
+		#	else:
+		#		try:
+		#			self.startTimeshift()
+		#		except:
+		#			pass
 
 	def audioSelection(self):
 		from Screens.AudioSelection import AudioSelection
@@ -3487,7 +4080,7 @@ class InfoBarAudioSelection:
 		print("[InfoBarGenerics] [infobar::audioSelected]", ret)
 
 	def audioDownmixToggle(self, popup=True):
-		if SystemInfo["CanDownmixAC3"]:
+		if BoxInfo.getItem("CanDownmixAC3"):
 			if config.av.downmix_ac3.value:
 				message = _("Dolby Digital downmix is now") + " " + _("disabled")
 				print('[InfoBarGenerics] [Audio] Dolby Digital downmix is now disabled')
@@ -3497,7 +4090,7 @@ class InfoBarAudioSelection:
 				message = _("Dolby Digital downmix is now") + " " + _("enabled")
 				print('[InfoBarGenerics] [Audio] Dolby Digital downmix is now enabled')
 			if popup:
-				Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
+				Notifications.AddPopup(text=message, type=MessageBox.TYPE_INFO, timeout=5, id="DDdownmixToggle")
 
 	def audioDownmixOn(self):
 		if not config.av.downmix_ac3.value:
@@ -3507,14 +4100,15 @@ class InfoBarAudioSelection:
 		if config.av.downmix_ac3.value:
 			self.audioDownmixToggle(False)
 
+
 class InfoBarSubserviceSelection:
 	def __init__(self):
-		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",{
+		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions", {
 			"GreenPressed": (self.GreenPressed),
 			"subserviceSelection": (self.subserviceSelection, _("Subservice list...")),
 		}, prio=0, description=_("Sub Service Actions"))
 
-		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",{
+		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions", {
 			"nextSubservice": (self.nextSubservice, _("Switch to next sub service")),
 			"prevSubservice": (self.prevSubservice, _("Switch to previous sub service"))
 		}, prio=-1, description=_("Sub Service Actions"))
@@ -3531,8 +4125,8 @@ class InfoBarSubserviceSelection:
 		self.session.nav.event.remove(self.checkSubservicesAvail)
 
 	def checkSubservicesAvail(self):
-		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		if not serviceRef or not hasActiveSubservicesForCurrentChannel(serviceRef.toString()):
+		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+		if not refstr or not hasActiveSubservicesForCurrentChannel(refstr):
 			self["SubserviceQuickzapAction"].setEnabled(False)
 			self.bouquets = self.bsel = self.selectedSubservice = None
 
@@ -3548,11 +4142,11 @@ class InfoBarSubserviceSelection:
 		self.session.nav.playService(ref, checkParentalControl=False, adjust=False)
 
 	def changeSubservice(self, direction):
-		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		if serviceRef:
-			subservices = getActiveSubservicesForCurrentChannel(serviceRef.toString())
-			if subservices and len(subservices) > 1 and serviceRef.toString() in [x[1] for x in subservices]:
-				selection = [x[1] for x in subservices].index(serviceRef.toString())
+		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+		if refstr:
+			subservices = getActiveSubservicesForCurrentChannel(refstr)
+			if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
+				selection = [x[1] for x in subservices].index(refstr)
 				selection += direction % len(subservices)
 				try:
 					newservice = eServiceReference(subservices[selection][0])
@@ -3562,11 +4156,11 @@ class InfoBarSubserviceSelection:
 					self.playSubservice(newservice)
 
 	def subserviceSelection(self):
-		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		if serviceRef:
-			subservices = getActiveSubservicesForCurrentChannel(serviceRef.toString())
-			if subservices and len(subservices) > 1 and serviceRef.toString() in [x[1] for x in subservices]:
-				selection = [x[1] for x in subservices].index(serviceRef.toString())
+		refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+		if refstr:
+			subservices = getActiveSubservicesForCurrentChannel(refstr)
+			if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
+				selection = [x[1] for x in subservices].index(refstr)
 				self.bouquets = self.servicelist and self.servicelist.getBouquetList()
 				#if self.bouquets and len(self.bouquets):
 				#	keys = ["red", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -3579,7 +4173,7 @@ class InfoBarSubserviceSelection:
 				tlist = [(_("Quick zap"), "quickzap", subservices), ("--", "")] + subservices
 				keys = ["red", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 				selection += 2
-				self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a sub service..."), list=tlist, selection=selection, keys=keys, skin_name ="SubserviceSelection")
+				self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a sub service..."), list=tlist, selection=selection, keys=keys, skin_name="SubserviceSelection")
 
 	def subserviceSelected(self, service):
 		if service and len(service) > 1:
@@ -3609,9 +4203,9 @@ class InfoBarSubserviceSelection:
 				self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, self.bouquets, self.addSubserviceToBouquet)
 			elif cnt == 1:
 				self.addSubserviceToBouquet(self.bouquets[0][1])
-				self.session.open(MessageBox, _("Service has been added to the favourites."), MessageBox.TYPE_INFO, timeout=5)
+				self.session.open(MessageBox, _("Service has been added to the favorites."), MessageBox.TYPE_INFO, timeout=5)
 		else:
-			self.session.open(MessageBox, _("Service cant been added to the favourites."), MessageBox.TYPE_INFO, timeout=5)
+			self.session.open(MessageBox, _("Service cant been added to the favorites."), MessageBox.TYPE_INFO, timeout=5)
 
 	def bouquetSelClosed(self, confirmed):
 		self.bouquets = self.bsel = self.selectedSubservice = None
@@ -3630,10 +4224,10 @@ class InfoBarSubserviceSelection:
 		elif config.plisettings.Subservice.value == "1":
 			self.openPluginBrowser()
 		else:
-			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-			if serviceRef:
-				subservices = getActiveSubservicesForCurrentChannel(serviceRef.toString())
-				if subservices and len(subservices) > 1 and serviceRef.toString() in [x[1] for x in subservices]:
+			refstr = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
+			if refstr:
+				subservices = getActiveSubservicesForCurrentChannel(refstr)
+				if subservices and len(subservices) > 1 and refstr in [x[1] for x in subservices]:
 					self.subserviceSelection()
 				else:
 					if config.plisettings.Subservice.value == "2":
@@ -3654,13 +4248,16 @@ class InfoBarSubserviceSelection:
 			pass
 
 	def openTimerList(self):
-		self.session.open(TimerEditList)
+		self.session.open(RecordTimerOverview)
+
 
 from Components.Sources.HbbtvApplication import HbbtvApplication
 gHbbtvApplication = HbbtvApplication()
+
+
 class InfoBarRedButton:
 	def __init__(self):
-		self["RedButtonActions"] = HelpableActionMap(self, "InfobarRedButtonActions",{
+		self["RedButtonActions"] = HelpableActionMap(self, "InfobarRedButtonActions", {
 			"activateRedButton": (self.activateRedButton, _("Red button...")),
 		}, prio=0, description=_("Red/HbbTV Button Actions"))
 		self["HbbtvApplication"] = gHbbtvApplication
@@ -3706,30 +4303,38 @@ class InfoBarRedButton:
 		if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
 			for x in self.onHBBTVActivation:
 				x()
-		elif False: # TODO: other red button services
+		elif False:  # TODO: other red button services
 			for x in self.onRedButtonActivation:
 				x()
 
+
 class InfoBarTimerButton:
 	def __init__(self):
-		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions",{
+		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions", {
 			"timerSelection": (self.timerSelection, _("Timer selection...")),
 		}, prio=0, description=_("Timer Actions"))
 
 	def timerSelection(self):
-		from Screens.TimerEdit import TimerEditList
-		self.session.open(TimerEditList)
+		self.session.open(RecordTimerOverview)
+
 
 class InfoBarAspectSelection:
 	STATE_HIDDEN = 0
 	STATE_ASPECT = 1
 	STATE_RESOLUTION = 2
+
 	def __init__(self):
-		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions",{
-			"aspectSelection": (self.ExGreen_toggleGreen, _("Aspect list...")),
+		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", {
+			"aspectSelection": (self.GreenLongPress, _("Aspect list...")),
 		}, prio=0, description=_("Aspect Ratio Actions"))
 
 		self.__ExGreen_state = self.STATE_HIDDEN
+
+	# OPENSPA [morser] change option for long press
+	def GreenLongPress(self):
+		if self.LongButtonPressed:
+			self.longpress(config.usage.greenlong.value)
+	###############################################
 
 	def ExGreen_doAspect(self):
 		print("[InfoBarGenerics] do self.STATE_ASPECT")
@@ -3759,11 +4364,27 @@ class InfoBarAspectSelection:
 
 	def aspectSelection(self):
 		selection = 0
-		tlist = [(_("Resolution"), "resolution"), ("--", ""), (_("4_3_letterbox"), "0"), (_("4_3_panscan"), "1"), (_("16_9"), "2"), (_("16_9_always"), "3"), (_("16_10_letterbox"), "4"), (_("16_10_panscan"), "5"), (_("16_9_letterbox"), "6")]
-		for x in list(range(len(tlist))):
-			selection = x
+		aspectList = [
+			(_("Resolution"), "resolution"),
+			("--", ""),
+			(_("4:3 Letterbox"), "0"),
+			(_("4:3 PanScan"), "1"),
+			(_("16:9"), "2"),
+			(_("16:9 Always"), "3"),
+			(_("16:10 Letterbox"), "4"),
+			(_("16:10 PanScan"), "5"),
+			(_("16:9 Letterbox"), "6")
+		]
 		keys = ["green", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-		self.session.openWithCallback(self.aspectSelected, ChoiceBox, title=_("Please select an aspect ratio..."), list=tlist, selection=selection, keys=keys)
+		from Components.AVSwitch import AVSwitch
+		iAVSwitch = AVSwitch()
+		aspect = iAVSwitch.getAspectRatioSetting()
+		selection = 0
+		for item in range(len(aspectList)):
+			if aspectList[item][1] == aspect:
+				selection = item
+				break
+		self.session.openWithCallback(self.aspectSelected, ChoiceBox, text=_("Please select an aspect ratio..."), list=aspectList, keys=keys, selection=selection)
 
 	def aspectSelected(self, aspect):
 		if not aspect is None:
@@ -3781,96 +4402,78 @@ class InfoBarAspectSelection:
 			self.ExGreen_doHide()
 		return
 
+
 class InfoBarResolutionSelection:
 	def __init__(self):
-		return
+		pass
 
 	def resolutionSelection(self):
-		f = open("/proc/stb/vmpeg/0/xres", "r")
-		xresString = f.read()
-		f.close()
-		f = open("/proc/stb/vmpeg/0/yres", "r")
-		yresString = f.read()
-		f.close()
-		if getBoxType().startswith('azbox'):
-			fpsString = '50000'
+		xRes = int(fileReadLine("/proc/stb/vmpeg/0/xres", 0, source=MODULE_NAME), 16)
+		yRes = int(fileReadLine("/proc/stb/vmpeg/0/yres", 0, source=MODULE_NAME), 16)
+		if BoxInfo.getItem("model").startswith('azbox'):
+			fps = 50.0
 		else:
-			try:
-				f = open("/proc/stb/vmpeg/0/framerate", "r")
-				fpsString = f.read()
-				f.close()
-			except:
-				print("[InfoBarGenerics] [InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!")
-				fpsString = '50000'
-
-		xres = int(xresString, 16)
-		yres = int(yresString, 16)
-		fps = int(fpsString)
-		fpsFloat = float(fps)
-		fpsFloat = fpsFloat / 1000
-
-		# do we need a new sorting with this way here?
-		# or should we disable some choices?
-		choices = []
-		if os.path.exists("/proc/stb/video/videomode_choices"):
-			f = open("/proc/stb/video/videomode_choices")
-			values = f.readline().replace("\n", "").replace("pal ", "").replace("ntsc ", "").split(" ", -1)
-			for x in values:
-				entry = x.replace('i50', 'i@50hz').replace('i60', 'i@60hz').replace('p23', 'p@23.976hz').replace('p24', 'p@24hz').replace('p25', 'p@25hz').replace('p29', 'p@29hz').replace('p30', 'p@30hz').replace('p50', 'p@50hz'), x
-				choices.append(entry)
-			f.close()
-
-		selection = 0
-		tlist = []
-		tlist.append((_("Exit"), "exit"))
-		tlist.append((_("Auto(not available)"), "auto"))
-		tlist.append((_("Video: ") + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", ""))
-		tlist.append(("--", ""))
-		if choices != []:
-			for x in choices:
-				tlist.append(x)
-
+			fps = float(fileReadLine("/proc/stb/vmpeg/0/framerate", 50000, source=MODULE_NAME)) / 1000.0
+		resList = []
+		resList.append((_("Exit"), "exit"))
+		resList.append((_("Auto(not available)"), "auto"))
+		resList.append((_("Video: ") + "%dx%d@%gHz" % (xRes, yRes, fps), ""))
+		resList.append(("--", ""))
+		# Do we need a new sorting with this way here or should we disable some choices?
+		if exists("/proc/stb/video/videomode_choices"):
+			videoModes = fileReadLine("/proc/stb/video/videomode_choices", "", source=MODULE_NAME)
+			videoModes = videoModes.replace("pal ", "").replace("ntsc ", "").split(" ")
+			for videoMode in videoModes:
+				video = videoMode
+				if videoMode.endswith("23"):
+					video = "%s.976" % videoMode
+				if videoMode[-1].isdigit():
+					video = "%sHz" % videoMode
+				resList.append((video, videoMode))
+		videoMode = fileReadLine("/proc/stb/video/videomode", "Unknown", source=MODULE_NAME)
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+		selection = 0
+		for item in range(len(resList)):
+			if resList[item][1] == videoMode:
+				selection = item
+				break
+		print("[InfoBarGenerics] Current video mode is %s." % videoMode)
+		self.session.openWithCallback(self.resolutionSelected, ChoiceBox, text=_("Please select a resolution..."), list=resList, keys=keys, selection=selection)
 
-		mode = open("/proc/stb/video/videomode").read()[:-1]
-		print("[InfoBarGenerics] videomode:", mode)
-		for x in list(range(len(tlist))):
-			if tlist[x][1] == mode:
-				selection = x
-
-		self.session.openWithCallback(self.ResolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list = tlist, selection = selection, keys = keys)
-
-	def ResolutionSelected(self, Resolution):
-		if not Resolution is None:
-			if isinstance(Resolution[1], str):
-				if Resolution[1] == "exit" or Resolution[1] == "" or Resolution[1] == "auto":
+	def resolutionSelected(self, videoMode):
+		if videoMode is not None:
+			if isinstance(videoMode[1], str):
+				if videoMode[1] == "exit" or videoMode[1] == "" or videoMode[1] == "auto":
 					self.ExGreen_toggleGreen()
-				if Resolution[1] != "auto":
-					f = open("/proc/stb/video/videomode", "w")
-					f.write(Resolution[1])
-					f.close()
-					#from enigma import gMainDC
-					#gMainDC.getInstance().setResolution(-1, -1)
+				if videoMode[1] != "auto":
+					if fileWriteLine("/proc/stb/video/videomode", videoMode[1], source=MODULE_NAME):
+						print("[InfoBarGenerics] New video mode is %s." % videoMode[1])
+					else:
+						print("[InfoBarGenerics] Error: Unable to set new video mode of %s!" % videoMode[1])
+					# from enigma import gMainDC
+					# gMainDC.getInstance().setResolution(-1, -1)
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()
 		return
 
+
 class InfoBarVmodeButton:
 	def __init__(self):
-		self["VmodeButtonActions"] = HelpableActionMap(self, "InfobarVmodeButtonActions",{
+		self["VmodeButtonActions"] = HelpableActionMap(self, "InfobarVmodeButtonActions", {
 			"vmodeSelection": (self.vmodeSelection, _("Letterbox zoom")),
 		}, prio=0, description=_("Zoom Actions"))
 
 	def vmodeSelection(self):
 		self.session.open(VideoMode)
 
+
 class VideoMode(Screen):
-	def __init__(self,session):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["videomode"] = Label()
 
-		self["actions"] = HelpableNumberActionMap(self, ["InfobarVmodeButtonActions"],{
+		self["actions"] = HelpableNumberActionMap(self, ["InfobarVmodeButtonActions"], {
 			"vmodeSelection": (self.selectVMode, _("Letterbox zoom")),
 		}, prio=0, description=_("Zoom Actions"))
 
@@ -3898,6 +4501,7 @@ class VideoMode(Screen):
 		self.Timer.stop()
 		self.close()
 
+
 class InfoBarAdditionalInfo:
 	def __init__(self):
 		self["RecordingPossible"] = Boolean(fixed=harddiskmanager.HDDCount() > 0)
@@ -3907,6 +4511,7 @@ class InfoBarAdditionalInfo:
 		self["ShowTimeshiftOnYellow"] = Boolean(fixed=0)
 		self["ShowAudioOnYellow"] = Boolean(fixed=0)
 		self["ShowRecordOnRed"] = Boolean(fixed=0)
+
 
 class InfoBarNotifications:
 	def __init__(self):
@@ -3965,6 +4570,7 @@ class InfoBarNotifications:
 	def __notificationClosed(self, d):
 		Notifications.current_notifications.remove(d)
 
+
 class InfoBarServiceNotifications:
 	def __init__(self):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
@@ -3978,6 +4584,7 @@ class InfoBarServiceNotifications:
 		except:
 			pass
 
+
 class InfoBarCueSheetSupport:
 	CUT_TYPE_IN = 0
 	CUT_TYPE_OUT = 1
@@ -3987,7 +4594,7 @@ class InfoBarCueSheetSupport:
 	ENABLE_RESUME_SUPPORT = False
 
 	def __init__(self, actionmap="InfobarCueSheetActions"):
-		self["CueSheetActions"] = HelpableActionMap(self, actionmap,{
+		self["CueSheetActions"] = HelpableActionMap(self, actionmap, {
 			"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous marked position")),
 			"jumpNextMark": (self.jumpNextMark, _("Jump to next marked position")),
 			"toggleMark": (self.toggleMark, _("Toggle a cut mark at the current position"))
@@ -4019,7 +4626,7 @@ class InfoBarCueSheetSupport:
 			# only resume if at least 10 seconds ahead, or <10 seconds before the end.
 			seekable = self.__getSeekable()
 			if seekable is None:
-				return # Should not happen?
+				return  # Should not happen?
 			length = seekable.getLength() or (None, 0)
 #			print "seekable.getLength() returns:", length
 			# Hmm, this implies we don't resume if the length is unknown...
@@ -4177,6 +4784,7 @@ class InfoBarCueSheetSupport:
 		else:
 			self.cut_list = cue.getCutList()
 
+
 class InfoBarSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
@@ -4200,12 +4808,14 @@ class InfoBarSummary(Screen):
 #			<convert type="ServiceName">Reference</convert>
 #		</widget>
 
+
 class InfoBarSummarySupport:
 	def __init__(self):
 		pass
 
 	def createSummary(self):
 		return InfoBarSummary
+
 
 class InfoBarMoviePlayerSummary(Screen):
 	skin = """
@@ -4224,8 +4834,9 @@ class InfoBarMoviePlayerSummary(Screen):
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 	</screen>"""
+
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["state_summary"] = StaticText("")
 		self["speed_summary"] = StaticText("")
 		self["statusicon_summary"] = MultiPixmap()
@@ -4243,12 +4854,14 @@ class InfoBarMoviePlayerSummary(Screen):
 		self["speed_summary"].setText(speed_summary)
 		self["statusicon_summary"].setPixmapNum(int(statusicon_summary))
 
+
 class InfoBarMoviePlayerSummarySupport:
 	def __init__(self):
 		pass
 
 	def createSummary(self):
 		return InfoBarMoviePlayerSummary
+
 
 class InfoBarTeletextPlugin:
 	def __init__(self):
@@ -4257,7 +4870,7 @@ class InfoBarTeletextPlugin:
 			self.teletext_plugin = p
 
 		if self.teletext_plugin is not None:
-			self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions",{
+			self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions", {
 				"startTeletext": (self.startTeletext, _("View teletext..."))
 			}, prio=0, description=_("Teletext Actions"))
 		else:
@@ -4266,10 +4879,11 @@ class InfoBarTeletextPlugin:
 	def startTeletext(self):
 		self.teletext_plugin and self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
 
+
 class InfoBarSubtitleSupport(object):
 	def __init__(self):
 		object.__init__(self)
-		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions",{
+		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions", {
 			"subtitleSelection": (self.subtitleSelection, _("Subtitle selection...")),
 		}, prio=0, description=_("Subtitle Actions"))
 
@@ -4317,16 +4931,6 @@ class InfoBarSubtitleSupport(object):
 		info = service and service.info()
 		config.subtitles.dvb_subtitles_centered.value = info and info.getInfo(iServiceInformation.sCenterDVBSubs) and True
 
-	def subtitleQuickMenu(self):
-		service = self.session.nav.getCurrentService()
-		subtitle = service and service.subtitle()
-		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.selected_subtitle and self.selected_subtitle != (0, 0, 0, 0):
-			from Screens.AudioSelection import QuickSubtitlesConfigMenu
-			self.session.open(QuickSubtitlesConfigMenu, self)
-		else:
-			self.subtitleSelection()
-
 	def __serviceChanged(self):
 		if self.selected_subtitle:
 			self.selected_subtitle = None
@@ -4355,6 +4959,7 @@ class InfoBarSubtitleSupport(object):
 	def restartSubtitle(self):
 		if self.selected_subtitle:
 			self.enableSubtitle(self.selected_subtitle)
+
 
 class InfoBarServiceErrorPopupSupport:
 	def __init__(self):
@@ -4394,19 +4999,20 @@ class InfoBarServiceErrorPopupSupport:
 				eDVBServicePMTHandler.eventSOF: None,
 				eDVBServicePMTHandler.eventEOF: None,
 				eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
-			}.get(error) #this returns None when the key not exist in the dict
+			}.get(error)  # this returns None when the key not exist in the dict
 
 			if error and not config.usage.hide_zap_errors.value:
 				self.closeNotificationInstantiateDialog()
 				if hasattr(self, "dishDialog") and not self.dishDialog.dishState():
-					Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
+					Notifications.AddPopup(text=error, type=MessageBox.TYPE_ERROR, timeout=5, id="ZapError")
+
 
 class InfoBarZoom:
 	def __init__(self):
 		self.zoomrate = 0
 		self.zoomin = 1
 
-		self["ZoomActions"] = HelpableActionMap(self, "InfobarZoomActions",{
+		self["ZoomActions"] = HelpableActionMap(self, "InfobarZoomActions", {
 			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV...")),
 			"ZoomOff": (self.ZoomOff, _("Zoom Off...")),
 		}, prio=2, description=_("Zoom Actions"))
@@ -4440,18 +5046,19 @@ class InfoBarZoom:
 		f.write(str(0))
 		f.close()
 
+
 class InfoBarHdmi:
 	def __init__(self):
 		self.hdmi_enabled = False
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if SystemInfo["HDMIin"]:
+		if BoxInfo.getItem("HDMIin"):
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:
 				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
-		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",{
+		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions", {
 			"HDMIin": (self.HDMIIn, _("Switch to HDMI in mode")),
 			"HDMIinLong": (self.HDMIInLong, _("Switch to HDMI in mode")),
 		}, prio=2, description=_("HDMI-IN Actions"))
@@ -4495,7 +5102,7 @@ class InfoBarHdmi:
 			return _("Turn off HDMI-IN PiP mode")
 
 	def HDMIInPiP(self):
-		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
+		if BoxInfo.getItem("model") in ('dm7080', 'dm820', 'dm900', 'dm920'):
 			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
@@ -4533,7 +5140,7 @@ class InfoBarHdmi:
 					del self.session.pip
 
 	def HDMIInFull(self):
-		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
+		if BoxInfo.getItem("model") in ('dm7080', 'dm820', 'dm900', 'dm920'):
 			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
@@ -4548,7 +5155,7 @@ class InfoBarHdmi:
 				self.oldvideomode_60hz = f.read()
 				f.close()
 				f = open("/proc/stb/video/videomode", "w")
-				if getMachineBuild() in ('dm900', 'dm920'):
+				if BoxInfo.getItem("model") in ('dm900', 'dm920'):
 					f.write("1080p")
 				else:
 					f.write("720p")
@@ -4585,78 +5192,131 @@ class InfoBarHdmi:
 				self.hdmi_enabled_full = False
 				self.session.nav.playService(slist.servicelist.getCurrent())
 
+
 class InfoBarSleepTimer:
 	def __init__(self):
-		self.sleepTimer = eTimer()
+		global keyPressCallback
 		self.sleepStartTime = 0
+		self.sleepTimer = eTimer()
 		self.sleepTimer.callback.append(self.sleepTimerTimeout)
+		self.energyStartTime = 0
+		self.energyTimer = eTimer()
+		self.energyTimer.callback.append(self.energyTimerTimeout)
+		keyPressCallback.append(self.resetEnergyTimer)
 
 	def sleepTimerState(self):
-		if self.sleepTimer.isActive():
-			return (self.sleepStartTime - time()) / 60
+		return self.getTimerRemaining(self.sleepTimer, self.sleepStartTime)
+
+	def energyTimerState(self):
+		return self.getTimerRemaining(self.energyTimer, self.energyStartTime)
+
+	def getTimerRemaining(self, timer, startTime):
+		if timer.isActive():
+			return (startTime - int(time()))
 		return 0
 
-	def setSleepTimer(self, sleepTime, showMessage = True):
-		print ("[InfoBarSleepTimer] set sleeptimer", sleepTime)
-		if sleepTime:
-			m = abs(sleepTime / 60)
-			message = _("The sleep timer has been activated.") + "\n" + _("Delay:") + " " + _("%d minutes") % m
-			self.sleepTimer.startLongTimer(sleepTime)
-			self.sleepStartTime = time() + sleepTime
+	def setSleepTimer(self, sleepTime, showMessage=True):
+		self.sleepStartTime = self.setTimer(sleepTime, self.sleepStartTime, self.sleepTimer, _("Sleep timer"), showMessage=showMessage)
+
+	def setEnergyTimer(self, energyTime, showMessage=True):
+		self.energyStartTime = self.setTimer(energyTime, self.energyStartTime, self.energyTimer, _("Energy timer"), showMessage=showMessage)
+
+	def resetEnergyTimer(self):
+		if str(config.usage.energyTimer.value) == config.usage.energyTimer.savedValue:  # Don't change energy timer while it is being edited.
+			self.energyStartTime = self.setTimer(config.usage.energyTimer.value, self.energyStartTime, self.energyTimer, _("Energy timer"), showMessage=False)
+
+	def setTimer(self, delay, previous, timer, name, showMessage):
+		minutes = delay // 60
+		if delay:
+			message = "%s\n%s %s" % (_("%s has been activated.") % name, _("Delay:"), _("%d minutes") % minutes)
+			timer.startLongTimer(delay)
+			delay = int(time()) + delay
 		else:
-			message = _("The sleep timer has been disabled.")
-			self.sleepTimer.stop()
-		if showMessage:
-			Notifications.AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
+			message = _("%s has been disabled.") % name
+			timer.stop()
+			delay = 0
+		if showMessage and delay != previous:
+			print("[InfoBarGenerics] InfoBarSleepTimer: %s set to %d minutes." % (name, minutes))
+			Notifications.AddPopup(message, type=MessageBox.TYPE_INFO, timeout=5)
+		return delay
 
 	def sleepTimerTimeout(self):
-		if config.usage.sleep_timer_action.value != "standby":
-			isRecordTime = abs(self.session.nav.RecordTimer.getNextRecordingTime() - time()) <= 900 or self.session.nav.RecordTimer.getStillRecording() or abs(self.session.nav.RecordTimer.getNextZapTime() - time()) <= 900
-			isPowerTime = abs(self.session.nav.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or self.session.nav.PowerTimer.isProcessing(exceptTimer = 0)
-			if isRecordTime or isPowerTime:
-				self.setSleepTimer(1800, False)
-				if not Screens.Standby.inStandby:
-					message = _("A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\nExtend sleep timer 30 minutes. Your %s %s\nwill shut down after Recording or Powertimer event. Get in Standby now?") % (getMachineBrand(), getMachineName())
-					self.session.openWithCallback(self.goStandby, MessageBox, message, MessageBox.TYPE_YESNO, timeout=int(config.usage.shutdown_msgbox_timeout.value), default=True)
-				return
-		if not Screens.Standby.inStandby:
-			list = [(_("Yes"), True),
+		action = config.usage.sleepTimerAction.value
+		brand, model, timeout = self.timerTimeout(action, self.setSleepTimer, _("Sleep Timer"))
+		if brand:
+			if not Screens.Standby.inStandby:
+				optionList = [
+					(_("Yes"), True),
 					(_("No"), False),
-					(_("Extend"), "extend")]
-			if config.usage.sleep_timer_action.value == "standby":
-				message = _("A sleep timer wants to set your %s %s to standby.\nDo that now or set extend additional minutes?") % (getMachineBrand(), getMachineName())
+					(_("Extend"), "extend")
+				]
+				state = _("Standby") if action == "standby" else _("Deep Standby")
+				message = _("The sleep timer wants to set the %s %s to %s.\n\nDo that now or extend the timer?") % (brand, model, state)
+				self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=timeout, list=optionList, default=True, windowTitle=_("Sleep Timer"))  # , simple=True
 			else:
-				message = _("A sleep timer wants to shut down your %s %s.\nDo that now or set extend additional minutes?") % (getMachineBrand(), getMachineName())
-			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=int(config.usage.shutdown_msgbox_timeout.value), simple=True, list=list, default=True)
-		else:
-			self.goStandby()
+				self.timerStandby(action)
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":
-			from Screens.SleepTimerEdit import SleepTimerEdit
-			self.session.open(SleepTimerEdit)
+			from Screens.SleepTimer import SleepTimer
+			self.session.open(SleepTimer)
 		elif answer:
-			self.goStandby()
+			self.timerStandby(config.usage.sleepTimerAction.value)
 		else:
-			self.setSleepTimer(0)
+			self.setSleepTimer(0, showMessage=False)
 
-	def goStandby(self, answer = None):
-		if config.usage.sleep_timer_action.value == "standby" or answer:
+	def energyTimerTimeout(self):
+		action = config.usage.energyTimerAction.value
+		brand, model, timeout = self.timerTimeout(action, self.setEnergyTimer, _("Energy Timer"))
+		if brand:
 			if not Screens.Standby.inStandby:
-				print("[InfoBarSleepTimer] goto standby")
+				state = _("Standby") if action == "standby" else _("Deep Standby")
+				message = _("The energy timer wants to set the %s %s to %s.\n\nPress OK to continue using the %s %s.") % (brand, model, state, brand, model)
+				self.session.openWithCallback(self.energyTimerTimeoutCallback, MessageBox, message, type=MessageBox.TYPE_WARNING, timeout=timeout, default=True, timeoutDefault=False, windowTitle=_("Energy Timer"))  # , simple=True
+			else:
+				self.timerStandby(action)
+
+	def energyTimerTimeoutCallback(self, answer):
+		if answer:
+			self.setEnergyTimer(0, showMessage=False)
+		else:
+			self.timerStandby(config.usage.energyTimerAction.value)
+
+	def timerTimeout(self, action, timerMethod, name):
+		brand = BoxInfo.getItem("displaybrand")
+		model = BoxInfo.getItem("displaymodel")
+		timeout = int(config.usage.shutdown_msgbox_timeout.value)
+		if action != "standby":
+			isRecordTime = abs(self.session.nav.RecordTimer.getNextRecordingTime() - time()) <= 900 or self.session.nav.RecordTimer.getStillRecording() or abs(self.session.nav.RecordTimer.getNextZapTime() - time()) <= 900
+			isPowerTime = abs(self.session.nav.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or self.session.nav.PowerTimer.isProcessing(exceptTimer=0)
+			if isRecordTime or isPowerTime:
+				timerMethod(1800, showMessage=False)  # 1800 = 30 minutes.
+				if not Screens.Standby.inStandby:
+					message = _("A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n\nGo to Deep Standby now?") % (name, brand, model)
+					self.session.openWithCallback(boundFunction(self.timerStandby, action), MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True, windowTitle=name)
+				return None, None, None
+		return brand, model, timeout
+
+	def timerStandby(self, action, answer=None):
+		if action == "standby" or answer:
+			if not Screens.Standby.inStandby:
+				print("[InfoBarGenerics] InfoBarSleepTimer: Going to Standby.")
 				self.session.open(Screens.Standby.Standby)
 		elif answer is None:
 			if not Screens.Standby.inStandby:
 				if not Screens.Standby.inTryQuitMainloop:
-					print("[InfoBarSleepTimer] goto deep standby")
+					print("[InfoBarGenerics] InfoBarSleepTimer: Going to Deep Standby.")
 					self.session.open(Screens.Standby.TryQuitMainloop, 1)
 			else:
-				print("[InfoBarSleepTimer] goto deep standby")
+				print("[InfoBarGenerics] InfoBarSleepTimer: Going to Deep Standby.")
 				quitMainloop(1)
+
 
 #########################################################################################
 # for displayed power or record timer messages in foreground and for callback execution #
 #########################################################################################
+
+
 class InfoBarOpenOnTopHelper:
 	def __init__(self):
 		pass
@@ -4683,9 +5343,13 @@ class InfoBarOpenOnTopHelper:
 			print("[InfoBarGenerics] [openInfoBarSession] Exception:", e)
 
 #########################################################################################
+# handle bsod (python crashes) and show information after crash                         #
+#########################################################################################
 
 
 from enigma import getBsodCounter, resetBsodCounter
+
+
 class InfoBarHandleBsod:
 	def __init__(self):
 		self.lastBsod = 0
@@ -4708,17 +5372,17 @@ class InfoBarHandleBsod:
 			txt += _("(Attention: There will be a restart after %d crashes.)") % maxbs
 			if writelog:
 				txt += "\n" + "-" * 80 + "\n"
-				txt += _("A crashlog was %s created in '%s'") % ((_('not'), '')[int(writelog)], config.crash.debug_path.value)
+				txt += _("A crash log was %s created in '%s'") % ((_("not"), '')[int(writelog)], config.crash.debug_path.value)
 			#if not writelog:
 			#	txt += "\n" + "-"*80 + "\n"
-			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _('never'))
+			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _("Never"))
 			if bsodcnt >= maxbs:
 				txt += "\n" + "-" * 80 + "\n"
 				txt += _("Warning: This is the last crash before an automatic restart is performed.\n")
 				txt += _("Should the crash counter be reset to prevent a restart?")
 				self.lastestBsodWarning = True
 			try:
-				self.session.openWithCallback(self.infoBsodCallback, MessageBox, txt, type=MessageBox.TYPE_ERROR, default=False, close_on_any_key=not self.lastestBsodWarning, showYESNO=self.lastestBsodWarning)
+				self.session.openWithCallback(self.infoBsodCallback, MessageBox, txt, type=MessageBox.TYPE_YESNO if self.lastestBsodWarning else MessageBox.TYPE_ERROR, default=False, close_on_any_key=not self.lastestBsodWarning, typeIcon=MessageBox.TYPE_ERROR)
 				self.infoBsodIsShown = True
 			except Exception as e:
 				#print "[InfoBarHandleBsod] Exception:", e

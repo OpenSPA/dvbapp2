@@ -1,7 +1,6 @@
-from __future__ import division
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Label import Label
 from Components.config import config
 
@@ -13,12 +12,14 @@ MAX_H = MAX_Y * 3 // 4
 MIN_W = MAX_X // 8
 MIN_H = MAX_Y // 8
 
+
 def clip(val, min, max):
 	if min <= val <= max:
 		return val
 	if min <= val:
 		return max
 	return min
+
 
 class PiPSetup(Screen):
 	def __init__(self, session, pip):
@@ -37,7 +38,7 @@ class PiPSetup(Screen):
 		self.resize = 100
 
 		self.helptext = _("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving.")
-		if SystemInfo["VideoDestinationConfigurable"] or SystemInfo["HasExternalPIP"]:
+		if BoxInfo.getItem("VideoDestinationConfigurable") or BoxInfo.getItem("HasExternalPIP"):
 			self.helptext += "\n" + _("Press '0' to toggle PiP mode")
 		self.modetext = _("Current mode: %s \n")
 
@@ -81,7 +82,7 @@ class PiPSetup(Screen):
 		self.pip.move(self.pos[0], self.pos[1])
 
 	def resizePiP(self, resize):
-		resize += 100 # resize is in percent, so resize=+20 means: 120%
+		resize += 100  # resize is in percent, so resize=+20 means: 120%
 
 		oldsize = self.size
 		if self.mode != "split":

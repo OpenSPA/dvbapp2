@@ -176,7 +176,7 @@ RESULT eAMLTSMPEGDecoder::setVideoPID(int vpid, int type)
 			break;
 		}
 		eDebug("%s() vpid=%d, type=%d MPEG1 %d",__PRETTY_FUNCTION__, vpid, type,testv);
-
+		
 #if HAVE_ALIEN5
 
 		aml_change_vpid(vpid, m_codec.video_type);
@@ -271,6 +271,7 @@ RESULT eAMLTSMPEGDecoder::setSyncMaster(int who)
 RESULT eAMLTSMPEGDecoder::set()
 {
 	TRACE__
+
 	return 0;
 }
 
@@ -435,7 +436,8 @@ RESULT eAMLTSMPEGDecoder::showSinglePic(const char *filename)
 				unsigned char stuffing[8192];
 				int streamtype;
 				memset(stuffing, 0, 8192);
-				read(f, iframe, s.st_size);
+				ssize_t ret = read(f, iframe, s.st_size);
+				if (ret < 0) eDebug("[eAMLTSMPEGDecoder] read failed: %m");
 
 				aml_setAvsyncEnable(0);
 				m_radio_pic_on = 1;
@@ -590,10 +592,11 @@ int eAMLTSMPEGDecoder::getVideoAspect()
 
 	return m_aspect == 1 ? 2 : 3;
 }
-
 int eAMLTSMPEGDecoder::getVideoGamma()
 {
 	//if (m_video)
 	//	return m_video->getGamma();
 	return -1;
 }
+
+

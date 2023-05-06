@@ -7,9 +7,10 @@ modelist = {"off": _("Off"), "auto": _("Auto"), "sidebyside": _("Side by Side"),
 setmodelist = {"mode1": _("Mode 1"), "mode2": _("Mode 2")}
 
 config.plugins.UI3DSetup = ConfigSubsection()
-config.plugins.UI3DSetup.mode = ConfigSelection(choices = modelist, default = "auto")
-config.plugins.UI3DSetup.znorm = ConfigInteger(default = 0)
-config.plugins.UI3DSetup.setmode = ConfigSelection(choices = setmodelist, default = "mode1")
+config.plugins.UI3DSetup.mode = ConfigSelection(choices=modelist, default="auto")
+config.plugins.UI3DSetup.znorm = ConfigInteger(default=0)
+config.plugins.UI3DSetup.setmode = ConfigSelection(choices=setmodelist, default="mode1")
+
 
 class UI3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -39,17 +40,17 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		}, -2)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 
 		mode = config.plugins.UI3DSetup.mode.value
 		znorm = config.plugins.UI3DSetup.znorm.value
 		setmode = config.plugins.UI3DSetup.setmode.value
 
-		self.mode = ConfigSelection(choices = modelist, default = mode)
-		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
-		self.setmode = ConfigSelection(choices = setmodelist, default = setmode)
-		self.list.append(getConfigListEntry(_("Setup mode"), self.setmode))
-		self.list.append(getConfigListEntry(_("3d mode"), self.mode))
+		self.mode = ConfigSelection(choices=modelist, default=mode)
+		self.znorm = ConfigSlider(default=znorm + 50, increment=1, limits=(0, 100))
+		self.setmode = ConfigSelection(choices=setmodelist, default=setmode)
+		self.list.append(getConfigListEntry(_("Settings mode"), self.setmode))
+		self.list.append(getConfigListEntry(_("3D Mode"), self.mode))
 		self.list.append(getConfigListEntry(_("Depth"), self.znorm))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -76,6 +77,7 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		setConfiguredSettings()
 		self.close()
 
+
 def applySettings(mode, znorm, setmode):
 	try:
 		if setmode == "mode1":
@@ -99,20 +101,24 @@ def applySettings(mode, znorm, setmode):
 	except:
 		return
 
+
 def setConfiguredSettings():
 	applySettings(config.plugins.UI3DSetup.mode.value,
 		int(config.plugins.UI3DSetup.znorm.value), config.plugins.UI3DSetup.setmode.value)
 
+
 def main(session, **kwargs):
 	session.open(UI3DSetupScreen)
 
+
 def startup(reason, **kwargs):
 	setConfiguredSettings()
+
 
 def Plugins(**kwargs):
 	from os import path
 	if path.exists("/proc/stb/fb/3dmode") or path.exists("/proc/stb/fb/primary/3d"):
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = _("UI 3D setup"), description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
-					PluginDescriptor(name = _("UI 3D setup"), description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+		return [PluginDescriptor(name=_("UI 3D setup"), description=_("Adjust 3D settings"), where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+					PluginDescriptor(name=_("UI 3D setup"), description="", where=PluginDescriptor.WHERE_SESSIONSTART, fnc=startup)]
 	return []

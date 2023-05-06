@@ -1,15 +1,14 @@
-from __future__ import print_function
-from __future__ import absolute_import
-import errno
-import xml.etree.cElementTree
-
+from errno import ENOENT
 from os import environ, path, symlink, unlink, walk
-import six
-from time import gmtime, localtime, strftime, time
+from os.path import exists, isfile, join as pathjoin, realpath
+from time import gmtime, localtime, strftime, time, tzset
+from xml.etree.cElementTree import ParseError, parse
 
 from Components.config import ConfigSelection, ConfigSubsection, config
-from Tools.Geolocation import geolocation
+from Tools.Directories import fileReadXML, fileWriteLine
 from Tools.StbHardware import setRTCoffset
+
+MODULE_NAME = __name__.split(".")[-1]
 
 # The DEFAULT_AREA setting is usable by the image maintainers to select the
 # default UI mode and location settings used by their image.  If the value
@@ -21,8 +20,8 @@ from Tools.StbHardware import setRTCoffset
 # users will only be presented with the list of GMT related offsets.
 #
 # The DEFAULT_ZONE is used to select the default time zone if the "Time zone
-# area" is selected to be "Europe".  This allows OpenViX to have the
-# European default of "London" while OpenSPA can select "Madrid",
+# area" is selected to be "Europe".  This allows OpenATV to have the
+# European default of "Berlin" while OpenSPA can select "Madrid",
 # etc. (These are only examples.)  Images can select any defaults they deem
 # appropriate.
 #
@@ -31,11 +30,11 @@ from Tools.StbHardware import setRTCoffset
 #
 # For images that use both the "Time zone area" and "Time zone" configuration
 # options then the DEFAULT_AREA can be set to an area most appropriate for
-# the image.  For example, Beyonwiz would use "Australia", OpenATV, OpenViX
-# and OpenPLi would use "Europe".  If the "Europe" option is selected then
+# the image.  For example, Beyonwiz would use "Australia", OpenATV, OpenPLi
+# and OpenSPA would use "Europe".  If the "Europe" option is selected then
 # the DEFAULT_ZONE can be used to select a more appropriate time zone
 # selection for the image.  For example, OpenATV and OpenPLi may prefer
-# "Berlin" while OpenViX may prefer "London" and OpenSPA may prefer "Madrid".
+# "Berlin" while OpenSPA may prefer "Madrid".
 #
 # Please ensure that any defaults selected are valid, unique and available
 # in the "/usr/share/zoneinfo/" directory tree.
@@ -44,56 +43,45 @@ from Tools.StbHardware import setRTCoffset
 # feature that will try and determine the appropriate time zone for the user
 # based on their WAN IP address.  If the receiver is not connected to the
 # Internet the defaults described above and listed below will be used.
-
-DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenViX, OpenSPA
+#
+# DEFAULT_AREA = "Classic"  # Use the classic time zone based list of time zones.
+# DEFAULT_AREA = "Australia"  # Beyonwiz
+DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenSPA
+# DEFAULT_ZONE = "Amsterdam"  # OpenPLi
+# DEFAULT_ZONE = "Berlin"  # OpenATV
 DEFAULT_ZONE = "Madrid"  # OpenSPA
 TIMEZONE_FILE = "/etc/timezone.xml"  # This should be SCOPE_TIMEZONES_FILE!  This file moves arond the filesystem!!!  :(
 TIMEZONE_DATA = "/usr/share/zoneinfo/"  # This should be SCOPE_TIMEZONES_DATA!
+
 
 def InitTimeZones():
 	config.timezone = ConfigSubsection()
 	config.timezone.area = ConfigSelection(default=DEFAULT_AREA, choices=timezones.getTimezoneAreaList())
 	config.timezone.val = ConfigSelection(default=DEFAULT_ZONE, choices=timezones.getTimezoneList())
-	if config.misc.firstrun.value:
-		proxy = geolocation.get("proxy", False)
-		tz = geolocation.get("timezone", None)
-		if proxy is True or tz is None:
-			msg = " - proxy in use" if proxy else ""
-			print("[Timezones] Warning: Geolocation not available%s!  (area='%s', zone='%s')" % (msg, config.timezone.area.value, config.timezone.val.value))
+	if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
+		config.timezone.area.value = "Generic"
+	try:
+		tzLink = realpath("/etc/localtime")[20:]
+		msgs = []
+		if config.timezone.area.value == "Classic":
+			if config.timezone.val.value != tzLink:
+				msgs.append("time zone '%s' != '%s'" % (config.timezone.val.value, tzLink))
 		else:
-			area, zone = tz.split("/", 1)
-			if area != DEFAULT_AREA:
-				config.timezone.area.value = area
-				choices = timezones.getTimezoneList(area=area)
-				config.timezone.val.setChoices(choices, default=timezones.getTimezoneDefault(area, choices))
-			config.timezone.val.value = zone
-			config.timezone.save()
-			print("[Timezones] Initial time zone set by geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone))
-	else:
-		if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
-			config.timezone.area.value = "Generic"
-		try:
-			tzLink = path.realpath("/etc/localtime")[20:]
-			msgs = []
-			if config.timezone.area.value == "Classic":
-				if config.timezone.val.value != tzLink:
-					msgs.append("time zone '%s' != '%s'" % (config.timezone.val.value, tzLink))
+			tzSplit = tzLink.find("/")
+			if tzSplit == -1:
+				tzArea = "Generic"
+				tzVal = tzLink
 			else:
-				tzSplit = tzLink.find("/")
-				if tzSplit == -1:
-					tzArea = "Generic"
-					tzVal = tzLink
-				else:
-					tzArea = tzLink[:tzSplit]
-					tzVal = tzLink[tzSplit + 1:]
-				if config.timezone.area.value != tzArea:
-					msgs.append("area '%s' != '%s'" % (config.timezone.area.value, tzArea))
-				if config.timezone.val.value != tzVal:
-					msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
-			if len(msgs):
-				print("[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs))
-		except (IOError, OSError):
-			pass
+				tzArea = tzLink[:tzSplit]
+				tzVal = tzLink[tzSplit + 1:]
+			if config.timezone.area.value != tzArea:
+				msgs.append("area '%s' != '%s'" % (config.timezone.area.value, tzArea))
+			if config.timezone.val.value != tzVal:
+				msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
+		if len(msgs):
+			print("[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs))
+	except OSError as err:
+		print("[Timezones] Error %d: Unable to resolve current time zone from '/etc/localtime'!  (%s)" % (err.errno, err.strerror))
 
 	def timezoneAreaChoices(configElement):
 		choices = timezones.getTimezoneList(area=configElement.value)
@@ -104,9 +92,8 @@ def InitTimeZones():
 	def timezoneNotifier(configElement):
 		timezones.activateTimezone(configElement.value, config.timezone.area.value)
 
-	config.timezone.area.addNotifier(timezoneAreaChoices, initial_call=False, immediate_feedback=True)
-	config.timezone.val.addNotifier(timezoneNotifier, initial_call=True, immediate_feedback=True)
-	config.timezone.val.callNotifiersOnSaveAndCancel = True
+	config.timezone.area.addNotifier(timezoneAreaChoices, initial_call=False)
+	config.timezone.val.addNotifier(timezoneNotifier)
 
 
 class Timezones:
@@ -115,15 +102,8 @@ class Timezones:
 		self.loadTimezones()
 		self.readTimezones()
 		self.callbacks = []
-		# This is a work around to maintain support of AutoTimers
-		# until AutoTimers are updated to use the Timezones
-		# callbacks.  Once AutoTimers are updated *all* AutoTimer
-		# code should be removed from the Timezones.py code!
-		self.autotimerInit()
 
-	# Scan the zoneinfo directory tree and all load all time zones found.
-	#
-	def loadTimezones(self):
+	def loadTimezones(self):  # Scan the zoneinfo directory tree and all load all time zones found.
 		commonTimezoneNames = {
 			"Antarctica/DumontDUrville": "Dumont d'Urville",
 			"Asia/Ho_Chi_Minh": "Ho Chi Minh City",
@@ -161,12 +141,12 @@ class Timezones:
 				name = commonTimezoneNames.get(tz, zone)  # Use the more common name if one is defined.
 				if name is None:
 					continue
-				if isinstance(name, six.text_type):
-					name = six.ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
-				if isinstance(area, six.text_type):
-					area = six.ensure_str(area.encode(encoding="UTF-8", errors="ignore"))
-				if isinstance(zone, six.text_type):
-					zone = six.ensure_str(zone.encode(encoding="UTF-8", errors="ignore"))
+				if isinstance(name, str):
+					name = name.encode(encoding="UTF-8", errors="ignore").decode()
+				if isinstance(area, str):
+					area = area.encode(encoding="UTF-8", errors="ignore").decode()
+				if isinstance(zone, str):
+					zone = zone.encode(encoding="UTF-8", errors="ignore").decode()
 				zones.append((zone, name.replace("_", " ")))
 			if area:
 				if area in self.timezones:
@@ -176,11 +156,7 @@ class Timezones:
 			print("[Timezones] Warning: No areas or zones found in '%s'!" % TIMEZONE_DATA)
 			self.timezones["Generic"] = [("UTC", "UTC")]
 
-	# Return the list of Zones sorted alphabetically.  If the Zone
-	# starts with "GMT" then those Zones will be sorted in GMT order
-	# with GMT-14 first and GMT+12 last.
-	#
-	def gmtSort(self, zones):
+	def gmtSort(self, zones):  # If the Zone starts with "GMT" then those Zones will be sorted in GMT order with GMT-14 first and GMT+12 last.
 		data = {}
 		for (zone, name) in zones:
 			if name.startswith("GMT"):
@@ -195,43 +171,18 @@ class Timezones:
 			data[key] = (zone, name)
 		return [data[x] for x in sorted(data.keys())]
 
-	# Read the timezones.xml file and load all time zones found.
-	#
-	def readTimezones(self, filename=TIMEZONE_FILE):
-		root = None
-		try:
-			with open(filename, "r") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
-				try:
-					root = xml.etree.cElementTree.parse(fd).getroot()
-				except xml.etree.cElementTree.ParseError as err:
-					root = None
-					fd.seek(0)
-					content = fd.readlines()
-					line, column = err.position
-					print("[Timezones] XML Parse Error: '%s' in '%s'!" % (err, filename))
-					data = content[line - 1].replace("\t", " ").rstrip()
-					print("[Timezones] XML Parse Error: '%s'" % data)
-					print("[Timezones] XML Parse Error: '%s^%s'" % ("-" * column, " " * (len(data) - column - 1)))
-				except Exception as err:
-					root = None
-					print("[Timezones] Error: Unable to parse time zone data in '%s' - '%s'!" % (filename, err))
-		except (IOError, OSError) as err:
-			if err.errno == errno.ENOENT:  # No such file or directory
-				print("[Timezones] Note: Classic time zones in '%s' are not available." % filename)
-			else:
-				print("[Timezones] Error %d: Opening time zone file '%s'! (%s)" % (err.errno, filename, err.strerror))
-		except Exception as err:
-			print("[Timezones] Error: Unexpected error opening time zone file '%s'! (%s)" % (filename, err))
+	def readTimezones(self, filename=TIMEZONE_FILE):  # Read the timezones.xml file and load all time zones found.
+		fileDom = fileReadXML(filename, source=MODULE_NAME)
 		zones = []
-		if root is not None:
-			for zone in root.findall("zone"):
+		if fileDom:
+			for zone in fileDom.findall("zone"):
 				name = zone.get("name", "")
-				if isinstance(name, six.text_type):
-					name = six.ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
+				if isinstance(name, str):
+					name = name.encode(encoding="UTF-8", errors="ignore").decode()
 				zonePath = zone.get("zone", "")
-				if isinstance(zonePath, six.text_type):
-					zonePath = six.ensure_str(zonePath.encode(encoding="UTF-8", errors="ignore"))
-				if path.exists(path.join(TIMEZONE_DATA, zonePath)):
+				if isinstance(zonePath, str):
+					zonePath = zonePath.encode(encoding="UTF-8", errors="ignore").decode()
+				if exists(pathjoin(TIMEZONE_DATA, zonePath)):
 					zones.append((zonePath, name))
 				else:
 					print("[Timezones] Warning: Classic time zone '%s' (%s) is not available in '%s'!" % (name, zonePath, TIMEZONE_DATA))
@@ -239,14 +190,10 @@ class Timezones:
 		if len(zones) == 0:
 			self.timezones["Classic"] = [("UTC", "UTC")]
 
-	# Return a sorted list of all Area entries.
-	#
-	def getTimezoneAreaList(self):
-		return sorted(self.timezones.keys())
+	def getTimezoneAreaList(self):  # Return a sorted list of all Area entries.
+		return sorted(list(self.timezones.keys()))
 
-	# Return a sorted list of all Zone entries for an Area.
-	#
-	def getTimezoneList(self, area=None):
+	def getTimezoneList(self, area=None):  # Return a sorted list of all Zone entries for an Area.
 		if area is None:
 			area = config.timezone.area.value
 		return self.timezones.get(area, [("UTC", "UTC")])
@@ -270,87 +217,49 @@ class Timezones:
 		return areaDefaultZone.setdefault(area, choices[0][0])
 
 	def activateTimezone(self, zone, area, runCallbacks=True):
-		tz = zone if area in ("Classic", "Generic") else path.join(area, zone)
-		file = path.join(TIMEZONE_DATA, tz)
-		if not path.isfile(file):
+		tz = zone if area in ("Classic", "Generic") else pathjoin(area, zone)
+		file = pathjoin(TIMEZONE_DATA, tz)
+		if not isfile(file):
 			print("[Timezones] Error: The time zone '%s' is not available!  Using 'UTC' instead." % tz)
 			tz = "UTC"
-			file = path.join(TIMEZONE_DATA, tz)
+			file = pathjoin(TIMEZONE_DATA, tz)
 		print("[Timezones] Setting time zone to '%s'." % tz)
 		try:
 			unlink("/etc/localtime")
-		except (IOError, OSError) as err:
-			if err.errno != errno.ENOENT:  # No such file or directory
-				print("[Timezones] Error %d: Unlinking '/etc/localtime'! (%s)" % (err.errno, err.strerror))
+		except OSError as err:
+			if err.errno != ENOENT:  # No such file or directory.
+				print("[Timezones] Error %d: Unlinking '/etc/localtime'!  (%s)" % (err.errno, err.strerror))
 		try:
 			symlink(file, "/etc/localtime")
-		except (IOError, OSError) as err:
+		except OSError as err:
 			print("[Timezones] Error %d: Linking '%s' to '/etc/localtime'! (%s)" % (err.errno, file, err.strerror))
 		try:
 			with open("/etc/timezone", "w") as fd:
 				fd.write("%s\n" % tz)
-		except (IOError, OSError) as err:
-			print("[Timezones] Error %d: Updating '/etc/timezone'! (%s)" % (err.errno, err.strerror))
-		environ["TZ"] = ":%s" % tz
+		except OSError as err:
+			print("[Timezones] Error %d: Linking '%s' to '/etc/localtime'!  (%s)" % (err.errno, file, err.strerror))
+		fileWriteLine("/etc/timezone", "%s\n" % tz, source=MODULE_NAME)
 		try:
-			time.tzset()
+			tzset()
 		except Exception:
 			from enigma import e_tzset
 			e_tzset()
-		if path.exists("/proc/stb/fp/rtc_offset"):
+		if exists("/proc/stb/fp/rtc_offset"):
 			setRTCoffset()
 		now = int(time())
 		timeFormat = "%a %d-%b-%Y %H:%M:%S"
-		print("[Timezones] Local time is '%s'  -  UTC time is '%s'." % (strftime(timeFormat, localtime(now)), strftime(timeFormat, gmtime(now))))
+		print("[Timezones] Local time is '%s'  -  UTC time is '%s'." % (strftime(timeFormat, localtime(None)), strftime(timeFormat, gmtime(None))))
 		if runCallbacks:
-			for method in self.callbacks:
-				if method:
-					method()
+			for callback in self.callbacks:
+				callback()
 
 	def addCallback(self, callback):
 		if callback not in self.callbacks:
 			self.callbacks.append(callback)
 
 	def removeCallback(self, callback):
-		if callback in self.callbacks:
+		if callable(callback) and callback not in self.callbacks:
 			self.callbacks.remove(callback)
-
-	def autotimerInit(self):  # This code should be moved into the AutoTimer plugin!
-		try:
-			# Create attributes autotimer & autopoller for backwards compatibility.
-			# Their use is deprecated.
-			from enigma import eTimer
-			from Plugins.Extensions.AutoTimer.plugin import autotimer, autopoller
-			self.autotimerPoller = autopoller
-			self.autotimerTimer = autotimer
-			self.pollDelay = 3  # Poll delay in minutes.
-			try:
-				self.autotimerPollDelay = config.plugins.autotimer.delay.value
-			except AttributeError:
-				self.autotimerPollDelay = self.pollDelay
-			self.timer = eTimer()
-			self.timer.callback.append(self.autotimeQuery)
-			self.addCallback(self.autotimerCallback)
-		except ImportError:
-			self.autotimerPoller = None
-			self.autotimerTimer = None
-
-	def autotimerCallback(self):
-		if config.plugins.autotimer.autopoll.value:
-			self.timer.stop()
-			print("[Timezones] Trying to stop main AutoTimer poller.")
-			if self.autotimerPoller is not None:
-				self.autotimerPoller.stop()
-			print("[Timezones] AutoTimer poller will be run in %d minutes." % self.pollDelay)
-			self.timer.startLongTimer(self.pollDelay * 60)
-
-	def autotimeQuery(self):
-		print("[Timezones] AutoTimer poll is running.")
-		if self.autotimerTimer is not None:
-			print("[Timezones] AutoTimer is parsing the EPG.")
-			self.autotimerTimer.parseEPG(autoPoll=True)
-		if self.autotimerPoller is not None:
-			self.autotimerPoller.start()
 
 
 timezones = Timezones()

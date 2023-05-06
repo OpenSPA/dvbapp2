@@ -1,5 +1,4 @@
 from __future__ import print_function
-from __future__ import division
 from __future__ import absolute_import
 from enigma import eTimer, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend
 
@@ -69,7 +68,6 @@ class PositionerSetup(Screen):
 	LOG_SIZE = 16 * 1024					# log buffer size
 
 	def __init__(self, session, feid):
-		self.session = session
 		Screen.__init__(self, session)
 		self.setTitle(_("Positioner setup"))
 		self.feid = feid
@@ -92,9 +90,9 @@ class PositionerSetup(Screen):
 				cur = feInfo.getTransponderData(True)
 			del feInfo
 			del service
-			session.nav.stopService() # try to disable foreground service
+			session.nav.stopService()  # try to disable foreground service
 			if not self.openFrontend():
-				if session.pipshown: # try to disable pip
+				if session.pipshown:  # try to disable pip
 					service = self.session.pip.pipservice
 					feInfo = service and service.frontendInfo()
 					if feInfo:
@@ -104,14 +102,14 @@ class PositionerSetup(Screen):
 					from Screens.InfoBar import InfoBar
 					InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 				if not self.openFrontend():
-					self.frontend = None # in normal case this should not happen
+					self.frontend = None  # in normal case this should not happen
 					if hasattr(self, 'raw_channel'):
 						del self.raw_channel
 
 		self.frontendStatus = {}
 		self.diseqc = Diseqc(self.frontend)
 		# True means we dont like that the normal sec stuff sends commands to the rotor!
-		self.tuner = Tuner(self.frontend, ignore_rotor = True)
+		self.tuner = Tuner(self.frontend, ignore_rotor=True)
 
 		tp = (cur.get("frequency", 0) // 1000,
 			cur.get("symbol_rate", 0) // 1000,
@@ -145,12 +143,12 @@ class PositionerSetup(Screen):
 		self.list = []
 		self["list"] = ConfigList(self.list)
 
-		self["snr_db"] = TunerInfo(TunerInfo.SNR_DB, statusDict = self.frontendStatus)
-		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
-		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict = self.frontendStatus)
-		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, statusDict = self.frontendStatus)
-		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict = self.frontendStatus)
-		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict = self.frontendStatus)
+		self["snr_db"] = TunerInfo(TunerInfo.SNR_DB, statusDict=self.frontendStatus)
+		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict=self.frontendStatus)
+		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict=self.frontendStatus)
+		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, statusDict=self.frontendStatus)
+		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict=self.frontendStatus)
+		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict=self.frontendStatus)
 
 		self["frequency_value"] = Label("")
 		self["symbolrate_value"] = Label("")
@@ -160,7 +158,7 @@ class PositionerSetup(Screen):
 		self.statusMsgTimeoutTicks = 0
 		self.statusMsgBlinking = False
 		self.statusMsgBlinkCount = 0
-		self.statusMsgBlinkRate = 500 / self.UPDATE_INTERVAL	# milliseconds
+		self.statusMsgBlinkRate = 500 / self.UPDATE_INTERVAL  # milliseconds
 		self.tuningChangedTo(tp)
 
 		self["actions"] = NumberActionMap(["DirectionActions", "OkCancelActions", "ColorActions", "TimerEditActions", "InputActions"],
@@ -246,7 +244,7 @@ class PositionerSetup(Screen):
 			self.rotorPositions = lnb.rotorPositions.value
 			self.turningspeedH = lnb.turningspeedH.float
 			self.turningspeedV = lnb.turningspeedV.float
-		except: # some reasonable defaults from NimManager
+		except:  # some reasonable defaults from NimManager
 			self.sitelon = 5.1
 			self.longitudeOrientation = 'east'
 			self.sitelat = 50.767
@@ -268,18 +266,18 @@ class PositionerSetup(Screen):
 					if lnbnum:
 						break
 			if lnbnum:
-				self.printMsg(_("Using LNB %d") % lnbnum)
+				self.printMsg("Using LNB %d" % lnbnum)
 				lnb = self.advancedconfig.lnb[lnbnum]
 		if not lnb:
-			self.logMsg(_("Warning: no LNB; using factory defaults."), timeout = 4)
+			self.logMsg(_("Warning: no LNB; using factory defaults."), timeout=4)
 		return lnb
 
 	def createConfig(self):
 		rotorposition = 1
 		orb_pos = 0
-		self.printMsg(_("Using tuner %s") % chr(0x41 + self.feid))
+		self.printMsg("Using tuner %s" % chr(0x41 + self.feid))
 		if not self.advanced:
-			self.printMsg(_("Configuration mode: %s") % _("simple"))
+			self.printMsg("Configuration mode: simple")
 			nim = config.Nims[self.feid].dvbs
 			self.sitelon = nim.longitude.float
 			self.longitudeOrientation = nim.longitudeOrientation.value
@@ -291,8 +289,8 @@ class PositionerSetup(Screen):
 			self.rotorPositions = nim.rotorPositions.value
 			self.turningspeedH = nim.turningspeedH.float
 			self.turningspeedV = nim.turningspeedV.float
-		else:	# it is advanced
-			self.printMsg(_("Configuration mode: %s") % _("advanced"))
+		else:  # it is advanced
+			self.printMsg("Configuration mode: advanced")
 			fe_data = {}
 			self.frontend.getFrontendData(fe_data)
 			self.frontend.getTransponderData(fe_data, True)
@@ -304,10 +302,10 @@ class PositionerSetup(Screen):
 		self.positioner_move = ConfigNothing()
 		self.positioner_finemove = ConfigNothing()
 		self.positioner_limits = ConfigNothing()
-		self.positioner_storage = ConfigInteger(default = rotorposition, limits = (1, self.rotorPositions))
+		self.positioner_storage = ConfigInteger(default=rotorposition, limits=(1, self.rotorPositions))
 		self.allocatedIndices = []
 		m = PositionerSetup.satposition2metric(orb_pos)
-		self.orbitalposition = ConfigFloat(default = [int(m[0] / 10), m[0] % 10], limits = [(0,180),(0,9)])
+		self.orbitalposition = ConfigFloat(default=[int(m[0] / 10), m[0] % 10], limits=[(0, 180), (0, 9)])
 		self.orientation = ConfigSelection([("east", _("East")), ("west", _("West"))], m[1])
 
 	def createSetup(self):
@@ -396,11 +394,11 @@ class PositionerSetup(Screen):
 		print(msg, file=log)
 
 	def stopMoving(self):
-		self.printMsg(_("Stop"))
+		self.printMsg("Stop")
 		self.diseqccommand("stop")
 		self.isMoving = False
 		self.stopOnLock = False
-		self.statusMsg(_("Stopped"), timeout = self.STATUS_MSG_TIMEOUT)
+		self.statusMsg(_("Stopped"), timeout=self.STATUS_MSG_TIMEOUT)
 
 	def redKey(self):
 		entry = self.getCurrentConfigPath()
@@ -408,15 +406,15 @@ class PositionerSetup(Screen):
 			if self.isMoving:
 				self.stopMoving()
 			else:
-				self.printMsg(_("Move west"))
+				self.printMsg("Move west")
 				self.diseqccommand("moveWest", 0)
 				self.isMoving = True
-				self.statusMsg(_("Moving west ..."), blinking = True)
+				self.statusMsg(_("Moving west ..."), blinking=True)
 			self.updateColors("move")
 		elif entry == "limits":
-			self.printMsg(_("Limits off"))
+			self.printMsg("Limits off")
 			self.diseqccommand("limitOff")
-			self.statusMsg(_("Limits cancelled"), timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg(_("Limits cancelled"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "tune":
 			fe_data = {}
 			self.frontend.getFrontendData(fe_data)
@@ -430,37 +428,37 @@ class PositionerSetup(Screen):
 		entry = self.getCurrentConfigPath()
 		if entry == "tune":
 			# Auto focus
-			self.printMsg(_("Auto focus"))
-			print((_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat), file=log)
-			print((_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon), file=log)
+			self.printMsg("Auto focus")
+			print("Site latitude      : %5.1f %s" % PositionerSetup.latitude2orbital(self.sitelat), file=log)
+			print("Site longitude     : %5.1f %s" % PositionerSetup.longitude2orbital(self.sitelon), file=log)
 			Thread(target=self.autofocus).start()
 		elif entry == "move":
 			if self.isMoving:
 				self.stopMoving()
 			else:
-				self.printMsg(_("Search west"))
+				self.printMsg("Search west")
 				self.isMoving = True
 				self.stopOnLock = True
 				self.diseqccommand("moveWest", 0)
-				self.statusMsg(_("Searching west ..."), blinking = True)
+				self.statusMsg(_("Searching west ..."), blinking=True)
 			self.updateColors("move")
 		elif entry == "finemove":
-			self.printMsg(_("Step west"))
-			self.diseqccommand("moveWest", 0xFF) # one step
-			self.statusMsg(_("Stepped west"), timeout = self.STATUS_MSG_TIMEOUT)
+			self.printMsg("Step west")
+			self.diseqccommand("moveWest", 0xFF)  # one step
+			self.statusMsg(_("Stepped west"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "storage":
-			self.printMsg(_("Store at index"))
+			self.printMsg("Store at index")
 			index = int(self.positioner_storage.value)
 			self.diseqccommand("store", index)
-			self.statusMsg((_("Position stored at index") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg((_("Position stored at index") + " %2d") % index, timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "limits":
-			self.printMsg(_("Limit west"))
+			self.printMsg("Limit west")
 			self.diseqccommand("limitWest")
-			self.statusMsg(_("West limit set"), timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg(_("West limit set"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "goto":
-			self.printMsg(_("Goto 0"))
+			self.printMsg("Goto 0")
 			self.diseqccommand("moveTo", 0)
-			self.statusMsg(_("Moved to position 0"), timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg(_("Moved to position 0"), timeout=self.STATUS_MSG_TIMEOUT)
 
 	def yellowKey(self):
 		entry = self.getCurrentConfigPath()
@@ -468,38 +466,38 @@ class PositionerSetup(Screen):
 			if self.isMoving:
 				self.stopMoving()
 			else:
-				self.printMsg(_("Move east"))
+				self.printMsg("Move east")
 				self.isMoving = True
 				self.stopOnLock = True
 				self.diseqccommand("moveEast", 0)
-				self.statusMsg(_("Searching east ..."), blinking = True)
+				self.statusMsg(_("Searching east ..."), blinking=True)
 			self.updateColors("move")
 		elif entry == "finemove":
-			self.printMsg(_("Step east"))
-			self.diseqccommand("moveEast", 0xFF) # one step
-			self.statusMsg(_("Stepped east"), timeout = self.STATUS_MSG_TIMEOUT)
+			self.printMsg("Step east")
+			self.diseqccommand("moveEast", 0xFF)  # one step
+			self.statusMsg(_("Stepped east"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "storage":
-			self.printMsg(_("Goto index position"))
+			self.printMsg("Goto index position")
 			index = int(self.positioner_storage.value)
 			self.diseqccommand("moveTo", index)
-			self.statusMsg((_("Moved to position at index") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg((_("Moved to position at index") + " %2d") % index, timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "limits":
-			self.printMsg(_("Limit east"))
+			self.printMsg("Limit east")
 			self.diseqccommand("limitEast")
-			self.statusMsg(_("East limit set"), timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg(_("East limit set"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "goto":
-			self.printMsg(_("Move to position X"))
+			self.printMsg("Move to position X")
 			satlon = self.orbitalposition.float
 			position = "%5.1f %s" % (satlon, self.orientation.value)
-			print((_("Satellite longitude:") + " %s") % position, file=log)
+			print("Satellite longitude: %s" % position, file=log)
 			satlon = PositionerSetup.orbital2metric(satlon, self.orientation.value)
-			self.statusMsg((_("Moving to position") + " %s") % position, timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg((_("Moving to position") + " %s") % position, timeout=self.STATUS_MSG_TIMEOUT)
 			self.gotoX(satlon)
 		elif entry == "tune":
 			# Start USALS calibration
-			self.printMsg(_("USALS calibration"))
-			print((_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat), file=log)
-			print((_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon), file=log)
+			self.printMsg("USALS calibration")
+			print("Site latitude      : %5.1f %s" % PositionerSetup.latitude2orbital(self.sitelat), file=log)
+			print("Site longitude     : %5.1f %s" % PositionerSetup.longitude2orbital(self.sitelon), file=log)
 			Thread(target=self.gotoXcalibration).start()
 
 	def blueKey(self):
@@ -508,21 +506,21 @@ class PositionerSetup(Screen):
 			if self.isMoving:
 				self.stopMoving()
 			else:
-				self.printMsg(_("Move east"))
+				self.printMsg("Move east")
 				self.diseqccommand("moveEast", 0)
 				self.isMoving = True
-				self.statusMsg(_("Moving east ..."), blinking = True)
+				self.statusMsg(_("Moving east ..."), blinking=True)
 			self.updateColors("move")
 		elif entry == "limits":
-			self.printMsg(_("Limits on"))
+			self.printMsg("Limits on")
 			self.diseqccommand("limitOn")
-			self.statusMsg(_("Limits enabled"), timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg(_("Limits enabled"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "tune":
 			# Start (re-)calculate
-			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\nAre you sure?"), MessageBox.TYPE_YESNO, default = False, timeout = 10)
+			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\nAre you sure?"), MessageBox.TYPE_YESNO, default=False, timeout=10)
 		elif entry == "storage":
 			if self.advanced:
-				self.printMsg(_("Allocate unused memory index"))
+				self.printMsg("Allocate unused memory index")
 				while True:
 					if not len(self.allocatedIndices):
 						for sat in self.availablesats:
@@ -530,7 +528,7 @@ class PositionerSetup(Screen):
 							if current_index not in self.allocatedIndices:
 								self.allocatedIndices.append(current_index)
 						if len(self.allocatedIndices) == self.rotorPositions:
-							self.statusMsg(_("No free index available"), timeout = self.STATUS_MSG_TIMEOUT)
+							self.statusMsg(_("No free index available"), timeout=self.STATUS_MSG_TIMEOUT)
 							break
 					index = 1
 					if len(self.allocatedIndices):
@@ -542,26 +540,26 @@ class PositionerSetup(Screen):
 						self.positioner_storage.value = index
 						self["list"].invalidateCurrent()
 						self.allocatedIndices.append(index)
-						self.statusMsg((_("Index allocated:") + " %2d") % index, timeout = self.STATUS_MSG_TIMEOUT)
+						self.statusMsg((_("Index allocated:") + " %2d") % index, timeout=self.STATUS_MSG_TIMEOUT)
 						break
 					else:
 						self.allocatedIndices = []
 
 	def recalcConfirmed(self, yesno):
 		if yesno:
-			self.printMsg(_("Calculate all positions"))
-			print((_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat), file=log)
-			print((_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon), file=log)
+			self.printMsg("Calculate all positions")
+			print("Site latitude      : %5.1f %s" % PositionerSetup.latitude2orbital(self.sitelat), file=log)
+			print("Site longitude     : %5.1f %s" % PositionerSetup.longitude2orbital(self.sitelon), file=log)
 			lon = self.sitelon
 			if lon >= 180:
 				lon -= 360
-			if lon < -30:	# americas, make unsigned binary west positive polarity
+			if lon < -30:  # americas, make unsigned binary west positive polarity
 				lon = -lon
 			lon = int(round(lon)) & 0xFF
 			lat = int(round(self.sitelat)) & 0xFF
 			index = int(self.positioner_storage.value) & 0xFF
 			self.diseqccommand("calc", (((index << 8) | lon) << 8) | lat)
-			self.statusMsg(_("Calculation complete"), timeout = self.STATUS_MSG_TIMEOUT)
+			self.statusMsg(_("Calculation complete"), timeout=self.STATUS_MSG_TIMEOUT)
 
 	def showLog(self):
 		self.session.open(PositionerSetupLog)
@@ -592,7 +590,7 @@ class PositionerSetup(Screen):
 	def isLocked(self):
 		return self.frontendStatus.get("tuner_locked", 0) == 1
 
-	def statusMsg(self, msg, blinking = False, timeout = 0):			# timeout in seconds
+	def statusMsg(self, msg, blinking=False, timeout=0):			# timeout in seconds
 		self.statusMsgBlinking = blinking
 		if not blinking:
 			self["status_bar"].visible = True
@@ -668,16 +666,16 @@ class PositionerSetup(Screen):
 			return ((a // 10) << 4) + gotoXtable[a % 10]
 
 		satHourAngle = rotor_calc.calcSatHourangle(satlon, sitelat, sitelon)
-		if sitelat >= 0: # Northern Hemisphere
+		if sitelat >= 0:  # Northern Hemisphere
 			rotorCmd = azimuth2Rotorcode(180 - satHourAngle)
-			if satHourAngle <= 180: # the east
+			if satHourAngle <= 180:  # the east
 				rotorCmd |= 0xE000
 			else:					# west
 				rotorCmd |= 0xD000
-		else: # Southern Hemisphere
-			if satHourAngle <= 180: # the east
+		else:  # Southern Hemisphere
+			if satHourAngle <= 180:  # the east
 				rotorCmd = azimuth2Rotorcode(satHourAngle) | 0xD000
-			else: # west
+			else:  # west
 				rotorCmd = azimuth2Rotorcode(360 - satHourAngle) | 0xE000
 		return rotorCmd
 
@@ -685,7 +683,7 @@ class PositionerSetup(Screen):
 		rotorCmd = PositionerSetup.gotoXcalc(satlon, self.sitelat, self.sitelon)
 		self.diseqccommand("gotoX", rotorCmd)
 		x = PositionerSetup.rotorCmd2Step(rotorCmd, self.tuningstepsize)
-		print((_("Rotor step position:") + " %4d") % x, file=log)
+		print("Rotor step position: %4d" % x, file=log)
 		return x
 
 	def getTurningspeed(self):
@@ -695,13 +693,13 @@ class PositionerSetup(Screen):
 			turningspeed = self.turningspeedV
 		return max(turningspeed, 0.1)
 
-	TURNING_START_STOP_DELAY = 1.600	# seconds
+	TURNING_START_STOP_DELAY = 1.600  # seconds
 	MAX_SEARCH_ANGLE = 12.0				# degrees
 	MAX_FOCUS_ANGLE = 6.0				# degrees
 	LOCK_LIMIT = 0.1					# ratio
 	MEASURING_TIME = 2.500				# seconds
 
-	def measure(self, time = MEASURING_TIME):	# time in seconds
+	def measure(self, time=MEASURING_TIME):  # time in seconds
 		self.snr_percentage = 0.0
 		self.lock_count = 0.0
 		self.stat_count = 0
@@ -711,21 +709,22 @@ class PositionerSetup(Screen):
 		self.dataAvailable.clear()
 		self.dataAvailable.wait()
 
-	def logMsg(self, msg, timeout = 0):
-		self.statusMsg(msg, timeout = timeout)
+	def logMsg(self, msg, timeout=0):
+		self.statusMsg(msg, timeout=timeout)
 		self.printMsg(msg)
 
 	def sync(self):
 		self.lock_count = 0.0
 		n = 0
 		while self.lock_count < (1 - self.LOCK_LIMIT) and n < 5:
-			self.measure(time = 0.500)
+			self.measure(time=0.500)
 			n += 1
 		if self.lock_count < (1 - self.LOCK_LIMIT):
 			return False
 		return True
 
 	randomGenerator = None
+
 	def randomBool(self):
 		if self.randomGenerator is None:
 			self.randomGenerator = SystemRandom()
@@ -740,8 +739,8 @@ class PositionerSetup(Screen):
 			return z
 
 		def reportlevels(pos, level, lock):
-			print((_("Signal quality") + " %5.1f" + chr(176) + "   : %6.2f") % (pos, level), file=log)
-			print((_("Lock ratio") + "     %5.1f" + chr(176) + "   : %6.2f") % (pos, lock), file=log)
+			print(("Signal quality %5.1f" + chr(176) + "   : %6.2f") % (pos, level), file=log)
+			print(("Lock ratio     %5.1f" + chr(176) + "   : %6.2f") % (pos, lock), file=log)
 
 		def optimise(readings):
 			xi = list(readings.keys())
@@ -764,7 +763,7 @@ class PositionerSetup(Screen):
 
 		self.logMsg(_("GotoX calibration"))
 		satlon = self.orbitalposition.float
-		print((_("Satellite longitude:") + " %5.1f" + chr(176) + " %s") % (satlon, self.orientation.value), file=log)
+		print(("Satellite longitude: %5.1f" + chr(176) + " %s") % (satlon, self.orientation.value), file=log)
 		satlon = PositionerSetup.orbital2metric(satlon, self.orientation.value)
 		prev_pos = 0.0						# previous relative position w.r.t. satlon
 		turningspeed = self.getTurningspeed()
@@ -777,7 +776,7 @@ class PositionerSetup(Screen):
 			if self.sync():
 				break
 			x += (1.0 * dir)						# one degree east/west
-			self.statusMsg((_("Searching") + " " + toGeoposEx(dir) + " %2d" + chr(176)) % abs(x), blinking = True)
+			self.statusMsg((_("Searching") + " " + toGeoposEx(dir) + " %2d" + chr(176)) % abs(x), blinking=True)
 			move(x)
 			prev_pos = x
 		else:
@@ -785,7 +784,7 @@ class PositionerSetup(Screen):
 			dir = -dir
 			while abs(x) < self.MAX_SEARCH_ANGLE:
 				x += (1.0 * dir)					# one degree east/west
-				self.statusMsg((_("Searching") + " " + toGeoposEx(dir) + " %2d" + chr(176)) % abs(x), blinking = True)
+				self.statusMsg((_("Searching") + " " + toGeoposEx(dir) + " %2d" + chr(176)) % abs(x), blinking=True)
 				move(x)
 				prev_pos = x
 				if self.sync():
@@ -794,15 +793,15 @@ class PositionerSetup(Screen):
 				msg = _("Cannot find any signal ..., aborting !")
 				self.printMsg(msg)
 				self.statusMsg("")
-				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
+				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 				return
 		x = round(x / self.tuningstepsize) * self.tuningstepsize
 		move(x)
 		prev_pos = x
 		measurements = {}
 		self.measure()
-		print((_("Initial signal quality") + " %5.1f" + chr(176) + ": %6.2f") % (x, self.snr_percentage), file=log)
-		print((_("Initial lock ratio") + "     %5.1f" + chr(176) + ": %6.2f") % (x, self.lock_count), file=log)
+		print(("Initial signal quality %5.1f" + chr(176) + ": %6.2f") % (x, self.snr_percentage), file=log)
+		print(("Initial lock ratio     %5.1f" + chr(176) + ": %6.2f") % (x, self.lock_count), file=log)
 		measurements[x] = (self.snr_percentage, self.lock_count)
 
 		start_pos = x
@@ -812,7 +811,7 @@ class PositionerSetup(Screen):
 			dir = -dir
 		while x < self.MAX_FOCUS_ANGLE:
 			x += self.tuningstepsize * dir					# one step east/west
-			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(x + start_pos), blinking = True)
+			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(x + start_pos), blinking=True)
 			move(x + start_pos)
 			prev_pos = x + start_pos
 			self.measure()
@@ -821,25 +820,26 @@ class PositionerSetup(Screen):
 			if self.lock_count < self.LOCK_LIMIT:
 				break
 		else:
-			msg = _("Cannot determine") + " " + toGeoposEx(dir) + " " + _("limit ..., aborting !")
+			# TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
 			self.printMsg(msg)
 			self.statusMsg("")
-			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		x = 0.0
 		dir = -dir
-		self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(start_pos), blinking = True)
+		self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(start_pos), blinking=True)
 		move(start_pos)
 		prev_pos = start_pos
 		if not self.sync():
 			msg = _("Sync failure moving back to origin !")
 			self.printMsg(msg)
 			self.statusMsg("")
-			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		while abs(x) < self.MAX_FOCUS_ANGLE:
 			x += self.tuningstepsize * dir					# one step west/east
-			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(x + start_pos), blinking = True)
+			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %5.1f" + chr(176)) % abs(x + start_pos), blinking=True)
 			move(x + start_pos)
 			prev_pos = x + start_pos
 			self.measure()
@@ -848,10 +848,10 @@ class PositionerSetup(Screen):
 			if self.lock_count < self.LOCK_LIMIT:
 				break
 		else:
-			msg = _("Cannot determine") + " " + toGeoposEx(dir) + " " + _("limit ..., aborting !")
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
 			self.printMsg(msg)
 			self.statusMsg("")
-			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		(x0, xm) = optimise(measurements)
 		x = move(x0)
@@ -859,8 +859,8 @@ class PositionerSetup(Screen):
 			satlon -= 360
 		x0 += satlon
 		xm += satlon
-		print((_("Weighted position") + "     : %5.1f" + chr(176) + " %s") % (abs(x0), toGeopos(x0)), file=log)
-		print((_("Strongest position") + "    : %5.1f" + chr(176) + " %s") % (abs(xm), toGeopos(xm)), file=log)
+		print(("Weighted position     : %5.1f" + chr(176) + " %s") % (abs(x0), toGeopos(x0)), file=log)
+		print(("Strongest position    : %5.1f" + chr(176) + " %s") % (abs(xm), toGeopos(xm)), file=log)
 		self.logMsg((_("Final position at") + " %5.1f" + chr(176) + " %s / %d; " + _("offset is") + " %4.1f" + chr(176)) % (abs(x0), toGeopos(x0), x, x0 - satlon), timeout=10)
 
 	def autofocus(self):
@@ -875,8 +875,8 @@ class PositionerSetup(Screen):
 				sleep(time * self.MAX_LOW_RATE_ADAPTER_COUNT)
 
 		def reportlevels(pos, level, lock):
-			print((_("Signal quality") + " [%2d]   : %6.2f") % (pos, level), file=log)
-			print((_("Lock ratio") + " [%2d]       : %6.2f") % (pos, lock), file=log)
+			print("Signal quality [%2d]   : %6.2f" % (pos, level), file=log)
+			print("Lock ratio [%2d]       : %6.2f" % (pos, lock), file=log)
 
 		def optimise(readings):
 			xi = list(readings.keys())
@@ -896,15 +896,15 @@ class PositionerSetup(Screen):
 		measurements = {}
 		maxsteps = max(min(round(self.MAX_FOCUS_ANGLE / self.tuningstepsize), 0x1F), 3)
 		self.measure()
-		print((_("Initial signal quality:") + " %6.2f") % self.snr_percentage, file=log)
-		print((_("Initial lock ratio") + "    : %6.2f") % self.lock_count, file=log)
+		print("Initial signal quality: %6.2f" % self.snr_percentage, file=log)
+		print("Initial lock ratio    : %6.2f" % self.lock_count, file=log)
 		if self.lock_count < 1 - self.LOCK_LIMIT:
 			msg = _("There is no signal to lock on !")
 			self.printMsg(msg)
 			self.statusMsg("")
-			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
-		print(_("Signal OK, proceeding"), file=log)
+		print("Signal OK, proceeding", file=log)
 		x = 0
 		dir = 1
 		if self.randomBool():
@@ -913,7 +913,7 @@ class PositionerSetup(Screen):
 		nsteps = 0
 		while nsteps < maxsteps:
 			x += dir
-			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %2d") % abs(x), blinking = True)
+			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %2d") % abs(x), blinking=True)
 			move(dir) 		# one step
 			self.measure()
 			measurements[x] = (self.snr_percentage, self.lock_count)
@@ -922,25 +922,25 @@ class PositionerSetup(Screen):
 				break
 			nsteps += 1
 		else:
-			msg = _("Cannot determine") + " " + toGeoposEx(dir) + " " + _("limit ..., aborting !")
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
 			self.printMsg(msg)
 			self.statusMsg("")
-			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		dir = -dir
-		self.statusMsg(_("Moving") + " " + toGeoposEx(dir) + "  0", blinking = True)
+		self.statusMsg(_("Moving") + " " + toGeoposEx(dir) + "  0", blinking=True)
 		move(-x)
 		if not self.sync():
 			msg = _("Sync failure moving back to origin !")
 			self.printMsg(msg)
 			self.statusMsg("")
-			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		x = 0
 		nsteps = 0
 		while nsteps < maxsteps:
 			x += dir
-			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %2d") % abs(x), blinking = True)
+			self.statusMsg((_("Moving") + " " + toGeoposEx(dir) + " %2d") % abs(x), blinking=True)
 			move(dir) 		# one step
 			self.measure()
 			measurements[x] = (self.snr_percentage, self.lock_count)
@@ -949,22 +949,23 @@ class PositionerSetup(Screen):
 				break
 			nsteps += 1
 		else:
-			msg = _("Cannot determine") + " " + toGeoposEx(dir) + " " + _("limit ..., aborting !")
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
 			self.printMsg(msg)
 			self.statusMsg("")
-			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout = 5)
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		(x0, xm) = optimise(measurements)
-		print((_("Weighted position") + "     : %2d") % x0, file=log)
-		print((_("Strongest position") + "    : %2d") % xm, file=log)
+		print("Weighted position     : %2d" % x0, file=log)
+		print("Strongest position    : %2d" % xm, file=log)
 		self.logMsg((_("Final position at index") + " %2d (%5.1f" + chr(176) + ")") % (x0, x0 * self.tuningstepsize), timeout=6)
 		move(x0 - x)
+
 
 class Diseqc:
 	def __init__(self, frontend):
 		self.frontend = frontend
 
-	def command(self, what, param = 0):
+	def command(self, what, param=0):
 		if self.frontend:
 			cmd = eDVBDiseqcCommand()
 			if what == "moveWest":
@@ -988,17 +989,18 @@ class Diseqc:
 			elif what == "limitWest":
 				string = 'E03167'
 			else:
-				string = 'E03160' #positioner stop
+				string = 'E03160'  # positioner stop
 
 			print("diseqc command:", end=' ')
 			print(string)
 			cmd.setCommandString(string)
 			self.frontend.setTone(iDVBFrontend.toneOff)
-			sleep(0.015) # wait 15msec after disable tone
+			sleep(0.015)  # wait 15msec after disable tone
 			self.frontend.sendDiseqc(cmd)
-			if string == 'E03160': #positioner stop
+			if string == 'E03160':  # positioner stop
 				sleep(0.050)
-				self.frontend.sendDiseqc(cmd) # send 2nd time
+				self.frontend.sendDiseqc(cmd)  # send 2nd time
+
 
 class PositionerSetupLog(Screen):
 	skin = """
@@ -1019,8 +1021,8 @@ class PositionerSetupLog(Screen):
 	</widget>
 	<widget name="list" font="Console;16" position="10,40" size="540,340" />
 </screen>"""
+
 	def __init__(self, session):
-		self.session = session
 		Screen.__init__(self, session)
 		self.setTitle(_("Positioner Setup Log"))
 		self["key_red"] = Button(_("Clear"))
@@ -1062,6 +1064,7 @@ class PositionerSetupLog(Screen):
 		log.logfile.truncate()
 		self.close(False)
 
+
 class TunerScreen(ConfigListScreen, Screen):
 	skin = """
 		<screen position="90,100" size="520,400" title="Tune">
@@ -1094,10 +1097,10 @@ class TunerScreen(ConfigListScreen, Screen):
 		orb_pos_str = str(orb_pos)
 		self.tuning = ConfigSubsection()
 		self.tuning.type = ConfigSelection(
-				default = "manual_transponder",
-				choices = {"manual_transponder" : _("Manual transponder"),
-							"predefined_transponder" : _("Predefined transponder")})
-		self.tuning.sat = ConfigSatlist(list = satlist)
+				default="manual_transponder",
+				choices={"manual_transponder": _("Manual transponder"),
+							"predefined_transponder": _("Predefined transponder")})
+		self.tuning.sat = ConfigSatlist(list=satlist)
 		if orb_pos is not None:
 			for sat in satlist:
 				if sat[0] == orb_pos and self.tuning.sat.value != orb_pos_str:
@@ -1116,7 +1119,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			"modulation": eDVBFrontendParametersSatellite.Modulation_QPSK,
 			"pls_mode": eDVBFrontendParametersSatellite.PLS_Gold,
 			"pls_code": eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
-			"t2mi_plp_id":eDVBFrontendParametersSatellite.No_T2MI_PLP_Id}
+			"t2mi_plp_id": eDVBFrontendParametersSatellite.No_T2MI_PLP_Id}
 		if frontendData is not None:
 			ttype = frontendData.get("tuner_type", "UNKNOWN")
 			defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
@@ -1139,21 +1142,21 @@ class TunerScreen(ConfigListScreen, Screen):
 			defaultSat["orbpos"] = frontendData.get("orbital_position", 0)
 
 		self.scan_sat = ConfigSubsection()
-		self.scan_sat.system = ConfigSelection(default = defaultSat["system"], choices = [
+		self.scan_sat.system = ConfigSelection(default=defaultSat["system"], choices=[
 			(eDVBFrontendParametersSatellite.System_DVB_S, _("DVB-S")),
 			(eDVBFrontendParametersSatellite.System_DVB_S2, _("DVB-S2"))])
-		self.scan_sat.frequency = ConfigInteger(default = defaultSat["frequency"], limits = (1, 99999))
-		self.scan_sat.inversion = ConfigSelection(default = defaultSat["inversion"], choices = [
+		self.scan_sat.frequency = ConfigInteger(default=defaultSat["frequency"], limits=(1, 99999))
+		self.scan_sat.inversion = ConfigSelection(default=defaultSat["inversion"], choices=[
 			(eDVBFrontendParametersSatellite.Inversion_Off, _("Off")),
 			(eDVBFrontendParametersSatellite.Inversion_On, _("On")),
 			(eDVBFrontendParametersSatellite.Inversion_Unknown, _("Auto"))])
-		self.scan_sat.symbolrate = ConfigInteger(default = defaultSat["symbolrate"], limits = (1, 99999))
-		self.scan_sat.polarization = ConfigSelection(default = defaultSat["polarization"], choices = [
-			(eDVBFrontendParametersSatellite.Polarisation_Horizontal, _("horizontal")),
-			(eDVBFrontendParametersSatellite.Polarisation_Vertical, _("vertical")),
-			(eDVBFrontendParametersSatellite.Polarisation_CircularLeft, _("circular left")),
-			(eDVBFrontendParametersSatellite.Polarisation_CircularRight, _("circular right"))])
-		self.scan_sat.fec = ConfigSelection(default = defaultSat["fec"], choices = [
+		self.scan_sat.symbolrate = ConfigInteger(default=defaultSat["symbolrate"], limits=(1, 99999))
+		self.scan_sat.polarization = ConfigSelection(default=defaultSat["polarization"], choices=[
+			(eDVBFrontendParametersSatellite.Polarisation_Horizontal, _("Horizontal")),
+			(eDVBFrontendParametersSatellite.Polarisation_Vertical, _("Vertical")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularLeft, _("Circular left")),
+			(eDVBFrontendParametersSatellite.Polarisation_CircularRight, _("Circular right"))])
+		self.scan_sat.fec = ConfigSelection(default=defaultSat["fec"], choices=[
 			(eDVBFrontendParametersSatellite.FEC_Auto, _("Auto")),
 			(eDVBFrontendParametersSatellite.FEC_1_2, "1/2"),
 			(eDVBFrontendParametersSatellite.FEC_2_3, "2/3"),
@@ -1161,7 +1164,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			(eDVBFrontendParametersSatellite.FEC_5_6, "5/6"),
 			(eDVBFrontendParametersSatellite.FEC_7_8, "7/8"),
 			(eDVBFrontendParametersSatellite.FEC_None, _("None"))])
-		self.scan_sat.fec_s2 = ConfigSelection(default = defaultSat["fec_s2"], choices = [
+		self.scan_sat.fec_s2 = ConfigSelection(default=defaultSat["fec_s2"], choices=[
 			(eDVBFrontendParametersSatellite.FEC_1_2, "1/2"),
 			(eDVBFrontendParametersSatellite.FEC_2_3, "2/3"),
 			(eDVBFrontendParametersSatellite.FEC_3_4, "3/4"),
@@ -1171,28 +1174,28 @@ class TunerScreen(ConfigListScreen, Screen):
 			(eDVBFrontendParametersSatellite.FEC_7_8, "7/8"),
 			(eDVBFrontendParametersSatellite.FEC_8_9, "8/9"),
 			(eDVBFrontendParametersSatellite.FEC_9_10, "9/10")])
-		self.scan_sat.modulation = ConfigSelection(default = defaultSat["modulation"], choices = [
+		self.scan_sat.modulation = ConfigSelection(default=defaultSat["modulation"], choices=[
 			(eDVBFrontendParametersSatellite.Modulation_QPSK, "QPSK"),
 			(eDVBFrontendParametersSatellite.Modulation_8PSK, "8PSK"),
 			(eDVBFrontendParametersSatellite.Modulation_16APSK, "16APSK"),
 			(eDVBFrontendParametersSatellite.Modulation_32APSK, "32APSK")])
-		self.scan_sat.rolloff = ConfigSelection(default = defaultSat.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35), choices = [
+		self.scan_sat.rolloff = ConfigSelection(default=defaultSat.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35), choices=[
 			(eDVBFrontendParametersSatellite.RollOff_alpha_0_35, "0.35"),
 			(eDVBFrontendParametersSatellite.RollOff_alpha_0_25, "0.25"),
 			(eDVBFrontendParametersSatellite.RollOff_alpha_0_20, "0.20"),
 			(eDVBFrontendParametersSatellite.RollOff_auto, _("Auto"))])
-		self.scan_sat.pilot = ConfigSelection(default = defaultSat.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown), choices = [
+		self.scan_sat.pilot = ConfigSelection(default=defaultSat.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown), choices=[
 			(eDVBFrontendParametersSatellite.Pilot_Off, _("Off")),
 			(eDVBFrontendParametersSatellite.Pilot_On, _("On")),
 			(eDVBFrontendParametersSatellite.Pilot_Unknown, _("Auto"))])
-		self.scan_sat.is_id = ConfigInteger(default = defaultSat.get("is_id",0), limits = (0, 255))
-		self.scan_sat.pls_mode = ConfigSelection(default = defaultSat["pls_mode"], choices = [
+		self.scan_sat.is_id = ConfigInteger(default=defaultSat.get("is_id", 0), limits=(0, 255))
+		self.scan_sat.pls_mode = ConfigSelection(default=defaultSat["pls_mode"], choices=[
 			(eDVBFrontendParametersSatellite.PLS_Root, _("Root")),
 			(eDVBFrontendParametersSatellite.PLS_Gold, _("Gold")),
 			(eDVBFrontendParametersSatellite.PLS_Combo, _("Combo"))])
-		self.scan_sat.pls_code = ConfigInteger(default = defaultSat.get("pls_code", eDVBFrontendParametersSatellite.PLS_Default_Gold_Code), limits = (0, 262142))
-		self.scan_sat.t2mi_plp_id = ConfigInteger(default = defaultSat.get("t2mi_plp_id", eDVBFrontendParametersSatellite.No_T2MI_PLP_Id), limits = (0, 255))
-		self.scan_sat.t2mi_pid = ConfigInteger(default = defaultSat.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid), limits = (0, 8191))
+		self.scan_sat.pls_code = ConfigInteger(default=defaultSat.get("pls_code", eDVBFrontendParametersSatellite.PLS_Default_Gold_Code), limits=(0, 262142))
+		self.scan_sat.t2mi_plp_id = ConfigInteger(default=defaultSat.get("t2mi_plp_id", eDVBFrontendParametersSatellite.No_T2MI_PLP_Id), limits=(0, 255))
+		self.scan_sat.t2mi_pid = ConfigInteger(default=defaultSat.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid), limits=(0, 8191))
 
 	def initialSetup(self):
 		currtp = self.transponderToString([None, self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.value])
@@ -1203,36 +1206,36 @@ class TunerScreen(ConfigListScreen, Screen):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append(getConfigListEntry(_('Tune'), self.tuning.type))
-		self.list.append(getConfigListEntry(_('Satellite'), self.tuning.sat))
+		self.list.append(getConfigListEntry(_("Tune"), self.tuning.type))
+		self.list.append(getConfigListEntry(_("Satellite"), self.tuning.sat))
 		nim = nimmanager.nim_slots[self.feid]
 
 		if self.tuning.type.value == "manual_transponder":
 			if nim.isCompatible("DVB-S2"):
-				self.list.append(getConfigListEntry(_('System'), self.scan_sat.system))
+				self.list.append(getConfigListEntry(_("System"), self.scan_sat.system))
 			else:
 				# downgrade to dvb-s, in case a -s2 config was active
 				self.scan_sat.system.value = eDVBFrontendParametersSatellite.System_DVB_S
-			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
-			self.list.append(getConfigListEntry(_("Polarisation"), self.scan_sat.polarization))
-			self.list.append(getConfigListEntry(_('Symbol rate'), self.scan_sat.symbolrate))
+			self.list.append(getConfigListEntry(_("Frequency"), self.scan_sat.frequency))
+			self.list.append(getConfigListEntry(_("Polarization"), self.scan_sat.polarization))
+			self.list.append(getConfigListEntry(_("Symbol rate"), self.scan_sat.symbolrate))
 			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S:
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
-				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
+				self.list.append(getConfigListEntry(_("Inversion"), self.scan_sat.inversion))
 			elif self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
-				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
-				self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
+				self.list.append(getConfigListEntry(_("Inversion"), self.scan_sat.inversion))
+				self.modulationEntry = getConfigListEntry(_("Modulation"), self.scan_sat.modulation)
 				self.list.append(self.modulationEntry)
-				self.list.append(getConfigListEntry(_('Roll-off'), self.scan_sat.rolloff))
-				self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
+				self.list.append(getConfigListEntry(_("Roll-off"), self.scan_sat.rolloff))
+				self.list.append(getConfigListEntry(_("Pilot"), self.scan_sat.pilot))
 				if nim.isMultistream():
-					self.list.append(getConfigListEntry(_('Input Stream ID'), self.scan_sat.is_id))
-					self.list.append(getConfigListEntry(_('PLS Mode'), self.scan_sat.pls_mode))
-					self.list.append(getConfigListEntry(_('PLS Code'), self.scan_sat.pls_code))
-				self.list.append(getConfigListEntry(_('T2MI PLP ID'), self.scan_sat.t2mi_plp_id))
-				self.list.append(getConfigListEntry(_('T2MI PID'), self.scan_sat.t2mi_pid))
-		else: # "predefined_transponder"
+					self.list.append(getConfigListEntry(_("Input Stream ID"), self.scan_sat.is_id))
+					self.list.append(getConfigListEntry(_("PLS Mode"), self.scan_sat.pls_mode))
+					self.list.append(getConfigListEntry(_("PLS Code"), self.scan_sat.pls_code))
+				self.list.append(getConfigListEntry(_("T2MI PLP ID"), self.scan_sat.t2mi_plp_id))
+				self.list.append(getConfigListEntry(_("T2MI PID"), self.scan_sat.t2mi_pid))
+		else:  # "predefined_transponder"
 			self.list.append(getConfigListEntry(_("Transponder"), self.tuning.transponder))
 			currtp = self.transponderToString([None, self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.value])
 			self.tuning.transponder.setValue(currtp)
@@ -1249,7 +1252,7 @@ class TunerScreen(ConfigListScreen, Screen):
 	def systemChanged(self, *parm):
 		self.createSetup()
 
-	def transponderToString(self, tr, scale = 1):
+	def transponderToString(self, tr, scale=1):
 		if tr[3] == 0:
 			pol = "H"
 		elif tr[3] == 1:
@@ -1267,8 +1270,8 @@ class TunerScreen(ConfigListScreen, Screen):
 			transponderlist = nimmanager.getTransponders(int(self.tuning.sat.value))
 			tps = []
 			for transponder in transponderlist:
-				tps.append(self.transponderToString(transponder, scale = 1000))
-			self.tuning.transponder = ConfigSelection(choices = tps)
+				tps.append(self.transponderToString(transponder, scale=1000))
+			self.tuning.transponder = ConfigSelection(choices=tps)
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -1310,6 +1313,7 @@ class TunerScreen(ConfigListScreen, Screen):
 	def keyCancel(self):
 		self.close(None)
 
+
 class RotorNimSelection(Screen):
 	skin = """
 		<screen position="140,165" size="400,130" title="select Slot">
@@ -1337,6 +1341,7 @@ class RotorNimSelection(Screen):
 		selection = self["nimlist"].getCurrent()
 		self.session.open(PositionerSetup, selection[1])
 
+
 def PositionerMain(session, **kwargs):
 	nimList = nimmanager.getNimListOfType("DVB-S")
 	if len(nimList) == 0:
@@ -1355,7 +1360,8 @@ def PositionerMain(session, **kwargs):
 			elif len(usableNims) > 1:
 				session.open(RotorNimSelection)
 			else:
-				session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
+				session.open(MessageBox, _("No tuner is configured for use with a DiSEqC positioner!"), MessageBox.TYPE_ERROR)
+
 
 def PositionerSetupStart(menuid, **kwargs):
 	if menuid == "scan":
@@ -1363,8 +1369,9 @@ def PositionerSetupStart(menuid, **kwargs):
 	else:
 		return []
 
+
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-S"):
-		return PluginDescriptor(name=_("Positioner setup"), description = _("Setup your positioner"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = PositionerSetupStart)
+		return PluginDescriptor(name=_("Positioner setup"), description=_("Setup your positioner"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=PositionerSetupStart)
 	else:
 		return []

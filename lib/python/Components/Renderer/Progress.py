@@ -1,8 +1,8 @@
-from __future__ import absolute_import
 from Components.VariableValue import VariableValue
 from Components.Renderer.Renderer import Renderer
 
 from enigma import eSlider
+
 
 class Progress(VariableValue, Renderer):
 	def __init__(self):

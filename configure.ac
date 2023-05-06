@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[8.0],[https://openspa.info])
+AC_INIT([enigma2],[8.2],[https://openspa.info])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
@@ -43,7 +43,6 @@ AC_ARG_WITH(gstversion,
 PKG_CHECK_MODULES(TUXTXT, tuxbox-tuxtxt)
 PKG_CHECK_MODULES(GSTREAMER, gstreamer-$GST_MAJORMINOR gstreamer-pbutils-$GST_MAJORMINOR)
 PKG_CHECK_MODULES(BASE, [freetype2 fribidi gstreamer-$GST_MAJORMINOR gstreamer-pbutils-$GST_MAJORMINOR libdvbsi++ libpng libxml-2.0 sigc++-2.0 libssl libcrypto])
-PKG_CHECK_MODULES(UCHARDET, uchardet)
 PKG_CHECK_MODULES(LIBDDVD, libdreamdvd, HAVE_LIBDDVD="yes", HAVE_LIBDDVD="no")
 AM_CONDITIONAL(HAVE_LIBDDVD, test "$HAVE_LIBDDVD" = "yes")
 PKG_CHECK_MODULES(AVAHI, avahi-client)
@@ -61,6 +60,12 @@ AC_ARG_WITH(e2rev,
 	[E2REV="$withval"],[E2REV=""])
 AC_SUBST(E2REV)
 AC_DEFINE_UNQUOTED(E2REV,"$E2REV",[enigma2 revision])
+
+AC_ARG_WITH(oarev,
+	AS_HELP_STRING([--with-oarev],[value of OAREV, $withval]),
+	[OAREV="$withval"],[OAREV=""])
+AC_SUBST(OAREV)
+AC_DEFINE_UNQUOTED(OAREV,"$OAREV",[oa-core revision])
 
 AC_ARG_WITH(boxtype,
 	[  --with-boxtype=NAME box type [[none,dm7025,dm800...]]],
@@ -482,7 +487,7 @@ fi
 AM_CONDITIONAL(HAVE_FULLGRAPHICLCD, test x"$withfullgraphiclcd" != xno)
 
 AC_ARG_WITH(gigabluelcd,
-	AC_HELP_STRING([--with-gigabluelcd], [use fix colour map in color display, yes or no]),
+	AC_HELP_STRING([--with-gigabluelcd], [use fix color map in color display, yes or no]),
 	[[withgigabluelcd=$withval]],
 	[[withgigabluelcd=no]]
 )
@@ -551,6 +556,16 @@ if test x"$with_amlogic" = xyes ; then
 	ALSA_CFLAGS="-lasound"
 fi
 
+AC_ARG_WITH(fcc,
+	AC_HELP_STRING([--with-fcc], [add FCC system plugin]),
+	[[with_fcc=$withval]],
+	[[with_fcc=no]]
+)
+AM_CONDITIONAL(HAVE_FCC, test x"$with_fcc" = xyes)
+if test x"$with_fcc" = xyes ; then
+	AC_DEFINE(HAVE_FCC, 1,[add FCC system plugin])
+fi
+
 AC_ARG_WITH(subttxtabnormalptsdiffs,
 	AC_HELP_STRING([--with-subttxtabnormalptsdiffs=n], [use n/90 msec diffs for subtitle and teletext abnormal pts]),
 	[[with_subttxtabnormalptsdiffs=$withval]],
@@ -567,7 +582,7 @@ if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820"  -o "$BOXTYPE" == "dm900
 	AC_DEFINE(CONFIG_ION, 1,[define BOX use ION Allocator])
 fi
 
-if test "$BOXTYPE" == "vusolo4k" -o "$BOXTYPE" == "vuuno4k" -o "$BOXTYPE" == "vuuno4kse" -o "$BOXTYPE" == "vuultimo4k" -o "$BOXTYPE" == "vuzero4k" -o "$BOXTYPE" == "vuduo4k" -o "$BOXTYPE" == "vuduo4kse" -o "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "gbmv200" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k" -o "$BOXTYPE" == "dagsmv200"; then
+if test "$BOXTYPE" == "vusolo4k" -o "$BOXTYPE" == "vuuno4k" -o "$BOXTYPE" == "vuuno4kse" -o "$BOXTYPE" == "vuultimo4k" -o "$BOXTYPE" == "vuzero4k" -o "$BOXTYPE" == "vuduo4k" -o "$BOXTYPE" == "vuduo4kse" -o "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "sf8008opt" -o "$BOXTYPE" == "sx988" -o "$BOXTYPE" == "ip8" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "ustym4kottpremium" -o "$BOXTYPE" == "ustym4ks2ottx" -o "$BOXTYPE" == "gbmv200" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k" -o "$BOXTYPE" == "dagsmv200" -o "$BOXTYPE" == "og2ott4k" -o "$BOXTYPE" == "sfx6008" -o "$BOXTYPE" == "sx88v2"; then
 	AC_DEFINE(VMSG_TYPE2, 1,[define vtuner_message type 2])
 fi
 
@@ -586,7 +601,7 @@ if test "$BOXTYPE" == "u53" -o "$BOXTYPE" == "u532" -o "$BOXTYPE" == "u533"; the
 	AC_DEFINE(KEY_HELP_TO_KEY_AUDIO, 1,[define when rc SETTINGS key sends a KEY_HELP event for its KEY_AUDIO key])
 fi
 
-if test "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "gbmv200" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k" -o "$BOXTYPE" == "dagsmv200"; then
+if test "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "sf8008opt" -o "$BOXTYPE" == "sx988" -o "$BOXTYPE" == "ip8" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "ustym4kottpremium" -o "$BOXTYPE" == "ustym4ks2ottx" -o "$BOXTYPE" == "gbmv200" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k" -o "$BOXTYPE" == "dagsmv200" -o "$BOXTYPE" == "og2ott4k" -o "$BOXTYPE" == "sfx6008" -o "$BOXTYPE" == "sx88v2"; then
 	AC_DEFINE(HAVE_HISILICON, 1,[define add HISILICON chip])
 	AC_DEFINE(CONFIG_HISILICON_FB, 1,[define add HISILICON framebuffer blit])
 	AC_DEFINE(FORCE_ALPHABLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
@@ -682,7 +697,7 @@ if test "$BOXTYPE" == "osmio4k" -o "$BOXTYPE" == "osmio4kplus" -o "$BOXTYPE" == 
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test "$BOXTYPE" == "hd2400" -o "$BOXTYPE" == "hd11" -o "$BOXTYPE" == "hd1100" -o "$BOXTYPE" == "hd1200" -o "$BOXTYPE" == "hd500c" -o "$BOXTYPE" == "hd530c" -o "$BOXTYPE" == "hd1265" -o "$BOXTYPE" == "hd1500" -o "$BOXTYPE" == "hd51" -o "$BOXTYPE" == "hd60" -o "$BOXTYPE" == "hd61" -o "$BOXTYPE" == "pulse4k" -o "$BOXTYPE" == "pulse4kmini" -o "$BOXTYPE" == "hd52" -o "$BOXTYPE" == "vs1000" -o "$BOXTYPE" == "vs1500"; then
+if test "$BOXTYPE" == "hd2400" -o "$BOXTYPE" == "hd11" -o "$BOXTYPE" == "hd1100" -o "$BOXTYPE" == "hd1200" -o "$BOXTYPE" == "hd500c" -o "$BOXTYPE" == "hd530c" -o "$BOXTYPE" == "hd1265" -o "$BOXTYPE" == "hd1500" -o "$BOXTYPE" == "hd51" -o "$BOXTYPE" == "hd60" -o "$BOXTYPE" == "hd61" -o "$BOXTYPE" == "hd66se" -o "$BOXTYPE" == "pulse4k" -o "$BOXTYPE" == "pulse4kmini" -o "$BOXTYPE" == "hd52" -o "$BOXTYPE" == "vs1000" -o "$BOXTYPE" == "vs1500"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(KEY_F3_TO_KEY_LIST, 1,[define when rc sends a KEY_F3 event for its KEY_LIST key])
 fi
@@ -823,15 +838,15 @@ if test "$BOXTYPE" == "dags7335" -o "$BOXTYPE" == "dags7356"; then
 	AC_DEFINE(KEY_MEDIA_TO_KEY_KEY_F2, 1,[define when rc sends a KEY_MEDIA event for its KEY_KEY_F1 key])
 fi
 
-if test "$BOXTYPE" == "spark" -o "$BOXTYPE" == "spark7162"; then
-	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
+if test "$BOXTYPE" == "gb800solo" -o "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "gb800ue"; then
+	AC_DEFINE(HAVE_NO_RTC, 1,[enable no RTC stuff])
 fi
 
 AC_ARG_WITH(libsdl,
 	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
 	[with_libsdl=$withval],[with_libsdl=no])
 if test "$with_libsdl" = "yes"; then
-	PKG_CHECK_MODULES(LIBSDL, sdl)
+	PKG_CHECK_MODULES(LIBSDL, sdl2)
 fi
 AM_CONDITIONAL(HAVE_LIBSDL, test "$with_libsdl" = "yes")
 
@@ -861,15 +876,6 @@ fi
 AC_ARG_WITH(po,
 	AS_HELP_STRING([--with-po],[enable updating of po files]),
 	[with_po="$withval"],[with_po="no"])
-if test "$with_po" = "yes"; then
-	AC_PATH_PROG(MSGINIT, msginit)
-	AC_PATH_PROG(MSGMERGE, msgmerge)
-	AC_PATH_PROG(MSGUNIQ, msguniq)
-	AC_PATH_PROG(XGETTEXT, xgettext)
-	if test -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
-		AC_MSG_ERROR([Could not find required gettext tools])
-	fi
-fi
 AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
 ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions -rdynamic -funwind-tables"
@@ -883,6 +889,7 @@ AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 AC_CONFIG_FILES([
 Makefile
 data/Makefile
+data/icons/Makefile
 data/fonts/Makefile
 data/keymaps/Makefile
 data/spinner/Makefile
@@ -938,11 +945,6 @@ lib/python/Plugins/Extensions/DVDBurn/meta/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/meta/Makefile
 lib/python/Plugins/Extensions/FileCommander/Makefile
-lib/python/Plugins/Extensions/FileCommander/addons/Makefile
-lib/python/Plugins/Extensions/FileCommander/pic/Makefile
-lib/python/Plugins/Extensions/FileCommander/images/Makefile
-lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
-lib/python/Plugins/Extensions/GraphMultiEPG/meta/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/meta/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
@@ -955,17 +957,11 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
-lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/StartKodi/Makefile
 lib/python/Plugins/Extensions/QuadPip/Makefile
-lib/python/Plugins/Extensions/spaTeam/Makefile
-lib/python/Plugins/Extensions/spaTeam/bitratetool/Makefile
-lib/python/Plugins/Extensions/spaTeam/Daemons/Makefile
-lib/python/Plugins/Extensions/spaTeam/icons/Makefile
-lib/python/Plugins/Extensions/spaTeam/locale/Makefile
-lib/python/Plugins/Extensions/spaTeam/locale/es/Makefile
-lib/python/Plugins/Extensions/spaTeam/locale/es/LC_MESSAGES/Makefile
-lib/python/Plugins/Extensions/spaTeam/meta/Makefile
+lib/python/Plugins/Extensions/StreamlinkWrapper/Makefile
+lib/python/Plugins/Extensions/YTDLWrapper/Makefile
+lib/python/Plugins/Extensions/YTDLPWrapper/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/AnimationSetup/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
@@ -975,19 +971,18 @@ lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
+lib/python/Plugins/SystemPlugins/FastChannelChange/Makefile
+lib/python/Plugins/SystemPlugins/FastChannelChange/meta/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/meta/Makefile
 lib/python/Plugins/SystemPlugins/FSBLUpdater/Makefile
-lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/meta/Makefile
 lib/python/Plugins/SystemPlugins/IceTV/Makefile
 lib/python/Plugins/SystemPlugins/LCNScanner/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/meta/Makefile
-lib/python/Plugins/SystemPlugins/NFIFlash/Makefile
-lib/python/Plugins/SystemPlugins/NFIFlash/meta/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
@@ -1005,6 +1000,10 @@ lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/meta/Makefile
+lib/python/Plugins/SystemPlugins/vps/Makefile
+lib/python/Plugins/SystemPlugins/vps/meta/Makefile
+lib/python/Plugins/SystemPlugins/vps/src_cc/Makefile
+lib/python/Plugins/SystemPlugins/vps/src_py/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile

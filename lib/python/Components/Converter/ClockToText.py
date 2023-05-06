@@ -1,10 +1,10 @@
-from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
 from Components.config import config
 
-class ClockToText(Converter, object):
+
+class ClockToText(Converter):
 	TIME_OPTIONS = {
 		# 		TRANSLATORS: short time representation hour:minute (Same as "Default")
 		"": lambda t: strftime(config.usage.time.short.value, localtime(t)),  # _("%R")

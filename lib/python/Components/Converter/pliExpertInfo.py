@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 #
 #  Coded by Vali, updated by Mirakels for openpli
 #
@@ -12,7 +11,7 @@ from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
 
 
-class pliExpertInfo(Poll, Converter, object):
+class pliExpertInfo(Poll, Converter):
 	SMART_LABEL = 0
 	SMART_INFO_H = 1
 	SMART_INFO_V = 2
@@ -383,20 +382,20 @@ class pliExpertInfo(Poll, Converter, object):
 			searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
 			for idline in self.idnames:
 				if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
-					color = "\c0000??00"
+					color = "\c0000ff00"
 				else:
-					color = "\c007?7?7?"
+					color = "\c007f7f7f"
 					try:
 						for oneID in searchIDs:
 							if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
-								color = "\c00????00"
+								color = "\c00ffff00"
 					except:
 						pass
 				res += color + idline[3] + " "
 
 			if (self.type != self.CRYPTO_INFO):
 				Ret_Text += "\n"
-			Ret_Text += res + "\c00?????? " + Sec_Text
+			Ret_Text += res + "\c00ffffff " + Sec_Text
 
 		if Res_Text != "":
 			if showCryptoInfo:

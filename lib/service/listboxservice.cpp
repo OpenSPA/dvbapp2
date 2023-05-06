@@ -5,11 +5,13 @@
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/pmt.h>
+//////// OPENSPA [morser] Add picons for service quality  ////////////
 #include <lib/dvb/db.h>
+#include <lib/base/nconfig.h>
+//////////////////////////////////////////////////////////////////////
 #include <lib/nav/core.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
-#include <lib/base/nconfig.h>
 #include <ctype.h>
 
 ePyObject eListboxServiceContent::m_GetPiconNameFunc;
@@ -144,6 +146,17 @@ void eListboxServiceContent::getNext(eServiceReference &ref)
 	}
 	else
 		ref = eServiceReference();
+}
+
+PyObject *eListboxServiceContent::getList()
+{
+	ePyObject result = PyList_New(m_list.size());
+	int pos=0;
+	for (list::iterator it(m_list.begin()); it != m_list.end(); ++it)
+	{
+		PyList_SET_ITEM(result, pos++, NEW_eServiceReference(*it));
+	}
+	return result;
 }
 
 int eListboxServiceContent::getNextBeginningWithChar(char c)
@@ -317,11 +330,11 @@ void eListboxServiceContent::sort()
 DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
-	:m_visual_mode(visModeSimple),m_cursor_number(0), m_saved_cursor_number(0), m_size(0), m_current_marked(false),
+	:m_visual_mode(visModeSimple),m_cursor_number(0), m_saved_cursor_number(0), m_saved_cursor_line(0), m_size(0), m_current_marked(false),
 	m_itemheight(25), m_hide_number_marker(false), m_show_two_lines(false), m_progress_view_mode(0), m_progress_text_width(0),
-	m_service_picon_downsize(0), m_service_picon_ratio(167), m_servicetype_icon_mode(0), m_quality_icon_mode(0), m_crypto_icon_mode(0),
+	m_service_picon_downsize(0), m_service_picon_ratio(167),m_servicetype_icon_mode(0), m_crypto_icon_mode(0),
 	m_record_indicator_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2),
-	m_nonplayable_margins(10), m_items_distances(8), m_progress_unit("%")
+	m_nonplayable_margins(10), m_items_distances(8), m_progress_unit("%"), m_quality_icon_mode(0)   //// OPENSPA [morser] Add m_quality_icon_mode(0) for show service quality picons
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -546,6 +559,16 @@ void eListboxServiceContent::cursorRestore()
 	m_cursor = m_saved_cursor;
 	m_cursor_number = m_saved_cursor_number;
 	m_saved_cursor = m_list.end();
+}
+
+void eListboxServiceContent::cursorSaveLine(int line)
+{
+	m_saved_cursor_line = line;
+}
+
+int eListboxServiceContent::cursorRestoreLine()
+{
+	return m_saved_cursor_line;
 }
 
 int eListboxServiceContent::size()
@@ -879,9 +902,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						Py_DECREF(pArgs);
 						if (pRet)
 						{
-							if (PyString_Check(pRet))
+							if (PyUnicode_Check(pRet))
 							{
-								std::string piconFilename = PyString_AS_STRING(pRet);
+								std::string piconFilename = PyUnicode_AsUTF8(pRet);
 								if (!piconFilename.empty())
 									loadPNG(piconPixmap, piconFilename.c_str());
 							}
@@ -974,6 +997,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							}
 						}
 
+						////////////// OPENSPA [morser] Show service quality picons ////////////////
 						//service quality stuff
 						if (m_quality_icon_mode)
 						{
@@ -987,6 +1011,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								((ref.data[0] == 25 | text.find(" HD") != std::string::npos) & eConfigManager::getConfigBoolValue("config.usage.quality_HDicon", true)) ? m_pixmaps[picHD] :
 								(ref.type == eServiceReference::idServiceMP3 & eConfigManager::getConfigBoolValue("config.usage.quality_IPTVicon", true)) ? m_pixmaps[picIPTV] : 
 								(ref.data[0] == 1 & ref.type != eServiceReference::idServiceMP3 & eConfigManager::getConfigBoolValue("config.usage.quality_SDicon", false)) ? m_pixmaps[picSD]: m_pixmaps[picNone];
+
 							eSize pixmap_size = m_pixmaps[picHD]->size();
 
 							eRect area = m_element_position[celServiceInfo];
@@ -999,7 +1024,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								offs = xoffs;
 								xoffs += pixmap_size.width() + m_items_distances;
 							}
-							int correction = (m_show_two_lines) ? (((area.height()/2) - pixmap_size.height()) / 2) + 2 : (area.height() - pixmap_size.height()) / 2;
+							int correction = (area.height() - pixmap_size.height()) / 2;
 							area.moveBy(offset);
 							if (pixmap)
 							{
@@ -1015,7 +1040,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								painter.clippop();
  							}
  						}
- 
+						////////////////////////////////////////////////////////////////////////////////
+
 						//crypto icon stuff
 						if (m_crypto_icon_mode && m_pixmaps[picCrypto])
 						{
@@ -1109,13 +1135,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						nameYoffs = yoffs/2;
 					}
 					else if (m_show_two_lines && e == celServiceInfo)
-					{
 						yoffs = (area.height() + ((area.height()/2) - bbox.height())) / 2 - (bbox.top() - nameYoffs);
-					}
 					else if (m_show_two_lines && e == celServiceEventProgressbar && m_progress_view_mode == 1)
-					{
 						yoffs = area.height() + (area.height() - bbox.height()) / 2 - bbox.top();
-					}
 					else if (m_show_two_lines && e == celServiceEventProgressbar && m_progress_view_mode == 12)
 					{
 						yoffs = (area.height() - bbox.height()) / 2 - bbox.top();

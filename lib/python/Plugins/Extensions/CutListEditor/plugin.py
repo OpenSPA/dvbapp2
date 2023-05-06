@@ -1,19 +1,23 @@
 from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ServicePosition import ServicePositionGauge
-from Components.ActionMap import HelpableActionMap
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from Components.VideoWindow import VideoWindow
-from Components.Label import Label
 from Components.config import config, ConfigSubsection, ConfigYesNo
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
-from enigma import getDesktop, iPlayableService
-from Screens.FixedMenu import FixedMenu
-from Screens.HelpMenu import HelpableScreen
+from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.Label import Label
+from Components.ServicePosition import ServicePositionGauge
+from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Components.VideoWindow import VideoWindow
+
+from Screens.HelpMenu import HelpableScreen
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.FixedMenu import FixedMenu
+
+from enigma import getDesktop, iPlayableService
+
 try:
 	from Plugins.Extensions.MovieCut.plugin import main as MovieCut
 except:
@@ -23,6 +27,7 @@ import bisect
 
 config.plugins.CutListEditor = ConfigSubsection()
 config.plugins.CutListEditor.showIntro = ConfigYesNo(default=True)
+
 
 def CutListEntry(where, what):
 	w = where / 90
@@ -44,6 +49,7 @@ def CutListEntry(where, what):
 		type_col = 0x000000
 	return ((where, what), "%dh:%02dm:%02ds:%03d" % (h, m, s, ms), type, type_col)
 
+
 class CutListContextMenu(FixedMenu):
 	RET_STARTCUT = 0
 	RET_ENDCUT = 1
@@ -62,7 +68,7 @@ class CutListContextMenu(FixedMenu):
 	SHOW_DELETECUT = 2
 
 	def __init__(self, session, state, nearmark, removeall=1):
-		menu = [(_("back"), self.close)] #, (None, )]
+		menu = [(_("back"), self.close)]  # , (None, )]
 
 		if state == self.SHOW_STARTCUT:
 			menu.append((_("start cut here"), self.startCut))
@@ -139,6 +145,7 @@ class CutListContextMenu(FixedMenu):
 	def callMovieCut(self):
 		self.close(self.RET_MOVIECUT)
 
+
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
 	<screen position="0,0" size="720,576" title="Cutlist editor" flags="wfNoBorder">
@@ -175,9 +182,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)
-		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
+		InfoBarSeek.__init__(self, actionmap="CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
-		InfoBarBase.__init__(self, steal_current_service = True)
+		InfoBarBase.__init__(self, steal_current_service=True)
 		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
@@ -199,7 +206,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.updateStateLabel(self.seekstate)
 
 		desktopSize = getDesktop(0).size()
-		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
+		self["Video"] = VideoWindow(decoder=0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
 
 		self["actions"] = HelpableActionMap(self, "CutListEditorActions",
 			{
@@ -210,7 +217,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"removeMark": (self.__removeMark, _("Remove a mark")),
 				"removeAll": (self.__removeAll, _("Remove all cuts and marks")),
 				"leave": (self.exit, _("Exit editor")),
-				"showMenu": (self.showMenu, _("menu")),
+				"showMenu": (self.showMenu, _("Menu")),
 			}, prio=-4)
 
 		self.tutorial_seen = False
@@ -262,7 +269,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.uploadCuesheet()
 
 	def __addMark(self):
-		self.toggleMark(onlyadd=True, tolerance=90000) # do not allow two marks in <1s
+		self.toggleMark(onlyadd=True, tolerance=90000)  # do not allow two marks in <1s
 
 	def __removeMark(self):
 		m = self["cutlist"].getCurrent()
@@ -382,9 +389,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			in_after = None
 
 			for (where, what) in self.cut_list:
-				if what == 1 and where <= self.context_position: # out
+				if what == 1 and where <= self.context_position:  # out
 					out_before = (where, what)
-				elif what == 0 and where < self.context_position: # in, before out
+				elif what == 0 and where < self.context_position:  # in, before out
 					out_before = None
 				elif what == 0 and where >= self.context_position and in_after is None:
 					in_after = (where, what)
@@ -437,7 +444,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			cservice = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.crashFix()
 			#self.session.nav.playService(self.old_service, forceRestart=True) #required for actually writing the .cuts file
-			self.session.nav.playService(cservice, forceRestart=True) #required for actually writing the .cuts file
+			self.session.nav.playService(cservice, forceRestart=True)  # required for actually writing the .cuts file
 			self.pauseService()
 			try:
 				MovieCut(session=self.session, service=cservice)
@@ -469,8 +476,10 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		config.plugins.CutListEditor.showIntro.value = not config.plugins.CutListEditor.showIntro.value
 		config.plugins.CutListEditor.showIntro.save()
 
+
 def main(session, service, **kwargs):
 	session.open(CutListEditor, service)
 
+
 def Plugins(**kwargs):
- 	return PluginDescriptor(name=_("Cutlist Editor"), description=_("Cutlist editor..."), where = PluginDescriptor.WHERE_MOVIELIST, needsRestart = False, fnc=main)
+ 	return PluginDescriptor(name=_("Cutlist Editor"), description=_("Cutlist editor..."), where=PluginDescriptor.WHERE_MOVIELIST, needsRestart=False, fnc=main)

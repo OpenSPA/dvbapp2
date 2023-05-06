@@ -3,10 +3,10 @@ from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 
+
 class ResolutionSelection(Screen):
 	def __init__(self, session, infobar=None):
 		Screen.__init__(self, session)
-		self.session = session
 
 		xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
 		yresString = open("/proc/stb/vmpeg/0/yres", "r").read()
@@ -39,7 +39,7 @@ class ResolutionSelection(Screen):
 			if tlist[x][1] == mode:
 				selection = x
 
-		self.session.openWithCallback(self.ResolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list = tlist, selection = selection, keys = keys)
+		self.session.openWithCallback(self.ResolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list=tlist, selection=selection, keys=keys)
 		#return
 
 	def ResolutionSelected(self, Resolution):

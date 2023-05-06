@@ -233,6 +233,7 @@ int eSocket::connectToHost(std::string hostname, int port)
 	struct hostent *server;
 	int res;
 
+
 	if (mystate == Invalid)
 	{
 		/* the socket has been closed, create a new socket descriptor */
@@ -245,7 +246,8 @@ int eSocket::connectToHost(std::string hostname, int port)
 		error_(errno);
 		return(-1);
 	}
-	server=gethostbyname2(hostname.c_str(), AF_INET6);
+	// FIXME use getaddrinfo
+	server=gethostbyname2(hostname.c_str(), AF_INET6); // NOSONAR
 	if(server==NULL)
 	{
 		eDebug("[eSocket] can't resolve %s", hostname.c_str());

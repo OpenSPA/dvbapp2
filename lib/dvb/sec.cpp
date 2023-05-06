@@ -1,3 +1,5 @@
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
 #include <lib/dvb/rotor_calc.h>
@@ -133,7 +135,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 			std::multimap<int, eDVBSatelliteSwitchParameters>::iterator sit;
 //				lnb_param.m_satellites.find(sat.orbital_position);
 
-			eSecDebugNoSimulate("[eDVBSatelliteEquipmentControl] %d option(s) at position %d", lnb_param.m_satellites.count(sat.orbital_position), sat.orbital_position);
+			eSecDebugNoSimulate("[eDVBSatelliteEquipmentControl] %zu option(s) at position %d", lnb_param.m_satellites.count(sat.orbital_position), sat.orbital_position);
 
 			if (lnb_param.m_satellites.count(sat.orbital_position))
 			{
@@ -372,6 +374,51 @@ RESULT eDVBSatelliteEquipmentControl::prepareSTelectronicSatCR(iDVBFrontend &fro
 	return  vco;
 }
 
+int slot_id_to_fe_id(int slot_id)
+{
+	int fe_id=-1;
+	while (slot_id) {
+		fe_id++;
+		slot_id >>=1;
+	}
+	return fe_id;
+}
+
+#define EXT_ROTOR_CMD "/home/root/rotor_%d"
+
+bool has_external_rotor(int fe_id) {
+	char cmd[32];
+	sprintf(cmd, EXT_ROTOR_CMD, fe_id);
+	bool retval = ::access(cmd, X_OK) == 0;
+	eDebug("has_external_rotor %s %s", cmd, retval ? "yes" : "no");
+	return retval;
+}
+
+void move_external_rotor(int fe_id, int satpos, int storedpos)
+{
+	eDebug("[move_external_rotor] satpos %d, stored pos %d", satpos, storedpos);
+	int pid;
+	if ( ( pid = vfork() ) == -1) {
+		eDebug("[move_external_rotor] cannot fork: %s", strerror(errno));
+		return;
+	}
+	if (pid == 0) { //child
+		char cmd[32];
+		char satpos_str[20];
+		char storedpos_str[20];
+		sprintf(cmd, EXT_ROTOR_CMD, fe_id);
+		sprintf(satpos_str, "%d", satpos);
+		sprintf(storedpos_str, "%d", storedpos);
+		char *argv[] = {cmd, satpos_str, storedpos_str, NULL};
+		execvp(cmd,argv);
+		eDebug("[move_external_rotor] cannot exec: %s", strerror(errno));
+		_exit(0);
+	} else { //parent
+		int childstatus;
+		::waitpid(pid, &childstatus, 0);
+		eDebug("[move_external_rotor] exit status %d", childstatus);
+	}
+}
 
 /**
  * @brief prepare for tune
@@ -449,7 +496,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				}
 				if (satposDependPtr != -1)  // we dont need uncommitted switch and rotor cmds on second output of a rotor lnb
 					diseqc_mode = eDVBSatelliteDiseqcParameters::V1_0;
-				else {
+				else if (!((eDVBFrontend*)&frontend)->is_FBCTuner()) 
+				{
 					// in eDVBFrontend::tuneLoop we call closeFrontend and ->inc_use() in this this condition (to put the kernel frontend thread into idle state)
 					// so we must resend all diseqc stuff (voltage is disabled when the frontend is closed)
 					int state;
@@ -464,6 +512,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 			sec_fe->getData(eDVBFrontend::TONEBURST, lastToneburst);
 			sec_fe->getData(eDVBFrontend::ROTOR_CMD, lastRotorCmd);
 			sec_fe->getData(eDVBFrontend::ROTOR_POS, curRotorPos);
+			//with simulate we don't want to move the dish and spam the log with useless messages
+			bool useExternalRotorCmd = !simulate && has_external_rotor(slot_id_to_fe_id(slot_id));
 
 			if (lastcsw == lastucsw && lastToneburst == lastucsw && lastucsw == -1)
 				needDiSEqCReset = true;
@@ -644,7 +694,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				eDebug("");
 #endif
 				if ( diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
-					&& !sat.no_rotor_command_on_tune )
+					&& !sat.no_rotor_command_on_tune && !useExternalRotorCmd)
 				{
 					if (sw_param.m_rotorPosNum) // we have stored rotor pos?
 						RotorCmd=sw_param.m_rotorPosNum;
@@ -1053,6 +1103,31 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD]) );  // wait 150msec after voltage change
 			}
 
+			if (useExternalRotorCmd && !sat.no_rotor_command_on_tune) {
+				move_external_rotor(slot_id_to_fe_id(slot_id), sat.orbital_position, sw_param.m_rotorPosNum);
+				sec_fe->setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
+				int mrt;
+				if (curRotorPos != -1)
+					mrt = abs(curRotorPos - sat.orbital_position);
+				else
+					mrt = 1800; //unknown position, assume 180º swing
+				if (mrt > 1800)
+					mrt = 3600 - mrt;
+				if (mrt % 10)
+					mrt += 10; // round a little bit
+				mrt *= 5000;  // (we assume a very slow rotor with just 0.2 degree per second here)
+				mrt /= 10000;
+				mrt += 3; // a little bit overhead
+				sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_MOVING) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, mrt * 2) );  //mrt is in seconds, our sleep time is 500ms
+				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3) ); //it should not happen
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 500) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::IF_EXTERNAL_ROTOR_MOVING_GOTO, -2) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_STOPPED) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
+			}
+
 			eDebugNoSimulate("[eDVBSatelliteEquipmentControl] RotorCmd %02x, lastRotorCmd %02lx", RotorCmd, lastRotorCmd);
 			if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
 			{
@@ -1291,13 +1366,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 		sat.system ? "DVB-S2" : "DVB-S",
 		sat.frequency,
 		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation_Horizontal ? "H" :
-			eDVBFrontendParametersSatellite::Polarisation_Vertical ? "V" :
-			eDVBFrontendParametersSatellite::Polarisation_CircularLeft ? "CL" : "CR",
+		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation_Vertical ? "V" :
+		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation_CircularLeft ? "CL" : "CR",
 		sat.modulation == eDVBFrontendParametersSatellite::Modulation_Auto ? "AUTO" :
-			eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
-			eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" :
-			eDVBFrontendParametersSatellite::Modulation_QAM16 ? "QAM16" :
-			eDVBFrontendParametersSatellite::Modulation_16APSK ? "16APSK" : "32APSK",
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" :
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_QAM16 ? "QAM16" :
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_16APSK ? "16APSK" : "32APSK",
 		sat.orbital_position );
 	return -1;
 }
@@ -1421,7 +1496,7 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 		{
 			eFBCTunerManager *fbcmng = eFBCTunerManager::getInstance();
 			if (fbcmng)
-				fbcmng->setDefaultFBCID(*it);
+				fbcmng->SetDefaultFBCID(*it);
 		}
 	}
 
@@ -1888,7 +1963,7 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 			eFBCTunerManager *fbcmng = eFBCTunerManager::getInstance();
 			if (p1->m_frontend->is_FBCTuner() && fbcmng)
 			{
-				fbcmng->updateFBCID(p1, p2);
+				fbcmng->UpdateFBCID(p1, p2);
 			}
 		}
 

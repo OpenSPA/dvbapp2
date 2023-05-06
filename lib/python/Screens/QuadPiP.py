@@ -3,8 +3,9 @@ from Screens.Screen import Screen
 from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
 from Components.VideoWindow import VideoWindow
 
+
 class QuadPiP(Screen):
-	def __init__(self, session, decoderIdx = 1, pos = None):
+	def __init__(self, session, decoderIdx=1, pos=None):
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow(decoderIdx, 720, 576)
 		self.currentService = None

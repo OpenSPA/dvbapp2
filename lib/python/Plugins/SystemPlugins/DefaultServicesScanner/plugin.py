@@ -1,19 +1,13 @@
 from __future__ import print_function
-#from Components.ActionMap import ActionMap, NumberActionMap
-#from Components.Input import Input
-#from Components.Ipkg import IpkgComponent
-#from Components.Label import Label
-#from Components.MenuList import MenuList
-#from Components.Slider import Slider
 from Components.NimManager import nimmanager
 from Plugins.Plugin import PluginDescriptor
 from Screens.ScanSetup import ScanSetup
 from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
-#from Screens.Screen import Screen
 from os import unlink
 from enigma import eTimer, eDVBDB
+
 
 class DefaultServiceScan(ServiceScan):
 	skin = """
@@ -53,6 +47,7 @@ class DefaultServiceScan(ServiceScan):
 		self.timer.callback.append(self.ok)
 		self.timer.start(1000)
 
+
 class DefaultServicesScannerPlugin(ScanSetup):
 	skin = """
 		<screen position="100,115" size="520,390" title="Service scan">
@@ -60,7 +55,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 			<widget name="introduction" position="10,365" size="500,25" font="Regular;20" halign="center" />
 		</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		ScanSetup.__init__(self, session)
 		# backup lamedb
 		confdir = resolveFilename(SCOPE_CONFIG)
@@ -131,8 +126,10 @@ class DefaultServicesScannerPlugin(ScanSetup):
 			self.selectSat(self.scanIndex)
 			self.keyGo()
 
+
 def DefaultServicesScannerMain(session, **kwargs):
 	session.open(DefaultServicesScannerPlugin)
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name = _("Default Services Scanner"), description = _("Scans default lamedbs sorted by satellite with a connected dish positioner"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = DefaultServicesScannerMain)
+	return PluginDescriptor(name=_("Default Services Scanner"), description=_("Scans default lamedbs sorted by satellite with a connected dish positioner"), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=DefaultServicesScannerMain)

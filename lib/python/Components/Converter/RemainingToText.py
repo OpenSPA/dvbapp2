@@ -1,11 +1,11 @@
-from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from time import time as getTime, localtime, strftime
 from Components.Converter.Poll import Poll
 from Components.Element import cached
 from Components.config import config
 
-class RemainingToText(Poll, Converter, object):
+
+class RemainingToText(Poll, Converter):
 	DEFAULT = 0
 	WITH_SECONDS = 2
 	NO_SECONDS = 2
@@ -118,15 +118,15 @@ class RemainingToText(Poll, Converter, object):
 			if config.usage.swap_time_display_on_osd.value == "1":
 				if remaining is not None:
 					if config.usage.swap_time_remaining_on_osd.value == "1": # Elapsed
-						return sign_p + ngettext(_("%d Min"), _("%d Mins"), (p / 60)) % (p / 60)
+						return sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 					elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
-						return sign_p + "%d  " % (p / 60) + sign_r + ngettext(_("%d Min"), _("%d Mins"), (r / 60)) % (r / 60)
+						return sign_p + "%d  " % (p / 60) + sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 					elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
-						return sign_r + "%d  " % (r / 60) + sign_p + ngettext(_("%d Min"), _("%d Mins"), (p / 60)) % (p / 60)
+						return sign_r + "%d  " % (r / 60) + sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 					else:
-						return sign_r + ngettext(_("%d Min"), _("%d Mins"), (r / 60)) % (r / 60)
+						return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 				else:
-					return ngettext(_("%d Min"), _("%d Mins"), (l / 60)) % (l / 60)
+					return ngettext("%d Min", "%d Mins", (l / 60)) % (l / 60)
 
 			elif config.usage.swap_time_display_on_osd.value == "2":
 				if remaining is not None:
@@ -192,17 +192,18 @@ class RemainingToText(Poll, Converter, object):
 				if self.type == self.DEFAULT:
 					if remaining is not None:
 						if config.usage.swap_time_remaining_on_osd.value == "1": # Elapsed
-							return sign_p + ngettext(_("%d Min"), _("%d Mins"), (p / 60)) % (p / 60)
+							return sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 						elif config.usage.swap_time_remaining_on_osd.value == "2": # Elapsed & Remaining
-							return sign_p + "%d  " % (p / 60) + sign_r + ngettext(_("%d Min"), _("%d Mins"), (r / 60)) % (r / 60)
+							return sign_p + "%d  " % (p / 60) + sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 						elif config.usage.swap_time_remaining_on_osd.value == "3": # Remaining & Elapsed
-							return sign_r + "%d  " % (r / 60) + sign_p + ngettext(_("%d Min"), _("%d Mins"), (p / 60)) % (p / 60)
+							return sign_r + "%d  " % (r / 60) + sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 						else:
-							return sign_r + ngettext(_("%d Min"), _("%d Mins"), (r / 60)) % (r / 60)
+							return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 					else:
-						return ngettext(_("%d Min"), _("%d Mins"), (l / 60)) % (l / 60)
+						return ngettext("%d Min", "%d Mins", (l / 60)) % (l / 60)
 				elif self.type == self.ONLY_MINUTE:
 					if remaining is not None:
+						# FIXME What's this
 						return ngettext(_("%d"), _("%d"), (r / 60)) % (r / 60)
 				elif self.type == self.ONLY_MINUTE2:
 					time = getTime()
@@ -288,15 +289,15 @@ class RemainingToText(Poll, Converter, object):
 			if config.usage.swap_time_display_on_vfd.value == "1":
 				if remaining is not None:
 					if config.usage.swap_time_remaining_on_vfd.value == "1": # Elapsed
-						return sign_p + ngettext(_("%d Min"), _("%d Mins"), (p / 60)) % (p / 60)
+						return sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 					elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
-						return sign_p + "%d  " % (p / 60) + sign_r + ngettext(_("%d Min"), _("%d Mins"), (r / 60)) % (r / 60)
+						return sign_p + "%d  " % (p / 60) + sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 					elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
-						return sign_r + "%d  " % (r / 60) + sign_p + ngettext(_("%d Min"), _("%d Mins"), (p / 60)) % (p / 60)
+						return sign_r + "%d  " % (r / 60) + sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 					else:
-						return sign_r + ngettext(_("%d Min"), _("%d Mins"), (r / 60)) % (r / 60)
+						return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 				else:
-					return ngettext(_("%d Min"), _("%d Mins"), (l / 60)) % (l / 60)
+					return ngettext("%d Min", "%d Mins", (l / 60)) % (l / 60)
 
 			elif config.usage.swap_time_display_on_vfd.value == "2":
 				if remaining is not None:
@@ -362,15 +363,15 @@ class RemainingToText(Poll, Converter, object):
 				if self.type == self.VFD:
 					if remaining is not None:
 						if config.usage.swap_time_remaining_on_vfd.value == "1": # Elapsed
-							return sign_p + ngettext(_("%d Min"), _("%d Mins"), (p / 60)) % (p / 60)
+							return sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 						elif config.usage.swap_time_remaining_on_vfd.value == "2": # Elapsed & Remaining
-							return sign_p + "%d  " % (p / 60) + sign_r + ngettext(_("%d Min"), _("%d Mins"), (r / 60)) % (r / 60)
+							return sign_p + "%d  " % (p / 60) + sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 						elif config.usage.swap_time_remaining_on_vfd.value == "3": # Remaining & Elapsed
-							return sign_r + "%d  " % (r / 60) + sign_p + ngettext(_("%d Min"), _("%d Mins"), (p / 60)) % (p / 60)
+							return sign_r + "%d  " % (r / 60) + sign_p + ngettext("%d Min", "%d Mins", (p / 60)) % (p / 60)
 						else:
-							return sign_r + ngettext(_("%d Min"), _("%d Mins"), (r / 60)) % (r / 60)
+							return sign_r + ngettext("%d Min", "%d Mins", (r / 60)) % (r / 60)
 					else:
-						return ngettext(_("%d Min"), _("%d Mins"), (l / 60)) % (l / 60)
+						return ngettext("%d Min", "%d Mins", (l / 60)) % (l / 60)
 				elif self.type == self.VFD_WITH_SECONDS:
 					if remaining is not None:
 						if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed

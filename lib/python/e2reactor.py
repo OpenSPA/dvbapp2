@@ -19,6 +19,7 @@ from twisted.internet import main, posixbase, error
 #from twisted.internet.pollreactor import PollReactor, poller
 
 from enigma import getApplication
+import six
 
 # globals
 reads = {}
@@ -27,25 +28,28 @@ selectables = {}
 
 POLL_DISCONNECTED = (select.POLLHUP | select.POLLERR | select.POLLNVAL)
 
+
 class E2SharedPoll:
 	def __init__(self):
 		self.dict = {}
 		self.eApp = getApplication()
 
-	def register(self, fd, eventmask = select.POLLIN | select.POLLERR | select.POLLOUT):
+	def register(self, fd, eventmask=select.POLLIN | select.POLLERR | select.POLLOUT):
 		self.dict[fd] = eventmask
 
 	def unregister(self, fd):
 		del self.dict[fd]
 
-	def poll(self, timeout = None):
+	def poll(self, timeout=None):
 		try:
 			r = self.eApp.poll(timeout, self.dict)
 		except KeyboardInterrupt:
 			return None
 		return r
 
+
 poller = E2SharedPoll()
+
 
 class PollReactor(posixbase.PosixReactorBase):
 	"""A reactor that uses poll(2)."""
@@ -67,7 +71,6 @@ class PollReactor(posixbase.PosixReactorBase):
 		else:
 			if fd in selectables:
 				del selectables[fd]
-
 
 		poller.eApp.interruptPoll()
 
@@ -147,7 +150,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		"""Poll the poller for new events."""
 
 		if timeout is not None:
-			timeout = int(timeout * 1000) # convert seconds to milliseconds
+			timeout = int(timeout * 1000)  # convert seconds to milliseconds
 
 		try:
 			l = poller.poll(timeout)
@@ -155,8 +158,8 @@ class PollReactor(posixbase.PosixReactorBase):
 				if self.running:
 					self.stop()
 				l = []
-		except select.error as e:
-			if e[0] == errno.EINTR:
+		except OSError as e:
+			if e.errno == errno.EINTR:
 				return
 			else:
 				raise
@@ -194,7 +197,7 @@ class PollReactor(posixbase.PosixReactorBase):
 					why = error.ConnectionFdescWentAway('Filedescriptor went away')
 					inRead = False
 			except AttributeError as ae:
-				if "'NoneType' object has no attribute 'writeHeaders'" not in six.text_type(ae):
+				if "'NoneType' object has no attribute 'writeHeaders'" not in str(ae):
 					log.deferr()
 					why = sys.exc_info()[1]
 				else:
@@ -212,10 +215,12 @@ class PollReactor(posixbase.PosixReactorBase):
 		poller.eApp.interruptPoll()
 		return posixbase.PosixReactorBase.callLater(self, *args, **kwargs)
 
+
 def install():
 	"""Install the poll() reactor."""
 
 	p = PollReactor()
 	main.installReactor(p)
+
 
 __all__ = ["PollReactor", "install"]

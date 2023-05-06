@@ -173,8 +173,6 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject additional)
 {
 	int return_reason = 0;
-		/* get current time */
-
 	if (additional && !PyDict_Check(additional))
 		eFatal("[eMainloop::processOneEvent] additional, but it's not dict");
 
@@ -188,6 +186,7 @@ int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject addi
 		if (it != m_timer_list.end())
 		{
 			eTimer *tmr = *it;
+			/* get current time */
 			timespec now;
 			clock_gettime(CLOCK_MONOTONIC, &now);
 			/* process all timers which are ready. first remove them out of the list. */
@@ -237,16 +236,11 @@ int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject addi
 
 	if (additional)
 	{
-#if PY_VERSION_HEX < 0x02050000 && !defined(PY_SSIZE_T_MIN)
-		typedef int Py_ssize_t;
-# define PY_SSIZE_T_MAX INT_MAX
-# define PY_SSIZE_T_MIN INT_MIN
-#endif
 		PyObject *key, *val;
 		Py_ssize_t pos=0;
 		while (PyDict_Next(additional, &pos, &key, &val)) {
 			pfd[i].fd = PyObject_AsFileDescriptor(key);
-			pfd[i++].events = PyInt_AsLong(val);
+			pfd[i++].events = PyLong_AsLong(val);
 		}
 	}
 
@@ -284,7 +278,7 @@ int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject addi
 		{
 			if (pfd[i].revents)
 			{
-				if (!*res)
+				if (!*res)  // NOSONAR
 					*res = PyList_New(0);
 				ePyObject it = PyTuple_New(2);
 				PyTuple_SET_ITEM(it, 0, PyInt_FromLong(pfd[i].fd));
@@ -302,7 +296,6 @@ int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject addi
 		else
 			return_reason = 2; /* don't assume the timeout has passed when we got a signal */
 	}
-
 	return return_reason;
 }
 
@@ -374,7 +367,7 @@ PyObject *eMainloop::poll(ePyObject timeout, ePyObject dict)
 	if (app_quit_now)
 		Py_RETURN_NONE;
 
-	int twisted_timeout = (timeout == Py_None) ? 0 : PyInt_AsLong(timeout);
+	int twisted_timeout = (timeout == Py_None) ? 0 : PyLong_AsLong(timeout);
 
 	iterate(twisted_timeout, &res, dict);
 	if (res)

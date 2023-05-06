@@ -5,9 +5,9 @@
 import re
 import json
 
-from six.moves.urllib.error import URLError
-from six.moves.urllib.parse import urlencode
-from six.moves.urllib.request import urlopen
+from urllib.error import URLError
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 
 WOEID_SEARCH_URL = 'http://query.yahooapis.com/v1/public/yql'
@@ -19,9 +19,9 @@ def get_woeid_from_yahoo(search_string):
 	params = {'q': WOEID_QUERY_STRING % encoded_string, 'format': 'json'}
 	url = '?'.join((WOEID_SEARCH_URL, urlencode(params)))
 	try:
-		handler = urlopen(url, timeout = 10)
+		handler = urlopen(url, timeout=10)
 	except URLError:
-		return {'error': _('Could not connect to server')}
+		return {"error": _("Could not connect to server")}
 
 	content_type = handler.info().dict['content-type']
 	try:
@@ -40,7 +40,7 @@ def get_woeid_from_yahoo(search_string):
 	except KeyError:
 		return yahoo_woeid_result
 	except TypeError:
-		return {'error': _('No matching place names found')}
+		return {"error": _("No matching place names found")}
 
 	woeid_data = {}
 	woeid_data['count'] = yahoo_woeid_result['query']['count']

@@ -137,7 +137,7 @@ void streamingDataToDict(ePyObject &dest, ePtr<iStreamData> data)
 {
 	if (dest && PyDict_Check(dest))
 	{
-		int pmt, pcr, txt, adapter, demux, ait, default_audio_pid;
+		int pmt, pcr, txt, adapter, demux, default_audio_pid, ait;
 		std::vector<int> video, audio, subtitle;
 		unsigned int i;
 		ePyObject l = PyList_New(0);
@@ -170,6 +170,7 @@ void streamingDataToDict(ePyObject &dest, ePtr<iStreamData> data)
 		if (txt != -1)
 			PyList_AppendSteal(l, createTuple(txt, "text"));
 
+		/* OPENSPA [morser] Include eit, tdt & ait pids in streaming with streamproxy *********************** */
 		data->getAitPid(ait);
 		if (eConfigManager::getConfigBoolValue("config.streaming.stream_ait") && ait != -1)
 			PyList_AppendSteal(l, createTuple(ait, "ait"));
@@ -178,6 +179,7 @@ void streamingDataToDict(ePyObject &dest, ePtr<iStreamData> data)
 			PyList_AppendSteal(l, createTuple(0x12, "eit"));
 
 		PyList_AppendSteal(l, createTuple(0x14, "tdt"));
+		/* *************************************************************************************************** */
 
 		PutToDict(dest, "pids", l);
 

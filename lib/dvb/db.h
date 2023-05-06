@@ -47,7 +47,9 @@ public:
 	PyObject *getCachedPid(const eServiceReference &service, int id);
 	bool isCrypted(const eServiceReference &service);
 	bool hasCAID(const eServiceReference &service, unsigned int caid);
+/// OPENSPA [morser] Add picons for service quality /////////////////////////////////////////////
 	bool HasFlag(const eServiceReference &ref, unsigned int flagmask);
+/////////////////////////////////////////////////////////////////////////////////////////////////
 	RESULT addCAID(const eServiceReference &service, unsigned int caid);
 	RESULT addFlag(const eServiceReference &service, unsigned int flagmask);
 	RESULT removeFlag(const eServiceReference &service, unsigned int flagmask);
@@ -76,7 +78,7 @@ public:
 //////
 	void loadBouquet(const char *path);
 	void searchAllReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
-	void searchAllIPTVReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
+	void searchAllIPTVReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);  /* OPENSPA [morser] Search for IPTV Channels */
 	eDVBDB();
 	virtual ~eDVBDB();
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);

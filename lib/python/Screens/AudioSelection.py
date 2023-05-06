@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Screens.InputBox import PinInput
@@ -12,9 +11,8 @@ from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.VolumeControl import VolumeControl
-from boxbranding import getBoxType
 
 from enigma import iPlayableService, eTimer, eSize
 
@@ -60,6 +58,8 @@ class AudioSelection(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
+			"left": self.keyLeft,
+			"right": self.keyRight,
 			"volumeUp": self.volumeUp,
 			"volumeDown": self.volumeDown,
 			"volumeMute": self.volumeMute,
@@ -77,7 +77,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 		self.settings = ConfigSubsection()
 		choicelist = [(PAGE_AUDIO, ""), (PAGE_SUBTITLES, "")]
-		self.settings.menupage = ConfigSelection(choices = choicelist, default=page)
+		self.settings.menupage = ConfigSelection(choices=choicelist, default=page)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
@@ -107,8 +107,8 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.audioTracks = audio = service and service.audioTracks()
 			n = audio and audio.getNumberOfTracks() or 0
 
-			if SystemInfo["CanDownmixAC3"]:
-				if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			if BoxInfo.getItem("CanDownmixAC3"):
+				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 					self.settings.downmix_ac3 = ConfigSelection(choices=choice_list, default=config.av.downmix_ac3.value)
 				else:
@@ -116,16 +116,16 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.downmix_ac3.addNotifier(self.changeAC3Downmix, initial_call=False)
 				conflist.append(getConfigListEntry(_("AC3 downmix"), self.settings.downmix_ac3, None))
 
-			if SystemInfo["CanDownmixDTS"]:
+			if BoxInfo.getItem("CanDownmixDTS"):
 				self.settings.downmix_dts = ConfigOnOff(default=config.av.downmix_dts.value)
 				self.settings.downmix_dts.addNotifier(self.changeDTSDownmix, initial_call=False)
 				conflist.append(getConfigListEntry(_("DTS downmix"), self.settings.downmix_dts, None))
 
-			if SystemInfo["CanDownmixAAC"]:
-				if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			if BoxInfo.getItem("CanDownmixAAC"):
+				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
-				elif getBoxType() in ('gbquad4k', 'gbue4k', 'gbx34k'):
+				elif BoxInfo.getItem("machinebuild") in ('gbquad4k', 'gbue4k', 'gbx34k'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts", _("convert to DTS")), ("use_hdmi_cacenter", _("use_hdmi_cacenter")), ("wide", _("wide")), ("extrawide", _("extrawide"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
 				else:
@@ -133,23 +133,23 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.downmix_aac.addNotifier(self.changeAACDownmix, initial_call=False)
 				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac, None))
 
-			if SystemInfo["CanDownmixAACPlus"]:
+			if BoxInfo.getItem("CanDownmixAACPlus"):
 				choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts", _("convert to DTS")), ("use_hdmi_cacenter", _("use_hdmi_cacenter")), ("wide", _("wide")), ("extrawide", _("extrawide"))]
 				self.settings.downmix_aacplus = ConfigSelection(choices=choice_list, default=config.av.downmix_aacplus.value)
 				self.settings.downmix_aacplus.addNotifier(self.changeAACDownmixPlus, initial_call=False)
-				conflist.append(getConfigListEntry(_("AAC Plus downmix"), self.settings.downmix_aacplus, None))
+				conflist.append(getConfigListEntry(_("AAC plus downmix"), self.settings.downmix_aacplus, None))
 
-			if SystemInfo["CanAACTranscode"]:
-				choice_list = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
+			if BoxInfo.getItem("CanAACTranscode"):
+				choice_list = BoxInfo.getItem("CanAACTranscode")
 				self.settings.transcodeaac = ConfigSelection(choices=choice_list, default=config.av.transcodeaac.value)
 				self.settings.transcodeaac.addNotifier(self.setAACTranscode, initial_call=False)
 				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
 
-			if SystemInfo["CanAC3plusTranscode"]:
-				if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			if BoxInfo.getItem("CanAC3plusTranscode"):
+				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI")), ("force_ddp", _("force AC3plus"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
-				elif getBoxType() in ('gbquad4k', 'gbue4k', 'gbx34k'):
+				elif BoxInfo.getItem("machinebuild") in ('gbquad4k', 'gbue4k', 'gbx34k'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("force_ac3", _("convert to AC3")), ("multichannel", _("convert to multi-channel PCM")), ("force_dts", _("convert to DTS"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
 				else:
@@ -158,8 +158,8 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.transcodeac3plus.addNotifier(self.setAC3plusTranscode, initial_call=False)
 				conflist.append(getConfigListEntry(_("AC3plus transcoding"), self.settings.transcodeac3plus, None))
 
-			if SystemInfo["CanPcmMultichannel"]:
-				if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			if BoxInfo.getItem("CanPcmMultichannel"):
+				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 					self.settings.pcm_multichannel = ConfigSelection(choices=choice_list, default=config.av.pcm_multichannel.value)
 				else:
@@ -167,8 +167,8 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.pcm_multichannel.addNotifier(self.changePCMMultichannel, initial_call=False)
 				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
 
-			if SystemInfo["CanDTSHD"]:
-				if getBoxType() in ("dm7080", "dm820"):
+			if BoxInfo.getItem("CanDTSHD"):
+				if BoxInfo.getItem("machinebuild") in ("dm7080", "dm820"):
 					choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_dts", _("convert to DTS"))]
 				else:
 					choice_list = [("downmix", _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps", _("controlled by HDMI")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
@@ -176,15 +176,14 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.dtshd.addNotifier(self.setDTSHD, initial_call=False)
 				conflist.append(getConfigListEntry(_("DTS HD downmix"), self.settings.dtshd, None))
 
-			if SystemInfo["CanWMAPRO"]:
+			if BoxInfo.getItem("CanWMAPRO"):
 				choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 				self.settings.wmapro = ConfigSelection(choices=choice_list, default=config.av.wmapro.value)
 				self.settings.wmapro.addNotifier(self.setWMAPro, initial_call=False)
 				conflist.append(getConfigListEntry(_("WMA Pro downmix"), self.settings.wmapro, None))
 
-			if SystemInfo["CanBTAudio"]:
-				choice_list = [("off", _("off")), ("on", _("on"))]
-				self.settings.btaudio = ConfigSelection(choices=choice_list, default=config.av.btaudio.value)
+			if BoxInfo.getItem("CanBTAudio"):
+				self.settings.btaudio = ConfigOnOff(default=config.av.btaudio.value)
 				self.settings.btaudio.addNotifier(self.changeBTAudio, initial_call=False)
 				conflist.append(getConfigListEntry(_("Enable BT Audio"), self.settings.btaudio, None))
 
@@ -223,22 +222,22 @@ class AudioSelection(Screen, ConfigListScreen):
 			else:
 				conflist.append(('',))
 
-			if SystemInfo["Can3DSurround"]:
-				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
-				self.settings.surround_3d = ConfigSelection(choices = choice_list, default = config.av.surround_3d.value)
-				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
+			if BoxInfo.getItem("Can3DSurround"):
+				choice_list = [("none", _("Off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+				self.settings.surround_3d = ConfigSelection(choices=choice_list, default=config.av.surround_3d.value)
+				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call=False)
 				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d, None))
 
-			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
-				choice_list = [("center", _("center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
-				self.settings.surround_3d_speaker = ConfigSelection(choices = choice_list, default = config.av.surround_3d_speaker.value)
-				self.settings.surround_3d_speaker.addNotifier(self.change3DSurroundSpeaker, initial_call = False)
+			if BoxInfo.getItem("Can3DSpeaker") and config.av.surround_3d.value != "none":
+				choice_list = [("center", _("Center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
+				self.settings.surround_3d_speaker = ConfigSelection(choices=choice_list, default=config.av.surround_3d_speaker.value)
+				self.settings.surround_3d_speaker.addNotifier(self.change3DSurroundSpeaker, initial_call=False)
 				conflist.append(getConfigListEntry(_("3D Surround Speaker Position"), self.settings.surround_3d_speaker, None))
 
-			if SystemInfo["CanAutoVolume"]:
-				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
-				self.settings.autovolume = ConfigSelection(choices = choice_list, default = config.av.autovolume.value)
-				self.settings.autovolume.addNotifier(self.changeAutoVolume, initial_call = False)
+			if BoxInfo.getItem("CanAutoVolume"):
+				choice_list = [("none", _("Off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+				self.settings.autovolume = ConfigSelection(choices=choice_list, default=config.av.autovolume.value)
+				self.settings.autovolume.addNotifier(self.changeAutoVolume, initial_call=False)
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
 
 			from Components.PluginComponent import plugins
@@ -253,10 +252,10 @@ class AudioSelection(Screen, ConfigListScreen):
 					def __call__(self, *args, **kwargs):
 						self.fnc(*self.args)
 
-				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU)]
+				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU)]
 				if len(Plugins):
 					for x in Plugins:
-						if x[0] != 'AudioEffect': # always make AudioEffect Blue button.
+						if x[0] != 'AudioEffect':  # always make AudioEffect Blue button.
 							conflist.append(getConfigListEntry(x[0], ConfigNothing(), x[1]))
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
@@ -304,8 +303,6 @@ class AudioSelection(Screen, ConfigListScreen):
 					streams.append((x, "", number, description, language, selected))
 					idx += 1
 
-			if self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0, 0, 0, 0) and not ".DVDPlayer'>" in repr(self.infobar):
-				conflist.append(getConfigListEntry(_("Subtitle Quickmenu"), ConfigNothing(), None))
 
 		if len(conflist) > 0 and conflist[0][0]:
 			self["key_red"].setBoolean(True)
@@ -364,27 +361,26 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.autovolume.save()
 
 	def changeAC3Downmix(self, downmix):
-		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 			config.av.downmix_ac3.setValue(downmix.value)
 		else:
 			if downmix.value:
 				config.av.downmix_ac3.setValue(True)
-				if SystemInfo["supportPcmMultichannel"]:
+				if BoxInfo.getItem("supportPcmMultichannel"):
 					config.av.pcm_multichannel.setValue(False)
 			else:
 				config.av.downmix_ac3.setValue(False)
 		config.av.downmix_ac3.save()
-		if SystemInfo["supportPcmMultichannel"]:
+		if BoxInfo.getItem("supportPcmMultichannel"):
 			config.av.pcm_multichannel.save()
 		self.fillList()
 
 	def changeBTAudio(self, btaudio):
-		if btaudio.value:
-			config.av.btaudio.value = btaudio.value
+		config.av.btaudio.value = btaudio.value
 		config.av.btaudio.save()
 
 	def changePCMMultichannel(self, multichan):
-		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
 			config.av.pcm_multichannel.setValue(multichan.value)
 		else:
 			if multichan.value:
@@ -395,7 +391,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.fillList()
 
 	def changeAACDownmix(self, downmix):
-		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800', 'gbquad4k', 'gbue4k', 'gbx34k'):
+		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800', 'gbquad4k', 'gbue4k', 'gbx34k'):
 			config.av.downmix_aac.setValue(downmix.value)
 		else:
 			if downmix.value:
@@ -447,7 +443,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		elif self.focus == FOCUS_STREAMS:
 			self.keyAudioSubtitle()
 
-	def keyRight(self, config = False):
+	def keyRight(self, config=False):
 		if config or self.focus == FOCUS_CONFIG:
 			if self.settings.menupage.value == PAGE_AUDIO and self["config"].getCurrent()[2]:
 				self["config"].getCurrent()[2]()
@@ -532,7 +528,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		VolumeControl.instance and VolumeControl.instance.volMute()
 
 	def keyNumberGlobal(self, number):
-		if number > 0 and number <= len(self["streams"].list):
+		if number <= len(self["streams"].list) and number > -1:
 			self["streams"].setIndex(number - 1)
 			self.keyOk()
 
@@ -563,7 +559,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def protectResult(self, answer):
 		if answer:
-			self.session.open(Setup, "autolanguagesetup")
+			self.session.open(Setup, "AutoLanguage")
 			self.protectContextMenu = False
 		elif answer is not None:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
@@ -571,10 +567,12 @@ class AudioSelection(Screen, ConfigListScreen):
 	def cancel(self):
 		self.close(0)
 
+
 class SubtitleSelection(AudioSelection):
 	def __init__(self, session, infobar=None):
 		AudioSelection.__init__(self, session, infobar, page=PAGE_SUBTITLES)
 		self.skinName = ["AudioSelection"]
+
 
 class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 	def __init__(self, session, infobar):
@@ -599,7 +597,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
 				getConfigMenuItem("config.subtitles.subtitle_noPTSrecordingdelay"),
 			]
-		elif sub[0] == 1: # teletext
+		elif sub[0] == 1:  # teletext
 			menu = [
 				getConfigMenuItem("config.subtitles.ttx_subtitle_colors"),
 				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
@@ -629,7 +627,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			]
 			self["videofps"].setText(_("Video: %s fps") % (self.getFps().rstrip(".000")))
 
-		ConfigListScreen.__init__(self, menu, self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, menu, self.session, on_change=self.changedEntry)
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
@@ -642,7 +640,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			"7": self.keyNumber,
 			"9": self.keyNumber,
 			"0": self.keyNumber,
-		},-2)
+		}, -2)
 
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -660,19 +658,19 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		maxDelay = int(configItem.choices[len(configItem.choices) - 1])
 
 		if number == 1:
-			delay -= 45000 # -0.5sec
+			delay -= 45000  # -0.5sec
 		elif number == 3:
-			delay += 45000 # +0.5sec
+			delay += 45000  # +0.5sec
 		elif number == 4:
-			delay -= 90000 * 5 # -5sec
+			delay -= 90000 * 5  # -5sec
 		elif number == 6:
-			delay += 90000 * 5 # +5sec
+			delay += 90000 * 5  # +5sec
 		elif number == 7:
-			delay -= 90000 * 30 # -30sec
+			delay -= 90000 * 30  # -30sec
 		elif number == 9:
-			delay += 90000 * 30 # +30sec
+			delay += 90000 * 30  # +30sec
 		elif number == 0:
-			delay = 0 # reset to "No delay"
+			delay = 0  # reset to "No delay"
 
 		delay = min(max(delay, minDelay), maxDelay)
 

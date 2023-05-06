@@ -10,6 +10,7 @@ from os import listdir
 
 TUXBOX_PLUGINS_PATH = "/usr/lib/tuxbox/plugins/"
 
+
 def getPlugins():
 	pluginlist = []
 
@@ -19,9 +20,10 @@ def getPlugins():
 		for x in dir:
 			if x[-3:] == "cfg":
 				params = getPluginParams(x)
-				pluginlist.append(PluginDescriptor(name=params["name"], description=params["desc"], where = PluginDescriptor.WHERE_PLUGINMENU, icon="tuxbox.png", needsRestart = True, fnc=boundFunction(main, plugin=x)))
+				pluginlist.append(PluginDescriptor(name=params["name"], description=params["desc"], where=PluginDescriptor.WHERE_PLUGINMENU, icon="tuxbox.png", needsRestart=True, fnc=boundFunction(main, plugin=x)))
 
 	return pluginlist
+
 
 def getPluginParams(file):
 	params = {}
@@ -31,15 +33,17 @@ def getPluginParams(file):
 			split = x.split("=")
 			params[split[0]] = split[1]
 		file.close()
-	except IOError:
+	except OSError:
 		print("no tuxbox plugins found")
 
 	return params
+
 
 def main(session, plugin, **kwargs):
 	print("Running plugin " + plugin[:-4] + ".so with config file", plugin)
 	print(getPluginParams(plugin))
 	session.open(PluginRunner, plugin[:-4].split(".so")[0])
+
 
 def Plugins(**kwargs):
 	return getPlugins()

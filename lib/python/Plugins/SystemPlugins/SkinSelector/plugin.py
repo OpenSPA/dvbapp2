@@ -15,13 +15,14 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import path
 from enigma import eEnv
 
+
 class SkinSelector(Screen):
 	# for i18n:
 	# _("Choose your Skin")
 	skinlist = []
 	root = eEnv.resolve("${datadir}/enigma2/")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 
 		Screen.__init__(self, session)
 
@@ -122,8 +123,10 @@ class SkinSelector(Screen):
 		if answer is True:
 			self.session.open(TryQuitMainloop, 3)
 
+
 def SkinSelMain(session, **kwargs):
 	session.open(SkinSelector)
+
 
 def SkinSelSetup(menuid, **kwargs):
 	if menuid == "system":
@@ -131,5 +134,6 @@ def SkinSelSetup(menuid, **kwargs):
 	else:
 		return []
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Skinselector"), description=_("Select Your Skin"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SkinSelSetup)
+	return PluginDescriptor(name=_("SkinSelector"), description=_("Select Your Skin"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=SkinSelSetup)

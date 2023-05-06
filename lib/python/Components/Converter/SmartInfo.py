@@ -1,11 +1,11 @@
-from __future__ import absolute_import
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from xml.etree.cElementTree import parse
 from Components.Converter.Poll import Poll
 
-class SmartInfo(Poll, Converter, object):
+
+class SmartInfo(Poll, Converter):
     EXPERTINFO = 0
 
     def __init__(self, type):

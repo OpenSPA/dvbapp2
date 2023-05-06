@@ -30,6 +30,8 @@ protected:
 
 	void cursorSave();
 	void cursorRestore();
+	void cursorSaveLine(int n);
+	int cursorRestoreLine();
 	int size();
 
 	RESULT connectItemChanged(const sigc::slot0<void> &itemChanged, ePtr<eConnection> &connection);
@@ -42,11 +44,14 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 
+private:
+	int m_cursor;
+	int m_saved_cursor;
+	int m_saved_cursor_line;
+
 protected:
 	ePyObject m_list;
-	int m_cursor, m_saved_cursor;
 	eSize m_itemsize;
-	ePtr<gFont> m_font;
 	int m_itemheight;
 #endif
 };
@@ -60,6 +65,7 @@ public:
 	void setSlider(int height, int space) { m_slider_height = height; m_slider_space = space; }
 private:
 	int m_seperation, m_slider_height, m_slider_space;
+	std::map<int, int> m_text_offset;
 };
 
 class eListboxPythonMultiContent: public eListboxPythonStringContent
@@ -82,10 +88,11 @@ public:
 	void setItemHeight(int height);
 	void setSelectionClip(eRect &rect, bool update=false);
 	void updateClip(gRegion &);
+	void resetClip();
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
 private:
-	std::map<int, ePtr<gFont> > m_font;
+	std::map<int, ePtr<gFont> > m_fonts;
 };
 
 #ifdef SWIG
@@ -110,6 +117,7 @@ private:
 #define BT_VALIGN_CENTER 64
 #define BT_VALIGN_BOTTOM 128
 #define BT_ALIGN_CENTER BT_HALIGN_CENTER | BT_VALIGN_CENTER
+
 #endif // SWIG
 
 #endif

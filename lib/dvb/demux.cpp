@@ -39,6 +39,7 @@ enum dmx_source {
 #define DMX_SET_SOURCE _IOW('o', 49, enum dmx_source)
 #endif
 
+
 //#define SHOW_WRITE_TIME
 static int determineBufferCount()
 {
@@ -75,6 +76,7 @@ eDVBDemux::eDVBDemux(int adapter, int demux):
 {
 	if (CFile::parseInt(&m_dvr_source_offset, "/proc/stb/frontend/dvr_source_offset") == 0)
 		eDebug("[eDVBDemux] using %d for PVR DMX_SET_SOURCE", m_dvr_source_offset);
+
 }
 
 eDVBDemux::~eDVBDemux()
@@ -676,7 +678,7 @@ void eDVBRecordFileThread::flush()
 		it->wait();
 	}
 	int bufferCount = m_aio.size();
-	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %d kB)", bufferCount, m_buffersize>>10);
+	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %lu kB)", bufferCount, m_buffersize>>10);
 	for (int i=0; i <= bufferCount; ++i)
 	{
 		if (m_buffer_use_histogram[i] != 0)

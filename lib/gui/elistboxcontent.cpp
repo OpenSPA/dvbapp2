@@ -56,7 +56,7 @@ int iListboxContent::currentCursorSelectable()
 DEFINE_REF(eListboxPythonStringContent);
 
 eListboxPythonStringContent::eListboxPythonStringContent()
-	:m_cursor(0), m_saved_cursor(0), m_itemheight(25)
+	:m_cursor(0), m_saved_cursor(0), m_saved_cursor_line(0), m_itemheight(25)
 {
 }
 
@@ -130,6 +130,16 @@ void eListboxPythonStringContent::cursorRestore()
 	m_cursor = m_saved_cursor;
 }
 
+void eListboxPythonStringContent::cursorSaveLine(int line)
+{
+	m_saved_cursor_line = line;
+}
+
+int eListboxPythonStringContent::cursorRestoreLine()
+{
+	return m_saved_cursor_line;
+}
+
 int eListboxPythonStringContent::size()
 {
 	if (!m_list)
@@ -181,7 +191,9 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				painter.setForegroundColor(local_style->m_foreground_color);
 		}
 	}
-	if (!fnt) fnt = new gFont("Regular", 20);
+	if (!fnt) {
+		style.getFont(eWindowStyle::fontListbox, fnt);
+	}
 
 	/* if we have no transparent background */
 	if (!local_style || !local_style->m_transparent_background)
@@ -225,9 +237,10 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				/* seperator */
 			int half_height = m_itemsize.height() / 2;
 			painter.fill(eRect(offset.x() + half_height, offset.y() + half_height - 2, m_itemsize.width() - m_itemsize.height(), 4));
-		} else
+		} 
+		else
 		{
-			const char *string = PyString_Check(item) ? PyString_AsString(item) : "<not-a-string>";
+			const char *string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
 			ePoint text_offset = offset;
 			if (gray)
 				painter.setForegroundColor(gRGB(0x808080));
@@ -235,10 +248,10 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			int flags = 0;
 			if (local_style)
 			{
-				text_offset += local_style->m_text_offset;
+				text_offset += local_style->m_text_padding.topLeft();
 //HACK VTI hat hier scheinbar einen Fehler und addiert den Textoffset zweimal auf, also machen wir das hier auch so
 				if (local_style->m_use_vti_workaround)
-					text_offset += local_style->m_text_offset;
+					text_offset += local_style->m_text_padding.topLeft();
 
 				if (local_style->m_valign == eListboxStyle::alignTop)
 					flags |= gPainter::RT_VALIGN_TOP;
@@ -255,9 +268,20 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 					flags |= gPainter::RT_HALIGN_RIGHT;
 				else if (local_style->m_halign == eListboxStyle::alignBlock)
 					flags |= gPainter::RT_HALIGN_BLOCK;
+
+				int paddingx = local_style->m_text_padding.x();
+				int paddingy = local_style->m_text_padding.y();
+				int paddingw = local_style->m_text_padding.width();
+				int paddingh = local_style->m_text_padding.height();
+
+				auto position = eRect(text_offset.x(), text_offset.y(), m_itemsize.width() - (paddingx * 2) - paddingw, m_itemsize.height() - (paddingy * 2) - paddingh);
+				painter.renderText(position, string, flags, border_color, border_size);
+
 			}
-			painter.renderText(eRect(text_offset, m_itemsize),
-			 string, flags, border_color, border_size);
+			else {
+				painter.renderText(eRect(text_offset, m_itemsize), string, flags, border_color, border_size);
+			}
+			
 		}
 
 		if (selected && (!local_style || !local_style->m_selection))
@@ -344,7 +368,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		border_size = local_style->m_border_size;
 		border_color = local_style->m_border_color;
 		fnt = local_style->m_font;
-		fnt2 = local_style->m_secondfont;
+		fnt2 = local_style->m_valuefont;
 		if (selected)
 		{
 			/* if we have a local background color set, use that. */
@@ -365,11 +389,11 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 	}
 
-
 	if (!fnt)
-		fnt = new gFont("Regular", 20);
+		style.getFont(eWindowStyle::fontEntry, fnt);
+
 	if (!fnt2)
-		fnt2 = new gFont(fnt->family, fnt->pointSize - fnt->pointSize/5);
+		style.getFont(eWindowStyle::fontValue, fnt2);
 
 	if (!local_style || !local_style->m_transparent_background)
 		/* if we have no transparent background */
@@ -390,7 +414,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	if (m_list && cursorValid)
 	{
 			/* get current list item */
-		ePyObject item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
+		ePyObject item = PyList_GET_ITEM(m_list, cursorGet()); // borrowed reference!
 		ePyObject text, value;
 		painter.setFont(fnt);
 
@@ -408,9 +432,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				/* handle left part. get item from tuple, convert to string, display. */
 			text = PyTuple_GET_ITEM(item, 0);
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
-			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
-			painter.renderText(eRect(ePoint(offset.x()+15, offset.y()), m_itemsize), string,
-			gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
+			const char *string = (text && PyUnicode_Check(text)) ? PyUnicode_AsUTF8(text) : "<not-a-string>";
+			eRect labelrect(ePoint(offset.x()+15, offset.y()), m_itemsize);
+			painter.renderText(labelrect, string,
+				gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
 			Py_XDECREF(text);
 
 				/* when we have no label, align value to the left. (FIXME:
@@ -441,39 +466,89 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			{
 					/* convert type to string */
 				ePyObject type = PyTuple_GET_ITEM(value, 0);
-				const char *atype = (type && PyString_Check(type)) ? PyString_AsString(type) : 0;
+				const char *atype = (type && PyUnicode_Check(type)) ? PyUnicode_AsUTF8(type) : 0;
+
 				if (atype)
 				{
-					if (!strcmp(atype, "text"))
+					if (!strcmp(atype, "text") || !strcmp(atype, "mtext"))
 					{
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
-						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
+						const char *text = (pvalue && PyUnicode_Check(pvalue)) ? PyUnicode_AsUTF8(pvalue) : "<not-a-string>";
 						painter.setFont(fnt2);
-						if (value_alignment_left)
-							painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), value, gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
-						else
-							painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), value, gPainter::RT_HALIGN_RIGHT| gPainter::RT_VALIGN_CENTER, border_color, border_size);
+						int flags = value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT;
+						int markedpos = -1;
+						int cursor = cursorGet();
+						if (m_text_offset.find(cursor) == m_text_offset.end())
+							m_text_offset[cursor] = 0;
 
-							/* pvalue is borrowed */
-					} else if (!strcmp(atype, "slider"))
-					{
+						if (!strcmp(atype, "mtext"))
+						{
+							if (PyTuple_Size(value) >= 3)
+							{
+								ePyObject plist = PyTuple_GET_ITEM(value, 2);
+								int entries = 0;
+								if (plist && PyList_Check(plist))
+									entries = PyList_Size(plist);
+								if (entries != 0)
+								{
+									ePyObject entry = PyList_GET_ITEM(plist, 0);
+									if (PyLong_Check(entry))
+									{
+										markedpos = PyLong_AsLong(entry);
+										// Assume sequential.
+										if (entries > 1)
+											markedpos |= entries << 16;
+									}
+								}
+								/* entry is borrowed */
+								/* plist is 0 or borrowed */
+							}
+						}
+							/* find the width of the label, to prevent the value overwriting it. */
+						ePoint valueoffset = offset;
+						eSize valuesize = m_itemsize;
+						int labelwidth = 0;
+						if (*string)
+						{
+							ePtr<eTextPara> para = new eTextPara(labelrect);
+							para->setFont(fnt);
+							para->renderString(string, 0);
+							labelwidth = para->getBoundBox().width() + 15;
+						}
+						valueoffset.setX(valueoffset.x() + 15 + labelwidth);
+						valuesize.setWidth(valuesize.width() - 15 - labelwidth - 15);
+						painter.renderText(eRect(valueoffset, valuesize), text, flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos, &m_text_offset[cursor]);
+					/* pvalue is borrowed */
+					} else if (!strcmp(atype, "slider")) {
+
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
-						ePyObject psize = PyTuple_GET_ITEM(value, 2);
+						ePyObject pmin = PyTuple_GET_ITEM(value, 2);
+						ePyObject pmax = PyTuple_GET_ITEM(value, 3);
 
-							/* convert value to Long. fallback to -1 on error. */
-						int value = (pvalue && PyInt_Check(pvalue)) ? PyInt_AsLong(pvalue) : -1;
-						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
+						int value = (pvalue && PyLong_Check(pvalue)) ? PyLong_AsLong(pvalue) : 0;
+						int min = (pmin && PyLong_Check(pmin)) ? PyLong_AsLong(pmin) : 0;
+						int max = (pmax && PyLong_Check(pmax)) ? PyLong_AsLong(pmax) : 100;
+
+						// if min < 0 and max < min -> replace min,max
+						if(min < 0 && max < min) {
+							int newmax = min;
+							min = max;
+							max = newmax;
+						}
+
+//OLD					int size = (psize && PyLong_Check(psize)) ? PyLong_AsLong(psize) : 100;
 						int value_area = 0;
 
-							/* draw value at the end of the slider */
+						/* draw value at the end of the slider */
 						if (eConfigManager::getConfigBoolValue("config.usage.show_slider_value", true))
 						{
 							value_area = 100;
 							painter.setFont(fnt2);
 							painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), std::to_string(value), gPainter::RT_HALIGN_RIGHT| gPainter::RT_VALIGN_CENTER, border_color, border_size);
 						}
-							/* calc. slider length */
-						int width = (m_itemsize.width() - m_seperation - 15 - value_area) * value / size;
+						/* calc. slider length */
+					    int width = (m_itemsize.width() - m_seperation - 15 - value_area) * (value - min) / (max - min);
+//OLD					int width = (m_itemsize.width() - m_seperation - 15 - value_area) * value / size;
 						int height = m_itemsize.height();
 
 						/* draw slider */
@@ -499,79 +574,21 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						{
 							painter.fill(eRect(offset.x() + m_seperation, offset.y() + slider_y_offset, width, m_slider_height));
 						}
-
-							/* pvalue is borrowed */
-					} else if (!strcmp(atype, "mtext"))
-					{
-						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
-						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
-						ePtr<eTextPara> para = new eTextPara(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize));
-						para->setFont(fnt2);
-						para->renderString(text, 0);
-
-						if (value_alignment_left)
-							para->realign(eTextPara::dirLeft);
-						else
-							para->realign(eTextPara::dirRight);
-
-						int glyphs = para->size();
-
-						ePyObject plist;
-
-						if (PyTuple_Size(value) >= 3)
-							plist = PyTuple_GET_ITEM(value, 2);
-
-						int entries = 0;
-
-						if (plist && PyList_Check(plist))
-							entries = PyList_Size(plist);
-
-						int left=0, right=0, last=-1;
-						eRect bbox;
-						eRect pbox = para->getBoundBox();
-						for (int i = 0; i < entries; ++i)
-						{
-							ePyObject entry = PyList_GET_ITEM(plist, i);
-							int num = PyInt_Check(entry) ? PyInt_AsLong(entry) : -1;
-
-							if ((num < 0) || (num >= glyphs))
-								eWarning("[eListboxPythonMultiContent] glyph index %d in PythonConfigList out of bounds!", num);
-							else
-							{
-								if (last+1 != num && last != -1) {
-									bbox = eRect(left, offset.y(), right-left, (m_itemsize.height() - pbox.height()) / 2);
-									painter.fill(bbox);
-								}
-								para->setGlyphFlag(num, GS_INVERT);
-								bbox = para->getGlyphBBox(num);
-								if (last+1 != num || last == -1)
-									left = bbox.left();
-								right = bbox.left() + bbox.width();
-								last = num;
-							}
-							// entry is borrowed
-						}
-						if (last != -1) {
-							bbox = eRect(left, offset.y() + (m_itemsize.height() - pbox.height()) / 2, right - left, pbox.height());
-							painter.fill(bbox);
-						}
-						painter.renderPara(para, ePoint(0, m_itemsize.height() - pbox.height()) / 2);
 						/* pvalue is borrowed */
-						/* plist is 0 or borrowed */
 					}
 					else if (!strcmp(atype, "pixmap"))
 					{
 						ePyObject data;
 						ePyObject ppixmap = PyTuple_GET_ITEM(value, 1);
 
-						if (PyInt_Check(ppixmap) && data) /* if the pixemap is in fact a number, it refers to the 'data' list. */
-							ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
+						if (PyLong_Check(ppixmap) && data) /* if the pixemap is in fact a number, it refers to the 'data' list. */
+							ppixmap = PyTuple_GetItem(data, PyLong_AsLong(ppixmap));
 
 						ePtr<gPixmap> pixmap;
 						if (SwigFromPython(pixmap, ppixmap))
 						{
 							eDebug("[eListboxPythonMultiContent] (Pixmap) get pixmap failed");
-							const char *value = (ppixmap && PyString_Check(ppixmap)) ? PyString_AsString(ppixmap) : "<not-a-string>";
+							const char *value = (ppixmap && PyUnicode_Check(ppixmap)) ? PyUnicode_AsUTF8(ppixmap) : "<not-a-string>";
 							painter.setFont(fnt2);
 							if (value_alignment_left)
 								painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), value, gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
@@ -589,7 +606,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				}
 				/* type is borrowed */
 			} else if (value)
-				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
+				eWarning("[eListboxPythonConfigContent] second value of tuple is not a tuple.");
 			if (value)
 				Py_DECREF(value);
 		}
@@ -633,14 +650,14 @@ void eListboxPythonMultiContent::setSelectionClip(eRect &rect, bool update)
 	else
 		m_clip = rect;
 	if (update && m_listbox)
-		m_listbox->entryChanged(m_cursor);
+		m_listbox->entryChanged(cursorGet());
 }
 
 static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, const ePoint &offset, const eSize &size, ePyObject &pbackColor, bool cursorValid, bool clear=true)
 {
 	if (pbackColor)
 	{
-		unsigned int color = PyInt_AsUnsignedLongMask(pbackColor);
+		unsigned int color = PyLong_AsUnsignedLongMask(pbackColor);
 		painter.setBackgroundColor(gRGB(color));
 	}
 	else if (local_style)
@@ -666,7 +683,7 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 {
 	if (pbackColorSelected)
 	{
-		unsigned int color = PyInt_AsUnsignedLongMask(pbackColorSelected);
+		unsigned int color = PyLong_AsUnsignedLongMask(pbackColorSelected);
 		painter.setBackgroundColor(gRGB(color));
 	}
 	else if (local_style)
@@ -726,7 +743,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColorSelected)
 		{
-			unsigned int color = PyInt_AsUnsignedLongMask(pforeColorSelected);
+			unsigned int color = PyLong_AsUnsignedLongMask(pforeColorSelected);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
@@ -737,7 +754,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColor)
 		{
-			unsigned int color = PyInt_AsUnsignedLongMask(pforeColor);
+			unsigned int color = PyLong_AsUnsignedLongMask(pforeColor);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
@@ -748,14 +765,13 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 
 static ePyObject lookupColor(ePyObject color, ePyObject data)
 {
-//TODO check the logic, something is wrong in this function
 	if (color == Py_None)
 		return ePyObject();
 
 	if ((!color) && (!data))
 		return color;
 
-	unsigned int icolor = PyInt_AsUnsignedLongMask(color);
+	unsigned int icolor = PyLong_AsUnsignedLongMask(color);
 
 		/* check if we have the "magic" template color */
 	if (data && (icolor & 0xFF000000) == 0xFF000000)
@@ -804,7 +820,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				or there is a template defined, which is a list of (TYPE,...)-tuples,
 				and the list is an unformatted tuple. The template then references items from the list.
 			*/
-		items = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
+		int cursor = cursorGet();
+		items = PyList_GET_ITEM(m_list, cursor); // borrowed reference!
 
 		if (m_buildFunc)
 		{
@@ -821,7 +838,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 		if (!items)
 		{
-			eDebug("[eListboxPythonMultiContent] error getting item %d", m_cursor);
+			eDebug("[eListboxPythonMultiContent] error getting item %d", cursor);
 			goto error_out;
 		}
 
@@ -829,14 +846,14 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		{
 			if (!PyList_Check(items))
 			{
-				eDebug("[eListboxPythonMultiContent] list entry %d is not a list (non-templated)", m_cursor);
+				eDebug("[eListboxPythonMultiContent] list entry %d is not a list (non-templated)", cursor);
 				goto error_out;
 			}
 		} else
 		{
 			if (!PyTuple_Check(items))
 			{
-				eDebug("[eListboxPythonMultiContent] list entry %d is not a tuple (templated)", m_cursor);
+				eDebug("[eListboxPythonMultiContent] list entry %d is not a tuple (templated)", cursor);
 				goto error_out;
 			}
 		}
@@ -879,7 +896,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				goto error_out;
 			}
 
-			int type = PyInt_AsLong(PyTuple_GET_ITEM(item, 0));
+			int type = PyLong_AsLong(PyTuple_GET_ITEM(item, 0));
 
 			switch (type)
 			{
@@ -924,23 +941,40 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 13)
 					pborderColor = lookupColor(PyTuple_GET_ITEM(item, 13), data);
 
-				if (PyInt_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
-					pstring = PyTuple_GetItem(data, PyInt_AsLong(pstring));
+				if (PyLong_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
+					pstring = PyTuple_GetItem(data, PyLong_AsLong(pstring));
 
 							/* don't do anything if we have 'None' as string */
 				if (!pstring || pstring == Py_None)
 					continue;
 
-				const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
-				int x = PyInt_AsLong(px) + offset.x();
-				int y = PyInt_AsLong(py) + offset.y();
-				int width = PyInt_AsLong(pwidth);
-				int height = PyInt_AsLong(pheight);
-				int flags = PyInt_AsLong(pflags);
-				int fnt = PyInt_AsLong(pfnt);
-				int bwidth = pborderWidth ? PyInt_AsLong(pborderWidth) : 0;
+				const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
 
-				if (m_font.find(fnt) == m_font.end())
+				#if PY_VERSION_HEX >= 0x030a0000
+
+					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px); 
+					x += offset.x();
+
+					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py); 
+					y += offset.y();
+
+					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
+					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight); 
+
+				#else
+
+					int x = PyLong_AsLong(px) + offset.x();
+					int y = PyLong_AsLong(py) + offset.y();
+					int width = PyLong_AsLong(pwidth);
+					int height = PyLong_AsLong(pheight);
+
+				#endif
+
+				int flags = PyLong_AsLong(pflags);
+				int fnt = PyLong_AsLong(pfnt);
+				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 0;
+
+				if (m_fonts.find(fnt) == m_fonts.end())
 				{
 					eDebug("[eListboxPythonMultiContent] specified font %d was not found!", fnt);
 					goto error_out;
@@ -955,7 +989,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					clearRegion(painter, style, local_style, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, m_itemsize, cursorValid, mustClear);
 				}
 
-				painter.setFont(m_font[fnt]);
+				painter.setFont(m_fonts[fnt]);
 				painter.renderText(rect, string, flags, border_color, border_size);
 				painter.clippop();
 
@@ -966,7 +1000,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					painter.clip(rect);
 					if (pborderColor)
 					{
-						unsigned int color = PyInt_AsUnsignedLongMask(pborderColor);
+						unsigned int color = PyLong_AsUnsignedLongMask(pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
 
@@ -1053,20 +1087,38 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						pbackColorSelected=ePyObject();
 				}
 
-				int x = PyInt_AsLong(px) + offset.x();
-				int y = PyInt_AsLong(py) + offset.y();
-				int width = PyInt_AsLong(pwidth);
-				int height = PyInt_AsLong(pheight);
-				int filled = PyInt_AsLong(pfilled_perc);
+
+				#if PY_VERSION_HEX >= 0x030a0000
+
+					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px); 
+					x += offset.x();
+
+					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py); 
+					y += offset.y();
+
+					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
+					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight); 
+					int filled = PyFloat_Check(pfilled_perc) ? (int)PyFloat_AsDouble(pfilled_perc) : PyLong_AsLong(pfilled_perc); 
+
+				#else
+
+					int x = PyLong_AsLong(px) + offset.x();
+					int y = PyLong_AsLong(py) + offset.y();
+					int width = PyLong_AsLong(pwidth);
+					int height = PyLong_AsLong(pheight);
+					int filled = PyLong_AsLong(pfilled_perc);
+
+				#endif
+
 
 				if ((filled < 0) && data) /* if the string is in a negative number, it refers to the 'data' list. */
-					filled = PyInt_AsLong(PyTuple_GetItem(data, -filled));
+					filled = PyLong_AsLong(PyTuple_GetItem(data, -filled));
 
 							/* don't do anything if percent out of range */
 				if ((filled < 0) || (filled > 100))
 					continue;
 
-				int bwidth = pborderWidth ? PyInt_AsLong(pborderWidth) : 2;
+				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 2;
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
@@ -1098,8 +1150,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (ppixmap)
 				{
 					ePtr<gPixmap> pixmap;
-					if (PyInt_Check(ppixmap) && data) /* if the pixmap is in fact a number, it refers to the data list */
-						ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
+					if (PyLong_Check(ppixmap) && data) /* if the pixmap is in fact a number, it refers to the data list */
+						ppixmap = PyTuple_GetItem(data, PyLong_AsLong(ppixmap));
 
 					if (SwigFromPython(pixmap, ppixmap))
 					{
@@ -1136,17 +1188,34 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					goto error_out;
 				}
 
-				if (PyInt_Check(ppixmap) && data) /* if the pixmap is in fact a number, it refers to the 'data' list. */
-					ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
+				if (PyLong_Check(ppixmap) && data) /* if the pixmap is in fact a number, it refers to the 'data' list. */
+					ppixmap = PyTuple_GetItem(data, PyLong_AsLong(ppixmap));
 
 							/* don't do anything if we have 'None' as pixmap */
 				if (!ppixmap || ppixmap == Py_None)
 					continue;
 
-				int x = PyInt_AsLong(px) + offset.x();
-				int y = PyInt_AsLong(py) + offset.y();
-				int width = PyInt_AsLong(pwidth);
-				int height = PyInt_AsLong(pheight);
+				#if PY_VERSION_HEX >= 0x030a0000
+
+					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px); 
+					x += offset.x();
+
+					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py); 
+					y += offset.y();
+
+					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth); 
+					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight); 
+
+				#else
+
+					int x = PyLong_AsLong(px) + offset.x();
+					int y = PyLong_AsLong(py) + offset.y();
+					int width = PyLong_AsLong(pwidth);
+					int height = PyLong_AsLong(pheight);
+
+				#endif
+
+
 				int flags = 0;
 				ePtr<gPixmap> pixmap;
 				if (SwigFromPython(pixmap, ppixmap))
@@ -1162,7 +1231,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					pbackColorSelected = lookupColor(PyTuple_GET_ITEM(item, 7), data);
 
 				if (size > 8)
-					flags = PyInt_AsLong(PyTuple_GET_ITEM(item, 8));
+					flags = PyLong_AsLong(PyTuple_GET_ITEM(item, 8));
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
@@ -1215,7 +1284,7 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 	{
 		if (m_selectableFunc && PyCallable_Check(m_selectableFunc))
 		{
-			ePyObject args = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
+			ePyObject args = PyList_GET_ITEM(m_list, cursorGet()); // borrowed reference!
 			if (PyTuple_Check(args))
 			{
 				ePyObject ret = PyObject_CallObject(m_selectableFunc, args);
@@ -1232,7 +1301,7 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 		}
 		else
 		{
-			ePyObject item = PyList_GET_ITEM(m_list, m_cursor);
+			ePyObject item = PyList_GET_ITEM(m_list, cursorGet());
 			if (PyList_Check(item))
 			{
 				item = PyList_GET_ITEM(item, 0);
@@ -1254,9 +1323,9 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 void eListboxPythonMultiContent::setFont(int fnt, gFont *font)
 {
 	if (font)
-		m_font[fnt] = font;
+		m_fonts[fnt] = font;
 	else
-		m_font.erase(fnt);
+		m_fonts.erase(fnt);
 }
 
 void eListboxPythonMultiContent::setItemHeight(int height)
@@ -1270,6 +1339,11 @@ void eListboxPythonMultiContent::setList(ePyObject list)
 {
 	m_old_clip = m_clip = gRegion::invalidRegion();
 	eListboxPythonStringContent::setList(list);
+}
+
+void eListboxPythonMultiContent::resetClip()
+{
+	m_old_clip = m_clip = gRegion::invalidRegion();
 }
 
 void eListboxPythonMultiContent::updateClip(gRegion &clip)

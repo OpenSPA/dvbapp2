@@ -5,6 +5,7 @@ import Components.Netlink
 import enigma
 import os
 
+
 class NetlinkReader():
 	def __init__(self):
 		from twisted.internet import reactor
@@ -41,5 +42,6 @@ class NetlinkReader():
 
 	def logPrefix(self):
 		return 'NetlinkReader'
+
 
 reader = NetlinkReader()

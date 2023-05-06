@@ -30,8 +30,6 @@
 #define MASK_NO_TABLEID			0x0800
 #define MASK_IGNORE_TABLEID		0x0100
 
-int detectEncoding(const std::string &content, std::string &encoding);
-
 class eDVBTextEncodingHandler
 {
 	std::map<std::string, int> m_CountryCodeDefaultMapping;

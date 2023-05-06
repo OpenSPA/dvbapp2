@@ -101,13 +101,12 @@
 	<screen name="ChoiceBox_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_selection" render="Label" position="0,0" size="126,64" font="Regular;11" noWrap="1" />
 	</screen>
-	<screen name="MessageBox_summary" position="0,0" size="132,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
+	<screen name="MessageBoxSummary" position="0,0" size="132,64">
+		<widget source="text" render="Label" position="0,0" size="132,52" font="Regular;11" valign="center" />
+		<widget source="option" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
 	</screen>
-	<screen name="MessageBoxSimple_summary" position="0,0" size="132,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
+	<screen name="MessageBoxSimpleSummary" position="0,0" size="132,64">
+		<panel name="MessageBoxSummary" />
 	</screen>
 	<screen name="JobView_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="132,64" font="Regular;12" zPosition="2" transparent="1">
@@ -129,7 +128,7 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
-			<convert type="StandbyClockVFD" />
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,4" zPosition="1" size="120,64" text=" ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -181,6 +180,15 @@
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 	</screen>
+<!-- ATV -->
+<!-- Quickmenü -->
+	<screen name="QuickMenu_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
+	</screen>
+<!-- Infopanel -->
+	<screen name="Infopanel_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
+	</screen>
 <!-- Timer -->
 	<screen name="TimerEntry_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />       
@@ -195,13 +203,6 @@
 <!-- PowerTimerEditListSummary -->
 	<screen name="PowerTimerEditListSummary" position="0,0" size="132,64">
 		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />       
-	</screen>
-<!-- LanguageSelection -->
-	<screen name="LanguageSelection_summary" position="0,0" size="132,64">
-		<widget source="parent.summarylangsel" render="Label" position="fill" size="120,20" font="Regular;18" />
-	</screen>
-	<screen name="LanguageWizardSummary" position="0,0" size="132,64">
-		<widget source="parent.summarylangsel" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- AudioSelection -->
 	<screen name="AudioSelection_summary" position="0,0" size="132,64">

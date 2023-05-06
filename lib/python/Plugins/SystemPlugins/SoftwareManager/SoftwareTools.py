@@ -1,16 +1,15 @@
 # -*- coding: iso-8859-1 -*-
-from enigma import eConsoleAppContainer
-from Components.Console import Console
-from Components.PackageInfo import PackageInfoHandler
-from Components.Language import language
-from Components.Sources.List import List
-from Components.Ipkg import IpkgComponent
-from Components.Network import iNetwork
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_METADIR
-from Tools.HardwareInfo import HardwareInfo
 from time import time
-from boxbranding import getImageVersion
-import six
+
+from Components.Console import Console
+from Components.International import international
+from Components.Network import iNetwork
+from Components.Opkg import OpkgComponent
+from Components.PackageInfo import PackageInfoHandler
+from Components.Sources.List import List
+from Components.SystemInfo import BoxInfo
+from Tools.Directories import resolveFilename, SCOPE_METADIR
+from Tools.HardwareInfo import HardwareInfo
 
 
 class SoftwareTools(PackageInfoHandler):
@@ -22,15 +21,14 @@ class SoftwareTools(PackageInfoHandler):
 	available_packetlist = []
 	installed_packetlist = {}
 
-
 	def __init__(self):
-		aboutInfo = getImageVersion()
+		aboutInfo = str(BoxInfo.getItem("imageversion"))
 		if aboutInfo.startswith("dev-"):
 			self.ImageVersion = 'Experimental'
 		else:
 			self.ImageVersion = 'Stable'
-		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
-		PackageInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion)
+		self.language = international.getLanguage()
+		PackageInfoHandler.__init__(self, self.statusCallback, blocking=False, neededTag='ALL_TAGS', neededFlag=self.ImageVersion)
 		self.directory = resolveFilename(SCOPE_METADIR)
 		self.hardware_info = HardwareInfo()
 		self.list = List([])
@@ -39,13 +37,13 @@ class SoftwareTools(PackageInfoHandler):
 		self.UpdateConsole = Console()
 		self.cmdList = []
 		self.unwanted_extensions = ('-dbg', '-dev', '-doc', '-staticdev', '-src')
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
 
 	def statusCallback(self, status, progress):
 		pass
 
-	def startSoftwareTools(self, callback = None):
+	def startSoftwareTools(self, callback=None):
 		if callback is not None:
 			self.NotifierCallback = callback
 		iNetwork.checkNetworkState(self.checkNetworkCB)
@@ -59,71 +57,47 @@ class SoftwareTools(PackageInfoHandler):
 				self.NetworkConnectionAvailable = False
 				self.getUpdates()
 
-	def getUpdates(self, callback = None):
-		if self.lastDownloadDate is None:
-				if self.NetworkConnectionAvailable:
-					self.lastDownloadDate = time()
-					if self.list_updating is False and callback is None:
-						self.list_updating = True
-						self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-					elif self.list_updating is False and callback is not None:
-						self.list_updating = True
-						self.NotifierCallback = callback
-						self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-					elif self.list_updating is True and callback is not None:
-						self.NotifierCallback = callback
-				else:
-					self.list_updating = False
-					if callback is not None:
-						callback(False)
-					elif self.NotifierCallback is not None:
-						self.NotifierCallback(False)
+	def getUpdates(self, callback=None):
+		if self.NetworkConnectionAvailable:
+			self.lastDownloadDate = time()
+			if callback is not None:
+				self.NotifierCallback = callback
+			if self.list_updating is False:
+				self.list_updating = True
+				self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 		else:
-			if self.NetworkConnectionAvailable:
-				self.lastDownloadDate = time()
-				if self.list_updating is False and callback is None:
-					self.list_updating = True
-					self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-				elif self.list_updating is False and callback is not None:
-					self.list_updating = True
-					self.NotifierCallback = callback
-					self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-				elif self.list_updating is True and callback is not None:
-					self.NotifierCallback = callback
+			if self.lastDownloadDate is not None and self.list_updating and callback is not None:
+				self.NotifierCallback = callback
+				self.startOpkgListAvailable()
 			else:
-				if self.list_updating and callback is not None:
-						self.NotifierCallback = callback
-						self.startIpkgListAvailable()
-				else:
-					self.list_updating = False
-					if callback is not None:
-						callback(False)
-					elif self.NotifierCallback is not None:
-						self.NotifierCallback(False)
+				self.list_updating = False
+				if callback is not None:
+					callback(False)
+				elif self.NotifierCallback is not None:
+					self.NotifierCallback(False)
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_ERROR:
+	def opkgCallback(self, event, param):
+		if event == OpkgComponent.EVENT_ERROR:
 			self.list_updating = False
 			if self.NotifierCallback is not None:
 				self.NotifierCallback(False)
-		elif event == IpkgComponent.EVENT_DONE:
+		elif event == OpkgComponent.EVENT_DONE:
 			if self.list_updating:
-				self.startIpkgListAvailable()
+				self.startOpkgListAvailable()
 		pass
 
-	def startIpkgListAvailable(self, callback = None):
+	def startOpkgListAvailable(self, callback=None):
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
-			cmd = self.ipkg.ipkg + " list"
-			self.UpdateConsole.ePopen(cmd, self.IpkgListAvailableCB, callback)
+			cmd = self.opkg.opkg + " list"
+			self.UpdateConsole.ePopen(cmd, self.OpkgListAvailableCB, callback)
 
-	def IpkgListAvailableCB(self, result, retval, extra_args = None):
+	def OpkgListAvailableCB(self, result, retval, extra_args=None):
 		(callback) = extra_args or None
 		if result:
-			result = six.ensure_str(result)
 			if self.list_updating:
 				self.available_packetlist = []
 				for x in result.splitlines():
@@ -147,25 +121,24 @@ class SoftwareTools(PackageInfoHandler):
 					if callback is not None:
 						callback(False)
 
-	def startInstallMetaPackage(self, callback = None):
+	def startInstallMetaPackage(self, callback=None):
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
 			if self.NetworkConnectionAvailable:
 				if not self.UpdateConsole:
 					self.UpdateConsole = Console()
-				cmd = self.ipkg.ipkg + " install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
+				cmd = self.opkg.opkg + " install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
 				self.UpdateConsole.ePopen(cmd, self.InstallMetaPackageCB, callback)
 			else:
 				self.InstallMetaPackageCB(True)
 
-	def InstallMetaPackageCB(self, result, retval = None, extra_args = None):
+	def InstallMetaPackageCB(self, result, retval=None, extra_args=None):
 		(callback) = extra_args or None
 		if result:
-			result = six.ensure_str(result)
 			self.fillPackagesIndexList()
 			if callback is None:
-				self.startIpkgListInstalled()
+				self.startOpkgListInstalled()
 			else:
 				if self.UpdateConsole:
 					if len(self.UpdateConsole.appContainers) == 0:
@@ -177,19 +150,18 @@ class SoftwareTools(PackageInfoHandler):
 					if callback is not None:
 						callback(False)
 
-	def startIpkgListInstalled(self, callback = None):
+	def startOpkgListInstalled(self, callback=None):
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
-			cmd = self.ipkg.ipkg + " list_installed"
-			self.UpdateConsole.ePopen(cmd, self.IpkgListInstalledCB, callback)
+			cmd = self.opkg.opkg + " list_installed"
+			self.UpdateConsole.ePopen(cmd, self.OpkgListInstalledCB, callback)
 
-	def IpkgListInstalledCB(self, result, retval, extra_args = None):
+	def OpkgListInstalledCB(self, result, retval, extra_args=None):
 		(callback) = extra_args or None
 		if result:
-			result = six.ensure_str(result)
 			self.installed_packetlist = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
@@ -219,7 +191,7 @@ class SoftwareTools(PackageInfoHandler):
 					if callback is not None:
 						callback(False)
 
-	def countUpdates(self, callback = None):
+	def countUpdates(self, callback=None):
 		self.available_updates = 0
 		self.available_updatelist = []
 		for package in self.packagesIndexlist[:]:
@@ -242,13 +214,13 @@ class SoftwareTools(PackageInfoHandler):
 					self.NotifierCallback(True)
 					self.NotifierCallback = None
 
-	def startIpkgUpdate(self, callback = None):
+	def startOpkgUpdate(self, callback=None):
 		if not self.Console:
 			self.Console = Console()
-		cmd = self.ipkg.ipkg + " update"
-		self.Console.ePopen(cmd, self.IpkgUpdateCB, callback)
+		cmd = self.opkg.opkg + " update"
+		self.Console.ePopen(cmd, self.OpkgUpdateCB, callback)
 
-	def IpkgUpdateCB(self, result, retval, extra_args = None):
+	def OpkgUpdateCB(self, result, retval, extra_args=None):
 		(callback) = extra_args or None
 		if result:
 			if self.Console:
@@ -261,7 +233,7 @@ class SoftwareTools(PackageInfoHandler):
 		self.list_updating = False
 		if self.NotifierCallback is not None:
 			self.NotifierCallback = None
-		self.ipkg.stop()
+		self.opkg.stop()
 		if self.Console is not None:
 			if len(self.Console.appContainers):
 				for name in list(self.Console.appContainers.keys()):
@@ -280,5 +252,6 @@ class SoftwareTools(PackageInfoHandler):
 			if not hardware_found:
 				return False
 		return True
+
 
 iSoftwareTools = SoftwareTools()

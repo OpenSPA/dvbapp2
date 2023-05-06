@@ -12,13 +12,13 @@
 > 
 > HDD:  for Single Build 250GB Free, for Multibuild 500GB or more
 
-## openSPA 8.0 is build using oe-alliance build-environment and several git repositories: ##
+## openSPA 8.2 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/5.0](https://github.com/oe-alliance/oe-alliance-core/tree/5.0 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/5.2](https://github.com/oe-alliance/oe-alliance-core/tree/5.2 "OE-Alliance")
 > 
-> [https://github.com/openspa/dvbapp2/tree/8.0](https://github.com/openspa/dvbapp2/tree/8.0 "openSPA E2")
+> [https://github.com/openspa/dvbapp2/tree/8.2](https://github.com/openspa/dvbapp2/tree/8.2 "OpenSPA E2")
 > 
-> [https://github.com/openspa/MetrixHD](https://github.com/openspa/MetrixHD/tree/dev "openSPA Skin")
+> [https://github.com/openspa/MetrixHD](https://github.com/openspa/MetrixHD/tree/dev "OpenSPA Skin")
 
 > and a lot more...
 
@@ -29,7 +29,7 @@
 
 1 - Install packages on your buildserver
 
-    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-8 gcc-multilib g++-multilib gettext git git-core gzip help2man info iputils-ping java-common libc6-dev libegl1-mesa libglib2.0-dev libncurses5-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python-setuptools qemu quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev libuchardet-dev uchardet
+    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-12 gcc-multilib g++-multilib gettext git git-core gzip help2man info iputils-ping java-common libc6-dev libegl1-mesa libglib2.0-dev libncurses5-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python-setuptools qemu quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev zstd fakeroot lz4
     
 ----------
 2 - Set python3 as preferred provider for python
@@ -69,19 +69,19 @@
     cd ~
 
 ----------
-8 - Create folder openspa8.0
+8 - Create folder openspa8.2
 
-    mkdir -p ~/openspa8.0
+    mkdir -p ~/openspa8.2
 
 ----------
-9 - Switch to folder openspa8.0
+9 - Switch to folder openspa8.2
 
-    cd openspa8.0
+    cd openspa8.2
 
 ----------
 10 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 5.0
+    git clone git://github.com/oe-alliance/build-enviroment.git -b 5.2
 
 ----------
 11 - Switch to folder build-enviroment
@@ -96,5 +96,26 @@
 ----------
 13 - Finally you can start building a image
 
+* Build an image with feed (build time 5-12h)
+
     MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make image
 
+* Build an image without feed (build time 1-2h)
+
+    MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make enigma2-image
+
+* Build the feeds
+
+    MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make feeds
+
+* Build specific packages
+
+    MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make init
+
+    cd builds/openspa/release/zgemmah9combo/
+
+    source env.source
+
+    bitbake nfs-utils rcpbind ...
+
+----------

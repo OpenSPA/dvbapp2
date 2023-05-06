@@ -11,7 +11,6 @@ from __future__ import absolute_import
 
 from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
 from Tools.ServiceReference import service_types_tv_ref
-from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
@@ -19,6 +18,7 @@ from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.config import getConfigListEntry, ConfigText
 from Components.Converter.genre import getGenreStringSub
+from Components.SystemInfo import getBoxDisplayName
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -40,6 +40,7 @@ import NavigationInstance
 from twisted.internet import reactor, threads
 from os import path
 import six
+
 
 _session = None
 password_requested = False
@@ -263,10 +264,11 @@ parental_ratings = {
     "TBA": 0x00,
 }
 
+
 def _logResponseException(logger, heading, exception):
     msg = heading
     if isinstance(exception, requests.exceptions.ConnectionError):
-        msg += ": " + _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % (getMachineBrand(), getMachineName())
+        msg += ": " + _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % getBoxDisplayName()
     msg += ": " + str(exception)
     if hasattr(exception, "response") and hasattr(exception.response, "text"):
         ex_text = str(exception.response.text).strip()
@@ -274,6 +276,7 @@ def _logResponseException(logger, heading, exception):
             msg += "\n" + ex_text
     logger.addLog(msg)
     return msg
+
 
 class LogEntry(dict):
     def __init__(self, timestamp, log_message, sent=False):
@@ -581,7 +584,7 @@ class EPGFetcher(object):
                     self.postPvrLogs()
                 return res
             res = True  # Reset res ready for a separate timer download
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             if hasattr(ex, "response") and hasattr(ex.response, "status_code") and ex.response.status_code == 404:
                 # Ignore 404s when there are no EPG updates - buggy server
                 self.addLog("No EPG updates")
@@ -641,7 +644,7 @@ class EPGFetcher(object):
 
     def makeChanServMap(self, channels):
         res = defaultdict(list)
-        name_map = dict((n.upper(), t) for n, t in six.iteritems(self.getScanChanNameMap()))
+        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().items())
 
         ice_services = set()
         for channel in channels:
@@ -679,7 +682,7 @@ class EPGFetcher(object):
     def serviceToIceChannelId(self, serviceref):
         svc = str(serviceref).split(":")
         triplet = (int(svc[5], 16), int(svc[4], 16), int(svc[3], 16))
-        for channel_id, dvbt in six.iteritems(self.channel_service_map):
+        for channel_id, dvbt in self.channel_service_map.items():
             if triplet in dvbt:
                 return channel_id
 
@@ -764,7 +767,7 @@ class EPGFetcher(object):
 
     def triplesToChannels(self, triples):
         if triples:
-            return set(ch for ch, tl in self.channel_service_map.iteritems() for t in tl if t in triples)
+            return set(ch for ch, tl in self.channel_service_map.items() for t in tl if t in triples)
         else:
             return set()
 
@@ -788,14 +791,14 @@ class EPGFetcher(object):
                 batch_fetch = added_channels or (max_fetch and len(fetch_chans) != len(chan_list))
                 is_last_fetch = i == len(channels_lists) - 1 and pos + len(fetch_chans) >= len(chan_list)
                 shows = self.getShows(chan_list=batch_fetch and fetch_chans or None, fetch_timers=is_last_fetch, fetch_from_epoch=chan_list is added_channels)
-            channel_show_map = self.makeChanShowMap(shows["shows"])
-            for channel_id in list(channel_show_map.keys()):
-                if channel_id in self.channel_service_map:
-                    epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
-                if i == 0 and pos == 0 and "last_update_time" in shows:
-                    last_update_time = shows["last_update_time"]
-            if self.updateDescriptions(channel_show_map):
-                NavigationInstance.instance.RecordTimer.saveTimer()
+                channel_show_map = self.makeChanShowMap(shows["shows"])
+                for channel_id in list(channel_show_map.keys()):
+                    if channel_id in self.channel_service_map:
+                        epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
+                    if i == 0 and pos == 0 and "last_update_time" in shows:
+                        last_update_time = shows["last_update_time"]
+                if self.updateDescriptions(channel_show_map):
+                    NavigationInstance.instance.RecordTimer.saveTimers()
                 pos += len(fetch_chans) if max_fetch else len(chan_list)
         if shows is not None and "timers" in shows:
             res = self.processTimers(shows["timers"])
@@ -890,7 +893,7 @@ class EPGFetcher(object):
                     iceTimer["state"] = "failed"
                     iceTimer["message"] = "No valid service mapping for channel_id %d" % channel_id
                     update_queue.append(iceTimer)
-            except (IOError, RuntimeError, KeyError) as ex:
+            except (OSError, RuntimeError, KeyError) as ex:
                 print("[IceTV] Can not process iceTimer:", ex)
         # Send back updated timer states
         res = True
@@ -900,7 +903,7 @@ class EPGFetcher(object):
         except KeyError as ex:
             print("[IceTV] ", str(ex))
             res = False
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             _logResponseException(self, _("Can not update timers"), ex)
             res = False
         return res
@@ -1020,7 +1023,7 @@ class EPGFetcher(object):
             timer["id"] = local_timer.ice_timer_id
             timer["eit_id"] = local_timer.eit
             timer["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
-            timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+            timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) // 60
             if local_timer.isRunning():
                 timer["state"] = "running"
                 timer["message"] = "Recording on %s" % config.plugins.icetv.device.label.value
@@ -1036,14 +1039,14 @@ class EPGFetcher(object):
             req.data["timers"] = [timer]
             res = req.put().json()
             self.addLog("Timer '%s' updated OK" % local_timer.name)
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer"), ex)
 
     def postTimer(self, local_timer):
         if self.channel_service_map is None:
             try:
                 self.makeChanServMap(self.getChannels())
-            except (IOError, RuntimeError, KeyError) as ex:
+            except (OSError, RuntimeError, KeyError) as ex:
                 _logResponseException(self, _("Can not retrieve channel map"), ex)
                 return
         if local_timer.ice_timer_id is None:
@@ -1065,18 +1068,18 @@ class EPGFetcher(object):
                 req.data["device_id"] = config.plugins.icetv.device.id.value
                 req.data["channel_id"] = channel_id
                 req.data["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
-                req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+                req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) // 60
                 res = req.post()
                 try:
                     local_timer.ice_timer_id = six.ensure_str(res.json()["timers"][0]["id"])
                     self.addLog("Timer '%s' created OK" % local_timer.name)
                     if local_timer.ice_timer_id is not None:
-                        NavigationInstance.instance.RecordTimer.saveTimer()
+                        NavigationInstance.instance.RecordTimer.saveTimers()
                         self.deferredPostStatus(local_timer)
                 except:
                     self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)
 
-            except (IOError, RuntimeError, KeyError) as ex:
+            except (OSError, RuntimeError, KeyError) as ex:
                 _logResponseException(self, _("Can not upload timer"), ex)
         else:
             # Looks like a timer just added by IceTV, so this is an update
@@ -1088,7 +1091,7 @@ class EPGFetcher(object):
             req = ice.Timer(ice_timer_id)
             req.delete()
             self.addLog("Timer deleted OK")
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not delete timer"), ex)
 
     def postStatus(self, timer, state, message):
@@ -1099,7 +1102,7 @@ class EPGFetcher(object):
             req.data["state"] = state
             # print "[EPGFetcher] postStatus", timer.name, message, state
             res = req.put()
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer status"), ex)
         self.deferredPostStatus(timer)
 
@@ -1113,7 +1116,7 @@ class EPGFetcher(object):
             req.data["scans"] = scan_list
             res = req.post()
             print("[EPGFetcher] postScans", res)
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not post scan information"), ex)
 
     def postPvrLogs(self):
@@ -1128,11 +1131,12 @@ class EPGFetcher(object):
             print("[EPGFetcher] postPvrLogs", res, res.json()["count_of_log_entries"])
             for l in log_list:
                 l.sent = True
-        except (IOError, RuntimeError, KeyError) as ex:
+        except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not post PVR log information"), ex)
 
 
 fetcher = None
+
 
 def sessionstart_main(reason, session, **kwargs):
     global _session
@@ -1158,9 +1162,11 @@ def plugin_main(session, **kwargs):
         fetcher = EPGFetcher()
     session.open(IceTVMain)
 
+
 def after_scan(**kwargs):
     if fetcher is not None:
         fetcher.createFetchJob(send_scans=True)
+
 
 def Plugins(**kwargs):
     res = []
@@ -1226,7 +1232,7 @@ class IceTVMain(ChoiceBox):
         text = IceTVUIBase._banner % config.plugins.icetv.server.name.value.replace("api.", "www.")
 
         menu = [
-                (_("Show log"), "CALLFUNC", self.showLog),
+                (_("Show Log"), "CALLFUNC", self.showLog),
                 (_("Fetch EPG and update timers now"), "CALLFUNC", self.fetch),
                 (_("IceTV setup wizard"), "CALLFUNC", self.configure),
                 (_("Login to IceTV server"), "CALLFUNC", self.login),
@@ -1306,10 +1312,12 @@ class IceTVServerSetup(Screen, IceTVUIBase):
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
 </screen>"""
 
-    _instructions = _("Please select the IceTV service that you wish to use.")
+    _instructions = _(
+        "Please select the IceTV service that you wish to use.\n\n"
+        "IceTV is a subscription service that is only available in the listed countries."
+    )
 
     def __init__(self, session):
-        self.session = session
         self.have_region_list = False
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - Service selection"))
@@ -1370,7 +1378,6 @@ class IceTVUserTypeScreen(Screen, IceTVUIBase):
                       "'Existing or trial customer', if not, then select 'New customer'.")
 
     def __init__(self, session):
-        self.session = session
         Screen.__init__(self, session)
         self["title"] = Label(_("Welcome to IceTV"))
         IceTVUIBase.__init__(self, title=_("IceTV - Account selection"))
@@ -1415,6 +1422,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="HelpWindow" position="0,10000" size="0,0" zPosition="1" transparent="1" alphatest="blend" />
 </screen>"""
 
     _instructions = _("Please enter your email address, which will be your login.\n"
@@ -1428,11 +1436,9 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     _merge_eit = _("Merge broadcast EPG with IceTV")
 
     def __init__(self, session):
-        self.session = session
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - User Information"), description="")
         self["instructions"] = Label(self._instructions)
-        self["HelpWindow"] = Label()
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
@@ -1523,7 +1529,6 @@ class IceTVRegionSetup(Screen, IceTVUIBase):
     _wait = _("Please wait while the list downloads...")
 
     def __init__(self, session):
-        self.session = session
         self.have_region_list = False
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - Region"), description=self._wait)
@@ -1576,7 +1581,7 @@ class IceTVRegionSetup(Screen, IceTVUIBase):
                     pass
             if rl:
                 self.have_region_list = True
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Can not download list of regions"), ex)
             self["description"].setText(_("There was an error downloading the region list"))
             self["error"].setText(msg)
@@ -1598,11 +1603,10 @@ class IceTVLogin(Screen, IceTVUIBase):
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
 </screen>"""
 
-    _instructions = _("Contacting IceTV server and setting up your %s %s.") % (getMachineBrand(), getMachineName())
+    _instructions = _("Contacting IceTV server and setting up your %s %s.") % getBoxDisplayName()
     _banner = None
 
     def __init__(self, session):
-        self.session = session
         self.success = False
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - Login"))
@@ -1636,7 +1640,8 @@ class IceTVLogin(Screen, IceTVUIBase):
     def layoutFinished(self):
         qrcode = {
             "AUS": "au_qr_code.png",
-            "DEU": "de_qr_code.png",
+            # The German IceTV service has closed down
+            # "DEU": "de_qr_code.png",
         }.get(config.plugins.icetv.member.country.value, "au_qr_code.png")
         qrcode_path = resolveFilename(SCOPE_PLUGINS, path.join("SystemPlugins/IceTV", qrcode))
         if path.isfile(qrcode_path):
@@ -1660,11 +1665,11 @@ class IceTVLogin(Screen, IceTVUIBase):
                 return
             self["instructions"].setText(_("Congratulations, you have successfully configured your %s %s "
                                            "for use with the IceTV Smart Recording service. "
-                                           "Your IceTV guide will now download in the background.") % (getMachineBrand(), getMachineName()))
+                                           "Your IceTV guide will now download in the background.") % getBoxDisplayName())
             self["message"].setText(_("Everything in one place - IceTV does it for you!\n\n"
                                       "Using the IceTV app or website, 'My Shows' is your place to go to."
                                       " See the next 7 days of your recordings,"
-                                      " favourite shows, keyword notifications,"
+                                      " favorite shows, keyword notifications,"
                                       " new series broadcasts, and our recommendations.\n\n"
                                       "Everything in one place. Simply select something new and press Record.\n\n"
                                       "IceTV's smartphone and tablet apps can be downloaded by scanning the code above."))
@@ -1673,7 +1678,7 @@ class IceTVLogin(Screen, IceTVUIBase):
             config.plugins.icetv.last_update_time.value = 0
             enableIceTV()
             fetcher.createFetchJob(send_scans=True)
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Login failure"), ex)
             self["instructions"].setText(_("There was an error while trying to login."))
             self["message"].hide()
@@ -1690,7 +1695,7 @@ class IceTVLogin(Screen, IceTVUIBase):
             else:
                 self["instructions"].setText(_("No valid region details were found"))
                 return False
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Can not download current region details"), ex)
             self["instructions"].setText(_("There was an error downloading current region details"))
             self["error"].setText(msg)
@@ -1717,6 +1722,7 @@ class IceTVCreateLogin(IceTVLogin):
     def setCountry(self):
         return True
 
+
 class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     skin = """
 <screen name="IceTVNeedPassword" position="center,center" size="1190,455" title="IceTV - Password required" >
@@ -1733,6 +1739,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="HelpWindow" position="0,10000" size="0,0" zPosition="1" transparent="1" alphatest="blend" />
 </screen>"""
 
     _instructions = _("The IceTV server has requested password for %s.")
@@ -1740,7 +1747,6 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     _update_interval = _("Connect to IceTV server every")
 
     def __init__(self, session):
-        self.session = session
         Screen.__init__(self, session)
         # This creates a new instance variable.
         # It doesn't change the class variable of the same name.
@@ -1786,7 +1792,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
             password_requested = False
             fetcher.addLog("Login OK")
             fetcher.createFetchJob()
-        except (IOError, RuntimeError) as ex:
+        except (OSError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Login failure"), ex)
             self.session.open(MessageBox, msg, type=MessageBox.TYPE_ERROR)
 

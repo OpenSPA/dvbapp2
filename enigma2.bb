@@ -8,8 +8,8 @@ inherit gitpkgv externalsrc
 S = "${FILE_DIRNAME}"
 WORKDIR = "${S}/build"
 
-PV = "8.0+git"
-PKGV = "8.0+git${GITPKGV}"
+PV = "8.2+git"
+PKGV = "8.2+git${GITPKGV}"
 PR = "r0"
 
 FILES_${PN} += "${datadir}/keymaps"
@@ -46,7 +46,6 @@ EXTRA_OECONF = " \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd128", "--with-colorlcd128" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd220", "--with-colorlcd220" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd400", "--with-colorlcd400" , "", d)} \
-    ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd400s", "--with-colorlcd400s" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd480", "--with-colorlcd480" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd720", "--with-colorlcd720" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd800", "--with-colorlcd800" , "", d)} \

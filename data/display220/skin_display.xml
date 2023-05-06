@@ -31,7 +31,6 @@
   <fonts>
   <font filename="tuxtxt2.ttf" name="Consola" scale="70" />
   <font filename="hd2.ttf" name="VFD" scale="70" />
-  <font filename="/usr/share/enigma2/MetrixJRSD/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
 </fonts>
   <screen name="InfoBarSummary" position="0,0" size="220,176">
     <widget source="session.CurrentService" render="Label" position="2,79" size="217,53" font="VFD; 29" halign="left" transparent="1" valign="center">

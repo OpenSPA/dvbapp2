@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Sources.Source import Source
 
 
@@ -12,15 +11,15 @@ class CanvasSource(Source):
 		self.sequence += 1
 		self._drawlist = (self.sequence, [])
 
-	def get_drawlist(self):
+	def get_drawlist(self):  # TODO: getDrawList
 		return self._drawlist
 
-	drawlist = property(get_drawlist)
+	drawlist = property(get_drawlist)  # TODO: drawList
 
 	def fill(self, x, y, width, height, color):
 		self.drawlist[1].append((1, x, y, width, height, color))
 
-	def writeText(self, x, y, width, height, fg, bg, font, text, flags = 0):
+	def writeText(self, x, y, width, height, fg, bg, font, text, flags=0):
 		self.drawlist[1].append((2, x, y, width, height, fg, bg, font, text, flags))
 
 	def line(self, x0, y0, x1, y1, color):

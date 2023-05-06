@@ -5,12 +5,12 @@ from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, e
 from Components.Element import cached
 from ServiceReference import resolveAlternate, ServiceReference
 from Tools.Directories import fileExists
-from Tools.Transponder import ConvertToHumanReadable
+from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Components.NimManager import nimmanager
-from Components.Converter.ChannelNumbers import channelnumbers
 import Screens.InfoBar
 
-class ServiceName(Converter, object):
+
+class ServiceName(Converter):
 	NAME = 0
 	NAME_ONLY = 1
 	NAME_EVENT = 2
@@ -57,7 +57,7 @@ class ServiceName(Converter, object):
 			name = service and info.getName(service)
 			if name is None:
 				name = info.getName()
-			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '').replace('_', ' ')
 			if self.type == self.NAME_EVENT:
 				act_event = info and info.getEvent(0)
 				if not act_event and info:
@@ -158,9 +158,9 @@ class ServiceName(Converter, object):
 		op = self.t_info["orbital_position"]
 		if '(' in op:
 			op = op.split('(')[1]
-			return "%s°%s" % (op[:-2], op[-2:-1])
+			return "%s%s%s" % (op[:-2], u"\u00B0", op[-2:-1])
 		op = op.split(' ')[0]
-		return "%s°%s" % (op[:-1], op[-1:])
+		return "%s%s%s" % (op[:-1], u"\u00B0", op[-1:])
 
 	def fec(self):
 		return self.t_info["fec_inner"]
@@ -168,7 +168,7 @@ class ServiceName(Converter, object):
 	def ch_number(self):
 		for n in nimmanager.nim_slots:
 			if n.isCompatible("DVB-T"):
-				channel = channelnumbers.getChannelNumber(self.freq(), n.slot)
+				channel = getChannelNumber(self.freq(), n.slot)
 				if channel:
 					return _("CH") + "%s" % channel
 		return ""

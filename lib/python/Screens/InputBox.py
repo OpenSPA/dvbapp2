@@ -7,11 +7,12 @@ from Components.Label import Label
 from Components.Input import Input
 from Components.config import config
 from Tools.BoundFunction import boundFunction
-from Tools.Notifications import AddPopup
+from Tools import Notifications
 from time import time
 
+
 class InputBox(Screen):
-	def __init__(self, session, title = "", windowTitle = _("Input"), useableChars = None, **kwargs):
+	def __init__(self, session, title="", windowTitle=_("Input"), useableChars=None, **kwargs):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
@@ -89,6 +90,7 @@ class InputBox(Screen):
 	def keyInsert(self):
 		self["input"].toggleOverwrite()
 
+
 class PinInput(InputBox):
 	def __init__(self, session, service="", triesEntry=None, pinList=None, popup=False, simple=True, *args, **kwargs):
 		if not pinList:
@@ -108,12 +110,12 @@ class PinInput(InputBox):
 				remaining = (self.triesEntry.time.value + (self.waitTime * 60)) - time()
 				remainingMinutes = int(remaining / 60)
 				remainingSeconds = int(remaining % 60)
-				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("minutes") + ", " + str(remainingSeconds) + " " + _("seconds"))
+				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("Minutes") + ", " + str(remainingSeconds) + " " + _("Seconds"))
 				if service and simple:
-					AddPopup(messageText, type = MessageBox.TYPE_ERROR, timeout = 3)
+					Notifications.AddPopup(messageText, type=MessageBox.TYPE_ERROR, timeout=3)
 					self.closePinCancel()
 				else:
-					self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, messageText, MessageBox.TYPE_ERROR, timeout = 3))
+					self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, messageText, MessageBox.TYPE_ERROR, timeout=3))
 			else:
 				self.setTries(3)
 
@@ -140,23 +142,18 @@ class PinInput(InputBox):
 		return False
 
 	def go(self):
-		if self.pinList:
-			self.triesEntry.time.value = int(time())
-			self.triesEntry.time.save()
-			if self.checkPin(self["input"].getText()):
-				self.setTries(3)
-				self.closePinCorrect()
-			else:
-				self.keyHome()
-				self.decTries()
-				if self.getTries() == 0:
-					self.closePinWrong()
+		self.triesEntry.time.setValue(int(time()))
+		self.triesEntry.time.save()
+		if self.checkPin(self["input"].getText()):
+			self.setTries(3)
+			self.closePinCorrect()
 		else:
-			pin = self["input"].getText()
-			if pin and pin.isdigit():
-				self.close(int(pin))
+			self.keyHome()
+			self.decTries()
+			if self.getTries() == 0:
+				self.closePinWrong()
 			else:
-				self.close(None)
+				pass
 
 	def closePinWrong(self, *args):
 		print("args:", args)
@@ -173,7 +170,7 @@ class PinInput(InputBox):
 		self.closePinCancel()
 
 	def getTries(self):
-		return self.triesEntry and self.triesEntry.tries.value
+		return self.triesEntry.tries.value
 
 	def decTries(self):
 		self.setTries(self.triesEntry.tries.value - 1)
@@ -184,4 +181,4 @@ class PinInput(InputBox):
 		self.triesEntry.tries.save()
 
 	def showTries(self):
-		self["tries"].setText(self.triesEntry and _("Tries left:") + " " + str(self.getTries() or ""))
+		self["tries"].setText(_("Tries left:") + " " + str(self.getTries()))

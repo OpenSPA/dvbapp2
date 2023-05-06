@@ -62,9 +62,11 @@ public:
 #ifndef SWIG
 	int data[8];
 	std::string path;
+	std::string alternativeurl;
 #endif
 	std::string getPath() const { return path; }
 	void setPath( const std::string &n ) { path=n; }
+	void setAlternativeUrl( const std::string &n ) { alternativeurl=n; }
 
 	unsigned int getUnsignedData(unsigned int num) const
 	{
@@ -442,7 +444,7 @@ public:
 	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData();
 	virtual void getAITApplications(std::map<int, std::string> &aitlist) {};
-	virtual PyObject *getHbbTVApplications() {return getHbbTVApplications();};
+	virtual PyObject *getHbbTVApplications() {return getHbbTVApplications();};  // NOSONAR
 	virtual void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes);
 	virtual long long getFileSize();
 
@@ -466,6 +468,7 @@ public:
 		syncState,
 		frontendNumber,
 		signalQualitydB,
+		isUsbTuner,
 		frontendStatus,
 		snrValue,
 		frequency,
@@ -659,7 +662,7 @@ public:
 
 	virtual int isTimeshiftActive()=0;
 	virtual int isTimeshiftEnabled()=0;
-			/* this essentially seeks to the relative end of the timeshift buffer */
+			/* this essentially seeks to the relative end of the time shift buffer */
 	virtual RESULT activateTimeshift()=0;
 	virtual RESULT saveTimeshiftFile()=0;
 	virtual std::string getTimeshiftFilename()=0;
@@ -844,7 +847,9 @@ public:
 	virtual SWIG_VOID(RESULT) getPatPid(int &result) const = 0;
 	virtual SWIG_VOID(RESULT) getPcrPid(int &result) const = 0;
 	virtual SWIG_VOID(RESULT) getTxtPid(int &result) const = 0;
+	/* OPENSPA [morser] Include eit, tdt & ait pids in streaming with streamproxy *********************** */
 	virtual SWIG_VOID(RESULT) getAitPid(int &result) const = 0;
+	/* ************************************************************************************************** */
 	virtual SWIG_VOID(RESULT) getServiceId(int &result) const = 0;
 	virtual SWIG_VOID(RESULT) getAdapterId(int &result) const = 0;
 	virtual SWIG_VOID(RESULT) getDemuxId(int &result) const = 0;
@@ -965,6 +970,8 @@ public:
 
 		evVideoGammaChanged,
 
+		evFccFailed,
+
 		evUser = 0x100
 	};
 };
@@ -1023,6 +1030,8 @@ public:
 		evRecordFailed,
 		evRecordWriteError,
 		evNewEventInfo,
+		evTuneStart,
+		evPvrTuneStart,
 		evRecordAborted,
 		evGstRecordEnded,
 	};

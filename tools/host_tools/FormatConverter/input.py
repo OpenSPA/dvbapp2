@@ -1,11 +1,13 @@
 from __future__ import print_function
 import sys
 
+
 def inputText():
 	input = sys.stdin.readline()
 	return input.strip()
 
-def inputChoices(list, backcmd = "b", backtext = "back"):
+
+def inputChoices(list, backcmd="b", backtext="back"):
 	repeat = True
 	while repeat:
 		repeat = False

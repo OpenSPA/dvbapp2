@@ -31,7 +31,6 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	if (elements)
 	{
 		int width = size().width() - startX * 2;
-		std::string configvalue;
 		bool original_position = eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position");
 		bool rewrap = eConfigManager::getConfigBoolValue("config.subtitles.subtitle_rewrap");
 		gRGB color;
@@ -48,27 +47,6 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 				break;
 			case 2: /* yellow */
 				color = gRGB(255, 255, 0);
-				break;
-			case 3: /* blue */
-				color = gRGB(0, 0, 255);
-				break;
-			case 4: /* grey */
-				color = gRGB(128, 128, 128);
-				break;
-			case 5: /* red */
-				color = gRGB(255, 0, 0);
-				break;
-			case 6: /* green */
-				color = gRGB(0, 128, 0);
-				break;
-			case 7: /* brown */
-				color = gRGB(165, 42, 42);
-				break;
-			case 8: /* turquoise */
-				color = gRGB(64, 224, 208);
-				break;
-			case 9: /* pink */
-				color = gRGB(255, 192, 203);
 				break;
 		}
 
@@ -434,7 +412,6 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				}
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
-
 				eRect &area = element.m_area;
 				if (bcktrans != 255)
 				{
@@ -544,4 +521,3 @@ void eSubtitleWidget::removeHearingImpaired(std::string& str)
 	while (str[str.length() - 1] == '\n')
 		str.erase(str.length() - 1, 1);
 }
-

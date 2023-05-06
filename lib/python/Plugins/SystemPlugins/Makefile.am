@@ -4,7 +4,8 @@ SUBDIRS = PositionerSetup Satfinder SoftwareManager \
 	VideoTune Hotplug CableScan \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	VideoEnhancement WirelessLan NetworkWizard VideoClippingSetup \
-	SatelliteEquipmentControl DiseqcTester HdmiCEC FastScan LCNScanner
+	SatelliteEquipmentControl DiseqcTester FastScan LCNScanner IceTV \
+	FastChannelChange vps
 
 if HAVE_LIBVUGLES2
 SUBDIRS += AnimationSetup
@@ -15,7 +16,7 @@ SUBDIRS += AnimationSetup
 endif
 
 if DREAMBOX
-SUBDIRS += FrontprocessorUpgrade NFIFlash
+SUBDIRS += FrontprocessorUpgrade
 endif
 
 if DM900
@@ -24,6 +25,10 @@ endif
 
 if DM920
 SUBDIRS += FSBLUpdater
+endif
+
+if HAVE_FCC
+SUBDIRS += FastChannelChange
 endif
 
 install_PYTHON = __init__.py

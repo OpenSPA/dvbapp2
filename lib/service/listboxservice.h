@@ -25,6 +25,7 @@ public:
 
 	void getPrev(eServiceReference &ref);
 	void getNext(eServiceReference &ref);
+	PyObject *getList();
 
 	int getNextBeginningWithChar(char c);
 	int getPrevMarkerPos();
@@ -79,12 +80,12 @@ public:
 		picServiceEventProgressbar,
 		picCrypto,
 		picRecord,
-		picSD,
-		picHD,
-		pic4K,
-		pic3D,
-		picIPTV,
-		picNone,
+		picSD,   // OPENSPA [morser] Add for service quality picons
+		picHD,   // OPENSPA [morser] Add for service quality picons
+		pic4K,   // OPENSPA [morser] Add for service quality picons
+		pic3D,   // OPENSPA [morser] Add for service quality picons
+		picIPTV, // OPENSPA [morser] Add for service quality picons
+		picNone, // OPENSPA [morser] Add for service quality picons
 		picElements
 	};
 
@@ -105,7 +106,7 @@ public:
 	void setServicePiconDownsize(int value) { m_service_picon_downsize = value; }
 	void setServicePiconRatio(int value) { m_service_picon_ratio = value; }
 	void setServiceTypeIconMode(int mode) { m_servicetype_icon_mode = mode; }
-	void setServiceQualityIconMode(int mode) { m_quality_icon_mode = mode; }
+	void setServiceQualityIconMode(int mode) { m_quality_icon_mode = mode; }  /// OPENSPA [morser] Add for service quality picons
 	void setCryptoIconMode(int mode) { m_crypto_icon_mode = mode; }
 	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
 	void setColumnWidth(int value) { m_column_width = value; }
@@ -160,6 +161,8 @@ protected:
 
 	void cursorSave();
 	void cursorRestore();
+	void cursorSaveLine(int n);
+	int cursorRestoreLine();
 	int size();
 
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
@@ -181,7 +184,7 @@ private:
 	list m_list;
 	list::iterator m_cursor, m_saved_cursor;
 
-	int m_cursor_number, m_saved_cursor_number;
+	int m_cursor_number, m_saved_cursor_number, m_saved_cursor_line;
 	int m_size;
 
 	eSize m_itemsize;
@@ -208,7 +211,7 @@ private:
 	int m_service_picon_downsize;
 	int m_service_picon_ratio;
 	int m_servicetype_icon_mode;
-	int m_quality_icon_mode;
+	int m_quality_icon_mode;     //// OPENSPA [morser] Add for service quality picons
 	int m_crypto_icon_mode;
 	int m_record_indicator_mode;
 	int m_column_width;

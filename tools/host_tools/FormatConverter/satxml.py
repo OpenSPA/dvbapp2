@@ -5,8 +5,9 @@ from xml.dom import minidom
 from xml.dom.minidom import Document
 from input import inputText
 
+
 class satxml(datasource):
-	def __init__(self, filename = "satellites.xml"):
+	def __init__(self, filename="satellites.xml"):
 		self.filename = filename
 		datasource.__init__(self)
 
@@ -68,7 +69,7 @@ class satxml(datasource):
 			xmlsat.setAttribute("position", sat)
 			satellites.appendChild(xmlsat)
 			transponders = self.transponderlist[sat]
-			transponders.sort(key = lambda a: a["frequency"])
+			transponders.sort(key=lambda a: a["frequency"])
 
 			for transponder in transponders:
 				xmltransponder = satxml.createElement("transponder")

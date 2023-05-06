@@ -3,6 +3,7 @@
 #include <lib/base/encoding.h>
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/db.h>
 #include <dvbsi++/event_information_section.h>
 #include <dvbsi++/short_event_descriptor.h>
 #include <dvbsi++/extended_event_descriptor.h>
@@ -10,10 +11,16 @@
 #include <dvbsi++/component_descriptor.h>
 #include <dvbsi++/content_descriptor.h>
 #include <dvbsi++/parental_rating_descriptor.h>
+#include <dvbsi++/content_identifier_descriptor.h>
+#include <dvbsi++/private_data_specifier_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
+#include <dvbsi++/pdc_descriptor.h>
+#include <lib/base/nconfig.h>
 
 #include <sys/types.h>
 #include <fcntl.h>
+
+bool eServiceEvent::m_Debug = false;
 
 // static members / methods
 std::string eServiceEvent::m_language = "---";
@@ -25,6 +32,42 @@ DEFINE_REF(eServiceEvent);
 DEFINE_REF(eComponentData);
 DEFINE_REF(eGenreData);
 DEFINE_REF(eParentalData);
+DEFINE_REF(eCridData);
+
+std::string eServiceEvent::crid_scheme = "crid://";
+int eServiceEvent::m_UTF8CorrectMode = 0;
+
+std::string eServiceEvent::normalise_crid(std::string crid, ePtr<eDVBService> service)
+{
+	if ( !crid.empty() )
+	{
+		//std::transform(crid.begin(), crid.end(), crid.begin(), ::tolower);
+		if ( crid[0] == '/' )
+		{
+			if ( service && !service->m_default_authority.empty() )
+			{
+				crid = service->m_default_authority + crid;
+			}
+			else
+			{
+				// Don't use a CRID if it needs a default
+				// authority but it doesn't have one
+				// ZZ return "";
+				crid = "missing_authority" + crid;
+			}
+		}
+		if ( crid.substr(0, crid_scheme.size()) != crid_scheme )
+		{
+			std::string crid_lower = crid;
+			std::transform(crid_lower.begin(), crid_lower.end(), crid_lower.begin(), ::tolower);
+			if ( crid_lower.substr(0, crid_scheme.size()) != crid_scheme )
+			{
+				crid = crid_scheme + crid;
+			}
+		}
+	}
+	return crid;
+}
 
 eServiceEvent::eServiceEvent():
 	m_begin(0), m_duration(0), m_event_id(0)
@@ -32,7 +75,7 @@ eServiceEvent::eServiceEvent():
 }
 
 /* search for the presence of language from given EIT event descriptors*/
-bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidonid)
+bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidonid, int sid)
 {
 	bool retval=0;
 	std::string language = lang;
@@ -100,6 +143,13 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 	}
 	if ( retval == 1 )
 	{
+		int tsid =(tsidonid >> 16) & 0xffff;
+		int onid = tsidonid & 0xffff;
+		m_series_crid = "";
+		m_episode_crid = "";
+		m_recommendation_crid = "";
+		std::string channelName;
+		ePtr<eDVBDB> db = eDVBDB::getInstance();
 		for (DescriptorConstIterator desc = evt->getDescriptors()->begin(); desc != evt->getDescriptors()->end(); ++desc)
 		{
 			switch ((*desc)->getTag())
@@ -142,11 +192,53 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 					for (ContentClassificationConstIterator it = con->begin(); it != con->end(); ++it)
 					{
 						eGenreData data;
-				                data.m_level1 = (*it)->getContentNibbleLevel1();
+						data.m_level1 = (*it)->getContentNibbleLevel1();
 						data.m_level2 = (*it)->getContentNibbleLevel2();
 						data.m_user1  = (*it)->getUserNibble1();
 						data.m_user2  = (*it)->getUserNibble2();
 						m_genres.push_back(data);
+					}
+					break;
+				}
+				case CONTENT_IDENTIFIER_DESCRIPTOR:
+				{
+					eServiceReference ref = db->searchReference(tsid, onid, sid);
+					ePtr<eDVBService> service;
+					db->getService(*(eServiceReferenceDVB*) &ref, service);
+					if(service)
+						channelName = service->m_service_name;
+					auto cridd = (ContentIdentifierDescriptor *)*desc;
+					auto crid = cridd->getIdentifier();
+					for (auto it = crid->begin(); it != crid->end(); ++it)
+					{
+						eCridData data;
+				        data.m_type = (*it)->getType();
+						data.m_location = (*it)->getLocation();
+						if (data.m_location == 0)
+						{
+							//eDebug("[Event] crid %02x %01x %s %d <%.*s>", (*it)->getType(), (*it)->getLocation(), m_event_name.c_str(), (*it)->getLength(), (*it)->getLength(), (*it)->getBytes()->data());
+							data.m_crid  = normalise_crid(std::string((char*)(*it)->getBytes()->data(), (*it)->getLength()), service);
+							m_crids.push_back(data);
+							if(eServiceEvent::m_Debug) {
+								eDebug("[Event] crid %02x %01x %s %d <%s>", (*it)->getType(), (*it)->getLocation(), m_event_name.c_str(), (*it)->getLength(), data.m_crid.c_str());
+								if (data.m_type == eCridData::EPISODE_AU || data.m_type == eCridData::EPISODE)
+									m_episode_crid = data.m_crid;
+								else if (data.m_type == eCridData::SERIES_AU || data.m_type == eCridData::SERIES)
+									m_series_crid = data.m_crid;
+								else if (data.m_type == eCridData::RECOMMENDATION_AU || data.m_type == eCridData::RECOMMENDATION)
+									m_recommendation_crid = data.m_crid;
+							}
+						}
+						else if (data.m_location == 1)
+						{
+							if(eServiceEvent::m_Debug)
+								eDebug("[Event] crid references not supported %04x:%04x:%04x  %-18s  %s %02x %01x %d", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), (*it)->getType(), (*it)->getLocation(), (*it)->getReference());
+						}
+						else
+						{
+							if(eServiceEvent::m_Debug)
+								eDebug("[Event] crid unknown location %04x:%04x:%04x  %-18s  %s %02x %01x", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), (*it)->getType(), (*it)->getLocation());
+						}
 					}
 					break;
 				}
@@ -160,7 +252,7 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 
 						data.m_country_code = (*it)->getCountryCode();
 						data.m_rating = (*it)->getRating();
-						/* hack for M+ - epg with parental_rating = 0 */
+						/* OPENSPA [morser] hack for M+ - epg with parental_rating = 0 */
 						if ( data.m_rating == 0)
 						{
 							std::string description = m_short_description + m_extended_description;
@@ -176,21 +268,48 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 								}
 							}
 						}
+						/* ************************************************************ */
 						m_ratings.push_back(data);
 					}
 					break;
 				}
+				case PDC_DESCRIPTOR:
+				{
+					const PdcDescriptor *pdcd = (PdcDescriptor *)*desc;
+					m_pdc_pil = pdcd->getProgrammeIdentificationLabel();
+					break;
+				}
 			}
+		}
+		if (eServiceEvent::m_Debug && (!m_episode_crid.empty() || !m_series_crid.empty() || !m_recommendation_crid.empty()))
+		{
+			eDebug("[Event] crid  %04x:%04x:%04x  %-18s  %s  %-49s  %-49s %s %s", onid, tsid, sid, channelName.c_str(), getBeginTimeString().c_str(), m_series_crid.c_str(), m_episode_crid.c_str(), m_recommendation_crid.c_str(), m_event_name.c_str());
 		}
 	}
 	if ( m_extended_description.find(m_short_description) == 0 )
-		m_short_description="";
+		m_short_description = "";
 
-	if ( ! m_extended_description_items.empty() )
+	if ( ! m_extended_description_items.empty() and eConfigManager::getConfigBoolValue("config.epg.items_in_event_ext_descr") )
 	{
 		m_extended_description += '\n';
 		m_extended_description += m_extended_description_items;
 		m_extended_description_items = "";
+	}
+
+	if(eServiceEvent::m_UTF8CorrectMode > 0)
+	{
+		if(m_short_description.size() > 0 && !isUTF8(m_short_description))
+		{
+			if(eServiceEvent::m_UTF8CorrectMode == 2)
+				eDebug("[eServiceEvent] short description is not UTF8\nhex output:%s\nstr output:%s\n",string_to_hex(m_short_description).c_str(),m_short_description.c_str());
+			m_short_description = repairUTF8(m_short_description.c_str(), m_short_description.size());
+		}
+		if(m_extended_description.size() > 0 && !isUTF8(m_extended_description))
+		{
+			if(eServiceEvent::m_UTF8CorrectMode == 2)
+				eDebug("[eServiceEvent] extended description is not UTF8\nhex output:%s\nstr output:%s\n",string_to_hex(m_extended_description).c_str(),m_extended_description.c_str());
+			m_extended_description = repairUTF8(m_extended_description.c_str(), m_extended_description.size());
+		}
 	}
 
 	return retval;
@@ -214,17 +333,24 @@ std::string eServiceEvent::entitiesDecode( std::string str ) {
 
 RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 {
+	return parseFrom(evt, tsidonid, 0);
+}
+
+RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid, int sid)
+{
 	m_begin = parseDVBtime(evt->getStartTimeMjd(), evt->getStartTimeBcd());
 	m_event_id = evt->getEventId();
 	uint32_t duration = evt->getDuration();
 	m_duration = fromBCD(duration>>16)*3600+fromBCD(duration>>8)*60+fromBCD(duration);
-	if (m_language != "---" && loadLanguage(evt, m_language, tsidonid))
+	uint8_t running_status = evt->getRunningStatus();
+	m_running_status = running_status;
+	if (m_language != "---" && loadLanguage(evt, m_language, tsidonid, sid))
 		return 0;
-	if (m_language_alternative != "---" && loadLanguage(evt, m_language_alternative, tsidonid))
+	if (m_language_alternative != "---" && loadLanguage(evt, m_language_alternative, tsidonid, sid))
 		return 0;
-	if (loadLanguage(evt, "---", tsidonid))
+	if (loadLanguage(evt, "---", tsidonid, sid))
 		return 0;
-	return 0;
+	return 0; //NOSONAR
 }
 
 RESULT eServiceEvent::parseFrom(ATSCEvent *evt)
@@ -248,6 +374,11 @@ RESULT eServiceEvent::parseFrom(const ExtendedTextTableSection *sct)
 
 RESULT eServiceEvent::parseFrom(const std::string& filename, int tsidonid)
 {
+	return parseFrom(filename, tsidonid, 0);
+}
+
+RESULT eServiceEvent::parseFrom(const std::string& filename, int tsidonid, int sid)
+{
 	if (!filename.empty())
 	{
 		int fd = ::open( filename.c_str(), O_RDONLY );
@@ -259,7 +390,7 @@ RESULT eServiceEvent::parseFrom(const std::string& filename, int tsidonid)
 			if ( rd > 12 /*EIT_LOOP_SIZE*/ )
 			{
 				Event ev(buf);
-				parseFrom(&ev, tsidonid);
+				parseFrom(&ev, tsidonid, sid);
 				return 0;
 			}
 		}
@@ -328,6 +459,26 @@ PyObject *eServiceEvent::getParentalDataList() const
 		PyTuple_SET_ITEM(tuple, 0, PyString_FromString(it->getCountryCode().c_str()));
 		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->getRating()));
 		PyList_SET_ITEM(ret, cnt++, tuple);
+	}
+	return ret;
+}
+
+PyObject *eServiceEvent::getCridData(int mask) const
+{
+	ePyObject ret = PyList_New(0);
+	for (std::list<eCridData>::const_iterator it(m_crids.begin()); it != m_crids.end(); ++it)
+	{
+		int cridMatchType = it->getType();
+		if (cridMatchType >= eCridData::EPISODE_AU && cridMatchType <= eCridData::RECOMMENDATION_AU)
+			cridMatchType -= eCridData::OFFSET_AU;
+		if ((1 << cridMatchType) & mask)
+		{
+			ePyObject tuple = PyTuple_New(3);
+			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->getType()));
+			PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(it->getLocation()));
+			PyTuple_SET_ITEM(tuple, 2, PyString_FromString(it->getCrid().c_str()));
+			PyList_Append(ret, tuple);
+		}
 	}
 	return ret;
 }

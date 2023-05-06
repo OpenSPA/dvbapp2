@@ -1,19 +1,15 @@
-from __future__ import print_function
-from __future__ import absolute_import
-from Components.HTMLComponent import HTMLComponent
-from Components.GUIComponent import GUIComponent
-from skin import parseColor, parseFont
-
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize
+
+from Components.config import config
+from Components.GUIComponent import GUIComponent
+from Components.Renderer.Picon import getPiconName
+from skin import parseColor, parseFont
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
-from Components.Renderer.Picon import getPiconName
-from Components.config import config
-
-def refreshServiceList(configElement = None):
+def refreshServiceList(configElement=None):
 	from Screens.InfoBar import InfoBar
 	InfoBarInstance = InfoBar.instance
 	if InfoBarInstance is not None:
@@ -22,7 +18,7 @@ def refreshServiceList(configElement = None):
 			servicelist.setMode()
 
 
-class ServiceList(HTMLComponent, GUIComponent):
+class ServiceList(GUIComponent):
 	MODE_NORMAL = 0
 	MODE_FAVOURITES = 1
 
@@ -31,33 +27,34 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
-		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/folder.png"))
+		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/folder.png"))
 		pic and self.l.setPixmap(self.l.picFolder, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/marker.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/marker.png"))
 		pic and self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-s.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-s.png"))
 		pic and self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-c.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-c.png"))
 		pic and self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-t.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-t.png"))
 		pic and self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_stream.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_stream.png"))
 		pic and self.l.setPixmap(self.l.picStream, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_service_group.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_service_group.png"))
 		pic and self.l.setPixmap(self.l.picServiceGroup, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/icon_crypt.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/icon_crypt.png"))
 		pic and self.l.setPixmap(self.l.picCrypto, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/record.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/record.png"))
 		pic and self.l.setPixmap(self.l.picRecord, pic)
 
+		##### OPENSPA [morser] Add picons for service quality #######################################
 		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_sd.png"))
 		pic and self.l.setPixmap(self.l.picSD, pic)
 
@@ -72,6 +69,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_iptv.png"))
 		pic and self.l.setPixmap(self.l.picIPTV, pic)
+		##############################################################################################
 
 		self.root = None
 		self.mode = self.MODE_NORMAL
@@ -88,7 +86,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.progressBarWidth = 52
 		self.fieldMargins = 10
 		self.itemsDistances = 8
-		self.listMarginRight = 25 #scrollbar is fixed 20 + 5 Extra marge
+		self.listMarginRight = 25  # scrollbar is fixed 20 + 5 Extra marge
 		self.listMarginLeft = 5
 
 		self.onSelectionChanged = []
@@ -167,7 +165,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.setColor(eListboxServiceContent.serviceAdvertismentColor, parseColor(value))
 
 		def picServiceEventProgressbar(value):
-			pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, value))
+			pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, value))
 			pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
 
 		def serviceItemHeight(value):
@@ -249,29 +247,32 @@ class ServiceList(HTMLComponent, GUIComponent):
 		from Components.ServiceEventTracker import InfoBarCount
 		if adjust and config.usage.multibouquet.value and InfoBarCount == 1 and ref and ref.type != 8192:
 			print("[servicelist] search for service in userbouquets")
+			isRadio = ref.toString().startswith("1:0:2:") or ref.toString().startswith("1:0:A:")
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
-				self.serviceList.setModeTv()
-				revert_tv_root = self.getRoot()
-				bouquets = self.serviceList.getBouquetList()
-				for bouquet in bouquets:
-					self.serviceList.enterUserbouquet(bouquet[1])
-					if self.l.setCurrent(ref):
-						config.servicelist.lastmode.save()
-						self.serviceList.saveChannel(ref)
-						return True
-				self.serviceList.enterUserbouquet(revert_tv_root)
-				self.serviceList.setModeRadio()
-				revert_radio_root = self.getRoot()
-				bouquets = self.serviceList.getBouquetList()
-				for bouquet in bouquets:
-					self.serviceList.enterUserbouquet(bouquet[1])
-					if self.l.setCurrent(ref):
-						config.servicelist.lastmode.save()
-						self.serviceList.saveChannel(ref)
-						return True
-				self.serviceList.enterUserbouquet(revert_radio_root)
+				if not isRadio:
+					self.serviceList.setModeTv()
+					revert_tv_root = self.getRoot()
+					bouquets = self.serviceList.getBouquetList()
+					for bouquet in bouquets:
+						self.serviceList.enterUserbouquet(bouquet[1])
+						if self.l.setCurrent(ref):
+							config.servicelist.lastmode.save()
+							self.serviceList.saveChannel(ref)
+							return True
+					self.serviceList.enterUserbouquet(revert_tv_root)
+				else:
+					self.serviceList.setModeRadio()
+					revert_radio_root = self.getRoot()
+					bouquets = self.serviceList.getBouquetList()
+					for bouquet in bouquets:
+						self.serviceList.enterUserbouquet(bouquet[1])
+						if self.l.setCurrent(ref):
+							config.servicelist.lastmode.save()
+							self.serviceList.saveChannel(ref)
+							return True
+					self.serviceList.enterUserbouquet(revert_radio_root)
 				print("[servicelist] service not found in any userbouquets")
 				if revert_mode == "tv":
 					self.serviceList.setModeTv()
@@ -294,6 +295,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 		r = eServiceReference()
 		self.l.getNext(r)
 		return r
+
+	def getList(self):
+		return self.l.getList()
 
 	def atBegin(self):
 		return self.instance.atBegin()
@@ -323,7 +327,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 				index = indexup
 
 		self.instance.moveSelectionTo(index)
-		print("Moving to character " + str(char))
+		print("Moving to character %s" % str(char))
 
 	def moveToNextMarker(self):
 		idx = self.l.getNextMarkerPos()
@@ -355,7 +359,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.ServiceNumberFont = gFont(self.ServiceNumberFontName, self.ServiceNumberFontSize + config.usage.servicenum_fontsize.value)
 		self.ServiceNameFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicename_fontsize.value)
 		self.ServiceInfoFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.serviceinfo_fontsize.value)
-		if self.progressInfoFontSize == -1: # font in skin not defined
+		if self.progressInfoFontSize == -1:  # font in skin not defined
 			self.ProgressInfoFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.progressinfo_fontsize.value)
 		else:
 			self.ProgressInfoFont = gFont(self.progressInfoFontName, self.progressInfoFontSize + config.usage.progressinfo_fontsize.value)
@@ -365,7 +369,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 
 	def postWidgetCreate(self, instance):
-		instance.setWrapAround(True)
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
 		self.setFontsize()
@@ -523,7 +526,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
+		######## OPENSPA [morser] Add icons for service Quality #######################################
 		self.l.setServiceQualityIconMode(int(config.usage.quality_icon_mode.value))
+		###############################################################################################
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
 		self.l.setRecordIndicatorMode(int(config.usage.record_indicator_mode.value))
 		self.l.setColumnWidth(-1 if twoLines else int(config.usage.servicelist_column.value))

@@ -86,7 +86,7 @@
         <panel name="LCDPiconInfoBarEndTime" />
 	</screen>
 	
-	<!-- STANDBY 
+	<!-- STANDBY -->
 	<screen name="StandbySummary" position="0,0" size="800,480"> 
 		<panel name="AnalogueClock" />
 		<widget source="global.CurrentTime" render="Label" position="470,24" foregroundColor="white" size="300,50" font="FdLcD;45" halign="right">
@@ -101,7 +101,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="40,20"  size="70,70" >
 			<convert type="ConditionalShowHide" />
-		</widget>-->
+		</widget>
         <!--        
 		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,180" foregroundColor="white" font="FdLcD;100" halign="center" valign="center" zPosition="10">
 			<convert type="ClockToText">Mixed</convert>
@@ -109,8 +109,8 @@
 		<widget source="global.CurrentTime" render="Label" position="40,270" size="720,75" font="FdLcD;70" foregroundColor="white" halign="center" zPosition="10">
 			<convert type="ClockToText">ShortFullDate</convert>
 		</widget>
-        
-	</screen>-->
+        -->
+	</screen>
 		
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
 </skin>

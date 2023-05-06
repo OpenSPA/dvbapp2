@@ -1,71 +1,110 @@
-from __future__ import absolute_import
-from __future__ import print_function
-from Components.HTMLComponent import HTMLComponent
+from enigma import eListbox, eListboxPythonStringContent
+
 from Components.GUIComponent import GUIComponent
 
-from enigma import eListboxPythonStringContent, eListbox
 
+class MenuList(GUIComponent):
+	GUI_WIDGET = eListbox
 
-class MenuList(HTMLComponent, GUIComponent):
-	def __init__(self, list, enableWrapAround=True, content=eListboxPythonStringContent):
+	def __init__(self, list, enableWrapAround=None, content=eListboxPythonStringContent):  # enableWrapAround is deprecated as this is now controllable in the skin and windowstyle.
 		GUIComponent.__init__(self)
 		self.list = list
 		self.l = content()
 		self.l.setList(self.list)
 		self.onSelectionChanged = []
-		self.enableWrapAround = enableWrapAround
-
-	def getCurrent(self):
-		return self.l.getCurrentSelection()
-
-	GUI_WIDGET = eListbox
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
-		if self.enableWrapAround:
-			self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		for f in self.onSelectionChanged:
-			f()
+		for callback in self.onSelectionChanged:
+			callback()
 
-	def getSelectionIndex(self):
-		return self.l.getCurrentSelectionIndex()
-
-	def getSelectedIndex(self):
-		return self.l.getCurrentSelectionIndex()
+	def getList(self):
+		return self.list
 
 	def setList(self, list):
 		self.list = list
 		self.l.setList(self.list)
 
-	def moveToIndex(self, idx):
-		if self.instance != None:
-			self.instance.moveSelectionTo(idx)
+	def selectionEnabled(self, enabled):
+		if self.instance:
+			self.instance.setSelectionEnable(enabled)
+
+	def getCurrent(self):
+		return self.l.getCurrentSelection()
+
+	def getCurrentIndex(self):
+		return self.l.getCurrentSelectionIndex()
+
+	def getSelectionIndex(self):
+		return self.getCurrentIndex()
+
+	def getSelectedIndex(self):
+		return self.getCurrentIndex()
+
+	def count(self):
+		return len(self.list)
+
+	def setCurrentIndex(self, index):
+		if self.instance:
+			self.instance.moveSelectionTo(index)
+
+	def moveToIndex(self, index):
+		self.setCurrentIndex(index)
+
+	def goTop(self):
+		if self.instance:
+			self.instance.goTop()
+
+	def goPageUp(self):
+		if self.instance:
+			self.instance.goPageUp()
+
+	def goLineUp(self):
+		if self.instance:
+			self.instance.goLineUp()
+
+	def goLineDown(self):
+		if self.instance:
+			self.instance.goLineDown()
+
+	def goPageDown(self):
+		if self.instance:
+			self.instance.goPageDown()
+
+	def goBottom(self):
+		if self.instance:
+			self.instance.goBottom()
+
+	def getTopIndex(self):
+		return self.instance.getTopIndex() if self.instance else -1
+
+	def setTopIndex(self, index):
+		if self.instance:
+			self.instance.setTopIndex(index)
+
+	# Old navigation method names.
+	#
+	def top(self):
+		self.goTop()
 
 	def pageUp(self):
-		print("menulist pageUp")
-		if self.instance != None:
-			self.instance.moveSelection(self.instance.pageUp)
-
-	def pageDown(self):
-		print("menulist pageDown")
-		if self.instance != None:
-			self.instance.moveSelection(self.instance.pageDown)
+		self.goPageUp()
 
 	def up(self):
-		if self.instance != None:
-			self.instance.moveSelection(self.instance.moveUp)
+		self.goLineUp()
 
 	def down(self):
-		if self.instance != None:
-			self.instance.moveSelection(self.instance.moveDown)
+		self.goLineDown()
 
-	def selectionEnabled(self, enabled):
-		if self.instance != None:
-			self.instance.setSelectionEnable(enabled)
+	def pageDown(self):
+		self.goPageDown()
+
+	def bottom(self):
+		self.goBottom()

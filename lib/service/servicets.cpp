@@ -93,7 +93,7 @@ void TSAudioInfo::addAudio(int pid, std::string lang, std::string desc, int type
 /* eServiceTS                                                       */
 /********************************************************************/
 
-eServiceTS::eServiceTS(const eServiceReference &url): m_pump(eApp, 1)
+eServiceTS::eServiceTS(const eServiceReference &url): m_pump(eApp, 1,"eServiceTS")
 {
 	eDebug("[eServiceTS] construct!");
 	m_filename = url.path.c_str();
@@ -165,7 +165,8 @@ int eServiceTS::openHttpConnection(std::string url)
 		host = host.substr(0, dp);
 	}
 
-	struct hostent* h = gethostbyname(host.c_str());
+	// FIXME use getaddrinfo
+	struct hostent* h = gethostbyname(host.c_str()); // NOSONAR
 	if (h == NULL || h->h_addr_list == NULL)
 		return -1;
 	int fd = socket(PF_INET, SOCK_STREAM, 0);
@@ -182,6 +183,7 @@ int eServiceTS::openHttpConnection(std::string url)
 	if (connect(fd, (sockaddr*)&addr, sizeof(addr)) == -1) {
 		std::string msg = "connect failed for: " + url;
 		eDebug("[eServiceTS] %s", msg.c_str());
+		close(fd);
 		return -1;
 	}
 
@@ -467,7 +469,7 @@ int eServiceTS::getCurrentTrack() {
 
 DEFINE_REF(eStreamThread)
 
-eStreamThread::eStreamThread(): m_messagepump(eApp, 0) {
+eStreamThread::eStreamThread(): m_messagepump(eApp, 0,"eStreamThread") {
 	CONNECT(m_messagepump.recv_msg, eStreamThread::recvEvent);
 	m_running = false;
 }

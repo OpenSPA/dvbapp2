@@ -29,7 +29,8 @@ try:
 except:
 	correctChannelNumber = False
 
-class ServiceName2(Converter, object):
+
+class ServiceName2(Converter):
 	NAME = 0
 	NUMBER = 1
 	BOUQUET = 2
@@ -507,11 +508,6 @@ class ServiceName2(Converter, object):
 				self.isStream = True
 		if self.type == self.NAME:
 			name = ref and (info.getName(ref) or 'N/A') or (info.getName() or 'N/A')
-			defi = "DEF"
-			service2 = name.upper()
-			if defi in service2:
-				servicename2 = service2.split(defi)
-				name = servicename2[0]
 			prefix = ''
 			if self.ref:
 				prefix = " (alter)"
@@ -533,7 +529,7 @@ class ServiceName2(Converter, object):
 			return bouq
 		elif self.type == self.PROVIDER:
 			if self.isStream:
-				if self.refstr and ('%3a//' in self.refstr or '%3a//' in self.refstr):
+				if self.refstr and ('%3a//' in self.refstr):
 					return self.getIPTVProvider(self.refstr)
 				return self.getIPTVProvider(refstr)
 			else:

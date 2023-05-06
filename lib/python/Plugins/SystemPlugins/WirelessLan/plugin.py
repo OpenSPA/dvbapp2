@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from re import escape as re_escape
 
-from enigma import eTimer, eEnv
+from enigma import eTimer
 
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -12,12 +12,9 @@ from Components.Sources.List import List
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 from .Wlan import iWlan, iStatus, getWlanConfigName
-
-
-plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
 
 liste = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
@@ -25,11 +22,11 @@ liste = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
 weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
-config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))
-config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default = "WPA2"))
-config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
-config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
+config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
+config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default="WPA2"))
+config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
+config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
 
 class WlanStatus(Screen):
@@ -69,20 +66,19 @@ class WlanStatus(Screen):
 
 	def __init__(self, session, iface):
 		Screen.__init__(self, session)
-		self.session = session
 		self.iface = iface
 
-		self["LabelBSSID"] = StaticText(_('Accesspoint:'))
-		self["LabelESSID"] = StaticText(_('SSID:'))
-		self["LabelQuality"] = StaticText(_('Link quality:'))
-		self["LabelSignal"] = StaticText(_('Signal strength:'))
-		self["LabelBitrate"] = StaticText(_('Bitrate:'))
-		self["LabelEnc"] = StaticText(_('Encryption:'))
+		self["LabelBSSID"] = StaticText(_("Access point:"))
+		self["LabelESSID"] = StaticText(_("SSID:"))
+		self["LabelQuality"] = StaticText(_("Link quality:"))
+		self["LabelSignal"] = StaticText(_("Signal strength:"))
+		self["LabelBitrate"] = StaticText(_("Bitrate:"))
+		self["LabelEnc"] = StaticText(_("Encryption:"))
 
-		self["LabelChannel"] = StaticText(_('Channel:'))
-		self["LabelEncType"] = StaticText(_('Encryption Type:'))
-		self["LabelFrequency"] = StaticText(_('Frequency:'))
-		self["LabelFrequencyNorm"] = StaticText(_('Frequency Norm:'))
+		self["LabelChannel"] = StaticText(_("Channel:"))
+		self["LabelEncType"] = StaticText(_("Encryption Type:"))
+		self["LabelFrequency"] = StaticText(_("Frequency:"))
+		self["LabelFrequencyNorm"] = StaticText(_("Frequency Norm:"))
 
 		self["BSSID"] = StaticText()
 		self["ESSID"] = StaticText()
@@ -248,9 +244,7 @@ class WlanScan(Screen):
 
 	def __init__(self, session, iface):
 		Screen.__init__(self, session)
-		self.session = session
 		self.iface = iface
-		self.skin_path = plugin_path
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
 		self.APList = None
 		self.newAPList = None
@@ -258,7 +252,7 @@ class WlanScan(Screen):
 		self.cleanList = None
 		self.oldlist = {}
 		self.listLength = None
-		self.divpng = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
+		self.divpng = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 
 		self.rescanTimer = eTimer()
 		self.rescanTimer.callback.append(self.rescanTimerFired)
@@ -286,7 +280,7 @@ class WlanScan(Screen):
 		iWlan.setInterface(self.iface)
 		self.w = iWlan.getInterface()
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.getAccessPoints(refresh = False)
+		self.getAccessPoints(refresh=False)
 
 	def layoutFinished(self):
 		self.setTitle(_("Select a wireless network"))
@@ -354,7 +348,7 @@ class WlanScan(Screen):
 			self.buildWlanList()
 			self.setInfo()
 
-	def getAccessPoints(self, refresh = False):
+	def getAccessPoints(self, refresh=False):
 		self.APList = []
 		self.cleanList = []
 		aps = iWlan.getNetworkList()
@@ -414,12 +408,14 @@ class WlanScan(Screen):
 def WlanStatusScreenMain(session, iface):
 	session.open(WlanStatus, iface)
 
+
 def callFunction(iface):
 	iWlan.setInterface(iface)
 	i = iWlan.getWirelessInterfaces()
 	if iface in i or iNetwork.isWirelessInterface(iface):
 		return WlanStatusScreenMain
 	return None
+
 
 def configStrings(iface):
 	driver = iNetwork.detectWlanModule(iface)
@@ -435,12 +431,13 @@ def configStrings(iface):
 		ret += '\tpost-down wl-down.sh || true\n'
 		return ret
 	if driver == 'madwifi' and config.plugins.wlan.hiddenessid.value:
-		ret += "\tpre-up iwconfig " + iface + " essid \"" + re.escape(config.plugins.wlan.essid.value) + "\" || true\n"
+		ret += "\tpre-up iwconfig " + iface + " essid \"" + re_escape(config.plugins.wlan.essid.value) + "\" || true\n"
 	ret += "\tpre-up wpa_supplicant -i" + iface + " -c" + getWlanConfigName(iface) + " -B -dd -D" + driver + " || true\n"
 	if config.plugins.wlan.hiddenessid.value == True:
 		ret += "\tpre-up iwconfig " + iface + " essid \"" + re_escape(config.plugins.wlan.essid.value) + "\" || true\n"
 	ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})
+	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})

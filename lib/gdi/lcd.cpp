@@ -69,7 +69,10 @@ void eLCD::renderText(ePoint start, const char *text)
 	{
 		std::string message = text;
 		message = replace_all(message, "\n", " ");
-		::write(lcdfd, message.c_str(), message.size());
+		if (::write(lcdfd, message.c_str(), message.size()) == -1)
+		{
+			eDebug("[eLCD] renderText %s failed (%m)", text);
+		}
 	}
 }
 #endif
@@ -112,32 +115,24 @@ eDBoxLCD::eDBoxLCD()
 				else
 				{
 					lcdfd = open("/dev/dbox/oled0", O_RDWR);
-					if (lcdfd < 0)
-						lcdfd = open("/dev/oled0", O_RDWR);
 				}
 		}		
 		else
 		{
 			lcdfd = open("/dev/dbox/oled0", O_RDWR);
-			if (lcdfd < 0)
-				lcdfd = open("/dev/oled0", O_RDWR);
-		}
-	}
+		}		
+	}	
 	else
 	{
 		lcdfd = open("/dev/dbox/oled0", O_RDWR);
-		if (lcdfd < 0)
-			lcdfd = open("/dev/oled0", O_RDWR);
 	}
-
+	
 	if (lcdfd < 0)
 	{
 		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || 
 		    !access("/proc/stb/fp/oled_brightness", W_OK) )
 			lcd_type = 2;
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
-		if (lcdfd < 0)
-			lcdfd = open("/dev/lcd0", O_RDWR);
 	} else
 	{
 		eDebug("[eLCD] found OLED display!");
@@ -322,11 +317,31 @@ void eDBoxLCD::dumpLCD2PNG(void)
  			switch(bpp)
  			{
  				case 8:
- 					eDebug("[eDboxLCD] 8 bit not supportet yet");
+					{
+ 						for (int y = lcd_hight; y != 0; --y)
+ 						{
+ 							gRGB pixel32;
+ 							uint8_t pixval;
+ 							int x = lcd_width;
+ 							gRGB *dst = (gRGB *)dstptr;
+ 							const uint8_t *src = (const uint8_t *)srcptr;
+ 							while (x--)
+ 							{
+ 								pixval = *src++;;
+ 								pixel32.a = 0xFF;
+ 								pixel32.r = pixval;
+ 								pixel32.g = pixval;
+ 								pixel32.b = pixval;
+ 								*dst++ = pixel32;
+ 							}
+ 							srcptr += _stride;
+ 							dstptr += pixmap32->surface->stride;
+ 						}
+ 						savePNG("/tmp/lcd.png", pixmap32);
+ 					}
  					break;
  				case 16:
  					{
- 
  						for (int y = lcd_hight; y != 0; --y)
  						{
  							gRGB pixel32;
@@ -354,14 +369,24 @@ void eDBoxLCD::dumpLCD2PNG(void)
  					}
  					break;
  				case 32:
- 					eDebug("[eDboxLCD]  32 bit not supportet yet");
+					{
+						srcptr += _stride/4;
+						dstptr += pixmap32->surface->stride/4;
+						for (int y = lcd_hight; y != 0; --y)
+						{
+							memcpy(dstptr, srcptr, lcd_width*bpp);
+							srcptr += _stride;
+							dstptr += pixmap32->surface->stride;
+						}
+						savePNG("/tmp/lcd.png", pixmap32);
+					}
  					break;
  				default:
  					eDebug("[eDboxLCD] %d bit not supportet yet",bpp);
  			}
  		}
  }
- 
+
 void eDBoxLCD::update()
 {
 #if !defined(HAVE_TEXTLCD) && !defined(HAVE_7SEGMENT)

@@ -24,11 +24,9 @@ class LCDClockSelector(Screen):
 	def __init__(self, session, args = None):
 
 		Screen.__init__(self, session)
-
 		self.clocklist = []
 		self.previewPath = ""
-		path.walk(self.root, self.find, "")
-
+		self.find()
 		self.clocklist.sort()
 		self["ClockList"] = MenuList(self.clocklist)
 		self["Preview"] = Pixmap()
@@ -83,15 +81,10 @@ class LCDClockSelector(Screen):
 		self["ClockList"].pageDown()
 		self.loadPreview()
 
-	def find(self, arg, dirname, names):
-		for x in names:
-			if x.startswith("clock_lcd") and x.endswith(".xml"):
-				if dirname <> self.root:
-					subdir = dirname[19:]
-					skinname = x
-					skinname = subdir + "/" + skinname
-					self.clocklist.append(skinname)
-				else:
+	def find(self):
+		for directory, dirnames, filenames in walk(self.root):
+			for x in filenames:
+				if x.startswith("clock_lcd") and x.endswith(".xml"):
 					skinname = x
 					self.clocklist.append(skinname)
 
@@ -107,9 +100,8 @@ class LCDClockSelector(Screen):
 		try:
 			pngpath = pngpath.replace(".xml", "_prev.png")
 			pngpath = self.root+pngpath
-		except AttributeError:
-			pngpath = resolveFilename("${datadir}/enigma2/display/clock_skin/noprev.png")
-
+		except:
+			pngpath = "usr/share/enigma2/display/clock_skin/noprev.png"
 		if not path.exists(pngpath):
 			pngpath = eEnv.resolve("${datadir}/enigma2/display/clock_skin/noprev.png")
 		if self.previewPath != pngpath:

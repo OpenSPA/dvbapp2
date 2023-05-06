@@ -17,7 +17,7 @@ class Job(object):
 		self.current_task = 0
 		self.callback = None
 		self.name = name
-		self.finished = False
+		self.finished = False  # FIXME Do we need this?
 		self.end = 100
 		self.__progress = 0
 		self.weightScale = 1
@@ -78,7 +78,7 @@ class Job(object):
 			self.tasks[self.current_task].run(self.taskCallback)
 			self.state_changed()
 
-	def taskCallback(self, task, res, stay_resident = False):
+	def taskCallback(self, task, res, stay_resident=False):
 		cb_idx = self.tasks.index(task)
 		if stay_resident:
 			if cb_idx not in self.resident_tasks:
@@ -117,6 +117,7 @@ class Job(object):
 	def __str__(self):
 		return "Components.Task.Job name=%s #tasks=%s" % (self.name, len(self.tasks))
 
+
 class Task(object):
 	def __init__(self, job, name):
 		self.name = name
@@ -133,6 +134,8 @@ class Task(object):
 		self.cwd = "/tmp"
 		self.args = []
 		self.cmdline = None
+		self.nice = None
+		self.ionice = None
 		self.task_progress_changed = None
 		self.output_line = ""
 		job.addTask(self)
@@ -151,7 +154,7 @@ class Task(object):
 	def setCmdline(self, cmdline):
 		self.cmdline = cmdline
 
-	def checkPreconditions(self, immediate = False):
+	def checkPreconditions(self, immediate=False):
 		not_met = []
 		if immediate:
 			preconditions = self.immediate_preconditions
@@ -173,6 +176,10 @@ class Task(object):
 		self.container.stderrAvail.append(self.processStderr)
 		if self.cwd is not None:
 			self.container.setCWD(self.cwd)
+		if self.nice is not None:
+			self.container.setNice(self.nice)
+		if self.ionice is not None:
+			self.container.setIONice(self.ionice)
 		if not self.cmd and self.cmdline:
 			print("[Task] execute:", self.container.execute(self.cmdline), self.cmdline)
 		else:
@@ -230,9 +237,9 @@ class Task(object):
 	def abort(self):
 		if self.container:
 			self.container.kill()
-		self.finish(aborted = True)
+		self.finish(aborted=True)
 
-	def finish(self, aborted = False):
+	def finish(self, aborted=False):
 		self.afterRun()
 		not_met = []
 		if aborted:
@@ -267,10 +274,12 @@ class Task(object):
 	def __str__(self):
 		return "Components.Task.Task name=%s" % self.name
 
+
 class LoggingTask(Task):
 	def __init__(self, job, name):
 		Task.__init__(self, job, name)
 		self.log = []
+
 	def processOutput(self, data):
 		data = six.ensure_str(data)
 		print("[Task %s]" % self.name, data, end=' ')
@@ -287,8 +296,9 @@ class PythonTask(Task):
 		self.timer = eTimer()
 		self.timer.callback.append(self.onTimer)
 		self.timer.start(5)
+
 	def work(self):
-		raise NotImplemented("work")
+		raise NotImplementedError("work")
 
 	def abort(self):
 		self.aborted = True
@@ -297,11 +307,13 @@ class PythonTask(Task):
 
 	def onTimer(self):
 		self.setProgress(self.pos)
+
 	def onComplete(self, result):
 		self.postconditions.append(FailedPostcondition(result))
 		self.timer.stop()
 		del self.timer
 		self.finish()
+
 
 class ConditionTask(Task):
 	"""
@@ -312,23 +324,29 @@ class ConditionTask(Task):
 	Default is to call trigger() once per second, override prepare/cleanup
 	to do something else (like waiting for hotplug)...
 	"""
+
 	def __init__(self, job, name, timeoutCount=None):
 		Task.__init__(self, job, name)
 		self.timeoutCount = timeoutCount
+
 	def _run(self):
 		self.triggerCount = 0
+
 	def prepare(self):
 		from enigma import eTimer
 		self.timer = eTimer()
 		self.timer.callback.append(self.trigger)
 		self.timer.start(1000)
+
 	def cleanup(self, failed):
 		if hasattr(self, 'timer'):
 			self.timer.stop()
 			del self.timer
+
 	def check(self):
 		# override to return True only when condition triggers
 		return True
+
 	def trigger(self):
 		self.triggerCount += 1
 		try:
@@ -344,6 +362,8 @@ class ConditionTask(Task):
 # The jobmanager will execute multiple jobs, each after another.
 # later, it will also support suspending jobs (and continuing them after reboot etc)
 # It also supports a notification when some error occurred, and possibly a retry.
+
+
 class JobManager:
 	def __init__(self):
 		self.active_jobs = []
@@ -436,7 +456,7 @@ class JobManager:
 #
 #class CreateFilesystemTask(Task):
 #	def __init__(self, device, partition = 1, largefile = True):
-#		Task.__init__(self, "Creating filesystem")
+#		Task.__init__(self, "Creating file system")
 #		self.setTool("/sbin/mkfs.ext")
 #		if largefile:
 #			self.args += ["-T", "largefile"]
@@ -451,6 +471,7 @@ class JobManager:
 #			self.args += ["-t", filesystem]
 #		self.args.append(device + "part%d" % partition)
 
+
 class Condition:
 	def __init__(self):
 		pass
@@ -460,12 +481,14 @@ class Condition:
 	def getErrorMessage(self, task):
 		return _("An unknown error occurred!") + " (%s @ task %s)" % (self.__class__.__name__, task.__class__.__name__)
 
+
 class WorkspaceExistsPrecondition(Condition):
 	def __init__(self):
 		pass
 
 	def check(self, task):
 		return os.access(task.job.workspace, os.W_OK)
+
 
 class DiskspacePrecondition(Condition):
 	def __init__(self, diskspace_required):
@@ -483,6 +506,7 @@ class DiskspacePrecondition(Condition):
 
 	def getErrorMessage(self, task):
 		return _("Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)") % (self.diskspace_required / 1024 / 1024, self.diskspace_available / 1024 / 1024)
+
 
 class ToolExistsPrecondition(Condition):
 	def __init__(self):
@@ -508,12 +532,14 @@ class ToolExistsPrecondition(Condition):
 	def getErrorMessage(self, task):
 		return _("A required tool (%s) was not found.") % self.realpath
 
+
 class AbortedPostcondition(Condition):
 	def __init__(self):
 		pass
 
 	def getErrorMessage(self, task):
 		return _("Cancelled upon user request")
+
 
 class ReturncodePostcondition(Condition):
 	def __init__(self):
@@ -531,9 +557,11 @@ class ReturncodePostcondition(Condition):
 		else:
 			return _("Error code") + ": %s" % task.returncode
 
+
 class FailedPostcondition(Condition):
 	def __init__(self, exception):
 		self.exception = exception
+
 	def getErrorMessage(self, task):
 		if isinstance(self.exception, int):
 			if hasattr(task, 'log'):
@@ -544,6 +572,7 @@ class FailedPostcondition(Condition):
 			else:
 				return _("Error code") + " %s" % self.exception
 		return str(self.exception)
+
 	def check(self, task):
 		return (self.exception is None) or (self.exception == 0)
 
@@ -561,5 +590,6 @@ class FailedPostcondition(Condition):
 #
 #	def createDescription(self):
 #		return {"device": self.device}
+
 
 job_manager = JobManager()

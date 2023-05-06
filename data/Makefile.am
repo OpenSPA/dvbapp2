@@ -1,10 +1,13 @@
-SUBDIRS = fonts keymaps spinner
+SUBDIRS = fonts keymaps icons spinner
 
 dist_pkgdata_DATA = \
 	encoding.conf \
 	keymap.xml \
 	keytranslation.xml \
+	keymap.ntr \
+	keymap.u80 \
 	menu.xml \
+	menuspa.xml \
 	black.mvi \
 	rcpositions.xml \
 	setup.xml \
@@ -22,6 +25,7 @@ dist_pkgdata_DATA = \
 	otv_00820000_fbff_16a8.dict \
 	otv_06180000_1000_0011.dict \
 	otv_06400000_00a9_0003.dict
+
 
 if HAVE_7SEGMENT
 SUBDIRS += 7segment
@@ -94,3 +98,4 @@ endif
 if HAVE_GRAUTEC70X0
 SUBDIRS += grautec70x0
 endif
+

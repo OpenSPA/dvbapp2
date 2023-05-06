@@ -1,8 +1,6 @@
-from __future__ import print_function
-from __future__ import division
 from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
 from Screens.Screen import Screen
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager
@@ -10,16 +8,13 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigSatlist, ConfigYesNo, ConfigSubsection, ConfigSelection
+from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigYesNo, ConfigSelection
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
-from Components.Sources.Boolean import Boolean
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.ServiceStopScreen import ServiceStopScreen
 from Screens.AutoDiseqc import AutoDiseqc
 from Tools.BoundFunction import boundFunction
-from boxbranding import getBoxType, getMachineBrand
 
 from time import mktime, localtime
 from datetime import datetime
@@ -28,107 +23,51 @@ import six
 
 from Tools.BugHunting import printCallSequence
 
-def setForceLNBPowerChanged(configElement):
-	f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
-	if configElement.value:
-		f.write("on")
-	else:
-		f.write("off")
-	f.close()
 
-def setForceToneBurstChanged(configElement):
-	f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
-	if configElement.value:
-		f.write("enable")
-	else:
-		f.write("disable")
-	f.close()
+class ServiceStopScreen:
+	def __init__(self):
+		try:
+			self.session
+		except:
+			print("[ServiceStopScreen] ERROR: no self.session set")
+		self.oldref = None
+		self.onClose.append(self.__onClose)
 
-config.tunermisc = ConfigSubsection()
-if SystemInfo["ForceLNBPowerChanged"]:
-	config.tunermisc.forceLnbPower = ConfigYesNo(default=False)
-	config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
+	def pipAvailable(self):
+		# pip isn't available in every state of e2
+		try:
+			self.session.pipshown
+			pipavailable = True
+		except:
+			pipavailable = False
+		return pipavailable
 
-if SystemInfo["ForceToneBurstChanged"]:
-	config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
-	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
+	def stopService(self):
+		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.session.nav.stopService()
+		if self.pipAvailable():
+			if self.session.pipshown:  # try to disable pip
+				if hasattr(self.session, 'infobar'):
+					if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
+						self.session.infobar.servicelist.togglePipzap()
+				if hasattr(self.session, 'pip'):
+					del self.session.pip
+				self.session.pipshown = False
 
-class TunerSetup(Screen, ConfigListScreen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.skinName = ["Setup"]
-		self.setup_title = _("Tuner settings")
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Boolean(False)
-		self['footnote'] = Label()
+	def __onClose(self):
+		self.session.nav.playService(self.oldref)
 
-		self.onChangedEntry = []
+	def restoreService(self, msg=_("Zap back to previously tuned service?")):
+		if self.oldref:
+			self.session.openWithCallback(self.restartPrevService, MessageBox, msg, MessageBox.TYPE_YESNO)
+		else:
+			self.restartPrevService(False)
 
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+	def restartPrevService(self, yesno):
+		if not yesno:
+			self.oldref = None
+		self.close()
 
-		from Components.ActionMap import ActionMap
-		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.apply,
-				"menu": self.closeRecursive,
-			}, -2)
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		self["description"] = Label("")
-
-		self.createSetup()
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
-
-	def createSetup(self):
-		level = config.usage.setup_level.index
-
-		self.list = []
-
-		if level >= 1:
-			if SystemInfo["ForceLNBPowerChanged"]:
-				self.list.append(getConfigListEntry(_("Force LNB Power"), config.tunermisc.forceLnbPower, _("Force LNB Tuner Power settings.")))
-			if SystemInfo["ForceToneBurstChanged"]:
-				self.list.append(getConfigListEntry(_("Force ToneBurst"), config.tunermisc.forceToneBurst, _("Force LNB Tuner ToneBurst settings.")))
-
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.createSetup()
-
-	def confirm(self, confirmed):
-		self.keySave()
-
-	def apply(self):
-		self.keySave()
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
 
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
@@ -139,7 +78,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			list.append(self.singleSatEntry)
 			if nim.diseqcA.value in ("360", "560"):
 				list.append(getConfigListEntry(_("Use circular LNB"), nim.simpleDiSEqCSetCircularLNB, _("If you are using a Circular polarised LNB select 'yes', otherwise select 'no'.")))
-			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC, _("Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'.")))
+			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC, _("Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups.")))
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA, _("Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'.")))
 
@@ -161,7 +100,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		list.append(getConfigListEntry(" ", nim.longitudeOrientation, _("Enter if you are in the east or west hemisphere.")))
 		list.append(getConfigListEntry(_("Latitude"), nim.latitude, _("Enter your current latitude. This is the number of degrees you are from the equator as a decimal.")))
 		list.append(getConfigListEntry(" ", nim.latitudeOrientation, _("Enter if you are north or south of the equator.")))
-		if SystemInfo["CanMeasureFrontendInputPower"]:
+		if BoxInfo.getItem("CanMeasureFrontendInputPower"):
 			self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), nim.powerMeasurement, _("Power management. Consult your receiver's manual for more information."))
 			list.append(self.advancedPowerMeasurement)
 			if nim.powerMeasurement.value:
@@ -202,9 +141,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				choices = {"nothing": _("not configured"),
 						"advanced": _("Advanced")}
 			if self.nim.isMultiType():
-				self.nimConfig.dvbs.configMode.setChoices(choices, default = "nothing")
+				self.nimConfig.dvbs.configMode.setChoices(choices, default="nothing")
 			else:
-				self.nimConfig.dvbs.configMode.setChoices(choices, default = "simple")
+				self.nimConfig.dvbs.configMode.setChoices(choices, default="simple")
 
 	def createSetup(self):
 		print("Creating setup")
@@ -286,10 +225,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				for id in nimlist:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				nimConfig.connectedTo.setChoices(choices)
-				self.list.append(getConfigListEntry(_("Tuner"), nimConfig.connectedTo, _("Select the tuner that controls the motorised dish.")))
+				self.list.append(getConfigListEntry(_("Tuner"), nimConfig.connectedTo, _("Select the tuner that controls the motorized dish.")))
 			elif nimConfig.configMode.value == "loopthrough":
 				choices = []
-				print("connectable to:", nimmanager.canConnectTo(self.slotid))
+				print("connectable to: %s" % str(nimmanager.canConnectTo(self.slotid)))
 				connectable = nimmanager.canConnectTo(self.slotid)
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
@@ -297,7 +236,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Connected to"), nimConfig.connectedTo, _("Select the tuner that this loopthrough depends on.")))
 			elif nimConfig.configMode.value == "nothing":
 				pass
-			elif nimConfig.configMode.value == "advanced": # advanced
+			elif nimConfig.configMode.value == "advanced":  # advanced
 				# SATs
 				self.advancedSatsEntry = getConfigListEntry(_("Satellite"), nimConfig.advanced.sats, _("Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."))
 				self.list.append(self.advancedSatsEntry)
@@ -314,18 +253,18 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							cur_orb_pos = satlist[0]
 						self.fillListWithAdvancedSatEntrys(nimConfig.advanced.sat[cur_orb_pos])
 				self.have_advanced = True
-			if path.exists("/proc/stb/frontend/%d/tone_amplitude" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
+			if path.exists("/proc/stb/frontend/%d/tone_amplitude" % self.nim.slot) and config.usage.setup_level.index >= 2:  # expert
 				self.list.append(getConfigListEntry(_("Tone amplitude"), nimConfig.toneAmplitude, _("Your receiver can use tone amplitude. Consult your receiver's manual for more information.")))
-			if path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
+			if path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % self.nim.slot) and config.usage.setup_level.index >= 2:  # expert
 				self.list.append(getConfigListEntry(_("SCPC optimized search range"), nimConfig.scpcSearchRange, _("Your receiver can use SCPC optimized search range. Consult your receiver's manual for more information.")))
-			if path.exists("/proc/stb/frontend/%d/t2mirawmode" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
+			if path.exists("/proc/stb/frontend/%d/t2mirawmode" % self.nim.slot) and config.usage.setup_level.index >= 2:  # expert
 				self.list.append(getConfigListEntry(_("T2MI RAW Mode"), nimConfig.t2miRawMode, _("With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI")))
 
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.dvbc.configMode, _("Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."))
 			self.list.append(self.configMode)
 			if self.nimConfig.dvbc.configMode.value == "enabled":
-				self.list.append(getConfigListEntry(_("Network ID"), self.nimConfig.dvbc.scan_networkid, _("This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum.")))
+				self.list.append(getConfigListEntry(_("Network ID"), self.nimConfig.dvbc.scan_networkid, _("This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum.")))
 				self.cableScanType = getConfigListEntry(_("Used service scan type"), self.nimConfig.dvbc.scan_type, _("Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."))
 				self.list.append(self.cableScanType)
 				if self.nimConfig.dvbc.scan_type.value == "provider":
@@ -335,7 +274,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						cablecountrycode = nimmanager.getCableCountrycode(self.slotid)
 						default = cablecountrycode in cablecountrycodelist and cablecountrycode or None
 						choices = [("all", _("All"))] + sorted([(x, self.countrycodeToCountry(x)) for x in cablecountrycodelist], key=lambda listItem: listItem[1])
-						self.cableCountries = ConfigSelection(default = default, choices = choices)
+						self.cableCountries = ConfigSelection(default=default, choices=choices)
 						self.cableCountriesEntry = getConfigListEntry(_("Country"), self.cableCountries, _("Select your country. If not available select 'all'."))
 						self.originalCableRegion = self.nimConfig.dvbc.scan_provider.value
 					# country/region tier two
@@ -344,7 +283,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					else:
 						cableNames = sorted([x[0] for x in nimmanager.getCablesByCountrycode(self.cableCountries.value)])
 					default = self.nimConfig.dvbc.scan_provider.value in cableNames and self.nimConfig.dvbc.scan_provider.value or None
-					self.cableRegions = ConfigSelection(default = default, choices = cableNames)
+					self.cableRegions = ConfigSelection(default=default, choices=cableNames)
+
 					def updateCableProvider(configEntry):
 						self.nimConfig.dvbc.scan_provider.value = configEntry.value
 						self.nimConfig.dvbc.scan_provider.save()
@@ -391,10 +331,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					terrestrialcountrycodelist = nimmanager.getTerrestrialsCountrycodeList()
 					terrestrialcountrycode = nimmanager.getTerrestrialCountrycode(self.slotid)
 					default = terrestrialcountrycode in terrestrialcountrycodelist and terrestrialcountrycode or None
-					if terrestrialcountrycode is None and getMachineBrand() == "Beyonwiz" and "AUS" in terrestrialcountrycodelist:
+					if terrestrialcountrycode is None and BoxInfo.getItem("displaybrand") == "Beyonwiz" and "AUS" in terrestrialcountrycodelist:
 						default = "AUS"
 					choices = [("all", _("All"))] + sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
-					self.terrestrialCountries = ConfigSelection(default = default, choices = choices)
+					self.terrestrialCountries = ConfigSelection(default=default, choices=choices)
 					self.terrestrialCountriesEntry = getConfigListEntry(_("Country"), self.terrestrialCountries, _("Select your country. If not available select 'all'."))
 					self.originalTerrestrialRegion = self.nimConfig.dvbt.terrestrial.value
 				# country/region tier two
@@ -403,9 +343,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				else:
 					terrstrialNames = sorted([x[0] for x in nimmanager.getTerrestrialsByCountrycode(self.terrestrialCountries.value)])
 				default = self.nimConfig.dvbt.terrestrial.value in terrstrialNames and self.nimConfig.dvbt.terrestrial.value or None
-				if default is None and getMachineBrand() == "Beyonwiz" and "All regions, Australia, (DVB-T)" in terrstrialNames:
+				if default is None and BoxInfo.getItem("displaybrand") == "Beyonwiz" and "All regions, Australia, (DVB-T)" in terrstrialNames:
 					default = "All regions, Australia, (DVB-T)"
-				self.terrestrialRegions = ConfigSelection(default = default, choices = terrstrialNames)
+				self.terrestrialRegions = ConfigSelection(default=default, choices=terrstrialNames)
+
 				def updateTerrestrialProvider(configEntry):
 					self.nimConfig.dvbt.terrestrial.value = configEntry.value
 					self.nimConfig.dvbt.terrestrial.save()
@@ -413,7 +354,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.terrestrialRegionsEntry = getConfigListEntry(_("Region"), self.terrestrialRegions, _("Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."))
 				self.list.append(self.terrestrialCountriesEntry)
 				self.list.append(self.terrestrialRegionsEntry)
-				if not getBoxType() in ('spycat',):
+				if BoxInfo.getItem("machinebuild") not in ('spycat',):
 					self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.dvbt.terrestrial_5V, _("Enable this setting if your aerial system needs power")))
 		elif self.nim.isCompatible("ATSC"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.atsc.configMode, _("Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."))
@@ -425,7 +366,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.have_advanced = False
 
 		if config.usage.setup_level.index > 1:
-			self.list.append(getConfigListEntry(_("Force Legacy Signal stats"), self.nimConfig.force_legacy_signal_stats, _("If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded.")))
+			self.list.append(getConfigListEntry(_("Force Legacy Signal stats"), self.nimConfig.force_legacy_signal_stats, _("Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -502,7 +443,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			currLnb = None
 
 		# LNBs
-		self.advancedLnbsEntry = getConfigListEntry(_("LNB"), Sat.lnb, _("Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."))
+		self.advancedLnbsEntry = getConfigListEntry(_("LNB"), Sat.lnb, _("Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorized dishes) to save setting up the same LNB multiple times."))
 		self.list.append(self.advancedLnbsEntry)
 
 		if currLnb:
@@ -510,7 +451,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if currLnb.lof.value != "unicable":
 					currLnb.lof.value = "unicable"
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio, _("This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services.")))
-			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof, _("Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."))
+			self.advancedLof = getConfigListEntry(_("Type of LNB/Device"), currLnb.lof, _("Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."))
 			self.list.append(self.advancedLof)
 			if currLnb.lof.value == "user_defined":
 				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl, _("Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB.")))
@@ -518,7 +459,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold, _("Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB.")))
 
 			if currLnb.lof.value == "unicable":
-				self.advancedUnicable = getConfigListEntry(_("Unicable ") + _("Configuration mode"), currLnb.unicable, _("Select the type of Single Cable Reception device you are using."))
+				self.advancedUnicable = getConfigListEntry(_("Unicable ") + _("Type of device"), currLnb.unicable, _("Select the type of Single Cable Reception device you are using."))
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
 					self.advancedDiction = getConfigListEntry(_("Diction"), currLnb.dictionuser, _("Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."))
@@ -545,7 +486,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(self.advancedManufacturer)
 					if product_name in manufacturer.scr:
 						diction = manufacturer.diction[product_name].value
-						self.advancedType = getConfigListEntry(_("Type"), manufacturer.product, _("Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
+						self.advancedType = getConfigListEntry(_("Model"), manufacturer.product, _("Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
 						self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name], _("Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."))
 						self.list.append(self.advancedType)
 						self.list.append(self.advancedSCR)
@@ -559,7 +500,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(self.advancedManufacturer)
 					if product_name in manufacturer.scr:
 						diction = manufacturer.diction[product_name].value
-						self.advancedType = getConfigListEntry(_("Type"), manufacturer.product, _("Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
+						self.advancedType = getConfigListEntry(_("Model"), manufacturer.product, _("Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
 						self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name], _("Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR LNB uses to pass the requested transponder to the tuner."))
 						self.list.append(self.advancedType)
 						self.list.append(self.advancedSCR)
@@ -582,7 +523,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						nimConfig_advanced.unicableconnectedTo.setChoices(choices)
 						self.list.append(getConfigListEntry(_("Connected to"), nimConfig_advanced.unicableconnectedTo, _("Select the tuner to which the signal cable of the SCR device is connected.")))
 
-			else:	#no Unicable
+			else:  # no Unicable
 				self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage, _("Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet.")))
 				self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode, _("Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet.")))
 			self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage, _("use increased voltage '14/18V' if there are problems when switching the lnb")))
@@ -592,7 +533,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
 				self.list.append(getConfigListEntry(_("Fast DiSEqC"), currLnb.fastDiseqc, _("Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'.")))
-				self.toneburst = getConfigListEntry(_("Toneburst"), currLnb.toneburst, _("Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."))
+				self.toneburst = getConfigListEntry(_("Tone burst"), currLnb.toneburst, _("Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."))
 				self.list.append(self.toneburst)
 				self.committedDiseqcCommand = getConfigListEntry(_("DiSEqC 1.0 command"), currLnb.commitedDiseqcCommand, _("If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."))
 				self.list.append(self.committedDiseqcCommand)
@@ -620,7 +561,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats, _("If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one.")))
 				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat, _("Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly.")))
 				if currLnb.diseqcMode.value == "1_2":
-					if SystemInfo["CanMeasureFrontendInputPower"]:
+					if BoxInfo.getItem("CanMeasureFrontendInputPower"):
 						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement, _("Power management. Consult your receiver's manual for more information."))
 						self.list.append(self.advancedPowerMeasurement)
 						if currLnb.powerMeasurement.value:
@@ -636,7 +577,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						if currLnb.powerMeasurement.value:
 							currLnb.powerMeasurement.value = False
 							currLnb.powerMeasurement.save()
-					self.advancedUsalsEntry = getConfigListEntry(_("Use USALS for this sat"), Sat.usals, _("USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."))
+					self.advancedUsalsEntry = getConfigListEntry(_("Use USALS for this sat"), Sat.usals, _("USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."))
 					if lnbnum < 65:
 						self.list.append(self.advancedUsalsEntry)
 					if Sat.usals.value:
@@ -789,7 +730,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				# why we need this cast?
 				sat_name = str(nimmanager.getSatDescription(orbpos))
 			except:
-				if orbpos > 1800: # west
+				if orbpos > 1800:  # west
 					orbpos = 3600 - orbpos
 					h = _("W")
 				else:
@@ -808,12 +749,12 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def __init__(self, session, slotid):
 		printCallSequence(10)
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Tuner settings"))
-		self.setup_title = _("Tuner settings")
+		Screen.setTitle(self, _("Tuner Settings"))
+		self.setup_title = _("Tuner Settings")
 		self.list = []
 		ServiceStopScreen.__init__(self)
 		self.stopService()
-		ConfigListScreen.__init__(self, self.list, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, on_change=self.changedEntry)
 
 		self["key_red"] = Label(_("Close"))
 		self["key_green"] = Label(_("Save"))
@@ -891,7 +832,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.restoreService(_("Zap back to service before tuner setup?"))
 
@@ -975,10 +916,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+
 class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Tuner configuration"))
+		Screen.setTitle(self, _("Tuner Configuration"))
 
 		self.list = [None] * nimmanager.getSlotCount()
 		self["nimlist"] = List(self.list)
@@ -1028,7 +970,14 @@ class NimSelection(Screen):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
 		if config.usage.setup_level.index >= 2 and nim is not None:
-			text = _("Capabilities: ") + "\n" + ",".join(eDVBResourceManager.getInstance().getFrontendCapabilities(nim.slot).splitlines())
+			output = []
+			for value in eDVBResourceManager.getInstance().getFrontendCapabilities(nim.slot).splitlines():
+				kv = value.split(":")
+				if len(kv) == 2:
+					val = kv[1]
+					val = val[:-1] if val[-1] == "," else val
+					output.append("%s: %s" % (_(kv[0]), val))
+			text = "\n\n".join(output)
 			self.session.open(MessageBox, text, MessageBox.TYPE_INFO, simple=True)
 
 	def okbuttonClick(self):
@@ -1088,7 +1037,7 @@ class NimSelection(Screen):
 						text = _("not configured")
 					elif nimConfig.configMode.value == "simple":
 						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-							text = {"single": _("Single"), "toneburst_a_b": _("Toneburst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value] + "\n"
+							text = {"single": _("Single"), "toneburst_a_b": _("Tone burst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value] + "\n"
 							text += _("Sats") + ": "
 							satnames = []
 							if nimConfig.diseqcA.orbital_position < 3600:
@@ -1147,6 +1096,7 @@ class NimSelection(Screen):
 		if index is not None:
 			self["nimlist"].setIndex(index)
 
+
 class SelectSatsEntryScreen(Screen):
 	skin = """
 		<screen name="SelectSatsEntryScreen" position="center,center" size="560,410" title="Select Sats Entry" >
@@ -1176,8 +1126,9 @@ class SelectSatsEntryScreen(Screen):
 			if isinstance(userSatlist, str) and str(sat[0]) in userSatlist:
 				selected = True
 			SatList.append((sat[0], sat[1], sat[2], selected))
+		self["list"] = SelectionList(enableWrapAround=True)
 		sat_list = [SelectionEntryComponent(x[1], x[0], x[2], x[3]) for x in SatList]
-		self["list"] = SelectionList(sat_list, enableWrapAround=True)
+		self["list"].setList(sat_list)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"red": self.cancel,
@@ -1215,4 +1166,4 @@ class SelectSatsEntryScreen(Screen):
 						reverse_flag = not reverse_flag
 					self["list"].sort(sortType=sort_type, flag=reverse_flag)
 					self["list"].moveToIndex(0)
-			self.session.openWithCallback(sortAction, ChoiceBox, title= _("Select sort method:"), list=menu)
+			self.session.openWithCallback(sortAction, ChoiceBox, title=_("Select sort method:"), list=menu)

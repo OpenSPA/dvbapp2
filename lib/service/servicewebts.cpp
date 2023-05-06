@@ -23,7 +23,7 @@
 static int VPID = 0;
 static int PID_SET = 0;
 static int APID = 0;
-static int H264 = 0;
+static int H264=0;
 
 eServiceFactoryWebTS::eServiceFactoryWebTS()
 {
@@ -59,13 +59,13 @@ RESULT eServiceFactoryWebTS::play(const eServiceReference &ref, ePtr<iPlayableSe
 
 RESULT eServiceFactoryWebTS::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	ptr = 0;
+	ptr=0;
 	return -1;
 }
 
 RESULT eServiceFactoryWebTS::list(const eServiceReference &, ePtr<iListableService> &ptr)
 {
-	ptr = 0;
+	ptr=0;
 	return -1;
 }
 
@@ -164,7 +164,7 @@ void TSAudioInfoWeb::addAudio(int pid, std::string lang, std::string desc, int t
 /* eServiceWebTS                                                       */
 /********************************************************************/
 
-eServiceWebTS::eServiceWebTS(const eServiceReference &url): m_reference(url), m_pump(eApp, 1)
+eServiceWebTS::eServiceWebTS(const eServiceReference &url): m_reference(url), m_pump(eApp, 1,"eServiceWebTS")
 {
 	eDebug("[eServiceWebTS] construct!");
 	m_filename = url.path.c_str();
@@ -238,7 +238,8 @@ int eServiceWebTS::openHttpConnection(std::string url)
 		host = host.substr(0, dp);
 	}
 
-	struct hostent* h = gethostbyname(host.c_str());
+	// FIXME use getaddrinfo
+	struct hostent* h = gethostbyname(host.c_str()); // NOSONAR
 	if (h == NULL || h->h_addr_list == NULL)
 		return -1;
 	int fd = socket(PF_INET, SOCK_STREAM, 0);
@@ -255,6 +256,7 @@ int eServiceWebTS::openHttpConnection(std::string url)
 	if (connect(fd, (sockaddr*)&addr, sizeof(addr)) == -1) {
 		std::string msg = "connect failed for: " + url;
 		eDebug("[eServiceWebTS] %s", msg.c_str());
+		close(fd);
 		return -1;
 	}
 
@@ -573,7 +575,7 @@ int eServiceWebTS::getCurrentTrack() {
 
 DEFINE_REF(eStreamThreadWeb)
 
-eStreamThreadWeb::eStreamThreadWeb(): m_messagepump(eApp, 0) {
+eStreamThreadWeb::eStreamThreadWeb(): m_messagepump(eApp, 0,"eStreamThreadWeb") {
 	CONNECT(m_messagepump.recv_msg, eStreamThreadWeb::recvEvent);
 	m_running = false;
 }

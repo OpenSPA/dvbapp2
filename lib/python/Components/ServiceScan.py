@@ -1,9 +1,8 @@
 from __future__ import print_function
-from __future__ import division
 from __future__ import absolute_import
 from enigma import eComponentScan, iDVBFrontend, eTimer
 from Components.NimManager import nimmanager as nimmgr
-from Components.Converter.ChannelNumbers import channelnumbers
+from Tools.Transponder import getChannelNumber
 
 
 class ServiceScan:
@@ -60,7 +59,7 @@ class ServiceScan:
 							sat_name = str(nimmgr.getSatDescription(orb_pos))
 						except KeyError:
 							sat_name = ""
-						if orb_pos > 1800: # west
+						if orb_pos > 1800:  # west
 							orb_pos = 3600 - orb_pos
 							h = _("W")
 						else:
@@ -106,7 +105,7 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
-						channel = channelnumbers.getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
+						channel = getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
 						if channel:
 							channel = _("CH") + "%s " % channel
 						freqMHz = "%0.1f MHz" % (tp.frequency // 1000000.)

@@ -3,6 +3,7 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference
 import os
 
+
 class PlaylistIO:
 	def __init__(self):
 		self.list = []
@@ -19,7 +20,7 @@ class PlaylistIO:
 
 	REMOTE_PROTOS = ["http", "https", "udp", "rtsp", "rtp", "mmp"]
 
-	def save(self, filename = None):
+	def save(self, filename=None):
 		return self.ERROR
 
 	def clear(self):
@@ -39,6 +40,7 @@ class PlaylistIO:
 		ref = eServiceReference(4097, 0, path)
 		return ServiceReference(ref)
 
+
 class PlaylistIOInternal(PlaylistIO):
 	def __init__(self):
 		PlaylistIO.__init__(self)
@@ -47,7 +49,7 @@ class PlaylistIOInternal(PlaylistIO):
 		self.clear()
 		try:
 			file = open(filename, "r")
-		except IOError:
+		except OSError:
 			return None
 		while True:
 			entry = file.readline().strip()
@@ -57,7 +59,7 @@ class PlaylistIOInternal(PlaylistIO):
 		file.close()
 		return self.list
 
-	def save(self, filename = None):
+	def save(self, filename=None):
 		print("Writing playlist into file", filename)
 		file = open(filename, "w")
 		for x in self.list:
@@ -65,6 +67,7 @@ class PlaylistIOInternal(PlaylistIO):
 		file.close()
 
 		return self.OK
+
 
 class PlaylistIOM3U(PlaylistIO):
 	def __init__(self):
@@ -75,7 +78,7 @@ class PlaylistIOM3U(PlaylistIO):
 		self.displayname = None
 		try:
 			file = open(filename, "r")
-		except IOError:
+		except OSError:
 			return None
 		while True:
 			entry = file.readline().strip()
@@ -95,8 +98,9 @@ class PlaylistIOM3U(PlaylistIO):
 		file.close()
 		return self.list
 
-	def save(self, filename = None):
+	def save(self, filename=None):
 		return self.ERROR
+
 
 class PlaylistIOPLS(PlaylistIO):
 	def __init__(self):
@@ -106,7 +110,7 @@ class PlaylistIOPLS(PlaylistIO):
 		self.clear()
 		try:
 			file = open(filename, "r")
-		except IOError:
+		except OSError:
 			return None
 		entry = file.readline().strip()
 		if entry == "[playlist]": # extended pls
@@ -125,5 +129,5 @@ class PlaylistIOPLS(PlaylistIO):
 		file.close()
 		return self.list
 
-	def save(self, filename = None):
+	def save(self, filename=None):
 		return self.ERROR

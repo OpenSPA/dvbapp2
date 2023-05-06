@@ -10,9 +10,8 @@ from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, eDVBFrontendParametersSatellite, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 import skin
-import six
 
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
+SIGN = u"\u00B0"
 
 TYPE_TEXT = 0
 TYPE_VALUE_HEX = 1
@@ -150,7 +149,7 @@ class ServiceInfo(Screen):
 				if width > 0 and height > 0:
 					resolution = videocodec + " - "
 					resolution += "%dx%d - " % (width, height)
-					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) // 1000)
 					resolution += (" i", " p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 					aspect = aspect in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) and "4:3" or "16:9"
@@ -219,7 +218,7 @@ class ServiceInfo(Screen):
 			if posi > 1800:
 				posi = 3600 - posi
 				EW = "W"
-		return "%s - %s%s%s" % (namespace, (float(posi) / 10.0), SIGN, EW)
+		return "%s - %s%s%s" % (namespace, (float(posi) / 10.0), SIGN, _(EW))
 
 	def getTrackList(self):
 		trackList = []
@@ -271,11 +270,11 @@ class ServiceInfo(Screen):
 					subNumber = "%04X" % (x[1])
 					subList += [(_("DVB Subtitles PID & lang"), "%04X (%d) - %s" % (to_unsigned(subPID), subPID, subLang), TYPE_TEXT)]
 
-				elif x[0] == 1: # Teletext
+				elif x[0] == 1:  # Teletext
 					subNumber = "%x%02x" % (x[3] and x[3] or 8, x[2])
 					subList += [(_("TXT Subtitles page & lang"), "%s - %s" % (subNumber, subLang), TYPE_TEXT)]
 
-				elif x[0] == 2: # File
+				elif x[0] == 2:  # File
 					types = (_("unknown"), _("Embedded"), _("SSA file"), _("ASS file"),
 							_("SRT file"), _("VOB file"), _("PGS file"))
 					try:
@@ -317,8 +316,8 @@ class ServiceInfo(Screen):
 				return (tuner,
 					(_("System & Modulation"), frontendData["system"] + " " + frontendData["modulation"], TYPE_TEXT),
 					(_("Orbital position"), frontendData["orbital_position"], TYPE_VALUE_DEC),
-					(_("Frequency & Polarization"), _("%s MHz") % (frontendData.get("frequency", 0) / 1000) + " - " + frontendData["polarization"], TYPE_TEXT),
-					(_("Symbol rate & FEC"), _("%s KSymb/s") % (frontendData.get("symbol_rate", 0) / 1000) + " - " + frontendData["fec_inner"], TYPE_TEXT),
+					(_("Frequency & Polarization"), _("%s MHz") % (frontendData.get("frequency", 0) // 1000) + " - " + frontendData["polarization"], TYPE_TEXT),
+					(_("Symbol rate & FEC"), _("%s KSymb/s") % (frontendData.get("symbol_rate", 0) // 1000) + " - " + frontendData["fec_inner"], TYPE_TEXT),
 					(_("Inversion, Pilot & Roll-off"), frontendData["inversion"] + " - " + str(frontendData.get("pilot", None)) + " - " + str(frontendData.get("rolloff", None)), TYPE_TEXT),
 					(_("Input Stream ID"), issy(frontendData.get("is_id", 0)), TYPE_VALUE_DEC),
 					(_("PLS Mode"), frontendData.get("pls_mode", None), TYPE_TEXT),
@@ -329,7 +328,7 @@ class ServiceInfo(Screen):
 				return (tuner,
 					(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
 					(_("Frequency"), frontendData.get("frequency", 0), TYPE_VALUE_FREQ_FLOAT),
-					(_("Symbol rate & FEC"), _("%s KSymb/s") % (frontendData.get("symbol_rate", 0) / 1000) + " - " + frontendData["fec_inner"], TYPE_TEXT),
+					(_("Symbol rate & FEC"), _("%s KSymb/s") % (frontendData.get("symbol_rate", 0) // 1000) + " - " + frontendData["fec_inner"], TYPE_TEXT),
 					(_("Inversion"), frontendData["inversion"], TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-T":
 				return (tuner,
@@ -390,15 +389,16 @@ class ServiceInfo(Screen):
 					if provid:
 						extra_info = "provid=%s" % provid
 					else:
-						extra_info = "extra data=%s" % caid[2]
+						extra_info = "extra=%s" % caid[2]
 				from Tools.GetEcmInfo import GetEcmInfo
 				ecmdata = GetEcmInfo().getEcmData()
-				formatstring = "ECMPid %04X (%d) %04X-%s %s"
+				left = "ECMPid %04X (%d)" % (caid[1], caid[1])
+				right = "%04X-%s %s" % (caid[0], CaIdDescription, extra_info)
 				altColor = False
 				if caid[0] == int(ecmdata[1], 16) and (caid[1] == int(ecmdata[3], 16) or str(int(ecmdata[2], 16)) in provid):
-					formatstring = "%s (%s)" % (formatstring, _("active"))
+					right = "%s (%s)" % (right, _("active"))
 					altColor = True
-				tlist.append(ServiceInfoListEntry(formatstring % (caid[1], caid[1], caid[0], CaIdDescription, extra_info)))
+				tlist.append(ServiceInfoListEntry(left, right))
 			if not tlist:
 				tlist.append(ServiceInfoListEntry(_("No ECMPids available")))
 				tlist.append(ServiceInfoListEntry(_("(FTA Service)")))

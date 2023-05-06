@@ -101,6 +101,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 	freeinfo = true;
 	m_exifinfo->Thumnailstate = Thumb;
 
+
 	m_szLastError[0]='\0';
 	ExifImageWidth = MotorolaOrder = SectionsRead=0;
 	memset(&Sections, 0, MAX_SECTIONS * sizeof(Section_t));

@@ -1,6 +1,7 @@
 from __future__ import print_function
 from input import inputChoices
 
+
 class datasource:
 	def __init__(self):
 		self.clear()
@@ -44,6 +45,7 @@ class datasource:
 		if len(transponder.keys()) >= 6:
 			self.transponderlist[satpos].append(transponder)
 
+
 class genericdatasource(datasource):
 	def __init__(self):
 		datasource.__init__(self)
@@ -56,12 +58,12 @@ class genericdatasource(datasource):
 		return [("copy data from one source to another", self.copy), ("merge data from one source into another", self.merge)]
 
 	def copy(self):
-		self.copymerge(action = "copy")
+		self.copymerge(action="copy")
 
 	def merge(self):
-		self.copymerge(action = "merge")
+		self.copymerge(action="merge")
 
-	def copymerge(self, action = "copy"):
+	def copymerge(self, action="copy"):
 		choice = -1
 		while choice is not None:
 			choice = inputChoices(["select source", "select destination", "copy now!"])
@@ -74,7 +76,7 @@ class genericdatasource(datasource):
 			elif choice == 2:
 				self.docopymerge(action)
 
-	def docopymerge(self, action = "copy"):
+	def docopymerge(self, action="copy"):
 		if self.source is None:
 			print("select a source first!")
 		elif self.destination is None:

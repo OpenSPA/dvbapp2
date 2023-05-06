@@ -8,6 +8,7 @@ from Tools.Profile import profile
 from Plugins.Plugin import PluginDescriptor
 import keymapparser
 
+
 class PluginComponent:
 	firstRun = True
 	restartRequired = False
@@ -58,7 +59,7 @@ class PluginComponent:
 						except Exception as exc:
 							print("Plugin ", c + "/" + pluginname, "failed to load:", exc)
 							# supress errors due to missing plugin.py* files (badly removed plugin)
-							for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo'):
+							for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo', 'plugin.so'):
 								if os.path.exists(os.path.join(path, fn)):
 									self.warnings.append((c + "/" + pluginname, str(exc)))
 									from traceback import print_exc
@@ -168,5 +169,6 @@ class PluginComponent:
 		if getPluginIdent:
 			return int(wakeup), pident
 		return int(wakeup)
+
 
 plugins = PluginComponent()
