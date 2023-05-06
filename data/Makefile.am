@@ -55,6 +55,10 @@ if HAVE_COLORLCD220
 SUBDIRS += display220 clock220
 endif
 
+if HAVE_COLORLCD240
+SUBDIRS += display240
+endif
+
 if HAVE_COLORLCD390
 SUBDIRS += display390
 endif
