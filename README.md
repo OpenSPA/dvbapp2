@@ -1,6 +1,6 @@
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 20.04.2 LTS (Kernel 5.4.0) 64 Bit Server OS
+> Ubuntu 22.04.1 LTS (Kernel 5.15.0) 64-bit Server OS
 
 ## minimum hardware requirement : ##
 
@@ -12,13 +12,13 @@
 > 
 > HDD:  for Single Build 250GB Free, for Multibuild 500GB or more
 
-## openSPA 8.2 is build using oe-alliance build-environment and several git repositories: ##
+## openSPA 8.x is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/5.2](https://github.com/oe-alliance/oe-alliance-core/tree/5.2 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/5.3](https://github.com/oe-alliance/oe-alliance-core/tree/5.3 "OE-Alliance")
 > 
-> [https://github.com/openspa/dvbapp2/tree/8.2](https://github.com/openspa/dvbapp2/tree/8.2 "OpenSPA E2")
+> [https://github.com/openspa/dvbapp2/tree/master](https://github.com/openspa/dvbapp2/tree/master "OpenSPA E2")
 > 
-> [https://github.com/openspa/MetrixHD](https://github.com/openspa/MetrixHD/tree/dev "OpenSPA Skin")
+> [https://github.com/openspa/MetrixHD](https://github.com/openspa/MetrixHD/tree/py3 "OpenSPA Skin")
 
 > and a lot more...
 
@@ -69,19 +69,19 @@
     cd ~
 
 ----------
-8 - Create folder openspa8.2
+8 - Create folder openspa8.x
 
-    mkdir -p ~/openspa8.2
+    mkdir -p ~/openspa8.x
 
 ----------
-9 - Switch to folder openspa8.2
+9 - Switch to folder openspa8.x
 
-    cd openspa8.2
+    cd openspa8.x
 
 ----------
 10 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 5.2
+    git clone git://github.com/oe-alliance/build-enviroment.git -b 5.3
 
 ----------
 11 - Switch to folder build-enviroment
