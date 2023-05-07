@@ -516,26 +516,22 @@ class CCcamInfoMain(Screen):
 
 	def readConfig(self):
 		self.url = "http://127.0.0.1:16001"
-
 		username = None
 		password = None
-
 		try:
-			f = open(CFG, 'r')
-			for l in f:
-				l = l.encode().decode()
+			with open(CFG, 'rb') as f:
+				data = f.read()
+			decoded_data = data.decode('utf-8', errors='replace')
+			for l in decoded_data.splitlines():
+				l = l.encode('utf-8', errors='replace').decode('utf-8', errors='replace')
 				if l.startswith('WEBINFO LISTEN PORT :'):
 					port = getConfigValue(l)
 					if port != "":
 						self.url = self.url.replace('16001', port)
-
 				elif l.startswith('WEBINFO USERNAME :'):
 					username = getConfigValue(l)
-
 				elif l.startswith('WEBINFO PASSWORD :'):
 					password = getConfigValue(l)
-
-			f.close()
 		except OSError:
 			pass
 
@@ -544,6 +540,7 @@ class CCcamInfoMain(Screen):
 
 		config.cccaminfo.profile.value = ""
 		config.cccaminfo.profile.save()
+
 
 	def profileSelected(self, url=None):
 		if url is not None:
