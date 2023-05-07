@@ -69,7 +69,7 @@
 		<panel name="RelojAbajo" />
 	</screen>
 	<!-- INFOBAR -->
-	<screen name="InfoBarSummary" position="0,0" size="400,240" backgroundColor="black">
+<screen name="InfoBarSummary" position="0,0" size="400,240" backgroundColor="black">
 		<widget source="session.CurrentService" render="Label" position="4,2" size="342,40" font="VFD; 34" halign="left" transparent="1" valign="center" noWrap="1" foregroundColor="white">
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -77,7 +77,7 @@
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<!-- 150,90 200,120 220,132-->
-		<widget source="session.Event_Now" render="Progress" position="0,161" size="400,16" backgroundColor="verde" foregroundColor="verde" transparent="1" zPosition="2">
+		<widget source="session.Event_Now" render="Progress" position="0,161" size="400,16" foregroundColor="verde" transparent="1" zPosition="2" borderWidth="1" borderColor="verde">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<eLabel name="fondoprogreso" position="0,161" size="400,16" backgroundColor="verdeoscuro" />

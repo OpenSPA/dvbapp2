@@ -48,13 +48,13 @@
   </widget>
 
 <!-- 150,90 200,120 220,132-->
-  <widget source="session.Event_Now" render="Progress" position="142,20" size="245,20" backgroundColor="verde" foregroundColor="verde" transparent="1" zPosition="2">
+  <widget source="session.Event_Now" render="Progress" position="142,20" size="245,20" borderWidth="1" borderColor="verde" foregroundColor="verde" transparent="1" zPosition="2">
     <convert type="EventTime">Progress</convert>
   </widget>
   <eLabel name="fondoprogreso" position="142,20" size="245,20" backgroundColor="verdeoscuro" />
   <widget source="session.Event_Now" render="Label" position="208,41" size="179,44" font="VFD; 40" zPosition="2" halign="right" transparent="1" foregroundColor="verde">
     <convert type="EventTime">Remaining</convert>
-    <convert type="RemainingToText">NoSeconds</convert>
+    <convert type="RemainingToText">VFDNoSeconds</convert>
   </widget>
   <widget source="session.FrontendInfo" render="Pixmap" position="5,106" zPosition="2" size="46,42" pixmap="display/skin_default/vfd_sat.png" alphatest="blend" transparent="0">
     <convert type="FrontendInfo">TYPE</convert>
@@ -149,9 +149,6 @@
       <convert type="StringListSelection" />
     </widget>
     <panel name="RelojAbajo" />
-  </screen>
-
-	<panel name="RelojAbajo" />
   </screen>
   <screen name="ServiceScanSummary" position="0,0" size="400,240" backgroundColor="black">
     <widget name="Title" position="0,0" size="398,44" font="VFD; 33" transparent="1" foregroundColor="azul" text="scan" noWrap="1" />
