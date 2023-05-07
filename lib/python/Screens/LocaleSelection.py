@@ -157,7 +157,7 @@ class LocaleSelection(Screen, HelpableScreen):
 			locales = international.packageToLocales(package)
 			for locale in locales:
 				data = international.splitLocale(locale)
-				if len(locales) > 1 and "%s-%s" % (data[0], data[1].lower()) in international.getAvailablePackages():
+				if len(data) > 1 and "%s-%s" % (data[0], data[1].lower()) in international.getAvailablePackages():  ### OPENSPA [morser] Fix bug
 					continue
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/%s.png" % data[1].lower()))
 				if png is None:
@@ -245,11 +245,13 @@ class LocaleSelection(Screen, HelpableScreen):
 
 	def keySelect(self):
 		current = self["locales"].getCurrent()
-		self.currentLocale = current[self.LIST_LOCALE]
+#		self.currentLocale = current[self.LIST_LOCALE]  # OPENSPA [morser] By text if self.PACK_AVAILABLE, set self.currentLocale after 
 		status = current[self.LIST_STATUS]
 		if status == self.PACK_AVAILABLE:
 			self.keyManage()
+			self.currentLocale = current[self.LIST_LOCALE]
 			return
+		self.currentLocale = current[self.LIST_LOCALE]
 		name = current[self.LIST_NAME]
 		native = current[self.LIST_NATIVE]
 		package = current[self.LIST_PACKAGE]
@@ -312,7 +314,7 @@ class LocaleSelection(Screen, HelpableScreen):
 			permanent = sorted(international.getPermanentLocales(locale))
 			permanent = ", ".join(permanent)
 			self.session.openWithCallback(self.processPurge, MessageBox, _("Do you want to purge all locales/languages except %s?") % permanent, default=False)
-		self.packageDoneTimer.start(50)
+		self.packageDoneTimer.start(75)  # OPENSPA [morser] Add time to activate after install
 
 	def processPurge(self, anwser):
 		if anwser:
@@ -371,6 +373,21 @@ class LocaleSelection(Screen, HelpableScreen):
 		config.misc.languageselected.save()
 		#####################################################
 		international.activateLocale(self.currentLocale, runCallbacks=True)
+		# OPENSPA [morser] Allow to eliminate the rest of the languages in the wizard
+		global inWizard
+		if inWizard:
+			inWizard = False
+			current = self["locales"].getCurrent()
+			locale = current[self.LIST_LOCALE]
+			permanent = sorted(international.getPermanentLocales(locale))
+			permanent = ", ".join(permanent)
+			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to purge all locales/languages except %s?") % permanent, default = False)
+		else:
+			self.close()
+
+	def deletelanguagesCB(self, anwser):
+		if anwser:
+			international.deleteLanguagePackages(international.getPurgablePackages())
 		self.close()
 
 	def keyCancel(self, closeParameters=()):
