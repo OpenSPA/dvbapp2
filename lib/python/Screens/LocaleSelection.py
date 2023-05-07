@@ -3,7 +3,7 @@ from enigma import eTimer
 from Components.ActionMap import HelpableActionMap
 from Components.config import config, ConfigSubsection, ConfigSelection
 from Components.Label import Label
-from Components.International import LANG_NAME, LANG_NATIVE, LANGUAGE_DATA, international
+from Components.International import LANG_NAME, LANG_NATIVE, LANGUAGE_DATA, international, PERMANENT_LOCALES
 from Components.Pixmap import MultiPixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -222,8 +222,13 @@ class LocaleSelection(Screen, HelpableScreen):
 			else:
 				self["description"].text = _("This is the currently selected locale.  [%s]") % detail
 		if package != international.getPackage(self.currentLocale):
-			self["manageActions"].setEnabled(True)
-			self["key_yellow"].text = _("Delete") if status == self.PACK_INSTALLED else _("Install")
+			## OPENSPA [morser] Do not allow removing permanent languages
+			if locale in PERMANENT_LOCALES[:]:
+				self["manageActions"].setEnabled(False)
+				self["key_yellow"].text = ""
+			else:
+				self["manageActions"].setEnabled(True)
+				self["key_yellow"].text = _("Delete") if status == self.PACK_INSTALLED else _("Install")
 		elif international.getPurgablePackages(self.currentLocale):
 			self["manageActions"].setEnabled(True)
 			self["key_yellow"].text = _("Purge")
