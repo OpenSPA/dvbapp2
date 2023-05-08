@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2020-12-25 17:07+0100\n"
+"PO-Revision-Date: 2023-05-01 17:07+0100\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -23303,6 +23303,9 @@ msgstr ""
 msgid "Init Vu+ MultiBoot"
 msgstr ""
 
+msgid "Enable Kexec MultiBoot"
+msgstr ""
+
 msgid "Vu+ MultiBoot Initialisation"
 msgstr ""
 
@@ -23314,6 +23317,46 @@ msgstr ""
 
 msgid "All regions, Spain, (Europe DVB-T/T2)"
 msgstr ""
+
+msgid "Kexec MultiBoot Actions"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Quad9 DNS"
+msgstr ""
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
+msgid "Remove forever"
+msgstr ""
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
+
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 
 msgid "Include international data *"
 msgstr ""

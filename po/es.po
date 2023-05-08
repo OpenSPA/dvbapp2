@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-06 21:28+0200\n"
+"PO-Revision-Date: 2023-05-08 18:52+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -27800,6 +27800,9 @@ msgstr ""
 msgid "Init Vu+ MultiBoot"
 msgstr "Iniciar Multiboot Vu+"
 
+msgid "Enable Kexec MultiBoot"
+msgstr "Habilitar Multiboot Vu+"
+
 msgid "Vu+ MultiBoot Initialisation"
 msgstr "Inicialización MultiBoot Vu+"
 
@@ -27823,6 +27826,56 @@ msgstr ""
 
 msgid "All regions, Spain, (Europe DVB-T/T2)"
 msgstr "Todas las regiones, España, (Europa DVB-T/T2)"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "MultiBoot Vu+"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr "Inicialización Multiboot Vu+ - re reiniciará después de 10 segundos."
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Inicialización Multiboot Vu+ en progreso\n"
+"\n"
+"Se reiniciará después de restaurar cualquier slot eMMC\n"
+"Esto puede durar de 1 a 5 min por slot."
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Administrador de MultiBoot Vu+"
+
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"¿Borrar realmente de forma permanente los archivos MultiBoot?\n"
+"%s"
+
+msgid "Remove forever"
+msgstr "Eliminar para siempre"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr "No se ha podido completar - ¡Faltan archivos Kexec Multiboot!"
+
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Pulsa botón verde para activar Multiboot\n"
+"\n"
+"Se reiniciará en 10 segundos,\n"
+"a no ser que tengas slots eMMC a restaurar.\n"
+"Restaurar slots eMMC puede durar entre 1 y 5 minutos por slot."
 
 msgid "Include international data *"
 msgstr "Incluir datos de idiomas"

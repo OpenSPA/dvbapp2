@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-06 21:34+0200\n"
+"PO-Revision-Date: 2023-05-08 14:33+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -7845,6 +7845,10 @@ msgstr "Activar IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Activar l'esvaïment de la barra d'informació"
 
+#
+msgid "Enable Kexec MultiBoot"
+msgstr "Activar MultiBoot Vu+"
+
 msgid "Enable MHW EPG"
 msgstr "Activa  MHW EPG"
 
@@ -8017,6 +8021,13 @@ msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 "Activar aquesta opció per afegir dades extra d'EPG a l'arxiu del log de "
 "depuració."
+
+msgid ""
+"Enable this option to add international language and country load "
+"information detected during system boot to the debug log file."
+msgstr ""
+"Activar aquesta opció per afegir informació de càrrega d'idioma i país "
+"durant l'arrencada del sistema a l'arxiu del log de depuració."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr ""
@@ -10693,6 +10704,9 @@ msgstr "Incloeu SDT, BAT als streams http"
 msgid "Include action map data"
 msgstr "Incloure dades mapatge"
 
+msgid "Include international data *"
+msgstr "Incloure dades d'idioma *"
+
 #
 msgid "Include keyboard data"
 msgstr "Incloure dades teclat"
@@ -11222,6 +11236,22 @@ msgstr "Arxiu de kernel"
 
 msgid "Kernel version"
 msgstr "Versió de kernel"
+
+msgid "Kexec MultiBoot Actions"
+msgstr "MultiBoot Vu+"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Administrador MultiBoot Vu+"
 
 msgid "Key"
 msgstr "Clau"
@@ -15001,6 +15031,14 @@ msgstr ""
 msgid "Press EXIT to return to the help screen."
 msgstr "Prem EXIT per a retornar a la pantalla d'ajuda."
 
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
@@ -15359,6 +15397,9 @@ msgstr ""
 msgid "Quad PiP is not available."
 msgstr ""
 
+msgid "Quad9 DNS"
+msgstr ""
+
 msgid "Quechua"
 msgstr ""
 
@@ -15536,6 +15577,12 @@ msgstr "Esborrar realmente aquesta entrada?"
 #
 msgid "Really exit the subservices quickzap?"
 msgstr "Sortir del zappeig ràpid dels subserveis?"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
 
 msgid "Really reboot into Recovery Mode?"
 msgstr ""
@@ -15954,6 +16001,10 @@ msgstr ""
 #
 msgid "Remove currently selected title"
 msgstr "Esborra el títol seleccionat"
+
+#
+msgid "Remove forever"
+msgstr "Eliminar per sempre"
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -16652,36 +16703,36 @@ msgid "Save / Enter text and exit"
 msgstr "Guardar / Introduir text i sortir"
 
 msgid "Save EPG"
-msgstr ""
+msgstr "Guardar EPG"
 
 msgid "Save EPG data"
-msgstr ""
+msgstr "Guardar dades d'EPG"
 
 #
 msgid "Save all changed settings and exit"
 msgstr "Guardar totes les configuracions canviades i sortir"
 
 msgid "Save all changed tags and exit"
-msgstr ""
+msgstr "Guardar totes les etiquetes canviades i sortir"
 
 msgid "Save and record"
-msgstr ""
+msgstr "Guardar i gravar"
 
 msgid "Save and stop"
-msgstr ""
+msgstr "Guardar i parar"
 
 msgid "Save directory on EXIT"
-msgstr ""
+msgstr "Guardar directori en sortir"
 
 msgid "Save every (in hours)"
-msgstr ""
+msgstr "Guardar cada (en hores)"
 
 #, python-format
 msgid "Save image as '%s'"
-msgstr ""
+msgstr "Guardar imatge com '%s'"
 
 msgid "Save left directory on exit"
-msgstr ""
+msgstr "Guardar directori esquerre en sortir"
 
 #
 msgid "Save play list"
@@ -16689,10 +16740,10 @@ msgstr "Grava llista"
 
 #
 msgid "Save play list on EXIT"
-msgstr ""
+msgstr "Guardar llista de reproducció en sortir"
 
 msgid "Save right directory on exit"
-msgstr ""
+msgstr "Guardar directori dret en sortir"
 
 msgid "Save settings and EPG data."
 msgstr "Guardar la configuració i les dades d’EPG."
@@ -22566,6 +22617,9 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
+
 msgid "Unattended upgrade without GUI"
 msgstr ""
 
@@ -24629,15 +24683,15 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s is rebooting"
-msgstr ""
+msgstr "El teu %s %s s'està reiniciant"
 
 #, python-format
 msgid "Your %s %s is rebooting into Recovery Mode"
-msgstr ""
+msgstr "El vostre %s %s s'està reiniciant al mode de recuperació"
 
 #, python-format
 msgid "Your %s %s is shutting down"
-msgstr ""
+msgstr "El teu %s %s s'està apagant"
 
 #
 msgid "Your %s %s is shutting down. Please wait..."
@@ -27050,13 +27104,3 @@ msgstr ""
 
 msgid "All regions, Spain, (Europe DVB-T/T2)"
 msgstr ""
-
-msgid "Include international data *"
-msgstr "Incloure dades d'idioma *"
-
-msgid ""
-"Enable this option to add international language and country load "
-"information detected during system boot to the debug log file."
-msgstr ""
-"Activar aquesta opció per afegir informació de càrrega d'idioma i país "
-"durant l'arrencada del sistema a l'arxiu del log de depuració."
