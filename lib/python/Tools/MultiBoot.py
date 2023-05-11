@@ -28,11 +28,9 @@ STARTUP_ANDROID = "STARTUP_ANDROID"
 STARTUP_ANDROID_LINUXSE = "STARTUP_ANDROID_LINUXSE"
 STARTUP_RECOVERY = "STARTUP_RECOVERY"
 STARTUP_BOXMODE = "BOXMODE"  # This is known as bootCode in this code.
-
 BOOT_DEVICE_LIST = ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions")
 BOOT_DEVICE_LIST_VUPLUS = ("/dev/mmcblk0p4", "/dev/mmcblk0p7", "/dev/mmcblk0p9")  # Kexec kernel Vu+ MultiBoot.
 
-VUUUIDSLOT = None
 
 # STARTUP
 # STARTUP_LINUX_1_BOXMODE_1
@@ -122,7 +120,6 @@ class MultiBootClass():
 		return bootDevice, startupCmdLine
 
 	def loadBootSlots(self):
-		global VUUUIDSLOT
 		def saveKernel(bootSlots, slotCode, kernel):
 			value = bootSlots[slotCode].get("kernel")
 			if value is None:
@@ -374,6 +371,12 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagelogname"] = "Android Linux SE"
 				self.imageList[self.slotCode]["status"] = "androidlinuxse"
 				self.findSlot()
+			elif self.slotCode == "R" and fileHas("/proc/cmdline", "kexec=1"):
+				self.imageList[self.slotCode]["detection"] = "Found a Root Image slot"
+				self.imageList[self.slotCode]["imagename"] = _("Root Image")
+				self.imageList[self.slotCode]["imagelogname"] = "Root Image"
+				self.imageList[self.slotCode]["status"] = "rootimage"
+				self.findSlot()
 			elif self.slotCode == "R":
 				self.imageList[self.slotCode]["detection"] = "Found a Recovery slot"
 				self.imageList[self.slotCode]["imagename"] = _("Recovery")
@@ -454,44 +457,6 @@ class MultiBootClass():
 			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.finishSlot)
 		else:
 			self.findSlot()
-
-	##### OPENSPA [morser] Create Vu+ Kexec USb slots #####################
-	def KexecUSBslots(self, boxmodel, device_uuid):
-		tempDir = mkdtemp(prefix=PREFIX)
-		Console().ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
-		for usbslot in range(4,8):
-			STARTUP_usbslot = "kernel=%s/linuxrootfs%d/zImage root=%s rootsubdir=%s/linuxrootfs%d" % (boxmodel, usbslot, device_uuid, boxmodel, usbslot) # /STARTUP_<n>
-			if boxmodel in ("duo4k"):
-				STARTUP_usbslot += " rootwait=40"
-			elif boxmodel in ("duo4kse"):
-				STARTUP_usbslot += " rootwait=35"
-			print("[MultiBoot] STARTUP_%d --> %s, self.tmp_dir: %s" % (usbslot, STARTUP_usbslot, tempDir))
-			with open("/%s/STARTUP_%d" % (tempDir, usbslot), 'w') as f:
-				f.write(STARTUP_usbslot)
-		Console().ePopen([UMOUNT, UMOUNT, tempDir])
-		rmdir(tempDir)
-
-#		session.open(TryQuitMainloop, QUIT_RESTART)
-		
-	def KexecUSBmoreSlots(self, boxmodel, hiKey):
-		tempDir = mkdtemp(prefix=PREFIX)
-		Console().ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
-		for usbslot in range(hiKey+1, hiKey+5):
-			STARTUP_usbslot = "kernel=%s/linuxrootfs%d/zImage root=%s rootsubdir=%s/linuxrootfs%d" % (boxmodel, usbslot, VUUUIDSLOT[0], boxmodel, usbslot) # /STARTUP_<n>
-			if boxmodel in ("duo4k"):
-				STARTUP_usbslot += " rootwait=40"
-			elif boxmodel in ("duo4kse"):
-				STARTUP_usbslot += " rootwait=35"
-			with open("/%s/STARTUP_%d" % (tempDir, usbslot), 'w') as f:
-				f.write(STARTUP_usbslot)
-			print("[MultiBoot] STARTUP_%d --> %s, self.tmp_dir: %s" % (usbslot, STARTUP_usbslot, tempDir))
-		Console().ePopen([UMOUNT, UMOUNT, tempDir])
-		rmdir(tempDir)
-
-#		session.open(TryQuitMainloop, QUIT_RESTART)
-	
-	############################################################################
-
 
 	def finishSlot(self, data, retVal, extraArgs):  # Part of getSlotImageList().
 		if retVal:
@@ -685,7 +650,7 @@ class MultiBootClass():
 		else:
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
 			imageDir = pathjoin(self.tempDir, rootDir) if rootDir else self.tempDir
-			if self.bootSlots[self.slotCode].get("ubi", False):
+			if self.bootSlots[self.slotCode].get("ubi", False) or fileHas("/proc/cmdline", "kexec=1"):
 				try:
 					if isfile(pathjoin(imageDir, "usr/bin/enigma2")):
 						self.console.ePopen([REMOVE, REMOVE, "-rf", imageDir])

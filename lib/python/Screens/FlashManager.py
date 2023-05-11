@@ -1,5 +1,5 @@
 from json import load
-from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk, system, remove
+from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk
 from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join
 from shutil import rmtree
 from time import time
@@ -130,7 +130,7 @@ class FlashManager(Screen, HelpableScreen):
 
 		def getImagesListCallback(retVal=None):  # The retVal argument absorbs the unwanted return value from MessageBox.
 			if self.imageFeed != "OpenSPA":  #### OPENSPA [morser] Set default feed: openspa
-				self.keyDistributionCallback("OpenSPA")  # No images can be found for the selected distribution so go back to the openATV default.
+				self.keyDistributionCallback("OpenSPA")  # No images can be found for the selected distribution so go back to the openSPA default.
 
 		if not self.imagesList:
 			index = findInList(self.imageFeed)
@@ -441,6 +441,8 @@ class FlashImage(Screen, HelpableScreen):
 							self.startBackupSettings(choice)
 						else:
 							self.session.openWithCallback(self.startBackupSettings, MessageBox, _("Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."), windowTitle=self.getTitle())
+					if isDevice or "no_backup" == choice:
+						self.startBackupSettings(choice)
 					else:
 						self.startDownload() #OPENSPA [morser] ignore backup with spanewfirm
 				except OSError as err:
@@ -667,23 +669,13 @@ class FlashImage(Screen, HelpableScreen):
 			bootSlots = MultiBoot.getBootSlots()
 			if bootSlots:
 				mtdKernel = bootSlots[self.slotCode]["kernel"] if BoxInfo.getItem("HasKexecMultiboot") else bootSlots[self.slotCode]["kernel"].split(sep)[2]
-				mtdKernel = mtdKernel[1] if len(mtdKernel)<3 else mtdKernel[2]  ### OPENSPA [morser] Fix por Kexec Multiboot. Flash in recovery
 				mtdRootFS = bootSlots[self.slotCode]["device"] if bootSlots[self.slotCode].get("ubi") else bootSlots[self.slotCode]["device"].split(sep)[2]
 				if MultiBoot.hasRootSubdir(self.slotCode):
 					rootSubDir = bootSlots[self.slotCode]["rootsubdir"]
 			else:
 				mtdKernel = BoxInfo.getItem("mtdkernel")
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
-			#### OPENSPA [morser] for Vu+ Kexec, flash imagen in USB ################
-			if BoxInfo.getItem("HasKexecMultiboot") and "mmcblk" not in mtdRootFS:
-				cmdArgs = ["-r%s" % mtdRootFS, "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:], "-m%s" % self.slotCode]
-			elif BoxInfo.getItem("HasKexecMultiboot") and self.slotCode == "R":
-				system("umount /proc/cmdline")
-				rootfs = BoxInfo.getItem("mtdrootfs")
-				kernel = BoxInfo.getItem("mtdkernel")
-				cmdArgs = ["-r%s" % rootfs, "-k%s" % kernel]
-			#########################################################################
-			elif MultiBoot.canMultiBoot():  # Receiver with SD card MultiBoot if (rootSubDir) is None.
+			if MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-rmmcblk0p1"]
@@ -691,6 +683,9 @@ class FlashImage(Screen, HelpableScreen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel]
 			elif mtdKernel == mtdRootFS:  # Receiver with kernel and rootfs on one partition.
 				cmdArgs = ["-r"]
+			elif BoxInfo.getItem("HasKexecMultiboot") and self.slotCode == "R":  # Kexec Root Image.
+				cmdArgs = ["-r", "-k", "-f"]
+				Console().ePopen("umount /proc/cmdline")
 			else:  # Normal non MultiBoot receiver.
 				cmdArgs = ["-r", "-k"]
 			self.containerOFGWrite = Console()
