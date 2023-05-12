@@ -441,8 +441,6 @@ class FlashImage(Screen, HelpableScreen):
 							self.startBackupSettings(choice)
 						else:
 							self.session.openWithCallback(self.startBackupSettings, MessageBox, _("Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."), windowTitle=self.getTitle())
-					if isDevice or "no_backup" == choice:
-						self.startBackupSettings(choice)
 					else:
 						self.startDownload() #OPENSPA [morser] ignore backup with spanewfirm
 				except OSError as err:
@@ -592,6 +590,7 @@ class FlashImage(Screen, HelpableScreen):
 			remove(self.zippedImage)
 			self.DownloadFile()
 		else:
+			self.show()
 			self.unzip()
 
 	####################################################################################
