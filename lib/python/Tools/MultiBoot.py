@@ -601,7 +601,7 @@ class MultiBootClass():
 		else:
 			bootSlot = self.bootSlots[self.slotCode]
 			startup = bootSlot["startupfile"][self.bootCode]
-			target = STARTUP_ONCE if startup == STARTUP_RECOVERY else STARTUP_FILE
+			target = STARTUP_ONCE if startup == STARTUP_RECOVERY and not fileHas("/proc/cmdline", "kexec=1") else STARTUP_FILE
 			##### OPENSPA [morser] change for h7 & hd51 Boxmodes ###############
 			if self.bootCode == "12" and "BOXMODE" not in startup:
 				open(pathjoin(self.tempDir, target), "w").write(bootSlot["cmdline"]["12"])
