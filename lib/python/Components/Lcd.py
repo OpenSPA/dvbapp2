@@ -491,7 +491,7 @@ def InitLcd():
 		from datetime import datetime
 		ntime=datetime.now()
 		# 8 digit
-		if getBoxType() in ('formuler1', 'osminiplus'):
+		if MACHINEBUILD in ('formuler1', 'osminiplus'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M", choices = [
 				("OFF","Off"),
 				("%H:%M",str(ntime.strftime(_("%H:%M")))),
@@ -501,7 +501,7 @@ def InitLcd():
 				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		#12 digit
-		elif getBoxType() in ('vusolo2', 'osmega'):
+		elif MACHINEBUILD in ('vusolo2', 'osmega'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m", choices = [
 				("OFF","Off"),
 				("%H:%M",str(ntime.strftime(_("%H:%M")))),
@@ -518,7 +518,7 @@ def InitLcd():
 				("A%H:%M %a %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %a %d/%m/%y"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		#16 digit
-		elif getBoxType() in ('sf3038', 'sf4008','mutant51'):
+		elif MACHINEBUILD in ('sf3038', 'sf4008','mutant51'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m/%Y", choices = [
 				("OFF","Off"),
 				("%H:%M",str(ntime.strftime(_("%H:%M")))),
