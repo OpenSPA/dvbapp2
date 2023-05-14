@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-08 18:52+0200\n"
+"PO-Revision-Date: 2023-05-14 13:59+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -2829,7 +2829,7 @@ msgstr "¿Seguro que quiere eliminar todos los cortes y marcadores?"
 
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr ""
-"¿Estás seguro de eliminar definitivamente los grupos de usuario eliminados?"
+"¿Estás seguro de eliminar definitivamente las listas de usuario eliminadas?"
 
 #, python-format
 msgid "Are you sure to remove all %d.%d%s%s services?"
@@ -7301,7 +7301,7 @@ msgstr "¿Desea producir esta colección?"
 
 #, python-format
 msgid "Do you want to purge all locales/languages except %s?"
-msgstr "¿Desea purgar todas las regiones/idiomas excepto %s?"
+msgstr "¿Desea eliminar todas las regiones/idiomas excepto %s?"
 
 #
 #, python-format
@@ -15369,19 +15369,20 @@ msgstr "Vaciar 'Papelera' después de (días)"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
-"Purgar todo menos / Añadir / Borrar el idioma regional actualmente resaltado"
+"Limpiar todo menos / Añadir / Borrar el idioma/región actualmente "
+"seleccionado"
 
 msgid ""
 "Purge all but the current and permanent locales/languages.  Add the current "
 "locale/language if it is not installed.  Delete the current locale/language "
 "if it is installed."
 msgstr ""
-"Purgar todos excepto los actuales y permanentes idiomas regionales.  Añadir "
-"el actual idioma regional si no está instalado.  Eliminar el actual idioma "
-"regional si está instalado."
+"Limpiar todo excepto los idiomas/regiones actuales y permanentes.  Añadir el "
+"actual idioma /región si no está instalado.  Eliminar el actual idioma/"
+"región si está instalado."
 
 msgid "Purging all unused locales/languages..."
-msgstr "Purgar todos las localizaciones/idiomas no utilizados..."
+msgstr "Limpiar todos los idiomas/regiones no utilizados..."
 
 msgid "Pushto / Pashto"
 msgstr "Pushto / Pashto"
@@ -26724,7 +26725,7 @@ msgid "provider:"
 msgstr "Proveedor:"
 
 msgid "purge deleted user bouquets"
-msgstr "Borrar definitivamente grupos eliminados"
+msgstr "Limpiar listas de usuario eliminadas"
 
 #
 msgid "red"
