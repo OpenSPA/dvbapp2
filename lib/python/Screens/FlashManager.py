@@ -1,5 +1,5 @@
 from json import load
-from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk
+from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk, remove
 from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join
 from shutil import rmtree
 from time import time
@@ -674,7 +674,11 @@ class FlashImage(Screen, HelpableScreen):
 			else:
 				mtdKernel = BoxInfo.getItem("mtdkernel")
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
-			if MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
+			#### OPENSPA [morser] for Kexec, flash imagen in USB ################
+			if BoxInfo.getItem("HasKexecMultiboot") and "mmcblk" not in mtdRootFS:
+				cmdArgs = ["-r%s" % mtdRootFS, "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:], "-m%s" % self.slotCode]
+			#########################################################################
+			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-rmmcblk0p1"]

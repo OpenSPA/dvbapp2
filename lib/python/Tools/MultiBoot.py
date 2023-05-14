@@ -427,11 +427,12 @@ class MultiBootClass():
 				info = self.readSlotInfo(infoFile)
 				compileDate = str(info.get("compiledate"))
 				revision = info.get("imgrevision")
-				revision = ".%03d" % revision if (info.get("distro") == "openvix" or info.get("distro").lower() == "openspa") and isinstance(revision, int) else " %s" % revision  ###### OPENSPA [morser] Add openspa data extraction
+				revision = ".%03d" % revision if info.get("distro") == "openvix" and isinstance(revision, int) else " %s" % revision
 				revision = "" if revision.strip() == compileDate else revision
 				compileDate = "%s-%s-%s" % (compileDate[0:4], compileDate[4:6], compileDate[6:8])
 				###### OPENSPA [morser] Add openspa beta data extraction ###############
 				if info.get("distro").lower() == "openspa":
+					revision = ".%s" % info.get("imgrevision") if isinstance(info.get("imgrevision"),str) else revision
 					dev = info.get("feedsurl")
 					if "beta" in dev:
 						revision += " BETA"
@@ -458,6 +459,38 @@ class MultiBootClass():
 		else:
 			self.findSlot()
 
+	##### OPENSPA [morser] Create Vu+ Kexec USb slots #####################
+	def KexecUSBslots(self, boxmodel, device_uuid):
+		tempDir = mkdtemp(prefix=PREFIX)
+		self.console.ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
+		for usbslot in range(4,8):
+			STARTUP_usbslot = "kernel=%s/linuxrootfs%d/zImage root=%s rootsubdir=%s/linuxrootfs%d" % (boxmodel, usbslot, device_uuid, boxmodel, usbslot) # /STARTUP_<n>
+			if boxmodel in ("duo4k"):
+				STARTUP_usbslot += " rootwait=40"
+			elif boxmodel in ("duo4kse"):
+				STARTUP_usbslot += " rootwait=35"
+			print("[MultiBoot] STARTUP_%d --> %s, self.tmp_dir: %s" % (usbslot, STARTUP_usbslot, tempDir))
+			with open("/%s/STARTUP_%d" % (tempDir, usbslot), 'w') as f:
+				f.write(STARTUP_usbslot)
+		self.console.ePopen([UMOUNT, UMOUNT, tempDir])
+		rmdir(tempDir)
+
+	def KexecUSBmoreSlots(self, boxmodel, hiKey, uuid):
+		tempDir = mkdtemp(prefix=PREFIX)
+		self.console.ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
+		for usbslot in range(hiKey+1, hiKey+5):
+			STARTUP_usbslot = "kernel=%s/linuxrootfs%d/zImage root=%s rootsubdir=%s/linuxrootfs%d" % (boxmodel, usbslot, uuid, boxmodel, usbslot) # /STARTUP_<n>
+			if boxmodel in ("duo4k"):
+				STARTUP_usbslot += " rootwait=40"
+			elif boxmodel in ("duo4kse"):
+				STARTUP_usbslot += " rootwait=35"
+			with open("/%s/STARTUP_%d" % (tempDir, usbslot), 'w') as f:
+				f.write(STARTUP_usbslot)
+			print("[MultiBoot] STARTUP_%d --> %s, self.tmp_dir: %s" % (usbslot, STARTUP_usbslot, tempDir))
+		self.console.ePopen([UMOUNT, UMOUNT, tempDir])
+		rmdir(tempDir)
+
+	############################################################################
 	def finishSlot(self, data, retVal, extraArgs):  # Part of getSlotImageList().
 		if retVal:
 			print("[MultiBoot] finishSlot Error %d: Unable to unmount slot '%s' (%s)!" % (retVal, self.slotCode, self.device))

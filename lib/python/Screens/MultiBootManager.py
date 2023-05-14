@@ -11,6 +11,23 @@ from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileExists, pathExists
 from Tools.MultiBoot import MultiBoot
 
+### OPENSPA [morser] prepare for kexec usb slots ####################
+from Components.Harddisk import harddiskmanager, Harddisk
+from Components.Console import Console
+from Components.SystemInfo import BoxInfo
+#####################################################################
+
+##### OPENSPA [morser] Add best sorted function ###############
+def best_sort(elem):
+	if elem.isdigit():
+		x = int(elem)
+	elif elem=="R":
+		x = 0
+	else:
+		x = 1000
+	return x
+###############################################################
+
 class MultiBootManager(Screen, HelpableScreen):
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
 	# 	See Components/ChoiceList.py to see the hard coded defaults for which this embedded screen has been designed.
@@ -81,16 +98,6 @@ class MultiBootManager(Screen, HelpableScreen):
 		MultiBoot.getSlotImageList(self.getSlotImageListCallback)
 
 	def getSlotImageListCallback(self, slotImages):
-		##### OPENSPA [morser] Add best sorted function ###############
-		def best_sort(elem):
-			if elem.isdigit():
-				x = int(elem)
-			elif elem=="R":
-				x = 0
-			else:
-				x = 1000
-			return x
-		################################################################
 		imageList = []
 		if slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
@@ -254,15 +261,122 @@ class KexecInit(Screen):
 		self.skinName = ["KexecInit", "Setup"]
 		self.setTitle(_("Kexec MultiBoot Manager"))
 		self.kexec_files = fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz")
-		self["description"] = Label(_("Press Green key to enable MultiBoot!\n\nWill reboot within 10 seconds,\nunless you have eMMC slots to restore.\nRestoring eMMC slots can take from 1 -> 5 minutes per slot."))
+		self.kexec_installed = fileExists("/STARTUP.cpio.gz") and fileExists("/STARTUP")
+		self.hdd, self.usb = self.getHDD()
+		txtgreen = self.kexec_files and _("Enable") or ""
+		txtdes = _("Press Green key to enable MultiBoot!\n\nWill reboot within 10 seconds,\nunless you have eMMC slots to restore.\nRestoring eMMC slots can take from 1 -> 5 minutes per slot.")
+		self.txt = _("The Kexec Multiboot is Disabled")
+		if self.kexec_installed:
+			txtgreen = self.usb and _("Add Extra USB slot") or ""
+			txtdes = _("Press Green key to add more slots in USB\n\nWill reboot within 10 seconds.")
+			self.txt = _("The Kexec Multiboot is Enabled")
+			self.txt += "\n"
+			self.txt +=_("You have 4 slots in the flash")
+			if int(self.hiKey)>4:
+				self.txt +="\n"
+				self.txt +=_("You have %d slots in a usb device") % (int(self.hiKey)-3)
+		self["description"] = Label(txtdes)
+		self["config"] = Label(self.txt)
 		self["key_red"] = StaticText(self.kexec_files and _("Remove forever") or "")
-		self["key_green"] = StaticText(_("Init"))
+		self["key_green"] = StaticText(txtgreen)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
-			"green": self.RootInit,
+			"green": self.keyGreen,
 			"ok": self.close,
-			"exit": self.close,
+			"cancel": self.close,
 			"red": self.removeFiles,
 		}, prio=-1, description=_("Kexec MultiBoot Actions"))
+
+		self.callLater(self.getImages)
+
+	def getImages(self):
+		if self.kexec_installed:
+			MultiBoot.getSlotImageList(self.getSlotImageListCallback)
+
+	def getSlotImageListCallback(self, slotImages):
+		slotImageList = sorted(slotImages.keys(), key = best_sort)
+		self.txt += "\n\n"
+		for slot in slotImageList:
+			typeslot = "eMMC" if "mmcblk" in slotImages[slot]["device"] else "USB      "
+			slotx = "'%s' -" % slot
+			imagename = slotImages[slot]["imagename"]
+			if "root" in imagename.lower() and fileExists("/STARTUP.cpio.gz"):
+				date = "%s-%s-%s" % (BoxInfo.getItem("compiledate")[:4],BoxInfo.getItem("compiledate")[4:6],BoxInfo.getItem("compiledate")[-2:])
+				revision = BoxInfo.getItem("imgrevision")
+				revision = ".%03d" % revision if BoxInfo.getItem("distro") == "openvix" and isinstance(revision, int) else " %s" % revision
+				if BoxInfo.getItem("distro").lower() == "openspa":
+					revision = ".%s" % BoxInfo.getItem("imgrevision") if isinstance(BoxInfo.getItem("imgrevision"),str) else revision
+					dev = BoxInfo.getItem("feedsurl")
+					if "beta" in dev:
+						revision += " BETA"
+				imagename = imagename + "   -   %s %s%s (%s)" % (BoxInfo.getItem("displaydistro", BoxInfo.getItem("distro")), BoxInfo.getItem("imgversion"), revision, date)
+			self.txt += "{:<6}:    Slot  {:>4}   -   {}\n".format(typeslot,slot,imagename)
+
+		self["config"].setText(self.txt)
+
+	def getHDD(self):
+		usblist = [(hdd.device,not hdd.idle_running) for hdd in harddiskmanager.hdd]
+		n = 0
+		self.hiKey = ""
+		while not self.hiKey.isdigit():
+			self.hiKey = sorted(BoxInfo.getItem("canMultiBoot").keys(), key = best_sort, reverse=True)[n]
+			n+=1
+
+		hdd = []
+		with open("/proc/mounts", "r") as fd:
+			xlines = fd.readlines()
+			for hddkey in range(len(usblist)):
+				if usblist[hddkey][1]:
+					for xline in xlines:
+						if xline.find(usblist[hddkey][0]) != -1 and "ext4" in xline:
+							index = xline.find(usblist[hddkey][0])
+							hdd.append(xline[index:index+4])
+						else:
+							continue
+		if not hdd:
+			return None, None
+		else:
+			return hdd, hdd[0][0:3]
+
+	def keyGreen(self):
+		if self.kexec_files:
+			self.RootInit()
+		elif int(self.hiKey) == 3 and self.usb:
+			self.KexecUSB()
+		elif int(self.hiKey)>3 and self.usb:
+			self.session.openWithCallback(self.addMoreSlots, MessageBox, _("Add 4 more Multiboot USB slots after slot %s ?") % self.hiKey, MessageBox.TYPE_YESNO, timeout=30)
+
+	def addMoreSlots(self, answer):
+		hiKey = int(self.hiKey)
+		if answer is False:
+			self.close()
+		else:
+			boxmodel = BoxInfo.getItem("model")[2:]
+			data = open("/STARTUP_4","r").read()
+			try:
+				uuid = data.split()[1].replace("root=","")
+			except:
+				uuid = None
+			if uuid:
+				MultiBoot.KexecUSBmoreSlots(boxmodel, hiKey, uuid)
+				self.session.open(TryQuitMainloop, 2)
+			else:
+				print("[KexecInit] Error in uuid")
+
+	def KexecUSB(self):
+		free = Harddisk(self.usb).free()
+		print("[KexecInit] USB free space", free)
+		if free < 1024:
+			des = str(round((float(free)), 2)) + _("MB")
+			print("[KexecInit][add USB STARTUP slot] limited free space", des)
+			self.session.open(MessageBox, _("[KexecInit][add USB STARTUP slots] - The USB (%s) only has %s free. At least 1024MB is required.") % (self.usb, des), MessageBox.TYPE_INFO, timeout=30)
+			return
+		Console().ePopen("/sbin/blkid | grep " + "/dev/" + self.hdd[0], self.KexecMountRet)
+
+	def KexecMountRet(self, result=None, retval=None, extra_args=None):
+		device_uuid = "UUID=" + result.split("UUID=")[1].split(" ")[0].replace('"', '')
+		boxmodel = BoxInfo.getItem("model")[2:]
+		MultiBoot.KexecUSBslots(boxmodel, device_uuid)
+		self.session.open(TryQuitMainloop, 2)
 
 	def RootInit(self):
 		self["actions"].setEnabled(False)  # This function takes time so disable the ActionMap to avoid responding to multiple button presses
