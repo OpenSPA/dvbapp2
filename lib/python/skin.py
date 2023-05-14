@@ -8,20 +8,20 @@ from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
+from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1].capitalize()
 
-########## OPENSPA [morser] Add Systeminfo for detect resolution & set default skin ##############
-from Components.SystemInfo import SystemInfo
-
-if SystemInfo["HasFullHDSkinSupport"]:
-	DEFAULT_SKIN = "OpenStarHD/skin.xml"
+if fileExists(resolveFilename(SCOPE_SKINS, 'menuspa.xml')):
+	if BoxInfo.getItem("HasFullHDSkinSupport"):
+		DEFAULT_SKIN = "OpenStarHD/skin.xml"
+	else:
+		DEFAULT_SKIN = "MetrixJRSD/skin.xml"
 else:
-	DEFAULT_SKIN = "MetrixJRSD/skin.xml"
-##################################################################################################
+	DEFAULT_SKIN = "MetrixHD/skin.xml"
+
 EMERGENCY_SKIN = "skin_default.xml"
 EMERGENCY_NAME = "Default OE-A"
 DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if BoxInfo.getItem("grautec") else "skin_display.xml"
