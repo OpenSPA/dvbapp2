@@ -32,6 +32,7 @@ def InitParentalControl():
 	config.ParentalControl.age = ConfigSelection(default="18", choices=[("0", _("No age block"))] + list((str(x), "%d+" % x) for x in list(range(3, 19))))
 	config.ParentalControl.hideBlacklist = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections = ConfigSubsection()
+	config.ParentalControl.config_sections.spzmenu = ConfigYesNo(default=False)  ### OPENSPA [morser] Add Protect spzMenu
 	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections.configuration = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default=False)

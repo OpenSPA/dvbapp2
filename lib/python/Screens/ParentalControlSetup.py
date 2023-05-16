@@ -7,6 +7,7 @@ from Screens.MessageBox import MessageBox
 from Screens.InputBox import PinInput
 from Screens.ChannelSelection import service_types_tv
 from Tools.BoundFunction import boundFunction
+from Tools.Directories import isPluginInstalled
 from enigma import eServiceCenter, eTimer, eServiceReference
 from operator import itemgetter
 
@@ -76,6 +77,10 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 			if not self.changePin:
 				self.changePin = getConfigListEntry(_("Change PIN"), NoSave(ConfigNothing()))
 				self.list.append(self.changePin)
+			### OPENSPA [morser] Add Protect spzMenu
+			if isPluginInstalled("spazeMenu"):
+				self.list.append(getConfigListEntry(_("Protect spzMenu (OpenSPA Main Menu)"), config.ParentalControl.config_sections.spzmenu))
+			########################################
 			self.list.append(getConfigListEntry(_("Protect main menu"), config.ParentalControl.config_sections.main_menu))
 			if not config.ParentalControl.config_sections.main_menu.value:
 				self.list.append(getConfigListEntry(_("Protect timer menu"), config.ParentalControl.config_sections.timer_menu))
