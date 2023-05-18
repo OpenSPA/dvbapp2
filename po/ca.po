@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-14 14:22+0200\n"
+"PO-Revision-Date: 2023-05-17 21:06+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -7845,10 +7845,6 @@ msgstr "Activar IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Activar l'esvaïment de la barra d'informació"
 
-#
-msgid "Enable Kexec MultiBoot"
-msgstr "Activar MultiBoot Vu+"
-
 msgid "Enable MHW EPG"
 msgstr "Activa  MHW EPG"
 
@@ -8021,13 +8017,6 @@ msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 "Activar aquesta opció per afegir dades extra d'EPG a l'arxiu del log de "
 "depuració."
-
-msgid ""
-"Enable this option to add international language and country load "
-"information detected during system boot to the debug log file."
-msgstr ""
-"Activar aquesta opció per afegir informació de càrrega d'idioma i país "
-"durant l'arrencada del sistema a l'arxiu del log de depuració."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr ""
@@ -10704,9 +10693,6 @@ msgstr "Incloeu SDT, BAT als streams http"
 msgid "Include action map data"
 msgstr "Incloure dades mapatge"
 
-msgid "Include international data *"
-msgstr "Incloure dades d'idioma *"
-
 #
 msgid "Include keyboard data"
 msgstr "Incloure dades teclat"
@@ -11236,22 +11222,6 @@ msgstr "Arxiu de kernel"
 
 msgid "Kernel version"
 msgstr "Versió de kernel"
-
-msgid "Kexec MultiBoot Actions"
-msgstr "MultiBoot Vu+"
-
-msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr ""
-
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
-"\n"
-"Will reboot after restoring any eMMC slots.\n"
-"This can take from 1 -> 5 minutes per slot."
-msgstr ""
-
-msgid "Kexec MultiBoot Manager"
-msgstr "Administrador MultiBoot Vu+"
 
 msgid "Key"
 msgstr "Clau"
@@ -15087,19 +15057,6 @@ msgstr "Prem EXIT per a tancar."
 msgid "Press EXIT to return to the help screen."
 msgstr "Prem EXIT per a retornar a la pantalla d'ajuda."
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
-"\n"
-"Will reboot within 10 seconds,\n"
-"unless you have eMMC slots to restore.\n"
-"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
-msgstr ""
-"Prem botó verd per habilitar Multiboot!\n"
-"\n"
-"Es reiniciarà en 10 segons.\n"
-"almenys que tinguem slots eMMC a restaurar.\n"
-"Restaurar slots eMMC pot durar entre 1 i 5 min per slot."
-
 msgid "Press OK for MultiBoot selection."
 msgstr "Prem OK per a selecció Multiboot"
 
@@ -15473,9 +15430,6 @@ msgstr "Canal Quad PiP"
 msgid "Quad PiP is not available."
 msgstr "Quad PiP no està disponible."
 
-msgid "Quad9 DNS"
-msgstr "Quad9 DNS"
-
 msgid "Quechua"
 msgstr "Quechua"
 
@@ -15653,14 +15607,6 @@ msgstr "Esborrar realmente aquesta entrada?"
 #
 msgid "Really exit the subservices quickzap?"
 msgstr "Sortir del zappeig ràpid dels subserveis?"
-
-#, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
-"%s"
-msgstr ""
-"Eliminar de forma permanent els arxius?\n"
-"%s"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Reiniciar a Mode Recuperació?"
@@ -16087,10 +16033,6 @@ msgstr "Eliminar directori actual des de favorits"
 #
 msgid "Remove currently selected title"
 msgstr "Esborra el títol seleccionat"
-
-#
-msgid "Remove forever"
-msgstr "Eliminar per sempre"
 
 msgid "Remove hide VBI line for this service"
 msgstr "Eliminar linia VBI oculta per aquest servei"
@@ -17226,28 +17168,41 @@ msgid ""
 "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' "
 "screen."
 msgstr ""
+"Selecciona 'Sí' per mostrar font de paquets '.src' a la pantalla 'Navegador "
+"de Plugins'."
 
 msgid "Select 'Yes' to display the InfoBar when a new event starts."
 msgstr ""
+"Selecciona 'Sí' per mostrar la barra d'informació quan s'inicia un "
+"esdeveniment nou."
 
 msgid "Select 'Yes' to display the InfoBar when changing channels."
 msgstr ""
+"Selecciona 'Sí' per mostrar la barra d'informació quan es canvia de canal."
 
 msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr ""
+"Selecciona 'Sí' per mostrar el número de canal a la barra d'informació."
 
 msgid ""
 "Select 'Yes' to display unknown files in the File Commander file viewer, "
 "select 'No' to not process unknown files."
 msgstr ""
+"Selecciona 'Sí' per mostrar arxius desconeguts al visualitzador d'arxius de "
+"l'Administrador d'arxius, selecciona 'No' per no processar arxius "
+"desconeguts."
 
 msgid ""
 "Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
 "resets the devices settings to their default values."
 msgstr ""
+"Selecciona 'Sí' per habilitar l'edició de la configuració de dispositius. "
+"Seleccionant 'No' reseteja la configuració de dispositius als valors de "
+"fàbrica."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr ""
+"Selecciona 'Sí' per habilitar vista prèvia dels canals a la llista EPG,"
 
 msgid ""
 "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' "
@@ -17255,21 +17210,32 @@ msgid ""
 "and zap to the selected channel. Press 'EXIT' to exit the EPG and return to "
 "the previously selected channel."
 msgstr ""
+"Selecciona 'Sí' per habilitar vista prèvia dels canals a la llista EPG, Prem "
+"'OK' per a previsualitzar el canal seleccionat. Prem 'OK' una altra vegada "
+"per sortir de l'EPG i canviar al canal seleccionat. Prem 'EXIT' per sortir "
+"de l'EPG i tornar al canal seleccionat anteriorment."
 
 msgid ""
 "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown "
 "when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy "
 "navigation for users who prefer it."
 msgstr ""
+"Selecciona 'Sí' per habilitar l'ús del botons ESQUERRA/DRETA per moure "
+"PÀGINA AMUNT/AVALL quan els botons ESQUERRA/DRETA no estiguin definits. Això "
+"proporciona una navegació heretada per als usuaris que la prefereixen."
 
 msgid "Select 'Yes' to hide channels without EPG data."
-msgstr ""
+msgstr "Selecciona 'Sí' per ocultar canals sense dades EPG."
 
 msgid ""
 "Select 'Yes' to remove all main settings configuration data. Selecting this "
 "option will set all Enigma2 settings back to their default values. This will "
 "also cause Enigma2 to run the Welcome Wizard on restart."
 msgstr ""
+"Selecciona 'Sí' per eliminar totes les dades de la configuració principal. "
+"Seleccionant aquesta opció, tots els paràmetres d'Enigma2 tornaran als seus "
+"valors predeterminats. Això també farà que Enigma2 executi l'assistent de "
+"benvinguda en reiniciar-lo."
 
 msgid ""
 "Select 'Yes' to remove all media player resume data. Selecting this option "
@@ -17277,6 +17243,11 @@ msgid ""
 "the position where playback was last stopped. Playback position of "
 "recordings is not affected."
 msgstr ""
+"Selecciona 'Sí' per eliminar totes les dades resum del reproductor "
+"multimèdia. Seleccionant aquesta opció, s'eliminaran les dades utilitzades "
+"per permetre que la reproducció dels fitxers multimèdia es reprengui des de "
+"la posició on es va aturar per última vegada. La posició de reproducció de "
+"les gravacions no es veu afectada."
 
 msgid ""
 "Select 'Yes' to remove all network mount data. Selecting this option will "
@@ -17284,11 +17255,19 @@ msgid ""
 "including connection accounts and passwords. This could cause some Enigma2 "
 "functions to fail if they are configured to use these network resources."
 msgstr ""
+"Selecciona 'Sí' per eliminar totes les dades de muntatges de xarxa. "
+"Seleccionant aquesta opció, s'eliminaran totes les dades de xarxa, inclosos "
+"els muntatges automàtics i les dades de connexió de xarxa, inclosos els "
+"comptes de connexió i les contrasenyes. Això podria provocar que algunes "
+"funcions d'Enigma2 fallin si estan configurades per utilitzar aquests "
+"recursos de xarxa."
 
 msgid ""
 "Select 'Yes' to remove all other files and directories not covered by the "
 "options above."
 msgstr ""
+"Selecciona 'Sí' per eliminar tots els altres arxius i directoris no coberts "
+"per les opcions anteriors."
 
 msgid ""
 "Select 'Yes' to remove all plugin configuration data. Selecting this option "
@@ -17297,6 +17276,11 @@ msgid ""
 "their default settings. This could cause some plugins to not function until "
 "configured."
 msgstr ""
+"Selecciona 'Sí' per eliminar totes les dades de configuració del plugin. "
+"Seleccionant aquesta opció, s'eliminaran totes les dades de configuració del "
+"plugin que s'emmagatzemen a la carpeta de configuració d'Enigma2. Això farà "
+"que tots els plugins afectats tornin a la seva configuració predeterminada. "
+"Això podria fer que alguns plugins no funcionin fins que no es configuren."
 
 msgid ""
 "Select 'Yes' to remove all settings, tuning data, timers, resume pointers "
@@ -17304,17 +17288,29 @@ msgid ""
 "settings before any configuration settings were applied. This is the most "
 "reliable form of Factory Reset."
 msgstr ""
+"Selecciona 'Sí' per eliminar totes les configuracions, dades de "
+"sintonització, temporitzadors, punts de resum, etc. Seleccionant aquesta "
+"opció, es restaurarà la configuració a la configuració inicial abans que "
+"s'apliqués cap paràmetre de configuració. Aquesta és la forma més fiable de "
+"restabliment de fàbrica."
 
 msgid ""
 "Select 'Yes' to remove all timer configuration data. Selecting this option "
 "will clear all timers, autotimers and power timers."
 msgstr ""
+"Selecciona 'Sí' per eliminar totes les dades de configuració del "
+"temporitzador. Seleccionant aquesta opció, s'eliminaran tots els "
+"temporitzadors, temporitzadors automàtics i temporitzadors d'alimentació."
 
 msgid ""
 "Select 'Yes' to remove all tuning data. Selecting this option will remove "
 "all tuning and bouquet data and will make timers non functional until the "
 "receiver is retuned."
 msgstr ""
+"Selecciona 'Sí' per eliminar totes les dades de sintonització. Seleccionant "
+"aquesta opció, s'eliminaran totes les dades de sintonització i de llistes i "
+"els temporitzadors no funcionaran fins que es torni a sintonitzar el "
+"receptor."
 
 msgid ""
 "Select 'Yes' to remove all user customizations of skin data. Selecting this "
@@ -17322,46 +17318,70 @@ msgid ""
 "will return to their standard settings. This will also clear any customized "
 "boot logos and backdrops."
 msgstr ""
+"Selecciona \"Sí\" per eliminar totes les personalitzacions de dades del "
+"skin. Seleccionant aquesta opció, s'eliminaran totes les dades de "
+"personalitzacions del skin. Tots els skins afectats tornaran a la seva "
+"configuració estàndard. Això també eliminarà els bootlogos personalitzats."
 
 msgid ""
 "Select 'Yes' to remove all user interface data. Selecting this option will "
 "remove all key map, menu and setup override data and restore the default "
 "definitions."
 msgstr ""
+"Selecciona \"Sí\" per eliminar totes les dades de la interfície d'usuari. "
+"Seleccionant aquesta opció, s'eliminaran totes les dades anul·lades del "
+"keymap, menús i configuració i es restauraran les definicions "
+"predeterminades."
 
 msgid ""
 "Select 'Yes' to reset network configuration to the default. This will enable "
 "the Ethernet port if it exists and set the receiver to use DHCP. All other "
 "network interfaces will be deleted."
 msgstr ""
+"Selecciona \"Sí\" per restablir la configuració de xarxa a la "
+"predeterminada. Això habilitarà el port Ethernet si existeix i configurarà "
+"el receptor perquè utilitzi DHCP. Totes les altres interfícies de xarxa "
+"s'eliminaran."
 
 msgid ""
 "Select 'Yes' to set the cursor position to the end of the line when editing "
 "a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr ""
+"Selecciona \"Sí\" per establir la posició del cursor al final de la línia "
+"quan s'edita un arxiu de text. Selecciona \"No\" per posar el cursor a "
+"l'inici de la línia."
 
 msgid ""
 "Select 'Yes' to show directories at the top/start of the list, or select "
 "'No' to show files first."
 msgstr ""
+"Selecciona 'Sí' per mostrar directoris a la part de dalt/inici de la llista, "
+"o selecciona 'No' per mostra primer els arxius."
 
 msgid "Select 'Yes' to show the advanced setting options."
-msgstr ""
+msgstr "Selecciona 'Sí' per mostrar les opcions de configuració avançada."
 
 msgid ""
 "Select 'Yes' to show the bouquet selection screen every time you open the "
 "EPG."
 msgstr ""
+"Selecciona 'Sí' per mostrar la pantalla de selecció de llistes cada cop que "
+"s'obri l'EPG."
 
 msgid ""
 "Select 'Yes' to show the channel list after switching between Radio and TV "
 "modes."
 msgstr ""
+"Selecciona 'Sí' per mostrar la llista de canals després de canviar entre "
+"mode Radio i TV."
 
 msgid ""
 "Select 'Yes' to show the current directory in the list of directories. Note "
 "that File Commander must be restarted for this change to take effect."
 msgstr ""
+"Selecciona \"Sí\" per mostrar el directori actual a la llista de directoris. "
+"Tingueu en compte que l'Administrador d'arxius s'ha de reiniciar per què "
+"aquest canvi tingui efecte."
 
 msgid ""
 "Select 'Yes' to use signal values (SNR, etc) calculated from the older API "
@@ -17375,11 +17395,16 @@ msgid ""
 "Select 'Yes' to use the number keys for quick selection of files / "
 "directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr ""
+"Selecciona \"Sí\" per utilitzar les tecles numèriques per a la selecció "
+"ràpida d'arxius/directoris, selecciona \"No\" per utilitzar les tecles "
+"numèriques per a les dreceres d'opcions del MENÚ."
 
 msgid ""
 "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during "
 "media playback."
 msgstr ""
+"Selecciona 'Sí' per mostrar la barra d'informació durant l'avanç ràpid o el "
+"rebobinat en la reproducció multimèdia."
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -17448,7 +17473,7 @@ msgid "Select Backup Location"
 msgstr "Selecciona la ubicació del backup"
 
 msgid "Select Bookmark"
-msgstr ""
+msgstr "Seleccionar favorit"
 
 #
 msgid "Select CAId"
@@ -17514,23 +17539,23 @@ msgid "Select a bouquet"
 msgstr "Selecciona bouquet"
 
 msgid "Select a cardserver from the available list."
-msgstr ""
+msgstr "Selecciona un servidor de tarjetes de la llista disponible."
 
 msgid "Select a debug log file to view:"
-msgstr ""
+msgstr "Selecciona un arxiu log de depuració a veure:"
 
 msgid "Select a directory"
-msgstr ""
+msgstr "Selecciona un directori"
 
 msgid "Select a directory from the bookmarks"
-msgstr ""
+msgstr "Selecciona un directori de favorits"
 
 msgid "Select a distribution from where images are to be obtained"
-msgstr ""
+msgstr "Selecciona una distribució des de la qual s'obtenen les imatges"
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
-msgstr ""
+msgstr "Selecciona una ubicació a la que extreure '%s':"
 
 msgid "Select a movie"
 msgstr "Seleccionar una pel·lícula"
@@ -17542,7 +17567,7 @@ msgid "Select a repository commit log to view:"
 msgstr ""
 
 msgid "Select a script to run:"
-msgstr ""
+msgstr "Sel·lecciona el script a executar:"
 
 msgid "Select a softcam from the available list."
 msgstr ""
@@ -17564,10 +17589,10 @@ msgid "Select action for timer %s:"
 msgstr "Seleccionar acció per al temporitzador %s:"
 
 msgid "Select additional files to backup"
-msgstr ""
+msgstr "Sel·leccionar arxius adicionals a copiar"
 
 msgid "Select all related files"
-msgstr ""
+msgstr "Seleccionar tots els arxius relacionats"
 
 msgid "Select an action to perform when the task has completed."
 msgstr ""
@@ -17587,7 +17612,7 @@ msgid "Select copy destination for:"
 msgstr "Seleccioneu la destinació de la còpia per a:"
 
 msgid "Select default EPG type..."
-msgstr ""
+msgstr "Sel·leccionar el tipus d'EPG per defecte..."
 
 msgid "Select default File Commander directory:"
 msgstr ""
@@ -20173,7 +20198,7 @@ msgid "South Georgia and the South Sandwich Islands"
 msgstr "Geòrgia del Sud i les Illes Sandwich del Sud"
 
 msgid "South Ndebele"
-msgstr ""
+msgstr "South Ndebele"
 
 #
 msgid "South Sudan"
@@ -20187,7 +20212,7 @@ msgid "Space total %s, used %s, free %s (%0.f%%)."
 msgstr ""
 
 msgid "Space used:"
-msgstr ""
+msgstr "Espai utilitzat:"
 
 msgid "Spain"
 msgstr "Espanya"
@@ -20197,10 +20222,10 @@ msgid "Spanish"
 msgstr "Espanyol"
 
 msgid "Spanish / Castilian"
-msgstr ""
+msgstr "Espanyol / Castellà"
 
 msgid "Special"
-msgstr ""
+msgstr "Especial"
 
 msgid "Special 1"
 msgstr "Especial 1"
@@ -20209,13 +20234,13 @@ msgid "Special 2"
 msgstr "Especial 2"
 
 msgid "Special Features Settings"
-msgstr ""
+msgstr "Configuració de característiques especials"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
 msgid "Speed"
-msgstr ""
+msgstr "Velocitat"
 
 #
 msgid "Split preview mode"
@@ -20225,7 +20250,7 @@ msgid "Splitscreen"
 msgstr "Pantalla dividida"
 
 msgid "Sport"
-msgstr ""
+msgstr "Esports"
 
 msgid "Sports"
 msgstr "Esports"
@@ -20237,10 +20262,10 @@ msgid "Standard"
 msgstr "Estàndard"
 
 msgid "Standard (Always)"
-msgstr ""
+msgstr "Estàndar (sempre)"
 
 msgid "Standard list"
-msgstr ""
+msgstr "Llista estàndar"
 
 #
 msgid "Standby"
@@ -20251,10 +20276,10 @@ msgid "Standby / Restart"
 msgstr "Repòs / Reiniciar"
 
 msgid "Standby without TV shut down"
-msgstr ""
+msgstr "Repòs sense apagar TV"
 
 msgid "Start"
-msgstr ""
+msgstr "Inici"
 
 msgid "Start Auto Refresh"
 msgstr ""
@@ -20312,16 +20337,17 @@ msgid "Start/stop slide show"
 msgstr ""
 
 msgid "Start/stop/select cam"
-msgstr ""
+msgstr "Iniciar/Parar/Seleccionar CAM"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr ""
+"Inicia/Para/Selecciona la teva CAM. Necessites instal·lar abans un softcam"
 
 msgid "StartWizard"
-msgstr ""
+msgstr "Assistent d'inici"
 
 msgid "Starting Softcam"
-msgstr ""
+msgstr "Iniciant Softcam"
 
 msgid "Starting column"
 msgstr ""
@@ -20347,25 +20373,25 @@ msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "Estat"
 
 msgid "Status message timeout"
 msgstr ""
 
 msgid "Status of the display during operation"
-msgstr ""
+msgstr "Estat del display durant el funcionament"
 
 msgid "Status of the display in deep standby"
-msgstr ""
+msgstr "Estat del display en repòs profund"
 
 msgid "Status of the display in standby mode"
-msgstr ""
+msgstr "Estat del display en repòs"
 
 msgid "Status unavailable!"
-msgstr ""
+msgstr "Estat no disponible!"
 
 msgid "Status:"
-msgstr ""
+msgstr "Estat:"
 
 #
 msgid "Step east"
@@ -20384,14 +20410,14 @@ msgid "Stepped west"
 msgstr "Pujada a l’oest"
 
 msgid "Sti"
-msgstr ""
+msgstr "Sti"
 
 #
 msgid "Stop"
 msgstr "Parar"
 
 msgid "Stop Auto Refresh"
-msgstr ""
+msgstr "Parar refresc automàtic"
 
 #
 msgid "Stop PiP"
@@ -20434,7 +20460,7 @@ msgid "Stop service on return to movie list"
 msgstr "Servei de parada al retorn a la llista de pel·lícules"
 
 msgid "Stop streams"
-msgstr ""
+msgstr "Parar els streams"
 
 #
 msgid "Stop test"
@@ -22741,9 +22767,6 @@ msgstr "Ukraine"
 
 msgid "Ukrainian"
 msgstr "Ukrainian"
-
-msgid "Unable to complete - Kexec Multiboot files missing!"
-msgstr ""
 
 msgid "Unattended upgrade without GUI"
 msgstr ""
@@ -27212,6 +27235,10 @@ msgid "Init Vu+ MultiBoot"
 msgstr "Iniciar MultiBoot Vu+"
 
 #
+msgid "Enable Kexec MultiBoot"
+msgstr "Activar MultiBoot Vu+"
+
+#
 msgid "Vu+ MultiBoot Initialisation"
 msgstr "Inicialització Multiboot Vu+"
 
@@ -27229,3 +27256,64 @@ msgstr ""
 
 msgid "All regions, Spain, (Europe DVB-T/T2)"
 msgstr ""
+
+msgid "Kexec MultiBoot Actions"
+msgstr "MultiBoot Vu+"
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid "Kexec MultiBoot Manager"
+msgstr "Administrador MultiBoot Vu+"
+
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+"Eliminar de forma permanent els arxius?\n"
+"%s"
+
+#
+msgid "Remove forever"
+msgstr "Eliminar per sempre"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
+
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
+"Prem botó verd per habilitar Multiboot!\n"
+"\n"
+"Es reiniciarà en 10 segons.\n"
+"almenys que tinguem slots eMMC a restaurar.\n"
+"Restaurar slots eMMC pot durar entre 1 i 5 min per slot."
+
+msgid "Include international data *"
+msgstr "Incloure dades d'idioma *"
+
+msgid ""
+"Enable this option to add international language and country load "
+"information detected during system boot to the debug log file."
+msgstr ""
+"Activar aquesta opció per afegir informació de càrrega d'idioma i país "
+"durant l'arrencada del sistema a l'arxiu del log de depuració."
+
+#
+msgid "Locale / Language Settings"
+msgstr "Configuració d'idioma/regió"

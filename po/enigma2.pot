@@ -23357,9 +23357,11 @@ msgid ""
 "Restoring eMMC slots can take from 1 -> 5 minutes per slot."
 msgstr ""
 
-
 msgid "Include international data *"
 msgstr ""
 
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
+msgstr ""
+
+msgid "Locale / Language Settings"
 msgstr ""
