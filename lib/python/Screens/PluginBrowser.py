@@ -381,6 +381,7 @@ class PluginDownloadBrowser(Screen):
 		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun)
 		self.onShown.append(self.setWindowTitle)
+		self.onClose.append(self.__onClose)
 
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -421,6 +422,9 @@ class PluginDownloadBrowser(Screen):
 
 		self.opkgObj = OpkgComponent()
 		self.opkgObj.addCallback(self.opkgCallback)
+
+	def __onClose(self):
+		self.opkgObj.removeCallback(self.opkgCallback)
 
 	def keyRefresh(self):
 		if self.type == self.MANAGE:
