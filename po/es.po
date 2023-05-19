@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-17 21:05+0200\n"
+"PO-Revision-Date: 2023-05-19 17:22+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 msgid ""
 "\n"
@@ -11766,7 +11766,7 @@ msgstr "Longitud"
 
 #
 msgid "Loop through to"
-msgstr "Bucle a"
+msgstr "Conectado a"
 
 #
 msgid "Lower Framerate save CPU Time"
@@ -26219,7 +26219,7 @@ msgstr "Extensiones."
 
 # NimManager.py
 msgid "externally loopthrough to"
-msgstr "Bucle externo a"
+msgstr "Conectado externamente a"
 
 msgid "extra wide"
 msgstr "Extra ancho"
@@ -26432,7 +26432,7 @@ msgstr "grabación instantánea"
 
 # NimManager.py
 msgid "internally loopthrough to"
-msgstr "Bucle interno a"
+msgstr "Conectado internamente a"
 
 msgid "invalid type"
 msgstr "tipo incorrecto"
@@ -26483,7 +26483,7 @@ msgid "long"
 msgstr "largo"
 
 msgid "loopthrough to"
-msgstr "bucle a través de"
+msgstr "Conectado a"
 
 msgid "magazines/reports/documentary"
 msgstr "documentales/entrevistas/informes"
