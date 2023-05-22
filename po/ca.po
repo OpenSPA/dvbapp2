@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-17 21:06+0200\n"
+"PO-Revision-Date: 2023-05-18 20:41+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -17570,7 +17570,7 @@ msgid "Select a script to run:"
 msgstr "Sel·lecciona el script a executar:"
 
 msgid "Select a softcam from the available list."
-msgstr ""
+msgstr "Seleccionar un softcam de la llista."
 
 msgid "Select a tuner"
 msgstr "Seleccioneu un sintonitzador"
@@ -17595,14 +17595,14 @@ msgid "Select all related files"
 msgstr "Seleccionar tots els arxius relacionats"
 
 msgid "Select an action to perform when the task has completed."
-msgstr ""
+msgstr "Seleccionar una acció a executar quan es completi la tasca."
 
 #
 msgid "Select audio track"
 msgstr "Seleccionar pista d'àudio"
 
 msgid "Select cardserver"
-msgstr ""
+msgstr "Seleccionar un servidor"
 
 #
 msgid "Select channel audio"
@@ -17615,36 +17615,42 @@ msgid "Select default EPG type..."
 msgstr "Sel·leccionar el tipus d'EPG per defecte..."
 
 msgid "Select default File Commander directory:"
-msgstr ""
+msgstr "Seleccionar directori predeterminat a l'Administrador d'arxius:"
 
 msgid "Select destination for:"
 msgstr "Selecciona la destinació per a:"
 
 msgid "Select files to exclude from backup"
-msgstr ""
+msgstr "Seleccionar arxius a excloure del backup"
 
 #
 msgid "Select files/folders to backup"
 msgstr "Seleccioneu arxius/carpetes per al backup"
 
 msgid "Select how long to display status messages."
-msgstr ""
+msgstr "Seleccionar duració mostrant missatges d'estat."
 
 msgid ""
 "Select how long to display the button error pop up. Button input is still "
 "permitted while the pop up is displayed."
 msgstr ""
+"Seleccionar duració mostrant la finestra emergent d'error de botons. Les "
+"entrades dels botons encar es permeten mentre es mostra la finestra emergent."
 
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
+"Seleccionar duració mostrant la tasca i la finestra emergent de missatge "
+"dels scripts."
 
 msgid ""
 "Select how long, in seconds, that the volume display is shown before it "
 "automatically hides."
 msgstr ""
+"Seleccionar duració, en segons, durant la qual es mostrarà la pantalla de "
+"volum abans que s'oculti automàticament."
 
 msgid "Select how often this timer is to be repeated."
-msgstr ""
+msgstr "Seleccionar amb quina freqüència es repetirà aquest temporitzador."
 
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
@@ -17658,62 +17664,70 @@ msgstr ""
 "únic, commutador DiSEqC, posicionador, etc."
 
 msgid "Select how to activate the Quick EPG mode."
-msgstr ""
+msgstr "Seleccionar com activar el mode d'EPG ràpid."
 
 msgid "Select how your box will upgrade."
-msgstr ""
+msgstr "Seleccionar com s'actualitzarà el receptor."
 
 msgid "Select if an end time is required."
-msgstr ""
+msgstr "Seleccionar si es necessita hora final."
 
 msgid ""
 "Select if the default value for a setup entry is shown and, if so, where it "
 "is displayed in relation to the description."
 msgstr ""
+"Seleccionar si es mostra el valor predeterminat d'una entrada de "
+"configuració i, si és així, on es mostra en relació a la descripció."
 
 msgid ""
 "Select if the screen menu path history is displayed and, if so, how it is to "
 "be displayed."
 msgstr ""
+"Seleccionar si es mostra l'historial de la ruta del menú de la pantalla i, "
+"si és així, com s'ha de mostrar."
 
 msgid ""
 "Select if the timer name and description modification code is run on "
 "repeating timers."
 msgstr ""
+"Seleccionar si el nom del temporitzador i el codi de modificació de la "
+"descripció s'executen en temporitzadors repetits."
 
 msgid ""
 "Select if there is to be a time window within which this timer can be active."
 msgstr ""
+"Seleccionar si hi ha d'haver una finestra de temps dins la qual aquest "
+"temporitzador pugui estar actiu."
 
 msgid "Select if this timer activates on a Friday."
-msgstr ""
+msgstr "Seleccionar si aquest temporitzador s'activa en divendres."
 
 msgid "Select if this timer activates on a Monday."
-msgstr ""
+msgstr "Seleccionar si aquest temporitzador s'activa en dilluns."
 
 msgid "Select if this timer activates on a Saturday."
-msgstr ""
+msgstr "Seleccionar si aquest temporitzador s'activa en dissabte."
 
 msgid "Select if this timer activates on a Sunday."
-msgstr ""
+msgstr "Seleccionar si aquest temporitzador s'activa en diumenge."
 
 msgid "Select if this timer activates on a Thursday."
-msgstr ""
+msgstr "Seleccionar si aquest temporitzador s'activa en dijous."
 
 msgid "Select if this timer activates on a Tuesday."
-msgstr ""
+msgstr "Seleccionar si aquest temporitzador s'activa en dimarts."
 
 msgid "Select if this timer activates on a Wednesday."
-msgstr ""
+msgstr "Seleccionar si aquest temporitzador s'activa en dimecres."
 
 msgid "Select if this timer is to be repeated."
-msgstr ""
+msgstr "Seleccionar si el temporitzador s'ha de repetir."
 
 msgid "Select if time shift must continue when set to record."
-msgstr ""
+msgstr "Seleccionar si timeshift ha de continuar quan es posi a gravar."
 
 msgid "Select if you want the Subservice mode to be activated."
-msgstr ""
+msgstr "Seleccionar si es vol activar el mode Subservei."
 
 msgid "Select input device"
 msgstr "Seleccioneu el dispositiu d’entrada"
@@ -17726,14 +17740,14 @@ msgid "Select interface"
 msgstr "Selecciona la interfície"
 
 msgid "Select menu entry"
-msgstr ""
+msgstr "Selecciona l'entrada del menú"
 
 #
 msgid "Select movie"
 msgstr "Selecciona la pel·lícula"
 
 msgid "Select only highlighted file"
-msgstr ""
+msgstr "Seleccionar només l'arxiu ressaltat."
 
 #
 msgid "Select provider to add..."
@@ -17754,25 +17768,25 @@ msgid "Select service to add..."
 msgstr "Selecciona el servei a afegir …"
 
 msgid "Select softcam"
-msgstr ""
+msgstr "Seleccionar softcam"
 
 msgid "Select sort method:"
 msgstr "Seleccioneu el mètode d’ordenació:"
 
 msgid "Select system information to view:"
-msgstr ""
+msgstr "Seleccionar la informació del sistema que es mostrarà:"
 
 msgid "Select temporary directory sort order for the current column"
-msgstr ""
+msgstr "Seleccionar l'ordre del directori temporal per a la columna actual"
 
 msgid "Select temporary file sort order for the current column"
-msgstr ""
+msgstr "Seleccionar l'ordre d'arxius temporals de la columna actual"
 
 msgid "Select the No / False response"
-msgstr ""
+msgstr "Selecciona No / Fals"
 
 msgid "Select the Swap File Size:"
-msgstr ""
+msgstr "Selecciona el tamany de l'arxiu swap:"
 
 msgid ""
 "Select the Unicable channel to be assigned to this tuner. This is a unique "
