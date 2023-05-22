@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-19 17:22+0200\n"
+"PO-Revision-Date: 2023-05-22 16:40+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -16561,14 +16561,14 @@ msgstr "Slot para tarjeta SD %s%s"
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
-"Cambio de tarjeta SD ¡ERROR! - Los archivos raíz del H9 no se transfieren a "
-"la tarjeta SD"
+"ERROR al cambiar a tarjeta SD - Los archivos de arranque del H9 no se han "
+"transferido a la tarjeta SD"
 
 msgid "SDcard switch ERROR! - already on Nand"
-msgstr "Cambio de tarjeta SD ¡ERROR! - ya está en Nand"
+msgstr "ERROR al cambiar a tarjeta SD - ya está en memoria interna"
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr "¡ERROR! en el switch de la tarjeta SD ¡ERROR! - ya está en mmc"
+msgstr "ERROR al cambiar a tarjeta SD - ya está en mmc"
 
 #
 msgid "SINGLE LAYER DVD"
@@ -20905,10 +20905,10 @@ msgid "Swap services"
 msgstr "Cambiar canales"
 
 msgid "SwaptoNand"
-msgstr ""
+msgstr "Arrancar con memoria interna"
 
 msgid "SwaptoSD"
-msgstr "Swap a SD"
+msgstr "Arrancar con SD"
 
 msgid "Swati"
 msgstr ""
@@ -27021,7 +27021,7 @@ msgid "switch 12 to 8 character display mode"
 msgstr "Cambiar a modo display de 12 a 8 carácteres"
 
 msgid "switch Nand and SDcard"
-msgstr "Cambiar Nand y Tarjeta SD"
+msgstr "Cambiar entre memoria interna y tarjeta SD"
 
 #
 msgid "switch to the next angle"
@@ -27891,3 +27891,27 @@ msgstr ""
 #
 msgid "Locale / Language Settings"
 msgstr "Configuración idioma / región"
+
+msgid "SDroot"
+msgstr "Arranque memoria interna o SD"
+
+msgid "H9 SD Manager"
+msgstr "Administrador SD en H9"
+
+#
+msgid "Install image to SD or USB"
+msgstr "Instalar imagen a SD"
+
+msgid "H9 SDcard manager"
+msgstr "Administrador tarjeta SD en H9"
+
+msgid "Press appropiate Init to move Nand root to SDcard."
+msgstr ""
+"Pulsa Inicializar para mover el arranque de memoria interna a la tarjeta SD."
+
+msgid "Init SDcard"
+msgstr "Inicializar tarjeta SD"
+
+msgid "Init Zgemma H9 SDCARD - please reboot after use."
+msgstr ""
+"Inicializar tarjeta SD en tu Zgemma H9 - por favor, reiniciar al acabar."

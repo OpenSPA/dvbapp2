@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-18 20:41+0200\n"
+"PO-Revision-Date: 2023-05-22 17:03+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -16206,6 +16206,8 @@ msgid ""
 "Reset the selected devices and save changes of your config when the GREEN "
 "button is pressed."
 msgstr ""
+"Restaurar els dispositius seleccionat i guardar els canvis de la teva "
+"configuració quan es premi el botó VERD."
 
 #
 msgid "Reset video enhancement settings to system defaults?"
@@ -16569,8 +16571,7 @@ msgstr "Slot tarjeta SD %s%s"
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
-"ERROR en canvi tarjeta SD!- No s'han transferit els arxius de l'arrel del H9 "
-"a la SD"
+"ERROR en canvi tarjeta SD!- No s'han transferit els arxius del H9 a la SD"
 
 msgid "SDcard switch ERROR! - already on Nand"
 msgstr "ERROR en canvi tarjeta SD! - ja en Nand"
@@ -20727,10 +20728,10 @@ msgid "Swap services"
 msgstr "Swap canals"
 
 msgid "SwaptoNand"
-msgstr ""
+msgstr "Arrancar amb memòria interna"
 
 msgid "SwaptoSD"
-msgstr ""
+msgstr "Arrancar amb SD"
 
 msgid "Swati"
 msgstr ""
@@ -25238,7 +25239,7 @@ msgid "abort favorites edit"
 msgstr "cancel·lar l'edició de preferits"
 
 msgid "ac3"
-msgstr ""
+msgstr "AC3"
 
 msgid "activatePiP"
 msgstr "activar PiP"
@@ -25370,10 +25371,10 @@ msgstr "ballet"
 
 #, python-format
 msgid "bc%d"
-msgstr ""
+msgstr "bc%d"
 
 msgid "because of the used file system the back-up\n"
-msgstr ""
+msgstr "degut al sistema d'arxius del backup\n"
 
 #
 msgid "better"
@@ -25399,7 +25400,7 @@ msgstr "broadcasting / press"
 
 #, python-format
 msgid "burn audio track (%s)"
-msgstr ""
+msgstr "Gravar pista d'àudio (%s)"
 
 msgid "by date"
 msgstr "per data"
@@ -25408,7 +25409,7 @@ msgid "by hmmmdada"
 msgstr ""
 
 msgid "caid:"
-msgstr ""
+msgstr "caid:"
 
 msgid "card"
 msgstr "tarjeta"
@@ -25538,23 +25539,23 @@ msgid "documentary (general)"
 msgstr "documental (general)"
 
 msgid "dolby"
-msgstr ""
+msgstr "dolby"
 
 msgid "drama (general)"
-msgstr ""
+msgstr "drama (general)"
 
 msgid "dts"
-msgstr ""
+msgstr "dts"
 
 msgid "eMMC"
-msgstr ""
+msgstr "eMMC"
 
 #, python-format
 msgid "eMMC slot %s%s"
 msgstr "ranura eMMC %s %s"
 
 msgid "eSATA"
-msgstr ""
+msgstr "eSATA"
 
 #
 msgid "east"
@@ -25564,7 +25565,7 @@ msgid "ecm time:"
 msgstr "temps ecm:"
 
 msgid "ecm.info"
-msgstr ""
+msgstr "ecm.info"
 
 msgid "economics/social advisory"
 msgstr "economia / assessorament social"
@@ -25782,28 +25783,28 @@ msgid "green"
 msgstr "verd"
 
 msgid "h:mm"
-msgstr ""
+msgstr "h:mm"
 
 msgid "h:mm:ss"
-msgstr ""
+msgstr "h:mm:ss"
 
 msgid "h:mm:ssAM/PM"
-msgstr ""
+msgstr "h:mm:ssAM/PM"
 
 msgid "h:mm:ssam/pm"
-msgstr ""
+msgstr "h:mm:ssam/pm"
 
 msgid "h:mmAM/PM"
-msgstr ""
+msgstr "h:mmAM/PM"
 
 msgid "h:mmam/pm"
-msgstr ""
+msgstr "h:mmam/pm"
 
 msgid "handicraft"
 msgstr "artesania"
 
 msgid "handled"
-msgstr ""
+msgstr "Gestionat"
 
 msgid ""
 "has been sent to the SVN team team.\n"
@@ -25811,7 +25812,7 @@ msgid ""
 msgstr ""
 
 msgid "hdr10"
-msgstr ""
+msgstr "hdr10"
 
 msgid "height"
 msgstr "alçada"
@@ -25820,29 +25821,29 @@ msgid "help..."
 msgstr "ajuda..."
 
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm"
 
 msgid "hh:mm:ss"
-msgstr ""
+msgstr "hh:mm:ss"
 
 msgid "hh:mm:ssAM/PM"
-msgstr ""
+msgstr "hh:mm:ssAM/PM"
 
 msgid "hh:mm:ssam/pm"
-msgstr ""
+msgstr "hh:mm:ssam/pm"
 
 msgid "hh:mmAM/PM"
-msgstr ""
+msgstr "hh:mmAM/PM"
 
 msgid "hh:mmam/pm"
-msgstr ""
+msgstr "hh:mmam/pm"
 
 #
 msgid "highest Resolution"
 msgstr "La resolución més alta"
 
 msgid "hlg"
-msgstr ""
+msgstr "hlg"
 
 msgid "hops:"
 msgstr "salts:"
@@ -25946,7 +25947,7 @@ msgstr "medicina / fisiologia / psicologia"
 
 #
 msgid "min"
-msgstr ""
+msgstr "min"
 
 #
 msgid "month"
@@ -26001,10 +26002,10 @@ msgid "musical/opera"
 msgstr "musical / òpera"
 
 msgid "n/a"
-msgstr ""
+msgstr "N/A"
 
 msgid "name"
-msgstr ""
+msgstr "Nom"
 
 msgid "nature/animals/environment"
 msgstr "natura / animals / entorn"
@@ -26060,7 +26061,7 @@ msgid "none"
 msgstr "cap"
 
 msgid "normal"
-msgstr ""
+msgstr "Normal"
 
 #
 msgid "not"
@@ -26134,7 +26135,7 @@ msgid "performing arts"
 msgstr "les Arts escèniques"
 
 msgid "pid:"
-msgstr ""
+msgstr "pid:"
 
 msgid "play as picture in picture"
 msgstr "reproduir com PiP"
@@ -26151,7 +26152,7 @@ msgid "please wait, loading picture..."
 msgstr "sisplau espera, carregant imatge..."
 
 msgid "pm"
-msgstr ""
+msgstr "pm"
 
 msgid "popular culture/traditional arts"
 msgstr "Arts tradicionals/Cultura popular"
@@ -26254,7 +26255,7 @@ msgid "rewind to the previous chapter"
 msgstr "rebobina al capítol anterior"
 
 msgid "rgb"
-msgstr ""
+msgstr "RGB"
 
 #
 msgid "right"
@@ -26285,7 +26286,7 @@ msgid "science fiction/fantasy/horror"
 msgstr "ciència ficció / fantasia / terror"
 
 msgid "sdr"
-msgstr ""
+msgstr "sdr"
 
 msgid "search EPG..."
 msgstr "Recerca d'EPG..."
@@ -26424,7 +26425,7 @@ msgid "social/spiritual science"
 msgstr "ciències socials / espirituals"
 
 msgid "softcam"
-msgstr ""
+msgstr "softcam"
 
 msgid "special (general)"
 msgstr "especial (general)"
@@ -26494,7 +26495,7 @@ msgstr "tecnologia / ciències naturals"
 
 #
 msgid "teletext"
-msgstr ""
+msgstr "teletext"
 
 #
 msgid "template file"
@@ -26504,7 +26505,7 @@ msgid "tennis/squash"
 msgstr "tennis / esquaix"
 
 msgid "text"
-msgstr ""
+msgstr "text"
 
 msgid "this bouquet is protected by a parental control pin"
 msgstr "aquest ram està protegit per un passador de control parental"
@@ -26534,10 +26535,10 @@ msgid "tree delete"
 msgstr "Esborrar arbre"
 
 msgid "turbo"
-msgstr ""
+msgstr "turbo"
 
 msgid "uShare"
-msgstr ""
+msgstr "uShare"
 
 msgid "uShare Actions"
 msgstr "Accions uShare"
@@ -26592,7 +26593,7 @@ msgid "updates available."
 msgstr "actualitzacions disponibles."
 
 msgid "use best / controlled by HDMI"
-msgstr ""
+msgstr "utilitzar el millor /controlat per HDMI"
 
 msgid ""
 "use increased voltage '14/18V' if there are problems when switching the lnb"
@@ -27112,6 +27113,8 @@ msgid ""
 "LOAD THE EPG FIRST\n"
 "NO EPG PRIMETIME ON CHANNEL"
 msgstr ""
+"CARREGA PRIMER L'EPG\n"
+"NO HI HA EPG PRIMETIME AL CANAL"
 
 msgid "LEFT/RIGHT buttons mode"
 msgstr "Mode del botons ESQUERRA/DRETA"
@@ -27136,7 +27139,7 @@ msgid "Show OpenSPA Single EPG"
 msgstr "Mostrar l'EPG simple OpenSPA"
 
 msgid "Show OpenSPA Guide"
-msgstr ""
+msgstr "Mostrar la guía OpenSPA"
 
 #
 msgid "Select RED long action"
@@ -27187,13 +27190,15 @@ msgid "Picon location"
 msgstr "Ubicació dels picons"
 
 msgid "Search picons in /media/hdd"
-msgstr ""
+msgstr "Buscar picons en /media/hdd"
 
 msgid "Manage Plugins"
 msgstr "Administrar plugins"
 
 msgid "%d packages found, %d packages installed and %d packages has updates."
 msgstr ""
+"%d paquets trobats, %d paquets instal·lats i %d paquets tenen "
+"actualitzacions."
 
 msgid "No packages found."
 msgstr "No s'ha trobat cap paquet."
@@ -27211,7 +27216,7 @@ msgid "Plugin Manager Actions"
 msgstr "Administrador de plugins"
 
 msgid "Add Extra USB slots"
-msgstr ""
+msgstr "Afegir slots USB extra"
 
 #
 msgid "Type of LNB/Device"
@@ -27224,14 +27229,14 @@ msgid "Udpxy Setup"
 msgstr "Configuració d'Udpxy"
 
 msgid "The '%s' file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "L'arxiu '%s' ja existeix. Vols sobreescriure'l?"
 
 #
 msgid "Do you want to Install OpenSPA Extra Plugins?"
 msgstr "Voleu instal·lar plugins adicionals d'OpenSPA?"
 
 msgid "It does not decrypt, or there is no active EMU"
-msgstr ""
+msgstr "No es pot desencriptar, o no hi ha EMU activa"
 
 msgid "Vu+ MultiBoot Manager"
 msgstr "Administrador MultiBoot Vu+"
@@ -27243,6 +27248,11 @@ msgid ""
 "Unless you have eMMC slots to restore.\n"
 "Restoring eMMC slots can take from 1 -> 5 minutes per slot."
 msgstr ""
+"Prem botó verd per activar Multiboot\n"
+"\n"
+"Es reiniciarà en 10 segons,\n"
+"almenys que tinguem slots eMMC per a restaurar.\n"
+"Restaurar slots eMMC pot tardar entre 1 i 5 minuts per slot."
 
 #
 msgid "Init Vu+ MultiBoot"
@@ -27262,20 +27272,26 @@ msgid ""
 "Will reboot after restoring any eMMC slots\n"
 "This can take from 1 -> 5 minutes per slot."
 msgstr ""
+"Inicialització del Multiboot Vu+ en progrés!\n"
+"\n"
+"Es reiniciarà després de restaurar qualsevol slot eMMC.\n"
+"Pot tardar entre 1 i 5 minuts per slot."
 
 msgid ""
 "[VuplusKexec][create Vu+ Multiboot environment] - Unable to complete, Vu+ "
 "Multiboot files missing"
 msgstr ""
+"[VuplusKexec][crear un entorn Multiboot per a Vu+] - Impossible completar, "
+"arxius Multiboot no trobats"
 
 msgid "All regions, Spain, (Europe DVB-T/T2)"
-msgstr ""
+msgstr "Totes les regions, Espanya, (Europa DVB-T/T2)"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "MultiBoot Vu+"
 
 msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr ""
+msgstr "Inicialització Multiboot Kexec - es reiniciarà després de 10 segons."
 
 msgid ""
 "Kexec MultiBoot Initialisation in progress!\n"
@@ -27283,6 +27299,10 @@ msgid ""
 "Will reboot after restoring any eMMC slots.\n"
 "This can take from 1 -> 5 minutes per slot."
 msgstr ""
+"Inicialització del Multiboot Kexec en progrés!\n"
+"\n"
+"Es reiniciarà després de restaurar qualsevol slot eMMC.\n"
+"Pot tardar entre 1 i 5 minuts per slot."
 
 msgid "Kexec MultiBoot Manager"
 msgstr "Administrador MultiBoot Vu+"
@@ -27303,7 +27323,7 @@ msgid "Remove forever"
 msgstr "Eliminar per sempre"
 
 msgid "Unable to complete - Kexec Multiboot files missing!"
-msgstr ""
+msgstr "Impossible completar - Arxius de Multiboot Kexec no trobats!"
 
 msgid ""
 "Press Green key to enable MultiBoot!\n"
@@ -27331,3 +27351,26 @@ msgstr ""
 #
 msgid "Locale / Language Settings"
 msgstr "Configuració d'idioma/regió"
+
+msgid "SDroot"
+msgstr "Arranc memòria interna o SD"
+
+msgid "H9 SD Manager"
+msgstr "Administrador SD en H9"
+
+#
+msgid "Install image to SD or USB"
+msgstr "Instal·lar imatge a la SD"
+
+msgid "H9 SDcard manager"
+msgstr "Administrador de tarjeta SD en H9"
+
+msgid "Press appropiate Init to move Nand root to SDcard."
+msgstr "Prem Inicialitzar per moure l'arranc de la memòria interna a la SD."
+
+msgid "Init SDcard"
+msgstr "Inicialitzar tarjeta SD"
+
+msgid "Init Zgemma H9 SDCARD - please reboot after use."
+msgstr ""
+"Inicialitzar tarjeta SD del Zgemma H9 - si us plau, reinicia en acabar."

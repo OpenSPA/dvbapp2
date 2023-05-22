@@ -13,10 +13,37 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, fileCheck, pathExists, fileHas
 
 
-class SDswap(Screen):
+from enigma import getDesktop
 
-	skin = """
-	<screen name="H9SDswap" position="center,center" size="750,900" flags="wfNoBorder" backgroundColor="transparent">
+def esHD():
+	if getDesktop(0).size().width() > 1400:
+		return True
+	else:
+		return False
+
+class SDswap(Screen):
+	if esHD():
+		skin="""
+		<screen name="H9SDswap" position="center,center" size="1125,1350" flags="wfNoBorder" backgroundColor="transparent">
+		<eLabel name="b" position="0,0" size="1125,1050" backgroundColor="#00ffffff" zPosition="-2" />
+		<eLabel name="a" position="1,1" size="1122,1047" backgroundColor="#00000000" zPosition="-1" />
+		<widget source="Title" render="Label" position="90,15" foregroundColor="#00ffffff" size="720,75" halign="left" font="Regular;42" backgroundColor="#00000000" />
+		<eLabel name="line" position="1,90" size="1122,1" backgroundColor="#00ffffff" zPosition="1" />
+		<eLabel name="line2" position="1,375" size="1122,6" backgroundColor="#00ffffff" zPosition="1" />
+		<widget name="config" position="3,420" size="1095,570" halign="center" font="Regular;33" backgroundColor="#00000000" foregroundColor="#00e5b243" />
+		<widget source="labe14" render="Label" position="3,120" size="1095,45" halign="center" font="Regular;33" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<widget source="labe15" render="Label" position="3,195" size="1095,90" halign="center" font="Regular;33" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<widget source="key_red" render="Label" position="45,300" size="225,45" noWrap="1" zPosition="1" valign="center" font="Regular;30" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<widget source="key_green" render="Label" position="345,300" size="225,45" noWrap="1" zPosition="1" valign="center" font="Regular;30" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<widget source="key_yellow" render="Label" position="645,300" size="225,45" noWrap="1" zPosition="1" valign="center" font="Regular;30" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<ePixmap pixmap="skin_default/buttons/red_HD.png" position="45,300" size="60,60" alphatest="blend" />
+		<ePixmap pixmap="skin_default/buttons/green_HD.png" position="345,300" size="60,60" alphatest="blend" />
+		<ePixmap pixmap="skin_default/buttons/yellow_HD.png" position="645,300" size="60,60" alphatest="blend" />
+		</screen>
+		"""
+	else:
+		skin = """
+		<screen name="H9SDswap" position="center,center" size="750,900" flags="wfNoBorder" backgroundColor="transparent">
 		<eLabel name="b" position="0,0" size="750,700" backgroundColor="#00ffffff" zPosition="-2" />
 		<eLabel name="a" position="1,1" size="748,698" backgroundColor="#00000000" zPosition="-1" />
 		<widget source="Title" render="Label" position="60,10" foregroundColor="#00ffffff" size="480,50" halign="left" font="Regular; 28" backgroundColor="#00000000" />
@@ -31,8 +58,8 @@ class SDswap(Screen):
 		<ePixmap pixmap="skin_default/buttons/red.png" position="30,200" size="40,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="230,200" size="40,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="430,200" size="40,40" alphatest="on" />
-	</screen>
-	"""
+		</screen>
+		"""
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)

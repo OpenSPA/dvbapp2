@@ -23365,3 +23365,48 @@ msgstr ""
 
 msgid "Locale / Language Settings"
 msgstr ""
+
+msgid "SDroot"
+msgstr ""
+
+msgid "H9 SD Manager"
+msgstr ""
+
+msgid "Install image to SD or USB"
+msgstr ""
+
+msgid "switch Nand and SDcard"
+msgstr ""
+
+msgid "SwaptoNand"
+msgstr ""
+
+msgid "SwaptoSD"
+msgstr ""
+
+msgid "SDcard switch ERROR! - already on Nand"
+msgstr ""
+
+msgid "SDcard switch ERROR! - already on mmc"
+msgstr ""
+
+msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
+msgstr ""
+
+msgid "USB switch ERROR! - already on USB"
+msgstr ""
+
+msgid "USB switch ERROR! - root files not transferred to USB"
+msgstr ""
+
+msgid "H9 SDcard manager"
+msgstr ""
+
+msgid "Press appropiate Init to move Nand root to SDcard."
+msgstr ""
+
+msgid "Init SDcard"
+msgstr ""
+
+msgid "Init Zgemma H9 SDCARD - please reboot after use."
+msgstr ""

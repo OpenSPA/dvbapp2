@@ -28,6 +28,7 @@ from Tools.Directories import SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 
+from .H9SDmanager import H9SDmanager
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
 from .ImageWizard import ImageWizard
 from .ImageBackup import ImageBackup
@@ -57,31 +58,28 @@ def valid_cache(cache_file, cache_ttl):  # See if the cache file exists and is s
 	else:
 		return 1
 
-
 def load_cache(cache_file):  # Does a cPickle load.
 	cache_data = None
 	with open(cache_file, "rb") as fd:
 		cache_data = load(fd)
 	return cache_data
 
-
 # Helper for menu.xml
-class ImageWizard(ImageWizard):
+class H9SDmanager(H9SDmanager):
 	pass
 
+class ImageWizard(ImageWizard):
+	pass
 
 class ImageBackup(ImageBackup):
 	pass
 
-
 class RestoreMenu(RestoreMenu):
 	pass
-
 
 class SoftwareManagerSetup(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "SoftwareManager", plugin="SystemPlugins/SoftwareManager")
-
 
 class IPKGMenu(Screen):
 	skin = """

@@ -6,6 +6,7 @@ from Tools.CList import CList
 from Components.SystemInfo import BoxInfo
 from Components.Console import Console
 from Tools.HardwareInfo import HardwareInfo
+from Tools.Directories import fileHas
 import Components.Task
 import re
 import six
@@ -821,7 +822,8 @@ class HarddiskManager:
 			BLACKLIST = ["mmcblk0"]
 		elif BoxInfo.getItem("mtdrootfs").startswith("mmcblk1p"):
 			BLACKLIST = ["mmcblk1"]
-
+		elif BoxInfo.getItem("HasMMC") and fileHas("/proc/cmdline", "root=/dev/mmcblk0p1"):
+			BLACKLIST=["mmcblk0p1"]
 		blacklisted = False
 		if blockdev[:7] in BLACKLIST:
 			blacklisted = True
