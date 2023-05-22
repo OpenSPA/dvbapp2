@@ -23410,3 +23410,27 @@ msgstr ""
 
 msgid "Init Zgemma H9 SDCARD - please reboot after use."
 msgstr ""
+
+msgid "The Kexec Multiboot is Disabled"
+msgstr ""
+
+msgid ""
+"Press Green key to add more slots in USB\n"
+"\n"
+"Will reboot within 10 seconds."
+msgstr ""
+
+msgid "The Kexec Multiboot is Enabled"
+msgstr ""
+
+msgid "You have 4 slots in the flash"
+msgstr ""
+
+msgid "You have %d slots in a usb device"
+msgstr ""
+
+msgid "Add 4 more Multiboot USB slots after slot %s ?"
+msgstr ""
+
+msgid "[KexecInit][add USB STARTUP slots] - The USB (%s) only has %s free. At least 1024MB is required."
+msgstr ""
