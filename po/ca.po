@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-22 19:29+0200\n"
+"PO-Revision-Date: 2023-05-24 19:28+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -19665,7 +19665,7 @@ msgid "Shows the state of your wireless LAN connection."
 msgstr "Mostra l’estat de la connexió LAN sense fils."
 
 msgid "Shows the watched status of the media."
-msgstr ""
+msgstr "Mostra l'estat de visualització de la pel·lícula."
 
 #
 msgid "Shuffle play list"
@@ -19680,10 +19680,10 @@ msgid "Shutdown"
 msgstr "Tancar"
 
 msgid "Sichuan Yi / Nuosu"
-msgstr ""
+msgstr "Sichuan Yi / Nuosu"
 
 msgid "Side by Side"
-msgstr ""
+msgstr "Costat a costat"
 
 msgid "Sierra Leone"
 msgstr "Sierra Leona"
@@ -19692,13 +19692,13 @@ msgid "Sigma Designs"
 msgstr ""
 
 msgid "Signal Finder"
-msgstr ""
+msgstr "Buscador de senyal"
 
 msgid "Signal quality"
 msgstr "Qualitat del senyal"
 
 msgid "Signal strength"
-msgstr ""
+msgstr "Potència de senyal"
 
 msgid "Signal strength:"
 msgstr "Potència del senyal:"
@@ -19720,7 +19720,7 @@ msgid "Simple"
 msgstr "Senzill"
 
 msgid "Simple fade"
-msgstr ""
+msgstr "Esvaiment simple"
 
 #
 msgid "Simple titleset (compatibility for legacy players)"
@@ -19732,7 +19732,7 @@ msgid "Simple umounter mass storage device."
 msgstr "Dispositiu d'emmagatzematge simple desmuntage massiu."
 
 msgid "Simple zoom"
-msgstr ""
+msgstr "Zoom simple"
 
 msgid "SimpleUmount"
 msgstr ""
@@ -19741,7 +19741,7 @@ msgid "Simplified Chinese"
 msgstr ""
 
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindhi"
 
 #
 msgid "Singapore"
@@ -19771,16 +19771,16 @@ msgid "SingleEPG Settings"
 msgstr "Configuracions EPG simple"
 
 msgid "Sinhala / Sinhalese"
-msgstr ""
+msgstr "Sinhala / Sinhalese"
 
 msgid "Sint Maarten"
-msgstr ""
+msgstr "Sint Maarten"
 
 msgid "Sitcom"
 msgstr ""
 
 msgid "Size"
-msgstr ""
+msgstr "Tamany"
 
 msgid "Size ascending"
 msgstr ""
@@ -19789,25 +19789,25 @@ msgid "Size descending"
 msgstr ""
 
 msgid "Skin"
-msgstr ""
+msgstr "Skin"
 
 msgid "Skin & Resolution"
 msgstr ""
 
 msgid "Skin Selector"
-msgstr ""
+msgstr "Selector de skin"
 
 msgid "Skin Setting"
-msgstr ""
+msgstr "Ajust skin"
 
 msgid "Skin Settings"
-msgstr ""
+msgstr "Configuració skin"
 
 msgid "Skin setup"
-msgstr ""
+msgstr "Configurar skin"
 
 msgid "SkinSelector"
-msgstr ""
+msgstr "Selector de skin"
 
 #
 msgid "Skins"
@@ -19820,44 +19820,44 @@ msgstr ""
 "automàtica de paquets)"
 
 msgid "Skip back"
-msgstr ""
+msgstr "Saltar cap enrere"
 
 #
 msgid "Skip empty services"
 msgstr "Omet els serveis buits"
 
 msgid "Skip forward"
-msgstr ""
+msgstr "Saltar cap endavant"
 
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr ""
 
 msgid "Sleep"
-msgstr ""
+msgstr "Apagar"
 
 msgid "Sleep Timer"
-msgstr ""
+msgstr "Temporitzador d'apagat"
 
 msgid "Sleep Timers"
-msgstr ""
+msgstr "Temporitzadors d'apagat"
 
 msgid "Sleep delay"
-msgstr ""
+msgstr "Retard d'apagat"
 
 msgid "Sleep test"
 msgstr ""
 
 msgid "Sleep timer"
-msgstr ""
+msgstr "Temporitzador d'apagat"
 
 msgid "SleepTimer"
-msgstr ""
+msgstr "Temporitzador d'apagat"
 
 msgid "SleepTimer Actions"
-msgstr ""
+msgstr "Temporitzador d'apagat"
 
 msgid "SleepTimer Overview"
-msgstr ""
+msgstr "Vista general temporitzador d'apagat"
 
 msgid "SleepTimer Settings"
 msgstr ""
@@ -19887,13 +19887,13 @@ msgid "Sleeping"
 msgstr ""
 
 msgid "Slide drop"
-msgstr ""
+msgstr "Lliscar cap abaix"
 
 msgid "Slide from left"
-msgstr ""
+msgstr "Lliscar des de l'esq."
 
 msgid "Slide left to right"
-msgstr ""
+msgstr "Lliscar d'esquerra a dreta"
 
 msgid "Slide picture in loop"
 msgstr "Feu lliscar la imatge al bucle"
@@ -19912,7 +19912,7 @@ msgid "Slide show loop"
 msgstr ""
 
 msgid "Slide top to bottom"
-msgstr ""
+msgstr "Lliscar de dalt a baix"
 
 #
 #, python-format
@@ -19921,19 +19921,19 @@ msgstr "Slot %d"
 
 #, python-format
 msgid "Slot %s: %s"
-msgstr ""
+msgstr "Partició %s: %s"
 
 #, python-format
 msgid "Slot %s: %s (Current image)"
-msgstr ""
+msgstr "Partició %s: %s (Imatge actual)"
 
 #, python-format
 msgid "Slot %s: %s as USB Recovery"
-msgstr ""
+msgstr "Partició %s: %s com USB de recuperació"
 
 #, python-format
 msgid "Slot '%s'"
-msgstr ""
+msgstr "Partició '%s'"
 
 #, python-format
 msgid "Slot '%s':  %s"
@@ -19945,7 +19945,7 @@ msgstr "Ranura '%s':  %s  -  Actual"
 
 #, python-format
 msgid "Slot '%s': %s%s"
-msgstr ""
+msgstr "Partició '%s': %s%s"
 
 msgid "Slovak"
 msgstr "Eslovac"
@@ -19998,32 +19998,32 @@ msgid "Soap Opera"
 msgstr ""
 
 msgid "Soccer"
-msgstr ""
+msgstr "Futbol"
 
 msgid "Social/Political/Economics"
 msgstr "Social / Política / Economia"
 
 msgid "Society & Culture"
-msgstr ""
+msgstr "Societat i cultura"
 
 #
 msgid "Socket"
 msgstr "Cavitat"
 
 msgid "Softcam"
-msgstr ""
+msgstr "Softcam"
 
 msgid "Softcam Actions"
-msgstr ""
+msgstr "Softcam"
 
 msgid "Softcam Settings"
 msgstr "Instal·lació de softcam"
 
 msgid "Softcam Setup"
-msgstr ""
+msgstr "Configurar Softcam"
 
 msgid "Softcams"
-msgstr ""
+msgstr "Softcams"
 
 #
 msgid "Software"
@@ -20034,7 +20034,7 @@ msgid "Software Management"
 msgstr "Gestió de programa"
 
 msgid "Software Manager"
-msgstr ""
+msgstr "Administrar software"
 
 msgid "Software Manager Information"
 msgstr "Informació del gestor de programari"
@@ -20043,20 +20043,20 @@ msgid "Software Manager Settings"
 msgstr "Configuració del gestor de programa"
 
 msgid "Software MultiBoot"
-msgstr ""
+msgstr "Software MultiBoot"
 
 #
 msgid "Software Restore"
-msgstr ""
+msgstr "Restaurar software"
 
 msgid "Software Update"
-msgstr ""
+msgstr "Actualització de software"
 
 msgid "Software Update Actions"
-msgstr ""
+msgstr "Actualització de software"
 
 msgid "Software information"
-msgstr ""
+msgstr "Informació de software"
 
 msgid ""
 "Software update starting, please wait.\n"
@@ -20064,7 +20064,7 @@ msgid ""
 msgstr ""
 
 msgid "Softwaremanager..."
-msgstr ""
+msgstr "Administrador de software..."
 
 msgid "Solomon Islands"
 msgstr "Illes Marshall"
@@ -20081,46 +20081,53 @@ msgid ""
 "turn back on it may require a slower transmission interval or the repetition "
 "of the wake-up command.)"
 msgstr ""
+"Algunes TV no poden canviar a l'entrada correcta si hi ha un altre port HDMI "
+"actiu. Aquesta configuració posa la TV en repòs abans del canvi. (Si la TV "
+"no torna a encendre's, pots necessitar un interval de transmissió més lent o "
+"la repetició de les ordres d'encesa.)"
 
 #
 msgid "Some plugins are not available:\n"
 msgstr "Alguns complements no estan disponibles:\n"
 
 msgid "Sorbian"
-msgstr ""
+msgstr "Sorbian"
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
 
 msgid "Sorry Inadyn Config is Missing"
-msgstr ""
+msgstr "Falta la configuració d'Inadyn"
 
 msgid "Sorry MediaScanner is not installed!"
-msgstr ""
+msgstr "MediaScanner no està instal·lat!"
 
 msgid "Sorry MiniDLNA Config is Missing"
-msgstr ""
+msgstr "La configuració MiniDLNA s'ha perdut"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr ""
+msgstr "Feeds fora de servei por manteniment. Intenta-ho més tard."
 
 msgid "Sorry feeds are down for maintenance."
-msgstr ""
+msgstr "Feeds fora de servei per manteniment. "
 
 msgid "Sorry no backups found!"
-msgstr ""
+msgstr "No s'han trobat backups!"
 
 msgid "Sorry only possible to record 2 channels at once"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
-msgstr ""
+msgstr "Falta la configuració de uShare"
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
 "Please choose an other one."
 msgstr ""
+"La destinació del backup no existeix\n"
+"\n"
+"Si us plau, selecciona una altra."
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
@@ -20136,9 +20143,11 @@ msgid ""
 "Sorry, no physical devices that supports SWAP attached. Can't create "
 "Swapfile on network or fat32 filesystems"
 msgstr ""
+"No hi ha dispositius físics connectats que suportin SWAP. No es pot crear "
+"l'arxiu Swap en dispositius de xarxa o fat32"
 
 msgid "Sorry, there was a problem:"
-msgstr ""
+msgstr "Ho sentim, hi ha hagut un problema:"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -20151,10 +20160,10 @@ msgid "Sort"
 msgstr "Ordena"
 
 msgid "Sort Bookmarks"
-msgstr ""
+msgstr "Ordenar favorits"
 
 msgid "Sort EPG List"
-msgstr ""
+msgstr "Ordenar la llista d'EPG"
 
 msgid "Sort Extensions menu"
 msgstr ""
@@ -20166,10 +20175,10 @@ msgid "Sort by"
 msgstr "Ordenar per"
 
 msgid "Sort by default"
-msgstr ""
+msgstr "Ordenar per defecte"
 
 msgid "Sort list by"
-msgstr ""
+msgstr "Ordenar llista per"
 
 msgid "Sort list to default and exit?"
 msgstr "Voleu ordenar la llista per defecte i sortir?"
@@ -20178,7 +20187,7 @@ msgid "Sort list:"
 msgstr "Ordenar llista:"
 
 msgid "Sort order for the language list."
-msgstr ""
+msgstr "Ordre llista d'idiomes"
 
 msgid "Sort playlists"
 msgstr ""
@@ -27406,3 +27415,14 @@ msgid ""
 msgstr ""
 "[KexecInit][afegir ranures d'arrencada USB]: L'USB (%s) només té %s lliures. "
 "Es requereixen almenys 1024 MB."
+
+#
+msgid "Format Storage Device"
+msgstr "Format del dispositiu d'emmagatzematge"
+
+msgid ""
+"Do you really want to format the device in the Linux file system?\n"
+"All data on the device will be lost!"
+msgstr ""
+"Realment voleu formatar el dispositiu al sistema d'arxius Linux?\n"
+"Es perdran totes les dades del dispositiu!"

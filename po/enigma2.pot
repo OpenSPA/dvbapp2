@@ -23434,3 +23434,9 @@ msgstr ""
 
 msgid "[KexecInit][add USB STARTUP slots] - The USB (%s) only has %s free. At least 1024MB is required."
 msgstr ""
+
+msgid "Format Storage Device"
+msgstr ""
+
+msgid "Do you really want to format the device in the Linux file system?\nAll data on the device will be lost!"
+msgstr ""
