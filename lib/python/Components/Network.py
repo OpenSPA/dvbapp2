@@ -15,6 +15,7 @@ from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import fileReadLines, fileWriteLines
 
+
 MODULE_NAME = __name__.split(".")[-1]
 
 
@@ -482,7 +483,7 @@ class Network:
 
 	def getLinkStateFinished(self, result, retval, extra_args):
 		(callback) = extra_args
-		if PY3 and isinstance(result, bytes):
+		if isinstance(result, bytes):
 			result = result.decode()
 		if self.linkConsole is not None and len(self.linkConsole.appContainers) == 0:
 			callback(result)
