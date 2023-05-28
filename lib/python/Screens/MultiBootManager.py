@@ -262,8 +262,13 @@ class KexecInit(Screen):
 		self.setTitle(_("Kexec MultiBoot Manager"))
 		self.kexec_files = fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz")
 		self.kexec_installed = fileExists("/STARTUP.cpio.gz") and fileExists("/STARTUP")
-		self.hdd, self.usb = self.getHDD()
-		txtgreen = self.kexec_files and _("Enable") or ""
+		if self.kexec_files:
+			self.hdd = None
+			self.usb = None
+			txtgreen = _("Enable")
+		else:
+			self.hdd, self.usb = self.getHDD()
+			txtgreen = ""
 		txtdes = _("Press Green key to enable MultiBoot!\n\nWill reboot within 10 seconds,\nunless you have eMMC slots to restore.\nRestoring eMMC slots can take from 1 -> 5 minutes per slot.")
 		self.txt = _("The Kexec Multiboot is Disabled")
 		if self.kexec_installed:
