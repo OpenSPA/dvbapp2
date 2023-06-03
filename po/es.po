@@ -28002,3 +28002,12 @@ msgstr "Herramienta desinstalación IPK"
 #
 msgid "Mount shares again"
 msgstr "Montar recursos de red otra vez"
+
+msgid "This action will permanently delete the images in slots 1 to 3. Do you want to make a backup of these images? You will need to have a hard disk or usb. By enabling kexec they will be restored automatically. Backup eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr "Esta acción eliminará permanentemente las imágenes de los slots 1 a 3. ¿Quieres hacer backup de estas imágenes? Necesitarás un disco duro o usb. Al habilitar el kexec se restauraran automáticamente. El backup de slots eMMC puede tardar 1 -> 5 minutos por cada slot."
+
+msgid "The backup could not be made, do you want to continue? Images in slots 1 to 3 will be lost"
+msgstr "El backup no se ha podido hacer, ¿Quieres continuar? Las imágenes en los slots 1 a 3 se perderán"
+
+msgid "Are you sure to continue? Images were lost in slots 1 to 3"
+msgstr "¿Estas seguro de continuar? Se perderán las imágenes en los slots 1 a 3"
