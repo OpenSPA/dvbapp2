@@ -1410,6 +1410,15 @@ def readSkin(screen, skin, names, desktop):
 	if myScreen is None:
 		print("[Skin] No skin to read or screen to display.")
 		myScreen = screen.parsedSkin = fromstring("<screen></screen>")
+
+	#mpiero sdhd convert 
+	try:
+		if config.plugins.sdhdmaster.enable.value and config.plugins.sdhdmaster.ready.value and "OpenStarHD" not in str(config.skin.primary_skin.value).split("/")[0]:
+			from Plugins.Extensions.spazeMenu.spacvsd.spacvsd import openspa_sdhd
+			openspa_sdhd(myScreen,screen,path,names)
+	except:
+		pass
+
 	screen.skinAttributes = []
 	skinPath = getattr(screen, "skin_path", path)  # TODO: It may be possible for "path" to be undefined!
 	context = SkinContextStack()
