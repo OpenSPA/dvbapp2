@@ -23440,3 +23440,39 @@ msgstr ""
 
 msgid "Do you really want to format the device in the Linux file system?\nAll data on the device will be lost!"
 msgstr ""
+
+msgid "Please select a category."
+msgstr ""
+
+msgid "Please select the package to delete."
+msgstr ""
+
+msgid "Select method?"
+msgstr ""
+
+msgid "Force Depends"
+msgstr ""
+
+msgid "Force Remove"
+msgstr ""
+
+msgid "Removing ipk %s"
+msgstr ""
+
+msgid "Removing Depends of ipk %s"
+msgstr ""
+
+msgid "Force Removing ipk %s"
+msgstr ""
+
+msgid "Ipk Uninstaller - Main Menu"
+msgstr ""
+
+msgid "Ipk Uninstaller - List installed packages"
+msgstr ""
+
+msgid "Ipk Uninstall Tool"
+msgstr ""
+
+msgid "Mount shares again"
+msgstr ""

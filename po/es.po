@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-24 18:57+0200\n"
+"PO-Revision-Date: 2023-06-03 11:25+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -27802,7 +27802,7 @@ msgid "Init Vu+ MultiBoot"
 msgstr "Iniciar Multiboot Vu+"
 
 msgid "Enable Kexec MultiBoot"
-msgstr "Habilitar Multiboot Vu+"
+msgstr "Habilitar Multiboot Kexec"
 
 msgid "Vu+ MultiBoot Initialisation"
 msgstr "Inicialización MultiBoot Vu+"
@@ -27829,10 +27829,10 @@ msgid "All regions, Spain, (Europe DVB-T/T2)"
 msgstr "Todas las regiones, España, (Europa DVB-T/T2)"
 
 msgid "Kexec MultiBoot Actions"
-msgstr "MultiBoot Vu+"
+msgstr "MultiBoot Kexec"
 
 msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr "Inicialización Multiboot Vu+ - re reiniciará después de 10 segundos."
+msgstr "Inicialización Multiboot Kexec - re reiniciará después de 10 segundos."
 
 msgid ""
 "Kexec MultiBoot Initialisation in progress!\n"
@@ -27840,13 +27840,13 @@ msgid ""
 "Will reboot after restoring any eMMC slots.\n"
 "This can take from 1 -> 5 minutes per slot."
 msgstr ""
-"Inicialización Multiboot Vu+ en progreso\n"
+"Inicialización Multiboot Kexec en progreso\n"
 "\n"
 "Se reiniciará después de restaurar cualquier slot eMMC\n"
 "Esto puede durar de 1 a 5 min por slot."
 
 msgid "Kexec MultiBoot Manager"
-msgstr "Administrador de MultiBoot Vu+"
+msgstr "Administrador de MultiBoot Kexec"
 
 msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
@@ -27860,7 +27860,7 @@ msgstr ""
 "%s"
 
 msgid "Remove forever"
-msgstr "Eliminar para siempre"
+msgstr "Eliminar Kexec"
 
 msgid "Unable to complete - Kexec Multiboot files missing!"
 msgstr "No se ha podido completar - ¡Faltan archivos Kexec Multiboot!"
@@ -27913,8 +27913,7 @@ msgid "Init SDcard"
 msgstr "Inicializar tarjeta SD"
 
 msgid "Init Zgemma H9 SDCARD - please reboot after use."
-msgstr ""
-"Inicializar tarjeta SD en tu Zgemma H9 - por favor, reiniciar al acabar."
+msgstr "Inicializar SD del Zgemma H9 - por favor, reiniciar al acabar."
 
 msgid "The Kexec Multiboot is Disabled"
 msgstr "MultiBoot Kexec deshabilitado"
@@ -27959,3 +27958,47 @@ msgstr ""
 "¿Seguro que quieres formatear el dispositivo en el sistema de archivos "
 "Linux?\n"
 "¡Se perderán todos los datos del dispositivo!"
+
+# ******************************************************************************
+msgid "Please select a category."
+msgstr "Por favor, selecciona una categoría."
+
+#
+msgid "Please select the package to delete."
+msgstr "Por favor, selecciona el paquete a borrar."
+
+msgid "Select method?"
+msgstr "Seleccionar método"
+
+#
+msgid "Force Depends"
+msgstr "Forzar dependencias"
+
+#
+msgid "Force Remove"
+msgstr "Forzar borrado"
+
+#
+msgid "Removing ipk %s"
+msgstr "Eliminando IPK %s"
+
+msgid "Removing Depends of ipk %s"
+msgstr "Borrado dependencias del IPK %s"
+
+msgid "Force Removing ipk %s"
+msgstr "Forzar borrado del IPK %s"
+
+msgid "Ipk Uninstaller - Main Menu"
+msgstr "Desinstalador IPK - Menú principal"
+
+#
+msgid "Ipk Uninstaller - List installed packages"
+msgstr "Desinstalador IPK - Lista de paquetes instalados"
+
+#
+msgid "Ipk Uninstall Tool"
+msgstr "Herramienta desinstalación IPK"
+
+#
+msgid "Mount shares again"
+msgstr "Montar recursos de red otra vez"
