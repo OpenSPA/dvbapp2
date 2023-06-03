@@ -381,7 +381,34 @@ class FlashImage(Screen, HelpableScreen):
 			else:
 				choices.append((_("Slot '%s':  %s") % (slotCode, imageDictionary[slotCode]["imagename"]), (slotCode, True)))
 		choices.append((_("No, don't flash this image"), False))
-		self.session.openWithCallback(self.checkMedia, MessageBox, _("Do you want to flash the image '%s'?") % self.imageName, list=choices, default=default, windowTitle=self.getTitle())
+		self.session.openWithCallback(self.checkkexecRoot, MessageBox, _("Do you want to flash the image '%s'?") % self.imageName, list=choices, default=default, windowTitle=self.getTitle())
+
+	### OPENSPA [morser] Allow Image Backup for Kexec MUltiboot - Intall in root slot
+	def checkkexecRoot(self, choice):
+		if choice:
+			self.choice = choice
+			if BoxInfo.getItem("HasKexecMultiboot") and choice[0] == "R":  # Kexec Root Image.
+				self.session.openWithCallback(self.backupImageAnswer, MessageBox, _("This action will permanently delete the images in slots 1 to 3. Do you want to make a backup of these images? You will need to have a hard disk or usb. By enabling kexec they will be restored automatically. Backup eMMC slots can take from 1 -> 5 minutes per slot."), simple=True)
+			else:
+				self.checkMedia(self.choice)
+		else:
+			self.keyCancel()
+
+	def backupImageAnswer(self, answer=None):
+		if answer:
+			if MultiBoot.KexecBackupImages(BoxInfo.getItem("model")):
+				self.checkMedia(self.choice)
+			else:
+				self.session.openWithCallback(self.nobackupAnswer, MessageBox, _("The backup could not be made, do you want to continue? Images in slots 1 to 3 will be lost"), simple=True)
+		else:
+				self.session.openWithCallback(self.nobackupAnswer, MessageBox, _("Are you sure to continue? Images were lost in slots 1 to 3"), simple=True)
+
+	def nobackupAnswer(self, answer=None):
+		if answer:
+			self.checkMedia(self.choice)
+		else:
+			self.keyCancel()
+	##############################################################################
 
 	def checkMedia(self, choice):
 		if choice:
@@ -676,7 +703,7 @@ class FlashImage(Screen, HelpableScreen):
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
 			#### OPENSPA [morser] for Kexec, flash imagen in USB ################
 			if BoxInfo.getItem("HasKexecMultiboot") and "mmcblk" not in mtdRootFS:
-				cmdArgs = ["-r%s" % mtdRootFS, "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:], "-m%s" % self.slotCode]
+				cmdArgs = ["-r%s" % mtdRootFS, "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model"), "-m%s" % self.slotCode]
 			#########################################################################
 			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]

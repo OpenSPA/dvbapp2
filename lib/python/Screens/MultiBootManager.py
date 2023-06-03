@@ -272,7 +272,7 @@ class KexecInit(Screen):
 		txtdes = _("Press Green key to enable MultiBoot!\n\nWill reboot within 10 seconds,\nunless you have eMMC slots to restore.\nRestoring eMMC slots can take from 1 -> 5 minutes per slot.")
 		self.txt = _("The Kexec Multiboot is Disabled")
 		if self.kexec_installed:
-			txtgreen = self.usb and _("Add Extra USB slot") or ""
+			txtgreen = self.usb and _("Add Extra USB slots") or ""
 			txtdes = _("Press Green key to add more slots in USB\n\nWill reboot within 10 seconds.")
 			self.txt = _("The Kexec Multiboot is Enabled")
 			self.txt += "\n"
@@ -282,7 +282,7 @@ class KexecInit(Screen):
 				self.txt +=_("You have %d slots in a usb device") % (int(self.hiKey)-3)
 		self["description"] = Label(txtdes)
 		self["config"] = Label(self.txt)
-		self["key_red"] = StaticText(self.kexec_files and _("Remove forever") or "")
+		self["key_red"] = StaticText(self.kexec_files and _("Remove forever") or _("Disable"))
 		self["key_green"] = StaticText(txtgreen)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
 			"green": self.keyGreen,
@@ -355,14 +355,13 @@ class KexecInit(Screen):
 		if answer is False:
 			self.close()
 		else:
-			boxmodel = BoxInfo.getItem("model")[2:]
 			data = open("/STARTUP_4","r").read()
 			try:
 				uuid = data.split()[1].replace("root=","")
 			except:
 				uuid = None
 			if uuid:
-				MultiBoot.KexecUSBmoreSlots(boxmodel, hiKey, uuid)
+				MultiBoot.KexecUSBmoreSlots(self.model, hiKey, uuid)
 				self.session.open(TryQuitMainloop, 2)
 			else:
 				print("[KexecInit] Error in uuid")
@@ -379,8 +378,7 @@ class KexecInit(Screen):
 
 	def KexecMountRet(self, result=None, retval=None, extra_args=None):
 		device_uuid = "UUID=" + result.split("UUID=")[1].split(" ")[0].replace('"', '')
-		boxmodel = BoxInfo.getItem("model")[2:]
-		MultiBoot.KexecUSBslots(boxmodel, device_uuid)
+		MultiBoot.KexecUSBslots(self.model, device_uuid)
 		self.session.open(TryQuitMainloop, 2)
 
 	def RootInit(self):
@@ -409,14 +407,40 @@ class KexecInit(Screen):
 
 	def RootInitEnd(self, *args, **kwargs):
 		from Screens.Standby import TryQuitMainloop
-		for usbslot in range(1, 4):
-			if pathExists("/media/hdd/%s/linuxrootfs%s" % (self.model, usbslot)):
-				Console().ePopen("cp -R /media/hdd/%s/linuxrootfs%s . /" % (self.model, usbslot))
+		MultiBoot.KexecRestoreImages(self.model)
+		self.session.open(TryQuitMainloop, 2)
+
+	def RootDeltEnd(self, *args, **kwargs):
+		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
 
 	def removeFiles(self):
 		if self.kexec_files:
 			self.session.openWithCallback(self.removeFilesAnswer, MessageBox, _("Really permanently delete MultiBoot files?\n%s") % "(/usr/bin/kernel_auto.bin /usr/bin/STARTUP.cpio.gz)", simple=True)
+		else:
+			self.session.openWithCallback(self.disableAnswer, MessageBox, _("This action will permanently delete the images in slots 1 to 3. Do you want to make a backup of these images? You will need to have a hard disk or usb. By enabling kexec they will be restored automatically. Backup eMMC slots can take from 1 -> 5 minutes per slot."), simple=True)
+
+	def disableAnswer(self, answer=None):
+		if answer:
+			if MultiBoot.KexecBackupImages(self.model):
+				self.disableKexec()
+			else:
+				self.session.openWithCallback(self.nobackupAnswer, MessageBox, _("The backup could not be made, do you want to continue? Images in slots 1 to 3 will be lost"), simple=True)
+		else:
+				self.session.openWithCallback(self.nobackupAnswer, MessageBox, _("Are you sure to continue? Images were lost in slots 1 to 3"), simple=True)
+
+	def nobackupAnswer(self, answer=None):
+		if answer:
+			self.disableKexec()
+
+	def disableKexec(self):
+		self.setTitle(_("Kexec MultiBoot  - will reboot after 10 seconds."))
+		cmdlist = []
+		cmdlist.append("rm -rf /linuxrootfs*")
+		cmdlist.append("dd if=/zImage of=/dev/%s" % self.modelMtdRootKernel[1])  # restore old kernel
+		cmdlist.append("mv /STARTUP.cpio.gz /usr/bin/STARTUP.cpio.gz")  # copy userroot routine
+		cmdlist.append("rm /STARTUP*") #delete STARTUPS
+		Console().eBatch(cmdlist, self.RootDeltEnd, debug=True)
 
 	def removeFilesAnswer(self, answer=None):
 		if answer:

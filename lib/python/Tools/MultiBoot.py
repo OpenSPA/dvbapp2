@@ -11,7 +11,8 @@ from tempfile import mkdtemp
 # used to populate BoxInfo / SystemInfo and will create a boot loop!
 #
 from Components.Console import Console
-from Tools.Directories import SCOPE_CONFIG, copyfile, fileHas, fileReadLine, fileReadLines, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, copyfile, fileHas, fileReadLine, fileReadLines, resolveFilename, pathExists
+from shutil import rmtree
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -490,6 +491,40 @@ class MultiBootClass():
 		self.console.ePopen([UMOUNT, UMOUNT, tempDir])
 		rmdir(tempDir)
 
+	def KexecBackupImages(self, boxmodel):
+		with open("/proc/mounts", "r") as fd:
+			lines = fd.readlines()
+		result = [line.strip().split(" ") for line in lines]
+		device = None
+		for item in result:
+			if "/dev/sd" in item[0]:
+				device = item[1]
+				break
+		if device and pathExists(device):
+			if not pathExists("%s/%s" % (device,boxmodel)):
+				mkdir("%s/%s" % (device, boxmodel))
+			for slotnum in range(1,4):
+				if pathExists("/linuxrootfs%s" % slotnum):
+					if pathExists("%s/%s/linuxrootfs%s/" % (device, boxmodel, slotnum)):
+						rmtree("%s/%s/linuxrootfs%s" % (device, boxmodel, slotnum), ignore_errors=True)
+					self.console.ePopen("cp -R /linuxrootfs%s . %s/%s/" % (slotnum, device, boxmodel))
+			return True
+		return False
+
+	def KexecRestoreImages(self, boxmodel):
+		with open("/proc/mounts", "r") as fd:
+			lines = fd.readlines()
+		result = [line.strip().split(" ") for line in lines]
+		device = None
+		for item in result:
+			if "/dev/sd" in item[0]:
+				device = item[1]
+				if pathExists("%s/%s/linuxrootfs1" % (device,boxmodel)) or pathExists("%s/%s/linuxrootfs2" % (device,boxmodel)) or pathExists("%s/%s/linuxrootfs3" % (device,boxmodel)):
+					for slotnum in range(1,4):
+						if pathExists("%s/%s/linuxrootfs%s/" % (device, boxmodel, slotnum)):
+							self.console.ePopen("cp -R %s/%s/linuxrootfs%s . /" % (device, boxmodel, slotnum))
+					return True
+		return False
 	############################################################################
 	def finishSlot(self, data, retVal, extraArgs):  # Part of getSlotImageList().
 		if retVal:
