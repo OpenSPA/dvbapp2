@@ -27832,7 +27832,7 @@ msgid "Kexec MultiBoot Actions"
 msgstr "MultiBoot Kexec"
 
 msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
-msgstr "Inicialización Multiboot Kexec - re reiniciará después de 10 segundos."
+msgstr "Inicialización Multiboot Kexec - se reiniciará después de 10 segundos."
 
 msgid ""
 "Kexec MultiBoot Initialisation in progress!\n"
