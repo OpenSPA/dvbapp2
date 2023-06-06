@@ -389,9 +389,7 @@
 	<!-- MENU-->
 	<screen name="MenuSummary" position="0,0" size="480,320"> 
 		<panel name="LCDTitle" />
-		<widget source="parent.menu" render="Label" position="24,133" size="432,136" foregroundColor="white" font="FdLcDLight; 39" halign="center" valign="top" zPosition="2">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="24,133" size="432,136" foregroundColor="white" font="FdLcDLight; 39" halign="center" valign="top" zPosition="2">
 	</screen>
 
 	<!-- MESSAGEBOX -->

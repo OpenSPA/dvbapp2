@@ -66,7 +66,7 @@
 		<panel name="SummaryClockPanel" />	
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="220,176">
-		<widget source="parent.Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,75" font="FdLcD;24" halign="center" valign="center" />
+		<widget source="Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,75" font="FdLcD;24" halign="center" valign="center" />
 		<widget source="selected" render="Label" position="0,80" size="220,66" font="FdLcD;21" halign="center" valign="top" foregroundColor="#02c6ff" />
 	</screen>
 	<screen name="MovieSelectionSummary" position="0,0" size="220,176"> 
@@ -98,9 +98,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="parent.title" render="Label" foregroundColor="#FFFF00" position="top" size="*,61" font="FdLcD;30" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="*,53" font="FdLcD;26" halign="center" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
+		<widget source="entry" render="Label" position="top" size="*,53" font="FdLcD;26" halign="center" valign="center"/>
 	</screen>
 
 <!-- setup-->

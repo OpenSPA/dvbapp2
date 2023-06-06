@@ -103,9 +103,7 @@
   </screen>
   <screen name="MenuSummary" position="0,0" size="220,176">
     <widget source="parent.title" render="Label" position="0,0" size="220,52" font="VFD; 33" halign="center" valign="center" foregroundColor="azul" />
-    <widget source="parent.menu" render="Label" position="0,53" size="220,80" font="VFD; 32" halign="center" valign="center">
-      <convert type="StringListSelection" />
-    </widget>
+    <widget source="entry" render="Label" position="top" size="*,53" font="FdLcD;26" halign="center" valign="center"/>
     <panel name="RelojAbajo" />
   </screen>
   <screen name="ServiceScanSummary" position="0,0" size="220,176">

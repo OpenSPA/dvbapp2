@@ -139,7 +139,7 @@
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="170,18" font="FdLcD;15" halign="left" valign="top" noWrap="1" />
-		<widget source="selected" render="Label" position="0,16" size="255,32" font="FdLcD;14" halign="left" valign="top" />
+		<widget source="entry" render="Label" position="0,16" size="255,32" font="FdLcD;14" halign="left" valign="top" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
