@@ -3,7 +3,7 @@
 	"m": Action active on key "Make".
 	"b": Action active on key "Break".
 	"r": Action active on key repeats.
-	"l": Action on long keypress.
+	"l": Action on long key press.
 -->
 
 <keymap>
@@ -460,7 +460,6 @@
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
-		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 		<key id="KEY_1" mapto="1" flags="m" />
@@ -589,7 +588,6 @@
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="back" flags="m" />
 		<key id="KEY_ESC" mapto="back" flags="m" />
-		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 		<key id="KEY_1" mapto="1" flags="m" />
@@ -724,7 +722,6 @@
 	</map>
 
 	<map context="TextEntryActions">
-		<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 	</map>
