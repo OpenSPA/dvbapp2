@@ -323,10 +323,6 @@
 		<widget source="parent.selectedChoice" render="Label" position="0,16" size="128,16" font="FdLcD;14" valign="bottom" halign="center" />
 	</screen>
 
-	<screen name="AboutSummary" position="0,0" size="128,32">
-		<widget source="AboutText" render="Label" position="0,0" size="128,32" font="FdLcD;11" />
-	</screen>
-
 	<screen name="TimerEditListSummary" position="0,0" size="128,32">
 		<widget source="service" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="left" valign="bottom" />
 		<widget source="name" render="Label" position="0,11" size="128,18" font="FdLcD;15" halign="left" noWrap="1" />
