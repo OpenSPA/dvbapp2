@@ -446,4 +446,3 @@ class KexecInit(Screen):
 		if answer:
 			Console().ePopen("rm -rf /usr/bin/kernel_auto.bin /usr/bin/STARTUP.cpio.gz")
 			self.close()
-
