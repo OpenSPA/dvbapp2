@@ -168,7 +168,7 @@
     <widget source="session.CurrentService" render="Label" position="248,78" size="149,47" font="VFD; 41" halign="right" transparent="1" foregroundColor="textoprogreso">
       <convert type="ServicePositionSPA">Remaining,ShowHours,ShowNoSeconds</convert>
     </widget>
-    <widget source="session.CurrentService" render="Progress" position="8,142" size="384,12" backgroundColor="azulprogreso" foregroundColor="azulprogreso" transparent="1" zPosition="1">
+    <widget source="session.CurrentService" render="Progress" position="8,142" size="384,12" foregroundColor="azulprogreso" transparent="1" zPosition="1">
       <convert type="ServicePosition">Position</convert>
     </widget>
     <eLabel name="lin1" position="7,141" size="386,14" zPosition="0" backgroundColor="fondoprogreso" transparent="0" />
@@ -188,7 +188,7 @@
     <widget source="session.CurrentService" render="Label" position="244,6" size="149,44" font="VFD; 41" halign="right" transparent="1" foregroundColor="rojotm">
       <convert type="ServicePositionSPA">Remaining,ShowHours,ShowNoSeconds</convert>
     </widget>
-    <widget source="session.CurrentService" render="Progress" position="8,68" size="385,12" backgroundColor="naranja2" foregroundColor="rojotm2" transparent="1" zPosition="1">
+    <widget source="session.CurrentService" render="Progress" position="8,68" size="385,12" foregroundColor="rojotm2" transparent="1" zPosition="1">
       <convert type="ServicePosition">Position</convert>
     </widget>
     <eLabel name="lin1" position="7,67" size="387,14" zPosition="0" backgroundColor="rojooscuro" transparent="0" />

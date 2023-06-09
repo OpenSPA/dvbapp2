@@ -218,7 +218,7 @@
       <convert type="ServicePositionSPA">Remaining,ShowHours,ShowNoSeconds</convert>
     </widget>
 
-    <widget source="session.CurrentService" render="Progress" position="8,79" size="384,14" backgroundColor="naranja2" foregroundColor="naranja2" transparent="1" zPosition="1">
+    <widget source="session.CurrentService" render="Progress" position="8,79" size="384,14" foregroundColor="naranja2" transparent="1" zPosition="1">
       <convert type="ServicePosition">Position</convert>
     </widget>
     <eLabel name="lin1" position="8,79" size="384,14" zPosition="0" backgroundColor="naranjaoscuro" transparent="0" />	
@@ -242,7 +242,7 @@
       <convert type="ServicePositionSPA">Remaining,ShowHours,ShowNoSeconds</convert>
     </widget>
 
-    <widget source="session.CurrentService" render="Progress" position="8,65" size="385,14" backgroundColor="naranja2" foregroundColor="rojotm2" transparent="1" zPosition="1">
+    <widget source="session.CurrentService" render="Progress" position="8,65" size="385,14" foregroundColor="rojotm2" transparent="1" zPosition="1">
       <convert type="ServicePosition">Position</convert>
     </widget>
     <eLabel name="lin1" position="8,65" size="385,14" zPosition="0" backgroundColor="rojooscuro" transparent="0" />	
