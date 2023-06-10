@@ -23488,3 +23488,66 @@ msgstr ""
 
 msgid "Yes, and don't ask again for this session"
 msgstr ""
+
+msgid "<Select a device>"
+msgstr ""
+
+msgid "Add more slots"
+msgstr ""
+
+msgid "Choose the amount of additional slots."
+msgstr ""
+
+msgid "Choose the target location for the slots."
+msgstr ""
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Create Slots"
+msgstr ""
+
+msgid "Create the additional slots on the selected device"
+msgstr ""
+
+msgid "Kexec MultiBoot Initialization in progress!"
+msgstr ""
+
+msgid "Kexec MultiBoot files are missing."
+msgstr ""
+
+msgid "NOTE"
+msgstr ""
+
+msgid "Permanently remove the MultiBoot files?"
+msgstr ""
+
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr ""
+
+msgid "Press GREEN to enable MultiBoot!"
+msgstr ""
+
+msgid "Remove Files"
+msgstr ""
+
+msgid "Remove the MultiBoot files"
+msgstr ""
+
+msgid "Select a device to use for the additional slots"
+msgstr ""
+
+msgid "Slot Manager"
+msgstr ""
+
+msgid "Slot count"
+msgstr ""
+
+msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr ""
+
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr ""

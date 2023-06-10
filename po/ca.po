@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-05-24 19:28+0200\n"
+"PO-Revision-Date: 2023-06-10 14:47+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -15058,7 +15058,7 @@ msgid "Press EXIT to return to the help screen."
 msgstr "Prem EXIT per a retornar a la pantalla d'ajuda."
 
 msgid "Press OK for MultiBoot selection."
-msgstr "Prem OK per a selecció Multiboot"
+msgstr "Prem OK per a selecció Multiboot."
 
 #
 msgid "Press OK on your remote control to continue."
@@ -15425,7 +15425,7 @@ msgid "Quad PiP Screen"
 msgstr "Pantalla Quad PiP"
 
 msgid "Quad PiP channel "
-msgstr "Canal Quad PiP"
+msgstr "Canal Quad PiP "
 
 msgid "Quad PiP is not available."
 msgstr "Quad PiP no està disponible."
@@ -16117,7 +16117,7 @@ msgid "Repeat"
 msgstr "Repetir"
 
 msgid "Repeat Display Message"
-msgstr "Repetir el missatge en pantalla."
+msgstr "Repetir el missatge en pantalla"
 
 #
 msgid "Repeat play list"
@@ -16317,7 +16317,7 @@ msgid "Restore settings from a backup"
 msgstr "Restaurar configuració des d'un backup"
 
 msgid "Restore the highlighted slot"
-msgstr "Restaurar el slot resaltat."
+msgstr "Restaurar el slot resaltat"
 
 msgid "Restore your %s %s settings."
 msgstr "Restaurar la configuració del teu %s %s."
@@ -16794,13 +16794,13 @@ msgstr ""
 "('%s')"
 
 msgid "Save the left column directory location on exit."
-msgstr "Guardar ubicació del directori de la columna esquerra en sortir"
+msgstr "Guardar ubicació del directori de la columna esquerra en sortir."
 
 msgid "Save the log changes and exit"
 msgstr "Guardar canvis al log i sortir"
 
 msgid "Save the right column directory location on exit."
-msgstr "Guardar ubicació del directori de la columna dreta en sortir"
+msgstr "Guardar ubicació del directori de la columna dreta en sortir."
 
 msgid "Save time shift as movie and continue recording"
 msgstr "Guardar Timeshift com pel·lícula i seguir gravant"
@@ -17203,7 +17203,7 @@ msgstr ""
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr ""
-"Selecciona 'Sí' per habilitar vista prèvia dels canals a la llista EPG,"
+"Selecciona 'Sí' per habilitar vista prèvia dels canals a la llista EPG."
 
 msgid ""
 "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' "
@@ -17530,7 +17530,7 @@ msgstr "Seleccionar font d'actualització"
 
 #
 msgid "Select Upgrade Source To Edit"
-msgstr "Sel·lecciona font d'actualització a editar."
+msgstr "Sel·lecciona font d'actualització a editar"
 
 #
 msgid "Select Your Skin"
@@ -17748,7 +17748,7 @@ msgid "Select movie"
 msgstr "Selecciona la pel·lícula"
 
 msgid "Select only highlighted file"
-msgstr "Seleccionar només l'arxiu ressaltat."
+msgstr "Seleccionar només l'arxiu ressaltat"
 
 #
 msgid "Select provider to add..."
@@ -20187,7 +20187,7 @@ msgid "Sort list:"
 msgstr "Ordenar llista:"
 
 msgid "Sort order for the language list."
-msgstr "Ordre llista d'idiomes"
+msgstr "Ordre llista d'idiomes."
 
 msgid "Sort playlists"
 msgstr ""
@@ -26699,7 +26699,7 @@ msgstr ""
 "manual per obtenir més ajuda abans de reiniciar el %s %s."
 
 msgid "®"
-msgstr ""
+msgstr "®"
 
 msgid "DVB-USB Device Manager"
 msgstr "Administrador dispositius DVB-USB"
@@ -27426,3 +27426,133 @@ msgid ""
 msgstr ""
 "Realment voleu formatar el dispositiu al sistema d'arxius Linux?\n"
 "Es perdran totes les dades del dispositiu!"
+
+msgid "Please select a category."
+msgstr "Per favor, sel·lecciona una categoria."
+
+#
+msgid "Please select the package to delete."
+msgstr "Per favor, selecciona el paquet a eliminar"
+
+msgid "Select method?"
+msgstr "Sel·leccionar mètode?"
+
+#
+msgid "Force Depends"
+msgstr "Forçar dependències"
+
+#
+msgid "Force Remove"
+msgstr "Forçar esborrat"
+
+#
+msgid "Removing ipk %s"
+msgstr "Eliminant ipk %s"
+
+msgid "Removing Depends of ipk %s"
+msgstr "Eliminant dependencies de l'ipk %s"
+
+msgid "Force Removing ipk %s"
+msgstr "Forçar esborrat de l'ipk %s"
+
+msgid "Ipk Uninstaller - Main Menu"
+msgstr "Desinstal·lador ipk - Menú principal"
+
+msgid "Ipk Uninstaller - List installed packages"
+msgstr "Desinstal·lador ipk - Llista de paquets instal·lats"
+
+#
+msgid "Ipk Uninstall Tool"
+msgstr "Eina desinstal·lació Ipk"
+
+msgid "Mount shares again"
+msgstr "Muntar recursos de xarxa una altra vegada"
+
+msgid ""
+"This action will permanently delete the images in slots 1 to 3. Do you want "
+"to make a backup of these images? You will need to have a hard disk or usb. "
+"By enabling kexec they will be restored automatically. Backup eMMC slots can "
+"take from 1 -> 5 minutes per slot."
+msgstr ""
+
+msgid ""
+"The backup could not be made, do you want to continue? Images in slots 1 to "
+"3 will be lost"
+msgstr ""
+"El backup no s'ha pogut fer, vols continuar? Les imatges del slots 1 a 3 es "
+"perdran."
+
+msgid "Are you sure to continue? Images were lost in slots 1 to 3"
+msgstr "Estàs segur de continuar? Imatges perdudes del slot 1 al 3"
+
+msgid "Yes, and don't ask again for this session"
+msgstr "Sí, i no preguntar de nou en aquesta sessió"
+
+msgid "<Select a device>"
+msgstr "<Seleccioneu un dispositiu>"
+
+msgid "Add more slots"
+msgstr "Afegir més slots"
+
+msgid "Choose the amount of additional slots."
+msgstr "Tria la quantitat de slots adicionals."
+
+msgid "Choose the target location for the slots."
+msgstr "Tria la ubicació de destí dels slots."
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr "Tancar l'administrador MultiBoot Kexec"
+
+msgid "Create Slots"
+msgstr "Crear slots"
+
+msgid "Create the additional slots on the selected device"
+msgstr "Crear els slots adicionals al dispositiu seleccionat"
+
+msgid "Kexec MultiBoot Initialization in progress!"
+msgstr "Inicialització Multiboot Kexec en progrés!"
+
+msgid "Kexec MultiBoot files are missing."
+msgstr "Arxius Multiboot Kexec no trobats."
+
+msgid "NOTE"
+msgstr "NOTA"
+
+msgid "Permanently remove the MultiBoot files?"
+msgstr "Eliminar de forma permanent els arxius multiboot?"
+
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr "Selecciona el dispositiu o Cancel·lar per a cancel·lar la selecció."
+
+msgid "Press GREEN to enable MultiBoot!"
+msgstr "Prem botó verd per activar Multiboot!"
+
+#
+msgid "Remove Files"
+msgstr "Eliminar arxius"
+
+msgid "Remove the MultiBoot files"
+msgstr "Eliminar els arxius multiboot"
+
+msgid "Select a device to use for the additional slots"
+msgstr "Selecciona un dispositiu per a utilitzar per als slots adicionals"
+
+msgid "Slot Manager"
+msgstr "Administrador de slots"
+
+msgid "Slot count"
+msgstr "Número de slot"
+
+msgid "Start the Kexec initialization"
+msgstr "Iniciar la inicialització Kexec"
+
+msgid ""
+"The %s %s will reboot within 10 seconds, unless there are eMMC slots to "
+"restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr ""
+"El %s %s es reiniciarà en 10 segons, a no ser que hi hagi slots eMMC a "
+"restaurar. Restaurar slots eMMC pot durar entre 1 i 5 minuts per slot."
+
+#
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "No es pot inicialitzar Multiboot Kexec!"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-06-03 11:25+0200\n"
+"PO-Revision-Date: 2023-06-10 14:33+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -28003,11 +28003,97 @@ msgstr "Herramienta desinstalación IPK"
 msgid "Mount shares again"
 msgstr "Montar recursos de red otra vez"
 
-msgid "This action will permanently delete the images in slots 1 to 3. Do you want to make a backup of these images? You will need to have a hard disk or usb. By enabling kexec they will be restored automatically. Backup eMMC slots can take from 1 -> 5 minutes per slot."
-msgstr "Esta acción eliminará permanentemente las imágenes de los slots 1 a 3. ¿Quieres hacer backup de estas imágenes? Necesitarás un disco duro o usb. Al habilitar el kexec se restauraran automáticamente. El backup de slots eMMC puede tardar 1 -> 5 minutos por cada slot."
+msgid ""
+"This action will permanently delete the images in slots 1 to 3. Do you want "
+"to make a backup of these images? You will need to have a hard disk or usb. "
+"By enabling kexec they will be restored automatically. Backup eMMC slots can "
+"take from 1 -> 5 minutes per slot."
+msgstr ""
+"Esta acción eliminará permanentemente las imágenes de los slots 1 a 3. "
+"¿Quieres hacer backup de estas imágenes? Necesitarás un disco duro o usb. Al "
+"habilitar el kexec se restauraran automáticamente. El backup de slots eMMC "
+"puede tardar 1 -> 5 minutos por cada slot."
 
-msgid "The backup could not be made, do you want to continue? Images in slots 1 to 3 will be lost"
-msgstr "El backup no se ha podido hacer, ¿Quieres continuar? Las imágenes en los slots 1 a 3 se perderán"
+msgid ""
+"The backup could not be made, do you want to continue? Images in slots 1 to "
+"3 will be lost"
+msgstr ""
+"El backup no se ha podido hacer, ¿Quieres continuar? Las imágenes en los "
+"slots 1 a 3 se perderán"
 
 msgid "Are you sure to continue? Images were lost in slots 1 to 3"
-msgstr "¿Estas seguro de continuar? Se perderán las imágenes en los slots 1 a 3"
+msgstr ""
+"¿Estas seguro de continuar? Se perderán las imágenes en los slots 1 a 3"
+
+msgid "Yes, and don't ask again for this session"
+msgstr "Sí, y no preguntar de nuevo en esta sesión"
+
+msgid "<Select a device>"
+msgstr "<Seleccionar un dispositivo>"
+
+msgid "Add more slots"
+msgstr "Añadir más slots"
+
+msgid "Choose the amount of additional slots."
+msgstr "Elige la cantidad de slots adicionales."
+
+msgid "Choose the target location for the slots."
+msgstr "Elija la ubicación de destino para los slots."
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr "Cerrar el administrador de multiBoot Kexec"
+
+msgid "Create Slots"
+msgstr "Crear slots"
+
+msgid "Create the additional slots on the selected device"
+msgstr "Crear los slots adicionales en el dispositivo seleccionado"
+
+msgid "Kexec MultiBoot Initialization in progress!"
+msgstr "Inicialización Multiboot Kexec en progreso!"
+
+msgid "Kexec MultiBoot files are missing."
+msgstr "Archivos del MultiBoot Kexec no encontrados."
+
+msgid "NOTE"
+msgstr "NOTA"
+
+msgid "Permanently remove the MultiBoot files?"
+msgstr "¿Borrar permanentemente los archivos MultiBoot?"
+
+#
+msgid "Please select the device or Cancel to cancel the selection."
+msgstr "Seleccione el dispositivo o Cancelar para cancelar la selección."
+
+msgid "Press GREEN to enable MultiBoot!"
+msgstr "Pulsa botón verde para activar Multiboot!"
+
+#
+msgid "Remove Files"
+msgstr "Eliminar archivos"
+
+msgid "Remove the MultiBoot files"
+msgstr "Eliminar los archivos multiboot"
+
+msgid "Select a device to use for the additional slots"
+msgstr "Seleccione un dispositivo para usar en los slots adicionales"
+
+#
+msgid "Slot Manager"
+msgstr "Administrador de slots"
+
+msgid "Slot count"
+msgstr "Número de slot"
+
+msgid "Start the Kexec initialization"
+msgstr "Iniciar la inicialización Kexec"
+
+msgid ""
+"The %s %s will reboot within 10 seconds, unless there are eMMC slots to "
+"restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr ""
+"El %s %s se reiniciará en 10 seg, al menos que haya slots eMMC a restaurar. "
+"Restaurar slots eMMC puede durar entre 1 y 5 minutos por slot."
+
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "Imposible inicializar Multiboot Kexec!"
