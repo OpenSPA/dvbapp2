@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-06-10 14:33+0200\n"
+"PO-Revision-Date: 2023-06-11 09:59+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -4804,7 +4804,7 @@ msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Información del cliente (Versión-Oscam: %s)"
 
 msgid "Client is streaming from this box!"
-msgstr "¡El cliente está transmitiendo desde esta caja!"
+msgstr "¡El cliente está transmitiendo desde este receptor!"
 
 msgid "ClientIP"
 msgstr "ClienteIP"
@@ -25526,7 +25526,7 @@ msgstr ""
 "IceTV."
 
 msgid "Your existing IceTV password."
-msgstr "Tu contraseña existente de IceTV"
+msgstr "Tu contraseña existente de IceTV."
 
 #
 msgid ""
