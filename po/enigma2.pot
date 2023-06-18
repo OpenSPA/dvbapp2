@@ -23590,3 +23590,6 @@ msgstr ""
 
 msgid "Select refresh rate"
 msgstr ""
+
+msgid "Ncam Info"
+msgstr ""
