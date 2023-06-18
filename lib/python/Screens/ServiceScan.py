@@ -1,6 +1,6 @@
 from __future__ import print_function
 import Screens.InfoBar
-from enigma import eServiceReference, eTimer
+from enigma import eServiceReference, eTimer, eListboxPythonConfigContent
 
 from Screens.Screen import Screen
 from Components.ServiceScan import ServiceScan as CScan
@@ -15,6 +15,7 @@ from Components.config import config
 class FIFOList(MenuList):
 	def __init__(self, len=10):
 		self.len = len
+		self.l = eListboxPythonConfigContent()
 		self.list = []
 		MenuList.__init__(self, self.list)
 
