@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-06-10 14:47+0200\n"
+"PO-Revision-Date: 2023-06-18 14:35+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -9677,7 +9677,7 @@ msgid "Go to deep standby"
 msgstr "Anar a repòs profund"
 
 msgid "Go to first movie or last item"
-msgstr "Vés a la primera pel·lícula o al darrer article"
+msgstr "Vés a la primera pel·lícula o al darrer element"
 
 msgid "Go to first movie or top of list"
 msgstr "Vés a la primera pel·lícula o a la part superior de la llista"
@@ -17763,6 +17763,8 @@ msgstr "Selecciona satèl·lits"
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
+"Selecciona barra de recerca que s'activarà amb fletxa Esq/Drt (pulsació "
+"prolongada) or <<>> (pulsación prolongada)"
 
 #
 msgid "Select service to add..."
@@ -17794,23 +17796,35 @@ msgid ""
 "value. Be certain that no other device connected to this same Unicable "
 "system is allocated to the same Unicable channel."
 msgstr ""
+"Selecciona el canal Unicable que será assignat a aquest sintonitzador. "
+"Aquest és un únic valor. Assegureu-vos que cap altre dispositiu connectat a "
+"aquest mateix sistema Unicable estigui assignat al mateix canal Unicable."
 
 msgid ""
 "Select the User Band channel to be assigned to this tuner. This is an index "
 "into the table of frequencies the SCR LNB uses to pass the requested "
 "transponder to the tuner."
 msgstr ""
+"Selecciona el canal Banda d'usuari que será assignat a aquest sintonitzador. "
+"Aquest és un index dins la taula de freqüències que utilitza el LNB SCR per "
+"passar el transpondedor requerit al sintonitzador. "
 
 msgid ""
 "Select the User Band channel to be assigned to this tuner. This is an index "
 "into the table of frequencies the SCR switch uses to pass the requested "
 "transponder to the tuner."
 msgstr ""
+"Selecciona el canal Banda d'usuari que será assignat a aquest sintonitzador. "
+"Aquest és un index dins la taula de freqüències que utilitza el SCR per "
+"passar el transpondedor requerit al sintonitzador. "
 
 msgid ""
 "Select the User Band frequency to be assigned to this tuner. This is the "
 "frequency the SCR LNB uses to pass the requested transponder to the tuner."
 msgstr ""
+"Selecciona la freqüència Banda d'usuari que será assignada a aquest "
+"sintonitzador. Aquest és un index dins la taula de freqüències que utilitza "
+"el LNB SCR per passar el transpondedor requerit al sintonitzador. "
 
 msgid ""
 "Select the User Band frequency to be assigned to this tuner. This is the "
@@ -17825,63 +17839,75 @@ msgid ""
 "Select the User Band frequency to be assigned to this tuner. This is the "
 "frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
+"Selecciona la freqüència Banda d'usuari que será assignada a aquest "
+"sintonitzador. Aquest és un index dins la taula de freqüències que utilitza "
+"el SCR per passar el transpondedor requerit al sintonitzador. "
 
 msgid "Select the Yes / True response"
-msgstr ""
+msgstr "Selecciona Sí / No"
 
 msgid "Select the action to perform when the timer ends."
-msgstr ""
+msgstr "Selecciona acció a executar en finalitzar el temporitzador."
 
 msgid ""
 "Select the animation speed of the button indicators in the help screens. "
 "'Disabled' turns off animation so that indicators jump between buttons."
 msgstr ""
+"Selecciona la velocitat de l'animació dels indicadors de botó a les "
+"pantalles d'ajuda. 'Deshabilitat' para l'animació, així l'indicador salta "
+"entre botons"
 
 msgid "Select the channel from which to record:"
-msgstr ""
+msgstr "Selecciona el canal des del que vols gravar:"
 
 msgid "Select the channel or service to be used for this timer."
 msgstr ""
+"Selecciona el canal o servei que s'utilitzarà per aquest temporitzador."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Seleccioneu el personatge o l’acció sota el cursor del teclat"
 
 msgid "Select the current bookmarked location and exit"
-msgstr ""
+msgstr "Selecciona la ubicació favorita actual i sortir"
 
 msgid "Select the current menu item"
-msgstr ""
+msgstr "Selecciona l'element de menú actual"
 
 msgid "Select the currently highlighted locale/language for the user interface"
-msgstr ""
+msgstr "Estableix l'idioma/regió seleccionat per a la interfície d'usuari"
 
 msgid "Select the currently highlighted service"
-msgstr ""
+msgstr "Selecciona el servei ressaltat"
 
 msgid "Select the date from which this timer will become active."
-msgstr ""
+msgstr "Selecciona la data des de la qual s'activarà aquest temporitzador."
 
 msgid "Select the date when this timer will activate."
-msgstr ""
+msgstr "Selecciona la data quan s'activarà aquest temporitzador."
 
 msgid "Select the date when this timer will start."
-msgstr ""
+msgstr "Selecciona la data quan s'iniciarà aquest temporitzador."
 
 msgid "Select the day of the week that this timer will activate."
 msgstr ""
+"Selecciona el dia de la setmana en que s'activarà aquest temporitzador."
 
 msgid ""
 "Select the default directory to be used if the left column directory is not "
 "saved."
 msgstr ""
+"Selecciona el directori predeterminat que s'utilizarà si el directori de la "
+"columna esquerra no s'ha guardat."
 
 msgid ""
 "Select the default directory to be used if the right column directory is not "
 "saved."
 msgstr ""
+"Selecciona el directori predeterminat que s'utilizarà si el directori de la "
+"columna dreta no s'ha guardat."
 
 msgid "Select the delay before the timer activates."
-msgstr ""
+msgstr "Selecciona el retard abans que s'activi el temporitzador."
 
 msgid ""
 "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to "
@@ -17889,40 +17915,47 @@ msgid ""
 "deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned "
 "functions."
 msgstr ""
+"Selecciona la funció desitjada i fes clic a \"OK\" per assignar-la. "
+"Utilitzeu \"CH+/-\" per canviar entre les llistes. Selecciona una funció "
+"assignada i fes clic a \"OK\" per desassignar-la. Utilitza \"SEGÜENT/"
+"ANTERIOR\" per canviar l'ordre de les funcions assignades."
 
 msgid "Select the directory sort order for the left column:"
-msgstr ""
+msgstr "Selecciona l'ordre del directori de la columna esquerra:"
 
 msgid "Select the directory sort order for the right column:"
-msgstr ""
+msgstr "Selecciona l'ordre del directori de la columna dreta:"
 
 msgid "Select the display design for menus."
-msgstr ""
+msgstr "Selecciona el disseny de visualització dels menus."
 
 msgid ""
 "Select the display options for each menu entry item. If menu numbers are "
 "available then the number buttons can be used to select the numbered menu "
 "entries directly."
 msgstr ""
+"Selecciona les opcions de visualització per cada element del menú. Si els "
+"números de menú estan disponibles, es podran utilitzar els números del "
+"teclat numèric per anar directament a l'entrada del menú."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
-msgstr ""
+msgstr "Selecciona l'ordre dels arxius de la columna %s:"
 
 msgid "Select the first item in list or move to the start of text"
-msgstr ""
+msgstr "Selecciona el primer element de la llista o mou a l'inici del text"
 
 msgid "Select the first item in the list"
-msgstr ""
+msgstr "Selecciona el primer element de la llista"
 
 msgid "Select the function to be assigned to this button."
-msgstr ""
+msgstr "Selecciona la funció que s'assignarà al botó."
 
 msgid "Select the highlighted image and proceed to the slot selection"
-msgstr ""
+msgstr "Selecciona la imatge ressaltada i procedir a la selecció del slot"
 
 msgid "Select the highlighted slot and reboot"
-msgstr ""
+msgstr "Selecciona el slot ressaltat i reiniciar"
 
 msgid ""
 "Select the initial position of the timeline marker. The marker is the "
@@ -17930,19 +17963,23 @@ msgid ""
 "value the more the marker will move to the right showing more history and "
 "less of upcoming events."
 msgstr ""
+"Selecciona la posició inicial del marcador de la línia de temps. El marcador "
+"és la línia vertical dibuixada a l'EPG que mostra l'hora actual. Com més "
+"gran sigui el valor, més es mourà el marcador cap a la dreta mostrant més "
+"història i menys esdeveniments propers."
 
 msgid "Select the last item in list or move to the end of text"
-msgstr ""
+msgstr "Selecciona el darrer element de la llista o mou al final del text"
 
 msgid "Select the last item in the list"
-msgstr ""
+msgstr "Selecciona el darrer element de la llista"
 
 #
 msgid "Select the locale from a menu"
 msgstr "Seleccioneu la configuració regional d’un menú"
 
 msgid "Select the location in which to store the recording:"
-msgstr ""
+msgstr "Selecciona la ubicació on guardar la gravació:"
 
 msgid ""
 "Select the manufacturer of your SCR device. If the manufacturer is not "
@@ -17957,12 +17994,18 @@ msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
 "leaving teletext."
 msgstr ""
+"Selecciona el mètode de restauració de la resolució de pantalla i "
+"framebuffer quan surtim del teletext."
 
 msgid ""
 "Select the model number of your Unicable device. If the model number is not "
 "listed, set 'SCR' to 'user defined' and enter the device parameters manually "
 "according to its spec sheet."
 msgstr ""
+"Selecciona el número de model del teu dispositiu Unicable. Si el número de "
+"model no està a la llista, posa 'SCR' a 'definit per l'usuari' i introdueix "
+"els paràmetres del dispositiu manualment d'acord amb la fulla "
+"d'especificacions."
 
 #
 msgid "Select the movie path"
@@ -19297,7 +19340,7 @@ msgid "Show help"
 msgstr "Mostra ajuda"
 
 msgid "Show icon for new/unseen items"
-msgstr "Mostra la icona per a articles nous / no visibles"
+msgstr "Mostra la icona per a elements nous / no vistos"
 
 msgid "Show image"
 msgstr ""
@@ -27556,3 +27599,52 @@ msgstr ""
 #
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "No es pot inicialitzar Multiboot Kexec!"
+
+msgid ""
+"Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see "
+"this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
+msgstr ""
+
+msgid "Video Wizard"
+msgstr "Assistent de video"
+
+#
+msgid "Select video output port with UP/DOWN buttons"
+msgstr "Seleccioneu la sortida de vídeo amb botons de dalt / baix"
+
+msgid ""
+"Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you "
+"want to customize the preferred configuration."
+msgstr ""
+"Utilitza el mode de detecció automàtica?\n"
+"\n"
+"Aquesta opció llegeix tots els modes compatibles des de la teva TV. "
+"Deshabilita'l només si desitges personalitzar la configuració preferida."
+
+msgid "Use automatic mode detection"
+msgstr "Utilitzar mode automàtic de detecció"
+
+msgid "Default video mode selected for the TV."
+msgstr "Mode de video per defecte seleccionat per a la TV."
+
+msgid "Default video mode selected"
+msgstr "Mode de video per defecte seleccionat"
+
+#
+msgid "Auto video mode selected for the TV."
+msgstr "Mode de video automàtic seleccionat per a la TV."
+
+msgid "Auto video mode selected"
+msgstr "Mode automàtic de video seleccionat"
+
+msgid "Select the video mode to be used on the TV."
+msgstr "Selecciona el mode de video que s'utilitzarà a la TV."
+
+msgid "Select the refresh rate to be used on the TV."
+msgstr "Selecciona la tassa de refresc que s'utilitzarà a la TV."

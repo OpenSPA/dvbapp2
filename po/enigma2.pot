@@ -23551,3 +23551,42 @@ msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
+
+msgid "Video output port selection.\n\nMake sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n\nThe next output port will be automatically tried in 10 seconds."
+msgstr ""
+
+msgid "Video Wizard"
+msgstr ""
+
+msgid "Select video output port with UP/DOWN buttons"
+msgstr ""
+
+msgid "Use automatic mode detection?\n\nThis option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
+msgstr ""
+
+msgid "Use automatic mode detection"
+msgstr ""
+
+msgid "Default video mode selected for the TV."
+msgstr ""
+
+msgid "Default video mode selected"
+msgstr ""
+
+msgid "Auto video mode selected for the TV."
+msgstr ""
+
+msgid "Auto video mode selected"
+msgstr ""
+
+msgid "Select the video mode to be used on the TV."
+msgstr ""
+
+msgid "Select video mode"
+msgstr ""
+
+msgid "Select the refresh rate to be used on the TV."
+msgstr ""
+
+msgid "Select refresh rate"
+msgstr ""
