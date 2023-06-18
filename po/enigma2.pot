@@ -23593,3 +23593,6 @@ msgstr ""
 
 msgid "Ncam Info"
 msgstr ""
+
+msgid "Connected through another tuner"
+msgstr ""

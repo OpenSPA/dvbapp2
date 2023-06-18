@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-06-18 14:35+0200\n"
+"PO-Revision-Date: 2023-06-18 21:34+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -18015,18 +18015,21 @@ msgid ""
 "Select the network data rate below which the timer should activate as "
 "specified. Traffic above this rate with deactivate the timer."
 msgstr ""
+"Selecciona la velocitat de dades de xarxa per baix la qual el temporitzador "
+"ha d'activar-se segons lo especificat. El tràfic por dalt d'aquesta "
+"velocitat desactivará el temporitzador."
 
 msgid "Select the next item in list or move the cursor right"
-msgstr ""
+msgstr "Selecciona el pròxim element de la llista o mou el cursor a la dreta"
 
 msgid "Select the next item in the list"
-msgstr ""
+msgstr "Selecciona el pròxim element de la llista"
 
 msgid "Select the previous item in list or move the cursor left"
-msgstr ""
+msgstr "Selecciona l'element previ de la llista o mou el cursor a l'esquerra"
 
 msgid "Select the previous item in the list"
-msgstr ""
+msgstr "Selecciona l'element previ de la llista"
 
 msgid ""
 "Select the protocol used by your SCR device. Choices are 'SCR "
@@ -18097,46 +18100,54 @@ msgstr ""
 "Seleccioneu el conjunt de caràcters desplaçat només per al següent personatge"
 
 msgid "Select the softcam protocol."
-msgstr ""
+msgstr "Selecciona el protocol softcam."
 
 msgid ""
 "Select the sort order of the Plugin Browser menu entries. User defined also "
 "allows the menu entries to be hidden."
 msgstr ""
+"Selecciona l'ordre d'entrades del menú Navegador de plugins. Definit per "
+"l'usuari també permet ocultar les entrades del menú."
 
 msgid ""
 "Select the sort order of the menu entries. User defined also allows the menu "
 "entries to be hidden."
 msgstr ""
+"Selecciona l'ordre d'entrades del menú. Definit per l'usuari també permet "
+"ocultar les entrades del menú."
 
 msgid "Select the source of the default DNS settings."
-msgstr ""
+msgstr "Selecciona l'origen de les configuracions DNS per defecte."
 
 msgid ""
 "Select the starting/initial column to be activated on File Commander start "
 "up."
 msgstr ""
+"Selecciona la columna d'inici que s'activarà en l'arrancada de l'Explorador "
+"d'arxius."
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
+msgstr "Selecciona les etiquetes que s'han d'utilitzar per aquesta gravació."
 
 msgid "Select the time after which this timer can start."
 msgstr ""
+"Selecciona el temps després del qual aquest temporitzador pot iniciar-se."
 
 msgid "Select the time before which this timer should end."
 msgstr ""
+"Selecciona el temps després del qual aquest temporitzador hauria d'acabar."
 
 msgid "Select the time delay before the button starts repeating."
-msgstr ""
+msgstr "Selecciona el retard de temps abans que el botó comenci a repetir-se."
 
 msgid "Select the time delay between each repeat of the button."
-msgstr ""
+msgstr "Selecciona el temps de retard entre cada repetició del botó."
 
 msgid "Select the time when this timer should end."
-msgstr ""
+msgstr "Selecciona l'hora quan aquest temporitzador ha de finalitzar."
 
 msgid "Select the time when this timer will start."
-msgstr ""
+msgstr "Selecciona l'hora quan aquest temporitzador s'iniciarà."
 
 msgid "Select the time zone within the area or region."
 msgstr "Seleccioneu el fus horari dins de la zona o regió."
@@ -18169,17 +18180,23 @@ msgstr ""
 msgid ""
 "Select the type of shutdown desired when the EnergySaver timer activates."
 msgstr ""
+"Selecciona el tipus d'apagat desitjat quan s'activa el temporitzador "
+"d'estalvi d'energia."
 
 msgid "Select the type of shutdown desired when the SleepTimer activates."
 msgstr ""
+"Selecciona el tipus d'apagat desitjat quan s'activa el temporitzador "
+"d'apagat."
 
 msgid "Select the type of this timer."
-msgstr ""
+msgstr "Selecciona el tipus d'aquest temporitzador."
 
 msgid ""
 "Select to use logarithmic step size with more steps at the lower volume "
 "levels."
 msgstr ""
+"Selecciona per utilitzar la mida del pas logarítmic amb més passos als "
+"nivells de volum més baixos."
 
 #
 msgid "Select video input with up/down buttons"
@@ -18193,43 +18210,50 @@ msgid ""
 "Select what action to take when reaching the end of a media file during "
 "playback."
 msgstr ""
+"Selecciona quina acció cal fer quan arribeu al final d'un arxiu multimèdia "
+"durant la reproducció."
 
 msgid "Select what do do after the timer recording has completed."
-msgstr ""
+msgstr "Selecciona què fer després de finalitzar el temporitzador de gravació."
 
 msgid "Select what do do after the timer zap has completed."
 msgstr ""
+"Selecciona què fer després que s'hagi completat el temporitzador de zàping."
 
 msgid ""
 "Select what should be done when the %s %s was boot-up, normal playing or "
 "goto standby."
 msgstr ""
+"Selecciona què s'hauria de fer quan arranca el %s %s, reproducció normal o "
+"anar a repòs."
 
 msgid ""
 "Select what should be done when the %s %s was shutdown incorrectly, or after "
 "the Power was lost."
 msgstr ""
+"Selecciona que s'hauria de fer quan s'apaga incorrectament el %s %s, o "
+"després de pèrdua d'energia."
 
 msgid "Select what you want the Channel +/- button to activate."
-msgstr ""
+msgstr "Selecciona què vols activar amb el botó Ch +/-"
 
 msgid "Select what you want the EPG button to activate."
-msgstr ""
+msgstr "Selecciona què vols activar amb el botó EPG."
 
 msgid "Select what you want the INFO button to activate."
-msgstr ""
+msgstr "Selecciona què vols activar amb el botó INFO."
 
 msgid "Select what you want the OK button to activate."
-msgstr ""
+msgstr "Selecciona què vols activar amb el botó OK."
 
 msgid "Select what you want the TV button to activate."
-msgstr ""
+msgstr "Selecciona què vols activar amb el botó TV."
 
 msgid "Select what you want the Up/Down button to activate."
-msgstr ""
+msgstr "Selecciona què vols activar amb el botó AMUNT/AVALL."
 
 msgid "Select where the recording should be saved."
-msgstr ""
+msgstr "Selecciona on s'hauria de guardar la gravació."
 
 #
 msgid "Select wireless network"
@@ -18239,10 +18263,10 @@ msgid "Select your ATSC provider."
 msgstr "Seleccioneu el vostre proveïdor ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
+msgstr "Selecciona el teu idioma per audio/subtítols"
 
 msgid "Select your backup device."
-msgstr ""
+msgstr "Selecciona el teu dispositiu de backup."
 
 msgid "Select your country. If not available select 'all'."
 msgstr "Seleccioneu el vostre país. Si no està disponible, seleccioneu “tot”."
@@ -18269,7 +18293,7 @@ msgid "Select your time zone area or region."
 msgstr "Seleccioneu la vostra zona o una regió."
 
 msgid "Select, toggle, process or edit the current entry"
-msgstr ""
+msgstr "Selecciona, canvia, processa o edita l'entrada actual"
 
 #
 msgid "Select/Zap to selected service"
@@ -18284,6 +18308,12 @@ msgid ""
 "\n"
 "Do you want to install this settinglist?"
 msgstr ""
+"Llista de configuracions seleccionades:\n"
+"\n"
+"Configuració: %s\n"
+"Data: %s\n"
+"\n"
+"Vols instal·lar aquesta llista de configuracions?"
 
 #, python-format
 msgid ""
@@ -18291,6 +18321,9 @@ msgid ""
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
+"Llista de configuracions seleccionades: %s\n"
+"\n"
+"Vols eliminar aquesta llista de configuracions?"
 
 #
 #, python-format
@@ -18309,6 +18342,10 @@ msgid ""
 "\n"
 "Are you sure you want to continue with the factory reset?"
 msgstr ""
+"Seleccionant 'Sí' s'eliminaran les dades d'usuari seleccionades. Aquesta "
+"acció no es pot desfer. Potser vulguis crear un backup abans de continuar.\n"
+"\n"
+"Estàs segur de continuar amb el reset de fàbrica?"
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Selecció de satèl·lits 1 (USALS)"
@@ -18324,10 +18361,10 @@ msgstr ""
 "bloc."
 
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 msgid "Send Confirmation"
-msgstr ""
+msgstr "Enviar confirmació"
 
 #
 msgid "Send DiSEqC"
@@ -18342,7 +18379,7 @@ msgstr "Senegal"
 
 #
 msgid "Seperate titles with a main menu"
-msgstr ""
+msgstr "Separar els títols amb un menú principal"
 
 #
 msgid "Sequence repeat"
@@ -18356,27 +18393,27 @@ msgid "Serbian"
 msgstr "Serbian"
 
 msgid "Serial No"
-msgstr ""
+msgstr "No. de sèrie"
 
 msgid "Serv.Name"
-msgstr ""
+msgstr "Nom de Serv."
 
 #, python-format
 msgid "Server Info ( Oscam-Version: %s )"
-msgstr ""
+msgstr "Informació de servidor (Versió Oscam: %s)"
 
 #
 msgid "Server down"
 msgstr "Servidor caigut"
 
 msgid "Server:"
-msgstr ""
+msgstr "Servidor:"
 
 msgid "Servers"
-msgstr ""
+msgstr "Servidors"
 
 msgid "Servers:"
-msgstr ""
+msgstr "Servidors:"
 
 #
 msgid "Service"
@@ -18388,38 +18425,38 @@ msgstr "Servei i PID"
 
 #, python-format
 msgid "Service '%s' added."
-msgstr ""
+msgstr "Servei '%s' afegit."
 
 #, python-format
 msgid "Service '%s' deleted."
-msgstr ""
+msgstr "Servei '%s' eliminat."
 
 #, python-format
 msgid "Service '%s' is already defined."
-msgstr ""
+msgstr "Servei '%s' ja definit."
 
 #
 msgid "Service ID"
 msgstr "Identificador de servei"
 
 msgid "Service Name"
-msgstr ""
+msgstr "Nom del canal"
 
 msgid "Service Number and Service Name"
-msgstr ""
+msgstr "Número de canal i nom del canal"
 
 msgid "Service Number, Picon and Service Name"
-msgstr ""
+msgstr "Número de servei, picon i nom de servei"
 
 #
 msgid "Service Selection Actions"
 msgstr "Selecció de canals"
 
 msgid "Service Selection/Zap Actions"
-msgstr ""
+msgstr "Selecció de canal/accions de zàping"
 
 msgid "Service Title mode"
-msgstr ""
+msgstr "Mode títol del canal"
 
 #
 msgid "Service Zap Actions"
@@ -18464,7 +18501,7 @@ msgid "Service info - tuner setting values"
 msgstr "Informació de servei: valors de configuració del sintonitzador"
 
 msgid "Service info font size"
-msgstr ""
+msgstr "Tamany de font d'informació de canal"
 
 #
 msgid ""
@@ -18478,7 +18515,7 @@ msgid "Service name"
 msgstr "Nom del servei"
 
 msgid "Service name font size"
-msgstr ""
+msgstr "Tamany de font del nom de canal"
 
 #
 msgid ""
@@ -18489,17 +18526,17 @@ msgstr ""
 "(SID no trobat a PAT)"
 
 msgid "Service number font size"
-msgstr ""
+msgstr "Tamany de font del número de canal"
 
 #
 msgid "Service off-air"
 msgstr "Servei fora de l'abast"
 
 msgid "Service picons aspect ratio"
-msgstr ""
+msgstr "Relació d'aspecte dels picons de canals"
 
 msgid "Service picons downsize"
-msgstr ""
+msgstr "Reducció tamany picons de canal"
 
 msgid "Service reference"
 msgstr "Referència del servei"
@@ -18509,7 +18546,7 @@ msgid "Service scan"
 msgstr "Buscar canals"
 
 msgid "Service selection canceled."
-msgstr ""
+msgstr "Selecció de servei cancel·lada."
 
 #
 msgid ""
@@ -18520,16 +18557,16 @@ msgstr ""
 "Comproveu la configuració del sintonitzador!"
 
 msgid "Service width"
-msgstr ""
+msgstr "Amplada de servei"
 
 msgid "ServiceName"
-msgstr ""
+msgstr "Nom de canal"
 
 msgid "ServicePicon"
-msgstr ""
+msgstr "Picon de canal"
 
 msgid "Serviceinfo"
-msgstr ""
+msgstr "Informació de canal"
 
 #
 msgid "Services"
@@ -18539,6 +18576,8 @@ msgid ""
 "Services may be grouped in bouquets. When enabled, you can use more than one "
 "bouquet."
 msgstr ""
+"Els canals es poden agrupar en llistes. Quan estigui activat, podràs "
+"utilitzar més d'una llista."
 
 #
 msgid "Set Base time"
@@ -18549,14 +18588,14 @@ msgstr ""
 "Estableix l’assignació de CI per a la detecció dels serveis disponibles."
 
 msgid "Set Framerate for MiniTV"
-msgstr ""
+msgstr "Estableix la velocitat de fotogrames per a MiniTV"
 
 #
 msgid "Set action for 'Info' key"
 msgstr "Estableix accions per al botó 'Info'"
 
 msgid "Set current CEC address as fixed address"
-msgstr ""
+msgstr "Estableix adreça CEC actual com adreça fixa"
 
 msgid "Set default"
 msgstr "Instal · lat per defecte"
@@ -18566,7 +18605,7 @@ msgid "Set end time"
 msgstr "Estableix l’hora de finalització"
 
 msgid "Set executable mode (755)"
-msgstr ""
+msgstr "Estableix mode executable (755)"
 
 msgid "Set fixed"
 msgstr "Conjunt fix"
@@ -18575,7 +18614,7 @@ msgid "Set fps for external subtitles"
 msgstr "Estableix fps per a subtítols externs"
 
 msgid "Set interface as the default Interface"
-msgstr ""
+msgstr "Estableix interfície com interfície predeterminada"
 
 msgid "Set limits"
 msgstr "Estableix límits"
@@ -18597,7 +18636,7 @@ msgid "Set startup service"
 msgstr "Establiu el servei d’inici"
 
 msgid "Set system"
-msgstr ""
+msgstr "Estableix sistema"
 
 #
 #, python-format
@@ -18605,77 +18644,104 @@ msgid "Set the MAC address of your %s %s."
 msgstr "Estableix l'adreça MAC del teu %s %s."
 
 msgid "Set the aspect ratio of the service picons."
-msgstr ""
+msgstr "Estableix la relació d'aspecte dels picons de canal."
 
 msgid ""
 "Set the default location for your instant recordings. Press 'OK' to add new "
 "locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
+"Estableix la ubicació predeterminada per a les teves gravacions "
+"instantànies. Prem 'OK' per afegir noves ubicacions, prem 'ESQUERRA/DRETA' "
+"per seleccionar d'ubicacions definides prèviament."
 
 msgid ""
 "Set the default location to store your time shift buffer files. Press 'OK' "
 "to add new locations, press 'LEFT'/'RIGHT' to select from previously defined "
 "locations."
 msgstr ""
+"Estableix la ubicació predeterminada per guardar els arxius buffer de "
+"timeshift. Prem 'OK' per afegir noves ubicacions, prem 'ESQUERRA/DRETA' per "
+"seleccionar ubicacions definides prèviament."
 
 msgid ""
 "Set the default movie selection location for your media files. Press 'OK' to "
 "add new locations, press 'LEFT'/'RIGHT' to select from previously defined "
 "locations."
 msgstr ""
+"Estableix la ubicació predeterminada dels arxius multimèdia. Prem 'OK' per "
+"afegir noves ubicacions, prem 'ESQUERRA/DRETA' per seleccionar ubicacions "
+"definides prèviament."
 
 msgid ""
 "Set the default recording location for your timers. Press 'OK' to add new "
 "locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
+"Estableix la ubicació predeterminada de les gravacions per als teus "
+"temporitzadors. Prem 'OK' per afegir noves ubicacions, prem 'ESQUERRA/DRETA' "
+"per seleccionar ubicacions definides prèviament."
 
 msgid "Set the default sorting method."
-msgstr ""
+msgstr "Estableix el mètode d'ordenació predeterminat."
 
 msgid ""
 "Set the delay time between repeated loops, this is used by software renderer "
 "in some skins."
 msgstr ""
+"Estableix el temps de retard entre bucles repetits, que l'utilitza el "
+"renderitzador de software en alguns skins."
 
 msgid "Set the jump-size of the seekbar."
-msgstr ""
+msgstr "Selecciona el tamany de salt a la barra de recerca."
 
 msgid ""
 "Set the number of lines to be saved for 'stout' and 'sterr' output in "
 "scripts."
 msgstr ""
+"Estableix el nombre de línies que s'han de guardar per a la sortida 'stout' "
+"i 'stderr' als scripts."
 
 msgid "Set the position of the recording icons"
-msgstr ""
+msgstr "Estableix la posició de les icones de gravació"
 
 msgid ""
 "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd "
 "infobar Lite or event info."
 msgstr ""
+"Estableix el tipus de pantalla que surt en presionar 'OK' amb la infobar en "
+"pantalla quan passa a 2a infobar o informació d'esdeveniment. "
 
 msgid ""
 "Set the scrolling speed of text on the front display, this is used by "
 "software renderer in some skins."
 msgstr ""
+"Estableix la velocitat de desplaçament del text al display frontal, "
+"s'utilitza per a renderització de software en alguns skins."
 
 msgid "Set the scrolling speed of text on the front display."
-msgstr ""
+msgstr "Estableix la velocitat de desplaçament del text al display frontal."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
+"Estableix el temps abans de comprovar l'origen del video per informació de "
+"resolució."
 
 msgid "Set the time to hide the infobar."
-msgstr ""
+msgstr "Estableix el temps per ocultar la infobar."
 
 msgid ""
 "Set the time to hide the second infobar. The bar also disappears on pressing "
 "'OK'."
 msgstr ""
+"Estableix el temps per ocultar la 2a infobar. La barra també desapareix en "
+"prèmer 'OK'."
 
 msgid ""
 "Set the time to wait for execute the default action in shutdown, standby or "
 "restart messages. (e.g. used in RecordTimer, PowerTimer, SleepTimer, ...)"
 msgstr ""
+"Estableix el temps a esperar per executar l'acció per defecte en apagar, "
+"repòs o reiniciar missatges. (per ex. en temporitzadors de gravació, "
+"temporitzadors d'encesa, temporitzadors d'apagat,...)"
 
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
@@ -18720,16 +18786,16 @@ msgid ""
 msgstr ""
 
 msgid "Set to the desired primetime (hour)."
-msgstr ""
+msgstr "Estableix l'hora de màxima audiència dessitjada (hora)."
 
 msgid "Set to the desired primetime (minutes."
-msgstr ""
+msgstr "Estableix l'hora de màxima audiència dessitjada (minuts)."
 
 msgid "Set to what you want the button to do."
-msgstr ""
+msgstr "Configura què vols que faci el botó."
 
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr ""
+msgstr "Configurar en Si per a depuració de la causa arrel dels spinners."
 
 msgid "Set voltage and 22KHz"
 msgstr "Tensió i 22 KHz"
@@ -18757,7 +18823,7 @@ msgid "Settings mode"
 msgstr "Mode de configuració"
 
 msgid "Settings..."
-msgstr ""
+msgstr "Configuracions..."
 
 #
 msgid "Setup"
@@ -18769,52 +18835,52 @@ msgid "Setup - %s"
 msgstr "Configuració - %s"
 
 msgid "Setup AFP"
-msgstr ""
+msgstr "Configurar AFP"
 
 msgid "Setup Audio Sync"
-msgstr ""
+msgstr "Configurar sincronització d'audio"
 
 msgid "Setup Audio Sync settings"
-msgstr ""
+msgstr "Configurar ajustos de sincronització d'audio"
 
 msgid "Setup Audiomode"
-msgstr ""
+msgstr "Configuració del mode d'audio"
 
 msgid "Setup Enigma2"
-msgstr ""
+msgstr "Configurar Enigma2"
 
 msgid "Setup FTP"
-msgstr ""
+msgstr "Configurar FTP"
 
 msgid "Setup Harddisk"
-msgstr ""
+msgstr "Configurar disc dur"
 
 msgid "Setup Inadyn"
-msgstr ""
+msgstr "Configurar Inadyn"
 
 msgid "Setup InputDevice"
-msgstr ""
+msgstr "Configurar dispositiu d'entrada"
 
 msgid "Setup MiniDLNA"
-msgstr ""
+msgstr "Configurar MiniDLNA"
 
 msgid "Setup Mounts"
-msgstr ""
+msgstr "Configurar muntatges"
 
 msgid "Setup NFS"
-msgstr ""
+msgstr "Configurar NFS"
 
 msgid "Setup Network Services"
-msgstr ""
+msgstr "Configura els serveis de xarxa"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
-msgstr ""
+msgstr "Configura els serveis de xarxa (Samba, Ftp, NFS, …)"
 
 msgid "Setup OpenVPN"
-msgstr ""
+msgstr "Configurar OpenVPN"
 
 msgid "Setup Plugin filter"
-msgstr ""
+msgstr "Configurar el filtrat de plugins"
 
 msgid ""
 "Setup Plugin filter. Here you can select which Plugins are showed in the "
@@ -18825,129 +18891,133 @@ msgid "Setup Plugins"
 msgstr ""
 
 msgid "Setup SABnzbd"
-msgstr ""
+msgstr "Configurar SABnzbd"
 
 #
 msgid "Setup SATPI"
 msgstr "Configurar SATPI"
 
 msgid "Setup Samba"
-msgstr ""
+msgstr "Configurar Samba"
 
 msgid "Setup Telnet"
-msgstr ""
+msgstr "Configurar Telnet"
 
 msgid "Setup Tuner"
-msgstr ""
+msgstr "Configurar sintonitzador"
 
 msgid "Setup Video/Audio"
 msgstr ""
 
 msgid "Setup Videomode"
-msgstr ""
+msgstr "Configurar el mode de vídeo"
 
 msgid "Setup delay mode to zap to channels."
-msgstr ""
+msgstr "Configura el mode de retard per a fer zàping de canals."
 
 msgid "Setup each tuner for your satellite system"
-msgstr ""
+msgstr "Configura cada sintonitzador del teu receptor"
 
 msgid "Setup entry sort"
 msgstr ""
 
 msgid "Setup how to control the channel changing."
-msgstr ""
+msgstr "Configura com controlar el canvi de canals."
 
 msgid "Setup interface"
-msgstr ""
+msgstr "Configurar interfície"
 
 msgid "Setup menu"
 msgstr "Menú de configuració"
 
 msgid "Setup network time synchronization interval."
-msgstr ""
+msgstr "Configurar l'interval de sincronització de l'hora de xarxa."
 
 msgid "Setup network. Here you can setup DHCP, IP, DNS"
-msgstr ""
+msgstr "Configurar xarxa. Aquí pots configurar DHCP, IP, DNS"
 
 msgid "Setup rotor"
-msgstr ""
+msgstr "Configurar motor"
 
 msgid "Setup tuner(s)"
-msgstr ""
+msgstr "Configurar sintonitzador(s)"
 
 msgid "Setup uShare"
-msgstr ""
+msgstr "Configurar uShare"
 
 msgid "Setup your Audio Mode"
-msgstr ""
+msgstr "Configura el mode d'audio"
 
 msgid "Setup your Channel selection configuration"
-msgstr ""
+msgstr "Configura la teva llista de canals"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr ""
+msgstr "Configura els teus dispositius muntats (USB, HDD, altres…)"
 
 msgid "Setup your EPG config"
-msgstr ""
+msgstr "Configura l'EPG"
 
 msgid "Setup your Harddisk"
-msgstr ""
+msgstr "Configura el disc dur"
 
 msgid "Setup your LCD"
-msgstr ""
+msgstr "Configura LCD"
 
 msgid "Setup your LCD Skin"
-msgstr ""
+msgstr "Configurar skin del LCD"
 
 msgid "Setup your OSD"
-msgstr ""
+msgstr "Configura l'OSD"
 
 msgid "Setup your Skin"
-msgstr ""
+msgstr "Configura el skin"
 
 msgid "Setup your System"
-msgstr ""
+msgstr "Configura el sistema"
 
 msgid "Setup your Tuner and search for channels"
-msgstr ""
+msgstr "Configura el sintonitzador i busca canals"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
-msgstr ""
+msgstr "Configura el mode de vídeo, sortida de vídeo i altres ajustos de video"
 
 msgid "Setup your display"
-msgstr ""
+msgstr "Configura el display"
 
 msgid "Setup your local network"
-msgstr ""
+msgstr "Configurar la xarxa local"
 
 msgid ""
 "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
 msgstr ""
+"Configura la xarxa local. Per a Wifi necessites arrancar amb un adaptador "
+"USB-Wifi"
 
 msgid "Setup your mounts for network"
-msgstr ""
+msgstr "Configura els muntatges de xarxa"
 
 msgid ""
 "Setup your network interface. If no Wlan stick is used, you only can select "
 "Lan"
 msgstr ""
+"Configura la interfície de xarxa. Si no hi ha adaptador Wifi, només podràs "
+"seleccionar LAN"
 
 msgid "Setup your network mounts"
-msgstr ""
+msgstr "Configura els muntatges de xarxa"
 
 #
 msgid "Setup your positioner"
 msgstr "Configura el posicionador"
 
 msgid "Setup your positioner for your satellite system"
-msgstr ""
+msgstr "Configura el motor per al teu receptor"
 
 msgid "Setup your recording config"
-msgstr ""
+msgstr "Configura els ajustos de gravacions"
 
 msgid "Setup your remote buttons"
-msgstr ""
+msgstr "Configura els botons del comandament"
 
 #
 msgid "Setup your satellite equipment"
@@ -18957,13 +19027,13 @@ msgid "Seychelles"
 msgstr "Seychelles"
 
 msgid "Share Folders"
-msgstr ""
+msgstr "Carpetes compartides"
 
 msgid "Share View"
 msgstr ""
 
 msgid "Shares"
-msgstr ""
+msgstr "Intercanvis"
 
 #
 msgid "Sharpness"
@@ -18980,20 +19050,20 @@ msgid "Shift: %s"
 msgstr ""
 
 msgid "Shona"
-msgstr ""
+msgstr "Shona"
 
 #
 msgid "Shopping"
 msgstr "De compres"
 
 msgid "Short Film"
-msgstr ""
+msgstr "Curtmetratge"
 
 msgid "Short filenames"
 msgstr "Nom de fitxers breus"
 
 msgid "Short filenames with time"
-msgstr ""
+msgstr "Noms d'arxiu curts amb hora"
 
 msgid "Should the crash counter be reset to prevent a restart?"
 msgstr ""
@@ -19003,58 +19073,58 @@ msgid "Show"
 msgstr "Espectacle"
 
 msgid "Show /tmp/ecm.info"
-msgstr ""
+msgstr "Mostrar /tmp/ecm.info"
 
 msgid "Show 1080p 24fps as"
-msgstr ""
+msgstr "Mostrar 1080p 24fps com"
 
 msgid "Show 1080p 25fps as"
-msgstr ""
+msgstr "Mostrar 1080p 25fps com"
 
 msgid "Show 1080p 30fps as"
-msgstr ""
+msgstr "Mostrar 1080p 30fps com"
 
 msgid "Show 2160p 24fps as"
-msgstr ""
+msgstr "Mostrar 2160p 24fps com"
 
 msgid "Show 2160p 25fps as"
-msgstr ""
+msgstr "Mostrar 2160p 25fps com"
 
 msgid "Show 2160p 30fps as"
-msgstr ""
+msgstr "Mostrar 2160p 30fps com"
 
 msgid "Show 24p up to 720p / higher than 720p as"
-msgstr ""
+msgstr "Mostrar 24p fins a 720p / superior a 720p com"
 
 msgid ""
 "Show 24p up to resolution 720p or higher than 720p as a different Framerate."
 msgstr ""
 
 msgid "Show 25p up to 720p / higher than 720p as"
-msgstr ""
+msgstr "Mostrar 25p fins a 720p / superior a 720p com"
 
 msgid ""
 "Show 25p up to resolution 720p or higher than 720p as a different Framerate."
 msgstr ""
 
 msgid "Show 30p up to 720p / higher than 720p as"
-msgstr ""
+msgstr "Mostrar 30p fins a 720p / superior a 720p com"
 
 msgid ""
 "Show 30p up to resolution 720p or higher than 720p as a different Framerate."
 msgstr ""
 
 msgid "Show 480/576p 24fps as"
-msgstr ""
+msgstr "Mostrar 480/576p 24fps com"
 
 msgid "Show 720p 24fps as"
-msgstr ""
+msgstr "Mostrar 720p 24fps com"
 
 msgid "Show Audioselection"
 msgstr "Mostrar audioselecció"
 
 msgid "Show AutoTimer List"
-msgstr ""
+msgstr "Mostrar llista d'autotemporitzadors"
 
 msgid "Show Box Portal"
 msgstr ""
@@ -19063,53 +19133,53 @@ msgid "Show CCcam Info"
 msgstr ""
 
 msgid "Show CCcam in extensions"
-msgstr ""
+msgstr "Mostrar CCcam a extensions"
 
 msgid "Show CI messages"
 msgstr "Mostra els missatges de CI"
 
 msgid "Show Clients"
-msgstr ""
+msgstr "Mostrar clients"
 
 msgid "Show Default Backup Files"
-msgstr ""
+msgstr "Mostrar arxius per defecte del backup"
 
 msgid "Show Display Icons"
-msgstr ""
+msgstr "Mostrar icones de pantalla"
 
 msgid "Show EPG"
-msgstr ""
+msgstr "Mostrar EPG"
 
 msgid "Show EPG for current channel..."
 msgstr "Mostrar la barra en canviar el programa…"
 
 msgid "Show EventView"
-msgstr ""
+msgstr "Mostrar vista d'esdeveniment"
 
 #
 msgid "Show Format Setup"
 msgstr "Mostrar configuración de format"
 
 msgid "Show Graphical EPG"
-msgstr ""
+msgstr "Mostrar EPG gràfica"
 
 msgid "Show HDD progress"
-msgstr ""
+msgstr "Mostrar progrès del HDD"
 
 msgid "Show HDMI Output Resolution"
-msgstr ""
+msgstr "Mostrar resolució de sortida HDMI"
 
 msgid "Show HDMI-Output Res"
-msgstr ""
+msgstr "Mostrar resolució de sortida HDMI"
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
 
 msgid "Show InfoBar"
-msgstr ""
+msgstr "Mostrar barra d'informació"
 
 msgid "Show InfoBar lite *"
-msgstr ""
+msgstr "Mostrar barra d'informació reduida *"
 
 #
 msgid "Show InfoBar on channel change"
@@ -19124,7 +19194,7 @@ msgid "Show InfoBar on skip forward/backward"
 msgstr "Mostrar la barra anant endavant/enrere"
 
 msgid "Show InfoBar picons"
-msgstr ""
+msgstr "Mostrar picons a la barra d'informació"
 
 #
 msgid "Show Information"
@@ -19134,41 +19204,41 @@ msgid "Show Live in MiniTV"
 msgstr ""
 
 msgid "Show Log"
-msgstr ""
+msgstr "Mostrar log"
 
 #
 msgid "Show Log Manager in extensions list"
 msgstr "Mostrar Administrador de log a la llista d'extensions"
 
 msgid "Show Media Player in Main Menu"
-msgstr ""
+msgstr "Mostrar reproductor multimèdia al menú principal"
 
 msgid "Show Media playback Remaining/Elapsed as"
-msgstr ""
+msgstr "Mostrar temps reproducció restant/transcorregut com"
 
 msgid "Show Merlin EPG Center"
-msgstr ""
+msgstr "Mostrar Merlin EPG Center"
 
 msgid "Show MiniTV in the Front Display"
-msgstr ""
+msgstr "Mostrar MiniTV al LCD frontal"
 
 msgid "Show Movies List"
-msgstr ""
+msgstr "Mostrar llista de pel·lícules"
 
 msgid "Show Multi EPG"
-msgstr ""
+msgstr "Mostrar MultiEPG"
 
 msgid "Show OScam Info"
 msgstr ""
 
 msgid "Show OScam in extensions"
-msgstr ""
+msgstr "Mostrar OSCam a extensions"
 
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr ""
 
 msgid "Show PiP"
-msgstr ""
+msgstr "Mostrar PiP"
 
 msgid "Show PiP in MiniTV"
 msgstr ""
@@ -19177,25 +19247,25 @@ msgid "Show PiP in the Front Display"
 msgstr ""
 
 msgid "Show RFmod setup..."
-msgstr ""
+msgstr "Mostrar configuració RFmod..."
 
 msgid "Show Readers/Proxies"
-msgstr ""
+msgstr "Mostrar lectors/proxys"
 
 msgid "Show Record Movies"
-msgstr ""
+msgstr "Mostrar pel·lícules gravades"
 
 msgid "Show Restart Network in Extensions *"
-msgstr ""
+msgstr "Mostrar 'Reiniciar xarxa' a la llista d'extensions *"
 
 msgid "Show SD as"
-msgstr ""
+msgstr "Mostrar SD com"
 
 msgid "Show Single EPG"
-msgstr ""
+msgstr "Mostrar EPG única"
 
 msgid "Show Timer List"
-msgstr ""
+msgstr "Mostrar llista de temporitzadors"
 
 msgid "Show True/False as graphical switch"
 msgstr "Mostra True / False com a commutador gràfic"
@@ -19205,31 +19275,31 @@ msgid "Show VCR SCART on main menu"
 msgstr "Mostra el scart VCR al menú principal"
 
 msgid "Show Vertical EPG"
-msgstr ""
+msgstr "Mostrar EPG vertical"
 
 msgid "Show WLAN status"
 msgstr "Mostra l’estat de la WLAN"
 
 msgid "Show a spinning logo when the system is busy."
-msgstr ""
+msgstr "Mostrar spinner quan el sistema està ocupat."
 
 msgid "Show additional slider value"
-msgstr ""
+msgstr "Mostra valor de lliscament adicional"
 
 msgid "Show advanced settings"
-msgstr ""
+msgstr "Mostrar configuracions avançades"
 
 msgid "Show animation while busy"
 msgstr "Mostra animació mentre està ocupat"
 
 msgid "Show background in Radio Mode"
-msgstr ""
+msgstr "Mostrar fons en mode ràdio"
 
 msgid "Show background when tuned to a radio channel."
-msgstr ""
+msgstr "Mostrar fons quan es sintonitzi un canal de ràdio."
 
 msgid "Show bouquet on launch"
-msgstr ""
+msgstr "Mostrar llista en iniciar"
 
 msgid "Show build information"
 msgstr ""
@@ -19249,15 +19319,18 @@ msgid ""
 "Show chapter positions for supported video files. (gstreamer version must be "
 "greather than 1)"
 msgstr ""
+"Mostrar posicions de capítol per arxius de vídeo suportats (versió gstreamer "
+"ha de ser major de 1)"
 
 msgid "Show columns"
 msgstr "Mostra les columnes"
 
 msgid "Show commit log information"
-msgstr ""
+msgstr "Informació del log del commit"
 
 msgid "Show crash info on screen and write crash log for x times"
 msgstr ""
+"Mostrar info bloqueig en pantalla i escriure log d'errors durant x cops"
 
 msgid "Show crypto icons"
 msgstr "Mostra les icones crypto"
@@ -27648,3 +27721,8 @@ msgstr "Selecciona el mode de video que s'utilitzarà a la TV."
 
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Selecciona la tassa de refresc que s'utilitzarà a la TV."
+
+#, fuzzy
+#| msgid "CCcam Info"
+msgid "Ncam Info"
+msgstr "Info CCcam"
