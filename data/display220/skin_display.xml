@@ -39,7 +39,7 @@
     <widget source="session.CurrentService" render="LcdPicon" size="100,60" position="3,1" transparent="0">
       <convert type="ServiceName">Reference</convert>
     </widget>
-    <widget source="session.Event_Now" render="Progress" position="2,65" size="216,10" backgroundColor="verde" foregroundColor="verde" transparent="1" zPosition="2">
+    <widget source="session.Event_Now" render="Progress" position="2,65" size="216,10" foregroundColor="verde" transparent="1" zPosition="2">
       <convert type="EventTime">Progress</convert>
     </widget>
     <eLabel name="fondoprogreso" position="2,65" size="216,10" backgroundColor="verdeoscuro" />
@@ -70,7 +70,7 @@
     <widget source="session.CurrentService" render="Label" position="65,98" size="153,36" font="VFD; 35" halign="right" transparent="1" foregroundColor="naranja" noWrap="1">
       <convert type="ServicePositionSPA">Remaining,ShowHours,ShowNoSeconds</convert>
     </widget>
-    <widget source="session.CurrentService" render="Progress" position="2,83" size="216,14" backgroundColor="naranja" foregroundColor="naranja" transparent="1" zPosition="1">
+    <widget source="session.CurrentService" render="Progress" position="2,83" size="216,14" foregroundColor="naranja" transparent="1" zPosition="1">
       <convert type="ServicePosition">Position</convert>
     </widget>
     <eLabel name="lin1" position="2,83" size="216,14" zPosition="0" backgroundColor="naranjaoscuro" transparent="0" />
@@ -109,7 +109,7 @@
   <screen name="ServiceScanSummary" position="0,0" size="220,176">
     <widget name="Title" position="0,0" size="398,44" font="VFD; 33" transparent="1" foregroundColor="azul" text="scan" noWrap="1" />
     <widget name="Service" position="0,45" size="220,66" font="VFD; 28" transparent="1" text="service" />
-    <widget name="scan_progress" position="3,113" zPosition="1" borderWidth="2" size="212,16" backgroundColor="azul" foregroundColor="azul" transparent="1" />
+    <widget name="scan_progress" position="3,113" zPosition="1" borderWidth="2" size="212,16" foregroundColor="azul" transparent="1" />
     <panel name="RelojAbajo" />
   </screen>
   <screen name="SetupSummary" position="0,0" size="220,176">
