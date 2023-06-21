@@ -703,7 +703,7 @@ class FlashImage(Screen, HelpableScreen):
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
 			#### OPENSPA [morser] for Kexec, flash imagen in USB ################
 			if BoxInfo.getItem("HasKexecMultiboot") and "mmcblk" not in mtdRootFS:
-				cmdArgs = ["-r%s" % mtdRootFS, "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model"), "-m%s" % self.slotCode]
+				cmdArgs = ["-r%s" % mtdRootFS, "-k", "-s%s/linuxrootfs" % BoxInfo.getItem("model")[2:], "-m%s" % self.slotCode]
 			#########################################################################
 			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]

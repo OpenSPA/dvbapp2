@@ -361,7 +361,7 @@ class KexecInit(Screen):
 			except:
 				uuid = None
 			if uuid:
-				MultiBoot.KexecUSBmoreSlots(self.model, hiKey, uuid)
+				MultiBoot.KexecUSBmoreSlots(self.model[2:], hiKey, uuid)
 				self.session.open(TryQuitMainloop, 2)
 			else:
 				print("[KexecInit] Error in uuid")
@@ -378,7 +378,7 @@ class KexecInit(Screen):
 
 	def KexecMountRet(self, result=None, retval=None, extra_args=None):
 		device_uuid = "UUID=" + result.split("UUID=")[1].split(" ")[0].replace('"', '')
-		MultiBoot.KexecUSBslots(self.model, device_uuid)
+		MultiBoot.KexecUSBslots(self.model[2:], device_uuid)
 		self.session.open(TryQuitMainloop, 2)
 
 	def RootInit(self):
