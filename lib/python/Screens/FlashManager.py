@@ -605,7 +605,7 @@ class FlashImage(Screen, HelpableScreen):
 	#### OPENSPA [morser] Confirmation if file exists ###################################
 	def startDownload(self, reply=True):  # DEBUG: This is never called with an argument!
 		if reply:
-			if exists(self.zippedImage):
+			if exists(self.zippedImage) and "://" in self.source:
 				self.session.openWithCallback(self.FileExistsConfirmation, MessageBox, _("The '%s' file already exists. Do you want to overwrite it?") % self.zippedImage, type=MessageBox.TYPE_YESNO, default=False, simple=True)
 			else:
 				self.DownloadFile()
