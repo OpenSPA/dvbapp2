@@ -19833,7 +19833,7 @@ msgstr ""
 msgid "Use Virgin EPG information when it is available."
 msgstr ""
 
-msgid "Use Zap timer end time"
+msgid "Use Zap timer end times"
 msgstr ""
 
 msgid "Use a gateway"
@@ -23595,4 +23595,19 @@ msgid "Ncam Info"
 msgstr ""
 
 msgid "Connected through another tuner"
+msgstr ""
+
+msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
+msgstr ""
+
+msgid "Load EPG Cache"
+msgstr ""
+
+msgid "Save EPG Cache"
+msgstr ""
+
+msgid "Delete EPG Cache"
+msgstr ""
+
+msgid "Protect spzMenu (OpenSPA Main Menu)"
 msgstr ""

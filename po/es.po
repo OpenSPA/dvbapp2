@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-06-18 18:10+0200\n"
+"PO-Revision-Date: 2023-06-24 21:44+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -22936,18 +22936,18 @@ msgstr "Sintonizador:"
 
 #
 msgid "Tuner Configuration"
-msgstr "Configurar sintonizador"
+msgstr "Configuración de sintonizador"
 
 msgid "Tuner Information"
 msgstr "Información de sintonizador"
 
 #
 msgid "Tuner Settings"
-msgstr "Configurar sintonizador"
+msgstr "Ajustes de sintonizador"
 
 #
 msgid "Tuner Setup"
-msgstr "Configurar sintonizador"
+msgstr "Configuración de sintonizador"
 
 msgid "Tuner information"
 msgstr "Tuner Information"
@@ -23505,8 +23505,8 @@ msgstr "Usar información EPG de Viasat cuando esté disponible."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Usar información EPG de Virgin cuando esté disponible."
 
-msgid "Use Zap timer end time"
-msgstr "Usar temporizador de tiempo de finalización de zapeo"
+msgid "Use Zap timer end times"
+msgstr "Usar temporizador de zapeo con tiempo de finalización"
 
 #
 msgid "Use a gateway"
@@ -28160,3 +28160,22 @@ msgstr "Información Ncam"
 
 msgid "Connected through another tuner"
 msgstr "Conectado a través de otro sintonizador"
+
+msgid ""
+"Select 'Yes' to enable new Zap timers to have an end time turned on and "
+"defined by default."
+msgstr ""
+"Selecciona 'Sí' para activar nuevos temporizadores de zapeo para tener un "
+"tiempo de finalización activado y definido por defecto."
+
+msgid "Load EPG Cache"
+msgstr "Cargar caché EPG"
+
+msgid "Save EPG Cache"
+msgstr "Guardar caché EPG"
+
+msgid "Delete EPG Cache"
+msgstr "Eliminar Caché EPG"
+
+msgid "Protect spzMenu (OpenSPA Main Menu)"
+msgstr "Proteger spzMenu (Menú principal OpenSPA)"
