@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-06-18 21:34+0200\n"
+"PO-Revision-Date: 2023-06-25 16:34+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -23253,8 +23253,9 @@ msgstr "Utilitzeu la informació ViaSat EPG quan estigui disponible."
 msgid "Use Virgin EPG information when it is available."
 msgstr "Utilitzar la informació del EPG Virgin quan estigui disponible."
 
-msgid "Use Zap timer end time"
-msgstr ""
+#
+msgid "Use Zap timer end times"
+msgstr "Utilitzar temporitzador de zàping amb hores de finalització"
 
 #
 msgid "Use a gateway"
@@ -27590,6 +27591,10 @@ msgid ""
 "By enabling kexec they will be restored automatically. Backup eMMC slots can "
 "take from 1 -> 5 minutes per slot."
 msgstr ""
+"Aquesta acció eliminarà permanentment les imatges dels slots 1 a 3. Voleu "
+"fer un backup d'aquestes imatges? Haureu de tenir un disc dur o USB. En "
+"activar kexec es restauraran automàticament. El backup dells slots eMMC pot "
+"trigar entre 1 i 5 minuts per slot."
 
 msgid ""
 "The backup could not be made, do you want to continue? Images in slots 1 to "
@@ -27681,6 +27686,12 @@ msgid ""
 "\n"
 "The next output port will be automatically tried in 10 seconds."
 msgstr ""
+"Selecció sortida de video.\n"
+"\n"
+"Assegureu-vos que a la TV s'ha seleccionat la entrada correcta. Prem OK si "
+"pots veure aquesta pàgina a la TV.\n"
+"\n"
+"Es seleccionarà automàticament el següent port de sortida en 10 seg."
 
 msgid "Video Wizard"
 msgstr "Assistent de video"
@@ -27722,7 +27733,40 @@ msgstr "Selecciona el mode de video que s'utilitzarà a la TV."
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Selecciona la tassa de refresc que s'utilitzarà a la TV."
 
-#, fuzzy
-#| msgid "CCcam Info"
 msgid "Ncam Info"
-msgstr "Info CCcam"
+msgstr "Info Ncam"
+
+msgid "Connected through another tuner"
+msgstr "Connectat a través d'un altre sintonitzador"
+
+msgid ""
+"Select 'Yes' to enable new Zap timers to have an end time turned on and "
+"defined by default."
+msgstr ""
+"Selecciona 'Sí' per habilitar nous temporitzadors de zàping per tenir una "
+"hora de finalització activada i definida per defecte."
+
+msgid "Load EPG Cache"
+msgstr "Carregar memòria cau d'EPG"
+
+msgid "Save EPG Cache"
+msgstr "Guardar memòria cau d'EPG"
+
+#
+msgid "Delete EPG Cache"
+msgstr "Eliminar memòria cau d'EPG"
+
+msgid "Protect spzMenu (OpenSPA Main Menu)"
+msgstr "Protegir spzMenu (Menu principal OpenSPA)"
+
+msgid "Enable core dumps *"
+msgstr "Habilitar bolcats de nucli *"
+
+msgid ""
+"Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the "
+"C++ code. Typical core dump size is 110 MB so adjust maximum space used and "
+"choose proper location."
+msgstr ""
+"Els bolcats de nucli són útils per als desenvolupadors en cas d'un error "
+"FATAL SIGNAL al codi C++. La mida típica del bolcat del nucli és de 110 MB, "
+"així que ajusteu l'espai màxim utilitzat i trieu la ubicació adequada."

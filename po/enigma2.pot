@@ -23611,3 +23611,9 @@ msgstr ""
 
 msgid "Protect spzMenu (OpenSPA Main Menu)"
 msgstr ""
+
+msgid "Enable core dumps *"
+msgstr ""
+
+msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
+msgstr ""
