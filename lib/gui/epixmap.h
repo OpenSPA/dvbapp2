@@ -18,6 +18,14 @@ public:
 	void setPixmapScaleFlags(int flags);
 	void setBorderWidth(int pixel);
 	void setBorderColor(const gRGB &color);
+	void setGradient(const gRGB &startcolor, const gRGB &endcolor, int direction, int blend);
+
+	enum
+	{
+		GRADIENT_VERTICAL = 0,
+		GRADIENT_HORIZONTAL = 1
+	};
+
 protected:
 	ePtr<gPixmap> m_pixmap;
 	int event(int event, void *data=0, void *data2=0);
@@ -27,9 +35,9 @@ private:
 	{
 		evtChangedPixmap = evtUserWidget,
 	};
-	bool m_have_border_color;
-	int m_border_width;
-	gRGB m_border_color;
+	bool m_have_border_color, m_gradient_set;
+	int m_border_width, m_gradient_direction;
+	gRGB m_border_color, m_gradient_startcolor, m_gradient_endcolor;
 };
 
 #endif
