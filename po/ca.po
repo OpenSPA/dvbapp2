@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-06-25 16:34+0200\n"
+"PO-Revision-Date: 2023-07-08 12:23+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -18756,34 +18756,49 @@ msgid ""
 "Set this to 'Yes' to automatically hide the InfoBar when the media starts "
 "playing. If set to 'No' the InfoBar will remain on screen."
 msgstr ""
+"Estableix en 'Sí' per ocultar automàticament la barra d'informació quan "
+"comenci la reproducció. Si es configura en 'No' la barra d'informació es "
+"mantindrà en pantalla."
 
 msgid ""
 "Set this to 'Yes' to display the Media Player menu item in the Main Menu. If "
 "set to 'No' Media Player can still be started from the Plugins list."
 msgstr ""
+"Estableix en 'Sí' per mostrar l'element de menú Reproductor multimèdia al "
+"menú principal. Si es deixa en 'No' el Reproductor multimèdia es podrà "
+"iniciar igualment des de Plugins."
 
 msgid ""
 "Set this to 'Yes' to keep playing this play list in a continuously repeating "
 "loop. If set to 'No' the play list will only be played once."
 msgstr ""
+"Estableix en 'Sí' per mantenir reproduint aquesta llista en bucle continu. "
+"Si es deixa en 'No' la llista només es reproduirà una vegada."
 
 msgid ""
 "Set this to 'Yes' to save the current directory when exiting the Media "
 "Player."
 msgstr ""
+"Estableix en 'Sí' per guardar el directori actual quan surtis del "
+"Reproductor multimèdia."
 
 msgid ""
 "Set this to 'Yes' to save the current play list when exiting the Media "
 "Player."
 msgstr ""
+"Estableix en 'Sí' per guardar la llista actual quan surtis del reproductor "
+"multimèdia."
 
 msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
+"Estableix en 'Sí' per ordenar les llistes de reproducció alfabèticament."
 
 msgid ""
 "Set to 'Disabled' to replace underscore characters, '_', in file and "
 "directory names with spaces."
 msgstr ""
+"Estableix en 'Desactivat' per substituir caràcters de subrallat, '_', als "
+"noms de directoris i arxius amb espais."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Estableix l'hora de màxima audiència dessitjada (hora)."
@@ -18804,6 +18819,8 @@ msgid ""
 "Sets the root directory of media list. This removes the '..' entry from "
 "being shown in that directory."
 msgstr ""
+"Estableix el directori arrel de la llista multimèdia. Això oculta l'entrada "
+"'..' en aquest directori."
 
 #
 msgid "Setting Restored "
@@ -18814,6 +18831,9 @@ msgid ""
 "You must set a password in order to be able to use network services like "
 "FTP, Telnet or SSH."
 msgstr ""
+"Es recomana establir una contrasenya si el vostre STB està obert a Internet. "
+"Heu d'establir una contrasenya per poder utilitzar serveis de xarxa com FTP, "
+"Telnet o SSH."
 
 #
 msgid "Settings"
@@ -18886,9 +18906,11 @@ msgid ""
 "Setup Plugin filter. Here you can select which Plugins are showed in the "
 "PluginBrowser"
 msgstr ""
+"Configura filtrat de plugins. Aquí pots seleccionar quins plugins es "
+"mostraran al navegador de plugins."
 
 msgid "Setup Plugins"
-msgstr ""
+msgstr "Configurar Plugins"
 
 msgid "Setup SABnzbd"
 msgstr "Configurar SABnzbd"
@@ -18907,7 +18929,7 @@ msgid "Setup Tuner"
 msgstr "Configurar sintonitzador"
 
 msgid "Setup Video/Audio"
-msgstr ""
+msgstr "Configurar Video/Àudio"
 
 msgid "Setup Videomode"
 msgstr "Configurar el mode de vídeo"
@@ -18919,7 +18941,7 @@ msgid "Setup each tuner for your satellite system"
 msgstr "Configura cada sintonitzador del teu receptor"
 
 msgid "Setup entry sort"
-msgstr ""
+msgstr "Configurar ordre."
 
 msgid "Setup how to control the channel changing."
 msgstr "Configura com controlar el canvi de canals."
@@ -19030,7 +19052,7 @@ msgid "Share Folders"
 msgstr "Carpetes compartides"
 
 msgid "Share View"
-msgstr ""
+msgstr "Compartir vista"
 
 msgid "Shares"
 msgstr "Intercanvis"
@@ -19047,7 +19069,7 @@ msgstr "Shift"
 
 #, python-format
 msgid "Shift: %s"
-msgstr ""
+msgstr "Shift: %s"
 
 msgid "Shona"
 msgstr "Shona"
@@ -19067,6 +19089,7 @@ msgstr "Noms d'arxiu curts amb hora"
 
 msgid "Should the crash counter be reset to prevent a restart?"
 msgstr ""
+"S'hauria de reinicialitzar el contador de bloquejos per prevenir un reinici?"
 
 #
 msgid "Show"
@@ -19099,6 +19122,8 @@ msgstr "Mostrar 24p fins a 720p / superior a 720p com"
 msgid ""
 "Show 24p up to resolution 720p or higher than 720p as a different Framerate."
 msgstr ""
+"Mostrar 24p fins a una resolució de 720p o major que 720p con una taxa de "
+"fotogrames diferent."
 
 msgid "Show 25p up to 720p / higher than 720p as"
 msgstr "Mostrar 25p fins a 720p / superior a 720p com"
@@ -19106,6 +19131,8 @@ msgstr "Mostrar 25p fins a 720p / superior a 720p com"
 msgid ""
 "Show 25p up to resolution 720p or higher than 720p as a different Framerate."
 msgstr ""
+"Mostrar 25p fins a una resolució de 720p o major que 720p con una taxa de "
+"fotogrames diferent."
 
 msgid "Show 30p up to 720p / higher than 720p as"
 msgstr "Mostrar 30p fins a 720p / superior a 720p com"
@@ -19113,6 +19140,8 @@ msgstr "Mostrar 30p fins a 720p / superior a 720p com"
 msgid ""
 "Show 30p up to resolution 720p or higher than 720p as a different Framerate."
 msgstr ""
+"Mostrar 30p fins a una resolució de 720p o major que 720p con una taxa de "
+"fotogrames diferent."
 
 msgid "Show 480/576p 24fps as"
 msgstr "Mostrar 480/576p 24fps com"
@@ -19130,7 +19159,7 @@ msgid "Show Box Portal"
 msgstr ""
 
 msgid "Show CCcam Info"
-msgstr ""
+msgstr "Mostrar Informació CCcam"
 
 msgid "Show CCcam in extensions"
 msgstr "Mostrar CCcam a extensions"
@@ -19173,7 +19202,7 @@ msgid "Show HDMI-Output Res"
 msgstr "Mostrar resolució de sortida HDMI"
 
 msgid "Show HDMIRecord setup..."
-msgstr ""
+msgstr "Mostrar configuració HDMIRecord (Gravació HDMI)..."
 
 msgid "Show InfoBar"
 msgstr "Mostrar barra d'informació"
@@ -19201,7 +19230,7 @@ msgid "Show Information"
 msgstr "Mostrar informació"
 
 msgid "Show Live in MiniTV"
-msgstr ""
+msgstr "Mostrar emisió en directe en MiniTV"
 
 msgid "Show Log"
 msgstr "Mostrar log"
@@ -19229,22 +19258,22 @@ msgid "Show Multi EPG"
 msgstr "Mostrar MultiEPG"
 
 msgid "Show OScam Info"
-msgstr ""
+msgstr "Mostrar Informació OScam"
 
 msgid "Show OScam in extensions"
 msgstr "Mostrar OSCam a extensions"
 
 msgid "Show PVR status in MoviePlayer InfoBar"
-msgstr ""
+msgstr "Mostrar estat PVR en barra d'informació del reproductor multimèdia."
 
 msgid "Show PiP"
 msgstr "Mostrar PiP"
 
 msgid "Show PiP in MiniTV"
-msgstr ""
+msgstr "Mostrar PiP en MiniTV"
 
 msgid "Show PiP in the Front Display"
-msgstr ""
+msgstr "Mostrar PiP en Display frontal"
 
 msgid "Show RFmod setup..."
 msgstr "Mostrar configuració RFmod..."
@@ -19302,7 +19331,7 @@ msgid "Show bouquet on launch"
 msgstr "Mostrar llista en iniciar"
 
 msgid "Show build information"
-msgstr ""
+msgstr "Mostrar informació de imatge"
 
 #
 msgid "Show channel number in InfoBar"
@@ -19339,13 +19368,13 @@ msgid "Show crypto info in InfoBar"
 msgstr "Mostra informació sobre cripto a infobar"
 
 msgid "Show current directory"
-msgstr ""
+msgstr "Mostrar directori actual"
 
 msgid "Show debug log information"
-msgstr ""
+msgstr "Mostrar informació del log de depuració"
 
 msgid "Show default after description"
-msgstr ""
+msgstr "Mostrar predeterminat després de descripció"
 
 #
 msgid "Show default on new line"
@@ -19355,20 +19384,22 @@ msgid "Show detailed event info"
 msgstr "Mostra informació detallada sobre esdeveniments"
 
 msgid "Show detailed event info (setup in menu)"
-msgstr ""
+msgstr "Mostrar informació d'esdeveniment detallat (configurar al menú)"
 
 msgid "Show details of highlighted task"
-msgstr ""
+msgstr "Mostrar detalls de la tasca seleccionada"
 
 msgid "Show development packages in opkg"
-msgstr ""
+msgstr "Mostrar paquets de desenvolupament en opkg"
 
 msgid "Show directories first"
-msgstr ""
+msgstr "Mostrar primer els directoris"
 
 msgid ""
 "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr ""
+"Mostrar informació d'encriptació a la barra d'informació (quan ho suporti el "
+"skin)."
 
 #
 msgid "Show event details"
@@ -19395,19 +19426,19 @@ msgid "Show extensions..."
 msgstr "Mostra extensions..."
 
 msgid "Show extra spacing in Information"
-msgstr ""
+msgstr "Mostrar espai extra en informació"
 
 msgid "Show favorites list"
 msgstr "Mostra la llista de preferits"
 
 msgid "Show files backed up by default"
-msgstr ""
+msgstr "Mostrar arxius del backup per defecte"
 
 msgid "Show first image"
-msgstr ""
+msgstr "Mostrar primer la imatge"
 
 msgid "Show graphical multi EPG"
-msgstr ""
+msgstr "Mostrar multi EPG gràfic"
 
 msgid "Show help"
 msgstr "Mostra ajuda"
@@ -19416,18 +19447,18 @@ msgid "Show icon for new/unseen items"
 msgstr "Mostra la icona per a elements nous / no vistos"
 
 msgid "Show image"
-msgstr ""
+msgstr "Mostrar imatge"
 
 #, python-format
 msgid "Show image and save as '%s'"
-msgstr ""
+msgstr "Mostrar imatge i guardar com '%s'"
 
 #
 msgid "Show in Standby"
 msgstr "Mostrar en repòs"
 
 msgid "Show in extensions list"
-msgstr ""
+msgstr "Mostrar a la llista d'extensions"
 
 msgid "Show info"
 msgstr "Mostra informaçio"
@@ -19436,20 +19467,20 @@ msgid "Show info line"
 msgstr "Mostra la línia d’informació"
 
 msgid "Show job tasks in extensions"
-msgstr ""
+msgstr "Mostrar tasques a extensions"
 
 msgid "Show last image"
-msgstr ""
+msgstr "Mostrar darrera imatge"
 
 msgid "Show live TV when movie stopped"
-msgstr ""
+msgstr "Mostrar TV en directe quan es pari la pel·lícula"
 
 #
 msgid "Show marked events"
 msgstr "Mostrar els programes marcats"
 
 msgid "Show marked events in all rows."
-msgstr ""
+msgstr "Mostrar esdeveniment marcats en totes les files."
 
 #
 msgid "Show menu"
@@ -19468,89 +19499,89 @@ msgid "Show multi channel EPG"
 msgstr "Mostra EPG multicanal"
 
 msgid "Show network setup menu..."
-msgstr ""
+msgstr "Mostrar menú de configuració de xarxa..."
 
 msgid "Show next commit log"
-msgstr ""
+msgstr "Mostrar pròxim log de commit"
 
 msgid "Show next debug log file"
-msgstr ""
+msgstr "Mostrar pròxim arxiu de log de depuració"
 
 msgid "Show next event"
-msgstr ""
+msgstr "Mostrar pròxim esdeveniment"
 
 msgid "Show next image"
-msgstr ""
+msgstr "Mostrar pròxima imatge"
 
 msgid "Show next page"
-msgstr ""
+msgstr "Mostrar pàgina següent"
 
 msgid "Show next picture"
-msgstr ""
+msgstr "Mostrar pròxima foto"
 
 msgid "Show next system information screen"
-msgstr ""
+msgstr "Mostrar pròxima pantalla d'informació de sistema"
 
 msgid "Show or hide the extended description, (skin dependent)."
-msgstr ""
+msgstr "Mostrar o ocultar la descripció extesa, (dependent del skin)."
 
 #
 msgid "Show parting lines"
 msgstr "Mostrar les línies de partició"
 
 msgid "Show parting lines between events."
-msgstr ""
+msgstr "Mostrar línies de partició entre esdeveniments."
 
 #
 msgid "Show persistent InfoBar while paused"
 msgstr "Mostrar sempre la infobar metre estigui pausat"
 
 msgid "Show picon background color"
-msgstr ""
+msgstr "Mostrar color de fons del picon"
 
 msgid "Show picture information"
-msgstr ""
+msgstr "Mostrar informació de la foto"
 
 #
 msgid "Show positioner movement"
 msgstr "Mostrar el moviment del motor"
 
 msgid "Show preview of current mode (*)."
-msgstr ""
+msgstr "Mostrar vista prèvia del mode actual (*)."
 
 msgid "Show previous commit log"
-msgstr ""
+msgstr "Mostrar log de commit anterior"
 
 msgid "Show previous debug log file"
-msgstr ""
+msgstr "Mostrar arxiu de log de depuració anterior"
 
 msgid "Show previous event"
-msgstr ""
+msgstr "Mostrar esdeveniment previ"
 
 msgid "Show previous image"
-msgstr ""
+msgstr "Mostrar imatge prèvia"
 
 msgid "Show previous page"
-msgstr ""
+msgstr "Mostrar pàgina prèvia"
 
 #
 msgid "Show previous picture"
 msgstr "Mostrar foto anterior"
 
 msgid "Show previous system information screen"
-msgstr ""
+msgstr "Mostrar pantalla d'informació de sistema prèvia"
 
 msgid "Show quickmenu..."
-msgstr ""
+msgstr "Mostrar menú ràpid (quickmenu)..."
 
 msgid "Show record indicator"
 msgstr "Mostra l’indicador de registre"
 
 msgid "Show recording symbol"
-msgstr ""
+msgstr "Mostrar símbol de gravació"
 
 msgid "Show satellites list"
-msgstr ""
+msgstr "Mostrar llista de satèl·lits"
 
 #
 msgid "Show screen menu path"
@@ -19560,21 +19591,23 @@ msgid "Show screensaver"
 msgstr "Mostra el salvapantalles"
 
 msgid "Show script messages"
-msgstr ""
+msgstr "Mostrar missatges de script"
 
 msgid ""
 "Show script messages if a background script ends. If the script has "
 "additional output then this will also be shown."
 msgstr ""
+"Mostrar missatges de script si finalitza un script en segon pla. Si el "
+"script té una sortida adicional, aquesta també es mostrarà."
 
 msgid "Show selection for system information screen"
-msgstr ""
+msgstr "Mostrar selecció de la pantalla d'informació de sistema"
 
 msgid "Show selection menu for commit logs"
-msgstr ""
+msgstr "Mostrar menu de selecció per logs de commit"
 
 msgid "Show selection menu for debug log files"
-msgstr ""
+msgstr "Mostrar menu de selecció per logs de depuració"
 
 msgid "Show service list"
 msgstr "Mostra la llista de serveis"
@@ -19583,6 +19616,8 @@ msgid ""
 "Show service name and event description among each other instead of side by "
 "side. After a change, an adjustment of the number of lines is required."
 msgstr ""
+"Mostra nom del servei i descripció de l'esdeveniment entre ells en lloc d'un "
+"al costat de l'altre. Després d'un canvi, cal un ajust del número de línies."
 
 #
 msgid "Show service type icons"
@@ -19596,29 +19631,29 @@ msgid "Show setup"
 msgstr "Mostrar configuració"
 
 msgid "Show setup default value"
-msgstr ""
+msgstr "Mostrar valor predeterminat de configuració"
 
 msgid "Show setup menu..."
-msgstr ""
+msgstr "Mostrar menú de configuració..."
 
 #
 msgid "Show shut down menu"
 msgstr "Mostrar el menú d'apagat"
 
 msgid "Show single EPG for current channel"
-msgstr ""
+msgstr "Mostrar EPG simple del canal actual"
 
 msgid "Show single EPG for current channel (setup in menu)"
-msgstr ""
+msgstr "Mostrar EPG simple del canal actual (configuració al menú)"
 
 msgid "Show single service EPG"
 msgstr "Mostra el servei únic EPG"
 
 msgid "Show source packages"
-msgstr ""
+msgstr "Mostrar paquets d'origen"
 
 msgid "Show status messages on switch to live TV"
-msgstr ""
+msgstr "Mostrar missatges d'estat en canviar a TV en directe"
 
 msgid "Show subservice selection"
 msgstr "Mostra la selecció del subservici"
@@ -19631,33 +19666,35 @@ msgid "Show subtitle selection"
 msgstr "Mostra la selecció de subtítols"
 
 msgid "Show system information"
-msgstr ""
+msgstr "Mostrar informació de sistema"
 
 msgid "Show task list"
-msgstr ""
+msgstr "Mostrar llista de tasques"
 
 msgid "Show task messages"
-msgstr ""
+msgstr "Mostrar missatges de tasques"
 
 msgid ""
 "Show task messages if File Commander is not running and all task are "
 "completed."
 msgstr ""
+"Mostrar missatges de tasques si l'administrador d'arxius no està funcionant "
+"i s'han completat totes les tasques."
 
 msgid "Show the CCcam Info Screen"
-msgstr ""
+msgstr "Mostrar la pantalla d'informació CCcam"
 
 msgid "Show the DreamPlex player..."
-msgstr ""
+msgstr "Mostrar reproductor DreamPlex..."
 
 msgid "Show the EIT Now/Next data in the InfoBar."
 msgstr "Mostrales dades d'EIT actual/següent al Infobar."
 
 msgid "Show the Logs Settings screen"
-msgstr ""
+msgstr "Mostrar pantalla de configuració de logs"
 
 msgid "Show the OScamInfo Screen"
-msgstr ""
+msgstr "Mostrar la pantalla d'informació OScam"
 
 #
 msgid "Show the PowerTimer"
@@ -19672,10 +19709,10 @@ msgid "Show the information on current event."
 msgstr "Mostrar la informació de l'esdeveniment actual."
 
 msgid "Show the list of AutoTimers."
-msgstr ""
+msgstr "Mostrar la llista d'AutoTemporitzadors."
 
 msgid "Show the list of timers."
-msgstr ""
+msgstr "Mostrar la llista de temporitzadors."
 
 #
 msgid "Show the media center"
@@ -19686,10 +19723,10 @@ msgid "Show the media player"
 msgstr "Mostar el reproductor multimèdia"
 
 msgid "Show the media player..."
-msgstr ""
+msgstr "Mostrar el reproductor multimèdia..."
 
 msgid "Show the plugin browser.."
-msgstr ""
+msgstr "Mostrar el navegador de plugins..."
 
 #
 msgid "Show the plugins"
@@ -19700,51 +19737,53 @@ msgid "Show the radio player"
 msgstr "Mostrar el reproductor de ràdio"
 
 msgid "Show the task list"
-msgstr ""
+msgstr "Mostrar llista de tasques"
 
 #
 msgid "Show the tv player"
 msgstr "Mostrar el reproductor de TV"
 
 msgid "Show time elapsed as positive"
-msgstr ""
+msgstr "Mostrar temps transcorregut com positiu"
 
 msgid "Show time in 24 hour clock format."
-msgstr ""
+msgstr "Mostrar temps en fomat 24 hores."
 
 msgid "Show time remaining/elapsed"
-msgstr ""
+msgstr "Mostrar temps restant/transcorregut"
 
 msgid "Show translation information"
-msgstr ""
+msgstr "Mostrar informació de traducció"
 
 msgid "Show translation packages"
-msgstr ""
+msgstr "Mostrar paquets de traducció"
 
 msgid "Show transponder remaining/elapsed as"
-msgstr ""
+msgstr "Mostrar transponder restant/transcorregut com"
 
 msgid "Show two lines per entry"
 msgstr "Mostra dues línies per entrada"
 
 msgid "Show underscore characters"
-msgstr ""
+msgstr "Mostrar caràcters subrallats"
 
 msgid ""
 "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
+"Mostrar resolució de video desconeguda com la següent més alta o com la "
+"resolució de pantalla mes alta."
 
 msgid "Show unknown video format as"
-msgstr ""
+msgstr "Mostrar format de video desconegut com"
 
 msgid "Show usage and GUI menu..."
-msgstr ""
+msgstr "Mostrar menú Ús i interfície..."
 
 msgid "Show vertical Program Guide"
-msgstr ""
+msgstr "Mostrar EPG vertical"
 
 msgid "Show warning before restart"
-msgstr ""
+msgstr "Mostrar advertència abans de reiniciar"
 
 msgid "Show warning when time shift is stopped"
 msgstr "Mostra l’avís quan s’atura el torn horari"
@@ -19753,28 +19792,29 @@ msgid "Show watch status"
 msgstr "Mostra les icones d’estat a movielist"
 
 msgid "Show/Games show"
-msgstr ""
+msgstr "Espectacle/Espectacle de jocs"
 
 msgid "Show/Hide focus bar"
-msgstr ""
+msgstr "Mostrar/Ocultar barra de focus"
 
 msgid "Showiframe"
-msgstr ""
+msgstr "Showiframe"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr ""
+"Mostra el navegador de plugins. Aquí pots configurar el plugin instal·lat"
 
 msgid "Shows available plugins. Here you can download and install them"
-msgstr ""
+msgstr "Mostra plugins disponibles. Aquí pots descarregar i instal·lar-los"
 
 msgid "Shows available softcams. Here you can download and install them"
-msgstr ""
+msgstr "Mostra softcams disponibles. Aquí pots descarregar i instal·lar-los"
 
 msgid "Shows live tv or informations on LCD."
-msgstr ""
+msgstr "Mostra tv en directe o informació en LCD."
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
-msgstr ""
+msgstr "Mostra les icones quan nou/no vist, sino no es mostrarà una icona."
 
 #
 msgid "Shows the state of your wireless LAN connection."
@@ -19805,7 +19845,7 @@ msgid "Sierra Leone"
 msgstr "Sierra Leona"
 
 msgid "Sigma Designs"
-msgstr ""
+msgstr "Dissenys Sigma"
 
 msgid "Signal Finder"
 msgstr "Buscador de senyal"
@@ -19851,10 +19891,10 @@ msgid "Simple zoom"
 msgstr "Zoom simple"
 
 msgid "SimpleUmount"
-msgstr ""
+msgstr "Desmuntatge simple"
 
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Simplified Chinese"
 
 msgid "Sindhi"
 msgstr "Sindhi"
@@ -19872,7 +19912,7 @@ msgid "Single EPG"
 msgstr "EPG senzill"
 
 msgid "Single Tuner"
-msgstr ""
+msgstr "Sintonitzador simple"
 
 #
 msgid "Single satellite"
@@ -19893,22 +19933,22 @@ msgid "Sint Maarten"
 msgstr "Sint Maarten"
 
 msgid "Sitcom"
-msgstr ""
+msgstr "Sitcom"
 
 msgid "Size"
 msgstr "Tamany"
 
 msgid "Size ascending"
-msgstr ""
+msgstr "Tamany ascendent"
 
 msgid "Size descending"
-msgstr ""
+msgstr "Tamany descendent"
 
 msgid "Skin"
 msgstr "Skin"
 
 msgid "Skin & Resolution"
-msgstr ""
+msgstr "Skin i resolució"
 
 msgid "Skin Selector"
 msgstr "Selector de skin"
@@ -19946,7 +19986,7 @@ msgid "Skip forward"
 msgstr "Saltar cap endavant"
 
 msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
+msgstr "Omet saltar al directe mentre facis timeshift amb plugins"
 
 msgid "Sleep"
 msgstr "Apagar"
@@ -19961,7 +20001,7 @@ msgid "Sleep delay"
 msgstr "Retard d'apagat"
 
 msgid "Sleep test"
-msgstr ""
+msgstr "Test d'apagat"
 
 msgid "Sleep timer"
 msgstr "Temporitzador d'apagat"
@@ -19976,31 +20016,31 @@ msgid "SleepTimer Overview"
 msgstr "Vista general temporitzador d'apagat"
 
 msgid "SleepTimer Settings"
-msgstr ""
+msgstr "Configuració temporitzador d'encesa"
 
 msgid "SleepTimer action"
-msgstr ""
+msgstr "Temporitzador d'encesa"
 
 msgid "SleepTimer activation delay"
-msgstr ""
+msgstr "Retard en activació temporitzador d'encesa"
 
 #, python-format
 msgid "SleepTimer: %d minute remains."
 msgid_plural "SleepTimer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Temporitzador d'encesa: falta %d minut"
+msgstr[1] "Temporitzador d'encesa: falten %d minuts"
 
 #, python-format
 msgid "SleepTimer: %d second remains."
 msgid_plural "SleepTimer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Temporitzador d'encesa: falta %d segon"
+msgstr[1] "Temporitzador d'encesa: falten %d segons"
 
 msgid "SleepTimer: Inactive."
-msgstr ""
+msgstr "Temporitzador d'encesa: inactiu."
 
 msgid "Sleeping"
-msgstr ""
+msgstr "Apagant"
 
 msgid "Slide drop"
 msgstr "Lliscar cap abaix"
@@ -20015,17 +20055,17 @@ msgid "Slide picture in loop"
 msgstr "Feu lliscar la imatge al bucle"
 
 msgid "Slide right to left"
-msgstr ""
+msgstr "Lliscar de dreta a esquerra"
 
 msgid "Slide show delay"
-msgstr ""
+msgstr "Retard en presentació diapositives"
 
 #
 msgid "Slide show interval (sec.)"
 msgstr "Interval de presentació de diapositives (seg.)"
 
 msgid "Slide show loop"
-msgstr ""
+msgstr "Bucle en presentació diapositives"
 
 msgid "Slide top to bottom"
 msgstr "Lliscar de dalt a baix"
@@ -20087,10 +20127,10 @@ msgid "Small"
 msgstr "Petita"
 
 msgid "Small - Tiny image"
-msgstr ""
+msgstr "Petit - Imatge petita"
 
 msgid "Small Test"
-msgstr ""
+msgstr "Petit test"
 
 msgid "Small progress"
 msgstr "Petits avenços"
@@ -20102,16 +20142,16 @@ msgid "Smooth"
 msgstr "Llis"
 
 msgid "Smpte 170M"
-msgstr ""
+msgstr "Smpte 170M"
 
 msgid "Smpte 240M"
-msgstr ""
+msgstr "Smpte 240M"
 
 msgid "SoC family"
-msgstr ""
+msgstr "Família SoC"
 
 msgid "Soap Opera"
-msgstr ""
+msgstr "Telenovel·la"
 
 msgid "Soccer"
 msgstr "Futbol"
@@ -20178,6 +20218,8 @@ msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
+"Iniciant actualització de software, si us plau espera.\n"
+"\n"
 
 msgid "Softwaremanager..."
 msgstr "Administrador de software..."
@@ -20186,7 +20228,7 @@ msgid "Solomon Islands"
 msgstr "Illes Marshall"
 
 msgid "Somali"
-msgstr ""
+msgstr "Somali"
 
 msgid "Somalia"
 msgstr "Somalia"
@@ -20210,7 +20252,7 @@ msgid "Sorbian"
 msgstr "Sorbian"
 
 msgid "Sorry CIHelper Config is Missing"
-msgstr ""
+msgstr "Perdó, configuració de CIHelper perduda"
 
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Falta la configuració d'Inadyn"
@@ -20231,7 +20273,7 @@ msgid "Sorry no backups found!"
 msgstr "No s'han trobat backups!"
 
 msgid "Sorry only possible to record 2 channels at once"
-msgstr ""
+msgstr "Ho sentim, només és possible gravar 2 canals a la vegada"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Falta la configuració de uShare"
@@ -20282,10 +20324,10 @@ msgid "Sort EPG List"
 msgstr "Ordenar la llista d'EPG"
 
 msgid "Sort Extensions menu"
-msgstr ""
+msgstr "Ordre menú extensions"
 
 msgid "Sort Plugin Browser"
-msgstr ""
+msgstr "Ordre Navegador de plugins"
 
 msgid "Sort by"
 msgstr "Ordenar per"
@@ -20306,11 +20348,11 @@ msgid "Sort order for the language list."
 msgstr "Ordre llista d'idiomes."
 
 msgid "Sort playlists"
-msgstr ""
+msgstr "Ordre llistes de reproducció"
 
 #, python-format
 msgid "Sort: Directories by %s %s; Files by %s %s."
-msgstr ""
+msgstr "Ordre: Directoris per %s %s; Arxius per %s %s."
 
 #
 msgid "Sotho, Southern"
