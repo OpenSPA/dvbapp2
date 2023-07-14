@@ -346,6 +346,9 @@ class AutoScartControl:
 
 
 def runScreenTest():
+	def takesort(elem):
+		return elem[0]
+
 	def autorestoreLoop():  # Check if auto restore settings fails, just start the wizard (avoid a endless loop).
 		count = 0
 		filename = "/media/hdd/images/config/autorestore"
@@ -411,7 +414,7 @@ def runScreenTest():
 		screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 		screensToRun += wizardManager.getWizards()
 	screensToRun.append((100, InfoBar.InfoBar))
-	screensToRun.sort()
+	screensToRun.sort(key=takesort)
 	print(screensToRun)
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 	if not RestoreSettings:

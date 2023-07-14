@@ -24,6 +24,7 @@ from Screens.Setup import Setup
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileWriteLine, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
+from Components.Language import language
 
 MODULE_NAME = __name__.split(".")[-1]
 

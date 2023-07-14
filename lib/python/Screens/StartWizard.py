@@ -15,6 +15,7 @@ from Screens.VideoWizard import VideoWizard
 from Screens.Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
 from Tools.Directories import fileReadLines, fileWriteLines
+from Screens.LocaleSelection import LocaleWizard
 
 MODULE_NAME = __name__.split(".")[-1]
 
