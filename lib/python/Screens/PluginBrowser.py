@@ -1,7 +1,7 @@
 from os.path import exists
 from re import compile
 
-from enigma import checkInternetAccess, eDVBDB, eTimer, gRGB
+from enigma import checkInternetAccess, eDVBDB, eTimer, gRGB, getDesktop
 
 from skin import parseColor
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
@@ -104,11 +104,72 @@ config.pluginfilter.userfeed = ConfigText(default="http://", fixed_size=False)
 def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
+def esHD():
+	if getDesktop(0).size().width() > 1400:
+		return True
+	else:
+		return False
 ################################################################
 
 class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen):
-	skin = """
-	<screen name="PluginBrowser" title="Plugin Browser" position="center,center" size="1000,535" resolution="1280,720">
+	if esHD():
+		skin="""
+		<screen name="PluginBrowser" title="Plugin Browser" position="center,center" size="1500,862" resolution="1920,1080">
+		<widget source="pluginList" render="Listbox" position="0,0" size="e*1.5,675" conditional="pluginList" listOrientation="vertical" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{
+				"template":
+					[
+					MultiContentEntryPixmapAlphaBlend(pos = (15,7), size = (150,60), png=3, flags=BT_SCALE),
+					MultiContentEntryText(pos = (187,4), size = (1297,36), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_TOP, text=1),
+					MultiContentEntryText(pos = (217,45), size = (1267,28), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, text=2),
+					],
+				"fonts": [parseFont("RegularHD;20"), parseFont("RegularHD;15")],
+				"itemHeight": 75
+				}
+			</convert>
+		</widget>
+		<widget source="pluginGrid" render="Listbox" position="0,0" size="e,672" conditional="pluginGrid" listOrientation="grid" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{
+				"template":
+					[
+					MultiContentEntryText(pos = (0,0), size = (292,165), font=0),
+					MultiContentEntryText(pos = (6,6), size = (280,153), font=0, backcolor=0x00404040),
+					MultiContentEntryPixmapAlphaBlend(pos = (67,21), size = (150,60), png=3, flags=BT_SCALE),
+					MultiContentEntryText(pos = (7,87), size = (277,75), font=0, flags=RT_VALIGN_CENTER | RT_HALIGN_CENTER | RT_WRAP, text=1),
+					],
+				"fonts": [parseFont("RegularHD;18")],
+				"itemWidth": 290,
+				"itemHeight": 168
+				}
+			</convert>
+		</widget>
+		<widget name="quickselect" position="0,0" size="e,675" font="RegularHD;100" foregroundColor="#00fff000" halign="center" transparent="1" valign="center" zPosition="+1" />
+		<widget name="description" position="10,e-112" size="e,37" font="RegularHD;20" valign="center" />
+		<widget source="key_red" render="Label" position="0,e-60" size="270,60" backgroundColor="key_red" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="285,e-60" size="270,60" backgroundColor="key_green" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="570,e-60" size="270,60" backgroundColor="key_yellow" conditional="key_yellow" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="855,e-60" size="270,60" backgroundColor="key_blue" conditional="key_blue" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_menu" render="Label" position="e-295,e-60" size="135,60" backgroundColor="key_back" conditional="key_menu" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-135,e-60" size="135,60" backgroundColor="key_back" conditional="key_help" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		</screen>"""
+	else:
+		skin = """
+		<screen name="PluginBrowser" title="Plugin Browser" position="center,center" size="1000,535" resolution="1280,720">
 		<widget source="pluginList" render="Listbox" position="0,0" size="e,450" conditional="pluginList" listOrientation="vertical" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{
@@ -587,8 +648,44 @@ class PluginBrowserSummary(ScreenSummary):
 
 
 class PluginAction(Screen, HelpableScreen, NumericalTextInput):
-	skin = """
-	<screen name="PluginAction" title="Plugin Browser Download" position="center,center" size="900,585" resolution="1280,720">
+	if esHD():
+		skin="""
+		<screen name="PluginAction" title="Plugin Browser Download" position="center,center" size="1350,877" resolution="1920,1080">
+		<widget source="plugins" render="Listbox" position="0,0" size="e,750" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{
+				"template":
+					[
+					MultiContentEntryPixmapAlphaBlend(pos = (7,0), size = (90,75), png=6, flags=BT_SCALE),
+					MultiContentEntryText(pos = (105,0), size = (1215,75), font=0, flags=RT_VALIGN_CENTER, text=2),
+					MultiContentEntryText(pos = (105,3), size = (795,37), font=1, flags=RT_VALIGN_CENTER, text=3),
+					MultiContentEntryText(pos = (915,3), size = (330,37), font=1, flags=RT_VALIGN_CENTER, text=5),
+					MultiContentEntryText(pos = (105,42), size = (1140,30), font=2, flags=RT_VALIGN_CENTER, text=4, color=0x00b0b0b0),
+					MultiContentEntryPixmapAlphaBlend(pos = (1260,1), size = (72,72), png=7, flags=BT_SCALE),
+					],
+				"fonts": [parseFont("RegularHD;25"), parseFont("RegularHD;20"), parseFont("RegularHD;16")],
+				"itemHeight": 75
+				}
+			</convert>
+		</widget>
+		<widget name="quickselect" position="0,0" size="e,750" font="RegularHD;100" foregroundColor="#00fff000" halign="center" transparent="1" valign="center" zPosition="+1" />
+		<widget name="description" position="0,e-112" size="e,37" font="RegularHD;20" valign="center" />
+		<widget source="key_red" render="Label" position="0,e-60" size="270,60" backgroundColor="key_red" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="285,e-60" size="270,60" backgroundColor="key_green" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="570,e-60" size="270,60" backgroundColor="key_yellow" conditional="key_yellow" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-135,e-60" size="135,60" backgroundColor="key_back" conditional="key_help" font="RegularHD;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		</screen>"""
+	else:
+		skin = """
+		<screen name="PluginAction" title="Plugin Browser Download" position="center,center" size="900,585" resolution="1280,720">
 		<widget source="plugins" render="Listbox" position="0,0" size="e,500" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{
@@ -620,7 +717,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		<widget source="key_help" render="Label" position="e-90,e-40" size="90,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-	</screen>"""
+		</screen>"""
 
 	REMOVE = 0
 	DOWNLOAD = 1

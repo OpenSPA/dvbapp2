@@ -461,11 +461,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		<panel name="MenuBPanel" />
 		<widget name="list" position="0,45" scrollbarMode="showOnDemand" size="540,350" enableWrapAround="1" />
 	</screen>
-	<screen name="PluginDownloadBrowser" position="center,center" size="560,460" title="Downloadable plugins" >
-		<panel name="BasicTemplate" />
-		<widget font="Enigma;20" halign="center" name="text" position="0,0" size="560,380" valign="center" zPosition="1"/>
-		<widget name="list" position="10,10" scrollbarMode="showOnDemand" size="540,395" zPosition="2" enableWrapAround="1" />
-	</screen>
 	<screen name="LocationBox" position="center,center" size="560,460" >
 		<panel name="BasicTemplate" />
 		<panel name="Red1Panel" />
