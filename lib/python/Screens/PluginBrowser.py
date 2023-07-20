@@ -739,6 +739,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 	PLUGIN_DISPLAY_CATEGORY = 8  # This is the same as PLUGIN_FORMATTED_CATEGORY but is always available for the summary screen.
 	PLUGIN_INSTALLED = 9  # This is only defined for management screens and is not intended for display.
 	PLUGIN_UPGRADABLE = 10  # This is only defined for management screens and is not intended for display.
+	PLUGIN_NANE_VERSION = 11  # This is the name and the version and only defined for plugin details and management.
 
 	INFO_PACKAGE = 0
 	INFO_CATEGORY = 1
