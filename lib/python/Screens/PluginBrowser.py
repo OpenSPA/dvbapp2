@@ -739,7 +739,6 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 	PLUGIN_DISPLAY_CATEGORY = 8  # This is the same as PLUGIN_FORMATTED_CATEGORY but is always available for the summary screen.
 	PLUGIN_INSTALLED = 9  # This is only defined for management screens and is not intended for display.
 	PLUGIN_UPGRADABLE = 10  # This is only defined for management screens and is not intended for display.
-	PLUGIN_NANE_VERSION = 11  # This is the name and the version and only defined for plugin details and management.
 
 	INFO_PACKAGE = 0
 	INFO_CATEGORY = 1
@@ -841,10 +840,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		self.logData = ""
 		self.opkgComponent = OpkgComponent()
 		self.opkgComponent.addCallback(self.fetchOpkgDataCallback)
-		opkgFilterArguments = [ENIGMA_PREFIX % "*"]
-		if config.pluginfilter.kernel.value:
-			opkgFilterArguments.append(KERNEL_PREFIX % "*")
-		self.opkgFilterArguments = {"arguments": opkgFilterArguments}
+		self.opkgFilterArguments = None
 		# print("[PluginBrowser] DEBUG: Opkg filter is '%s'." % self.opkgFilterArguments)
 		displayFilter = []
 		for filter in sorted(PACKAGE_CATEGORIES.keys()):
@@ -855,15 +851,15 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 				if filter == "kernel" :
 					displayFilter.append((KERNEL_PREFIX % "")[:-1])
 				elif filter == "kodiaddon" :
-					displayFilter.append("kodi-addon-")
+					displayFilter.append("kodi-addon")
 				elif filter == "docker" :
-					displayFilter.append("docker-")
-				elif filter == "python" :
-					displayFilter.append("python-")
+					displayFilter.append("docker")
 				elif filter == "gstreamer" :
-					displayFilter.append("gstreamer1.0-")
+					displayFilter.append("gstreamer1.0")
 				elif filter == "po" :
-					displayFilter.append("enigma2-locale-")
+					displayFilter.append("enigma2-locale")
+				elif filter == "python" :
+					displayFilter.append("python")
 				else:
 					displayFilter.append(ENIGMA_PREFIX % filter)
 		# for count, filter in enumerate(displayFilter, start=1):
@@ -1075,7 +1071,6 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 			case _:
 				# Unhandled events, no action required.
 				pass
-
 		haveLogs = self.logData != ""
 		self["logAction"].setEnabled(haveLogs)
 		self["key_yellow"].setText(_("Show Log") if haveLogs else "")
@@ -1104,6 +1099,25 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 					elif parts[0] == "kernel" and parts[1] == "module":
 						packageCategory = "kernel"
 						packageName = ("-".join(parts[2:])).replace(self.kernelVersion, "")
+					elif parts[0] == "enigma2" and parts[1] == "locale":
+						packageCategory = "po"
+						packageName = ("-".join(parts[2:]))
+					elif parts[0] == "kodi" and parts[1] == "addon":
+						packageCategory = "kodiaddon"
+						packageName = ("-".join(parts[2:]))
+					elif parts[0] == "gstreamer1.0":
+						packageCategory = "gstreamer"
+						packageName = ("-".join(parts[1:]))
+				elif count > 1:
+					if parts[0] == "packagegroup":
+						packageCategory = "packagegroup"
+						packageName = ("-".join(parts[1:]))
+					elif parts[0] == "python3":
+						packageCategory = "python"
+						packageName = ("-".join(parts[1:]))
+					elif parts[0] == "docker":
+						packageCategory = "docker"
+						packageName = ("-".join(parts[1:]))
 				else:
 
 					print("[PluginBrowser] Error: Plugin package '%s' has no name!" % packageFile)
@@ -1144,7 +1158,7 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 		plugins = []
 		for category in sorted(categories.keys()):
 			if category in self.expanded:
-				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandedIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None, None))
+				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandedIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None))
 				for info in sorted(categories[category], key=lambda x: x[self.INFO_PACKAGE]):
 					installed = info[self.INFO_INSTALLED]
 					icon = self.installedIcon if installed else self.installableIcon
@@ -1160,9 +1174,9 @@ class PluginAction(Screen, HelpableScreen, NumericalTextInput):
 						if part.startswith("git"):
 							parts.remove(part)
 					version = "+".join(parts)
-					plugins.append((info[self.INFO_PACKAGE], None, None, info[self.INFO_NAME], info[self.INFO_DESCRIPTION], version, self.verticalIcon, icon, PACKAGE_CATEGORIES.get(category, category), info[self.INFO_INSTALLED], info[self.INFO_UPGRADE], "%s (%s)" % (info[self.INFO_NAME], version)))
+					plugins.append((info[self.INFO_PACKAGE], None, None, info[self.INFO_NAME], info[self.INFO_DESCRIPTION], version, self.verticalIcon, icon, PACKAGE_CATEGORIES.get(category, category), info[self.INFO_INSTALLED], info[self.INFO_UPGRADE]))
 			else:
-				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandableIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None, None))
+				plugins.append((category, category, PACKAGE_CATEGORIES.get(category, category), None, None, None, self.expandableIcon, None, PACKAGE_CATEGORIES.get(category, category), None, None))
 		self["plugins"].setList(plugins)
 
 	def setWaiting(self, text):
