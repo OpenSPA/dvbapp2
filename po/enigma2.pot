@@ -80,9 +80,6 @@ msgstr ""
 msgid " (Partition %d)"
 msgstr ""
 
-msgid " (PiP)"
-msgstr ""
-
 msgid " (Radio)"
 msgstr ""
 
@@ -3127,9 +3124,6 @@ msgid "Bitrate:"
 msgstr ""
 
 msgid "Black"
-msgstr ""
-
-msgid "Black screen"
 msgstr ""
 
 msgid "Black screen till locked"
@@ -23482,9 +23476,6 @@ msgid_plural "%d packages installed."
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Add bouquet"
-msgstr ""
-
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -23859,4 +23850,7 @@ msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Reset Order"
+msgstr ""
+
+msgid "Plugin Action Log"
 msgstr ""

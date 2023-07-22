@@ -103,9 +103,6 @@ msgstr " (Canal %s)"
 msgid " (Partition %d)"
 msgstr " (Partición %d)"
 
-msgid " (PiP)"
-msgstr " (PiP)"
-
 msgid " (Radio)"
 msgstr " (Radio)"
 
@@ -3529,9 +3526,6 @@ msgstr "Bitrate:"
 
 msgid "Black"
 msgstr "Negro"
-
-msgid "Black screen"
-msgstr "Pantalla negra"
 
 msgid "Black screen till locked"
 msgstr "Pantalla negra hasta el bloqueo"
@@ -28170,10 +28164,6 @@ msgstr[0] "%d paquete instalado."
 msgstr[1] "%d paquetes instalados."
 
 #
-msgid "Add bouquet"
-msgstr "Añadir lista"
-
-#
 msgid "Add services to this bouquet?"
 msgstr "Añadir canales a esta lista?"
 
@@ -28636,3 +28626,16 @@ msgstr ""
 
 msgid "Reset Order"
 msgstr "Restablecer orden de clasificación"
+
+msgid "Plugin Action Log"
+msgstr "Log de acciones de plugin"
+
+#~ msgid " (PiP)"
+#~ msgstr " (PiP)"
+
+#~ msgid "Black screen"
+#~ msgstr "Pantalla negra"
+
+#
+#~ msgid "Add bouquet"
+#~ msgstr "Añadir lista"
