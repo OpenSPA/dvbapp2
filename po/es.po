@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-15 10:44+0200\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: \n"
@@ -1353,6 +1353,12 @@ msgstr "(Atención: Habrá un reinicio después de %d cuelgues.)"
 #
 msgid "(FTA Service)"
 msgstr "(Servicio FTA)"
+
+msgid "(PiP)"
+msgstr "(PiP)"
+
+msgid "(Radio)"
+msgstr "(Radio)"
 
 msgid "(Show only reader:"
 msgstr "(Mostrar sólo lector:"
@@ -3526,6 +3532,9 @@ msgstr "Bitrate:"
 
 msgid "Black"
 msgstr "Negro"
+
+msgid "Black Screen"
+msgstr "Pantalla negra"
 
 msgid "Black screen till locked"
 msgstr "Pantalla negra hasta el bloqueo"
@@ -14572,6 +14581,22 @@ msgstr "Espera... Cargando lista..."
 msgid "Please wait...almost ready! "
 msgstr "Por favor, espere... ¡ya casi está! "
 
+msgid "Plug in USB device"
+msgstr "Enchufar dispositivo USB"
+
+msgid ""
+"Plug in a USB device that can be used as a swap device. Note that this "
+"device must not be removed while the %s %s is running!"
+msgstr ""
+"Enchufar un dispositivo USB que pueda usarse con SWAP. Ten en cuenta que "
+"este dispositivo no debe quitarse mientras el %s %s esté funcionando!"
+
+msgid "Plugin Action Log"
+msgstr "Log de acciones de plugin"
+
+msgid "Plugin Action Log Actions"
+msgstr "Acciones del log de acciones del plugin"
+
 msgid "Plugin Browser"
 msgstr "Explorador de Plugins"
 
@@ -15401,6 +15426,9 @@ msgstr "Información del receptor"
 msgid "Receiver Information Actions"
 msgstr "Acciones de información del receptor"
 
+msgid "Receiver does not support Quad PiP."
+msgstr "El receptor no soporta Quad PiP."
+
 #, python-format
 msgid "Receiver information for %s %s"
 msgstr "Información del receptor %s %s"
@@ -15918,6 +15946,9 @@ msgstr "Resetear"
 
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Restablecer la configuración HDMI-CEC por defecto"
+
+msgid "Reset Order"
+msgstr "Restablecer orden de clasificación"
 
 #
 msgid "Reset and renumerate title names"
@@ -27923,16 +27954,6 @@ msgstr ""
 "Por favor espere, se está creando la swap. Esto puede tardar unos minutos en "
 "completarse."
 
-msgid "Plug in USB device"
-msgstr "Enchufar dispositivo USB"
-
-msgid ""
-"Plug in a USB device that can be used as a swap device. Note that this "
-"device must not be removed while the %s %s is running!"
-msgstr ""
-"Enchufar un dispositivo USB que pueda usarse con SWAP. Ten en cuenta que "
-"este dispositivo no debe quitarse mientras el %s %s esté funcionando!"
-
 #
 msgid "Press OK to start the backup now"
 msgstr "Pulsa OK para iniciar el backup ahora"
@@ -28299,9 +28320,6 @@ msgstr "Por favor, espera mientras se sustituye el plugin."
 msgid "Please wait while the plugin is updated."
 msgstr "Por favor, espera mientras se actualiza el plugin."
 
-msgid "Plugin Action Log Actions"
-msgstr "Acciones del log de acciones del plugin"
-
 msgid "Plugin Browser Actions"
 msgstr "Acciones del Explorador de Plugins"
 
@@ -28581,9 +28599,6 @@ msgstr "Módulo deshabilitado"
 msgid "wait for ci..."
 msgstr "esperar a ci…"
 
-msgid "Receiver does not support Quad PiP."
-msgstr "El receptor no soporta Quad PiP"
-
 msgid "Show Kodi addons"
 msgstr "Mostrar addons Kodi"
 
@@ -28623,12 +28638,6 @@ msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
 msgstr ""
 "Selecciona 'Sí' para mostrar los paquetes de gstreamer en la pantalla de "
 "Descarga de Plugins."
-
-msgid "Reset Order"
-msgstr "Restablecer orden de clasificación"
-
-msgid "Plugin Action Log"
-msgstr "Log de acciones de plugin"
 
 #~ msgid " (PiP)"
 #~ msgstr " (PiP)"
