@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-15 10:44+0200\n"
-"PO-Revision-Date: 2023-07-22 17:35+0200\n"
+"PO-Revision-Date: \n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
-"Language-Team: OpenSPA <openspa.info>\n"
+"Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3633,8 +3633,8 @@ msgstr "Lista de Bouquet"
 msgid "Bouvet Island"
 msgstr "Isla de Bouvet"
 
-msgid "Box or driver is not support Quad PiP."
-msgstr "El receptor o el controlador no son compatibles con Quad PiP."
+msgid "Receiver does not support Quad PiP."
+msgstr "El receptor no soporta Quad PiP"
 
 msgid "Boxing"
 msgstr "Boxeo"
@@ -17102,8 +17102,8 @@ msgid ""
 "Select 'Yes' to show the channel list after switching between Radio and TV "
 "modes."
 msgstr ""
-"Si se ajusta a ‘sí’, la lista de canales aparecerá en los cambios entre modo "
-"radio y TV."
+"Selecciona ‘Sí’para mostrar la lista de canales después de cambiar entre "
+"modo radio y TV."
 
 msgid ""
 "Select 'Yes' to show the current directory in the list of directories. Note "
@@ -24490,8 +24490,8 @@ msgid ""
 "When nonzero, a recording will start the nominated period before the "
 "starting time indicated in the EPG."
 msgstr ""
-"Cuando no sea cero, la grabación se iniciará unos minutos antes de la hora "
-"de inicio indicada en la EPG ."
+"En Nonzero, la grabación comenzará antes del tiempo de inicio indicado por "
+"EPG."
 
 msgid ""
 "When nonzero, a recording will stop the nominated period after the ending "
@@ -25088,8 +25088,6 @@ msgid ""
 "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
-"Tu %s %s se reiniciará después de desinstalar el servicio.\n"
-"¿Quieres eliminarlo ahora?"
 
 msgid ""
 "Your Internet connection is not working!\n"
@@ -28604,9 +28602,6 @@ msgstr "esperar a ci…"
 msgid "yes"
 msgstr "Sí"
 
-msgid "Receiver does not support Quad PiP."
-msgstr "El receptor no soporta Quad PiP"
-
 msgid "Show Kodi addons"
 msgstr "Mostrar addons Kodi"
 
@@ -28646,6 +28641,24 @@ msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
 msgstr ""
 "Selecciona 'Sí' para mostrar los paquetes de gstreamer en la pantalla de "
 "Descarga de Plugins."
+
+#~ msgid "Box or driver is not support Quad PiP."
+#~ msgstr "El receptor o el controlador no son compatibles con Quad PiP."
+
+#
+#~ msgid "Enable Bouquet Edit"
+#~ msgstr "Habilitar edición de grupos"
+
+#
+#~ msgid "Remove From Parental Protection"
+#~ msgstr "Eliminar del control paterno"
+
+#
+#~ msgid "Remove New Found Flag"
+#~ msgstr "Borrar la nueva marca encontrada"
+
+#~ msgid "This bouquet is protected by a parental control PIN!"
+#~ msgstr "Este ramo está protegido por un pin de control parental"
 
 #, python-format
 #~ msgid "%s (%s)\n"
