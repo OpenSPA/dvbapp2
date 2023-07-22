@@ -18,7 +18,7 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, fileReadLines, resol
 MODULE_NAME = __name__.split(".")[-1]
 PACKAGER = "/usr/bin/opkg"
 PACKAGE_TEMPLATE = "enigma2-locale-%s"
-PERMANENT_LOCALES = ["de_DE", "en_US", "fr_FR"]
+PERMANENT_LOCALES = ["de_DE", "en_US", "es_ES"]
 
 languagePath = resolveFilename(SCOPE_LANGUAGE)
 try:

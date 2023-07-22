@@ -1,10 +1,11 @@
 # Spanish translations for Enigma2.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-12 14:10+0200\n"
+"POT-Creation-Date: 2023-07-15 10:44+0200\n"
 "PO-Revision-Date: 2023-05-01 17:07+0100\n"
 "Last-Translator: VillaK <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
@@ -13,48 +14,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid ""
-"\n"
+msgid "\n"
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr ""
 
-msgid ""
-"\n"
+msgid "\n"
 "   Please press OK to start Kodi..."
 msgstr ""
 
-msgid ""
-"\n"
+msgid "\n"
 "  WARNING: \n"
 "  There is not enough space to install Kodi!"
 msgstr ""
 
-msgid ""
-"\n"
+msgid "\n"
 " Kodi not present. Proceed with install?"
 msgstr ""
 
-msgid ""
-"\n"
+msgid "\n"
 "<This tuner is configured automatically>"
 msgstr ""
 
-msgid ""
-"\n"
+msgid "\n"
 "Recording in progress."
 msgstr ""
 
-msgid ""
-"\n"
+msgid "\n"
 "[Installed Plugins]\n"
 msgstr ""
 
-msgid ""
-"\n"
+msgid "\n"
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 
@@ -123,8 +116,7 @@ msgstr ""
 msgid " and"
 msgstr ""
 
-msgid ""
-" available !!\n"
+msgid " available !!\n"
 "\n"
 "Do you want to install the new settings list?"
 msgstr ""
@@ -1158,10 +1150,6 @@ msgid "%s (%s)"
 msgstr ""
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr ""
-
-#, python-format
 msgid "%s - %s (%s%d min)"
 msgstr ""
 
@@ -1428,9 +1416,6 @@ msgstr ""
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
-msgid "128"
-msgstr ""
-
 msgid "128 Mb"
 msgstr ""
 
@@ -1453,9 +1438,6 @@ msgid "15 minutes"
 msgstr ""
 
 msgid "1536 Mb"
-msgstr ""
-
-msgid "16"
 msgstr ""
 
 msgid "16:10"
@@ -1545,9 +1527,6 @@ msgstr ""
 msgid "25"
 msgstr ""
 
-msgid "256"
-msgstr ""
-
 msgid "256 Mb"
 msgstr ""
 
@@ -1621,9 +1600,6 @@ msgid "30p/50p"
 msgstr ""
 
 msgid "30p/60p"
-msgstr ""
-
-msgid "32"
 msgstr ""
 
 msgid "32 Mb"
@@ -1723,9 +1699,6 @@ msgid "60p/50p"
 msgstr ""
 
 msgid "60p/60p"
-msgstr ""
-
-msgid "64"
 msgstr ""
 
 msgid "64 Mb"
@@ -1828,14 +1801,12 @@ msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished record timer wants to set your\n"
+msgid "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
 
 #, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
+msgid "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 
@@ -1843,13 +1814,11 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr ""
 
 #, python-format
-msgid ""
-"A recording has been started:\n"
+msgid "A recording has been started:\n"
 "%s"
 msgstr ""
 
-msgid ""
-"A recording is currently running.\n"
+msgid "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
 
@@ -1863,8 +1832,7 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr ""
 
 #, python-format
-msgid ""
-"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+msgid "A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -1873,8 +1841,7 @@ msgstr ""
 msgid "A required tool (%s) was not found."
 msgstr ""
 
-msgid ""
-"A second configured interface has been found.\n"
+msgid "A second configured interface has been found.\n"
 "\n"
 "Do you want to disable the second network interface?"
 msgstr ""
@@ -1882,23 +1849,19 @@ msgstr ""
 msgid "A small overview of the available icon states and actions."
 msgstr ""
 
-msgid ""
-"A timer failed to record!\n"
+msgid "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
 
-msgid ""
-"A timer failed to record!\n"
+msgid "A timer failed to record!\n"
 "Abort streaming and try again?\n"
 msgstr ""
 
-msgid ""
-"A timer failed to record!\n"
+msgid "A timer failed to record!\n"
 "Disable PiP and try again?\n"
 msgstr ""
 
-msgid ""
-"A timer failed to record!\n"
+msgid "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
 
@@ -1952,9 +1915,6 @@ msgid "ATSC provider"
 msgstr ""
 
 msgid "AV Setup"
-msgstr ""
-
-msgid "AZPlay"
 msgstr ""
 
 msgid "Abkhazian"
@@ -2549,8 +2509,7 @@ msgstr ""
 msgid "Are you sure you want to activate this network configuration?"
 msgstr ""
 
-msgid ""
-"Are you sure you want to delete\n"
+msgid "Are you sure you want to delete\n"
 "the following backup:\n"
 msgstr ""
 
@@ -2579,21 +2538,18 @@ msgid "Are you sure you want to restart your network interfaces?"
 msgstr ""
 
 #, python-format
-msgid ""
-"Are you sure you want to restore\n"
+msgid "Are you sure you want to restore\n"
 "the following backup:\n"
 "%s\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
 
-msgid ""
-"Are you sure you want to restore the backup?\n"
+msgid "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
 
 #, python-format
-msgid ""
-"Are you sure you want to restore your %s %s backup?\n"
+msgid "Are you sure you want to restore your %s %s backup?\n"
 "STB will restart after the restore"
 msgstr ""
 
@@ -2765,9 +2721,6 @@ msgid "Auto Language Selection"
 msgstr ""
 
 msgid "Auto Language Settings"
-msgstr ""
-
-msgid "Auto Modes Selected."
 msgstr ""
 
 msgid "Auto SCART switching"
@@ -3029,8 +2982,7 @@ msgstr ""
 msgid "Backup is running..."
 msgstr ""
 
-msgid ""
-"Backup plugins found\n"
+msgid "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
 
@@ -3310,7 +3262,7 @@ msgstr ""
 msgid "Broadcom"
 msgstr ""
 
-msgid "Browse, install or remove extensions / plugins."
+msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
 msgid "Brunei Darussalam"
@@ -3431,8 +3383,7 @@ msgid "CCcam Info"
 msgstr ""
 
 #, python-format
-msgid ""
-"CCcam Info %s\n"
+msgid "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
 "This screen shows you the status of CCcam."
@@ -3497,22 +3448,7 @@ msgstr ""
 msgid "CI (Common Interface) Setup"
 msgstr ""
 
-msgid "CI Basic Settings"
-msgstr ""
-
 msgid "CI Helper Settings"
-msgstr ""
-
-msgid "CI Legacy"
-msgstr ""
-
-msgid "CI Operation Mode"
-msgstr ""
-
-msgid "CI Plus 1.2"
-msgstr ""
-
-msgid "CI Plus 1.3"
 msgstr ""
 
 msgid "CI assignment"
@@ -3522,15 +3458,6 @@ msgid "CI slot: "
 msgstr ""
 
 msgid "CIFS/Samba Settings"
-msgstr ""
-
-msgid "CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "CIHelper for SLOT CI1"
-msgstr ""
-
-msgid "CIconfigMenu"
 msgstr ""
 
 msgid "CPU"
@@ -3612,8 +3539,7 @@ msgstr ""
 msgid "Can be used for different fps between external subtitles and video."
 msgstr ""
 
-msgid ""
-"Can be used to test defect pixels on TV screen.\n"
+msgid "Can be used to test defect pixels on TV screen.\n"
 "\n"
 "Available color test screens:\n"
 "\n"
@@ -3672,13 +3598,11 @@ msgstr ""
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
-msgid ""
-"Can't going to live TV!\n"
+msgid "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
-msgid ""
-"Can't play the next time shift file!\n"
+msgid "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
@@ -3895,8 +3819,7 @@ msgid "Changed"
 msgstr ""
 
 #, python-format
-msgid ""
-"Changes need a system restart to take effect.\n"
+msgid "Changes need a system restart to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
 
@@ -4023,9 +3946,6 @@ msgstr ""
 msgid "Check power and input state from TV"
 msgstr ""
 
-msgid "Check the Internet connection"
-msgstr ""
-
 msgid "Check the Internet connection again"
 msgstr ""
 
@@ -4041,12 +3961,8 @@ msgstr ""
 msgid "Checking file system..."
 msgstr ""
 
-msgid "Checking the Internet connection"
-msgstr ""
-
 #, python-format
-msgid ""
-"Checking tuner %d\n"
+msgid "Checking tuner %d\n"
 "DiSEqC port %s for %s"
 msgstr ""
 
@@ -4104,9 +4020,6 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
-msgstr ""
-
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr ""
 
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
@@ -4492,10 +4405,12 @@ msgstr ""
 msgid "Configure interface"
 msgstr ""
 
-msgid "Configure nameservers"
+msgid "Configure on which devices the background delete option should be used."
 msgstr ""
 
-msgid "Configure on which devices the background delete option should be used."
+msgid "Configure or verify your DNS (name servers) by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
 msgstr ""
 
 msgid "Configure remote control type"
@@ -5172,8 +5087,7 @@ msgid "Current version:"
 msgstr ""
 
 #, python-format
-msgid ""
-"Current: %s\n"
+msgid "Current: %s\n"
 "Parent: %s"
 msgstr ""
 
@@ -5255,8 +5169,7 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
-msgid ""
-"DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
+msgid "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
 msgstr ""
 
@@ -5548,9 +5461,6 @@ msgid "Default Dolby Digital / Dolby AC-3 offset"
 msgstr ""
 
 msgid "Default I/O priority (ionice) for executed scripts. This can reduce the system load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr ""
-
-msgid "Default Modes Selected."
 msgstr ""
 
 msgid "Default Services Scanner"
@@ -5930,8 +5840,7 @@ msgid "Diction"
 msgstr ""
 
 #, python-format
-msgid ""
-"Difference between timer begin and end must be equal or greater than %d minutes.\n"
+msgid "Difference between timer begin and end must be equal or greater than %d minutes.\n"
 "End Action was disabled !"
 msgstr ""
 
@@ -6046,9 +5955,6 @@ msgid "Disk is not writable!"
 msgstr ""
 
 msgid "Disk was not found!"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 msgid "Display 16:9 content as"
@@ -6166,13 +6072,11 @@ msgstr ""
 msgid "Do nothing"
 msgstr ""
 
-msgid ""
-"Do you really want to check the file system?\n"
+msgid "Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
 
-msgid ""
-"Do you really want to convert the file system?\n"
+msgid "Do you really want to convert the file system?\n"
 "You cannot go back!"
 msgstr ""
 
@@ -6188,28 +6092,21 @@ msgid "Do you really want to delete ?"
 msgstr ""
 
 #, python-format
-msgid ""
-"Do you really want to delete all '%s' tags?\n"
+msgid "Do you really want to delete all '%s' tags?\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
 
-msgid ""
-"Do you really want to delete all tags?\n"
+msgid "Do you really want to delete all tags?\n"
 "(Note that 'Cancel' will not undo this!)"
 msgstr ""
 
 msgid "Do you really want to delete this timer?"
 msgstr ""
 
-#, python-format
-msgid "Do you really want to download the plugin \"%s\"?"
-msgstr ""
-
 msgid "Do you really want to exit?"
 msgstr ""
 
-msgid ""
-"Do you really want to initialize the device?\n"
+msgid "Do you really want to initialize the device?\n"
 "All data on the disk will be lost!"
 msgstr ""
 
@@ -6225,10 +6122,6 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
-msgstr ""
-
-#, python-format
-msgid "Do you really want to remove the plugin \"%s\"?"
 msgstr ""
 
 #, python-format
@@ -6250,18 +6143,15 @@ msgstr ""
 msgid "Do you want to add any additional information ?"
 msgstr ""
 
-msgid ""
-"Do you want to also install samba client ?\n"
+msgid "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
 
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
+msgid "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
 
-msgid ""
-"Do you want to backup now?\n"
+msgid "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
 
@@ -6274,8 +6164,7 @@ msgstr ""
 msgid "Do you want to continue?"
 msgstr ""
 
-msgid ""
-"Do you want to delete all selected files:\n"
+msgid "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
 
@@ -6333,8 +6222,7 @@ msgstr ""
 msgid "Do you want to resume this playback?"
 msgstr ""
 
-msgid ""
-"Do you want to send all selected files:\n"
+msgid "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
 
@@ -6380,8 +6268,7 @@ msgstr ""
 msgid "Don't unscramble, record ECM"
 msgstr ""
 
-msgid ""
-"Don't worry your device is still ok! There are several safety mechanisms in place!\n"
+msgid "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
 "Your device is still as fine as it was before this procedure!"
 msgstr ""
 
@@ -6452,10 +6339,10 @@ msgstr ""
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr ""
 
-msgid "Driver and kernel information"
+msgid "Driver Packages"
 msgstr ""
 
-msgid "Drivers"
+msgid "Driver and kernel information"
 msgstr ""
 
 msgid "Drivers version"
@@ -6551,15 +6438,13 @@ msgstr ""
 msgid "EPG filename"
 msgstr ""
 
-msgid ""
-"EPG key : Switch to channel list\n"
+msgid "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
 "PVR key : Input channel name\n"
 "Exit key : Finish channel edit"
 msgstr ""
 
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
+msgid "EPG key : Switch to quad PiP entry\n"
 "Ok key : Add to new entry\n"
 "PVR key : Input channel name\n"
 "Exit key : Finish channel edit"
@@ -6714,12 +6599,6 @@ msgid "Enable 5V for active antenna"
 msgstr ""
 
 msgid "Enable BT Audio"
-msgstr ""
-
-msgid "Enable CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "Enable CIHelper for SLOT CI1"
 msgstr ""
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
@@ -7190,23 +7069,19 @@ msgstr ""
 msgid "Error code"
 msgstr ""
 
-msgid ""
-"Error creating EHD-Skin.\n"
+msgid "Error creating EHD-Skin.\n"
 "Using HD-Skin!"
 msgstr ""
 
-msgid ""
-"Error creating EHD-Skin. Icon package download not available.\n"
+msgid "Error creating EHD-Skin. Icon package download not available.\n"
 "Using HD-Skin!"
 msgstr ""
 
-msgid ""
-"Error creating EHD-Skin. Not enough flash memory free.\n"
+msgid "Error creating EHD-Skin. Not enough flash memory free.\n"
 "Using HD-Skin!"
 msgstr ""
 
-msgid ""
-"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+msgid "Error creating EHD-Skin. Some EHD-Icons are missing.\n"
 "Using HD-Skin!"
 msgstr ""
 
@@ -7221,8 +7096,7 @@ msgid "Error executing plugin"
 msgstr ""
 
 #, python-format
-msgid ""
-"Error getting link via %s\n"
+msgid "Error getting link via %s\n"
 "%s"
 msgstr ""
 
@@ -7249,14 +7123,12 @@ msgid "Error, unknown Result!"
 msgstr ""
 
 #, python-format
-msgid ""
-"Error:\n"
+msgid "Error:\n"
 "%s"
 msgstr ""
 
 #, python-format
-msgid ""
-"Error: %s\n"
+msgid "Error: %s\n"
 "Retry?"
 msgstr ""
 
@@ -7419,8 +7291,7 @@ msgstr ""
 msgid "Everyday"
 msgstr ""
 
-msgid ""
-"Everything in one place - IceTV does it for you!\n"
+msgid "Everything in one place - IceTV does it for you!\n"
 "\n"
 "Using the IceTV app or website, 'My Shows' is your place to go to. See the next 7 days of your recordings, favorite shows, keyword notifications, new series broadcasts, and our recommendations.\n"
 "\n"
@@ -7867,8 +7738,7 @@ msgstr ""
 msgid "File appears to be busy.\n"
 msgstr ""
 
-msgid ""
-"File oscam.conf not found.\n"
+msgid "File oscam.conf not found.\n"
 "Please enter username/password manually."
 msgstr ""
 
@@ -8208,13 +8078,11 @@ msgstr ""
 msgid "GStreamer version"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
+msgid "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
+msgid "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
 
@@ -8936,8 +8804,7 @@ msgstr ""
 msgid "IceTV update completed OK"
 msgstr ""
 
-msgid ""
-"IceTV update completed with errors.\n"
+msgid "IceTV update completed with errors.\n"
 "\n"
 "Please check the log for details."
 msgstr ""
@@ -9034,13 +8901,11 @@ msgstr ""
 msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
 msgstr ""
 
-msgid ""
-"If you see this, something is wrong with\n"
+msgid "If you see this, something is wrong with\n"
 "your SCART connection. Press OK to return."
 msgstr ""
 
-msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
+msgid "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
 "Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
@@ -9095,14 +8960,12 @@ msgstr ""
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr ""
 
-msgid ""
-"In order to allow you to access all the features of the IceTV smart recording service, we need to gather some basic information.\n"
+msgid "In order to allow you to access all the features of the IceTV smart recording service, we need to gather some basic information.\n"
 "\n"
 "If you already have an IceTV subscription or trial, please select 'Existing or trial customer', if not, then select 'New customer'."
 msgstr ""
 
-msgid ""
-"In order to record a timer, a tuner was freed successfully:\n"
+msgid "In order to record a timer, a tuner was freed successfully:\n"
 "\n"
 msgstr ""
 
@@ -9354,15 +9217,6 @@ msgid "Install extensions"
 msgstr ""
 
 msgid "Install extensions."
-msgstr ""
-
-msgid "Install lcd picons on"
-msgstr ""
-
-msgid "Install or remove finished."
-msgstr ""
-
-msgid "Install picons on"
 msgstr ""
 
 msgid "Install the package"
@@ -9642,7 +9496,7 @@ msgstr ""
 msgid "Kenya"
 msgstr ""
 
-msgid "Kernel Modules"
+msgid "Kernel Packages"
 msgstr ""
 
 msgid "Kernel file"
@@ -10200,7 +10054,7 @@ msgstr ""
 msgid "Luxembourgish / Letzeburgesch"
 msgstr ""
 
-msgid "M2k"
+msgid "M2k Packages"
 msgstr ""
 
 msgid "MAC Address Actions"
@@ -10300,9 +10154,6 @@ msgid "Malta"
 msgstr ""
 
 msgid "Maltese"
-msgstr ""
-
-msgid "Manage Extensions"
 msgstr ""
 
 msgid "Manage Locale/Language Selection settings"
@@ -10435,7 +10286,7 @@ msgstr ""
 msgid "Media Player Settings"
 msgstr ""
 
-msgid "Media Portal"
+msgid "Media Stream"
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -10453,7 +10304,7 @@ msgstr ""
 msgid "MediaPlayer"
 msgstr ""
 
-msgid "MediaPortal"
+msgid "MediaStream"
 msgstr ""
 
 msgid "Medical"
@@ -10603,8 +10454,7 @@ msgid "Misconfiguration in channel allocation"
 msgstr ""
 
 #, python-format
-msgid ""
-"Misconfigured unicable connection from tuner %s to tuner %s!\n"
+msgid "Misconfigured unicable connection from tuner %s to tuner %s!\n"
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
 
@@ -11377,8 +11227,7 @@ msgstr ""
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 
-msgid ""
-"No Settings loaded !!\n"
+msgid "No Settings loaded !!\n"
 "\n"
 "Please install first a settinglist"
 msgstr ""
@@ -11404,8 +11253,7 @@ msgstr ""
 msgid "No channel"
 msgstr ""
 
-msgid ""
-"No data on transponder!\n"
+msgid "No data on transponder!\n"
 "(Timeout reading PAT)"
 msgstr ""
 
@@ -11514,8 +11362,7 @@ msgstr ""
 msgid "No tuner is available for recording a timer!"
 msgstr ""
 
-msgid ""
-"No tuner is available for recording a timer!\n"
+msgid "No tuner is available for recording a timer!\n"
 "\n"
 "The following methods of freeing a tuner were tried without success:\n"
 "\n"
@@ -11524,8 +11371,7 @@ msgstr ""
 msgid "No tuner is configured for use with a DiSEqC positioner!"
 msgstr ""
 
-msgid ""
-"No tuner is enabled!\n"
+msgid "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 
@@ -11547,18 +11393,15 @@ msgstr ""
 msgid "No wireless networks found! Searching..."
 msgstr ""
 
-msgid ""
-"No working local network adapter found.\n"
+msgid "No working local network adapter found.\n"
 "Please verify that you have attached a network cable and your network is configured correctly."
 msgstr ""
 
-msgid ""
-"No working wireless network adapter found.\n"
+msgid "No working wireless network adapter found.\n"
 "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
 msgstr ""
 
-msgid ""
-"No working wireless network interface found.\n"
+msgid "No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable your local network interface."
 msgstr ""
 
@@ -11666,8 +11509,7 @@ msgid "Not enough disk space. Please free up some disk space and try again. (%d 
 msgstr ""
 
 #, python-format
-msgid ""
-"Not enough free Diskspace!\n"
+msgid "Not enough free Diskspace!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
@@ -11689,8 +11531,7 @@ msgstr ""
 msgid "Nothing connected and/or no files available!"
 msgstr ""
 
-msgid ""
-"Nothing to scan!\n"
+msgid "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 
@@ -11750,9 +11591,6 @@ msgid "OK, guide me through the upgrade process"
 msgstr ""
 
 msgid "ONID"
-msgstr ""
-
-msgid "OPKG clean mode"
 msgstr ""
 
 msgid "OSD"
@@ -11866,9 +11704,6 @@ msgstr ""
 msgid "Only on startup"
 msgstr ""
 
-msgid "Only provider"
-msgstr ""
-
 msgid "Open"
 msgstr ""
 
@@ -11884,7 +11719,7 @@ msgstr ""
 msgid "Open IMDb"
 msgstr ""
 
-msgid "Open MediaPortal"
+msgid "Open MediaStream"
 msgstr ""
 
 msgid "Open Similar List Channel List"
@@ -11944,7 +11779,7 @@ msgstr ""
 msgid "OpenDNS Home"
 msgstr ""
 
-msgid "OpenPLi"
+msgid "OpenPLi Packages"
 msgstr ""
 
 msgid "OpenSSL version"
@@ -11959,7 +11794,7 @@ msgstr ""
 msgid "OpenVPN Settings"
 msgstr ""
 
-msgid "OpenViX"
+msgid "OpenViX Packages"
 msgstr ""
 
 msgid "OpenVpn Log"
@@ -12360,9 +12195,6 @@ msgstr ""
 msgid "Picon width"
 msgstr ""
 
-msgid "Picons"
-msgstr ""
-
 msgid "Picture Information"
 msgstr ""
 
@@ -12487,19 +12319,6 @@ msgstr ""
 msgid "Please choose reader"
 msgstr ""
 
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-
-msgid ""
-"Please configure your Internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-
-msgid "Please connect your %s %s to the Internet"
-msgstr ""
-
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr ""
 
@@ -12545,12 +12364,8 @@ msgstr ""
 msgid "Please enter the old PIN code"
 msgstr ""
 
-msgid ""
-"Please enter your email address, which will be your login.\n"
+msgid "Please enter your email address, which will be your login.\n"
 "Via your account on the IceTV website you can choose to receive service announcements, account reminders and promotional offers."
-msgstr ""
-
-msgid "Please enter your personal feed URL"
 msgstr ""
 
 msgid "Please follow the instructions on the TV"
@@ -12610,19 +12425,18 @@ msgstr ""
 msgid "Please select tag to filter..."
 msgstr ""
 
-msgid ""
-"Please select the IceTV service that you wish to use.\n"
+msgid "Please select the IceTV service that you wish to use.\n"
 "\n"
 "IceTV is a subscription service that is only available in the listed countries."
 msgstr ""
 
-msgid "Please select the movie path..."
+msgid "Please select the device where the flash expander '/usr' directory should created."
 msgstr ""
 
-msgid ""
-"Please select the network interface that you want to use for your Internet connection.\n"
-"\n"
-"Please press OK to continue."
+msgid "Please select the device where the flash expander '/usr' directory should disabled."
+msgstr ""
+
+msgid "Please select the movie path..."
 msgstr ""
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
@@ -12631,108 +12445,23 @@ msgstr ""
 msgid "Please select the sub-service to record:"
 msgstr ""
 
-msgid ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
-msgid "Please set up tuner A"
-msgstr ""
-
-msgid ""
-"Please set up tuner A\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner B"
-msgstr ""
-
-msgid ""
-"Please set up tuner B\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner C"
-msgstr ""
-
-msgid ""
-"Please set up tuner C\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set up tuner D"
-msgstr ""
-
-msgid ""
-"Please set up tuner D\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner E\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner F\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner G\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner H\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner I\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner J\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner Q\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid ""
-"Please set up tuner R\n"
-"For Hybrid Tuner Models switch Tuner Type with left and right keys"
-msgstr ""
-
-msgid "Please set your time options"
-msgstr ""
-
-msgid ""
-"Please set your time options.\n"
+msgid "Please set your time options.\n"
 "\n"
 "Press YELLOW to set the time zone via geolocation."
 msgstr ""
 
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+msgid "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press OK to continue."
 msgstr ""
 
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+msgid "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press green to continue."
 msgstr ""
 
-msgid ""
-"Please use direction keys to move the PiP window.\n"
+msgid "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
@@ -12807,14 +12536,19 @@ msgstr ""
 #, python-format
 msgid "Plugin Details: %s"
 msgstr ""
+msgid "Plugin Browser Update Actions"
+msgstr ""
 
-msgid "Plugin Filter Settings"
+msgid "Plugin Browser layout"
 msgstr ""
 
 msgid "Plugin Manager Activity Information"
 msgstr ""
 
 msgid "Plugin Manager Help"
+msgstr ""
+
+msgid "Plugin Skin Packages"
 msgstr ""
 
 msgid "Plugins"
@@ -13624,8 +13358,7 @@ msgstr ""
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds!\n"
+msgid "Recording(s) are in progress or coming up in few seconds!\n"
 "Entering standby, after recording the box will shutdown."
 msgstr ""
 
@@ -13675,8 +13408,7 @@ msgid "Reenter PIN"
 msgstr ""
 
 #, python-format
-msgid ""
-"Reflash in progress\n"
+msgid "Reflash in progress\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
@@ -13691,9 +13423,6 @@ msgid "Refresh rate"
 msgstr ""
 
 msgid "Refresh rate for 'Lowest Mode'"
-msgstr ""
-
-msgid "Refresh rate selection."
 msgstr ""
 
 msgid "Refresh screen"
@@ -13741,7 +13470,7 @@ msgstr ""
 msgid "Reloading EPG Cache..."
 msgstr ""
 
-msgid "Reloading bouquets and services..."
+msgid "Reloading bouquets and services."
 msgstr ""
 
 msgid "Remaining"
@@ -13956,8 +13685,7 @@ msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subt
 msgstr ""
 
 #, python-format
-msgid ""
-"Replace all '%s' tags with:\n"
+msgid "Replace all '%s' tags with:\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
 
@@ -14516,8 +14244,7 @@ msgid "Save settings and EPG data."
 msgstr ""
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
+msgid "Save the commands and the output to a file?\n"
 "('%s')"
 msgstr ""
 
@@ -14706,7 +14433,7 @@ msgstr ""
 msgid "Seconds"
 msgstr ""
 
-msgid "Security"
+msgid "Security Packages"
 msgstr ""
 
 msgid "Seek"
@@ -14794,12 +14521,6 @@ msgid "Select 'Yes' to continuously display all images in a loop, or select 'No'
 msgstr ""
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
-msgstr ""
-
-msgid "Select 'Yes' to display language/locale '.po' packages in the 'Plugin Browser' screen."
-msgstr ""
-
-msgid "Select 'Yes' to display source '.src' packages in the 'Plugin Browser' screen."
 msgstr ""
 
 msgid "Select 'Yes' to display the InfoBar when a new event starts."
@@ -15429,7 +15150,7 @@ msgstr ""
 msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
-msgid "Select video input with up/down buttons"
+msgid "Select update source location"
 msgstr ""
 
 msgid "Select video mode"
@@ -15505,8 +15226,7 @@ msgid "Select/Zap to selected service"
 msgstr ""
 
 #, python-format
-msgid ""
-"Selected settings list:\n"
+msgid "Selected settings list:\n"
 "\n"
 "Setting: %s\n"
 "Date: %s\n"
@@ -15515,21 +15235,18 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Selected settings list: %s\n"
+msgid "Selected settings list: %s\n"
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
 
 #, python-format
-msgid ""
-"Selected settings list: %s\n"
+msgid "Selected settings list: %s\n"
 "\n"
 "Do you want to restore this settinglist?"
 msgstr ""
 
-msgid ""
-"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+msgid "Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
 "\n"
 "Are you sure you want to continue with the factory reset?"
 msgstr ""
@@ -15670,8 +15387,7 @@ msgstr ""
 msgid "Service info font size"
 msgstr ""
 
-msgid ""
-"Service invalid!\n"
+msgid "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
 
@@ -15681,8 +15397,7 @@ msgstr ""
 msgid "Service name font size"
 msgstr ""
 
-msgid ""
-"Service not found!\n"
+msgid "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 
@@ -15707,8 +15422,7 @@ msgstr ""
 msgid "Service selection canceled."
 msgstr ""
 
-msgid ""
-"Service unavailable!\n"
+msgid "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
 
@@ -15946,10 +15660,10 @@ msgstr ""
 msgid "Setup OpenVPN"
 msgstr ""
 
-msgid "Setup Plugin filter"
+msgid "Setup Plugin Browser"
 msgstr ""
 
-msgid "Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser"
+msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"
 msgstr ""
 
 msgid "Setup Plugins"
@@ -16394,9 +16108,6 @@ msgstr ""
 msgid "Show details of highlighted task"
 msgstr ""
 
-msgid "Show development packages in opkg"
-msgstr ""
-
 msgid "Show directories first"
 msgstr ""
 
@@ -16629,9 +16340,6 @@ msgstr ""
 msgid "Show single service EPG"
 msgstr ""
 
-msgid "Show source packages"
-msgstr ""
-
 msgid "Show status messages on switch to live TV"
 msgstr ""
 
@@ -16720,9 +16428,6 @@ msgid "Show time remaining/elapsed"
 msgstr ""
 
 msgid "Show translation information"
-msgstr ""
-
-msgid "Show translation packages"
 msgstr ""
 
 msgid "Show transponder remaining/elapsed as"
@@ -17114,9 +16819,6 @@ msgstr ""
 msgid "Softcam Setup"
 msgstr ""
 
-msgid "Softcams"
-msgstr ""
-
 msgid "Software"
 msgstr ""
 
@@ -17147,8 +16849,7 @@ msgstr ""
 msgid "Software information"
 msgstr ""
 
-msgid ""
-"Software update starting, please wait.\n"
+msgid "Software update starting, please wait.\n"
 "\n"
 msgstr ""
 
@@ -17167,13 +16868,10 @@ msgstr ""
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
 msgstr ""
 
-msgid "Some plugins are not available:\n"
+msgid "Some plugins are not available:"
 msgstr ""
 
 msgid "Sorbian"
-msgstr ""
-
-msgid "Sorry CIHelper Config is Missing"
 msgstr ""
 
 msgid "Sorry Inadyn Config is Missing"
@@ -17188,9 +16886,6 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry feeds are down for maintenance."
-msgstr ""
-
 msgid "Sorry no backups found!"
 msgstr ""
 
@@ -17200,8 +16895,7 @@ msgstr ""
 msgid "Sorry uShare Config is Missing"
 msgstr ""
 
-msgid ""
-"Sorry your Backup destination does not exist\n"
+msgid "Sorry your Backup destination does not exist\n"
 "\n"
 "Please choose an other one."
 msgstr ""
@@ -17222,8 +16916,7 @@ msgstr ""
 msgid "Sorry, there was a problem:"
 msgstr ""
 
-msgid ""
-"Sorry, your backup destination is not writeable.\n"
+msgid "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
 msgstr ""
 
@@ -17419,9 +17112,6 @@ msgid "Start/stop/select cam"
 msgstr ""
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
-msgstr ""
-
-msgid "StartWizard"
 msgstr ""
 
 msgid "Starting Softcam"
@@ -17923,7 +17613,7 @@ msgstr ""
 msgid "System Message Check"
 msgstr ""
 
-msgid "System Plugins"
+msgid "System Plugin Packages"
 msgstr ""
 
 msgid "System Setup"
@@ -18177,14 +17867,23 @@ msgstr ""
 msgid "Thailand"
 msgstr ""
 
-msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
+msgid "Thank you for using and completing the wizard. The %s %s is now ready to use.\n"
+"\n"
+"Please press OK to start using the %s %s."
 msgstr ""
 
-msgid ""
-"Thank you for using the wizard. Your %s %s is now ready to use.\n"
-"Please press OK to start using your %s %s."
+msgid "Thank you for using and completing the wizard. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+
+msgid "The %s %s does not have an Internet connection."
+msgstr ""
+
+msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file."
+msgstr ""
+
+msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
 msgid "The %s %s reads the stored EPG data every (hours)."
@@ -18205,32 +17904,27 @@ msgstr ""
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
-msgid ""
-"The AutoTimer plugin is not installed!\n"
+msgid "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
-msgid ""
-"The DreamPlex plugin is not installed!\n"
+msgid "The DreamPlex plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid ""
-"The EPGSearch plugin is not installed!\n"
+msgid "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid ""
-"The IMDb plugin is not installed!\n"
+msgid "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
 #, python-format
-msgid ""
-"The IceTV server can not be reached. Try checking the Internet connection on your %s %s\n"
+msgid "The IceTV server can not be reached. Try checking the Internet connection on your %s %s\n"
 "Details"
 msgstr ""
 
@@ -18238,23 +17932,19 @@ msgstr ""
 msgid "The IceTV server has requested password for %s."
 msgstr ""
 
-msgid ""
-"The MediaCenter plugin is not installed!\n"
+msgid "The MediaCenter plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid ""
-"The MediaPlayer plugin is not installed!\n"
+msgid "The MediaPlayer plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid ""
-"The MediaPortal plugin is not installed!\n"
+msgid "The MediaStream plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid ""
-"The Merlin EPG Center plugin is not installed!\n"
+msgid "The Merlin EPG Center plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
@@ -18267,21 +17957,18 @@ msgstr ""
 msgid "The PIN codes you entered are different."
 msgstr ""
 
-msgid ""
-"The SimpleUmount plugin is not installed!\n"
+msgid "The SimpleUmount plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
 msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
-msgid ""
-"The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
+msgid "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
 
-msgid ""
-"The VideoMode plugin is not installed!\n"
+msgid "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
@@ -18291,32 +17978,37 @@ msgstr ""
 msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr ""
 
-msgid ""
-"The available disk space for time shift is less than specified in the settings.\n"
+msgid "The available disk space for time shift is less than specified in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 
-msgid "The backup failed. Please choose a different backup location."
+msgid "The backup failed"
+msgstr ""
+
+msgid "The backup failed! Choose a different backup location."
+msgstr ""
+
+msgid "The backup succeeded"
+msgstr ""
+
+msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr ""
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr ""
 
-msgid ""
-"The buffer time for time shift exceeds the specified limit in the settings.\n"
+msgid "The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
 msgstr ""
 
-msgid ""
-"The channel may support VPS\n"
+msgid "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
 
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid ""
-"The default backup selection cannot be changed.\n"
+msgid "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
 msgstr ""
 
@@ -18333,8 +18025,7 @@ msgid "The directory/file no longer exists."
 msgstr ""
 
 #, python-format
-msgid ""
-"The energy timer wants to set the %s %s to %s.\n"
+msgid "The energy timer wants to set the %s %s to %s.\n"
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
@@ -18347,8 +18038,7 @@ msgstr ""
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr ""
 
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
+msgid "The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
 
@@ -18368,8 +18058,7 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
-msgid ""
-"The network wizard extension is not installed!\n"
+msgid "The network wizard extension is not installed!\n"
 "Please install it."
 msgstr ""
 
@@ -18383,8 +18072,7 @@ msgstr ""
 msgid "The saved PIN was cleared."
 msgstr ""
 
-msgid ""
-"The selected channel doesn't support VPS for manually programmed timers!\n"
+msgid "The selected channel doesn't support VPS for manually programmed timers!\n"
 " Do you really want to enable VPS?"
 msgstr ""
 
@@ -18395,14 +18083,12 @@ msgid "The setting 'Without query' is the same as 'Standard' without additional 
 msgstr ""
 
 #, python-format
-msgid ""
-"The sleep timer wants to set the %s %s to %s.\n"
+msgid "The sleep timer wants to set the %s %s to %s.\n"
 "\n"
 "Do that now or extend the timer?"
 msgstr ""
 
-msgid ""
-"The software management extension is not installed!\n"
+msgid "The software management extension is not installed!\n"
 "Please install it."
 msgstr ""
 
@@ -18413,8 +18099,7 @@ msgstr ""
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
 
-msgid ""
-"The unicable connection setting is wrong.\n"
+msgid "The unicable connection setting is wrong.\n"
 " Maybe recursive connection of tuners."
 msgstr ""
 
@@ -18423,28 +18108,29 @@ msgid "The user interface of your %s %s is restarting"
 msgstr ""
 
 #, python-format
-msgid ""
-"The user interface of your %s %s is restarting\n"
+msgid "The user interface of your %s %s is restarting\n"
 "due to an error in StartEnigma.py"
 msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
+msgid "The wireless LAN Internet connection could not be started!\n"
+"Is the wireless LAN device connected?\n"
+"\n"
+"Choose what to do next."
 msgstr ""
 
-msgid ""
-"The wireless LAN plugin is not installed!\n"
+msgid "The wireless LAN plugin code is not installed!\n"
+"\n"
+"Install it and choose what to do next."
+msgstr ""
+
+msgid "The wireless LAN plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-
-msgid "The wizard is finished now."
+msgid "The wizard can backup your current settings. Do you want to start a backup now?"
 msgstr ""
 
 msgid "There are at least "
@@ -18512,51 +18198,6 @@ msgid "This allows you change the number of rows shown."
 msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
-msgstr ""
-
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr ""
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr ""
-
-msgid "This allows you to show drivers modules in downloads"
-msgstr ""
-
-msgid "This allows you to show extensions modules in downloads"
-msgstr ""
-
-msgid "This allows you to show kernel modules in downloads"
-msgstr ""
-
-msgid "This allows you to show languages in downloads"
-msgstr ""
-
-msgid "This allows you to show lcd skins in downloads"
-msgstr ""
-
-msgid "This allows you to show m2k modules in downloads"
-msgstr ""
-
-msgid "This allows you to show picons modules in downloads"
-msgstr ""
-
-msgid "This allows you to show security modules in downloads"
-msgstr ""
-
-msgid "This allows you to show settings modules in downloads"
-msgstr ""
-
-msgid "This allows you to show skin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show softcams modules in downloads"
-msgstr ""
-
-msgid "This allows you to show system plugin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show weblinks modules in downloads"
 msgstr ""
 
 #, python-format
@@ -18808,29 +18449,25 @@ msgstr ""
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
 msgstr ""
 
-msgid ""
-"This test checks for configured DNS.\n"
+msgid "This test checks for configured DNS.\n"
 "If you get an \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
 
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
+msgid "This test checks whether a network cable is connected to your LAN adapter.\n"
 "If you get a \"disconnected\" message:\n"
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
 
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
+msgid "This test checks whether a valid IP address is found for your LAN adapter.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- no valid IP address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
 
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+msgid "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN adapter is configured for manual IP setup\n"
 "- verify that you have entered correct IP information in the adapter setup dialog.\n"
@@ -18841,8 +18478,7 @@ msgstr ""
 msgid "This test detects your configured LAN adapter."
 msgstr ""
 
-msgid ""
-"This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
+msgid "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
 
@@ -19022,8 +18658,7 @@ msgid "Timer log"
 msgstr ""
 
 #, python-format
-msgid ""
-"Timer overlap in '%s' detected!\n"
+msgid "Timer overlap in '%s' detected!\n"
 "Please recheck it!"
 msgstr ""
 
@@ -19399,8 +19034,7 @@ msgstr ""
 msgid "Tunisia"
 msgstr ""
 
-msgid ""
-"Turbo: One reboot after flash\n"
+msgid "Turbo: One reboot after flash\n"
 "Fast: One reboot after flash, one reboot after restore\n"
 "Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
@@ -19695,8 +19329,7 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
-msgid ""
-"Update succeeded!\n"
+msgid "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
 msgstr ""
 
@@ -19731,8 +19364,7 @@ msgid "Upgrade finished."
 msgstr ""
 
 #, python-format
-msgid ""
-"Upgrade in progress\n"
+msgid "Upgrade in progress\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
@@ -19845,10 +19477,9 @@ msgstr ""
 msgid "Use as HDD"
 msgstr ""
 
-msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
+msgid "Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
 msgstr ""
 
 msgid "Use circular LNB"
@@ -19939,9 +19570,6 @@ msgid "Use the network wizard to configure selected network adapter"
 msgstr ""
 
 msgid "Use the network wizard to configure your Network."
-msgstr ""
-
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -20068,8 +19696,7 @@ msgstr ""
 msgid "VPS-Plugin Information"
 msgstr ""
 
-msgid ""
-"VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
+msgid "VPS-Plugin can react on delays arising in the startTime or endTime of a programme. VPS is only supported by certain channels!\n"
 "\n"
 "If you enable VPS, the recording will only start, when the channel flags the programme as running.\n"
 "\n"
@@ -20096,13 +19723,11 @@ msgstr ""
 msgid "VPS-Plugin checks if the channel supports VPS ..."
 msgstr ""
 
-msgid ""
-"VPS-Plugin couldn't check if the channel supports VPS.\n"
+msgid "VPS-Plugin couldn't check if the channel supports VPS.\n"
 " Do you want to enable VPS anyway?"
 msgstr ""
 
-msgid ""
-"VPS-Plugin couldn't check if the selected channel supports VPS.\n"
+msgid "VPS-Plugin couldn't check if the selected channel supports VPS.\n"
 " Do you really want to enable VPS?"
 msgstr ""
 
@@ -20202,17 +19827,6 @@ msgstr ""
 msgid "Video enhancement setup"
 msgstr ""
 
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-
-msgid "Video mode selection."
-msgstr ""
-
 #, python-format
 msgid "Video mode: %s"
 msgstr ""
@@ -20268,9 +19882,6 @@ msgid "VideoEnhancementPreview"
 msgstr ""
 
 msgid "VideoFinetune"
-msgstr ""
-
-msgid "VideoWizard"
 msgstr ""
 
 msgid "Videocodec, size & format"
@@ -20549,7 +20160,7 @@ msgstr ""
 msgid "Web Interface"
 msgstr ""
 
-msgid "Web Links"
+msgid "Web Link Packages"
 msgstr ""
 
 msgid "Web browser base visibility"
@@ -20577,30 +20188,14 @@ msgstr ""
 msgid "Welcome to IceTV"
 msgstr ""
 
-msgid ""
-"Welcome to the Cutlist editor.\n"
+msgid "Welcome to the Cutlist editor.\n"
 "\n"
 "Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-"\n"
-"Press OK to start configuring your network"
-msgstr ""
-
-msgid ""
-"Welcome.\n"
-"\n"
-"This start wizard will guide you through the basic setup of your %s %s.\n"
-"Press the OK button on your remote control to move to the next step."
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
 msgstr ""
 
 msgid "Welcome..."
@@ -20714,9 +20309,6 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 
-msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
-msgstr ""
-
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 
@@ -20801,9 +20393,6 @@ msgstr ""
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr ""
 
-msgid "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list."
-msgstr ""
-
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
 
@@ -20882,10 +20471,12 @@ msgstr ""
 msgid "Wireless network configuration..."
 msgstr ""
 
-msgid "Wireless network connection setup"
+msgid "Wireless network connection setup.\n"
+"\n"
+"Choose what to do next."
 msgstr ""
 
-msgid "Wireless network connection setup."
+msgid "Wireless network setup"
 msgstr ""
 
 msgid "Wireless network state"
@@ -20947,8 +20538,7 @@ msgid "Wrestling"
 msgstr ""
 
 #, python-format
-msgid ""
-"Write error at start of recording. %s\n"
+msgid "Write error at start of recording. %s\n"
 "%s"
 msgstr ""
 
@@ -21074,15 +20664,7 @@ msgid "Yoruba"
 msgstr ""
 
 #, python-format
-msgid ""
-"You already have a bootlogo installed,\n"
-"would you like to remove\n"
-"\"%s\"?"
-msgstr ""
-
-#, python-format
-msgid ""
-"You already have a channel list installed,\n"
+msgid "You already have a channel list installed,\n"
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
@@ -21127,25 +20709,23 @@ msgstr ""
 msgid "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr ""
 
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgid "You have chosen to backup your settings. Press OK to start the backup now."
 msgstr ""
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
 msgstr ""
 
 msgid "You have chosen to save the current time shift"
 msgstr ""
 
-msgid ""
-"You have chosen to save the current time shift event, but the event has not yet finished\n"
+msgid "You have chosen to save the current time shift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
 
 msgid "You have no script to run."
 msgstr ""
 
-msgid ""
-"You have not setup your user info in the setup screen\n"
+msgid "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
 
@@ -21180,9 +20760,6 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-msgid "Your %s %s does not have an Internet connection"
-msgstr ""
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr ""
@@ -21191,27 +20768,15 @@ msgstr ""
 msgid "Your %s %s goes to WOL"
 msgstr ""
 
-msgid "Your %s %s is not connected to the Internet"
-msgstr ""
-
 #, python-format
 msgid "Your %s %s is not connected to the Internet, please check your network settings and try again."
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s is now ready to be used.\n"
+msgid "Your %s %s is now ready to be used.\n"
 "\n"
 "Your Internet connection is working now.\n"
 "\n"
-msgstr ""
-
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your Internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
 msgstr ""
 
 #, python-format
@@ -21222,10 +20787,6 @@ msgstr ""
 msgid "Your %s %s is rebooting into Recovery Mode"
 msgstr ""
 
-#, python-format
-msgid "Your %s %s is shutting down"
-msgstr ""
-
 msgid "Your %s %s is shutting down. Please wait..."
 msgstr ""
 
@@ -21234,8 +20795,7 @@ msgid "Your %s %s isn't connected to the Internet properly. Please check it and 
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s was not shutdown properly.\n"
+msgid "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
 msgstr ""
@@ -21249,41 +20809,32 @@ msgid "Your %s %s will Restart..."
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service\n"
+msgid "Your %s %s will be restarted after the installation of service\n"
 "Ready to install '%s'?"
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
+msgid "Your %s %s will be restarted after the installation of service.\n"
 "\n"
 "Do you want to install now ?"
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
+msgid "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service\n"
+msgid "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now?"
 msgstr ""
 
 #, python-format
-msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
+msgid "Your %s %s will be restarted after the removal of service.\n"
 "Do you want to remove now?"
 msgstr ""
 
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
-msgstr ""
-
-msgid ""
-"Your Internet connection is not working!\n"
+msgid "Your Internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 
@@ -21294,15 +20845,11 @@ msgstr ""
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr ""
-
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr ""
 
 #, python-format
-msgid ""
-"Your config file is not well-formed:\n"
+msgid "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
 
@@ -21315,26 +20862,22 @@ msgstr ""
 msgid "Your existing IceTV password."
 msgstr ""
 
-msgid ""
-"Your front panel processor firmware must be upgraded.\n"
+msgid "Your front panel processor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 
 #, python-format
-msgid ""
-"Your front panel processor will be upgraded\n"
+msgid "Your front panel processor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
 
-msgid ""
-"Your front panel will be upgraded\n"
+msgid "Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
 
 #, python-format
-msgid ""
-"Your image is out of date!\n"
+msgid "Your image is out of date!\n"
 "\n"
 "After such a long time, there is a risk that your %s %s will not\n"
 "boot after online-update, or will show disfunction in running Image.\n"
@@ -21361,13 +20904,6 @@ msgstr ""
 
 #, python-format
 msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
-msgstr ""
-
-msgid ""
-"Your wireless LAN Internet connection could not be started!\n"
-"Have you attached your USB WLAN Stick?\n"
-"\n"
-"Please choose what you want to do next."
 msgstr ""
 
 msgid "Youth"
@@ -21592,8 +21128,7 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid ""
-"are you sure you want to restore\n"
+msgid "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
 
@@ -22034,8 +21569,7 @@ msgstr ""
 msgid "handled"
 msgstr ""
 
-msgid ""
-"has been sent to the SVN team team.\n"
+msgid "has been sent to the SVN team team.\n"
 "please quote"
 msgstr ""
 
@@ -22333,9 +21867,6 @@ msgstr ""
 msgid "play in mainwindow"
 msgstr ""
 
-msgid "please press OK when ready"
-msgstr ""
-
 msgid "please wait, loading picture..."
 msgstr ""
 
@@ -22441,8 +21972,7 @@ msgstr ""
 msgid "romance"
 msgstr ""
 
-msgid ""
-"satellites.xml not found or corrupted!\n"
+msgid "satellites.xml not found or corrupted!\n"
 "It is possible to watch TV,\n"
 "but it's not possible to search for new TV channels\n"
 "or to configure tuner settings"
@@ -22769,8 +22299,7 @@ msgstr ""
 msgid "when asking question about this log"
 msgstr ""
 
-msgid ""
-"when asking question about this log\n"
+msgid "when asking question about this log\n"
 "\n"
 "A copy has been sent to yourself."
 msgstr ""
@@ -22875,8 +22404,7 @@ msgstr ""
 msgid "Playback Time:"
 msgstr ""
 
-msgid ""
-"Used: %s\n"
+msgid "Used: %s\n"
 "Free: %s"
 msgstr ""
 
@@ -23169,7 +22697,8 @@ msgstr ""
 msgid "Press OK for update opkg database and select OPenSPA Extra Plugins to Install."
 msgstr ""
 
-msgid "Thank you for using the wizard. Your receiver is now ready for use.\nPress OK to start using your receiver."
+msgid "Thank you for using the wizard. Your receiver is now ready for use.\n"
+"Press OK to start using your receiver."
 msgstr ""
 
 msgid "Enable Vu+ MultiBoot"
@@ -23178,7 +22707,8 @@ msgstr ""
 msgid "Match"
 msgstr ""
 
-msgid "LOAD THE EPG FIRST\nNO EPG PRIMETIME ON CHANNEL"
+msgid "LOAD THE EPG FIRST\n"
+"NO EPG PRIMETIME ON CHANNEL"
 msgstr ""
 
 msgid "LEFT/RIGHT buttons mode"
@@ -23252,23 +22782,6 @@ msgstr ""
 
 msgid "Manage Plugins"
 msgstr ""
-str ""
-
-msgid "%d packages found, %d packages installed and %d packages has updates."
-msgstr ""
-str ""
-
-msgid "No packages found."
-msgstr ""
-
-msgid "%s Packages found"
-msgstr ""
-
-msgid "Perform install/remove of the selected item"
-msgstr ""
-
-msgid "Cancel / Close the screen"
-msgstr ""
 
 msgid "Plugin Manager Actions"
 msgstr ""
@@ -23297,7 +22810,11 @@ msgstr ""
 msgid "Vu+ MultiBoot Manager"
 msgstr ""
 
-msgid "Press Green key to enable MultiBoot\n\nWill reboot within 10 seconds,\nUnless you have eMMC slots to restore.\nRestoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgid "Press Green key to enable MultiBoot\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"Unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
 msgstr ""
 
 msgid "Init Vu+ MultiBoot"
@@ -23309,7 +22826,10 @@ msgstr ""
 msgid "Vu+ MultiBoot Initialisation"
 msgstr ""
 
-msgid "Vu+ MultiBoot Initialisation in progress\n\nWill reboot after restoring any eMMC slots\nThis can take from 1 -> 5 minutes per slot."
+msgid "Vu+ MultiBoot Initialisation in progress\n"
+"\n"
+"Will reboot after restoring any eMMC slots\n"
+"This can take from 1 -> 5 minutes per slot."
 msgstr ""
 
 msgid "[VuplusKexec][create Vu+ Multiboot environment] - Unable to complete, Vu+ Multiboot files missing"
@@ -23324,8 +22844,7 @@ msgstr ""
 msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
 msgstr ""
 
-msgid ""
-"Kexec MultiBoot Initialisation in progress!\n"
+msgid "Kexec MultiBoot Initialisation in progress!\n"
 "\n"
 "Will reboot after restoring any eMMC slots.\n"
 "This can take from 1 -> 5 minutes per slot."
@@ -23338,8 +22857,7 @@ msgid "Quad9 DNS"
 msgstr ""
 
 #, python-format
-msgid ""
-"Really permanently delete MultiBoot files?\n"
+msgid "Really permanently delete MultiBoot files?\n"
 "%s"
 msgstr ""
 
@@ -23349,8 +22867,7 @@ msgstr ""
 msgid "Unable to complete - Kexec Multiboot files missing!"
 msgstr ""
 
-msgid ""
-"Press Green key to enable MultiBoot!\n"
+msgid "Press Green key to enable MultiBoot!\n"
 "\n"
 "Will reboot within 10 seconds,\n"
 "unless you have eMMC slots to restore.\n"
@@ -23414,8 +22931,7 @@ msgstr ""
 msgid "The Kexec Multiboot is Disabled"
 msgstr ""
 
-msgid ""
-"Press Green key to add more slots in USB\n"
+msgid "Press Green key to add more slots in USB\n"
 "\n"
 "Will reboot within 10 seconds."
 msgstr ""
@@ -23438,7 +22954,8 @@ msgstr ""
 msgid "Format Storage Device"
 msgstr ""
 
-msgid "Do you really want to format the device in the Linux file system?\nAll data on the device will be lost!"
+msgid "Do you really want to format the device in the Linux file system?\n"
+"All data on the device will be lost!"
 msgstr ""
 
 msgid "Please select a category."
@@ -23552,7 +23069,11 @@ msgstr ""
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
-msgid "Video output port selection.\n\nMake sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n\nThe next output port will be automatically tried in 10 seconds."
+msgid "Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
 msgstr ""
 
 msgid "Video Wizard"
@@ -23561,7 +23082,9 @@ msgstr ""
 msgid "Select video output port with UP/DOWN buttons"
 msgstr ""
 
-msgid "Use automatic mode detection?\n\nThis option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
+msgid "Use automatic mode detection?\n"
+"\n"
+"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
 msgstr ""
 
 msgid "Use automatic mode detection"
@@ -23616,4 +23139,730 @@ msgid "Enable core dumps *"
 msgstr ""
 
 msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
+msgstr ""
+
+msgid "<Flash expander inactive>"
+msgstr ""
+
+msgid "Activate Expander"
+msgstr ""
+
+msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Auto video mode selected"
+msgstr ""
+
+msgid "Auto video mode selected for the TV."
+msgstr ""
+
+msgid "By disk UUID"
+msgstr ""
+
+msgid "By disk label"
+msgstr ""
+
+msgid "Configure DNS (name servers)"
+msgstr ""
+
+msgid "Configure the Internet connection by adjusting the values shown.\n"
+"\n"
+"When the settings are correct press OK to continue."
+msgstr ""
+
+msgid "Connect to the Internet"
+msgstr ""
+
+msgid "Continue with package download and installation"
+msgstr ""
+
+msgid "Create Expander"
+msgstr ""
+
+msgid "Create swap"
+msgstr ""
+
+msgid "Create the flash expander in the selected device"
+msgstr ""
+
+msgid "Deactivate Expander"
+msgstr ""
+
+msgid "Deactivate the flash expander in the selected device"
+msgstr ""
+
+msgid "Default video mode selected"
+msgstr ""
+
+msgid "Default video mode selected for the TV."
+msgstr ""
+
+msgid "Delete Expander"
+msgstr ""
+
+msgid "Delete the character to the left of the cursor"
+msgstr ""
+
+msgid "Delete the character under the cursor"
+msgstr ""
+
+msgid "Delete the flash expander in the selected device"
+msgstr ""
+
+msgid "Do another manual service scan?"
+msgstr ""
+
+msgid "Do you want the upgrade guide?"
+msgstr ""
+
+msgid "Do you want to deactivate this flash expander?"
+msgstr ""
+
+msgid "Do you want to delete this flash expander directory?"
+msgstr ""
+
+msgid "Do you want to start a backup now?"
+msgstr ""
+
+msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Error: The copy was unsuccessful!"
+msgstr ""
+
+msgid "Error: The delete was unsuccessful!"
+msgstr ""
+
+msgid "Error: mount not successful!"
+msgstr ""
+
+msgid "Flash Expander Actions"
+msgstr ""
+
+#, python-format
+msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
+msgstr ""
+
+msgid "Follow instructions on TV"
+msgstr ""
+
+msgid "Formal a disk"
+msgstr ""
+
+msgid "Format Disk"
+msgstr ""
+
+msgid "Go back to the previous step"
+msgstr ""
+
+msgid "Immediately exit the wizard (Debug mode only)"
+msgstr ""
+
+msgid "Installing Please wait..."
+msgstr ""
+
+msgid "Limited memory size, swap file required"
+msgstr ""
+
+msgid "Network wizard completed.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid "No Internet connection"
+msgstr ""
+
+msgid "No valid device detected - Press OK"
+msgstr ""
+
+#, python-format
+msgid "No valid mount for '%s' found!"
+msgstr ""
+
+msgid "Open the VirtualKeyBoard for text entry"
+msgstr ""
+
+msgid "Package installation failed"
+msgstr ""
+
+msgid "Perform the upgrade?"
+msgstr ""
+
+msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
+msgstr ""
+
+msgid "Please wait, swap is is being created. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Plug in USB device"
+msgstr ""
+
+msgid "Plug in a USB device that can be used as a swap device. Note that this device must not be removed while the %s %s is running!"
+msgstr ""
+
+msgid "Press OK to start the backup now"
+msgstr ""
+
+msgid "Press OK to start using %s %s"
+msgstr ""
+
+msgid "Proceed to the next step"
+msgstr ""
+
+msgid "Process BLUE button action"
+msgstr ""
+
+msgid "Process GREEN button action"
+msgstr ""
+
+msgid "Process RED button action"
+msgstr ""
+
+msgid "Process YELLOW button action"
+msgstr ""
+
+msgid "Restart needed, press OK to restart"
+msgstr ""
+
+msgid "Restore settings now"
+msgstr ""
+
+msgid "Retry"
+msgstr ""
+
+msgid "Select Device"
+msgstr ""
+
+msgid "Select a device to use as the flash expander"
+msgstr ""
+
+msgid "Select the network interface to be used for the Internet connection.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid "Select the source location from where to obtain the upgrade files."
+msgstr ""
+
+msgid "Select the video mode to be used on the TV."
+msgstr ""
+
+msgid "Select the wireless network to which you want to connect.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid "Select video output port with UP/DOWN buttons"
+msgstr ""
+
+msgid "Set the time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+
+msgid "Set time options"
+msgstr ""
+
+msgid "Set up tuner [TUNER]"
+msgstr ""
+
+msgid "Set up tuner [TUNER].\n"
+"\n"
+"For hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons."
+msgstr ""
+
+msgid "Shutting down. Please wait..."
+msgstr ""
+
+msgid "Skip package installation, only core packages will be available"
+msgstr ""
+
+msgid "Small Box Preparation"
+msgstr ""
+
+msgid "Start Wizard"
+msgstr ""
+
+msgid "Step"
+msgstr ""
+
+msgid "The Internet connection appears to be working.\n"
+"\n"
+"Press OK to continue."
+msgstr ""
+
+msgid "The Internet connection appears to not be working!\n"
+"\n"
+"Choose what to do next."
+msgstr ""
+
+msgid "There are pending tasks:"
+msgstr ""
+
+msgid "This wizard has finished"
+msgstr ""
+
+msgid "This wizard has finished."
+msgstr ""
+
+msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
+msgstr ""
+
+msgid "Update package list please wait..."
+msgstr ""
+
+msgid "Use UP/DOWN buttons to select option then press OK"
+msgstr ""
+
+msgid "Use automatic mode detection"
+msgstr ""
+
+msgid "Video Wizard"
+msgstr ""
+
+msgid "Video output port selection.\n"
+"\n"
+"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
+"\n"
+"The next output port will be automatically tried in 10 seconds."
+msgstr ""
+
+msgid "View the next item in a list"
+msgstr ""
+
+msgid "View the previous item in a list"
+msgstr ""
+
+msgid "Welcome Wizard"
+msgstr ""
+
+msgid "Welcome to OpenSPA.\n"
+"\n"
+"Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
+msgstr ""
+
+msgid "Wizard Actions"
+msgstr ""
+
+msgid "You need a PC connected to your %s %s. Visit the website https://openspa.info/ for further instructions.\n"
+"The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
+msgstr ""
+
+#, python-format
+msgid "Your Internet connection is working (ip: %s)"
+msgstr ""
+
+msgid "Your receiver does not have an Internet connection"
+msgstr ""
+
+msgid "inactive"
+msgstr ""
+
+#, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package has an update"
+msgid_plural "%d packages have updates."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package installable."
+msgid_plural "%d packages installable."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package installed."
+msgid_plural "%d packages installed."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Add bouquet"
+msgstr ""
+
+msgid "Add services to this bouquet?"
+msgstr ""
+
+msgid "All slots"
+msgstr ""
+
+msgid "Backup failed!"
+msgstr ""
+
+msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Connected through another tuner"
+msgstr ""
+
+msgid "Development Packages"
+msgstr ""
+
+msgid "Display Skin Packages"
+msgstr ""
+
+#, python-format
+msgid "Do you want to download '%s'?"
+msgstr ""
+
+#, python-format
+msgid "Do you want to remove '%s'?"
+msgstr ""
+
+#, python-format
+msgid "Do you want to replace '%s' with '%s?"
+msgstr ""
+
+#, python-format
+msgid "Do you want to update '%s'?"
+msgstr ""
+
+msgid "Download Plugin"
+msgstr ""
+
+msgid "Download the highlighted plugin"
+msgstr ""
+
+msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Extension Packages"
+msgstr ""
+
+msgid "Feed server DNS error!"
+msgstr ""
+
+msgid "Feed server access error!"
+msgstr ""
+
+msgid "Force OPKG clean mode"
+msgstr ""
+
+msgid "Hide error messages from the Common Interface module."
+msgstr ""
+
+msgid "Hide CI messages"
+msgstr ""
+
+msgid "Manage Plugins. This will remove/install Plugins on your box"
+msgstr ""
+
+msgid "Manage the highlighted plugin"
+msgstr ""
+
+msgid "Move to the first item on the current line"
+msgstr ""
+
+msgid "Move to the first item on the first screen"
+msgstr ""
+
+msgid "Move to the last item on the current line"
+msgstr ""
+
+msgid "Move to the last item on the last screen"
+msgstr ""
+
+msgid "Move to the next category in the list"
+msgstr ""
+
+msgid "Move to the next item in the list"
+msgstr ""
+
+msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item in list"
+msgstr ""
+
+msgid "Network adapter not connected to a network!"
+msgstr ""
+
+msgid "No network adapters enabled/available!"
+msgstr ""
+
+msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Picon Packages"
+msgstr ""
+
+msgid "Please press OK when ready"
+msgstr ""
+
+msgid "Please wait while feeds are updated..."
+msgstr ""
+
+msgid "Please wait while the plugin is downloaded."
+msgstr ""
+
+msgid "Please wait while the plugin is removed."
+msgstr ""
+
+msgid "Please wait while the plugin is replaced."
+msgstr ""
+
+msgid "Please wait while the plugin is updated."
+msgstr ""
+
+msgid "Plugin Action Log Actions"
+msgstr ""
+
+msgid "Plugin Browser Actions"
+msgstr ""
+
+msgid "Plugin Browser Download Actions"
+msgstr ""
+
+msgid "Plugin Browser Edit Actions"
+msgstr ""
+
+msgid "Plugin Browser Manage Actions"
+msgstr ""
+
+msgid "Plugin Browser Navigation Actions"
+msgstr ""
+
+msgid "Plugin Browser Remove Actions"
+msgstr ""
+
+msgid "Plugin Browser Select Actions"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Remove Plugin"
+msgstr ""
+
+msgid "Remove the highlighted plugin"
+msgstr ""
+
+msgid "Reset sort order"
+msgstr ""
+
+msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
+msgstr ""
+
+msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show security packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
+msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
+msgstr ""
+
+msgid "Setting Packages"
+msgstr ""
+
+msgid "Show Development packages"
+msgstr ""
+
+msgid "Show Display packages"
+msgstr ""
+
+msgid "Show Driver packages"
+msgstr ""
+
+msgid "Show Extension packages"
+msgstr ""
+
+msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show M2k packages"
+msgstr ""
+
+msgid "Show OpenPLi packages"
+msgstr ""
+
+msgid "Show OpenViX packages"
+msgstr ""
+
+msgid "Show Picon packages"
+msgstr ""
+
+msgid "Show Plugin Skin packages"
+msgstr ""
+
+msgid "Show Security packages"
+msgstr ""
+
+msgid "Show Setting packages"
+msgstr ""
+
+msgid "Show Skin Component packages"
+msgstr ""
+
+msgid "Show Skin packages"
+msgstr ""
+
+msgid "Show Softcam packages"
+msgstr ""
+
+msgid "Show Source packages"
+msgstr ""
+
+msgid "Show System Plugin packages"
+msgstr ""
+
+msgid "Show Web Link packages"
+msgstr ""
+
+msgid "Show the last opkg command's output"
+msgstr ""
+
+msgid "Skin Component Packages"
+msgstr ""
+
+msgid "Skin Packages"
+msgstr ""
+
+msgid "Slot Manager Actions"
+msgstr ""
+
+msgid "Slot R: Root Slot Full Backup (Current image)"
+msgstr ""
+
+msgid "Softcam Packages"
+msgstr ""
+
+msgid "Sort Plugin Browser entries"
+msgstr ""
+
+msgid "Source Packages"
+msgstr ""
+
+msgid "Start edit mode"
+msgstr ""
+
+msgid "Start the highlighted plugin"
+msgstr ""
+
+msgid "Stop edit mode"
+msgstr ""
+
+msgid "Toggle move mode"
+msgstr ""
+
+msgid "Toggle the visibility of the highlighted plugin"
+msgstr ""
+
+msgid "Update Plugin"
+msgstr ""
+
+msgid "Update Plugins"
+msgstr ""
+
+msgid "Update the highlighted plugin"
+msgstr ""
+
+msgid "View as grid"
+msgstr ""
+
+msgid "View as list"
+msgstr ""
+
+msgid "module disabled"
+msgstr ""
+
+msgid "no"
+msgstr ""
+
+msgid "wait for ci..."
+msgstr ""
+
+msgid "yes"
+msgstr ""
+
+msgid "Receiver does not support Quad PiP."
+msgstr ""
+
+msgid "Show Kodi addons"
+msgstr ""
+
+msgid "Show Docker packages"
+msgstr ""
+
+msgid "Show Python packages"
+msgstr ""
+
+msgid "Show Language packages"
+msgstr ""
+
+msgid "Show Gstreamer packages"
+msgstr ""
+
+msgid "Select 'Yes' to show kodi addons in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show docker packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show python packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show language packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
 msgstr ""
