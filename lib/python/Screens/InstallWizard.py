@@ -155,7 +155,7 @@ class InstallWizardSmallBox(Screen):
 		elif event == OpkgComponent.EVENT_DONE:
 			if self.opkg.currentCommand == OpkgComponent.CMD_UPDATE:
 				self["statusbar"].setText(_("Installing Please wait..."))
-				self.opkg.startCmd(OpkgComponent.CMD_INSTALL, {"package": "packagegroup-openatv-small"})
+				self.opkg.startCmd(OpkgComponent.CMD_INSTALL, {"package": "packagegroup-openspa-small"})
 			else:
 				config.misc.installwizard.ipkgloaded.value = True
 				self.opkg.removeCallback(self.opkgCallback)
