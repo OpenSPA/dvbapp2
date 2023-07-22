@@ -3226,9 +3226,6 @@ msgstr ""
 msgid "Bouvet Island"
 msgstr ""
 
-msgid "Receiver does not support Quad PiP."
-msgstr ""
-
 msgid "Boxing"
 msgstr ""
 
@@ -23825,13 +23822,7 @@ msgstr ""
 msgid "module disabled"
 msgstr ""
 
-msgid "no"
-msgstr ""
-
 msgid "wait for ci..."
-msgstr ""
-
-msgid "yes"
 msgstr ""
 
 msgid "Receiver does not support Quad PiP."
@@ -23865,4 +23856,7 @@ msgid "Select 'Yes' to show language packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Reset Order"
 msgstr ""
