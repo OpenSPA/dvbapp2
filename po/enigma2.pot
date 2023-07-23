@@ -23645,3 +23645,9 @@ msgstr ""
 
 msgid "Plugin Action Log"
 msgstr ""
+
+msgid "Choose the target location for the expanded '/usr' directory."
+msgstr ""
+
+msgid "Target location"
+msgstr ""
