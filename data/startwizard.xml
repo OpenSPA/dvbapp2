@@ -355,28 +355,4 @@ config.ParentalControl.setuppin.save()
 	</step>
 	-->
 
-	<step id="reboot" nextstep="end">
-		<condition>
-from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash")
-		</condition>
-		<buttons enable="OK" />
-		<text value="Thank you for using and completing the wizard. The %s %s needs to restart.\n\nPlease press OK to restart the %s %s." />
-		<displaytext value="Restart needed, press OK to restart" />
-		<code>
-self.markDone()
-from enigma import quitMainloop
-from Screens.Standby import QUIT_RESTART
-quitMainloop(QUIT_RESTART)
-		</code>
-	</step>
-
-	<step id="end" laststep="true">
-		<condition>
-self.condition = self.isLastWizard
-		</condition>
-		<buttons enable="OK" />
-		<text value="Thank you for using and completing the wizard. The %s %s is now ready to use.\n\nPlease press OK to start using the %s %s." />
-		<displaytext value="Press OK to start using %s %s" />
-	</step>
 </wizard>

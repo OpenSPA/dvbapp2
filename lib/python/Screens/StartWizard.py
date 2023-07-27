@@ -250,6 +250,6 @@ if config.misc.firstrun.value:
 wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority=1)
 # FrontprocessorUpgrade FPUpgrade priority = 8
 # FrontprocessorUpgrade SystemMessage priority = 9
-wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority=30)
+wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority=25)
 # StartWizard calls InstallWizard
 # NetworkWizard priority = 25
