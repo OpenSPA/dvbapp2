@@ -256,7 +256,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 		<text value="Do you want to do a service scan?" />
 		<displaytext value="Do you want to do a service scan?" />
 		<list>
-			<listentry caption="No, scan later manually" step="reboot" />
+			<listentry caption="No, scan later manually" step="end" />
 			<listentry caption="Yes, do an automatic scan now" step="scan" />
 			<listentry caption="Yes, do a manual scan now" step="manualscan" />
 		</list>
@@ -355,4 +355,12 @@ config.ParentalControl.setuppin.save()
 	</step>
 	-->
 
+	<step id="end" laststep="true">
+		<condition>
+self.condition = self.isLastWizard
+		</condition>
+		<buttons enable="OK" />
+		<text value="Thank you for using and completing the wizard. The %s %s is now ready to use.\n\nPlease press OK to start using the %s %s." />
+		<displaytext value="Press OK to start using %s %s" />
+	</step>
 </wizard>
