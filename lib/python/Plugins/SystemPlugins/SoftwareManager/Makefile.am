@@ -9,8 +9,7 @@ install_PYTHON = \
 	H9SDmanager.py \
 	ImageBackup.py \
 	ImageWizard.py \
-	ShellCompatibleFunctions.py \
-	SoftwareTools.py
+	ShellCompatibleFunctions.py
 
 dist_install_DATA = \
 	imagewizard.xml \
