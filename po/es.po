@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 msgid ""
 "\n"
@@ -28417,6 +28417,9 @@ msgstr ""
 
 msgid "Target location"
 msgstr "Ubicación"
+
+msgid "Language Packages"
+msgstr "Paquetes de idiomas"
 
 #~ msgid "1080i"
 #~ msgstr "1080i"
