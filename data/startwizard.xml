@@ -17,6 +17,8 @@ self.condition = self.smallFlashSize
 		<code pos="after" async="yes">
 if self.isFlashExpanderActive() and self.getFreeMemory() &lt; 128:
 	self.createSwapFileFlashExpander(self.afterAsyncCode)
+else:
+	self.afterAsyncCode()
 		</code>
 	</step>
 
