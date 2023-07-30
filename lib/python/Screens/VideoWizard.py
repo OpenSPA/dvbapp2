@@ -54,7 +54,7 @@ class VideoWizard(Wizard, ShowRemoteControl):
 			"smpte": 20
 		}
 
-		preferred = self.avSwitch.readPreferredModes(saveMode=True)
+		preferred = self.avSwitch.readPreferredModes(saveMode=True, readOnly=True)
 
 		if "2160p" in preferred:
 			sortKeys["2160p"] = 1
