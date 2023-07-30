@@ -16,7 +16,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 from Screens.VideoWizard import VideoWizard
 from Screens.Wizard import wizardManager, Wizard
-from Tools.Directories import fileReadLines, fileWriteLines
+from Tools.Directories import fileReadLines, fileWriteLines, isPluginInstalled, fileExists
 from Screens.LocaleSelection import LocaleWizard
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -166,6 +166,15 @@ class StartWizard(Wizard, ShowRemoteControl):
 	def isFlashExpanderActive(self):
 		return isdir(join("/%s/%s" % (EXPANDER_MOUNT, EXPANDER_MOUNT), "bin"))
 
+	def ExistsSPABackup(self):
+		response = False
+		if isPluginInstalled("spaNewFirms"):
+			try:
+				from Plugins.Extensions.spaNewFirms.plugin import getRutaRes, backuppath, backupfile
+				response = getRutaRes() and self.smallFlashSize and (fileExists(backuppath+backupfile) or fileExists(backuppath+"openspabackup.tar.gz"))
+			except:
+				pass
+		return response
 
 class WizardLanguage(Wizard, ShowRemoteControl):
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
