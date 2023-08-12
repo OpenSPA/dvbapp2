@@ -2163,12 +2163,15 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, ServiceScan, scanList=scanList)
 			else:
-				self.session.open(ServiceScan, scanList=scanList)
+				self.session.openWithCallback(self.startScanCallback, ServiceScan, scanList=scanList)
 		else:
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 			else:
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
+
+	def startScanCallback(self, answer=True):
+		self.session.openWithCallback(self.repeat, MessageBox, _('Do you want to search other transponder?'), MessageBox.TYPE_YESNO)
 
 	def setCableTransponderSearchResult(self, tlist):
 		if tlist is not None:
