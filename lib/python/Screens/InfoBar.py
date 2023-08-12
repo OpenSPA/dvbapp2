@@ -543,15 +543,17 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self.onChangedEntry = []
 		self.servicelist = slist
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceOrGroup()
-		path = splitext(service.getPath())[0]
-		subs = []
-		for sub in ("srt", "ass", "ssa"):
-			subs = glob("%s*.%s" % (path, sub))
+		try:
+			path = splitext(service.getPath())[0]
+			subs = []
+			for sub in ("srt", "ass", "ssa"):
+				subs = glob("%s*.%s" % (path, sub))
+				if subs:
+					break
 			if subs:
-				break
-		if subs:
-			service.setSubUri(subs[0])  # Support currently only one external sub
-
+				service.setSubUri(subs[0])  # Support currently only one external sub
+		except:
+			pass
 		session.nav.playService(service)
 		self.cur_service = service
 		self.returning = False
