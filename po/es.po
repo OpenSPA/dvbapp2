@@ -28421,6 +28421,13 @@ msgstr "Ubicación"
 msgid "Language Packages"
 msgstr "Paquetes de idiomas"
 
+# boot-up action
+msgid "Common Settings"
+msgstr "Ajustes comunes"
+
+msgid "CI Boot Delay"
+msgstr "Retraso arranque DVB-CI"
+
 #~ msgid "1080i"
 #~ msgstr "1080i"
 
