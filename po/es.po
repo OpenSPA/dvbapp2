@@ -996,7 +996,7 @@ msgstr "%d ms"
 
 #, python-format
 msgid "%d package marked for install."
-msgid_plural "%d packages marked install."
+msgid_plural "%d packages marked for install."
 msgstr[0] "%d paquete marcado para instalar."
 msgstr[1] "%d paquetes marcados para instalar."
 
