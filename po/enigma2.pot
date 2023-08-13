@@ -959,6 +959,18 @@ msgid "%d ms"
 msgstr ""
 
 #, python-format
+msgid "%d package marked for install."
+msgid_plural "%d packages marked install."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package marked for remove."
+msgid_plural "%d packages marked for remove."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
 msgstr[0] ""
@@ -1402,6 +1414,9 @@ msgid "15 minutes"
 msgstr ""
 
 msgid "1536 Mb"
+msgstr ""
+
+msgid "16/9 reset to normal"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -2001,6 +2016,16 @@ msgstr ""
 msgid "Add/Remove a timer for the current event"
 msgstr ""
 
+msgid "Add/Remove highlighted plugin to/from download list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from remove list"
+msgstr ""
+
+msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
+
 msgid "Adding schedule..."
 msgstr ""
 
@@ -2464,6 +2489,9 @@ msgid "Aspect list..."
 msgstr ""
 
 msgid "Aspect ratio"
+msgstr ""
+
+msgid "Aspect switch"
 msgstr ""
 
 msgid "Assamese"
@@ -2982,6 +3010,9 @@ msgstr ""
 msgid "Blue"
 msgstr ""
 
+msgid "Bluetooth"
+msgstr ""
+
 msgid "Bluetooth Setup"
 msgstr ""
 
@@ -3268,16 +3299,19 @@ msgid "CHANNEL +/-"
 msgstr ""
 
 #, python-format
-msgid "CI %s enabled"
+msgid "CI (Common Interface) Setup"
 msgstr ""
 
-msgid "CI (Common Interface) Setup"
+msgid "CI Boot Delay"
 msgstr ""
 
 msgid "CI Helper Settings"
 msgstr ""
 
 msgid "CI assignment"
+msgstr ""
+
+msgid "CI enabled"
 msgstr ""
 
 msgid "CI slot: "
@@ -6994,6 +7028,10 @@ msgid "Error: Creating directory '%s' failed!"
 msgstr ""
 
 #, python-format
+msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
 msgstr ""
 
@@ -7313,6 +7351,9 @@ msgstr ""
 msgid "External subtitle switch fonts"
 msgstr ""
 
+msgid "Extra High"
+msgstr ""
+
 msgid "Extra motor options"
 msgstr ""
 
@@ -7341,6 +7382,12 @@ msgid "F3"
 msgstr ""
 
 msgid "F4"
+msgstr ""
+
+msgid "FBC SCR (Unicable/JESS)"
+msgstr ""
+
+msgid "FBC automatic"
 msgstr ""
 
 msgid "FCC enabled"
@@ -8421,6 +8468,9 @@ msgid "Hide zap errors"
 msgstr ""
 
 msgid "Hierarchy info"
+msgstr ""
+
+msgid "High"
 msgstr ""
 
 msgid "High bitrate support"
@@ -11605,6 +11655,9 @@ msgstr ""
 msgid "Open context menu (contains settings menu)"
 msgstr ""
 
+msgid "Open external subtitle management screen"
+msgstr ""
+
 msgid "Open favorites list"
 msgstr ""
 
@@ -12605,8 +12658,14 @@ msgstr ""
 msgid "Press OK to edit the settings."
 msgstr ""
 
+msgid "Press OK to enter PIN code"
+msgstr ""
+
 #, python-format
 msgid "Press OK to get further details for %s"
+msgstr ""
+
+msgid "Press OK to init module"
 msgstr ""
 
 #, python-format
@@ -12615,6 +12674,15 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
+
+msgid "Press OK to open module info"
+msgstr ""
+
+msgid "Press OK to reset PIN code"
+msgstr ""
+
+msgid "Press OK to reset module"
 msgstr ""
 
 msgid "Press OK to scan"
@@ -16585,6 +16653,14 @@ msgid "Slot %d"
 msgstr ""
 
 #, python-format
+msgid "Slot %s / FBC in %s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
+#, python-format
 msgid "Slot %s: %s"
 msgstr ""
 
@@ -17929,6 +18005,9 @@ msgstr ""
 msgid "The pin code you entered is wrong."
 msgstr ""
 
+msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgstr ""
+
 #, python-format
 msgid "The results have been written to %s."
 msgstr ""
@@ -18209,6 +18288,9 @@ msgid "This option allows you to choose whether or not to display genre informat
 msgstr ""
 
 msgid "This option allows you to enable 3D Surround Sound."
+msgstr ""
+
+msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
@@ -21730,6 +21812,9 @@ msgstr ""
 msgid "remove new found flag"
 msgstr ""
 
+msgid "Remove plugins ..."
+msgstr ""
+
 msgid "remove selected satellite"
 msgstr ""
 
@@ -23270,9 +23355,6 @@ msgstr[1] ""
 msgid "Add services to this bouquet?"
 msgstr ""
 
-msgid "All slots"
-msgstr ""
-
 msgid "Backup failed!"
 msgstr ""
 
@@ -23307,7 +23389,7 @@ msgstr ""
 msgid "Download Plugin"
 msgstr ""
 
-msgid "Download the highlighted plugin"
+msgid "Download the selected list of plugins"
 msgstr ""
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
@@ -23421,7 +23503,7 @@ msgstr ""
 msgid "Remove Plugin"
 msgstr ""
 
-msgid "Remove the highlighted plugin"
+msgid "Remove the selected list of plugins"
 msgstr ""
 
 msgid "Reset sort order"
@@ -23592,7 +23674,7 @@ msgstr ""
 msgid "Update Plugins"
 msgstr ""
 
-msgid "Update the highlighted plugin"
+msgid "Update the selected list of plugins"
 msgstr ""
 
 msgid "View as grid"
@@ -23656,9 +23738,6 @@ msgid "Language Packages"
 msgstr ""
 
 msgid "Common Settings"
-msgstr ""
-
-msgid "CI Boot Delay"
 msgstr ""
 
 msgid "Picon package target location"

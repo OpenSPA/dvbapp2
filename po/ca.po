@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-12 14:10+0200\n"
-"PO-Revision-Date: 2023-07-08 12:23+0200\n"
+"PO-Revision-Date: 2023-08-13 15:13+0200\n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: OpenSPA Team-po/ca/>\n"
 "Language: ca\n"
@@ -16222,10 +16222,10 @@ msgstr ""
 "configuració?"
 
 msgid "Reshare"
-msgstr ""
+msgstr "Reshare"
 
 msgid "Reshare:"
-msgstr ""
+msgstr "Reshare:"
 
 #
 msgid "Resolution"
@@ -18750,7 +18750,7 @@ msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
-msgstr ""
+msgstr "Ajusta la compensació de volum per al servei '%s'."
 
 msgid ""
 "Set this to 'Yes' to automatically hide the InfoBar when the media starts "
@@ -20391,7 +20391,7 @@ msgstr "Espai de disc per reservar per a enregistraments (en GB)"
 
 #, python-format
 msgid "Space total %s, used %s, free %s (%0.f%%)."
-msgstr ""
+msgstr "Espai total %s, utilitzat %s, lliure %s (%0.f%%)."
 
 msgid "Space used:"
 msgstr "Espai utilitzat:"
@@ -20419,7 +20419,7 @@ msgid "Special Features Settings"
 msgstr "Configuració de característiques especials"
 
 msgid "Specify the directory to use when starting Media Player."
-msgstr ""
+msgstr "Especificar el directori a utilitzar al iniciar Media Player."
 
 msgid "Speed"
 msgstr "Velocitat"
@@ -20464,7 +20464,7 @@ msgid "Start"
 msgstr "Inici"
 
 msgid "Start Auto Refresh"
-msgstr ""
+msgstr "Iniciar refresc automàtic"
 
 #
 msgid "Start Kodi"
@@ -20475,10 +20475,10 @@ msgid "Start RDS interactive"
 msgstr "Iniciar RDS interactiu"
 
 msgid "Start date"
-msgstr ""
+msgstr "Data d'inici"
 
 msgid "Start edit at line end"
-msgstr ""
+msgstr "Iniciar edició al final de la línia"
 
 #
 msgid "Start from the beginning"
@@ -20495,7 +20495,7 @@ msgid "Start offline decode"
 msgstr "Comença la descodificació fora de línia"
 
 msgid "Start recording current event"
-msgstr ""
+msgstr "Iniciar gravació del programa actual"
 
 #
 msgid "Start recording?"
@@ -20516,7 +20516,7 @@ msgid "Start time shift"
 msgstr "Activar pausa"
 
 msgid "Start/stop slide show"
-msgstr ""
+msgstr "Iniciar/Parar reproducció de diapositives"
 
 msgid "Start/stop/select cam"
 msgstr "Iniciar/Parar/Seleccionar CAM"
@@ -20532,33 +20532,33 @@ msgid "Starting Softcam"
 msgstr "Iniciant Softcam"
 
 msgid "Starting column"
-msgstr ""
+msgstr "Columna d'inici"
 
 msgid "Starting date"
-msgstr ""
+msgstr "Data d'inici"
 
 #
 msgid "Starting directory"
-msgstr ""
+msgstr "Directori d'inici"
 
 msgid "Starting time"
-msgstr ""
+msgstr "Hora d'inici"
 
 msgid "Starts in a few seconds"
-msgstr ""
+msgstr "S'inicia en pocs segons"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 msgid "Static IP / Custom"
-msgstr ""
+msgstr "IP estàtica / Personalitzada"
 
 msgid "Status"
 msgstr "Estat"
 
 msgid "Status message timeout"
-msgstr ""
+msgstr "Temps d'espera del missatge d'estat"
 
 msgid "Status of the display during operation"
 msgstr "Estat del display durant el funcionament"
@@ -20626,7 +20626,7 @@ msgid "Stop playing this movie?"
 msgstr "Aturar la reproducció de la pel·lícula?"
 
 msgid "Stop previous broadcasted service on return to movie list."
-msgstr ""
+msgstr "Parar servei d'emisió previ al tornar a la llista de pel·lícules."
 
 msgid "Stop recording"
 msgstr "Deixa de gravar"
@@ -20657,21 +20657,23 @@ msgid "Stop testing plane after # successful transponders"
 msgstr "Deixeu de provar l’avió després de # transponders amb èxit"
 
 msgid "Stop the update, if running, then exit"
-msgstr ""
+msgstr "Parar l'actualització, si està en marxa, llavors sortir"
 
 msgid "Stop time shift"
 msgstr "Cancel·lar pausa"
 
 msgid "Stop time shift and save time shift buffer as movie"
-msgstr ""
+msgstr "Parar timeshift i guardar buffer timeshift com pel·lícula"
 
 msgid ""
 "Stop time shift and save time shift buffer as movie and start recording of "
 "current event"
 msgstr ""
+"Parar timeshift i guardar buffer timeshift com pel·lícula i iniciar gravació "
+"del programa actual"
 
 msgid "Stop time shift while recording"
-msgstr ""
+msgstr "Parar timeshift mentre es grava"
 
 #
 msgid "Stop timer recording"
@@ -20681,25 +20683,27 @@ msgid "Stopped"
 msgstr "Aturat"
 
 msgid "Stopping Softcam"
-msgstr ""
+msgstr "Parant softcam"
 
 msgid ""
 "Stops time shift being used if a recording is in progress. (Advisable for "
 "USB sticks.)"
 msgstr ""
+"Deixa d'utilitzar timeshift si hi ha una gravació en curs. (Aconsellable per "
+"a llapis USB.)"
 
 msgid "Storage / Disk Information"
-msgstr ""
+msgstr "Emmagatzematge/Informació de disc"
 
 #, python-format
 msgid "Storage / Disk information for %s %s"
-msgstr ""
+msgstr "Emmagatzematge/Informació de disc de %s %s"
 
 msgid "Storage / Disks"
-msgstr ""
+msgstr "Emmagatzematge / Discs"
 
 msgid "Storage / Drive information"
-msgstr ""
+msgstr "Emmagatzematge / Informació de disc"
 
 #
 msgid "Storage Devices"
@@ -20720,16 +20724,16 @@ msgid "Stream request"
 msgstr "Sol·licitud de stream"
 
 msgid "Stream-tv"
-msgstr ""
+msgstr "Stream-tv"
 
 msgid "Streaming"
-msgstr ""
+msgstr "Streaming"
 
 msgid "Streaming Information Actions"
-msgstr ""
+msgstr "Informació de streaming"
 
 msgid "Streaming Tuner Information"
-msgstr ""
+msgstr "Informació sintonització streaming"
 
 #
 msgid "Streaming recording ended"
@@ -20737,23 +20741,23 @@ msgstr "Gravació de streaming finalizada"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
-msgstr ""
+msgstr "Informació sintonització streaming de %s %s"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
-msgstr ""
+msgstr "Estirament complet"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
 msgid "Stretch linear"
-msgstr ""
+msgstr "Estirament lineal"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
 msgid "Stretch nonlinear"
-msgstr ""
+msgstr "Estirament no lineal"
 
 msgid "Strict DLNA"
-msgstr ""
+msgstr "DLNA estricte"
 
 msgid "Stripes"
 msgstr ""
