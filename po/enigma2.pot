@@ -23660,3 +23660,16 @@ msgstr ""
 
 msgid "CI Boot Delay"
 msgstr ""
+
+msgid "Picon package target location"
+msgstr ""
+
+msgid "Select the target location where picon files will be installed."
+msgstr ""
+
+msgid "Set DVB CI delay."
+msgstr ""
+ 
+msgid "Set CI Boot delay."
+msgstr ""
+ 

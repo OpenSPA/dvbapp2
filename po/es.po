@@ -14481,7 +14481,7 @@ msgid "Plugin Manager Help"
 msgstr "Ayuda del administrador de plugins"
 
 msgid "Plugin Skin Packages"
-msgstr "Paquetes de plugins de skin"
+msgstr "Paquetes de skins de plugins"
 
 #
 msgid "Plugins"
@@ -28427,6 +28427,18 @@ msgstr "Ajustes comunes"
 
 msgid "CI Boot Delay"
 msgstr "Retraso arranque DVB-CI"
+
+msgid "Picon package target location"
+msgstr "Ubicación de los paquetes de picons"
+
+msgid "Select the target location where picon files will be installed."
+msgstr "Selecciona la ubicación donde se instalarán los archivos picon."
+
+msgid "Set DVB CI delay."
+msgstr "Estableceer retraso DVB CI."
+
+msgid "Set CI Boot delay."
+msgstr "Retraso arranque CI."
 
 #~ msgid "1080i"
 #~ msgstr "1080i"
