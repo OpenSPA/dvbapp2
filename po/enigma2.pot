@@ -12328,9 +12328,6 @@ msgstr ""
 msgid "Please select a sub service..."
 msgstr ""
 
-msgid "Please select a subservice..."
-msgstr ""
-
 msgid "Please select an aspect ratio..."
 msgstr ""
 
