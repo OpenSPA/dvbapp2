@@ -14334,10 +14334,6 @@ msgstr "Seleccione una resolución…"
 msgid "Please select a sub service..."
 msgstr "Seleccione un sub-servicio..."
 
-#
-msgid "Please select a subservice..."
-msgstr "Seleccione un subservicio…"
-
 # ******************************************************************************
 msgid "Please select an aspect ratio..."
 msgstr "Seleccione una relación de aspecto..."
@@ -14776,7 +14772,7 @@ msgid "Press OK to reset PIN code"
 msgstr "Pulsa OK para resetear código PIN"
 
 msgid "Press OK to reset module"
-msgstr "Pulsa OK para resetear módulo."
+msgstr "Pulsa OK para resetear módulo"
 
 #
 msgid "Press OK to scan"
@@ -20621,6 +20617,9 @@ msgstr "Cambiar al siguiente canal"
 
 msgid "Switch off the TV to correct input"
 msgstr "Apague el televisor para corregir la entrada"
+
+msgid "Switch to 720p video"
+msgstr "Cambiar a video 720p"
 
 msgid "Switch to HDMI in mode"
 msgstr "Cambiar a modo entrada HDMI"
@@ -28529,6 +28528,10 @@ msgstr "Estableceer retraso DVB CI."
 
 msgid "Set CI Boot delay."
 msgstr "Retraso arranque CI."
+
+#
+#~ msgid "Please select a subservice..."
+#~ msgstr "Seleccione un subservicio…"
 
 #~ msgid "All slots"
 #~ msgstr "Todos los slots"

@@ -17431,6 +17431,9 @@ msgstr ""
 msgid "Switch off the TV to correct input"
 msgstr ""
 
+msgid "Switch to 720p video"
+msgstr ""
+
 msgid "Switch to HDMI in mode"
 msgstr ""
 
