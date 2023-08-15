@@ -7219,6 +7219,10 @@ msgid "Download error"
 msgstr "Error de descarga"
 
 #
+msgid "Download Image"
+msgstr "Descargar imagen"
+
+#
 msgid "Downloadable plugins"
 msgstr "Plugins descargables"
 

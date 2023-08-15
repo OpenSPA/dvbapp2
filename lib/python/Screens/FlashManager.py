@@ -28,22 +28,20 @@ OFGWRITE = "/usr/bin/ofgwrite"
 
 FEED_DISTRIBUTION = 0
 FEED_JSON_URL = 1
-FEED_BOX_IDENTIFIER = 2
-
 FEED_URLS = [
-	("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s", "BoxName"),
-	("openATV", "https://images.mynonpublic.com/openatv/json/%s", "BoxName"),
-	("OpenBH", "https://images.openbh.net/json/%s", "model"),
-	("OpenPLi", "http://downloads.openpli.org/json/%s", "model"),
-	("Open Vision", "https://images.openvision.dedyn.io/json/%s", "model"),
-	("OpenViX", "https://www.openvix.co.uk/json/%s", "machinebuild"),
-	("OpenHDF", "https://flash.hdfreaks.cc/openhdf/json/%s", "machinebuild"),
-	("Open8eIGHT", "http://openeight.de/json/%s", "machinebuild"),
-	("OpenDROID", "https://opendroid.org/json/%s", "machinebuild"),
-	("TeamBlue", "https://images.teamblue.tech/json/%s", "machinebuild"),
-	("EGAMI", "https://image.egami-image.com/json/%s", "machinebuild")
+	("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s" % BoxInfo.getItem("BoxName")),
+	("openATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName")),
+	("OpenBH", "https://images.openbh.net/json/%s" % BoxInfo.getItem("model")),
+	("OpenPLi", "http://downloads.openpli.org/json/%s" % BoxInfo.getItem("model")),
+	("Open Vision", "https://images.openvision.dedyn.io/json/%s" % BoxInfo.getItem("model")),
+	("OpenViX", "https://www.openvix.co.uk/json/%s" % BoxInfo.getItem("machinebuild")),
+	("OpenHDF", "https://flash.hdfreaks.cc/openhdf/json/%s" % BoxInfo.getItem("machinebuild")),
+	("Open8eIGHT", "http://openeight.de/json/%s" % BoxInfo.getItem("machinebuild")),
+	("OpenDROID", "https://opendroid.org/json/%s" % BoxInfo.getItem("machinebuild")),
+	("TeamBlue", "https://images.teamblue.tech/json/%s" % BoxInfo.getItem("machinebuild")),
+	("EGAMI", "https://image.egami-image.com/json/%s" % BoxInfo.getItem("machinebuild"))
 ]
-
+USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"}
 
 def checkImageFiles(files):
 	return len([x for x in files if "kernel" in x and ".bin" in x or x in ("zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.tar.bz2", "rootfs.ubi", "rootfs.bin")]) >= 2
@@ -88,7 +86,6 @@ class FlashManager(Screen, HelpableScreen):
 			"red": (self.keyCancel, _("Cancel the image selection and exit")),
 			"green": (self.keyOk, _("Select the highlighted image and proceed to the slot selection")),
 			"yellow": (self.keyDistribution, _("Select a distribution from where images are to be obtained")),
-			"blue": (self.keyDeleteImage, _("Delete the selected locally stored image")),
 			"top": (self.keyTop, _("Move to first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
@@ -96,21 +93,31 @@ class FlashManager(Screen, HelpableScreen):
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
 			"bottom": (self.keyBottom, _("Move to last line / screen"))
 		}, prio=-1, description=_("Flash Manager Actions"))
+		self["deleteActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.keyDeleteImage, _("Delete the selected locally stored image")),
+		}, prio=-1, description=_("Flash Manager Actions"))
+		self["deleteActions"].setEnabled(False)
+		self["downloadActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.keyDownloadImage, _("Download the selected image")),
+		}, prio=-1, description=_("Flash Manager Actions"))
+		self["downloadActions"].setEnabled(False)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText(_("Distribution"))
 		self["key_blue"] = StaticText()
 		self["description"] = StaticText()
 		self["list"] = ChoiceList(list=[ChoiceEntryComponent("", ((_("Retrieving image list, please wait...")), "Loading"))])
+		self.feedUrls = FEED_URLS
+		#[("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s" % BoxInfo.getItem("BoxName"))]
 		self.callLater(self.getImagesList)
 
 	def getImagesList(self):
 		def findInList(item):
-			result = [index for index, data in enumerate(FEED_URLS) if data[FEED_DISTRIBUTION] == item]
+			result = [index for index, data in enumerate(self.feedUrls) if data[FEED_DISTRIBUTION] == item]
 			return result[0] if result else None
 
 		def getImages(path, files):
-			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and self.box in x]:
+			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and (boxname in x or machinebuild in x or model in x)]:
 				try:
 					zipData = ZipFile(file, mode="r")
 					zipFiles = zipData.namelist()
@@ -132,51 +139,51 @@ class FlashManager(Screen, HelpableScreen):
 			if self.imageFeed != "OpenSPA":  #### OPENSPA [morser] Set default feed: openspa
 				self.keyDistributionCallback("OpenSPA")  # No images can be found for the selected distribution so go back to the openSPA default.
 
+		machinebuild = BoxInfo.getItem("machinebuild")
+		model = BoxInfo.getItem("model")
+		boxname = BoxInfo.getItem("BoxName")
 		if not self.imagesList:
 			index = findInList(self.imageFeed)
-			if index is None:
-				feedURL = "https://openspa.webhop.info/online/json.php?box=%s"   #### OPENSPA [morser] Set default feed: openspa
-				boxInfoField = "BoxName"
-			else:
-				feedURL = FEED_URLS[index][FEED_JSON_URL]
-				boxInfoField = FEED_URLS[index][FEED_BOX_IDENTIFIER]
-			self.box = BoxInfo.getItem(boxInfoField, "")
-			url = feedURL % self.box
+			print("index: ", index)
+			box = machinebuild if index else boxname
+			feedURL = self.feedUrls[index][FEED_JSON_URL] if index else "https://openspa.webhop.info/online/json.php?box=%s" % box
+			print("feedURL: ", feedURL)
 			##### OPENSPA [morser] Prepare for beta images #######################
 			if self.imageFeed == "OpenSPA":
 				try:
 					from Plugins.Extensions.spazeMenu.plugin import devx
-					url += devx()
+					feedURL += devx()
 				except:
 					pass
 			######################################################################
 			try:
-				req = Request(url, None, {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"})
+				req = Request(feedURL, None, USER_AGENT)
 				self.imagesList = dict(load(urlopen(req)))
 				# if config.usage.alternative_imagefeed.value:
-				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, self.box)
+				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, box)
 				# 	self.imagesList.update(dict(load(urlopen(url))))
 			except Exception:
-				print("[FlashManager] getImagesList Error: Unable to load json data from URL '%s'!" % url)
+				print("[FlashManager] getImagesList Error: Unable to load json data from URL '%s'!" % feedURL)
 				self.imagesList = {}
 			searchFolders = []
 			# Get all folders of /media/ and /media/net/
-			for media in ["/media/%s" % x for x in listdir("/media")] + (["/media/net/%s" % x for x in listdir("/media/net")] if isdir("/media/net") else []):
-				# print("[FlashManager] getImagesList DEBUG: media='%s'." % media)
-				if not (BoxInfo.getItem("HasMMC") and "/mmc" in media) and isdir(media):
-					getImages(media, [join(media, x) for x in listdir(media) if splitext(x)[1] == ".zip" and self.box in x])
-					for folder in ["images", "downloaded_images", "imagebackups"]:
-						if folder in listdir(media):
-							subFolder = join(media, folder)
-							# print("[FlashManager] getImagesList DEBUG: subFolder='%s'." % subFolder)
-							if isdir(subFolder) and not islink(subFolder) and not ismount(subFolder):
-								# print("[FlashManager] getImagesList DEBUG: Next subFolder='%s'." % subFolder)
-								getImages(subFolder, [join(subFolder, x) for x in listdir(subFolder) if splitext(x)[1] == ".zip" and self.box in x])
-								for dir in [dir for dir in [join(subFolder, dir) for dir in listdir(subFolder)] if isdir(dir) and splitext(dir)[1] == ".unzipped"]:
-									try:
-										rmtree(dir)
-									except OSError as err:
-										print("[FlashManager] getImagesList Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, dir, err.strerror))
+			if not index:
+				for media in ["/media/%s" % x for x in listdir("/media")] + (["/media/net/%s" % x for x in listdir("/media/net")] if isdir("/media/net") else []):
+					# print("[FlashManager] getImagesList DEBUG: media='%s'." % media)
+					if not (BoxInfo.getItem("HasMMC") and "/mmc" in media) and isdir(media):
+						getImages(media, [join(media, x) for x in listdir(media) if splitext(x)[1] == ".zip" and (boxname in x or machinebuild in x or model in x)])
+						for folder in ["images", "downloaded_images", "imagebackups"]:
+							if folder in listdir(media):
+								subFolder = join(media, folder)
+								# print("[FlashManager] getImagesList DEBUG: subFolder='%s'." % subFolder)
+								if isdir(subFolder) and not islink(subFolder) and not ismount(subFolder):
+									# print("[FlashManager] getImagesList DEBUG: Next subFolder='%s'." % subFolder)
+									getImages(subFolder, [join(subFolder, x) for x in listdir(subFolder) if splitext(x)[1] == ".zip" and (boxname in x or machinebuild in x or model in x)])
+									for dir in [dir for dir in [join(subFolder, dir) for dir in listdir(subFolder)] if isdir(dir) and splitext(dir)[1] == ".unzipped"]:
+										try:
+											rmtree(dir)
+										except OSError as err:
+											print("[FlashManager] getImagesList Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, dir, err.strerror))
 		imageList = []
 		for catagory in sorted(self.imagesList.keys(), reverse=True):
 			if catagory in self.expanded:
@@ -187,6 +194,7 @@ class FlashManager(Screen, HelpableScreen):
 				for image in self.imagesList[catagory].keys():
 					imageList.append(ChoiceEntryComponent("expandable", ((catagory), "Expanded")))
 					break
+		print("llista: ", self.imagesList)
 		if imageList:
 			self["list"].setList(imageList)
 			if self.setIndex:
@@ -285,9 +293,17 @@ class FlashManager(Screen, HelpableScreen):
 		if not ("://" in currentSelection or currentSelection in ["Expanded", "Loading"]):
 			self.session.openWithCallback(keyDeleteImageCallback, MessageBox, _("Do you really want to delete '%s'?") % currentSelectionImage, MessageBox.TYPE_YESNO, default=False)
 
+	def keyDownloadImage(self):
+		def reloadImagesList():
+			self.imagesList = {}
+			self.getImagesList()
+		currentSelection = self["list"].getCurrent()
+		self.session.openWithCallback(reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1], True)
+
 	def selectionChanged(self):
 		currentSelection = self["list"].getCurrent()[0]
-		self["key_blue"].setText("" if "://" in currentSelection[1] or currentSelection[1] in ["Expanded", "Loading"] else _("Delete Image"))
+		canDownload = False
+		canDelete = False
 		if currentSelection[1] == "Loading":
 			self["key_green"].setText("")
 		else:
@@ -297,16 +313,26 @@ class FlashManager(Screen, HelpableScreen):
 			else:
 				self["key_green"].setText(_("Flash Image"))
 				self["description"].setText(_("Location: %s") % currentSelection[1][:currentSelection[1].rfind(sep) + 1])
+				canDownload = "://" in currentSelection[1]
+				canDelete = not canDownload
+		if canDownload:
+			self["key_blue"].setText(_("Download Image"))
+		elif canDelete:
+			self["key_blue"].setText(_("Delete Image"))
+		else:
+			self["key_blue"].setText("")
+		self["downloadActions"].setEnabled(canDownload)
+		self["deleteActions"].setEnabled(canDelete)
 
 class FlashImage(Screen, HelpableScreen):
 	skin = """
-	<screen name="FlashImage" title="Flash Image" position="center,center" size="640,225" resolution="1280,720">
+	<screen name="FlashImage" title="Flash Image" position="center,center" size="720,225" resolution="1280,720">
 		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
 		<widget name="info" position="0,60" size="e,130" font="Regular;25" valign="center" />
 		<widget name="progress" position="0,e-25" size="e,25" />
 	</screen>"""
 
-	def __init__(self, session, imageName, source, destpath=None): #OPENSPA [morser] Add destpath for spanewfirm
+	def __init__(self, session, imageName, source, downloadOnly=False, destpath=None): #OPENSPA [morser] Add destpath for spanewfirm
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.imageName = imageName
@@ -316,6 +342,7 @@ class FlashImage(Screen, HelpableScreen):
 		self.containerOFGWrite = None
 		self.getImageList = None
 		self.downloader = None
+		self.downloadOnly = downloadOnly
 		self.destpath=destpath #OPENSPA [morser] Add destpath for spanewfirm
 		self["header"] = Label(_("Backup Settings"))
 		self["info"] = Label(_("Save settings and EPG data."))
