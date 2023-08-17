@@ -16,7 +16,7 @@
 
 > [https://github.com/oe-alliance/oe-alliance-core/tree/5.3](https://github.com/oe-alliance/oe-alliance-core/tree/5.3 "OE-Alliance")
 > 
-> [https://github.com/openspa/dvbapp2/tree/master](https://github.com/openspa/dvbapp2/tree/master "OpenSPA E2")
+> [https://github.com/openspa/dvbapp2/tree/master](https://github.com/openspa/dvbapp2/tree/master "OpenSPA E2") based on [https://github.com/openatv/enigma2](https://github.com/openatv/enigma2 "openATV E2")
 > 
 > [https://github.com/openspa/MetrixHD](https://github.com/openspa/MetrixHD/tree/py3 "OpenSPA Skin")
 
