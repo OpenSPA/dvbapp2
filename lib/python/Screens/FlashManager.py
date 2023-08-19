@@ -298,7 +298,7 @@ class FlashManager(Screen, HelpableScreen):
 			self.imagesList = {}
 			self.getImagesList()
 		currentSelection = self["list"].getCurrent()
-		self.session.openWithCallback(reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1], True)
+		self.session.openWithCallback(reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1], True, self.destpath)
 
 	def selectionChanged(self):
 		currentSelection = self["list"].getCurrent()[0]
