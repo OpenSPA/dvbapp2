@@ -12,7 +12,7 @@ from Components.GUIComponent import GUIComponent
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.Opkg import OpkgComponent
-from Components.PluginComponent import pluginComponent
+from Components.PluginComponent import pluginComponent, plugins
 from Components.ScrollLabel import ScrollLabel
 from Components.SystemInfo import BoxInfo
 from Components.Sources.List import List
