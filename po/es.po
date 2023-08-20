@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 msgid ""
 "\n"
@@ -27294,6 +27294,10 @@ msgstr ""
 msgid "Kexec MultiBoot Manager"
 msgstr "Administrador de MultiBoot Kexec"
 
+#
+msgid "Kexec Manager"
+msgstr "Administrador Kexec"
+
 msgid "Quad9 DNS"
 msgstr "Quad9 DNS"
 
@@ -28532,6 +28536,45 @@ msgstr "Estableceer retraso DVB CI."
 
 msgid "Set CI Boot delay."
 msgstr "Retraso arranque CI."
+
+msgid "Start URL"
+msgstr "URL de inicio"
+
+msgid "* Start ChromiumOS"
+msgstr "* Iniciar Chromium"
+
+msgid "* Setting ChromiumOS"
+msgstr "* Configurar Chromium"
+
+msgid "* RC Help"
+msgstr "* Ayuda mando"
+
+msgid "Setting"
+msgstr "Configuración"
+
+msgid "Start Up URL"
+msgstr "URL de inicio"
+
+msgid "X-margin on GUI"
+msgstr "Margen X en pantalla"
+
+msgid "Y-margin on GUI"
+msgstr "Margen Y en pantalla"
+
+#
+msgid "Enable Ntpd when start Chromium"
+msgstr "Habilitar Ntpd cuando inicie Chromium"
+
+msgid "Do not show YouTube TV Starter again"
+msgstr "No mostrar más el lanzador de YouTube TV"
+
+#
+msgid "Enable Ntpd when start YoutubeTV"
+msgstr "Habilitar Ntpd cuando inicie YoutubeTV"
+
+#
+msgid "YouTubeTV Settings"
+msgstr "Configuración YouTubeTV"
 
 #
 #~ msgid "Please select a subservice..."

@@ -22723,6 +22723,9 @@ msgstr ""
 msgid "Kexec MultiBoot Manager"
 msgstr ""
 
+msgid "Kexec Manager"
+msgstr ""
+
 msgid "Quad9 DNS"
 msgstr ""
 
@@ -23751,7 +23754,42 @@ msgstr ""
 
 msgid "Set DVB CI delay."
 msgstr ""
- 
+
 msgid "Set CI Boot delay."
 msgstr ""
- 
+
+msgid "Start URL"
+msgstr ""
+
+msgid "* Start ChromiumOS"
+msgstr ""
+
+msgid "* Setting ChromiumOS"
+msgstr ""
+
+msgid "* RC Help"
+msgstr ""
+
+msgid "Setting"
+msgstr ""
+
+msgid "Start Up URL"
+msgstr ""
+
+msgid "X-margin on GUI"
+msgstr ""
+
+msgid "Y-margin on GUI"
+msgstr ""
+
+msgid "Enable Ntpd when start Chromium"
+msgstr ""
+
+msgid "Do not show YouTube TV Starter again"
+msgstr ""
+
+msgid "Enable Ntpd when start YoutubeTV"
+msgstr ""
+
+msgid "YouTubeTV Settings"
+msgstr ""
