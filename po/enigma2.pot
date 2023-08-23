@@ -1914,6 +1914,12 @@ msgstr ""
 msgid "Add timer"
 msgstr ""
 
+msgid "add timer"
+msgstr ""
+
+msgid "Add Timer"
+msgstr ""
+
 msgid "Add Zap+RecordTimer"
 msgstr ""
 
@@ -11084,10 +11090,6 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-msgctxt "now/next: 'next' event label"
-msgid "Next"
-msgstr ""
-
 msgid "Next Log"
 msgstr ""
 
@@ -16858,6 +16860,9 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
+msgid "Sort A-Z"
+msgstr ""
+
 msgid "Sort Bookmarks"
 msgstr ""
 
@@ -21281,9 +21286,6 @@ msgstr ""
 msgid "empty"
 msgstr ""
 
-msgid "Enable PiP no HDR"
-msgstr ""
-
 msgid "enable bouquet edit"
 msgstr ""
 
@@ -22025,9 +22027,6 @@ msgstr ""
 msgid "switch 12 to 8 character display mode"
 msgstr ""
 
-msgid "switch Nand and SDcard"
-msgstr ""
-
 msgid "switch to the next angle"
 msgstr ""
 
@@ -22137,9 +22136,6 @@ msgid "update"
 msgstr ""
 
 msgid "updates available."
-msgstr ""
-
-msgid "Use best / Controlled by HDMI"
 msgstr ""
 
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
@@ -22768,27 +22764,6 @@ msgstr ""
 msgid "switch Nand and SDcard"
 msgstr ""
 
-msgid "SwaptoNand"
-msgstr ""
-
-msgid "SwaptoSD"
-msgstr ""
-
-msgid "SDcard switch ERROR! - already on Nand"
-msgstr ""
-
-msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
-msgstr ""
-
-msgid "USB switch ERROR! - already on USB"
-msgstr ""
-
-msgid "USB switch ERROR! - root files not transferred to USB"
-msgstr ""
-
 msgid "H9 SDcard manager"
 msgstr ""
 
@@ -22955,14 +22930,6 @@ msgstr ""
 msgid "Select video output port with UP/DOWN buttons"
 msgstr ""
 
-msgid "Use automatic mode detection?\n"
-"\n"
-"This option reads all supported modes from your TV. Disable it only if you want to customize the preferred configuration."
-msgstr ""
-
-msgid "Use automatic mode detection"
-msgstr ""
-
 msgid "Default video mode selected for the TV."
 msgstr ""
 
@@ -22978,13 +22945,7 @@ msgstr ""
 msgid "Select the video mode to be used on the TV."
 msgstr ""
 
-msgid "Select video mode"
-msgstr ""
-
 msgid "Select the refresh rate to be used on the TV."
-msgstr ""
-
-msgid "Select refresh rate"
 msgstr ""
 
 msgid "Ncam Info"
@@ -23023,12 +22984,6 @@ msgstr ""
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
 
-msgid "Auto video mode selected"
-msgstr ""
-
-msgid "Auto video mode selected for the TV."
-msgstr ""
-
 msgid "By disk UUID"
 msgstr ""
 
@@ -23062,12 +23017,6 @@ msgid "Deactivate Expander"
 msgstr ""
 
 msgid "Deactivate the flash expander in the selected device"
-msgstr ""
-
-msgid "Default video mode selected"
-msgstr ""
-
-msgid "Default video mode selected for the TV."
 msgstr ""
 
 msgid "Delete Expander"
@@ -23220,15 +23169,9 @@ msgstr ""
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
-msgid "Select the video mode to be used on the TV."
-msgstr ""
-
 msgid "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select video output port with UP/DOWN buttons"
 msgstr ""
 
 msgid "Set the time options.\n"
@@ -23293,16 +23236,6 @@ msgstr ""
 msgid "Use automatic mode detection"
 msgstr ""
 
-msgid "Video Wizard"
-msgstr ""
-
-msgid "Video output port selection.\n"
-"\n"
-"Make sure the correct input is selected on the TV. Press OK if you can see this page on your TV.\n"
-"\n"
-"The next output port will be automatically tried in 10 seconds."
-msgstr ""
-
 msgid "View the next item in a list"
 msgstr ""
 
@@ -23365,9 +23298,6 @@ msgid "Backup failed!"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
-msgstr ""
-
-msgid "Connected through another tuner"
 msgstr ""
 
 msgid "Development Packages"
@@ -23792,4 +23722,16 @@ msgid "Enable Ntpd when start YoutubeTV"
 msgstr ""
 
 msgid "YouTubeTV Settings"
+msgstr ""
+
+msgid "OpenSPA Menu"
+msgstr ""
+
+msgid "spaPANEL"
+msgstr ""
+
+msgid "AddOns"
+msgstr ""
+
+msgid "Tv Options"
 msgstr ""

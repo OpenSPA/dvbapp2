@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 msgid ""
 "\n"
@@ -87,7 +87,7 @@ msgid "     wrong back-up destination "
 msgstr "     destino de backup incorrecto "
 
 msgid "  Menu key : Select quad channel"
-msgstr "  Botón de menú: Seleccionar canal cuádruple"
+msgstr "  Botón de menú: Seleccionar canal quad"
 
 msgid "  REC  "
 msgstr "  GRAB  "
@@ -2124,12 +2124,18 @@ msgid "Add Marker"
 msgstr "Añadir marcador"
 
 msgid "Add New Quad Channel Entry"
-msgstr "Añadir nueva entrada de canal cuádruple"
+msgstr "Añadir nueva entrada de canal quad"
 
 msgid "Add RecordTimer"
 msgstr "Añadir temporizador de grabación"
 
 msgid "Add timer"
+msgstr "Añadir temporizador"
+
+msgid "add timer"
+msgstr "Añadir temporizador"
+
+msgid "Add Timer"
 msgstr "Añadir temporizador"
 
 msgid "Add Zap+RecordTimer"
@@ -7391,7 +7397,7 @@ msgid ""
 "PVR key : Input channel name\n"
 "Exit key : Finish channel edit"
 msgstr ""
-"Tecla EPG : Cambiar a la entrada PiP cuádruple\n"
+"Tecla EPG : Cambiar a la entrada Quad PiP\n"
 "Tecla Ok : Añadir a la nueva entrada\n"
 "Tecla PVR : Introducir el nombre del canal\n"
 "Tecla Exit : Finalizar la edición del canal"
@@ -7440,7 +7446,7 @@ msgid "Edit Mode On"
 msgstr "Activar edición"
 
 msgid "Edit Quad Channel Entry"
-msgstr "Editar la entrada del canal cuádruple"
+msgstr "Editar la entrada del canal quad"
 
 msgid "Edit Tags"
 msgstr "Editar etiquetas"
@@ -7605,7 +7611,7 @@ msgid "Enable PiP no HDR"
 msgstr "Habilitar PiP no HDR"
 
 msgid "Enable Quad PiP"
-msgstr "Habilitar PiP cuádruple"
+msgstr "Habilitar Quad PiP"
 
 #
 msgid "Enable Swap at startup"
@@ -8502,7 +8508,7 @@ msgid "Exit MAC address configuration"
 msgstr "Salir de la configuración de dirección MAC"
 
 msgid "Exit Quad Channel Selection"
-msgstr "Salir de la selección de canal cuádruple"
+msgstr "Salir de la selección de canal quad"
 
 msgid "Exit all menus"
 msgstr "Salir de todos los menus"
@@ -8554,7 +8560,7 @@ msgid "Exit network wizard"
 msgstr "Salir del asistente de red"
 
 msgid "Exit quad PiP"
-msgstr "Salir de PiP cuádruple"
+msgstr "Salir de Quad PiP"
 
 #
 msgid "Exit the wizard"
@@ -12871,10 +12877,6 @@ msgstr "Noticias/Actualidad"
 msgid "Next"
 msgstr "Siguiente"
 
-msgctxt "now/next: 'next' event label"
-msgid "Next"
-msgstr "Siguiente"
-
 msgid "Next Log"
 msgstr "Siguiente registro"
 
@@ -12894,7 +12896,7 @@ msgstr "Página siguiente"
 
 #
 msgid "Next quad PiP channel"
-msgstr "Siguiente canal PiP cuádruple"
+msgstr "Siguiente canal Quad PiP"
 
 msgid "Nextsong"
 msgstr "Nextsong"
@@ -14855,7 +14857,7 @@ msgstr ""
 
 #
 msgid "Prev quad PiP channel"
-msgstr "Canal PiP cuádruple anterior"
+msgstr "Canal Quad PiP anterior"
 
 #
 msgid "Preview"
@@ -15108,13 +15110,13 @@ msgstr "Qatar"
 
 #
 msgid "Quad PiP Channel Selection"
-msgstr "Selección de canal PiP cuádruple"
+msgstr "Selección de canal Quad PiP"
 
 msgid "Quad PiP Screen"
-msgstr "Pantalla PiP cuádruple"
+msgstr "Pantalla Quad PiP"
 
 msgid "Quad PiP channel "
-msgstr "Canal PiP cuádruple "
+msgstr "Canal Quad PiP"
 
 msgid "Quad PiP is not available."
 msgstr "No está disponible la función Quad PiP."
@@ -15664,7 +15666,7 @@ msgid "Remove Plugins"
 msgstr "Borrar Plugins"
 
 msgid "Remove Quad Channel Entry"
-msgstr "Eliminar la entrada del canal cuádruple"
+msgstr "Eliminar la entrada del canal quad"
 
 msgid "Remove Service"
 msgstr "Eliminar servicio"
@@ -19986,6 +19988,10 @@ msgstr ""
 
 msgid "Sort"
 msgstr "Ordenar"
+
+#
+msgid "Sort A-Z"
+msgstr "Ordenar A-Z"
 
 msgid "Sort Bookmarks"
 msgstr "Ordenar favoritos"
@@ -24550,7 +24556,7 @@ msgid "White"
 msgstr "Blanco"
 
 msgid "Wide"
-msgstr ""
+msgstr "Ancho"
 
 msgid "Width"
 msgstr "Ancho"
@@ -26492,9 +26498,6 @@ msgstr "correcto"
 msgid "switch 12 to 8 character display mode"
 msgstr "Cambiar a modo display de 12 a 8 carácteres"
 
-msgid "switch Nand and SDcard"
-msgstr "Cambiar entre memoria interna y tarjeta SD"
-
 #
 msgid "switch to the next angle"
 msgstr "Cambiar al siguiente ángulo"
@@ -27352,6 +27355,9 @@ msgstr "Administrador SD en H9"
 msgid "Install image to SD or USB"
 msgstr "Instalar imagen a SD"
 
+msgid "switch Nand and SDcard"
+msgstr "Cambiar entre memoria interna y tarjeta SD"
+
 msgid "H9 SDcard manager"
 msgstr "Administrador tarjeta SD en H9"
 
@@ -27570,9 +27576,6 @@ msgstr "Asistente de vídeo"
 #
 msgid "Select video output port with UP/DOWN buttons"
 msgstr "Selecciona el puerto de salida de vídeo con los botones ARRIBA/ABAJO"
-
-msgid "Use automatic mode detection"
-msgstr "Usar modo de detección automática"
 
 msgid "Default video mode selected for the TV."
 msgstr "Modo de vídeo predeterminado seleccionado para la TV."
@@ -27974,6 +27977,9 @@ msgid "Use UP/DOWN buttons to select option then press OK"
 msgstr ""
 "Utilice los botones ARRIBA y ABAJO para seleccionar opción y luego pulse OK"
 
+msgid "Use automatic mode detection"
+msgstr "Usar modo de detección automática"
+
 msgid "View the next item in a list"
 msgstr "Ver el siguiente elemento de la lista"
 
@@ -28032,7 +28038,7 @@ msgstr[1] "%d paquetes encontrados."
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
-msgstr[0] "%d paquete tiene una actualización."
+msgstr[0] "%d paquete tiene una actualización"
 msgstr[1] "%d paquetes tienen una actualización."
 
 #, python-format
@@ -28112,7 +28118,7 @@ msgstr "Forzar modo de limpieza OPKG"
 
 #
 msgid "Hide error messages from the Common Interface module."
-msgstr "Ocultar mensajes de error del módulo interfaz común"
+msgstr "Ocultar mensajes de error del módulo interfaz común."
 
 msgid "Hide CI messages"
 msgstr "Ocultar mensajes CI"
@@ -28343,7 +28349,7 @@ msgstr ""
 "menú."
 
 msgid "Setting Packages"
-msgstr "Paquetes de configuración"
+msgstr "Paquetes de listas de canales"
 
 msgid "Show Development packages"
 msgstr "Mostrar paquetes de desarrollo"
@@ -28575,6 +28581,22 @@ msgstr "Habilitar Ntpd cuando inicie YoutubeTV"
 #
 msgid "YouTubeTV Settings"
 msgstr "Configuración YouTubeTV"
+
+msgid "OpenSPA Menu"
+msgstr "Menú OpenSPA"
+
+msgid "spaPANEL"
+msgstr "Panel SPA"
+
+msgid "AddOns"
+msgstr "Extras"
+
+msgid "Tv Options"
+msgstr "Opciones TV"
+
+#~ msgctxt "now/next: 'next' event label"
+#~ msgid "Next"
+#~ msgstr "Siguiente"
 
 #
 #~ msgid "Please select a subservice..."
