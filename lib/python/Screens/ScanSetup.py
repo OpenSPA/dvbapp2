@@ -2173,6 +2173,10 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 	def startScanCallback(self, answer=True):
 		self.session.openWithCallback(self.repeat, MessageBox, _('Do you want to search other transponder?'), MessageBox.TYPE_YESNO)
 
+	def repeat(self, answer=True):
+		if not answer:
+			self.doCloseRecursive()
+
 	def setCableTransponderSearchResult(self, tlist):
 		if tlist is not None:
 			self.scanList.append({"transponders": tlist, "feid": self.feid, "flags": self.flags})
