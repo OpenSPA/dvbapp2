@@ -337,7 +337,7 @@ class HelpMenuList(List):
 				# print("[HelpMenu] Action map disabled.")
 				continue
 			amId = actMapId()
-			if headings and actionmap.description and not (formatFlags & self.HEADINGS):
+			if headings and hasattr(actionmap, "description") and not (formatFlags & self.HEADINGS):
 				# print("[HelpMenu] HelpMenuList DEBUG: Headings found.")
 				formatFlags |= self.HEADINGS
 			for (action, help) in actions:  # DEBUG: Should help be response?
