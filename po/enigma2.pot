@@ -1362,9 +1362,6 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1 hour"
-msgstr ""
-
 msgid "1.0"
 msgstr ""
 
@@ -1374,25 +1371,13 @@ msgstr ""
 msgid "1.2"
 msgstr ""
 
-msgid "10 minutes"
-msgstr ""
-
-msgid "1024 Mb"
-msgstr ""
-
 msgid "10bit"
 msgstr ""
 
 msgid "12 character"
 msgstr ""
 
-msgid "12 hours"
-msgstr ""
-
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr ""
-
-msgid "128 Mb"
 msgstr ""
 
 msgid "12V output"
@@ -1408,12 +1393,6 @@ msgid "12bit 4:2:0/4:2:2 no PiP"
 msgstr ""
 
 msgid "13 V"
-msgstr ""
-
-msgid "15 minutes"
-msgstr ""
-
-msgid "1536 Mb"
 msgstr ""
 
 msgid "16/9 reset to normal"
@@ -1443,9 +1422,6 @@ msgstr ""
 msgid "16:9 PanScan"
 msgstr ""
 
-msgid "16K"
-msgstr ""
-
 msgid "18 V"
 msgstr ""
 
@@ -1458,28 +1434,13 @@ msgstr ""
 msgid "2"
 msgstr ""
 
-msgid "2 hours"
-msgstr ""
-
-msgid "2 minutes"
-msgstr ""
-
-msgid "2048 Mb"
-msgstr ""
-
 msgid "23.976"
 msgstr ""
 
 msgid "24"
 msgstr ""
 
-msgid "24 hours"
-msgstr ""
-
 msgid "25"
-msgstr ""
-
-msgid "256 Mb"
 msgstr ""
 
 msgid "29.97"
@@ -1515,16 +1476,7 @@ msgstr ""
 msgid "3"
 msgstr ""
 
-msgid "3 hours"
-msgstr ""
-
 msgid "30"
-msgstr ""
-
-msgid "30 minutes"
-msgstr ""
-
-msgid "32 Mb"
 msgstr ""
 
 msgid "3D Mode"
@@ -1542,12 +1494,6 @@ msgstr ""
 msgid "4"
 msgstr ""
 
-msgid "4 hours"
-msgstr ""
-
-msgid "4:3"
-msgstr ""
-
 msgid "4:3 Combined"
 msgstr ""
 
@@ -1560,49 +1506,22 @@ msgstr ""
 msgid "4:3 PanScan"
 msgstr ""
 
-msgid "4K"
-msgstr ""
-
 msgid "4x"
 msgstr ""
 
 msgid "5"
 msgstr ""
 
-msgid "5 hours"
-msgstr ""
-
-msgid "5 minutes"
-msgstr ""
-
-msgid "512 Mb"
-msgstr ""
-
 msgid "6"
 msgstr ""
 
-msgid "6 hours"
-msgstr ""
-
-msgid "64 Mb"
-msgstr ""
-
 msgid "7"
-msgstr ""
-
-msgid "7 hours"
 msgstr ""
 
 msgid "8"
 msgstr ""
 
 msgid "8 character"
-msgstr ""
-
-msgid "8 hours"
-msgstr ""
-
-msgid "8K"
 msgstr ""
 
 msgid "8bit"
@@ -5823,12 +5742,6 @@ msgstr ""
 msgid "Disk full"
 msgstr ""
 
-msgid "Storage device full!"
-msgstr ""
-
-msgid "Storage device not writable!"
-msgstr ""
-
 msgid "Storage device not found!"
 msgstr ""
 
@@ -7417,9 +7330,6 @@ msgstr ""
 msgid "FFmpeg version"
 msgstr ""
 
-msgid "FHD"
-msgstr ""
-
 msgid "FIFO"
 msgstr ""
 
@@ -8261,9 +8171,6 @@ msgid "H:mm:ss"
 msgstr ""
 
 msgid "HARD DISK: "
-msgstr ""
-
-msgid "HD"
 msgstr ""
 
 msgid "HD list"
@@ -23734,4 +23641,25 @@ msgid "AddOns"
 msgstr ""
 
 msgid "Tv Options"
+msgstr ""
+
+msgid "Always"
+msgstr ""
+
+msgid "Download the selected image"
+msgstr ""
+
+msgid "If EPG available"
+msgstr ""
+
+msgid "Show subservices *"
+msgstr ""
+
+msgid "Storage device full!"
+msgstr ""
+
+msgid "Storage device not writable!"
+msgstr ""
+
+msgid "This option allows you choose the option for subservice indicator or selection."
 msgstr ""
