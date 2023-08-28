@@ -227,7 +227,7 @@ class FlashManager(Screen, HelpableScreen):
 				self.expanded.append(currentSelection[0][0])
 			self.getImagesList()
 		elif currentSelection[0][1] != "Loading":
-			self.session.openWithCallback(reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1], self.destpath)
+			self.session.openWithCallback(reloadImagesList, FlashImage, currentSelection[0][0], currentSelection[0][1], downloadOnly=False, destpath=self.destpath)
 
 	def keyTop(self):
 		self["list"].instance.goTop()
@@ -467,7 +467,6 @@ class FlashImage(Screen, HelpableScreen):
 				devices.sort(key=lambda x: x[1], reverse=True)
 				mounts.sort(key=lambda x: x[1], reverse=True)
 				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
-
 			if "backup" not in str(choice):
 				if MultiBoot.canMultiBoot():
 					self.slotCode = choice[0]
