@@ -180,7 +180,7 @@ def getConfigValue(l):
 
 def notBlackListed(entry):
 	try:
-		f = open(config.cccaminfo.blacklist.value, "r")
+		f = open(config.cccaminfo.blacklist.value)
 		content = f.read().split("\n")
 		f.close()
 	except OSError:
@@ -228,7 +228,7 @@ else:
 
 def getConfigNameAndContent(fileName):
 	try:
-		f = open(fileName, "r")
+		f = open(fileName)
 		content = f.read()
 		f.close()
 	except OSError:
@@ -411,7 +411,7 @@ def CCcamConfigListEntry(file):
 	res = [file]
 
 	try:
-		f = open(CFG, "r")
+		f = open(CFG)
 		org = f.read()
 		f.close()
 	except OSError:
@@ -679,7 +679,7 @@ class CCcamInfoMain(Screen):
 
 	def showFile(self, file):
 		try:
-			f = open(file, "r")
+			f = open(file)
 			content = f.read()
 			f.close()
 		except OSError:
@@ -1314,7 +1314,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 
 	def readProfiles(self):
 		try:
-			f = open(config.cccaminfo.profiles.value, "r")
+			f = open(config.cccaminfo.profiles.value)
 			content = f.read()
 			f.close()
 		except OSError:
@@ -1630,7 +1630,7 @@ class CCcamInfoConfigSwitcher(Screen):
 	def renameCallback(self, callback):
 		if callback is not None:
 			try:
-				f = open(self.fileToRename, "r")
+				f = open(self.fileToRename)
 				content = f.read()
 				f.close()
 			except OSError:
@@ -1659,7 +1659,7 @@ class CCcamInfoConfigSwitcher(Screen):
 		fileName = self["list"].getCurrent()
 		if fileName is not None:
 			try:
-				f = open(fileName[0], "r")
+				f = open(fileName[0])
 				content = f.read()
 				f.close()
 			except OSError:
@@ -1692,7 +1692,7 @@ class CCcamInfoMenuConfig(Screen):
 
 	def getBlacklistedMenuEntries(self):
 		try:
-			f = open(config.cccaminfo.blacklist.value, "r")
+			f = open(config.cccaminfo.blacklist.value)
 			content = f.read()
 			f.close()
 			self.blacklisted = content.split("\n")

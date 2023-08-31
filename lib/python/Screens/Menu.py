@@ -51,9 +51,9 @@ lastKey = None
 # Read the menu.
 #### OPENSPA [morser] if spazemenu, read openspa menu
 if isPluginInstalled("spazeMenu"):
-	file = open(resolveFilename(SCOPE_SKINS, 'menuspa.xml'), 'r')
+	file = open(resolveFilename(SCOPE_SKINS, 'menuspa.xml'))
 else:
-	file = open(resolveFilename(SCOPE_SKINS, 'menu.xml'), 'r')
+	file = open(resolveFilename(SCOPE_SKINS, 'menu.xml'))
 mdom = parse(file)
 file.close()
 
