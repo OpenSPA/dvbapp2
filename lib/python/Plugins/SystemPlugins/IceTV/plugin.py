@@ -305,7 +305,7 @@ class LogEntry(dict):
         return self.fmt()
 
 
-class EPGFetcher(object):
+class EPGFetcher:
     START_EVENTS = {
         iRecordableService.evStart,
     }
