@@ -719,7 +719,7 @@ class PowerTimerOverview(TimerOverviewBase):
 				callback("", "", "", "", "")
 		showCleanup = False
 		for item in self["timerlist"].getList():
-			if not item[0].disabled and item[1] == True:
+			if not item[0].disabled and item[1] is True:
 				showCleanup = True
 				break
 		if showCleanup:
@@ -910,7 +910,7 @@ class RecordTimerOverview(TimerOverviewBase):
 				callback("", "", "", "", "")
 		showCleanup = False
 		for item in self["timerlist"].getList():
-			if not item[0].disabled and item[1] == True:
+			if not item[0].disabled and item[1] is True:
 				showCleanup = True
 				break
 		if showCleanup:

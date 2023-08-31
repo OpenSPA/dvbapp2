@@ -169,9 +169,9 @@ class ParentalControl:
 		return [x.value for x in config.ParentalControl.servicepin]
 
 	def setSessionPinCached(self):
-		if self.checkSessionPin == True:
+		if self.checkSessionPin is True:
 			self.sessionPinCached = True
-		if self.checkPinInterval == True:
+		if self.checkPinInterval is True:
 			self.sessionPinCached = True
 			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
@@ -220,7 +220,7 @@ class ParentalControl:
 		#The lists are not only lists of service references any more.
 		#They are named lists with the service as key and an array of types as value:
 		if service in vList:
-			if not type in vList[service]:
+			if type not in vList[service]:
 				vList[service].append(type)
 		else:
 			vList[service] = [type]
