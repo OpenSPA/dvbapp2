@@ -979,7 +979,7 @@ class AttributeParser:
 		self.guiObject.setSelectionPixmap(parsePixmap(value, self.desktop))
 
 	def selectionZoom(self, value):
-		data = (x.strip() for x in value.split(","))
+		data = [x.strip() for x in value.split(",")]
 		value = data[0]
 		mode = eListbox.zoomContentZoom
 		if len(data) == 2:
@@ -995,7 +995,7 @@ class AttributeParser:
 		self.guiObject.setSelectionZoom(float("%d.%02d" % ((value // 100) + 1, value % 100)), mode)
 
 	def selectionZoomSize(self, value):
-		data = (x.strip() for x in value.split(","))
+		data = [x.strip() for x in value.split(",")]
 		value = "%s,%s" % (data[0], data[1])
 		mode = eListbox.zoomContentZoom
 		if len(data) == 3:
