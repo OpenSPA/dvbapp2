@@ -1,1 +1,1 @@
-SUBDIRS = skin_default openSPA_simple openSPA_classic openSPA_modern openSPA_modern_plus openSPA_modern_19
+SUBDIRS = skin_default openSPA_simple openSPA_classic openSPA_modern openSPA_modern_plus openSPA_modern_19 opensSPA_Vk
