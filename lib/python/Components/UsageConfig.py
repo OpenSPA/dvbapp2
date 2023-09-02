@@ -14,7 +14,7 @@ from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_PICON, defaultRecordingLocation, resolveFilename
+from Tools.Directories import SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_PICON, defaultRecordingLocation, resolveFilename, isPluginInstalled
 from Components.AVSwitch import iAVSwitch
 
 DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
