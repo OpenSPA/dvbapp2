@@ -435,6 +435,20 @@ def getCpuCoresString():
 	except IOError:
 		return _("unavailable")
 
+def getEnigmaDateString():
+	process = Popen(["opkg", "info", "enigma2"], stdout=PIPE, stderr=PIPE, universal_newlines=True)
+	stdout, stderr = process.communicate()
+	if process.returncode == 0:
+		for line in stdout.split("\n"):
+			if line.startswith("Installed-Time"):
+				data = line.split(":")[1]
+				if len(data)>0:
+					from datetime import datetime
+					data = datetime.fromtimestamp(int(data))
+					return data.strftime("%Y-%m-%d")
+	return _("Unknown")
+
+
 #########################################################################################################################
 
 def GetIPsFromNetworkInterfaces():
