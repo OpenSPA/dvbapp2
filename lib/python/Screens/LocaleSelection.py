@@ -364,11 +364,6 @@ class LocaleSelection(Screen, HelpableScreen):
 		self["locales"].bottom()
 
 	def keySave(self):
-		def keySaveCallback(result):
-			if result:
-				self.session.open(TryQuitMainloop, retvalue=QUIT_RESTART)
-			else:
-				self.close()
 		config.osd.language.value = self.currentLocale
 		config.osd.language.save()
 		config.misc.locale.value = self.currentLocale
@@ -386,7 +381,6 @@ class LocaleSelection(Screen, HelpableScreen):
 		# OPENSPA [morser] Allow to eliminate the rest of the languages in the wizard
 		#global inWizard
 		if self.inWizard:
-			self.inWizard = False
 			current = self["locales"].getCurrent()
 			locale = current[self.LIST_LOCALE]
 			permanent = sorted(international.getPermanentLocales(locale))
@@ -396,11 +390,17 @@ class LocaleSelection(Screen, HelpableScreen):
 			self.close()
 
 	def deletelanguagesCB(self, anwser):
+		def keySaveCallback(result):
+			if result:
+				self.session.open(TryQuitMainloop, retvalue=QUIT_RESTART)
+			else:
+				self.close()
 		if anwser:
 			international.deleteLanguagePackages(international.getPurgablePackages())
 		if not self.inWizard and self.initialLocale != self.currentLocale:
 			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now?"), default=True, type=MessageBox.TYPE_YESNO, windowTitle=_("Question"))
 		else:
+			self.inWizard = False
 			self.close()
 
 	def keyCancel(self, closeParameters=()):
