@@ -23663,3 +23663,12 @@ msgstr ""
 
 msgid "This option allows you choose the option for subservice indicator or selection."
 msgstr ""
+
+msgid "Language active, not possible to delete"
+msgstr ""
+
+msgid "Language installed but not active"
+msgstr ""
+
+msgid "Language not installed. Yellow to install"
+msgstr ""
