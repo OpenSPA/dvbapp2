@@ -23672,3 +23672,6 @@ msgstr ""
 
 msgid "Language not installed. Yellow to install"
 msgstr ""
+
+msgid "EPG Days: %s"
+msgstr ""

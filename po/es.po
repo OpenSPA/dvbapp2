@@ -28532,3 +28532,6 @@ msgstr "Idioma instalado pero no activo"
 
 msgid "Language not installed. Yellow to install"
 msgstr "Idioma no instalado. Amarillo para instalar"
+
+msgid "EPG Days: %s"
+msgstr "Días de EPG: %s"
