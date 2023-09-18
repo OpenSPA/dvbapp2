@@ -123,8 +123,8 @@ class ConfigElement:
 		# print("[Config] load DEBUG: Default='%s', SavedValue='%s'." % (self.toString(self.default), self.saved_value))
 
 	def cancel(self):  # You need to override this if you want cancel to use something other than loadValue.
-		if self.loadValue is None:
-			self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
+#		if self.loadValue is None: ### OPENSPA [morser] Fix restore value after change & cancel
+		self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
 		# print("[Config] cancel DEBUG: Load='%s' %s, Value='%s' %s." % (self.loadValue, type(self.loadValue), self.value, type(self.value)))
 		if self.value != self.loadValue:
 			self.value = self.loadValue
