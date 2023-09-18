@@ -716,7 +716,7 @@ class AutoVideoMode(Screen):
 					new_res = config_res
 					if video_pol == "p" and config_pol == "i":
 						new_pol = config_pol
-					if config_rate not in ("auto", "multi") and int(config_rate) < new_rate:
+					if config_rate not in ("auto", "multi") and int(config_rate) < int(new_rate):
 						new_rate = config_rate
 				new_rate = str(int(new_rate))
 
