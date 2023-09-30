@@ -676,7 +676,7 @@ def parseScrollbarScroll(value):
 	return parseOptions(options, "scrollbarScroll", value, 0)
 
 
-def parseTextPadding(value):
+def parsePadding(value, attribute):
 	if value in variables:
 		value = variables[value]
 	padding = [parseInteger(x.strip()) for x in value.split(",")]
@@ -687,7 +687,7 @@ def parseTextPadding(value):
 		return padding * 2
 	elif count == 4:
 		return padding
-	print("[Skin] Error: Attribute 'textPadding' with value '%s' is invalid!  Attribute must have 1, 2 or 4 values." % value)
+	print(f"[Skin] Error: Attribute '{attribute}' with value '{value}' is invalid!  Attribute must have 1, 2 or 4 values.")
 	return [0, 0, 0, 0]
 
 
@@ -918,6 +918,14 @@ class AttributeParser:
 	def overScan(self, value):
 		self.guiObject.setOverscan(value)
 
+	def padding(self, value):
+		leftPadding, topPadding, rightPadding, bottomPadding = parsePadding(value, "padding")
+		leftPadding = self.applyHorizontalScale(leftPadding)
+		topPadding = self.applyVerticalScale(topPadding)
+		rightPadding = self.applyHorizontalScale(rightPadding)
+		bottomPadding = self.applyVerticalScale(topPadding)
+		self.guiObject.setPadding(eRect(leftPadding, topPadding, rightPadding, bottomPadding))
+
 	def pixmap(self, value):
 		self.guiObject.setPixmap(parsePixmap(value, self.desktop))
 
@@ -1074,7 +1082,7 @@ class AttributeParser:
 		attribDeprecationWarning("textOffset", "textPadding")
 
 	def textPadding(self, value):
-		leftPadding, topPadding, rightPadding, bottomPadding = parseTextPadding(value)
+		leftPadding, topPadding, rightPadding, bottomPadding = parsePadding(value, "textPadding")
 		leftPadding = self.applyHorizontalScale(leftPadding)
 		topPadding = self.applyVerticalScale(topPadding)
 		rightPadding = self.applyHorizontalScale(rightPadding)
@@ -1341,7 +1349,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			borderWidth = parseInteger(slider.attrib.get("borderWidth", eSlider.DefaultBorderWidth), eSlider.DefaultBorderWidth)
 			eSlider.setDefaultBorderWidth(borderWidth)
 		for stringList in tag.findall("stringList"):
-			leftPadding, topPadding, rightPadding, bottomPadding = parseTextPadding(stringList.attrib.get("textPadding", "0,0,0,0"))
+			leftPadding, topPadding, rightPadding, bottomPadding = parsePadding(stringList.attrib.get("textPadding", "0,0,0,0"), "textPadding")
 			eListbox.setDefaultPadding(eRect(leftPadding, topPadding, rightPadding, bottomPadding))
 		for title in tag.findall("title"):
 			style.setTitleFont(parseFont(title.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
