@@ -474,7 +474,7 @@ def InitLcd():
 		if exists("/proc/stb/fp/power4x7suspend"):
 			config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
 
-		
+
 		def setDateOnStandby(configElement):
 			pass
 
@@ -503,7 +503,7 @@ def InitLcd():
 				("%H:%M %a %d",str(ntime.strftime(_("%H:%M %a %d")))),
 				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
 				("A%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
-				("A%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))), 
+				("A%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))),
 				("A%H:%M %d %b",str(ntime.strftime(_("%H:%M <A> %d %b")))),
 				("A%H:%M %d %b %y",str(ntime.strftime(_("%H:%M <A> %d %b %y")))),
 				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d")))),
@@ -517,14 +517,14 @@ def InitLcd():
 				("%H:%M",str(ntime.strftime(_("%H:%M")))),
 				("%H:%M %d/%m",str(ntime.strftime(_("%H:%M %d/%m")))),
 				("%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M %d/%m/%y")))),
-				("%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M %d/%m/%Y")))), 
+				("%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M %d/%m/%Y")))),
 				("%H:%M %d %b",str(ntime.strftime(_("%H:%M %d %b")))),
 				("%H:%M %d %b %y",str(ntime.strftime(_("%H:%M %d %b %y")))),
 				("%H:%M %a %d",str(ntime.strftime(_("%H:%M %a %d")))),
 				("%H:%M %a %d/%m",str(ntime.strftime(_("%H:%M %a %d/%m")))),
 				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
 				("A%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
-				("A%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))), 
+				("A%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))),
 				("A%H:%M %d %b",str(ntime.strftime(_("%H:%M <A> %d %b")))),
 				("A%H:%M %d %b %y",str(ntime.strftime(_("%H:%M <A> %d %b %y")))),
 				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d")))),
@@ -726,6 +726,7 @@ def InitLcd():
 		config.lcd.fblcddisplay = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.hdd = ConfigNothing()
+		config.usage.lcd_dateformat = ConfigNothing()  # OPENSPA [JR]
 		config.lcd.scroll_speed = ConfigSelection(choices=[
 			("500", _("slow")),
 			("300", _("normal")),
