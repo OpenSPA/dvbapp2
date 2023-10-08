@@ -284,9 +284,10 @@ class DNSSettings(Setup):
 				config.usage.dns.value = option
 				dnsRefresh(refresh)
 				return option
-		option = "custom"
+		# option = "custom"  # OPENSPA Always configure a server after you have assigned DNS from your provider [norhap]
+		option = config.usage.dns.value  # OPENSPA now assign your DNS provider [norhap]
 		self.dnsOptions[option] = dnsServers[:]
-		config.usage.dns.value = option
+		# config.usage.dns.value = option  # OPENSPA this variable deprecated, use variable option [norhap]
 		dnsRefresh(refresh)
 		return option
 
@@ -3656,7 +3657,8 @@ class NetworkLogScreen(Screen):
 		self.console.killAll()
 		self.close(True)
 
-##############################Added by VillaK OpenSPA Udpxy and Xupnpd##########################################
+
+# #############################Added by VillaK OpenSPA Udpxy and Xupnpd##########################################
 class NetworkUdpxy(NetworkBaseScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3675,10 +3677,10 @@ class NetworkUdpxy(NetworkBaseScreen):
 		self.my_udpxy_active = False
 		self.my_udpxy_run = False
 		self['actions'] = HelpableActionMap(self,['WizardActions', 'ColorActions'], {
-			'ok': self.close, 
-			'back': self.close, 
-			'red': self.UninstallCheck, 
-			'green': self.UdpxyStartStop, 
+			'ok': self.close,
+			'back': self.close,
+			'red': self.UninstallCheck,
+			'green': self.UdpxyStartStop,
 			'yellow': self.activateUdpxy
 		},prio=0, description=_("Udpxy Actions"))
 		self.service_name = 'udpxy'
@@ -3686,7 +3688,7 @@ class NetworkUdpxy(NetworkBaseScreen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self.session.open(TryQuitMainloop, 2)
-		
+
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO, windowTitle=_("Ready to remove '%s'?") % self.service_name)
@@ -3745,7 +3747,7 @@ class NetworkUdpxy(NetworkBaseScreen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-###############################Xupnpd#################################
+# ##############################Xupnpd#################################
 class NetworkXupnpd(NetworkBaseScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3764,10 +3766,10 @@ class NetworkXupnpd(NetworkBaseScreen):
 		self.my_xupnpd_active = False
 		self.my_xupnpd_run = False
 		self['actions'] = HelpableActionMap(self,['WizardActions', 'ColorActions'], {
-			'ok': self.close, 
-			'back': self.close, 
-			'red': self.UninstallCheck, 
-			'green': self.xupnpdStartStop, 
+			'ok': self.close,
+			'back': self.close,
+			'red': self.UninstallCheck,
+			'green': self.xupnpdStartStop,
 			'yellow': self.activatexupnpd
 		},prio=0, description=_("Xupnpd Actions"))
 		self.service_name = 'xupnpd'
@@ -3775,7 +3777,7 @@ class NetworkXupnpd(NetworkBaseScreen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self.session.open(TryQuitMainloop, 2)
-		
+
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO, windowTitle=_("Ready to remove '%s'?") % self.service_name)
@@ -3833,4 +3835,4 @@ class NetworkXupnpd(NetworkBaseScreen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-###############################END added by OpenSPA#####################################
+# ##############################END added by OpenSPA#####################################
