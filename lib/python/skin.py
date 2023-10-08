@@ -52,6 +52,7 @@ windowStyles = {}  # Dictionary of window styles for each screen ID.
 resolutions = {}  # Dictionary of screen resolutions for each screen ID.
 scrollLabelStyle = {}  # Dictionary of scrollLabel widget defaults.
 constantWidgets = {}
+layouts = {}
 variables = {}
 isVTISkin = False  # Temporary flag to suppress errors in OpenATV.
 
