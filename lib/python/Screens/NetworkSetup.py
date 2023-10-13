@@ -39,6 +39,11 @@ MODULE_NAME = __name__.split(".")[-1]
 BASE_GROUP = "packagegroup-base"
 
 
+def serviceIsEnabled(service_name):  # [OPENSPA] [norhap]
+	autostartup = glob("/etc/rc2.d/S*" + service_name)
+	return len(autostartup) > 0
+
+
 class NetworkAdapterSelection(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2156,7 +2161,7 @@ class NetworkOpenvpn(NetworkBaseScreen):
 		self.updateService()
 
 	def activateVpn(self):
-		if fileExists("/etc/rc2.d/S20openvpn"):
+		if serviceIsEnabled("openvpn"):
 			self.Console.ePopen("update-rc.d -f openvpn remove", self.StartStopCallback)
 		else:
 			self.Console.ePopen("update-rc.d -f openvpn defaults", self.StartStopCallback)
@@ -2170,7 +2175,7 @@ class NetworkOpenvpn(NetworkBaseScreen):
 		self["labactive"].setText(_("Disabled"))
 		self.my_Vpn_active = False
 		self.my_vpn_run = False
-		if fileExists("/etc/rc2.d/S20openvpn"):
+		if serviceIsEnabled("openvpn"):
 			self["labactive"].setText(_("Enabled"))
 			self["labactive"].show()
 			self.my_Vpn_active = True
