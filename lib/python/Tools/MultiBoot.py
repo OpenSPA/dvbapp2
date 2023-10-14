@@ -681,7 +681,9 @@ class MultiBootClass():
 			##### OPENSPA [morser] change for h7 & hd51 Boxmodes ###############
 			if self.bootCode == "12" and "BOXMODE" not in startup:
 				open(pathjoin(self.tempDir, target), "w").write(bootSlot["cmdline"]["12"])
-			elif not exists(DREAM_BOOT_FILE) and not startup == STARTUP_RECOVERY:
+			if exists(DREAM_BOOT_FILE) and startup == STARTUP_RECOVERY:
+				pass
+			else:
 				copyfile(pathjoin(self.tempDir, startup), pathjoin(self.tempDir, target))
 			####################################################################
 			if exists(DUAL_BOOT_FILE):
