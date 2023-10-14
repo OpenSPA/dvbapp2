@@ -98,7 +98,7 @@ class picshow(Screen):
 			self["key_yellow"].setText("")
 
 	def KeyGreen(self):
-		#if not self.filelist.canDescent():
+		# if not self.filelist.canDescent():
 		self.session.openWithCallback(self.callbackView, Pic_Thumb, self.filelist.getFileList(), self.filelist.getSelectionIndex(), self.filelist.getCurrentDirectory())
 
 	def KeyYellow(self):
@@ -116,7 +116,7 @@ class picshow(Screen):
 
 	def setConf(self, retval=None):
 		self.setTitle(_("Picture player"))
-		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
+		# 0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
 		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), 1, 1, config.pic.cache.value, int(config.pic.resize.value), "#00000000"))
 
 	def callbackView(self, val=0):
@@ -134,7 +134,7 @@ class picshow(Screen):
 		config.pic.save()
 		self.close()
 
-#------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------
 
 
 class Pic_Setup(Setup):
@@ -142,7 +142,7 @@ class Pic_Setup(Setup):
 		Setup.__init__(self, session, setup="PicturePlayer", plugin="Extensions/PicturePlayer")
 		self.setTitle(_("Edit settings"))
 
-#---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
 
 
 class Pic_Exif(Screen):
@@ -186,7 +186,7 @@ class Pic_Exif(Screen):
 	def layoutFinished(self):
 		self.setTitle(_("Info"))
 
-#----------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 
 
 T_INDEX = 0
@@ -207,8 +207,8 @@ class Pic_Thumb(Screen):
 
 		self.size_w = getDesktop(0).size().width()
 		self.size_h = getDesktop(0).size().height()
-		self.thumbsX = self.size_w / (self.spaceX + self.picX)  # thumbnails in X
-		self.thumbsY = self.size_h / (self.spaceY + self.picY)  # thumbnails in Y
+		self.thumbsX = self.size_w // (self.spaceX + self.picX)  # thumbnails in X
+		self.thumbsY = self.size_h // (self.spaceY + self.picY)  # thumbnails in Y
 		self.thumbsC = int(self.thumbsX * self.thumbsY)  # all thumbnails
 
 		self.positionlist = []
@@ -216,7 +216,7 @@ class Pic_Thumb(Screen):
 
 		posX = -1
 		for x in range(self.thumbsC):
-			posY = x / self.thumbsX
+			posY = x // self.thumbsX
 			posX += 1
 			if posX >= self.thumbsX:
 				posX = 0
@@ -294,7 +294,7 @@ class Pic_Thumb(Screen):
 		self.paintFrame()
 
 	def paintFrame(self):
-		#print "index=" + str(self.index)
+		# print "index=" + str(self.index)
 		if self.maxentry < self.index or self.index < 0:
 			return
 
@@ -308,17 +308,17 @@ class Pic_Thumb(Screen):
 
 	def newPage(self):
 		self.Thumbnaillist = []
-		#clear Labels and Thumbnail
+		# clear Labels and Thumbnail
 		for x in range(self.thumbsC):
 			self["label" + str(x)].setText("")
 			self["thumb" + str(x)].hide()
-		#paint Labels and fill Thumbnail-List
+		# paint Labels and fill Thumbnail-List
 		for x in self.filelist:
 			if x[T_PAGE] == self.currPage:
 				self["label" + str(x[T_FRAME_POS])].setText("(" + str(x[T_INDEX] + 1) + ") " + x[T_NAME])
 				self.Thumbnaillist.append([0, x[T_FRAME_POS], x[T_FULL]])
 
-		#paint Thumbnail start
+		# paint Thumbnail start
 		self.showPic()
 
 	def showPic(self, picInfo=""):
@@ -380,7 +380,7 @@ class Pic_Thumb(Screen):
 		del self.picload
 		self.close(self.index + self.dirlistcount)
 
-#---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
 
 
 class Pic_Full_View(Screen):
