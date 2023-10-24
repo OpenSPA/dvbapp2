@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 msgid ""
 "\n"
@@ -10536,7 +10536,7 @@ msgid "Inode"
 msgstr "Inodo"
 
 msgid "Inotify Monitoring"
-msgstr "Monitorización Inotify"
+msgstr "Monitorización"
 
 #
 msgid "Input"
@@ -10682,7 +10682,7 @@ msgstr "Interlingual / Occidental"
 
 #
 msgid "Intermediate"
-msgstr "Interrecurso"
+msgstr "Intermedio"
 
 msgid "Internal"
 msgstr "Interno"
@@ -18631,7 +18631,7 @@ msgid "Seychelles"
 msgstr "Seychelles"
 
 msgid "Share Folders"
-msgstr "Compartir archivos"
+msgstr "Carpetas compartidas"
 
 msgid "Share View"
 msgstr "Compartir visualización"
@@ -26251,7 +26251,7 @@ msgid "set as startup service"
 msgstr "Configurar como canal de inicio"
 
 msgid "share:"
-msgstr "Compartir:"
+msgstr "Recurso compartido:"
 
 msgid "shell"
 msgstr "bandeja"
@@ -28535,3 +28535,10 @@ msgstr "Idioma no instalado. Amarillo para instalar"
 
 msgid "EPG Days: %s"
 msgstr "Días de EPG: %s"
+
+#
+msgid "Black screen"
+msgstr "Pantalla negra"
+
+msgid "Select folder where your picons are located."
+msgstr "Selecciona la carpeta donde se encuentran tus picons."
