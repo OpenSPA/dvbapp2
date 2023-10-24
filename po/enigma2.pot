@@ -23675,3 +23675,9 @@ msgstr ""
 
 msgid "EPG Days: %s"
 msgstr ""
+
+msgid "Black screen"
+msgstr ""
+
+msgid "Select folder where your picons are located."
+msgstr ""
