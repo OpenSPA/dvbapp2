@@ -703,6 +703,7 @@
 		<key id="KEY_GREEN" mapto="aspectSelection" flags="l" />
 		<key id="KEY_MODE" mapto="aspectSelection" flags="l" />
 		<key id="KEY_MODE" mapto="aspectSelection" flags="b" />
+		<key id="KEY_EXIT" mapto="exitLong" flags="l" />
 	</map>
 
 	<map context="InfobarSubtitleSelectionActions">

@@ -21483,6 +21483,9 @@ msgstr ""
 "Esta función no está disponible ya que el procesado de archivos grandes "
 "puede llevar mucho tiempo al ejecutar en este hardware."
 
+msgid "This function recovers your video signal in case of loss. The video has been changed to 720p.\nIf this is your case, please keep the video at 720P and do the following:\nGo to System > Receiver Setup > Video > Video Settings\nNow set a correct resolution.\n\nDo you want to keep the video at 720p?"
+msgstr "Esta función recupera su señal de video en caso de pérdida. El vídeo se ha cambiado a 720p.\nSi este es su caso, mantenga el vídeo en 720P y haz lo siguiente:\nVaya a Sistema > Configuración del receptor > Vídeo > Ajustes de vídeo\nAhora configure una resolución correcta.\n\n¿Quieres mantener el vídeo a 720p?"
+
 msgid ""
 "This is a workaround for some devices that wake up again after switching to "
 "standby. The wake up command's from other devices will be ignored for few "
