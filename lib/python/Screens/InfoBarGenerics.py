@@ -925,7 +925,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.LongButtonPressed:
 			self.longpress(config.usage.oklong.value)
 		###############################################
-		
+
 	def lockShow(self):
 		try:
 			self.__locked += 1
@@ -3219,7 +3219,7 @@ class InfoBarExtensions:
 		else:
 			return []
 	########################################
-	
+
 	## OPENSPA [evox] Add Ipk Uninstall Tool
 	def getIpkUninstallname(self):
 		return _("Ipk Uninstall Tool")
@@ -3235,7 +3235,7 @@ class InfoBarExtensions:
 			else:
 				for y in elem[1]():
 					name =str(y[0][0]())
-			return name			
+			return name
 	########################################
 
 	def addExtension(self, extension, key=None, type=EXTENSION_SINGLE):
@@ -3730,7 +3730,7 @@ class InfoBarInstantRecord:
 			from Screens.TimerEdit import TimerEditList
 			self.session.open(TimerEditList)
 		elif value == "resolution":
-			self.ExGreen_toggleGreen()		
+			self.ExGreen_toggleGreen()
 		elif value == "camdmanager":
 			try:
 				from Plugins.Extensions.spazeMenu.spzPlugins.spzCAMD.plugin import startConfig
@@ -4343,6 +4343,7 @@ class InfoBarAspectSelection:
 	def __init__(self):
 		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", {
 			"aspectSelection": (self.GreenLongPress, _("Aspect list...")),
+			"exitLong": (self.switchTo720p, _("Switch to 720p video")),
 		}, prio=0, description=_("Aspect Ratio Actions"))
 
 		self.__ExGreen_state = self.STATE_HIDDEN
@@ -4444,6 +4445,20 @@ class InfoBarAspectSelection:
 		else:
 			self.ExGreen_doHide()
 
+	def changeVideoMode(self, confirmed):  # [OPENSPA] [norhap]
+		port = config.av.videoport.value
+		mode = config.av.videomode[port].value
+		rate = config.av.videorate[mode].value
+		self.last_used_video_mode = (port, mode, rate)  # have video 720p
+		if not confirmed:   # return to the last used video mode
+			config.av.videoport.value = self.last_used_video_mode[0]
+			config.av.videomode[self.last_used_video_mode[0]].value = self.last_used_video_mode[1]
+			config.av.videorate[self.last_used_video_mode[1]].value = self.last_used_video_mode[2]
+			iAVSwitch.setMode(*self.last_used_video_mode)
+
+	def switchTo720p(self):  # use 720p video mode recover signal on your video port
+		iAVSwitch.setMode("HDMI", "720p", "50Hz")
+		self.session.openWithCallback(self.changeVideoMode, MessageBox, _("This function recovers your video signal in case of loss. The video has been changed to 720p.\nIf this is your case, please keep the video at 720P and do the following:\nGo to System > Receiver Setup > Video > Video Settings\nNow set a correct resolution.\n\nDo you want to keep the video at 720p?"), MessageBox.TYPE_YESNO, timeout=30, simple=True)
 
 class InfoBarResolutionSelection:
 	def __init__(self):
