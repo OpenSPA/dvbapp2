@@ -2655,7 +2655,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 
 
 config.networkushare = ConfigSubsection()
-config.networkushare.mediafolders = NoSave(ConfigLocations(default=None))
+config.networkushare.mediafolders = NoSave(ConfigLocations(default=[]))
 
 
 class NetworkuShare(NetworkBaseScreen):
@@ -3068,7 +3068,7 @@ class uShareSelection(Screen):
 
 
 config.networkminidlna = ConfigSubsection()
-config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=None))
+config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=[]))
 
 
 class NetworkMiniDLNA(NetworkBaseScreen):

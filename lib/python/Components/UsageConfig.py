@@ -1699,7 +1699,7 @@ def InitUsageConfig():
 	config.logmanager = ConfigSubsection()
 	config.logmanager.showinextensions = ConfigYesNo(default=False)
 	config.logmanager.path = ConfigText(default="/")
-	config.logmanager.sentfiles = ConfigLocations(default=None)
+	config.logmanager.sentfiles = ConfigLocations(default=[])
 
 	config.plisettings = ConfigSubsection()
 	#config.plisettings.Subservice = ConfigYesNo(default = True)
