@@ -12116,10 +12116,10 @@ msgstr ""
 msgid "Play recorded movies"
 msgstr ""
 
-msgid "Play service with streamrelay"
+msgid "Play service with Stream Relay"
 msgstr ""
 
-msgid "Play service without streamrelay"
+msgid "Play service without Stream Relay"
 msgstr ""
 
 msgid "Play the audio file"
