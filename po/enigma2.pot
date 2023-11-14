@@ -1395,9 +1395,6 @@ msgstr ""
 msgid "13 V"
 msgstr ""
 
-msgid "16/9 reset to normal"
-msgstr ""
-
 msgid "16:10 Letterbox"
 msgstr ""
 
@@ -1420,6 +1417,9 @@ msgid "16:9 Letterbox"
 msgstr ""
 
 msgid "16:9 PanScan"
+msgstr ""
+
+msgid "16:9 reset to normal"
 msgstr ""
 
 msgid "18 V"
@@ -8572,6 +8572,9 @@ msgstr ""
 msgid "IP address"
 msgstr ""
 
+msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
+
 msgid "IPK Installer"
 msgstr ""
 
@@ -12113,6 +12116,12 @@ msgstr ""
 msgid "Play recorded movies"
 msgstr ""
 
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
+
 msgid "Play the audio file"
 msgstr ""
 
@@ -12409,6 +12418,9 @@ msgid "Port C"
 msgstr ""
 
 msgid "Port D"
+msgstr ""
+
+msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
 msgid "Portugal"
@@ -17122,6 +17134,12 @@ msgstr ""
 msgid "Stream"
 msgstr ""
 
+msgid "Stream Relay URL"
+msgstr ""
+
+msgid "Stream Relay port"
+msgstr ""
+
 msgid "Stream request"
 msgstr ""
 
@@ -18744,6 +18762,12 @@ msgid "Transparent"
 msgstr ""
 
 msgid "Transponder"
+msgstr ""
+
+msgid "Transponder information"
+msgstr ""
+
+msgid "Transponder information for '%s'"
 msgstr ""
 
 msgid "Transponder Time"
