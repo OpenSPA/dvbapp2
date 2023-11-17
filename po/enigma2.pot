@@ -23708,3 +23708,6 @@ msgstr ""
 
 msgid "Select folder where your picons are located."
 msgstr ""
+
+msgid "Select 'Enabled' to start the CI+ helper."
+msgstr ""
