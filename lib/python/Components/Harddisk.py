@@ -866,11 +866,11 @@ class HarddiskManager:
 			for netMount in netMounts:
 				path = join("/media", mount, netMount, "")
 				if ismount(path):
-					partition = Partition(mountpoint=path, description=mount)
+					partition = Partition(mountpoint=path, description=netMount)
 					if str(partition) not in [str(x) for x in self.partitions]:
 						print(f"[Harddisk] New network mount {mount}->{path}.")
 						if refresh:
-							self.addMountedPartition(device=path, desc=mount)
+							self.addMountedPartition(device=path, desc=netMount)
 						else:
 							self.partitions.append(partition)
 		if ismount("/media/hdd") and "/media/hdd/" not in [x.mountpoint for x in self.partitions]:
@@ -1020,6 +1020,7 @@ class HarddiskManager:
 		return description
 
 	def addMountedPartition(self, device, desc):
+		device = join(device, "")
 		for x in self.partitions:
 			if x.mountpoint == device:
 				#already_mounted
@@ -1029,6 +1030,7 @@ class HarddiskManager:
 		self.on_partition_list_change("add", newpartion)
 
 	def removeMountedPartition(self, mountpoint):
+		mountpoint = join(mountpoint, "")
 		for x in self.partitions[:]:
 			if x.mountpoint == mountpoint:
 				self.partitions.remove(x)
