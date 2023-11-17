@@ -1,66 +1,53 @@
-Text and Documentation Style Guide for Enigma2
+Guía de estilo de texto y documentación para Enigma2
 ----------------------------------------------
 
-Written by IanSav -  7-May-2022  (Thanks to JBleyel for his input.)
-Updated by IanSav -  5-Nov-2023
+Escrito por IanSav - 7 de mayo de 2022 (Gracias a JBleyel por su aporte).
+Actualizado por IanSav - 5 de noviembre de 2023
 
 
-This document is a collection of notes and suggestions that should be 
-considered when writing text for display in Enigma2 and/or plugins.  The 
-same considerations should be applied to any documentation being written 
-for Enigma2, and/or plugins.
+Este documento es una colección de notas y sugerencias que se deben
+considerar al escribir texto para mostrar en Enigma2 y/o plugins. Se 
+deben aplicar las mismas consideraciones a cualquier documentación que se escriba
+para Enigma2 y/o plugins.
 
-This is a work in progress. Suggestions, corrections and enhancements are 
-welcomed.
+Este es un trabajo en progreso. Se ofrecen sugerencias, correcciones y mejoras.
+Bienvenido.
 
-Some of the key points, so far, include:
-1)	All text in code must be in en_US (English US).
+Algunos de los puntos clave, hasta ahora, incluyen:
+1) Todo el texto del código debe estar en en_US (inglés de EE. UU.).
 
-2)	Try to write concisely. Shorter and more meaningful text is often 
-	easier to understand.  It is also usually easier to translate.
+2) Intente escribir de forma concisa. A menudo se utiliza un texto más breve y más significativo.
+Más fácil de entender. También suele ser más fácil de traducir.
 
-3)	English text should not be compromised to suit any single alternate 
-	language. Where translation issues present themselves reasonable 
-	compromises should be discussed. For example "Storage" can be 
-	ambiguous in some translations so an additional word, like "Disk 
-	Storage" or "RAM Storage" may help for translations yet still keep 
-	the English meaning intact.
+3) El texto en inglés no debe verse comprometido para adaptarse a una único idioma alternativo.
+Cuando los problemas de traducción se presenten razonables, se deberían discutir compromisos. 
+Por ejemplo, "Storage" puede ser ambiguo en algunas traducciones, por lo que una palabra adicional, como "Disk
+Storage" o "RAM Storage" pueden ayudar para las traducciones pero aún así conservar
+el significado inglés intacto.
 
-4)	All titles and button should have the first letter of every word 
-	capitalized.
+4) Todos los títulos y botones deben tener la primera letra de cada palabra en mayúscula.
 
-5)	When titles or buttons are referenced in text the capitalization 
-	should be retained.
+5) Cuando se hace referencia a títulos o botones en el texto, las mayúsculas deben conservarse.
 
-6)	All references to buttons on the remote control should be in all 
-	upper case. E.g. OK, RED, GREEN, MENU, etc.
+6) Todas las referencias a los botones del mando a distancia deben estar todas en
+mayúsculas. P.ej. OK, ROJO, VERDE, MENÚ, etc.
 
-7)	All descriptions text should be written in concise English with 
-	proper and appropriate punctuation.
+7) Todo el texto de las descripciones debe estar escrito en inglés conciso con
+puntuación correcta y apropiada.
 
-8)	Currently help text does not include punctuation but this is up 
-	for review.
+8) Actualmente, el texto de ayuda no incluye puntuación, pero esto depende
+de la revisión.
 
-9)	All sentences should end in a full stop "." except as noted in 
-	point 8 above. All questions should end with a question mark "?".
-	All errors, warnings or important notes should end in an 
-	exclamation mark "!" to signify the importance of the statement.
-	
+9) Todas las oraciones deben terminar con un punto "." excepto lo indicado en
+punto 8 anterior. Todas las preguntas deben terminar con un signo de interrogación "?".
+Todos los errores, advertencias o notas importantes deben terminar en un
+signo de exclamación "!" para indicar la importancia de la declaración.
 
-10)	There should only be one space after punctuation marks. Extra 
-	spacing for readability to separate options etc may still be 
-	appropriate.
 
-11)	There is no need for any text to be translated in en.po or en_US.po.
+10) Sólo debe haber un espacio después de los signos de puntuación. Un espacio extra
+puede facilitar la lectura para separar opciones, etc. 
+adecuado.
 
-These two documents and the link are some common writing style guides 
-that are very popular:
+11) No es necesario traducir ningún texto a en.po o en_US.po.
 
-The Elements Of Style
-	https://github.com/openatv/enigma2/files/8644897/TheElementsOfStyle.pdf
-The Elements Of Style - Updated 2011 Edition.pdf
-	https://github.com/openatv/enigma2/files/8644901/TheElementsOfStyle_Updated2011Edition.pdf
-A Quick Guide to Punctuation
-	https://www.lynchburg.edu/academics/writing-center/wilmer-writing-center-online-writing-lab/grammar/a-quick-guide-to-punctuation/
-
----END---
+---FIN---
