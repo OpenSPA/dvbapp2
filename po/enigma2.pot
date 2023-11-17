@@ -21457,7 +21457,7 @@ msgstr ""
 msgid "internally loopthrough to"
 msgstr ""
 
-msgid "invalid type"
+msgid "Invalid type"
 msgstr ""
 
 msgid "jazz"
@@ -23709,5 +23709,5 @@ msgstr ""
 msgid "Select folder where your picons are located."
 msgstr ""
 
-msgid "Select 'Enabled' to start the CI+ helper."
+msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
