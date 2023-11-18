@@ -1,4 +1,4 @@
-_<menuxml>
+<menuxml>
 <!--
 	The following types are allowed:
 	<screen [module="mod"] [screen="classname"]>[arguments] />
