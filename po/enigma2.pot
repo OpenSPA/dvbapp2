@@ -3008,6 +3008,9 @@ msgstr ""
 msgid "Bouquet List"
 msgstr ""
 
+msgid "Bouquet Selector Navigation Actions"
+msgstr ""
+
 msgid "BouquetList"
 msgstr ""
 
@@ -3457,6 +3460,9 @@ msgstr ""
 msgid "Cancel the service selection"
 msgstr ""
 
+msgid "Cancel the service zap"
+msgstr ""
+
 msgid "Cancel the slot selection and exit"
 msgstr ""
 
@@ -3641,7 +3647,7 @@ msgstr ""
 msgid "Channel down"
 msgstr ""
 
-msgid "Channel list context menu"
+msgid "Channel List Context Menu"
 msgstr ""
 
 msgid "Channel list cursor behavior"
@@ -5845,10 +5851,7 @@ msgstr ""
 msgid "Djibouti"
 msgstr ""
 
-msgid "Do center DVB subs on this service"
-msgstr ""
-
-msgid "Do not center DVB subs on this service"
+msgid "Center DVB Subs On This Service"
 msgstr ""
 
 msgid "Do not change"
@@ -6042,6 +6045,9 @@ msgid "Don't add this recording"
 msgstr ""
 
 msgid "Don't ask again!"
+msgstr ""
+
+msgid "Don't Center DVB Subs On This Service"
 msgstr ""
 
 msgid "Don't restart"
@@ -6893,7 +6899,7 @@ msgid "Error executing plugin"
 msgstr ""
 
 #, python-format
-msgid "Error getting link via %s\n"
+msgid "Error getting link via %s\n%s"
 "%s"
 msgstr ""
 
@@ -8359,7 +8365,7 @@ msgstr ""
 msgid "Hide InfoBar"
 msgstr ""
 
-msgid "Hide VBI line for this service"
+msgid "Hide VBI Line For This Service"
 msgstr ""
 
 msgid "Hide any zap error messages."
@@ -8428,7 +8434,10 @@ msgstr ""
 msgid "History next"
 msgstr ""
 
-msgid "History zap..."
+msgid "History zap"
+msgstr ""
+
+msgid "History Zap Actions"
 msgstr ""
 
 msgid "Hockey"
@@ -10038,7 +10047,7 @@ msgstr ""
 msgid "Margin before zap"
 msgstr ""
 
-msgid "Mark service as dedicated 3D service"
+msgid "Mark As Dedicated 3d Service"
 msgstr ""
 
 msgid "Mark/Portal/Playlist"
@@ -13127,7 +13136,7 @@ msgstr ""
 msgid "Reception Settings"
 msgstr ""
 
-msgid "Reception lists"
+msgid "Reception Lists"
 msgstr ""
 
 msgid "Record"
@@ -16317,6 +16326,9 @@ msgstr ""
 msgid "Show watch status"
 msgstr ""
 
+msgid "Show VBI Line For This Service"
+msgstr ""
+
 msgid "Show/Games show"
 msgstr ""
 
@@ -17938,7 +17950,7 @@ msgid "The network wizard extension is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid "The pin code you entered is wrong."
+msgid "The PIN code entered is incorrect!"
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
@@ -19127,7 +19139,7 @@ msgstr ""
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr ""
 
-msgid "Unmark service as dedicated 3D service"
+msgid "Unmark As Dedicated 3d Service"
 msgstr ""
 
 msgid "Unmount"
@@ -19143,6 +19155,9 @@ msgid "Unscramble http streams"
 msgstr ""
 
 msgid "Unscramble receiving http streams"
+msgstr ""
+
+msgid "Unset As Startup Service"
 msgstr ""
 
 msgid "Unsupported"
@@ -20914,13 +20929,13 @@ msgstr ""
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr ""
 
-msgid "abort alternatives edit"
+msgid "Abort Alternatives Edit"
 msgstr ""
 
-msgid "abort bouquet edit"
+msgid "Abort Bouquet Edit"
 msgstr ""
 
-msgid "abort favorites edit"
+msgid "Abort Favorites Edit"
 msgstr ""
 
 msgid "ac3"
@@ -20932,25 +20947,25 @@ msgstr ""
 msgid "active"
 msgstr ""
 
-msgid "add alternatives"
+msgid "Add Alternatives"
 msgstr ""
 
-msgid "add bouquet"
+msgid "Add Bouquet"
 msgstr ""
 
-msgid "add bouquet to parental protection"
+msgid "Add Bouquet To Parental Protection"
 msgstr ""
 
 msgid "add marker"
 msgstr ""
 
-msgid "add service to bouquet"
+msgid "Add Service To Bouquet"
 msgstr ""
 
-msgid "add service to favorites"
+msgid "Add Service To Favorites"
 msgstr ""
 
-msgid "add to parental protection"
+msgid "Add To Parental Protection"
 msgstr ""
 
 msgid "address:"
@@ -21129,7 +21144,7 @@ msgstr ""
 msgid "copy"
 msgstr ""
 
-msgid "copy to bouquets"
+msgid "Copy To Bouquets"
 msgstr ""
 
 msgid "current affairs (general)"
@@ -21162,7 +21177,7 @@ msgstr ""
 msgid "detective/thriller"
 msgstr ""
 
-msgid "disable move mode"
+msgid "Disable Move Mode"
 msgstr ""
 
 msgid "disabled"
@@ -21205,7 +21220,7 @@ msgstr ""
 msgid "economics/social advisory"
 msgstr ""
 
-msgid "edit alternatives"
+msgid "Edit Alternatives"
 msgstr ""
 
 msgid "education/information (general)"
@@ -21220,28 +21235,28 @@ msgstr ""
 msgid "empty"
 msgstr ""
 
-msgid "enable bouquet edit"
+msgid "Enable Bouquet Edit"
 msgstr ""
 
-msgid "enable favorite edit"
+msgid "Enable Favorite Edit"
 msgstr ""
 
-msgid "enable move mode"
+msgid "Enable Move Mode"
 msgstr ""
 
 msgid "enabled"
 msgstr ""
 
-msgid "end alternatives edit"
+msgid "End Alternatives Edit"
 msgstr ""
 
-msgid "end bouquet edit"
+msgid "End Bouquet Edit"
 msgstr ""
 
 msgid "end cut here"
 msgstr ""
 
-msgid "end favorites edit"
+msgid "End Favorites Edit"
 msgstr ""
 
 msgid "enigma2 and network"
@@ -21310,7 +21325,7 @@ msgstr ""
 msgid "film/cinema"
 msgstr ""
 
-msgid "find currently played service"
+msgid "Find Currently Playing Service"
 msgstr ""
 
 msgid "fine arts"
@@ -21679,10 +21694,16 @@ msgstr ""
 msgid "pid:"
 msgstr ""
 
-msgid "play as picture in picture"
+msgid "Play As Picture in Picture window"
 msgstr ""
 
-msgid "play in mainwindow"
+msgid "Play in Main"
+msgstr ""
+
+msgid "Play In Main window"
+msgstr ""
+
+msgid "Play in PiP"
 msgstr ""
 
 msgid "please wait, loading picture..."
@@ -21706,7 +21727,7 @@ msgstr ""
 msgid "provider:"
 msgstr ""
 
-msgid "purge deleted user bouquets"
+msgid "Purge Deleted User Bouquets"
 msgstr ""
 
 msgid "red"
@@ -21727,37 +21748,37 @@ msgstr ""
 msgid "remove after this position"
 msgstr ""
 
-msgid "remove all alternatives"
+msgid "Remove All Alternatives"
 msgstr ""
 
-msgid "remove all new found flags"
+msgid "Remove All New Found Flags"
 msgstr ""
 
 msgid "remove before this position"
 msgstr ""
 
-msgid "remove bouquet from parental protection"
+msgid "Remove Bouquet From Parental Protection"
 msgstr ""
 
-msgid "remove cable services"
+msgid "Remove Cable Services"
 msgstr ""
 
-msgid "remove entry"
+msgid "Remove Entry"
 msgstr ""
 
-msgid "remove from parental protection"
+msgid "Remove From Parental Protection"
 msgstr ""
 
-msgid "remove new found flag"
+msgid "Remove New Found Flag"
 msgstr ""
 
 msgid "Remove plugins ..."
 msgstr ""
 
-msgid "remove selected satellite"
+msgid "Remove Selected Satellite"
 msgstr ""
 
-msgid "remove terrestrial services"
+msgid "Remove Terrestrial Services"
 msgstr ""
 
 msgid "remove this mark"
@@ -21766,10 +21787,10 @@ msgstr ""
 msgid "rename"
 msgstr ""
 
-msgid "rename entry"
+msgid "Rename Entry"
 msgstr ""
 
-msgid "restore deleted user bouquets"
+msgid "Restore Deleted User Bouquets"
 msgstr ""
 
 msgid "restoring satellites.xml not possible!"
@@ -21820,7 +21841,7 @@ msgstr ""
 msgid "service PIN"
 msgstr ""
 
-msgid "set as startup service"
+msgid "Set As Startup Service"
 msgstr ""
 
 msgid "share:"
@@ -21841,7 +21862,7 @@ msgstr ""
 msgid "show all tags"
 msgstr ""
 
-msgid "show alternatives"
+msgid "Show Alternatives"
 msgstr ""
 
 msgid "show cards with uphop 0"
@@ -21883,7 +21904,7 @@ msgstr ""
 msgid "show program information..."
 msgstr ""
 
-msgid "show transponder info"
+msgid "Show Transponder Information"
 msgstr ""
 
 msgid "show/game show (general)"
@@ -22289,7 +22310,10 @@ msgstr ""
 msgid "All Select"
 msgstr ""
 
-msgid "Bouquet Selection"
+msgid "Bouquet Selector"
+msgstr ""
+
+msgid "Bouquet Selection Actions"
 msgstr ""
 
 msgid "Select(OK)"
