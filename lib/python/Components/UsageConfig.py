@@ -1253,14 +1253,14 @@ def InitUsageConfig():
 		("mode2", _("Mode 2"))
 	])
 
-#	hddChoices = [("/etc/enigma2/", _("Internal Flash"))]
-#	for partition in harddiskmanager.getMountedPartitions():
-#		if exists(partition.mountpoint):
-#			path = normpath(partition.mountpoint)
-#			if partition.mountpoint != "/":
-#				hddChoices.append((partition.mountpoint, path))
-	config.misc.epgcachepath = ConfigDirectory(default = '/etc/enigma2/')
-#	config.misc.epgcachepath = ConfigSelection(default="/etc/enigma2/", choices=hddChoices)
+	hddChoices = [("/etc/enigma2/", _("Internal Flash"))]
+	for partition in harddiskmanager.getMountedPartitions():
+		if exists(partition.mountpoint):
+			path = normpath(partition.mountpoint)
+			if partition.mountpoint != "/":
+				hddChoices.append((partition.mountpoint, path))
+#	config.misc.epgcachepath = ConfigDirectory(default = '/etc/enigma2/')
+	config.misc.epgcachepath = ConfigSelection(default="/etc/enigma2/", choices=hddChoices)
 	config.misc.epgcachefilename = ConfigText(default="epg", fixed_size=False)
 	epgCacheFilename = "%s.dat" % config.misc.epgcachefilename.value.replace(".dat", "")
 	config.misc.epgcache_filename = ConfigText(default=pathjoin(config.misc.epgcachepath.value, epgCacheFilename))
