@@ -29,7 +29,7 @@ textdomain("enigma2")
 
 class International:
 	LOCALE_TEMPLATE = "enigma2-locale-%s"
-	PERMANENT_LOCALES = ["de_DE", "en_US", "fr_FR"]
+	PERMANENT_LOCALES = ["de_DE", "en_US", "es_ES"]
 
 	LANG_NAME = 0
 	LANG_TRANSLATED = 1
@@ -559,14 +559,14 @@ class International:
 
 	def buildISO3166(self):  # This code builds the CountryCodes.py ISO3166 country list.
 		data = []
-		for country in COUNTRY_DATA.keys():
+		for country in self.COUNTRY_DATA.keys():
 			### OPENSPA [morser] The COUNTRY_DATA table is generated before activating the language, the Country is translated here.
 			data.append((
-				_(COUNTRY_DATA[country][COUNTRY_NAME]), #OPENSPA [morser] Translated country
+				_(self.COUNTRY_DATA[country][self.COUNTRY_NAME]), #OPENSPA [morser] Translated country
 				country,  # This is the ISO3166 ALPHA2 Code.
-				COUNTRY_DATA[country][COUNTRY_ALPHA3],
-				COUNTRY_DATA[country][COUNTRY_NUMERIC],
-				COUNTRY_DATA[country][COUNTRY_NAME]
+				self.COUNTRY_DATA[country][self.COUNTRY_ALPHA3],
+				self.COUNTRY_DATA[country][self.COUNTRY_NUMERIC],
+				self.COUNTRY_DATA[country][self.COUNTRY_NAME]
 			))
 		data.sort(key=lambda x: x[4])
 		setISO3166(data)

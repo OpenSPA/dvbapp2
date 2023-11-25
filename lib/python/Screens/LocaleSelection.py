@@ -1,7 +1,7 @@
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigSubsection, config
 from Components.Label import Label
-from Components.International import international, PERMANENT_LOCALES
+from Components.International import international
 from Components.Opkg import OpkgComponent
 from Components.Pixmap import MultiPixmap
 from Components.Sources.List import List
@@ -229,7 +229,7 @@ class LocaleSelection(Screen, HelpableScreen):
 				self["description"].text = _("This is the currently selected locale.  [%s]") % detail
 		if package != international.getPackage(self.currentLocale):
 			## OPENSPA [morser] Do not allow removing permanent languages
-			if locale in PERMANENT_LOCALES[:]:
+			if locale in international.PERMANENT_LOCALES[:]:
 				self["manageActions"].setEnabled(False)
 				self["key_yellow"].text = ""
 			else:
@@ -565,6 +565,11 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 		self.currentLocale = current[self.LIST_LOCALE]
 		self.updateLocaleList(self.currentLocale)
 		self.keySave()
+
+	def selectKeys(self):
+		self.clearSelectedKeys()
+		self.selectKey("UP")
+		self.selectKey("DOWN")
 
 	def changed(self):
 		self.run(justlocal=True)
