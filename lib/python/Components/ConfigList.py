@@ -289,7 +289,7 @@ class ConfigListScreen:
 			callback()
 
 	def disableNativeActionMaps(self):
-		self["config"].enableAutoNavigation(False)
+		self["config"].instance.enableAutoNavigation(False)
 
 	def suspendAllActionMaps(self):
 		self.actionMapStates = []
