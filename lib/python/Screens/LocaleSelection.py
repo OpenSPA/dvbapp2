@@ -1,3 +1,4 @@
+from enigma import eTimer
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigSubsection, config
 from Components.Label import Label
@@ -138,6 +139,8 @@ class LocaleSelection(Screen, HelpableScreen):
 		self.inWizard = False
 		self.opkgComponent = OpkgComponent()
 		self.opkgComponent.addCallback(self.opkgComponentCallback)
+		self.packageDoneTimer = eTimer()
+		self.packageDoneTimer.callback.append(self.processPackageDone)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def selectionChanged(self):
@@ -334,6 +337,8 @@ class LocaleSelection(Screen, HelpableScreen):
 				packages = international.getPurgablePackages(self.currentLocale)
 				if packages:
 					processDelete(packages)
+				self.packageDoneTimer.start(50)
+
 
 		def processDelete(packages):
 			opkgArguments = {
@@ -374,6 +379,11 @@ class LocaleSelection(Screen, HelpableScreen):
 		config.misc.languageselected.value = 0
 		config.misc.languageselected.save()
 		#####################################################
+
+	def processPackageDone(self):
+		self.packageDoneTimer.stop()
+		self.updateLocaleList(self.currentLocale)
+		self.updateText()
 
 	def opkgComponentCallback(self, event, parameter):
 		# print(f"[LocaleSelection] DEBUG: event={self.opkgComponent.getEventText(event)}, parameter={parameter}")
