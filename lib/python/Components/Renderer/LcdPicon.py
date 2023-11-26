@@ -29,42 +29,42 @@ def initLcdPiconPaths():
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
-	######## OPENSPA [morser] Add others folders ######################
+	######## OPENSPA [morser] Add other folders ######################
 	try:
 		if BW or isdir(mountpoint + "piconlcd"):
 			path = join(mountpoint, "piconlcd", "")
 		else:
-			path = os.path.join(mountpoint, 'XPicons') + '/'
-			if os.path.isdir(path) and path not in searchPaths:
-				for fn in os.listdir(path):
+			path = join(mountpoint, 'XPicons') + '/'
+			if isdir(path) and path not in searchPaths:
+				for fn in listdir(path):
 					if fn.endswith('.png'):
 						print("[Picon] adding path:", path)
 						searchPaths.append(path)
 						break
-			path = os.path.join(mountpoint, 'picon/XPicons') + '/'
-			if os.path.isdir(path) and path not in searchPaths:
-				for fn in os.listdir(path):
+			path = join(mountpoint, 'picon/XPicons') + '/'
+			if isdir(path) and path not in searchPaths:
+				for fn in listdir(path):
 					if fn.endswith('.png'):
 						print("[Picon] adding path:", path)
 						searchPaths.append(path)
 						break
-			path = os.path.join(mountpoint, 'XPicons/picon') + '/'
-			if os.path.isdir(path) and path not in searchPaths:
-				for fn in os.listdir(path):
+			path = join(mountpoint, 'XPicons/picon') + '/'
+			if isdir(path) and path not in searchPaths:
+				for fn in listdir(path):
 					if fn.endswith('.png'):
 						print("[Picon] adding path:", path)
 						searchPaths.append(path)
 						break
-			path = os.path.join(mountpoint, 'picon') + '/'
-			if os.path.isdir(path) and path not in searchPaths:
-				for fn in os.listdir(path):
+			path = join(mountpoint, 'picon') + '/'
+			if isdir(path) and path not in searchPaths:
+				for fn in listdir(path):
 					if fn.endswith('.png'):
 						print("[Picon] adding path:", path)
 						searchPaths.append(path)
 						break
 			path = mountpoint
-			if os.path.isdir(path) and path not in searchPaths:
-				for fn in os.listdir(path):
+			if isdir(path) and path not in searchPaths:
+				for fn in listdir(path):
 					if fn.endswith('.png'):
 						print("[Picon] adding path:", path)
 						searchPaths.append(path)
