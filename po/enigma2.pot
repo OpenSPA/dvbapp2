@@ -2158,7 +2158,7 @@ msgstr ""
 msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 msgstr ""
 
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr ""
 
 msgid "Allows you to show/hide OScam in extensions (BLUE button)."
@@ -15830,7 +15830,7 @@ msgstr ""
 msgid "Show Log"
 msgstr ""
 
-msgid "Show Log Manager in extensions list"
+msgid "Show Log Manager in Extension Menu"
 msgstr ""
 
 msgid "Show Media Player in Main Menu"

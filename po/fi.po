@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2023-11-15 19:07+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -2023,6 +2023,9 @@ msgstr "Lisää valittu kanava suosikkilistalle"
 msgid "Add service"
 msgstr "Lisää kanava"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr "Lisää kanava tähän kanavalistaan?"
 
@@ -2255,14 +2258,11 @@ msgstr "Määrittää piilotetaanko tunnettujen tiedostojen tiedostopäätteet."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Määritä vianselvityslokin maksimikoko (MB). Kun maksimikoko saavutetaan, luodaan uusi lokitiedosto."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Määrittää näytetäänkö CCcam Info laajennusvalikossa (sininen näppäin)."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Määrittää näytetäänkö Lokien hallinta laajennusvalikossa (sininen näppäin)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "Näytä/Piilota Oscam laajennuksissa (Sininen painike)."
+msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Melkein valmis... "
@@ -2702,6 +2702,12 @@ msgstr "Automaattiajastukset"
 
 msgid "AutoUpdate"
 msgstr "Automaattinen päivitys"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Automaattinen"
@@ -3695,6 +3701,9 @@ msgstr "Kortit: 0"
 
 msgid "Cardserial"
 msgstr "Korttisarja"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "Sarjakuva"
@@ -5608,6 +5617,12 @@ msgstr "Oletus: '%s'."
 msgid "Defaults"
 msgstr "Oletusarvot"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Määritä vaihtoehtoinen viive millisekunneissa ennen http(s) suora toiston alkamista."
 
@@ -6413,9 +6428,6 @@ msgstr "Älä lisää tätä tallennusta"
 msgid "Don't ask again!"
 msgstr "Älä kysy uudelleen!"
 
-msgid "Don't restart"
-msgstr "Älä käynnistä uudelleen"
-
 msgid "Don't save"
 msgstr "Älä tallenna"
 
@@ -7006,13 +7018,13 @@ msgstr "Laittaessasi tämän päälle, kaikki kyllä/ei, päällä/pois päält�
 msgid "Enable to display setup entries alphabetically."
 msgstr "Ota käyttöön asetusten näyttäminen aakkosjärjestyksessä."
 
-msgid "Enable to display the Extension menu entries alphabetically."
+msgid "Enable to display the Extension Menu screen entries alphabetically."
 msgstr "Ota käyttöön näyttääksesi Laajennus valikon kohdat aakkosjärjestyksessä."
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Ota käyttöön liukusäätimen nykyinen arvo liukusäätimen päässä."
 
-msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Näytä \"Käynnistä verkko uudelleen\" kohta Laajennukset valikossa."
 
 msgid "Enable unlinked bouquets"
@@ -9735,6 +9747,9 @@ msgstr "Virheellinen sijainti!"
 
 msgid "Invalid transponder data"
 msgstr "Epäkelpo transponderin tieto"
+
+msgid "Invalid type"
+msgstr "epäkelpo tyyppi"
 
 msgid "Inversion"
 msgstr "Inversio"
@@ -13113,10 +13128,6 @@ msgstr "Odota, muistia kopioidaan tähän muistin laajennukseen. Tämä voi kest
 msgid "Please wait, loading image..."
 msgstr "Odota, Ladataan ohjelmistoa."
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "Odota, käynnistetään uudelleen %s."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Odota, swappia luodaan. Tämä voi kestää muutaman minuutin."
 
@@ -14304,6 +14315,9 @@ msgstr "Poista lisäosia"
 msgid "Remove selected service"
 msgstr "Poista valittu kanava"
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Kyllä poistaa kuulovammaisille tarkoitetut tekstit ulkoisista tekstityksistä (Esimerkkisi. Äänien kuvaukset)."
 
@@ -14460,9 +14474,6 @@ msgstr "Nollaa toistokohta"
 msgid "Reset sort order"
 msgstr "Palauta lajittelujärjestys"
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "Tyhjennä valitut laitteet ja tallenna konfiguraatiomuutokset, kun VIHREÄÄ painiketta painetaan."
-
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Palauta kuvasäädöt oletusarvoihin?"
 
@@ -14503,12 +14514,6 @@ msgstr "Käynnistä verkkoyhteydet uudelleen"
 msgid "Restart Network Adapter"
 msgstr "Verkkosovittimen uudelleenkäynnistys"
 
-msgid "Restart both"
-msgstr "Uudelleenkäynnistä molemmat"
-
-msgid "Restart cardserver"
-msgstr "Uudelleenkäynnistä korttipalvelin"
-
 msgid "Restart enigma"
 msgstr "Käynnistä Käyttöliittymä uudelleen"
 
@@ -14523,9 +14528,6 @@ msgstr "Uudelleenkäynnistä verkko ja uudelleen asenna yhteydet"
 
 msgid "Restart network to with current setup"
 msgstr "Käynnistä verkkoyhteydet uudelleen"
-
-msgid "Restart softcam"
-msgstr "Uudelleenkäynnistä softcam"
 
 msgid "Restart test"
 msgstr "Testaa uudelleen"
@@ -15233,11 +15235,11 @@ msgstr ""
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Valitse \"Ota käyttöön\", jos haluat pakottaa paketin puhdistamaan ennen paketin päivitystä. Tämä auttaa varmistamaan, että pakettilista on ajan tasalla ja voit välttää/ratkaista ongelmia päivityksen aikana. Ota tämä käyttöön vain, kun et voi päivittää online tilassa."
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Valitse 'käytössä', jos tähän virittimeen on kytketty signaalikaapeli, muuten valitse 'ei mitään kytketty'."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Valitse 'Käytössä' Avataksesi CI+ avustajan."
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Valitse 'käytössä', jos tähän virittimeen on kytketty signaalikaapeli, muuten valitse 'ei mitään kytketty'."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "Jos Ei, vain yhtä tiedostoa käytetään puskurina. Suosittelemme ajansiirto tarkistustaa vanhemmat tiedostot (minuuteissa) ja ajansiirto tarkistaa vapaan tilan löytämiseksi."
@@ -15419,7 +15421,7 @@ msgstr "Valitse 'Kyllä' näyttääksesi teemat asetukset listassa."
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi teemat paketit listassa."
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi softcamit listassa."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -15523,9 +15525,6 @@ msgstr "Valitse teemasi"
 msgid "Select a bouquet"
 msgstr "Valitse suosikkilista"
 
-msgid "Select a cardserver from the available list."
-msgstr "Valitse korttipalvelin käytettävissä olevasta listasta."
-
 msgid "Select a debug log file to view:"
 msgstr "Valitse tarkasteltava vianmäärityslokitiedosto:"
 
@@ -15563,7 +15562,10 @@ msgstr "Valitse arkiston loki tarkasteltavaksi:"
 msgid "Select a script to run:"
 msgstr "Valitse suoritettava scripti:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr "Valitse softcam käytettävissä olevasta listasta."
 
 msgid "Select a tuner"
@@ -15590,6 +15592,9 @@ msgstr "Valitse toiminto, joka suoritetaan, kun tehtävä on suoritettu."
 
 msgid "Select audio track"
 msgstr "Valitse ääniraita"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr "Valitse korttipalvelin"
@@ -15722,7 +15727,7 @@ msgstr "Valitse kanava tiedot tarkastellaksesi:"
 msgid "Select service to add..."
 msgstr "Valitse lisättävä kanava..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "Valitse softcam"
 
 msgid "Select sort method:"
@@ -15739,6 +15744,10 @@ msgstr "Valitse väliaikaisen hakemiston lajittelujärjestys nykyiselle sarakkee
 
 msgid "Select the No / False response"
 msgstr "Valitse Ei / Väärä vastaus"
+
+#, python-format
+msgid "Select the Softcam for '%s'"
+msgstr ""
 
 msgid "Select the Swap File Size:"
 msgstr "Valitse swap tiedoston koko:"
@@ -15769,6 +15778,9 @@ msgstr "Valitse toiminto, joka suoritetaan ajastuksen päättyessä."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Ohjaa Ohje näytön painikkeiden animaatioiden nopeutta. 'Pois käytöstä' poistaa animaation käytöstä niin, että ilmaisimet hyppäävät painikkeiden välillä."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr ""
 
 msgid "Select the channel from which to record:"
 msgstr "Valitse kanava, jolta tallennetaan:"
@@ -15936,7 +15948,7 @@ msgstr "Käytä siirtymää seuraaville merkeille"
 msgid "Select the shifted character set for the next character only"
 msgstr "Käytä vaihtoa vain seuraavaan merkkiin"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr "Valitse softcam protokolla."
 
 msgid "Select the sort order for the file lines:"
@@ -16847,9 +16859,6 @@ msgstr "Näytä Tallennukset"
 msgid "Show CCcam Info"
 msgstr "Näytä CCcam tiedot"
 
-msgid "Show CCcam in extensions"
-msgstr "Näytä CCcam laajennuksissa"
-
 msgid "Show CI messages"
 msgstr "Näytä CI-viestit"
 
@@ -16931,7 +16940,7 @@ msgstr "Näytä suora MiniTV:eessä"
 msgid "Show Log"
 msgstr "Näytä Loki"
 
-msgid "Show Log Manager in extensions list"
+msgid "Show Log Manager in Extension Menu"
 msgstr "Näytä lokien hallinta laajennus listassa"
 
 msgid "Show M2k packages"
@@ -16958,8 +16967,8 @@ msgstr "Näytä monikanava-EPG"
 msgid "Show OScam Info"
 msgstr "Näytä OScam tiedot"
 
-msgid "Show OScam in extensions"
-msgstr "Näytä OScam laajennuksissa"
+msgid "Show OScam/CCcam in Extension Menu"
+msgstr ""
 
 msgid "Show OpenPLi packages"
 msgstr "Näytä OpenPLi ohjelmat"
@@ -17181,7 +17190,7 @@ msgstr "Näytä kuva ja tallenna nimellä '%s'"
 msgid "Show in Standby"
 msgstr "Näytä valmiustilassa"
 
-msgid "Show in extensions list"
+msgid "Show in Extension Menu"
 msgstr "Näytä laajennukset lista"
 
 msgid "Show info"
@@ -17190,7 +17199,7 @@ msgstr "Näytä tiedot"
 msgid "Show info line"
 msgstr "Näytä tietopalkki"
 
-msgid "Show job tasks in extensions"
+msgid "Show job tasks in Extension Menu"
 msgstr "Näytä tehtävät (job tasks) laajennusvalikossa"
 
 msgid "Show last image"
@@ -17989,7 +17998,7 @@ msgstr "Lajittele kirjanmerkit"
 msgid "Sort EPG List"
 msgstr "Järjestä EPG lista"
 
-msgid "Sort Extensions menu"
+msgid "Sort Extension Menu"
 msgstr "Näytä laajennukset aakkosjärjestyksessä"
 
 msgid "Sort Plugin Browser"
@@ -18562,7 +18571,7 @@ msgstr "Ruotsi"
 msgid "Swimming"
 msgstr "Uinti"
 
-msgid "Switch BLUE short (QuickMenu) with BLUE long (Extensions)"
+msgid "Switch BLUE short (QuickMenu) with BLUE long (Extension Menu)"
 msgstr "Vaihda Sininen-lyhyt (Pikavalikko) ja sininen-pitkä (Laajennukset)"
 
 msgid "Switch EPG Page Down"
@@ -19613,7 +19622,7 @@ msgstr "Määrittää käyttöliittymän läpinäkyvyyden"
 msgid "This option lets you choose the 3D mode"
 msgstr "Tämä asetus määrittää 3D tilan"
 
-msgid "This option lets you show the option in the extension screen."
+msgid "This option lets you show the option in the Extension Menu screen."
 msgstr "Tämä asetus määrittää näytetäänkö valinta laajennusvalikko."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -20784,6 +20793,9 @@ msgstr "Käytä vaihtoehtoista näyttöä."
 msgid "Use as HDD"
 msgstr "Käytä Kiintolevynä"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "Käytä automaattista tilan tunnistusta"
 
@@ -21785,6 +21797,9 @@ msgstr "Kun päällä, jokainen hakemisto avautuu aikaisemmin valittuun järjest
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Kun päällä, pikkukuva jatkaa tv-kanavan toistoa, kun tallenteen katselu päättyy."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Kun ohjelman kuvasuhde on 16:9, valitse skaalataanko/venytetäänkö kuvaa."
 
@@ -21875,7 +21890,7 @@ msgstr "pitkä OK painallus"
 msgid "With pop up"
 msgstr "Kyllä, näytä viesti"
 
-msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
+msgid "With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press)."
 msgstr "Tällä valinnalla voit piilottaa tehtävät (Job Tasks) laajennusvalikosta (lyhyt sinisen painallus)."
 
 msgid "With this option you can switch off the display during operation."
@@ -22462,9 +22477,6 @@ msgstr "Käänteinen aakkosjärjestys, uusin ensin"
 msgid "am"
 msgstr "aamu"
 
-msgid "and"
-msgstr "ja"
-
 msgid "aqua"
 msgstr "meren sininen"
 
@@ -22553,9 +22565,6 @@ msgstr "kortti"
 
 msgid "card reader"
 msgstr "kortinlukija"
-
-msgid "cardserver"
-msgstr "korttipalvelin"
 
 msgid "cartoon/puppets"
 msgstr "piirretty/nukke"
@@ -22896,9 +22905,6 @@ msgstr "Pikatallennus"
 
 msgid "internally loopthrough to"
 msgstr "läpisyöttö"
-
-msgid "Invalid type"
-msgstr "epäkelpo tyyppi"
 
 msgid "jazz"
 msgstr "jazz"
@@ -23322,9 +23328,6 @@ msgstr "sosiaaliset/poliittiset aiheet/talous (yleinen)"
 msgid "social/spiritual science"
 msgstr "sosiaalinen/hengellinen tiede"
 
-msgid "softcam"
-msgstr "Softcam"
-
 msgid "special (general)"
 msgstr "erikois (yleinen)"
 
@@ -23525,6 +23528,49 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "Määrittää näytetäänkö CCcam Info laajennusvalikossa (sininen näppäin)."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "Näytä/Piilota Oscam laajennuksissa (Sininen painike)."
+
+#~ msgid "Don't restart"
+#~ msgstr "Älä käynnistä uudelleen"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "Odota, käynnistetään uudelleen %s."
+
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "Tyhjennä valitut laitteet ja tallenna konfiguraatiomuutokset, kun VIHREÄÄ painiketta painetaan."
+
+#~ msgid "Restart both"
+#~ msgstr "Uudelleenkäynnistä molemmat"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Uudelleenkäynnistä korttipalvelin"
+
+#~ msgid "Restart softcam"
+#~ msgstr "Uudelleenkäynnistä softcam"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "Valitse korttipalvelin käytettävissä olevasta listasta."
+
+#~ msgid "Show CCcam in extensions"
+#~ msgstr "Näytä CCcam laajennuksissa"
+
+#~ msgid "Show OScam in extensions"
+#~ msgstr "Näytä OScam laajennuksissa"
+
+#~ msgid "and"
+#~ msgstr "ja"
+
+#~ msgid "cardserver"
+#~ msgstr "korttipalvelin"
+
+#~ msgid "softcam"
+#~ msgstr "Softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Avustaja Asetukset"

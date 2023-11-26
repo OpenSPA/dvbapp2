@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 16:40+0000\n"
+"POT-Creation-Date: 2023-11-19 11:41+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2079,6 +2079,9 @@ msgstr "Seçilen hizmeti bukete veya alternatife ekleyin"
 msgid "Add service"
 msgstr "Kanal ekle"
 
+msgid "Add service to AutoCam"
+msgstr ""
+
 msgid "Add services to this bouquet?"
 msgstr "Bu bukete hizmet eklensin mi?"
 
@@ -2321,14 +2324,11 @@ msgstr "Belli dosya tipi uzantılarını gizlemenizi sağlar."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Hata ayıklama günlüğü boyutunun (MB) maksimum boyutunu ayarlamanıza izin verir. Bu boyuta ulaşıldığında yeni bir dosya oluşturulacak."
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "CCcam'i uzantılarda (mavi düğme) göstermenize / gizlemenize izin verir."
-
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button)."
 msgstr "Günlük Yöneticisi'nin eklentilerde görünmesi/gizlenmesi (mavi tuş)."
 
-msgid "Allows you to show/hide OScam in extensions (BLUE button)."
-msgstr "OScam'i uzantılarda (mavi düğme) göstermenize / gizlemenize izin verir."
+msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
+msgstr ""
 
 msgid "Almost there... "
 msgstr "Neredeyse... "
@@ -2795,6 +2795,12 @@ msgstr "Otomatik Zamanlayıcıya Genel Bakış"
 #
 msgid "AutoUpdate"
 msgstr "Otomatik güncelleme"
+
+msgid "AutoCam Settings"
+msgstr ""
+
+msgid "AutoCam Setup Actions"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Otomatik"
@@ -3827,6 +3833,9 @@ msgstr "Kartlar: 0"
 
 msgid "Cardserial"
 msgstr "Kart SN"
+
+msgid "Cardserver Settings"
+msgstr ""
 
 msgid "Cartoon"
 msgstr "Animasyon"
@@ -5829,6 +5838,12 @@ msgstr "Varsayılan: '%s'."
 msgid "Defaults"
 msgstr "Varsayılanlar"
 
+msgid "Define Softcam For This Provider"
+msgstr ""
+
+msgid "Define Softcam For This Service"
+msgstr ""
+
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Http(s) akışlarının başlamasından önce milisaniye cinsinden ek gecikme tanımlayın."
 
@@ -6681,9 +6696,6 @@ msgstr "Bu kaydı eklemeyin"
 msgid "Don't ask again!"
 msgstr "Bir daha sorma!"
 
-msgid "Don't restart"
-msgstr "Yeniden başlatma"
-
 msgid "Don't save"
 msgstr "Saklama"
 
@@ -7299,13 +7311,13 @@ msgstr "Tüm doğru / yanlış, evet / hayır, açık / kapalı durumlarını g�
 msgid "Enable to display setup entries alphabetically."
 msgstr "Kurulum girişlerini alfabetik olarak görüntülemek için etkinleştirin."
 
-msgid "Enable to display the Extension menu entries alphabetically."
+msgid "Enable to display the Extension Menu screen entries alphabetically."
 msgstr "Uzatma menüsü girişlerini alfabetik olarak görüntülemek için etkinleştirin."
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Kaydırıcı çubuğunun sonundaki kaydırıcının geçerli değerini etkinleştirin."
 
-msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr "Uzantılar menüsünde 'Ağı Yeniden Başlat' girişini göstermeyi etkinleştirin."
 
 msgid "Enable unlinked bouquets"
@@ -10169,6 +10181,9 @@ msgstr "Geçersiz konum!"
 #
 msgid "Invalid transponder data"
 msgstr "Geçersiz transponder bilgisi"
+
+msgid "Invalid type"
+msgstr "geçersiz tip"
 
 #
 msgid "Inversion"
@@ -13761,10 +13776,6 @@ msgstr "Lütfen bekleyin, flash bellek bu flash genişleticiye kopyalanıyor. Bu
 msgid "Please wait, loading image..."
 msgstr "Lütfen bekleyin, Image yükleniyor."
 
-#, python-format
-msgid "Please wait, restarting %s."
-msgstr "Lütfen bekleyin, %s yeniden başlatılıyor."
-
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Lütfen bekleyin, takas oluşturuluyor. Bu işlemin tamamlanması birkaç dakika sürebilir."
 
@@ -15031,6 +15042,9 @@ msgstr "Eklentileri kaldır ..."
 msgid "Remove selected service"
 msgstr "Seçili hizmeti kaldırın"
 
+msgid "Remove service from AutoCam"
+msgstr ""
+
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Harici altyazılardan etkilenen işitme için metinleri (enstrümantal müzik veya çevresel sesler, örn., Kapı zili çaldığında veya silah sesi duyulduğunda) çıkarın."
 
@@ -15201,9 +15215,6 @@ msgstr "Çalma konumunu sıfırla"
 msgid "Reset sort order"
 msgstr "Sıralama düzenini sıfırla"
 
-msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
-msgstr "YEŞİL düğmeye basıldığında, seçili cihazları sıfırlayın ve yapılandırmanızdaki değişiklikleri kaydedin."
-
 #
 msgid "Reset video enhancement settings to system defaults?"
 msgstr "Görüntü iyileştirme ayarınız, sistem varsayılanına döndürülsün mü?"
@@ -15250,13 +15261,6 @@ msgstr "Ağı yeniden başlat"
 msgid "Restart Network Adapter"
 msgstr "Ağ Bağdaştırıcısını Yeniden Başlat"
 
-#
-msgid "Restart both"
-msgstr "İkisini de yeniden başlat"
-
-msgid "Restart cardserver"
-msgstr "Kart sunucuyu yeniden başlat"
-
 msgid "Restart enigma"
 msgstr "Enigma'yı yeniden başlat"
 
@@ -15272,10 +15276,6 @@ msgstr "Ağı yeniden başlat ve bağlantıları yeniden bağlama"
 
 msgid "Restart network to with current setup"
 msgstr "Şebekeyi mevcut kurulumla yeniden başlat"
-
-#
-msgid "Restart softcam"
-msgstr "Softcam'i yeniden başlat"
 
 #
 msgid "Restart test"
@@ -16030,11 +16030,11 @@ msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız, 'band' seçeneğini seçin, 
 msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr "Bir paket güncellemesinden önce paket temizlemeye zorlamak için 'Etkinleştir'i seçin. Bu, paket listesinin güncel olduğundan emin olmak için yararlıdır ve güncelleme sırasında sorunları önleyebilir/çözebilir. Bunu yalnızca çevrimiçi güncelleme yapamadığınızda etkinleştirin."
 
-msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
-msgstr "Bu tunerin bağlı bir sinyal kablosu varsa 'etkin' seçeneğini seçin, aksi halde 'bağlı hiçbir şey' seçin."
-
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
+
+msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
+msgstr "Bu tunerin bağlı bir sinyal kablosu varsa 'etkin' seçeneğini seçin, aksi halde 'bağlı hiçbir şey' seçin."
 
 msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
 msgstr "'Hayır' olarak ayarlanırsa, zaman kayması yalnızca bir arabellek dosyası kullanılır. 'Eski dosyalara [dakika]] ve' Timeshift boş alan kontrolü 'için Timeshift'i kontrol etmenizi tavsiye ederiz. ayarlamak."
@@ -16210,7 +16210,7 @@ msgstr "Eklentileri İndir ekranında dış görünüm bileşen paketlerini gös
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında dış görünüm paketlerini göstermek için 'Evet'i seçin."
 
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
+msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında softcam paketlerini göstermek için 'Evet'i seçin."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -16316,9 +16316,6 @@ msgstr "Skin Seçin"
 msgid "Select a bouquet"
 msgstr "Bir buket seçin"
 
-msgid "Select a cardserver from the available list."
-msgstr "Mevcut listeden bir kart sunucusu seçin."
-
 msgid "Select a debug log file to view:"
 msgstr "Görüntülemek için bir hata ayıklama günlük dosyası seçin:"
 
@@ -16356,7 +16353,10 @@ msgstr "Görüntülemek için bir depo commit günlüğü seçin:"
 msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
 
-msgid "Select a softcam from the available list."
+msgid "Select a Softcam from the available list as the default for AutoCam."
+msgstr ""
+
+msgid "Select a Softcam from the available list."
 msgstr "Mevcut listeden bir softcam seçin."
 
 msgid "Select a tuner"
@@ -16385,6 +16385,9 @@ msgstr "Görev tamamlandığında gerçekleştirilecek bir eylem seçin."
 #
 msgid "Select audio track"
 msgstr "Ses izi seçin"
+
+msgid "Select AutoCam default Softcam"
+msgstr ""
 
 msgid "Select cardserver"
 msgstr "Kart sunucusu seçin"
@@ -16522,7 +16525,7 @@ msgstr "Görüntülemek için servis bilgilerini seçin:"
 msgid "Select service to add..."
 msgstr "Eklenecek kanalı seçin..."
 
-msgid "Select softcam"
+msgid "Select Softcam"
 msgstr "Softcam'i seçin"
 
 msgid "Select sort method:"
@@ -16539,6 +16542,10 @@ msgstr "Geçerli sütun için geçici dosya sıralama düzenini seçin"
 
 msgid "Select the No / False response"
 msgstr "Hayır / Yanlış yanıtını seçin"
+
+#, python-format
+msgid "Select the Softcam for '%s'"
+msgstr ""
 
 msgid "Select the Swap File Size:"
 msgstr "Dosya Boyutunu Değiştirin:"
@@ -16569,6 +16576,9 @@ msgstr "Zamanlayıcı sona erdiğinde gerçekleştirilecek eylemi seçin."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Yardım ekranındaki düğme göstergelerinin animasyon hızını kontrol edin. 'Devre Dışı', göstergelerin düğmeler arasında geçiş yapması için animasyonu kapatır."
+
+msgid "Select the cardserver to be used from the list of available cardservers."
+msgstr ""
 
 msgid "Select the channel from which to record:"
 msgstr "Kayıt yapılacak kanalı seçin:"
@@ -16737,7 +16747,7 @@ msgstr "Kaydırılan karakter kümesini seçin"
 msgid "Select the shifted character set for the next character only"
 msgstr "Yalnızca sonraki karakter için kaydırılmış karakter kümesini seçin"
 
-msgid "Select the softcam protocol."
+msgid "Select the Softcam protocol."
 msgstr "Softcam protokolünü seçin."
 
 msgid "Select the sort order for the file lines:"
@@ -17675,9 +17685,6 @@ msgstr "Kutu Portalını Göster"
 msgid "Show CCcam Info"
 msgstr "CCcam Bilgilerini Göster"
 
-msgid "Show CCcam in extensions"
-msgstr "CCcam'i uzantılarda göster"
-
 msgid "Show CI messages"
 msgstr "CI mesajları göster"
 
@@ -17763,7 +17770,7 @@ msgstr "MiniTV'de Canlı Gösteri"
 msgid "Show Log"
 msgstr "Günlük göster"
 
-msgid "Show Log Manager in extensions list"
+msgid "Show Log Manager in Extension Menu"
 msgstr "Log Manager'ı uzantı listesinde göster"
 
 msgid "Show M2k packages"
@@ -17790,8 +17797,8 @@ msgstr "Çoklu EPG'yi Göster"
 msgid "Show OScam Info"
 msgstr "OScam Bilgilerini Göster"
 
-msgid "Show OScam in extensions"
-msgstr "OScam'i uzantılarda göster"
+msgid "Show OScam/CCcam in Extension Menu"
+msgstr ""
 
 msgid "Show OpenPLi packages"
 msgstr "OpenPLi paketlerini göster"
@@ -18021,7 +18028,7 @@ msgstr "Görüntüyü göster ve '%s' olarak kaydet"
 msgid "Show in Standby"
 msgstr "Bekleme modunda göster"
 
-msgid "Show in extensions list"
+msgid "Show in Extension Menu"
 msgstr "Eklentiler listesinde göster"
 
 #
@@ -18032,7 +18039,7 @@ msgstr "Bilgi Göster"
 msgid "Show info line"
 msgstr "Bilgi satırını göster"
 
-msgid "Show job tasks in extensions"
+msgid "Show job tasks in Extension Menu"
 msgstr "İş görevlerini uzantılarda göster"
 
 msgid "Show last image"
@@ -18870,7 +18877,7 @@ msgstr "Yer İmlerini Sırala"
 msgid "Sort EPG List"
 msgstr "EPG listesini sınıflandır"
 
-msgid "Sort Extensions menu"
+msgid "Sort Extension Menu"
 msgstr "Uzantıları alfabetik olarak sırala"
 
 msgid "Sort Plugin Browser"
@@ -19487,7 +19494,7 @@ msgstr "İsveççe"
 msgid "Swimming"
 msgstr "Şamandıralar"
 
-msgid "Switch BLUE short (QuickMenu) with BLUE long (Extensions)"
+msgid "Switch BLUE short (QuickMenu) with BLUE long (Extension Menu)"
 msgstr "Mavi-Uzun (QuickMenu) Mavi-Uzun (Eklentiler) ile geçiş yapın"
 
 msgid "Switch EPG Page Down"
@@ -20558,7 +20565,7 @@ msgstr "Bu seçenek kullanıcı arayüzü saydamlık seviyesini ayarlamanızı s
 msgid "This option lets you choose the 3D mode"
 msgstr "3D kipinin seçilmesini sağlar"
 
-msgid "This option lets you show the option in the extension screen."
+msgid "This option lets you show the option in the Extension Menu screen."
 msgstr "Eklentiler ekranında seçeneğin görüntülenmesini sağlar."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -21797,6 +21804,9 @@ msgstr "Alternatif daha küçük bir ekran kullanın."
 msgid "Use as HDD"
 msgstr "HDD olarak kullan"
 
+msgid "Use AutoCam"
+msgstr ""
+
 msgid "Use automatic mode detection"
 msgstr "Otomatik mod algılamayı kullanın"
 
@@ -22838,6 +22848,9 @@ msgstr "Ayarlandığında her klasör bir önceki durumda gösterilir, kapatıld
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Ayarlanırsa, izlenen film durdurulduğunda PIG canlı yayına döner."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "İçerik 16:9 görüntü oranındaysa, resmin uzatılıp uzatılmayacağını seçiniz."
 
@@ -22932,7 +22945,7 @@ msgstr "Uzun OK tuşu ile"
 msgid "With pop up"
 msgstr "Açılır pencere ile"
 
-msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
+msgid "With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press)."
 msgstr "Görevlerin eklentiler ekranında gizlenmesini sağlar (mavi tuşa kısa basış)."
 
 msgid "With this option you can switch off the display during operation."
@@ -23541,9 +23554,6 @@ msgstr "alpharev sonra yeni"
 msgid "am"
 msgstr "am"
 
-msgid "and"
-msgstr "ve"
-
 msgid "aqua"
 msgstr "su"
 
@@ -23638,9 +23648,6 @@ msgstr "kart"
 
 msgid "card reader"
 msgstr "kart okuyucu"
-
-msgid "cardserver"
-msgstr "kart sunucusu"
 
 msgid "cartoon/puppets"
 msgstr "çizgifilm/kukla"
@@ -24006,9 +24013,6 @@ msgstr "anlık kayıt"
 
 msgid "internally loopthrough to"
 msgstr "dahili olarak ilmek"
-
-msgid "Invalid type"
-msgstr "geçersiz tip"
 
 msgid "jazz"
 msgstr "jazz"
@@ -24480,9 +24484,6 @@ msgstr "sosyal/politik/ekonomik konular (genel)"
 msgid "social/spiritual science"
 msgstr "sosyal/manevi bilimler"
 
-msgid "softcam"
-msgstr "softcam"
-
 msgid "special (general)"
 msgstr "spor (genel)"
 
@@ -24703,6 +24704,51 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+#~ msgstr "CCcam'i uzantılarda (mavi düğme) göstermenize / gizlemenize izin verir."
+
+#~ msgid "Allows you to show/hide OScam in extensions (BLUE button)."
+#~ msgstr "OScam'i uzantılarda (mavi düğme) göstermenize / gizlemenize izin verir."
+
+#~ msgid "Don't restart"
+#~ msgstr "Yeniden başlatma"
+
+#, python-format
+#~ msgid "Please wait, restarting %s."
+#~ msgstr "Lütfen bekleyin, %s yeniden başlatılıyor."
+
+#~ msgid "Reset the selected devices and save changes of your config when the GREEN button is pressed."
+#~ msgstr "YEŞİL düğmeye basıldığında, seçili cihazları sıfırlayın ve yapılandırmanızdaki değişiklikleri kaydedin."
+
+#
+#~ msgid "Restart both"
+#~ msgstr "İkisini de yeniden başlat"
+
+#~ msgid "Restart cardserver"
+#~ msgstr "Kart sunucuyu yeniden başlat"
+
+#
+#~ msgid "Restart softcam"
+#~ msgstr "Softcam'i yeniden başlat"
+
+#~ msgid "Select a cardserver from the available list."
+#~ msgstr "Mevcut listeden bir kart sunucusu seçin."
+
+#~ msgid "Show CCcam in extensions"
+#~ msgstr "CCcam'i uzantılarda göster"
+
+#~ msgid "Show OScam in extensions"
+#~ msgstr "OScam'i uzantılarda göster"
+
+#~ msgid "and"
+#~ msgstr "ve"
+
+#~ msgid "cardserver"
+#~ msgstr "kart sunucusu"
+
+#~ msgid "softcam"
+#~ msgstr "softcam"
 
 #~ msgid "CI Helper Settings"
 #~ msgstr "CI Yardımcısı Kurulumu"
