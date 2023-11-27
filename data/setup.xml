@@ -714,17 +714,10 @@
 		<item level="0" text="Select OK long action" description="Select what you want the OK long button to activate.">config.usage.oklong</item>
 		<!--item level="0" text="Use image colored Buttons *" description="Select if you want to use the image colored Buttons (set to 'no' if you want to use (Multi) Quick Button).">config.plisettings.ColouredButtons</item-->
 		<!--item level="0" text="Select RED action" description="Select what you want the RED button to activate.">config.plugins.infopanel_redpanel.selection</item-->
-<<<<<<< HEAD
-		<item level="0" text="Select RED long action" description="Select what you want the RED long button to activate.">config.usage.redlong</item>
-		<item level="0" text="Select GREEN long action" description="Select what you want the GREEN long button to activate.">config.usage.greenlong</item>
-		<item level="0" text="Select YELLOW long action" description="Select what you want the YELLOW long button to activate.">config.usage.yellowlong</item>
-		<item level="0" text="Select BLUE long action" description="Select what you want the BLUE long button to activate.">config.usage.bluelong</item>
-=======
 		<!--item level="0" text="Select RED long action" description="Select what you want the RED long button to activate.">config.plugins.infopanel_redpanel.selectionLong</item-->
 		<!--item level="0" text="Select YELLOW action" description="Select what you want the YELLOW button to activate.">config.plugins.infopanel_yellowkey.list</item-->
 		<!--item level="0" text="Select YELLOW long action" description="Select what you want the YELLOW long button to activate.">config.plugins.infopanel_yellowkey.listLong</item-->
 		<item level="0" text="BLUE switch: BLUE/BLUE long" description="Switch BLUE short (QuickMenu) with BLUE long (Extension Menu)">config.workaround.blueswitch</item>
->>>>>>> c78313bd0 (Text updates)
 		<item level="0" text="Long press emulation with button" description="Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button).">config.usage.long_press_emulation_key</item>
 		<item level="0" text="Add legacy LEFT/RIGHT actions" description="Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it.">config.misc.actionLeftRightToPageUpPageDown</item>
 	</setup>
@@ -753,17 +746,8 @@
 		</if>
 	</setup>
 	<setup key="Softcam" title="Softcam Settings" showOpenWebif="1">
-<<<<<<< HEAD
-		<item level="0" text="Select softcam" description="Select a softcam from the available list.">config.misc.softcams</item>
-		<item level="0" text="Select cardserver" description="Select a cardserver from the available list." conditional="config.misc.cardservers.value != ''">config.misc.cardservers</item>
-		<item level="0" text="Restart" description="Reset the selected devices and save changes of your config when the GREEN button is pressed.">config.misc.restarts</item>
-		<item level="2" text="Show CCcam in extensions" description="Allows you to show/hide CCcam in extensions (BLUE button)." conditional="'cccam' in config.misc.softcams.value.lower()">config.cccaminfo.showInExtensions</item>
-		<item level="2" text="Show OScam in extensions" description="Allows you to show/hide OScam in extensions (BLUE button)." conditional="'oscam' in config.misc.softcams.value.lower()">config.oscaminfo.showInExtensions</item>
-		<item level="2" text="Show Ncam in extensions" description="Allows you to show/hide Ncam in extensions (blue button).">config.ncaminfo.showInExtensions</item>
-=======
 		<item level="0" text="Select Softcam" description="Select a Softcam from the available list.">config.misc.softcams</item>
 		<item level="2" text="Show OScam/CCcam in Extension Menu" description="Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button).">config.softcam.showInExtensions</item>
->>>>>>> c78313bd0 (Text updates)
 	</setup>
 	<setup key="SpecialFeatures" title="Special Features Settings">
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
