@@ -1207,6 +1207,10 @@ msgid "%s - Setup"
 msgstr "%s - Configuración"
 
 #, python-format
+msgid "%s Browser Manage Actions"
+msgstr "%s Acciones de administración del navegador"
+
+#, python-format
 msgid "%s GHz"
 msgstr "%s GHz"
 
@@ -2166,8 +2170,8 @@ msgstr "Añadir/Eliminar temporizador"
 msgid "Add/Remove a timer for the current event"
 msgstr "Añadir/eliminar temporizador para el programa actual"
 
-msgid "Add/Remove highlighted plugin to/from download list"
-msgstr "Añadir/Quitar el plugin seleccionado en/de la lista de descargas"
+msgid "Add/Remove highlighted plugin to/from install list"
+msgstr "Añadir/Quitar el plugin seleccionado en/de la lista de instalados"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr "Añadir/Quitar el plugin seleccionado en/de la lista de borrados"
@@ -2443,10 +2447,12 @@ msgstr ""
 msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 msgstr "Te permite mostrar/ocultar CCcam en extensiones (tecla azul)."
 
-msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
+msgid ""
+"Allows you to show/hide Log Manager in the Extension Menu screen (BLUE "
+"button)."
 msgstr ""
-"Te permite mostrar/ocultar el administrador de logs en extensiones (tecla "
-"azul)."
+"Te permite mostrar/ocultar el administrador de logs en el menú extensiones "
+"(tecla azul)."
 
 msgid "Allows you to show/hide OScam in extensions (BLUE button)."
 msgstr "Te permite mostrar/ocultar OScam en extensiones (tecla azul)."
@@ -3201,6 +3207,15 @@ msgstr "Bangladesh"
 msgid "Barbados"
 msgstr "Barbados"
 
+msgid "Base Packages"
+msgstr "Paquetes de base"
+
+msgid "Base Shell Packages"
+msgstr "Paquetes de Shell base"
+
+msgid "Base Utility Packages"
+msgstr "Paquetes de utilidades base"
+
 msgid "Base time"
 msgstr "Hora de inicio"
 
@@ -3897,6 +3912,12 @@ msgstr "Cancelar la selección"
 
 msgid "Cancel selection and exit"
 msgstr "Cancelar la selección y salir"
+
+msgid "Cancel the Reset Feeds command currently being processed"
+msgstr "Cancelar el comando Reset Feeds que se está procesando ahora mismo"
+
+msgid "Cancel the bouquet selection"
+msgstr "Cancelar la selección de listas"
 
 msgid "Cancel the flash process"
 msgstr "Cancelar el proceso de instalación"
@@ -5384,6 +5405,27 @@ msgstr "Información de conexión"
 
 msgid "Console"
 msgstr "Consola"
+
+msgid "Console Administrative Packages"
+msgstr "Paquetes administrativos de consola"
+
+msgid "Console Multimedia Packages"
+msgstr "Paquetes multimedia de consola"
+
+msgid "Console Network Packages"
+msgstr "Paquetes de consola de red"
+
+msgid "Console Packages"
+msgstr "Paquetes de consola"
+
+msgid "Console Test Packages"
+msgstr "Paquetes de prueba de consola"
+
+msgid "Console Tool Packages"
+msgstr "Paquetes de herramientas de consola"
+
+msgid "Console Utility Packages"
+msgstr "Paquetes de utilidades de consola"
 
 #
 msgid "Constellation & FFT mode"
@@ -7003,6 +7045,10 @@ msgid "Do you want to install the package:\n"
 msgstr "¿Quieres instalar el paquete?\n"
 
 #
+msgid "Do you want to install:"
+msgstr "Quieres instalar:"
+
+#
 msgid "Do you want to play DVD in drive?"
 msgstr "¿Quieres ejecutar el DVD en la unidad?"
 
@@ -7050,6 +7096,9 @@ msgstr "¿Quieres actualizar tu receptor?"
 #
 msgid "Do you want to upgrade the package:\n"
 msgstr "¿Quieres actualizar el paquete?\n"
+
+msgid "Documentation Packages"
+msgstr "Paquetes de documentación"
 
 msgid "Documentary"
 msgstr "Documental"
@@ -7846,6 +7895,9 @@ msgstr "Nivel de depuración de Enigma2"
 msgid "Enigma2 information"
 msgstr "Información sobre Enigma2"
 
+msgid "Enigma2 Packages"
+msgstr "Paquetes enigma2"
+
 msgid "Enigma2 revision"
 msgstr "Revisión de Enigma2"
 
@@ -8156,10 +8208,6 @@ msgstr ""
 "Error: %s\n"
 "¿Reintentar?"
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr "Error: %s %s ¡ningún %s!  Por favor, inténtelo de nuevo más tarde."
-
 msgid "Error: A location to save the recording has not been selected!"
 msgstr "Error: ¡No se ha seleccionado el destino de la grabación!"
 
@@ -8267,17 +8315,20 @@ msgid "Error: There was a problem writing '%s'!"
 msgstr "Error: Hay un problema al escribir '%s'!"
 
 msgid ""
+"Error: There was an issue in the reset of the feeds! Please reboot the %s %s "
+"and check the file system for any errors before trying this command again."
+msgstr ""
+"Error: Hay un fallo en el reseteo de los feeds! Por favor, reinicia el %s %s "
+"y comprueba el sistema de archivos en busca de errores antes de intentar "
+"enviar el comando de nuevo!"
+
+msgid ""
 "Error: Unable to create the required directories on the target device (e.g. "
 "USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 "Error: ¡No se han podido crear los directorios necesarios en el dispositivo "
 "de destino (por ejemplo, una memoria USB o un disco duro)! Por favor, "
 "verifique el dispositivo e inténtelo de nuevo."
-
-msgid "Error: Unable to process the command!  Please try again later."
-msgstr ""
-"Error: No se ha podido procesar el comando.  Por favor, inténtelo de nuevo "
-"más tarde."
 
 #, python-format
 msgid "Error: Unable to rename directory '%s' to '%s'!"
@@ -8576,6 +8627,10 @@ msgstr "Cambiar fuentes de subtítulo externo"
 msgid "Extra High"
 msgstr "Altura extra"
 
+#
+msgid "Extra Packages"
+msgstr "Paquetes extra"
+
 msgid "Extra motor options"
 msgstr "Opciones extras de motor"
 
@@ -8851,6 +8906,13 @@ msgstr "Ajustes del Administrador de archivos"
 msgid "File System Check"
 msgstr "Comprobar sistema de archivos"
 
+#
+msgid "File System Packages"
+msgstr "Paquetes de sistema de archivos"
+
+msgid "File System Support Packages"
+msgstr "Paquetes de soporte de sistema de archivos"
+
 msgid "File appears to be busy.\n"
 msgstr "El archivo parece estar ocupado.\n"
 
@@ -9032,6 +9094,9 @@ msgstr "Plano por posición en el mando"
 #
 msgid "Following tasks will be done after you press OK!"
 msgstr "¡Las siguientes tareas se realizarán después de pulsar OK!"
+
+msgid "Font Packages"
+msgstr "Paquetes de fuentes"
 
 msgid "Font size"
 msgstr "Tamaño de letra"
@@ -10594,6 +10659,11 @@ msgstr "Insertar línea antes de la línea actual"
 msgid "Install"
 msgstr "Instalar"
 
+#
+#, python-format
+msgid "Install %s"
+msgstr "Instalar %s"
+
 #, python-format
 msgid "Install '%s' command"
 msgstr "Instalar comando '%s'"
@@ -10610,6 +10680,9 @@ msgstr "Instalación finalizada."
 #
 msgid "Install Local Extension"
 msgstr "Instalar extensión local"
+
+msgid "Install Plugin"
+msgstr "Instalar Plugin"
 
 msgid "Install Plugins"
 msgstr "Instalar Plugins"
@@ -10634,6 +10707,10 @@ msgstr "Instalar extensiones."
 
 msgid "Install the package"
 msgstr "Instalar el paquete"
+
+#
+msgid "Install the selected plugin / list of plugins"
+msgstr "Instalar el plugin seleccionado o lista de plugins seleccionada"
 
 msgid "Install/Remove plugin"
 msgstr "Instalar/eliminar el plugin"
@@ -10933,6 +11010,9 @@ msgstr ""
 msgid "Kenya"
 msgstr "Kenia"
 
+msgid "Kernel Module Packages"
+msgstr "Paquetes de módulos kernel"
+
 msgid "Kernel Packages"
 msgstr "Paquetes de kernel"
 
@@ -11105,10 +11185,6 @@ msgstr "Idioma ya seleccionado."
 msgid "Language selection"
 msgstr "Selección de idioma"
 
-#
-msgid "Languages"
-msgstr "Idiomas"
-
 msgid "Lao"
 msgstr "Lao"
 
@@ -11208,6 +11284,16 @@ msgstr "Zoom Buzón"
 
 msgid "Liberia"
 msgstr "Liberia"
+
+msgid "Library Multimedia Packages"
+msgstr "Paquetes de librerías multimedia"
+
+# Quick Menue
+msgid "Library Network Packages"
+msgstr "Paquetes de librerías de red"
+
+msgid "Library Packages"
+msgstr "Paquetes de librerías"
 
 msgid "Libs"
 msgstr "Libs"
@@ -11416,9 +11502,6 @@ msgstr "Selección del idioma regional"
 #
 msgid "Locale/Language Selection Actions"
 msgstr "Acciones de selección del idioma regional"
-
-msgid "Locales"
-msgstr "Localidades"
 
 msgid "Locales to be displayed"
 msgstr "Localidades que se mostrarán"
@@ -11663,6 +11746,10 @@ msgstr "Malta"
 
 msgid "Maltese"
 msgstr "Maltes"
+
+#, python-format
+msgid "Manage %s"
+msgstr "Administrar %s"
 
 #
 msgid "Manage Locale/Language Selection settings"
@@ -11980,6 +12067,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Varios"
 
+msgid "Miscellaneous Packages"
+msgstr "Paquetes misceláneos"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Mala configuración en la asignación de canales"
 
@@ -12173,12 +12263,12 @@ msgid "Move down one line"
 msgstr "Desplazarse una línea más abajo"
 
 msgid ""
-"Move down one line.  Move to the top of the next screen if this is the last "
-"line of the screen.  Move to the first line of the list if this is the last "
+"Move down one line. Move to the top of the next screen if this is the last "
+"line of the screen. Move to the first line of the list if this is the last "
 "line on the list."
 msgstr ""
-"Bajar una línea.  Desplazarse al principio de la siguiente pantalla si ésta "
-"es la última línea de la pantalla.  Desplazarse a la primera línea de la "
+"Bajar una línea. Desplazarse al principio de la siguiente pantalla si ésta "
+"es la última línea de la pantalla. Desplazarse a la primera línea de la "
 "lista si ésta es la última línea de la lista."
 
 #
@@ -12186,10 +12276,10 @@ msgid "Move down one screen"
 msgstr "Desplazarse una pantalla hacia abajo"
 
 msgid ""
-"Move down one screen.  Move to the last line of the screen if this is the "
+"Move down one screen. Move to the last line of the screen if this is the "
 "last screen."
 msgstr ""
-"Desplazarse hacia abajo una pantalla.  Desplazarse a la última línea de la "
+"Desplazarse hacia abajo una pantalla. Desplazarse a la última línea de la "
 "pantalla si ésta es la última pantalla."
 
 msgid "Move down to last line"
@@ -12313,23 +12403,23 @@ msgid "Move up one line"
 msgstr "Subir una línea"
 
 msgid ""
-"Move up one line.  Move to the bottom of the previous screen if this is the "
-"first line of the screen.  Move to the last of the entry / list if this is "
+"Move up one line. Move to the bottom of the previous screen if this is the "
+"first line of the screen. Move to the last of the entry / list if this is "
 "the first line of the list."
 msgstr ""
-"Subir una línea.  Moverse al final de la pantalla anterior si ésta es la "
-"primera línea de la pantalla.  Desplazarse al último de la entrada / lista "
-"si ésta es la primera línea de la lista."
+"Subir una línea. Moverse al final de la pantalla anterior si ésta es la "
+"primera línea de la pantalla. Desplazarse al último de la entrada / lista si "
+"ésta es la primera línea de la lista."
 
 msgid "Move up one screen"
 msgstr "Avanzar una pantalla"
 
 msgid ""
-"Move up one screen.  Move to the first line of the screen if this is the "
+"Move up one screen. Move to the first line of the screen if this is the "
 "first screen."
 msgstr ""
-"Avanzar una pantalla.  Desplazarse a la primera línea de la pantalla si ésta "
-"es la primera pantalla."
+"Subir una pantalla. Desplazarse a la primera línea de la pantalla si ésta es "
+"la primera pantalla."
 
 #
 msgid "Move up to first line"
@@ -12440,8 +12530,8 @@ msgid "Multiboot Image created on: %s/%s-%s%s-%s-backup-%s_usb.zip"
 msgstr "Imagen Multiboot creada en: %s/%s-%s%s-%s-backup-%s_usb.zip"
 
 #
-msgid "Multimedia"
-msgstr "Multimedia"
+msgid "Multimedia Packages"
+msgstr "Paquetes Multimedia"
 
 #
 msgid "Multiple service support"
@@ -12608,6 +12698,13 @@ msgstr "Máscara de red"
 msgid "Network"
 msgstr "Red"
 
+msgid "Network (net) Packages"
+msgstr "Paquetes de red"
+
+#
+msgid "Network (network) Packages"
+msgstr "Paquetes de red"
+
 msgid "Network Adapter Actions"
 msgstr "Acciones del adaptador de red"
 
@@ -12716,6 +12813,9 @@ msgstr "Red:"
 #
 msgid "NetworkWizard"
 msgstr "Asistente de red"
+
+msgid "Networking Packages"
+msgstr "Paquetes de red"
 
 #
 msgid "Neutrino  (keymap.ntr)"
@@ -13590,6 +13690,9 @@ msgstr "Opción para desactivar picon de la barra de información"
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "Opción para activar el temporizador de apagado de hardware"
 
+msgid "Optional Packages"
+msgstr "Paquetes opcionales"
+
 msgid "Optional parameter"
 msgstr "Parámetro opcional"
 
@@ -13632,6 +13735,9 @@ msgstr "Otro"
 
 msgid "Other Actions"
 msgstr "Otras acciones"
+
+msgid "Other Packages"
+msgstr "Otros paquetes"
 
 msgid "Other Subtitles & lang"
 msgstr "Otros subtítulos e idioma"
@@ -13772,6 +13878,9 @@ msgstr "HORA ESTELAR"
 msgid "PVR"
 msgstr "PVR"
 
+msgid "Package"
+msgstr "Paquete"
+
 #
 msgid "Package Manager"
 msgstr "Administrar paquetes"
@@ -13791,6 +13900,9 @@ msgstr "Actualización de lista de paquetes"
 
 msgid "Packaged locales only"
 msgstr "Solamente paquetes locales"
+
+msgid "Packages"
+msgstr "Paquetes"
 
 msgid "Packages and associated locales"
 msgstr "Paquetes y locales asociados"
@@ -14381,6 +14493,15 @@ msgstr "Espera a la activación de tu configuración de red…"
 msgid "Please wait while gathering data..."
 msgstr "Espera mientras se recupera la información..."
 
+msgid "Please wait while locale/language is deleted..."
+msgstr "Por favor, espera mientras se elimina el idioma..."
+
+msgid "Please wait while locale/language is installed..."
+msgstr "Por favor, espera mientras se instala el idioma..."
+
+msgid "Please wait while locales/languages are purged..."
+msgstr "Por favor, espera mientras se eliminan los idiomas..."
+
 #
 msgid "Please wait while scanning is in progress..."
 msgstr "Espera mientras la búsqueda está en curso..."
@@ -14455,6 +14576,9 @@ msgstr "Actualización del Explorador de Plugins"
 
 msgid "Plugin Browser layout"
 msgstr "Layout del Explorador de Plugins"
+
+msgid "Plugin Packages"
+msgstr "Paquetes de plugins"
 
 #
 msgid "Plugin Manager Activity Information"
@@ -15010,13 +15134,13 @@ msgstr ""
 "seleccionado"
 
 msgid ""
-"Purge all but the current and permanent locales/languages.  Add the current "
-"locale/language if it is not installed.  Delete the current locale/language "
+"Purge all but the current and permanent locales/languages. Add the current "
+"locale/language if it is not installed. Delete the current locale/language "
 "if it is installed."
 msgstr ""
-"Limpiar todo excepto los idiomas/regiones actuales y permanentes.  Añadir el "
-"actual idioma /región si no está instalado.  Eliminar el actual idioma/"
-"región si está instalado."
+"Limpiar todo excepto los idiomas/regiones actuales y permanentes. Añadir el "
+"actual idioma/región si no está instalado. Eliminar el actual idioma/región "
+"si está instalado."
 
 msgid "Purging all unused locales/languages..."
 msgstr "Limpiar todos los idiomas/regiones no utilizados..."
@@ -15032,6 +15156,9 @@ msgstr "Poner el receptor AV en reposo"
 
 msgid "Python"
 msgstr "Python"
+
+msgid "Python Development Packages"
+msgstr "Paquetes de desarrollo python"
 
 #
 msgid "Python frontend for /tmp/mmi.socket"
@@ -15804,6 +15931,12 @@ msgstr "Reservado para uso futuro"
 msgid "Reset"
 msgstr "Restablecer"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr "Resetear (limpiar y recargar) los feeds"
+
+msgid "Reset Feeds"
+msgstr "Restablecer feeds"
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Restablecer la configuración HDMI-CEC por defecto"
 
@@ -15869,6 +16002,9 @@ msgstr "Reiniciar interfaz"
 msgid "Restart GUI after x crashes"
 msgstr "Reiniciar la interfaz gráfica de usuario después de X cuelgues"
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr "Reiniciar GUI ahora para empezar a usar el nuevo idioma?"
+
 #
 msgid "Restart GUI now?"
 msgstr "¿Reiniciar la interfaz ahora?"
@@ -15888,6 +16024,9 @@ msgstr "Reiniciar el servidor de tarjetas"
 
 msgid "Restart enigma"
 msgstr "Reiniciar Enigma"
+
+msgid "Restart finished"
+msgstr "Reinicio terminado"
 
 #
 msgid "Restart necessary, restart GUI now?"
@@ -18850,8 +18989,8 @@ msgid "Show Log"
 msgstr "Mostrar log"
 
 # crashlog
-msgid "Show Log Manager in extensions list"
-msgstr "Mostrar Log Manager en la lista de extensiones"
+msgid "Show Log Manager in Extension Menu"
+msgstr "Mostrar Administrador de logs en el menú extensiones"
 
 # Mediaplayer Setup
 msgid "Show Media Player in Main Menu"
@@ -22865,6 +23004,9 @@ msgstr "LNB Universal"
 msgid "Unknown"
 msgstr "Desconocido"
 
+msgid "Unknown Packages"
+msgstr "Paquetes desconocidos"
+
 #
 msgid "Unknown Service"
 msgstr "Canal desconocido"
@@ -23410,6 +23552,9 @@ msgstr ""
 "Cuando el idioma de sutbítulos es el mismo que el de audio, los subtítulos "
 "no se utilizan por lo general. Habilita esta opción para usar los subtítulos."
 
+msgid "Utility Packages"
+msgstr "Paquetes de utilidades"
+
 msgid "Uzbek"
 msgstr ""
 
@@ -23943,6 +24088,10 @@ msgstr "Guerra"
 
 msgid "Warning"
 msgstr "Advertencia"
+
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr "Advertencia: %d feeds no están disponibles para ser recargados!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Advertencia: ¡Las anulaciones están actualmente activas!"
@@ -24642,6 +24791,27 @@ msgstr "Www"
 
 msgid "X-Resolution"
 msgstr "Resolución X"
+
+msgid "X11 Base Packages"
+msgstr "Paquetes de base X11"
+
+msgid "X11 Font Packages"
+msgstr "Paquetes de fuentes X11"
+
+msgid "X11 Gnome Library Packages"
+msgstr "Paquetes librería Gnome X11"
+
+msgid "X11 Gnome Packages"
+msgstr "Paquetes Gnome X11"
+
+msgid "X11 Library Packages"
+msgstr "Paquetes de librerías X11"
+
+msgid "X11 Packages"
+msgstr "Paquetes X11"
+
+msgid "X11 Utility Packages"
+msgstr "Paquetes de utilidades X11"
 
 msgid "XBox 360 support"
 msgstr "Soporte XBox 360"
@@ -26115,6 +26285,12 @@ msgstr "sobre cómo restaurar la imagen"
 msgid "original language"
 msgstr "idioma original"
 
+msgid "package"
+msgstr "paquete"
+
+msgid "packages"
+msgstr "paquetes"
+
 msgid "orange"
 msgstr "naranja"
 
@@ -26146,6 +26322,14 @@ msgstr "Reproducir en PiP"
 #
 msgid "please wait, loading picture..."
 msgstr "Espera mientras se carga la foto..."
+
+#
+msgid "plugin"
+msgstr "plugin"
+
+#
+msgid "plugins"
+msgstr "plugins"
 
 msgid "pm"
 msgstr "pm"
@@ -26189,6 +26373,11 @@ msgstr "gente destacada"
 #
 msgid "remove after this position"
 msgstr "Borrar después de esta posición"
+
+#
+#, python-format
+msgid "Remove %s"
+msgstr "Eliminar %s"
 
 #
 msgid "Remove All Alternatives"
@@ -27990,12 +28179,6 @@ msgid "inactive"
 msgstr "inactivo"
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] "%d paquete encontrado."
-msgstr[1] "%d paquetes encontrados."
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d paquete tiene una actualización"
@@ -28013,6 +28196,12 @@ msgid_plural "%d packages installed."
 msgstr[0] "%d paquete instalado."
 msgstr[1] "%d paquetes instalados."
 
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
+msgstr[0] "Paquete %d marcado para actualizar."
+msgstr[1] "Paquetes %d marcados para actualizar."
+
 #
 msgid "Add services to this bouquet?"
 msgstr "Añadir canales a esta lista?"
@@ -28027,6 +28216,12 @@ msgstr "Cerrar el Navegador de Plugins"
 msgid "Development Packages"
 msgstr "Paquetes de desarrollo"
 
+msgid "Development Python Packages"
+msgstr "Paquetes de desarrollo python"
+
+msgid "Development TCL Toolkit Packages"
+msgstr "Paquetes de desarrollo kit de herramientas TCL"
+
 # Quick Menue
 msgid "Display Skin Packages"
 msgstr "Paquetes de skin de display"
@@ -28037,20 +28232,12 @@ msgid "Do you want to download '%s'?"
 msgstr "¿Quieres descargar %s?"
 
 #, python-format
-msgid "Do you want to remove '%s'?"
-msgstr "¿Quieres eliminar '%s'?"
+msgid "Do you want to remove:"
+msgstr "Quieres eliminar:"
 
 #, python-format
-msgid "Do you want to replace '%s' with '%s?"
-msgstr "¿Quieres sustituir '%s' por '%s'?"
-
-#, python-format
-msgid "Do you want to update '%s'?"
-msgstr "¿Quieres actualizar '%s'?"
-
-#
-msgid "Download Plugin"
-msgstr "Descargar Plugin"
+msgid "Do you want to update:"
+msgstr "Quieres actualizar:"
 
 #
 msgid "Download the selected list of plugins"
@@ -28073,9 +28260,6 @@ msgstr "Error DNS del servidor de feeds!"
 msgid "Feed server access error!"
 msgstr "Error acceso al servidor de feeds!"
 
-msgid "Force OPKG clean mode"
-msgstr "Forzar modo de limpieza OPKG"
-
 #
 msgid "Hide error messages from the Common Interface module."
 msgstr "Ocultar mensajes de error del módulo interfaz común."
@@ -28086,8 +28270,12 @@ msgstr "Ocultar mensajes CI"
 msgid "Manage Plugins. This will remove/install Plugins on your box"
 msgstr "Administrar Plugins. Se eliminarán/instalarán plugins en tu receptor"
 
-msgid "Manage the highlighted plugin"
-msgstr "Administrar el plugin seleccionado"
+msgid "Manage the highlighted %s"
+msgstr "Administrar el %s seleccionado"
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
+msgstr "Administrar el %s / lista de %s seleccionados"
 
 #
 msgid "Move to the first item on the current line"
@@ -28134,11 +28322,15 @@ msgstr "Pulsa ‘OK’ cuando esté listo"
 msgid "Please wait while feeds are updated..."
 msgstr "Por favor, espera mientras se actualizan los feeds..."
 
-msgid "Please wait while the plugin is downloaded."
-msgstr "Por favor, espera mientras se descarga el plugin."
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] "Por favor, espera mientras se instala el plugin."
+msgstr[1] "Por favor, espera mientras se instalan los plugins."
 
 msgid "Please wait while the plugin is removed."
-msgstr "Por favor, espera mientras se elimina el plugin."
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] "Por favor, espera mientras se elimina el plugin."
+msgstr[1] "Por favor, espera mientras se eliminan los plugins."
 
 msgid "Please wait while the plugin is replaced."
 msgstr "Por favor, espera mientras se sustituye el plugin."
@@ -28152,14 +28344,11 @@ msgstr "Acciones del log de acciones del plugin"
 msgid "Plugin Browser Actions"
 msgstr "Acciones del Explorador de Plugins"
 
-msgid "Plugin Browser Download Actions"
-msgstr "Acciones de descarga del Explorador de Plugins"
-
 msgid "Plugin Browser Edit Actions"
 msgstr "Acciones de edición del Explorador de Plugins"
 
-msgid "Plugin Browser Manage Actions"
-msgstr "Acciones administración del Explorador de Plugins"
+msgid "Plugin Browser Install Actions"
+msgstr "Acciones de instalación del Explorador de Plugins"
 
 msgid "Plugin Browser Navigation Actions"
 msgstr "Acciones de navegación del Explorador de Plugins"
@@ -28183,16 +28372,6 @@ msgstr "Eliminar la lista de plugins seleccionada"
 
 msgid "Reset sort order"
 msgstr "Restablecer orden de clasificación"
-
-msgid ""
-"Select 'Enable' to force a package clean before a package update. This is "
-"helpful to make sure the package list is up-to-date and can avoid/solve "
-"issues during the update. Only enable this when you can not update on-line."
-msgstr ""
-"Selecciona 'Habilitar' para forzar la limpieza de paquete antes de una "
-"actualización del paquete. Esto es útil para asegurarse de que la lista de "
-"paquetes esté actualizada y se pueda evitar/resolver problemas durante la "
-"actualización. Habilita esto solo cuando no puedas actualizar en línea."
 
 msgid ""
 "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the "
@@ -28267,11 +28446,6 @@ msgstr ""
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 "Selecciona 'Sí' para mostrar los paquetes de skins en la pantalla de "
-"Descarga de Plugins."
-
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de softcam en la pantalla de "
 "Descarga de Plugins."
 
 msgid ""
@@ -28474,6 +28648,10 @@ msgstr ""
 msgid "Reset Order"
 msgstr "Restablecer orden de clasificación"
 
+#
+msgid "Plugin"
+msgstr "Plugin"
+
 msgid "Plugin Action Log"
 msgstr "Log de instalación del plugin"
 
@@ -28603,6 +28781,62 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#, python-format
+#~ msgid "Error: %s %s not %s!  Please try again later."
+#~ msgstr "Error: %s %s ¡ningún %s!  Por favor, inténtelo de nuevo más tarde."
+
+#~ msgid "Error: Unable to process the command!  Please try again later."
+#~ msgstr ""
+#~ "Error: No se ha podido procesar el comando.  Por favor, inténtelo de "
+#~ "nuevo más tarde."
+
+#
+#~ msgid "Languages"
+#~ msgstr "Idiomas"
+
+#~ msgid "Locales"
+#~ msgstr "Localidades"
+
+#, python-format
+#~ msgid "%d package found."
+#~ msgid_plural "%d packages found."
+#~ msgstr[0] "%d paquete encontrado."
+#~ msgstr[1] "%d paquetes encontrados."
+
+#, python-format
+#~ msgid "Do you want to replace '%s' with '%s?"
+#~ msgstr "¿Quieres sustituir '%s' por '%s'?"
+
+#
+#~ msgid "Download Plugin"
+#~ msgstr "Descargar Plugin"
+
+#~ msgid "Force OPKG clean mode"
+#~ msgstr "Forzar modo de limpieza OPKG"
+
+#~ msgid "Please wait while the plugin is downloaded."
+#~ msgstr "Por favor, espera mientras se descarga el plugin."
+
+#~ msgid "Plugin Browser Download Actions"
+#~ msgstr "Acciones de descarga del Explorador de Plugins"
+
+#~ msgid ""
+#~ "Select 'Enable' to force a package clean before a package update. This is "
+#~ "helpful to make sure the package list is up-to-date and can avoid/solve "
+#~ "issues during the update. Only enable this when you can not update on-"
+#~ "line."
+#~ msgstr ""
+#~ "Selecciona 'Habilitar' para forzar la limpieza de paquete antes de una "
+#~ "actualización del paquete. Esto es útil para asegurarse de que la lista "
+#~ "de paquetes esté actualizada y se pueda evitar/resolver problemas durante "
+#~ "la actualización. Habilita esto solo cuando no puedas actualizar en línea."
+
+#~ msgid ""
+#~ "Select 'Yes' to show softcam packages in the Download Plugins screen."
+#~ msgstr ""
+#~ "Selecciona 'Sí' para mostrar los paquetes de softcam en la pantalla de "
+#~ "Descarga de Plugins."
 
 #
 #~ msgid "The pin code you entered is wrong."

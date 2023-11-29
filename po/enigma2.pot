@@ -1167,6 +1167,10 @@ msgid "%s - Setup"
 msgstr ""
 
 #, python-format
+msgid "%s Browser Manage Actions"
+msgstr ""
+
+#, python-format
 msgid "%s GHz"
 msgstr ""
 
@@ -1941,7 +1945,7 @@ msgstr ""
 msgid "Add/Remove a timer for the current event"
 msgstr ""
 
-msgid "Add/Remove highlighted plugin to/from download list"
+msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from remove list"
@@ -2817,6 +2821,15 @@ msgstr ""
 msgid "Barbados"
 msgstr ""
 
+msgid "Base Packages"
+msgstr ""
+
+msgid "Base Shell Packages"
+msgstr ""
+
+msgid "Base Utility Packages"
+msgstr ""
+
 msgid "Base time"
 msgstr ""
 
@@ -3443,6 +3456,12 @@ msgid "Cancel selection"
 msgstr ""
 
 msgid "Cancel selection and exit"
+msgstr ""
+
+msgid "Cancel the Reset Feeds command currently being processed"
+msgstr ""
+
+msgid "Cancel the bouquet selection"
 msgstr ""
 
 msgid "Cancel the flash process"
@@ -4551,6 +4570,27 @@ msgid "Connection information"
 msgstr ""
 
 msgid "Console"
+msgstr ""
+
+msgid "Console Administrative Packages"
+msgstr ""
+
+msgid "Console Multimedia Packages"
+msgstr ""
+
+msgid "Console Network Packages"
+msgstr ""
+
+msgid "Console Packages"
+msgstr ""
+
+msgid "Console Test Packages"
+msgstr ""
+
+msgid "Console Tool Packages"
+msgstr ""
+
+msgid "Console Utility Packages"
 msgstr ""
 
 msgid "Constellation & FFT mode"
@@ -5987,6 +6027,9 @@ msgstr ""
 msgid "Do you want to install the package:\n"
 msgstr ""
 
+msgid "Do you want to install:"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr ""
 
@@ -6024,6 +6067,9 @@ msgid "Do you want to update your box?"
 msgstr ""
 
 msgid "Do you want to upgrade the package:\n"
+msgstr ""
+
+msgid "Documentation Packages"
 msgstr ""
 
 msgid "Documentary"
@@ -6690,6 +6736,9 @@ msgstr ""
 msgid "Enigma2 information"
 msgstr ""
 
+msgid "Enigma2 Packages"
+msgstr ""
+
 msgid "Enigma2 revision"
 msgstr ""
 
@@ -6935,10 +6984,6 @@ msgid "Error: %s\n"
 "Retry?"
 msgstr ""
 
-#, python-format
-msgid "Error: %s %s not %s!  Please try again later."
-msgstr ""
-
 msgid "Error: A location to save the recording has not been selected!"
 msgstr ""
 
@@ -7020,10 +7065,10 @@ msgstr ""
 msgid "Error: There was a problem writing '%s'!"
 msgstr ""
 
-msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
+msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
 msgstr ""
 
-msgid "Error: Unable to process the command!  Please try again later."
+msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr ""
 
 #, python-format
@@ -7283,6 +7328,9 @@ msgid "External subtitle switch fonts"
 msgstr ""
 
 msgid "Extra High"
+msgstr ""
+
+msgid "Extra Packages"
 msgstr ""
 
 msgid "Extra motor options"
@@ -7548,6 +7596,12 @@ msgstr ""
 msgid "File System Check"
 msgstr ""
 
+msgid "File System Packages"
+msgstr ""
+
+msgid "File System Support Packages"
+msgstr ""
+
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -7705,6 +7759,9 @@ msgid "Flat by position on remote"
 msgstr ""
 
 msgid "Following tasks will be done after you press OK!"
+msgstr ""
+
+msgid "Font Packages"
 msgstr ""
 
 msgid "Font size"
@@ -9023,6 +9080,10 @@ msgid "Install"
 msgstr ""
 
 #, python-format
+msgid "Install %s"
+msgstr ""
+
+#, python-format
 msgid "Install '%s' command"
 msgstr ""
 
@@ -9036,6 +9097,9 @@ msgid "Install Finished."
 msgstr ""
 
 msgid "Install Local Extension"
+msgstr ""
+
+msgid "Install Plugin"
 msgstr ""
 
 msgid "Install Plugins"
@@ -9057,6 +9121,9 @@ msgid "Install extensions."
 msgstr ""
 
 msgid "Install the package"
+msgstr ""
+
+msgid "Install the selected plugin / list of plugins"
 msgstr ""
 
 msgid "Install/Remove plugin"
@@ -9333,6 +9400,9 @@ msgstr ""
 msgid "Kenya"
 msgstr ""
 
+msgid "Kernel Module Packages"
+msgstr ""
+
 msgid "Kernel Packages"
 msgstr ""
 
@@ -9491,9 +9561,6 @@ msgstr ""
 msgid "Language selection"
 msgstr ""
 
-msgid "Languages"
-msgstr ""
-
 msgid "Lao"
 msgstr ""
 
@@ -9581,6 +9648,15 @@ msgid "Letterbox zoom"
 msgstr ""
 
 msgid "Liberia"
+msgstr ""
+
+msgid "Library Multimedia Packages"
+msgstr ""
+
+msgid "Library Network Packages"
+msgstr ""
+
+msgid "Library Packages"
 msgstr ""
 
 msgid "Libs"
@@ -9767,9 +9843,6 @@ msgid "Locale/Language Selection"
 msgstr ""
 
 msgid "Locale/Language Selection Actions"
-msgstr ""
-
-msgid "Locales"
 msgstr ""
 
 msgid "Locales to be displayed"
@@ -9991,6 +10064,10 @@ msgid "Malta"
 msgstr ""
 
 msgid "Maltese"
+msgstr ""
+
+#, python-format
+msgid "Manage %s"
 msgstr ""
 
 msgid "Manage Locale/Language Selection settings"
@@ -10285,6 +10362,9 @@ msgid "Mipsel"
 msgstr ""
 
 msgid "Miscellaneous"
+msgstr ""
+
+msgid "Miscellaneous Packages"
 msgstr ""
 
 msgid "Misconfiguration in channel allocation"
@@ -10702,7 +10782,7 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s%s-%s-backup-%s_usb.zip"
 msgstr ""
 
-msgid "Multimedia"
+msgid "Multimedia Packages"
 msgstr ""
 
 msgid "Multiple service support"
@@ -10852,6 +10932,12 @@ msgstr ""
 msgid "Network"
 msgstr ""
 
+msgid "Network (net) Packages"
+msgstr ""
+
+msgid "Network (network) Packages"
+msgstr ""
+
 msgid "Network Adapter Actions"
 msgstr ""
 
@@ -10944,6 +11030,9 @@ msgid "Network:"
 msgstr ""
 
 msgid "NetworkWizard"
+msgstr ""
+
+msgid "Networking Packages"
 msgstr ""
 
 msgid "Neutrino  (keymap.ntr)"
@@ -11672,6 +11761,9 @@ msgstr ""
 msgid "Option to enable the Hardware Standby Timer"
 msgstr ""
 
+msgid "Optional Packages"
+msgstr ""
+
 msgid "Optional parameter"
 msgstr ""
 
@@ -11713,6 +11805,9 @@ msgid "Other"
 msgstr ""
 
 msgid "Other Actions"
+msgstr ""
+
+msgid "Other Packages"
 msgstr ""
 
 msgid "Other Subtitles & lang"
@@ -11831,6 +11926,9 @@ msgstr ""
 msgid "PVR"
 msgstr ""
 
+msgid "Package"
+msgstr ""
+
 msgid "Package Manager"
 msgstr ""
 
@@ -11847,6 +11945,9 @@ msgid "Package list update"
 msgstr ""
 
 msgid "Packaged locales only"
+msgstr ""
+
+msgid "Packages"
 msgstr ""
 
 msgid "Packages and associated locales"
@@ -12326,6 +12427,15 @@ msgstr ""
 msgid "Please wait while gathering data..."
 msgstr ""
 
+msgid "Please wait while locale/language is deleted..."
+msgstr ""
+
+msgid "Please wait while locale/language is installed..."
+msgstr ""
+
+msgid "Please wait while locales/languages are purged..."
+msgstr ""
+
 msgid "Please wait while scanning is in progress..."
 msgstr ""
 
@@ -12391,6 +12501,9 @@ msgid "Plugin Browser Update Actions"
 msgstr ""
 
 msgid "Plugin Browser layout"
+msgstr ""
+
+msgid "Plugin Packages"
 msgstr ""
 
 msgid "Plugin Manager Activity Information"
@@ -12883,6 +12996,9 @@ msgid "Put your AV Receiver in standby"
 msgstr ""
 
 msgid "Python"
+msgstr ""
+
+msgid "Python Development Packages"
 msgstr ""
 
 msgid "Python frontend for /tmp/mmi.socket"
@@ -13576,6 +13692,12 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
+msgid "Reset (clear and reload) the feeds"
+msgstr ""
+
+msgid "Reset Feeds"
+msgstr ""
+
 msgid "Reset HDMI-CEC settings to default"
 msgstr ""
 
@@ -13631,6 +13753,9 @@ msgstr ""
 msgid "Restart GUI after x crashes"
 msgstr ""
 
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr ""
+
 msgid "Restart GUI now?"
 msgstr ""
 
@@ -13647,6 +13772,9 @@ msgid "Restart cardserver"
 msgstr ""
 
 msgid "Restart enigma"
+msgstr ""
+
+msgid "Restart finished"
 msgstr ""
 
 msgid "Restart necessary, restart GUI now?"
@@ -19113,6 +19241,9 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
+msgid "Unknown Packages"
+msgstr ""
+
 msgid "Unknown Service"
 msgstr ""
 
@@ -19564,6 +19695,9 @@ msgid "Using old profile: "
 msgstr ""
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
+msgstr ""
+
+msgid "Utility Packages"
 msgstr ""
 
 msgid "Uzbek"
@@ -20023,6 +20157,10 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
+#, python-format
+msgid "Warning: %d feeds were unable to be reloaded!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -20450,6 +20588,27 @@ msgid "Www"
 msgstr ""
 
 msgid "X-Resolution"
+msgstr ""
+
+msgid "X11 Base Packages"
+msgstr ""
+
+msgid "X11 Font Packages"
+msgstr ""
+
+msgid "X11 Gnome Library Packages"
+msgstr ""
+
+msgid "X11 Gnome Packages"
+msgstr ""
+
+msgid "X11 Library Packages"
+msgstr ""
+
+msgid "X11 Packages"
+msgstr ""
+
+msgid "X11 Utility Packages"
 msgstr ""
 
 msgid "XBox 360 support"
@@ -21679,6 +21838,12 @@ msgstr ""
 msgid "original language"
 msgstr ""
 
+msgid "package"
+msgstr ""
+
+msgid "packages"
+msgstr ""
+
 msgid "orange"
 msgstr ""
 
@@ -21707,6 +21872,12 @@ msgid "Play in PiP"
 msgstr ""
 
 msgid "please wait, loading picture..."
+msgstr ""
+
+msgid "plugin"
+msgstr ""
+
+msgid "plugins"
 msgstr ""
 
 msgid "pm"
@@ -21746,6 +21917,10 @@ msgid "remarkable people"
 msgstr ""
 
 msgid "remove after this position"
+msgstr ""
+
+#, python-format
+msgid "Remove %s"
 msgstr ""
 
 msgid "Remove All Alternatives"
@@ -23226,12 +23401,6 @@ msgid "inactive"
 msgstr ""
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] ""
@@ -23249,6 +23418,12 @@ msgid_plural "%d packages installed."
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-format
+msgid "%d package marked for update."
+msgid_plural "%d packages marked for update."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
@@ -23261,6 +23436,12 @@ msgstr ""
 msgid "Development Packages"
 msgstr ""
 
+msgid "Development Python Packages"
+msgstr ""
+
+msgid "Development TCL Toolkit Packages"
+msgstr ""
+
 msgid "Display Skin Packages"
 msgstr ""
 
@@ -23269,18 +23450,11 @@ msgid "Do you want to download '%s'?"
 msgstr ""
 
 #, python-format
-msgid "Do you want to remove '%s'?"
+msgid "Do you want to remove:"
 msgstr ""
 
 #, python-format
-msgid "Do you want to replace '%s' with '%s?"
-msgstr ""
-
-#, python-format
-msgid "Do you want to update '%s'?"
-msgstr ""
-
-msgid "Download Plugin"
+msgid "Do you want to update:"
 msgstr ""
 
 msgid "Download the selected list of plugins"
@@ -23298,9 +23472,6 @@ msgstr ""
 msgid "Feed server access error!"
 msgstr ""
 
-msgid "Force OPKG clean mode"
-msgstr ""
-
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -23310,7 +23481,11 @@ msgstr ""
 msgid "Manage Plugins. This will remove/install Plugins on your box"
 msgstr ""
 
-msgid "Manage the highlighted plugin"
+msgid "Manage the highlighted %s"
+msgstr ""
+
+#, python-format
+msgid "Manage the highlighted %s / list of %s"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -23355,11 +23530,15 @@ msgstr ""
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
-msgid "Please wait while the plugin is downloaded."
-msgstr ""
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Please wait while the plugin is removed."
-msgstr ""
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Please wait while the plugin is replaced."
 msgstr ""
@@ -23373,13 +23552,10 @@ msgstr ""
 msgid "Plugin Browser Actions"
 msgstr ""
 
-msgid "Plugin Browser Download Actions"
-msgstr ""
-
 msgid "Plugin Browser Edit Actions"
 msgstr ""
 
-msgid "Plugin Browser Manage Actions"
+msgid "Plugin Browser Install Actions"
 msgstr ""
 
 msgid "Plugin Browser Navigation Actions"
@@ -23401,9 +23577,6 @@ msgid "Remove the selected list of plugins"
 msgstr ""
 
 msgid "Reset sort order"
-msgstr ""
-
-msgid "Select 'Enable' to force a package clean before a package update. This is helpful to make sure the package list is up-to-date and can avoid/solve issues during the update. Only enable this when you can not update on-line."
 msgstr ""
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
@@ -23446,9 +23619,6 @@ msgid "Select 'Yes' to show skin component packages in the Download Plugins scre
 msgstr ""
 
 msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show softcam packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
@@ -23617,6 +23787,9 @@ msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Reset Order"
+msgstr ""
+
+msgid "Plugin"
 msgstr ""
 
 msgid "Plugin Action Log"
