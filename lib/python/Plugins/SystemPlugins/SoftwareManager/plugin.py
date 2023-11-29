@@ -20,7 +20,6 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
-from Screens.Setup import Setup
 
 from .H9SDmanager import H9SDmanager
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
@@ -70,10 +69,6 @@ class ImageBackup(ImageBackup):
 
 class RestoreMenu(RestoreMenu):
 	pass
-
-class SoftwareManagerSetup(Setup):
-	def __init__(self, session):
-		Setup.__init__(self, session, "SoftwareManager", plugin="SystemPlugins/SoftwareManager")
 
 class IPKGMenu(Screen):
 	skin = """
