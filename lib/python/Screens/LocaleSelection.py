@@ -277,11 +277,35 @@ class LocaleSelection(Screen, HelpableScreen):
 		config.misc.locale.save()
 		config.misc.language.save()
 		config.misc.country.save()
+		# OPENSPA [morser] save languageselected for wizard
+		config.misc.languageselected.value = 0
+		config.misc.languageselected.save()
+		#####################################################
 		international.activateLocale(self.currentLocale, runCallbacks=True)
+		# OPENSPA [morser] Allow to eliminate the rest of the languages in the wizard
+		#global inWizard
 		if not self.inWizard and self.currentLocale != self.initialLocale:
 			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now to start using the new locale/language?"), default=True, type=MessageBox.TYPE_YESNO, windowTitle=_("Question"))
+		elif self.inWizard:
+			current = self["locales"].getCurrent()
+			locale = current[self.LIST_LOCALE]
+			permanent = sorted(international.getPermanentLocales(locale))
+			permanent = ", ".join(permanent)
+			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to purge all locales/languages except %s?") % permanent, default = False)
 		else:
 			self.close()
+
+	def deletelanguagesCB(self, anwser):
+		if anwser:
+			packages = international.getPurgablePackages(self.currentLocale)
+			if packages:
+				opkgArguments = {
+					"options": ["--autoremove", "--force-depends"],
+					"arguments": [international.LOCALE_TEMPLATE % x for x in packages]
+					}
+				self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, args=opkgArguments)
+		self.inWizard = False
+		self.close()
 
 	def keySelect(self):
 		current = self["locales"].getCurrent()
@@ -337,8 +361,6 @@ class LocaleSelection(Screen, HelpableScreen):
 				packages = international.getPurgablePackages(self.currentLocale)
 				if packages:
 					processDelete(packages)
-				self.packageDoneTimer.start(50)
-
 
 		def processDelete(packages):
 			opkgArguments = {
@@ -375,10 +397,6 @@ class LocaleSelection(Screen, HelpableScreen):
 				Processing.instance.showProgress(endless=True)
 				processDelete([package])
 		self.packageDoneTimer.start(75)  # OPENSPA [morser] Add time to activate after install
-		# OPENSPA [morser] save languageselected for wizard
-		config.misc.languageselected.value = 0
-		config.misc.languageselected.save()
-		#####################################################
 
 	def processPackageDone(self):
 		self.packageDoneTimer.stop()
@@ -387,6 +405,8 @@ class LocaleSelection(Screen, HelpableScreen):
 
 	def opkgComponentCallback(self, event, parameter):
 		# print(f"[LocaleSelection] DEBUG: event={self.opkgComponent.getEventText(event)}, parameter={parameter}")
+		if self.inWizard:
+			return
 		current = self["locales"].getCurrent()
 		status = current[self.LIST_STATUS]
 		match event:
