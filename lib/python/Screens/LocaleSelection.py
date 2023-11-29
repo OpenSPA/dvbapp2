@@ -283,7 +283,6 @@ class LocaleSelection(Screen, HelpableScreen):
 		#####################################################
 		international.activateLocale(self.currentLocale, runCallbacks=True)
 		# OPENSPA [morser] Allow to eliminate the rest of the languages in the wizard
-		#global inWizard
 		if not self.inWizard and self.currentLocale != self.initialLocale:
 			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now to start using the new locale/language?"), default=True, type=MessageBox.TYPE_YESNO, windowTitle=_("Question"))
 		elif self.inWizard:
@@ -304,8 +303,10 @@ class LocaleSelection(Screen, HelpableScreen):
 					"arguments": [international.LOCALE_TEMPLATE % x for x in packages]
 					}
 				self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, args=opkgArguments)
-		self.inWizard = False
-		self.close()
+			else:
+				self.close()
+		else:
+			self.close()
 
 	def keySelect(self):
 		current = self["locales"].getCurrent()
@@ -405,8 +406,6 @@ class LocaleSelection(Screen, HelpableScreen):
 
 	def opkgComponentCallback(self, event, parameter):
 		# print(f"[LocaleSelection] DEBUG: event={self.opkgComponent.getEventText(event)}, parameter={parameter}")
-		if self.inWizard:
-			return
 		current = self["locales"].getCurrent()
 		status = current[self.LIST_STATUS]
 		match event:
@@ -607,3 +606,8 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 
 	def createSummary(self):
 		return LocaleSelectionSummary
+
+	def opkgComponentCallback(self, event, parameter):
+		if event==self.opkgComponent.EVENT_DONE:
+			self.inWizard = False
+			self.close()
