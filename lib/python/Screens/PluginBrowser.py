@@ -1057,7 +1057,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 		opkgFilterArguments = [self.modeData[self.DATA_FILTER] % "*"]
 		# print("[PluginBrowser] DEBUG: Opkg filter is '%s'." % self.opkgFilterArguments)
 		displayFilter = []
-		for filter in sorted(PACKAGE_CATEGORIES.keys()):
+		for filter in sorted(PLUGIN_CATEGORIES.keys()):
 			if filter in ("extraopkgpackages", "src"):
 				continue
 			if getattr(config.pluginfilter, filter).value:
