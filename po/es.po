@@ -9336,11 +9336,12 @@ msgstr "Geolocalización"
 msgid "Geolocation Information"
 msgstr "Información de geolocalización"
 
-msgid "Geolocation does not contain time zone information."
+msgid "Geolocation data does not contain time zone information."
 msgstr "Geolocalización no contiene información de la zona horaria."
 
-msgid "Geolocation has been used to set the time zone."
-msgstr "Geolocalización ha sido usada para fijar la zona horaria."
+msgid "Geolocation data has been used to set the time zone."
+msgstr ""
+"Los datos de geolocalización han sido usados para establecer la zona horaria."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
 msgstr ""
@@ -9351,8 +9352,8 @@ msgstr ""
 msgid "Geolocation information for %s %s"
 msgstr "Información de geolocalización para %s %s"
 
-msgid "Geolocation is not available."
-msgstr "La geolocalización no está disponible."
+msgid "Geolocation data is not available."
+msgstr "Los datos de geolocalización no están disponibles."
 
 msgid "Georgia"
 msgstr "Georgia"
@@ -28034,8 +28035,7 @@ msgstr ""
 "actualización econtradas en la web, el nuevo firmware le pedirá que "
 "restablezca la configuración."
 
-#, fuzzy, python-format
-#| msgid "Your Internet connection is working (ip: %s)"
+#, python-format
 msgid "Your Internet connection is working (IP: %s)"
 msgstr "Tu conexión a internet está funcionando (IP : %s)"
 
@@ -28530,10 +28530,12 @@ msgstr "Paquetes de idiomas"
 msgid "Common Settings"
 msgstr "Ajustes comunes"
 
-msgid "Picon package target location"
-msgstr "Ubicación de los paquetes de picons"
+msgid "Picon install location"
+msgstr "Ubicación de instalación de los picons"
 
-msgid "Select the target location where picon files will be installed."
+#, fuzzy
+#| msgid "Select the target location where picon files will be installed."
+msgid "Select the location where the picon files will be installed."
 msgstr "Selecciona la ubicación donde se instalarán los archivos picon."
 
 msgid "Set DVB CI delay."
@@ -28642,3 +28644,6 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#~ msgid "Picon package target location"
+#~ msgstr "Ubicación de los paquetes de picons"
