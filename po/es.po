@@ -2279,9 +2279,6 @@ msgstr "Tras perder la alimentación"
 msgid "After event"
 msgstr "Después del evento"
 
-msgid "After pressing OK, please wait!"
-msgstr "¡Por favor, espere tras pulsar OK!"
-
 msgid "After recording"
 msgstr "Después de grabar"
 
@@ -2542,11 +2539,6 @@ msgstr ""
 "debido a mensajes de estado incorrectos o ausentes, el receptor podría "
 "responder de forma inesperada. Por el contrario, intenta responder mejor a "
 "las diferentes condiciones de funcionamiento."
-
-msgid "An error occurred while downloading the packet list. Please try again."
-msgstr ""
-"Ha ocurrido un error durante la descarga de la lista de paquetes. Vuelva a "
-"intentarlo."
 
 msgid "An unknown error occurred!"
 msgstr "¡Se produjo un error desconocido!"
@@ -3212,9 +3204,6 @@ msgstr "Paquetes de base"
 
 msgid "Base Shell Packages"
 msgstr "Paquetes de Shell base"
-
-msgid "Base Utility Packages"
-msgstr "Paquetes de utilidades base"
 
 msgid "Base time"
 msgstr "Hora de inicio"
@@ -5406,23 +5395,11 @@ msgstr "Información de conexión"
 msgid "Console"
 msgstr "Consola"
 
-msgid "Console Administrative Packages"
-msgstr "Paquetes administrativos de consola"
-
-msgid "Console Multimedia Packages"
-msgstr "Paquetes multimedia de consola"
-
 msgid "Console Network Packages"
 msgstr "Paquetes de consola de red"
 
 msgid "Console Packages"
 msgstr "Paquetes de consola"
-
-msgid "Console Test Packages"
-msgstr "Paquetes de prueba de consola"
-
-msgid "Console Tool Packages"
-msgstr "Paquetes de herramientas de consola"
 
 msgid "Console Utility Packages"
 msgstr "Paquetes de utilidades de consola"
@@ -6178,6 +6155,9 @@ msgstr "Por defecto 'Después del evento' *"
 
 msgid "Default 'Timer type' *"
 msgstr "Por defecto 'Tipo de temporizador' *"
+
+msgid "Default Astra (13e-19e)"
+msgstr "Astra predeterminada (13E-19E)"
 
 msgid ""
 "Default CPU priority (nice) for executed scripts. This can reduce the system "
@@ -7041,10 +7021,6 @@ msgid "Do you want to install a channel list?"
 msgstr "¿Quieres instalar una lista de canales?"
 
 #
-msgid "Do you want to install the package:\n"
-msgstr "¿Quieres instalar el paquete?\n"
-
-#
 msgid "Do you want to install:"
 msgstr "Quieres instalar:"
 
@@ -7068,13 +7044,6 @@ msgstr "¿Desea eliminar todas las regiones/idiomas excepto %s?"
 msgid "Do you want to reboot your %s %s?"
 msgstr "¿Quieres reiniciar tu %s %s?"
 
-msgid "Do you want to reboot your receiver?"
-msgstr "¿Desea reiniciar su receptor?"
-
-#
-msgid "Do you want to remove the package:\n"
-msgstr "¿Quieres eliminar el paquete?\n"
-
 #
 msgid "Do you want to restore your settings?"
 msgstr "¿Quieres restaurar la configuración?"
@@ -7092,13 +7061,6 @@ msgstr ""
 
 msgid "Do you want to update your box?"
 msgstr "¿Quieres actualizar tu receptor?"
-
-#
-msgid "Do you want to upgrade the package:\n"
-msgstr "¿Quieres actualizar el paquete?\n"
-
-msgid "Documentation Packages"
-msgstr "Paquetes de documentación"
 
 msgid "Documentary"
 msgstr "Documental"
@@ -7895,9 +7857,6 @@ msgstr "Nivel de depuración de Enigma2"
 msgid "Enigma2 information"
 msgstr "Información sobre Enigma2"
 
-msgid "Enigma2 Packages"
-msgstr "Paquetes enigma2"
-
 msgid "Enigma2 revision"
 msgstr "Revisión de Enigma2"
 
@@ -8627,10 +8586,6 @@ msgstr "Cambiar fuentes de subtítulo externo"
 msgid "Extra High"
 msgstr "Altura extra"
 
-#
-msgid "Extra Packages"
-msgstr "Paquetes extra"
-
 msgid "Extra motor options"
 msgstr "Opciones extras de motor"
 
@@ -8910,9 +8865,6 @@ msgstr "Comprobar sistema de archivos"
 msgid "File System Packages"
 msgstr "Paquetes de sistema de archivos"
 
-msgid "File System Support Packages"
-msgstr "Paquetes de soporte de sistema de archivos"
-
 msgid "File appears to be busy.\n"
 msgstr "El archivo parece estar ocupado.\n"
 
@@ -9094,9 +9046,6 @@ msgstr "Plano por posición en el mando"
 #
 msgid "Following tasks will be done after you press OK!"
 msgstr "¡Las siguientes tareas se realizarán después de pulsar OK!"
-
-msgid "Font Packages"
-msgstr "Paquetes de fuentes"
 
 msgid "Font size"
 msgstr "Tamaño de letra"
@@ -9420,9 +9369,6 @@ msgstr "Alemania"
 
 msgid "Getting Event Info failed!"
 msgstr "¡Error al obtener la información del programa!"
-
-msgid "Getting Softcam list. Please wait..."
-msgstr "Obteniendo lista de Softcam. Espera..."
 
 #
 msgid "Getting plugin information. Please wait..."
@@ -10671,12 +10617,6 @@ msgstr "Instalar comando '%s'"
 msgid "Install 1/1"
 msgstr "Instalar 1/1"
 
-msgid "Install Failed !!"
-msgstr "¡Fallo en la instalación!"
-
-msgid "Install Finished."
-msgstr "Instalación finalizada."
-
 #
 msgid "Install Local Extension"
 msgstr "Instalar extensión local"
@@ -10686,9 +10626,6 @@ msgstr "Instalar Plugin"
 
 msgid "Install Plugins"
 msgstr "Instalar Plugins"
-
-msgid "Install Softcams"
-msgstr "Instalar Softcams"
 
 #
 msgid "Install a new image with a USB stick"
@@ -10711,9 +10648,6 @@ msgstr "Instalar el paquete"
 #
 msgid "Install the selected plugin / list of plugins"
 msgstr "Instalar el plugin seleccionado o lista de plugins seleccionada"
-
-msgid "Install/Remove plugin"
-msgstr "Instalar/eliminar el plugin"
 
 #
 msgid "Installation finished."
@@ -10739,6 +10673,9 @@ msgstr "Instalación de fuentes desde IPK ..."
 
 msgid "Installing feeds from feed ..."
 msgstr "Instalando feeds desde el feed ..."
+
+msgid "Installing package."
+msgstr "Instalando paquete."
 
 msgid "Installing plugins from IPK ..."
 msgstr "Instalando plugins desde IPK ..."
@@ -11009,9 +10946,6 @@ msgstr ""
 
 msgid "Kenya"
 msgstr "Kenia"
-
-msgid "Kernel Module Packages"
-msgstr "Paquetes de módulos kernel"
 
 msgid "Kernel Packages"
 msgstr "Paquetes de kernel"
@@ -11284,13 +11218,6 @@ msgstr "Zoom Buzón"
 
 msgid "Liberia"
 msgstr "Liberia"
-
-msgid "Library Multimedia Packages"
-msgstr "Paquetes de librerías multimedia"
-
-# Quick Menue
-msgid "Library Network Packages"
-msgstr "Paquetes de librerías de red"
 
 msgid "Library Packages"
 msgstr "Paquetes de librerías"
@@ -12067,9 +11994,6 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Varios"
 
-msgid "Miscellaneous Packages"
-msgstr "Paquetes misceláneos"
-
 msgid "Misconfiguration in channel allocation"
 msgstr "Mala configuración en la asignación de canales"
 
@@ -12698,13 +12622,6 @@ msgstr "Máscara de red"
 msgid "Network"
 msgstr "Red"
 
-msgid "Network (net) Packages"
-msgstr "Paquetes de red"
-
-#
-msgid "Network (network) Packages"
-msgstr "Paquetes de red"
-
 msgid "Network Adapter Actions"
 msgstr "Acciones del adaptador de red"
 
@@ -12745,6 +12662,9 @@ msgstr "Configurar MAC"
 #
 msgid "Network Neighbourhood"
 msgstr "Red de vecinos"
+
+msgid "Network Packages"
+msgstr "Paquetes de red"
 
 #
 msgid "Network Restart"
@@ -12813,9 +12733,6 @@ msgstr "Red:"
 #
 msgid "NetworkWizard"
 msgstr "Asistente de red"
-
-msgid "Networking Packages"
-msgstr "Paquetes de red"
 
 #
 msgid "Neutrino  (keymap.ntr)"
@@ -13690,9 +13607,6 @@ msgstr "Opción para desactivar picon de la barra de información"
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "Opción para activar el temporizador de apagado de hardware"
 
-msgid "Optional Packages"
-msgstr "Paquetes opcionales"
-
 msgid "Optional parameter"
 msgstr "Parámetro opcional"
 
@@ -13891,9 +13805,6 @@ msgstr "Paquete de archivos:"
 msgid "Package information currently not available!"
 msgstr "La información del paquete no está disponible actualmente!"
 
-msgid "Package list"
-msgstr "Lista de paquetes"
-
 #
 msgid "Package list update"
 msgstr "Actualización de lista de paquetes"
@@ -13906,10 +13817,6 @@ msgstr "Paquetes"
 
 msgid "Packages and associated locales"
 msgstr "Paquetes y locales asociados"
-
-#
-msgid "Packet Manager"
-msgstr "Administrador de paquetes"
 
 msgid "Page down"
 msgstr "Página abajo"
@@ -15643,10 +15550,6 @@ msgstr "Relevant PIDs Routing"
 msgid "Religion"
 msgstr "Religión"
 
-#
-msgid "Reload"
-msgstr "Recargar"
-
 msgid "Reload Bookmarks"
 msgstr "Recargar los favoritos"
 
@@ -15715,13 +15618,6 @@ msgstr "Borrar marcador"
 
 msgid "Remove Confirmation"
 msgstr "Confirmación de eliminación"
-
-msgid "Remove Failed !!"
-msgstr "¡¡Fallor al retirar!!"
-
-#
-msgid "Remove Finished."
-msgstr "Borrado finalizado."
 
 #
 msgid "Remove Plugins"
@@ -16025,9 +15921,6 @@ msgstr "Reiniciar el servidor de tarjetas"
 msgid "Restart enigma"
 msgstr "Reiniciar Enigma"
 
-msgid "Restart finished"
-msgstr "Reinicio terminado"
-
 #
 msgid "Restart necessary, restart GUI now?"
 msgstr "Es necesario reiniciar, ¿desea reiniciar la GUI ahora?"
@@ -16049,6 +15942,9 @@ msgstr "Reiniciar prueba"
 #
 msgid "Restart your network connection and interfaces."
 msgstr "Reiniciar la conexión e interfaces de red."
+
+msgid "Restarting..."
+msgstr "Reiniciando..."
 
 #
 msgid "Restore"
@@ -19889,6 +19785,9 @@ msgstr "Pequeño"
 msgid "Small - Tiny image"
 msgstr "Pequeño - Imagen minúscula"
 
+msgid "Small Box Preparation Actions"
+msgstr "Acciones de preparación receptor flash limitada"
+
 msgid "Small Test"
 msgstr "Pequeña prueba"
 
@@ -22673,10 +22572,6 @@ msgstr ""
 "Prueba a enviar comandos repetidos si no se ejecutan todos. (por ejemplo "
 "encendido de TV, pero no cambia a la entrada correcta)"
 
-#
-msgid "Trying to download a new packet list. Please wait..."
-msgstr "Intentando descargar una nueva lista de paquetes. Espera..."
-
 msgid "Tsonga"
 msgstr "Tsonga"
 
@@ -23173,6 +23068,9 @@ msgstr "Actualizando ruta de montaje."
 #
 msgid "Updating software catalog"
 msgstr "Actualizando el catálogo de software"
+
+msgid "Updating package list."
+msgstr "Actualizando lista de paquetes."
 
 msgid "Upgrade (Flash & restore all)"
 msgstr "Actualizar (Instalar y restaurar todo)"
@@ -24792,26 +24690,8 @@ msgstr "Www"
 msgid "X-Resolution"
 msgstr "Resolución X"
 
-msgid "X11 Base Packages"
-msgstr "Paquetes de base X11"
-
-msgid "X11 Font Packages"
-msgstr "Paquetes de fuentes X11"
-
-msgid "X11 Gnome Library Packages"
-msgstr "Paquetes librería Gnome X11"
-
-msgid "X11 Gnome Packages"
-msgstr "Paquetes Gnome X11"
-
-msgid "X11 Library Packages"
-msgstr "Paquetes de librerías X11"
-
 msgid "X11 Packages"
 msgstr "Paquetes X11"
-
-msgid "X11 Utility Packages"
-msgstr "Paquetes de utilidades X11"
 
 msgid "XBox 360 support"
 msgstr "Soporte XBox 360"
@@ -25705,9 +25585,6 @@ msgstr "Reducir salto superior en 1"
 msgid "default"
 msgstr "Predeterminado"
 
-msgid "default Astra (13e-19e)"
-msgstr "Astra predeterminada (13E-19E)"
-
 #
 msgid "delete"
 msgstr "Borrar"
@@ -26219,9 +26096,6 @@ msgstr "No hay gestor de recursos"
 
 msgid "no storage devices found"
 msgstr "No se han encontrado dispositivos de almacenamiento"
-
-msgid "none"
-msgstr "Ninguno"
 
 msgid "normal"
 msgstr "Normal"
@@ -27563,7 +27437,6 @@ msgstr ""
 "¿Seguro que quieres formatear el dispositivo en formato Linux?\n"
 "¡Se perderán todos los datos del dispositivo!"
 
-# ******************************************************************************
 msgid "Please select a category."
 msgstr "Por favor, selecciona una categoría."
 
@@ -27901,10 +27774,6 @@ msgstr "Volver al paso anterior"
 msgid "Immediately exit the wizard (Debug mode only)"
 msgstr "Salir inmediatamente del asistente (Solo modo depuración)"
 
-#
-msgid "Installing Please wait..."
-msgstr "Instalando, espera por favor..."
-
 msgid "Limited memory size, swap file required"
 msgstr "Tamaño memoria limitada, archivo swap requerido"
 
@@ -27932,8 +27801,8 @@ msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Abrir el teclado virtual para la introducción de texto"
 
 #
-msgid "Package installation failed"
-msgstr "Falló la instalación de paquetes"
+msgid "Package installation failed."
+msgstr "Falló la instalación de paquete."
 
 msgid "Perform the upgrade?"
 msgstr "¿Realizar la actualización?"
@@ -28119,9 +27988,6 @@ msgstr ""
 "Para completar la configuración, el %s %s debe conectarse a Internet. "
 "Conecta ahora el %s %s a Internet."
 
-msgid "Update package list please wait..."
-msgstr "Actualizando lista de paquetes, por favor espere..."
-
 msgid "Use UP/DOWN buttons to select option then press OK"
 msgstr ""
 "Utilice los botones ARRIBA y ABAJO para seleccionar opción y luego pulse OK"
@@ -28168,8 +28034,9 @@ msgstr ""
 "actualización econtradas en la web, el nuevo firmware le pedirá que "
 "restablezca la configuración."
 
-#, python-format
-msgid "Your Internet connection is working (ip: %s)"
+#, fuzzy, python-format
+#| msgid "Your Internet connection is working (ip: %s)"
+msgid "Your Internet connection is working (IP: %s)"
 msgstr "Tu conexión a internet está funcionando (IP : %s)"
 
 msgid "Your receiver does not have an Internet connection"
@@ -28215,12 +28082,6 @@ msgstr "Cerrar el Navegador de Plugins"
 
 msgid "Development Packages"
 msgstr "Paquetes de desarrollo"
-
-msgid "Development Python Packages"
-msgstr "Paquetes de desarrollo python"
-
-msgid "Development TCL Toolkit Packages"
-msgstr "Paquetes de desarrollo kit de herramientas TCL"
 
 # Quick Menue
 msgid "Display Skin Packages"
@@ -28781,91 +28642,3 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
-
-#, python-format
-#~ msgid "Error: %s %s not %s!  Please try again later."
-#~ msgstr "Error: %s %s ¡ningún %s!  Por favor, inténtelo de nuevo más tarde."
-
-#~ msgid "Error: Unable to process the command!  Please try again later."
-#~ msgstr ""
-#~ "Error: No se ha podido procesar el comando.  Por favor, inténtelo de "
-#~ "nuevo más tarde."
-
-#
-#~ msgid "Languages"
-#~ msgstr "Idiomas"
-
-#~ msgid "Locales"
-#~ msgstr "Localidades"
-
-#, python-format
-#~ msgid "%d package found."
-#~ msgid_plural "%d packages found."
-#~ msgstr[0] "%d paquete encontrado."
-#~ msgstr[1] "%d paquetes encontrados."
-
-#, python-format
-#~ msgid "Do you want to replace '%s' with '%s?"
-#~ msgstr "¿Quieres sustituir '%s' por '%s'?"
-
-#
-#~ msgid "Download Plugin"
-#~ msgstr "Descargar Plugin"
-
-#~ msgid "Force OPKG clean mode"
-#~ msgstr "Forzar modo de limpieza OPKG"
-
-#~ msgid "Please wait while the plugin is downloaded."
-#~ msgstr "Por favor, espera mientras se descarga el plugin."
-
-#~ msgid "Plugin Browser Download Actions"
-#~ msgstr "Acciones de descarga del Explorador de Plugins"
-
-#~ msgid ""
-#~ "Select 'Enable' to force a package clean before a package update. This is "
-#~ "helpful to make sure the package list is up-to-date and can avoid/solve "
-#~ "issues during the update. Only enable this when you can not update on-"
-#~ "line."
-#~ msgstr ""
-#~ "Selecciona 'Habilitar' para forzar la limpieza de paquete antes de una "
-#~ "actualización del paquete. Esto es útil para asegurarse de que la lista "
-#~ "de paquetes esté actualizada y se pueda evitar/resolver problemas durante "
-#~ "la actualización. Habilita esto solo cuando no puedas actualizar en línea."
-
-#~ msgid ""
-#~ "Select 'Yes' to show softcam packages in the Download Plugins screen."
-#~ msgstr ""
-#~ "Selecciona 'Sí' para mostrar los paquetes de softcam en la pantalla de "
-#~ "Descarga de Plugins."
-
-#
-#~ msgid "The pin code you entered is wrong."
-#~ msgstr "El pin introducido no es correcto."
-
-#
-#~ msgid "show transponder info"
-#~ msgstr "Mostrar información del transpondedor"
-
-#~ msgid ""
-#~ "Power management. Consult your receiver's manual for more information."
-#~ msgstr ""
-#~ "Gestión de la energía. Consulte el manual de su receptor para más "
-#~ "información."
-
-#~ msgid ""
-#~ "This function recovers your video signal in case of loss. The video has "
-#~ "been changed to 720p.\n"
-#~ "If this is your case, please keep the video at 720P and do the "
-#~ "following:\n"
-#~ "Go to System > Receiver Setup > Video > Video Settings\n"
-#~ "Now set a correct resolution.\n"
-#~ "\n"
-#~ "Do you want to keep the video at 720p?"
-#~ msgstr ""
-#~ "Esta función recupera su señal de video en caso de pérdida. El vídeo se "
-#~ "ha cambiado a 720p.\n"
-#~ "Si este es su caso, mantenga el vídeo en 720P y haz lo siguiente:\n"
-#~ "Vaya a Sistema > Configuración del receptor > Vídeo > Ajustes de vídeo\n"
-#~ "Ahora configure una resolución correcta.\n"
-#~ "\n"
-#~ "¿Quieres mantener el vídeo a 720p?"
