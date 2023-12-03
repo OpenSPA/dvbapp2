@@ -6547,6 +6547,9 @@ msgstr ""
 msgid "Enable new GStreamer playback"
 msgstr ""
 
+msgid "Enable or disable searching picons in HDD."
+msgstr ""
+
 msgid "Enable or disable using HDMI-CEC."
 msgstr ""
 
@@ -6607,13 +6610,13 @@ msgstr ""
 msgid "Enable to display setup entries alphabetically."
 msgstr ""
 
-msgid "Enable to display the Extension menu entries alphabetically."
+msgid "Enable to display the Extension Menu screen entries alphabetically."
 msgstr ""
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr ""
 
-msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr ""
 
 msgid "Enable unlinked bouquets"
@@ -16076,7 +16079,7 @@ msgstr ""
 msgid "Show info line"
 msgstr ""
 
-msgid "Show job tasks in extensions"
+msgid "Show job tasks in Extension Menu"
 msgstr ""
 
 msgid "Show last image"
@@ -16841,7 +16844,7 @@ msgstr ""
 msgid "Sort EPG List"
 msgstr ""
 
-msgid "Sort Extensions menu"
+msgid "Sort Extension menu"
 msgstr ""
 
 msgid "Sort Plugin Browser"
@@ -20445,7 +20448,7 @@ msgstr ""
 msgid "With pop up"
 msgstr ""
 
-msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
+msgid "With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press)."
 msgstr ""
 
 msgid "With this option you can switch off the display during operation."

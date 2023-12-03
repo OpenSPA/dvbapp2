@@ -7642,6 +7642,9 @@ msgstr "Habilitar la comprobación del tráfico de red"
 msgid "Enable new GStreamer playback"
 msgstr "Habilita la reproducción del nuevo Gstreamer"
 
+msgid "Enable or disable searching picons in HDD."
+msgstr "Habilitar o deshabilitar búsqueda de picons en HDD."
+
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Habilitar o deshabilitar el uso de HDMI-CEC."
 
@@ -7744,9 +7747,10 @@ msgstr ""
 msgid "Enable to display setup entries alphabetically."
 msgstr "Habilitar para mostrar alfabéticamente las entradas de los ajustes."
 
-msgid "Enable to display the Extension menu entries alphabetically."
+msgid "Enable to display the Extension Menu screen entries alphabetically."
 msgstr ""
-"Habilitar para mostrar alfabéticamente las entradas del menú de Extensiones."
+"Activar para mostrar alfabéticamente las entradas de la pantalla Menú de "
+"extensiones."
 
 msgid ""
 "Enable to display the current value of the slider at end of the slider bar."
@@ -7754,7 +7758,8 @@ msgstr ""
 "Habilitar para mostrar el valor actual del deslizador al final de la barra "
 "deslizante."
 
-msgid "Enable to show the 'Restart Network' entry in the Extensions menu."
+msgid ""
+"Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr ""
 "Habilitar para mostrar la entrada \"Reiniciar red\" en el menú de "
 "extensiones."
@@ -19115,8 +19120,8 @@ msgstr "Mostrar información"
 msgid "Show info line"
 msgstr "Mostrar línea de información"
 
-msgid "Show job tasks in extensions"
-msgstr "Mostrar tareas en extensiones"
+msgid "Show job tasks in Extension Menu"
+msgstr "Mostrar tareas en menú extensiones"
 
 msgid "Show last image"
 msgstr "Mostrar última imagen"
@@ -19977,8 +19982,8 @@ msgid "Sort EPG List"
 msgstr "Ordenar la lista EPG"
 
 # Menue Anpassungen OSD
-msgid "Sort Extensions menu"
-msgstr "Ordenar alfabéticamente la lista de extensiones"
+msgid "Sort Extension menu"
+msgstr "Ordenar menú extensiones"
 
 msgid "Sort Plugin Browser"
 msgstr "Ordenar el Explorador de Plugins"
@@ -24622,11 +24627,11 @@ msgid "With pop up"
 msgstr "Con ventana emergente"
 
 msgid ""
-"With this option you can hide Job Tasks from the extension screen (BLUE "
+"With this option you can hide Job Tasks from the Extension Menu screen (BLUE "
 "button press)."
 msgstr ""
-"Con esta opción puedes ocultar las tareas en la pantalla de extensiones "
-"(pulsación corta de la tecla azul)."
+"Con esta opción puedes ocultar las tareas de la pantalla del menú "
+"extensiones (pulsación corta de la tecla azul)."
 
 msgid "With this option you can switch off the display during operation."
 msgstr ""
@@ -28533,8 +28538,6 @@ msgstr "Ajustes comunes"
 msgid "Picon install location"
 msgstr "Ubicación de instalación de los picons"
 
-#, fuzzy
-#| msgid "Select the target location where picon files will be installed."
 msgid "Select the location where the picon files will be installed."
 msgstr "Selecciona la ubicación donde se instalarán los archivos picon."
 
