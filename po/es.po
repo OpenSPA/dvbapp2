@@ -28647,6 +28647,3 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
-
-#~ msgid "Picon package target location"
-#~ msgstr "Ubicación de los paquetes de picons"
