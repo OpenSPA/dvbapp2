@@ -4,7 +4,6 @@ from itertools import groupby
 from os import listdir
 from os.path import exists, isfile, ismount, realpath, splitext
 import pickle
-from socket import socket, AF_UNIX, SOCK_STREAM
 from sys import maxsize
 from time import localtime, strftime, time
 
@@ -12,7 +11,7 @@ from enigma import eAVControl, eTimer, eServiceCenter, eDVBServicePMTHandler, iS
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
-from ServiceReference import ServiceReference, isPlayableForCur, hdmiInServiceRef
+from ServiceReference import ServiceReference, isPlayableForCur
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap, NumberActionMap
 from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigBoolean, ConfigClock, config, configfile
@@ -237,10 +236,7 @@ class InfoBarStreamRelay:
 
 	FILENAME = "/etc/enigma2/whitelist_streamrelay"
 
-	def __init__(self):
-		self.reload()
-
-	def reload(self):
+	def __init__(self) -> None:
 		self.streamRelay = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
 		self.streamRelay = [streamRelay for streamRelay in self.streamRelay if streamRelay]
 
@@ -294,93 +290,9 @@ class InfoBarStreamRelay:
 	def checkService(self, service):
 		return service and service.toString() in self.streamRelay
 
+
 streamrelay = InfoBarStreamRelay()
 
-class InfoBarAutoCam:
-	FILENAME = "/etc/enigma2/autocam"
-
-	def __init__(self):
-		self.autoCam = {}
-		self.currentCam = BoxInfo.getItem("CurrentSoftcam")
-		self.defaultCam = config.misc.autocamDefault.value or self.currentCam
-		items = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
-		items = [item for item in items if item and "=" in item]
-		for item in items:
-			itemValues = item.split("=")
-			self.autoCam[itemValues[0]] = itemValues[1]
-
-	def write(self):
-		items = []
-		for key in self.autoCam.keys():
-			items.append(f"{key}={self.autoCam[key]}")
-		fileWriteLines(self.FILENAME, lines=items, source=self.__class__.__name__)
-
-	def getData(self):
-		return self.autoCam
-
-	def setData(self, value):
-		self.autoCam = value
-		self.write()
-
-	data = property(getData, setData)
-
-	def getCam(self, service):
-		return self.autoCam.get(service.toString(), None)
-
-	def checkCrypt(self, service):
-		refstring = service.toString()
-		if refstring.startswith("1:") and "%" not in refstring:
-			try:
-				info = eServiceCenter.getInstance().info(service)
-				return info.isCrypted()
-			except Exception:
-				pass
-		return False
-
-	def selectCam(self, nav, service, cam):
-		service = service or nav.getCurrentlyPlayingServiceReference()
-		if service:
-			servicestring = service.toString()
-			if cam == "None":
-				if servicestring in self.autoCam:
-					del self.autoCam[servicestring]
-			else:
-				self.autoCam[servicestring] = cam
-			self.write()
-
-	def selectCams(self, services, cam):
-		for service in services:
-			servicestring = service.toString()
-			if cam == "None":
-				if servicestring in self.autoCam:
-					del self.autoCam[servicestring]
-			else:
-				self.autoCam[servicestring] = cam
-		self.write()
-
-	def autoCamChecker(self, nav, service):
-		if config.misc.autocamEnabled.value:
-			info = service.info()
-			playrefstring = info.getInfoString(iServiceInformation.sServiceref)
-			if playrefstring.startswith("1:") and "%" not in playrefstring:
-				if info and info.getInfo(iServiceInformation.sIsCrypted) == 1:
-					cam = self.autoCam.get(playrefstring, self.defaultCam)
-					if self.currentCam != cam:
-						if nav.getRecordings(False):
-							print("[InfoBarGenerics] InfoBarAutoCam: Switch of Softcam not possible due to an active recording.")
-							return
-						self.switchCam(cam)
-						self.currentCam = cam
-						BoxInfo.setItem("CurrentSoftcam", cam, False)
-
-	def switchCam(self, new):
-		deamonSocket = socket(AF_UNIX, SOCK_STREAM)
-		deamonSocket.connect("/tmp/deamon.socket")
-		deamonSocket.send(f"SWITCH_SOFTCAM,{new}".encode())
-		deamonSocket.close()
-
-
-autocam = InfoBarAutoCam()
 class TimerSelection(Screen):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
@@ -800,16 +712,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		}, prio=1, description=_("InfoBar Show/Hide Actions"))  # lower prio to make it possible to override ok and cancel..
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-			iPlayableService.evStart: self.serviceStarted
+			iPlayableService.evStart: self.serviceStarted,
 		})
 
 		InfoBarScreenSaver.__init__(self)
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
 
-#		self.autocamTimer = eTimer()
-#		self.autocamTimer.timeout.get().append(self.checkAutocam)
-#		self.autocamTimer_active = 0
 		self.DimmingTimer = eTimer()
 		self.DimmingTimer.callback.append(self.doDimming)
 		self.hideTimer = eTimer()
@@ -959,10 +868,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def serviceStarted(self):
 		if self.execing:
-#			if self.autocamTimer_active == 1:
-#				self.autocamTimer.stop()
-#			self.autocamTimer.start(1000)
-#			self.autocamTimer_active = 1
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
 		self.showHideVBI()
@@ -1188,15 +1093,9 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def checkStreamrelay(self, service=None):
 		return streamrelay.check(self.session.nav, service)
 
-	def checkCrypt(self, service=None):
-		return autocam.checkCrypt(service)
+	def ToggleStreamrelay(self, service=None):
+		streamrelay.toggle(self.session.nav, service)
 
-	def checkAutocam(self):
-		self.autocamTimer.stop()
-		self.autocamTimer_active = 0
-		service = self.session.nav.getCurrentService()
-		if service:
-			autocam.autoCamChecker(self.session.nav, service)
 
 class BufferIndicator(Screen):
 	def __init__(self, session):
@@ -3284,7 +3183,6 @@ class InfoBarExtensions:
 		if config.plisettings.ColouredButtons.value:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", {
 				"extensions": (self.bluekey_ex, _("Show extensions...")),
-				#"quickmenu": (self.bluekey_qm, _("Show quickmenu...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 				"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
 				"openTimerList": (self.showTimerList, _("Show the list of timers.")),
@@ -3297,7 +3195,6 @@ class InfoBarExtensions:
 		else:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", {
 				"extensions": (self.bluekey_ex, _("view extensions...")),
-				#"quickmenu": (self.bluekey_qm, _("Show quickmenu...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 				"showDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 				"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
@@ -3309,19 +3206,12 @@ class InfoBarExtensions:
 		self.addExtension(extension=self.getCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getOScamInfo, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getNcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
-		#self.addExtension(extension=self.getSoftcamSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getIpkUninstall, type=InfoBarExtensions.EXTENSION_LIST)
 		if config.usage.show_restart_network_extensionslist.getValue() is True:
 			self.addExtension(extension=self.getRestartNetwork, type=InfoBarExtensions.EXTENSION_LIST)
 
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_EXTENSIONSINGLE):
 			p(self)
-
-#	def bluekey_qm(self):
-#		if config.workaround.blueswitch.value == "1":
-#			self.showExtensionSelection()
-#		else:
-#			self.quickmenuStart()
 
 	def bluekey_ex(self):
 		self.showExtensionSelection()
@@ -3343,12 +3233,6 @@ class InfoBarExtensions:
 
 	def getSoftcamSetupname(self):
 		return _("Softcam Settings")
-
-#	def getSoftcamSetup(self):
-#		if BoxInfo.getItem("SoftCam"):
-#			return [((boundFunction(self.getSoftcamSetupname), boundFunction(self.openSoftcamSetup), lambda: True), None)]
-#		else:
-#			return []
 
 	def getRestartNetworkname(self):
 		return _("Restart Network")
@@ -3519,10 +3403,6 @@ class InfoBarExtensions:
 	def open3DSetup(self):
 		from Screens.Setup import Setup
 		self.session.open(Setup, "OSD3D")
-
-	def openSoftcamSetup(self):
-		from Screens.SoftcamSetup import SoftcamSetup
-		self.session.open(SoftcamSetup)
 
 	def openRestartNetwork(self):
 		try:
@@ -4098,6 +3978,7 @@ class InfoBarInstantRecord:
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
+			from Components.About import about
 			if len(list) >= 2 and BoxInfo.getItem("ChipsetString") in ('meson-6', 'meson-64'):
 				Notifications.AddNotification(MessageBox, _("Sorry only possible to record 2 channels at once"), MessageBox.TYPE_ERROR, timeout=5)
 				return
