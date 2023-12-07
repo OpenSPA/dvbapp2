@@ -536,3 +536,6 @@ class ServiceList(GUIComponent):
 	def selectionEnabled(self, enabled):
 		if self.instance is not None:
 			self.instance.setSelectionEnable(enabled)
+
+	def setHideNumberMarker(self, value):
+		self.l.setHideNumberMarker(value)
