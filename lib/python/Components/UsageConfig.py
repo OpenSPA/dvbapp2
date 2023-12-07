@@ -1908,7 +1908,7 @@ def InitUsageConfig():
 		("bouquetlist", _("Bouquet List")),
 		("showmovies", _("Show Movies List")),
 		("record", _("Record - same as record button")),
-		("gotodatetime", _("Goto Date/Timer")),
+		("gotodatetime", _("Goto Date/Time")),
 		("epgsearch", _("EPG Search"))
 	]
 	config.epgselection.graph_red = ConfigSelection(default="imdb", choices=choiceList)
@@ -1949,7 +1949,7 @@ def InitUsageConfig():
 		("bouquetlist", _("Bouquet List")),
 		("showmovies", _("Show Movies List")),
 		("record", _("Record - same as record button")),
-		("gotodatetime", _("Goto Date/Timer")),
+		("gotodatetime", _("Goto Date/Time")),
 		("gotoprimetime", _("Goto Prime time")),
 		("setbasetime", _("Set Base time")),
 		("epgsearch", _("EPG Search"))
