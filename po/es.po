@@ -4686,6 +4686,10 @@ msgstr "Interfaz común"
 msgid "Common Interface Assignment"
 msgstr "Asignación de interfaz común"
 
+#
+msgid "Common Interface Settings"
+msgstr "Configuración Interfaz común"
+
 # boot-up action
 msgid "Common Setup Actions"
 msgstr "Acciones comunes de ajustes"
@@ -7767,9 +7771,6 @@ msgstr ""
 "Habilitar para mostrar la entrada \"Reiniciar red\" en el menú de "
 "extensiones."
 
-msgid "Enable unlinked bouquets"
-msgstr "Habilitar grupos desvinculados"
-
 #
 msgid "Enabled"
 msgstr "Habilitado"
@@ -9438,9 +9439,6 @@ msgstr "Ir a :"
 
 msgid "Goto Date/Time"
 msgstr "Ir a la fecha/hora"
-
-msgid "Goto Date/Timer"
-msgstr "Ir a la fecha/temporizador"
 
 msgid "Goto Prime time"
 msgstr "Ir a la hora de máxima audiencia"
@@ -13891,6 +13889,10 @@ msgid "Parental control services editor"
 msgstr "Editor del control paterno"
 
 #
+msgid "Parental Control Settings"
+msgstr "Configuración control paterno"
+
+#
 msgid "Parental control setup"
 msgstr "Configurar control paterno"
 
@@ -17557,6 +17559,15 @@ msgid "Select the delay before the timer activates."
 msgstr "Seleccione el retardo antes de que se active el temporizador."
 
 msgid ""
+"Select the delay to use when closing a Stream Relay service before "
+"reallocating the tuner for another service. Using '0' is only recommended "
+"for boxes with multiple satellite tuners."
+msgstr ""
+"Selecciona el retardo que usará al cerrar un servicio Stream Relay antes de "
+"reasignar el sintonizador a otro servicio. Solo se recomienda el uso de '0' "
+"en receptores con múltiples sintonizadores de satélite."
+
+msgid ""
 "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to "
 "toggle between the lists. Select an assigned function and click on 'OK' to "
 "deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned "
@@ -20365,11 +20376,17 @@ msgstr "Posición almacenada"
 msgid "Stream"
 msgstr "Stream"
 
-msgid "Stream Relay URL"
-msgstr "URL de Stream Relay"
-
 msgid "Stream Relay port"
 msgstr "Puerto Stream Relay"
+
+msgid "Stream Relay Settings"
+msgstr "Configuración Stream Relay"
+
+msgid "Stream Relay switch delay"
+msgstr "Retardo Stream Relay"
+
+msgid "Stream Relay url"
+msgstr "URL Stream Relay"
 
 msgid "Stream request"
 msgstr "Solicitud de streaming"
@@ -28651,6 +28668,15 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Habilitar grupos desvinculados"
+
+#~ msgid "Goto Date/Timer"
+#~ msgstr "Ir a la fecha/temporizador"
+
+#~ msgid "Stream Relay URL"
+#~ msgstr "URL de Stream Relay"
 
 #~ msgid "In the Standby Record on the LCD Display"
 #~ msgstr "En el registro de espera en la pantalla LCD"

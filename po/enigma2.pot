@@ -4110,6 +4110,9 @@ msgstr ""
 msgid "Common Interface Assignment"
 msgstr ""
 
+msgid "Common Interface Settings"
+msgstr ""
+
 msgid "Common Setup Actions"
 msgstr ""
 
@@ -11934,6 +11937,9 @@ msgstr ""
 msgid "Parental control services editor"
 msgstr ""
 
+msgid "Parental Control Settings"
+msgstr ""
+
 msgid "Parental control setup"
 msgstr ""
 
@@ -14879,6 +14885,9 @@ msgstr ""
 msgid "Select the delay before the timer activates."
 msgstr ""
 
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr ""
 
@@ -17184,10 +17193,16 @@ msgstr ""
 msgid "Stream"
 msgstr ""
 
-msgid "Stream Relay URL"
+msgid "Stream Relay port"
 msgstr ""
 
-msgid "Stream Relay port"
+msgid "Stream Relay Settings"
+msgstr ""
+
+msgid "Stream Relay switch delay"
+msgstr ""
+
+msgid "Stream Relay url"
 msgstr ""
 
 msgid "Stream request"
