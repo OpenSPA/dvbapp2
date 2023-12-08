@@ -1053,30 +1053,6 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 		self.opkgComponent.addCallback(self.fetchOpkgDataCallback)
 		opkgFilterArguments = [self.modeData[self.DATA_FILTER] % "*"]
 		# print("[PluginBrowser] DEBUG: Opkg filter is '%s'." % self.opkgFilterArguments)
-		displayFilter = []
-		for filter in sorted(PLUGIN_CATEGORIES.keys()):
-			if filter in ("extraopkgpackages", "src"):
-				continue
-			if getattr(config.pluginfilter, filter).value:
-				#if filter == "kernel" displayFilter.append((KERNEL_PREFIX % "")[:-1] if filter == "kernel" else ENIGMA_PREFIX % filter)
-				if filter == "kernel" :
-					displayFilter.append((KERNEL_PREFIX % "")[:-1])
-				elif filter == "kodiaddon" :
-					displayFilter.append("kodi-addon")
-				elif filter == "docker" :
-					displayFilter.append("docker")
-				elif filter == "gstreamer" :
-					displayFilter.append("gstreamer1.0")
-				elif filter == "po" :
-					displayFilter.append("enigma2-locale")
-				elif filter == "python" :
-					displayFilter.append("python")
-				else:
-					displayFilter.append(ENIGMA_PREFIX % filter)
-		# for count, filter in enumerate(displayFilter, start=1):
-		# 	print("[PluginBrowser] DEBUG: Plugin display filter %d is '%s'." % (count, filter))
-		# print("[PluginBrowser] DEBUG: Display filter is '%s'." % (r"^(%s-)" % "-|".join(displayFilter) if displayFilter else r"^$"))
-		self.displayFilter = compile(r"^(%s-)" % "-|".join(displayFilter) if displayFilter else r"^$")
 		displayExclude = []
 		if mode <= self.MODE_MANAGE:
 			if config.pluginfilter.kernel.value:
@@ -1086,7 +1062,20 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 				if filter in ("", "extraopkgpackages", "src"):
 					continue
 				if getattr(config.pluginfilter, filter).value:
-					displayFilter.append((KERNEL_PREFIX % "")[:-1] if filter == "kernel" else self.modeData[self.DATA_FILTER] % filter)
+					if filter == "kernel":
+						displayFilter.append((KERNEL_PREFIX % "")[:-1])
+					elif filter == "kodiaddon":
+						displayFilter.append("kodi-addon")
+					elif filter == "docker":
+						displayFilter.append("docker")
+					elif filter == "gstreamer":
+						displayFilter.append("gstreamer1.0")
+					elif filter == "po" :
+						displayFilter.append("enigma2-locale")
+					elif filter == "python":
+						displayFilter.append("python")
+					else:
+						displayFilter.append(self.modeData[self.DATA_FILTER] % filter)
 			self.displayFilter = compile(r"^(%s-)" % "-|".join(displayFilter)) if displayFilter else None
 			if not config.pluginfilter.extraopkgpackages.value:
 				displayExclude.extend(["-dev", "-dbg", "-doc", "-meta", "-staticdev"])
