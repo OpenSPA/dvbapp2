@@ -2206,6 +2206,9 @@ msgstr ""
 "hoja de especificaciones de su motor para que enigma pueda calcular el "
 "tiempo que tardará en cambiar a otro satélite."
 
+msgid "Addon for kodi"
+msgstr "Addons para Kodi"
+
 msgid "Address"
 msgstr "Dirección"
 
@@ -9524,6 +9527,9 @@ msgstr "Crecer gota"
 msgid "Grow from left"
 msgstr "Crecer desde la izquierda"
 
+msgid "Gstreamer Packages"
+msgstr "Paquetes Gstreamer "
+
 msgid "Guadeloupe"
 msgstr "Guadalupe"
 
@@ -15079,6 +15085,9 @@ msgstr "Paquetes de desarrollo python"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend para /tmp/mmi.socket"
 
+msgid "Python Packages"
+msgstr "Paquetes python"
+
 msgid "Python version"
 msgstr "Versión de Python"
 
@@ -20385,7 +20394,7 @@ msgstr "Configuración Stream Relay"
 msgid "Stream Relay switch delay"
 msgstr "Retardo Stream Relay"
 
-msgid "Stream Relay url"
+msgid "Stream Relay URL"
 msgstr "URL Stream Relay"
 
 msgid "Stream request"
@@ -28078,6 +28087,12 @@ msgstr[0] "%d paquete tiene una actualización"
 msgstr[1] "%d paquetes tienen una actualización."
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d paquete encontrado."
+msgstr[1] "%d paquetes encontrados."
+
+#, python-format
 msgid "%d package installable."
 msgid_plural "%d packages installable."
 msgstr[0] "%d paquete instalable."
@@ -28668,18 +28683,3 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
-
-#~ msgid "Enable unlinked bouquets"
-#~ msgstr "Habilitar grupos desvinculados"
-
-#~ msgid "Goto Date/Timer"
-#~ msgstr "Ir a la fecha/temporizador"
-
-#~ msgid "Stream Relay URL"
-#~ msgstr "URL de Stream Relay"
-
-#~ msgid "In the Standby Record on the LCD Display"
-#~ msgstr "En el registro de espera en la pantalla LCD"
-
-#~ msgid "Picon package target location"
-#~ msgstr "Ubicación de los paquetes de picons"

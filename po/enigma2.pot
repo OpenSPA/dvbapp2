@@ -1970,6 +1970,9 @@ msgstr ""
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr ""
 
+msgid "Addon for kodi"
+msgstr ""
+
 msgid "Address"
 msgstr ""
 
@@ -8149,6 +8152,9 @@ msgstr ""
 msgid "Grow from left"
 msgstr ""
 
+msgid "Gstreamer Packages"
+msgstr ""
+
 msgid "Guadeloupe"
 msgstr ""
 
@@ -12923,6 +12929,9 @@ msgstr ""
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
 
+msgid "Python Packages"
+msgstr ""
+
 msgid "Python version"
 msgstr ""
 
@@ -17202,7 +17211,7 @@ msgstr ""
 msgid "Stream Relay switch delay"
 msgstr ""
 
-msgid "Stream Relay url"
+msgid "Stream Relay URL"
 msgstr ""
 
 msgid "Stream request"
@@ -23295,6 +23304,12 @@ msgstr ""
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
 msgstr[0] ""
 msgstr[1] ""
 
