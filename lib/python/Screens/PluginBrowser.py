@@ -1073,7 +1073,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 					elif filter == "po" :
 						displayFilter.append("enigma2-locale")
 					elif filter == "python":
-						displayFilter.append("python")
+						displayFilter.append("python3")
 					else:
 						displayFilter.append(self.modeData[self.DATA_FILTER] % filter)
 			self.displayFilter = compile(r"^(%s-)" % "-|".join(displayFilter)) if displayFilter else None
@@ -1100,15 +1100,15 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 		self.setWaiting(self["description"].getText())
 		match self.mode:
 			case self.MODE_REMOVE:
-				self.opkgComponent.runCommand(self.opkgComponent.CMD_LIST_INSTALLED, self.opkgFilterArguments)
+				self.opkgComponent.runCommand(self.opkgComponent.CMD_LIST_INSTALLED) #, self.opkgFilterArguments)
 			case self.MODE_INSTALL:
-				self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALLABLE, self.opkgFilterArguments)
+				self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALLABLE) #, self.opkgFilterArguments)
 			case self.MODE_UPDATE:
-				self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_UPDATES, self.opkgFilterArguments)
+				self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_UPDATES) #, self.opkgFilterArguments)
 			case self.MODE_MANAGE:
 				match checkInternetAccess(FEED_SERVER, INTERNET_TIMEOUT):  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
 					case 0:
-						self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INFO, self.opkgFilterArguments)
+						self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INFO) #, self.opkgFilterArguments)
 					case 1:
 						self["description"].setText(_("Feed server DNS error!"))
 						print("[PluginBrowser] PackageAction Error: Feed server DNS error!")
@@ -1385,7 +1385,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 			case self.opkgComponent.EVENT_DONE:
 				# print(f"[PluginBrowser] PackageAction: Opkg command '{self.opkgComponent.getCommandText(eventData)}' completed.")
 				if hasattr(self, "nextCommand"):
-					self.opkgComponent.runCommand(self.nextCommand, self.opkgFilterArguments)
+					self.opkgComponent.runCommand(self.nextCommand) #, self.opkgFilterArguments)
 					del self.nextCommand
 				else:
 					self.setWaiting(None)
