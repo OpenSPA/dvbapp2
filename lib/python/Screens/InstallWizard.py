@@ -136,7 +136,7 @@ class InstallWizardSmallBox(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALL, {"arguments": ["packagegroup-openatv-small"]})
+		self.opkgComponent.runCommand(self.opkgComponent.CMD_REFRESH_INSTALL, {"arguments": ["packagegroup-openspa-small"]})
 
 	def opkgCallback(self, event, parameter):
 		# print(f"[InstallWizard] opkgCallback DEBUG: event='{self.opkgComponent.getEventText(event)}', parameter='{parameter}'.")
