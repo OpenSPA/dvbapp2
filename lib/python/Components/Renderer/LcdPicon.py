@@ -33,49 +33,47 @@ def onMountpointAdded(mountpoint):
 	try:
 		if BW or isdir(mountpoint + "piconlcd"):
 			path = join(mountpoint, "piconlcd", "")
-		else:
-			path = join(mountpoint, 'XPicons') + '/'
 			if isdir(path) and path not in searchPaths:
 				for fn in listdir(path):
-					if fn.endswith('.png'):
-						print("[Picon] adding path:", path)
+					if fn.endswith(".png"):
+						print(f"[LcdPicon] adding path: {path}")
 						searchPaths.append(path)
-						break
-			path = join(mountpoint, 'picon/XPicons') + '/'
-			if isdir(path) and path not in searchPaths:
-				for fn in listdir(path):
-					if fn.endswith('.png'):
-						print("[Picon] adding path:", path)
-						searchPaths.append(path)
-						break
-			path = join(mountpoint, 'XPicons/picon') + '/'
-			if isdir(path) and path not in searchPaths:
-				for fn in listdir(path):
-					if fn.endswith('.png'):
-						print("[Picon] adding path:", path)
-						searchPaths.append(path)
-						break
-			path = join(mountpoint, 'picon') + '/'
-			if isdir(path) and path not in searchPaths:
-				for fn in listdir(path):
-					if fn.endswith('.png'):
-						print("[Picon] adding path:", path)
-						searchPaths.append(path)
-						break
-			path = mountpoint
-			if isdir(path) and path not in searchPaths:
-				for fn in listdir(path):
-					if fn.endswith('.png'):
-						print("[Picon] adding path:", path)
-						searchPaths.append(path)
-						break
+						return
+		path = join(mountpoint, 'XPicons') + '/'
 		if isdir(path) and path not in searchPaths:
 			for fn in listdir(path):
-				if fn.endswith(".png"):
-					print(f"[LcdPicon] adding path: {path}")
+				if fn.endswith('.png'):
+					print("[Picon] adding path:", path)
 					searchPaths.append(path)
 					break
-		print(f"[LcdPicon] Failed to investigate {mountpoint}:{str(err)}")
+		path = join(mountpoint, 'picon/XPicons') + '/'
+		if isdir(path) and path not in searchPaths:
+			for fn in listdir(path):
+				if fn.endswith('.png'):
+					print("[Picon] adding path:", path)
+					searchPaths.append(path)
+					break
+		path = join(mountpoint, 'XPicons/picon') + '/'
+		if isdir(path) and path not in searchPaths:
+			for fn in listdir(path):
+				if fn.endswith('.png'):
+					print("[Picon] adding path:", path)
+					searchPaths.append(path)
+					break
+		path = join(mountpoint, 'picon') + '/'
+		if isdir(path) and path not in searchPaths:
+			for fn in listdir(path):
+				if fn.endswith('.png'):
+					print("[Picon] adding path:", path)
+					searchPaths.append(path)
+					break
+		path = mountpoint
+		if isdir(path) and path not in searchPaths:
+			for fn in listdir(path):
+				if fn.endswith('.png'):
+					print("[Picon] adding path:", path)
+					searchPaths.append(path)
+					break
 	except Exception as err:
 		print(f"[LcdPicon] Failed to investigate {mountpoint}:{str(err)}")
 	#################################################################################
@@ -91,13 +89,11 @@ def onMountpointRemoved(mountpoint):
 			except:
 				pass
 	#################################################################################
-	if BW or isdir(mountpoint + "piconlcd"):
-		path = join(mountpoint, "piconlcd", "")
-	else:
-		path = join(mountpoint, "picon", "")
 	try:
-		searchPaths.remove(path)
-		print(f"[LcdPicon] removed path: {path}")
+		for path in [join(mountpoint, directory, "") for directory in ("piconlcd", "picon")]:
+			if path in searchPaths:
+				searchPaths.remove(path)
+				print(f"[LcdPicon] removed path: {path}")
 	except Exception:
 		pass
 
