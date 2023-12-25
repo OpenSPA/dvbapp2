@@ -16223,6 +16223,9 @@ msgstr ""
 msgid "Show selection menu for debug log files"
 msgstr ""
 
+msgid "Show Service Information"
+msgstr ""
+
 msgid "Show service list"
 msgstr ""
 
@@ -16659,7 +16662,7 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr ""
 
 #, python-format
-msgid "Slot '%s'"
+msgid "Slot '%s' %s"
 msgstr ""
 
 #, python-format
@@ -19083,6 +19086,10 @@ msgid "USALS"
 msgstr ""
 
 msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
+msgstr ""
+
+#, python-format
+msgid "USB slot %s%s"
 msgstr ""
 
 msgid "USB Stick"
