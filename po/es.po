@@ -1759,14 +1759,6 @@ msgstr ""
 
 #
 msgid ""
-"A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-"Hay una grabación en curso.\n"
-"¿Qué quieres hacer?"
-
-#
-msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr ""
@@ -9443,7 +9435,7 @@ msgstr "Ir a :"
 msgid "Goto Date/Time"
 msgstr "Ir a la fecha/hora"
 
-msgid "Goto Prime time"
+msgid "Goto Prime Time"
 msgstr "Ir a la hora de máxima audiencia"
 
 msgid "Goto X"
@@ -10696,12 +10688,11 @@ msgstr "Instalando plugins desde el feed ..."
 msgid "Instant record"
 msgstr "Grabación instantánea"
 
+msgid "Instant Recording Actions"
+msgstr "Acciones de grabación instantánea"
+
 msgid "Instant recording location"
 msgstr "Ruta de grabación instantánea"
-
-#
-msgid "Instant recording..."
-msgstr "Grabación instantánea..."
 
 msgid "Interface"
 msgstr "Interfaz"
@@ -12016,9 +12007,6 @@ msgstr ""
 "sintonizador %s!\n"
 "La opción \"conectado a\" del sintonizador %s ahora está deshabilitada"
 
-msgid "Missing "
-msgstr "Falta "
-
 msgid "Mobile connection"
 msgstr "Conexión móvil"
 
@@ -12830,15 +12818,15 @@ msgstr "Siguiente registro"
 msgid "Next Picture"
 msgstr "Siguiente imagen"
 
-msgid "Next bouquet"
-msgstr "Siguiente grupo"
+msgid "Next Bouquet"
+msgstr "Siguiente lista"
 
 #
 msgid "Next higher resolution"
 msgstr "Siguiente resolución más alta"
 
 #
-msgid "Next page"
+msgid "Next Page"
 msgstr "Página siguiente"
 
 #
@@ -13934,6 +13922,10 @@ msgstr "Configuración de la contraseña"
 msgid "Password changed."
 msgstr "Se ha cambiado la contraseña."
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr "Ruta '%s' no encontrada!"
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr "La ruta para guardar no existe: '/tmp/'"
 
@@ -14855,10 +14847,10 @@ msgstr "Registro previo"
 msgid "Previous Picture"
 msgstr "Imagen anterior"
 
-msgid "Previous bouquet"
-msgstr "Bouquet anterior"
+msgid "Previous Bouquet"
+msgstr "Lista anterior"
 
-msgid "Previous page"
+msgid "Previous Page"
 msgstr "Página anterior"
 
 #
@@ -15403,9 +15395,6 @@ msgstr "Cajón de herramientas de recursos grabables"
 #
 msgid "Recording"
 msgstr "Grabación"
-
-msgid "Recording Actions"
-msgstr "Acciones de grabación"
 
 msgid "Recording Settings"
 msgstr "Ajustes de grabación"
@@ -18248,7 +18237,7 @@ msgstr ""
 "Los servicios pueden agruparse en ramos. Cuando está activado, puede "
 "utilizar más de un ramo."
 
-msgid "Set Base time"
+msgid "Set Base Time"
 msgstr "Establece hora base"
 
 msgid "Set CI assignment for detection of available services."
@@ -19943,12 +19932,12 @@ msgstr "Falta la configuración de MiniDLNA"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Fuentes fuera de servicio por mantenimiento. Inténtalo más tarde."
 
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Lo sentimos, solo se pueden grabar 2 canales a la vez!"
+
 #
 msgid "Sorry no backups found!"
 msgstr "¡Lo siento, no se han encontrado copias de seguridad!"
-
-msgid "Sorry it is only possible to record 2 channels at once!"
-msgstr "Lo sentimos, solo se pueden grabar 2 canales a la vez!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Falta la configuración de uShare"
@@ -20151,6 +20140,12 @@ msgstr "Iniciar Kodi"
 msgid "Start RDS interactive"
 msgstr "Iniciar RDS interactivo"
 
+msgid "Start an instant recording"
+msgstr "Iniciar grabación instantánea"
+
+msgid "Start instant recording?"
+msgstr "Iniciar grabación instantánea?"
+
 msgid "Start date"
 msgstr "Fecha de inicio"
 
@@ -20173,10 +20168,6 @@ msgstr "Iniciar descodificación offline"
 
 msgid "Start recording current event"
 msgstr "Iniciar grabación del evento actual"
-
-#
-msgid "Start recording?"
-msgstr "¿Iniciar grabación?"
 
 msgid "Start teletext"
 msgstr "Iniciar teletexto"
@@ -25426,11 +25417,11 @@ msgstr "Aventura occidental guerra"
 msgid "advertisement/shopping"
 msgstr "Publicidad / compras"
 
-msgid "all events down"
-msgstr "todos los eventos abajo"
+msgid "All events down"
+msgstr "Todos los eventos abajo"
 
-msgid "all events up"
-msgstr "todos los eventos arriba"
+msgid "All events up"
+msgstr "Todos los eventos arriba"
 
 msgid "all up/down"
 msgstr "Todo arriba/abajo"
@@ -25858,17 +25849,17 @@ msgstr "jardinería"
 msgid "get the cards' server"
 msgstr "Obtener el servidor de las tarjetas"
 
-msgid "goto current channel and now"
+msgid "Goto current channel and now"
 msgstr "Ir al canal actual"
 
-msgid "goto first channel"
+msgid "Goto first channel"
 msgstr "Ir al primer canal"
 
-msgid "goto last channel"
+msgid "Goto last channel"
 msgstr "Ir al último canal"
 
 #
-msgid "goto now"
+msgid "Goto now"
 msgstr "Ir ahora"
 
 #
@@ -26111,8 +26102,8 @@ msgid "news/weather report"
 msgstr "Noticias / informe meteorológico"
 
 #
-msgid "next channel page"
-msgstr "siguiente página de canales"
+msgid "Next channel page"
+msgstr "Siguiente página de canales"
 
 #
 msgid "no CAId selected"
@@ -26256,8 +26247,8 @@ msgid "pre-school children's program"
 msgstr "Programa infantil de preescolar"
 
 #
-msgid "previous channel page"
-msgstr "Página previa de canales"
+msgid "Previous channel page"
+msgstr "Página anterior de canales"
 
 msgid "provid:"
 msgstr "provid:"
@@ -28679,7 +28670,6 @@ msgstr "Idioma no instalado. Amarillo para instalar"
 msgid "EPG Days: %s"
 msgstr "Días de EPG: %s"
 
-#
 msgid "Black screen"
 msgstr "Pantalla negra"
 
@@ -28688,14 +28678,3 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
-
-#
-#~ msgid "No event info found, recording default is infinite."
-#~ msgstr "No hay información del evento; grabación indefinida por defecto."
-
-#, python-format
-#~ msgid "Slot '%s'"
-#~ msgstr "Slot '%s'"
-
-#~ msgid "Sorry only possible to record 2 channels at once"
-#~ msgstr "Lo sentimos, solo se pueden grabar 2 canales a la vez"
