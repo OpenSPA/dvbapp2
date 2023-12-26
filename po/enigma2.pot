@@ -1612,10 +1612,6 @@ msgid "A recording has been started:\n"
 "%s"
 msgstr ""
 
-msgid "A recording is currently running.\n"
-"What do you want to do?"
-msgstr ""
-
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr ""
 
@@ -9109,10 +9105,10 @@ msgstr ""
 msgid "Instant record"
 msgstr ""
 
-msgid "Instant recording location"
+msgid "Instant Recording Actions"
 msgstr ""
 
-msgid "Instant recording..."
+msgid "Instant recording location"
 msgstr ""
 
 msgid "Interface"
@@ -10310,9 +10306,6 @@ msgstr ""
 #, python-format
 msgid "Misconfigured unicable connection from tuner %s to tuner %s!\n"
 "Tuner %s option \"connected to\" are disabled now"
-msgstr ""
-
-msgid "Missing "
 msgstr ""
 
 msgid "Mobile connection"
@@ -11979,6 +11972,10 @@ msgstr ""
 msgid "Password changed."
 msgstr ""
 
+#, python-format
+msgid "Path '%s' missing!"
+msgstr ""
+
 msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
@@ -13227,9 +13224,6 @@ msgid "Recordable media toolbox"
 msgstr ""
 
 msgid "Recording"
-msgstr ""
-
-msgid "Recording Actions"
 msgstr ""
 
 msgid "Recording Settings"
@@ -16813,10 +16807,10 @@ msgstr ""
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
-msgid "Sorry no backups found!"
+msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr ""
 
-msgid "Sorry it is only possible to record 2 channels at once!"
+msgid "Sorry no backups found!"
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
@@ -16999,6 +16993,12 @@ msgstr ""
 msgid "Start RDS interactive"
 msgstr ""
 
+msgid "Start an instant recording"
+msgstr ""
+
+msgid "Start instant recording?"
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -17018,9 +17018,6 @@ msgid "Start offline decode"
 msgstr ""
 
 msgid "Start recording current event"
-msgstr ""
-
-msgid "Start recording?"
 msgstr ""
 
 msgid "Start teletext"
