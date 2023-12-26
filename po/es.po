@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-22 10:44+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: JR <openspateam@gmail.com>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -2135,19 +2135,19 @@ msgid "Add provider"
 msgstr "Añadir proveedor"
 
 #
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Añadir grabación (introducir duración)"
 
 #
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Añadir grabación (introducir hora de finalización)"
 
 #
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely - 24 hours)"
 msgstr "Añadir grabación (indefinida)"
 
 #
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Añadir grabación (detener después del programa actual)"
 
 msgid "Add service"
@@ -4059,11 +4059,11 @@ msgid "Change pin code"
 msgstr "Cambiar código pin"
 
 #
-msgid "Change recording (duration)"
+msgid "Change recording (Duration)"
 msgstr "Cambiar grabación (duración)"
 
 #
-msgid "Change recording (end time)"
+msgid "Change recording (End time)"
 msgstr "Cambiar grabación (fin)"
 
 msgid "Change repeat and delay settings?"
@@ -12943,9 +12943,8 @@ msgstr "No hay entrada en lcn db. Realice una exploración del servicio."
 msgid "No error"
 msgstr "Ningún error"
 
-#
-msgid "No event info found, recording default is infinite."
-msgstr "No hay información del evento; grabación indefinida por defecto."
+msgid "No event information found, recording default is 24 hours."
+msgstr "No hay información del evento; grabando indefinidamente."
 
 #
 msgid ""
@@ -19283,6 +19282,9 @@ msgstr "Mostrar menú de selección para logs de commits"
 msgid "Show selection menu for debug log files"
 msgstr "Mostrar menú de selección para archivos de depuración"
 
+msgid "Show Service Information"
+msgstr "Mostrar información de servicio"
+
 msgid "Show service list"
 msgstr "Mostrar lista de canales"
 
@@ -19765,8 +19767,8 @@ msgid "Slot %s: %s as USB Recovery"
 msgstr "Slot %s: %s como USB de recuperación"
 
 #, python-format
-msgid "Slot '%s'"
-msgstr "Slot '%s'"
+msgid "Slot '%s' %s"
+msgstr "Slot '%s' %s"
 
 #, python-format
 msgid "Slot '%s':  %s"
@@ -19945,8 +19947,8 @@ msgstr "Fuentes fuera de servicio por mantenimiento. Inténtalo más tarde."
 msgid "Sorry no backups found!"
 msgstr "¡Lo siento, no se han encontrado copias de seguridad!"
 
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Lo sentimos, solo se pueden grabar 2 canales a la vez"
+msgid "Sorry it is only possible to record 2 channels at once!"
+msgstr "Lo sentimos, solo se pueden grabar 2 canales a la vez!"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Falta la configuración de uShare"
@@ -22216,13 +22218,13 @@ msgstr "¡Error al guardar Timeshift!"
 msgid "Time shift save recording (Select event)"
 msgstr "Grabación de Timeshift guardada (seleccionar programa)"
 
-msgid "Time shift save recording (stop after current event)"
+msgid "Time shift save recording (Stop after current event)"
 msgstr "Grabación de Timeshift guardada (detener después del programa actual)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "¡Timeshift guardado en su disco duro!"
 
-msgid "Time shift will get saved at end of event!"
+msgid "Time shift will get saved at end of event."
 msgstr "¡Timeshift se guardará al final del programa!"
 
 msgid "Time style"
@@ -22836,6 +22838,10 @@ msgstr ""
 "USALS mueve automáticamente una antena motorizada al satélite correcto "
 "basado en las coordenadas introducidas por el usuario. Sin USALS se "
 "necesitará configurar y guardar individualmente cada satélite."
+
+#, python-format
+msgid "USB slot %s%s"
+msgstr "Slot USB %s%s"
 
 #
 msgid "USB Stick"
@@ -28682,3 +28688,14 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#
+#~ msgid "No event info found, recording default is infinite."
+#~ msgstr "No hay información del evento; grabación indefinida por defecto."
+
+#, python-format
+#~ msgid "Slot '%s'"
+#~ msgstr "Slot '%s'"
+
+#~ msgid "Sorry only possible to record 2 channels at once"
+#~ msgstr "Lo sentimos, solo se pueden grabar 2 canales a la vez"
