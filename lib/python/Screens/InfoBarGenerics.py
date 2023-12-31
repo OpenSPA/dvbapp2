@@ -12,7 +12,7 @@ from enigma import eAVControl, eTimer, eServiceCenter, eDVBServicePMTHandler, iS
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
 from ServiceReference import ServiceReference, isPlayableForCur
-from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap, NumberActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigBoolean, ConfigClock, config, configfile
 from Components.Harddisk import findMountPoint, harddiskmanager
@@ -299,7 +299,7 @@ class TimerSelection(Screen):
 		self.setTitle(_("Timer selection"))
 		self.list = list
 		self["timerlist"] = TimerList(self.list)
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions"],
 			{
 				"ok": self.selected,
 				"cancel": self.leave,
