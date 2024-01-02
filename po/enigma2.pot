@@ -6031,6 +6031,9 @@ msgstr ""
 msgid "Do you want to resume this playback?"
 msgstr ""
 
+msgid "Do you want to search other transponder?"
+msgstr ""
+
 msgid "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""

@@ -1398,9 +1398,6 @@ msgstr "* Sólo disponible si hay más de una interfaz activa."
 msgid "* current animation"
 msgstr "* animación actual"
 
-msgid "+24"
-msgstr "+24"
-
 msgid "+24 Hours"
 msgstr "+24 Horas"
 
@@ -1410,9 +1407,6 @@ msgstr ", "
 
 msgid "-"
 msgstr "-"
-
-msgid "-24"
-msgstr "-24"
 
 msgid "-24 Hours"
 msgstr "-24 Horas"
@@ -2326,6 +2320,12 @@ msgstr "Todos los servicios"
 
 msgid "All ages"
 msgstr "Todas las edades"
+
+msgid "All events down"
+msgstr "Todos los eventos abajo"
+
+msgid "All events up"
+msgstr "Todos los eventos arriba"
 
 msgid "All files"
 msgstr "Todos los archivos"
@@ -3414,9 +3414,6 @@ msgstr "Lista de grupos"
 
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Navegación Selector de listas"
-
-msgid "BouquetList"
-msgstr "Lista de Bouquet"
 
 msgid "Bouvet Island"
 msgstr "Isla de Bouvet"
@@ -7051,6 +7048,9 @@ msgstr "¿Quieres restaurar la configuración?"
 msgid "Do you want to resume this playback?"
 msgstr "¿Quieres reanudar la reproducción?"
 
+msgid "Do you want to search other transponder?"
+msgstr "¿Quieres buscar en otros transpondedores?"
+
 msgid ""
 "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
@@ -9441,9 +9441,18 @@ msgstr "Ir a la hora de máxima audiencia"
 msgid "Goto X"
 msgstr "Ir a X"
 
+msgid "Goto current channel and now"
+msgstr "Ir al canal actual"
+
 # Powerlost usage.config
 msgid "Goto deep standby"
 msgstr "Apagar"
+
+msgid "Goto first channel"
+msgstr "Ir al primer canal"
+
+msgid "Goto last channel"
+msgstr "Ir al último canal"
 
 msgid "Goto next bouquet"
 msgstr "Ir al siguiente grupo"
@@ -9453,6 +9462,10 @@ msgstr "Ir al siguiente canal"
 
 msgid "Goto next event"
 msgstr "Ir al siguiente programa"
+
+#
+msgid "Goto now"
+msgstr "Ir ahora"
 
 msgid "Goto position"
 msgstr "Ir a la posición"
@@ -12822,12 +12835,16 @@ msgid "Next Bouquet"
 msgstr "Siguiente lista"
 
 #
-msgid "Next higher resolution"
-msgstr "Siguiente resolución más alta"
-
-#
 msgid "Next Page"
 msgstr "Página siguiente"
+
+#
+msgid "Next channel page"
+msgstr "Siguiente página de canales"
+
+#
+msgid "Next higher resolution"
+msgstr "Siguiente resolución más alta"
 
 #
 msgid "Next quad PiP channel"
@@ -14852,6 +14869,10 @@ msgstr "Lista anterior"
 
 msgid "Previous Page"
 msgstr "Página anterior"
+
+#
+msgid "Previous channel page"
+msgstr "Página anterior de canales"
 
 #
 msgid "Previous/Next bouquet"
@@ -25417,12 +25438,6 @@ msgstr "Aventura occidental guerra"
 msgid "advertisement/shopping"
 msgstr "Publicidad / compras"
 
-msgid "All events down"
-msgstr "Todos los eventos abajo"
-
-msgid "All events up"
-msgstr "Todos los eventos arriba"
-
 msgid "all up/down"
 msgstr "Todo arriba/abajo"
 
@@ -25849,19 +25864,6 @@ msgstr "jardinería"
 msgid "get the cards' server"
 msgstr "Obtener el servidor de las tarjetas"
 
-msgid "Goto current channel and now"
-msgstr "Ir al canal actual"
-
-msgid "Goto first channel"
-msgstr "Ir al primer canal"
-
-msgid "Goto last channel"
-msgstr "Ir al último canal"
-
-#
-msgid "Goto now"
-msgstr "Ir ahora"
-
 #
 msgid "grab this frame as bitmap"
 msgstr "Grabar esta pantalla como bitmap"
@@ -26102,10 +26104,6 @@ msgid "news/weather report"
 msgstr "Noticias / informe meteorológico"
 
 #
-msgid "Next channel page"
-msgstr "Siguiente página de canales"
-
-#
 msgid "no CAId selected"
 msgstr "No se ha seleccionado CAId"
 
@@ -26245,10 +26243,6 @@ msgstr "Cultura popular / artes tradicionales"
 
 msgid "pre-school children's program"
 msgstr "Programa infantil de preescolar"
-
-#
-msgid "Previous channel page"
-msgstr "Página anterior de canales"
 
 msgid "provid:"
 msgstr "provid:"
@@ -28678,3 +28672,12 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#~ msgid "+24"
+#~ msgstr "+24"
+
+#~ msgid "-24"
+#~ msgstr "-24"
+
+#~ msgid "BouquetList"
+#~ msgstr "Lista de Bouquet"
