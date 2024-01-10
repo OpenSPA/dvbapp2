@@ -92,6 +92,7 @@ class AnalogClockLCD(Renderer):
 		return eSize(int(x), int(y))
 
 	def postWidgetCreate(self, instance):
+		self.instance = instance
 		for attrib, value in self.skinAttributes:
 			if attrib == "size":
 				self.instance.setSize(self.parseSize(value))
