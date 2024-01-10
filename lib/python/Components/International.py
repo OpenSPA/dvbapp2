@@ -334,7 +334,7 @@ class International:
 		"EH": ("ESH", "732", "Western Sahara", _("Western Sahara"), "الصحراء الغربية"),
 		"ER": ("ERI", "232", "Eritrea", _("Eritrea"), "ኤርትራ"),
 		"ES": ("ESP", "724", "Spain", _("Spain"), "España"),
-		"ES-GA": ("ESP", "724", "Galicia (Spain)", _("Galicia (Spain)"), "Galicia (España)"),
+#		"ES-GA": ("ESP", "724", "Galicia (Spain)", _("Galicia (Spain)"), "Galicia (España)"),
 		"ET": ("ETH", "231", "Ethiopia", _("Ethiopia"), "ኢትዮጵያ"),
 		"FI": ("FIN", "246", "Finland", _("Finland"), "Suomi"),
 		"FJ": ("FJI", "242", "Fiji", _("Fiji"), "Viti"),
