@@ -117,7 +117,7 @@ class International:
 		"fy": ("Western Frisian", _("Western Frisian"), "Frysk", "ISO-8859-15", "", ("NL", "DE")),
 		"ga": ("Irish", _("Irish"), "Gaeilge", "", "", ("IE",)),
 		"gd": ("Gaelic", _("Gaelic"), "Gàidhlig", "", "", ("GB",)),
-		"gl": ("Galician", _("Galician"), "Galego", "", "", ("ES-GA",)),
+		"gl": ("Galician", _("Galician"), "Galego", "", "", ("ES",)),
 		"gn": ("Guarani", _("Guarani"), "Avañe'ẽ", "", "", ("PY",)),
 		"gu": ("Gujarati", _("Gujarati"), "ગુજરાતી", "", "", ("IN",)),
 		"gv": ("Manx", _("Manx"), "Gaelg / Gailck", "", "", ("GB",)),
@@ -738,7 +738,7 @@ class International:
 	def getNIMCountries(self):
 		nimCountries = {}
 		for country in self.COUNTRY_DATA.keys():
-			nimCountries[self.COUNTRY_DATA[country][self.COUNTRY_ALPHA3]] = _(self.COUNTRY_DATA[country][self.COUNTRY_TRANSLATED]) #### MOd OpenSPA [VillaK] fpr tranlate country
+			nimCountries[self.COUNTRY_DATA[country][self.COUNTRY_ALPHA3]] = _(self.COUNTRY_DATA[country][self.COUNTRY_TRANSLATED]) #### MOD OpenSPA [VillaK] for tranlate country
 		return nimCountries
 	
 	def addCallback(self, callback):
