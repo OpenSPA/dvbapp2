@@ -738,9 +738,13 @@ class International:
 	def getNIMCountries(self):
 		nimCountries = {}
 		for country in self.COUNTRY_DATA.keys():
-			nimCountries[self.COUNTRY_DATA[country][self.COUNTRY_ALPHA3]] = self.COUNTRY_DATA[country][self.COUNTRY_TRANSLATED]
+			###OpensSPA Villak translation.
+			alpha3 = self.COUNTRY_DATA[country][self.COUNTRY_ALPHA3]
+			translated_name = _(self.COUNTRY_DATA[country][self.COUNTRY_NAME])
+			nimCountries[alpha3] = translated_name
+			##############################
 		return nimCountries
-
+	
 	def addCallback(self, callback):
 		if not callback:
 			print(f"[International] Error: The callback '{callback}' can't be empty!")
