@@ -614,10 +614,6 @@
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>
-	<screen name="EMCSelectionSummary" position="0,0" size="400,240">
-		<panel name="EMCSelection_summary" />
-	</screen>
-
 <!--EMCMoviePlayerSummary-->
 <screen name="EMCMoviePlayerSummary" position="0,0" size="400,240">
 	<ePixmap pixmap="/usr/share/enigma2/display/icon_movieplayer.png" zPosition="1" position="0,5" size="400,100" />
