@@ -459,4 +459,11 @@ for cislot in range(0, SystemInfo["CommonInterface"]):
 	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot)
 	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot)
 
+# network services
+SystemInfo["inadyn"] = exists("/etc/init.d/S20inadyn-mt")
+SystemInfo["minidlna"] = exists("/etc/init.d/S20minidlna")
+SystemInfo["ushare"] = exists("/etc/init.d/S20ushare")
+SystemInfo["udpxy"] = exists("/etc/init.d/S20udpxy")
+SystemInfo["xupnpd"] = exists("/etc/init.d/S20xupnpd")
+
 updateSysSoftCam()
