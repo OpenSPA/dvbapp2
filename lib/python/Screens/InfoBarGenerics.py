@@ -3262,7 +3262,7 @@ class InfoBarExtensions:
 			return []
 
 	def getOSname(self):
-		return _("OScam Info")
+		return _("OSCam Info")
 
 	def getOScamInfo(self):
 		if pathExists('/usr/bin/'):
@@ -3382,8 +3382,8 @@ class InfoBarExtensions:
 		self.session.open(CCcamInfoMain)
 
 	def openOScamInfo(self):
-		from Screens.OScamInfo import OScamOverview
-		self.session.open(OScamOverview)
+		from Screens.OScamInfo import OSCamInfo
+		self.session.open(OSCamInfo)
 
 	def openNcamInfo(self):
 		from Screens.NcamInfo import NcamInfoMenu
