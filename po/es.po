@@ -13344,6 +13344,27 @@ msgstr "Sí, guíame por el proceso de actualización"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OSCam Info"
+msgstr "Info de OScam"
+
+msgid "OSCam Information"
+msgstr "Información de OScam"
+
+msgid "OSCam Information Settings"
+msgstr "Información Oscam - Configuración"
+
+msgid "OSCam webif disabled"
+msgstr "OScam webif desactivado"
+
+msgid "OSCamInfo Actions"
+msgstr "OScamInfo"
+
+msgid "OSCamInfo Log"
+msgstr "Log OScamInfo"
+
+msgid "OSCamInfo Log Actions"
+msgstr "Log OScamInfo"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -13365,15 +13386,6 @@ msgstr "Configuración del OSD"
 
 msgid "OSD name request"
 msgstr "Solicitud de nombre OSD"
-
-msgid "OScam Info"
-msgstr "Información OScam"
-
-msgid "OScam Information"
-msgstr "Información de OScam"
-
-msgid "OScam webif disabled"
-msgstr "OScam webif desactivado"
 
 msgid "OTT Model"
 msgstr "Modelo OTT"
@@ -13630,24 +13642,6 @@ msgstr "Oromo"
 
 msgid "Oscam Information"
 msgstr "Información de OScam"
-
-msgid "Oscam Information Settings"
-msgstr "Información Oscam - Configuración"
-
-msgid "OScamInfo Overview"
-msgstr "Vista OScamInfo"
-
-msgid "OScamInfo Settings"
-msgstr "Configuración OscamInfo"
-
-msgid "OScamInfo ShowLog"
-msgstr "Mostra log OScamInfo"
-
-msgid "OScamLog Actions"
-msgstr "OScam Log"
-
-msgid "OScamOverview Actions"
-msgstr "Vista general de OScam"
 
 msgid "Ossetian / Ossetic"
 msgstr "Osetia / ositano"
@@ -18917,8 +18911,8 @@ msgstr "Mostrar lista de películas"
 msgid "Show Multi EPG"
 msgstr "Mostrar MultiEPG"
 
-msgid "Show OScam Info"
-msgstr "Mostrar Info Oscam"
+msgid "Show OSCam Information"
+msgstr "Mostrar información de OSCam"
 
 msgid "Show OScam in extensions"
 msgstr "Mostrar OScam en extensiones"
@@ -19348,8 +19342,8 @@ msgstr "Mostrar EIT ahora/siguiente en la barra de información."
 msgid "Show the Logs Settings screen"
 msgstr "Mostrar pantalla de configuración de logs"
 
-msgid "Show the OScamInfo Screen"
-msgstr "Mostrar pantalla de OScaminfo"
+msgid "Show the OSCam information screen"
+msgstr "Mostrar pantalla de información OSCam"
 
 msgid "Show the PowerTimer"
 msgstr "Mostrar temporizador de apagado"
@@ -28637,6 +28631,21 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#~ msgid "OScamInfo Overview"
+#~ msgstr "Vista OScamInfo"
+
+#~ msgid "OScamInfo Settings"
+#~ msgstr "Configuración OscamInfo"
+
+#~ msgid "OScamOverview Actions"
+#~ msgstr "Vista general de OScam"
+
+#~ msgid "Show OScam Info"
+#~ msgstr "Mostrar Info Oscam"
+
+#~ msgid "Show the OScamInfo Screen"
+#~ msgstr "Mostrar pantalla de OScaminfo"
 
 #, python-format
 #~ msgid "%s ( %s Cards )"

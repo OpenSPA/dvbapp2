@@ -11440,6 +11440,27 @@ msgstr ""
 msgid "ONID"
 msgstr ""
 
+msgid "OSCam Info"
+msgstr ""
+
+msgid "OSCam Information"
+msgstr ""
+
+msgid "OSCam Information Settings"
+msgstr ""
+
+msgid "OSCam webif disabled"
+msgstr ""
+
+msgid "OSCamInfo Actions"
+msgstr ""
+
+msgid "OSCamInfo Log"
+msgstr ""
+
+msgid "OSCamInfo Log Actions"
+msgstr ""
+
 msgid "OSD"
 msgstr ""
 
@@ -11459,15 +11480,6 @@ msgid "OSD Setup"
 msgstr ""
 
 msgid "OSD name request"
-msgstr ""
-
-msgid "OScam Info"
-msgstr ""
-
-msgid "OScam Information"
-msgstr ""
-
-msgid "OScam webif disabled"
 msgstr ""
 
 msgid "OTT Model"
@@ -11705,24 +11717,6 @@ msgid "Oromo"
 msgstr ""
 
 msgid "Oscam Information"
-msgstr ""
-
-msgid "Oscam Information Settings"
-msgstr ""
-
-msgid "OScamInfo Overview"
-msgstr ""
-
-msgid "OScamInfo Settings"
-msgstr ""
-
-msgid "OScamInfo ShowLog"
-msgstr ""
-
-msgid "OScamLog Actions"
-msgstr ""
-
-msgid "OScamOverview Actions"
 msgstr ""
 
 msgid "Ossetian / Ossetic"
@@ -15873,7 +15867,7 @@ msgstr ""
 msgid "Show Multi EPG"
 msgstr ""
 
-msgid "Show OScam Info"
+msgid "Show OSCam Information"
 msgstr ""
 
 msgid "Show OScam in extensions"
@@ -16267,7 +16261,7 @@ msgstr ""
 msgid "Show the Logs Settings screen"
 msgstr ""
 
-msgid "Show the OScamInfo Screen"
+msgid "Show the OSCam information screen"
 msgstr ""
 
 msgid "Show the PowerTimer"
