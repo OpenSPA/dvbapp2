@@ -5944,6 +5944,9 @@ msgstr "Fecha"
 msgid "Date / Time"
 msgstr "Fecha/Hora"
 
+msgid "Date Time Input Actions"
+msgstr "Configuración de fecha/hora"
+
 msgid "Date ascending"
 msgstr "Fecha ascendente"
 
@@ -7280,6 +7283,9 @@ msgstr "Selección de canales/servicios de la EPG"
 
 msgid "EPG Display Actions"
 msgstr "Acciones de visualización de la EPG"
+
+msgid "EPG Jump"
+msgstr "Salto de EPG"
 
 msgid "EPG Navigation Actions"
 msgstr "Acciones de navegación de la EPG"
@@ -9063,6 +9069,9 @@ msgstr "Comida/Vino"
 msgid "Football"
 msgstr "Fútbol"
 
+msgid "For how many minutes do you want to record?"
+msgstr "¿Cuántos minutos quieres grabar?"
+
 msgid "Force AC3plus"
 msgstr "Forzar AC3plus"
 
@@ -9947,9 +9956,6 @@ msgstr "Horas Minutos"
 msgid "Hours Minutes Seconds"
 msgstr "Horas Minutos Segundos"
 
-msgid "For how many minutes do you want to record?"
-msgstr "¿Cuántos minutos quieres grabar?"
-
 msgid "Http(s) stream start delay"
 msgstr "Retraso en el inicio del stream http(s)"
 
@@ -10704,6 +10710,9 @@ msgstr "Grabación instantánea"
 msgid "Instant Recording Actions"
 msgstr "Acciones de grabación instantánea"
 
+msgid "Instant Recording End Time"
+msgstr "Hora de finalización de la grabación instantánea"
+
 msgid "Instant recording location"
 msgstr "Ruta de grabación instantánea"
 
@@ -10864,14 +10873,32 @@ msgstr "Resumen de trabajo"
 msgid "Jordan"
 msgstr "Jordania"
 
+msgid "Jump"
+msgstr ""
+
 msgid "Jump back 24 hours"
 msgstr "Retroceder 24 horas"
+
+msgid "Jump back one day"
+msgstr "Retroceder un día"
+
+msgid "Jump back one hour"
+msgstr "Retroceder una hora"
 
 msgid "Jump first press in channel selection"
 msgstr "Ir al principio de la lista de canales"
 
 msgid "Jump forward 24 hours"
 msgstr "Ir adelante 24 horas"
+
+msgid "Jump forward one day"
+msgstr "Avanzar un día"
+
+msgid "Jump forward one hour"
+msgstr "Avanzar una hora"
+
+msgid "Jump time"
+msgstr "Hora de salto"
 
 msgid "Jump to beginning of list"
 msgstr "Ir al principio de la lista"
@@ -14163,10 +14190,6 @@ msgstr "Añade títulos a la compilación."
 #
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Por favor, tenga paciencia, ahora se realizará un backup,\n"
-
-#
-msgid "Please change recording endtime"
-msgstr "Cambia la hora del fin de la grabación"
 
 #
 msgid "Please check the manual of the receiver"
@@ -17822,6 +17845,24 @@ msgstr "Selecciona el retraso antes que el botón empiece a repetirse."
 msgid "Select the time delay between each repeat of the button."
 msgstr "Selecciona el retraso entre cada repetición del botón."
 
+msgid ""
+"Select the time to which the EPG should be positioned. Press LEFT/RIGHT to "
+"decrease/increase the time by an hour. Press PREV/NEXT to decrease/increase "
+"the time by a day."
+msgstr ""
+"Seleccione la hora a la que debe posicionarse la EPG. Pulse IZQUIERDA/"
+"DERECHA para aumentar/disminuir una hora. Pulse PREV/NEXT para aumentar/"
+"disminuir la hora en un día."
+
+msgid ""
+"Select the time when this instant recording timer should end. Press LEFT/"
+"RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/"
+"increase the time by an hour."
+msgstr ""
+"Seleccione la hora a la que debe finalizar este temporizador de grabación "
+"instantánea. Pulse IZQUIERDA/DERECHA para disminuir/aumentar el tiempo en un "
+"minuto. Pulse PREV/NEXT para disminuir/aumentar el tiempo en una hora."
+
 msgid "Select the time when this timer should end."
 msgstr "Selecciona la hora a la que debería acabar este temporizador."
 
@@ -18268,6 +18309,9 @@ msgstr ""
 #
 msgid "Set Framerate for MiniTV"
 msgstr "Establecer framerate para MiniTV"
+
+msgid "Set Time"
+msgstr "Configura la hora"
 
 msgid "Set action for 'Info' key"
 msgstr "Establecer acción para el botón 'Info'"
@@ -28672,6 +28716,10 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#
+#~ msgid "Please change recording endtime"
+#~ msgstr "Cambia la hora del fin de la grabación"
 
 #~ msgid "+24"
 #~ msgstr "+24"
