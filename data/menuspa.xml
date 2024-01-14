@@ -149,7 +149,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			</menu>
 			<!-- Menu / Setup / Common interface -->
 			<menu key="cam" level="1" text="Decryption &amp; Parental Control" weight="30">
-				<item key="oscam_info" level="0" text="OScam Information" weight="60" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
+				<item key="oscam_info" level="0" text="OScam Information" weight="60" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OScamOverview" /></item>
 				<item key="cccam_info" level="0" text="CCcam Information" weight="70" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
 				<item key="ncam_info" level="0" text="NCam Information" weight="70" requires="ShowNCamInfo"><screen module="NcamInfo" screen="NcamInfoMenu" /></item>
 				<item key="streamrelay_settings" level="2" text="Stream Relay Settings" weight="110"><screen module="StreamRelaySetup" screen="StreamRelaySetup" /></item>

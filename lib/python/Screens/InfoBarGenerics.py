@@ -3382,8 +3382,8 @@ class InfoBarExtensions:
 		self.session.open(CCcamInfoMain)
 
 	def openOScamInfo(self):
-		from Screens.OScamInfo import OscamInfoMenu
-		self.session.open(OscamInfoMenu)
+		from Screens.OScamInfo import OScamOverview
+		self.session.open(OScamOverview)
 
 	def openNcamInfo(self):
 		from Screens.NcamInfo import NcamInfoMenu
