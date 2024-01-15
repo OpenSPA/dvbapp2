@@ -15,7 +15,7 @@ from Components.SystemInfo import getBoxDisplayName
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from Tools.Directories import SCOPE_CONFIG, fileReadLines, fileReadXML, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, fileReadLines, fileReadXML, resolveFilename, isPluginInstalled
 from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
 from Tools.XMLTools import stringToXML
 
@@ -93,6 +93,9 @@ def parseEvent(event):
 class PowerTimer(Timer):
 	def __init__(self):
 		Timer.__init__(self)
+		if isPluginInstalled("IPToSAT"):  # [norhap] activate timer to update bouquets with IPToSAT
+			from Plugins.Extensions.IPToSAT.plugin import TimerUpdateCategories
+			self.timerinstance = TimerUpdateCategories(self)
 
 	def loadTimers(self):
 		if exists(TIMER_XML_FILE):
