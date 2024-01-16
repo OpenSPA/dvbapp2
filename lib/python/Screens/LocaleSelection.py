@@ -310,7 +310,7 @@ class LocaleSelection(Screen, HelpableScreen):
 
 	def keySelect(self):
 		current = self["locales"].getCurrent()
-#		self.currentLocale = current[self.LIST_LOCALE]  # OPENSPA [morser] By text if self.PACK_AVAILABLE, set self.currentLocale after 
+		self.currentLocale = current[self.LIST_LOCALE]
 		status = current[self.LIST_STATUS]
 		if status == self.PACK_AVAILABLE:
 			self.keyManage()
