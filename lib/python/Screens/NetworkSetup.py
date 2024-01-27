@@ -2606,6 +2606,89 @@ class NetworkLogScreen(Screen):
 		self.console.killAll()
 		self.close(True)
 
+class NetworkBaseScreen(Screen, HelpableScreen):
+	def __init__(self, session, showLog=False):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		self.service_name = ""
+		self.Console = Console()
+		self["key_red"] = StaticText(_("Remove Service"))
+		self["key_green"] = StaticText(_("Start"))
+		self["key_yellow"] = StaticText(_("Autostart"))
+		self["key_blue"] = StaticText(_("Show Log") if showLog else "")
+
+	def InstallCheck(self):
+		if self.service_name:
+			self.Console.ePopen("/usr/bin/opkg list_installed %s" % self.service_name, self.checkNetworkState)
+
+	def checkNetworkState(self, str, retval, extra_args):
+		if "Collected errors" in str:
+			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif not str:
+			self.feedscheck = self.session.open(MessageBox, _("Please wait whilst feeds state is checked."), MessageBox.TYPE_INFO, enable_input=False)
+			self.feedscheck.setTitle(_("Checking Feeds"))
+			cmd1 = "opkg update"
+			self.CheckConsole = Console()
+			self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
+		else:
+			self.updateService()
+
+	def checkNetworkStateFinished(self, result, retval, extra_args=None):
+		if "bad address" in result:
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		elif ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
+			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+		else:
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _("Your %s %s will be restarted after the installation of service\nReady to install '%s'?") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"), self.service_name), MessageBox.TYPE_YESNO)
+
+	def InstallPackage(self, val):
+		if val:
+			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.feedscheck.close()
+			self.close()
+
+	def InstallPackageFailed(self, val):
+		self.feedscheck.close()
+		self.close()
+
+	def installComplete(self, result=None, retval=None, extra_args=None):
+		self.message.close()
+		self.feedscheck.close()
+		self.updateService()
+
+	def doInstall(self, callback, pkgname):
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
+		self.message.setTitle(_("Installing Service"))
+		self.Console.ePopen("/usr/bin/opkg install %s" % pkgname, callback)
+
+	def RemovePackage(self, val):
+		if val:
+			self.doRemove(self.removeComplete, self.service_name)
+
+	def doRemove(self, callback, pkgname):
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
+		self.message.setTitle(_("Removing Service"))
+		self.Console.ePopen("/usr/bin/opkg remove %s --force-remove --autoremove" % pkgname, callback)
+
+	def removeComplete(self, result=None, retval=None, extra_args=None):
+		self.message.close()
+		self.close()
+
+	def UninstallCheck(self):
+		self.Console.ePopen("/usr/bin/opkg list_installed %s" % self.service_name, self.RemovedataAvail)
+
+	def RemovedataAvail(self, str, retval, extra_args):
+		if str:
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Ready to remove '%s'?") % self.service_name, MessageBox.TYPE_YESNO)
+		else:
+			self.updateService()
+
+	def updateService(self, result=None, retval=None, extra_args=None):
+		pass
+
+	def createSummary(self):
+		return NetworkServicesSummary
 
 # #############################Added by VillaK OpenSPA Udpxy and Xupnpd##########################################
 class NetworkUdpxy(NetworkBaseScreen):

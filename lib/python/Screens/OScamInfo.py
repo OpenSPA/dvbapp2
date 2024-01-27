@@ -244,15 +244,11 @@ class OSCamInfo(Screen, OSCamGlobals):
 				readeruser = {"s": "root", "h": "root", "p": client.get("rname_enc", ""), "r": client.get("rname_enc", ""), "c": client.get("name_enc", "")}.get(currtype, _("n/a"))
 				au = {"-1": "ON", "0": "OFF", "1": "ACTIVE"}.get(client.get("au", _("n/a")), _("n/a"))
 				ip = connection.get("ip", "")
-				if ip and config.softcam.hideServerName.value:
-					ip = "\u2022" * len(ip)
 				port = connection.get("port", _("n/a"))
 				protocol = client.get("protocol", "")
 				srinfo = "%s:%s@%s" % (request.get("srvid", _("n/a")), request.get("caid", _("n/a")), request.get("provid", _("n/a")))
 				chinfo = "%s %s" % (request.get("chname", _("n/a")), request.get("chprovider", _("n/a")))
 				answered = request.get("answered", "")
-				if answered and config.softcam.hideServerName.value:
-					answered = "\u2022" * len(answered)
 				ecmtime = request.get("ecmtime", _("n/a"))
 				lbvaluereader = "%s (%s ms)" % (answered, ecmtime) if answered and ecmtime else request.get("lbvalue", _("n/a"))
 				login_iso = times.get("login")
