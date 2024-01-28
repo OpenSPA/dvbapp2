@@ -96,24 +96,27 @@ class StartWizard(Wizard, ShowRemoteControl):
 		fileName = "/.swap/swapfile"
 		path = self.deviceData[self.swapDevice][0]
 		self.mountData = getPathMountData(path)
-		fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
-		print("[StartWizard] fstabUpdate DEBUG: Starting fstab:\n%s" % "\n".join(fstab))
-		fstabNew = [line for line in fstab if "swap" not in line]
-		mountData = self.mountData[2]
-		line = " ".join(("UUID=%s" % self.swapDevice, "/.swap", mountData[MOUNT_FILESYSTEM], "defaults", "0", "0"))
-		fstabNew.append(line)
-		fstabNew.append("%s swap swap defaults 0 0" % fileName)
-		fstabNew.append("")
-		fileWriteLines("/etc/fstab", "\n".join(fstabNew), source=MODULE_NAME)
-		print("[StartWizard] fstabUpdate DEBUG: Ending fstab:\n%s" % "\n".join(fstabNew))
-		makedirs("/.swap", mode=0o755, exist_ok=True)
-		commands = []
-		commands.append("/bin/mount -a")
-		commands.append("/bin/dd if=/dev/zero of='%s' bs=1024 count=131072 2>/dev/null" % fileName)  # Use 128 MB because creation of bigger swap is very slow.
-		commands.append("/bin/chmod 600 '%s'" % fileName)
-		commands.append("/sbin/mkswap '%s'" % fileName)
-		commands.append("/sbin/swapon '%s'" % fileName)
-		self.console.eBatch(commands, creataSwapFileCallback, debug=True)
+		if self.mountData:
+			fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
+			print("[StartWizard] fstabUpdate DEBUG: Starting fstab:\n%s" % "\n".join(fstab))
+			fstabNew = [line for line in fstab if "swap" not in line]
+			mountData = self.mountData[2]
+			line = " ".join(("UUID=%s" % self.swapDevice, "/.swap", mountData[MOUNT_FILESYSTEM], "defaults", "0", "0"))
+			fstabNew.append(line)
+			fstabNew.append("%s swap swap defaults 0 0" % fileName)
+			fstabNew.append("")
+			fileWriteLines("/etc/fstab", "\n".join(fstabNew), source=MODULE_NAME)
+			print("[StartWizard] fstabUpdate DEBUG: Ending fstab:\n%s" % "\n".join(fstabNew))
+			makedirs("/.swap", mode=0o755, exist_ok=True)
+			commands = []
+			commands.append("/bin/mount -a")
+			commands.append("/bin/dd if=/dev/zero of='%s' bs=1024 count=131072 2>/dev/null" % fileName)  # Use 128 MB because creation of bigger swap is very slow.
+			commands.append("/bin/chmod 600 '%s'" % fileName)
+			commands.append("/sbin/mkswap '%s'" % fileName)
+			commands.append("/sbin/swapon '%s'" % fileName)
+			self.console.eBatch(commands, creataSwapFileCallback, debug=True)
+		else:
+			self.session.open(MessageBox, _("No valid mount for '%s' found!") % path, type=MessageBox.TYPE_ERROR)
 
 	def swapDeviceList(self):  # Called by startwizard.xml.
 		choiceList = []
@@ -166,6 +169,12 @@ class StartWizard(Wizard, ShowRemoteControl):
 
 	def isFlashExpanderActive(self):
 		return isdir(join("/%s/%s" % (EXPANDER_MOUNT, EXPANDER_MOUNT), "bin"))
+
+	def keyYellow(self):
+		if self.wizard[self.currStep]["name"] == "swap":
+			self.session.open(HarddiskSelection)
+		else:
+			Wizard.keyYellow(self)
 
 	def ExistsSPABackup(self):
 		response = False
