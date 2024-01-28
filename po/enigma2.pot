@@ -1596,6 +1596,11 @@ msgid "A recording has been started:\n"
 "%s"
 msgstr ""
 
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr ""
 

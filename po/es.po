@@ -1644,19 +1644,12 @@ msgid "<Last timer location>"
 msgstr "<Ubicación de la última grabación>"
 
 #
-msgid "<no log found"
-msgstr "<no se han encontrado logs"
+msgid "<no log found>"
+msgstr "<no se han encontrado logs>"
 
 #
 msgid "A"
 msgstr "A"
-
-msgid ""
-"A background update check is in progress, please wait a few minutes and try "
-"again."
-msgstr ""
-"Comprobación de actualización en segundo plano en curso. Espera unos minutos "
-"y vuelve a intentarlo."
 
 msgid ""
 "A comma separated list of extensions to be used for 'My Extension' setting "
@@ -1744,6 +1737,14 @@ msgid ""
 msgstr ""
 "Se ha iniciado una grabación:\n"
 "%s"
+
+#
+msgid ""
+"A recording is currently running.\n"
+"What do you want to do?"
+msgstr ""
+"Grabación en curso.\n"
+"¿Qué quieres hacer?"
 
 #
 msgid ""
@@ -3891,6 +3892,9 @@ msgstr "Cancelar la selección de imágenes y salir"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Cancelar la selección de imágenes y salir de todos los menús"
 
+msgid "Cancel the selection and exit"
+msgstr "Cancelar la selección y salir"
+
 msgid "Cancel the service selection"
 msgstr "Cancelar la selección del servicio"
 
@@ -4240,6 +4244,18 @@ msgstr "Chipset: BCM%s"
 
 msgid "Choice Box"
 msgstr "Elige receptor"
+
+msgid "Choice List Actions"
+msgstr "Acciones lista de opciones"
+
+msgid "Choice List Navigation Actions"
+msgstr "Acciones de navegación en la lista de opciones"
+
+msgid "Choice List Order Actions"
+msgstr "Acciones de orden de la lista de opciones"
+
+msgid "Choice List Selection Actions"
+msgstr "Acciones de selección en lista de opciones"
 
 #, python-format
 msgid "Choice where to put \"%s\""
@@ -4658,6 +4674,9 @@ msgstr "Acciones comunes de ajustes"
 #
 msgid "Communication"
 msgstr "Comunicación"
+
+msgid "Comodo Secure DNS"
+msgstr "DNS seguro Comodo"
 
 msgid "Comoros"
 msgstr "Comoras"
@@ -5312,6 +5331,9 @@ msgstr "Configura qué salida de vídeo se va a utilizar."
 msgid "Configuring"
 msgstr "Configurando"
 
+msgid "Configuring Service"
+msgstr "Configurando Servicio"
+
 msgid "ConflictTimer Actions"
 msgstr "Acciones de conflicto de temporizadores"
 
@@ -5819,6 +5841,13 @@ msgstr "Ajustes DNS"
 msgid "DNS data source"
 msgstr "Fuente de datos DNS"
 
+#
+msgid "DNS mode"
+msgstr "Modo DNS"
+
+msgid "DNS suffix"
+msgstr "Sufijo DNS"
+
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
@@ -6201,6 +6230,9 @@ msgid ""
 msgstr ""
 "Define el retardo adicional en milisegundos antes del inicio de los flujos "
 "http(s)."
+
+msgid "Define the DNS suffix."
+msgstr "Define el sufijo DNS"
 
 msgid "Defined / Active"
 msgstr "Definido / Activo"
@@ -9989,8 +10021,14 @@ msgstr ""
 msgid "IPK Installer"
 msgstr "Instalador IPK"
 
+msgid "IPv4 only"
+msgstr "Sólo IPv4"
+
 msgid "IPv6 address"
 msgstr "Dirección IPv6"
+
+msgid "IPv6 only"
+msgstr "Sólo IPv6"
 
 #
 msgid "ISO file is too large for this file system!"
@@ -12094,12 +12132,12 @@ msgstr "Tiempo de espera del motor"
 msgid "Mount"
 msgstr "Montaje"
 
-msgid "Mount Actions"
-msgstr "Acciones de montaje"
-
 #
 msgid "Mount Manager"
 msgstr "Administrador de montajes"
+
+msgid "Mount Menu Actions"
+msgstr "Acciones de menú de montajes"
 
 msgid "Mount Settings"
 msgstr "Ajustes de montaje"
@@ -12230,6 +12268,12 @@ msgstr "Mover el marcador actual hacia abajo"
 
 msgid "Move the current bookmark up"
 msgstr "Mover el marcador actual hacia arriba"
+
+msgid "Move the current entry down"
+msgstr "Mover abajo la entrada actual"
+
+msgid "Move the current entry up"
+msgstr "Mover arriba la entrada actual"
 
 msgid "Move the current line down"
 msgstr "Mover abajo la linea actual"
@@ -12638,6 +12682,10 @@ msgstr "Acciones de información de la red"
 #
 msgid "Network Interface"
 msgstr "Interfaz de red"
+
+#
+msgid "Network Log"
+msgstr "Log de red"
 
 msgid "Network Log Actions"
 msgstr "Acciones del registro de la red"
@@ -13159,6 +13207,12 @@ msgstr "No lineal"
 #
 msgid "None"
 msgstr "Ninguno"
+
+msgid "NordVPN Secure DNS"
+msgstr "DNS seguro de NordVPN"
+
+msgid "NordVPN Smart DNS"
+msgstr "DNS Smart NordVPN"
 
 msgid "Norfolk Island"
 msgstr "Isla de Norfolk"
@@ -14649,6 +14703,12 @@ msgstr "Priorizar pista AC3"
 msgid "Prefer AC3+ track"
 msgstr "Priorizar pista AC3+"
 
+msgid "Prefer IPv4"
+msgstr "IPv4 preferido"
+
+msgid "Prefer IPv6"
+msgstr "IPv6 preferido"
+
 msgid "Prefer audio track stored by service"
 msgstr "Priorizar la pista de audio guardada por el canal"
 
@@ -15089,6 +15149,15 @@ msgstr "Canal Quad PiP "
 
 msgid "Quad PiP is not available."
 msgstr "No está disponible la función Quad PiP."
+
+msgid "Quad9 DNS"
+msgstr "Quad9 DNS"
+
+msgid "Quad9 ECS DNS"
+msgstr "DNS Quad9 ECS"
+
+msgid "Quad9 Unsecured DNS"
+msgstr "DNS inseguro Quad9"
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -15700,6 +15769,10 @@ msgid "Remove title"
 msgstr "Borrar título"
 
 #
+msgid "Removed"
+msgstr "Eliminado"
+
+#
 msgid "Removing"
 msgstr "Borrando"
 
@@ -15835,6 +15908,9 @@ msgstr "Resetea y reenumera los nombres de títulos"
 msgid "Reset executable mode (644)"
 msgstr "Resetear modo ejecutable (644)"
 
+msgid "Reset list order to the default list order?"
+msgstr "Restaurar orden de la lista al orden predeterminado?"
+
 msgid "Reset network configuration"
 msgstr "Restablecer la configuración de la red"
 
@@ -15843,6 +15919,12 @@ msgstr "Restablecer el código PIN persistente"
 
 msgid "Reset playback position"
 msgstr "Resetear la posición de reproducción"
+
+msgid "Reset sort order"
+msgstr "Restablecer orden de clasificación"
+
+msgid "Reset the order of the entries"
+msgstr "Restaurar el orden de las entradas"
 
 msgid ""
 "Reset the selected devices and save changes of your config when the GREEN "
@@ -16276,17 +16358,11 @@ msgstr "San Pedro y Miquelón"
 msgid "Saint Vincent and the Grenadines"
 msgstr "San Vicente y las Granadinas"
 
-msgid "Samba"
-msgstr "Samba"
+msgid "Samba Client"
+msgstr "Cliente Samba"
 
-msgid "Samba Actions"
-msgstr "Acciones de Samba"
-
-msgid "Samba Log"
-msgstr "Registro Samba"
-
-msgid "Samba Setup"
-msgstr "Configurar Samba"
+msgid "Samba Server"
+msgstr "Servidor Samba"
 
 msgid "Same as in active"
 msgstr "Igual que en activo"
@@ -17402,6 +17478,9 @@ msgstr ""
 msgid "Select service to add..."
 msgstr "Seleccionar canal a añadir..."
 
+msgid "Select Shares"
+msgstr "Seleccionar intercambios"
+
 msgid "Select softcam"
 msgstr "Seleccionar softcam"
 
@@ -17416,6 +17495,10 @@ msgstr "Selecciona orden temporal de directorio de la columna actual"
 
 msgid "Select temporary file sort order for the current column"
 msgstr "Selecciona orden temporal de archivo de la columna actual"
+
+#, python-format
+msgid "Select the %s entry"
+msgstr "Seleccione la entrada %s"
 
 msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""
@@ -17478,6 +17561,10 @@ msgstr ""
 msgid "Select the Yes / True response"
 msgstr "Seleccione respuesta Sí / Verdadero"
 
+#, python-format
+msgid "Select the action for '%s'"
+msgstr "Seleccione la acción para '%s'"
+
 msgid "Select the action to perform when the timer ends."
 msgstr "Seleccione la acción a realizar cuando el temporizador termine."
 
@@ -17501,6 +17588,9 @@ msgstr "Seleccione el carácter o la acción bajo el cursor del teclado"
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Seleccionar la ubicación actual de los marcadores y salir"
+
+msgid "Select the current entry"
+msgstr "Seleccione entrada actual"
 
 msgid "Select the current menu item"
 msgstr "Seleccione la opción de menú actual"
@@ -17639,6 +17729,10 @@ msgid ""
 msgstr ""
 "Seleccione el método de restauración de la resolución de la pantalla y del "
 "framebuffer al salir del teletexto."
+
+#
+msgid "Select the mode of the DNS."
+msgstr "Seleccione el modo del DNS."
 
 msgid ""
 "Select the model number of your Unicable device. If the model number is not "
@@ -19996,9 +20090,6 @@ msgstr "Ordenar por defecto"
 msgid "Sort list by"
 msgstr "Ordenar lista por"
 
-msgid "Sort list to default and exit?"
-msgstr "¿Ordenar la lista por defecto y salir?"
-
 msgid "Sort list:"
 msgstr "Lista Ordenada:"
 
@@ -20153,6 +20244,9 @@ msgstr "Modo de inicio"
 # MovieSelection.py
 msgid "Start offline decode"
 msgstr "Iniciar descodificación offline"
+
+msgid "Start or Stop service"
+msgstr "Iniciar o parar servicio"
 
 msgid "Start recording current event"
 msgstr "Iniciar grabación del evento actual"
@@ -22873,6 +22967,10 @@ msgstr "Deshacer desinstalación"
 
 msgid "Unencrypted"
 msgstr "Sin cifrar"
+
+#, python-format
+msgid "Unexpected error accessing WebIF: %s"
+msgstr "Error inesperado al acceder a WebIF: %s"
 
 #
 msgid "UnhandledKey"
@@ -25732,13 +25830,6 @@ msgstr "Ejecutar cortes (requiere MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "Salir del reproductor de DVD o volver al navegador de archivos"
 
-msgid "exit mounts setup menu"
-msgstr "Menú de configuración de montajes de salida"
-
-#
-msgid "exit networkadapter setup menu"
-msgstr "Salir del menú de configuración de adaptador de red"
-
 msgid "experimental film/video"
 msgstr "cine/video experimental"
 
@@ -25998,14 +26089,6 @@ msgstr "automovilismo"
 
 msgid "move"
 msgstr "Mover"
-
-#
-msgid "move down to last entry"
-msgstr "Bajar a la última entrada"
-
-#
-msgid "move down to next entry"
-msgstr "Bajar a la entrada siguiente"
 
 #
 msgid "move up to first entry"
@@ -26337,10 +26420,6 @@ msgstr "Búsqueda EPG ..."
 #
 msgid "select CAId's"
 msgstr "Seleccionar CAId's"
-
-#
-msgid "select menu entry"
-msgstr "Seleccionar la entrada de menú"
 
 msgid "serious music/classic music"
 msgstr "Música seria / música clásica"
@@ -27309,9 +27388,6 @@ msgstr "Administrador de MultiBoot Kexec"
 msgid "Kexec Manager"
 msgstr "Administrador Kexec"
 
-msgid "Quad9 DNS"
-msgstr "Quad9 DNS"
-
 #, python-format
 msgid ""
 "Really permanently delete MultiBoot files?\n"
@@ -28221,9 +28297,6 @@ msgstr "Eliminar Plugin"
 msgid "Remove the selected list of plugins"
 msgstr "Eliminar la lista de plugins seleccionada"
 
-msgid "Reset sort order"
-msgstr "Restablecer orden de clasificación"
-
 msgid ""
 "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the "
 "Download Plugins screen."
@@ -28631,171 +28704,3 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
-
-#~ msgid "OScamInfo Overview"
-#~ msgstr "Vista OScamInfo"
-
-#~ msgid "OScamInfo Settings"
-#~ msgstr "Configuración OscamInfo"
-
-#~ msgid "OScamOverview Actions"
-#~ msgstr "Vista general de OScam"
-
-#~ msgid "Show OScam Info"
-#~ msgstr "Mostrar Info Oscam"
-
-#~ msgid "Show the OScamInfo Screen"
-#~ msgstr "Mostrar pantalla de OScaminfo"
-
-#, python-format
-#~ msgid "%s ( %s Cards )"
-#~ msgstr "%s ( %s Tarjetas )"
-
-#~ msgid "( All readers)"
-#~ msgstr "(Todos los lectores)"
-
-#~ msgid "(Show only reader:"
-#~ msgstr "(Mostrar sólo lector:"
-
-#~ msgid "AFP"
-#~ msgstr "AFP"
-
-#~ msgid "AFP Actions"
-#~ msgstr "Acciones AFP"
-
-#~ msgid "AFP Settings"
-#~ msgstr "Configurar AFP"
-
-#~ msgid "Address"
-#~ msgstr "Dirección"
-
-#~ msgid "CAID"
-#~ msgstr "CAID"
-
-#~ msgid "CAID:SrvID"
-#~ msgstr "CAID:SrvID"
-
-#~ msgid "Card infos (CCcam-Reader)"
-#~ msgstr "Información de tarjeta (lector CCcam)"
-
-#~ msgid "Cards:"
-#~ msgstr "Tarjetas:"
-
-#, python-format
-#~ msgid "Client Info ( Oscam-Version: %s )"
-#~ msgstr "Información del cliente (Versión-Oscam: %s)"
-
-#~ msgid "ECM Statistics"
-#~ msgstr "Estadísticas ECM"
-
-#~ msgid "ECM Time"
-#~ msgstr "Hora ECM"
-
-#~ msgid "ECM avg"
-#~ msgstr "Prorecurso ECM"
-
-#~ msgid "ECM last"
-#~ msgstr "Último ECM"
-
-#~ msgid "ECM-Time"
-#~ msgstr "Hora ECM"
-
-#~ msgid "FTP Actions"
-#~ msgstr "Acciones del FTP"
-
-#~ msgid "Hops"
-#~ msgstr "Saltos"
-
-#~ msgid "Last Request"
-#~ msgstr "Última solicitud"
-
-#~ msgid "NFS Actions"
-#~ msgstr "Acciones NFS"
-
-#~ msgid "Oscam Info - Main Menu"
-#~ msgstr "Información Oscam - Menú principal"
-
-#, python-format
-#~ msgid "Oscam Log ( Oscam-Version: %s )"
-#~ msgstr "Registro de Oscam ( Oscam-Version: %s )"
-
-#~ msgid "OscamInfo Mainmenu"
-#~ msgstr "OscamInfo Menu principal"
-
-#
-#~ msgid "PID"
-#~ msgstr "PID"
-
-#~ msgid "Please choose CCcam-Reader"
-#~ msgstr "Seleccione un lector CCcam"
-
-#~ msgid "Please choose reader"
-#~ msgstr "Seleccione un lector"
-
-#~ msgid "Providers: "
-#~ msgstr "Proveedores: "
-
-#~ msgid "Reader Statistics"
-#~ msgstr "Estadísticas del lector"
-
-#, python-format
-#~ msgid "Ready to install '%s'?"
-#~ msgstr "¿Listo para instalar %s?"
-
-#~ msgid "Reshare"
-#~ msgstr "Volver a compartir"
-
-#~ msgid "SABnzbd Actions"
-#~ msgstr "Acciones SABnzbd"
-
-#~ msgid "SATPI Setting Actions"
-#~ msgstr "Acciones de ajuste del ATPI"
-
-#~ msgid "Serv.Name"
-#~ msgstr "Nombre de servidor"
-
-#, python-format
-#~ msgid "Server Info ( Oscam-Version: %s )"
-#~ msgstr "Info de servidor (Versión Oscam: %s)"
-
-#~ msgid "Server:"
-#~ msgstr "Servidor:"
-
-#~ msgid "Setup AFP"
-#~ msgstr "Configurar AFP"
-
-#~ msgid "Show /tmp/ecm.info"
-#~ msgstr "Mostrar /tmp/ecm.info"
-
-#~ msgid "Show Clients"
-#~ msgstr "Mostrar clientes"
-
-#~ msgid "Show Readers/Proxies"
-#~ msgstr "Mostrar lectores/proxys"
-
-#~ msgid "Total"
-#~ msgstr "Total"
-
-#~ msgid "Update interval (in seconds)"
-#~ msgstr "Intervalo de actualización (en segundos)"
-
-#, python-format
-#~ msgid ""
-#~ "Your %s %s will be restarted after the removal of service\n"
-#~ "Do you want to remove now ?"
-#~ msgstr ""
-#~ "Tu %s %s se reiniciará después de desinstalar el servicio.\n"
-#~ "¿Quieres eliminarlo ahora?"
-
-#
-#~ msgid "Please change recording endtime"
-#~ msgstr "Cambia la hora del fin de la grabación"
-
-#~ msgid "+24"
-#~ msgstr "+24"
-
-#~ msgid "-24"
-#~ msgstr "-24"
-
-#~ msgid "BouquetList"
-#~ msgstr "Lista de Bouquet"
