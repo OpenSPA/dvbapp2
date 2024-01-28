@@ -2529,7 +2529,7 @@ class InfoBarSeek:
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			pass
 		elif not self.isSeekable():
-			BoxInfo.setItem("SeekStatePlay", False)
+			BoxInfo.setMutableItem("SeekStatePlay", False)
 			if exists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")
@@ -2561,7 +2561,7 @@ class InfoBarSeek:
 			if self.activity >= 100:
 				self.activity = 0
 
-			BoxInfo.setItem("SeekStatePlay", True)
+			BoxInfo.setMutableItem("SeekStatePlay", True)
 			if exists("/proc/stb/lcd/symbol_hdd"):
 				if config.lcd.hdd.value:
 					file = open("/proc/stb/lcd/symbol_hdd", "w")
@@ -2578,7 +2578,7 @@ class InfoBarSeek:
 			hdd = 0
 			self.seekAction = 0
 
-		BoxInfo.setItem("SeekStatePlay", True)
+		BoxInfo.setMutableItem("SeekStatePlay", True)
 		if exists("/proc/stb/lcd/symbol_hdd"):
 			if config.lcd.hdd.value:
 				file = open("/proc/stb/lcd/symbol_hdd", "w")
@@ -2682,7 +2682,7 @@ class InfoBarSeek:
 				self.unPauseService()
 
 	def pauseService(self):
-		BoxInfo.setItem("StatePlayPause", True)
+		BoxInfo.setMutableItem("StatePlayPause", True)
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
 		self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -2696,7 +2696,7 @@ class InfoBarSeek:
 		#	self.playpauseService()
 
 	def unPauseService(self):
-		BoxInfo.setItem("StatePlayPause", False)
+		BoxInfo.setMutableItem("StatePlayPause", False)
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction != 0:
 				self.playpauseService()
