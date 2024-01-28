@@ -1545,9 +1545,6 @@ msgstr ""
 msgid "A"
 msgstr ""
 
-msgid "A background update check is in progress, please wait a few minutes and try again."
-msgstr ""
-
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
 
@@ -4488,6 +4485,9 @@ msgid "Configures which video output connector will be used."
 msgstr ""
 
 msgid "Configuring"
+msgstr ""
+
+msgid "Configuring Service"
 msgstr ""
 
 msgid "ConflictTimer Actions"
@@ -13487,6 +13487,9 @@ msgstr ""
 msgid "Remove title"
 msgstr ""
 
+msgid "Removed"
+msgstr ""
+
 msgid "Removing"
 msgstr ""
 
@@ -13992,16 +13995,10 @@ msgstr ""
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-msgid "Samba"
+msgid "Samba Client"
 msgstr ""
 
-msgid "Samba Actions"
-msgstr ""
-
-msgid "Samba Log"
-msgstr ""
-
-msgid "Samba Setup"
+msgid "Samba Server"
 msgstr ""
 
 msgid "Same as in active"
@@ -14780,6 +14777,9 @@ msgstr ""
 msgid "Select service to add..."
 msgstr ""
 
+msgid "Select Shares"
+msgstr ""
+
 msgid "Select softcam"
 msgstr ""
 
@@ -14820,6 +14820,10 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr ""
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+#, python-format
+msgid "Select the action for '%s'"
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -16987,6 +16991,9 @@ msgid "Start mode"
 msgstr ""
 
 msgid "Start offline decode"
+msgstr ""
+
+msgid "Start or Stop service"
 msgstr ""
 
 msgid "Start recording current event"
