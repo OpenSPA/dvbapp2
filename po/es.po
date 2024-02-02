@@ -103,6 +103,9 @@ msgstr " (Canal %s)"
 msgid " (Partition %d)"
 msgstr " (Partición %d)"
 
+msgid "(PiP)"
+msgstr ""
+
 msgid " (Radio)"
 msgstr " (Radio)"
 
@@ -7043,6 +7046,9 @@ msgstr "¿Desea eliminar todas las regiones/idiomas excepto %s?"
 #, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "¿Quieres reiniciar tu %s %s?"
+
+msgid "Do you want to replace:"
+msgstr "Quieres sustituir:"
 
 #
 msgid "Do you want to restore your settings?"
@@ -14465,6 +14471,10 @@ msgstr "Espera mientras la búsqueda está en curso..."
 
 msgid "Please wait while the data is extracted..."
 msgstr "Por favor, espera mientras se extraen los datos..."
+
+msgid "Please wait while the feeds are reset (cleared and reloaded)..."
+msgstr ""
+"Por favor, espera mientras se restauran los feeds (limpiados y recargados)..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Por favor, espere mientras se descarga la lista..."
