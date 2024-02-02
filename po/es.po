@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-22 10:44+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: JR <openspateam@gmail.com>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -1196,10 +1196,6 @@ msgstr "%s (%04o)"
 #, python-format
 msgid "%s (%s)"
 msgstr "%s (%s)"
-
-#, python-format
-msgid "%s - %s (%s%d min)"
-msgstr "%s - %s (%s%d min)"
 
 #, python-format
 msgid "%s - Setup"
@@ -2830,10 +2826,6 @@ msgstr "Modo rápido del tamaño de la etapa de volumen del audio"
 msgid "Australia"
 msgstr "Australia"
 
-# Language
-msgid "Australian"
-msgstr "Australiano"
-
 msgid "Austria"
 msgstr "Austria"
 
@@ -3250,10 +3242,6 @@ msgstr "Bielorrusia"
 # Language
 msgid "Belarusian"
 msgstr "Bielorruso"
-
-# Language
-msgid "Belgian"
-msgstr "Belga"
 
 msgid "Belgium"
 msgstr "Bélgica"
@@ -3898,11 +3886,11 @@ msgstr "Cancelar la selección de imágenes y salir de todos los menús"
 msgid "Cancel the selection and exit"
 msgstr "Cancelar la selección y salir"
 
+msgid "Cancel the service history zap"
+msgstr "Cancelar el zapeo del histórico de servicio"
+
 msgid "Cancel the service selection"
 msgstr "Cancelar la selección del servicio"
-
-msgid "Cancel the service zap"
-msgstr "Cancelar el zapeo del servicio"
 
 msgid "Cancel the slot selection and exit"
 msgstr "Cancelar la selección de ranura y salir"
@@ -5813,9 +5801,6 @@ msgstr "Checo"
 msgid "Czech Republic"
 msgstr "República Checa"
 
-msgid "Czechia"
-msgstr "Chequia"
-
 msgid "D"
 msgstr "D"
 
@@ -6235,7 +6220,7 @@ msgstr ""
 "http(s)."
 
 msgid "Define the DNS suffix."
-msgstr "Define el sufijo DNS"
+msgstr "Define el sufijo DNS."
 
 msgid "Defined / Active"
 msgstr "Definido / Activo"
@@ -9531,7 +9516,7 @@ msgid "Grow from left"
 msgstr "Crecer desde la izquierda"
 
 msgid "Gstreamer Packages"
-msgstr "Paquetes Gstreamer "
+msgstr "Paquetes Gstreamer"
 
 msgid "Guadeloupe"
 msgstr "Guadalupe"
@@ -10804,9 +10789,6 @@ msgstr "Invierte la función del botón."
 #
 msgid "Ipkg"
 msgstr "Ipkg"
-
-msgid "Iran, Islamic Republic"
-msgstr "Irán, República Islámica"
 
 msgid "Iran, Islamic Republic of"
 msgstr "República Islámica de Irán"
@@ -12125,6 +12107,12 @@ msgstr "Marruecos"
 #
 msgid "Mosquito noise reduction"
 msgstr "Reducción de ruido de mosquito"
+
+msgid "Most recent first"
+msgstr "El más reciente primero"
+
+msgid "Most recent last"
+msgstr "El más reciento el ultimo"
 
 msgid "Motor Sport"
 msgstr "Deportes de motor"
@@ -16905,7 +16893,7 @@ msgstr ""
 
 #, python-format
 msgid "Select 'Yes' to enable autostart of '%s'."
-msgstr "Seleccione \"Sí\" para activar el autoinicio de '%s'"
+msgstr "Seleccione \"Sí\" para activar el autoinicio de '%s'."
 
 msgid ""
 "Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
@@ -17678,6 +17666,11 @@ msgstr ""
 "dispone de números de menú, los botones numéricos pueden utilizarse para "
 "seleccionar directamente las entradas de menú numeradas."
 
+msgid "Select the display sequence of previously visited services."
+msgstr ""
+"Seleccione la secuencia de visualización de los servicios visitados "
+"anteriormente."
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Selecciona el orden de archivos para la columna %s :"
@@ -17749,10 +17742,10 @@ msgid ""
 "listed, set 'SCR' to 'User defined' and enter the device parameters manually "
 "according to its specifications."
 msgstr ""
-"Seleccione el número de modelo de su dispositivo Unicable. Si el número de "
-"modelo no aparece en la lista, configure \"SCR\" como \"Definido por el "
-"usuario\" e introduzca manualmente los parámetros del dispositivo según su "
-"hoja de especificaciones."
+"Seleccione el número de modelo de tu dispositivo Unicable. Si el número de "
+"modelo no está en la lista, configure 'SCR' como 'Definido por el usuario' e "
+"introduzca los parámetros del dispositivo manualmente según sus "
+"especificaciones."
 
 #
 msgid "Select the movie path"
@@ -22314,7 +22307,7 @@ msgid "Time shift saved to your hard disk drive!"
 msgstr "¡Timeshift guardado en su disco duro!"
 
 msgid "Time shift will get saved at end of event."
-msgstr "¡Timeshift se guardará al final del programa!"
+msgstr "Timeshift se guardará al final del programa."
 
 msgid "Time style"
 msgstr "Estilo de tiempo"
@@ -23011,9 +23004,6 @@ msgid "United Arab Emirates"
 msgstr ""
 
 msgid "United Kingdom"
-msgstr ""
-
-msgid "United States"
 msgstr ""
 
 msgid "United States Minor Outlying Islands"
@@ -25350,6 +25340,9 @@ msgstr "Cambiar enfoque a la pantalla principal"
 msgid "Zap focused channel on full screen"
 msgstr "Zapear canal enfocado en pantalla completa"
 
+msgid "Zap history sequence"
+msgstr "Secuencia de histórico de zapeo"
+
 msgid "Zap mode"
 msgstr "Modo zapeo"
 
@@ -27583,7 +27576,7 @@ msgid "Add more slots"
 msgstr "Añadir más slots"
 
 msgid "Choose the amount of additional slots."
-msgstr "Elige la cantidad de slots adicionales."
+msgstr "Escoge la cantidad de slots adicionales."
 
 msgid "Choose the target location for the slots."
 msgstr "Elija la ubicación de destino para los slots."
@@ -28681,7 +28674,7 @@ msgid "Show subservices *"
 msgstr "Mostrar subservicios *"
 
 msgid "Storage device full!"
-msgstr "¿Disco lleno?"
+msgstr "Disco lleno!"
 
 #
 msgid "Storage device not writable!"
