@@ -28707,3 +28707,33 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+msgid "Preferred tuner DVB-S"
+msgstr "Sintonizador preferido DVB-S"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Sintonizador DVB-S preferido para grabaciones"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Sintonizador preferido DVB-T"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Sintonizador TDT preferido para grabaciones"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Sintonizador preferido DVB-C"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Sintonizador preferido DVB-C para grabaciones"
+
+msgid "When enabled, this setting has more weight than 'Preferred tuner'."
+msgstr ""
+"Cuando esté activada, esta configuración tiene más peso que 'Sintonizador "
+"preferido'."
+
+msgid ""
+"When enabled, this setting has more weight than 'Preferred tuner for "
+"recordings'."
+msgstr ""
+"Cuando está activado, este ajuste tiene más peso que \"Sintonizador "
+"preferido para las grabaciones\"."
