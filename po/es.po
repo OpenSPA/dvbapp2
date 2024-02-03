@@ -28737,3 +28737,9 @@ msgid ""
 msgstr ""
 "Cuando está activado, este ajuste tiene más peso que \"Sintonizador "
 "preferido para las grabaciones\"."
+
+msgid "Preferred tuner ATSC"
+msgstr "Sintonizador preferido ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Sintonizador preferido ATSC para grabaciones"
