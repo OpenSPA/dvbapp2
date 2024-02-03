@@ -37,7 +37,7 @@ def InitUsageConfig():
 	config.misc.SettingsVersion.value = [1, 1]
 	config.misc.SettingsVersion.save_forced = True
 	config.misc.SettingsVersion.save()
-	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", _("%d Minutes") % 30), ("60", _("%d Hour") % 1), ("1440", _("%d Hours") % 24)])
+	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, _("%d Minutes") % 30), (60, _("%d Hour") % 1), (1440, _("%d Hours") % 24)])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 
 	config.misc.extraopkgpackages = ConfigYesNo(default=False)
@@ -160,12 +160,12 @@ def InitUsageConfig():
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
 
 	def correctInvalidEPGDataChange(configElement):
-		eServiceEvent.setUTF8CorrectMode(int(configElement.value))
+		eServiceEvent.setUTF8CorrectMode(configElement.value)
 
-	config.usage.correct_invalid_epgdata = ConfigSelection(default="1", choices=[
-		("0", _("Disabled")),
-		("1", _("Enabled")),
-		("2", _("Debug"))
+	config.usage.correct_invalid_epgdata = ConfigSelection(default=1, choices=[
+		(0, _("Disabled")),
+		(1, _("Enabled")),
+		(2, _("Debug"))
 	])
 	config.usage.correct_invalid_epgdata.addNotifier(correctInvalidEPGDataChange)
 
