@@ -330,7 +330,7 @@ class ConfigListScreen:
 			if isinstance(currConfig[1], ConfigNumber):
 				self.showVirtualKeyBoard(False)
 			if "description" in self:
-				self["description"].setText = self.getCurrentDescription()
+				self["description"].text = self.getCurrentDescription()
 
 	def showVirtualKeyBoard(self, state):
 		if "key_text" in self or "VKeyIcon" in self:
