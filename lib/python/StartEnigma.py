@@ -820,9 +820,6 @@ from Screens.Globals import Globals
 from Screens.SessionGlobals import SessionGlobals
 from Screens.Screen import Screen
 
-profile("Screen")
-Screen.globalScreen = Globals()
-
 enigma.eProfileWrite("Standby")
 import Screens.Standby
 from Screens.Menu import Menu, findMenu
