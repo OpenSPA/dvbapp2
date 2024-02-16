@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 10:44+0200\n"
+"POT-Creation-Date: 2023-02-16 10:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28743,3 +28743,13 @@ msgstr "Sintonizador preferido ATSC"
 
 msgid "Preferred tuner ATSC for recordings"
 msgstr "Sintonizador preferido ATSC para grabaciones"
+
+#
+msgid "Enable Autorecord"
+msgstr "Habilitar Autograbación"
+
+msgid ""
+"If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr ""
+"Si está configurado en 'Sí', se activa la autograbación para timeshift "
+"automático en segundo plano"
