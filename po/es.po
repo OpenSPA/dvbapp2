@@ -6122,10 +6122,10 @@ msgstr "Descifrado y control parental"
 
 #
 msgid "Deep Standby"
-msgstr "Apagar"
+msgstr "Reposo profundo"
 
 msgid "Deep standby"
-msgstr "Apagar"
+msgstr "Reposo profundo"
 
 msgid "Default"
 msgstr "Por defecto"
