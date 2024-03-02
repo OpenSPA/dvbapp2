@@ -18,46 +18,6 @@ TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
 TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
 
-def InitParentalControl():
-	config.ParentalControl = ConfigSubsection()
-	config.ParentalControl.storeservicepin = ConfigSelection(default="never", choices=[
-		("never", _("Never")),
-		("5", _("%d Minutes") % 5),
-		("30", _("%d Minutes") % 30),
-		("60", _("%d Minutes") % 60),
-		("standby", _("Until standby/restart"))
-	])
-	config.ParentalControl.configured = ConfigYesNo(default=False)
-	config.ParentalControl.setuppinactive = ConfigYesNo(default=False)
-	config.ParentalControl.retries = ConfigSubsection()
-	config.ParentalControl.retries.servicepin = ConfigSubsection()
-	config.ParentalControl.retries.servicepin.tries = ConfigInteger(default=3)
-	config.ParentalControl.retries.servicepin.time = ConfigInteger(default=3)
-	config.ParentalControl.servicepin = ConfigSubList()
-	config.ParentalControl.servicepin.append(ConfigPIN(default=0))
-	config.ParentalControl.age = ConfigSelection(default="18", choices=[("0", _("No age block"))] + [(str(x), "%d+" % x) for x in range(3, 19)])
-	config.ParentalControl.hideBlacklist = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections = ConfigSubsection()
-	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.configuration = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.plugin_browser = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.standby_menu = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.context_menus = ConfigYesNo(default=False)
-	# config.ParentalControl.config_sections.infopanel = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.quickmenu = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.software_update = ConfigYesNo(default=False)
-	# Added for backwards compatibility with some 3rd party plugins that depend on this configuration.
-	config.ParentalControl.servicepinactive = config.ParentalControl.configured
-	config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]
-	config.ParentalControl.retries.setuppin = config.ParentalControl.retries.servicepin
-	config.ParentalControl.type = ConfigSelection(default="blacklist", choices=[(LIST_BLACKLIST, _("Blacklist"))])
-	config.ParentalControl.config_sections.spzmenu = ConfigYesNo(default=False)  ### OPENSPA [morser] Add Protect spzMenu
-
-	global parentalControl
-	parentalControl = ParentalControl()
-
 config.ParentalControl = ConfigSubsection()
 config.ParentalControl.storeservicepin = ConfigSelection(default="never", choices=[
 	("never", _("Never")),
@@ -92,6 +52,7 @@ config.ParentalControl.servicepinactive = config.ParentalControl.configured
 config.ParentalControl.setuppin = config.ParentalControl.servicepin[0]
 config.ParentalControl.retries.setuppin = config.ParentalControl.retries.servicepin
 config.ParentalControl.type = ConfigSelection(default="blacklist", choices=[(LIST_BLACKLIST, _("Blacklist"))])
+config.ParentalControl.config_sections.spzmenu = ConfigYesNo(default=False)  ### OPENSPA [morser] Add Protect spzMenu
 
 
 class ParentalControl:

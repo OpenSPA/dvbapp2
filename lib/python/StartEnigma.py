@@ -766,10 +766,6 @@ config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
 
-enigma.eProfileWrite("ParentalControl")
-from Components.ParentalControl import InitParentalControl
-InitParentalControl()
-
 enigma.eProfileWrite("Navigation")
 from Navigation import Navigation
 
