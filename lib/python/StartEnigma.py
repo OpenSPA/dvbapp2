@@ -815,6 +815,7 @@ enigma.eProfileWrite("ScreenGlobals")
 from Screens.Globals import Globals
 from Screens.SessionGlobals import SessionGlobals
 from Screens.Screen import Screen
+Screen.globalScreen = Globals()
 
 enigma.eProfileWrite("Standby")
 import Screens.Standby
