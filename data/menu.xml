@@ -181,6 +181,9 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			</menu>
 			<!-- Menu / Setup / Network -->
 			<menu key="network" level="0" text="Network" weight="60">
+			<!-- Norhap OpenSPA provisional -->
+				<item weight="5" level="1" text="Network mounts" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
+			<!-- Norhap OpenSPA provisional -->
 				<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
 				<item key="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
 				<item key="networkservices_setup" level="2" text="Network Services" weight="9"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
