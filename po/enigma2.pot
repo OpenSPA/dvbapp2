@@ -1770,6 +1770,9 @@ msgstr ""
 msgid "Active clients"
 msgstr ""
 
+msgid "Active only"
+msgstr ""
+
 msgid "Adapter Settings"
 msgstr ""
 
@@ -6397,6 +6400,9 @@ msgstr ""
 msgid "Enable 5V for active antenna"
 msgstr ""
 
+msgid "Enable Autorecord"
+msgstr ""
+
 msgid "Enable BT Audio"
 msgstr ""
 
@@ -6775,6 +6781,10 @@ msgid "Entertainment"
 msgstr ""
 
 msgid "Entitlements"
+msgstr ""
+
+#, python-format
+msgid "Entitlements for 'CAID %s'"
 msgstr ""
 
 msgid "Entry image and text"
@@ -8727,6 +8737,9 @@ msgstr ""
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
+msgid "If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr ""
+
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -9333,6 +9346,9 @@ msgid "Just zap"
 msgstr ""
 
 msgid "KA-SAT"
+msgstr ""
+
+msgid "KSymb/s"
 msgstr ""
 
 msgid "Kalaallisut / Greenlandic"
@@ -10445,9 +10461,6 @@ msgstr ""
 msgid "Mounts Devices"
 msgstr ""
 
-msgid "Mounts Settings"
-msgstr ""
-
 msgid "Move"
 msgstr ""
 
@@ -11504,10 +11517,21 @@ msgstr ""
 msgid "OSCamInfo Actions"
 msgstr ""
 
-msgid "OSCamInfo Log"
+msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo Log Actions"
+#, python-format
+msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+#, python-format
+msgid "OSCamInfo: Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Information"
+msgstr ""
+
+msgid "OSCamInfo: Log"
 msgstr ""
 
 msgid "OSD"
@@ -11595,6 +11619,9 @@ msgid "Only extensions."
 msgstr ""
 
 msgid "Only HD"
+msgstr ""
+
+msgid "Only active"
 msgstr ""
 
 msgid "Only free scan"
@@ -16017,6 +16044,12 @@ msgstr ""
 msgid "Show advanced settings"
 msgstr ""
 
+msgid "Show all"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
 msgid "Show animation while busy"
 msgstr ""
 
@@ -16071,10 +16104,16 @@ msgstr ""
 msgid "Show default on new line"
 msgstr ""
 
+msgid "Show detailed"
+msgstr ""
+
 msgid "Show detailed event info"
 msgstr ""
 
 msgid "Show detailed event info (setup in menu)"
+msgstr ""
+
+msgid "Show details"
 msgstr ""
 
 msgid "Show details of highlighted task"
@@ -20162,6 +20201,9 @@ msgstr ""
 msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr ""
 
+msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
+msgstr ""
+
 msgid "Warning: Overrides are currently active!"
 msgstr ""
 
@@ -23338,6 +23380,12 @@ msgstr ""
 
 msgid "inactive"
 msgstr ""
+
+#, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d package has an update"
