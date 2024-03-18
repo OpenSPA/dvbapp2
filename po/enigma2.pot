@@ -1154,10 +1154,6 @@ msgid "%s (%04o)"
 msgstr ""
 
 #, python-format
-msgid "%s (%s)"
-msgstr ""
-
-#, python-format
 msgid "%s - Setup"
 msgstr ""
 
@@ -1228,10 +1224,6 @@ msgstr ""
 
 #, python-format
 msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s: %s"
 msgstr ""
 
 #, python-format
@@ -6843,12 +6835,21 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr ""
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr ""
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr ""
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr ""
+
 
 #, python-format
 msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
@@ -12428,6 +12429,9 @@ msgstr ""
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 
+msgid "Please wait while the file is read and processed..."
+msgstr ""
+
 msgid "Please wait while the list downloads..."
 msgstr ""
 
@@ -14609,6 +14613,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr ""
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -17068,6 +17075,9 @@ msgid "Speed"
 msgstr ""
 
 msgid "Split preview mode"
+msgstr ""
+
+msgid "Split tasks"
 msgstr ""
 
 msgid "Splitscreen"
