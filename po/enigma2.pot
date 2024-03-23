@@ -17898,6 +17898,9 @@ msgstr ""
 msgid "Temp directory (%s)"
 msgstr ""
 
+msgid "Temporary Directory"
+msgstr ""
+
 msgid "Tennis"
 msgstr ""
 
