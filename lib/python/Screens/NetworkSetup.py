@@ -2327,7 +2327,7 @@ class NetworkBaseScreen(Screen, HelpableScreen):
 		pass
 
 	def createSummary(self):
-		return NetworkServicesSummary
+		pass
 
 # #############################Added by VillaK OpenSPA Udpxy and Xupnpd##########################################
 class NetworkUdpxy(NetworkBaseScreen):
