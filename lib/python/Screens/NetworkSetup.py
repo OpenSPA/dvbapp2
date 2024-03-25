@@ -1828,9 +1828,11 @@ class NetworkInadynSetup(Setup):
 					if not line.startswith("#"):
 						self.ina_sysactive.value = True
 						line = line[14:]
+						self.ina_system.value = line
 					else:
 						self.ina_sysactive.value = False
 						line = line[15:]
+						self.ina_system.value = line
 					ina_sysactive1 = getConfigListEntry("%s:" % _("Set system"), self.ina_sysactive)
 					inadynItems.append(ina_sysactive1)
 					self.ina_value = line
