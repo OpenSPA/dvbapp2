@@ -1819,18 +1819,15 @@ class NetworkInadynSetup(Setup):
 					self.ina_period.value = line
 					ina_period1 = getConfigListEntry("%s:" % _("Time update in minutes"), self.ina_period)
 					inadynItems.append(ina_period1)
-				elif line.startswith("dyndns_system ") or line.startswith("#dyndns_system "):
-					if not line.startswith("#"):
+				elif "dyndns_system" in line:
+					if "#" not in line:
 						self.ina_sysactive.value = True
-						line = line[14:]
-						self.ina_system.value = line
 					else:
 						self.ina_sysactive.value = False
-						line = line[15:]
-						self.ina_system.value = line
+					line = line.split("m ")[1]
 					ina_sysactive1 = getConfigListEntry("%s:" % _("Set system"), self.ina_sysactive)
 					inadynItems.append(ina_sysactive1)
-					self.ina_value = line
+					self.ina_system.value = line
 					ina_system1 = getConfigListEntry("%s:" % _("System"), self.ina_system)
 					inadynItems.append(ina_system1)
 		Setup.createSetup(self, appendItems=inadynItems)
@@ -1859,7 +1856,11 @@ class NetworkInadynSetup(Setup):
 			self.close()
 		if exists("/etc/inadyn.conf.tmp"):
 			rename("/etc/inadyn.conf.tmp", "/etc/inadyn.conf")
-		self.close()
+		Setup.keySave(self)
+
+	def keyCancel(self):
+		Setup.keySave(self)
+
 
 class NetworkuShareSetup(Setup):
 	def __init__(self, session):
@@ -2321,7 +2322,7 @@ class NetworkBaseScreen(Screen, HelpableScreen):
 		pass
 
 	def createSummary(self):
-		return NetworkServicesSummary
+		pass
 
 # #############################Added by VillaK OpenSPA Udpxy and Xupnpd##########################################
 class NetworkUdpxy(NetworkBaseScreen):
