@@ -438,8 +438,8 @@ class EventInfo(Converter, Poll):
 		if self.token != self.PROGRESS:
 			event = self.source.event
 			if event:
-				startTime = event.getBeginTime()
-				duration = event.getDuration()
+				startTime = int(event.getBeginTime())
+				duration = int(event.getDuration())
 				endTime = startTime + duration
 				now = int(time())
 				elapsed = now - startTime
