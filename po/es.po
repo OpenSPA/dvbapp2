@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:25+0200\n"
+"POT-Creation-Date: 2023-07-22 10:44+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -1194,10 +1194,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Configuración"
 
@@ -1271,10 +1267,6 @@ msgstr "%s%s(Por defecto: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s: %s"
-msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -7508,6 +7500,9 @@ msgstr "Habilitar IceTV"
 msgid "Enable InfoBar fade-out"
 msgstr "Activar atenuación de la barra de información"
 
+msgid "Enable IPv6"
+msgstr "Activar IPv6"
+
 msgid "Enable MHW EPG"
 msgstr "Habilitar EPG MHW"
 
@@ -8035,12 +8030,20 @@ msgid "Error %d: Unable to create directory '%s'!  (%s)"
 msgstr "Error %d: Imposible crear directorio '%s'! (%s)"
 
 #, python-format
+msgid "Error %d: Unable to create package directory '%s'!  (%s)"
+msgstr "Error %d: Imposible crear directorio '%s'! (%s)"
+
+#, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
 msgstr "Error %d: ¡No se pudo eliminar la imagen descargada '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Error %d: Imposible enlazar '%s' como '%s'! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to read '%s'!  (%s)"
+msgstr "Error %d: Imposible leer '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
@@ -14492,6 +14495,9 @@ msgid "Please wait while the feeds are reset (cleared and reloaded)..."
 msgstr ""
 "Por favor, espera mientras se restauran los feeds (limpiados y recargados)..."
 
+msgid "Please wait while the file is read and processed..."
+msgstr "Por favor, espera mientras se lee y procesa el archivo..."
+
 msgid "Please wait while the list downloads..."
 msgstr "Por favor, espere mientras se descarga la lista..."
 
@@ -17138,6 +17144,15 @@ msgstr ""
 "Selecciona 'Sí' para mostrar el directorio actual en la lista de "
 "directorios. Nota : el administrador de archivos se tiene que reiniciar para "
 "que el cambio tenga efecto."
+
+msgid "Select 'Yes' to split tasks into separate actions."
+msgstr "Seleccione \"Sí\" para separar tareas en acciones separadas."
+
+msgid ""
+"Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful "
+"if you use a VPN and the normal feeds can't be accessed via the published "
+"DNS names."
+msgstr ""
 
 msgid ""
 "Select 'Yes' to use signal values (SNR, etc) calculated from the older API "
@@ -20240,6 +20255,9 @@ msgstr "Velocidad"
 msgid "Split preview mode"
 msgstr "Dividir modo previsualización"
 
+msgid "Split tasks"
+msgstr "Separar tareas"
+
 msgid "Splitscreen"
 msgstr "Pantalla dividida"
 
@@ -21124,6 +21142,9 @@ msgstr "Telugu"
 #, python-format
 msgid "Temp directory (%s)"
 msgstr "Directorio temporal (%s)"
+
+msgid "Temporary directory"
+msgstr "Directorio temporal"
 
 # Language
 msgid "Tennis"
@@ -23375,6 +23396,9 @@ msgstr "Usar temporizador de zapeo con tiempo de finalización"
 #
 msgid "Use a gateway"
 msgstr "Usar una puerta de enlace"
+
+msgid "Use alternate GitHub DNS"
+msgstr "Usar DNS GitHub alternas"
 
 msgid "Use an alternative smaller screen."
 msgstr "Utilizar una pantalla alternativa más pequeña."
@@ -28787,3 +28811,11 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#, python-format
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#, python-format
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"

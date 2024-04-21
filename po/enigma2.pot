@@ -6422,6 +6422,9 @@ msgstr ""
 msgid "Enable InfoBar fade-out"
 msgstr ""
 
+msgid "Enable IPv6"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr ""
 
