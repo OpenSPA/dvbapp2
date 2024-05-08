@@ -3352,6 +3352,9 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr ""
+
 #
 msgid "Bouquet Edit"
 msgstr "[breyta fléttu]"
@@ -8825,6 +8828,9 @@ msgstr "Föstudagur"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr ""
+
 msgid "Front"
 msgstr ""
 
@@ -10737,6 +10743,9 @@ msgid "Last config"
 msgstr "Síðasta stilling"
 
 msgid "Last flash"
+msgstr ""
+
+msgid "Last Scanned"
 msgstr ""
 
 #
@@ -15539,8 +15548,11 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "taka út"
+
+msgid "Rename entry and create new bouquet"
+msgstr ""
 
 msgid "Rename all related files"
 msgstr ""

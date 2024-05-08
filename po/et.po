@@ -3154,6 +3154,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "All"
 
+msgid "Bouquet created to rename"
+msgstr "Ümbernimetamiseks loodud kimp"
+
 msgid "Bouquet Edit"
 msgstr "[lemmiknimekirjade muutmine]"
 
@@ -8483,6 +8486,9 @@ msgstr "Reede"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Alates \"Last Scanned\" loodi uus kimp järgmise nimega:\n\n\"Kimp loodi ümbernimetamiseks\"\n\nMuutke nime uuesti oma valitud nimega."
+
 msgid "Front"
 msgstr ""
 
@@ -10308,6 +10314,9 @@ msgstr "Viimane seadistus"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Viimati skannitud"
 
 msgid "Last speed"
 msgstr "Eelmine kiirus"
@@ -14813,8 +14822,11 @@ msgstr "Nimeta ümber"
 msgid "Rename Directory"
 msgstr ""
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Nimeta ümber"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Kirje ümbernimetamine ja uue kimbu loomine"
 
 msgid "Rename all related files"
 msgstr ""

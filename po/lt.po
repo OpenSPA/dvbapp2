@@ -3151,6 +3151,9 @@ msgstr "Botsvana"
 msgid "Bottom"
 msgstr "apačia"
 
+msgid "Bouquet created to rename"
+msgstr "Puokštė sukurta pervardyti"
+
 msgid "Bouquet Edit"
 msgstr "[paketo redagavimas]"
 
@@ -8390,6 +8393,9 @@ msgstr "Penktadienis"
 msgid "From :"
 msgstr "Nuo:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Iš \"Last Scanned\" buvo sukurta nauja puokštė tokiu pavadinimu:nn:\n\n\"Puokštė sukurta pervardyti\"\n\nPakeiskite vardą dar kartą su savo išrinktuoju."
+
 msgid "Front"
 msgstr "Priekyje"
 
@@ -10157,6 +10163,9 @@ msgstr "Paskutinė konfigūracija"
 
 msgid "Last flash"
 msgstr "Paskutinis įdiegimas"
+
+msgid "Last Scanned"
+msgstr "Paskutinis nuskaitytas"
 
 msgid "Last speed"
 msgstr "Paskutinis greitis"
@@ -14469,8 +14478,11 @@ msgstr "Pervardinti"
 msgid "Rename Directory"
 msgstr "Pervardyti katalogą"
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "pervardinti įrašą"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Pervardyti įrašą ir sukurti naują puokštę"
 
 msgid "Rename all related files"
 msgstr "Pervardykite visus susijusius failus"

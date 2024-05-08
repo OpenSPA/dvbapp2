@@ -3114,6 +3114,9 @@ msgstr "Botsvana"
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr "Buqetë e krijuar për t'u riemëruar"
+
 msgid "Bouquet Edit"
 msgstr ""
 
@@ -8338,6 +8341,9 @@ msgstr "E premte"
 msgid "From :"
 msgstr "Nga:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Nga \"Last Scanned\" u krijua një buqetë e re me këtë emër:\n\n\"Bouquet krijuar për të riemëruar\"\n\nChange emrin përsëri me të zgjedhurin tuaj."
+
 msgid "Front"
 msgstr "Përpara"
 
@@ -10104,6 +10110,9 @@ msgstr ""
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Skanuar për herë të fundit"
 
 msgid "Last speed"
 msgstr ""
@@ -14375,8 +14384,11 @@ msgstr "Riemerto"
 msgid "Rename Directory"
 msgstr ""
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr ""
+
+msgid "Rename entry and create new bouquet"
+msgstr "Riemërto hyrjen dhe krijo buqetë të re"
 
 msgid "Rename all related files"
 msgstr ""

@@ -3308,6 +3308,9 @@ msgstr ""
 msgid "Bottom"
 msgstr "Topo e rodapé"
 
+msgid "Bouquet created to rename"
+msgstr "Buquê criado para renomear"
+
 msgid "Bouquet Edit"
 msgstr "[editar grupo de favoritos]"
 
@@ -8681,6 +8684,9 @@ msgstr "Sexta-feira"
 msgid "From :"
 msgstr "De :"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "A partir de \"Última varredura\" um novo buquê foi criado com este nome:\n\n\"Buquê criado para renomear\"\n\nAltere o nome novamente com o escolhido."
+
 msgid "Front"
 msgstr ""
 
@@ -10526,6 +10532,9 @@ msgstr "Última configuração"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Última varredura"
 
 msgid "Last speed"
 msgstr "Última velocidade"
@@ -15026,8 +15035,11 @@ msgid "Rename Directory"
 msgstr ""
 
 #, fuzzy
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "remover entrada"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Renomear entrada e criar novo buquê"
 
 msgid "Rename all related files"
 msgstr ""

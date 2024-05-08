@@ -9197,6 +9197,9 @@ msgstr "Viernes"
 msgid "From :"
 msgstr "Desde:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Desde \"Último escaneo\" se creó un nuevo bouquet con este nombre:\n\n\"Bouquet creado a renombrar\"\n\nCambie el nombre nuevamente con su elegido."
+
 msgid "Front"
 msgstr "Frente"
 
@@ -11179,6 +11182,9 @@ msgstr "Última config"
 
 msgid "Last flash"
 msgstr "Último flash"
+
+msgid "Last Scanned"
+msgstr "Último Escaneo"
 
 #
 msgid "Last speed"
@@ -21760,6 +21766,19 @@ msgstr ""
 "puede llevar mucho tiempo al ejecutar en este hardware."
 
 msgid ""
+"This function recovers your video signal in case of loss. The video has been changed to 720p.\n"
+"If this is your case, please keep the video at 720P and do the following:\n"
+"Go to System > Receiver Setup > Video > Video Settings\n"
+"Now set a correct resolution.\n\n"
+"Do you want to keep the video at 720p?"
+msgstr ""
+"Esta función recupera tu señal de vídeo en caso de pérdida. El vídeo ha sido cambiado a 720p.\n"
+"Si este es tu caso, mantén el vídeo en 720P y haz lo siguiente:\n"
+"Vaya a Sistema > Configuración del receptor > Vídeo > Configuración de vídeo\n"
+"Ahora establezca una resolución correcta.\n\n"
+"¿Quieres mantener el vídeo a 720p?"
+
+msgid ""
 "This is a workaround for some devices that wake up again after switching to "
 "standby. The wake up command's from other devices will be ignored for few "
 "seconds."
@@ -26477,8 +26496,11 @@ msgid "rename"
 msgstr "Renombrar"
 
 # /lib/python/Screens/ChannelSelection.py
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Renombrar entrada"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Cambiar nombre de la entrada y crear un nuevo bouquet"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "Restaurar listas eliminadas"
@@ -27064,6 +27086,9 @@ msgstr ""
 #
 msgid "All Select"
 msgstr "Todo seleccionado"
+
+msgid "Bouquet created to rename"
+msgstr "Bouquet creado a renombrar"
 
 msgid "Bouquet Selector"
 msgstr "Selección de lista"

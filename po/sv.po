@@ -3429,6 +3429,9 @@ msgstr ""
 msgid "Bottom"
 msgstr "Botten"
 
+msgid "Bouquet created to rename"
+msgstr "Bukett skapad för att byta namn"
+
 #
 msgid "Bouquet Edit"
 msgstr "[favoritlisteditor]"
@@ -9037,6 +9040,9 @@ msgstr "Fredag"
 msgid "From :"
 msgstr "Från:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Från \"Senast skannad\" skapades en ny bukett med detta namn:\n\n\"Bukett skapad för att byta namn\"\n\nÄndra namnet igen med ditt valda."
+
 msgid "Front"
 msgstr ""
 
@@ -10961,6 +10967,9 @@ msgstr "Senaste konfiguration"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Senast genomsökt"
 
 #
 msgid "Last speed"
@@ -15755,8 +15764,11 @@ msgid "Rename Directory"
 msgstr ""
 
 #
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "byt namn på post"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Byt namn på post och skapa ny bukett"
 
 msgid "Rename all related files"
 msgstr ""

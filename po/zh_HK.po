@@ -3244,6 +3244,9 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr "創建花束以重命名"
+
 msgid "Bouquet Edit"
 msgstr "[編輯自定義組]"
 
@@ -8676,6 +8679,9 @@ msgstr "星期五"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "從上次掃描中，創建了一個具有此名稱的新花束：創建花束以重命名 使用您選擇的名稱再次更改名稱。"
+
 msgid "Front"
 msgstr ""
 
@@ -10560,6 +10566,9 @@ msgstr "最後一次正確配置"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "上次掃描"
 
 msgid "Last speed"
 msgstr "最快速度"
@@ -15185,8 +15194,11 @@ msgid "Rename Directory"
 msgstr ""
 
 #, fuzzy
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "移除項目"
+
+msgid "Bouquet created to rename"
+msgstr "創建花束以重命名"
 
 msgid "Rename all related files"
 msgstr ""

@@ -3134,6 +3134,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "dưới cùng"
 
+msgid "Bouquet created to rename"
+msgstr "Bó hoa được tạo để đổi tên"
+
 msgid "Bouquet Edit"
 msgstr "[chỉnh sửa gói kênh]"
 
@@ -8415,6 +8418,9 @@ msgstr "Thứ sáu"
 msgid "From :"
 msgstr "Từ :"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Từ \"Last Scanned\" một bó hoa mới đã được tạo ra với tên này:\n\n\"Bó hoa được tạo để đổi tên\"\n\nThay đổi tên một lần nữa với tên bạn đã chọn."
+
 msgid "Front"
 msgstr ""
 
@@ -10212,6 +10218,9 @@ msgstr "Cấu hình cuối cùng"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Last Scanned"
 
 msgid "Last speed"
 msgstr "Tốc độ cuối"
@@ -14620,8 +14629,11 @@ msgstr "Đổi tên"
 msgid "Rename Directory"
 msgstr ""
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "đổi tên mục nhập"
+
+msgid "Bouquet created to rename"
+msgstr "Bó hoa được tạo để đổi tên"
 
 msgid "Rename all related files"
 msgstr ""

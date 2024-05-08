@@ -3478,6 +3478,9 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr "Šopek, ustvarjen za preimenovanje"
+
 #
 msgid "Bouquet Edit"
 msgstr "[urejanje paketov]"
@@ -9158,6 +9161,9 @@ msgstr "Petek"
 msgid "From :"
 msgstr "Od:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Iz \"Last Scanned\" je bil ustvarjen nov šopek s tem imenom:\n\n\"Šopek ustvarjen za preimenovanje\"\n\nZnova spremenite ime z izbranim."
+
 msgid "Front"
 msgstr ""
 
@@ -11099,6 +11105,9 @@ msgstr "Prejšnje nastavitve"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Zadnje optično prebrano"
 
 #
 msgid "Last speed"
@@ -15972,8 +15981,11 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Izbris kanala"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Preimenujte vnos in ustvarite nov šopek"
 
 msgid "Rename all related files"
 msgstr ""

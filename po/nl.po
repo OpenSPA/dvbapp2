@@ -3113,6 +3113,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "Onder"
 
+msgid "Bouquet created to rename"
+msgstr "Boeket gemaakt om te hernoemen"
+
 msgid "Bouquet Edit"
 msgstr "Favorietenlijst bewerken"
 
@@ -8479,6 +8482,9 @@ msgstr "Vrijdag"
 msgid "From :"
 msgstr "Van:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Van \"Laatst gescand\" is een nieuw boeket aangemaakt met deze naam:\n\n\"Boeket gemaakt om te hernoemen\"\n\nVerander de naam opnieuw met het door jou gekozen boeket."
+
 msgid "Front"
 msgstr "Front"
 
@@ -10252,6 +10258,9 @@ msgstr "Laatste configuratie"
 
 msgid "Last flash"
 msgstr "Laatste flash"
+
+msgid "Last Scanned"
+msgstr "Laatst gescand"
 
 msgid "Last speed"
 msgstr "Laatste snelheid"
@@ -14572,8 +14581,11 @@ msgstr "Hernoemen"
 msgid "Rename Directory"
 msgstr "Map hernoemen"
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Zender/favorietenlijst hernoemen"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Hernoem item en maak een nieuw boeket aan"
 
 msgid "Rename all related files"
 msgstr "Hernoem alle bijbehorende bestanden"

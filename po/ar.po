@@ -3381,6 +3381,9 @@ msgstr "بوتسوانا"
 msgid "Bottom"
 msgstr "أسفل"
 
+msgid "Bouquet created to rename"
+msgstr "باقة تم إنشاؤها لإعادة تسمية"
+
 msgid "Bouquet Edit"
 msgstr "[تحرير الباقه]"
 
@@ -8776,6 +8779,9 @@ msgstr "الجمعه"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "من "آخر مسح" تم إنشاء باقة جديدة بهذا الاسم\n\n\باقة تم إنشاؤها لإعادة تسمية\n\nقم بتغيير الاسم مرة أخرى مع الاسم الذي اخترته."
+
 msgid "Front"
 msgstr ""
 
@@ -10621,6 +10627,9 @@ msgstr "التهيئه السابقه"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "آخر مسح ضوئي"
 
 #
 msgid "Last speed"
@@ -15202,8 +15211,11 @@ msgid "Rename Directory"
 msgstr ""
 
 #, fuzzy
-msgid "Rename Entry"
-msgstr "حذف"
+msgid "Rename entry"
+msgstr "إعادة تسمية الإدخال"
+
+msgid "Rename entry and create new bouquet"
+msgstr "إعادة تسمية الإدخال وإنشاء باقة جديدة"
 
 msgid "Rename all related files"
 msgstr ""

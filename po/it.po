@@ -3104,6 +3104,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "Basso"
 
+msgid "Bouquet created to rename"
+msgstr "Bouquet creato per rinominare"
+
 msgid "Bouquet Edit"
 msgstr "Modifica bouquet"
 
@@ -8338,6 +8341,9 @@ msgstr "Venerdì"
 msgid "From :"
 msgstr "Da:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Da \"Ultima scansione\" è stato creato un nuovo bouquet con questo nome:\n\n\"Bouquet creato per rinominare\"\n\nCambia di nuovo il nome con quello scelto."
+
 msgid "Front"
 msgstr "Anteriore"
 
@@ -10104,6 +10110,9 @@ msgstr "Ultima configurazione"
 
 msgid "Last flash"
 msgstr "Ultimo flash"
+
+msgid "Last Scanned"
+msgstr "Ultima scansione"
 
 msgid "Last speed"
 msgstr "Ultima velocità"
@@ -14416,8 +14425,11 @@ msgstr "Rinomina"
 msgid "Rename Directory"
 msgstr "Rinomina cartella"
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Rinomina voce"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Rinomina la voce e crea un nuovo bouquet"
 
 msgid "Rename all related files"
 msgstr "Rinomina tutti i file correlati"

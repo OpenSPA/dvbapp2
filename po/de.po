@@ -3292,6 +3292,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "Unten"
 
+msgid "Bouquet created to rename"
+msgstr "Blumenstrauß zum Umbenennen erstellt"
+
 #
 msgid "Bouquet Edit"
 msgstr "Bouquet-Editor"
@@ -8822,6 +8825,9 @@ msgstr "Freitag"
 msgid "From :"
 msgstr "Von:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Aus \"Zuletzt gescannt\" wurde ein neuer Blumenstrauß mit diesem Namen erstellt:\n\n\"Blumenstrauß zum Umbenennen erstellt\"\n\nÄndern Sie den Namen erneut mit dem von Ihnen gewählten Namen."
+
 msgid "Front"
 msgstr "Vorderseite"
 
@@ -10671,6 +10677,9 @@ msgstr "Letzte Konfiguration"
 
 msgid "Last flash"
 msgstr "Letzter Flash"
+
+msgid "Last Scanned"
+msgstr "Zuletzt gescannt"
 
 #
 msgid "Last speed"
@@ -15356,8 +15365,11 @@ msgid "Rename Directory"
 msgstr "Verzeichnis umbenennen"
 
 # /lib/python/Screens/ChannelSelection.py
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Eintrag umbenennen"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Omdøb indgang og opret ny buket"
 
 msgid "Rename all related files"
 msgstr "Alle zugehörigen Dateien umbenennen"

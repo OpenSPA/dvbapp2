@@ -3129,6 +3129,9 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr "Buchet creat pentru a fi redenumit"
+
 msgid "Bouquet Edit"
 msgstr "[editare bouquet]"
 
@@ -8421,6 +8424,9 @@ msgstr "Vineri"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Din \"Ultima scanare\" a fost creat un nou buchet cu acest nume:\n\n\"Buchet creat pentru a redenumi\"\n\nSchimbați numele din nou cu cel ales."
+
 msgid "Front"
 msgstr ""
 
@@ -10233,6 +10239,9 @@ msgstr ""
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Ultima scanare"
 
 msgid "Last speed"
 msgstr "Ultima viteza"
@@ -14687,8 +14696,11 @@ msgid "Rename Directory"
 msgstr ""
 
 #, fuzzy
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "elimina intrarea"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Redenumiți intrarea și creați un buchet nou"
 
 msgid "Rename all related files"
 msgstr ""

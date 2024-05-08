@@ -3147,6 +3147,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "dół"
 
+msgid "Bouquet created to rename"
+msgstr "Bukiet utworzony w celu zmiany nazwy"
+
 msgid "Bouquet Edit"
 msgstr "[edycja listy kanałów]"
 
@@ -8386,6 +8389,9 @@ msgstr "Piątek"
 msgid "From :"
 msgstr "Z :"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Z \"Ostatniego skanowania\" został utworzony nowy bukiet o tej nazwie:\n\n\"Bukiet utworzony w celu zmiany nazwy\"\n\nZmień nazwę ponownie na wybraną."
+
 msgid "Front"
 msgstr "Przód"
 
@@ -10154,6 +10160,9 @@ msgstr "Ostatnie ustawienia"
 
 msgid "Last flash"
 msgstr "Ostatni flash"
+
+msgid "Last Scanned"
+msgstr "Ostatnie skanowanie"
 
 msgid "Last speed"
 msgstr "Ostatnia prędkość"
@@ -14469,8 +14478,11 @@ msgstr "Zmień nazwę"
 msgid "Rename Directory"
 msgstr "Zmień nazwę katalogu"
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Zmień nazwę"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Zmień nazwę wpisu i utwórz nowy bukiet"
 
 msgid "Rename all related files"
 msgstr "Zmień nazwę wszystkich powiązanych plików"

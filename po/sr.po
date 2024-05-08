@@ -3470,6 +3470,9 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr "Buket stvoren za preimenovanje"
+
 #
 msgid "Bouquet Edit"
 msgstr "[uređivanje buketa]"
@@ -9092,6 +9095,9 @@ msgstr "Petak"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Iz \"Posljednje skeniranje\" stvoren je novi buket s ovim nazivom:\n\n\"Buket stvoren za preimenovanje\"\n\nPromijenite naziv ponovno odabranim."
+
 msgid "Front"
 msgstr ""
 
@@ -11018,6 +11024,9 @@ msgstr "Zadnji konfig"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Zadnje skeniranje"
 
 #
 msgid "Last speed"
@@ -15846,8 +15855,11 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "obriši unos"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Preimenovanje unosa i stvaranje novog buketa"
 
 msgid "Rename all related files"
 msgstr ""

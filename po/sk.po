@@ -3138,6 +3138,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "Dole"
 
+msgid "Bouquet created to rename"
+msgstr "Kytica vytvorená na premenovanie"
+
 msgid "Bouquet Edit"
 msgstr "[úprava prehľadu]"
 
@@ -8376,6 +8379,9 @@ msgstr "Piatok"
 msgid "From :"
 msgstr "Od:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Z \"Last Scanned\" bola vytvorená nová kytica s týmto názvom:\n\n\"Kytica vytvorená na premenovanie\"\n\nZnova zmeňte meno s vybraným."
+
 msgid "Front"
 msgstr "Predná strana"
 
@@ -10143,6 +10149,9 @@ msgstr "Posledná konfigurácia"
 
 msgid "Last flash"
 msgstr "Posledné flashovanie"
+
+msgid "Last Scanned"
+msgstr "Posledná kontrola"
 
 msgid "Last speed"
 msgstr "posledná rýchlosť"
@@ -14458,8 +14467,11 @@ msgstr "Premenovať"
 msgid "Rename Directory"
 msgstr "Premenovať priečinok"
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Premenovať položku"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Premenujte záznam a vytvorte novú kyticu"
 
 msgid "Rename all related files"
 msgstr "Premenovať všetky súvisiace súbory"

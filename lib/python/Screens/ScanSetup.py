@@ -12,7 +12,7 @@ from Tools.HardwareInfo import HardwareInfo
 from Tools.Transponder import getChannelNumber, channel2frequency, supportedChannels
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
-from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eConsoleAppContainer, eDVBResourceManager, iDVBFrontend
+from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eConsoleAppContainer, eDVBResourceManager, iDVBFrontend, eDVBDB
 
 
 def buildTerTransponder(frequency,
@@ -1494,6 +1494,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		tlist.append(parm)
 
 	def keyGo(self):
+		eDVBDB.getInstance().reloadBouquets()  # [norhap][OpenSPA]
 		infoBarInstance = InfoBar.instance
 		if infoBarInstance:
 			infoBarInstance.checkTimeshiftRunning(self.keyGoCheckTimeshiftCallback)

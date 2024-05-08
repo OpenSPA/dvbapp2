@@ -3412,6 +3412,9 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr "Pušķis, kas izveidots, lai pārdēvētu"
+
 #
 msgid "Bouquet Edit"
 msgstr "[buķešu rediģēšana]"
@@ -9031,6 +9034,9 @@ msgstr "Piektdiena"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "No \"Pēdējoreiz skenēts\" tika izveidots jauns pušķis ar šādu nosaukumu:\n\n\"Pušķis, kas izveidots, lai pārdēvētu\"\n\nMainiet vārdu vēlreiz ar savu izvēlēto."
+
 msgid "Front"
 msgstr ""
 
@@ -10955,6 +10961,9 @@ msgstr ""
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Pēdējoreiz skenēts"
 
 #
 msgid "Last speed"
@@ -15770,8 +15779,11 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "dzēst ierakstu"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Pārdēvējiet ierakstu un izveidojiet jaunu pušķi"
 
 msgid "Rename all related files"
 msgstr ""

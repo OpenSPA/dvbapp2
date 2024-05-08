@@ -3225,6 +3225,9 @@ msgstr "Botsvana"
 msgid "Bottom"
 msgstr "Alt"
 
+msgid "Bouquet created to rename"
+msgstr "Yeniden adlandırmak için oluşturulan buket"
+
 #
 msgid "Bouquet Edit"
 msgstr "[buket düzenle]"
@@ -8711,6 +8714,9 @@ msgstr "Cuma"
 msgid "From :"
 msgstr "Kimden:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr " \"Son Taranan\" dan bu adla yeni bir buket oluşturuldu:\n\n\"Yeniden adlandırmak için oluşturulan buket\"\n\nSeçtiğiniz adla tekrar değiştirin."
+
 msgid "Front"
 msgstr "Ön/Öndeki"
 
@@ -10558,6 +10564,9 @@ msgstr "Son kurulum"
 
 msgid "Last flash"
 msgstr "Son flaş"
+
+msgid "Last Scanned"
+msgstr "Son Taranan"
 
 #
 msgid "Last speed"
@@ -15155,8 +15164,11 @@ msgid "Rename Directory"
 msgstr "Dizini Yeniden Adlandır"
 
 #
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Girişi Yeniden Adlandır"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Girişi yeniden adlandırma ve yeni buket oluşturma"
 
 msgid "Rename all related files"
 msgstr "İlgili tüm dosyaları yeniden adlandırın"

@@ -519,7 +519,37 @@ class ChannelSelectionEdit:
 		if cur and cur.valid():
 			name = eServiceCenter.getInstance().info(cur).getName(cur) or ServiceReference(cur).getServiceName() or ""
 			name = name.replace("\xc2\x86", "").replace("\xc2\x87", "")
-			if name:
+			if name == _("Last Scanned"):  # [norhap][OpenSPA]
+				from os.path import exists  # noqa: E402
+				lastscanned = "/etc/enigma2/userbouquet.LastScanned.tv"
+				rename_lastscan = "/etc/enigma2/userbouquet.lastscanned1.tv"
+				nameuserbouquet = "lastscanned1"
+				bouquetstv = "/etc/enigma2/bouquets.tv"
+				for bouquet_number in range(1, 100):
+					if exists(str(rename_lastscan)) and str(bouquet_number) not in rename_lastscan:
+						rename_lastscan = f"/etc/enigma2/userbouquet.lastscanned{bouquet_number}.tv"
+						nameuserbouquet = f"lastscanned{bouquet_number}"
+				with open(bouquetstv, "r") as fr:
+					previous_bouquetstv = fr.readlines()
+					with open(bouquetstv, "w") as fw:
+						for line in previous_bouquetstv:
+							if "LastScanned" in line:
+								line = line.replace("LastScanned", nameuserbouquet)
+							fw.write(line)
+				if exists(str(lastscanned)):
+					rename(lastscanned, rename_lastscan)
+					if exists(str(rename_lastscan)):
+						with open(rename_lastscan, "r") as fr:
+							bouquetread = fr.readlines()
+							with open(rename_lastscan, "w") as fw:
+								for line in bouquetread:
+									fw.write(line.replace(_("Last Scanned"), _("Bouquet created to rename")))
+				eDVBDB.getInstance().reloadBouquets()
+				Screens.InfoBar.InfoBar.instance.servicelist.showAllServices()
+				Screens.InfoBar.InfoBar.instance.servicelist.showFavourites()
+				self.session.open(MessageBox, _("From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."), MessageBox.TYPE_INFO, default=False, timeout=10)
+				Screens.InfoBar.InfoBar.instance.servicelist.showFavourites()
+			else:
 				self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
 		else:
 			return 0
@@ -1652,18 +1682,21 @@ class ChannelContextMenu(Screen, HelpableScreen):
 				if current_root and (f"flags == {FLAG_SERVICE_NEW_FOUND}") in current_root.getPath():
 					appendWhenValid(current, menu, (_("Remove New Found Flag"), self.removeNewFoundFlag))
 			else:
-					if self.parentalControlEnabled:
-						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							appendWhenValid(current, menu, (_("Add Bouquet To Parental Protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
-						else:
-							appendWhenValid(current, menu, (_("Remove Bouquet From Parental Protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
-					menu.append(ChoiceEntryComponent(key="1", text=(_("Add Bouquet"), self.showBouquetInputBox)))
-					appendWhenValid(current, menu, (_("Rename Entry"), self.renameEntry), key="2")
-					appendWhenValid(current, menu, (_("Remove Entry"), self.removeEntry), key="8")
-					self.removeFunction = self.removeBouquet
-					if removed_userbouquets_available():
-						appendWhenValid(current, menu, (_("Purge Deleted User Bouquets"), self.purgeDeletedBouquets))
-						appendWhenValid(current, menu, (_("Restore Deleted User Bouquets"), self.restoreDeletedBouquets))
+				if self.parentalControlEnabled:
+					if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+						appendWhenValid(current, menu, (_("Add Bouquet To Parental Protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
+					else:
+						appendWhenValid(current, menu, (_("Remove Bouquet From Parental Protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
+				menu.append(ChoiceEntryComponent(key="1", text=(_("Add Bouquet"), self.showBouquetInputBox)))
+				if self.getCurrentSelectionName() != _("Last Scanned"):  # [norhap][OpenSPA]
+					appendWhenValid(current, menu, (_("Rename entry"), self.renameEntry), key="2")
+				else:
+					appendWhenValid(current, menu, (_("Rename entry and create new bouquet"), self.renameEntry), key="2")  # [norhap][OpenSPA]
+				appendWhenValid(current, menu, (_("Remove Entry"), self.removeEntry), key="8")
+				self.removeFunction = self.removeBouquet
+				if removed_userbouquets_available():
+					appendWhenValid(current, menu, (_("Purge Deleted User Bouquets"), self.purgeDeletedBouquets))
+					appendWhenValid(current, menu, (_("Restore Deleted User Bouquets"), self.restoreDeletedBouquets))
 		if self.inBouquet:  # Current list is editable?
 			if csel.bouquet_mark_edit == EDIT_OFF:
 				if csel.movemode:

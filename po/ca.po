@@ -3559,6 +3559,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "Inferior"
 
+msgid "Bouquet created to rename"
+msgstr "Ram creat per canviar el nom"
+
 msgid "Bouquet List"
 msgstr "Llista"
 
@@ -9374,6 +9377,9 @@ msgstr "Divendres"
 msgid "From :"
 msgstr "Des de :"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Des de \"Last Scanned\" es va crear un nou ram amb aquest nom:\n\n\"Bouquet creat per canviar el nom\"\n\nCanvieu el nom de nou amb el vostre escollit."
+
 msgid "Front"
 msgstr "Frontal"
 
@@ -11306,6 +11312,9 @@ msgstr "Última configuració"
 
 msgid "Last flash"
 msgstr "Última instal·lació"
+
+msgid "Last Scanned"
+msgstr "Escanejat per darrera vegada"
 
 #
 msgid "Last speed"
@@ -15894,6 +15903,12 @@ msgstr "Renombrar tots els arxius relacionats"
 
 msgid "Rename directory/file"
 msgstr "Renombrar directori/arxiu"
+
+msgid "Rename entry"
+msgstr "Canvia el nom de l'entrada"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Canvieu el nom de l'entrada i creeu un ram nou"
 
 msgid "Rename failed!"
 msgstr "Error al renombrar!"

@@ -3156,6 +3156,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "alsó"
 
+msgid "Bouquet created to rename"
+msgstr "Csokor átnevezésre létrehozva"
+
 msgid "Bouquet Edit"
 msgstr "[Csatornacsomag szerkesztés]"
 
@@ -8394,6 +8397,9 @@ msgstr "Péntek"
 msgid "From :"
 msgstr "Innen:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "A \"Last Scanned\" -ből egy új csokor jött létre ezzel a névvel:\n\n\"Csokor létrehozva az átnevezéshez\"\n\nVáltoztassa meg újra a nevet a választottjával."
+
 msgid "Front"
 msgstr ""
 
@@ -10183,6 +10189,9 @@ msgstr "Utolsó konfiguráció"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Utoljára szkennelt"
 
 msgid "Last speed"
 msgstr "Utolsó sebesség"
@@ -14551,8 +14560,11 @@ msgstr "Átnevezés"
 msgid "Rename Directory"
 msgstr ""
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "átnevezés"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Nevezze át a bejegyzést, és hozzon létre új csokrot"
 
 msgid "Rename all related files"
 msgstr ""
