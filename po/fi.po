@@ -3113,6 +3113,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "Alhaalla"
 
+msgid "Bouquet created to rename"
+msgstr "Kimppu luotu nimeämään uudelleen"
+
 msgid "Bouquet Edit"
 msgstr "[Kanavalistojen lisäys ja poisto]"
 
@@ -8348,6 +8351,9 @@ msgstr "Perjantai"
 msgid "From :"
 msgstr "Mistä :"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Kohteesta \"Viimeksi skannattu\" luotiin uusi kimppu tällä nimellä:\n\n\"Kimppu luotu nimeämään uudelleen\"\n\nVaihda nimi uudelleen valitsemallasi nimellä."
+
 msgid "Front"
 msgstr "Edessä"
 
@@ -10119,6 +10125,9 @@ msgstr "Aiemmat arvot"
 
 msgid "Last flash"
 msgstr "Ohjelmisto päivitetty"
+
+msgid "Last Scanned"
+msgstr "Viimeksi skannattu"
 
 msgid "Last speed"
 msgstr "Aikaisempi nopeus"
@@ -14439,8 +14448,11 @@ msgstr "Uudelleennimeä"
 msgid "Rename Directory"
 msgstr "Nimeä hakemisto uudelleen"
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Uudelleennimeä"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Nimeä merkintä uudelleen ja luo uusi kimppu"
 
 msgid "Rename all related files"
 msgstr "Nimeä kaikki asiaan liittyvät tiedostot uudelleen"

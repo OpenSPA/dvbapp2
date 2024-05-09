@@ -3316,6 +3316,9 @@ msgstr ""
 msgid "Bottom"
 msgstr "Top and bottom"
 
+msgid "Bouquet created to rename"
+msgstr ""
+
 msgid "Bouquet Edit"
 msgstr "Bouquet Edit"
 
@@ -8692,6 +8695,9 @@ msgstr "İn"
 msgid "From :"
 msgstr "From :"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr ""
+
 msgid "Front"
 msgstr ""
 
@@ -10538,6 +10544,9 @@ msgid "Last config"
 msgstr "Last config"
 
 msgid "Last flash"
+msgstr ""
+
+msgid "Last Scanned"
 msgstr ""
 
 msgid "Last speed"
@@ -15042,8 +15051,11 @@ msgid "Rename Directory"
 msgstr ""
 
 #, fuzzy
-msgid "Rename Entry"
-msgstr "Remove Entry"
+msgid "Rename entry"
+msgstr ""
+
+msgid "Rename entry and create new bouquet"
+msgstr ""
 
 msgid "Rename all related files"
 msgstr ""

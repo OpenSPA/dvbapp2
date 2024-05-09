@@ -3192,6 +3192,9 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr "ช่อดอกไม้ที่สร้างขึ้นเพื่อเปลี่ยนชื่อ"
+
 msgid "Bouquet Edit"
 msgstr "[แก้ไขกลุ่มรายการ]"
 
@@ -8487,6 +8490,9 @@ msgstr "วันศุกร์"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "จาก \"Last Scanned\" ช่อดอกไม้ใหม่ถูกสร้างขึ้นด้วยชื่อนี้:\n\n\"ช่อดอกไม้ที่สร้างขึ้นเพื่อเปลี่ยนชื่อ\"\n\nเปลี่ยนชื่ออีกครั้งด้วยช่อดอกไม้ที่คุณเลือก"
+
 msgid "Front"
 msgstr ""
 
@@ -10305,6 +10311,9 @@ msgstr "ค่าที่ตั้งล่าสุด"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Last Scanned"
 
 msgid "Last speed"
 msgstr "ความเร็วล่าสุด"
@@ -14766,8 +14775,11 @@ msgid "Rename Directory"
 msgstr ""
 
 #, fuzzy
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "ลบรายการนี้ออก"
+
+msgid "Rename entry and create new bouquet"
+msgstr "เปลี่ยนชื่อรายการและสร้างช่อดอกไม้ใหม่"
 
 msgid "Rename all related files"
 msgstr ""

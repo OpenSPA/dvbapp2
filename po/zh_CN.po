@@ -3109,6 +3109,9 @@ msgstr "博茨瓦纳"
 msgid "Bottom"
 msgstr "底部"
 
+msgid "Bouquet created to rename"
+msgstr "创建花束以重命名"
+
 msgid "Bouquet Edit"
 msgstr "[编辑自定义组]"
 
@@ -8333,6 +8336,9 @@ msgstr "星期五"
 msgid "From :"
 msgstr "来自:"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "从上次扫描中，创建了一个具有此名称的新花束：创建花束以重命名 使用您选择的名称再次更改名称。"
+
 msgid "Front"
 msgstr "前端"
 
@@ -10099,6 +10105,9 @@ msgstr "最后一次正确配置"
 
 msgid "Last flash"
 msgstr "最后闪存"
+
+msgid "Last Scanned"
+msgstr "上次扫描"
 
 msgid "Last speed"
 msgstr "最后播放速度"
@@ -14405,8 +14414,11 @@ msgstr "重命名"
 msgid "Rename Directory"
 msgstr ""
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "重命名节目"
+
+msgid "Bouquet created to rename"
+msgstr "创建花束以重命名"
 
 msgid "Rename all related files"
 msgstr ""

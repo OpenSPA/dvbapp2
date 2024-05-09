@@ -3105,6 +3105,9 @@ msgstr "Μποτσουάνα"
 msgid "Bottom"
 msgstr "Κάτω"
 
+msgid "Bouquet created to rename"
+msgstr "Μπουκέτο που δημιουργήθηκε για μετονομασία"
+
 msgid "Bouquet Edit"
 msgstr "[επεξεργασία μπουκέτου]"
 
@@ -8339,6 +8342,9 @@ msgstr "Παρασκευή"
 msgid "From :"
 msgstr "Από :"
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Από το \"Last Scanned\" δημιουργήθηκε ένα νέο μπουκέτο με αυτό το όνομα:\n\n\"Μπουκέτο που δημιουργήθηκε για μετονομασία\"\n\nΑλλάξτε ξανά το όνομα με το επιλεγμένο σας."
+
 msgid "Front"
 msgstr "Εμπρόσθιο"
 
@@ -10105,6 +10111,9 @@ msgstr "Τελευταία ρύθμιση"
 
 msgid "Last flash"
 msgstr "Τελευταίο φλασάρισμα"
+
+msgid "Last Scanned"
+msgstr "Τελευταία σάρωση"
 
 msgid "Last speed"
 msgstr "Τελευταία ταχύτητα"
@@ -14417,8 +14426,11 @@ msgstr "Μετονομασία"
 msgid "Rename Directory"
 msgstr "Μετονομασία φακέλου"
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "μετονομασία στοιχείου"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Μετονομασία καταχώρησης και δημιουργία νέου μπουκέτου"
 
 msgid "Rename all related files"
 msgstr "Μετονομασία όλων των σχετικών αρχείων"

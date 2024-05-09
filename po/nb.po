@@ -3075,6 +3075,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "bunn"
 
+msgid "Bouquet created to rename"
+msgstr "Bukett opprettet for å gi nytt navn"
+
 msgid "Bouquet Edit"
 msgstr "[rediger kanalliste]"
 
@@ -8237,6 +8240,9 @@ msgstr "Fredag"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Fra \"Sist skannet\" ble det opprettet en ny bukett med dette navnet:\n\n\"Bukett opprettet for å gi nytt navn\"\n\nEndre navnet igjen med den valgte."
+
 msgid "Front"
 msgstr ""
 
@@ -9991,6 +9997,9 @@ msgstr "Siste innstilling"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Sist skannet"
 
 msgid "Last speed"
 msgstr "Siste hastighet"
@@ -14272,8 +14281,11 @@ msgstr "Gi nytt navn"
 msgid "Rename Directory"
 msgstr ""
 
-msgid "Rename Entry"
-msgstr ""
+msgid "Rename entry"
+msgstr "Gi nytt navn til oppføring"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Gi nytt navn til oppføring og opprett ny bukett"
 
 msgid "Rename all related files"
 msgstr ""

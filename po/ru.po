@@ -3139,6 +3139,9 @@ msgstr "Ботсвана"
 msgid "Bottom"
 msgstr "Вниз"
 
+msgid "Bouquet created to rename"
+msgstr "Букет создан для переименования"
+
 msgid "Bouquet Edit"
 msgstr "[Редактирование букетов]"
 
@@ -8377,6 +8380,9 @@ msgstr "Пятница"
 msgid "From :"
 msgstr "Из "
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Из \"Последнее сканирование\" был создан новый букет с таким названием:\n\n\"Букет создан для переименования\"\n\nСнова измените название на выбранное."
+
 msgid "Front"
 msgstr "Передний"
 
@@ -10144,6 +10150,9 @@ msgstr "Последний конфиг"
 
 msgid "Last flash"
 msgstr "Последняя прошивка"
+
+msgid "Last Scanned"
+msgstr "Последнее сканирование"
 
 msgid "Last speed"
 msgstr "Последняя скорость"
@@ -14459,8 +14468,11 @@ msgstr "Переименовать"
 msgid "Rename Directory"
 msgstr "Переименовать каталог"
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Переименовать выбранное"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Переименуйте запись и создайте новый букет"
 
 msgid "Rename all related files"
 msgstr "Переименовать все связанные файлы"

@@ -3109,6 +3109,9 @@ msgstr "Botswana"
 msgid "Bottom"
 msgstr "Bund"
 
+msgid "Bouquet created to rename"
+msgstr "Buket oprettet for at omdøbe"
+
 msgid "Bouquet Edit"
 msgstr "[buket redigering]"
 
@@ -8341,6 +8344,9 @@ msgstr "Fredag"
 msgid "From :"
 msgstr "Fra: "
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr "Fra \"Sidst scannet\" blev der oprettet en ny buket med dette navn:\n\n\"Buket oprettet for at omdøbe\"\n\nSkift navnet igen med din valgte."
+
 msgid "Front"
 msgstr ""
 
@@ -10127,6 +10133,9 @@ msgstr "Sidste opsætning"
 
 msgid "Last flash"
 msgstr ""
+
+msgid "Last Scanned"
+msgstr "Senest scannet"
 
 msgid "Last speed"
 msgstr "Sidste hastighed"
@@ -14496,8 +14505,11 @@ msgstr "Omdøb"
 msgid "Rename Directory"
 msgstr ""
 
-msgid "Rename Entry"
+msgid "Rename entry"
 msgstr "Omdøb post"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Omdøb indgang og opret ny buket"
 
 msgid "Rename all related files"
 msgstr ""

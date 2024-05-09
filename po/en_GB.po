@@ -3090,6 +3090,9 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
+msgid "Bouquet created to rename"
+msgstr ""
+
 msgid "Bouquet Edit"
 msgstr "Bouquet Edit"
 
@@ -8257,6 +8260,9 @@ msgstr "Friday"
 msgid "From :"
 msgstr ""
 
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgstr ""
+
 msgid "Front"
 msgstr ""
 
@@ -10010,6 +10016,9 @@ msgid "Last config"
 msgstr "Last config"
 
 msgid "Last flash"
+msgstr ""
+
+msgid "Last Scanned"
 msgstr ""
 
 msgid "Last speed"
@@ -14300,22 +14309,25 @@ msgid "Removing partition table"
 msgstr ""
 
 msgid "Rename"
-msgstr "Rename"
-
-msgid "Rename Directory"
-msgstr ""
-
-msgid "Rename Entry"
 msgstr ""
 
 msgid "Rename all related files"
 msgstr ""
 
+msgid "Rename Directory"
+msgstr ""
+
 msgid "Rename directory/file"
 msgstr ""
 
+msgid "Rename entry"
+msgstr ""
+
+msgid "Rename entry and create new bouquet"
+msgstr ""
+
 msgid "Rename failed!"
-msgstr "Rename failed!"
+msgstr ""
 
 msgid "Rename name and description for new events"
 msgstr "Rename name and description for new events"
