@@ -14632,9 +14632,6 @@ msgstr ""
 msgid "Rename entry"
 msgstr "đổi tên mục nhập"
 
-msgid "Bouquet created to rename"
-msgstr "Bó hoa được tạo để đổi tên"
-
 msgid "Rename all related files"
 msgstr ""
 
