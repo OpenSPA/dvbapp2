@@ -14417,9 +14417,6 @@ msgstr ""
 msgid "Rename entry"
 msgstr "重命名节目"
 
-msgid "Bouquet created to rename"
-msgstr "创建花束以重命名"
-
 msgid "Rename all related files"
 msgstr ""
 
