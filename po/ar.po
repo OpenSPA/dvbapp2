@@ -8780,7 +8780,7 @@ msgid "From :"
 msgstr ""
 
 msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
-msgstr "من "آخر مسح" تم إنشاء باقة جديدة بهذا الاسم\n\n\باقة تم إنشاؤها لإعادة تسمية\n\nقم بتغيير الاسم مرة أخرى مع الاسم الذي اخترته."
+msgstr ""
 
 msgid "Front"
 msgstr ""
