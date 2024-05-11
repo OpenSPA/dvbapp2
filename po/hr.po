@@ -10866,9 +10866,6 @@ msgstr ""
 msgid "Last speed"
 msgstr ""
 
-msgid "Last Scanned"
-msgstr ""
-
 msgid "Last update"
 msgstr ""
 
