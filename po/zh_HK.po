@@ -15197,9 +15197,6 @@ msgstr ""
 msgid "Rename entry"
 msgstr "移除項目"
 
-msgid "Bouquet created to rename"
-msgstr "創建花束以重命名"
-
 msgid "Rename all related files"
 msgstr ""
 
