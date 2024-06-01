@@ -2,6 +2,7 @@ from os import makedirs, symlink, unlink
 from os.path import exists, join, islink
 from re import compile
 from shutil import rmtree
+from urllib.request import urlopen, Request  # [norhap] [OpenSPA]
 
 from enigma import checkInternetAccess, eDVBDB, eTimer, gRGB, getDesktop
 
@@ -445,7 +446,11 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		self.updatePluginList()
 
 	def checkInternet(self):
-		self.internetAccess = checkInternetAccess(FEED_SERVER, INTERNET_TIMEOUT)
+		try:  # [norhap] [OpenSPA]
+			request = Request("https://" + FEED_SERVER)
+			self.internetAccess = urlopen(request, timeout=5)
+		except Exception:
+			self.internetAccess = False
 		self.updateButtons()
 
 	def updatePluginList(self):
@@ -473,7 +478,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 			self["pluginEditActions"].setEnabled(True)
 		else:
 			self["key_red"].setText(_("Remove Plugins"))
-			if self.internetAccess == 0:  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
+			if self.internetAccess:
 				self["key_green"].setText(_("Install Plugins"))
 				self["key_yellow"].setText(_("Update Plugins"))
 				self["pluginDownloadActions"].setEnabled(True)
