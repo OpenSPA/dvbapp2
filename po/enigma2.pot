@@ -3222,9 +3222,6 @@ msgstr ""
 msgid "CI Boot Delay"
 msgstr ""
 
-msgid "CI enabled"
-msgstr ""
-
 msgid "CI Helper Settings"
 msgstr ""
 
