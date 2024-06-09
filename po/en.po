@@ -4080,7 +4080,7 @@ msgstr ""
 msgid "Channel down"
 msgstr ""
 
-msgid "Channel list context menu"
+msgid "Channel Selection Context Menu"
 msgstr ""
 
 msgid "Channel list cursor behavior"
@@ -4114,6 +4114,9 @@ msgid "Channel selection"
 msgstr ""
 
 msgid "Channel selection configuration"
+msgstr ""
+
+msgid "Channel Selection Settings"
 msgstr ""
 
 msgid "Channel up"
@@ -11508,10 +11511,10 @@ msgstr ""
 msgid "No, scan later manually"
 msgstr ""
 
-msgid "No, show always the plugin browser"
+msgid "No, show the Plugin Browser"
 msgstr ""
 
-msgid "No, show always the timer list"
+msgid "No, show the RecordTimer Overview"
 msgstr ""
 
 msgid "NodeID"
@@ -15509,9 +15512,6 @@ msgid "Setting a password is strongly advised if your STB is open to the Interne
 msgstr ""
 
 msgid "Settings"
-msgstr ""
-
-msgid "Settings..."
 msgstr ""
 
 msgid "Setup"
@@ -20433,10 +20433,10 @@ msgstr ""
 msgid "Yes, but don't save time shift as movie"
 msgstr ""
 
-msgid "Yes, but if not available show the plugin browser"
+msgid "Yes, show Plugin Browser if unavailable"
 msgstr ""
 
-msgid "Yes, but if not available show the timer list"
+msgid "Yes, show RecordTimer if unavailable"
 msgstr ""
 
 msgid "Yes, but save time shift as movie and continue recording"
@@ -20962,7 +20962,7 @@ msgstr ""
 msgid "add bouquet to parental protection"
 msgstr ""
 
-msgid "add marker"
+msgid "Add Marker To Bouquet"
 msgstr ""
 
 msgid "add service to bouquet"
@@ -21220,7 +21220,7 @@ msgstr ""
 msgid "copy folder"
 msgstr ""
 
-msgid "copy to bouquets"
+msgid "Copy To Bouquet"
 msgstr ""
 
 msgid "create directory"
@@ -21919,10 +21919,10 @@ msgstr ""
 msgid "play Files"
 msgstr ""
 
-msgid "play as picture in picture"
+msgid "Play In PiP Window"
 msgstr ""
 
-msgid "play in mainwindow"
+msgid "Play In Main Window"
 msgstr ""
 
 msgid "play/show Files"

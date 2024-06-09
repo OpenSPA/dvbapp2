@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 msgid ""
 "\n"
@@ -104,7 +104,7 @@ msgid " (Partition %d)"
 msgstr " (Partición %d)"
 
 msgid "(PiP)"
-msgstr ""
+msgstr "(PiP)"
 
 msgid " (Radio)"
 msgstr " (Radio)"
@@ -2001,12 +2001,12 @@ msgstr ""
 "Añadir Administrador de archivos a la lista de opciones del menú principal."
 
 #
-msgid "Add HDMI IN to bouquet"
+msgid "Add HDMI IN To Bouquet"
 msgstr "Añadir HDMI IN a lista"
 
 #
-msgid "Add Marker"
-msgstr "Añadir marcador"
+msgid "Add Marker To Bouquet"
+msgstr "Añadir marcador a lista"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Añadir nueva entrada de canal quad"
@@ -2044,9 +2044,15 @@ msgstr "Añadir un temporizador de zapeo para el programa actual"
 msgid "Add a ZapTimer for next event"
 msgstr "Añadir un temporizador de zapeo para el programa siguiente"
 
+msgid "Add a new bouquet"
+msgstr "Añadir una nueva lista"
+
 #
 msgid "Add a mark"
 msgstr "Añadir marca"
+
+msgid "Add a new marker"
+msgstr "Añadir nuevo marcador"
 
 msgid "Add a new tag"
 msgstr "Añadir una nueva etiqueta"
@@ -2124,6 +2130,9 @@ msgstr "Añadir el directorio actual como favorito"
 
 msgid "Add the current service to the Volume Offsets list"
 msgstr "Añadir el servicio actual a la lista de compensaciones de volumen"
+
+msgid "Add the selected service to a bouquet or alternative"
+msgstr "Añadir el servicio seleccionado a un favorito o alternativa"
 
 #
 msgid "Add title"
@@ -3381,6 +3390,9 @@ msgstr "Botsuana"
 msgid "Bottom"
 msgstr "Al final"
 
+msgid "Bouquet created to rename"
+msgstr "Bouquet creado a renombrar"
+
 msgid "Bouquet List"
 msgstr "Lista de grupos"
 
@@ -4083,9 +4095,6 @@ msgstr "Invertir botones de canal"
 msgid "Channel down"
 msgstr "Bajar canal"
 
-msgid "Channel List Context Menu"
-msgstr "Menú contextual de lista de canales"
-
 msgid "Channel list cursor behavior"
 msgstr "Comportamiento del cursor en lista de canales"
 
@@ -4119,6 +4128,16 @@ msgstr "Selección de canal"
 
 msgid "Channel selection configuration"
 msgstr "Configuración de los canales"
+
+msgid "Channel Selection Context Menu"
+msgstr "Menú contextual de lista de canales"
+
+#
+msgid "Channel Selection Context Menu Actions"
+msgstr "Acciones de menú contextual de lista de canales"
+
+msgid "Channel Selection Context Menu Navigation Actions"
+msgstr "Acciones de navegación del menú contextual de lista de canales"
 
 msgid "Channel selection:"
 msgstr "Selección del canal:"
@@ -9197,8 +9216,18 @@ msgstr "Viernes"
 msgid "From :"
 msgstr "Desde:"
 
-msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
-msgstr "Desde \"Último escaneo\" se creó un nuevo bouquet con este nombre:\n\n\"Bouquet creado a renombrar\"\n\nCambie el nombre nuevamente con su elegido."
+msgid ""
+"From \"Last Scanned\" a new bouquet was created with this name:\n"
+"\n"
+"\"Bouquet created to rename\"\n"
+"\n"
+"Change the name again with your chosen one."
+msgstr ""
+"Desde \"Último escaneo\" se creó un nuevo bouquet con este nombre:\n"
+"\n"
+"\"Bouquet creado a renombrar\"\n"
+"\n"
+"Cambie el nombre nuevamente con su elegido."
 
 msgid "Front"
 msgstr "Frente"
@@ -13204,11 +13233,11 @@ msgstr "No, nunca"
 msgid "No, scan later manually"
 msgstr "No, buscar después manualmente"
 
-msgid "No, show always the plugin browser"
-msgstr "No, mostrar siempre el explorador de plugins"
+msgid "No, show the Plugin Browser"
+msgstr "No, mostrar Explorador de plugins"
 
-msgid "No, show always the timer list"
-msgstr "No, mostrar siempre la lista del temporizador"
+msgid "No, show the RecordTimer Overview"
+msgstr "No, mostrar la descripción general del temporizador de grabación"
 
 msgid "NodeID"
 msgstr "ID de nodo"
@@ -14204,10 +14233,10 @@ msgstr "Reproducir anterior"
 msgid "Play recorded movies"
 msgstr "Reproducir películas grabadas"
 
-msgid "Play service with Stream Relay"
+msgid "Play Service With Stream Relay"
 msgstr "Reproducir servicio con Stream Relay"
 
-msgid "Play service without Stream Relay"
+msgid "Play Service Without Stream Relay"
 msgstr "Reproducir servicio sin Stream Relay"
 
 msgid "Play the audio file"
@@ -15822,6 +15851,9 @@ msgstr "Eliminar la línea de CCcam.cfg"
 msgid "Remove the current bookmark"
 msgstr "Eliminar el favorito actual"
 
+msgid "Remove the selected service"
+msgstr "Eliminar el servicio seleccionado"
+
 #
 msgid "Remove timer"
 msgstr "Eliminar temporizador"
@@ -15848,14 +15880,21 @@ msgstr "Eliminando tabla de particiones"
 msgid "Rename"
 msgstr "Renombrar"
 
-msgid "Rename Directory"
-msgstr "Cambiar el nombre del directorio"
-
 msgid "Rename all related files"
 msgstr "Renombrar todos los archivos relacionados"
 
+msgid "Rename Directory"
+msgstr "Cambiar el nombre del directorio"
+
 msgid "Rename directory/file"
 msgstr "Renombrar directorio/archivo"
+
+# /lib/python/Screens/ChannelSelection.py
+msgid "Rename entry"
+msgstr "Renombrar entrada"
+
+msgid "Rename entry and create new bouquet"
+msgstr "Cambiar nombre de la entrada y crear un nuevo bouquet"
 
 msgid "Rename failed!"
 msgstr "¡Error al renombrar!"
@@ -15868,6 +15907,9 @@ msgstr "Renombrar solo el archivo resaltado"
 
 msgid "Rename the proposed file to be created"
 msgstr "Cambiar el nombre del archivo propuesto para ser creado"
+
+msgid "Rename the selected service"
+msgstr "Renombrar el servicio seleccionado"
 
 msgid "Rename this tag"
 msgstr "Cambia el nombre de esta etiqueta"
@@ -17159,6 +17201,9 @@ msgid ""
 "if you use a VPN and the normal feeds can't be accessed via the published "
 "DNS names."
 msgstr ""
+"Selecciona 'Sí' para usar direcciones IP de fuentes de GitHub alternativas. "
+"Esto puede resultar útil si utilizas una VPN y no se puede acceder a las "
+"fuentes normales a través de los DNS publicados."
 
 msgid ""
 "Select 'Yes' to use signal values (SNR, etc) calculated from the older API "
@@ -18665,9 +18710,6 @@ msgstr "Ajustes"
 #
 msgid "Settings mode"
 msgstr "Modo de configuración"
-
-msgid "Settings..."
-msgstr "Ajustes..."
 
 #
 msgid "Setup"
@@ -21764,19 +21806,6 @@ msgid ""
 msgstr ""
 "Esta función no está disponible ya que el procesado de archivos grandes "
 "puede llevar mucho tiempo al ejecutar en este hardware."
-
-msgid ""
-"This function recovers your video signal in case of loss. The video has been changed to 720p.\n"
-"If this is your case, please keep the video at 720P and do the following:\n"
-"Go to System > Receiver Setup > Video > Video Settings\n"
-"Now set a correct resolution.\n\n"
-"Do you want to keep the video at 720p?"
-msgstr ""
-"Esta función recupera tu señal de vídeo en caso de pérdida. El vídeo ha sido cambiado a 720p.\n"
-"Si este es tu caso, mantén el vídeo en 720P y haz lo siguiente:\n"
-"Vaya a Sistema > Configuración del receptor > Vídeo > Configuración de vídeo\n"
-"Ahora establezca una resolución correcta.\n\n"
-"¿Quieres mantener el vídeo a 720p?"
 
 msgid ""
 "This is a workaround for some devices that wake up again after switching to "
@@ -24990,11 +25019,11 @@ msgstr "Sí, ¡realice un backup de mis ajustes!"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Sí, pero no guardes Timeshift como película"
 
-msgid "Yes, but if not available show the plugin browser"
-msgstr "Si no está disponible, ver Explorador de plugins"
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Sí, mostrar el Explorador de Plugins si no está disponible"
 
-msgid "Yes, but if not available show the timer list"
-msgstr "Si no está disponible, ver temporizadores"
+msgid "Yes, show RecordTimer if unavailable"
+msgstr "Sí, mostrar el Temporizador de grabación si no está disponible"
 
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Sí, pero guarda Timeshift como película y sigue grabando"
@@ -25796,8 +25825,8 @@ msgid "copy"
 msgstr "Copiar"
 
 #
-msgid "Copy To Bouquets"
-msgstr "Copiar a listas"
+msgid "Copy To Bouquet"
+msgstr "Copiar a lista"
 
 msgid "current affairs (general)"
 msgstr "Actualidad (general)"
@@ -26379,13 +26408,13 @@ msgstr "las artes escénicas"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "Play As Picture in Picture window"
-msgstr "Reproducir como Picture in Picture"
+msgid "Play In PiP Window"
+msgstr "Reproducir en ventana PiP"
 
 msgid "Play in Main"
 msgstr "Reproducir en ventana principal"
 
-msgid "Play In Main window"
+msgid "Play In Main Window"
 msgstr "Reproducir en ventana principal"
 
 msgid "Play in PiP"
@@ -26496,11 +26525,8 @@ msgid "rename"
 msgstr "Renombrar"
 
 # /lib/python/Screens/ChannelSelection.py
-msgid "Rename entry"
+msgid "Rename Entry"
 msgstr "Renombrar entrada"
-
-msgid "Rename entry and create new bouquet"
-msgstr "Cambiar nombre de la entrada y crear un nuevo bouquet"
 
 msgid "Restore Deleted User Bouquets"
 msgstr "Restaurar listas eliminadas"
@@ -27086,9 +27112,6 @@ msgstr ""
 #
 msgid "All Select"
 msgstr "Todo seleccionado"
-
-msgid "Bouquet created to rename"
-msgstr "Bouquet creado a renombrar"
 
 msgid "Bouquet Selector"
 msgstr "Selección de lista"
@@ -28810,7 +28833,7 @@ msgid "Storage device not writable!"
 msgstr "¡No se puede escribir en el disco!"
 
 msgid ""
-"This option allows you choose the option for subservice indicator or "
+"This option allows you choose the option for Subservice indicator or "
 "selection."
 msgstr ""
 "Esta opción te permite elegir la opción para la selección o indicador de "
@@ -28836,6 +28859,44 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#
+#~ msgid "Add Marker"
+#~ msgstr "Añadir marcador"
+
+#~ msgid "No, show always the timer list"
+#~ msgstr "No, mostrar siempre la lista del temporizador"
+
+#~ msgid "Settings..."
+#~ msgstr "Ajustes..."
+
+#~ msgid ""
+#~ "This function recovers your video signal in case of loss. The video has "
+#~ "been changed to 720p.\n"
+#~ "If this is your case, please keep the video at 720P and do the "
+#~ "following:\n"
+#~ "Go to System > Receiver Setup > Video > Video Settings\n"
+#~ "Now set a correct resolution.\n"
+#~ "\n"
+#~ "Do you want to keep the video at 720p?"
+#~ msgstr ""
+#~ "Esta función recupera tu señal de vídeo en caso de pérdida. El vídeo ha "
+#~ "sido cambiado a 720p.\n"
+#~ "Si este es tu caso, mantén el vídeo en 720P y haz lo siguiente:\n"
+#~ "Vaya a Sistema > Configuración del receptor > Vídeo > Configuración de "
+#~ "vídeo\n"
+#~ "Ahora establezca una resolución correcta.\n"
+#~ "\n"
+#~ "¿Quieres mantener el vídeo a 720p?"
+
+#~ msgid "Yes, but if not available show the plugin browser"
+#~ msgstr "Si no está disponible, ver Explorador de plugins"
+
+#~ msgid "Yes, but if not available show the timer list"
+#~ msgstr "Si no está disponible, ver temporizadores"
+
+#~ msgid "Play As Picture in Picture window"
+#~ msgstr "Reproducir como Picture in Picture"
 
 #, python-format
 #~ msgid "%s (%s)"
