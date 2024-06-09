@@ -16670,7 +16670,7 @@ msgstr "Ρυθμίσεις"
 msgid "Settings mode"
 msgstr "Λειτουργία ρυθμίσεων"
 
-msgid "Channel Selection Settings"
+msgid "Settings..."
 msgstr "Ρυθμίσεις..."
 
 msgid "Setup"
@@ -20137,9 +20137,6 @@ msgstr "Εναλλαγή λειτουργίας μετακίνησης ενερ�
 
 msgid "Toggle move mode"
 msgstr "Εναλλαγή λειτουργίας μετακίνησης"
-
-msgid "Toggle move mode"
-msgstr "Εναλλαγή επιλογής λειτουργίας μετακίνησης"
 
 msgid "Toggle multi-selection mode"
 msgstr "Εναλλαγή λειτουργίας πολλαπλής επιλογής"

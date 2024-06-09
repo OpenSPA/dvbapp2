@@ -1189,6 +1189,9 @@ msgstr "Mando a distancia de %s %s (nativo)"
 msgid "%s %s software because updates are available."
 msgstr "Hay actualizaciones disponibles del software de tu %s %s."
 
+msgid "%s %sB"
+msgstr "%s %sB"
+
 #, python-format
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
@@ -3399,6 +3402,9 @@ msgstr "Lista de grupos"
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Navegación Selector de listas"
 
+msgid "Bouquets"
+msgstr "Listas"
+
 msgid "Bouvet Island"
 msgstr "Isla de Bouvet"
 
@@ -3631,9 +3637,6 @@ msgstr "Ajustes del asistente de CI"
 #
 msgid "CI assignment"
 msgstr "Asignación de CI"
-
-msgid "CI enabled"
-msgstr "CI habilitado"
 
 msgid "CI slot: "
 msgstr "Slot CI: "
@@ -3872,6 +3875,9 @@ msgstr "Cancelar la selección"
 msgid "Cancel selection and exit"
 msgstr "Cancelar la selección y salir"
 
+msgid "Cancel service selection and exit"
+msgstr "Cancelar la selección del servicio y salir"
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr "Cancelar el comando Reset Feeds que se está procesando ahora mismo"
 
@@ -4044,6 +4050,12 @@ msgstr "Cambiar tamaño del salto"
 msgid "Change to bouquet"
 msgstr "Cambiar a grupo"
 
+msgid "Change to Radio services mode"
+msgstr "Cambiar a modo servicios de radio"
+
+msgid "Change to TV services mode"
+msgstr "Cambiar a modo servicios de TV"
+
 msgid "Changed"
 msgstr "Cambiado"
 
@@ -4081,6 +4093,16 @@ msgstr "Lista de canales"
 #
 msgid "Channel List Menu"
 msgstr "Menú de lista de canales"
+
+msgid "Channel Selection"
+msgstr "Selección de canal"
+
+#
+msgid "Channel Selection Actions"
+msgstr "Acciones de la selección de canales"
+
+msgid "Channel Selection Navigation Actions"
+msgstr "Acciones de navegación de la selección de canales"
 
 #
 msgid "Channel Selection Settings"
@@ -4304,6 +4326,12 @@ msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 "Elegir la frecuencia con la que se conectará al servidor IceTV para "
 "comprobar si hay actualizaciones."
+
+msgid "Choose the Display Skin and press GREEN to activate the skin."
+msgstr "Escoge el skin del display y presiona VERDE para activarlo."
+
+msgid "Choose the OSD Skin and press GREEN to activate the skin."
+msgstr "Escoge el skin y pulsa VERDE para activarlo."
 
 msgid ""
 "Choose the display formatting style for dates. 'D' / 'DD' is the date and "
@@ -4555,6 +4583,9 @@ msgstr "Cerrar diálogo"
 
 msgid "Close screen"
 msgstr "Cerrar pantalla"
+
+msgid "Close the choice box"
+msgstr "Cerrar la pantalla de opciones"
 
 msgid "Close the current screen"
 msgstr "Cerrar la pantalla actual"
@@ -11134,6 +11165,9 @@ msgstr "Plugin LCN para canales DVB-T/T2"
 msgid "LCN rules:"
 msgstr "Reglas LCN:"
 
+msgid "LCN style QuickSelect entry selection"
+msgstr "Selección de entrada QuickSelect estilo LCN"
+
 msgid "LED Deep Standby"
 msgstr "LED en apagado"
 
@@ -12047,9 +12081,6 @@ msgstr "Edad mínima %d años"
 msgid "Minimum send interval"
 msgstr "Intervalo mínimo de envío"
 
-msgid "Mins"
-msgstr "Mins"
-
 #
 msgid "Minute"
 msgstr "Minuto"
@@ -12387,6 +12418,19 @@ msgstr "Ir a la primera línea / pantalla"
 
 msgid "Move to the last line / screen"
 msgstr "Ir a la última línea / pantalla"
+
+msgid "Move to next bouquet"
+msgstr "Ir a la siguiente lista"
+
+msgid "Move to next marker"
+msgstr "Ir al próximo marcador"
+
+msgid "Move to previous bouquet"
+msgstr "Ir a la lista anterior"
+
+#
+msgid "Move to previous marker"
+msgstr "Ir al marcador anterior"
 
 msgid "Move up a line"
 msgstr "Avanzar una línea"
@@ -13667,6 +13711,9 @@ msgstr "Abrir la lista de servicios y seleccionar el canal anterior para PiP"
 msgid "Open the Plugin Browser"
 msgstr "Abrir Explorador de Plugins"
 
+msgid "Open the context menu"
+msgstr "Abrir el menú contextual"
+
 #
 msgid "Open the movie list"
 msgstr "Abrir la lista de películas"
@@ -14242,6 +14289,9 @@ msgstr "Reproducir servicio sin Stream Relay"
 msgid "Play the audio file"
 msgstr "Reproduce el archivo de audio"
 
+msgid "Play the selected service"
+msgstr "Reproducir el servicio seleccionado"
+
 msgid "Playback Settings"
 msgstr "Ajustes de reproducción"
 
@@ -14391,9 +14441,6 @@ msgstr "Seleccione una lista de reproducción…"
 #
 msgid "Please select a resolution..."
 msgstr "Seleccione una resolución…"
-
-msgid "Please select a sub service..."
-msgstr "Seleccione un sub-servicio..."
 
 # ******************************************************************************
 msgid "Please select an aspect ratio..."
@@ -15273,9 +15320,6 @@ msgstr "Menú de inicio rápido"
 msgid "Quick Menu..."
 msgstr "Menú rápido..."
 
-msgid "Quick zap"
-msgstr "Menú de zapeo"
-
 msgid "QuickEPG mode"
 msgstr "Modo de EPG rápido"
 
@@ -15360,6 +15404,10 @@ msgid "Radio Channel Selection"
 msgstr "Selección del canal de radio"
 
 #
+msgid "Radio Channel Selection Actions"
+msgstr "Acciones de la selección de canales de radio"
+
+#
 msgid "Random"
 msgstr "Aleatorio"
 
@@ -15416,10 +15464,6 @@ msgstr "¿Seguro que quiere cerrar sin guardar la configuración?"
 #
 msgid "Really delete this entry?"
 msgstr "¿Estas seguro de borrar esta entrada?"
-
-#
-msgid "Really exit the subservices quickzap?"
-msgstr "¿Seguro que quiere salir del zapeo rápido de subcanales?"
 
 #
 msgid "Really reboot into Recovery Mode?"
@@ -17597,11 +17641,17 @@ msgstr "Seleccionar canal a añadir..."
 msgid "Select Shares"
 msgstr "Seleccionar intercambios"
 
+msgid "Select Skin"
+msgstr "Seleccionar skin"
+
 msgid "Select softcam"
 msgstr "Seleccionar softcam"
 
 msgid "Select sort method:"
 msgstr "Seleccione el método de ordenación:"
+
+msgid "Select subservices"
+msgstr "Seleccionar subservicios"
 
 msgid "Select system information to view:"
 msgstr "Seleccione la información del sistema que desea ver:"
@@ -18329,16 +18379,8 @@ msgid "Service Zap Actions"
 msgstr "Accions cambio de canales"
 
 #
-msgid "Service cant been added to the favorites."
-msgstr "El canal no se puede añadir a Favoritos."
-
-#
 msgid "Service font size"
 msgstr "Tamaño de fuente del canal"
-
-#
-msgid "Service has been added to the favorites."
-msgstr "El canal ha sido añadido a Favoritos."
 
 #
 msgid "Service has been added to the selected bouquet."
@@ -19187,6 +19229,9 @@ msgstr "Mostrar ajustes avanzados"
 msgid "Show all"
 msgstr "Mostrar todo"
 
+msgid "Show all available services"
+msgstr "Mostrar todos los servicios disponibles"
+
 msgid "Show all details"
 msgstr "Mostrar todos los detalles"
 
@@ -19338,6 +19383,15 @@ msgstr "Mostrar tareas en menú extensiones"
 
 msgid "Show last image"
 msgstr "Mostrar última imagen"
+
+msgid "Show list of bouquets"
+msgstr "Mostrar lista de favoritos"
+
+msgid "Show list of providers"
+msgstr "Mostrar lista de proveedores"
+
+msgid "Show list of transponders"
+msgstr "Mostrar lista de transpondedores"
 
 msgid "Show live TV when movie stopped"
 msgstr "Mostrar TV en directo cuando se pare la película"
@@ -19527,6 +19581,10 @@ msgstr "Mostrar mensajes de estado al cambiar a TV en directo"
 
 msgid "Show subservice selection"
 msgstr "Mostrar selección de subcanal"
+
+#
+msgid "Show subservices"
+msgstr "Mostrar subservicios"
 
 # Subtitle QuickMenu
 msgid "Show subtitle quick menu"
@@ -20653,12 +20711,8 @@ msgstr "Stripes"
 msgid "Style:"
 msgstr "Estilo:"
 
-msgid "Sub Service Actions"
+msgid "Subservice Actions"
 msgstr "Acciones de subservicio"
-
-#
-msgid "Subservice list..."
-msgstr "Lista de subservicios..."
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Modo subservicio (botón verde)"
@@ -20885,10 +20939,6 @@ msgstr "Cambiar al evento EPG siguiente"
 msgid "Switch to next channel in history"
 msgstr "Cambiar al siguiente canal en el historial"
 
-#
-msgid "Switch to next sub service"
-msgstr "Cambiar al subcanal siguiente"
-
 # Mediaplayer Filelist Menue
 msgid "Switch to play list"
 msgstr "Cambiar a lista de reproducción"
@@ -20904,10 +20954,6 @@ msgstr "Cambiar al canal anterior"
 #
 msgid "Switch to previous channel in history"
 msgstr "Cambiar al canal anterior en el historial"
-
-#
-msgid "Switch to previous sub service"
-msgstr "Cambiar al subcanal anterior"
 
 msgid "Switch to radio mode"
 msgstr "Cambiar a modo radio"
@@ -24076,9 +24122,6 @@ msgstr ""
 msgid "Virgin Islands (US)"
 msgstr ""
 
-msgid "Virtual KeyBoard"
-msgstr "Teclado virtual"
-
 msgid "Virtual KeyBoard Actions"
 msgstr "Acciones del teclado virtual"
 
@@ -25778,12 +25821,6 @@ msgstr ""
 msgid "cartoon/puppets"
 msgstr "dibujos animados/marionetas"
 
-msgid "change Volume down"
-msgstr "Bajar el volumen"
-
-msgid "change Volume up"
-msgstr "Subir el volumen"
-
 #
 msgid "chapters"
 msgstr "Capítulos"
@@ -26408,9 +26445,6 @@ msgstr "las artes escénicas"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "Play In PiP Window"
-msgstr "Reproducir en ventana PiP"
-
 msgid "Play in Main"
 msgstr "Reproducir en ventana principal"
 
@@ -26419,6 +26453,9 @@ msgstr "Reproducir en ventana principal"
 
 msgid "Play in PiP"
 msgstr "Reproducir en PiP"
+
+msgid "Play In PiP Window"
+msgstr "Reproducir en ventana PiP"
 
 #
 msgid "please wait, loading picture..."
@@ -28095,6 +28132,9 @@ msgstr "Volver a probar"
 msgid "Select Device"
 msgstr "Seleccionar dispositivo"
 
+msgid "Select Display Skin"
+msgstr "Seleccionar skin del LCD"
+
 msgid "Select a device to use as the flash expander"
 msgstr "Selecciona un dispositivo para usar como extensor de flash"
 
@@ -28612,6 +28652,9 @@ msgstr "Mostrar paquetes de softcam"
 msgid "Show Source packages"
 msgstr "Mostrar paquetes de fuente"
 
+msgid "Show Subservices Of Active Service"
+msgstr "Mostrar subservicios del servicio activo"
+
 msgid "Show System Plugin packages"
 msgstr "Mostrar paquetes de plugins de sistema"
 
@@ -28650,10 +28693,6 @@ msgstr "Iniciar el plugin seleccionado"
 
 msgid "Stop edit mode"
 msgstr "Detener el modo edición"
-
-#
-msgid "Toggle move mode"
-msgstr "Alternar modo movimiento"
 
 msgid "Toggle the visibility of the highlighted plugin"
 msgstr "Alternar la visibilidad del plugin seleccionado"
@@ -28859,6 +28898,55 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
+
+#~ msgid "CI enabled"
+#~ msgstr "CI habilitado"
+
+#~ msgid "Mins"
+#~ msgstr "Mins"
+
+#~ msgid "Please select a sub service..."
+#~ msgstr "Seleccione un sub-servicio..."
+
+#~ msgid "Quick zap"
+#~ msgstr "Menú de zapeo"
+
+#
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "¿Seguro que quiere salir del zapeo rápido de subcanales?"
+
+#
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "El canal no se puede añadir a Favoritos."
+
+#
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "El canal ha sido añadido a Favoritos."
+
+#
+#~ msgid "Subservice list..."
+#~ msgstr "Lista de subservicios..."
+
+#
+#~ msgid "Switch to next sub service"
+#~ msgstr "Cambiar al subcanal siguiente"
+
+#
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Cambiar al subcanal anterior"
+
+#~ msgid "Virtual KeyBoard"
+#~ msgstr "Teclado virtual"
+
+#~ msgid "change Volume down"
+#~ msgstr "Bajar el volumen"
+
+#~ msgid "change Volume up"
+#~ msgstr "Subir el volumen"
+
+#
+#~ msgid "Toggle move mode"
+#~ msgstr "Alternar modo movimiento"
 
 #
 #~ msgid "Add Marker"

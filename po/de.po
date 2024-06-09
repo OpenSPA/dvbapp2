@@ -17768,7 +17768,7 @@ msgstr "Einstellungen"
 msgid "Settings mode"
 msgstr "Einstellungsansicht"
 
-msgid "Channel Selection Settings"
+msgid "Settings..."
 msgstr "Einstellungen..."
 
 #
@@ -21448,9 +21448,6 @@ msgstr "Edit-Modus Ein/Aus umschalten"
 
 msgid "Toggle item move mode on/off"
 msgstr "Verschiebemodus Ein/Aus umschalten"
-
-msgid "Toggle move mode"
-msgstr "Verschiebemodus aktivieren / deaktivieren"
 
 msgid "Toggle move mode"
 msgstr "Verschiebemodus umschalten"
