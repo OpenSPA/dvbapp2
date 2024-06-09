@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-22 10:44+0200\n"
-"PO-Revision-Date: 2024-01-28 11:07+0100\n"
+"PO-Revision-Date: 2024-06-09 18:41+0100\n"
 "Last-Translator: OpenSPA <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -3222,10 +3222,16 @@ msgstr ""
 msgid "CI Boot Delay"
 msgstr ""
 
+msgid "CI enabled"
+msgstr ""
+
 msgid "CI Helper Settings"
 msgstr ""
 
 msgid "CI assignment"
+msgstr ""
+
+msgid "CI enabled"
 msgstr ""
 
 msgid "CI slot: "
@@ -15729,6 +15735,9 @@ msgid "Settings"
 msgstr ""
 
 msgid "Settings mode"
+msgstr ""
+
+msgid "Settings..."
 msgstr ""
 
 msgid "Setup"
