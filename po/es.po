@@ -28899,6 +28899,12 @@ msgstr "Selecciona la carpeta donde se encuentran tus picons."
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Selección 'Habilitar' para iniciar CI+ Helper."
 
+msgid "show picons for bouquets in service list"
+msgstr "Mostrar picons para grupos de favoritos en lista de canales"
+
+msgid "Configure if bouquets picons will be shown in the service list."
+msgstr "Configura si se mostrarán los picons para grupos de favoritos en la lista de canales."
+
 #~ msgid "CI enabled"
 #~ msgstr "CI habilitado"
 

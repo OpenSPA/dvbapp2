@@ -24058,3 +24058,9 @@ msgstr ""
 
 msgid "If set to 'yes', enable autorecord for automatically background timeshift"
 msgstr ""
+
+msgid "show picons for bouquets in service list"
+msgstr ""
+
+msgid "Configure if bouquets picons will be shown in the service list."
+msgstr ""

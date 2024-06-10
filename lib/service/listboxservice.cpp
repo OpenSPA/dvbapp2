@@ -916,8 +916,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 				if (e == celServiceName)
 				{
+					// openspa [morser] Show picon for bouquets
 					//picon stuff
-					if (isPlayable && PyCallable_Check(m_GetPiconNameFunc))
+					if ((isPlayable || eServiceReference::isGroup ) && PyCallable_Check(m_GetPiconNameFunc))
 					{
 						ePyObject pArgs = PyTuple_New(1);
 						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
@@ -954,7 +955,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					nameLeft = area.left();
 					nameWidth = area.width();
 
-					if (isPlayable)
+					// openspa [morser] show picon for bouquets
+					if (isPlayable || (eServiceReference::isGroup && eConfigManager::getConfigBoolValue("config.usage.bouquet_icon_enable", false)))
 					{
 						//picon stuff
 						if (PyCallable_Check(m_GetPiconNameFunc) and (m_column_width || piconPixmap))
@@ -971,16 +973,26 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							xoffs += iconWidth + m_items_distances;
 							if (piconPixmap)
 							{
+								// openspa [morser] show picon for bouquets
+								int picon_offset = 0;
+								if (!isPlayable && eServiceReference::isGroup)
+								{
+									picon_offset = m_pixmaps[picServiceGroup]->size().width() + m_items_distances;
+								}
+								///////////////
 								area.moveBy(offset);
 								painter.clip(area);
 								painter.blitScale(piconPixmap,
-									eRect(area.left(), area.top() - m_service_picon_downsize, iconWidth, area.height() + m_service_picon_downsize * 2),
+									eRect(area.left() + picon_offset , area.top() - m_service_picon_downsize, iconWidth, area.height() + m_service_picon_downsize * 2),
 									area,
-									gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO | gPainter::BT_HALIGN_CENTER | gPainter::BT_VALIGN_CENTER);
+									gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO | gPainter::BT_HALIGN_CENTER | gPainter::BT_VALIGN_CENTER);  // openspa [morser] show picon for bouquets
 								painter.clippop();
 							}
 						}
+					}
 
+					if (isPlayable)
+					{
 						//record icon stuff part1
 						int rec_pixmap_xoffs = 0;
 						if (isRecorded && m_record_indicator_mode == 1 && m_pixmaps[picRecord])

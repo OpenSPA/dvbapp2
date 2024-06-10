@@ -87,6 +87,9 @@
 		<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the service list.">config.usage.service_icon_enable</item>
 		<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
 		<item level="1" text="Service picons downsize" description="Reduce the size of the service picons for more line spacing between them." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_downsize</item>
+		<!-- OPENSPA [morser] Allow show picon for bouquets -->
+		<item level="1" text="show picons for bouquets in service list" description="Configure if bouquets picons will be shown in the service list." requires="config.usage.service_icon_enable">config.usage.bouquet_icon_enable</item>
+		<!-- ############################################### -->
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
 		<!-- OPENSPA [morser] Add picons for service quality -->
 		<item level="1" text="Show service quality icons" description="Configure if and how service quality type icons will be shown.">config.usage.quality_icon_mode</item>

@@ -264,6 +264,10 @@ def InitUsageConfig():
 		("event", _("Event View"))
 	])
 
+	### OPENSPA [morser] Allow show bouquet picons ################
+	config.usage.bouquet_icon_enable = ConfigYesNo(default=False)
+	config.usage.bouquet_icon_enable.addNotifier(refreshServiceList)
+	################################################################
 	config.usage.service_icon_enable = ConfigYesNo(default=False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
 	config.usage.servicelist_picon_downsize = ConfigSelectionNumber(default=-2, stepwidth=1, min=-10, max=0, wraparound=True)
