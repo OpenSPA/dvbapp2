@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-23 18:23+0000\n"
+"POT-Creation-Date: 2024-04-18 19:03+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1315,6 +1315,10 @@ msgstr "%s %s ir mus"
 msgid "%s %s remote control (native)"
 msgstr "%s %s fjernkontroll (native)"
 
+#, python-format
+msgid "%s %sB"
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "%s (%04o)"
@@ -2093,7 +2097,7 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
-msgid "Add HDMI IN To Bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr ""
 
 #
@@ -2148,14 +2152,14 @@ msgstr "Legg til zap timer for nåværende program"
 msgid "Add a ZapTimer for next event"
 msgstr "Legg til zap timer for neste program"
 
-msgid "Add a new bouquet"
-msgstr ""
-
 #
 msgid "Add a mark"
 msgstr "Legge til markør"
 
-msgid "Add a new marker"
+msgid "Add a new bouquet"
+msgstr ""
+
+msgid "Add a new marker before the current service"
 msgstr ""
 
 msgid "Add a new tag"
@@ -2228,9 +2232,6 @@ msgstr "Legg til opptak (uendelig)"
 msgid "Add recording (Stop after current event)"
 msgstr "Legg til opptak (stopp etter nåværende program)"
 
-msgid "Add the selected service to a bouquet or alternative"
-msgstr ""
-
 #
 msgid "Add service"
 msgstr "Legg til kanal"
@@ -2245,6 +2246,9 @@ msgid "Add the current directory as a bookmark"
 msgstr ""
 
 msgid "Add the current service to the Volume Offsets list"
+msgstr ""
+
+msgid "Add the selected service to a bouquet or alternative"
 msgstr ""
 
 #
@@ -3470,6 +3474,9 @@ msgstr ""
 msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
+msgid "Bouquets"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr ""
 
@@ -3947,6 +3954,9 @@ msgstr "Kanalvalg"
 msgid "Cancel selection and exit"
 msgstr ""
 
+msgid "Cancel service selection and exit"
+msgstr ""
+
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr ""
 
@@ -4119,6 +4129,12 @@ msgstr "Endre timer"
 msgid "Change step size"
 msgstr "Endre trinn størrelse"
 
+msgid "Change to Radio services mode"
+msgstr ""
+
+msgid "Change to TV services mode"
+msgstr ""
+
 #
 msgid "Change to bouquet"
 msgstr "Bytt til favorittliste"
@@ -4157,6 +4173,16 @@ msgstr "Kanal info"
 msgid "Channel List"
 msgstr "Kanalliste"
 
+msgid "Channel List Menu"
+msgstr ""
+
+#
+msgid "Channel Selection"
+msgstr "Kanalvalg"
+
+msgid "Channel Selection Actions"
+msgstr ""
+
 msgid "Channel Selection Context Menu"
 msgstr "Kanallistens innholdsmenyen"
 
@@ -4166,12 +4192,8 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
-msgid "Channel List Menu"
+msgid "Channel Selection Navigation Actions"
 msgstr ""
-
-#
-msgid "Channel Selection"
-msgstr "Kanalvalg"
 
 #
 msgid "Channel Selection Settings"
@@ -4599,6 +4621,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the choice box"
 msgstr ""
 
 msgid "Close the current screen"
@@ -7411,6 +7436,9 @@ msgid "Enable GStreamer debug log *"
 msgstr ""
 
 msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
+msgid "Enable IPv6"
 msgstr ""
 
 #, fuzzy
@@ -10894,6 +10922,9 @@ msgstr ""
 msgid "LCN rules:"
 msgstr ""
 
+msgid "LCN style QuickSelect entry selection"
+msgstr ""
+
 msgid "LED Brightness"
 msgstr ""
 
@@ -11843,9 +11874,6 @@ msgstr "Minimum alder %d år"
 msgid "Minimum send interval"
 msgstr "Minimum sende intervall"
 
-msgid "Mins"
-msgstr "Min"
-
 #
 msgid "Minutes"
 msgstr "minutter"
@@ -12169,6 +12197,18 @@ msgid "Move to last line / screen"
 msgstr ""
 
 msgid "Move to last line / screen in the panel"
+msgstr ""
+
+msgid "Move to next bouquet"
+msgstr ""
+
+msgid "Move to next marker"
+msgstr ""
+
+msgid "Move to previous bouquet"
+msgstr ""
+
+msgid "Move to previous marker"
 msgstr ""
 
 msgid "Move to the first item on the current line"
@@ -13466,6 +13506,9 @@ msgstr ""
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
+msgid "Open the context menu"
+msgstr ""
+
 msgid "Open the movie list"
 msgstr "Åpne filmliste"
 
@@ -13986,9 +14029,6 @@ msgstr ""
 msgid "Play"
 msgstr "Spill av"
 
-msgid "Play In PiP Window"
-msgstr "Spille som bilde i bilde"
-
 #
 msgid "Play DVD"
 msgstr "Spill av DVD"
@@ -14000,6 +14040,21 @@ msgstr "Spill av DVD"
 
 msgid "Play In Main Window"
 msgstr "spille i hovedvinduet"
+
+msgid "Play In PiP Window"
+msgstr "Spille som bilde i bilde"
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
+msgstr ""
+
+msgid "Play Service With Stream Relay"
+msgstr ""
+
+msgid "Play Service Without Stream Relay"
+msgstr ""
 
 msgid "Play all audio files in the directory"
 msgstr ""
@@ -14057,13 +14112,10 @@ msgstr ""
 msgid "Play selected service on the main screen"
 msgstr ""
 
-msgid "Play Service With Stream Relay"
-msgstr ""
-
-msgid "Play Service Without Stream Relay"
-msgstr ""
-
 msgid "Play the audio file"
+msgstr ""
+
+msgid "Play the selected service"
 msgstr ""
 
 msgid "Playback Settings"
@@ -14197,10 +14249,6 @@ msgstr "Vennligst velg en spilleliste"
 
 msgid "Please select a resolution..."
 msgstr ""
-
-#
-msgid "Please select a sub service..."
-msgstr "Vennligst velg en underkanal..."
 
 msgid "Please select an aspect ratio..."
 msgstr ""
@@ -15086,10 +15134,6 @@ msgstr ""
 msgid "Quick Menu..."
 msgstr ""
 
-#
-msgid "Quick zap"
-msgstr "Hurtig zap"
-
 msgid "QuickEPG mode"
 msgstr ""
 
@@ -15175,6 +15219,9 @@ msgstr ""
 msgid "Radio Channel Selection"
 msgstr "Kanalvalg"
 
+msgid "Radio Channel Selection Actions"
+msgstr ""
+
 #
 msgid "Random"
 msgstr "Tilfeldig"
@@ -15229,10 +15276,6 @@ msgstr "Vil du virkelig lukke uten å lagre"
 #, fuzzy
 msgid "Really delete this entry?"
 msgstr "Vil du virkelig slette ferdige timere?"
-
-#
-msgid "Really exit the subservices quickzap?"
-msgstr "Vil du virkelig avslutte hurtigzap i underkanaler"
 
 #
 #, fuzzy
@@ -15705,9 +15748,6 @@ msgstr ""
 msgid "Remove plugins ..."
 msgstr ""
 
-msgid "Remove the selected service"
-msgstr ""
-
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -15724,6 +15764,9 @@ msgid "Remove the current bookmark"
 msgstr ""
 
 msgid "Remove the selected plugin / list of plugins"
+msgstr ""
+
+msgid "Remove the selected service"
 msgstr ""
 
 #
@@ -15773,10 +15816,10 @@ msgstr ""
 msgid "Rename only highlighted file"
 msgstr ""
 
-msgid "Rename the selected service"
+msgid "Rename the proposed file to be created"
 msgstr ""
 
-msgid "Rename the proposed file to be created"
+msgid "Rename the selected service"
 msgstr ""
 
 msgid "Rename this tag"
@@ -16937,6 +16980,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr ""
 
@@ -17248,6 +17294,9 @@ msgid "Select service to add..."
 msgstr "BH Velg kanal å legge til..."
 
 msgid "Select sort method:"
+msgstr ""
+
+msgid "Select subservices"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -17815,21 +17864,8 @@ msgid "Service and PID information for '%s'"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Service cant been added to the favorites."
-msgstr "Kanal har blitt lagt til favorittene."
-
-#
 msgid "Service font size"
 msgstr "Kanalens skriftstørrelse"
-
-#
-msgid "Service has been added to the favorites."
-msgstr "Kanal har blitt lagt til favorittene."
-
-#
-msgid "Service has been added to the selected bouquet."
-msgstr "Kanal har blitt lagt til den valgte favorittlisten."
 
 msgid "Service info"
 msgstr ""
@@ -18591,6 +18627,12 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
+msgstr ""
+
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -18633,6 +18675,9 @@ msgid "Show advanced settings"
 msgstr ""
 
 msgid "Show all"
+msgstr ""
+
+msgid "Show all available services"
 msgstr ""
 
 msgid "Show all details"
@@ -18796,6 +18841,15 @@ msgid "Show job tasks in Extension Menu"
 msgstr "Vis arbeidsoppgaver i utvidelser"
 
 msgid "Show last image"
+msgstr ""
+
+msgid "Show list of bouquets"
+msgstr ""
+
+msgid "Show list of providers"
+msgstr ""
+
+msgid "Show list of transponders"
 msgstr ""
 
 msgid "Show live TV when movie stopped"
@@ -18985,6 +19039,9 @@ msgid "Show status messages on switch to live TV"
 msgstr ""
 
 msgid "Show subservice selection"
+msgstr ""
+
+msgid "Show subservices"
 msgstr ""
 
 msgid "Show subservices *"
@@ -20152,14 +20209,8 @@ msgstr ""
 msgid "Style:"
 msgstr ""
 
-#, fuzzy
-msgid "Sub Service Actions"
-msgstr "Hurtig Handlinger"
-
-#
-#, fuzzy
-msgid "Subservice list..."
-msgstr "Underkanaler"
+msgid "Subservice Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Subservice mode (GREEN button)"
@@ -20389,10 +20440,6 @@ msgid "Switch to next channel in history"
 msgstr "Bytt til neste kanal i historikken"
 
 #
-msgid "Switch to next sub service"
-msgstr "Bytt til neste underkanal"
-
-#
 msgid "Switch to play list"
 msgstr "Bytt til spilliste"
 
@@ -20407,11 +20454,7 @@ msgstr "Bytt til forrige kanal"
 msgid "Switch to previous channel in history"
 msgstr "Bytt til forrige kanal i historikken"
 
-#
-msgid "Switch to previous sub service"
-msgstr "Bytt til forrige underkanal"
-
-msgid "Switch to radio mode"
+msgid "Switch to Radio mode"
 msgstr ""
 
 msgid "Switch to the available RADIO services"
@@ -20686,6 +20729,9 @@ msgstr ""
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+msgid "Temporary directory"
 msgstr ""
 
 #
@@ -22641,6 +22687,9 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Bruk en gateway"
 
+msgid "Use alternate GitHub DNS"
+msgstr ""
+
 msgid "Use an alternative smaller screen."
 msgstr "Bruk alternativ bilde"
 
@@ -23142,7 +23191,7 @@ msgid "View File"
 msgstr ""
 
 #
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Vis Rass interaktiv..."
 
 msgid "View as grid"
@@ -23197,16 +23246,13 @@ msgstr ""
 msgid "Virgin Islands (US)"
 msgstr ""
 
-msgid "Virtual KeyBoard"
+msgid "Virtual Keyboard"
 msgstr ""
 
 msgid "Virtual KeyBoard Actions"
 msgstr ""
 
 msgid "Virtual KeyBoard Text:"
-msgstr ""
-
-msgid "Virtual Keyboard"
 msgstr ""
 
 msgid "Visual impaired commentary"
@@ -23905,13 +23951,6 @@ msgstr "Ja, ta backup av mine innstillinger!"
 msgid "Yes, but don't save time shift as movie"
 msgstr "Ja, men ikke lagre timeshift som film"
 
-#, fuzzy
-msgid "Yes, show Plugin Browser if unavailable"
-msgstr "Dette alternativet lar deg deaktivere sortering av plugin leseren."
-
-msgid "Yes, show RecordTimer if unavailable"
-msgstr ""
-
 msgid "Yes, but save time shift as movie and continue recording"
 msgstr "Ja, men lagre timeshift som film og fortsette opptaket"
 
@@ -23943,6 +23982,13 @@ msgstr "Ja, legg tilbake innstillingene nå"
 #
 msgid "Yes, returning to movie list"
 msgstr "Ja, returner til filmlisten"
+
+#, fuzzy
+msgid "Yes, show Plugin Browser if unavailable"
+msgstr "Dette alternativet lar deg deaktivere sortering av plugin leseren."
+
+msgid "Yes, show RecordTimer if unavailable"
+msgstr ""
 
 #
 msgid "Yes, shut down now."
@@ -24471,12 +24517,6 @@ msgstr "kortleser"
 
 msgid "cartoon/puppets"
 msgstr "tegneserie/dukketeater"
-
-msgid "change Volume down"
-msgstr ""
-
-msgid "change Volume up"
-msgstr ""
 
 #
 msgid "chapters"
@@ -25506,6 +25546,51 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Mins"
+#~ msgstr "Min"
+
+#
+#~ msgid "Please select a sub service..."
+#~ msgstr "Vennligst velg en underkanal..."
+
+#
+#~ msgid "Quick zap"
+#~ msgstr "Hurtig zap"
+
+#
+#~ msgid "Really exit the subservices quickzap?"
+#~ msgstr "Vil du virkelig avslutte hurtigzap i underkanaler"
+
+#
+#, fuzzy
+#~ msgid "Service cant been added to the favorites."
+#~ msgstr "Kanal har blitt lagt til favorittene."
+
+#
+#~ msgid "Service has been added to the favorites."
+#~ msgstr "Kanal har blitt lagt til favorittene."
+
+#
+#~ msgid "Service has been added to the selected bouquet."
+#~ msgstr "Kanal har blitt lagt til den valgte favorittlisten."
+
+#, fuzzy
+#~ msgid "Sub Service Actions"
+#~ msgstr "Hurtig Handlinger"
+
+#
+#, fuzzy
+#~ msgid "Subservice list..."
+#~ msgstr "Underkanaler"
+
+#
+#~ msgid "Switch to next sub service"
+#~ msgstr "Bytt til neste underkanal"
+
+#
+#~ msgid "Switch to previous sub service"
+#~ msgstr "Bytt til forrige underkanal"
 
 #
 #, fuzzy, python-format

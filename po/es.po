@@ -2004,8 +2004,8 @@ msgstr ""
 "Añadir Administrador de archivos a la lista de opciones del menú principal."
 
 #
-msgid "Add HDMI IN To Bouquet"
-msgstr "Añadir HDMI IN a lista"
+msgid "Add HDMI-IN To Bouquet"
+msgstr "Añadir HDMI-IN a lista"
 
 #
 msgid "Add Marker To Bouquet"
@@ -2054,8 +2054,8 @@ msgstr "Añadir una nueva lista"
 msgid "Add a mark"
 msgstr "Añadir marca"
 
-msgid "Add a new marker"
-msgstr "Añadir nuevo marcador"
+msgid "Add a new marker before the current service"
+msgstr "Añadir un nuevo marcador antes del servicio actual"
 
 msgid "Add a new tag"
 msgstr "Añadir una nueva etiqueta"
@@ -3637,6 +3637,9 @@ msgstr "Ajustes del asistente de CI"
 #
 msgid "CI assignment"
 msgstr "Asignación de CI"
+
+msgid "CI enabled"
+msgstr "CI habilitado"
 
 msgid "CI slot: "
 msgstr "Slot CI: "
@@ -20915,6 +20918,9 @@ msgstr "Cambiar a modo entrada HDMI"
 msgid "Switch to Radio"
 msgstr "Cambiar a radio"
 
+msgid "Switch to Radio mode"
+msgstr "Cambiar a modo radio"
+
 msgid "Switch to TV"
 msgstr "Cambiar a TV"
 
@@ -20954,9 +20960,6 @@ msgstr "Cambiar al canal anterior"
 #
 msgid "Switch to previous channel in history"
 msgstr "Cambiar al canal anterior en el historial"
-
-msgid "Switch to radio mode"
-msgstr "Cambiar a modo radio"
 
 msgid "Switch to the available RADIO services"
 msgstr "Cambiar a servicios de radio disponibles"
@@ -24022,7 +24025,7 @@ msgid "View File"
 msgstr "Ver archivo"
 
 #
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr "Mostrar Rass interactivo..."
 
 #
@@ -28655,6 +28658,9 @@ msgstr "Mostrar paquetes de fuente"
 msgid "Show Subservices Of Active Service"
 msgstr "Mostrar subservicios del servicio activo"
 
+msgid "Show subservices of the active service"
+msgstr "Mostrar subservicios del servicio activo"
+
 msgid "Show System Plugin packages"
 msgstr "Mostrar paquetes de plugins de sistema"
 
@@ -28903,10 +28909,21 @@ msgid "show picons for bouquets in service list"
 msgstr "Mostrar picons para grupos de favoritos en lista de canales"
 
 msgid "Configure if bouquets picons will be shown in the service list."
-msgstr "Configura si se mostrarán los picons para grupos de favoritos en la lista de canales."
+msgstr ""
+"Configura si se mostrarán los picons para grupos de favoritos en la lista de "
+"canales."
 
-#~ msgid "CI enabled"
-#~ msgstr "CI habilitado"
+#~ msgid "Play service with Stream Relay"
+#~ msgstr "Reproducir servicio con Stream Relay"
+
+#~ msgid "Play service without Stream Relay"
+#~ msgstr "Reproducir servicio sin Stream Relay"
+
+#~ msgid "Settings..."
+#~ msgstr "Ajustes..."
+
+#~ msgid "Add a new marker"
+#~ msgstr "Añadir nuevo marcador"
 
 #~ msgid "Mins"
 #~ msgstr "Mins"
@@ -28960,9 +28977,6 @@ msgstr "Configura si se mostrarán los picons para grupos de favoritos en la lis
 
 #~ msgid "No, show always the timer list"
 #~ msgstr "No, mostrar siempre la lista del temporizador"
-
-#~ msgid "Settings..."
-#~ msgstr "Ajustes..."
 
 #~ msgid ""
 #~ "This function recovers your video signal in case of loss. The video has "

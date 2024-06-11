@@ -1795,7 +1795,7 @@ msgstr ""
 msgid "Add File Commander to the Main Menu list of options."
 msgstr ""
 
-msgid "Add HDMI IN To Bouquet"
+msgid "Add HDMI-IN To Bouquet"
 msgstr ""
 
 msgid "Add Marker To Bouquet"
@@ -1846,7 +1846,7 @@ msgstr ""
 msgid "Add a new bouquet"
 msgstr ""
 
-msgid "Add a new marker"
+msgid "Add a new marker before the current service"
 msgstr ""
 
 msgid "Add a new tag"
@@ -15734,9 +15734,6 @@ msgstr ""
 msgid "Settings mode"
 msgstr ""
 
-msgid "Settings..."
-msgstr ""
-
 msgid "Setup"
 msgstr ""
 
@@ -17687,6 +17684,9 @@ msgstr ""
 msgid "Switch to Radio"
 msgstr ""
 
+msgid "Switch to Radio mode"
+msgstr ""
+
 msgid "Switch to TV"
 msgstr ""
 
@@ -17718,9 +17718,6 @@ msgid "Switch to previous channel"
 msgstr ""
 
 msgid "Switch to previous channel in history"
-msgstr ""
-
-msgid "Switch to radio mode"
 msgstr ""
 
 msgid "Switch to the available RADIO services"
@@ -20100,7 +20097,7 @@ msgstr ""
 msgid "View File"
 msgstr ""
 
-msgid "View Rass interactive..."
+msgid "View Rass interactive"
 msgstr ""
 
 msgid "View details"
@@ -23802,6 +23799,9 @@ msgid "Show Source packages"
 msgstr ""
 
 msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show subservices of the active service"
 msgstr ""
 
 msgid "Show System Plugin packages"
