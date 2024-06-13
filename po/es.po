@@ -4376,6 +4376,9 @@ msgstr ""
 "de la pantalla se basará en su elección pero podría estar influida por la "
 "interfaz."
 
+msgid "Choose the fallback font."
+msgstr "Escoge la fuente alternativa."
+
 msgid ""
 "Choose the front panel display formatting style for dates. 'D' / 'DD' is the "
 "date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading "
@@ -7023,6 +7026,27 @@ msgstr "¿Seguro que quiere borrar el temporizador de %s?"
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "¿Seguro que quiere borrar tu marcador %s?"
 
+#
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+"¿Realmente quieres reiniciar OSCam?\n"
+"\n"
+"CONSEJO: ¡Tardará unos 5 segundos!"
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried "
+"out!"
+msgstr ""
+"¿De verdad quieres cerrar OSCam?\n"
+"\n"
+"ATENCIÓN: ¡Para reactivar OSCam, es necesario reiniciar completamente el "
+"receptor!"
+
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "¿Seguro que quiere parar y borrar el temporizador '%s'?"
@@ -8787,6 +8811,10 @@ msgstr "Fallido:"
 
 msgid "Falkland Islands (Malvinas)"
 msgstr "Islas Malvinas"
+
+#
+msgid "Fallback Font *"
+msgstr "Fuente de reserva *"
 
 msgid "Fallback remote receiver URL"
 msgstr "Receptor remoto reserva URL"
@@ -16193,6 +16221,10 @@ msgstr "Reiniciar red"
 msgid "Restart Network Adapter"
 msgstr "Reiniciar adaptador de red"
 
+#
+msgid "Restart OSCam"
+msgstr "Reiniciar OSCam"
+
 msgid "Restart both"
 msgstr "Reiniciar ambos"
 
@@ -19955,6 +19987,10 @@ msgstr "Apagar"
 #
 msgid "Shutdown"
 msgstr "Apagar"
+
+#
+msgid "Shutdown OSCam"
+msgstr "Apagar OSCam"
 
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
