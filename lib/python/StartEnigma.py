@@ -847,6 +847,7 @@ enigma.eProfileWrite("InitSkins")
 from skin import InitSkins
 InitSkins()
 
+enigma.eProfileWrite("InitServiceList")
 from Components.ServiceList import InitServiceListSettings
 InitServiceListSettings()
 
