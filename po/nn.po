@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-18 19:03+0000\n"
+"POT-Creation-Date: 2024-04-19 17:47+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -14044,12 +14044,6 @@ msgstr "spille i hovedvinduet"
 msgid "Play In PiP Window"
 msgstr "Spille som bilde i bilde"
 
-msgid "Play service with Stream Relay"
-msgstr ""
-
-msgid "Play service without Stream Relay"
-msgstr ""
-
 msgid "Play Service With Stream Relay"
 msgstr ""
 
@@ -14110,6 +14104,12 @@ msgid "Play selected service in a PiP window"
 msgstr ""
 
 msgid "Play selected service on the main screen"
+msgstr ""
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
 msgstr ""
 
 msgid "Play the audio file"
@@ -18165,9 +18165,6 @@ msgstr "Innstillinger"
 msgid "Settings mode"
 msgstr "Oppsettsmodus"
 
-msgid "Settings..."
-msgstr "Innstillinger..."
-
 #
 msgid "Setup"
 msgstr "Oppsett"
@@ -18630,9 +18627,6 @@ msgstr ""
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
-msgid "Show subservices of the active service"
-msgstr ""
-
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -19045,6 +19039,9 @@ msgid "Show subservices"
 msgstr ""
 
 msgid "Show subservices *"
+msgstr ""
+
+msgid "Show subservices of the active service"
 msgstr ""
 
 #
@@ -20415,6 +20412,9 @@ msgstr "Bytt til HDMI i modus"
 msgid "Switch to Radio"
 msgstr ""
 
+msgid "Switch to Radio mode"
+msgstr ""
+
 msgid "Switch to TV"
 msgstr ""
 
@@ -20453,9 +20453,6 @@ msgstr "Bytt til forrige kanal"
 
 msgid "Switch to previous channel in history"
 msgstr "Bytt til forrige kanal i historikken"
-
-msgid "Switch to Radio mode"
-msgstr ""
 
 msgid "Switch to the available RADIO services"
 msgstr ""
@@ -25546,6 +25543,9 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Settings..."
+#~ msgstr "Innstillinger..."
 
 #~ msgid "Mins"
 #~ msgstr "Min"

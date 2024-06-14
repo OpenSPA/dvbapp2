@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-18 19:03+0000\n"
+"POT-Creation-Date: 2024-04-19 17:47+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -14060,12 +14060,6 @@ msgstr ""
 msgid "Play In PiP Window"
 msgstr ""
 
-msgid "Play service with Stream Relay"
-msgstr ""
-
-msgid "Play service without Stream Relay"
-msgstr ""
-
 msgid "Play Service With Stream Relay"
 msgstr ""
 
@@ -14133,6 +14127,12 @@ msgid "Play selected service in a PiP window"
 msgstr ""
 
 msgid "Play selected service on the main screen"
+msgstr ""
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
 msgstr ""
 
 msgid "Play the audio file"
@@ -18205,9 +18205,6 @@ msgstr "Iestatījumi"
 msgid "Settings mode"
 msgstr ""
 
-msgid "Settings..."
-msgstr ""
-
 #
 msgid "Setup"
 msgstr "Iestatne"
@@ -18671,9 +18668,6 @@ msgstr ""
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
-msgid "Show subservices of the active service"
-msgstr ""
-
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -19096,6 +19090,9 @@ msgid "Show subservices"
 msgstr ""
 
 msgid "Show subservices *"
+msgstr ""
+
+msgid "Show subservices of the active service"
 msgstr ""
 
 #
@@ -20473,6 +20470,9 @@ msgstr ""
 msgid "Switch to Radio"
 msgstr ""
 
+msgid "Switch to Radio mode"
+msgstr ""
+
 msgid "Switch to TV"
 msgstr ""
 
@@ -20512,9 +20512,6 @@ msgid "Switch to previous channel"
 msgstr ""
 
 msgid "Switch to previous channel in history"
-msgstr ""
-
-msgid "Switch to Radio mode"
 msgstr ""
 
 msgid "Switch to the available RADIO services"
