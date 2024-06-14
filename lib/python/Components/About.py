@@ -8,6 +8,7 @@ from os.path import isfile
 from re import search
 from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
+from platform import libc_ver
 from subprocess import PIPE, Popen
 from sys import maxsize, modules, version as pyversion
 from time import localtime, strftime
@@ -165,7 +166,7 @@ def getCPUInfoString():
 				try:
 					cpuSpeedMhz = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
 				except:
-					cpuSpeedMhz = "1500"
+					cpuSpeedMhz = 1500
 
 		temperature = None
 		if isfile("/proc/stb/fp/temp_sensor_avs"):
@@ -287,14 +288,6 @@ def getDriverInstalledDate():
 				if line[0:8] == "Version:":
 					return extractDate(line)
 	return _("Unknown")
-
-
-def getPythonVersionString():
-	try:
-		return pyversion.split(' ')[0]
-	except:
-		return _("Unknown")
-
 
 ######### OPENSPA [morser] Add missing functions for openspa Plugins ##################################################
 def getHardwareTypeString():
@@ -491,32 +484,24 @@ def getBoxUptime():
 
 
 def getGlibcVersion():
-	process = Popen(("/lib/libc.so.6"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-	stdout, stderr = process.communicate()
-	if process.returncode == 0:
-		for line in stdout.split("\n"):
-			if line.startswith("GNU C Library"):
-				data = line.split()[-1]
-				if data.endswith("."):
-					data = data[0:-1]
-				return data
-	print("[About] Get glibc version failed.")
+	try:
+		return libc_ver()[1]
+	except:
+		print("[About] Get glibc version failed.")
 	return _("Unknown")
-
 
 def getGccVersion():
-	process = Popen(("/lib/libc.so.6"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-	stdout, stderr = process.communicate()
-	if process.returncode == 0:
-		for line in stdout.split("\n"):
-			if line.startswith("Compiled by GNU CC version"):
-				data = line.split()[-1]
-				if data.endswith("."):
-					data = data[0:-1]
-				return data
-	print("[About] Get gcc version failed.")
+	try:
+		return pyversion.split("[GCC ")[1].replace("]", "")
+	except:
+		print("[About] Get gcc version failed.")
 	return _("Unknown")
 
+def getPythonVersionString():
+	try:
+		return pyversion.split(' ')[0]
+	except:
+		return _("Unknown")
 
 def getopensslVersionString():
 	lines = fileReadLines("/var/lib/opkg/info/openssl.control", source=MODULE_NAME)
@@ -525,7 +510,6 @@ def getopensslVersionString():
 			if line[0:8] == "Version:":
 				return line[9:].split("+")[0]
 	return _("Not Installed")
-
 
 # For modules that do "from About import about"
 about = modules[__name__]
