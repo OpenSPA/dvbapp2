@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-19 17:47+0000\n"
-"PO-Revision-Date: 2024-04-22 09:31+0000\n"
+"PO-Revision-Date: 2024-05-01 06:33+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.3-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1209,7 +1209,7 @@ msgstr "%s %s пульт ДУ (оригинальный)"
 
 #, python-format
 msgid "%s %sB"
-msgstr ""
+msgstr "%s %sB"
 
 #, python-format
 msgid "%s (%04o)"
@@ -3162,7 +3162,7 @@ msgid "Bouquet Selector Navigation Actions"
 msgstr "Действия навигации по выбору букетов"
 
 msgid "Bouquets"
-msgstr ""
+msgstr "Букеты"
 
 msgid "Bouvet Island"
 msgstr "Остров Буве"
@@ -3634,7 +3634,7 @@ msgid "Cancel selection and exit"
 msgstr "Отменить выбор и выйти"
 
 msgid "Cancel service selection and exit"
-msgstr ""
+msgstr "Отменить выбор канала и выйти"
 
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr "Отменить команду 'Сбросить каналы', которая в данный момент обрабатывается"
@@ -3795,10 +3795,10 @@ msgid "Change step size"
 msgstr "Изменение размера шага"
 
 msgid "Change to Radio services mode"
-msgstr ""
+msgstr "Перейти в режим радиоканалов"
 
 msgid "Change to TV services mode"
-msgstr ""
+msgstr "Перейти в режим ТВ-каналов"
 
 msgid "Change to bouquet"
 msgstr "Переключиться на фаворит"
@@ -3842,7 +3842,7 @@ msgid "Channel Selection"
 msgstr "Выбор канала"
 
 msgid "Channel Selection Actions"
-msgstr ""
+msgstr "Действия по выбору канала"
 
 msgid "Channel Selection Context Menu"
 msgstr "Меню списка каналов"
@@ -3854,7 +3854,7 @@ msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Действия при навигации по контекстному меню списка каналов"
 
 msgid "Channel Selection Navigation Actions"
-msgstr ""
+msgstr "Действия навигации по выбору канала"
 
 msgid "Channel Selection Settings"
 msgstr "Список каналов"
@@ -4248,7 +4248,7 @@ msgid "Close the Plugin Browser screen"
 msgstr "Закройте экран браузера плагинов"
 
 msgid "Close the choice box"
-msgstr ""
+msgstr "Закройте окно выбора"
 
 msgid "Close the current screen"
 msgstr "Закройте текущий экран"
@@ -6869,7 +6869,7 @@ msgid "Enable GStreamer pipeline graphs *"
 msgstr "Включить графы конвейера GStreamer *"
 
 msgid "Enable IPv6"
-msgstr ""
+msgstr "Включить IPv6"
 
 msgid "Enable IceTV"
 msgstr "Включить IceTV"
@@ -10094,7 +10094,7 @@ msgid "LCN rules:"
 msgstr "Правила LCN"
 
 msgid "LCN style QuickSelect entry selection"
-msgstr ""
+msgstr "Выбор записи QuickSelect в стиле LCN"
 
 msgid "LED Brightness"
 msgstr "Яркость LED"
@@ -11256,16 +11256,16 @@ msgid "Move to last line / screen in the panel"
 msgstr "Перейти к последней строке/экрану на панели"
 
 msgid "Move to next bouquet"
-msgstr ""
+msgstr "Перейти к следующему букету"
 
 msgid "Move to next marker"
-msgstr ""
+msgstr "Перейти к следующему маркеру"
 
 msgid "Move to previous bouquet"
-msgstr ""
+msgstr "Перейти к предыдущему букету"
 
 msgid "Move to previous marker"
-msgstr ""
+msgstr "Перейти к предыдущему маркеру"
 
 msgid "Move to the first item on the current line"
 msgstr "Перейти к первому элементу в текущей строке"
@@ -12438,7 +12438,7 @@ msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Откройте виртуальную клавиатуру для ввода текста"
 
 msgid "Open the context menu"
-msgstr ""
+msgstr "Открыть контекстное меню"
 
 msgid "Open the movie list"
 msgstr "Открыть список фильмов"
@@ -12933,10 +12933,10 @@ msgid "Play In PiP Window"
 msgstr "Показать как картинку в картинке"
 
 msgid "Play Service With Stream Relay"
-msgstr ""
+msgstr "Сервис Play с ретрансляцией потока"
 
 msgid "Play Service Without Stream Relay"
-msgstr ""
+msgstr "Сервис Play без ретрансляции потока"
 
 msgid "Play all audio files in the directory"
 msgstr "Воспроизведение всех аудиофайлов в каталоге"
@@ -12999,7 +12999,7 @@ msgid "Play the audio file"
 msgstr "Воспроизвести аудиофайл"
 
 msgid "Play the selected service"
-msgstr ""
+msgstr "Воспроизвести выбранный канал"
 
 msgid "Playback Settings"
 msgstr "Настройки воспроизведения"
@@ -13995,7 +13995,7 @@ msgid "Radio Channel Selection"
 msgstr "Список радиоканалов"
 
 msgid "Radio Channel Selection Actions"
-msgstr ""
+msgstr "Действия по выбору радиоканала"
 
 msgid "Random"
 msgstr "Случайно"
@@ -15908,7 +15908,7 @@ msgid "Select sort method:"
 msgstr "Выбор метода сортировки"
 
 msgid "Select subservices"
-msgstr ""
+msgstr "Выберите подуслуги"
 
 msgid "Select system information to view:"
 msgstr "Выберите системную информацию для просмотра:"
@@ -17186,7 +17186,7 @@ msgid "Show Source packages"
 msgstr "Показать исходные пакеты"
 
 msgid "Show Subservices Of Active Service"
-msgstr ""
+msgstr "Показать подслужбы активной службы"
 
 msgid "Show System Plugin packages"
 msgstr "Показать пакеты системных плагинов"
@@ -17228,7 +17228,7 @@ msgid "Show all"
 msgstr "Показать всё"
 
 msgid "Show all available services"
-msgstr ""
+msgstr "Show all available каналы"
 
 msgid "Show all details"
 msgstr "Показать все детали"
@@ -17376,13 +17376,13 @@ msgid "Show last image"
 msgstr "Показать последний имидж"
 
 msgid "Show list of bouquets"
-msgstr ""
+msgstr "Показать список букетов"
 
 msgid "Show list of providers"
-msgstr ""
+msgstr "Показать список провайдеров"
 
 msgid "Show list of transponders"
-msgstr ""
+msgstr "Показать список транспондеров"
 
 msgid "Show live TV when movie stopped"
 msgstr "Просмотра ТВ при остановке воспроизведения"
@@ -17559,13 +17559,13 @@ msgid "Show subservice selection"
 msgstr "Показать выбор подсервисов"
 
 msgid "Show subservices"
-msgstr ""
+msgstr "Показать дополнительные услуги"
 
 msgid "Show subservices *"
 msgstr "Показать дополнительные услуги *"
 
 msgid "Show subservices of the active service"
-msgstr ""
+msgstr "Показать подуслуги активной услуги"
 
 msgid "Show subtitle quick menu"
 msgstr "Показать меню субтитров"
@@ -18628,7 +18628,7 @@ msgid "Style:"
 msgstr "Стиль:"
 
 msgid "Subservice Actions"
-msgstr ""
+msgstr "Действия подслужбы"
 
 msgid "Subservice mode (GREEN button)"
 msgstr "Режим субсервиса (ЗЕЛЁНАЯ кнопка)"
@@ -18949,7 +18949,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 21.04.2024"
+msgstr "Коррекция перевода Monja 30.04.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
