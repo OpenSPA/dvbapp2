@@ -1665,6 +1665,12 @@ class SkinContextStack(SkinContext):
 
 
 class SkinContextVertical(SkinContext):
+	def __init__(self, parent=None, pos=None, size=None, font=None):
+		super().__init__(parent, pos, size, font)
+		self.by = self.h + self.y
+		self.bh = self.h
+		self.bottomCount = 0
+
 	def parse(self, pos, size, font):
 		if size in variables:
 			size = variables[size]
@@ -1683,7 +1689,11 @@ class SkinContextVertical(SkinContext):
 				left += int(int(p[0]) * self.scale[0][0] / self.scale[0][1])
 				pos = p[1]
 			if pos == "bottom":
-				pos = (left, self.y + self.h - height)
+				if self.bottomCount:
+					self.by -= self.spacing
+				self.bottomCount += 1
+				self.by = self.by - height
+				pos = (left, self.by)
 				size = (width, height)
 				self.h -= (height + self.spacing)
 			elif pos == "top":
@@ -1706,8 +1716,9 @@ class SkinContextVertical(SkinContext):
 class SkinContextHorizontal(SkinContext):
 	def __init__(self, parent=None, pos=None, size=None, font=None):
 		super().__init__(parent, pos, size, font)
-		self.rx = self.w
+		self.rx = self.w + self.x
 		self.rw = self.w
+		self.rightCount = 0
 
 	def parse(self, pos, size, font):
 		if size in variables:
@@ -1732,9 +1743,10 @@ class SkinContextHorizontal(SkinContext):
 				self.x += (width + self.spacing)
 				self.w -= (width + self.spacing)
 			elif pos == "right":
-				if self.rw != self.rx:
+				if self.rightCount:
 					self.rx -= self.spacing
-				self.rx = self.rx - width
+				self.rightCount += 1
+				self.rx -= width
 				pos = (self.rx, top)
 				size = (width, height)
 				self.w -= (width + self.spacing)
