@@ -483,7 +483,7 @@ def InitAVSwitch():
 		config.av.yuvenabled = ConfigBoolean(default=False)
 	else:
 		config.av.yuvenabled = ConfigBoolean(default=True)
-	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make openATV compatible with some plugins who still use config.av.osd_alpha.
+	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make openSPA compatible with some plugins who still use config.av.osd_alpha.
 
 	config.av.autores = ConfigSelection(default="disabled", choices=[
 		("disabled", _("Disabled")),
