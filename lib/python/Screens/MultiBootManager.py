@@ -6,7 +6,6 @@ from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Console import Console
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
@@ -36,7 +35,14 @@ def best_sort(elem):
 ACTION_SELECT = 0
 ACTION_CREATE = 1
 
-class MultiBootManager(Screen, HelpableScreen):
+class MultiBootManager(Screen):
+MOUNT_DEVICE = 0
+MOUNT_MOUNTPOINT = 1
+MOUNT_FILESYSTEM = 2
+MOUNT_OPTIONS = 3
+MOUNT_DUMP = 4
+MOUNT_FSCK_ORDER = 5
+MAX_MOUNT = 6
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
 	# 	See Components/ChoiceList.py to see the hard coded defaults for which this embedded screen has been designed.
 	skin = """
@@ -61,9 +67,8 @@ class MultiBootManager(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, *args):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("MultiBoot Manager"))
+		Screen.__init__(self, session, enableHelp=True)
+		self.setTitle(_("MultiBoot Manager"))
 		self["slotlist"] = ChoiceList([ChoiceEntryComponent("", (_("Loading slot information, please wait..."), "Loading"))])
 		self["description"] = Label(_("Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"))
 		self["key_red"] = StaticText(_("Cancel"))
@@ -266,7 +271,6 @@ class MultiBootManager(Screen, HelpableScreen):
 		self.selectionChanged()
 
 class KexecInit(Screen):
-
 	model = BoxInfo.getItem("model")
 	modelMtdRootKernel = model in ("vuduo4k", "vuduo4kse") and ["mmcblk0p9", "mmcblk0p6"] or model in ("vusolo4k", "vuultimo4k", "vuuno4k", "vuuno4kse") and ["mmcblk0p4", "mmcblk0p1"] or model == "vuzero4k" and ["mmcblk0p7", "mmcblk0p4"] or ["", ""]
 
@@ -277,7 +281,7 @@ class KexecInit(Screen):
 	STARTUP_3 = "kernel=/linuxrootfs3/zImage root=/dev/%s rootsubdir=linuxrootfs3" % modelMtdRootKernel[0]  # /STARTUP_3
 
 	def __init__(self, session, *args):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["KexecInit", "Setup"]
 		self.setTitle(_("Kexec MultiBoot Manager"))
 		self.kexec_files = fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz")

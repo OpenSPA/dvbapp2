@@ -18,7 +18,6 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Processing import Processing
@@ -157,7 +156,7 @@ def esHD():
 		return False
 ################################################################
 
-class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen):
+class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 	if esHD():
 		skin="""
 		<screen name="PluginBrowser" title="Plugin Browser" position="center,center" size="1500,862" resolution="1920,1080">
@@ -271,8 +270,7 @@ class PluginBrowser(Screen, HelpableScreen, NumericalTextInput, ProtectedScreen)
 
 	def __init__(self, session):
 		self.layout = "pluginList" if config.usage.pluginListLayout.value == PLUGIN_LIST else "pluginGrid"
-		Screen.__init__(self, session, mandatoryWidgets=[self.layout])
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, mandatoryWidgets=[self.layout], enableHelp=True)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
 		self.skinName = ["PluginBrowserList" if config.usage.pluginListLayout.value == PLUGIN_LIST else "PluginBrowserGrid", "PluginBrowser"]
 		self.setTitle(_("Plugin Browser"))
@@ -827,7 +825,7 @@ class PluginBrowserSummary(ScreenSummary):
 		self["entry"].setText(name)
 		self["value"].setText(description)
 
-class PackageAction(Screen, HelpableScreen, NumericalTextInput):
+class PackageAction(Screen, NumericalTextInput):
 	if esHD():
 		skin="""
 		<screen name="PluginAction" title="Plugin Browser Action" position="center,center" size="1350,877" resolution="1920,1080">
@@ -950,8 +948,7 @@ class PackageAction(Screen, HelpableScreen, NumericalTextInput):
 	INFO_UPGRADE = 6
 
 	def __init__(self, session, mode=MODE_REMOVE):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
 		self.skinName = ["PackageAction", "PluginAction"]
 		self.modeData = self.MANAGE_OPTIONS.get(mode, self.MANAGE_OPTIONS[self.MODE_MANAGE])
@@ -1632,7 +1629,7 @@ class PackageActionSummary(ScreenSummary):
 
 language.addCallback(languageChanged)   # OPENSPA [morser] For language filter
 
-class PackageActionLog(Screen, HelpableScreen):
+class PackageActionLog(Screen):
 	skin = """
 	<screen name="PackageActionLog" title="Plugin Action Log" position="center,center" size="950,590" resolution="1280,720">
 		<widget name="log" position="0,0" size="e,e-50" font="Regular;20" />
@@ -1645,8 +1642,7 @@ class PackageActionLog(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, logData):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["PackageActionLog", "PluginActionLog"]
 		self.setTitle(_("Plugin Action Log"))
 		self["log"] = ScrollLabel()
