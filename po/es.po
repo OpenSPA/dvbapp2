@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 10:44+0200\n"
+"POT-Creation-Date: 2024-06-16 12:35+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: JR <openspateam@gmail.com>\n"
 "Language-Team: \n"
@@ -2047,12 +2047,12 @@ msgstr "Añadir un temporizador de zapeo para el programa actual"
 msgid "Add a ZapTimer for next event"
 msgstr "Añadir un temporizador de zapeo para el programa siguiente"
 
-msgid "Add a new bouquet"
-msgstr "Añadir una nueva lista"
-
 #
 msgid "Add a mark"
 msgstr "Añadir marca"
+
+msgid "Add a new bouquet"
+msgstr "Añadir una nueva lista"
 
 msgid "Add a new marker before the current service"
 msgstr "Añadir un nuevo marcador antes del servicio actual"
@@ -2889,6 +2889,9 @@ msgstr "Comenzando enfoque automático..."
 
 msgid "Auto install log"
 msgstr "Registro de instalación automática"
+
+msgid "Auto multi-selection"
+msgstr "Selección múltiple auto"
 
 msgid "Auto shut down"
 msgstr "Apagado automático"
@@ -6561,6 +6564,12 @@ msgstr "Descripción"
 msgid "Deselect"
 msgstr "Deseleccionar"
 
+msgid "Deselect all"
+msgstr "Deseleccionar todo"
+
+msgid "Deselect all lines"
+msgstr "Deseleccionar todas las líneas"
+
 msgid "Deselect all related files"
 msgstr "Deseleccionar todos los archivos relacionados"
 
@@ -8895,6 +8904,12 @@ msgstr "Administrador de archivos: Acciones de información multimedia"
 
 msgid "File Commander Move"
 msgstr "Administrador de archivos: Mover"
+
+msgid "File Commander Navigation Actions"
+msgstr "Acciones de navegación del Administrador de archivos"
+
+msgid "File Commander Selection Actions"
+msgstr "Acciones de selección del Administrador de archivos"
 
 msgid "File Commander Settings"
 msgstr "Configuración del administrador de archivos"
@@ -11315,6 +11330,9 @@ msgstr "A la izquierda del nombre de canal"
 
 msgid "Left, wrapped"
 msgstr "Izquierda, envuelto"
+
+msgid "Legacy mode"
+msgstr "Modo heredado"
 
 msgid "Leisure hobbies"
 msgstr "Pasatiempos de ocio"
@@ -16056,6 +16074,9 @@ msgstr "Restablecer la configuración HDMI-CEC por defecto"
 msgid "Reset and renumerate title names"
 msgstr "Resetea y reenumera los nombres de títulos"
 
+msgid "Reset entries to their default values"
+msgstr "Restablecer entradas a sus valores por defecto"
+
 msgid "Reset executable mode (644)"
 msgstr "Resetear modo ejecutable (644)"
 
@@ -17019,6 +17040,14 @@ msgstr ""
 "parar."
 
 msgid ""
+"Select 'Yes' to disable multi-selection mode after each operation. Select "
+"'No' to leave multi-selection mode active and the selections unchanged."
+msgstr ""
+"Selecciona 'Sí' para desactivar el modo selección múltiple después de cada "
+"operación. Selecciona 'No' para dejar activo el modo selección múltiple y "
+"las selecciones sin cambios."
+
+msgid ""
 "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within "
 "the EPG screen."
 msgstr "Si se ajusta a ‘sí’, se mostrará una pantalla pequeña de TV en el EPG."
@@ -17253,6 +17282,18 @@ msgstr ""
 "fuentes normales a través de los DNS publicados."
 
 msgid ""
+"Select 'Yes' to use legacy navigation where CH+/- swaps the active column. "
+"Select 'No' to use the newer unified navigation option for consistent "
+"navigation with other screens where LEFT/RIGHT swaps the active column and "
+"CH+/- pages up and down the list."
+msgstr ""
+"Selecciona 'Sí' para usar la navegación heredada donde CH+/- intercambia la "
+"columna activa. Selecciona 'No' para usar la nueva opción de navegación "
+"unificada para una navegación consistente con otras pantallas donde "
+"IZQUIERDA/DERECHA intercambia la columna activa y CH+/- páginas hacia arriba "
+"y hacia abajo en la lista."
+
+msgid ""
 "Select 'Yes' to use signal values (SNR, etc) calculated from the older API "
 "V3. This API version has now been superseded."
 msgstr ""
@@ -17458,6 +17499,13 @@ msgstr "Seleccione acción para el temporizador %s:"
 
 msgid "Select additional files to backup"
 msgstr "Seleccionar los archivos adicionales del backup"
+
+#
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+msgid "Select all lines"
+msgstr "Seleccionar todas las líneas"
 
 msgid "Select all related files"
 msgstr "Seleccionar todos los archivos relacionados"
@@ -18634,6 +18682,9 @@ msgstr ""
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Configura la velocidad de desplazamiento de texto en el LCD."
 
+msgid "Set the style of the channel list."
+msgstr "Establece el estilo de la lista de canales."
+
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
 "Configura el tiempo antes de verificar la información relativa a la "
@@ -18714,6 +18765,13 @@ msgid ""
 msgstr ""
 "Configurar en 'Deshabilitado' para reemplazar los espacios en nombres de "
 "archivo y directorio por caracteres de subrayado '_'."
+
+msgid ""
+"Set to 'Yes', to enable automatic recording of the background timeshift "
+"buffer."
+msgstr ""
+"Configura en 'Sí', para activar la grabación automática del buffer timeshift "
+"en segundo plano"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Configura la hora de máxima audiencia."
@@ -20656,6 +20714,10 @@ msgstr "Posición almacenada"
 msgid "Stream"
 msgstr "Stream"
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr ""
+"Stream Relay está activo, por favor cambia a un canal sin Stream Relay."
+
 msgid "Stream Relay port"
 msgstr "Puerto Stream Relay"
 
@@ -20710,6 +20772,9 @@ msgstr "DLNA estricto"
 
 msgid "Stripes"
 msgstr "Stripes"
+
+msgid "Style"
+msgstr "Estilo"
 
 msgid "Style:"
 msgstr "Estilo:"
@@ -22688,6 +22753,9 @@ msgstr ""
 msgid "Toggle selection of the current tag"
 msgstr "Alternar selección de la etiqueta actual"
 
+msgid "Toggle selections"
+msgstr "Alternar selecciones"
+
 #
 msgid "Toggle service name display"
 msgstr "Alternar la visualización del nombre del canal"
@@ -23550,6 +23618,9 @@ msgstr ""
 #
 msgid "Use interface"
 msgstr "Usar interfaz"
+
+msgid "Use legacy navigation"
+msgstr "Usar navegación heredada"
 
 msgid "Use logarithmic steps"
 msgstr "Usar pasos logarítmicos"
@@ -28912,104 +28983,3 @@ msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
-
-#~ msgid "Play service with Stream Relay"
-#~ msgstr "Reproducir servicio con Stream Relay"
-
-#~ msgid "Play service without Stream Relay"
-#~ msgstr "Reproducir servicio sin Stream Relay"
-
-#~ msgid "Settings..."
-#~ msgstr "Ajustes..."
-
-#~ msgid "Add a new marker"
-#~ msgstr "Añadir nuevo marcador"
-
-#~ msgid "Mins"
-#~ msgstr "Mins"
-
-#~ msgid "Please select a sub service..."
-#~ msgstr "Seleccione un sub-servicio..."
-
-#~ msgid "Quick zap"
-#~ msgstr "Menú de zapeo"
-
-#
-#~ msgid "Really exit the subservices quickzap?"
-#~ msgstr "¿Seguro que quiere salir del zapeo rápido de subcanales?"
-
-#
-#~ msgid "Service cant been added to the favorites."
-#~ msgstr "El canal no se puede añadir a Favoritos."
-
-#
-#~ msgid "Service has been added to the favorites."
-#~ msgstr "El canal ha sido añadido a Favoritos."
-
-#
-#~ msgid "Subservice list..."
-#~ msgstr "Lista de subservicios..."
-
-#
-#~ msgid "Switch to next sub service"
-#~ msgstr "Cambiar al subcanal siguiente"
-
-#
-#~ msgid "Switch to previous sub service"
-#~ msgstr "Cambiar al subcanal anterior"
-
-#~ msgid "Virtual KeyBoard"
-#~ msgstr "Teclado virtual"
-
-#~ msgid "change Volume down"
-#~ msgstr "Bajar el volumen"
-
-#~ msgid "change Volume up"
-#~ msgstr "Subir el volumen"
-
-#
-#~ msgid "Toggle move mode"
-#~ msgstr "Alternar modo movimiento"
-
-#
-#~ msgid "Add Marker"
-#~ msgstr "Añadir marcador"
-
-#~ msgid "No, show always the timer list"
-#~ msgstr "No, mostrar siempre la lista del temporizador"
-
-#~ msgid ""
-#~ "This function recovers your video signal in case of loss. The video has "
-#~ "been changed to 720p.\n"
-#~ "If this is your case, please keep the video at 720P and do the "
-#~ "following:\n"
-#~ "Go to System > Receiver Setup > Video > Video Settings\n"
-#~ "Now set a correct resolution.\n"
-#~ "\n"
-#~ "Do you want to keep the video at 720p?"
-#~ msgstr ""
-#~ "Esta función recupera tu señal de vídeo en caso de pérdida. El vídeo ha "
-#~ "sido cambiado a 720p.\n"
-#~ "Si este es tu caso, mantén el vídeo en 720P y haz lo siguiente:\n"
-#~ "Vaya a Sistema > Configuración del receptor > Vídeo > Configuración de "
-#~ "vídeo\n"
-#~ "Ahora establezca una resolución correcta.\n"
-#~ "\n"
-#~ "¿Quieres mantener el vídeo a 720p?"
-
-#~ msgid "Yes, but if not available show the plugin browser"
-#~ msgstr "Si no está disponible, ver Explorador de plugins"
-
-#~ msgid "Yes, but if not available show the timer list"
-#~ msgstr "Si no está disponible, ver temporizadores"
-
-#~ msgid "Play As Picture in Picture window"
-#~ msgstr "Reproducir como Picture in Picture"
-
-#, python-format
-#~ msgid "%s (%s)"
-#~ msgstr "%s (%s)"
-
-#, python-format
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
