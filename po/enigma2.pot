@@ -11631,9 +11631,6 @@ msgstr ""
 msgid "OSD"
 msgstr ""
 
-msgid "OSD 3D Calibration Setup Actions"
-msgstr ""
-
 msgid "OSD 3D Settings"
 msgstr ""
 
@@ -13830,6 +13827,9 @@ msgid "Reset HDMI-CEC settings to default"
 msgstr ""
 
 msgid "Reset and renumerate title names"
+msgstr ""
+
+msgid "Reset entries to their default values"
 msgstr ""
 
 msgid "Reset executable mode (644)"
@@ -23934,9 +23934,6 @@ msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Reset Order"
-msgstr ""
-
-msgid "Reset all settings to the default values"
 msgstr ""
 
 msgid "Plugin"
