@@ -3868,6 +3868,12 @@ msgstr ""
 msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
@@ -6756,9 +6762,6 @@ msgstr ""
 msgid "Enigma2 revision"
 msgstr ""
 
-msgid "Enigma2 skin selector"
-msgstr ""
-
 msgid "Enigma2 version"
 msgstr ""
 
@@ -7990,12 +7993,11 @@ msgstr ""
 msgid "GStreamer version"
 msgstr ""
 
-msgid "GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+msgid "GUI Skin *"
 msgstr ""
 
 msgid "GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+"Do you want to Restart the GUI now?"
 msgstr ""
 
 msgid "Gabon"
@@ -9547,10 +9549,10 @@ msgstr ""
 msgid "LCD Skin Settings"
 msgstr ""
 
-msgid "LCD SkinSelector"
+msgid "LCD scroll speed"
 msgstr ""
 
-msgid "LCD scroll speed"
+msgid "LCD/Front panel *"
 msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
@@ -16797,10 +16799,7 @@ msgstr ""
 msgid "Skin Settings"
 msgstr ""
 
-msgid "Skin setup"
-msgstr ""
-
-msgid "SkinSelector"
+msgid "SkinSelection"
 msgstr ""
 
 msgid "Skins"
