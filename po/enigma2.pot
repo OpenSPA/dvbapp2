@@ -1,12 +1,14 @@
 # Spanish translations for Enigma2.
 #
+
+#, fuzzy
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 10:44+0200\n"
-"PO-Revision-Date: 2024-06-09 18:41+0100\n"
+"POT-Creation-Date: 2024-06-16 12:35+0200\n"
+"PO-Revision-Date: 2024-06-16 18:41+0100\n"
 "Last-Translator: OpenSPA <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -14,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "\n"
@@ -1590,8 +1592,7 @@ msgid "A recording has been started:\n"
 "%s"
 msgstr ""
 
-msgid ""
-"A recording is currently running.\n"
+msgid "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
 
@@ -1837,9 +1838,6 @@ msgstr ""
 msgid "Add a ZapTimer for next event"
 msgstr ""
 
-msgid "Add a new bouquet"
-msgstr ""
-
 msgid "Add a mark"
 msgstr ""
 
@@ -1938,7 +1936,6 @@ msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from update list"
 msgstr ""
-
 
 msgid "Adding schedule..."
 msgstr ""
@@ -2549,6 +2546,9 @@ msgid "Auto focus commencing ..."
 msgstr ""
 
 msgid "Auto install log"
+msgstr ""
+
+msgid "Auto multi-selection"
 msgstr ""
 
 msgid "Auto shut down"
@@ -5631,6 +5631,12 @@ msgstr ""
 msgid "Deselect"
 msgstr ""
 
+msgid "Deselect all"
+msgstr ""
+
+msgid "Deselect all lines"
+msgstr ""
+
 msgid "Deselect all related files"
 msgstr ""
 
@@ -6907,7 +6913,6 @@ msgstr ""
 msgid "Error %d: Unable to read '%s'!  (%s)"
 msgstr ""
 
-
 #, python-format
 msgid "Error %d: Unable to rename file '%s' to '%s'!  (%s)"
 msgstr ""
@@ -6969,8 +6974,8 @@ msgid "Error executing plugin"
 msgstr ""
 
 #, python-format
-msgid "Error getting link via %s\n%s"
-"%s"
+msgid "Error getting link via %s\n"
+"%s%s"
 msgstr ""
 
 msgid "Error opening recording file"
@@ -7596,6 +7601,12 @@ msgstr ""
 msgid "File Commander Move"
 msgstr ""
 
+msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Selection Actions"
+msgstr ""
+
 msgid "File Commander Settings"
 msgstr ""
 
@@ -7905,7 +7916,11 @@ msgstr ""
 msgid "From :"
 msgstr ""
 
-msgid "From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."
+msgid "From \"Last Scanned\" a new bouquet was created with this name:\n"
+"\n"
+"\"Bouquet created to rename\"\n"
+"\n"
+"Change the name again with your chosen one."
 msgstr ""
 
 msgid "Front"
@@ -8807,7 +8822,7 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
 msgstr ""
 
-msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."peated (number of times)."
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -9674,6 +9689,9 @@ msgid "Left from service name"
 msgstr ""
 
 msgid "Left, wrapped"
+msgstr ""
+
+msgid "Legacy mode"
 msgstr ""
 
 msgid "Leisure hobbies"
@@ -11613,6 +11631,9 @@ msgstr ""
 msgid "OSD"
 msgstr ""
 
+msgid "OSD 3D Calibration Setup Actions"
+msgstr ""
+
 msgid "OSD 3D Settings"
 msgstr ""
 
@@ -12565,6 +12586,7 @@ msgstr ""
 #, python-format
 msgid "Plugin Details: %s"
 msgstr ""
+
 msgid "Plugin Browser Update Actions"
 msgstr ""
 
@@ -14614,6 +14636,9 @@ msgstr ""
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr ""
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr ""
 
@@ -14706,6 +14731,9 @@ msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+msgstr ""
+
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr ""
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
@@ -14858,6 +14886,12 @@ msgid "Select action for timer %s:"
 msgstr ""
 
 msgid "Select additional files to backup"
+msgstr ""
+
+msgid "Select all"
+msgstr ""
+
+msgid "Select all lines"
 msgstr ""
 
 msgid "Select all related files"
@@ -15664,6 +15698,9 @@ msgstr ""
 msgid "Set the scrolling speed of text on the front display."
 msgstr ""
 
+msgid "Set the style of the channel list."
+msgstr ""
+
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
 
@@ -15702,6 +15739,9 @@ msgid "Set this to 'Yes' to sort the playlists alphabetically."
 msgstr ""
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr ""
 
 msgid "Set to the desired primetime (hour)."
@@ -17442,6 +17482,9 @@ msgstr ""
 msgid "Stream"
 msgstr ""
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr ""
+
 msgid "Stream Relay port"
 msgstr ""
 
@@ -17493,6 +17536,9 @@ msgid "Strict DLNA"
 msgstr ""
 
 msgid "Stripes"
+msgstr ""
+
+msgid "Style"
 msgstr ""
 
 msgid "Style:"
@@ -18137,8 +18183,7 @@ msgid "The SimpleUmount plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid ""
-"The TMDB plugin is not installed!\n"
+msgid "The TMDB plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
@@ -18971,6 +19016,9 @@ msgstr ""
 msgid "Toggle selection of the current tag"
 msgstr ""
 
+msgid "Toggle selections"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr ""
 
@@ -19714,6 +19762,9 @@ msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
 msgid "Use interface"
+msgstr ""
+
+msgid "Use legacy navigation"
 msgstr ""
 
 msgid "Use logarithmic steps"
@@ -21295,9 +21346,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All events down"
-msgstr ""
-
 msgid "all up/down"
 msgstr ""
 
@@ -21665,15 +21713,6 @@ msgid "gardening"
 msgstr ""
 
 msgid "get the cards' server"
-msgstr ""
-
-msgid "Goto current channel and now"
-msgstr ""
-
-msgid "Goto first channel"
-msgstr ""
-
-msgid "Goto last channel"
 msgstr ""
 
 msgid "grab this frame as bitmap"
@@ -23521,12 +23560,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
 msgid "%d package installable."
 msgid_plural "%d packages installable."
 msgstr[0] ""
@@ -23903,6 +23936,9 @@ msgstr ""
 msgid "Reset Order"
 msgstr ""
 
+msgid "Reset all settings to the default values"
+msgstr ""
+
 msgid "Plugin"
 msgstr ""
 
@@ -24023,44 +24059,9 @@ msgstr ""
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
-msgid "Preferred tuner DVB-S"
-msgstr ""
-
-msgid "Preferred tuner DVB-S for recordings"
-msgstr ""
-
-msgid "Preferred tuner DVB-T"
-msgstr ""
-
-msgid "Preferred tuner DVB-T for recordings"
-msgstr ""
-
-msgid "Preferred tuner DVB-C"
-msgstr ""
-
-msgid "Preferred tuner DVB-C for recordings"
-msgstr ""
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr ""
-
-msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr ""
-
-msgid "Preferred tuner ATSC"
-msgstr ""
-
-msgid "Preferred tuner ATSC for recordings"
-msgstr ""
-
-msgid "Enable Autorecord"
-msgstr ""
-
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-
 msgid "show picons for bouquets in service list"
 msgstr ""
 
 msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
+
