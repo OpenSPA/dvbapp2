@@ -4333,12 +4333,6 @@ msgstr ""
 "Elegir la frecuencia con la que se conectará al servidor IceTV para "
 "comprobar si hay actualizaciones."
 
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr "Escoge el skin del display y presiona VERDE para activarlo."
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr "Escoge el skin y pulsa VERDE para activarlo."
-
 msgid ""
 "Choose the display formatting style for dates. 'D' / 'DD' is the date and "
 "'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for "
@@ -11174,9 +11168,6 @@ msgstr "Adaptador LAN"
 msgid "LAN connection"
 msgstr "Conexión de red local"
 
-msgid "LCD Skin Settings"
-msgstr "Configurar skin del LCD"
-
 msgid "LCD scroll speed"
 msgstr "Velocidad de desplazamiento del LCD"
 
@@ -14548,16 +14539,6 @@ msgstr ""
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of "
 "the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Configura tu interfaz de usuario ajustando los valores hasta que los bordes "
-"del recuadro rojo toquen los de tu TV.\n"
-"Cuando estés listo, pulsa OK para continuar."
-
-#
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
 "When you are ready press green to continue."
 msgstr ""
 "Configura tu interfaz de usuario ajustando los valores hasta que los bordes "
@@ -17414,9 +17395,6 @@ msgstr "Seleccionar carpetas"
 msgid "Select HDD"
 msgstr "Seleccionar HDD"
 
-msgid "Select LCD Skin"
-msgstr "Seleccionar la skin del LCD"
-
 msgid "Select Lan/Wlan"
 msgstr "Seleccione LAN/WLAN"
 
@@ -17697,9 +17675,6 @@ msgstr "Seleccionar canal a añadir..."
 
 msgid "Select Shares"
 msgstr "Seleccionar intercambios"
-
-msgid "Select Skin"
-msgstr "Seleccionar skin"
 
 msgid "Select softcam"
 msgstr "Seleccionar softcam"
@@ -18959,9 +18934,6 @@ msgstr "Configura tu disco duro"
 
 msgid "Setup your LCD"
 msgstr "Elige el tema del LCD"
-
-msgid "Setup your LCD Skin"
-msgstr "Configurar tu skin LCD"
 
 # Quick Menue
 msgid "Setup your OSD"
@@ -28212,9 +28184,6 @@ msgstr "Volver a probar"
 msgid "Select Device"
 msgstr "Seleccionar dispositivo"
 
-msgid "Select Display Skin"
-msgstr "Seleccionar skin del LCD"
-
 msgid "Select a device to use as the flash expander"
 msgstr "Selecciona un dispositivo para usar como extensor de flash"
 
@@ -28989,20 +28958,3 @@ msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
-
-#~ msgid "Enigma2 skin selector"
-#~ msgstr "Selector de temas Enigma2"
-
-#
-#~ msgid ""
-#~ "GUI needs a restart to apply a new skin\n"
-#~ "Do you want to restart the GUI now?"
-#~ msgstr ""
-#~ "La interfaz necesita reiniciarse para aplicar el nuevo skin\n"
-#~ "¿Quieres reiniciar la interfaz ahora?"
-
-#~ msgid "LCD SkinSelector"
-#~ msgstr "Selector de skin LCD"
-
-#~ msgid "Skin setup"
-#~ msgstr "Seleccionar tema"
