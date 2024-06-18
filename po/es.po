@@ -4409,6 +4409,20 @@ msgstr ""
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Elija la opción para corregir datos EPG no válidos."
 
+msgid ""
+"Choose the skin to be used for the GUI interface. Press 'GREEN' to activate "
+"the skin."
+msgstr ""
+"Elige el skin que se utilizará para la interfaz GUI. Pulsa \"VERDE\" para "
+"activar el skin."
+
+msgid ""
+"Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' "
+"to activate the skin."
+msgstr ""
+"Elige el skin que se utilizará para la interfaz LCD/panel frontal. Pulse "
+"'VERDE' para activar el skin."
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 "Elegir el estilo/orden en el que se muestran los elementos en las ventanas "
@@ -7911,9 +7925,6 @@ msgstr "Información sobre Enigma2"
 msgid "Enigma2 revision"
 msgstr "Revisión de Enigma2"
 
-msgid "Enigma2 skin selector"
-msgstr "Selector de temas Enigma2"
-
 msgid "Enigma2 version"
 msgstr "Versión de Enigma2"
 
@@ -9347,20 +9358,15 @@ msgstr "Nivel de registro de depuración de GStreamer *"
 msgid "GStreamer version"
 msgstr "Versión de GStreamer"
 
+msgid "GUI Skin *"
+msgstr "Skin Interfaz de usuario *"
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "La GUI necesita reiniciarse para aplicar un nuevo skin\n"
 "¿Desea reiniciar la GUI ahora?"
-
-#
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"La interfaz necesita reiniciarse para aplicar el nuevo skin\n"
-"¿Quieres reiniciar la interfaz ahora?"
 
 msgid "Gabon"
 msgstr "Gabón"
@@ -11171,11 +11177,11 @@ msgstr "Conexión de red local"
 msgid "LCD Skin Settings"
 msgstr "Configurar skin del LCD"
 
-msgid "LCD SkinSelector"
-msgstr "Selector de skin LCD"
-
 msgid "LCD scroll speed"
 msgstr "Velocidad de desplazamiento del LCD"
+
+msgid "LCD/Front panel *"
+msgstr "LCD/Panel frontal *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "Plugin LCN para canales DVB-T/T2"
@@ -19946,11 +19952,8 @@ msgstr "Configurar skin"
 msgid "Skin Settings"
 msgstr "Seleccionar skin"
 
-msgid "Skin setup"
-msgstr "Seleccionar tema"
-
-msgid "SkinSelector"
-msgstr "Selector de skin"
+msgid "SkinSelection"
+msgstr "Selección de skin"
 
 #
 msgid "Skins"
@@ -22217,19 +22220,22 @@ msgstr "Esta opción configura el modo de salida de vídeo (o resolución)."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Esta opción te permite configurar el nivel del volumen automático."
 
-msgid "This option lets you adjust the 3D depth."
-msgstr "Esta opción te permite ajustar la profundidad 3D."
+msgid "This option lets you adjust the 3D depth of the OSD."
+msgstr "Esta opción te permite ajustar la profundidad 3D del OSD."
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr ""
 "Esta opción te permite ajustar la transparencia de la interfaz de usuario"
 
-msgid "This option lets you choose the 3D mode."
-msgstr "Esta opción te permite ajustar el modo 3D."
+msgid "This option lets you choose the 3D mode of the OSD."
+msgstr "Esta opción te permite elegir el modo 3D del OSD."
 
-msgid "This option lets you show the option in the extension screen."
+msgid ""
+"This option lets you show the 3D OSD menu option in the Extension Menu "
+"screen."
 msgstr ""
-"Esta opción te permite visualizar la opción en la pantalla de extensiones."
+"Esta opción le permite mostrar la opción de menú OSD 3D en la pantalla del "
+"Menú extensiones."
 
 msgid ""
 "This option moves the PVR status display from a separate window into the "
@@ -28983,3 +28989,20 @@ msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Selector de temas Enigma2"
+
+#
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "La interfaz necesita reiniciarse para aplicar el nuevo skin\n"
+#~ "¿Quieres reiniciar la interfaz ahora?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "Selector de skin LCD"
+
+#~ msgid "Skin setup"
+#~ msgstr "Seleccionar tema"
