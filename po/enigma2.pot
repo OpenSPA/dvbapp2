@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-16 12:35+0200\n"
-"PO-Revision-Date: 2024-06-16 18:41+0100\n"
+"PO-Revision-Date: 2024-06-18 20:32+0100\n"
 "Last-Translator: OpenSPA <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -3836,12 +3836,6 @@ msgid "Choose how much EPG history, if any, to keep in the EPG cache. This histo
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
-msgstr ""
-
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr ""
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
 msgstr ""
 
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
@@ -9546,9 +9540,6 @@ msgstr ""
 msgid "LAN connection"
 msgstr ""
 
-msgid "LCD Skin Settings"
-msgstr ""
-
 msgid "LCD scroll speed"
 msgstr ""
 
@@ -12488,10 +12479,6 @@ msgid "Please set your time options.\n"
 msgstr ""
 
 msgid "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-
-msgid "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press green to continue."
 msgstr ""
 
@@ -14804,9 +14791,6 @@ msgstr ""
 msgid "Select HDD"
 msgstr ""
 
-msgid "Select LCD Skin"
-msgstr ""
-
 msgid "Select Lan/Wlan"
 msgstr ""
 
@@ -15035,9 +15019,6 @@ msgid "Select service to add..."
 msgstr ""
 
 msgid "Select Shares"
-msgstr ""
-
-msgid "Select Skin"
 msgstr ""
 
 msgid "Select softcam"
@@ -15904,9 +15885,6 @@ msgid "Setup your Harddisk"
 msgstr ""
 
 msgid "Setup your LCD"
-msgstr ""
-
-msgid "Setup your LCD Skin"
 msgstr ""
 
 msgid "Setup your OSD"
@@ -23435,9 +23413,6 @@ msgid "Retry"
 msgstr ""
 
 msgid "Select Device"
-msgstr ""
-
-msgid "Select Display Skin"
 msgstr ""
 
 msgid "Select a device to use as the flash expander"
