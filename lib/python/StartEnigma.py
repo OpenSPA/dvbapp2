@@ -706,20 +706,15 @@ if BoxInfo.getItem("architecture") in ("aarch64"):
 from traceback import print_exc
 from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger, ConfigText, ConfigOnOff, ConfigSelection
 
-config.osd = ConfigSubsection()
-
 defaultLocale = {
 	"Atto.TV": "pt_BR",
 	"Zgemma": "es_ES",
 	"Beyonwiz": "es_ES"
 }.get(DISPLAYBRAND, "es_ES")
 config.misc.locale = ConfigText(default=defaultLocale)
+config.misc.locale.addNotifier(localeNotifier)
 config.misc.language = ConfigText(default=international.getLanguage(defaultLocale))
 config.misc.country = ConfigText(default=international.getCountry(defaultLocale))
-config.osd.language = ConfigText(default=defaultLocale)
-config.osd.language.addNotifier(localeNotifier)
-# TODO
-# config.misc.locale.addNotifier(localeNotifier)
 
 # These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma.py.
 #
