@@ -2815,10 +2815,10 @@ msgstr ""
 msgid "Base time"
 msgstr ""
 
-msgid "Base transparency for OpenOpera web browser"
+msgid "Base transparency for OpenOpera web browser."
 msgstr ""
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr ""
 
 msgid "Baseball"
@@ -2837,6 +2837,9 @@ msgid "Basketball"
 msgstr ""
 
 msgid "Basque"
+msgstr ""
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
 
 msgid "Begin time"
@@ -5368,9 +5371,6 @@ msgstr ""
 
 #, python-format
 msgid "Default: '%s'."
-msgstr ""
-
-msgid "Defaults"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
@@ -9693,7 +9693,7 @@ msgstr ""
 msgid "Lesotho"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr ""
 
@@ -10807,6 +10807,9 @@ msgstr ""
 msgid "Mozambique"
 msgstr ""
 
+msgid "Multi"
+msgstr ""
+
 msgid "Multi EPG"
 msgstr ""
 
@@ -11627,10 +11630,10 @@ msgstr ""
 msgid "OSD 3D Settings"
 msgstr ""
 
-msgid "OSD Adjustment"
+msgid "OSD Calibration"
 msgstr ""
 
-msgid "OSD Calibration"
+msgid "OSD Calibration Settings"
 msgstr ""
 
 msgid "OSD Settings"
@@ -11640,6 +11643,9 @@ msgid "OSD Setup"
 msgstr ""
 
 msgid "OSD name request"
+msgstr ""
+
+msgid "OSD visibility"
 msgstr ""
 
 msgid "OTT Model"
@@ -12061,8 +12067,8 @@ msgstr ""
 msgid "Pali"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr ""
 
@@ -12244,7 +12250,7 @@ msgstr ""
 msgid "Pictures"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr ""
 
@@ -12478,10 +12484,6 @@ msgid "Please set your time options.\n"
 "Press YELLOW to set the time zone via geolocation."
 msgstr ""
 
-msgid "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-
 msgid "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
@@ -12628,9 +12630,6 @@ msgid "Portugal"
 msgstr ""
 
 msgid "Portuguese"
-msgstr ""
-
-msgid "Position Setup"
 msgstr ""
 
 msgid "Position of finished Timers in Timerlist"
@@ -17496,16 +17495,16 @@ msgstr ""
 msgid "Streaming tuner information for %s %s"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr ""
 
@@ -18589,7 +18588,7 @@ msgstr ""
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr ""
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
 msgstr ""
 
 msgid "This option lets you choose the 3D mode of the OSD."
@@ -19768,13 +19767,28 @@ msgstr ""
 msgid "Use small screen"
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr ""
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
@@ -19866,9 +19880,6 @@ msgid "User defined transponder"
 msgstr ""
 
 msgid "User interface settings"
-msgstr ""
-
-msgid "User interface visibility"
 msgstr ""
 
 msgid "User logo:"
@@ -20660,6 +20671,9 @@ msgid "When the input cursor reaches this point (percentage of the width, from e
 msgstr ""
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgstr ""
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
@@ -21864,9 +21878,6 @@ msgid "movie/drama (general)"
 msgstr ""
 
 msgid "multi"
-msgstr ""
-
-msgid "multinorm"
 msgstr ""
 
 msgid "music (general)"
