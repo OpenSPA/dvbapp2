@@ -3195,16 +3195,16 @@ msgid "Base time"
 msgstr "Hora de inicio"
 
 # UserInterfacePositioner
-msgid "Base transparency for OpenOpera web browser"
-msgstr "Fondo transparente para el navegador web OpenOpera"
+msgid "Base transparency for OpenOpera web browser."
+msgstr "Transparencia base para el navegador web OpenOpera"
 
 # UserInterfacePositioner
 msgid ""
-"Base transparency for teletext, more options available within teletext "
+"Base transparency for teletext, more options are available within teletext "
 "screen."
 msgstr ""
-"Fondo transparente para el teletexto, más opciones disponibles en el propio "
-"teletexto."
+"Transparencia base para el teletexto, más opciones disponibles en la "
+"pantalla propia del teletexto."
 
 msgid "Baseball"
 msgstr "Béisbol"
@@ -3223,6 +3223,18 @@ msgstr "Baloncesto"
 
 msgid "Basque"
 msgstr "Euskera"
+
+msgid ""
+"Before changing these settings try to disable any overscan settings on th "
+"TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the "
+"position and size values until the red box is *just* visible and touches the "
+"edges of the screen."
+msgstr ""
+"Antes de cambiar estos ajustes, intente desactivar cualquier ajuste de "
+"overscan en la pantalla del televisor / display. Para calibrar la "
+"visualización en pantalla (OSD), ajuste los valores de posición y tamaño "
+"hasta que el cuadro rojo sea *apenas* visible y toque los bordes de la "
+"pantalla."
 
 msgid "Begin time"
 msgstr "Tiempo de inicio"
@@ -4333,12 +4345,6 @@ msgstr ""
 "Elegir la frecuencia con la que se conectará al servidor IceTV para "
 "comprobar si hay actualizaciones."
 
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr "Escoge el skin del display y presiona VERDE para activarlo."
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr "Escoge el skin y pulsa VERDE para activarlo."
-
 msgid ""
 "Choose the display formatting style for dates. 'D' / 'DD' is the date and "
 "'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for "
@@ -4408,6 +4414,20 @@ msgstr ""
 
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Elija la opción para corregir datos EPG no válidos."
+
+msgid ""
+"Choose the skin to be used for the GUI interface. Press 'GREEN' to activate "
+"the skin."
+msgstr ""
+"Elige el skin que se utilizará para la interfaz GUI. Pulsa \"VERDE\" para "
+"activar el skin."
+
+msgid ""
+"Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' "
+"to activate the skin."
+msgstr ""
+"Elige el skin que se utilizará para la interfaz LCD/panel frontal. Pulse "
+"'VERDE' para activar el skin."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
@@ -6261,9 +6281,6 @@ msgstr "Compensación de volumen predeterminado"
 msgid "Default: '%s'."
 msgstr "Predeterminado: '%s'."
 
-msgid "Defaults"
-msgstr "Por defecto"
-
 msgid ""
 "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
@@ -7911,9 +7928,6 @@ msgstr "Información sobre Enigma2"
 msgid "Enigma2 revision"
 msgstr "Revisión de Enigma2"
 
-msgid "Enigma2 skin selector"
-msgstr "Selector de temas Enigma2"
-
 msgid "Enigma2 version"
 msgstr "Versión de Enigma2"
 
@@ -9347,20 +9361,15 @@ msgstr "Nivel de registro de depuración de GStreamer *"
 msgid "GStreamer version"
 msgstr "Versión de GStreamer"
 
+msgid "GUI Skin *"
+msgstr "Skin Interfaz de usuario *"
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "La GUI necesita reiniciarse para aplicar un nuevo skin\n"
 "¿Desea reiniciar la GUI ahora?"
-
-#
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"La interfaz necesita reiniciarse para aplicar el nuevo skin\n"
-"¿Quieres reiniciar la interfaz ahora?"
 
 msgid "Gabon"
 msgstr "Gabón"
@@ -11168,14 +11177,11 @@ msgstr "Adaptador LAN"
 msgid "LAN connection"
 msgstr "Conexión de red local"
 
-msgid "LCD Skin Settings"
-msgstr "Configurar skin del LCD"
-
-msgid "LCD SkinSelector"
-msgstr "Selector de skin LCD"
-
 msgid "LCD scroll speed"
 msgstr "Velocidad de desplazamiento del LCD"
+
+msgid "LCD/Front panel *"
+msgstr "LCD/Panel frontal *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "Plugin LCN para canales DVB-T/T2"
@@ -11341,7 +11347,7 @@ msgid "Lesotho"
 msgstr "Lesotho"
 
 #
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Buzón"
 
@@ -12567,6 +12573,10 @@ msgstr "Moviendo al oeste..."
 msgid "Mozambique"
 msgstr "Mozambique"
 
+#
+msgid "Multi"
+msgstr "Multi"
+
 msgid "Multi EPG"
 msgstr "EPG Múltiple"
 
@@ -13550,12 +13560,13 @@ msgstr "OSD"
 msgid "OSD 3D Settings"
 msgstr "Configurar OSD 3D"
 
-msgid "OSD Adjustment"
-msgstr "Ajustes OSD"
+#
+msgid "OSD Calibration"
+msgstr "Posición OSD"
 
 #
-msgid "OSD Position Settings"
-msgstr "Posición OSD"
+msgid "OSD Calibration Settings"
+msgstr "Ajustes de calibración OSD"
 
 msgid "OSD Settings"
 msgstr "Configurar OSD"
@@ -13565,6 +13576,9 @@ msgstr "Configuración del OSD"
 
 msgid "OSD name request"
 msgstr "Solicitud de nombre OSD"
+
+msgid "OSD visibility"
+msgstr "Visibilidad OSD"
 
 msgid "OTT Model"
 msgstr "Modelo OTT"
@@ -14028,8 +14042,8 @@ msgstr "Estado de Palestina"
 msgid "Pali"
 msgstr "Pali"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr "Exploración panorámica"
 
@@ -14225,7 +14239,7 @@ msgid "Pictures"
 msgstr "Fotos"
 
 #
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr "Columnas"
 
@@ -14538,26 +14552,6 @@ msgstr ""
 "\n"
 "Pulse Amarillo para fijar zona horaria por geolocalización."
 
-#
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Configura tu interfaz de usuario ajustando los valores hasta que los bordes "
-"del recuadro rojo toquen los de tu TV.\n"
-"Cuando estés listo, pulsa OK para continuar."
-
-#
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"Configura tu interfaz de usuario ajustando los valores hasta que los bordes "
-"del recuadro rojo toquen los de tu TV.\n"
-"Cuando estés listo, pulsa Verde para continuar."
-
 # PiPSetup.py
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -14734,9 +14728,6 @@ msgstr "Portugal"
 # Language
 msgid "Portuguese"
 msgstr "Portugués"
-
-msgid "Position Setup"
-msgstr "Configuración de posición"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Posición de temporizadores finalizados en lista"
@@ -17408,9 +17399,6 @@ msgstr "Seleccionar carpetas"
 msgid "Select HDD"
 msgstr "Seleccionar HDD"
 
-msgid "Select LCD Skin"
-msgstr "Seleccionar la skin del LCD"
-
 msgid "Select Lan/Wlan"
 msgstr "Seleccione LAN/WLAN"
 
@@ -17691,9 +17679,6 @@ msgstr "Seleccionar canal a añadir..."
 
 msgid "Select Shares"
 msgstr "Seleccionar intercambios"
-
-msgid "Select Skin"
-msgstr "Seleccionar skin"
 
 msgid "Select softcam"
 msgstr "Seleccionar softcam"
@@ -18954,9 +18939,6 @@ msgstr "Configura tu disco duro"
 msgid "Setup your LCD"
 msgstr "Elige el tema del LCD"
 
-msgid "Setup your LCD Skin"
-msgstr "Configurar tu skin LCD"
-
 # Quick Menue
 msgid "Setup your OSD"
 msgstr "Configura tu interfaz"
@@ -19946,11 +19928,8 @@ msgstr "Configurar skin"
 msgid "Skin Settings"
 msgstr "Seleccionar skin"
 
-msgid "Skin setup"
-msgstr "Seleccionar tema"
-
-msgid "SkinSelector"
-msgstr "Selector de skin"
+msgid "SkinSelection"
+msgstr "Selección de skin"
 
 #
 msgid "Skins"
@@ -20753,17 +20732,17 @@ msgstr "Grabación stream finalizada"
 msgid "Streaming tuner information for %s %s"
 msgstr "Información sintonizador de streaming para %s %s"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "Estiramiento completo"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "Estiramiento lineal"
 
 #
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "Estiramiento no lineal"
 
@@ -22217,19 +22196,21 @@ msgstr "Esta opción configura el modo de salida de vídeo (o resolución)."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Esta opción te permite configurar el nivel del volumen automático."
 
-msgid "This option lets you adjust the 3D depth."
-msgstr "Esta opción te permite ajustar la profundidad 3D."
+msgid "This option lets you adjust the 3D depth of the OSD."
+msgstr "Esta opción te permite ajustar la profundidad 3D del OSD."
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
+msgstr "Esta opción te permite ajustar la transparencia del OSD."
+
+msgid "This option lets you choose the 3D mode of the OSD."
+msgstr "Esta opción te permite elegir el modo 3D del OSD."
+
+msgid ""
+"This option lets you show the 3D OSD menu option in the Extension Menu "
+"screen."
 msgstr ""
-"Esta opción te permite ajustar la transparencia de la interfaz de usuario"
-
-msgid "This option lets you choose the 3D mode."
-msgstr "Esta opción te permite ajustar el modo 3D."
-
-msgid "This option lets you show the option in the extension screen."
-msgstr ""
-"Esta opción te permite visualizar la opción en la pantalla de extensiones."
+"Esta opción le permite mostrar la opción de menú OSD 3D en la pantalla del "
+"Menú extensiones."
 
 msgid ""
 "This option moves the PVR status display from a separate window into the "
@@ -23648,26 +23629,51 @@ msgid "Use small screen"
 msgstr "Usar la pantalla estrecha"
 
 msgid ""
-"Use the Left/Right buttons on your remote to adjust the size of the user "
-"interface. Left button decreases the size, Right increases the size."
+"Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. "
+"LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
-"Usar las teclas izquierda/derecha del mando para ajustar el tamaño de la "
-"interfaz de usuario. La tecla izquierda reduce el tamaño y la derecha lo "
-"aumenta."
+"Usar las teclas izquierda/derecha del mando para ajustar la altura del OSD. "
+"La tecla izquierda reduce la altura y la derecha la aumenta."
+
+msgid ""
+"Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. "
+"LEFT button decreases the width, RIGHT increases the width."
+msgstr ""
+"Usar las teclas izquierda/derecha del mando para ajustar la anchura del OSD. "
+"La tecla izquierda reduce la anchura y la derecha la aumenta."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
+msgstr ""
+"Usar las teclas izquierda/derecha del mando para mover la parte inferior del "
+"OSD"
 
 # OSD
-msgid ""
-"Use the Left/Right buttons on your remote to move the user interface left/"
-"right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
 msgstr ""
-"Utilizar los botones Izquierda/Derecha de su mando a distancia para mover la "
-"interfaz de usuario a la izquierda/derecha"
+"Usar las teclas izquierda/derecha del mando para mover la parte izquierda "
+"del OSD."
 
-msgid ""
-"Use the Left/Right buttons on your remote to move the user interface up/down"
+# OSD
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
 msgstr ""
-"Usar las teclas izquierda/derecha del mando para mover la interfaz de "
-"usuario arriba/abajo"
+"Usar las teclas izquierda/derecha del mando para mover la parte izquierda/"
+"derecha del OSD."
+
+# OSD
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
+msgstr ""
+"Usar las teclas izquierda/derecha del mando para mover la parte derecha del "
+"OSD."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
+msgstr ""
+"Usar las teclas izquierda/derecha del mando para mover la parte superior del "
+"OSD"
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
+msgstr ""
+"Usar las teclas izquierda/derecha del mando para mover la parte superior/"
+"inferior del OSD"
 
 msgid ""
 "Use the Networkwizard to configure your Network. The wizard will help you to "
@@ -23788,10 +23794,6 @@ msgstr "Transpondedor definido por usuario"
 
 msgid "User interface settings"
 msgstr "Configurar interfaz de usuario"
-
-# UserInterfacePositioner
-msgid "User interface visibility"
-msgstr "Visibilidad de la interfaz de usuario"
 
 msgid "User logo:"
 msgstr "Logo de usuario:"
@@ -24906,6 +24908,13 @@ msgid ""
 msgstr ""
 "Cuando el receptor encienda del reposo o de reposo profundo, enviará un "
 "comando al televisor para que salga del reposo."
+
+msgid ""
+"When the red box is correctly visible press the GREEN button to save the "
+"settings and exit."
+msgstr ""
+"Cuando el recuadro rojo esté correctamente visible pulse el botón VERDE para "
+"guardar los ajustes y salir."
 
 msgid ""
 "When tuned to a service the system will normally scan the transponder for "
@@ -26373,10 +26382,6 @@ msgstr "Película / drama (general)"
 #
 msgid "multi"
 msgstr "multi"
-
-#
-msgid "multinorm"
-msgstr "Multinorma"
 
 msgid "music (general)"
 msgstr "Música (general)"
@@ -28206,9 +28211,6 @@ msgstr "Volver a probar"
 msgid "Select Device"
 msgstr "Seleccionar dispositivo"
 
-msgid "Select Display Skin"
-msgstr "Seleccionar skin del LCD"
-
 msgid "Select a device to use as the flash expander"
 msgstr "Selecciona un dispositivo para usar como extensor de flash"
 
@@ -28983,3 +28985,30 @@ msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
+
+#~ msgid "Defaults"
+#~ msgstr "Por defecto"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "Ajustes OSD"
+
+#
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges "
+#~ "of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "Configura tu interfaz de usuario ajustando los valores hasta que los "
+#~ "bordes del recuadro rojo toquen los de tu TV.\n"
+#~ "Cuando estés listo, pulsa Verde para continuar."
+
+#~ msgid "Position Setup"
+#~ msgstr "Configuración de posición"
+
+# UserInterfacePositioner
+#~ msgid "User interface visibility"
+#~ msgstr "Visibilidad de la interfaz de usuario"
+
+#
+#~ msgid "multinorm"
+#~ msgstr "Multinorma"
