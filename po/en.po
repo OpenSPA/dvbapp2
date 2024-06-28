@@ -4116,9 +4116,6 @@ msgstr ""
 msgid "Channel selection configuration"
 msgstr ""
 
-msgid "Channel Selection Settings"
-msgstr ""
-
 msgid "Channel up"
 msgstr ""
 
