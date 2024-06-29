@@ -593,7 +593,7 @@ class International:
 				self.languageList.append(language)
 			count = len(packageLocales)
 			if self.debugMode:
-				print(f"[International] Package '{package}' supports {count} locale{'' if count == 1 else 's'} '{"', '".join(packageLocales)}'.")
+				print(f"[International] Package '{package}' supports {count} locale{'' if count == 1 else 's'} '{', '.join(packageLocales)}'.")
 		self.localeList.sort()
 		self.languageList.sort()
 
@@ -652,7 +652,7 @@ class International:
 			except OSError as err:
 				print(f"[International] getInstalledPackages Error {err.errno}: {err.strerror} ('{command[0]}')")
 			if self.debugMode:
-				print(f"[International] There are {len(installedPackages)} installed locale/language packages '{"', '".join(installedPackages)}'.")
+				print(f"[International] There are {len(installedPackages)} installed locale/language packages '{', '.join(installedPackages)}'.")
 		else:
 			installedPackages = self.installedPackages
 		return installedPackages
@@ -662,7 +662,7 @@ class International:
 			global languagePath
 			installedDirectories = sorted(listdir(languagePath)) if isdir(languagePath) else []
 			if self.debugMode:
-				print(f"[International] There are {len(installedDirectories)} installed locale/language directories '{"', '".join(installedDirectories)}'.")
+				print(f"[International] There are {len(installedDirectories)} installed locale/language directories '{', '.join(installedDirectories)}'.")
 		else:
 			installedDirectories = self.installedDirectories
 		return installedDirectories
