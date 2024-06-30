@@ -586,8 +586,3 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 
 	def createSummary(self):
 		return LocaleSelectionSummary
-
-	def opkgComponentCallback(self, event, parameter):
-		if event==self.opkgComponent.EVENT_DONE:
-			self.inWizard = False
-			self.close()
