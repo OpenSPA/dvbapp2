@@ -414,11 +414,11 @@ class LocaleSelection(Screen):
 			case self.opkgComponent.EVENT_REMOVE:
 				pass  # Ignore the removed items as they will be in the log.
 			case self.opkgComponent.EVENT_REMOVE_DONE:
-				print(f"[LocaleSelection] Locale/Language package '{"', '".join(parameter)}' deleted.")
+				print(f"[LocaleSelection] Locale/Language package '{', '.join(parameter)}' deleted.")
 			case self.opkgComponent.EVENT_INSTALL | self.opkgComponent.EVENT_CONFIGURING:
 				pass  # Ignore the installing items as they will be in the log.
 			case self.opkgComponent.EVENT_INSTALL_DONE:
-				print(f"[LocaleSelection] Locale/Language packages '{"', '".join(parameter)}' installed.")
+				print(f"[LocaleSelection] Locale/Language packages '{', '.join(parameter)}' installed.")
 			case self.opkgComponent.EVENT_LOG:
 				pass  # Ignore the logs here as the content will be in the debug log.
 			case self.opkgComponent.EVENT_DONE:

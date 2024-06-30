@@ -1208,3 +1208,7 @@ class VirtualKeyboard(Screen):
 						return True
 					selKey += 1
 		return False
+
+class VirtualKeyBoard(VirtualKeyboard):
+	def __init__(self, session, title=_("Virtual Keyboard Text:"), text="", maxSize=False, visible_width=False, type=Input.TEXT, currPos=None, allMarked=False, style=VirtualKeyboard.VKB_ENTER_ICON, windowTitle=None):
+		VirtualKeyboard.__init__(self, session, title=title, text=text, maxSize=maxSize, visibleWidth=visible_width, type=type, currPos=currPos, allMarked=allMarked, style=style, windowTitle=windowTitle)

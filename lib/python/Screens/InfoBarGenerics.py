@@ -14,7 +14,7 @@ from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandl
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
-from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, isPlayableForCur
+from ServiceReference import ServiceReference, hdmiInServiceRef, isPlayableForCur
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import avSwitch
 from Components.config import ConfigBoolean, ConfigClock, ConfigSelection, config, configfile
