@@ -191,7 +191,7 @@ def loadSkin(filename, replace = False, scope=SCOPE_SKINS, desktop=getDesktop(GU
 						if config.crash.debugScreens.value:
 							res = [parseInteger(x.strip()) for x in res.split(",")]
 							msg = f", resolution {res[0]}x{res[1]}," if len(res) == 2 and res[0] and res[1] else ""
-							print(f"[Skin] Loading screen '{name}'{f", resolution {res[0]}x{res[1]}," if len(res) == 2 and res[0] and res[1] else ""} from '{filename}'.  (scope={scope})")
+							print(f"[Skin] Loading screen '{name}'{msg} from '{filename}'.  (scope={scope})")
 						#### OPENSPA [morser] - Update skin.py for old skins compability #################
 						if scope == SCOPE_GUISKIN or name not in domScreens or replace:
 							domScreens[name] = (element, f"{dirname(filename)}/")
@@ -300,7 +300,7 @@ def parseOptions(options, attribute, value, default):
 		if value in options.keys():
 			value = options[value]
 		else:
-			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{"', '".join(options.keys())}'")
+			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{', '.join(options.keys())}'")
 			value = default
 	else:
 		skinError(f"The '{attribute}' parser is not correctly initialized")
@@ -956,7 +956,7 @@ class AttributeParser:
 			except KeyError:
 				errors.append(flag)
 		if errors:
-			print(f"[Skin] Error: Attribute 'flags' with value '{value}' has invalid element(s) '{"', '".join(errors)}'!")
+			print(f"[Skin] Error: Attribute 'flags' with value '{value}' has invalid element(s) '{', '.join(errors)}'!")
 
 	def font(self, value):
 		self.guiObject.setFont(parseFont(value, self.scaleTuple))
@@ -1912,7 +1912,7 @@ class TemplateParser():
 
 	def processPanel(self, widget, context, excludeItemValues=None, includeItemValues=None):
 		if self.debug:
-			print(f"[TemplateParser] processPanel DEBUG: Position={widget.attrib.get("position")}, Size={ widget.attrib.get("size")}.")
+			print(f"[TemplateParser] processPanel DEBUG: Position={widget.attrib.get('position')}, Size={ widget.attrib.get('size')}.")
 			print(f"[TemplateParser] processPanel DEBUG: Parent x={context.x}, width={context.w}.")
 		pos = [int(x.strip()) for x in widget.attrib.get("position").split(",")]
 		layout = widget.attrib.get("layout")
@@ -1945,7 +1945,7 @@ class TemplateParser():
 					width = oldSize[0] + newContext.w
 					item["size"] = f"{width},{oldSize[1]}"
 					if self.debug:
-						print(f"[TemplateParser] DEBUG: autoGrow context={newContext.w}, oldSize={oldSize}, newsize={item["size"]}.")
+						print(f"[TemplateParser] DEBUG: autoGrow context={newContext.w}, oldSize={oldSize}, newsize={item['size']}.")
 					break
 		if self.debug:
 			print(items)
@@ -1977,7 +1977,7 @@ def readSkin(screen, skin, names, desktop):
 				myName = name  # Use this name for debug output.
 				break
 			else:
-				print(f"[Skin] Warning: Skin screen '{name}' rejected as it does not offer all the mandatory widgets '{"', '".join(screen.mandatoryWidgets)}'!")
+				print(f"[Skin] Warning: Skin screen '{name}' rejected as it does not offer all the mandatory widgets '{', '.join(screen.mandatoryWidgets)}'!")
 				myScreen = None
 	else:
 		myName = f"<embedded-in-{screen.__class__.__name__}>"
@@ -2268,7 +2268,8 @@ def readSkin(screen, skin, names, desktop):
 		posY = "?" if context.y is None else str(context.y)
 		sizeW = "?" if context.w is None else str(context.w)
 		sizeH = "?" if context.h is None else str(context.h)
-		print(f"[Skin] Processing screen '{myName}'{f", from list '{", ".join(names)}'," if len(names) > 1 else ""} position=({posX},{posY}), size=({sizeW},{sizeH}) for module '{screen.__class__.__name__}'.")
+		msg = f", from list '{', '.join(names)}'," if len(names) > 1 else ""
+		print(f"[Skin] Processing screen '{myName}'{msg} position=({posX},{posY}), size=({sizeW},{sizeH}) for module '{screen.__class__.__name__}'.")
 		context.x = 0  # Reset offsets, all components are relative to screen coordinates.
 		context.y = 0
 		processScreen(myScreen, context)
