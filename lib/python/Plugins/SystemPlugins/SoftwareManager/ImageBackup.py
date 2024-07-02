@@ -17,7 +17,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.MultiBoot import MultiBoot
-from Tools.Directories import fileReadLines
+from Tools.Directories import fileReadLines, fileWriteLine
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -152,7 +152,7 @@ class ImageBackup(Screen):
 			config.usage.shutdownOK.setValue(True)
 			config.usage.shutdownOK.save()
 			configfile.save()
-
+			fileWriteLine("/proc/sys/vm/drop_caches", "3")  # Clear Memory
 			self.RECOVERY = answer[3]
 			self.DIRECTORY = "%s/images" % answer[2]
 			if not exists(self.DIRECTORY):
@@ -683,7 +683,7 @@ class ImageBackup(Screen):
 			revision = ".%03d" % int(self.IMAGEBUILD) if self.IMAGEBUILD else ""
 		else:
 			revision = "." + str(self.IMAGEBUILD)
-
+		cmdlist.append("echo 3 > /proc/sys/vm/drop_caches")  # Clear Memory
 		cmdlist.append("7za a -r -bt -bd %s/%s-%s%s-%s-backup-%s_%s.zip %s/*" % (self.DIRECTORY, self.DISTRO, self.DISTROVERSION, revision, self.MODEL, self.DATE, iname, self.MAINDESTROOT))
 		###########################################################################
 
@@ -740,6 +740,7 @@ class ImageBackup(Screen):
 		cmdlist.append("rmdir /tmp/bi/%s" % rdir)
 		cmdlist.append("rmdir /tmp/bi")
 		cmdlist.append("rm -rf %s" % self.WORKDIR)
+		cmdlist.append("echo 3 > /proc/sys/vm/drop_caches")  # Clear Memory
 		cmdlist.append("sleep 5")
 		END = time()
 		DIFF = int(END - self.START)
