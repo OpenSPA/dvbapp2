@@ -6,7 +6,7 @@ from enigma import ePicLoad
 from Components.config import ConfigSelection, NoSave, config
 from Components.Pixmap import Pixmap
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
+from Tools.Directories import fileReadXML, SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 
 
 class SkinSelection(Setup):
@@ -39,7 +39,10 @@ class SkinSelection(Setup):
 		for directory in [x for x in listdir(self.guiRoot) if isdir(join(self.guiRoot, x))]:
 			path = join(directory, "skin.xml")
 			if exists(join(self.guiRoot, path)):
-				label = _("< Default >") if directory == "skin_default" else directory
+				if not fileReadXML(f"{self.guiRoot}{path}"):  # [OpenSPA] [norhap] parse files XML.
+					label = f'Error {_("File")} {self.guiRoot}{path}'
+				else:
+					label = _("< Default >") if directory == "skin_default" else directory
 				if directory == "MetrixHD":
 					if isfile(join(self.guiRoot, directory, "skin.MySkin.xml")):
 						guiSkin = "skin.MySkin.xml"
