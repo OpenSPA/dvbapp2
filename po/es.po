@@ -7237,8 +7237,8 @@ msgstr "Descargando"
 msgid "Downloading Image"
 msgstr "Descargando imagen"
 
-msgid "Downloading latest update list.  Please wait..."
-msgstr "Descargando la última lista de actualizaciones.  Espere, por favor..."
+msgid "Downloading latest update list. Please wait..."
+msgstr "Descargando la última lista de actualizaciones. Espere, por favor..."
 
 #
 msgid "Downloading plugin information. Please wait..."
@@ -21823,7 +21823,7 @@ msgstr "Se produjo un error al descargar los detalles de la región actual"
 msgid "There was an error downloading the region list"
 msgstr "Ha ocurrido un error durante la descarga de la lista de paquetes"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr ""
 "Hay un error al descargar la lista de actualizaciones. Por favor, inténtalo "
 "de nuevo."
@@ -25531,10 +25531,10 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your receiver might be unusable now.  Please consult the manual for further "
-"assistance before rebooting your %s %s."
+"Your receiver might be now be unstable. Please consult the manual for "
+"further assistance before rebooting your %s %s."
 msgstr ""
-"Tu receptor podría estar inutilizable ahora. Consulte el manual para obtener "
+"Tu receptor podría estar inestable ahora. Consulte el manual para obtener "
 "más ayuda antes de reiniciar el %s %s."
 
 #
