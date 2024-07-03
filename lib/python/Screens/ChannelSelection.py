@@ -1311,7 +1311,7 @@ class ChannelContextMenu(Screen):
 		self.parentalControlEnabled = config.ParentalControl.servicepinactive.value
 		menu = []
 		menu.append(ChoiceEntryComponent(key="menu", text=(_("Settings"), boundFunction(self.keySetup))))
-		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
+		if self.session.nav.currentlyPlayingServiceReference and not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
 			if self.session.nav.currentlyPlayingServiceReference == current:
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
@@ -1419,9 +1419,11 @@ class ChannelContextMenu(Screen):
 					appendWhenValid(current, menu, (_("Rename entry and create new bouquet"), self.renameEntry), key="2")  # [norhap][OpenSPA]
 				appendWhenValid(current, menu, (_("Remove Entry"), self.removeEntry), key="8")
 				self.removeFunction = self.removeBouquet
-				if removed_userbouquets_available():
-					appendWhenValid(current, menu, (_("Purge Deleted User Bouquets"), self.purgeDeletedBouquets))
-					appendWhenValid(current, menu, (_("Restore Deleted User Bouquets"), self.restoreDeletedBouquets))
+				for file in listdir("/etc/enigma2/"):
+					if file.startswith("userbouquet") and file.endswith(".del"):
+						appendWhenValid(current, menu, (_("Purge Deleted User Bouquets"), self.purgeDeletedBouquets))
+						appendWhenValid(current, menu, (_("Restore Deleted User Bouquets"), self.restoreDeletedBouquets))
+						break
 		if self.inBouquet:  # Current list is editable?
 			if csel.bouquet_mark_edit == EDIT_OFF:
 				if csel.movemode:
