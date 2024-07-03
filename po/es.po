@@ -2187,9 +2187,6 @@ msgstr ""
 msgid "Addon for kodi"
 msgstr "Addons para Kodi"
 
-msgid "Adjust 3D settings"
-msgstr "Ajustar configuración 3D"
-
 #
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -3082,9 +3079,6 @@ msgstr "Backup"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Fecha de backup: %s\n"
-
-msgid "Backup Image"
-msgstr "Backup de la imagen"
 
 msgid "Backup Location"
 msgstr "Ubicación del backup"
@@ -5442,6 +5436,9 @@ msgid "Connection information"
 msgstr "Información de conexión"
 
 msgid "Console"
+msgstr "Consola"
+
+msgid "Console Actions"
 msgstr "Consola"
 
 msgid "Console Network Packages"
@@ -7813,11 +7810,6 @@ msgstr ""
 msgid "Enable to display setup entries alphabetically."
 msgstr "Habilitar para mostrar alfabéticamente las entradas de los ajustes."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr ""
-"Activar para mostrar alfabéticamente las entradas de la pantalla Menú de "
-"extensiones."
-
 msgid ""
 "Enable to display the current value of the slider at end of the slider bar."
 msgstr ""
@@ -9364,13 +9356,6 @@ msgstr "Versión de GStreamer"
 msgid "GUI Skin *"
 msgstr "Skin Interfaz de usuario *"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"La GUI necesita reiniciarse para aplicar un nuevo skin\n"
-"¿Desea reiniciar la GUI ahora?"
-
 msgid "Gabon"
 msgstr "Gabón"
 
@@ -9901,6 +9886,9 @@ msgstr "Ocultar reproductor"
 
 msgid "Hide the InfoBar"
 msgstr "Ocultar la barra de información"
+
+msgid "Hide this screen"
+msgstr "Ocultar esta pantalla"
 
 msgid "Hide zap errors"
 msgstr "Ocultar errores de zapeo"
@@ -14910,10 +14898,6 @@ msgid "Press OK on your remote control to continue."
 msgstr "Pulse OK en el mando para continuar."
 
 #
-msgid "Press OK to activate the selected skin."
-msgstr "Pulse OK para activar el tema seleccionado."
-
-#
 msgid "Press OK to activate the settings."
 msgstr "Pulse OK para activar la configuración."
 
@@ -17429,9 +17413,6 @@ msgstr "Seleccionar fuente de actualización"
 msgid "Select Upgrade Source To Edit"
 msgstr "Seleccione fuente de actualización a editar"
 
-msgid "Select Your Skin"
-msgstr "Seleccionar skin"
-
 msgid "Select a bouquet"
 msgstr "Seleccionar un grupo"
 
@@ -18047,6 +18028,10 @@ msgstr ""
 
 msgid "Select the softcam protocol."
 msgstr "Selecciona el protocolo softcam."
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr ""
+"Selecciona el orden de clasificación de las entradas del Menú Extensiones."
 
 msgid ""
 "Select the sort order of the Plugin Browser menu entries. User defined also "
@@ -19910,10 +19895,6 @@ msgstr "Tamaño ascendente"
 
 msgid "Size descending"
 msgstr "Tamaño descendente"
-
-#
-msgid "Skin"
-msgstr "Skin"
 
 msgid "Skin & Resolution"
 msgstr "Skin y resolución"
@@ -23120,9 +23101,6 @@ msgstr ""
 
 msgid "UHD Test"
 msgstr "Prueba UHD"
-
-msgid "UI 3D setup"
-msgstr "Configuración UI 3D"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80 (keymap.u80)"
@@ -28985,30 +28963,3 @@ msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
-
-#~ msgid "Defaults"
-#~ msgstr "Por defecto"
-
-#~ msgid "OSD Adjustment"
-#~ msgstr "Ajustes OSD"
-
-#
-#~ msgid ""
-#~ "Please setup your user interface by adjusting the values till the edges "
-#~ "of the red box are touching the edges of your TV.\n"
-#~ "When you are ready press green to continue."
-#~ msgstr ""
-#~ "Configura tu interfaz de usuario ajustando los valores hasta que los "
-#~ "bordes del recuadro rojo toquen los de tu TV.\n"
-#~ "Cuando estés listo, pulsa Verde para continuar."
-
-#~ msgid "Position Setup"
-#~ msgstr "Configuración de posición"
-
-# UserInterfacePositioner
-#~ msgid "User interface visibility"
-#~ msgstr "Visibilidad de la interfaz de usuario"
-
-#
-#~ msgid "multinorm"
-#~ msgstr "Multinorma"

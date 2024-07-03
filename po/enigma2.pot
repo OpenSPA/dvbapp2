@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-16 12:35+0200\n"
-"PO-Revision-Date: 2024-06-18 20:32+0100\n"
+"PO-Revision-Date: 2024-07-03 9:32+0100\n"
 "Last-Translator: OpenSPA <soporte@openspa.info>\n"
 "Language-Team: OpenSPA <openspa.info>\n"
 "Language: es\n"
@@ -1955,9 +1955,6 @@ msgstr ""
 msgid "Addon for kodi"
 msgstr ""
 
-msgid "Adjust 3D settings"
-msgstr ""
-
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr ""
 
@@ -2718,9 +2715,6 @@ msgstr ""
 
 #, python-format
 msgid "Backup Date: %s\n"
-msgstr ""
-
-msgid "Backup Image"
 msgstr ""
 
 msgid "Backup Location"
@@ -4596,6 +4590,9 @@ msgid "Connection information"
 msgstr ""
 
 msgid "Console"
+msgstr ""
+
+msgid "Console Actions"
 msgstr ""
 
 msgid "Console Network Packages"
@@ -6660,9 +6657,6 @@ msgstr ""
 msgid "Enable to display setup entries alphabetically."
 msgstr ""
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr ""
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr ""
 
@@ -7990,10 +7984,6 @@ msgstr ""
 msgid "GUI Skin *"
 msgstr ""
 
-msgid "GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-
 msgid "Gabon"
 msgstr ""
 
@@ -8479,6 +8469,9 @@ msgid "Hide player"
 msgstr ""
 
 msgid "Hide the InfoBar"
+msgstr ""
+
+msgid "Hide this screen"
 msgstr ""
 
 msgid "Hide zap errors"
@@ -11630,8 +11623,10 @@ msgstr ""
 msgid "OSD 3D Settings"
 msgstr ""
 
-
 msgid "OSD Calibration"
+msgstr ""
+
+msgid "OSD Calibration Settings"
 msgstr ""
 
 msgid "OSD Settings"
@@ -12793,9 +12788,6 @@ msgid "Press OK for MultiBoot selection."
 msgstr ""
 
 msgid "Press OK on your remote control to continue."
-msgstr ""
-
-msgid "Press OK to activate the selected skin."
 msgstr ""
 
 msgid "Press OK to activate the settings."
@@ -14815,9 +14807,6 @@ msgstr ""
 msgid "Select Upgrade Source To Edit"
 msgstr ""
 
-msgid "Select Your Skin"
-msgstr ""
-
 msgid "Select a bouquet"
 msgstr ""
 
@@ -15235,6 +15224,9 @@ msgid "Select the shifted character set for the next character only"
 msgstr ""
 
 msgid "Select the softcam protocol."
+msgstr ""
+
+msgid "Select the sort order of the Extension Menu entries."
 msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
@@ -16757,9 +16749,6 @@ msgid "Size ascending"
 msgstr ""
 
 msgid "Size descending"
-msgstr ""
-
-msgid "Skin"
 msgstr ""
 
 msgid "Skin & Resolution"
@@ -19318,9 +19307,6 @@ msgid "UBINIZE"
 msgstr ""
 
 msgid "UHD Test"
-msgstr ""
-
-msgid "UI 3D setup"
 msgstr ""
 
 msgid "UP80  (keymap.u80)"
