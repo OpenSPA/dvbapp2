@@ -547,7 +547,7 @@ class ImageBackup(Screen):
 			self.close()
 
 	def makeEchoCreate(self, txt):
-		return self.makeEcho(f"{_("Create:")} {txt}")
+		return self.makeEcho(f'{_("Create:")} {txt}')
 
 	def makeEcho(self, txt):
 		return f"echo \"{txt}\""
@@ -739,24 +739,24 @@ class ImageBackup(Screen):
 		AboutText += _("By OpenSPA Image Team") + "\n"
 		AboutText += _("Support at") + " https://openspa.info\n\n"
 		AboutText += _("[Image Info]\n")
-		AboutText += f"{_("Model")}: {MACHINEBRAND} {MACHINENAME}\n"
+		AboutText += f'{_("Model")}: {MACHINEBRAND} {MACHINENAME}\n'
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
 		if exists("/proc/stb/info/chipset"):
 			AboutText += _("Chipset: BCM%s") % BoxInfo.getItem("ChipsetString") + "\n"
 
 		cpu = getCPUInfoString()
-		AboutText += f"{_("CPU")}: {cpu[0]}\n"
-		AboutText += f"{_("CPU speed/cores")}: {cpu[1]}/{cpu[2]}\n"
-		AboutText += f"{_("CPU brand")}: {getCPUBrand()}\n"
+		AboutText += f'{_("CPU")}: {cpu[0]}\n'
+		AboutText += f'{_("CPU speed/cores")}: {cpu[1]}/{cpu[2]}\n'
+		AboutText += f'{_("CPU brand")}: {getCPUBrand()}\n'
 		socFamily = BoxInfo.getItem("socfamily")
 		if socFamily:
-			AboutText += f"{_("SoC family")}: {socFamily}\n"
+			AboutText += f'{_("SoC family")}: {socFamily}\n'
 
 		AboutText += _("Version: %s") % self.DISTROVERSION + "\n"
 		AboutText += _("Build: %s") % self.IMAGEBUILD + "\n"
 		if self.KERNEL:  # TODO get slot info
-			AboutText += f"{_("Kernel version")}: {self.KERNEL}\n"
+			AboutText += f'{_("Kernel version")}: {self.KERNEL}\n'
 
 		if self.DRIVERSDATE:
 			driversdate = str(self.DRIVERSDATE)
@@ -764,9 +764,9 @@ class ImageBackup(Screen):
 			month = driversdate[4:6]
 			day = driversdate[6:8]
 			driversdate = "-".join((year, month, day))
-			AboutText += f"{_("Drivers version")}:\t{driversdate}\n"
+			AboutText += f'{_("Drivers version")}:\t{driversdate}\n'
 
-		AboutText += f"{_("Last update")}\t{self.IMGREVISION}\n\n"
+		AboutText += f'{_("Last update")}\t{self.IMGREVISION}\n\n'
 
 		AboutText += _("[Enigma2 Settings]\n")
 		for setting in settings:
