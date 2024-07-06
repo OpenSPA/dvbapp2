@@ -35,7 +35,6 @@ def best_sort(elem):
 ACTION_SELECT = 0
 ACTION_CREATE = 1
 
-class MultiBootManager(Screen):
 MOUNT_DEVICE = 0
 MOUNT_MOUNTPOINT = 1
 MOUNT_FILESYSTEM = 2
@@ -43,6 +42,8 @@ MOUNT_OPTIONS = 3
 MOUNT_DUMP = 4
 MOUNT_FSCK_ORDER = 5
 MAX_MOUNT = 6
+
+class MultiBootManager(Screen):
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
 	# 	See Components/ChoiceList.py to see the hard coded defaults for which this embedded screen has been designed.
 	skin = """
