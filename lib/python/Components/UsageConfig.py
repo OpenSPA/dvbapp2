@@ -44,6 +44,8 @@ def InitUsageConfig():
 
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
 
+	config.misc.spinnerPosition = ConfigText(default="100,100")
+
 	config.workaround = ConfigSubsection()
 	config.workaround.deeprecord = ConfigYesNo(default=False)
 	config.workaround.wakeuptime = ConfigSelectionNumber(default=5, stepwidth=1, min=0, max=30, wraparound=True)
