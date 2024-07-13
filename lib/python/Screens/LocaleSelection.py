@@ -434,6 +434,9 @@ class LocaleSelection(Screen):
 				Processing.instance.hideProgress()
 				self.updateLocaleList(self.currentLocale)
 				self.updateText()
+				if self.inWizard:  ### OPENSPA [morser] close after remove in wizard
+					self.inWizard = False
+					self.close()
 			case _:
 				print(f"[LocaleSelection] Error: Unexpected opkg event '{self.opkgComponent.getEventText(event)}'!")
 
