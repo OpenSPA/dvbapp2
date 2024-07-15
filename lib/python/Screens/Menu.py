@@ -435,6 +435,7 @@ class Menu(Screen, ProtectedScreen):
 		self["menu"].setList(menu)
 
 	def layoutFinished(self):
+		self["menu"].enableAutoNavigation(False)
 		self["menu"].setStyle(config.usage.menuEntryStyle.value)
 		self.selectionChanged()
 
