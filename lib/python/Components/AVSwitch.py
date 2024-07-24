@@ -653,7 +653,7 @@ def InitAVSwitch():
 					("hdmi_best", _("Use best / Controlled by HDMI")),
 					("force_ddp", _("Force AC3plus"))
 				]
-		elif MACHINEBUILD in ("gbquad4k", "gbue4k", "gbx34k"):
+		elif MACHINEBUILD in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
 			choiceList = [
 					("downmix", _("Downmix")),
 					("passthrough", _("Pass-through")),
@@ -717,7 +717,7 @@ def InitAVSwitch():
 	BoxInfo.setItem("CanDownmixAAC", aacDownmix)
 	if aacDownmix:
 		def setAACDownmix(configElement):
-			value = configElement.value if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800", "gbquad4k", "gbue4k", "gbx34k") else configElement.value and "downmix" or "passthrough"
+			value = configElement.value if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800", "gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k") else configElement.value and "downmix" or "passthrough"
 			fileWriteLine("/proc/stb/audio/aac", value, source=MODULE_NAME)
 		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
 			config.av.downmix_aac = ConfigSelection(default="downmix", choices=[
@@ -726,7 +726,7 @@ def InitAVSwitch():
 				("multichannel", _("Convert to multi-channel PCM")),
 				("hdmi_best", _("Use best / Controlled by HDMI"))
 			])
-		elif MACHINEBUILD in ("gbquad4k", "gbue4k", "gbx34k"):
+		elif MACHINEBUILD in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
 			config.av.downmix_aac = ConfigSelection(default="downmix", choices=[
 				("downmix", _("Downmix")),
 				("passthrough", _("Pass-through")),
