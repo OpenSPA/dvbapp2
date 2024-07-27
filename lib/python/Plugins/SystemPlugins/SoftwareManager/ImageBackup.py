@@ -99,7 +99,7 @@ class ImageBackup(Screen):
 					else:
 						imageList.append(ChoiceEntryComponent("", ((_("Slot %s: %s (Current image)") if slotCode == str(currentImageSlot) else _("Slot %s: %s")) % (slotCode, imagedict[slotCode]["imagename"]), slotCode, False)))
 			if rootSlot:
-				imageList.append(ChoiceEntryComponent("", (_("Slot R: Root Slot Full Backup (Current image)"), "R", False)))
+				imageList.append(ChoiceEntryComponent("", (_("Slot R: Root Slot Image Backup (Current image)"), "R", False)))
 		else:
 			if BoxInfo.getItem("canRecovery"):
 				imageList.append(ChoiceEntryComponent("", (_("Internal flash: %s %s as USB Recovery") % (DISTRO, DISTROVERSION), "slotCode", True)))

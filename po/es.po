@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
 msgid ""
 "\n"
@@ -1392,6 +1392,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr "- No hay espacio suficiente en el dispositivo de backup."
+
+msgid "- No write permission on backup device."
+msgstr "- No tiene permiso de escritura en el dispositivo de backup."
+
+msgid "- Wrong backup destination."
+msgstr "- Destino de backup incorrecto."
+
 msgid "-24 Hours"
 msgstr "-24 Horas"
 
@@ -1644,6 +1653,11 @@ msgstr "<no se han encontrado logs>"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created. Please be patient as, due to"
+msgstr ""
+"Se está creando una copia de seguridad. Por favor, sea paciente ya que, "
+"debido a"
 
 msgid ""
 "A comma separated list of extensions to be used for 'My Extension' setting "
@@ -2735,6 +2749,9 @@ msgstr "Cambio de aspecto"
 msgid "Assamese"
 msgstr "Asamés"
 
+msgid "Assembling the image backup files."
+msgstr "Ensamblando los archivos del backup de la imagen."
+
 msgid "Assigned CAIds:"
 msgstr "CAIds asignados:"
 
@@ -3089,8 +3106,14 @@ msgstr "Log del backup"
 msgid "Backup Mode"
 msgstr "Modo backup"
 
+msgid "Backup Mode: Flash Online"
+msgstr "Modo backup: Flash Online"
+
 msgid "Backup Mode: Flash Online\n"
 msgstr "Modo backup: FlashOnline\n"
+
+msgid "Backup Mode: USB Recovery"
+msgstr "Modo backup: Recuperación USB"
 
 msgid "Backup Mode: USB Recovery\n"
 msgstr "Modo backup: Recuperación USB\n"
@@ -3102,16 +3125,13 @@ msgstr "Ajustes de backup"
 msgid "Backup System Settings"
 msgstr "Backup de los ajustes del sistema"
 
-msgid "Backup completed."
-msgstr "Backup completado."
-
 #
 msgid "Backup done."
 msgstr "Backup realizado."
 
 #
-msgid "Backup failed."
-msgstr "Backup erróneo."
+msgid "Backup failed!"
+msgstr "Ha fallado el backup!"
 
 msgid "Backup images"
 msgstr "Imágenes de backup"
@@ -3130,6 +3150,11 @@ msgstr ""
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Backup en destino: %s"
+
+#
+#, python-format
+msgid "Backup tool for %s %s"
+msgstr "Herramienta de backup para %s %s"
 
 msgid "Backup your %s %s settings."
 msgstr "Realizar copia de sus ajustes %s %s."
@@ -3809,6 +3834,10 @@ msgstr "No se puede cargar el temporizador"
 
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "No se puede asignar el origen del programa (p.e. el sintonizador)"
+
+#
+msgid "Can't create backup directory!"
+msgstr "No se puede crear carpeta del backup!"
 
 msgid ""
 "Can't going to live TV!\n"
@@ -5683,6 +5712,10 @@ msgstr "Crear una contraseña generada aleatoriamente"
 msgid "Create a symbolic link"
 msgstr "Crear un enlace simbólico"
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr "Crear backup de imagen de recuperación '%s'."
+
 msgid "Create separate radio user bouquet"
 msgstr "Crear un lista de usuario de radio independiente"
 
@@ -6593,11 +6626,11 @@ msgstr "Deseleccionar solo el archivo resaltado"
 #, python-format
 msgid ""
 "Deselected packages usually occur because those packaged are incompatible "
-"with existing packages.  While this is mostly harmless it is possible that "
+"with existing packages. While this is mostly harmless it is possible that "
 "your %s %s may experience issues."
 msgstr ""
 "Los paquetes deseleccionados suelen producirse porque los empaquetados son "
-"incompatibles con los existentes.  Aunque en la mayoría de los casos esto es "
+"incompatibles con los existentes. Aunque en la mayoría de los casos esto es "
 "inocuo, es posible que su %s %s experimente problemas."
 
 msgid "Detail of GStreamer log."
@@ -6909,6 +6942,9 @@ msgstr "Yibuti"
 
 msgid "Center DVB Subs On This Service"
 msgstr "Centrar subtítulos DVB en este servicio"
+
+msgid "Do not backup the image"
+msgstr "No hacer backup de la imagen"
 
 msgid "Do not change"
 msgstr "No cambiar"
@@ -8509,6 +8545,9 @@ msgstr "Salir de la selección de canal quad"
 msgid "Exit all menus"
 msgstr "Salir de todos los menus"
 
+msgid "Exit and close all screens without performing a backup"
+msgstr "Salir y cerrar todas las pantallas sin realizar el backup"
+
 msgid "Exit editor"
 msgstr "Salir del editor"
 
@@ -8564,6 +8603,9 @@ msgstr "Salir del asistente"
 
 msgid "Exit viewer"
 msgstr "Salir de visor"
+
+msgid "Exit without performing a backup"
+msgstr "Salir sin realizar un backup"
 
 msgid "Expand"
 msgstr "Expandir"
@@ -10405,6 +10447,16 @@ msgstr "Ignorar el encendido inesperado y permanecer en reposo"
 msgid "Image Backup"
 msgstr "Backup de la imagen"
 
+msgid "Image Backup (OLD)"
+msgstr "Backup de la imagen (ANTIGUO)"
+
+msgid "Image Backup Actions"
+msgstr "Backup de la imagen"
+
+#, python-format
+msgid "Image Backup To %s"
+msgstr "Backup de la imagen en %s"
+
 msgid "Image Flash Actions"
 msgstr "Acciones Flash de la imagen"
 
@@ -10413,8 +10465,16 @@ msgid "Image created on: %s/%s-%s%s-%s-backup-%s_%s.zip"
 msgstr "Imagen creada en: %s/%s-%s%s-%s-backup-%s_%s.zip"
 
 #
+msgid "Image created:"
+msgstr "Imagen creada:"
+
+#
 msgid "Image creation failed - "
 msgstr "Ha fallado la creación de la imagen - "
+
+#
+msgid "Image creation failed!"
+msgstr "Ha fallado la creación de la imagen!"
 
 #
 msgid "ImageWizard"
@@ -12599,6 +12659,9 @@ msgstr "MultiTranscodificación"
 msgid "Multiboot Image created on: %s/%s-%s%s-%s-backup-%s_usb.zip"
 msgstr "Imagen Multiboot creada en: %s/%s-%s%s-%s-backup-%s_usb.zip"
 
+msgid "Multiboot Image created:"
+msgstr "Imagen MultiBoot creada:"
+
 #
 msgid "Multimedia Packages"
 msgstr "Paquetes Multimedia"
@@ -13234,6 +13297,13 @@ msgstr "No hay actualizaciones disponibles."
 msgid "No updates were available.  Please try again later."
 msgstr ""
 "No hay actualizaciones disponibles.  Por favor, inténtalo de nuevo más tarde."
+
+msgid "No valid device detected - Press OK"
+msgstr "No se ha detectado un dispositivo válido - Presiona OK"
+
+#, python-format
+msgid "No valid mount for '%s' found!"
+msgstr "¡No se ha encontrado ningún montaje válido para el '%s'!"
 
 msgid "No valid region details were found"
 msgstr "No se han encontrado datos válidos de la región"
@@ -14527,6 +14597,10 @@ msgstr ""
 msgid "Please select the sub-service to record:"
 msgstr "Seleccione el programa que quiere grabar:"
 
+#
+msgid "Please select the target location to save the backup:"
+msgstr "Por favor, selecciona la ubicación para guardar el backup:"
+
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
 "Por favor, seleccione qué hacer después del flash de la siguiente imagen:"
@@ -14742,6 +14816,9 @@ msgstr "Registro de la configuración del posicionador"
 #
 msgid "Positioner setup"
 msgstr "Configurar motor"
+
+msgid "Possible causes could be:"
+msgstr "Las posibles causas podrían ser:"
 
 msgid "Power"
 msgstr "Encendido"
@@ -17220,6 +17297,77 @@ msgstr ""
 "Selecciona 'Sí' para mostrar directorios al inicio de la lista, o selecciona "
 "'No' para mostrar primero los archivos."
 
+msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de drivers en la pantalla de "
+"Descarga de Plugins."
+
+msgid ""
+"Select 'Yes' to show extensions packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de extensiones en la pantalla de "
+"Descarga de Plugins."
+
+msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de kernel en la pantalla de "
+"Descarga de Plugins."
+
+msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes m2k en la pantalla de Descarga de "
+"Plugins."
+
+msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de picon en la pantalla de "
+"Descarga de Plugins."
+
+msgid ""
+"Select 'Yes' to show plugin skin packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de skins en la pantalla de "
+"Descarga de Plugins."
+
+msgid "Select 'Yes' to show security packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de seguridad en la pantalla de "
+"Descarga de Plugins."
+
+msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de configuraciones en la pantalla "
+"de Descarga de Plugins."
+
+msgid ""
+"Select 'Yes' to show skin component packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de componentes de skins en la "
+"pantalla de Descarga de Plugins."
+
+msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de skins en la pantalla de "
+"Descarga de Plugins."
+
+msgid ""
+"Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes 'src' en la pantalla de Descarga "
+"de Plugins."
+
+msgid ""
+"Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de suscripción en la pantalla de "
+"Descarga de Plugins."
+
+msgid ""
+"Select 'Yes' to show system plugin packages in the Download Plugins screen."
+msgstr ""
+"Selecciona 'Sí' para mostrar los paquetes de plugins de sistema en la "
+"pantalla de Descarga de Plugins."
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Seleccione \"Sí\" para mostrar las opciones de configuración avanzada."
 
@@ -18680,6 +18828,18 @@ msgstr ""
 "apagado, etc."
 
 msgid ""
+"Set the top left location of the busy spinner. The coordinates are scaled "
+"such that the top left is at (0,0) and the bottom right is at (1260,700). "
+"Note that the position is the top left of the spinner and not the centre of "
+"the spinner."
+msgstr ""
+"Establece la posición superior izquierda del spinner ocupado. Las "
+"coordenadas se escalan de forma que la parte superior izquierda esté en "
+"(0,0) y la parte inferior derecha esté en (1260,700). Tenga en cuenta que la "
+"posición es la parte superior izquierda del spinner y no el centro del "
+"spinner."
+
+msgid ""
 "Set the type of the progress indication in the channel selection screen."
 msgstr ""
 "Configura el tipo de indicación de progreso en la pantalla de selección de "
@@ -19226,6 +19386,27 @@ msgstr "Mostrar SD como"
 
 msgid "Show Single EPG"
 msgstr "Mostrar EPG única"
+
+msgid "Show Skin Component packages"
+msgstr "Mostrar paquetes de componentes de skin"
+
+msgid "Show Skin packages"
+msgstr "Mostrar paquetes de skins"
+
+msgid "Show Softcam packages"
+msgstr "Mostrar paquetes de softcam"
+
+msgid "Show Source packages"
+msgstr "Mostrar paquetes de fuente"
+
+msgid "Show Subscription packages"
+msgstr "Mostrar paquetes de suscripción"
+
+msgid "Show Subservices Of Active Service"
+msgstr "Mostrar subservicios del servicio activo"
+
+msgid "Show System Plugin packages"
+msgstr "Mostrar paquetes de plugins de sistema"
 
 msgid "Show Timer List"
 msgstr "Mostrar lista de temporizadores"
@@ -20059,6 +20240,15 @@ msgstr "Slot '%s':  %s  -  Actual"
 msgid "Slot '%s': %s%s"
 msgstr "Slot '%s': %s%s"
 
+msgid "Slot Manager Actions"
+msgstr "Acciones del administrador de slots"
+
+msgid "Slot R: Root Slot Image Backup (Current image)"
+msgstr "Slot R: Backup completo del slot raiz (Imagen actual)"
+
+msgid "Slot count"
+msgstr "Número de slot"
+
 # Language
 msgid "Slovak"
 msgstr "Eslovaco"
@@ -20379,6 +20569,10 @@ msgid "Speed"
 msgstr "Velocidad"
 
 #
+msgid "Spinner Position"
+msgstr "Posición del spinner"
+
+#
 msgid "Split preview mode"
 msgstr "Dividir modo previsualización"
 
@@ -20469,6 +20663,15 @@ msgstr "Iniciar teletexto"
 #
 msgid "Start test"
 msgstr "Comenzar prueba"
+
+msgid "Start the Kexec initialization"
+msgstr "Iniciar la inicialización Kexec"
+
+msgid "Start the backup of the selected image"
+msgstr "Iniciar backup de la imagen seleccionada"
+
+msgid "Start the highlighted plugin"
+msgstr "Iniciar el plugin seleccionado"
 
 msgid "Start time"
 msgstr "Hora de inicio"
@@ -20738,6 +20941,9 @@ msgstr "Estilo"
 
 msgid "Style:"
 msgstr "Estilo:"
+
+msgid "Subscription Packages"
+msgstr "Paquetes de suscripción"
 
 msgid "Subservice Actions"
 msgstr "Acciones de subservicio"
@@ -21869,6 +22075,9 @@ msgstr ""
 "Esta opción te permite establecer el número de dígitos a 5, si tienes más de "
 "9999 canales."
 
+msgid "This bouquet is protected by a parental control PIN!"
+msgstr "Esta lista está protegida por un PIN de control parental!"
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
@@ -22270,6 +22479,10 @@ msgstr "Se instalará este coplemento."
 msgid "This plugin will be removed."
 msgstr "Se desinstalará este plugin."
 
+#
+msgid "This service is protected by a parental control PIN!"
+msgstr "Este servicio está protegido por un PIN de control parental!"
+
 msgid ""
 "This sets the prefix for each line in the debug log. The 'Boot time' is the "
 "number of seconds since your %s %s was last booted."
@@ -22518,6 +22731,9 @@ msgstr "Timeshift se guardará al final del programa."
 msgid "Time style"
 msgstr "Estilo de tiempo"
 
+msgid "Time taken for the backup:"
+msgstr "Tiempo utilizado para el backup:"
+
 msgid "Time to execute command or script"
 msgstr "Hora para ejecutar comando o script"
 
@@ -22631,6 +22847,26 @@ msgstr "Propiedades de título"
 #
 msgid "Titleset mode"
 msgstr "Modo título"
+
+msgid ""
+"To complete the setup the %s %s must connect to the Internet.  Connect the "
+"%s %s to the Internet now."
+msgstr ""
+"Para completar la configuración, el %s %s debe conectarse a Internet. "
+"Conecta ahora el %s %s a Internet."
+
+#
+msgid ""
+"To restore the image check the manual or documentation for the receiver."
+msgstr ""
+"Para restaurar la imagen, comprueba el manual o la documentación del "
+"receptor."
+
+msgid ""
+"To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
+"Para restaurar la imagen, use la opción Flash Online del Administrador de "
+"software."
 
 msgid "To restore the image:"
 msgstr "Para restaurar la imagen:"
@@ -23673,6 +23909,13 @@ msgid ""
 msgstr ""
 "Utilice los botones ARRIBA y ABAJO para seleccionar su idioma regional y "
 "luego pulse el botón OK para continuar."
+
+msgid ""
+"Use the UP/DOWN buttons to select the installed image to be backed up. Press "
+"the 'Start' (GREEN) button to start the backup."
+msgstr ""
+"Utilice los botones ARRIBA y ABAJO para seleccionar la imagen que se hará el "
+"backup. Pulsa el botón 'Inicio' (VERDE) para empezar el backup."
 
 # Menue Anpassungen OSD
 msgid "Use the alternative or the conventional radio mode."
@@ -26868,16 +27111,15 @@ msgstr "tenis/squash"
 msgid "text"
 msgstr "texto"
 
-msgid "this bouquet is protected by a parental control pin"
-msgstr "Este ramo está protegido por un pin de control parental"
+msgid "the number of files to be processed, the backup will take up"
+msgstr "el número de archivos a procesar, el backup ocupará"
 
 #
 msgid "this recording"
 msgstr "Esta grabación"
 
-#
-msgid "this service is protected by a parental control pin"
-msgstr "Este canal está protegido por el pin de control paterno"
+msgid "to about 15 minutes to complete."
+msgstr "a unos 15 min de completarse."
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
@@ -27869,12 +28111,6 @@ msgstr "Seleccione un dispositivo para usar en los slots adicionales"
 msgid "Slot Manager"
 msgstr "Administrador de slots"
 
-msgid "Slot count"
-msgstr "Número de slot"
-
-msgid "Start the Kexec initialization"
-msgstr "Iniciar la inicialización Kexec"
-
 msgid ""
 "The %s %s will reboot within 10 seconds, unless there are eMMC slots to "
 "restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -28100,13 +28336,6 @@ msgstr ""
 msgid "No Internet connection"
 msgstr "Sin conexión a internet"
 
-msgid "No valid device detected - Press OK"
-msgstr "No se ha detectado un dispositivo válido - Presiona OK"
-
-#, python-format
-msgid "No valid mount for '%s' found!"
-msgstr "¡No se ha encontrado ningún montaje válido para el '%s'!"
-
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Abrir el teclado virtual para la introducción de texto"
 
@@ -28291,13 +28520,6 @@ msgstr "El asistente ha terminado"
 msgid "This wizard has finished."
 msgstr "El asistente ha terminado."
 
-msgid ""
-"To complete the setup the %s %s must connect to the Internet.  Connect the "
-"%s %s to the Internet now."
-msgstr ""
-"Para completar la configuración, el %s %s debe conectarse a Internet. "
-"Conecta ahora el %s %s a Internet."
-
 msgid "Use UP/DOWN buttons to select option then press OK"
 msgstr ""
 "Utilice los botones ARRIBA y ABAJO para seleccionar opción y luego pulse OK"
@@ -28387,10 +28609,6 @@ msgstr[1] "Paquetes %d marcados para actualizar."
 #
 msgid "Add services to this bouquet?"
 msgstr "Añadir canales a esta lista?"
-
-#
-msgid "Backup failed!"
-msgstr "Ha fallado el backup!"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Cerrar el Navegador de Plugins"
@@ -28568,71 +28786,6 @@ msgstr ""
 "Selecciona 'Sí' para mostrar los paquetes de OpenViX en la pantalla de "
 "Descarga de Plugins."
 
-msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de drivers en la pantalla de "
-"Descarga de Plugins."
-
-msgid ""
-"Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de extensiones en la pantalla de "
-"Descarga de Plugins."
-
-msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de kernel en la pantalla de "
-"Descarga de Plugins."
-
-msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes m2k en la pantalla de Descarga de "
-"Plugins."
-
-msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de picon en la pantalla de "
-"Descarga de Plugins."
-
-msgid ""
-"Select 'Yes' to show plugin skin packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de skins en la pantalla de "
-"Descarga de Plugins."
-
-msgid "Select 'Yes' to show security packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de seguridad en la pantalla de "
-"Descarga de Plugins."
-
-msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de configuraciones en la pantalla "
-"de Descarga de Plugins."
-
-msgid ""
-"Select 'Yes' to show skin component packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de componentes de skins en la "
-"pantalla de Descarga de Plugins."
-
-msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de skins en la pantalla de "
-"Descarga de Plugins."
-
-msgid ""
-"Select 'Yes' to show source 'src' packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes 'src' en la pantalla de Descarga "
-"de Plugins."
-
-msgid ""
-"Select 'Yes' to show system plugin packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de plugins de sistema en la "
-"pantalla de Descarga de Plugins."
-
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 "Selecciona 'Sí' para mostrar los paquetes de enlaces web en la pantalla de "
@@ -28694,27 +28847,6 @@ msgstr "Mostrar paquetes de seguridad"
 msgid "Show Setting packages"
 msgstr "Mostrar paquetes de configuración"
 
-msgid "Show Skin Component packages"
-msgstr "Mostrar paquetes de componentes de skin"
-
-msgid "Show Skin packages"
-msgstr "Mostrar paquetes de skins"
-
-msgid "Show Softcam packages"
-msgstr "Mostrar paquetes de softcam"
-
-msgid "Show Source packages"
-msgstr "Mostrar paquetes de fuente"
-
-msgid "Show Subservices Of Active Service"
-msgstr "Mostrar subservicios del servicio activo"
-
-msgid "Show subservices of the active service"
-msgstr "Mostrar subservicios del servicio activo"
-
-msgid "Show System Plugin packages"
-msgstr "Mostrar paquetes de plugins de sistema"
-
 msgid "Show Web Link packages"
 msgstr "Mostrar paquetes de enlaces web"
 
@@ -28727,12 +28859,6 @@ msgstr "Paquetes de componentes de skin"
 msgid "Skin Packages"
 msgstr "Paquetes de skin"
 
-msgid "Slot Manager Actions"
-msgstr "Acciones del administrador de slots"
-
-msgid "Slot R: Root Slot Full Backup (Current image)"
-msgstr "Slot R: %s Backup completo del slot raiz (Imagen actual)"
-
 msgid "Softcam Packages"
 msgstr "Paquetes de softcam"
 
@@ -28744,9 +28870,6 @@ msgstr "Paquetes de fuente"
 
 msgid "Start edit mode"
 msgstr "Iniciar modo edición"
-
-msgid "Start the highlighted plugin"
-msgstr "Iniciar el plugin seleccionado"
 
 msgid "Stop edit mode"
 msgstr "Detener el modo edición"
@@ -28963,3 +29086,13 @@ msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
+
+#~ msgid "Backup completed."
+#~ msgstr "Backup completado."
+
+#
+#~ msgid "Backup failed."
+#~ msgstr "Backup erróneo."
+
+#~ msgid "Show subservices of the active service"
+#~ msgstr "Mostrar subservicios del servicio activo"
