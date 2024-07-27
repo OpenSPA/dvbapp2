@@ -60,6 +60,7 @@ PLUGIN_CATEGORIES = {
 	"skins": _("Skin Packages"),
 	"softcams": _("Softcam Packages"),
 	"src": _("Source Packages"),
+	"subscription": _("Subscription Packages"),
 	"systemplugins": _("System Plugin Packages"),
 	"vix": _("OpenViX Packages"),
 	"weblinks": _("Web Link Packages")
@@ -141,6 +142,7 @@ config.pluginfilter.skinpacks = ConfigYesNo(default=True)
 config.pluginfilter.skins = ConfigYesNo(default=True)
 config.pluginfilter.softcams = ConfigYesNo(default=False)
 config.pluginfilter.src = ConfigYesNo(default=False)
+config.pluginfilter.subscription = ConfigYesNo(default=True)
 config.pluginfilter.systemplugins = ConfigYesNo(default=True)
 config.pluginfilter.vix = ConfigYesNo(default=False)
 config.pluginfilter.weblinks = ConfigYesNo(default=True)

@@ -577,6 +577,8 @@
 		<item level="0" text="Show Plugin Skin packages" description="Select 'Yes' to show plugin skin packages in the Download Plugins screen.">config.pluginfilter.skinpacks</item>
 		<item level="0" text="Show Display packages" description="Select 'Yes' to show LCD skin packages in the Download Plugins screen.">config.pluginfilter.display</item>
 		<item level="0" text="Show Picon packages" description="Select 'Yes' to show picon packages in the Download Plugins screen.">config.pluginfilter.picons</item>
+		<item level="0" text="Show Setting packages" description="Select 'Yes' to show settings packages in the Download Plugins screen.">config.pluginfilter.settings</item>
+		<item level="0" text="Show Subscription packages" description="Select 'Yes' to show subscription packages in the Download Plugins screen.">config.pluginfilter.subscription</item>
 		<item level="0" text="Show Kodi addons" description="Select 'Yes' to show kodi addons in the Download Plugins screen.">config.pluginfilter.kodiaddon</item>
 		<item level="0" text="Show Docker packages" description="Select 'Yes' to show docker packages in the Download Plugins screen.">config.pluginfilter.docker</item>
 		<item level="0" text="Show Python packages" description="Select 'Yes' to show python packages in the Download Plugins screen.">config.pluginfilter.python</item>
