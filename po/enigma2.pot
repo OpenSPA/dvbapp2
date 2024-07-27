@@ -14764,6 +14764,45 @@ msgstr ""
 msgid "Select 'Yes' to show directories at the top/start of the list, or select 'No' to show files first."
 msgstr ""
 
+msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show security packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -16218,6 +16257,27 @@ msgstr ""
 msgid "Show Single EPG"
 msgstr ""
 
+msgid "Show Skin Component packages"
+msgstr ""
+
+msgid "Show Skin packages"
+msgstr ""
+
+msgid "Show Softcam packages"
+msgstr ""
+
+msgid "Show Source packages"
+msgstr ""
+
+msgid "Show Subscription packages"
+msgstr ""
+
+msgid "Show Subservices Of Active Service"
+msgstr ""
+
+msgid "Show System Plugin packages"
+msgstr ""
+
 msgid "Show Timer List"
 msgstr ""
 
@@ -17603,6 +17663,9 @@ msgid "Style"
 msgstr ""
 
 msgid "Style:"
+msgstr ""
+
+msgid "Subscription Packages"
 msgstr ""
 
 msgid "Subservice Actions"
@@ -23279,12 +23342,6 @@ msgstr ""
 msgid "Slot Manager"
 msgstr ""
 
-msgid "Slot count"
-msgstr ""
-
-msgid "Start the Kexec initialization"
-msgstr ""
-
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
 msgstr ""
 
@@ -23465,13 +23522,6 @@ msgstr ""
 msgid "No Internet connection"
 msgstr ""
 
-msgid "No valid device detected - Press OK"
-msgstr ""
-
-#, python-format
-msgid "No valid mount for '%s' found!"
-msgstr ""
-
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
@@ -23595,9 +23645,6 @@ msgstr ""
 msgid "This wizard has finished."
 msgstr ""
 
-msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
-msgstr ""
-
 msgid "Use UP/DOWN buttons to select option then press OK"
 msgstr ""
 
@@ -23666,9 +23713,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Add services to this bouquet?"
-msgstr ""
-
-msgid "Backup failed!"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
@@ -23823,42 +23867,6 @@ msgstr ""
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr ""
 
-msgid "Select 'Yes' to show driver packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show extensions packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show kernel packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show security packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show settings packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show skin component packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
-msgstr ""
-
-msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
-msgstr ""
-
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 
@@ -23907,27 +23915,6 @@ msgstr ""
 msgid "Show Setting packages"
 msgstr ""
 
-msgid "Show Skin Component packages"
-msgstr ""
-
-msgid "Show Skin packages"
-msgstr ""
-
-msgid "Show Softcam packages"
-msgstr ""
-
-msgid "Show Source packages"
-msgstr ""
-
-msgid "Show Subservices Of Active Service"
-msgstr ""
-
-msgid "Show subservices of the active service"
-msgstr ""
-
-msgid "Show System Plugin packages"
-msgstr ""
-
 msgid "Show Web Link packages"
 msgstr ""
 
@@ -23940,12 +23927,6 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Slot Manager Actions"
-msgstr ""
-
-msgid "Slot R: Root Slot Full Backup (Current image)"
-msgstr ""
-
 msgid "Softcam Packages"
 msgstr ""
 
@@ -23956,9 +23937,6 @@ msgid "Source Packages"
 msgstr ""
 
 msgid "Start edit mode"
-msgstr ""
-
-msgid "Start the highlighted plugin"
 msgstr ""
 
 msgid "Stop edit mode"
