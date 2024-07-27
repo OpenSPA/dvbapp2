@@ -1517,18 +1517,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "2ª barra de información"
 
@@ -1559,9 +1547,6 @@ msgstr "2x, 4x, 6x, 8x"
 #
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "Modo 3D"
@@ -1654,10 +1639,8 @@ msgstr "<no se han encontrado logs>"
 msgid "A"
 msgstr "A"
 
-msgid "A backup is now being created. Please be patient as, due to"
-msgstr ""
-"Se está creando una copia de seguridad. Por favor, sea paciente ya que, "
-"debido a"
+msgid "A backup is now being created."
+msgstr "Se está creando una copia de seguridad."
 
 msgid ""
 "A comma separated list of extensions to be used for 'My Extension' setting "
@@ -14405,6 +14388,9 @@ msgstr "Añade títulos a la compilación."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Por favor, tenga paciencia, ahora se realizará un backup,\n"
 
+msgid "Please be patient."
+msgstr "Por favor, tenga paciencia."
+
 #
 msgid "Please check the manual of the receiver"
 msgstr "Por favor, consulte el manual del receptor"
@@ -21723,6 +21709,9 @@ msgstr ""
 "ajustes.\n"
 "¿Qué quieres hacer?"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr "El backup puede tardar unos 15 minutos en completarse."
+
 #
 msgid "The backup failed"
 msgstr "Falló el backup"
@@ -27111,15 +27100,9 @@ msgstr "tenis/squash"
 msgid "text"
 msgstr "texto"
 
-msgid "the number of files to be processed, the backup will take up"
-msgstr "el número de archivos a procesar, el backup ocupará"
-
 #
 msgid "this recording"
 msgstr "Esta grabación"
-
-msgid "to about 15 minutes to complete."
-msgstr "a unos 15 min de completarse."
 
 #
 msgid "toggle time, chapter, audio, subtitle info"
@@ -29086,6 +29069,24 @@ msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "the number of files to be processed, the backup will take up"
+#~ msgstr "el número de archivos a procesar, el backup ocupará"
 
 #~ msgid "Backup completed."
 #~ msgstr "Backup completado."
