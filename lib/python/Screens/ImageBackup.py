@@ -1,4 +1,4 @@
-from os import chmod, listdir, makedirs
+from os import chmod, listdir, makedirs, linesep
 from os.path import exists, isdir, isfile, join
 
 from Components.ActionMap import HelpableActionMap
@@ -88,7 +88,7 @@ class ImageBackup(Screen):
 		self.zipCmd = "/usr/bin/7za"
 		self.runScript = "/tmp/imagebackup.sh"
 		self.usbBin = "usb_update.bin"
-		self.separator = f"{"_" * 70}"
+		self.separator = f'{"_" * 70}'
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.callLater(self.getImageList)
 
@@ -106,7 +106,7 @@ class ImageBackup(Screen):
 				for slotCode in sorted(imageList.keys()):
 					print(f"[ImageBackup]     Slot {slotCode}: {imageList[slotCode]}")
 					if imageList[slotCode]["status"] == "active":
-						slotText = f"{slotCode} {"eMMC" if "mmcblk" in imageList[slotCode]["device"] else "USB"}"
+						slotText = f'{slotCode} {"eMMC" if "mmcblk" in imageList[slotCode]["device"] else "USB"}'
 						if slotCode == "1" and currentImageSlot == 1 and BoxInfo.getItem("canRecovery"):
 							images.append(ChoiceEntryComponent(None, (_("Slot %s: %s as USB Recovery") % (slotText, imageList[slotCode]["imagename"]), slotCode, True)))
 						if rootSlot:
@@ -139,7 +139,7 @@ class ImageBackup(Screen):
 					targets.append(target)
 					choiceList.append((target, current[0][1], target, current[0][2]))
 			choiceList.append((_("Do not backup the image"), False, None, False))
-			print(f"[ImageBackup] Potential target{"" if len(targets) == 1 else "s"}: '{"', '".join(targets)}'.")
+			print(f"""[ImageBackup] Potential target{"" if len(targets) == 1 else "s"}: '{"', '".join(targets)}'.""")
 			self.session.openWithCallback(self.runImageBackup, ChoiceBox, text=_("Please select the target location to save the backup:"), choiceList=choiceList, windowTitle=self.getTitle())
 
 	def keyCloseRecursive(self):
@@ -163,7 +163,7 @@ class ImageBackup(Screen):
 					makedirs(target)
 				except OSError as err:
 					print(f"[ImageBackup] Error {err.errno}: Can't create backup directory '{target}'!  ({err.strerror})")
-					self.session.open(MessageBox, f"{_("Error")} {err.errno}: {_("Can't create backup directory!")}  ({err.strerror})", MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+					self.session.open(MessageBox, f'''{_("Error")} {err.errno}: {_("Can't create backup directory!")}  ({err.strerror})''', MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 					return
 			# Get information about image to be backed up.
 			if BoxInfo.getItem("canRecovery"):
@@ -206,22 +206,22 @@ class ImageBackup(Screen):
 			lines.append(_("Backup Mode: USB Recovery") if recovery else _("Backup Mode: Flash Online"))
 			lines.append(self.separator)
 			lines.append("")
-			cmdLines.append(f"{self.echoCmd} \"{"\n".join(lines)}\"")
+			cmdLines.append(f"{self.echoCmd} \"{linesep.join(lines)}\"")
 			# Create working directories.
-			cmdLines.append(f"{self.echoCmd} \"Create working directories.\"")
-			workDir = f"{join(target, "ib", "")}"  # NOTE: workDir will always have a trailing "/".
+			cmdLines.append(f'{self.echoCmd} \"Create working directories.\"')
+			workDir = f'{join(target, "ib", "")}'  # NOTE: workDir will always have a trailing "/".
 			cmdLines.append(f"{self.removeCmd} -rf {workDir}")
 			cmdLines.append(f"{self.makeDirCmd} -p {workDir}")
 			mountPoint = "/tmp/ib/RootSubdir/" if rootfsSubDir else "/tmp/ib/root/"  # NOTE: mountPoint will always have a trailing "/".
 			backupRoot = mountPoint  # NOTE: backupRoot will always have a trailing "/".
 			cmdLines.append(f"{self.makeDirCmd} -p {mountPoint}")
-			cmdLines.append(f"{self.echoCmd} \"Mount root file system.\"")  # Mount the root file system.
+			cmdLines.append(f'{self.echoCmd} \"Mount root file system.\"')  # Mount the root file system.
 			if MultiBoot.canMultiBoot():
 				mountArgs = f"/dev/{mtdRootFs} {mountPoint}"
 				if rootfsSubDir:
 					if hasMultiBootMDT:
 						mountArgs = f"-t ubifs {mtdRootFs} {mountPoint}"
-					backupRoot = f"{join(backupRoot, rootfsSubDir, "")}"  # NOTE: backupRoot will always have a trailing "/".
+					backupRoot = f'{join(backupRoot, rootfsSubDir, "")}'  # NOTE: backupRoot will always have a trailing "/".
 			else:
 				mountArgs = f"--bind / {mountPoint}"
 			cmdLines.append(f"{self.mountCmd} {mountArgs}")
@@ -288,8 +288,8 @@ class ImageBackup(Screen):
 				lines.append("vol_type=dynamic")
 				lines.append("vol_name=rootfs")
 				lines.append("vol_flags=autoresize")
-				cmdLines.append(f"{self.echoCmd} '{"\n".join(lines)}' > {workDir}ubinize.cfg")
-				cmdLines.append(f"{self.ubiCmd} -o {workDir}root.ubifs {BoxInfo.getItem("ubinize")} {workDir}ubinize.cfg")
+				cmdLines.append(f"{self.echoCmd} '{linesep.join(lines)}' > {workDir}ubinize.cfg")
+				cmdLines.append(f"{self.ubiCmd} -o {workDir}root.ubifs {BoxInfo.getItem('ubinize')} {workDir}ubinize.cfg")
 			elif not recovery:
 				cmdLines.append(f"{self.echoCmd} \"Create tar file of root file system.\"")
 				# cmdLines.append(f"{self.touchCmd} {workDir}rootfs.tar")  # Uncomment this line and comment out the line below to enable a fast backup debugging mode.
@@ -352,7 +352,7 @@ class ImageBackup(Screen):
 				else:
 					cmdLines.append(f"{self.ddCmd} if=/dev/{mtdKernel} of={workDir}{kernelFile}")
 			else:
-				cmdLines.append(f"{self.nandDumpCmd} -a -f {workDir}vmlinux.gz {join("/dev", mtdKernel)}")
+				cmdLines.append(f"{self.nandDumpCmd} -a -f {workDir}vmlinux.gz {join('/dev', mtdKernel)}")
 			if emmcing == "disk.img" and recovery:
 				blockSize = 512  # These values are all assumed to be integers!
 				blockSectors = 2
@@ -367,11 +367,11 @@ class ImageBackup(Screen):
 				thirdKernelPartitionOffset = secondKernelPartitionOffset + kernelPartitionSize
 				fourthKernelPartitionOffset = thirdKernelPartitionOffset + kernelPartitionSize
 				emmcImage = f"{workDir}{emmcing}"
-				cmdLines.append(f"{self.echoCmd} \"{_("Create recovery image backup '%s'.") % emmcing}\"")
+				cmdLines.append(f"{self.echoCmd} '{_('Create recovery image backup.')}{emmcing}'")
 				cmdLines.append(f"{self.ddCmd} if=/dev/zero of={emmcImage} bs={blockSize} count=0 seek={emmcImageSize * blockSectors}")
 				cmdLines.append(f"{self.partedCmd} -s {emmcImage} mklabel gpt")
 				cmdLines.append(f"{self.partedCmd} -s {emmcImage} unit KiB mkpart boot fat16 {imageRoorFSAlignment} {imageRoorFSAlignment + bootPartitionSize}")
-				cmdLines.append(f"{self.partedCmd} -s {emmcImage} unit KiB mkpart linuxkernel {kernelPartitionOffset} {kernelPartitionOffset + kernelPartitionSize}")
+				cmdLines.append(f"{self.partedCmd} -s {emmcImage} unit KiB mkpart linuxkern l {kernelPartitionOffset} {kernelPartitionOffset + kernelPartitionSize}")
 				cmdLines.append(f"{self.partedCmd} -s {emmcImage} unit KiB mkpart linuxrootfs ext4 {rootFSPartitionOffset} {rootFSPartitionOffset + rootFSPartitionSize}")
 				cmdLines.append(f"{self.partedCmd} -s {emmcImage} unit KiB mkpart linuxkernel2 {secondKernelPartitionOffset} {secondKernelPartitionOffset + kernelPartitionSize}")
 				cmdLines.append(f"{self.partedCmd} -s {emmcImage} unit KiB mkpart linuxkernel3 {thirdKernelPartitionOffset} {thirdKernelPartitionOffset + kernelPartitionSize}")
@@ -408,7 +408,7 @@ class ImageBackup(Screen):
 				kernel4PartitionOffset = rootFS3PartitionOffset + rootFSPartitionSize
 				rootFS4PartitionOffset = kernel4PartitionOffset + kernelPartitionSize
 				emmcImage = f"{workDir}{emmcing}"
-				cmdLines.append(f"{self.echoCmd} \"{_("Create recovery image backup '%s'.") % emmcing}\"")
+				cmdLines.append(f"{self.echoCmd} '{_('Create recovery image backup.')}{emmcing}'")
 				cmdLines.append(f"{self.ddCmd} if=/dev/zero of={emmcImage} bs=1 count=0 seek={emmcImageSize * imageRoorFSAlignment}")
 				cmdLines.append(f"{self.partedCmd} -s {emmcImage} mklabel gpt")
 				cmdLines.append(f"{self.partedCmd} -s {emmcImage} unit KiB mkpart boot fat16 {imageRoorFSAlignment} {imageRoorFSAlignment + bootPartitionSize}")
@@ -425,7 +425,7 @@ class ImageBackup(Screen):
 				cmdLines.append(f"{self.ddCmd} if=/dev/{mtdKernel} of={emmcImage} seek={el1PartitionOffset * blockSectors}")
 				cmdLines.append(f"{self.ddCmd} if=/dev/{mtdRootFs} of={emmcImage} seek={rootFSPartitionOffset * blockSectors} ")
 			elif emmcing == self.usbBin and recovery:
-				cmdLines.append(f"{self.echoCmd} \"{_("Create recovery image backup '%s'.") % emmcing}\"")
+				cmdLines.append(f"{self.echoCmd} '{_('Create recovery image backup.')}{emmcing}'")
 				lines = []
 				lines.append("<?xml version=\"1.0\" encoding=\"GB2312\" ?>")
 				lines.append("<Partition_Info>")
@@ -438,15 +438,15 @@ class ImageBackup(Screen):
 				lines.append("\t<Part Sel=\"1\" PartitionName=\"deviceinfo\" FlashType=\"emmc\" FileSystem=\"none\" Start=\"14M\" Length=\"4M\" SelectFile=\"deviceinfo.bin\"/>")
 				lines.append("\t<Part Sel=\"1\" PartitionName=\"loader\" FlashType=\"emmc\" FileSystem=\"none\" Start=\"26M\" Length=\"32M\" SelectFile=\"apploader.bin\"/>")
 				lines.append("\t<Part Sel=\"1\" PartitionName=\"linuxkernel1\" FlashType=\"emmc\" FileSystem=\"none\" Start=\"66M\" Length=\"16M\" SelectFile=\"kernel.bin\"/>")
-				lines.append(f"\t<Part Sel=\"1\" PartitionName=\"userdata\" FlashType=\"emmc\" FileSystem=\"ext3/4\" Start=\"130M\" Length=\"{"3580" if model == "sf8008m" else "7000"}M\" SelectFile=\"rootfs.ext4\"/>")
+				lines.append(f"\t<Part Sel=\"1\" PartitionName=\"userdata\" FlashType=\"emmc\" FileSystem=\"ext3/4\" Start=\"130M\" Length=\"{'3580' if model == 'sf8008m' else '7000'}M\" SelectFile=\"rootfs.ext4\"/>")
 				lines.append("</Partition_Info>")
-				cmdLines.append(f"{self.echoCmd} '{"\n".join(lines)}' > {workDir}emmc_partitions.xml")
+				cmdLines.append(f"{self.echoCmd} '{linesep.join(lines)}' > {workDir}emmc_partitions.xml")
 				cmdLines.append(f"{self.mkupdateCmd} -s 00000003-00000001-01010101 -f {workDir}emmc_partitions.xml -d {workDir}{emmcing}")
 			cmdLines.append(f"{self.syncCmd}")
 			# Assemble the image backup.
-			cmdLines.append(f"{self.echoCmd} \"{_("Assembling the image backup files.")}\"")
-			mainDestinationRoot = f"{join(target, f"build_{boxName}", "")}"  # NOTE: mainDestinationRoot will always have a trailing "/".
-			mainDestination = f"{join(target, f"build_{boxName}", BoxInfo.getItem("imagedir"), "")}"  # NOTE: mainDestination will always have a trailing "/".
+			cmdLines.append(f"{self.echoCmd} \"{_('Assembling the image backup files.')}\"")
+			mainDestinationRoot = f'{join(target, f"build_{boxName}", "")}'  # NOTE: mainDestinationRoot will always have a trailing "/".
+			mainDestination = f'{join(target, f"build_{boxName}", BoxInfo.getItem("imagedir"), "")}'  # NOTE: mainDestination will always have a trailing "/".
 			checkFiles = []
 			if emmcing == self.usbBin and recovery:
 				cmdLines.append(f"{self.removeCmd} -rf {mainDestinationRoot}")
@@ -510,7 +510,7 @@ class ImageBackup(Screen):
 				lines = []
 				lines.append(f"Rename the 'unforce_{model}.txt' to 'force_{model}.txt' and move it to the root of your usb-stick.")
 				lines.append("When you enter the recovery menu then it will force to install the image in the linux1 selection.")
-				cmdLines.append(f"{self.echoCmd} \"{"\n".join(lines)}\" > {mainDestination}force_{model}_READ.ME")
+				cmdLines.append(f"{self.echoCmd} \"{linesep.join(lines)}\" > {mainDestination}force_{model}_READ.ME")
 			else:
 				cmdLines.append(f"{self.echoCmd} \"Rename this file to 'force' to force an update without confirmation.\" > {mainDestination}noforce")
 			if boxName in ("gbquad4k", "gbue4k", "gbx34k"):
@@ -539,7 +539,7 @@ class ImageBackup(Screen):
 				lines.append("flash -noheader usbdisk0:gigablue/solo/kernel.bin flash0.kernel")
 				lines.append("flash -noheader usbdisk0:gigablue/solo/rootfs.bin flash0.rootfs")
 				lines.append("setenv -p STARTUP \"boot -z -elf flash0.kernel: 'rootfstype=jffs2 bmem=106M@150M root=/dev/mtdblock6 rw '\"")
-				cmdLines.append(f"{self.echoCmd} '{"\n".join(lines)}' > {mainDestinationRoot}burn.bat")
+				cmdLines.append(f"""{self.echoCmd} '{linesep.join(lines)}' > {mainDestinationRoot}burn.bat""")
 			if model in ("h9", "i55plus"):
 				cmdLines.append(f"{self.copyCmd} -f /usr/share/fastboot.bin {mainDestinationRoot}")
 				cmdLines.append(f"{self.copyCmd} -f /usr/share/bootargs.bin {mainDestinationRoot}")
@@ -547,7 +547,7 @@ class ImageBackup(Screen):
 			cmdLines.append(f"{self.echoCmd} 3 > /proc/sys/vm/drop_caches")  # Clear memory caches.
 			cmdLines.append(f"{self.echoCmd} \"Create backup image zip file.\"")
 			cmdLines.append(f"ZipName=$Distro-$ImageVersion-{boxName}-backup-`{self.dateCmd} +\"%Y%m%d_%H%M\"`_{name}.zip")
-			cmdLines.append(f"{self.zipCmd} a -r -bt -bd -bso0 {target}/$ZipName {join(mainDestinationRoot, "*")}")
+			cmdLines.append(f"{self.zipCmd} a -r -bt -bd -bso0 {target}/$ZipName {join(mainDestinationRoot, '*')}")
 			cmdLines.append(self.syncCmd)
 			checkFiles = "\" -a \"".join(checkFiles)
 			cmdLines.append(f"if [ -r \"{checkFiles}\" ]; then")
@@ -555,30 +555,30 @@ class ImageBackup(Screen):
 				lines = []
 				lines.append(self.separator)
 				lines.append("")
-				lines.append(f"{_("Multiboot Image created:")} $ZipName")
+				lines.append(f'{_("Multiboot Image created:")} $ZipName')
 				lines.append(self.separator)
 				lines.append("")
 				lines.append(_("To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."))
-				cmdLines.append(f"\t{self.echoCmd} \"{"\n".join(lines)}\"")
+				cmdLines.append(f'\t{self.echoCmd} \"{linesep.join(lines)}\"')
 			else:
 				lines = []
 				lines.append(self.separator)
 				lines.append("")
-				lines.append(f"{_("Image created:")} $ZipName")
+				lines.append(f'{_("Image created:")} $ZipName')
 				lines.append(self.separator)
 				lines.append("")
 				lines.append(_("To restore the image check the manual or documentation for the receiver."))
-				cmdLines.append(f"\t{self.echoCmd} \"{"\n".join(lines)}\"")
+				cmdLines.append(f'\t{self.echoCmd} \"{linesep.join(lines)}\"')
 			cmdLines.append("else")
 			lines = []
-			lines.append(f"{_("Image creation failed!")}")
-			lines.append(f"{_("Possible causes could be:")}")
-			lines.append(f"{_("- Wrong backup destination.")}")
-			lines.append(f"{_("- No space left on backup device.")}")
-			lines.append(f"{_("- No write permission on backup device.")}")
-			cmdLines.append(f"\t{self.echoCmd} \"{"\n".join(lines)}\"")
+			lines.append(f'{_("Image creation failed!")}')
+			lines.append(f'{_("Possible causes could be:")}')
+			lines.append(f'{_("- Wrong backup destination.")}')
+			lines.append(f'{_("- No space left on backup device.")}')
+			lines.append(f'{_("- No write permission on backup device.")}')
+			cmdLines.append(f'\t{self.echoCmd} \"{linesep.join(lines)}\"')
 			cmdLines.append("fi")
-			cmdLines.append(f"{self.removeCmd} -rf {join(target, f"build_{boxName}")}")
+			cmdLines.append(f"{self.removeCmd} -rf {join(target, f'build_{boxName}')}")
 			cmdLines.append(f"{self.unmountCmd} {mountPoint}")  # Unmount the root file system.
 			cmdLines.append(f"{self.removeDirCmd} {mountPoint}")
 			cmdLines.append(f"{self.removeDirCmd} /tmp/ib/")
@@ -588,7 +588,7 @@ class ImageBackup(Screen):
 			cmdLines.append(f"{self.echoCmd}")
 			cmdLines.append(f"EndTime=`{self.dateCmd} -u +\"%s\"`")
 			cmdLines.append(f"RunTime=`{self.dateCmd} -u -d@\"$(($EndTime - $StartTime))\" +\"%H:%M:%S\"`")
-			cmdLines.append(f"{self.echoCmd} \"{_("Time taken for the backup:")} $RunTime\"")
+			cmdLines.append(f'{self.echoCmd} \"{_("Time taken for the backup:")} $RunTime\"')
 			fileWriteLines(self.runScript, cmdLines, source=MODULE_NAME)
 			chmod(self.runScript, 0o755)
 			print("[ImageBackup] Running the shell script.")
