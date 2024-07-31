@@ -451,4 +451,7 @@ BoxInfo.setItem("ushare", exists("/etc/init.d/ushare"))
 BoxInfo.setItem("udpxy", exists("/etc/init.d/udpxy"))
 BoxInfo.setItem("xupnpd", exists("/etc/init.d/xupnpd"))
 
+# AI
+BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))
+
 updateSysSoftCam()
