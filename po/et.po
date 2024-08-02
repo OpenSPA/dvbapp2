@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"POT-Creation-Date: 2024-06-15 20:15+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1339,6 +1339,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr ""
 
@@ -1438,18 +1447,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "Teine inforiba"
 
@@ -1480,9 +1477,6 @@ msgstr "2x, 4x, 6x, 8x"
 #
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D režiim"
@@ -1575,6 +1569,9 @@ msgstr ""
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -2268,6 +2265,15 @@ msgstr "Tähestikuline pealkirjade all"
 msgid "Alphanumeric"
 msgstr "Tähestik"
 
+msgid "Also import at reboot/restart enigma2"
+msgstr ""
+
+msgid "Also import from the extension menu"
+msgstr "Näita laienduste menüüs"
+
+msgid "Also import when box is leaving standby"
+msgstr ""
+
 # ChannelSelection.py
 msgid "Also on standby"
 msgstr "Ka ooteseisundis"
@@ -2283,6 +2289,9 @@ msgstr "Alternatiivne 2"
 
 msgid "Alternative Edit"
 msgstr "[asenduskanalite muutmine]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr ""
 
 msgid "Alternative numbering mode"
 msgstr "Alternatiivne numeratsioon"
@@ -2535,6 +2544,9 @@ msgstr ""
 
 msgid "Assamese"
 msgstr "Assami"
+
+msgid "Assembling the image backup files."
+msgstr ""
 
 #
 msgid "Assigned CAIds:"
@@ -2874,9 +2886,15 @@ msgstr "Varundamise logi"
 msgid "Backup Mode"
 msgstr "Varundamine"
 
+msgid "Backup Mode: Flash Online"
+msgstr ""
+
 #, fuzzy
 msgid "Backup Mode: Flash Online\n"
 msgstr "Püsivara paigaldus"
+
+msgid "Backup Mode: USB Recovery"
+msgstr ""
 
 msgid "Backup Mode: USB Recovery\n"
 msgstr ""
@@ -2886,19 +2904,6 @@ msgstr "Seadistuste varundamine"
 
 msgid "Backup System Settings"
 msgstr "Seadistuste varundamine"
-
-msgid "Backup completed."
-msgstr "Varukoopia loodud."
-
-#
-msgid "Backup done."
-msgstr "Varundamine tehtud."
-
-msgid "Backup failed!"
-msgstr ""
-
-msgid "Backup failed."
-msgstr "Varukoopia loomine nurjus."
 
 msgid "Backup images"
 msgstr ""
@@ -2916,6 +2921,10 @@ msgstr ""
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Varukoopia asukoht: %s"
+
+#, python-format
+msgid "Backup tool for %s %s"
+msgstr ""
 
 msgid "Backup your %s %s settings."
 msgstr "Varunda %s %s seadistused."
@@ -3568,6 +3577,9 @@ msgstr "Muuda järgmist taimerit"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -4064,6 +4076,9 @@ msgstr "Määra kuupäeva vorming. 'P' / 'PP' on kuupäev ja 'K' / 'KK' on kuu. 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vali kellaaja vorming. 'H' / 'HH' on 24-tunni kella tund, 'h' / 'hh' 12-tunni kella tund, 'mm' on minutid ja 'ss' on sekundid. ('HH' ja 'hh' puhul kuvatakse ühekohalise numbri ette null.) Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
 
+msgid "Choose the fallback font."
+msgstr ""
+
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Määra esipaneelil kuvatav kuupäeva vorming. 'P' / 'PP' on kuupäev ja  'K' / 'KK' on kuu. ( 'PP' ja 'KK' puhul kuvatakse ühekohalise numbri ette null.) Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
 
@@ -4350,6 +4365,11 @@ msgstr ""
 
 msgid "Command execution..."
 msgstr "Käskude täitmine."
+
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Command order"
 msgstr "Käskude järjekord"
@@ -5134,6 +5154,10 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr "Loo eraldi lemmiknimekiri raadiokanalitele"
 
@@ -5306,6 +5330,9 @@ msgstr "'7'/'9'-nuppude hüppe kohandatud pikkus"
 
 msgid "Customize"
 msgstr "Kasutaja eelistused"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr ""
 
 msgid "Customize System Settings"
 msgstr ""
@@ -6045,6 +6072,18 @@ msgstr ""
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Destination of fallback remote receiver"
+msgstr "Kaugvastuvõtja sihtkoht"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Kaugvastuvõtja sihtkoht"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Kaugvastuvõtja sihtkoht"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Kaugvastuvõtja sihtkoht"
+
 msgid "Detail of GStreamer log."
 msgstr ""
 
@@ -6337,6 +6376,9 @@ msgstr "Djibouti"
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 msgid "Do not change"
 msgstr "Ära muuda"
 
@@ -6417,6 +6459,18 @@ msgstr "Kas eemaldada \"%s\" taimer?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Kas kustutada %s järjehoidja?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7072,6 +7126,9 @@ msgstr "Kaugvastuvõtja kasutamine asendustuunerina"
 msgid "Enable freesat EPG"
 msgstr "FreeSat EPG lubatud"
 
+msgid "Enable import timer from fallback tuner"
+msgstr ""
+
 msgid "Enable intro screen"
 msgstr "Luba tervitusaken"
 
@@ -7263,6 +7320,9 @@ msgstr "Enter"
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr ""
+
+msgid "Enter IP address"
+msgstr "Sisesta IP-aadress"
 
 msgid "Enter PIN"
 msgstr "Sisesta PIN"
@@ -7522,6 +7582,12 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+
 msgid "Error, unknown Result!"
 msgstr "Viga, tundmatu tulemus!"
 
@@ -7632,6 +7698,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Faili kirjutamise viga: '%s'"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -7729,12 +7799,6 @@ msgstr "Liiga suur kahekihilise ketta jaoks!"
 msgid "Execution condition"
 msgstr "Täitmise tingimused"
 
-msgid "Execution finished!!"
-msgstr "Ülesanne täidetud!!"
-
-msgid "Execution progress:"
-msgstr "Töö edenemine:"
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7757,6 +7821,9 @@ msgid "Exit Quad Channel Selection"
 msgstr "Sulge Quad PiP kanalivalik"
 
 msgid "Exit all menus"
+msgstr ""
+
+msgid "Exit and close all screens without performing a backup"
 msgstr ""
 
 msgid "Exit editor"
@@ -7809,6 +7876,9 @@ msgid "Exit the wizard"
 msgstr "Välju juhendatud seadistusabist"
 
 msgid "Exit viewer"
+msgstr ""
+
+msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
@@ -7993,8 +8063,35 @@ msgstr "Nurjus:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falklandi saared (Malviinid)"
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr "Kaugvastuvõtja"
+
+msgid "Fallback remote receiver IP"
+msgstr "Kaugvastuvõtja IP"
+
+msgid "Fallback remote receiver Port"
+msgstr "Kaugvastuvõtja Port"
+
 msgid "Fallback remote receiver URL"
 msgstr "Kaugvastuvõtja URL"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Kaugvastuvõtja Port"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Kaugvastuvõtja Port"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Kaugvastuvõtja Port"
+
+msgid "Fallback tuner setup"
+msgstr "Kaugvastuvõtja tuuneri seaded"
 
 msgid "False"
 msgstr "Ei"
@@ -8187,10 +8284,6 @@ msgstr ""
 
 msgid "File transfer was cancelled by user"
 msgstr "Kasutaja katkestas faili ülekande"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Faili kirjutamise viga: '%s'"
 
 #, fuzzy
 msgid "Filename"
@@ -9088,11 +9181,11 @@ msgstr ""
 msgid "Hide the InfoBar"
 msgstr "Luba inforiba hajumine"
 
-msgid "Hide this screen"
-msgstr ""
-
 msgid "Hide zap errors"
 msgstr "Peida kanalivahetuse veateated"
+
+msgid "Hide/Show the console screen"
+msgstr ""
 
 msgid "Hierarchy info"
 msgstr "Hierarhia teave"
@@ -9299,6 +9392,9 @@ msgstr "IP aadress"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
+
+msgid "IP of fallback remote receiver"
+msgstr "Kaugvastuvõtja IP"
 
 msgid "IPK Installer"
 msgstr "IPK paigaldamine"
@@ -9509,6 +9605,13 @@ msgstr "Eira ootamatut äratust ja püsi ooteseisundis"
 msgid "Image Backup"
 msgstr "Täielik püsivaratõmmis"
 
+msgid "Image Backup Actions"
+msgstr ""
+
+#, python-format
+msgid "Image Backup To %s"
+msgstr ""
+
 msgid "Image Flash Actions"
 msgstr ""
 
@@ -9516,8 +9619,14 @@ msgstr ""
 msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr ""
 
+msgid "Image created:"
+msgstr ""
+
 msgid "Image creation failed - "
 msgstr "Tõmmise loomine nurjus - "
+
+msgid "Image creation failed!"
+msgstr ""
 
 #
 msgid "ImageWizard"
@@ -9531,6 +9640,21 @@ msgstr ""
 
 msgid "Immediately restart selected devices."
 msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Impordi kaugvastuvõtja URL-ist"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+msgid "Import from remote receiver URL"
+msgstr "Impordi kaugvastuvõtja URL-ist"
+
+msgid "Import remote receiver URL"
+msgstr "Impordi kaugvastuvõtja URL"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Lisaks kontrollile saate algusel, on võimalik kasutada korduvat kontrolli, et tingimuste 'Ajavaru tundides' või 'Kontrolli vaba kettaruumi' täitmine avastataks varem."
@@ -10799,6 +10923,9 @@ msgstr "Halda oma multibuudiga vastuvõtjat."
 msgid "Make"
 msgstr ""
 
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr ""
+
 msgid "Make this mark an 'in' point"
 msgstr "Tee see märk alguspunktiks"
 
@@ -11636,6 +11763,9 @@ msgstr ""
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multibuut püsivara loodi: %s/%s-%s-%s-backup-%s_usb.zip"
 
+msgid "Multiboot Image created:"
+msgstr ""
+
 msgid "Multimedia Packages"
 msgstr ""
 
@@ -11701,6 +11831,9 @@ msgstr ""
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
 msgstr ""
 
 #
@@ -12030,9 +12163,6 @@ msgstr "Toetatud DVDROM puudub!"
 msgid "No Connection"
 msgstr "Ühendus puudub"
 
-msgid "No Devices Found !!"
-msgstr "Seadmeid ei leitud!!"
-
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "Vaba indeks puudub"
@@ -12214,9 +12344,6 @@ msgid "No update required!"
 msgstr "Uuendamine ei ole vajalik!"
 
 msgid "No updates available."
-msgstr ""
-
-msgid "No updates were available.  Please try again later."
 msgstr ""
 
 msgid "No valid device detected - Press OK"
@@ -12684,10 +12811,16 @@ msgstr "Ava kanalinimekiri ja vali PiP-akna jaoks eelmine kanal"
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr "Pluginate menüü"
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -13056,9 +13189,6 @@ msgstr "Parool muudetud."
 msgid "Path '%s' missing!"
 msgstr ""
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Salvestamise asukohta pole olemas: '/tmp/'"
-
 msgid "Pause"
 msgstr "Paus"
 
@@ -13309,6 +13439,9 @@ msgstr "Lisa failid kogumikku."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Varu kannatust, algab varundamine.\n"
 
+msgid "Please be patient."
+msgstr ""
+
 msgid "Please check the manual of the receiver"
 msgstr "Uuri vastuvõtja käsiraamatut"
 
@@ -13446,6 +13579,9 @@ msgstr ""
 
 msgid "Please select the sub-service to record:"
 msgstr "Vali salvestatav alamkanal"
+
+msgid "Please select the target location to save the backup:"
+msgstr ""
 
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
@@ -13643,6 +13779,9 @@ msgstr "Port D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr "Kaugvastuvõtja Port"
+
 msgid "Portugal"
 msgstr "Portugal"
 
@@ -13673,6 +13812,9 @@ msgstr "Positsioneeri seadistuse logi"
 
 msgid "Positioner setup"
 msgstr "Ajami seadistamine"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr "Toitenupp"
@@ -14198,6 +14340,9 @@ msgstr "Inforiba EPG kuvamine"
 
 msgid "Quick Launch Menu"
 msgstr "Kiirmenüü"
+
+msgid "Quick Menu Actions"
+msgstr ""
 
 #
 msgid "Quick Menu..."
@@ -15001,6 +15146,9 @@ msgstr "Võrgu taaskäivitus"
 msgid "Restart Network Adapter"
 msgstr "Taaskäivita võrgukaart"
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr "Enigma2 taaskäivitus"
 
@@ -15246,6 +15394,10 @@ msgstr "Kasutusel"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Taastamise skript töötab. Oota ..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr "Vene"
 
@@ -15363,6 +15515,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr "Võrdne seiskamisajaga"
 
+msgid "Same as stream"
+msgstr "Sama nagu voog"
+
 msgid "Same behavior as current animation"
 msgstr "Sama käitumine aktiivse animatsiooniga"
 
@@ -15444,6 +15599,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr "Talleta EPG andmed"
 
+msgid "Save Log"
+msgstr ""
+
 #, fuzzy
 msgid "Save all changed settings and exit"
 msgstr "Salvesta/sisesta tekst ja välju"
@@ -15494,6 +15652,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -15928,6 +16089,9 @@ msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
@@ -16551,6 +16715,9 @@ msgstr ""
 msgid "Select the time zone within the area or region."
 msgstr "Määra aeg inforiba peitmiseks."
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Kaugvastuvõtja tuuneri seaded"
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Vali tuuner, mis juhib ajamiga antenni."
 
@@ -16933,6 +17100,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "'Info' nupu vajutus"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
 msgid "Set current CEC address as fixed address"
 msgstr ""
 
@@ -16972,6 +17142,9 @@ msgstr "Määra süsteem"
 msgid "Set the MAC address of your %s %s."
 msgstr "Määra %s %s MAC-aadress."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr ""
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Määra pikonite kuvasuhe."
 
@@ -16997,6 +17170,12 @@ msgid "Set the jump-size of the seekbar."
 msgstr "Määra otsiriba hüppe pikkus."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
+msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
 msgstr ""
 
 msgid "Set the position of the recording icons."
@@ -17031,6 +17210,9 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Määra teise inforiba kestus. Riba kaob ka vajutades 'OK'."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgstr ""
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17556,6 +17738,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -17810,6 +17995,18 @@ msgid "Show next service information screen"
 msgstr ""
 
 msgid "Show next system information screen"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr ""
+
+msgid "Show notification when import channels was not successful"
+msgstr ""
+
+msgid "Show notification when import channels was successful"
 msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
@@ -18112,6 +18309,9 @@ msgstr "Lülita välja"
 
 msgid "Shutdown"
 msgstr "Lülita välja"
+
+msgid "Shutdown OSCam"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr ""
@@ -18673,6 +18873,9 @@ msgstr ""
 msgid "Speed"
 msgstr ""
 
+msgid "Spinner Position"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Poolitatud eelvaade"
 
@@ -18766,6 +18969,9 @@ msgid "Start test"
 msgstr "Käivita test"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -19031,6 +19237,9 @@ msgstr ""
 
 msgid "Style:"
 msgstr "Laad:"
+
+msgid "Subscription Packages"
+msgstr ""
 
 msgid "Subservice Actions"
 msgstr ""
@@ -19764,6 +19973,9 @@ msgstr ""
 "Ajanihke kasutuses on kettaruumi vähem kui seadistustes määratud.\n"
 "Mida soovid teha?"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr ""
 
@@ -20480,6 +20692,9 @@ msgstr "Ajanihe talletatakse saate lõppedes!"
 msgid "Time style"
 msgstr "Kellaaja kuju"
 
+msgid "Time taken for the backup:"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr "Skripti või käsu käivitamise aeg"
 
@@ -20586,6 +20801,12 @@ msgid "Titleset mode"
 msgstr "Pealkirja seadmine"
 
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
+msgstr ""
+
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
 msgstr ""
 
 msgid "To restore the image:"
@@ -21031,6 +21252,9 @@ msgstr "UP80  (keymap.u80)"
 msgid "URL"
 msgstr ""
 
+msgid "URL of fallback remote receiver"
+msgstr "Kaugvastuvõtja URL"
+
 msgid "URL of fallback remote receiver."
 msgstr "Kaugvastuvõtja URL"
 
@@ -21094,6 +21318,9 @@ msgstr "Koodivaba"
 
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr ""
 
 #
@@ -21541,6 +21768,9 @@ msgstr "Kasuta EMU paneeli emulaatori juhtimiseks. Siin saab emulaatori käivita
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr ""
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Kasuta alternatiivset või tavapärast raadiovaadet."
 
@@ -21602,6 +21832,9 @@ msgstr "Lemmiknimekirjad"
 
 msgid "User Feed URL"
 msgstr "Kasutaja hoidla url"
+
+msgid "User ID"
+msgstr "Kasutaja režiim"
 
 msgid "User comments"
 msgstr ""
@@ -22273,6 +22506,15 @@ msgid "When enabled the receiver will automatically return to standby when the T
 msgstr ""
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr ""
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
 msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
@@ -24122,6 +24364,46 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+msgid "Fallback Timer"
+msgstr ""
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Ülesanne täidetud!!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Töö edenemine:"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Salvestamise asukohta pole olemas: '/tmp/'"
+
+#
+#~ msgid "Backup done."
+#~ msgstr "Varundamine tehtud."
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Seadmeid ei leitud!!"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "Varukoopia loodud."
+
+#~ msgid "Backup failed."
+#~ msgstr "Varukoopia loomine nurjus."
 
 #~ msgid "About..."
 #~ msgstr "Süsteemist"

@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 msgid ""
 "\n"
@@ -1847,6 +1847,18 @@ msgstr "Transcodificación AC3plus"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI-Powered translation color"
+msgstr "Color de traducción asistida por IA"
+
+msgid "AI-Powered translation enabled"
+msgstr "Traducción asistida por IA activada"
+
+msgid "AI-Powered translation language"
+msgstr "Idioma de traducción asistida por IA"
+
+msgid "AI-Powered translation subscription code"
+msgstr "Código de suscripción de la traducción asistida por IA"
+
 msgid "ARM"
 msgstr "ARM"
 
@@ -2447,6 +2459,16 @@ msgstr "Alfabético debajo de los títulos"
 msgid "Alphanumeric"
 msgstr "Alfanumérico"
 
+msgid "Also import at reboot/restart enigma2"
+msgstr "También importar al reiniciar/reiniciar enigma2"
+
+# Menue Anpassungen OSD
+msgid "Also import from the extension menu"
+msgstr "Importar también del menú extensiones"
+
+msgid "Also import when box is leaving standby"
+msgstr "Importar también cuando el receptor sale de reposo"
+
 msgid "Also on standby"
 msgstr "También en reposo"
 
@@ -2458,6 +2480,13 @@ msgstr "Alternativo 1"
 
 msgid "Alternative 2"
 msgstr "Alternativo 2"
+
+#
+msgid "Alternative Edit"
+msgstr "Edición alternativa"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "URL alternativas para DVB-T/C o ATSC"
 
 msgid "Alternative numbering mode"
 msgstr "Modo de numeración alternativo"
@@ -3107,14 +3136,6 @@ msgstr "Ajustes de backup"
 #
 msgid "Backup System Settings"
 msgstr "Backup de los ajustes del sistema"
-
-#
-msgid "Backup done."
-msgstr "Backup realizado."
-
-#
-msgid "Backup failed!"
-msgstr "Ha fallado el backup!"
 
 msgid "Backup images"
 msgstr "Imágenes de backup"
@@ -3996,6 +4017,9 @@ msgstr "¡Cuidado, la actualización aún no ha sido probada!"
 msgid "Cayman Islands"
 msgstr "Islas Caimán"
 
+msgid "Cebuano"
+msgstr "Cebuano"
+
 msgid "Celsius"
 msgstr "Celsius"
 
@@ -4288,6 +4312,9 @@ msgstr "China"
 
 msgid "Chinese"
 msgstr "Chino"
+
+msgid "Chinese (Simplified)"
+msgstr "Chino (simplificado)"
 
 #, python-format
 msgid "Chipset: BCM%s"
@@ -4702,6 +4729,12 @@ msgid "Command execution..."
 msgstr "Ejecución de comando..."
 
 #
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] "Comando finalizado."
+msgstr[1] "Comandos finalizados."
+
+#
 msgid "Command order"
 msgstr "Orden de comando"
 
@@ -4908,6 +4941,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Configurar el tipo de mando a distancia"
 
+msgid "Configure the AI-Powered translation language."
+msgstr "Configurar el idioma de la traducción asistida por IA."
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configurar el modo DiSEqC para este LNB."
 
@@ -4975,6 +5011,9 @@ msgstr "Configura el nivel de brillo del LCD durante su uso."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Configura el nivel de brillo del LCD en modo espera."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr "Configurar el color de la traducción asistida por IA."
 
 msgid ""
 "Configure the color of the external subtitles, alternative (normal in white, "
@@ -5856,6 +5895,10 @@ msgstr "Personalizar el intervalo de salto de las teclas ‘7’/‘9’"
 msgid "Customize"
 msgstr "Configurar"
 
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr ""
+"Personalizar la configuración de OpenWebIF para el sintonizador de reserva"
+
 msgid "Customize System Settings"
 msgstr "Personalizar"
 
@@ -6618,6 +6661,18 @@ msgstr ""
 "Los paquetes deseleccionados suelen producirse porque los empaquetados son "
 "incompatibles con los existentes. Aunque en la mayoría de los casos esto es "
 "inocuo, es posible que su %s %s experimente problemas."
+
+msgid "Destination of fallback remote receiver"
+msgstr "Destino del receptor remoto de reserva."
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Destino del receptor remoto de reserva para ATSC."
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Destino del receptor remoto de reserva para DVB-C."
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Destino del receptor remoto de reserva para DVB-T."
 
 msgid "Detail of GStreamer log."
 msgstr "Detalle del log GStreamer."
@@ -7588,6 +7643,10 @@ msgstr "Habilitar %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Habilitar 5V para la antena activa"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+"Activar traducción asistida por IA para todos los subtítulos DVB y teletexto."
+
 #
 msgid "Enable Autorecord"
 msgstr "Habilitar Autograbación"
@@ -7734,6 +7793,9 @@ msgstr "Activar receptor remoto de reserva"
 
 msgid "Enable freesat EPG"
 msgstr "Habilitar EPG Freesat"
+
+msgid "Enable import timer from fallback tuner"
+msgstr "Activar importación de temporizador del sintonizador de reserva"
 
 msgid "Enable intro screen"
 msgstr "Habilitar pantalla de introducción"
@@ -7976,6 +8038,10 @@ msgstr "Introducir"
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr "Introducir la %d dirección IP del DNS (servidor de nombres dinámico)."
 
+#
+msgid "Enter IP address"
+msgstr "Introduce dirección IP"
+
 msgid "Enter PIN"
 msgstr "Introducir PIN"
 
@@ -8070,6 +8136,17 @@ msgid ""
 msgstr ""
 "Introducir la frecuencia de su oscilador local de banda baja. Para más "
 "información consulte la hoja de especificaciones de su LNB."
+
+msgid ""
+"Enter your personal feed URL to allow you to select packages from your "
+"personal feed."
+msgstr ""
+"Introduce la URL de tus feeds personales para permitirte seleccionar "
+"paquetes de tu feed personal."
+
+msgid "Enter your subscription code, the unified code for trail is 15."
+msgstr ""
+"Introduce tu código de suscripción, el código unificado para Trail es 15."
 
 #
 msgid "Entertainment"
@@ -8259,6 +8336,14 @@ msgstr "Texto de error :"
 msgid "Error unzipping image '%s'!"
 msgstr "¡Error al descomprimir la imagen '%s'!"
 
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Error mientras se recuperaba información del temporizador alternativo\n"
+"%s"
+
 msgid "Error, unknown Result!"
 msgstr "Error, ¡resultado desconocido!"
 
@@ -8406,6 +8491,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Error: No se ha podido renombrar el directorio '%s' a '%s'!"
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Error: ¡No se pudo crear el archivo log '%s'!"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Error: No puedes ejecutar '%s' en '%s'!"
 
@@ -8517,14 +8606,6 @@ msgstr "¡Excede el recurso de doble capa!"
 
 msgid "Execution condition"
 msgstr "Condición de ejecución"
-
-#
-msgid "Execution finished!!"
-msgstr "¡La ejecución ha terminado!"
-
-#
-msgid "Execution progress:"
-msgstr "Progreso de ejecución:"
 
 #
 msgid "Exif"
@@ -8812,12 +8893,37 @@ msgstr "Fallido:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Islas Malvinas"
 
+msgid "Fallback API did not return a valid result."
+msgstr "API alternativo no devuelve un resultado válido."
+
 #
 msgid "Fallback Font *"
 msgstr "Fuente de reserva *"
 
+msgid "Fallback remote receiver"
+msgstr "Receptor remoto de reserva"
+
+msgid "Fallback remote receiver IP"
+msgstr "IP del receptor remoto de reserva"
+
+msgid "Fallback remote receiver Port"
+msgstr "Puerto del receptor remoto de reserva"
+
 msgid "Fallback remote receiver URL"
 msgstr "Receptor remoto reserva URL"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Receptor remoto de reserva para ATSC."
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Receptor remoto de reserva para DVB-C."
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Receptor remoto de reserva para DVB-T."
+
+#
+msgid "Fallback tuner setup"
+msgstr "Configuración del sintonizador de reserva"
 
 msgid "False"
 msgstr "Falso"
@@ -9005,10 +9111,6 @@ msgstr "La transferencia de archivos se canceló por el usuario!"
 
 msgid "File transfer was cancelled by user"
 msgstr "La transferencia de archivos fue cancelada por el usuario"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Error de escritura del archivo: '%s'"
 
 #
 msgid "Filename"
@@ -9824,6 +9926,9 @@ msgstr "Tipo de hardware"
 msgid "Hausa"
 msgstr "Hausa"
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr "Isla Heard e Islas McDonald"
 
@@ -9940,11 +10045,11 @@ msgstr "Ocultar reproductor"
 msgid "Hide the InfoBar"
 msgstr "Ocultar la barra de información"
 
-msgid "Hide this screen"
-msgstr "Ocultar esta pantalla"
-
 msgid "Hide zap errors"
 msgstr "Ocultar errores de zapeo"
+
+msgid "Hide/Show the console screen"
+msgstr "Ocultar/Mostrar la pantalla de la consola"
 
 msgid "Hierarchy info"
 msgstr "Información jerárquica"
@@ -9996,6 +10101,9 @@ msgstr "Historial de zapeo"
 
 msgid "History Zap Actions"
 msgstr "Acciones historial de zapeo"
+
+msgid "Hmong"
+msgstr ""
 
 #
 msgid "Hockey"
@@ -10153,6 +10261,9 @@ msgid ""
 msgstr ""
 "Dirección IP del servidor Stream Relay utilizado para descodificar servicios "
 "que sólo se pueden descodificar a través de Stream Relay."
+
+msgid "IP of fallback remote receiver"
+msgstr "IP del receptor remoto de reserva."
 
 msgid "IPK Installer"
 msgstr "Instalador IPK"
@@ -10497,6 +10608,32 @@ msgstr "Apagado inmediato"
 
 msgid "Immediately restart selected devices."
 msgstr "Reinicie inmediatamente los dispositivos seleccionados."
+
+msgid ""
+"Import channels and/or EPG from remote receiver URL also when the receiver "
+"is getting out of standby"
+msgstr ""
+"Importar canales y/o EPG de URL de receptor remoto incluso cuando el "
+"receptor se está sacando de reposo"
+
+msgid ""
+"Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr ""
+"Importar canales y/o EPG de URL de receptor remoto cuando el receptor "
+"arranque"
+
+msgid ""
+"Import channels and/or EPG from remote receiver URL when receiver or enigma2 "
+"is restarted"
+msgstr ""
+"Importar canales y/o EPG de URL del receptor remoto cuando el receptor o "
+"enigma2 se reinicien"
+
+msgid "Import from remote receiver URL"
+msgstr "Importar de la URL del receptor remoto de reserva"
+
+msgid "Import remote receiver URL"
+msgstr "Importar URL del receptor remoto"
 
 msgid ""
 "In addition to the check at an event start, a repetitive check can be used, "
@@ -11219,6 +11356,12 @@ msgstr "Kuanyama / Kwanyama"
 msgid "Kurdish"
 msgstr "Kurdo"
 
+msgid "Kurdish (Sorani)"
+msgstr "Kurdo (soraní)"
+
+msgid "Kurdistan"
+msgstr "Kurdistan"
+
 #
 msgid "Kuwait"
 msgstr "Kuwait"
@@ -11831,6 +11974,13 @@ msgstr "Mantenga su dispositivo de arranque múltiple."
 
 msgid "Make"
 msgstr "Construir"
+
+msgid ""
+"Make it possible to manually initiate the channels import and/or EPG via the "
+"extension menu"
+msgstr ""
+"Posibilidad de iniciar manualmente la importación de canales y/o EPG a "
+"través del menú extensiones"
 
 #
 msgid "Make this mark an 'in' point"
@@ -12742,6 +12892,15 @@ msgstr "NOTA: El directorio/archivo '%s' ya existe y se sobreescribirá!"
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "NOTA: Estos %d directorios/archivos ya existen y se sobreescribirán!"
 
+msgid ""
+"NOTE: While the console screen is hidden from view the buttons are still "
+"active. Pressing any enabled button will cause the screen to reappear but "
+"the button will not be actioned."
+msgstr ""
+"NOTA: Mientras la pantalla de la consola está oculta, los botones siguen "
+"activos. Al pulsar cualquier botón activado, la pantalla volverá a aparecer, "
+"pero el botón no se activará."
+
 #
 msgid "NOW"
 msgstr "AHORA"
@@ -13091,11 +13250,8 @@ msgstr "¡No se encontró ningún DVDROM (compatible)!"
 msgid "No Connection"
 msgstr "Sin conexión"
 
-msgid "No Devices Found !!"
-msgstr "¡No se han encontrado dispositivos!"
-
-msgid "No ECMPids available"
-msgstr "No hay ECMPids disponibles"
+msgid "No ECM PIDs available"
+msgstr "No hay ECM Pids disponibles"
 
 #
 msgid "No HDD found or HDD not initialized!"
@@ -13812,8 +13968,24 @@ msgstr "Abrir la lista de canales y seleccionar el canal anterior"
 msgid "Open service list and select previous channel for PiP"
 msgstr "Abrir la lista de servicios y seleccionar el canal anterior para PiP"
 
+#
+msgid "Open the Channel Selection Settings screen"
+msgstr "Abrir la pantalla de ajustes de lista de canales"
+
+msgid "Open the Image information"
+msgstr "Abrir la información de sistema"
+
 msgid "Open the Plugin Browser"
 msgstr "Abrir Explorador de Plugins"
+
+msgid "Open the Plugin Browser settings screen"
+msgstr "Abrir la pantalla de configuración del Explorador de Plugins"
+
+msgid "Open the Storage Device information"
+msgstr "Abrir la información de almacenamiento del dispositivo"
+
+msgid "Open the VirtualKeyBoard for text entry"
+msgstr "Abrir el teclado virtual para la introducción de texto"
 
 msgid "Open the context menu"
 msgstr "Abrir el menú contextual"
@@ -14191,9 +14363,6 @@ msgstr "Se ha cambiado la contraseña."
 #, python-format
 msgid "Path '%s' missing!"
 msgstr "Ruta '%s' no encontrada!"
-
-msgid "Path to save not exist: '/tmp/'"
-msgstr "La ruta para guardar no existe: '/tmp/'"
 
 msgid "Pause"
 msgstr "Pausa"
@@ -14796,6 +14965,9 @@ msgid ""
 msgstr ""
 "Número de puerto para el servidor Stream Relay utilizado para descodificar "
 "servicios que sólo se pueden descodificar a través de Stream Relay."
+
+msgid "Port of fallback remote receiver"
+msgstr "Puerto del receptor remoto de reserva"
 
 # Language
 msgid "Portugal"
@@ -15402,6 +15574,9 @@ msgstr "EPG rápido"
 
 msgid "Quick Launch Menu"
 msgstr "Menú de inicio rápido"
+
+msgid "Quick Menu Actions"
+msgstr "Acciones del menú rápido"
 
 #
 msgid "Quick Menu..."
@@ -16481,6 +16656,10 @@ msgstr "En curso"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Ejecutando script MyRestore. Espera…"
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr "Ejecutando comando %d: '%s'."
+
 # Language
 msgid "Russian"
 msgstr "Ruso"
@@ -16609,6 +16788,9 @@ msgstr "Servidor Samba"
 msgid "Same as in active"
 msgstr "Igual que en activo"
 
+msgid "Same as stream"
+msgstr "Igual que el stream"
+
 msgid "Same behavior as current animation"
 msgstr "Mismo comportamiento que la animación actual"
 
@@ -16701,6 +16883,9 @@ msgstr "Guardar EPG"
 msgid "Save EPG data"
 msgstr "Guardar datos de EPG"
 
+msgid "Save Log"
+msgstr "Guardar log"
+
 #
 msgid "Save all changed settings and exit"
 msgstr "Guardar todos los ajustes modificados y salir"
@@ -16755,6 +16940,9 @@ msgstr "Guardar la ubicación del directorio de la columna izquierda al salir."
 
 msgid "Save the log changes and exit"
 msgstr "Guarde los cambios del registro y salga"
+
+msgid "Save the log of the console messages to a file"
+msgstr "Guardar los mensajes log de la consola a un archivo"
 
 msgid "Save the right column directory location on exit."
 msgstr "Guardar la ubicación del directorio de la columna derecha al salir."
@@ -18266,6 +18454,9 @@ msgstr "Selecciona la hora a la que debería empezar este temporizador."
 msgid "Select the time zone within the area or region."
 msgstr "Configura la zona horaria sin área o región."
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Seleccionar el temporizador del sintonizador de reserva por defecto"
+
 #
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Seleccione el sintonizador que controla el plato motorizado."
@@ -18692,6 +18883,9 @@ msgstr "Configura la hora"
 msgid "Set action for 'Info' key"
 msgstr "Establecer acción para el botón 'Info'"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Configura sintonizadores alternativos de reserva para DVB-T/C o ATSC"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Fijar la dirección actual CEC como dirección fija"
 
@@ -18740,6 +18934,9 @@ msgstr "Configurar sistema"
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Configura la dirección MAC de tu %s %s."
+
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Configura el ID de usuario del OpenWebif de tu sintonizador de reserva"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Establece la relación de aspecto de los picons de canales."
@@ -18795,6 +18992,12 @@ msgid ""
 msgstr ""
 "Configurar el número de líneas que se guardará para las salidas  'stout' y "
 "'sterr' de los scripts."
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Configura la contraseña del OpenWebif de tu sintonizador de reserva"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Configura el puerto del OpenWebif de tu sintonizador de reserva"
 
 msgid "Set the position of the recording icons."
 msgstr "Establezca la posición de los iconos de grabación."
@@ -19674,6 +19877,30 @@ msgstr "Mostrar foto siguiente"
 
 msgid "Show next system information screen"
 msgstr "Mostrar siguiente pantalla de información del sistema"
+
+msgid ""
+"Show notification when import channels and/or EPG from remote receiver URL "
+"did not complete"
+msgstr ""
+"Mostrar notificación cuando no se complete la importación de canales y/o EPG "
+"de la URL del receptor remoto"
+
+msgid ""
+"Show notification when import channels and/or EPG from remote receiver URL "
+"is completed"
+msgstr ""
+"Mostrar notificación cuando se complete la importación de canales y/o EPG de "
+"la URL del receptor remoto"
+
+msgid "Show notification when import channels was not successful"
+msgstr ""
+"Mostrar notificación cuando la importación de canales no se haya realizado "
+"correctamente"
+
+msgid "Show notification when import channels was successful"
+msgstr ""
+"Mostrar notificación cuando la importación de canales se haya realizado "
+"correctamente"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Mostrar u ocultar la descripción ampliada (depende del tema)."
@@ -23369,6 +23596,9 @@ msgstr "UP80 (keymap.u80)"
 msgid "URL"
 msgstr "URL"
 
+msgid "URL of fallback remote receiver"
+msgstr "URL del receptor remoto de reserva"
+
 msgid "URL of fallback remote receiver."
 msgstr "URL del receptor remoto de reserva."
 
@@ -23441,6 +23671,11 @@ msgstr "Sin cifrar"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Error inesperado al acceder a WebIF: %s"
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr ""
+"Error inesperado al recuperar información de temporizador del sintonizador "
+"de reserva"
 
 #
 msgid "UnhandledKey"
@@ -24010,6 +24245,9 @@ msgstr "Usuario - grupos"
 
 msgid "User Feed URL"
 msgstr "Url de feed del usuario"
+
+msgid "User ID"
+msgstr "ID de usuario"
 
 msgid "User comments"
 msgstr "Comentarios de usuario"
@@ -24807,6 +25045,21 @@ msgid ""
 msgstr ""
 "Cuando esté activo, el receptor se encenderá desde reposo cuando la TV se "
 "encienda."
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+"Cuando está activado, se importa el temporizador del sintonizador de reserva."
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr ""
+"Cuando está activado, el temporizador del sintonizador de reserva será el "
+"temporizador por defecto"
+
+msgid ""
+"When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr ""
+"Cuando esté activado, podrás personalizar los ajustes OpenWebIf en el "
+"sintonizador de reserva"
 
 msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
@@ -28355,9 +28608,6 @@ msgstr ""
 msgid "No Internet connection"
 msgstr "Sin conexión a internet"
 
-msgid "Open the VirtualKeyBoard for text entry"
-msgstr "Abrir el teclado virtual para la introducción de texto"
-
 #
 msgid "Package installation failed."
 msgstr "Falló la instalación de paquete."
@@ -28656,13 +28906,6 @@ msgstr "Quieres actualizar:"
 msgid "Download the selected list of plugins"
 msgstr "Descargar la lista de plugins seleccionada"
 
-msgid ""
-"Enter your personal feed URL to allow you to select packages from your "
-"personal feed."
-msgstr ""
-"Introduce la URL de tus feeds personales para permitirte seleccionar "
-"paquetes de tu feed personal."
-
 #
 msgid "Extension Packages"
 msgstr "Paquetes de extensiones"
@@ -28721,9 +28964,6 @@ msgstr "Adaptador de red no conectado a la red!"
 #
 msgid "No network adapters enabled/available!"
 msgstr "No hay adaptadores de red disponibles/activados!"
-
-msgid "Open the Plugin Browser settings screen"
-msgstr "Abrir la pantalla de configuración del Explorador de Plugins"
 
 msgid "Picon Packages"
 msgstr "Paquetes de picon"
@@ -29105,31 +29345,3 @@ msgid "Configure if bouquets picons will be shown in the service list."
 msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
-
-#~ msgid "23.976"
-#~ msgstr "23.976"
-
-#~ msgid "24"
-#~ msgstr "24"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "29.97"
-#~ msgstr "29.97"
-
-#~ msgid "30"
-#~ msgstr "30"
-
-#~ msgid "the number of files to be processed, the backup will take up"
-#~ msgstr "el número de archivos a procesar, el backup ocupará"
-
-#~ msgid "Backup completed."
-#~ msgstr "Backup completado."
-
-#
-#~ msgid "Backup failed."
-#~ msgstr "Backup erróneo."
-
-#~ msgid "Show subservices of the active service"
-#~ msgstr "Mostrar subservicios del servicio activo"
