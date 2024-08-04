@@ -24,7 +24,6 @@ from Screens.Screen import Screen
 from .H9SDmanager import H9SDmanager
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
 from .ImageWizard import ImageWizard
-from .ImageBackup import ImageBackup
 
 boxType = BoxInfo.getItem("machinebuild")
 config.plugins.configurationbackup = BackupRestore_InitConfig()
@@ -62,9 +61,6 @@ class H9SDmanager(H9SDmanager):
 	pass
 
 class ImageWizard(ImageWizard):
-	pass
-
-class ImageBackup(ImageBackup):
 	pass
 
 class RestoreMenu(RestoreMenu):

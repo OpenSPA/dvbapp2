@@ -5,7 +5,6 @@ install_PYTHON = \
 	plugin.py \
 	BackupRestore.py \
 	H9SDmanager.py \
-	ImageBackup.py \
 	ImageWizard.py \
 	ShellCompatibleFunctions.py
 
