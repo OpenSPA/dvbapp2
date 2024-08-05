@@ -67,24 +67,8 @@ msgstr ""
 "\n"
 "[Plugins instalados]\n"
 
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[Usuario - listas (RADIO)]\n"
-
 msgid " "
 msgstr " "
-
-msgid "     no space left on back-up device"
-msgstr "     no hay espacio suficiente en el dispositivo de backup"
-
-msgid "     no writing permission on back-up device"
-msgstr "     no tiene permiso de escritura en el dispositivo de backup"
-
-msgid "     wrong back-up destination "
-msgstr "     destino de backup incorrecto "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Botón de menú: Seleccionar canal quad"
@@ -2444,9 +2428,6 @@ msgstr ""
 msgid "Allows you to show/hide OScam in extensions (BLUE button)."
 msgstr "Te permite mostrar/ocultar OScam en extensiones (tecla azul)."
 
-msgid "Almost there... "
-msgstr "Ya casi está... "
-
 msgid "Alpha"
 msgstr "Alfa"
 
@@ -3069,16 +3050,6 @@ msgstr "Posterior, USB externo"
 msgid "Back, upper USB"
 msgstr "Trasero, USB superior"
 
-#
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Herramienta de backup para %s\n"
-
-#
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Herramienta de backup para un %s\n"
-
 msgid "Back/Recall"
 msgstr "Volver/Recuperar"
 
@@ -3105,10 +3076,6 @@ msgstr "Fondo:"
 msgid "Backup"
 msgstr "Backup"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Fecha de backup: %s\n"
-
 msgid "Backup Location"
 msgstr "Ubicación del backup"
 
@@ -3121,14 +3088,8 @@ msgstr "Modo backup"
 msgid "Backup Mode: Flash Online"
 msgstr "Modo backup: Flash Online"
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "Modo backup: FlashOnline\n"
-
 msgid "Backup Mode: USB Recovery"
 msgstr "Modo backup: Recuperación USB"
-
-msgid "Backup Mode: USB Recovery\n"
-msgstr "Modo backup: Recuperación USB\n"
 
 msgid "Backup Settings"
 msgstr "Ajustes de backup"
@@ -3150,10 +3111,6 @@ msgid ""
 msgstr ""
 "Se ha encontrado un backup de los plugins\n"
 "¿Quiere instalarlo ahora?"
-
-#, python-format
-msgid "Backup to destination: %s"
-msgstr "Backup en destino: %s"
 
 #
 #, python-format
@@ -3508,10 +3465,6 @@ msgstr "Información de fabricación"
 #, python-format
 msgid "Build information for %s %s"
 msgstr "Información de compilación para %s %s"
-
-#, python-format
-msgid "Build: %s"
-msgstr "Compilación: %s"
 
 # Language
 msgid "Bulgaria"
@@ -3965,10 +3918,6 @@ msgstr "Cancelar la actualización"
 msgid "Cancelled upon user request"
 msgstr "Cancelado a petición del usuario"
 
-#
-msgid "Cannot create backup directory"
-msgstr "No se puede crear carpeta del backup"
-
 msgid "Cannot delete file"
 msgstr "No se puede borrar el archivo"
 
@@ -4315,10 +4264,6 @@ msgstr "Chino"
 
 msgid "Chinese (Simplified)"
 msgstr "Chino (simplificado)"
-
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
 
 msgid "Choice Box"
 msgstr "Elige receptor"
@@ -5743,14 +5688,6 @@ msgstr "Crear backup de imagen de recuperación '%s'."
 
 msgid "Create separate radio user bouquet"
 msgstr "Crear un lista de usuario de radio independiente"
-
-#
-msgid "Create:"
-msgstr "Crear:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Crear: Backup completo de recovery%s"
 
 msgid "Creating .ap and .sc files"
 msgstr "Creando archivos AP y SC"
@@ -8144,9 +8081,9 @@ msgstr ""
 "Introduce la URL de tus feeds personales para permitirte seleccionar "
 "paquetes de tu feed personal."
 
-msgid "Enter your subscription code, the unified code for trail is 15."
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
-"Introduce tu código de suscripción, el código unificado para Trail es 15."
+"Ingresa tu código de suscripción, el código unificado para prueba es 15."
 
 #
 msgid "Entertainment"
@@ -8319,12 +8256,6 @@ msgstr ""
 
 msgid "Error opening recording file"
 msgstr "Error al abrir el archivo de grabación"
-
-msgid "Error reading bouquets.radio"
-msgstr "Error al leer listas.radio"
-
-msgid "Error reading bouquets.tv"
-msgstr "Error al leer bouquets.tv"
 
 msgid "Error reading webpage!"
 msgstr "¡Error leyendo la página web!"
@@ -9454,19 +9385,11 @@ msgstr "Versión del procesador principal"
 msgid "Fulah"
 msgstr "Fulah"
 
-msgid "Full Image Backup "
-msgstr "Backup completo de la imagen "
-
 msgid "Full Range RGB"
 msgstr "Gama completa RGB"
 
 msgid "Full Stretch"
 msgstr "Estiramiento completo"
-
-#
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Backup completo en %s"
 
 msgid "Full factory reset"
 msgstr "Restablecimiento de fábrica completo"
@@ -10569,9 +10492,6 @@ msgstr "Ignorar el encendido inesperado y permanecer en reposo"
 msgid "Image Backup"
 msgstr "Backup de la imagen"
 
-msgid "Image Backup (OLD)"
-msgstr "Backup de la imagen (ANTIGUO)"
-
 msgid "Image Backup Actions"
 msgstr "Backup de la imagen"
 
@@ -10582,17 +10502,9 @@ msgstr "Backup de la imagen en %s"
 msgid "Image Flash Actions"
 msgstr "Acciones Flash de la imagen"
 
-#, python-format
-msgid "Image created on: %s/%s-%s%s-%s-backup-%s_%s.zip"
-msgstr "Imagen creada en: %s/%s-%s%s-%s-backup-%s_%s.zip"
-
 #
 msgid "Image created:"
 msgstr "Imagen creada:"
-
-#
-msgid "Image creation failed - "
-msgstr "Ha fallado la creación de la imagen - "
 
 #
 msgid "Image creation failed!"
@@ -12816,10 +12728,6 @@ msgstr "MultiLib"
 msgid "MultiTranscoding"
 msgstr "MultiTranscodificación"
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s%s-%s-backup-%s_usb.zip"
-msgstr "Imagen Multiboot creada en: %s/%s-%s%s-%s-backup-%s_usb.zip"
-
 msgid "Multiboot Image created:"
 msgstr "Imagen MultiBoot creada:"
 
@@ -13512,9 +13420,6 @@ msgstr ""
 msgid "No, but restart from begin"
 msgstr "No, pero reiniciar desde el principio"
 
-msgid "No, do not backup a image"
-msgstr "No, no hacer backup de una imagen"
-
 #
 msgid "No, do nothing."
 msgstr "No, no haga nada."
@@ -13687,9 +13592,6 @@ msgstr "Nada, solo salir de este menú"
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Ahora"
-
-msgid "Now building the Backup Image"
-msgstr "Ahora construyendo la imagen de backup"
 
 msgid "Now save time shift as movie and continues recording"
 msgstr "Ahorre ahora tiempo de reproducción como película y continúe grabando"
@@ -14581,16 +14483,8 @@ msgstr "Play/Pausa"
 msgid "Please add titles to the compilation."
 msgstr "Añade títulos a la compilación."
 
-#
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Por favor, tenga paciencia, ahora se realizará un backup,\n"
-
 msgid "Please be patient."
 msgstr "Por favor, tenga paciencia."
-
-#
-msgid "Please check the manual of the receiver"
-msgstr "Por favor, consulte el manual del receptor"
 
 #
 msgid "Please choose an extension..."
@@ -14687,10 +14581,6 @@ msgstr "Pulse OK para continuar."
 #
 msgid "Please press OK to start Kodi..."
 msgstr "Por favor, pulse OK para iniciar Kodi..."
-
-# ******************************************************************************
-msgid "Please select a backup destination"
-msgstr "Por favor, seleccione la ubicación del backup"
 
 msgid "Please select a default EPG type..."
 msgstr "Seleccione el tipo de EPG por defecto."
@@ -14884,10 +14774,6 @@ msgstr "Epera por favor..."
 #
 msgid "Please wait... Loading list..."
 msgstr "Espera... Cargando lista..."
-
-#
-msgid "Please wait...almost ready! "
-msgstr "Por favor, espere... ¡ya casi está! "
 
 msgid "Plugin Browser"
 msgstr "Explorador de Plugins"
@@ -15332,9 +15218,6 @@ msgstr "Minuto de máxima audiencia"
 #
 msgid "Priority"
 msgstr "Prioridad"
-
-msgid "Probable causes could be"
-msgstr "Las causas probables podrían ser"
 
 msgid "Proc model"
 msgstr "Modelo de Proc"
@@ -21283,9 +21166,6 @@ msgstr "Sundanés"
 msgid "Sunday"
 msgstr "Domingo"
 
-msgid "Support at"
-msgstr "Soporte en"
-
 msgid "Suriname"
 msgstr "Surinam"
 
@@ -22928,10 +22808,6 @@ msgstr "Repetición de salto de tiempo para salto adelante/atrás"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Salto de tiempo: usa velocidad normal en el avance rápido"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "Tiempo requerida para este proceso: %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "Eliminación del búfer timeshift después de zapear"
 
@@ -23119,9 +22995,6 @@ msgid ""
 msgstr ""
 "Para restaurar la imagen, use la opción Flash Online del Administrador de "
 "software."
-
-msgid "To restore the image:"
-msgstr "Para restaurar la imagen:"
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -23989,9 +23862,6 @@ msgstr "Usar información EPG de MHW cuando esté disponible."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Usar información EPG de Netmed cuando esté disponible."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "Usar Flashonline en Administrador de software"
-
 msgid "Use OpenTV EPG information when it is available."
 msgstr "Usar información de EPG OpenTV cuando esté disponible."
 
@@ -24183,11 +24053,6 @@ msgstr "Usar el modo de radio alternativo o convencional."
 
 msgid "Use the current selection and exit"
 msgstr "Usar la selección actual y salir"
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr ""
-"Usar los botones de flechas para seleccionar un imagen instalada y luego "
-"botón Inicio."
 
 msgid "Use the extended List"
 msgstr "Utilice la lista ampliada"
@@ -24433,16 +24298,8 @@ msgstr ""
 msgid "Version"
 msgstr "Versión"
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Versión %s %s"
-
 msgid "Version: "
 msgstr "Versión: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Version: %s"
 
 #
 msgid "Vertical"
@@ -26174,15 +26031,9 @@ msgstr "Zoom desde la derecha"
 msgid "Zulu"
 msgstr ""
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Ajustes Enigma2]\n"
-
 #
 msgid "[Favorite Edit]"
 msgstr "[editar favoritos]"
-
-msgid "[Image Info]\n"
-msgstr "[Información de la imagen]\n"
 
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] ¡Error al fusionar registros!"
@@ -26350,10 +26201,6 @@ msgstr "ballet"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-#
-msgid "because of the used file system the back-up\n"
-msgstr "debido al sistema de archivos usado en el backup\n"
 
 #
 msgid "better"
@@ -26994,10 +26841,6 @@ msgstr "Está con variación"
 msgid "on READ ONLY medium."
 msgstr "En disco de sólo lectura."
 
-#
-msgid "on how to restore the image"
-msgstr "sobre cómo restaurar la imagen"
-
 msgid "original language"
 msgstr "idioma original"
 
@@ -27517,9 +27360,6 @@ msgstr ""
 
 msgid "width"
 msgstr "Ancho"
-
-msgid "will take about 1-15 minutes for this system\n"
-msgstr "tardará entre 1-15 minutos para este sistema\n"
 
 msgid "winter sport"
 msgstr "deportes de invierno"
