@@ -8852,6 +8852,9 @@ msgstr "Receptor remoto de reserva para DVB-C."
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Receptor remoto de reserva para DVB-T."
 
+msgid "Fallback Timer"
+msgstr "Temporizador de reserva"
+
 #
 msgid "Fallback tuner setup"
 msgstr "Configuración del sintonizador de reserva"
