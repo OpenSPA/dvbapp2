@@ -2232,10 +2232,9 @@ class NetworkLogScreen(Screen):
 			lines = fileReadLines(self.logPath, [], source=MODULE_NAME)
 		self["infotext"].setText("\n".join(lines))
 
-class NetworkBaseScreen(Screen, HelpableScreen):
+class NetworkBaseScreen(Screen):
 	def __init__(self, session, showLog=False):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.service_name = ""
 		self.Console = Console()
 		self["key_red"] = StaticText(_("Remove Service"))
