@@ -1,5 +1,6 @@
 from re import sub
 from os.path import exists, isfile, splitext
+from os import linesep
 from time import localtime
 
 from enigma import eConsoleAppContainer
@@ -176,7 +177,7 @@ class Console(Screen):
 
 	def runCommand(self, cmd):
 		print(f"[Console] Running command {self.run + 1}: '{self.cmdList[self.run]}'.")
-		self["text"].appendText(f"{self.commandColorStart}>>> {_("Running command %d: '%s'.") % (self.run + 1, self.cmdList[self.run])}{self.commandColorEnd}\n")
+		self["text"].appendText(("%s>>>" % self.commandColorStart)+ _("Running command %d: '%s'.") % (self.run + 1, self.cmdList[self.run])+("%s\n" % self.commandColorEnd))
 		if self.showScripts:
 			if isinstance(cmd, (list, tuple)) and cmd[0].endswith((".sh", ".py")):
 				cmdLine = cmd[0]
@@ -188,7 +189,7 @@ class Console(Screen):
 				else:
 					lines = None
 			if lines:
-				self["text"].appendText(f"{self.scriptColorStart}>>> Command script '{cmdLine}' contents:\n{"\n".join(lines)}\n>>> End of script.{self.scriptColorEnd}\n")
+				self["text"].appendText(f"{self.scriptColorStart}>>> Command script '{cmdLine}' contents:\n{linesep.join(lines)}\n>>> End of script.{self.scriptColorEnd}\n")
 		self["text"].appendText("\n")
 		return self.container.execute(cmd[0], *cmd) if isinstance(cmd, (list, tuple)) else self.container.execute(cmd)
 
