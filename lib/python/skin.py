@@ -301,7 +301,7 @@ def parseOptions(options, attribute, value, default):
 		if value in options.keys():
 			value = options[value]
 		else:
-			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{"', '".join(options.keys())}', using '{default}")
+			skinError("The '%s' value '%s' is invalid, acceptable options are '%s', using '%s" % (attribute,value,"', '".join(options.keys()),default))
 			value = default
 	else:
 		skinError(f"The '{attribute}' parser is not correctly initialized, using '{default}'")

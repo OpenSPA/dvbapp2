@@ -163,7 +163,7 @@ class MultiBootClass():
 					bootCode = ""
 					slotCode = file.rsplit("_", 1)[1]
 				if self.debugMode:
-					print(f"[MultiBoot] Processing boot file '{file}' as slot code '{slotCode if slotCode else ""}', boot mode '{bootCode if bootCode else ""}'.")
+					print(f"[MultiBoot] Processing boot file '{file}' as slot code '{slotCode if slotCode else ''}', boot mode '{bootCode if bootCode else ''}'.")
 				if slotCode:
 					line = " ".join(x.strip() for x in fileReadLines(path, default=[], source=MODULE_NAME) if x.strip())
 					if "root=" in line:
@@ -219,7 +219,7 @@ class MultiBootClass():
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
 							elif bootDevice:
 								device = bootDevice[0]
-								saveKernel(bootSlots, slotCode, f"/dev/{device}{line.split(device, 1)[1].split(" ", 1)[0]}")
+								saveKernel(bootSlots, slotCode, f"/dev/{device}{line.split(device, 1)[1].split(' ', 1)[0]}")
 							else:
 								parts = device.split("p")
 								saveKernel(bootSlots, slotCode, f"{parts[0]}p{int(parts[1]) - 1}")
@@ -254,7 +254,7 @@ class MultiBootClass():
 					print(f"[MultiBoot] Slot '{slotCode}':")
 					modes = bootSlots[slotCode].get("bootCodes")
 					if modes and modes != [""]:
-						print(f"[MultiBoot]     Boot modes: '{"', '".join(modes)}'.")
+						print("[MultiBoot]     Boot modes: '%s'." % "', '".join(modes))
 					startupFile = bootSlots[slotCode].get("startupfile")
 					if startupFile:
 						if isinstance(startupFile, dict):
@@ -303,7 +303,7 @@ class MultiBootClass():
 				for bootCode in bootCodes:
 					if cmdLines[bootCode] == self.startupCmdLine:
 						if self.debugMode:
-							print(f"[MultiBoot] Startup slot code is '{slotCode}' and boot mode is '{bootCode if bootCode else ""}'.")
+							print(f"[MultiBoot] Startup slot code is '{slotCode}' and boot mode is '{bootCode if bootCode else ''}'.")
 						return slotCode, bootCode
 		return None, ""
 
@@ -418,7 +418,7 @@ class MultiBootClass():
 					print(f"[MultiBoot]     Status: '{self.imageList[slotCode].get('status', 'Unknown').capitalize()}'.")
 					modes = self.imageList[slotCode].get("bootCodes")
 					if modes and modes != [""]:
-						print(f"[MultiBoot]     Boot modes: '{"', '".join(modes)}'.")
+						print("[MultiBoot]     Boot modes: '%s'." % "', '".join(modes))
 					print(f"[MultiBoot]     UBI device: '{'Yes' if self.imageList[slotCode].get('ubi', False) else 'No'}'.")
 				print(f"[MultiBoot] {len(self.imageList)} boot slots detected.")
 			self.callback(self.imageList)
