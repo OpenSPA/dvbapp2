@@ -16512,6 +16512,9 @@ msgstr ""
 msgid "Show image and save as '%s'"
 msgstr ""
 
+msgid "Show in Extension Menu"
+msgstr ""
+
 msgid "Show in Standby"
 msgstr ""
 

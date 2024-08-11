@@ -19682,6 +19682,9 @@ msgstr "Mostrar imagen"
 msgid "Show image and save as '%s'"
 msgstr "Mostrar imagen y guardar como '%s'"
 
+msgid "Show in Extension Menu"
+msgstr "Mostrar en menú extensiones"
+
 msgid "Show in Standby"
 msgstr "Mostrar en Reposo"
 
