@@ -17328,7 +17328,7 @@ msgstr ""
 msgid "Sort EPG List"
 msgstr ""
 
-msgid "Sort Extension menu"
+msgid "Sort Extension Menu"
 msgstr ""
 
 msgid "Sort Plugin Browser"

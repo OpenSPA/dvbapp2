@@ -17319,10 +17319,10 @@ msgid ""
 "reliable form of Factory Reset."
 msgstr ""
 "Seleccione \"Sí\" para eliminar todos los ajustes, datos de sintonización, "
-"temporizadores, punteros de reanudación, etc. Al seleccionar esta opción se "
+"temporizadores, puntos de reanudación, etc. Al seleccionar esta opción se "
 "restablecerá la configuración a los ajustes iniciales antes de que se "
-"aplicara cualquier ajuste de configuración. Esta es la forma más fiable de "
-"Restauración de Fábrica."
+"aplique cualquier configuración. Esta es la forma más fiable de Restauración "
+"de Fábrica."
 
 msgid ""
 "Select 'Yes' to remove all timer configuration data. Selecting this option "
@@ -20608,7 +20608,7 @@ msgid "Sort EPG List"
 msgstr "Ordenar la lista EPG"
 
 # Menue Anpassungen OSD
-msgid "Sort Extension menu"
+msgid "Sort Extension Menu"
 msgstr "Ordenar menú extensiones"
 
 msgid "Sort Plugin Browser"
