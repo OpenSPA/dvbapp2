@@ -56,7 +56,7 @@ class Network:
 		return [x for x in listdir("/sys/class/net") if not self.isBlacklisted(x)]
 
 	def isBlacklisted(self, iface):  # Function to determine if the interface is in a blacklist.
-		return iface in ("lo", "wifi0", "wmaster0", "sit0", "tap0", "tun0", "wg0", "sys0", "p2p0", "tunl0", "ip6tnl0", "ip_vti0", "ip6_vti0")
+		return iface in ("lo", "wifi0", "wmaster0", "sit0", "tap0", "tun0", "wg0", "sys0", "p2p0", "tunl0", "ip6tnl0", "ip_vti0", "ip6_vti0", "tailscale0")
 
 	def onRemoteRootFS(self):
 		if self.remoteRootFS is None:
