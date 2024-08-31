@@ -138,7 +138,7 @@ def parseNextEvent(list, isZapTimer=False):  # IanSav: This is only used in once
 
 
 class ChannelSelectionBase(Screen):
-	def __init__(self, session, forceLegacy=False):
+	def __init__(self, session):
 		def digitHelp():
 			return _("LCN style QuickSelect entry selection") if config.usage.show_channel_jump_in_servicelist.value == "quick" else _("SMS style QuickSelect entry selection")
 
@@ -153,7 +153,7 @@ class ChannelSelectionBase(Screen):
 		self["key_green"] = StaticText(_("Reception Lists"))
 		self["key_yellow"] = StaticText(_("Providers"))
 		self["key_blue"] = StaticText(_("Bouquets"))
-		self["list"] = ServiceListLegacy(self) if config.channelSelection.screenStyle.value == "" or config.channelSelection.widgetStyle.value == "" or forceLegacy else ServiceList(self)
+		self["list"] = ServiceListLegacy(self) if config.channelSelection.screenStyle.value == "" or config.channelSelection.widgetStyle.value == "" else ServiceList(self)
 		self.servicelist = self["list"]
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
 		self.servicePath = []
@@ -2283,9 +2283,9 @@ class SelectionEventInfo:
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
 	instance = None
 
-	def __init__(self, session, forceLegacy=False):
-		ChannelSelectionBase.__init__(self, session, forceLegacy)
-		if config.channelSelection.screenStyle.value and not forceLegacy:
+	def __init__(self, session):
+		ChannelSelectionBase.__init__(self, session)
+		if config.channelSelection.screenStyle.value:
 			self.skinName = [config.channelSelection.screenStyle.value]
 		elif config.usage.use_pig.value:
 			self.skinName = ["ChannelSelection_PIG", "ChannelSelection"]
@@ -2979,8 +2979,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 class PiPZapSelection(ChannelSelection):
 	def __init__(self, session):
-		ChannelSelection.__init__(self, session, forceLegacy=True)
+		ChannelSelection.__init__(self, session)
 		self.skinName = ["SlimChannelSelection", "SimpleChannelSelection", "ChannelSelection"]
+		self["list"] = ServiceListLegacy(self)  # Force legacy list
+		self.servicelist = self["list"]
 		self.startservice = None
 		self.pipzapfailed = None
 		if plugin_PiPServiceRelation_installed:
@@ -3068,7 +3070,9 @@ class RadioInfoBar(Screen):
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase, SelectionEventInfo):
 	def __init__(self, session, infobar):
-		ChannelSelectionBase.__init__(self, session, forceLegacy=True)
+		ChannelSelectionBase.__init__(self, session)
+		self["list"] = ServiceListLegacy(self)  # Force legacy list
+		self.servicelist = self["list"]
 		InfoBarBase.__init__(self)
 		SelectionEventInfo.__init__(self)
 		self.infobar = infobar
@@ -3215,6 +3219,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title, currentBouquet=False):
 		ChannelSelectionBase.__init__(self, session)
+		self["list"] = ServiceListLegacy(self)  # Force legacy list
+		self.servicelist = self["list"]
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"], {
 			"ok": (self.channelSelected, _("Play the selected service")),
 			"cancel": (self.close, _("Cancel the selection and exit")),
