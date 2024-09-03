@@ -1396,6 +1396,7 @@ class RecordTimerEdit(Setup):
 		self.timer.dirname_prev = self.timer.dirname
 		self.fallbackInfo = None
 		self.initEndTime = True
+		self.session = session  # We need session before createConfig
 		self.createConfig()
 		if self.timer.external:
 			FallbackTimerDirs(self, self.fallbackResult)
