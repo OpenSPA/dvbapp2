@@ -836,7 +836,7 @@ class ChannelSelectionEdit:
 				self.session.open(MessageBox, _("From \"Last Scanned\" a new bouquet was created with this name:\n\n\"Bouquet created to rename\"\n\nChange the name again with your chosen one."), MessageBox.TYPE_INFO, default=False, timeout=10)
 				Screens.InfoBar.InfoBar.instance.servicelist.showFavourites()
 			else:
-				self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=_("Please enter new name:"), text=name)
+				self.session.openWithCallback(self.renameEntryCallback, VirtualKeyboard, title=_("Please enter new name:"), text=name)
 		else:
 			return 0
 
