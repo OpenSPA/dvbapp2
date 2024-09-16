@@ -8539,6 +8539,9 @@ msgstr "URL för reserv fjärrmottagare"
 msgid "Fallback remote receiver Port"
 msgstr "URL för reserv fjärrmottagare"
 
+msgid "Fallback remote receiver setup"
+msgstr "Reservuppställning av fjärrmottagare"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL för reserv fjärrmottagare"
 

@@ -7940,6 +7940,9 @@ msgstr "IP adresa záložního přijímače"
 msgid "Fallback remote receiver Port"
 msgstr "Port záložního přijímače"
 
+msgid "Fallback remote receiver setup"
+msgstr "Nastavení záložního dálkového přijímače"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL záložního vzdáleného přijímače"
 

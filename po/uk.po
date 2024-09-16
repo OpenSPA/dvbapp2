@@ -7945,6 +7945,9 @@ msgstr "Запасна IP-адреса віддаленого приймача"
 msgid "Fallback remote receiver Port"
 msgstr "Порт віддаленого приймача"
 
+msgid "Fallback remote receiver setup"
+msgstr "Резервне налаштування дистанційного приймача"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL резервного віддаленого приймача"
 

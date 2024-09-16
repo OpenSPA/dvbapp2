@@ -8237,6 +8237,9 @@ msgstr "Yedek cihaz URL"
 msgid "Fallback remote receiver Port"
 msgstr "Yedek cihaz URL"
 
+msgid "Fallback remote receiver setup"
+msgstr "Yedek uzaktan alıcı kurulumu"
+
 msgid "Fallback remote receiver URL"
 msgstr "Geri dönüş uzak alıcı URL'si"
 

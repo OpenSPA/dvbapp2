@@ -7945,6 +7945,9 @@ msgstr "Tartalék távoli vevő IP címe"
 msgid "Fallback remote receiver Port"
 msgstr "Tartalék távoli vevő portja"
 
+msgid "Fallback remote receiver setup"
+msgstr "Tartalék távvevő beállítása"
+
 msgid "Fallback remote receiver URL"
 msgstr "Távoli vevőegység URL címe"
 

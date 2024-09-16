@@ -8136,6 +8136,9 @@ msgstr "URL penggunaan rx dari jauh"
 msgid "Fallback remote receiver Port"
 msgstr "URL penggunaan rx dari jauh"
 
+msgid "Fallback remote receiver setup"
+msgstr "Pengaturan penerima jarak jauh fallback"
+
 msgid "Fallback remote receiver URL"
 msgstr "Fallback remote receiver URL"
 

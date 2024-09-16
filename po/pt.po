@@ -8230,6 +8230,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "Configuração do receptor remoto de substituição"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL do receptor remoto de reserva"
 

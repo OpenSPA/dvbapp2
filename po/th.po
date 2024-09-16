@@ -8034,6 +8034,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "การตั้งค่าตัวรับสัญญาณระยะไกลสำรอง"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

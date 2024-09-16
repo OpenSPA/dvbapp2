@@ -8874,6 +8874,9 @@ msgstr "Ha fallat:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Illes Malvines (Malvines)"
 
+msgid "Fallback remote receiver setup"
+msgstr "Configuració del receptor remot de reserva"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL del receptor remot de caiguda"
 

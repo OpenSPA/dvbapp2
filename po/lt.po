@@ -7950,6 +7950,9 @@ msgstr "Atsarginio nuotolinio imtuvo IP"
 msgid "Fallback remote receiver Port"
 msgstr "Atsarginio nuotolinio imtuvo jungtis"
 
+msgid "Fallback remote receiver setup"
+msgstr "Atsarginis nuotolinio imtuvo nustatymas"
+
 msgid "Fallback remote receiver URL"
 msgstr "Atsarginio nuotolinio imtuvo internetinis adresas"
 

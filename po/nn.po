@@ -8558,6 +8558,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "Reservemottakeroppsett"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

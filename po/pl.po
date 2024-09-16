@@ -7952,6 +7952,9 @@ msgstr "IP zdalnego odbiornika rezerwowego"
 msgid "Fallback remote receiver Port"
 msgstr "Port zdalnego odbiornika rezerwowego"
 
+msgid "Fallback remote receiver setup"
+msgstr "Konfiguracja zapasowego odbiornika zdalnego"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL odbiornika rezerwowego"
 

@@ -8046,6 +8046,9 @@ msgstr "IP-adres van de Fallback tuner"
 msgid "Fallback remote receiver Port"
 msgstr "Poort van de Fallback tuner"
 
+msgid "Fallback remote receiver setup"
+msgstr "Terugval-installatie voor externe ontvanger"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL van de Fallback tuner"
 

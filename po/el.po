@@ -7898,6 +7898,9 @@ msgstr "IP του εφεδρικού απομακρυσμένου δέκτη"
 msgid "Fallback remote receiver Port"
 msgstr "Θύρα του εφεδρικού απομακρυσμένου δέκτη"
 
+msgid "Fallback remote receiver setup"
+msgstr "Ρύθμιση εναλλακτικού απομακρυσμένου δέκτη"
+
 msgid "Fallback remote receiver URL"
 msgstr "Εφεδρική απομακρυσμένη URL δέκτη"
 

@@ -7943,6 +7943,9 @@ msgstr "IP резервного удаленного ресивера"
 msgid "Fallback remote receiver Port"
 msgstr "Порт резервного удаленного ресивера"
 
+msgid "Fallback remote receiver setup"
+msgstr "Настройка резервного удаленного приемника"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL резервного удалённого ресивера"
 

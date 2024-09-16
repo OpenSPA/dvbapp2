@@ -7885,6 +7885,9 @@ msgstr "IP на резервния приемник"
 msgid "Fallback remote receiver Port"
 msgstr "Порт на резервен отдалечен приемник"
 
+msgid "Fallback remote receiver setup"
+msgstr "Настройка на резервен дистанционен приемник"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL адреса на отдалечения приемник"
 

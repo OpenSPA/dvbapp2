@@ -8230,6 +8230,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "Persiyapan panrima remot mundur"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

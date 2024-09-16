@@ -8451,6 +8451,9 @@ msgstr "IP rezervnog daljinskog prijemnika"
 msgid "Fallback remote receiver Port"
 msgstr "Port rezervnog daljinskog prijemnika"
 
+msgid "Fallback remote receiver setup"
+msgstr "Postavljanje pomoćnog daljinskog prijemnika"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

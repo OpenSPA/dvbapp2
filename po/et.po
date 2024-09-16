@@ -8023,6 +8023,9 @@ msgstr "Kaugvastuvõtja IP"
 msgid "Fallback remote receiver Port"
 msgstr "Kaugvastuvõtja Port"
 
+msgid "Fallback remote receiver setup"
+msgstr "Kaugvastuvõtja varuhäälestus"
+
 msgid "Fallback remote receiver URL"
 msgstr "Kaugvastuvõtja URL"
 

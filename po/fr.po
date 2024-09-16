@@ -7903,6 +7903,9 @@ msgstr "Configuration de l’IP du récepteur distant de repli"
 msgid "Fallback remote receiver Port"
 msgstr "Configuration du port du récepteur distant de repli"
 
+msgid "Fallback remote receiver setup"
+msgstr "Configuration du récepteur à distance de secours"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL du récepteur distant de repli"
 

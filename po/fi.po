@@ -7913,6 +7913,9 @@ msgstr "Etävastaanottimen IP osoite"
 msgid "Fallback remote receiver Port"
 msgstr "Etävastaanottimen portti"
 
+msgid "Fallback remote receiver setup"
+msgstr "Varakaukosäätimen asetukset"
+
 msgid "Fallback remote receiver URL"
 msgstr "Etävastaanottimen osoite"
 

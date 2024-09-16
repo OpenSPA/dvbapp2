@@ -7895,6 +7895,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "Konfigurimi i marrësit në distancë"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL-ja e marrësit në distancë të kthimit"
 

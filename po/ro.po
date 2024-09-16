@@ -7971,6 +7971,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "Configurarea receptorului de la distanță de rezervă"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 
