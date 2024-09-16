@@ -7513,6 +7513,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr ""
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

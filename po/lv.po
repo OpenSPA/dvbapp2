@@ -8529,6 +8529,9 @@ msgstr "Rezerves uztvērēja IP adrese"
 msgid "Fallback remote receiver Port"
 msgstr "Rezerves uztvērēja ports"
 
+msgid "Fallback remote receiver setup"
+msgstr "Atkāpšanās tālvadības uztvērēja iestatīšana"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

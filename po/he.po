@@ -8221,6 +8221,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "התקנת מקלט מרחוק חלופית"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

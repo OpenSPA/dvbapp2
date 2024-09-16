@@ -7892,6 +7892,9 @@ msgstr "Fallback remote receiver URL"
 msgid "Fallback remote receiver Port"
 msgstr "Fallback remote receiver URL"
 
+msgid "Fallback remote receiver setup"
+msgstr "Alternativ fjernmodtager opsætning"
+
 msgid "Fallback remote receiver URL"
 msgstr "Fjernmodtager URL for tilbagefald"
 

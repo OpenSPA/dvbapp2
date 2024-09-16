@@ -8194,6 +8194,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "後備遠端接收器設定"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

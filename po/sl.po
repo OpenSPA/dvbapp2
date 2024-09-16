@@ -8649,6 +8649,9 @@ msgstr "Naslov rezervnega oddaljenega sprejemnika"
 msgid "Fallback remote receiver Port"
 msgstr "Naslov rezervnega oddaljenega sprejemnika"
 
+msgid "Fallback remote receiver setup"
+msgstr "Nadomestna nastavitev oddaljenega sprejemnika"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

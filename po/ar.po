@@ -8302,6 +8302,9 @@ msgstr "الريموت الإحتياطي من خلال الرابط على ال
 msgid "Fallback remote receiver Port"
 msgstr "الريموت الإحتياطي من خلال الرابط على الرسيفر"
 
+msgid "Fallback remote receiver setup"
+msgstr "إعداد جهاز الاستقبال عن بعد الاحتياطي"
+
 msgid "Fallback remote receiver URL"
 msgstr "الريموت الإحتياطي من خلال الرابط على الرسيفر"
 

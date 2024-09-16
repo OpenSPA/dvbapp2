@@ -4123,11 +4123,17 @@ class InfoBarAspectSelection:
 	STATE_RESOLUTION = 2
 
 	def __init__(self):
-		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", {
-			"aspectSelection": (self.GreenLongPress, _("Aspect list...")),
-			"exitLong": (self.switchTo720p, _("Switch to 720p video")),
-		}, prio=0, description=_("Aspect Ratio Actions"))
-		self.__ExGreen_state = self.STATE_HIDDEN
+		if not isPluginInstalled("PermanentEvent"):  # OPENSPA [norhap] respect EXIT key of permanentEvent
+			self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", {
+				"aspectSelection": (self.GreenLongPress, _("Aspect list...")),
+				"exitLong": (self.switchTo720p, _("Switch to 720p video")),
+			}, prio=0, description=_("Aspect Ratio Actions"))
+			self.__ExGreen_state = self.STATE_HIDDEN
+		else:
+			self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", {
+				"aspectSelection": (self.GreenLongPress, _("Aspect list...")),
+			}, prio=0, description=_("Aspect Ratio Actions"))
+			self.__ExGreen_state = self.STATE_HIDDEN
 
 	# OPENSPA [morser] change option for long press
 	def GreenLongPress(self):

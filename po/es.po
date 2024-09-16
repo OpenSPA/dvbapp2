@@ -8840,6 +8840,9 @@ msgstr "IP del receptor remoto de reserva"
 msgid "Fallback remote receiver Port"
 msgstr "Puerto del receptor remoto de reserva"
 
+msgid "Fallback remote receiver setup"
+msgstr "Ajustes del receptor remoto de respaldo"
+
 msgid "Fallback remote receiver URL"
 msgstr "Receptor remoto reserva URL"
 

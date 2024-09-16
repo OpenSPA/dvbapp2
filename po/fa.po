@@ -8089,6 +8089,9 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr "راه اندازی گیرنده از راه دور بازگشتی"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

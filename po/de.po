@@ -8341,6 +8341,9 @@ msgstr "Reserve-Receiver IP"
 msgid "Fallback remote receiver Port"
 msgstr "Reserve-Receiver Port"
 
+msgid "Fallback remote receiver setup"
+msgstr "Einrichten des Fallback-Remote-Empfängers"
+
 msgid "Fallback remote receiver URL"
 msgstr "Remote-Receiver-URL"
 

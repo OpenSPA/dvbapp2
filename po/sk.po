@@ -7944,6 +7944,9 @@ msgstr "IP adresa záložného vzdialeného prijímača"
 msgid "Fallback remote receiver Port"
 msgstr "Port záložného vzdialeného prijímača"
 
+msgid "Fallback remote receiver setup"
+msgstr "Nastavenie núdzového diaľkového prijímača"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL záložného tunera vzdialeného prijímača"
 

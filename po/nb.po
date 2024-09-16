@@ -7811,6 +7811,9 @@ msgstr "Ekstern reserve mottakers IP"
 msgid "Fallback remote receiver Port"
 msgstr "Ekstern reserve mottakers port"
 
+msgid "Fallback remote receiver setup"
+msgstr "Reservemottakeroppsett"
+
 msgid "Fallback remote receiver URL"
 msgstr "Eksternmottakers URL"
 

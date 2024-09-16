@@ -7903,6 +7903,9 @@ msgstr "IP Ricevitore remoto fallback"
 msgid "Fallback remote receiver Port"
 msgstr "PORTA Ricevitore remoto fallback"
 
+msgid "Fallback remote receiver setup"
+msgstr "Impostazione del ricevitore remoto di fallback"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL del ricevitore remoto di riserva"
 

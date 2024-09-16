@@ -7627,6 +7627,9 @@ msgstr ""
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback remote receiver setup"
+msgstr ""
+
 msgid "Fallback remote receiver URL"
 msgstr ""
 

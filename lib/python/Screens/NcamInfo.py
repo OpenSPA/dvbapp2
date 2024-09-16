@@ -75,7 +75,7 @@ class NcamInfo:
 		if opath is None:
 			if fileExists('/etc/.ActiveCamd'):
 				data2 = open('/etc/.ActiveCamd', 'r').read()
-		if owebif == "yes" and oport is not "0":
+		if owebif == "yes" and oport != "0":
 			opath = opath.replace('//','/')
 			return opath, ipcompiled
 		else:
