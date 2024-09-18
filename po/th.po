@@ -10965,6 +10965,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "ป้อนทรานสปอนเดอร์เอง"
 
+msgid "Manually import from fallback tuner"
+msgstr "นำเข้าด้วยตนเองจากจูนเนอร์สำรอง"
+
 msgid "Manufacturer"
 msgstr "ผู้ผลิต"
 

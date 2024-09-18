@@ -10890,6 +10890,9 @@ msgstr "Hier kunt u handmatig naar zenders zoeken."
 msgid "Manual transponder"
 msgstr "Transponder handmatig"
 
+msgid "Manually import from fallback tuner"
+msgstr "Handmatig importeren vanuit fallback tuner"
+
 msgid "Manufacturer"
 msgstr "Fabrikant"
 

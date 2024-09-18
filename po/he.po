@@ -11248,6 +11248,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr " ידני transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "ייבא באופן ידני ממקלט חלופי"
+
 msgid "Manufacturer"
 msgstr "יצרן"
 

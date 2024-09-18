@@ -11623,6 +11623,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "Hanmatige transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Hânmjittich ymportearje fan fallback-tuner"
+
 #
 msgid "Manufacturer"
 msgstr ""

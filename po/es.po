@@ -2611,6 +2611,9 @@ msgstr "¿Estás seguro que quiere eliminar todos los canales terrestres?"
 msgid "Are you sure to remove this entry?"
 msgstr "¿Seguro que quiere eliminar esta entrada?"
 
+msgid "Are you sure to remove this entry?\n%s"
+msgstr "¿Seguro que quiere eliminar esta entrada?\n%s"
+
 #
 msgid "Are you sure you want to activate this network configuration?"
 msgstr "¿Seguro que quiere activar esta configuración de red?"
@@ -11976,6 +11979,9 @@ msgstr "Búsqueda manual de canales"
 #
 msgid "Manual transponder"
 msgstr "Transpondedor manual"
+
+msgid "Manually import from fallback tuner"
+msgstr "Importar manualmente desde el sintonizador reserva"
 
 #
 msgid "Manufacturer"
@@ -22230,6 +22236,21 @@ msgid ""
 msgstr ""
 "Esta función no está disponible ya que el procesado de archivos grandes "
 "puede llevar mucho tiempo al ejecutar en este hardware."
+
+msgid ""
+"This function recovers your video signal in case of loss. The video has been changed to 720p.\n"
+"If this is your case, please keep the video at 720P and do the following:\n"
+"Go to System > Receiver Setup > Video > Video Settings\n"
+"Now set a correct resolution.\n"
+"\n"
+"Do you want to keep the video at 720p?"
+msgstr ""
+"Esta función recupera su señal de video en caso de pérdida. Se ha cambiado el video a 720p.\n"
+"Si este es su caso, mantenga el video a 720P y haga lo siguiente:\n"
+"Vaya a Sistema > Configuración del receptor > Video > Ajustes de video\n"
+"Ahora establezca una resolución correcta.\n"
+"\n"
+"¿Quieres mantener el vídeo a 720p?"
 
 msgid ""
 "This is a workaround for some devices that wake up again after switching to "

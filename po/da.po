@@ -10768,6 +10768,9 @@ msgstr "Manuel søgning efter kanaler"
 msgid "Manual transponder"
 msgstr "Manuel transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Importer manuelt fra reservetuner"
+
 msgid "Manufacturer"
 msgstr "Producent"
 

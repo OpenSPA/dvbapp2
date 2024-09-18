@@ -2740,6 +2740,9 @@ msgstr ""
 msgid "Are you sure to remove this entry?"
 msgstr ""
 
+msgid "Are you sure to remove this entry?\n%s"
+msgstr ""
+
 msgid "Are you sure you want to activate this network configuration?"
 msgstr ""
 
@@ -10360,6 +10363,9 @@ msgid "Manual scan for services"
 msgstr ""
 
 msgid "Manual transponder"
+msgstr ""
+
+msgid "Manually import from fallback tuner"
 msgstr ""
 
 msgid "Manufacturer"

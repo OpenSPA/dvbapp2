@@ -10960,6 +10960,9 @@ msgstr "Kanalite käsiotsing"
 msgid "Manual transponder"
 msgstr "Käsitsi sisestatud transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Varutuunerist käsitsi importimine"
+
 msgid "Manufacturer"
 msgstr "Tootja"
 

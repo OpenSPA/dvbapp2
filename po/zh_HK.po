@@ -11214,6 +11214,9 @@ msgstr "在所有頻道"
 msgid "Manual transponder"
 msgstr "手動轉發器掃描"
 
+msgid "Manually import from fallback tuner"
+msgstr "從後備調諧器手動導入"
+
 msgid "Manufacturer"
 msgstr "製造商"
 

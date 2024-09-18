@@ -11654,6 +11654,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "Manuell transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Importera manuellt från reservtuner"
+
 #
 msgid "Manufacturer"
 msgstr "Tillverkare"

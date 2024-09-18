@@ -11200,6 +11200,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "Manual transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Bi destan ji tunekera paşverû tê import kirin"
+
 msgid "Manufacturer"
 msgstr "Manufacturer"
 

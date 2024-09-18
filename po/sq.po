@@ -10732,6 +10732,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr ""
 
+msgid "Manually import from fallback tuner"
+msgstr "Importoni manualisht nga sintonizuesi i rikthimit"
+
 msgid "Manufacturer"
 msgstr ""
 

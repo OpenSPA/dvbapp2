@@ -10783,6 +10783,9 @@ msgstr "Ručné vyhľadávanie staníc"
 msgid "Manual transponder"
 msgstr "Ručne zadaný transpondér"
 
+msgid "Manually import from fallback tuner"
+msgstr "Manuálny import zo záložného tunera"
+
 msgid "Manufacturer"
 msgstr "Výrobca"
 

@@ -10719,6 +10719,9 @@ msgstr "Ръчно сканиране за сервизи"
 msgid "Manual transponder"
 msgstr "Ръчен транспондер"
 
+msgid "Manually import from fallback tuner"
+msgstr "Ръчно импортиране от резервен тунер"
+
 msgid "Manufacturer"
 msgstr "Производител"
 

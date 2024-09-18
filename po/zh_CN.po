@@ -10729,6 +10729,9 @@ msgstr "手动扫描频道"
 msgid "Manual transponder"
 msgstr "手动转发器扫描"
 
+msgid "Manually import from fallback tuner"
+msgstr "从后备调谐器手动导入"
+
 msgid "Manufacturer"
 msgstr "制造商"
 

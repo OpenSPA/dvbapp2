@@ -11299,6 +11299,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "تردد يدوي"
 
+msgid "Manually import from fallback tuner"
+msgstr "الاستيراد يدويًا من الموالف الاحتياطي"
+
 msgid "Manufacturer"
 msgstr "الشركة المصنعة"
 

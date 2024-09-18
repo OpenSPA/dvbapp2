@@ -10755,6 +10755,9 @@ msgstr "Manuaalinen kanavahaku"
 msgid "Manual transponder"
 msgstr "Manuaalinen lähetin"
 
+msgid "Manually import from fallback tuner"
+msgstr "Tuo manuaalisesti varavirittimestä"
+
 msgid "Manufacturer"
 msgstr "Valmistaja"
 

@@ -10641,6 +10641,9 @@ msgstr "Manuell transponder"
 msgid "Manufacturer"
 msgstr "Produsent"
 
+msgid "Manually import from fallback tuner"
+msgstr "Importer manuelt fra reservetuner"
+
 msgid "Manx"
 msgstr ""
 

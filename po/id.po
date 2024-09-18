@@ -11072,6 +11072,9 @@ msgstr "Manual scan for services"
 msgid "Manual transponder"
 msgstr "Manual transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Impor secara manual dari tuner fallback"
+
 msgid "Manufacturer"
 msgstr "Manufacturer"
 

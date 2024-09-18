@@ -10735,6 +10735,9 @@ msgstr "Χειροκίνητη ανίχνευση υπηρεσιών"
 msgid "Manual transponder"
 msgstr "Χειροκίνητος αναμεταδότης"
 
+msgid "Manually import from fallback tuner"
+msgstr "Μη αυτόματη εισαγωγή από εναλλακτικό δέκτη"
+
 msgid "Manufacturer"
 msgstr "Κατασκευαστής"
 

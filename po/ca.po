@@ -11885,6 +11885,9 @@ msgstr "Recerca manual de canals"
 msgid "Manual transponder"
 msgstr "Transponedor manual"
 
+msgid "Manually import from fallback tuner"
+msgstr "Importa manualment des del sintonitzador alternatiu"
+
 #
 msgid "Manufacturer"
 msgstr "Fabricant"

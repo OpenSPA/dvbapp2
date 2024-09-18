@@ -10826,6 +10826,9 @@ msgstr "Kézi keresése a csatornáknak"
 msgid "Manual transponder"
 msgstr "Kézi transzponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Manuális importálás a tartalék tunerből"
+
 msgid "Manufacturer"
 msgstr "Gyártó"
 
