@@ -11016,6 +11016,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "ترانسپوندر دستی"
 
+msgid "Manually import from fallback tuner"
+msgstr "وارد کردن دستی از تیونر بازگشتی"
+
 #
 msgid "Manufacturer"
 msgstr "تولید کننده"

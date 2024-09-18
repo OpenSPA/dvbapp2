@@ -11331,6 +11331,9 @@ msgstr "Manueller Suchlauf"
 msgid "Manual transponder"
 msgstr "Manueller Transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Manueller Import aus dem Fallback-Tuner"
+
 #
 msgid "Manufacturer"
 msgstr "Hersteller"

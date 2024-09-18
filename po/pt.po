@@ -11226,6 +11226,9 @@ msgstr "Pesquisa manual de canais"
 msgid "Manual transponder"
 msgstr "Transponder manual"
 
+msgid "Manually import from fallback tuner"
+msgstr "Importar manualmente do sintonizador de substituição"
+
 #
 msgid "Manufacturer"
 msgstr "Fabricante"

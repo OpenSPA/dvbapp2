@@ -10792,6 +10792,9 @@ msgstr "Ręczne skanowanie kanałów"
 msgid "Manual transponder"
 msgstr "Własny transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Ręczny import z tunera zapasowego"
+
 msgid "Manufacturer"
 msgstr "Producent"
 

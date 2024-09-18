@@ -10897,6 +10897,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "Transponder manual"
 
+msgid "Manually import from fallback tuner"
+msgstr "Importați manual din tuner alternativ"
+
 msgid "Manufacturer"
 msgstr "Fabricant"
 

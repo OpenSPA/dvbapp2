@@ -11221,6 +11221,9 @@ msgstr "Kanallar için elle arama"
 msgid "Manual transponder"
 msgstr "Transponder bilgilerini elle gir"
 
+msgid "Manually import from fallback tuner"
+msgstr "Yedek tuner'dan manuel olarak içe aktar"
+
 #
 msgid "Manufacturer"
 msgstr "Üretici"

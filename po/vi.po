@@ -10854,6 +10854,9 @@ msgstr "Quét thủ công các dịch vụ"
 msgid "Manual transponder"
 msgstr "Hướng dẫn sử dụng"
 
+msgid "Manually import from fallback tuner"
+msgstr "Nhập thủ công từ bộ điều chỉnh dự phòng"
+
 msgid "Manufacturer"
 msgstr "Nhà chế tạo"
 

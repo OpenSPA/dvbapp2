@@ -11714,6 +11714,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "Ručno uneseni transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Ručno uvezi iz pomoćnog tunera"
+
 #
 msgid "Manufacturer"
 msgstr "Proizvođač"

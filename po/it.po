@@ -10740,6 +10740,9 @@ msgstr "Scansione manuale dei servizi"
 msgid "Manual transponder"
 msgstr "Transponder manuale"
 
+msgid "Manually import from fallback tuner"
+msgstr "Importa manualmente dal sintonizzatore di fallback"
+
 msgid "Manufacturer"
 msgstr "Produttore"
 

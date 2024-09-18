@@ -2611,6 +2611,9 @@ msgstr "¿Estás seguro que quiere eliminar todos los canales terrestres?"
 msgid "Are you sure to remove this entry?"
 msgstr "¿Seguro que quiere eliminar esta entrada?"
 
+msgid "Are you sure to remove this entry?\n%s"
+msgstr "¿Seguro que quiere eliminar esta entrada?\n%s"
+
 #
 msgid "Are you sure you want to activate this network configuration?"
 msgstr "¿Seguro que quiere activar esta configuración de red?"
@@ -11976,6 +11979,9 @@ msgstr "Búsqueda manual de canales"
 #
 msgid "Manual transponder"
 msgstr "Transpondedor manual"
+
+msgid "Manually import from fallback tuner"
+msgstr "Importar manualmente desde el sintonizador reserva"
 
 #
 msgid "Manufacturer"

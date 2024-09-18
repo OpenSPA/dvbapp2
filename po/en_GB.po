@@ -2370,7 +2370,10 @@ msgid "Are you sure to remove all terrestrial services?"
 msgstr ""
 
 msgid "Are you sure to remove this entry?"
-msgstr "Are you sure to remove this entry?"
+msgstr ""
+
+msgid "Are you sure to remove this entry?\n%s"
+msgstr ""
 
 msgid "Are you sure you want to activate this network configuration?"
 msgstr ""
@@ -10656,6 +10659,9 @@ msgstr ""
 
 msgid "Manual transponder"
 msgstr "Manual transponder"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Manufacturer"

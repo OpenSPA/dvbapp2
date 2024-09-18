@@ -11435,6 +11435,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "Handvirk leit á sendi"
 
+msgid "Manually import from fallback tuner"
+msgstr "Flytja inn handvirkt úr varaútvarpi"
+
 #
 msgid "Manufacturer"
 msgstr "Framleiðandi"

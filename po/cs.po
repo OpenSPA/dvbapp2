@@ -10779,6 +10779,9 @@ msgstr "Ruční vyhledávání programů"
 msgid "Manual transponder"
 msgstr "Ručně definovaný transpondér"
 
+msgid "Manually import from fallback tuner"
+msgstr "Ruční import ze záložního tuneru"
+
 msgid "Manufacturer"
 msgstr "Výrobce"
 

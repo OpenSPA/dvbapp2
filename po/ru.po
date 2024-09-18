@@ -10782,6 +10782,9 @@ msgstr "Ручной поиск каналов"
 msgid "Manual transponder"
 msgstr "Транспондер вручную"
 
+msgid "Manually import from fallback tuner"
+msgstr "Импортировать вручную из резервного тюнера"
+
 msgid "Manufacturer"
 msgstr "Производитель"
 

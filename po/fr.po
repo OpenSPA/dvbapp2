@@ -10741,6 +10741,9 @@ msgstr "Scan manuel des services"
 msgid "Manual transponder"
 msgstr "Transpondeur manuel"
 
+msgid "Manually import from fallback tuner"
+msgstr "Importer manuellement à partir du tuner de secours"
+
 msgid "Manufacturer"
 msgstr "Constructeur"
 

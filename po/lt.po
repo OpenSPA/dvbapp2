@@ -10789,6 +10789,9 @@ msgstr "Rankinė kanalų paieška"
 msgid "Manual transponder"
 msgstr "Rankinis transponderio pasirinkimas"
 
+msgid "Manually import from fallback tuner"
+msgstr "Neautomatinis importavimas iš atsarginio derintuvo"
+
 msgid "Manufacturer"
 msgstr "Gamintojas"
 
