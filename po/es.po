@@ -13588,7 +13588,7 @@ msgid "Nothing"
 msgstr "Nada"
 
 msgid "Nothing connected and/or no files available!"
-msgstr "No hay nada conectado!"
+msgstr "No hay nada conectado o no hay archivos disponibles!"
 
 #
 msgid ""
