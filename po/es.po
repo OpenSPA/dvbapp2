@@ -25682,8 +25682,8 @@ msgstr ""
 "No has configurado tu usuario en la pantalla de configuración.\n"
 "Pulsa ‘Menú’ y escribe tu información. Después, vuelve a intentarlo"
 
-msgid "You have selected no logs to delete."
-msgstr "No has seleccionado ningún historial para borrar."
+msgid "There are no files to delete."
+msgstr "No existen archivos para eliminar."
 
 msgid "You have selected no logs to send."
 msgstr "No has seleccionado ningún historial para enviar."

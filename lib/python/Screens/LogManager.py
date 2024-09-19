@@ -286,20 +286,22 @@ class LogManager(Screen):
 
 	def deletelog(self):
 		try:
+			path = self["list"].getPath()  # OPENSPA [norhap] Call MessageBox to delete only if files exist.
 			self.sel = self["list"].getCurrent()[0]
 		except:
 			self.sel = None
-		self.selectedFiles = self["list"].getSelectedList()
-		if self.selectedFiles:
-			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
-			ybox = self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
-		elif self.sel:
-			message = _("Are you sure you want to delete this log:\n") + str(self.sel[0])
-			ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
+		if path:
+			self.selectedFiles = self["list"].getSelectedList()
+			if self.selectedFiles:
+				message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
+				ybox = self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Delete Confirmation"))
+			elif self.sel:
+				message = _("Are you sure you want to delete this log:\n") + str(self.sel[0])
+				ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Delete Confirmation"))
 		else:
-			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _("There are no files to delete."), MessageBox.TYPE_INFO, timeout=10)
 
 	def doDelete1(self, answer):
 		self.selectedFiles = self["list"].getSelectedList()
@@ -329,7 +331,7 @@ class LogManager(Screen):
 	def doDelete3(self, answer):
 		if answer is True:
 			path = self["list"].getPath()
-			if exists(path):
+			if exists(str(path)):
 				remove(path)
 			self["list"].changeDir(self.defaultDir)
 			self["LogsSize"].update(config.crash.debug_path.value)
