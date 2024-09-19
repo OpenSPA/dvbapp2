@@ -2636,7 +2636,7 @@ msgid "Are you sure you want to delete this image?"
 msgstr "¿Seguro que quiere eliminar esta imagen?"
 
 msgid "Are you sure you want to delete this log:\n"
-msgstr "¿Seguro que quiere borrar este historial?\n"
+msgstr "¿Seguro que quiere borrar este log?\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "¿Seguro que quiere eliminar esto?"
@@ -11755,6 +11755,9 @@ msgid "Login to IceTV server"
 msgstr "Iniciar sesión en el servidor IceTV"
 
 #
+msgid "Logs Manager"
+msgstr "Administrador de logs"
+
 msgid "Logs Settings"
 msgstr "Configurar logs"
 
