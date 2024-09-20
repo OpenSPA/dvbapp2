@@ -134,8 +134,8 @@ class RecordTimer(Timer):
 			if timer.dontSave:
 				continue
 			timerEntry = ["\t<timer"]
-			timerEntry.append(f"begin=\"{timer.begin}\"")
-			timerEntry.append(f"end=\"{timer.end}\"")
+			timerEntry.append(f"begin=\"{int(timer.begin)}\"")
+			timerEntry.append(f"end=\"{int(timer.end)}\"")
 			timerEntry.append(f"marginBefore=\"{timer.marginBefore}\"")
 			timerEntry.append(f"eventBegin=\"{timer.eventBegin}\"")
 			timerEntry.append(f"eventEnd=\"{timer.eventEnd}\"")
@@ -961,8 +961,8 @@ class RecordTimerEntry(TimerEntry):
 			NavigationInstance.instance.RecordTimer.saveTimers()
 			boxInStandby = Screens.Standby.inStandby
 			tvNotActive = Screens.Standby.TVinStandby.getTVstate("notactive")
-			isStillRecording = NavigationInstance.instance.RecordTimer.getStillRecording()
 			nextRecordingTime = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
+			isStillRecording = NavigationInstance.instance.RecordTimer.getStillRecording()
 			isRecordTime = abs(nextRecordingTime - int(time())) <= 900 or isStillRecording
 			if DEBUG:
 				print(f"[RecordTimer] boxInStandby='{boxInStandby}', tvNotActive='{tvNotActive}', wasRecTimerWakeup='{wasRecTimerWakeup}', self.wasInStandby='{self.wasInStandby}', self.afterEvent='{self.afterEvent}', isRecordTime='{isRecordTime}', nextRecordingTime='{nextRecordingTime}', isStillRecording='{isStillRecording}'.")

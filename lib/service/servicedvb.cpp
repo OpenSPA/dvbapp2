@@ -754,6 +754,7 @@ RESULT eDVBServiceList::getContent(std::list<eServiceReference> &list, bool sort
 //   R = Service Reference (as swig object .. this is very slow)
 //   S = Service Reference (as python string object .. same as ref.toString())
 //   C = Service Reference (as python string object .. same as ref.toCompareString())
+//   L = Service LCN (as python int object)
 //   N = Service Name (as python string object)
 //   n = Short Service Name (short name brakets used) (as python string object)
 //   when exactly one return value per service is selected in the format string,
@@ -791,6 +792,9 @@ PyObject *eDVBServiceList::getContent(const char* format, bool sorted)
 				ePyObject tmp;
 				switch(format[i])
 				{
+				case 'L':  // service LCN
+					tmp = PyLong_FromLong(ref.getChannelNum());
+					break;
 				case 'R':  // service reference (swig)object
 					tmp = NEW_eServiceReference(ref);
 					break;
@@ -3215,7 +3219,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			m_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
 			if (m_timeshift_changed)
 			{
-				struct SubtitleTrack track;
+				struct SubtitleTrack track = {};
 				if (getCachedSubtitle(track) >= 0)
 				{
 					if (track.type == 0) // dvb
@@ -3614,8 +3618,9 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 		m_decoder->getPTS(0, pts);
 		if (m_is_pvr || m_timeshift_enabled)
 		{
-			eDebug("[eDVBServicePlay] Subtitle in recording/timeshift");
-			subtitledelay = eSubtitleSettings::subtitle_noPTSrecordingdelay;
+			// This is wrong!
+			// eDebug("[eDVBServicePlay] Subtitle in recording/timeshift");
+			// subtitledelay = eSubtitleSettings::subtitle_noPTSrecordingdelay;
 		}
 		else
 		{

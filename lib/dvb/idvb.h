@@ -344,13 +344,16 @@ public:
 	bool cacheAudioEmpty();
 
 	eDVBService();
-		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
+	/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
 	std::string m_service_name, m_service_name_sort;
 	std::string m_provider_name;
 	std::string m_default_authority;
 	uint32_t m_aus_da_flag;
 	int m_lcn;
 	int getLCN() { return m_lcn; }
+
+	std::string m_service_display_name;
+	std::string m_provider_display_name;
 
 	void genSortName();
 
@@ -368,6 +371,14 @@ public:
 		dxIsScrambledPMT=1024,
 		dxCenterDVBSubs=2048,
 		dxNoEIT=4096,
+		dxNoAITranslation=8192
+	};
+
+	enum
+	{
+		dxIntIsinBouquet=16384,
+		dxIntNewServiceName=32768,
+		dxIntNewProvider=65536,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
@@ -376,6 +387,7 @@ public:
 	bool doHideVBI() const { return m_flags & dxHideVBI; }
 	bool doCenterDVBSubs() const { return m_flags & dxCenterDVBSubs; }
 	bool useEIT() const { return !(m_flags & dxNoEIT); }
+	bool noAITranslation() const { return m_flags & dxNoAITranslation; }
 
 	CAID_LIST m_ca;
 

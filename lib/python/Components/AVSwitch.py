@@ -1,7 +1,9 @@
 from os.path import exists
 from os import W_OK, access, system
 from time import sleep
-from enigma import eAVControl, eDVBVolumecontrol, getDesktop
+
+from enigma import eAVControl, getDesktop
+
 from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionInteger, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.About import about
 from Components.SystemInfo import BoxInfo
@@ -15,6 +17,7 @@ MACHINEBUILD = BoxInfo.getItem("machinebuild")
 
 config.av = ConfigSubsection()
 config.av.edid_override = ConfigYesNo(default=False)
+
 
 def InitAVSwitch():
 	def setUnsupportModes(configElement):
@@ -588,12 +591,6 @@ def InitAVSwitch():
 		config.av.pcm_multichannel = ConfigYesNo(default=False)
 		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
 
-	def setVolumeStepSize(configElement):
-		eDVBVolumecontrol.getInstance().setVolumeSteps(int(configElement.value))
-	config.av.volume_stepsize = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=5)
-	config.av.volume_stepsize.addNotifier(setVolumeStepSize)
-	config.av.volume_stepsize_fastmode = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=5)
-	config.av.volume_hide_mute = ConfigYesNo(default=True)
 	if AMLOGIC:
 		downmixAC3 = True
 		BoxInfo.setItem("CanPcmMultichannel", True)

@@ -5,6 +5,7 @@
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/base/wrappers.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/idvb.h>
@@ -348,10 +349,10 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 : eDVBAdapterLinux(nr)
 {
 	int file;
-	char type[8];
-	struct dvb_frontend_info fe_info;
+	char type[8] = {};
+	struct dvb_frontend_info fe_info = {};
 	int frontend = -1;
-	char filename[256];
+	char filename[256] = {};
 	char name[128] = {0};
 	int vtunerid = nr - 1;
 	char buffer[4*1024];
@@ -627,7 +628,7 @@ void *eDVBUsbAdapter::vtunerPump()
 		{
 			if (FD_ISSET(vtunerFd, &xset))
 			{
-				struct vtuner_message message;
+				struct vtuner_message message = {};
 				memset(message.pidlist, 0xff, sizeof(message.pidlist));
 				::ioctl(vtunerFd, VTUNER_GET_MESSAGE, &message);
 
@@ -671,7 +672,7 @@ void *eDVBUsbAdapter::vtunerPump()
 						}
 						else
 						{
-							struct dmx_pes_filter_params filter;
+							struct dmx_pes_filter_params filter = {};
 							filter.input = DMX_IN_FRONTEND;
 							filter.flags = 0;
 							filter.pid = message.pidlist[i];
@@ -1858,8 +1859,13 @@ void eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len)
 
 DEFINE_REF(eDVBChannel);
 
+int eDVBChannel::m_debug = -1;
+
 eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *frontend): m_state(state_idle), m_mgr(mgr)
 {
+	if(eDVBChannel::m_debug < 0)
+		eDVBChannel::m_debug = eSimpleConfig::getBool("config.crash.debugDVB", false) ? 1 : 0;
+
 	m_frontend = frontend;
 
 	m_pvr_thread = 0;
@@ -1893,11 +1899,13 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 	int tuner_id = fe->getDVBID();
 	if (state == iDVBFrontend::stateLock)
 	{
-		eDebug("[eDVBChannel] OURSTATE: tuner %d ok", tuner_id);
+		if(eDVBChannel::m_debug)
+			eDebug("[eDVBChannel] OURSTATE: tuner %d ok", tuner_id);
 		ourstate = state_ok;
 	} else if (state == iDVBFrontend::stateTuning)
 	{
-		eDebug("[eDVBChannel] OURSTATE: tuner %d tuning", tuner_id);
+		if(eDVBChannel::m_debug)
+			eDebug("[eDVBChannel] OURSTATE: tuner %d tuning", tuner_id);
 		ourstate = state_tuning;
 	} else if (state == iDVBFrontend::stateLostLock)
 	{
@@ -2062,7 +2070,7 @@ static size_t diff_upto(off_t high, off_t low, size_t max)
 }
 
 	/* remember, this gets called from another thread. */
-void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize)
+void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize, int &sof)
 {
 	unsigned int max = align(1024*1024*1024, blocksize);
 	current_offset = align(current_offset, blocksize);
@@ -2232,7 +2240,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			if (current_offset < i->second)
 			{
 				start = current_offset;
-				size = align(diff_upto(i->second, start, max), blocksize);
+				size = diff_upto(i->second, start, max);
 				//eDebug("[eDVBChannel] HIT, %lld < %lld < %lld, size: %zd", i->first, current_offset, i->second, size);
 				return;
 			}
@@ -2250,7 +2258,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				{
 					eDebug("[eDVBChannel] reached SOF");
 					m_skipmode_m = 0;
-					m_pvr_thread->sendEvent(eFilePushThread::evtUser);
+					sof = 1;
 				}
 			}
 			else
@@ -2269,11 +2277,12 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 	}
 
-	if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
+//	if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
+	if ((current_offset < 0) && (m_skipmode_m < 0))
 	{
 		eDebug("[eDVBChannel] reached SOF");
 		m_skipmode_m = 0;
-		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
+		sof = 1;
 	}
 
 	start = current_offset;
@@ -2431,7 +2440,8 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 {
 	ePtr<eDVBAllocatedDemux> &our_demux = (cap & capDecode) ? m_decoder_demux : m_demux;
 
-	eDebug("[eDVBChannel] getDemux cap=%02X", cap);
+	if(eDVBChannel::m_debug)
+		eDebug("[eDVBChannel] getDemux cap=%02X", cap);
 	if (!m_frontend)
 	{
 		/* in dvr mode, we have to stick to a single demux (the one connected to our dvr device) */
