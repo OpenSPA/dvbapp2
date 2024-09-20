@@ -2175,7 +2175,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 
 	def repeat(self, answer=True):
 		if not answer:
-			self.doCloseRecursive()
+			self.keyCancel()
 
 	def setCableTransponderSearchResult(self, tlist):
 		if tlist is not None:
