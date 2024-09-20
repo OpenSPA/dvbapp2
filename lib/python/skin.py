@@ -259,6 +259,42 @@ def reloadSkins():
 	InitSkins()
 
 
+# Method to load a skinTemplates.xml if one exists or load the templates from the screens.
+#
+def loadSkinTemplates(skinTemplatesFileNames):
+	def addTemplate(template, fileName):
+		if template.get("component", "") in ("serviceList",):  # Only serviceList now more comming
+			componentTemplates.add(template, fileName)
+
+	if skinTemplatesFileNames:
+		for skinTemplatesFileName in skinTemplatesFileNames:
+			print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
+			domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
+			if domStyles is not None:
+				for template in domStyles.findall("template"):
+					addTemplate(template, skinTemplatesFileName)
+	else:
+		for screen in domScreens:
+			element, path = domScreens.get(screen, (None, None))
+			for template in element.findall(".//widget/templates/template"):
+				addTemplate(template, None)
+	if config.crash.debugScreens.value:
+		print(f"[Skin] DEBUG: componentTemplates '{componentTemplates.templates}'.")
+
+
+def reloadSkinTemplates(clear=False):
+	if clear:
+		componentTemplates.clear()
+	skinTemplatesFileName = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
+	skinTemplatesFileNames = []
+	if isfile(skinTemplatesFileName):
+		skinTemplatesFileNames.append(skinTemplatesFileName)
+	skinTemplatesFileName = resolveFilename(SCOPE_GUISKIN, "skinUserTemplates.xml")
+	if isfile(skinTemplatesFileName):
+		skinTemplatesFileNames.append(skinTemplatesFileName)
+	loadSkinTemplates(skinTemplatesFileNames)
+
+
 def addCallback(callback):
 	global callbacks
 	if callback not in callbacks:
@@ -1406,7 +1442,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				skinError(f"Tag 'font' needs an existing filename and name, got filename='{filename}' ({resolved}) and name='{name}'")
 			#OPENSPA [mpiero] regularHD compatibility add font RegularHD for plugins in external skin
 			if name == "Regular" and spaRegularHD == 1:
-				addFont(filename, "RegularHD", 150, False, render) 
+				addFont(filename, "RegularHD", 150, False, render)
 			#########################################################################################
 		fallbackFont = resolveFilename(SCOPE_FONTS, config.skin.FallbackFont.value, path_prefix=pathSkin)
 		if isfile(fallbackFont):
@@ -1626,6 +1662,10 @@ class ComponentTemplates():
 				self.templates[component][name] = template
 			else:
 				self.templates[component] = {name: template}
+
+	def clear(self):
+		self.templates = {}
+		self.changedTimes = {}
 
 	def get(self, component, name):
 		if component in self.templates and self.templates[component][name] is not None:
@@ -2107,7 +2147,7 @@ def readSkin(screen, skin, names, desktop):
 		print("[Skin] No skin to read or screen to display.")
 		myScreen = screen.parsedSkin = fromstring("<screen></screen>")
 
-	#mpiero sdhd convert 
+	#mpiero sdhd convert
 	try:
 		if config.plugins.sdhdmaster.enable.value and config.plugins.sdhdmaster.ready.value and "OpenStarHD" not in str(config.skin.primary_skin.value).split("/")[0]:
 			from Plugins.Extensions.spazeMenu.spacvsd.spacvsd import openspa_sdhd
