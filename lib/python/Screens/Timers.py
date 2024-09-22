@@ -1511,10 +1511,9 @@ class RecordTimerEdit(Setup):
 	def changedEntry(self):
 		Setup.changedEntry(self)
 		current = self["config"].getCurrent()[1]
-		if hasattr(self, "timerFallback"):  # OPENSPA [norhap] sanity check attributes timerFallback.
-			if current == self.timerFallback:
-				self.timer.external = self.timerFallback.value
-				self.selectionChanged()  # Force getSpace()
+		if current == self.timerFallback:
+			self.timer.external = self.timerFallback.value
+			self.selectionChanged()  # Force getSpace()
 		elif current == self.timerLocation and self.timerType.value != "zap":
 			self.getSpace()
 		elif current == self.timerType and self.timerType.value == "zap":
