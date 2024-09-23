@@ -231,12 +231,12 @@ class Menu(Screen, ProtectedScreen):
 		}, prio=0, description=_("Menu Common Actions"))
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
 			"top": (self.keyTop, _("Move to first line / screen")),
-			"pageUp": (self.keyPageUp, _("Move up a screen")),
+			"left": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			# "first": (self.keyFirst, _("Jump to first item in list or the start of text")),
 			# "last": (self.keyLast, _("Jump to last item in list or the end of text")),
 			"down": (self.keyDown, _("Move down a line")),
-			"pageDown": (self.keyPageDown, _("Move down a screen")),
+			"right": (self.keyPageDown, _("Move down a screen")),
 			"bottom": (self.keyBottom, _("Move to last line / screen"))
 		}, prio=-1, description=_("Menu Navigation Actions"))
 		if config.usage.menuSortOrder.value == "user":
