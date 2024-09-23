@@ -124,15 +124,15 @@ class LocationBox(Screen, NumericalTextInput):
 			"green": (self.keySelect, _("Use the current selection and exit")),
 			"yellow": (self.addRemoveBookmark, getYellowHelpText),
 			"top": (self.keyGoTop, _("Move to first line / screen in the panel")),
-			"pageUp": (self.keyGoPageUp, _("Move up a screen in the panel")),
 			"up": (self.keyGoLineUp, _("Move up a line in the panel")),
 			"down": (self.keyGoLineDown, _("Move down a line in the panel")),
-			"pageDown": (self.keyGoPageDown, _("Move down a screen in the panel")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen in the panel"))
 		}, prio=0, description=_("Location Selection Actions"))
 		self["panelActions"] = LocationBoxActionMap(self, ["NavigationActions"], {  # Actions that will reset QuickSelect.
 			"left": (self.switchToFileList, _("Switch to file list panel")),
 			"right": (self.switchToBookmarkList, _("Switch to bookmarks panel")),
+			"pageUp": (self.keyGoPageUp, _("Move up a screen in the panel")),
+			"pageDown": (self.keyGoPageDown, _("Move down a screen in the panel")),
 		}, prio=0, description=_("Location Selection Actions"))
 		self["panelActions"].setEnabled(True)
 		self["moveUpAction"] = HelpableActionMap(self, ["NavigationActions"], {  # Actions that will reset QuickSelect.
