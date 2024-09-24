@@ -191,7 +191,11 @@ RESULT eDVBDemux::flush()
 	return 0;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBDemux::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn)
+#else
+RESULT eDVBDemux::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)
+#endif
 {
 	conn = new eConnection(this, m_event.connect(event));
 	return 0;
@@ -302,7 +306,11 @@ RESULT eDVBSectionReader::stop()
 	return 0;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBSectionReader::connectRead(const sigc::slot1<void,const uint8_t*> &r, ePtr<eConnection> &conn)
+#else
+RESULT eDVBSectionReader::connectRead(const sigc::slot<void(const uint8_t*)> &r, ePtr<eConnection> &conn)
+#endif
 {
 	conn = new eConnection(this, read.connect(r));
 	return 0;
@@ -408,7 +416,11 @@ RESULT eDVBPESReader::stop()
 	return 0;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBPESReader::connectRead(const sigc::slot2<void,const uint8_t*,int> &r, ePtr<eConnection> &conn)
+#else
+RESULT eDVBPESReader::connectRead(const sigc::slot<void(const uint8_t*,int)> &r, ePtr<eConnection> &conn)
+#endif
 {
 	conn = new eConnection(this, m_read.connect(r));
 	return 0;
@@ -422,10 +434,9 @@ eDVBRecordFileThread::eDVBRecordFileThread(int packetsize, int bufferCount, int 
 	 * can't handle that and segfaults. If you want the "normal" behaviour, just use -1 (or leave it out
 	 * completely, the default declaration).
 	 */
-	// the buffer should be higher than the hardware buffer size, accounts for RTSP header
 	eFilePushThreadRecorder(
-		/*buffer*/ (unsigned char*) ::mmap(NULL, (buffersize > 0) ? (buffersize * bufferCount) : (bufferCount * packetsize * 1050), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
-		/*buffersize*/ (buffersize > 0) ? buffersize : (packetsize * 1050)),
+		/*buffer*/ (unsigned char*) ::mmap(NULL, (buffersize > 0) ? (buffersize * bufferCount) : (bufferCount * packetsize * 1024), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
+		/*buffersize*/ (buffersize > 0) ? buffersize : (packetsize * 1024)),
 	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
@@ -975,7 +986,11 @@ RESULT eDVBTSRecorder::getFirstPTS(pts_t &pts)
 	return m_thread->getFirstPTS(pts);
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBTSRecorder::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn)
+#else
+RESULT eDVBTSRecorder::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)
+#endif
 {
 	conn = new eConnection(this, m_event.connect(event));
 	return 0;

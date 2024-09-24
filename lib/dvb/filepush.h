@@ -34,7 +34,11 @@ public:
 	void setScatterGather(iFilePushScatterGather *);
 
 	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal1<void,int> m_event;
+#else
+	sigc::signal<void(int)> m_event;
+#endif
 
 		/* you can send private events if you want */
 	void sendEvent(int evt);
@@ -73,11 +77,15 @@ public:
 	void start(int sourcefd);
 
 	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal1<void,int> m_event;
+#else
+	sigc::signal<void(int)> m_event;
+#endif
 
 	int getProtocol() { return m_protocol;}
-        void setProtocol(int i){ m_protocol = i;}
-        void setSession(int se, int st) { m_session_id = se; m_stream_id = st;}
+	void setProtocol(int i){ m_protocol = i;}
+	void setSession(int se, int st) { m_session_id = se; m_stream_id = st;}
 	int read_dmx(int fd, void *m_buffer, int size);
 	int pushReply(void *buf, int len);	
 	void sendEvent(int evt);
