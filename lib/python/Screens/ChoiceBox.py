@@ -77,10 +77,10 @@ class ChoiceBoxNew(Screen):
 		self["cancelAction"].setEnabled(allowCancel)
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
 			"top": (self.keyTop, _("Move to the first line / screen")),
-			"pageUp": (self.keyPageUp, _("Move up a screen")),
+			"left": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyLineUp, _("Move up a line")),
 			"down": (self.keyLineDown, _("Move down a line")),
-			"pageDown": (self.keyPageDown, _("Move down a screen")),
+			"right": (self.keyPageDown, _("Move down a screen")),
 			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=-1, description=_("Choice List Navigation Actions"))  # Priority needs to be higher for instantiated versions of this screen.
 		self["navigationActions"].setEnabled(len(choiceList) > 1)
