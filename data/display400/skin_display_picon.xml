@@ -215,12 +215,12 @@
 	</screen>
 <!-- Numberzap -->    
 	<screen name="NumberZapSummary" position="0,0" size="400,240">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="400,99" font="FdLcD;105" halign="center" valign="center" transparent="1" />
-		<widget source="parent.service_summary" render="Label" position="0,101" size="400,139" font="FdLcD;55" halign="center" valign="center" transparent="1" />
+		<widget source="parent.numberSummary" render="Label" position="0,0" size="400,99" font="FdLcD;105" halign="center" valign="center" transparent="1" />
+		<widget source="parent.serviceSummary" render="Label" position="0,101" size="400,139" font="FdLcD;55" halign="center" valign="center" transparent="1" />
 	</screen>
 	<screen name="NumberZapPiconSummary" position="0,0" size="400,240">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="400,99" font="FdLcD;105" halign="center" valign="center" transparent="1" />
-		<widget source="parent.service_summary" render="Label" position="0,101" size="400,139" font="FdLcD;55" halign="center" valign="center" transparent="1" />
+		<widget source="parent.numberSummary" render="Label" position="0,0" size="400,99" font="FdLcD;105" halign="center" valign="center" transparent="1" />
+		<widget source="parent.serviceSummary" render="Label" position="0,101" size="400,139" font="FdLcD;55" halign="center" valign="center" transparent="1" />
 	</screen>
 <!-- NumberZapExt -->    
 	<screen name="NumberZapExtSummary" position="0,0" size="400,240">
@@ -267,8 +267,8 @@
 	<screen name="NetworkServicesSummary" position="0,0" size="400,240">
 		<widget source="title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<eLabel position="0,87" size="400,1" backgroundColor="white" />
-		<widget source="status_summary" render="Label" position="0,90" size="400,100" zPosition="1" font="FdLcD;35" halign="center" valign="center" />
-		<widget source="autostartstatus_summary" render="Label" position="0,190" size="400,50" font="FdLcD;30" halign="center" valign="center" transparent="1" />
+		<widget source="statusSummary" render="Label" position="0,90" size="400,100" zPosition="1" font="FdLcD;35" halign="center" valign="center" />
+		<widget source="autostartstatusSummary" render="Label" position="0,190" size="400,50" font="FdLcD;30" halign="center" valign="center" transparent="1" />
 	</screen>		
 <!-- misc-->
 	<screen name="ScreenSummary" position="0,0" size="400,240">
@@ -374,7 +374,7 @@
 	<screen name="MessageBoxSimpleSummary" position="0,0" size="400,240">
 		<panel name="MessageBoxSummary" />
 	</screen>
-<!-- LocationBox_summary -->
+<!-- LocationBoxSummary -->
 	<screen name="LocationBoxSummary" position="0,0" size="400,240">
 		<widget source="parent.text" render="Label" position="0,0" size="400,178" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
@@ -409,7 +409,7 @@
 		<widget source="duration" render="Label" position="0,214" size="400,28" font="FdLcD;24" halign="left" transparent="1" />
 		<widget source="state" render="Label" position="0,214" size="400,28" font="FdLcD;24" halign="right" transparent="1" />
 	</screen>		
-<!-- TimerLog_summary -->
+<!-- TimerLogSummary -->
 	<screen name="TimerLogSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,30" font="FdLcD;28" foregroundColor="#87CEFA" halign="center" noWrap="1" />
 		<eLabel position="0,31" size="400,1" backgroundColor="white" />
@@ -428,8 +428,8 @@
 		<widget source="parent.status" render="Label" position="0,208" size="400,32" font="FdLcD;28" halign="left" transparent="1" />
 	</screen>
 	<screen name="SoftwareUpdateChangesSummary" position="0,0" size="400,240">
-		<widget source="parent.title_summary" render="Label" position="0,0" size="400,26" font="FdLcD;24" foregroundColor="#87CEFA" halign="center" noWrap="1" />
-		<widget source="parent.text_summary" render="Label" position="0,28" size="400,212" font="FdLcD;24" halign="left" transparent="1" />
+		<widget source="parent.titleSummary" render="Label" position="0,0" size="400,26" font="FdLcD;24" foregroundColor="#87CEFA" halign="center" noWrap="1" />
+		<widget source="parent.textSummary" render="Label" position="0,28" size="400,212" font="FdLcD;24" halign="left" transparent="1" />
 	</screen>
 	<screen name="WizardSummary" position="0,0" size="400,240">
 		<widget source="text" render="Label" position="0,0" size="400,55" font="FdLcD;24" halign="center" />

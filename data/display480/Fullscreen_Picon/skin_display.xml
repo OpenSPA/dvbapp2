@@ -34,10 +34,10 @@
 	<!-- MAIN -->
 	
 	<!-- CHANNEL SELECTION-->
-	<screen name="ChannelSelection_summary" position="0,0" size="480,320"> 
+	<screen name="ChannelSelectionSummary" position="0,0" size="480,320"> 
 		<panel name="LCDFullChannelSelectionPicon" />
 	</screen>
-	<screen name="ChannelSelectionRadio_summary" position="0,0" size="480,320">
+	<screen name="ChannelSelectionRadioSummary" position="0,0" size="480,320">
 		<widget source="parent.RdsDecoder" render="Label" position="24,133" size="432,100" foregroundColor="white" font="FdLcDLight;56" halign="center" valign="center" zPosition="2">
 			<convert type="RdsInfo">RtpText</convert>
 		</widget>
@@ -45,17 +45,17 @@
 	</screen>
 	
 	<!-- EPG -->
-	<screen name="GraphicalEPGPIG_summary" position="0,0" size="480,320">
+	<screen name="GraphicalEPGPIGSummary" position="0,0" size="480,320">
 		<panel name="LCDFullEPGPicon" />
 	</screen>
-	<screen name="GraphicalEPG_summary" position="0,0" size="480,320">
-		<panel name="GraphicalEPGPIG_summary" />
+	<screen name="GraphicalEPGSummary" position="0,0" size="480,320">
+		<panel name="GraphicalEPGPIGSummary" />
 	</screen>
-	<screen name="GraphicalInfoBarEPG_summary" position="0,0" size="480,320">
-		<panel name="GraphicalEPGPIG_summary" />
+	<screen name="GraphicalInfoBarEPGSummary" position="0,0" size="480,320">
+		<panel name="GraphicalEPGPIGSummary" />
 	</screen>
-	<screen name="EPGSelectionMulti_summary" position="0,0" size="480,320">
-		<panel name="GraphicalEPGPIG_summary" />
+	<screen name="EPGSelectionMultiSummary" position="0,0" size="480,320">
+		<panel name="GraphicalEPGPIGSummary" />
 		<panel name="LCDRecordIcon3" />
 	</screen>
 	

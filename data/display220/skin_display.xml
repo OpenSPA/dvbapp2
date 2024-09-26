@@ -78,7 +78,7 @@
     <panel name="RelojAbajo" />
   </screen>
   <!-- COMUNES -->
-  <screen name="ChannelSelection_summary" position="0,0" size="220,176">
+  <screen name="ChannelSelectionSummary" position="0,0" size="220,176">
     <widget source="parent.ServiceEvent" render="Label" position="0,0" size="217,67" zPosition="2" font="VFD; 38" halign="left" foregroundColor="azul" valign="top">
       <convert type="ServiceName">Name</convert>
     </widget>
@@ -87,22 +87,22 @@
     </widget>
     <panel name="RelojAbajo" />
   </screen>
-  <screen name="ChoiceBox_summary" position="0,0" size="220,176">
+  <screen name="ChoiceBoxSummary" position="0,0" size="220,176">
     <widget source="parent.summary_list" render="Label" position="1,0" size="219,130" font="VFD; 38" />
     <panel name="RelojAbajo" />
   </screen>
-  <screen name="MessageBox_summary" position="0,0" size="220,176">
-    <widget source="parent.Text" render="Label" position="0,0" size="220,80" font="VFD; 31" halign="center" valign="center" foregroundColor="azul" transparent="1" />
-    <widget source="parent.selectedChoice" render="Label" position="0,80" size="220,50" font="VFD; 33" halign="center" valign="center" transparent="1" />
+  <screen name="MessageBoxSummary" position="0,0" size="220,176">
+    <widget source="text" render="Label" position="0,0" size="220,80" font="VFD; 31" halign="center" valign="center" foregroundColor="azul" transparent="1" />
+    <widget source="option" render="Label" position="0,80" size="220,50" font="VFD; 33" halign="center" valign="center" transparent="1" />
     <panel name="RelojAbajo" />
   </screen>
-  <screen name="MessageBoxSimple_summary" position="0,0" size="220,176">
-    <widget source="parent.Text" render="Label" position="0,0" size="220,91" font="VFD; 31" halign="center" valign="center" foregroundColor="azul" transparent="1" />
-    <widget source="parent.selectedChoice" render="Label" position="0,92" size="220,44" font="VFD; 33" halign="center" valign="center" transparent="1" />
+  <screen name="MessageBoxSimpleSummary" position="0,0" size="220,176">
+    <widget source="text" render="Label" position="0,0" size="220,91" font="VFD; 31" halign="center" valign="center" foregroundColor="azul" transparent="1" />
+    <widget source="option" render="Label" position="0,92" size="220,44" font="VFD; 33" halign="center" valign="center" transparent="1" />
     <panel name="RelojAbajo" />
   </screen>
   <screen name="MenuSummary" position="0,0" size="220,176">
-    <widget source="parent.title" render="Label" position="0,0" size="220,52" font="VFD; 33" halign="center" valign="center" foregroundColor="azul" />
+    <widget source="Title" render="Label" position="0,0" size="220,52" font="VFD; 33" halign="center" valign="center" foregroundColor="azul" />
     <widget source="entry" render="Label" position="top" size="*,53" font="FdLcD;26" halign="center" valign="center"/>
     <panel name="RelojAbajo" />
   </screen>

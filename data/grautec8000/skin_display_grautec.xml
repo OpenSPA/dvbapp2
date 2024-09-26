@@ -63,8 +63,8 @@
 	</widget>
 </screen>
 
-<!--ChannelSelection_summary-->
-<screen name="ChannelSelection_summary" position="0,0" size="400,240">
+<!--ChannelSelectionSummary-->
+<screen name="ChannelSelectionSummary" position="0,0" size="400,240">
 	<widget source="parent.ServiceEvent" render="Label" position="0,32" size="400,155" font="LCD1;52" halign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
@@ -91,8 +91,8 @@
 	</widget>
 </screen>
 
-<!--AdvancedChannelSelection_summary-->
-<screen name="AdvancedChannelSelection_summary" position="0,0" size="400,240">
+<!--AdvancedChannelSelectionSummary-->
+<screen name="AdvancedChannelSelectionSummary" position="0,0" size="400,240">
 	<widget source="parent.ServiceEvent" render="Label" position="0,32" size="400,155" font="LCD1;52" halign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
@@ -119,8 +119,8 @@
 	</widget>
 </screen>
 
-<!--ChannelSelectionRadio_summary-->
-<screen name="ChannelSelectionRadio_summary" position="0,0" size="400,240">
+<!--ChannelSelectionRadioSummary-->
+<screen name="ChannelSelectionRadioSummary" position="0,0" size="400,240">
 	<widget source="session.Event_Now" render="Label" position="0,32" size="400,155" font="LCD1;52" halign="center">
    		  <convert type="EventName">Name</convert>
 	</widget>
@@ -260,15 +260,15 @@
 <screen name="IMDbLCDScreen" position="0,0" size="400,240">
 	<widget name="headline" position="4,35" size="392,52" font="LCD1;52" halign="center"/>
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,105" size="396,3" />
-	<widget source="parent.title" render="Label" position="3,115" size="394,115" font="LCD1;52" halign="center">
+	<widget source="Title" render="Label" position="3,115" size="394,115" font="LCD1;52" halign="center">
 	</widget>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>
 
-<!--MovieSelection_summary-->
-<screen name="MovieSelection_summary" position="0,0" size="400,240">
+<!--MovieSelectionSummary-->
+<screen name="MovieSelectionSummary" position="0,0" size="400,240">
 	<ePixmap pixmap="/usr/share/enigma2/display/icon_movieplayer.png" zPosition="1" position="0,25" size="400,100" />
 	<widget source="parent.Service" render="RunningText" position="0,125" size="400,52" font="LCD1;55" halign="center" options="movetype=running,direction=left,startpoint=150,steptime=40,startdelay=2000,noWrap">
 		<convert type="ServiceName">Name</convert>
@@ -289,8 +289,8 @@
 	</widget>
 </screen>
 
-<!--AdvancedMovieSelection_summary-->
-<screen name="AdvancedMovieSelection_summary" position="0,0" size="400,240">
+<!--AdvancedMovieSelectionSummary-->
+<screen name="AdvancedMovieSelectionSummary" position="0,0" size="400,240">
 	<ePixmap pixmap="/usr/share/enigma2/display/icon_movieplayer.png" zPosition="1" position="0,25" size="400,100" />
 	<widget source="parent.Movietitle" render="RunningText" position="0,125" size="400,52" font="LCD1;55" halign="center" options="movetype=running,direction=left,startpoint=150,steptime=40,startdelay=2000,noWrap"/>
     <ePixmap pixmap="/usr/share/enigma2/display/progress-lcd1.png" zPosition="1" position="0,177" size="400,14" />
@@ -310,8 +310,8 @@
 	</widget>
 </screen>
 
-<!--AdvancedMovieSelectionEventView_summary-->
-<screen name="AdvancedMovieSelectionEventView_summary" position="0,0" size="400,240">
+<!--AdvancedMovieSelectionEventViewSummary-->
+<screen name="AdvancedMovieSelectionEventViewSummary" position="0,0" size="400,240">
     <widget source="parent.Service" render="Label" position="0,20" size="400,97" font="LCD1;52" halign="center" valign="top" foregroundColor="oled1" backgroundColor="#000000">
 		<convert type="ServiceName">Name</convert>
 	</widget>
@@ -353,8 +353,8 @@
 	</widget>
 </screen>
 
-<!--MoviePlayerExtended_summary-->
-<screen name="MoviePlayerExtended_summary" position="0,0" size="400,240">
+<!--MoviePlayerExtendedSummary-->
+<screen name="MoviePlayerExtendedSummary" position="0,0" size="400,240">
 	<ePixmap pixmap="/usr/share/enigma2/display/icon_movieplayer.png" zPosition="1" position="0,25" size="400,100" />
 	<widget name="Title" position="0,125" size="400,52" font="LCD1;55" zPosition="2" transparent="1" halign="center" />
     <widget source="session.CurrentService" render="Progress" pixmap="/usr/share/enigma2/display/progress-lcd1.png" position="0,177" size="400,14" borderWidth="1" zPosition="2" backgroundColor="oledbackground1">
@@ -419,16 +419,16 @@
 	</widget>
 </screen>
 
-<!--ChoiceBox_summary-->
-<screen name="ChoiceBox_summary" position="0,0" size="400,240">
+<!--ChoiceBoxSummary-->
+<screen name="ChoiceBoxSummary" position="0,0" size="400,240">
 	<widget source="parent.summary_list" render="Label" position="2,25" size="396,202" font="LCD1;44" halign="center"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 </screen>
 
-<!--ChoiceBoxPlus_summary-->
-<screen name="ChoiceBoxPlus_summary" position="0,0" size="400,240">
+<!--ChoiceBoxPlusSummary-->
+<screen name="ChoiceBoxPlusSummary" position="0,0" size="400,240">
 	<widget source="parent.summary_list" render="Label" position="2,25" size="396,202" font="LCD1;44" halign="center"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
@@ -503,8 +503,8 @@
 	 </widget>
 </screen>
 
-<!--JobView_summary-->
-<screen name="JobView_summary" position="0,0" size="400,240">
+<!--JobViewSummary-->
+<screen name="JobViewSummary" position="0,0" size="400,240">
 	<widget source="parent.summary_job_name" render="Label" position="0,35" size="400,50" font="LCD1;50" halign="center" foregroundColor="oled1" backgroundColor="#000000" />
 	<widget source="parent.summary_job_task" render="Label" position="0,90" size="400,80" font="LCD1;40" halign="center" />
 	<widget source="parent.summary_job_progress" render="Progress" pixmap="/usr/share/enigma2/display/progress-lcd1.png" position="0,177" size="400,14" borderWidth="1" zPosition="2" backgroundColor="oledbackground1"/>
@@ -516,18 +516,18 @@
 <!--PicPlayerSummary-->
 <screen name="PicPlayerSummary" position="0,0" size="400,240">
 	<ePixmap pixmap="/usr/share/enigma2/display/icon_picplayer.png" zPosition="1" position="0,25" size="400,100" />
-	<widget source="parent.title" render="Label" position="2,130" size="396,50" font="LCD1;52" halign="center" valign="top" foregroundColor="oled1" backgroundColor="#000000" />
+	<widget source="Title" render="Label" position="2,130" size="396,50" font="LCD1;52" halign="center" valign="top" foregroundColor="oled1" backgroundColor="#000000" />
 	<widget source="parent.lcdinfo" render="Label" position="2,185" size="396,50" font="LCD1;52" halign="center" valign="top" />
 </screen>
 
-<!--Browser_summary-->
-<screen name="Browser_summary" position="0,0" size="400,240">
+<!--BrowserSummary-->
+<screen name="BrowserSummary" position="0,0" size="400,240">
 	<widget source="parent.Title" render="Label" position="2,25" size="396,200" font="LCD1;50" halign="center"/>
 </screen>
 
 <!--gDesktopSummary-->
 <screen name="gDesktopSummary" position="0,0" size="400,240">
-    <widget source="parent.title" render="Label" position="2,35" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000" />
+    <widget source="Title" render="Label" position="2,35" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000" />
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,100" size="396,3" />
 	<widget source="parent.lcdinfo" render="Label" position="2,115" size="396,105" font="LCD1;52" halign="center"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
@@ -535,8 +535,8 @@
 	</widget>
 </screen>
 
-<!--VirtualZap_summary-->
-<screen name="VirtualZap_summary" position="0,0" size="400,240">
+<!--VirtualZapSummary-->
+<screen name="VirtualZapSummary" position="0,0" size="400,240">
 	<widget source="session.CurrentService" render="RunningText" position="0,32" size="400,55" font="LCD1;52" halign="center" foregroundColor="oled1" zPosition="1" options="movetype=swimming,direction=top,repeat=0,steptime=100,startdelay=4000,pause=2000,wrap">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
@@ -568,8 +568,8 @@
 	</widget>
 </screen>
 
-<!--SubservicesQuickzap_summary-->
-<screen name="SubservicesQuickzap_summary" position="0,0" size="400,240">
+<!--SubservicesQuickzapSummary-->
+<screen name="SubservicesQuickzapSummary" position="0,0" size="400,240">
     <widget source="session.CurrentService" render="Label" position="2,20" size="396,160" font="LCD1;45" halign="center" >
           <convert type="ServiceName">Name</convert>
     </widget>
@@ -592,8 +592,8 @@
 	</widget>
 </screen>
 
-<!--EMCSelection_summary-->
-<screen name="EMCSelection_summary" position="0,0" size="400,240">
+<!--EMCSelectionSummary-->
+<screen name="EMCSelectionSummary" position="0,0" size="400,240">
 	<ePixmap pixmap="/usr/share/enigma2/display/icon_movieplayer.png" zPosition="1" position="0,25" size="400,100" />
 	<widget source="parent.Service" render="RunningText" position="0,125" size="400,52" zPosition="2" font="LCD1;55" options="movetype=running,direction=left,startpoint=150,steptime=40,startdelay=2000,noWrap">
 		<convert type="ServiceName">Name</convert>
@@ -721,8 +721,8 @@
 	</widget>
 </screen>
 
-<!--MyTubePlayer_summary-->
-<screen name="MyTubePlayer_summary" position="0,0" size="400,240">
+<!--MyTubePlayerSummary-->
+<screen name="MyTubePlayerSummary" position="0,0" size="400,240">
 	<widget source="session.CurrentService" render="Label" position="0,20" size="400,155" font="LCD1;52" halign="center" valign="center">
 		  <convert type="ServiceName">Name</convert>
 	</widget>
@@ -753,8 +753,8 @@
 	</widget>
 </screen>
 
-<!--NumberZapExt_summary-->
-<screen name="NumberZapExt_summary" position="0,0" size="400,240">
+<!--NumberZapExtSummary-->
+<screen name="NumberZapExtSummary" position="0,0" size="400,240">
 	<eLabel text="Ext. NumberZap" position="0,75" size="400,55" font="LCD1;55" halign="center"/>
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd1.png" zPosition="1" position="0,177" size="400,14" />
 	<widget source="global.CurrentTime" render="Label" position="0,188" size="200,50" font="LCD1;52" halign="left" valign="top" foregroundColor="oled1" backgroundColor="#000000">
@@ -762,8 +762,8 @@
 	</widget>
 </screen>
 
-<!--EventView_summary-->
-<screen name="xEventView_summary" position="0,0" size="400,240">
+<!--EventViewSummary-->
+<screen name="xEventViewSummary" position="0,0" size="400,240">
 	<widget source="parent.Service" render="RunningText" position="0,32" size="400,55" font="LCD1;52" halign="center" foregroundColor="oled1" zPosition="1" options="movetype=swimming,direction=top,repeat=0,steptime=100,startdelay=4000,pause=2000,wrap">
 		<convert type="ServiceName">Name</convert>
 	</widget>
@@ -790,12 +790,12 @@
 	</widget>
 </screen>
 
-<screen name="EventView_summary" position="0,0" size="400,240">
+<screen name="EventViewSummary" position="0,0" size="400,240">
     <widget source="parent.Title" render="Label" position="2,32" size="396,165" font="LCD1;52" halign="center" valign="center" />
 </screen>
 
-<!--EPGSelection_summary-->
-<screen name="EPGSelection_summary" position="0,0" size="400,240">
+<!--EPGSelectionSummary-->
+<screen name="EPGSelectionSummary" position="0,0" size="400,240">
 	<widget source="parent.Service" render="Label" position="0,20" size="400,155" font="LCD1;52" valign="center" halign="center">
 		<convert type="ServiceName">Name</convert>
 	</widget>
@@ -820,8 +820,8 @@
 	</widget>
 </screen>
 
-<!--EPGSelectionMulti_summary-->
-<screen name="EPGSelectionMulti_summary" position="0,0" size="400,240">
+<!--EPGSelectionMultiSummary-->
+<screen name="EPGSelectionMultiSummary" position="0,0" size="400,240">
 	<widget source="parent.Service" render="Label" position="0,20" size="400,155" font="LCD1;52" valign="center" halign="center">
 		<convert type="ServiceName">Name</convert>
 	</widget>
@@ -846,7 +846,7 @@
 	</widget>
 </screen>
 
-<!--EasyMedia_summary-->
+<!--EasyMediaSummary-->
 <screen name="EasyMediaSummary" position="0,0" size="400,240">
 	<eLabel text="EasyMedia" position="2,35" size="396,60" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000"/>
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,100" size="396,3" />
@@ -885,8 +885,8 @@
 	</widget>
 </screen>
 
-<!--PzyP4T_summary-->
-<screen name="PzyP4T_summary" position="0,0" size="400,240">
+<!--PzyP4TSummary-->
+<screen name="PzyP4TSummary" position="0,0" size="400,240">
  	<widget source="parent.ServiceEvent" render="RunningText" position="0,32" size="400,55" font="LCD1;52" halign="center" foregroundColor="oled1" zPosition="1" options="movetype=swimming,direction=top,repeat=0,steptime=100,startdelay=3000,pause=2000,wrap" >
 		  <convert type="ServiceName">Name</convert>
 	</widget>
@@ -908,8 +908,8 @@
 	</widget>
 </screen>
 
-<!--TimerEditList_summary-->
-<screen name="TimerEditList_summary" position="0,0" size="400,240">
+<!--TimerEditListSummary-->
+<screen name="TimerEditListSummary" position="0,0" size="400,240">
     <eLabel text="Timerlist" position="0,32" size="400,50" font="LCD1;52" halign="center" valign="top" foregroundColor="oled1" />
 	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,100" size="396,3" />
 <!-- 	<widget source="session.CurrentService" render="RunningText" position="0,115" size="400,55" font="LCD1;52" halign="center" zPosition="1" options="movetype=running,startpoint=2,direction=left,repeat=0,steptime=30,startdelay=2000,noWrap">

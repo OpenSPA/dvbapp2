@@ -42,9 +42,9 @@
     <font filename="OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
   </fonts>
   
-<screen name="NumberZap_summary" position="0,0" size="400,240" backgroundColor="black">
-	<widget source="parent.channel_summary" render="Label" position="400,240" size="1,1" noWrap="1" foregroundColor="black" backgroundColor="black"/>
-    <widget source="parent.number_summary" render="Label" position="0,15" size="400,130" zPosition="2" noWrap="1" font="VFD; 54" halign="center" foregroundColor="naranja" />
+<screen name="NumberZapSummary" position="0,0" size="400,240" backgroundColor="black">
+	<widget source="parent.channelSummary" render="Label" position="400,240" size="1,1" noWrap="1" foregroundColor="black" backgroundColor="black"/>
+    <widget source="parent.numberSummary" render="Label" position="0,15" size="400,130" zPosition="2" noWrap="1" font="VFD; 54" halign="center" foregroundColor="naranja" />
 	<panel name="RelojAbajo" />
 </screen>
 
@@ -228,7 +228,7 @@
 <panel name="RelojAbajo" />
   </screen>
   
-  <screen name="spzTimeshift_summary" position="0,0" size="400,240" backgroundColor="black">
+  <screen name="spzTimeshiftSummary" position="0,0" size="400,240" backgroundColor="black">
     <widget source="session.RecordState" position="8,89" render="Label" size="385,40" valign="center" halign="left" zPosition="0" backgroundColor="black" foregroundColor="white" font="VFD; 31" transparent="1" noWrap="1">
       <convert type="infoRecBm">Canal</convert>
     </widget>
@@ -252,7 +252,7 @@
 <panel name="RelojAbajo" />
   </screen>
   <!-- COMUNES -->
-  <screen name="newChannelSelection_summary" position="0,0" size="400,240" backgroundColor="black">
+  <screen name="newChannelSelectionSummary" position="0,0" size="400,240" backgroundColor="black">
     <widget source="parent.ServiceEvent" render="Label" position="0,0" size="397,83" zPosition="2" font="VFD; 35" halign="left" foregroundColor="azul">
       <convert type="ServiceName">Name</convert>
     </widget>
@@ -261,7 +261,7 @@
     </widget>
 <panel name="RelojAbajo" />
   </screen>
-  <screen name="newChannelSelectionNOPIP_summary" position="0,0" size="400,240" backgroundColor="black">
+  <screen name="newChannelSelectionNOPIPSummary" position="0,0" size="400,240" backgroundColor="black">
     <widget source="parent.ServiceEvent" render="Label" position="0,0" size="397,83" zPosition="2" font="VFD; 35" halign="left" foregroundColor="azul">
       <convert type="ServiceName">Name</convert>
     </widget>
@@ -271,7 +271,7 @@
 <panel name="RelojAbajo" />
   </screen>
 
-  <screen name="ChannelSelection_summary" position="0,0" size="400,240" backgroundColor="black">
+  <screen name="ChannelSelectionSummary" position="0,0" size="400,240" backgroundColor="black">
     <widget source="parent.ServiceEvent" render="Label" position="0,0" size="397,83" zPosition="2" font="VFD; 35" halign="left" foregroundColor="azul">
       <convert type="ServiceName">Name</convert>
     </widget>
@@ -280,22 +280,22 @@
     </widget>
 <panel name="RelojAbajo" />
   </screen>
-  <screen name="ChoiceBox_summary" position="0,0" size="400,240" backgroundColor="black">
+  <screen name="ChoiceBoxSummary" position="0,0" size="400,240" backgroundColor="black">
     <widget source="parent.summary_list" render="Label" position="6,0" size="393,166" font="VFD; 35" foregroundColor="white"/>
 <panel name="RelojAbajo" />
   </screen>
-<screen name="MessageBox_summary" position="0,0" size="400,240" backgroundColor="black">
-    <widget source="parent.Text" render="Label" position="0,0" size="400,121" font="VFD; 30" halign="center" valign="center" foregroundColor="azul" transparent="1" />
-    <widget source="parent.selectedChoice" render="Label" position="0,121" size="400,60" font="VFD; 30" halign="center" valign="center" transparent="0" zPosition="1" backgroundColor="black" foregroundColor="white" />
+<screen name="MessageBoxSummary" position="0,0" size="400,240" backgroundColor="black">
+    <widget source="text" render="Label" position="0,0" size="400,121" font="VFD; 30" halign="center" valign="center" foregroundColor="azul" transparent="1" />
+    <widget source="option" render="Label" position="0,121" size="400,60" font="VFD; 30" halign="center" valign="center" transparent="0" zPosition="1" backgroundColor="black" foregroundColor="white" />
     <panel name="RelojAbajo" />
   </screen>
-  <screen name="MessageBoxSimple_summary" position="0,0" size="400,240" backgroundColor="black" >
-    <widget source="parent.Text" render="Label" position="0,0" size="400,121" font="VFD; 30" halign="center" valign="center" foregroundColor="azul" transparent="1" />
-    <widget source="parent.selectedChoice" render="Label" position="0,121" size="400,60" font="VFD; 30" halign="center" valign="center" transparent="0" zPosition="1" backgroundColor="black" foregroundColor="white" />
+  <screen name="MessageBoxSimpleSummary" position="0,0" size="400,240" backgroundColor="black" >
+    <widget source="text" render="Label" position="0,0" size="400,121" font="VFD; 30" halign="center" valign="center" foregroundColor="azul" transparent="1" />
+    <widget source="option" render="Label" position="0,121" size="400,60" font="VFD; 30" halign="center" valign="center" transparent="0" zPosition="1" backgroundColor="black" foregroundColor="white" />
     <panel name="RelojAbajo" />
   </screen>
   <screen name="MenuSummary" position="0,0" size="400,240" backgroundColor="black">
-    <widget source="parent.title" render="Label" position="6,0" size="388,52" font="VFD; 33" halign="center" valign="center" foregroundColor="azul" transparent="1" />
+    <widget source="Title" render="Label" position="6,0" size="388,52" font="VFD; 33" halign="center" valign="center" foregroundColor="azul" transparent="1" />
 	<widget source="entry" render="Label" position="top" size="9,63" font="VFD;32" halign="center" valign="center" foregroundColor="white" transparent="1"/>
     <panel name="RelojAbajo" />
   </screen>
