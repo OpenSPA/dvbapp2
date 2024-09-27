@@ -2367,9 +2367,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100, True)
 		self.pipzaptimer = eTimer()
+		self.session.onShutdown.append(self.close)
 
-	def onShutdown(self):
-		self.close()
+	def __del__(self):
+		self.session.onShutdown.remove(self.close)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
