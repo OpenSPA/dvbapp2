@@ -213,6 +213,10 @@ class MultiBootClass():
 							####################################################################################
 							if "ubi.mtd=" in line:
 								bootSlots[slotCode]["ubi"] = True
+							if "UUID=" in line:
+								bootSlots[slotCode]["uuid"] = True
+							if "rescuemode" in line:
+								bootSlots[slotCode]["rootsubdir"] = "rescue"
 							bootDevice = [x for x in ("sda", "sdb", "sdc", "sdd") if x in line]
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
@@ -705,6 +709,10 @@ class MultiBootClass():
 			##### OPENSPA [morser] change for h7 & hd51 Boxmodes ###############
 			if self.bootCode == "12" and "BOXMODE" not in startup:
 				open(pathjoin(self.tempDir, target), "w").write(bootSlot["cmdline"]["12"])
+			if (fileHas("/proc/cmdline", "kexec=1") or self.bootSlots[self.slotCode].get("rootsubdir") == "rescue") and startup == STARTUP_RECOVERY:
+				target = STARTUP_FILE
+			else:
+				target = STARTUP_ONCE if startup == STARTUP_RECOVERY else STARTUP_FILE
 			if exists(DREAM_BOOT_FILE) and startup == STARTUP_RECOVERY:
 				pass
 			else:
