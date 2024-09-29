@@ -1466,7 +1466,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     def keyboard(self):
         selection = self["config"].getCurrent()
         if isinstance(selection[1], ConfigText):
-            self.KeyText()
+            self.keyText()
 
     def cancel(self):
         for x in self["config"].list:
@@ -1773,7 +1773,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     def keyboard(self):
         selection = self["config"].getCurrent()
         if isinstance(selection[1], ConfigText):
-            self.KeyText()
+            self.keyText()
 
     def cancel(self):
         for x in self["config"].list:
