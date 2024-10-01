@@ -10161,6 +10161,9 @@ msgstr "Modo de la tecla INFO"
 msgid "INS"
 msgstr "INS"
 
+msgid "Internet Info [spzimdb] is not installed.\nDo you want to install it?"
+msgstr "Internet Info [spzimdb] no está instalado.\n¿Desea instalarlo?"
+
 #
 msgid "IP"
 msgstr "IP"

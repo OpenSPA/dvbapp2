@@ -9083,6 +9083,9 @@ msgstr ""
 msgid "INS"
 msgstr ""
 
+msgid "Internet Info [spzimdb] is not installed.\nDo you want to install it?"
+msgstr ""
+
 msgid "IP"
 msgstr ""
 
