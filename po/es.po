@@ -2295,7 +2295,7 @@ msgstr "Todo"
 
 #
 msgid "All Services"
-msgstr "Todos los servicios"
+msgstr "Todos los canales"
 
 msgid "All ages"
 msgstr "Todas las edades"
@@ -15698,7 +15698,7 @@ msgstr "Listas de recepción"
 
 #
 msgid "Record"
-msgstr "Grabación"
+msgstr "Grabar"
 
 msgid "Record - same as record button"
 msgstr "Grabar - igual que el botón de grabación"
