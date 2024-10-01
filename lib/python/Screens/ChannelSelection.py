@@ -151,7 +151,7 @@ class ChannelSelectionBase(Screen):
 
 		Screen.__init__(self, session, enableHelp=True)
 		self["key_red"] = StaticText(_("All Services"))
-		self["key_green"] = StaticText(_("Reception Lists"))
+		self["key_green"] = StaticText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
 		self["key_yellow"] = StaticText(_("Providers"))
 		self["key_blue"] = StaticText(_("Bouquets"))
 		self["list"] = ServiceListLegacy(self) if config.channelSelection.screenStyle.value == "" or config.channelSelection.widgetStyle.value == "" else ServiceList(self)
@@ -360,7 +360,7 @@ class ChannelSelectionBase(Screen):
 			if "FROM PROVIDERS" in servicePath:
 				return _("Providers")
 			if "FROM SATELLITES" in servicePath:
-				return _("Reception Lists")
+				return _("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists")
 			if "ORDER BY name" in servicePath:
 				return _("All Services")
 			if self.isSubservices(serviceReference):
@@ -445,7 +445,7 @@ class ChannelSelectionBase(Screen):
 		return False
 
 	def showAllServices(self):
-		self["key_green"].setText(_("Reception Lists"))
+		self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, "ORDER BY name")
 			if not self.preEnterPath(ref.toString()):
@@ -554,7 +554,7 @@ class ChannelSelectionBase(Screen):
 								self.setCurrentSelectionAlternative(ref)
 
 	def showProviders(self):
-		self["key_green"].setText(_("Reception Lists"))
+		self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, " FROM PROVIDERS ORDER BY name")
 			if not self.preEnterPath(ref.toString()):
@@ -633,7 +633,7 @@ class ChannelSelectionBase(Screen):
 				self.servicelist.goLineDown()
 
 	def showFavourites(self):
-		self["key_green"].setText(_("Reception Lists"))
+		self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
 		if not self.pathChangeDisabled:
 			if not self.preEnterPath(self.bouquet_root.toString()):
 				if self.isBasePathEqual(self.bouquet_root):
@@ -2490,7 +2490,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.protectContextMenu = True
-					self["key_green"].setText(_("Reception Lists"))
+					self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):

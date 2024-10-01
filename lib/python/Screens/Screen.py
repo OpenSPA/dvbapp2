@@ -114,11 +114,10 @@ class Screen(dict):
 		self.__dict__.clear()  # Really delete all elements now.
 
 	def close(self, *retVal):
-		if hasattr(self, "execing"):
-			if not self.execing:
-				self.closeOnNextExec = retVal
-			else:
-				self.session.close(self, *retVal)
+		if not self.execing:
+			self.closeOnNextExec = retVal
+		else:
+			self.session.close(self, *retVal)
 
 	def show(self):
 		if not (self.shown and self.alreadyShown) and self.instance:
