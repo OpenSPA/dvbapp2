@@ -3401,7 +3401,7 @@ msgid "Bouquet Selector Navigation Actions"
 msgstr "Navegación Selector de listas"
 
 msgid "Bouquets"
-msgstr "Listas"
+msgstr "Listas - Bouquets"
 
 msgid "Bouvet Island"
 msgstr "Isla de Bouvet"
