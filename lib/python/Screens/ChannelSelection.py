@@ -458,7 +458,6 @@ class ChannelSelectionBase(Screen):
 						self.setCurrentSelectionAlternative(playingref)
 
 	def showSatellites(self, changeMode=False):
-		self["key_blue"].setText(_("Bouquets"))  # OpenSPA [norhap] Show key action BLUE.
 		if not self.pathChangeDisabled:
 			ref = f"{self.service_types} FROM SATELLITES ORDER BY satellitePosition"  # OpenSPA [norhap] Display simple or extended list of satellites.
 			self["key_green"].setText(_("Simple") if self.showSatDetails else _("Extended"))
