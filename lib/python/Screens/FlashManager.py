@@ -736,6 +736,10 @@ class FlashImage(Screen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-rmmcblk0p1"]
+			elif BoxInfo.getItem("model") in ("dm800se", "dm500hd"):  # Temp solution ofgwrite auto detection not ready.
+				cmdArgs = ["-r%s" % mtdRootFS, "-f"]
+			elif BoxInfo.getItem("model") in ("zgemmah82h"):  # Temp solution ofgwrite kill e2 not allways works.
+				cmdArgs = ["-r", "-k", "-f"]
 			elif mtdKernel == mtdRootFS:  # Receiver with kernel and rootfs on one partition.
 				cmdArgs = ["-r"]
 			elif BoxInfo.getItem("HasKexecMultiboot") and self.slotCode == "R":  # Kexec Root Image.
