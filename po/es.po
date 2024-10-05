@@ -23397,8 +23397,8 @@ msgstr "Estado del sintonizador : Desconocido"
 msgid "Tuner type %s"
 msgstr "Tipo de sintonizador %s"
 
-msgid "Tuners"
-msgstr "Sintonización"
+msgid "Tuners, Scanning & Reception"
+msgstr "Sintonizodores, Escaneo & Recepción"
 
 msgid "Tuning algorithm"
 msgstr "Algoritmo de sintonización"

@@ -19502,7 +19502,7 @@ msgstr ""
 msgid "Tuner type %s"
 msgstr ""
 
-msgid "Tuners"
+msgid "Tuners, Scanning & Reception"
 msgstr ""
 
 msgid "Tuning algorithm"
