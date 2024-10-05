@@ -817,7 +817,7 @@
 		<!--
 		<key id="KEY_YELLOW" mapto="playpauseService" flags="m" />
 		-->
-		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
+		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="l" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
