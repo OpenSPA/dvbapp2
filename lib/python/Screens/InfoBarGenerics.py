@@ -2602,10 +2602,10 @@ class InfoBarSeek:
 
 	def doPause(self, pause):
 		if pause:
-			if not eDVBVolumecontrol.getInstance().isMuted(True):
+			if not eDVBVolumecontrol.getInstance().isMuted():
 				eDVBVolumecontrol.getInstance().volumeMute()
 		else:
-			if eDVBVolumecontrol.getInstance().isMuted(True):
+			if eDVBVolumecontrol.getInstance().isMuted():
 				eDVBVolumecontrol.getInstance().volumeUnMute()
 
 	def doSeek(self, pts):
