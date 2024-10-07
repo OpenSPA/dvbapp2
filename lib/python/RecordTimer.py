@@ -1359,7 +1359,7 @@ class RecordTimerEntry(TimerEntry):
 	def failureCB(self, answer):
 		if answer:
 			self.log(13, "Okay, zapped away.")
-			self.messageString += _("The TV was switched to the recording service!\n")
+			self.messageString += _("The TV was switched to the recording service!\n") if not config.usage.remote_fallback_enabled.value else _("1. Set this channel as the standby start channel.\n2. Put the receiver into standby, then recording will start.\n")
 			self.messageStringShow = True
 			# NavigationInstance.instance.stopUserServices()
 			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:

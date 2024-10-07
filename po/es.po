@@ -1411,6 +1411,13 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
+msgid ""
+"1. Set this channel as the standby start channel.\n"
+"2. Put the receiver into standby, then recording will start.\n"
+msgstr ""
+"1. Establezca como canal de inicio en reposo este canal.\n"
+"2. Ponga el receptor en standby, la grabación entonces comenzará.\n"
+
 #
 msgid "1.0"
 msgstr "1.0"
