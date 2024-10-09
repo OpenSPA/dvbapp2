@@ -454,6 +454,11 @@ class FCCSetup(Setup):
 		Setup.changedEntry(self)
 
 	def keySave(self):
+		if config.usage.remote_fallback_enabled.value and config.plugins.fccsetup.activate.value:  # OpenSPA [norhap] sync with fallback tuner.
+			config.usage.remote_fallback_enabled.value = False
+			config.usage.remote_fallback_enabled.save()
+			from Screens.Standby import TryQuitMainloop
+			self.session.open(TryQuitMainloop, 3)
 		Setup.keySave(self)
 		FCCChanged()
 

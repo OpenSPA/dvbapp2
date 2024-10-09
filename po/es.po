@@ -6812,6 +6812,15 @@ msgstr "PIP deshabilitado.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Desactivado o WPA/WPA2"
 
+msgid ""
+"Disabled use of FCC to use fallback tuner.\n"
+"Enigma2 needs to be restarted.\n"
+"Do you want to do it now?"
+msgstr ""
+"Se ha deshabilitado el uso de FCC para usar el tuner reserva.\n"
+"Es necesario reiniciar enigma2.\n"
+"¿Quieres hacerlo ahora?"
+
 #
 msgid "Dish"
 msgstr "Antena"
@@ -23414,7 +23423,7 @@ msgid "Tuner type %s"
 msgstr "Tipo de sintonizador %s"
 
 msgid "Tuners, Scanning & Reception"
-msgstr "Sintonizodores, Escaneo & Recepción"
+msgstr "Sintonizadores, Escaneo & Recepción"
 
 msgid "Tuning algorithm"
 msgstr "Algoritmo de sintonización"

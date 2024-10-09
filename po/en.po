@@ -6101,6 +6101,9 @@ msgstr ""
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
+msgid "Disabled use of FCC to use fallback tuner.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr ""
+
 msgid "Dish"
 msgstr ""
 

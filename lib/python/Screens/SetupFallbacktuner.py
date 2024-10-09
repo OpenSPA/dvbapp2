@@ -1,6 +1,8 @@
 from Screens.Setup import Setup
 from Components.config import config, configfile, ConfigSelection, ConfigIP, ConfigInteger, ConfigBoolean
 from Components.ImportChannels import ImportChannels
+from Tools.Directories import isPluginInstalled
+from Screens.MessageBox import MessageBox
 
 from enigma import getPeerStreamingBoxes
 
@@ -60,6 +62,9 @@ class SetupFallbacktuner(Setup):
 		self.port_atsc = ConfigInteger(default=portDefault, limits=(1, 65535))
 
 	def keySave(self):
+		if isPluginInstalled("FastChannelChange"):  # OpenSPA [norhap] sync with FCC.
+			if config.usage.remote_fallback_enabled.value and config.plugins.fccsetup.activate.value:
+				self.session.openWithCallback(self.syncWithFCC, MessageBox, _("Disabled use of FCC to use fallback tuner.\nEnigma2 needs to be restarted.\nDo you want to do it now?"), type=MessageBox.TYPE_YESNO, simple=True)
 		if self.avahiselect.value == "ip":
 			config.usage.remote_fallback.value = "http://%d.%d.%d.%d:%d" % (tuple(self.ip.value) + (self.port.value,))
 		elif self.avahiselect.value != "url":
@@ -117,3 +122,13 @@ class SetupFallbacktuner(Setup):
 		if not self.remote_fallback_prev and config.usage.remote_fallback_import.value:
 			ImportChannels()
 		self.close(False)
+
+	def syncWithFCC(self, answer):  # OpenSPA [norhap] sync with FCC.
+		from Screens.Standby import TryQuitMainloop
+		if answer:
+			config.plugins.fccsetup.activate.value = False
+			config.plugins.fccsetup.activate.save()
+			self.session.open(TryQuitMainloop, 3)
+		else:
+			config.usage.remote_fallback_enabled.value = False
+			config.usage.remote_fallback_enabled.save()
