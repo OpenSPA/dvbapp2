@@ -166,8 +166,11 @@ class Session:
 			return dialog
 
 	def open(self, screen, *arguments, **kwargs):
-		if self.dialog_stack and not self.in_exec:
-			raise RuntimeError("[StartEnigma] Error: Modal open are allowed only from a screen which is modal!")  # ...unless it's the very first screen.
+		try:  # OpenSPA [norhap] Don't just report, catch the exception too.
+			if self.dialog_stack and not self.in_exec:
+				print("[StartEnigma] Error: Modal open are allowed only from a screen which is modal!")  # ...unless it's the very first screen.
+		except RuntimeError as err:
+			print(err)
 		self.pushCurrent()
 		if config.crash.bsodpython.value:
 			try:
