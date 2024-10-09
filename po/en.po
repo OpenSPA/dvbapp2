@@ -6399,6 +6399,9 @@ msgid ""
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
 
+msgid "Do you want to stop this recording?"
+msgstr ""
+
 msgid "Do you want to update your box?"
 msgstr ""
 
@@ -17089,6 +17092,12 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
+msgid "Stop and delete all current recordings"
+msgstr ""
+
+msgid "Stop and delete recording"
+msgstr ""
+
 msgid "Stop PiP"
 msgstr ""
 
@@ -19868,6 +19877,12 @@ msgid "W"
 msgstr ""
 
 msgid "WAN connection information"
+msgstr ""
+
+msgid "want to stop and delete this recording?"
+msgstr ""
+
+msgid "want to stop and delete this recordings?"
 msgstr ""
 
 msgid "WARNING!"

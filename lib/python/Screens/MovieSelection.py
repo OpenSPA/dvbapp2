@@ -143,12 +143,13 @@ canRename = canMove
 
 
 def createMoveList(serviceref, dest):
-	src = normpath(serviceref.getPath())  # normpath is to remove the trailing "/" from directories.
+	ext_ts = f"{serviceref}.ts"  # OpenSPA [norhap] access and instantiate file.
+	src = isinstance(serviceref, str) and f"{ext_ts}" or normpath(serviceref.getPath()) if exists(ext_ts) else isinstance(serviceref, str) and f"{serviceref}.stream" or normpath(serviceref.getPath())
 	srcPath, srcName = split(src)
 	if normpath(srcPath) == dest:  # Move file to itself is allowed, so we have to check it.
 		raise Exception("Refusing to move to the same directory")
 	moveList = [(src, join(dest, srcName))]  # Make a list of items to move.
-	if not serviceref.flags & eServiceReference.mustDescent:  # Real movie, add extra files.
+	if isinstance(serviceref, str) or not serviceref.flags & eServiceReference.mustDescent:  # Real movie, add extra files.
 		srcBase = splitext(src)[0]
 		baseName = split(srcBase)[1]
 		eitName = "%s.eit" % srcBase
