@@ -675,7 +675,9 @@
 		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
 		<key id="KEY_PVR" mapto="showMovies" flags="b" />
 		<key id="KEY_PVR" mapto="showMediaPlayer" flags="l" />
+		<!--
 		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
+		-->		
 		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
 		<key id="KEY_HOMEPAGE" mapto="showWWW" flags="b" />
 		<key id="KEY_BOOKMARKS" mapto="showWWW" flags="b" />
@@ -817,7 +819,7 @@
 		<!--
 		<key id="KEY_YELLOW" mapto="playpauseService" flags="m" />
 		-->
-		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="l" />
+		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
@@ -870,7 +872,7 @@
 	</map>
 
 	<map context="InfobarTimeshiftActions">
-		<key id="KEY_PLAY" mapto="timeshiftStart" flags="b" />
+		<key id="KEY_PLAY" mapto="timeshiftStart" flags="m" />
 		<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
 		<device name="dreambox ir keyboard">
@@ -879,8 +881,8 @@
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 			<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
 		</device>
-		<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="b" />
-		<key id="KEY_PAUSE" mapto="timeshiftStart" flags="b" />
+		<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
+		<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
 		<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
 		<!--
 		<key id="KEY_TIME" mapto="timeshiftStart" flags="m" />
