@@ -5849,7 +5849,13 @@ msgstr ""
 msgid "Delete folder"
 msgstr ""
 
-msgid "Delete logfile"
+msgid "Delete log"
+msgstr ""
+
+msgid "Delete only highlighted file"
+msgstr ""
+
+msgid "Delete or stop recordings"
 msgstr ""
 
 msgid "Delete or Wipe the highlighted slot"

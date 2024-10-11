@@ -3955,7 +3955,7 @@ class InfoBarInstantRecord:
 		if self.isInstantRecordRunning():
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			choiceList = [
-				(_("Stop recording"), "stop")
+				(_("Stop recording") if len(self.recording) == 1 else _("Delete or stop recordings"), "stop")
 			] + commonRecord + [
 				(_("Change recording (Duration)"), "changeduration"),
 				(_("Change recording (End time)"), "changeendtime")
