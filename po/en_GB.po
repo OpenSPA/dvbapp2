@@ -6967,6 +6967,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -9452,6 +9455,9 @@ msgid "Include remote control data"
 msgstr ""
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include teletext details"
 msgstr ""
 
 msgid "Include timer data"
