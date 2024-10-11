@@ -7857,6 +7857,9 @@ msgstr ""
 "Activa esta opción para añadir los datos de depuración del temporizador al "
 "archivo de registro de depuración."
 
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr "Habilite esta opción para mostrar todas las pantallas de información disponibles en la lista de elementos del menú Información."
+
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Habilitar esta opción si su sistema de antena necesita energía."
 
@@ -19612,6 +19615,9 @@ msgstr "Mostrar todos los servicios disponibles"
 
 msgid "Show all details"
 msgstr "Mostrar todos los detalles"
+
+msgid "Show all Information screens"
+msgstr "Mostrar todas las pantallas de información"
 
 msgid "Show animation while busy"
 msgstr "Mostrar animación cuando esté ocupado"

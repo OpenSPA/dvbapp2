@@ -6947,6 +6947,12 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
 msgid "Enable this setting if your aerial system needs power."
 msgstr ""
 
@@ -15995,6 +16001,18 @@ msgid "Show additional slider value"
 msgstr ""
 
 msgid "Show advanced settings"
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+msgid "Show all available services"
+msgstr ""
+
+msgid "Show all details"
+msgstr ""
+
+msgid "Show all Information screens"
 msgstr ""
 
 msgid "Show animation while busy"
