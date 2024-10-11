@@ -6672,7 +6672,13 @@ msgstr ""
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add extra EPG data to the debug log file."
@@ -9052,7 +9058,13 @@ msgstr ""
 msgid "Include CI assignment"
 msgstr ""
 
+msgid "Include DVB details"
+msgstr ""
+
 msgid "Include DVB scan data"
+msgstr ""
+
+msgid "Include DVB timesync data"
 msgstr ""
 
 msgid "Include ECM in http streams"

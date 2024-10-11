@@ -7820,10 +7820,16 @@ msgstr ""
 "Habilitar esta opción para agregar datos de mapeo de mapa de acción / "
 "control remoto al archivo de registro de depuración."
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr "Habilite esta opción para agregar detalles DVB adicionales al archivo de registro de depuración."
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr ""
 "Habilite esta opción para añadir datos de escaneo DVB adicionales al archivo "
 "de registro de depuración."
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
+msgstr "Habilite esta opción para agregar datos de sincronización de tiempo DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
@@ -10669,8 +10675,14 @@ msgstr "Incluir AIT en grabaciones"
 msgid "Include CI assignment"
 msgstr "Incluir asignación CI"
 
+msgid "Include DVB details"
+msgstr "Incluir detalles DVB"
+
 msgid "Include DVB scan data"
 msgstr "Incluir datos de escaneo DVB"
+
+msgid "Include DVB timesync data"
+msgstr "Incluir datos de sincronización horaria DVB"
 
 msgid "Include ECM in http streams"
 msgstr "Incluir ECM en retransmisiones http"
