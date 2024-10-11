@@ -3080,6 +3080,9 @@ msgstr ""
 msgid "Bouquets"
 msgstr ""
 
+msgid "Bouquets start at 1"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr ""
 
@@ -10014,10 +10017,22 @@ msgstr ""
 msgid "LCD/Front panel *"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
+msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN rules:"
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN rules"
 msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
@@ -12115,6 +12130,9 @@ msgid "Number of rows to display."
 msgstr ""
 
 msgid "Number or SMS style data entry"
+msgstr ""
+
+msgid "Numbering mode"
 msgstr ""
 
 msgid "OEM model"
@@ -15135,18 +15153,22 @@ msgstr ""
 msgid "Scanning %s..."
 msgstr ""
 
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 #, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Scanning - %d%% completed"
-msgstr[1] "Scanning - %d%% completed"
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
-msgid "Scanning completed, %d channel found"
-msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Scanning completed, %d channel found"
-msgstr[1] "Scanning completed, %d channels found"
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Scanning failed!"
 msgstr ""
@@ -15314,6 +15336,9 @@ msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your 
 msgstr ""
 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
+msgstr ""
+
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
 msgstr ""
 
 msgid "Select 'Yes' if an end time is required for this timer."
@@ -16393,7 +16418,7 @@ msgstr ""
 msgid "Service reference"
 msgstr ""
 
-msgid "Service scan"
+msgid "Service Scan"
 msgstr ""
 
 msgid "Service selection canceled."
@@ -20526,6 +20551,9 @@ msgid "Unicable Matrix"
 msgstr ""
 
 msgid "Uninstall"
+msgstr ""
+
+msgid "Unique numbering"
 msgstr ""
 
 msgid "United Arab Emirates"

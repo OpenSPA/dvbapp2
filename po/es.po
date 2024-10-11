@@ -3410,6 +3410,9 @@ msgstr "Navegación Selector de listas"
 msgid "Bouquets"
 msgstr "Listas - Bouquets"
 
+msgid "Bouquets start at 1"
+msgstr "Los bouquets comienzan en 1"
+
 msgid "Bouvet Island"
 msgstr "Isla de Bouvet"
 
@@ -11328,11 +11331,23 @@ msgstr "Velocidad de desplazamiento del LCD"
 msgid "LCD/Front panel *"
 msgstr "LCD/Panel frontal *"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "Plugin LCN para canales DVB-T/T2"
+msgid "LCN numbering"
+msgstr "Numeración LCN"
 
-msgid "LCN rules:"
-msgstr "Reglas LCN:"
+msgid "LCN Scanner"
+msgstr "Escáner LCN"
+
+msgid "LCN Scanner Actions"
+msgstr "Acciones del escáner LCN"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "Plugin de escáner LCN para servicios DVB-C/T/T2"
+
+msgid "LCN Scanner Settings"
+msgstr "Configuración del escáner LCN"
+
+msgid "LCN rules"
+msgstr "Reglas LCN"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Selección de entrada QuickSelect estilo LCN"
@@ -13660,6 +13675,9 @@ msgstr "Número de filas a mostrar."
 
 msgid "Number or SMS style data entry"
 msgstr "Introducción de datos en forma de número o de SMS"
+
+msgid "Numbering mode"
+msgstr "Modo de numeración"
 
 msgid "OEM model"
 msgstr "Modelo OEM"
@@ -16941,18 +16959,22 @@ msgstr ""
 msgid "Scanning %s..."
 msgstr "Buscando %s..."
 
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
 #, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Escaneo - %d%% completado"
-msgstr[1] "Escaneos - %d%% completados"
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] "Escaneo: %d%% completo"
+msgstr[1] "Escaneo: %d%% completo"
 
 #, python-format
-msgid "Scanning completed, %d channel found"
-msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Escaneo completado, %d canal encontrado"
-msgstr[1] "Escaneo completado, %d canales encontrados"
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] "%d canal encontrado."
+msgstr[1] "%d canales encontrados."
+
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] "Scanning completado, %d canal encontrado."
+msgstr[1] "Escaneo completado, %d canales encontrados."
 
 msgid "Scanning failed!"
 msgstr "¡El escaneo ha fallado!"
@@ -17595,6 +17617,9 @@ msgstr ""
 "multiplexores de cable. Selecciona \"Bandas\" para escanear sólo ciertas "
 "partes del espectro. Selecciona \"Pasos\" para escanear a pasos un ancho de "
 "banda de frecuencia concreto."
+
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr "Seleccione 'Numeración única' para asignar números únicos a cada canal en cada bouquet. Utilice 'Los bouquets comienzan en 1' para comenzar a numerar cada bouquet desde 1. Utilice 'Numeración LCN' para usar números LCN de canal consistentes donde sea que se use ese canal."
 
 msgid ""
 "Select 'Yes' if this tuner is connected to the SCR device through another "
@@ -18747,8 +18772,8 @@ msgid "Service reference"
 msgstr "Referencia del canal"
 
 #
-msgid "Service scan"
-msgstr "Buscar canales"
+msgid "Service Scan"
+msgstr "Buscar Canales"
 
 msgid "Service selection canceled."
 msgstr "Selección de canal cancelada."
@@ -23635,6 +23660,9 @@ msgstr "Unicable Matrix"
 #
 msgid "Uninstall"
 msgstr "Desinstalar"
+
+msgid "Unique numbering"
+msgstr "Numeración única"
 
 msgid "United Arab Emirates"
 msgstr ""
