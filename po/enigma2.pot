@@ -12269,6 +12269,9 @@ msgstr ""
 msgid "Partitions"
 msgstr ""
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr ""
 

@@ -14294,6 +14294,9 @@ msgstr "Partición"
 msgid "Partitions"
 msgstr "Particiones"
 
+msgid "Pass"
+msgstr "Paso"
+
 msgid "Pass-through"
 msgstr "Pass-through"
 
