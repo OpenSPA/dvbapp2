@@ -4748,7 +4748,7 @@ msgstr "Compilado por"
 
 #
 msgid "Complete"
-msgstr "Completado"
+msgstr "Completo"
 
 #
 msgid "Complete Backup"
@@ -18452,6 +18452,9 @@ msgstr ""
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr ""
 "Selecciona que tipo de dispositivo de recepción de cable simple estás usando."
+
+msgid "Select the type of keyboard connected to the %s %s."
+msgstr "Seleccione el tipo de teclado conectado al %s %s."
 
 msgid ""
 "Select the type of shutdown desired when the EnergySaver timer activates."
