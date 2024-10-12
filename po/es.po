@@ -12077,7 +12077,7 @@ msgstr "Margen antes de grabar (minutos)"
 msgid "Margin before zap"
 msgstr "Margen antes de cambiar"
 
-msgid "Mark As Dedicated 3d Service"
+msgid "Mark As Dedicated 3D Service"
 msgstr "Marcar como servicio 3D dedicado"
 
 msgid "Mark/Portal/Playlist"
@@ -23756,7 +23756,7 @@ msgstr ""
 "A menos que esté configurado como \"deshabilitado\", obtendrá una vista "
 "previa de los canales dentro de la lista EPG."
 
-msgid "Unmark As Dedicated 3d Service"
+msgid "Unmark As Dedicated 3D Service"
 msgstr "Desmarca como servicio 3D dedicado"
 
 msgid "Unmount"

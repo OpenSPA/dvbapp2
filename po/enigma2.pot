@@ -10331,7 +10331,7 @@ msgstr ""
 msgid "Margin before zap"
 msgstr ""
 
-msgid "Mark As Dedicated 3d Service"
+msgid "Mark As Dedicated 3D Service"
 msgstr ""
 
 msgid "Mark/Portal/Playlist"
@@ -19809,7 +19809,7 @@ msgstr ""
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr ""
 
-msgid "Unmark As Dedicated 3d Service"
+msgid "Unmark As Dedicated 3D Service"
 msgstr ""
 
 msgid "Unmount"
