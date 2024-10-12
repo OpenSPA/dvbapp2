@@ -11841,6 +11841,9 @@ msgstr "Largos"
 msgid "Long press emulation with button"
 msgstr "Simulación de pulsación larga con botón"
 
+msgid "Long press volume steps"
+msgstr "Pasos de volumen con pulsaciones prolongadas"
+
 #, python-format
 msgid "Long press: %s"
 msgstr "Pulsación larga: %s"
@@ -17854,12 +17857,8 @@ msgstr ""
 "Selecciona cuánto tiempo quieres mostrar la ventana emergente de mensaje de "
 "script y tarea."
 
-msgid ""
-"Select how long, in seconds, that the volume display is shown before it "
-"automatically hides."
-msgstr ""
-"Seleccione el tiempo, en segundos, que se muestra la pantalla de volumen "
-"antes de que se oculte automáticamente."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr "Seleccione durante cuánto tiempo, en segundos, se mostrarán las pantallas de volumen y silencio antes de que se oculten automáticamente."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Seleccione la frecuencia con la que se debe repetir este temporizador."
@@ -18351,6 +18350,12 @@ msgstr "Seleccione el juego de caracteres desplazado"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 "Selecciona el juego de caracteres desplazado solo para el siguiente carácter"
+
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr "Seleccione el tamaño del paso de volumen cuando se presionan los botones de VOLUMEN."
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr "Seleccione el tamaño de los pasos de volumen cuando se mantienen presionados los botones de VOLUMEN."
 
 msgid "Select the softcam protocol."
 msgstr "Selecciona el protocolo softcam."
@@ -24714,8 +24719,14 @@ msgstr ""
 "Si no se soporta esta característica, las teclas de volumen no tendrán "
 "ninguna función!"
 
+msgid "Volume steps"
+msgstr "Pasos de volumen"
+
 msgid "Volume up"
 msgstr "Subir volumen"
+
+msgid "Volume/Mute display timer"
+msgstr "Temporizador de visualización de volumen/silencio"
 
 #
 msgid "W"

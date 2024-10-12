@@ -10496,6 +10496,9 @@ msgstr ""
 msgid "Long press emulation with button"
 msgstr ""
 
+msgid "Long press volume steps"
+msgstr ""
+
 #, python-format
 msgid "Long press: %s"
 msgstr ""
@@ -15760,7 +15763,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16098,6 +16101,12 @@ msgid "Select the shifted character set"
 msgstr ""
 
 msgid "Select the shifted character set for the next character only"
+msgstr ""
+
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -21431,7 +21440,13 @@ msgstr ""
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
+msgstr ""
+
+msgid "Volume/Mute display timer"
 msgstr ""
 
 msgid "Vu+ MultiBoot"

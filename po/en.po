@@ -10243,6 +10243,9 @@ msgstr ""
 msgid "Long press emulation with button"
 msgstr ""
 
+msgid "Long press volume steps"
+msgstr ""
+
 #, python-format
 msgid "Long press: %s"
 msgstr ""
@@ -14954,6 +14957,21 @@ msgstr ""
 msgid "Select Folders"
 msgstr ""
 
+msgid "Select how long to display status messages."
+msgstr ""
+
+msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr ""
+
+msgid "Select how long to display the task and script message pop up."
+msgstr ""
+
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr ""
+
+msgid "Select how often this timer is to be repeated."
+msgstr ""
+
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
@@ -14961,9 +14979,6 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
-msgstr ""
-
-msgid "Select how your box will upgrade."
 msgstr ""
 
 msgid "Select if time shift must continue when set to record."
@@ -15108,6 +15123,12 @@ msgid "Select the shifted character set"
 msgstr ""
 
 msgid "Select the shifted character set for the next character only"
+msgstr ""
+
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
@@ -19955,7 +19976,13 @@ msgstr ""
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
+msgstr ""
+
+msgid "Volume/Mute display timer"
 msgstr ""
 
 msgid "Vorschau"
