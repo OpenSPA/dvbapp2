@@ -211,31 +211,32 @@ class Satfinder(ScanSetup, ServiceScan):
 
 	def createConfig(self):
 		ScanSetup.createConfig(self)
-		for x in (
-			self.scan_sat.frequency,
-			self.scan_satselection[int(self.scan_nims.value)],
-			self.scan_sat.symbolrate,
-			self.scan_sat.is_id,
-			self.scan_sat.pls_mode,
-			self.scan_sat.pls_code,
-			self.scan_sat.t2mi_plp_id,
-			self.scan_sat.t2mi_pid,
-			self.scan_ter.channel,
-			self.scan_ter.frequency,
-			self.scan_ter.inversion,
-			self.scan_ter.bandwidth, self.scan_ter.fechigh, self.scan_ter.feclow,
-			self.scan_ter.modulation, self.scan_ter.transmission,
-			self.scan_ter.guard, self.scan_ter.hierarchy,
-			self.scan_ter.plp_id,
-			self.scan_cab.frequency, self.scan_cab.inversion, self.scan_cab.symbolrate,
-			self.scan_cab.modulation, self.scan_cab.fec,
-			self.scan_ats.frequency, self.scan_ats.modulation, self.scan_ats.inversion,
-			self.scan_ats.system,
+		if self.scan_nims.value:  # OpenSPA {norhap] tuner sanity check configured.
+			for x in (
+				self.scan_sat.frequency,
+				self.scan_satselection[int(self.scan_nims.value)],
+				self.scan_sat.symbolrate,
+				self.scan_sat.is_id,
+				self.scan_sat.pls_mode,
+				self.scan_sat.pls_code,
+				self.scan_sat.t2mi_plp_id,
+				self.scan_sat.t2mi_pid,
+				self.scan_ter.channel,
+				self.scan_ter.frequency,
+				self.scan_ter.inversion,
+				self.scan_ter.bandwidth, self.scan_ter.fechigh, self.scan_ter.feclow,
+				self.scan_ter.modulation, self.scan_ter.transmission,
+				self.scan_ter.guard, self.scan_ter.hierarchy,
+				self.scan_ter.plp_id,
+				self.scan_cab.frequency, self.scan_cab.inversion, self.scan_cab.symbolrate,
+				self.scan_cab.modulation, self.scan_cab.fec,
+				self.scan_ats.frequency, self.scan_ats.modulation, self.scan_ats.inversion,
+				self.scan_ats.system,
 
-			):
-			if x is not None:
-				x.clearNotifiers()
-				x.addNotifier(self.TriggeredByConfigElement, initial_call=False)
+				):
+				if x is not None:
+					x.clearNotifiers()
+					x.addNotifier(self.TriggeredByConfigElement, initial_call=False)
 
 	def TriggeredByConfigElement(self, configElement):
 		self.retune()
