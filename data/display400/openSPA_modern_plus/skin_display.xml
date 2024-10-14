@@ -73,7 +73,7 @@
 		<widget source="session.CurrentService" render="Label" position="4,2" size="342,40" font="VFD; 34" halign="left" transparent="1" valign="center" noWrap="1" foregroundColor="white">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="LcdPicon" position="4,49" resize="2" size="180,100" zPosition="10" transparent="1" alphatest="blend">
+		<widget source="session.CurrentService" render="LcdPicon" position="4,49" size="180,100" zPosition="10" transparent="1" alphatest="blend">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<!-- 150,90 200,120 220,132-->
