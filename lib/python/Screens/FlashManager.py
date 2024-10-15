@@ -156,7 +156,7 @@ class FlashManager(Screen):
 			######################################################################
 			try:
 				req = Request(feedURL, None, USER_AGENT)
-				self.imagesList = dict(load(urlopen(req)))
+				self.imagesList = dict(load(urlopen(req, timeout=10)))  # OpenSPA [norhap] add response timeout.
 				# if config.usage.alternative_imagefeed.value:
 				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, box)
 				# 	self.imagesList.update(dict(load(urlopen(url))))

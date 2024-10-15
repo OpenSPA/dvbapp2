@@ -354,11 +354,11 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		self.firstTime = True
 		self.sortMode = False
 		self.selectedPlugin = None
-		self.internetAccess = 0  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
 		if config.pluginfilter.userfeed.value != "http://" and not exists("/etc/opkg/user-feed.conf"):
 			self.createFeedConfig()
 		self.onFirstExecBegin.append(self.checkWarnings)  # This is needed to avoid a modal screen issue.
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.internetAccess = True  if self.getFeeds() else False  # [norhap] [OpenSPA] check server.
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
@@ -381,7 +381,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 			if item:
 				package = item[0]
 				name = package.name
-				description = package.description
+				description = package.description if self.internetAccess else package.description + "\n" + _("Sorry feeds are down for maintenance, please try again later.")
 				self["description"].setText(description)
 				if self.sortMode:
 					self["key_yellow"].setText(_("Show") if config.usage.plugin_sort_weight.getConfigValue(name.lower(), "hidden") else _("Hide"))
@@ -444,16 +444,15 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 
 	def layoutFinished(self):
 		self[self.layout].enableAutoNavigation(False)  # Override list box self navigation.
-		self.callLater(self.checkInternet)
 		self.updatePluginList()
 
-	def checkInternet(self):
-		try:  # [norhap] [OpenSPA]
+	def getFeeds(self):  # [norhap] [OpenSPA]
+		try:
 			request = Request("https://" + FEED_SERVER)
-			self.internetAccess = urlopen(request, timeout=5)
+			urlopen(request, timeout=5)
 		except Exception:
-			self.internetAccess = False
-		self.updateButtons()
+			return False
+		return True
 
 	def updatePluginList(self):
 		pluginList = pluginComponent.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
