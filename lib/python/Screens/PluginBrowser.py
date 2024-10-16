@@ -358,7 +358,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 			self.createFeedConfig()
 		self.onFirstExecBegin.append(self.checkWarnings)  # This is needed to avoid a modal screen issue.
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.internetAccess = True  if self.getFeeds() else False  # [norhap] [OpenSPA] check server.
+		self.internetAccess = True if self.getFeeds() else False  # [norhap] [OpenSPA] check server.
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
