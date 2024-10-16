@@ -1906,6 +1906,12 @@ msgstr ""
 msgid "Add service"
 msgstr ""
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add the current directory as a bookmark"
 msgstr ""
 
@@ -15408,6 +15414,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr ""
 
@@ -15601,6 +15610,9 @@ msgid "Select where the recording should be saved."
 msgstr ""
 
 msgid "Select wireless network"
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select your ATSC provider."
@@ -16600,10 +16612,13 @@ msgstr ""
 msgid "Show in Extension Menu"
 msgstr ""
 
-msgid "Show in Standby"
+msgid "Show in extensions list"
 msgstr ""
 
-msgid "Show in extensions list"
+msgid "Show in Plugin Browser"
+msgstr ""
+
+msgid "Show in Standby"
 msgstr ""
 
 msgid "Show info"
@@ -20021,6 +20036,12 @@ msgid "Use OpenTV EPG information when it is available."
 msgstr ""
 
 msgid "Use QuickSelect"
+msgstr ""
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr ""
 
 msgid "Use TV remote control"

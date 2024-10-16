@@ -2128,6 +2128,12 @@ msgstr "Añadir grabación (detener después del programa actual)"
 msgid "Add service"
 msgstr "Añadir canal"
 
+msgid "Add service names"
+msgstr "Añadir nombres de canales"
+
+msgid "Add service names to each #SERVICE entry."
+msgstr "Añada nombres de canales a cada entrada #SERVICE."
+
 msgid "Add the current directory as a bookmark"
 msgstr "Añadir el directorio actual como favorito"
 
@@ -18539,6 +18545,9 @@ msgstr "Selecciona la ubicación donde se debería guardar la grabación."
 msgid "Select wireless network"
 msgstr "Seleccione la red inalámbrica"
 
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "Seleccione \"Sí\" para mostrar este programa en Plugins."
+
 #
 msgid "Select your ATSC provider."
 msgstr "Seleccionar tu proveedor ATSC."
@@ -19782,11 +19791,14 @@ msgstr "Mostrar imagen y guardar como '%s'"
 msgid "Show in Extension Menu"
 msgstr "Mostrar en menú extensiones"
 
-msgid "Show in Standby"
-msgstr "Mostrar en Reposo"
-
 msgid "Show in extensions list"
 msgstr "Mostrar en lista de extensiones"
+
+msgid "Show in Plugin Browser"
+msgstr "Mostrar en Navegador de plugins"
+
+msgid "Show in Standby"
+msgstr "Mostrar en Reposo"
 
 msgid "Show info"
 msgstr "Mostrar información"
@@ -23994,6 +24006,12 @@ msgstr "Usar información de EPG OpenTV cuando esté disponible."
 
 msgid "Use QuickSelect"
 msgstr "Usar selección rápida"
+
+msgid "Use spacer lines"
+msgstr "Utilice líneas espaciadoras"
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr "Utilice líneas espaciadoras de relleno de bouquet para que los números de línea #SERVICE coincidan con el LCN."
 
 msgid "Use TV remote control"
 msgstr "Usar el mando a distancia de la TV"
@@ -28409,11 +28427,14 @@ msgstr "Modo automático de vídeo seleccionado para la TV."
 msgid "Auto video mode selected"
 msgstr "Modo de vídeo automático seleccionado"
 
-msgid "Select the video mode to be used on the TV."
-msgstr "Seleccione el modo de vídeo que se usará en la TV."
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Seleccione la lista de reglas LCN que se aplicarán a la búsqueda."
 
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Seleccione la tasa de refresco que se usará en la TV."
+
+msgid "Select the video mode to be used on the TV."
+msgstr "Seleccione el modo de vídeo que se usará en la TV."
 
 msgid "Ncam Info"
 msgstr "Información Ncam"

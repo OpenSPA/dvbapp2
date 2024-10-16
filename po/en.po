@@ -2342,6 +2342,12 @@ msgstr ""
 msgid "Add service"
 msgstr ""
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add the current service to the Volume Offsets list"
 msgstr ""
 
@@ -15077,6 +15083,9 @@ msgstr ""
 msgid "Select the highlighted slot and reboot"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr ""
 
@@ -15204,6 +15213,9 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr ""
 
 msgid "Select wireless network"
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select your ATSC provider."
@@ -16196,10 +16208,16 @@ msgstr ""
 msgid "Show image information"
 msgstr ""
 
-msgid "Show in Standby"
+msgid "Show in Extension Menu"
 msgstr ""
 
-msgid "Show in Extension Menu"
+msgid "Show in extensions list"
+msgstr ""
+
+msgid "Show in Plugin Browser"
+msgstr ""
+
+msgid "Show in Standby"
 msgstr ""
 
 msgid "Show info"
@@ -19448,6 +19466,18 @@ msgid "Use MHW EPG information when it is available."
 msgstr ""
 
 msgid "Use Netmed EPG information when it is available."
+msgstr ""
+
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr ""
+
+msgid "Use QuickSelect"
+msgstr ""
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr ""
 
 msgid "Use OnlineFlash in SoftwareManager"
