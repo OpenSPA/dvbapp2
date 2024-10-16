@@ -511,7 +511,7 @@ def main(session, **kwargs):
 
 
 def menu(menuid, **kwargs):
-	return [("LCN Scanner", main, "LCNScanner", None)] if menuid == "scan" else []
+	return [(_("LCN Scanner"), main, "LCNScanner", None)] if menuid == "scan" else []
 
 
 def Plugins(**kwargs):
