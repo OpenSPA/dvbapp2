@@ -8,6 +8,8 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar
 from Screens.Setup import Setup
 from Screens.InfoBarGenerics import streamrelay
+from Screens.MessageBox import MessageBox
+from Screens.Standby import TryQuitMainloop
 
 max_fcc = len(glob('/dev/fcc?'))
 default_fcc = (max_fcc) > 5 and 5 or max_fcc
@@ -198,7 +200,7 @@ class FCCSupport:
 					iPlayableService.evEnd: self.getEvEnd,
 					iPlayableService.evTunedIn: self.getEvTunedIn,
 					iPlayableService.evTuneFailed: self.getEvTuneFailed
-					})
+				})
 
 		elif self.__event_tracker:
 			# run ServiceEventTracker.__del_event()
@@ -455,12 +457,29 @@ class FCCSetup(Setup):
 
 	def keySave(self):
 		if config.usage.remote_fallback_enabled.value and config.plugins.fccsetup.activate.value:  # OpenSPA [norhap] sync with fallback tuner.
-			config.usage.remote_fallback_enabled.value = False
-			config.usage.remote_fallback_enabled.save()
-			from Screens.Standby import TryQuitMainloop
-			self.session.open(TryQuitMainloop, 3)
+			self.syncWithFallbackTuner()
+			return
 		Setup.keySave(self)
 		FCCChanged()
+
+	def syncWithFallbackTuner(self):  # sync with Fallback tuner.
+		def disableFallbackTuner(answer=False):
+			if answer:
+				config.usage.remote_fallback_enabled.value = False
+				config.usage.remote_fallback_enabled.save()
+				config.plugins.fccsetup.activate.value = True
+				config.plugins.fccsetup.activate.save()
+				self.session.open(TryQuitMainloop, 3)
+			else:
+				config.plugins.fccsetup.activate.value = False
+				Setup.keySave(self)
+
+		inTimeshift = InfoBar and InfoBar.instance and InfoBar.ptsGetTimeshiftStatus(InfoBar.instance)
+		if not inTimeshift and not self.session.nav.getRecordings():
+			self.session.openWithCallback(disableFallbackTuner, MessageBox, _("The use of the reserve tuner will be disabled to use FCC.\nEnigma2 needs to be restarted.\nDo you want to do it now?"), type=MessageBox.TYPE_YESNO, simple=True)
+		else:
+			config.plugins.fccsetup.activate.value = False
+			Setup.keySave(self)
 
 
 def ToggleUpdate():

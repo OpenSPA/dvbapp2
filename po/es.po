@@ -2466,6 +2466,9 @@ msgstr "Importar también cuando el receptor sale de reposo"
 msgid "Also on standby"
 msgstr "También en reposo"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr "Utilice también una línea #DESCRIPTION después de cada línea #SERVICE para guardar el nombre del canal."
+
 msgid "Alternative"
 msgstr "Alternativo"
 
@@ -8801,6 +8804,9 @@ msgstr "FBC automático"
 
 msgid "FCC enabled"
 msgstr "FCC habilitado"
+
+msgid "FCC usage will be disabled to use the fallback tuner.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr "Se deshabilitará el uso de FCC para poder usar el sintonizador reserva.\nEs necesario reiniciar Enigma2.\n¿Quieres hacerlo ahora?"
 
 #
 msgid "FEC"
@@ -22177,6 +22183,9 @@ msgstr ""
 "El ajuste de conexión unicable es incorrecto.\n"
 "Tal vez conexión recursiva de sintonizadores."
 
+msgid "The use of the reserve tuner will be disabled to use FCC.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr "Se deshabilitará el uso del sintonizador reserva para usar FCC.\nEs necesario reiniciar Enigma2.\n¿Quieres hacerlo ahora?"
+
 #, python-format
 msgid "The user interface of your %s %s is restarting"
 msgstr "Reiniciando la interfaz de usuario de tu %s %s"
@@ -23975,6 +23984,9 @@ msgstr "Usar DHCP"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "¿Usar desentrelazado para señal de video 1080i?"
+
+msgid "Use description lines"
+msgstr "Utilice líneas descriptivas"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Usar información EPG de EIT cuando esté disponible."

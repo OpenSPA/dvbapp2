@@ -2594,6 +2594,9 @@ msgstr ""
 msgid "Also on standby"
 msgstr ""
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 msgid "Alternative"
 msgstr ""
 
@@ -7607,6 +7610,9 @@ msgid "F4"
 msgstr ""
 
 msgid "F4 long"
+msgstr ""
+
+msgid "FCC usage will be disabled to use the fallback tuner.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
 msgstr ""
 
 msgid "FCC 1953"
@@ -18085,6 +18091,9 @@ msgid ""
 "Maybe recursive connection of tuners."
 msgstr ""
 
+msgid "The use of the reserve tuner will be disabled to use FCC.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr ""
+
 #, python-format
 msgid "The user interface of your %s %s is restarting"
 msgstr ""
@@ -19442,6 +19451,9 @@ msgid "Use DHCP"
 msgstr ""
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
+msgstr ""
+
+msgid "Use description lines"
 msgstr ""
 
 msgid "Use EIT EPG information when it is available."
