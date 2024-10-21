@@ -5720,6 +5720,9 @@ msgstr "Delete"
 msgid "Delete %s?"
 msgstr "Delete %s?"
 
+msgid "Delete all"
+msgstr ""
+
 msgid "Delete Confirmation"
 msgstr "Delete Confirmation"
 
@@ -6336,7 +6339,7 @@ msgstr ""
 
 msgid ""
 "Do you want to delete all selected files:\n"
-"(choose 'No' to only delete the currently selected file.)"
+"choose \"No\" to only delete selected file."
 msgstr ""
 
 msgid "Do you want to delete all the log files?"
@@ -7595,6 +7598,12 @@ msgstr ""
 msgid "Exif"
 msgstr "Exif"
 
+msgid "Exist are debug files. Space used:"
+msgstr ""
+
+msgid "Exist are no debug files or crash."
+msgstr ""
+
 msgid "Existing or trial customer"
 msgstr ""
 
@@ -8145,6 +8154,9 @@ msgstr ""
 
 msgid "Finnish"
 msgstr "Finnish"
+
+msgid "First page"
+msgstr ""
 
 msgid "First playable time shift file!"
 msgstr ""
@@ -10173,6 +10185,9 @@ msgid "Last config"
 msgstr "Last config"
 
 msgid "Last flash"
+msgstr ""
+
+msgid "Last page"
 msgstr ""
 
 msgid "Last Scanned"
@@ -12672,8 +12687,14 @@ msgstr ""
 msgid "Packages and associated locales"
 msgstr ""
 
+msgid "Page back"
+msgstr ""
+
 msgid "Page down"
 msgstr "Page down"
+
+msgid "Page forward"
+msgstr ""
 
 msgid "Page left"
 msgstr "Page left"
@@ -19530,6 +19551,9 @@ msgstr ""
 msgid "There are no actions available to process '%s'!"
 msgstr ""
 
+msgid "There are no files to delete."
+msgstr ""
+
 msgid "There are no items currently available for this screen."
 msgstr ""
 
@@ -22235,6 +22259,9 @@ msgstr ""
 msgid "You have no script to run."
 msgstr ""
 
+msgid "You have not selected any logs to view."
+msgstr ""
+
 msgid "You have selected no logs to delete."
 msgstr ""
 
@@ -22263,6 +22290,9 @@ msgid "You seem to be in time shift, the service will briefly stop as time shift
 msgstr ""
 
 msgid "You should flash a new image!"
+msgstr ""
+
+msgid "You want to delete all files?\n\n"
 msgstr ""
 
 msgid "YouTube"

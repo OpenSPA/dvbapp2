@@ -5798,6 +5798,9 @@ msgstr ""
 msgid "Delete %s?"
 msgstr ""
 
+msgid "Delete all"
+msgstr ""
+
 msgid "Delete 1 element"
 msgstr ""
 
@@ -6356,7 +6359,7 @@ msgstr ""
 
 msgid ""
 "Do you want to delete all selected files:\n"
-"(choose 'No' to only delete the currently selected file.)"
+"choose \"No\" to only delete selected file."
 msgstr ""
 
 msgid "Do you want to delete the old settings in /etc/enigma2 first?"
@@ -7431,6 +7434,12 @@ msgstr ""
 msgid "Exif"
 msgstr ""
 
+msgid "Exist are debug files. Space used:"
+msgstr ""
+
+msgid "Exist are no debug files or crash."
+msgstr ""
+
 msgid "Existing or trial customer"
 msgstr ""
 
@@ -7895,6 +7904,9 @@ msgid "Finland"
 msgstr ""
 
 msgid "Finnish"
+msgstr ""
+
+msgid "First page"
 msgstr ""
 
 msgid "First playable time shift file!"
@@ -9910,6 +9922,9 @@ msgid "Last config"
 msgstr ""
 
 msgid "Last flash"
+msgstr ""
+
+msgid "Last page"
 msgstr ""
 
 msgid "Last Scanned"
@@ -12177,7 +12192,13 @@ msgstr ""
 msgid "Packet Manager"
 msgstr ""
 
+msgid "Page back"
+msgstr ""
+
 msgid "Page down"
+msgstr ""
+
+msgid "Page forward"
 msgstr ""
 
 msgid "Page down list"
@@ -18136,6 +18157,9 @@ msgstr ""
 msgid "There are currently no outstanding actions."
 msgstr ""
 
+msgid "There are no files to delete."
+msgstr ""
+
 msgid "There are no items currently available for this screen."
 msgstr ""
 
@@ -20744,6 +20768,9 @@ msgstr ""
 msgid "You have no script to run."
 msgstr ""
 
+msgid "You have not selected any logs to view."
+msgstr ""
+
 msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
@@ -20780,6 +20807,9 @@ msgid "You seem to be in time shift, the service will briefly stop as time shift
 msgstr ""
 
 msgid "You should flash a new image!"
+msgstr ""
+
+msgid "You want to delete all files?\n\n"
 msgstr ""
 
 msgid "YouTube"

@@ -1,14 +1,14 @@
 from datetime import datetime
 from glob import glob
 from re import compile
-from os import remove, walk, stat, rmdir
+from os import remove, walk, stat, rmdir, listdir
 from os.path import exists, join, getsize, isdir, basename
-from time import time, ctime
+from time import time, ctime, sleep
 from enigma import eTimer, eBackgroundFileEraser, eLabel, gFont, fontRenderClass
 
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.Button import Button
+from Components.Sources.StaticText import StaticText
 from Components.config import config, configfile
 from Components.FileList import MultiFileSelectList
 from Components.GUIComponent import GUIComponent
@@ -186,7 +186,7 @@ class LogManager(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.logtype = 'crashlogs'
-
+		self.logs = listdir(config.crash.debug_path.value)
 		self['myactions'] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 			{
 				'ok': self.changeSelectionState,
@@ -194,17 +194,22 @@ class LogManager(Screen):
 				'red': self.changelogtype,
 				'green': self.showLog,
 				'yellow': self.deletelog,
+				"blue": self.deleteAllLogs,
 				"left": self.left,
 				"right": self.right,
 				"down": self.down,
 				"up": self.up
 			}, -1)
-
-		self["key_red"] = Button(_("Debug Logs"))
-		self["key_green"] = Button(_("View"))
-		self["key_yellow"] = Button(_("Delete"))
-		self["key_blue"] = Button("")
-
+		if self.logs:
+			self["key_red"] = StaticText(_("Debug Logs"))
+			self["key_green"] = StaticText(_("View"))
+			self["key_yellow"] = StaticText(_("Delete"))
+			self["key_blue"] = StaticText(_("Delete all"))
+		else:
+			self["key_red"] = StaticText("")
+			self["key_green"] = StaticText("")
+			self["key_yellow"] = StaticText("")
+			self["key_blue"] = StaticText("")
 		self.onChangedEntry = []
 		self.sentsingle = ""
 		self.selectedFiles = config.logmanager.sentfiles.value
@@ -216,6 +221,24 @@ class LogManager(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 		if self.selectionChanged not in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
+
+	def deleteAllLogs(self):
+		if self.logs:
+			allfiles = ",".join(self.logs).replace(",", "\n")
+			message = _("You want to delete all files?\n\n") + str(allfiles)
+			self.session.openWithCallback(self.doDeleteAllLogs, MessageBox, message, MessageBox.TYPE_YESNO)
+
+	def doDeleteAllLogs(self, answer):
+		if answer:
+			from enigma import eConsoleAppContainer
+			eConsoleAppContainer().execute("rm -f " + config.crash.debug_path.value + "*")
+			sleep(0.3)
+			self["list"].changeDir(self.defaultDir)
+			self["LogsSize"].update(config.crash.debug_path.value)
+			self["key_red"].setText("")
+			self["key_green"].setText("")
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
 
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary
@@ -277,12 +300,15 @@ class LogManager(Screen):
 		self["list"].changeDir(self.defaultDir)
 
 	def showLog(self):
-		try:
-			path = self["list"].getPath()
-			if path:
-				self.session.open(LogManagerViewLog, path)
-		except:
-			pass
+		if self.logs:
+			try:
+				self.sel = self["list"].getCurrent()[0]
+			except:
+				self.sel = None
+			if self.sel and self["list"].getPath():
+				self.session.open(LogManagerViewLog, self.sel[0])
+			else:
+				self.session.open(MessageBox, _("You have not selected any logs to view."), MessageBox.TYPE_INFO, timeout=10)
 
 	def deletelog(self):
 		try:
@@ -293,7 +319,7 @@ class LogManager(Screen):
 		if path:
 			self.selectedFiles = self["list"].getSelectedList()
 			if self.selectedFiles:
-				message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
+				message = _("Do you want to delete all selected files:\nchoose \"No\" to only delete selected file.")
 				ybox = self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO)
 				ybox.setTitle(_("Delete Confirmation"))
 			elif self.sel:
@@ -340,22 +366,27 @@ class LogManager(Screen):
 class LogManagerViewLog(Screen):
 	def __init__(self, session, selected):
 		Screen.__init__(self, session)
-		self.setTitle(basename(selected))
-		self.logfile = selected
+		if selected:
+			self.setTitle(basename(selected))
+			self.logfile = selected
 		self.log = []
 		self["list"] = MenuList(self.log)
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
-		{
-			"cancel": self.close,
-			"ok": self.close,
+		self["setupActions"] = ActionMap(["ColorActions", "OkCancelActions", "DirectionActions"], {
+			"ok": self.gotoFirstPage,
+			"cancel": self.cancel,
+			"red": self.gotoFirstPage,
+			"green": self["list"].pageDown,
+			"yellow": self["list"].pageUp,
+			"blue": self.gotoLastPage,
 			"up": self["list"].up,
 			"down": self["list"].down,
 			"right": self["list"].pageDown,
-			"left": self["list"].pageUp,
-			"moveUp": self["list"].goTop,
-			"moveDown": self["list"].goBottom
+			"left": self["list"].pageUp
 		}, -2)
-
+		self["key_red"] = StaticText(_("First page"))
+		self["key_green"] = StaticText(_("Page forward"))
+		self["key_yellow"] = StaticText(_("Page back"))
+		self["key_blue"] = StaticText(_("Last page"))
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -366,27 +397,36 @@ class LogManagerViewLog(Screen):
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
 		listwidth = int(self["list"].instance.size().width() / fontwidth)
-		if exists(self.logfile):
-			for line in open(self.logfile).readlines():
-				line = line.replace('\t', ' ' * 9)
-				if len(line) > listwidth:
-					pos = 0
-					offset = 0
-					readyline = True
-					while readyline:
-						a = " " * offset + line[pos:pos + listwidth - offset]
-						self.log.append(a)
-						if len(line[pos + listwidth - offset:]):
-							pos += listwidth - offset
-							offset = 20
-						else:
-							readyline = False
-				else:
-					self.log.append(line)
-		else:
-			self.log = [_("file can not displayed - file not found")]
-		self["list"].setList(self.log)
+		if hasattr(self, "logfile"):
+			if exists(self.logfile):
+				for line in open(self.logfile).readlines():
+					line = line.replace('\t', ' ' * 9)
+					if len(line) > listwidth:
+						pos = 0
+						offset = 0
+						readyline = True
+						while readyline:
+							a = " " * offset + line[pos:pos + listwidth - offset]
+							self.log.append(a)
+							if len(line[pos + listwidth - offset:]):
+								pos += listwidth - offset
+								offset = 20
+							else:
+								readyline = False
+					else:
+						self.log.append(line)
+			else:
+				self.log = [_("file can not displayed - file not found")]
+			self["list"].setList(self.log)
 
+	def gotoFirstPage(self):
+		self["list"].moveToIndex(0)
+
+	def gotoLastPage(self):
+		self["list"].moveToIndex(len(self.log) - 1)
+
+	def cancel(self):
+		self.close()
 
 class LogInfo(VariableText, GUIComponent):
 	FREE = 0
@@ -396,6 +436,7 @@ class LogInfo(VariableText, GUIComponent):
 	def __init__(self, path, type, update=True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
+		self.logs = listdir(path)
 		self.type = type
 # 		self.path = config.crash.debug_path.value
 		if update:
@@ -415,7 +456,10 @@ class LogInfo(VariableText, GUIComponent):
 					total_size = _("%d MB") % (total_size >> 20)
 				else:
 					total_size = _("%d GB") % (total_size >> 30)
-				self.setText(_("Space used:") + " " + total_size)
+				if self.logs and get_size(path) > 0:
+					self.setText(_("Exist are debug files. Space used:") + " " + total_size) if not glob(config.crash.debug_path.value + '*crash*') and glob(config.crash.debug_path.value + '*enigma-debug*') else self.setText(_("Space used:") + " " + total_size)
+				else:
+					self.setText(_("Exist are no debug files or crash."))
 			except:
 				# occurs when f_blocks is 0 or a similar error
 				self.setText("-?-")
