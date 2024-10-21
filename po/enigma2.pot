@@ -5489,6 +5489,9 @@ msgstr ""
 msgid "Delete %s?"
 msgstr ""
 
+msgid "Delete all"
+msgstr ""
+
 msgid "Delete Confirmation"
 msgstr ""
 
@@ -6075,8 +6078,9 @@ msgstr ""
 msgid "Do you want to continue?"
 msgstr ""
 
-msgid "Do you want to delete all selected files:\n"
-"(choose 'No' to only delete the currently selected file.)"
+msgid ""
+"Do you want to delete all selected files:\n"
+"choose \"No\" to only delete selected file."
 msgstr ""
 
 msgid "Do you want to delete all the log files?"
@@ -7272,6 +7276,12 @@ msgstr ""
 msgid "Exif"
 msgstr ""
 
+msgid "Exist are debug files. Space used:"
+msgstr ""
+
+msgid "Exist are no debug files or crash."
+msgstr ""
+
 msgid "Existing or trial customer"
 msgstr ""
 
@@ -7812,6 +7822,9 @@ msgid "Finland"
 msgstr ""
 
 msgid "Finnish"
+msgstr ""
+
+msgid "First page"
 msgstr ""
 
 msgid "First playable time shift file!"
@@ -9787,6 +9800,9 @@ msgid "Last config"
 msgstr ""
 
 msgid "Last flash"
+msgstr ""
+
+msgid "Last page"
 msgstr ""
 
 msgid "Last Scanned"
@@ -12228,7 +12244,13 @@ msgstr ""
 msgid "Packages and associated locales"
 msgstr ""
 
+msgid "Page back"
+msgstr ""
+
 msgid "Page down"
+msgstr ""
+
+msgid "Page forward"
 msgstr ""
 
 msgid "Page left"
@@ -18706,6 +18728,9 @@ msgstr ""
 msgid "There are no actions available to process '%s'!"
 msgstr ""
 
+msgid "There are no files to delete."
+msgstr ""
+
 msgid "There are no items currently available for this screen."
 msgstr ""
 
@@ -21367,6 +21392,9 @@ msgid "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
 
+msgid "You have not selected any logs to view."
+msgstr ""
+
 msgid "You have selected no logs to delete."
 msgstr ""
 
@@ -21393,6 +21421,9 @@ msgid "You seem to be in time shift, the service will briefly stop as time shift
 msgstr ""
 
 msgid "You should flash a new image!"
+msgstr ""
+
+msgid "You want to delete all files?\n\n"
 msgstr ""
 
 msgid "YouTube"
