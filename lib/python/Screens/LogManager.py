@@ -457,7 +457,7 @@ class LogInfo(VariableText, GUIComponent):
 				else:
 					total_size = _("%d GB") % (total_size >> 30)
 				if self.logs and get_size(path) > 0:
-					self.setText(_("Exist are debug files. Space used:") + " " + total_size) if not glob(config.crash.debug_path.value + '*crash*') and glob(config.crash.debug_path.value + '*enigma-debug*') else self.setText(_("Space used:") + " " + total_size)
+					self.setText(_("Exist are debug files. Space used:") + " " + total_size) if not glob(config.crash.debug_path.value + '*crash*') and glob(config.crash.debug_path.value + '*enigma2-debug*') else self.setText(_("Space used:") + " " + total_size)
 				else:
 					self.setText(_("Exist are no debug files or crash."))
 			except:
