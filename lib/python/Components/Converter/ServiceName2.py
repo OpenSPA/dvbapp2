@@ -502,7 +502,7 @@ class ServiceName2(Converter):
 						return ""
 		if self.IPTVcontrol:
 			if "%3a//" in refstr or (self.refstr and "%3a//" in self.refstr) or refstr.startswith("4097:"):
-				self.isStream = True
+				self.isStream = True if "127.0.0.1" not in refstr else False
 		match self.type:
 			case self.NAME:
 				name = ref and (info.getName(ref) or "N/A") or (info.getName() or "N/A")
