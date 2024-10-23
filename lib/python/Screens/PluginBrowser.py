@@ -38,6 +38,16 @@ PACKAGE_PREFIX = "%s"
 SOFTCAM_PREFIX = "enigma2-plugin-softcams-%s"
 KERNEL_PREFIX = "kernel-module-%s"
 
+
+def getFeeds():  # [norhap] [OpenSPA]
+	try:
+		request = Request("https://" + FEED_SERVER)
+		urlopen(request, timeout=5)
+	except Exception:
+		return False
+	return True
+
+
 PLUGIN_CATEGORIES = {
 	"": _("Other Packages"),
 	"display": _("Display Skin Packages"),
@@ -358,7 +368,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 			self.createFeedConfig()
 		self.onFirstExecBegin.append(self.checkWarnings)  # This is needed to avoid a modal screen issue.
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.internetAccess = True if self.getFeeds() else False  # [norhap] [OpenSPA] check server.
+		self.internetAccess = True if getFeeds() else False  # [norhap] [OpenSPA] check server.
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
@@ -445,14 +455,6 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 	def layoutFinished(self):
 		self[self.layout].enableAutoNavigation(False)  # Override list box self navigation.
 		self.updatePluginList()
-
-	def getFeeds(self):  # [norhap] [OpenSPA]
-		try:
-			request = Request("https://" + FEED_SERVER)
-			urlopen(request, timeout=5)
-		except Exception:
-			return False
-		return True
 
 	def updatePluginList(self):
 		pluginList = pluginComponent.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
