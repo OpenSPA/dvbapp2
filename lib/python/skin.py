@@ -918,8 +918,14 @@ class AttributeParser:
 			self.applyOne(attribute, value)
 
 	def applyOne(self, attribute, value):
+		# [norhap] OpenSPA exclude attributes spa.
+		attributespa = ["esFecha", "sizey", "posyDuration", "posygeticonogenero", "posgeticonogenero", "posBegin",
+			"sizeEvent", "sizeDuration", "sizeBegin", "sizeDate", "colorEvent", "colorDuration",
+			"colorBegin", "colorDeactivated", "colorDate", "posDuration", "posEvent", "posyBegin",
+			"postxt", "posyEvent", "fontBegin", "fontEvent", "fontDate", "fontDuration"]
 		try:
-			getattr(self, attribute)(value)
+			if attribute not in attributespa:
+				getattr(self, attribute)(value)
 		except Exception as err:
 			print(f"[Skin] Error: Attribute '{attribute}' with value '{value}' in object of type '{self.guiObject.__class__.__name__}' ({err})!")
 
