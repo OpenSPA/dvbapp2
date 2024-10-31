@@ -2020,9 +2020,6 @@ msgstr "Añadir temporizador de grabación"
 msgid "Add timer"
 msgstr "Añadir temporizador"
 
-msgid "add timer"
-msgstr "Añadir temporizador"
-
 msgid "Add Timer"
 msgstr "Añadir temporizador"
 
@@ -2929,6 +2926,9 @@ msgstr "Reposo automático"
 msgid "Auto(not available)"
 msgstr "Auto (no disponible)"
 
+msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"
+msgstr "AutoBoquetsMaker se instaló correctamente.\nEs necesario reiniciar enigma2 para aplicar los cambios.\n¿Quiere hacerlo ahora?"
+
 #
 msgid "AutoMountManager"
 msgstr "Administrador de automontaje"
@@ -3195,7 +3195,7 @@ msgstr "Hora de inicio"
 
 # UserInterfacePositioner
 msgid "Base transparency for OpenOpera web browser."
-msgstr "Transparencia base para el navegador web OpenOpera"
+msgstr "Transparencia base para el navegador web OpenOpera."
 
 # UserInterfacePositioner
 msgid ""
@@ -5956,6 +5956,9 @@ msgstr "PID de subtítulos DVB e idioma"
 msgid "DVB subtitle black transparency"
 msgstr "Transparencia negra de subtítulos DVB"
 
+msgid "DVB type:"
+msgstr "Tipo DVB:"
+
 msgid "DVB-C"
 msgstr "DVB-C"
 
@@ -6207,7 +6210,7 @@ msgstr "Formato tiempo del log de depuración *"
 
 #
 msgid "Decryption & Parental Control"
-msgstr "Descifrado y control parental"
+msgstr "Descifrado & control parental"
 
 #
 msgid "Deep Standby"
@@ -6628,16 +6631,16 @@ msgstr ""
 "inocuo, es posible que su %s %s experimente problemas."
 
 msgid "Destination of fallback remote receiver"
-msgstr "Destino del receptor remoto de reserva."
+msgstr "Destino del receptor remoto de reserva"
 
 msgid "Destination of fallback remote receiver for ATSC"
-msgstr "Destino del receptor remoto de reserva para ATSC."
+msgstr "Destino del receptor remoto de reserva para ATSC"
 
 msgid "Destination of fallback remote receiver for DVB-C"
-msgstr "Destino del receptor remoto de reserva para DVB-C."
+msgstr "Destino del receptor remoto de reserva para DVB-C"
 
 msgid "Destination of fallback remote receiver for DVB-T"
-msgstr "Destino del receptor remoto de reserva para DVB-T."
+msgstr "Destino del receptor remoto de reserva para DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr "Detalle del log GStreamer."
@@ -7930,6 +7933,9 @@ msgstr ""
 msgid "Encrypted: "
 msgstr "Cifrado: "
 
+msgid "Encrypted"
+msgstr "Encriptado"
+
 #
 msgid "Encryption"
 msgstr "Encriptación"
@@ -8902,26 +8908,26 @@ msgid "Fallback remote receiver Port"
 msgstr "Puerto del receptor remoto de reserva"
 
 msgid "Fallback remote receiver setup"
-msgstr "Ajustes del receptor remoto de respaldo"
+msgstr "Ajustes del tuner reserva"
 
 msgid "Fallback remote receiver URL"
 msgstr "Receptor remoto reserva URL"
 
 msgid "Fallback remote receiver for ATSC"
-msgstr "Receptor remoto de reserva para ATSC."
+msgstr "Receptor remoto de reserva para ATSC"
 
 msgid "Fallback remote receiver for DVB-C"
-msgstr "Receptor remoto de reserva para DVB-C."
+msgstr "Receptor remoto de reserva para DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
-msgstr "Receptor remoto de reserva para DVB-T."
+msgstr "Receptor remoto de reserva para DVB-T"
 
 msgid "Fallback Timer"
 msgstr "Temporizador de reserva"
 
 #
 msgid "Fallback tuner setup"
-msgstr "Configuración del sintonizador de reserva"
+msgstr "Configuración del sintonizador reserva"
 
 msgid "False"
 msgstr "Falso"
@@ -14073,6 +14079,8 @@ msgstr "Parámetro opcional"
 msgid "Orbital position"
 msgstr "Posición orbital"
 
+
+
 msgid "Ordinary"
 msgstr "Ordinario"
 
@@ -14116,6 +14124,9 @@ msgstr ""
 #, python-format
 msgid "Other panel directory (%s)"
 msgstr "Otro panel de directorio (%s)"
+
+msgid "Others"
+msgstr "Otros"
 
 msgid "Output text:"
 msgstr "Texto de salida:"
@@ -14589,7 +14600,7 @@ msgid "Playback Settings"
 msgstr "Ajustes de reproducción"
 
 msgid "Playback, Recording & Time Shift"
-msgstr "Reproducción, Grabaciones & Timeshift"
+msgstr "Reproducción Grabaciones & Timeshift"
 
 msgid "Playlist"
 msgstr "Lista de reproducción"
@@ -14887,7 +14898,7 @@ msgstr "Espera por favor."
 
 #
 msgid "Please wait..."
-msgstr "Epera por favor..."
+msgstr "Espera por favor..."
 
 #
 msgid "Please wait... Loading list..."
@@ -18875,6 +18886,9 @@ msgstr "Información de canal"
 msgid "Services"
 msgstr "Canales"
 
+msgid "Services list"
+msgstr "Lista de Canales"
+
 msgid ""
 "Services may be grouped in bouquets. When enabled, you can use more than one "
 "bouquet."
@@ -20258,6 +20272,9 @@ msgstr "Sigma Designs"
 
 msgid "Signal Finder"
 msgstr "Buscador de Señales"
+
+msgid "Manual scan & signals"
+msgstr "Búsqueda manual & señales"
 
 msgid "Signal quality"
 msgstr "Calidad de la señal"
@@ -21876,6 +21893,9 @@ msgstr ""
 "El plugin autotemporizador no está instalado.\n"
 "Por favor, instálalo."
 
+msgid "The data provided will not find services."
+msgstr "Los datos facilitados no encontrará canales."
+
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "El estándar DVD no admite flujos de vídeo H.264 (HDTV)."
 
@@ -23165,6 +23185,9 @@ msgstr ""
 "Para restaurar la imagen, use la opción Flash Online del Administrador de "
 "software."
 
+msgid "To view and sort channels with YELLOW button:\nYou can install AutoBouquetsMaker.\nDo you want to install it now?"
+msgstr "Para ver y clasificar canales con botón AMARILLO:\nPuedes instalar AutoBouquetsMaker.\n¿Quieres instalarlo ahora?"
+
 #, python-format
 msgid "To where would you like to extract '%s'?"
 msgstr "¿Donde te gustaría extraer '%s'?"
@@ -23467,14 +23490,14 @@ msgstr "Sintonizador:"
 
 #
 msgid "Tuner Configuration"
-msgstr "Configuración de sintonizador"
+msgstr "Configuración del sintonizador"
 
 msgid "Tuner Information"
 msgstr "Información de sintonizador"
 
 #
 msgid "Tuner Settings"
-msgstr "Ajustes de sintonizador"
+msgstr "Ajustes del sintonizador"
 
 #
 msgid "Tuner Setup"
@@ -23531,7 +23554,7 @@ msgid "Tuner type %s"
 msgstr "Tipo de sintonizador %s"
 
 msgid "Tuners, Scanning & Reception"
-msgstr "Sintonizadores, Escaneo & Recepción"
+msgstr "Sintonizadores Escaneo & Recepción"
 
 msgid "Tuning algorithm"
 msgstr "Algoritmo de sintonización"
@@ -27684,10 +27707,6 @@ msgstr "Flash Libre: %s Mb"
 # Mediaplayer Filelist Menue
 msgid "Delete files"
 msgstr "Borrar archivos"
-
-#
-msgid "Manual Search"
-msgstr "Búsqueda manual"
 
 msgid "adjust your settings and close ... your settings are valid ..."
 msgstr ""

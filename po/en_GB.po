@@ -2652,6 +2652,9 @@ msgstr ""
 msgid "Auto(not available)"
 msgstr ""
 
+msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"
+msgstr ""
+
 msgid "AutoCam Settings"
 msgstr ""
 
@@ -5288,6 +5291,9 @@ msgstr ""
 msgid "DVB subtitle black transparency"
 msgstr "DVB subtitle black transparency"
 
+msgid "DVB type:"
+msgstr ""
+
 msgid "DVB-C"
 msgstr "DVB-C"
 
@@ -7038,6 +7044,9 @@ msgstr ""
 
 msgid "Encrypted: "
 msgstr "Encrypted: "
+
+msgid "Encrypted"
+msgstr ""
 
 msgid "Encryption"
 msgstr "Encryption"
@@ -10735,6 +10744,9 @@ msgstr "Manual configuration"
 msgid "Manual scan for services"
 msgstr ""
 
+msgid "Manual scan & signals"
+msgstr ""
+
 msgid "Manual transponder"
 msgstr "Manual transponder"
 
@@ -12555,6 +12567,9 @@ msgstr ""
 
 #, python-format
 msgid "Other panel directory (%s)"
+msgstr ""
+
+msgid "Others"
 msgstr ""
 
 msgid "Output text:"
@@ -16548,7 +16563,10 @@ msgid "Services"
 msgstr "Services"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
-msgstr "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
+msgstr ""
+
+msgid "Services list"
+msgstr ""
 
 msgid "Set As Startup Service"
 msgstr ""
@@ -19263,6 +19281,9 @@ msgstr ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
 
+msgid "The data provided will not find services."
+msgstr ""
+
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
@@ -20162,6 +20183,9 @@ msgid "To restore the image check the manual or documentation for the receiver."
 msgstr ""
 
 msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
+
+msgid "To view and sort channels with YELLOW button:\nYou can install AutoBouquetsMaker.\nDo you want to install it now?"
 msgstr ""
 
 #, python-format

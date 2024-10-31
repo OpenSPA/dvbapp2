@@ -10,7 +10,20 @@ from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.config import config
 from Components.TuneTest import Tuner
+from Components.Sources.StaticText import StaticText
+from Components.Label import Label
 from Tools.Transponder import channel2frequency
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import isPluginInstalled
+
+if isPluginInstalled("AutoBouquetsMaker"):
+	dvbreader_available = True
+	from Plugins.SystemPlugins.AutoBouquetsMaker.scanner import dvbreader
+	import time
+	import datetime
+	import _thread
+else:
+	dvbreader_available = False
 
 
 class Satfinder(ScanSetup, ServiceScan):
@@ -39,7 +52,7 @@ class Satfinder(ScanSetup, ServiceScan):
 
 		ScanSetup.__init__(self, session)
 		self.setTitle(_("Signal Finder"))
-		self["introduction"].setText(_("Press OK to scan"))
+		self["header"] = Label(_("Manual Scan"))
 		self["Frontend"] = FrontendStatus(frontend_source=lambda: self.frontend, update_interval=100)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -463,7 +476,349 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.close(True)
 
 
+class SatfinderExtra(Satfinder):
+	# This class requires AutoBouquetsMaker to be installed.
+	def __init__(self, session):
+		Satfinder.__init__(self, session)
+		self.skinName = ["Satfinder"]
+
+		self["key_yellow"] = StaticText("")
+
+		self["actions2"] = ActionMap(["ColorActions"],
+		{
+			"yellow": self.keyReadServices,
+		}, -3)
+		self["actions2"].setEnabled(False)
+
+		# DVB stream info
+		self.serviceList = []
+		self["tsid"] = StaticText("")
+		self["onid"] = StaticText("")
+		self["pos"] = StaticText("")
+		self["tsidtext"] = StaticText("")
+		self["onidtext"] = StaticText("")
+		self["postext"] = StaticText("")
+
+	def retune(self, configElement=None):
+		Satfinder.retune(self)
+		self.dvb_read_stream()
+
+	def openFrontend(self):
+		if Satfinder.openFrontend(self):
+			self.demux = self.raw_channel.reserveDemux()  # used for keyReadServices()
+			return True
+		return False
+
+	def prepareFrontend(self):
+		self.demux = -1  # used for keyReadServices()
+		Satfinder.prepareFrontend(self)
+
+	def dvb_read_stream(self):
+		print("[satfinder][dvb_read_stream] starting")
+		_thread.start_new_thread(self.getCurrentTsidOnid, (True,))
+
+	def getCurrentTsidOnid(self, from_retune=False):
+		self.currentProcess = currentProcess = datetime.datetime.now()
+		self["tsid"].setText("")
+		self["onid"].setText("")
+		self["postext"].setText(_("DVB type:"))
+		if nimmanager.hasNimType("DVB-S"):
+			self["pos"].setText("DVB-S")
+		elif nimmanager.hasNimType("DVB-T"):
+			self["pos"].setText("DVB-T")
+		else:
+			self["pos"].setText("ATSC")
+		self["key_yellow"].setText("")
+		self["actions2"].setEnabled(False)
+		self.serviceList = []
+
+		if not dvbreader_available or self.frontend is None or self.demux < 0:
+			return
+
+		if from_retune:  # give the tuner a chance to retune or we will be reading the old stream
+			time.sleep(1.0)
+
+		if not self.waitTunerLock(currentProcess):  # dont even try to read the transport stream if tuner is not locked
+			return
+
+		_thread.start_new_thread(self.monitorTunerLock, (currentProcess,))  # if tuner loses lock we start again from scratch
+
+		adapter = 0
+
+		sdt_pid = 0x11
+		sdt_current_table_id = 0x42
+		mask = 0xff
+		tsidOnidTimeout = 60  # maximum time allowed to read the service descriptor table (seconds)
+		self.tsid = None
+		self.onid = None
+
+		sdt_current_version_number = -1
+		sdt_current_sections_read = []
+		sdt_current_sections_count = 0
+		sdt_current_content = []
+		sdt_current_completed = False
+
+		timeout = datetime.datetime.now()
+		timeout += datetime.timedelta(0, tsidOnidTimeout)
+		self.feid = int(self.scan_nims.value)
+		if hasattr(self, "demux"):
+			demuxer_device = "/dev/dvb/adapter%d/demux%d" % (adapter, self.demux)
+			if demuxer_device:
+				fd = dvbreader.open(demuxer_device, sdt_pid, sdt_current_table_id, mask, self.feid)
+				if fd:
+					if fd < 0:
+						print("[Satfinder][getCurrentTsidOnid] Cannot open the demuxer")
+						return None
+
+				while True:
+					if datetime.datetime.now() > timeout:
+						print("[Satfinder][getCurrentTsidOnid] Timed out")
+						break
+
+					if hasattr(self, "currentProcess") and self.currentProcess != currentProcess:
+						dvbreader.close(fd)
+						return
+					if fd:
+						section = dvbreader.read_sdt(fd, sdt_current_table_id, 0x00)
+					if section is None:
+						time.sleep(0.1)  # no data.. so we wait a bit
+						continue
+
+					if section["header"]["table_id"] == sdt_current_table_id and not sdt_current_completed:
+						if section["header"]["version_number"] != sdt_current_version_number:
+							sdt_current_version_number = section["header"]["version_number"]
+							sdt_current_sections_read = []
+							sdt_current_sections_count = section["header"]["last_section_number"] + 1
+							sdt_current_content = []
+
+						if section["header"]["section_number"] not in sdt_current_sections_read:
+							sdt_current_sections_read.append(section["header"]["section_number"])
+							sdt_current_content += section["content"]
+							if hasattr(self, "tsid") and self.tsid is None or hasattr(self, "onid") and self.onid is None:  # write first find straight to the screen
+								self.tsid = section["header"]["transport_stream_id"]
+								self.onid = section["header"]["original_network_id"]
+								self["tsidtext"].setText("TSID:")
+								self["onidtext"].setText("ONID:")
+								self["tsid"].setText("%d" % (section["header"]["transport_stream_id"]))
+								self["onid"].setText("%d" % (section["header"]["original_network_id"]))
+								self["introduction"].text = _("Press OK to start the scan")
+								print("[Satfinder][getCurrentTsidOnid] tsid %d, onid %d" % (section["header"]["transport_stream_id"], section["header"]["original_network_id"]))
+
+							if len(sdt_current_sections_read) == sdt_current_sections_count:
+								sdt_current_completed = True
+
+					if sdt_current_completed:
+						break
+
+				dvbreader.close(fd)
+
+		if not sdt_current_content:
+			print("[Satfinder][getCurrentTsidOnid] no services found on transponder")
+			return
+
+		for i in range(len(sdt_current_content)):
+			if not sdt_current_content[i]["service_name"]:  # if service name is empty use SID
+				sdt_current_content[i]["service_name"] = "0x%x" % sdt_current_content[i]["service_id"]
+
+		self.serviceList = sorted(sdt_current_content, key=lambda listItem: listItem["service_name"])
+		if self.serviceList:
+			self["key_yellow"].setText(_("Services list"))
+			self["actions2"].setEnabled(True)
+
+		self.getOrbPosFromNit(currentProcess)
+
+	def getOrbPosFromNit(self, currentProcess):
+		if not nimmanager.hasNimType("DVB-S") or not dvbreader_available or self.frontend is None or self.demux < 0:
+			return
+
+		adapter = 0
+		if hasattr(self, "demux"):
+			demuxer_device = "/dev/dvb/adapter%d/demux%d" % (adapter, self.demux)
+
+		nit_current_pid = 0x10
+		nit_current_table_id = 0x40
+		nit_other_table_id = 0x00  # don't read other table
+		if nit_other_table_id == 0x00:
+			mask = 0xff
+		else:
+			mask = nit_current_table_id ^ nit_other_table_id ^ 0xff
+		nit_current_timeout = 60  # maximum time allowed to read the network information table (seconds)
+
+		nit_current_version_number = -1
+		nit_current_sections_read = []
+		nit_current_sections_count = 0
+		nit_current_content = []
+		nit_current_completed = False
+
+		fd = dvbreader.open(demuxer_device, nit_current_pid, nit_current_table_id, mask, self.feid)
+		if fd < 0:
+			print("[Satfinder][getOrbPosFromNit] Cannot open the demuxer")
+			return
+
+		timeout = datetime.datetime.now()
+		timeout += datetime.timedelta(0, nit_current_timeout)
+
+		while True:
+			if datetime.datetime.now() > timeout:
+				print("[Satfinder][getOrbPosFromNit] Timed out reading NIT")
+				break
+
+			if hasattr(self, "currentProcess"):
+				if self.currentProcess != currentProcess:
+					dvbreader.close(fd)
+					return
+
+			section = dvbreader.read_nit(fd, nit_current_table_id, nit_other_table_id)
+			if section is None:
+				time.sleep(0.1)  # no data.. so we wait a bit
+				continue
+
+			if section["header"]["table_id"] == nit_current_table_id and not nit_current_completed:
+				if section["header"]["version_number"] != nit_current_version_number:
+					nit_current_version_number = section["header"]["version_number"]
+					nit_current_sections_read = []
+					nit_current_sections_count = section["header"]["last_section_number"] + 1
+					nit_current_content = []
+
+				if section["header"]["section_number"] not in nit_current_sections_read:
+					nit_current_sections_read.append(section["header"]["section_number"])
+					nit_current_content += section["content"]
+
+					if len(nit_current_sections_read) == nit_current_sections_count:
+						nit_current_completed = True
+
+			if nit_current_completed:
+				break
+
+		dvbreader.close(fd)
+
+		if not nit_current_content:
+			print("[Satfinder][getOrbPosFromNit] current transponder not found")
+			return
+		if hasattr(self, "tsid") or hasattr(self, "onid"):
+			transponders = [t for t in nit_current_content if "descriptor_tag" in t and t["descriptor_tag"] == 0x43 and t["original_network_id"] == self.onid and t["transport_stream_id"] == self.tsid]
+			transponders2 = [t for t in nit_current_content if "descriptor_tag" in t and t["descriptor_tag"] == 0x43 and t["transport_stream_id"] == self.tsid]
+			if transponders and "orbital_position" in transponders[0]:
+				orb_pos = self.getOrbitalPosition(transponders[0]["orbital_position"], transponders[0]["west_east_flag"])
+				self["postext"].setText(_("Orbital position") + ":")
+				self["pos"].setText(_("%s") % orb_pos)
+				print("[satfinder][getOrbPosFromNit] orb_pos", orb_pos)
+			elif transponders2 and "orbital_position" in transponders2[0]:
+				orb_pos = self.getOrbitalPosition(transponders2[0]["orbital_position"], transponders2[0]["west_east_flag"])
+				self["postext"].setText(_("Orbital position") + ":")
+				self["pos"].setText(_("%s?") % orb_pos)
+				print("[satfinder][getOrbPosFromNit] orb_pos tentative, tsid match, onid mismatch between NIT and SDT", orb_pos)
+			else:
+				print("[satfinder][getOrbPosFromNit] no orbital position found")
+
+	def getOrbitalPosition(self, bcd, w_e_flag=1):
+		# 4 bit BCD (binary coded decimal)
+		# w_e_flag, 0 == west, 1 == east
+		op = 0
+		bits = 4
+		for i in range(bits):
+			op += ((bcd >> 4 * i) & 0x0F) * 10**i
+		if op > 1800:
+			op = (3600 - op) * -1
+		if w_e_flag == 0:
+			op *= -1
+		return "%0.1f%s" % (abs(op) // 10., "W" if op < 0 else "E")
+
+	def waitTunerLock(self, currentProcess):
+		lock_timeout = 120
+
+		timeout = datetime.datetime.now()
+		timeout += datetime.timedelta(0, lock_timeout)
+
+		while True:
+			if datetime.datetime.now() > timeout:
+				print("[Satfinder][waitTunerLock] tuner lock timeout reached, seconds:", lock_timeout)
+				return False
+
+			if hasattr(self, "currentProcess"):
+				if self.currentProcess != currentProcess:
+					return False
+
+			if hasattr(self, "frontend"):
+				frontendStatus = {}
+				if self.frontend:
+					self.frontend.getFrontendStatus(frontendStatus)
+					if frontendStatus["tuner_state"] == "FAILED":
+						print("[Satfinder][waitTunerLock] TUNING FAILED FATAL")  # enigma2 cpp code has given up trying
+						return False
+					if frontendStatus["tuner_state"] != "LOCKED":
+						self["introduction"].text = _("The data provided will not find services.")
+						time.sleep(0.25)
+						continue
+
+			return True
+
+	def monitorTunerLock(self, currentProcess):
+		while True:
+			if hasattr(self, "currentProcess"):
+				return
+			frontendStatus = {}
+			if frontendStatus:
+				print("[monitorTunerLock] starting again from scratch")
+				self.getCurrentTsidOnid(False)  # if tuner lock fails start again from beginning
+				return
+			time.sleep(1.0)
+
+	def keyReadServices(self):
+		from Screens.TextBox import TextBox
+		if not self.serviceList:
+			return
+		tv = [1, 17, 22, 25]
+		radio = [2, 10]
+		red = r"\c00ff8888"  # Encrypted
+		green = r"\c0088ff88"  # FTA
+		yellow = r"\c00ffff00"  # UHD
+		blue = r"\c007799ff"  # Radio
+		mix = r"\c0000fafa"  # Others
+		default = r"\c00ffffff"  # colour default white
+		dash = f"{default}- "
+		services = []
+		legend = f"{default} {_('Services')}:               {red}{_('Encrypted')}  {green}{_('FTA')}  {yellow}{_('UHD')}  {blue}{_('Radio')}  {mix}{_('Others')}\n"
+		for service in self.serviceList:
+			fta = "free_ca" in service and service["free_ca"] == 0
+			if service["service_type"] in radio:
+				colour = blue
+			elif service["service_type"] not in tv:
+				colour = yellow if "UHD" in service["service_name"] or "4K" in service["service_name"] else mix
+			elif fta:
+				colour = green
+			else:
+				colour = red
+			services.append(f"{dash}{colour}{service['service_name']}")  # if version_info.major >= 3 else services.append("%s%s%s" % (dash, colour, service["service_name"].decode("ISO-8859-1").encode("UTF-8")))
+
+		self.session.open(TextBox, "\n".join(services), legend)
+
+
+def SatfinderCallback(close, answer):
+	if close and answer:
+		close(True)
+
+
 def SatfinderMain(session, close=None, **kwargs):
+	def restartUI(answer=False):
+		if answer:
+			from Screens.Standby import TryQuitMainloop
+			session.open(TryQuitMainloop, 3)
+
+	def InstallAutoBouquetsMaker(answer=False):
+		if answer:
+			from Components.Opkg import OpkgComponent
+			from time import sleep
+			autobouquetsmaker = {"package": "--force-overwrite enigma2-plugin-systemplugins-autobouquetsmaker"}
+			OpkgComponent().startCmd(OpkgComponent.CMD_INSTALL, autobouquetsmaker)
+			sleep(5)
+			if isPluginInstalled("AutoBouquetsMaker"):
+				session.openWithCallback(restartUI, MessageBox, _("AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"), MessageBox.TYPE_YESNO, simple=True)
+			else:
+				session.openWithCallback(boundFunction(SatfinderCallback, close), Satfinder)
+		else:
+			session.openWithCallback(boundFunction(SatfinderCallback, close), Satfinder)
+
 	nims = nimmanager.nim_slots
 	nimList = []
 	for n in nims:
@@ -482,12 +837,16 @@ def SatfinderMain(session, close=None, **kwargs):
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."), MessageBox.TYPE_ERROR)
 	else:
-		session.openWithCallback(close, Satfinder)
+		if dvbreader_available or isPluginInstalled("AutoBouquetsMaker"):
+			session.openWithCallback(boundFunction(SatfinderCallback, close), SatfinderExtra)
+		else:
+			session.openWithCallback(InstallAutoBouquetsMaker, MessageBox, _("To view and sort channels with YELLOW button:\nYou can install AutoBouquetsMaker.\nDo you want to install it now?"), type=MessageBox.TYPE_YESNO, simple=True)
+
 
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Signal Finder"), SatfinderMain, "satfinder", None)]
+		return [(_("Manual scan & signals"), SatfinderMain, "satfinder", 5)]
 	else:
 		return []
 

@@ -3016,6 +3016,9 @@ msgstr ""
 msgid "Auto(not available)"
 msgstr ""
 
+msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr ""
 
@@ -5398,6 +5401,9 @@ msgstr ""
 msgid "DVB subtitle black transparency"
 msgstr ""
 
+msgid "DVB type:"
+msgstr ""
+
 msgid "DVB-C"
 msgstr ""
 
@@ -7002,6 +7008,9 @@ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM da
 msgstr ""
 
 msgid "Encrypted: "
+msgstr ""
+
+msgid "Encrypted"
 msgstr ""
 
 msgid "Encryption"
@@ -10455,6 +10464,9 @@ msgstr ""
 msgid "Manual scan for services"
 msgstr ""
 
+msgid "Manual scan & signals"
+msgstr ""
+
 msgid "Manual transponder"
 msgstr ""
 
@@ -12052,6 +12064,9 @@ msgid "Other Subtitles & Language"
 msgstr ""
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
+msgstr ""
+
+msgid "Others"
 msgstr ""
 
 msgid "Outdoor"
@@ -15501,6 +15516,9 @@ msgstr ""
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr ""
 
+msgid "Services list"
+msgstr ""
+
 msgid "Set Base Time"
 msgstr ""
 
@@ -17914,6 +17932,9 @@ msgid ""
 "Please install it."
 msgstr ""
 
+msgid "The data provided will not find services."
+msgstr ""
+
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
@@ -18803,6 +18824,9 @@ msgid "Titleset mode"
 msgstr ""
 
 msgid "To restore the image:"
+msgstr ""
+
+msgid "To view and sort channels with YELLOW button:\nYou can install AutoBouquetsMaker.\nDo you want to install it now?"
 msgstr ""
 
 msgid "Today"
