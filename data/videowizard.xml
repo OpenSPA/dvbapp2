@@ -58,7 +58,7 @@ config.av.edid_override.save()
 	</step>
 
 	<step id="modeselection" nextstep="rateselection" timeout="10" timeoutaction="selectnext">
-		<text value="Select the video mode to be used on the TV." />
+		<text value="Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT." />
 		<displaytext value="Select video mode" />
 		<list type="dynamic" source="listModes" evaluation="modeSelectionMade" onselect="modeSelectionMoved" />
 		<code>

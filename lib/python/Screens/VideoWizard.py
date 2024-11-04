@@ -53,27 +53,25 @@ class VideoWizard(Wizard, ShowRemoteControl):
 			"smpte": 20
 		}
 		# preferred = self.avSwitch.readPreferredModes(saveMode=True, readOnly=True)
-		preferred = []  # Don't resort because some TV sends wrong edid info
-		if preferred:
-			if "2160p" in preferred:
+		if not config.av.edid_override.value:
+			if "2160p" in str(modes):
 				sortKeys["2160p"] = 1
 				sortKeys["2160p30"] = 2
 				sortKeys["1080p"] = 3
 				sortKeys["1080i"] = 4
 				sortKeys["720p"] = 5
-			elif "1080p" in preferred:
+			elif "1080p" in str(modes):
 				sortKeys["1080p"] = 1
 				sortKeys["720p"] = 3
 		modes.sort(key=sortKey)
-		# print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
 		return modes
 
 	def listRates(self, mode=None):  # Called by wizardvideo.xml.
 		def sortKey(name):
 			return {
-				"multi": 1,
+				"multi": 3,
 				"auto": 2
-			}.get(name[0], 3)
+			}.get(name[0], 1)
 
 		if mode is None:
 			mode = self.mode

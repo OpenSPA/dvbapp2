@@ -28491,8 +28491,8 @@ msgstr "Seleccione la lista de reglas LCN que se aplicarán a la búsqueda."
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Seleccione la tasa de refresco que se usará en la TV."
 
-msgid "Select the video mode to be used on the TV."
-msgstr "Seleccione el modo de vídeo que se usará en la TV."
+msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
+msgstr "Seleccione el modo de vídeo que se usará en la TV.\n\nSi un modo de video provoca pérdida de señal:\nPulse prolongado EXIT."
 
 msgid "Ncam Info"
 msgstr "Información Ncam"

@@ -23638,6 +23638,9 @@ msgstr ""
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
+msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
+msgstr ""
+
 msgid "Ncam Info"
 msgstr ""
 

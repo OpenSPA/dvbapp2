@@ -16130,6 +16130,9 @@ msgstr ""
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
+msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
+msgstr ""
+
 msgid "Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."
 msgstr ""
 

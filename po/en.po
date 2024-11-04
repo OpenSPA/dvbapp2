@@ -2552,6 +2552,12 @@ msgstr ""
 msgid "Select the function to be assigned to this button."
 msgstr ""
 
+msgid "Select the refresh rate to be used on the TV."
+msgstr ""
+
+msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
+msgstr ""
+
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
 msgstr ""
 
