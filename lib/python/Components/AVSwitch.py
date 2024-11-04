@@ -1013,8 +1013,8 @@ class AVSwitchBase:
 		if len(modes) < 2:
 			self.modes_preferred = self.readAvailableModes()
 			print(f"[AVSwitch] Used default modes: {self.modes_preferred}.")
-		if len(self.modes_preferred) <= 2:
-			print(f"[AVSwitch] Preferend modes not okay, possible driver failer, length={len(self.modes_preferred)}.")
+		else:  # OenSPA [norhap] In automatic mode detect all available modes.
+			print(f"[AVSwitch] Used default available modes: {self.modes_preferred}.")
 			self.modes_preferred = self.readAvailableModes()
 		if readOnly:
 			return self.modes_preferred
