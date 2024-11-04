@@ -107,7 +107,7 @@ def setLCDModeMinitTV(value):
 
 class Standby2(Screen):
 	################################################
-	# openspa: added StartWithPower variable 
+	# openspa: added StartWithPower variable
 	# to detect when starting with the power button
 	################################################
 	def Powerb(self):
@@ -165,7 +165,7 @@ class Standby2(Screen):
 		TVinStandby.setTVstate('standby')
 
 	def setMute(self):
-		if eDVBVolumecontrol.getInstance().isMuted(True):
+		if eDVBVolumecontrol.getInstance().isMuted():
 			self.wasMuted = 1
 			print("[Standby] mute already active")
 		else:

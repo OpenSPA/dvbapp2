@@ -2453,7 +2453,7 @@ class InfoBarSeek:
 			for c in self.onPlayStateChanged:
 				c(self.seekstate)
 		global seek_withjumps_muted
-		if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted(True):
+		if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted():
 			print("[InfoBarGenerics] STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
 			seek_withjumps_muted = False
 			eDVBVolumecontrol.getInstance().volumeUnMute()
