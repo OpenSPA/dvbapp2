@@ -251,7 +251,7 @@ class Network:
 			case 2:
 				lines = linesV4
 			case 3:
-				lines = linesV6
+				lines = linesV6 if config.usage.dns.value not in ("comodo", "nordvpn", "nordvpnsmart", "dhcp-router") else linesV6 + linesV4
 		suffix = [f"domain {config.usage.dnsSuffix.value}"] if config.usage.dnsSuffix.value else []
 		rotate = ["options rotate"] if config.usage.dnsRotate.value else []
 		fileWriteLines(self.resolvFile, rotate + suffix + lines, source=MODULE_NAME)

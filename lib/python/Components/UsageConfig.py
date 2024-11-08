@@ -158,7 +158,7 @@ def InitUsageConfig():
 			choices.append((dns.get("key"), _(dns.get("title"))))
 
 	config.usage.dns = ConfigSelection(default="dhcp-router", choices=choices)
-	config.usage.dnsMode = ConfigSelection(default=0, choices=[
+	config.usage.dnsMode = ConfigSelection(default=2, choices=[
 		(0, _("Prefer IPv4")),
 		(1, _("Prefer IPv6")),
 		(2, _("IPv4 only")),

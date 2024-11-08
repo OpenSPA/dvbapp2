@@ -21592,6 +21592,9 @@ msgstr ""
 msgid "WARNING:"
 msgstr ""
 
+msgid "WARNING: Do not change your ISP DNS.\nUse other DNS data source."
+msgstr ""
+
 msgid "WEP"
 msgstr "WEP"
 

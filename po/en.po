@@ -3860,6 +3860,9 @@ msgstr ""
 msgid "Can not upload timer"
 msgstr ""
 
+msgid "WARNING: Do not change your ISP DNS.\nUse other DNS data source."
+msgstr ""
+
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr ""
 

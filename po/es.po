@@ -24824,6 +24824,9 @@ msgstr "¿Quieres detener y eliminar estas grabaciones?"
 msgid "WARNING:"
 msgstr "ADVERTENCIA:"
 
+msgid "WARNING: Do not change your ISP DNS.\nUse other DNS data source."
+msgstr "ADVERTENCIA: No cambie el DNS de su ISP.\nUtilice otra fuente de datos DNS."
+
 #
 msgid "WEP"
 msgstr "WEP"

@@ -29,7 +29,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileReadLines, fileReadXML, fileWriteLines, resolveFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileReadLines, fileReadXML, fileWriteLines, resolveFilename, fileContains
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -234,7 +234,7 @@ class DNSSettings(Setup):
 				for ipv4 in ipv4s:
 					adresses.append([int(x) for x in ipv4.split(".")])
 				ipv6s = dns.get("ipv6", "")
-				if ipv6s:
+				if ipv6s and config.usage.dnsMode.value not in (2,):
 					adresses.extend(ipv6s.split(","))
 				self.dnsOptions[dns.get("key")] = adresses
 
@@ -287,10 +287,22 @@ class DNSSettings(Setup):
 		Setup.createSetup(self)
 		dnsList = self["config"].getList()
 		self.dnsStart = len(dnsList)
-		items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
-		for item, entry in enumerate(items, start=1):
-			dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
-		self.dnsLength = item
+		if not fileContains("/etc/network/interfaces", "static"):
+			if config.usage.dnsMode.value not in (2,):
+				items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
+			else:
+				items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)]
+			for item, entry in enumerate(items, start=1):
+				if config.usage.dns.value != "dhcp-router":
+					dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
+				else:
+					dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("WARNING: Do not change your ISP DNS.\nUse other DNS data source.")))
+				self.dnsLength = item
+		else:
+			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
+			for item, entry in enumerate(items, start=1):
+				dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
+				self.dnsLength = item
 		if self.entryAdded:
 			entry.default = [256, 256, 256, 256]  # This triggers a cancel confirmation for unedited new entries.
 			self.entryAdded = False
@@ -494,8 +506,11 @@ class AdapterSetup(ConfigListScreen, Screen):
 		self["HelpWindow"].hide()
 
 	def layoutFinished(self):
-		self["DNS1"].setText(self.primaryDNS.getText())
-		self["DNS2"].setText(self.secondaryDNS.getText())
+		try:
+			self["DNS1"].setText(self.primaryDNS.getText())
+			self["DNS2"].setText(self.secondaryDNS.getText())
+		except Exception:
+			pass
 		if self.ipConfigEntry.getText() is not None:
 			if self.ipConfigEntry.getText() == "0.0.0.0":
 				self["IP"].setText(_("N/A"))
@@ -536,6 +551,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 		self.weplist = None
 		self.wsconfig = None
 		self.default = None
+		self.resolvFile = "/etc/resolv.conf"
 		self.primaryDNSEntry = None
 		self.secondaryDNSEntry = None
 		self.onlyWakeOnWiFi = False
@@ -587,9 +603,74 @@ class AdapterSetup(ConfigListScreen, Screen):
 			self.dhcpdefault = False
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0, 0, 0, 0]))
-		nameserver = (iNetwork.getNameserverList() + [[0, 0, 0, 0]] * 2)[0:2]
-		self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
-		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
+		ip = ""
+		dns = open(self.resolvFile, "r").readlines()
+		if len(dns) > 1:
+			for name in dns:
+				dnsip = name.replace("nameserver ", "")
+				if config.usage.dnsMode.value == 2:
+					if "192.168.0.1" in name or "192.168.1.1" in name:
+						if config.usage.dns.value == "dhcp-router" and fileContains("/etc/network/interfaces", "static"):
+							if ":" not in name:
+								self.primaryDNS = NoSave(ConfigText(default=ip))
+								if str(self.primaryDNS) not in name:
+									ip = name.replace("nameserver ", "")
+									self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+									self.primaryDNS = NoSave(ConfigText(default=ip))
+					else:
+						if ":" not in name:
+							self.primaryDNS = NoSave(ConfigText(default=ip))
+							if str(self.primaryDNS) not in name:
+								ip = name.replace("nameserver ", "")
+								self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+				else:
+					if fileContains(self.resolvFile, ":"):
+						if config.usage.dnsMode.value == 3:
+							if ":" in name:
+								if config.usage.dns.value != "dhcp-router":
+									self.primaryDNS = NoSave(ConfigText(default=ip))
+									if str(self.primaryDNS) not in name:
+										ip = name.replace("nameserver ", "")
+										self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+								else:
+									self.primaryDNS = NoSave(ConfigText(default=dnsip))
+									if str(self.primaryDNS) not in name:
+										ip = name.replace("nameserver ", "")
+										self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+						else:
+							if config.usage.dnsMode.value == 0:
+								if ":" in name:
+									if config.usage.dns.value != "dhcp-router":
+										self.secondaryDNS = NoSave(ConfigText(default=ip))
+										if str(self.secondaryDNS) not in name:
+											ip = name.replace("nameserver ", "")
+									else:
+										self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+								else:
+									self.primaryDNS = NoSave(ConfigText(default=dnsip)) if "192.168.0.1" in name or "192.168.1.1" in name else NoSave(ConfigText(default=ip))
+									if str(self.primaryDNS) not in name:
+										ip = name.replace("nameserver ", "")
+							else:
+								if ":" in name:
+									if config.usage.dns.value != "dhcp-router":
+										self.primaryDNS = NoSave(ConfigText(default=ip))
+										if str(self.primaryDNS) not in name:
+											ip = name.replace("nameserver ", "")
+									else:
+										self.primaryDNS = NoSave(ConfigText(default=dnsip))
+								else:
+									self.secondaryDNS = NoSave(ConfigText(default=dnsip)) if "192.168.0.1" in name or "192.168.1.1" in name else NoSave(ConfigText(default=ip))
+									if str(self.secondaryDNS) not in name:
+										ip = name.replace("nameserver ", "")
+					else:
+						self.primaryDNS = NoSave(ConfigText(default=ip))
+						if str(self.primaryDNS) not in name:
+							ip = name.replace("nameserver ", "")
+							self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+		else:
+			for name in dns:
+				dnsip = name.replace("nameserver ", "")
+				self.primaryDNS = NoSave(ConfigText(default=dnsip))
 		self.ipTypeConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "ipv6") or False))
 
 	def createSetup(self):
