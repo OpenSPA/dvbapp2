@@ -234,7 +234,7 @@ class DNSSettings(Setup):
 				for ipv4 in ipv4s:
 					adresses.append([int(x) for x in ipv4.split(".")])
 				ipv6s = dns.get("ipv6", "")
-				if ipv6s and config.usage.dnsMode.value not in (2,):
+				if ipv6s and config.usage.dnsMode.value not in (2,):  # OpenSPA [norhap] Do not display IPv6 lists in IPv4-only DNS mode.
 					adresses.extend(ipv6s.split(","))
 				self.dnsOptions[dns.get("key")] = adresses
 
@@ -287,7 +287,7 @@ class DNSSettings(Setup):
 		Setup.createSetup(self)
 		dnsList = self["config"].getList()
 		self.dnsStart = len(dnsList)
-		if not fileContains("/etc/network/interfaces", "static"):
+		if not fileContains("/etc/network/interfaces", "static"):  # OpenSPA [norhap] Organize display lists in both formats.
 			if config.usage.dnsMode.value not in (2,):
 				items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
 			else:
@@ -551,7 +551,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 		self.weplist = None
 		self.wsconfig = None
 		self.default = None
-		self.resolvFile = "/etc/resolv.conf"
+		self.resolvFile = "/etc/resolv.conf"  # OpenSPA [norhap] File to base the DNS organization on.
 		self.primaryDNSEntry = None
 		self.secondaryDNSEntry = None
 		self.onlyWakeOnWiFi = False
@@ -603,6 +603,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 			self.dhcpdefault = False
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0, 0, 0, 0]))
+		# OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS.
 		ip = ""
 		dns = open(self.resolvFile, "r").readlines()
 		if len(dns) > 1:
@@ -671,6 +672,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 			for name in dns:
 				dnsip = name.replace("nameserver ", "")
 				self.primaryDNS = NoSave(ConfigText(default=dnsip))
+		# END OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS.
 		self.ipTypeConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "ipv6") or False))
 
 	def createSetup(self):
