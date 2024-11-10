@@ -784,7 +784,7 @@ class SatfinderExtra(Satfinder):
 			if service["service_type"] in radio:
 				colour = blue
 			elif service["service_type"] not in tv:
-				colour = yellow if "UHD" in service["service_name"] or "4K" in service["service_name"] else mix
+				colour = yellow if "UHD" in service["service_name"] or "4K" in service["service_name"].upper() else mix
 			elif fta:
 				colour = green
 			else:
