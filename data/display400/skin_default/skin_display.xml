@@ -295,8 +295,8 @@
     <panel name="RelojAbajo" />
   </screen>
   <screen name="MenuSummary" position="0,0" size="400,240" backgroundColor="black">
-    <widget source="Title" render="Label" position="6,0" size="388,52" font="VFD; 33" halign="center" valign="center" foregroundColor="azul" transparent="1" />
-	<widget source="entry" render="Label" position="top" size="9,63" font="VFD;32" halign="center" valign="center" foregroundColor="white" transparent="1"/>
+    <widget source="Title" render="Label" position="6,0" size="400,52" font="VFD; 33" halign="center" valign="center" foregroundColor="azul" transparent="1" />
+	<widget source="entry" render="Label" position="6,53" size="400,185" font="VFD; 33" foregroundColor="white" transparent="1"/>
     <panel name="RelojAbajo" />
   </screen>
 
@@ -307,9 +307,9 @@
 <panel name="RelojAbajo" />
   </screen>
   <screen name="SetupSummary" position="0,0" size="400,240" backgroundColor="black">
-    <widget source="Title" render="Label" position="0,0" size="400,44" font="VFD; 32" halign="center" foregroundColor="azul" noWrap="1" />
-    <widget source="entry" render="Label" position="5,46" size="394,59" font="VFD; 30" transparent="1" valign="center" foregroundColor="white"/>
-    <widget source="value" render="Label" position="5,105" size="393,61" font="VFD; 30" transparent="1" valign="center" foregroundColor="white"/>
+    <widget source="Title" render="Label" position="0,0" size="400,35" font="VFD; 32" halign="center" foregroundColor="azul" noWrap="1" />
+    <widget source="entry" render="Label" position="5,36" size="394,101" font="VFD; 25" transparent="1" valign="center" foregroundColor="white"/>
+    <widget source="value" render="Label" position="5,125" size="393,61" font="VFD; 20" transparent="1" valign="center" foregroundColor="white"/>
 
    <panel name="RelojAbajo" />
   </screen>
