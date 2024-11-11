@@ -382,7 +382,7 @@ BoxInfo.setItem("LcdLiveTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/
 BoxInfo.setItem("LcdLiveTVPiP", fileCheck("/proc/stb/lcd/live_decoder"))
 BoxInfo.setItem("LCDMiniTV", fileExists("/proc/stb/lcd/mode"))
 BoxInfo.setItem("LCDMiniTVPiP", BoxInfo.getItem("LCDMiniTV") and MACHINEBUILD not in ("gb800ueplus", "gbquad4k", "gbquad4kpro", "gbue4k"))
-BoxInfo.setItem("LCDSKINSetup", fileExists("/usr/share/enigma2/display") and not fileExists("/usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/plugin.py") or BoxInfo.getItem("VuplusVFD") and DISPLAYTYPE not in ("7segment",))
+BoxInfo.setItem("LCDSKINSetup", fileExists("/usr/share/enigma2/display") and not isPluginInstalled("LCD4linux") or BoxInfo.getItem("VuplusVFD") and DISPLAYTYPE not in ("7segment",))
 BoxInfo.setItem("LCDClockSetup", fileExists("/usr/share/enigma2/display") and DISPLAYTYPE in ('colorlcd220', 'colorlcd400', 'colorlcd400s', 'colorlcd480', 'colorlcd800') and not isPluginInstalled("LCD4linux"))
 BoxInfo.setItem("LEDButtons", MACHINEBUILD == "vuultimo")
 BoxInfo.setItem("LEDColorControl", fileExists("/proc/stb/fp/led_color"))
