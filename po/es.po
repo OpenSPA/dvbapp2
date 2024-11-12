@@ -4770,6 +4770,9 @@ msgstr "Complejo (permite mezclar pistas de audio y aspectos)"
 msgid "Composition of the recording filenames"
 msgstr "Composición nombres de grabaciones"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr "Comprimir archivo tar del sistema de archivos raíz. (¡Esto es lo que más tiempo lleva!)"
+
 msgid "Compressed bits/pixel"
 msgstr "Bits/Pixels comprimidos"
 
@@ -5682,19 +5685,6 @@ msgstr "Bloqueo en el error de interfaz por motivos de depuración"
 msgid "Create"
 msgstr "Crear"
 
-msgid "Create Blu-ray disc ISO file"
-msgstr "Crear archivo ISO Bludisc"
-
-#
-msgid "Create DVD-ISO"
-msgstr "Crear DVD-ISO"
-
-msgid "Create Directory"
-msgstr "Crear un directorio"
-
-msgid "Create ISO"
-msgstr "Crear ISO"
-
 msgid "Create a directory"
 msgstr "Crear una carpeta"
 
@@ -5704,9 +5694,58 @@ msgstr "Crear una contraseña generada aleatoriamente"
 msgid "Create a symbolic link"
 msgstr "Crear un enlace simbólico"
 
+msgid "Create application loader dump."
+msgstr "Crear un volcado del cargador de aplicaciones."
+
+msgid "Create backup image zip file."
+msgstr "Crear un archivo zip de imagen de respaldo."
+
+msgid "Create Blu-ray disc ISO file"
+msgstr "Crear archivo ISO Bludisc"
+
+msgid "Create boot dump."
+msgstr "Crear boot dump."
+
+msgid "Create boot image dump."
+msgstr "Crear un volcado de imagen de arranque."
+
+msgid "Create device information dump."
+msgstr "Crear volcado de información del dispositivo."
+
+msgid "Create Directory"
+msgstr "Crear un directorio"
+
+#
+msgid "Create DVD-ISO"
+msgstr "Crear DVD-ISO"
+
+msgid "Create ISO"
+msgstr "Crear ISO"
+
+msgid "Create kernel dump."
+msgstr "Crear un volcado de kernel."
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Crear backup de imagen de recuperación '%s'."
+
+msgid "Create rescue dump."
+msgstr "Crear rescate dump."
+
+msgid "Create root file system dump."
+msgstr "Crear un volcado del sistema de archivos raíz."
+
+msgid "Create root journaling flash file system."
+msgstr "Crear sistema de archivos flash con registro raíz."
+
+msgid "Create root UBI file system."
+msgstr "Crear sistema de archivos UBI raíz."
+
+msgid "Create tar file of root file system."
+msgstr "Crear archivo tar del sistema de archivos raíz."
+
+msgid "Create working directories."
+msgstr "Crear directorios de trabajo."
 
 msgid "Create separate radio user bouquet"
 msgstr "Crear un lista de usuario de radio independiente"
@@ -12481,6 +12520,9 @@ msgstr "Administrador de montajes"
 
 msgid "Mount Menu Actions"
 msgstr "Acciones de menú de montajes"
+
+msgid "Mount root file system."
+msgstr "Montar el sistema de archivos raíz."
 
 msgid "Mount Settings"
 msgstr "Ajustes de montaje"
