@@ -6867,7 +6867,7 @@ msgstr "Visualizar los contenidos >16:9 como"
 
 # Quick Menue
 msgid "Display Settings"
-msgstr "Ajustes de LCD"
+msgstr "Ajustes display"
 
 msgid "Display and user interface"
 msgstr "Pantalla y interfaz de usuario"

@@ -421,7 +421,10 @@ BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/p
 BoxInfo.setItem("DisplaySetup", MODEL not in ("dreamone",))
 
 # Dont't sort.
-BoxInfo.setItem("ConfigDisplay", BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment",))
+# OpenSPA [norhap] include 7segment to setupKey Display.
+BoxInfo.setItem("ConfigDisplay", BoxInfo.getItem("FrontpanelDisplay"))
+# OpenSPA [norhap] exclude proc not available for 7segment.
+BoxInfo.setItem("DisplayNot7segment", BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment",))
 BoxInfo.setItem("dFlash", exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"))
 BoxInfo.setItem("dBackup", not BoxInfo.getItem("dFlash") and exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"))
 BoxInfo.setItem("ImageBackup", not BoxInfo.getItem("dFlash") and not BoxInfo.getItem("dBackup"))
