@@ -1230,6 +1230,9 @@ msgstr "%s ha sido activado."
 msgid "%s has been disabled."
 msgstr "%s ha sido deshabilitado."
 
+msgid "%s imported from fallback tuner"
+msgstr "%s importados del tuner reserva"
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -4090,6 +4093,9 @@ msgstr ""
 msgid "Channel"
 msgstr "Canal"
 
+msgid "Channels"
+msgstr "Canales"
+
 msgid "Channel +/- button mode"
 msgstr "Modo de tecla de canal +/-"
 
@@ -4198,6 +4204,12 @@ msgstr "Modo de retardo al zapear"
 #
 msgid "Channel:"
 msgstr "Canal:"
+
+msgid "Channels and EPG"
+msgstr "Canales y EPG"
+
+msgid "Channels only"
+msgstr "Solo Canales"
 
 msgid "ChannelEPG Settings"
 msgstr "Ajustes de canal EPG"
@@ -8208,6 +8220,9 @@ msgstr "Sólo texto de entrada"
 msgid "Epg/Guide"
 msgstr "EPG/Guía"
 
+msgid "EPG only"
+msgstr "Solo EPG"
+
 #
 msgid "Equal to"
 msgstr "Igual a"
@@ -10661,6 +10676,9 @@ msgstr ""
 
 msgid "Import from remote receiver URL"
 msgstr "Importar de la URL del receptor remoto de reserva"
+
+msgid "Import from fallback tuner failed, %s"
+msgstr "Importación del tuner reserva fallido, %s"
 
 msgid "Import remote receiver URL"
 msgstr "Importar URL del receptor remoto"
@@ -19974,14 +19992,10 @@ msgstr ""
 "la URL del receptor remoto"
 
 msgid "Show notification when import channels was not successful"
-msgstr ""
-"Mostrar notificación cuando la importación de canales no se haya realizado "
-"correctamente"
+msgstr "Mostrar notificación cuando la importación de canales no fue con éxito"
 
 msgid "Show notification when import channels was successful"
-msgstr ""
-"Mostrar notificación cuando la importación de canales se haya realizado "
-"correctamente"
+msgstr "Mostrar notificación cuando la importación de canales fue con éxito"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Mostrar u ocultar la descripción ampliada (depende del tema)."

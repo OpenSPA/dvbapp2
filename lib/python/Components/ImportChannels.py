@@ -58,7 +58,7 @@ class ImportChannels:
 		def importChannelsDone(SuccessFlag, message):
 			rmtree(tmpDir, True)
 			if SuccessFlag:
-				AddNotificationWithID("ChannelsImportOK", MessageBox, _("%s imported from fallback tuner"), type=MessageBox.TYPE_INFO, timeout=5)
+				AddNotificationWithID("ChannelsImportOK", MessageBox, _("%s imported from fallback tuner") % message, type=MessageBox.TYPE_INFO, timeout=5)
 			else:
 				AddNotificationWithID("ChannelsImportNOK", MessageBox, _("Import from fallback tuner failed, %s") % message, type=MessageBox.TYPE_ERROR, timeout=5)
 

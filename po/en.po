@@ -1268,6 +1268,9 @@ msgstr ""
 msgid "%s has been disabled."
 msgstr ""
 
+msgid "%s imported from fallback tuner"
+msgstr ""
+
 #, python-format
 msgid "%s information"
 msgstr ""
@@ -4074,6 +4077,9 @@ msgstr ""
 msgid "Channel"
 msgstr ""
 
+msgid "Channels"
+msgstr ""
+
 msgid "Channel +/- button mode"
 msgstr ""
 
@@ -4165,6 +4171,12 @@ msgid "Channel name"
 msgstr ""
 
 msgid "Channel selection:"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
 msgstr ""
 
 msgid "Chap."
@@ -7188,6 +7200,9 @@ msgstr ""
 msgid "Epg/Guide"
 msgstr ""
 
+msgid "EPG only"
+msgstr ""
+
 msgid "Epg/Guide long"
 msgstr ""
 
@@ -9145,6 +9160,9 @@ msgid "In progress"
 msgstr ""
 
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgstr ""
+
+msgid "Import from fallback tuner failed, %s"
 msgstr ""
 
 msgid "Inaccessible"

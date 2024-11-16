@@ -1187,6 +1187,9 @@ msgstr ""
 msgid "%s has been disabled."
 msgstr ""
 
+msgid "%s imported from fallback tuner"
+msgstr ""
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -3740,7 +3743,10 @@ msgid ""
 msgstr ""
 
 msgid "Channel"
-msgstr "Channel"
+msgstr ""
+
+msgid "Channels"
+msgstr ""
 
 msgid "Channel +/- button mode"
 msgstr ""
@@ -3840,6 +3846,12 @@ msgstr ""
 
 msgid "Channel:"
 msgstr "Channel:"
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "ChannelEPG Settings"
 msgstr ""
@@ -7243,10 +7255,10 @@ msgid "Entry text only"
 msgstr ""
 
 msgid "Epg/Guide"
-msgstr "Epg/Guide"
+msgstr ""
 
-msgid "Equal to"
-msgstr "Equal to"
+msgid "EPG only"
+msgstr ""
 
 msgid "Equatorial Guinea"
 msgstr ""
@@ -9408,6 +9420,9 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver is boot
 msgstr ""
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+msgid "Import from fallback tuner failed, %s"
 msgstr ""
 
 msgid "Import from remote receiver URL"
