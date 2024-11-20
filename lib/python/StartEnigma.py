@@ -59,6 +59,7 @@ class Session:
 		self.shutdown = False
 		from Components.FrontPanelLed import frontPanelLed
 		frontPanelLed.init(self)
+		self.allDialogs = []
 
 		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
 			try:
@@ -113,12 +114,13 @@ class Session:
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
 
 	def deleteDialog(self, screen):
+		if screen in self.allDialogs:
+			self.allDialogs.remove(screen)
 		screen.hide()
 		screen.doClose()
 
 	def deleteDialogWithCallback(self, callback, screen, *retVal):
-		screen.hide()
-		screen.doClose()
+		self.deleteDialog(screen)
 		if callback is not None:
 			callback(*retVal)
 
@@ -138,6 +140,7 @@ class Session:
 		readSkin(dialog, None, dialog.skinName, desktop)  # Read skin data.
 		dialog.setDesktop(desktop)  # Create GUI view of this dialog.
 		dialog.applySkin()
+		self.allDialogs.append(dialog)
 		return dialog
 
 	def pushCurrent(self):
@@ -223,6 +226,13 @@ class Session:
 		for function in self.onShutdown:
 			if callable(function):
 				function()
+
+	def reloadDialogs(self):
+		for dialog in self.allDialogs:
+			if hasattr(dialog, "desktop"):
+				oldDesktop = dialog.desktop
+				readSkin(dialog, None, dialog.skinName, oldDesktop)
+				dialog.applySkin()
 
 
 class PowerKey:
