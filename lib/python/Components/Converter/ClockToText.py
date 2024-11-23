@@ -49,7 +49,7 @@ class ClockToText(Converter):
 		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
 		"VFD11": lambda t: strftime(config.usage.date.compressed.value + config.usage.time.display.value, localtime(t)),  # _("%e%b%R")
 		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"VFD12": lambda t: strftime(config.usage.date.compact.value + config.usage.time.display.value, localtime(t)),  # _("%e%b%R")
+		"VFD12": lambda t: strftime(config.usage.lcd_dateformat.value, localtime(t)),  # _("%e%b%R")
 		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
 		"VFD14": lambda t: strftime(config.usage.date.short.value + " " + config.usage.time.display.value, localtime(t)),  # _("%e/%b %R")
 		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
