@@ -2167,6 +2167,12 @@ msgstr ""
 msgid "Access point"
 msgstr ""
 
+msgid "Access not available:\nCheck HTTP authentication not is active in OpenWebIF on the receiver fallback or check data entered in settings.\n"
+msgstr ""
+
+msgid "Access not available:\nCheck HTTP authentication not is active in OpenWebIF on the receiver fallback or check data entered in settings."
+msgstr ""
+
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
@@ -4176,6 +4182,9 @@ msgstr ""
 msgid "Channels and EPG"
 msgstr ""
 
+msgid "Channels imported successfully from"
+msgstr ""
+
 msgid "Channels only"
 msgstr ""
 
@@ -5479,6 +5488,12 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+msgid "Date / Time"
+msgstr ""
+
+msgid "Date / Time format in standby"
+msgstr ""
+
 msgid "Date reverse"
 msgstr ""
 
@@ -6649,10 +6664,16 @@ msgstr ""
 msgid "EPG Cache Check"
 msgstr ""
 
+msgid "EPG cache does not exist in /etc/enigma2, /media/hdd or /media/usb from"
+msgstr ""
+
 msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG imported successfully from"
 msgstr ""
 
 msgid "EPG Navigation Actions"
@@ -7706,6 +7727,9 @@ msgid "Fahrenheit"
 msgstr ""
 
 msgid "Failed"
+msgstr ""
+
+msgid "Failed to download"
 msgstr ""
 
 msgid "Failed to write /tmp/positionersetup.log: "
@@ -13503,6 +13527,9 @@ msgstr ""
 msgid "REC"
 msgstr ""
 
+msgid "Read failled"
+msgstr ""
+
 msgid "REC "
 msgstr ""
 
@@ -15634,6 +15661,9 @@ msgstr ""
 msgid "Set the description of the recording."
 msgstr ""
 
+msgid "Set the Date/Time Format in standby."
+msgstr ""
+
 msgid "Set the jump-size of the seekbar."
 msgstr ""
 
@@ -15650,6 +15680,9 @@ msgid "Set the scrolling speed of text on the front display, this is used by sof
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
+msgstr ""
+
+msgid "Set the password of the fallback receiver in the setting \"OpenWebIF\" to download EPG."
 msgstr ""
 
 msgid "Set the time before checking video source for resolution information."

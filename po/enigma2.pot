@@ -1705,6 +1705,12 @@ msgstr ""
 msgid "About..."
 msgstr ""
 
+msgid "Access not available:\nCheck HTTP authentication not is active in OpenWebIF on the receiver fallback or check data entered in settings.\n"
+msgstr ""
+
+msgid "Access not available:\nCheck HTTP authentication not is active in OpenWebIF on the receiver fallback or check data entered in settings."
+msgstr ""
+
 msgid "Access point"
 msgstr ""
 
@@ -3731,6 +3737,9 @@ msgstr ""
 msgid "Channels and EPG"
 msgstr ""
 
+msgid "Channels imported successfully from"
+msgstr ""
+
 msgid "Channels only"
 msgstr ""
 
@@ -5141,6 +5150,9 @@ msgstr ""
 msgid "Date / Time"
 msgstr ""
 
+msgid "Date / Time format in standby"
+msgstr ""
+
 msgid "Date Time Input Actions"
 msgstr ""
 
@@ -6329,10 +6341,16 @@ msgstr ""
 msgid "EPG Cache Check"
 msgstr ""
 
+msgid "EPG cache does not exist in /etc/enigma2, /media/hdd or /media/usb from"
+msgstr ""
+
 msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG imported successfully from"
 msgstr ""
 
 msgid "EPG Jump"
@@ -7560,6 +7578,9 @@ msgid "Failed"
 msgstr ""
 
 msgid "Failed to write /tmp/positionersetup.log: "
+msgstr ""
+
+msgid "Failed to download"
 msgstr ""
 
 msgid "Failed:"
@@ -13448,6 +13469,9 @@ msgstr ""
 msgid "RC selected type"
 msgstr ""
 
+msgid "Read failled"
+msgstr ""
+
 msgid "REC"
 msgstr ""
 
@@ -15973,6 +15997,9 @@ msgstr ""
 msgid "Set the aspect ratio of the service picons."
 msgstr ""
 
+msgid "Set the Date/Time Format in standby."
+msgstr ""
+
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr ""
 
@@ -16013,6 +16040,9 @@ msgid "Set the scrolling speed of text on the front display, this is used by sof
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
+msgstr ""
+
+msgid "Set the password of the fallback receiver in the setting \"OpenWebIF\" to download EPG."
 msgstr ""
 
 msgid "Set the style of the channel list."

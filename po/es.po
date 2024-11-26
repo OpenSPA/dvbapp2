@@ -1902,6 +1902,12 @@ msgstr "Acerca de…"
 msgid "Access point"
 msgstr "Punto de acceso"
 
+msgid "Access not available:\nCheck HTTP authentication not is active in OpenWebIF on the receiver fallback or check data entered in settings.\n"
+msgstr "Acceso no disponible:\nVerifique que la autenticación HTTP no esté activa en OpenWebIF en el receptor reserva o verifique los datos ingresados ​​en la configuración.\n"
+
+msgid "Access not available:\nCheck HTTP authentication not is active in OpenWebIF on the receiver fallback or check data entered in settings."
+msgstr "Acceso no disponible:\nVerifique que la autenticación HTTP no esté activa en OpenWebIF en el receptor reserva o verifique los datos ingresados ​​en la configuración."
+
 #
 msgid "Access point:"
 msgstr "Punto de acceso:"
@@ -4208,6 +4214,9 @@ msgstr "Canal:"
 msgid "Channels and EPG"
 msgstr "Canales y EPG"
 
+msgid "Channels imported successfully from"
+msgstr "Canales importados con éxito desde"
+
 msgid "Channels only"
 msgstr "Solo Canales"
 
@@ -5907,7 +5916,7 @@ msgstr "Configurar"
 
 msgid "Customize OpenWebIF settings for fallback tuner"
 msgstr ""
-"Personalizar la configuración de OpenWebIF para el sintonizador de reserva"
+"Personalizar la configuración de OpenWebIF para el sintonizador reserva"
 
 msgid "Customize System Settings"
 msgstr "Personalizar"
@@ -6072,6 +6081,9 @@ msgstr "Fecha"
 
 msgid "Date / Time"
 msgstr "Fecha/Hora"
+
+msgid "Date / Time format in standby"
+msgstr "Formato Hora / Fecha en reposo"
 
 msgid "Date Time Input Actions"
 msgstr "Configuración de fecha/hora"
@@ -6682,16 +6694,16 @@ msgstr ""
 "inocuo, es posible que su %s %s experimente problemas."
 
 msgid "Destination of fallback remote receiver"
-msgstr "Destino del receptor remoto de reserva"
+msgstr "Destino del receptor reserva"
 
 msgid "Destination of fallback remote receiver for ATSC"
-msgstr "Destino del receptor remoto de reserva para ATSC"
+msgstr "Destino del receptor reserva para ATSC"
 
 msgid "Destination of fallback remote receiver for DVB-C"
-msgstr "Destino del receptor remoto de reserva para DVB-C"
+msgstr "Destino del receptor reserva para DVB-C"
 
 msgid "Destination of fallback remote receiver for DVB-T"
-msgstr "Destino del receptor remoto de reserva para DVB-T"
+msgstr "Destino del receptor reserva para DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr "Detalle del log GStreamer."
@@ -7455,11 +7467,17 @@ msgstr "Acciones EPG de la lista"
 msgid "EPG Cache Check"
 msgstr "Verificación de caché EPG"
 
+msgid "EPG cache does not exist in /etc/enigma2, /media/hdd or /media/usb from"
+msgstr "El caché EPG no existe en /etc/enigma2, /media/hdd o /media/usb desde"
+
 msgid "EPG Channel/Service Selection"
 msgstr "Selección de canales/servicios de la EPG"
 
 msgid "EPG Display Actions"
 msgstr "Acciones de visualización de la EPG"
+
+msgid "EPG imported successfully from"
+msgstr "EPG importada con éxito desde"
 
 msgid "EPG Jump"
 msgstr "Salto de EPG"
@@ -7826,7 +7844,7 @@ msgid "Enable freesat EPG"
 msgstr "Habilitar EPG Freesat"
 
 msgid "Enable import timer from fallback tuner"
-msgstr "Activar importación de temporizador del sintonizador de reserva"
+msgstr "Activar importación de temporizador del sintonizador reserva"
 
 msgid "Enable intro screen"
 msgstr "Habilitar pantalla de introducción"
@@ -8935,6 +8953,9 @@ msgstr "Fahrenheit"
 msgid "Failed"
 msgstr "Fallido"
 
+msgid "Failed to download"
+msgstr "Fallo al descargar"
+
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "No se pudo escribir /tmp/positionersetup.log: "
 
@@ -8956,25 +8977,25 @@ msgid "Fallback remote receiver"
 msgstr "Receptor remoto de reserva"
 
 msgid "Fallback remote receiver IP"
-msgstr "IP del receptor remoto de reserva"
+msgstr "IP del receptor reserva"
 
 msgid "Fallback remote receiver Port"
-msgstr "Puerto del receptor remoto de reserva"
+msgstr "Puerto del receptor reserva"
 
 msgid "Fallback remote receiver setup"
 msgstr "Ajustes del tuner reserva"
 
 msgid "Fallback remote receiver URL"
-msgstr "Receptor remoto reserva URL"
+msgstr "URL del receptor reserva"
 
 msgid "Fallback remote receiver for ATSC"
-msgstr "Receptor remoto de reserva para ATSC"
+msgstr "Receptor reserva para ATSC"
 
 msgid "Fallback remote receiver for DVB-C"
-msgstr "Receptor remoto de reserva para DVB-C"
+msgstr "Receptor reserva para DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
-msgstr "Receptor remoto de reserva para DVB-T"
+msgstr "Receptor reserva para DVB-T"
 
 msgid "Fallback Timer"
 msgstr "Temporizador de reserva"
@@ -10319,7 +10340,7 @@ msgstr ""
 "que sólo se pueden descodificar a través de Stream Relay."
 
 msgid "IP of fallback remote receiver"
-msgstr "IP del receptor remoto de reserva."
+msgstr "IP del receptor reserva"
 
 msgid "IPK Installer"
 msgstr "Instalador IPK"
@@ -10654,24 +10675,24 @@ msgid ""
 "Import channels and/or EPG from remote receiver URL also when the receiver "
 "is getting out of standby"
 msgstr ""
-"Importar canales y/o EPG de URL de receptor remoto incluso cuando el "
+"Importar canales y/o EPG de URL de receptor reserva incluso cuando el "
 "receptor se está sacando de reposo"
 
 msgid ""
 "Import channels and/or EPG from remote receiver URL when receiver is booted"
 msgstr ""
-"Importar canales y/o EPG de URL de receptor remoto cuando el receptor "
+"Importar canales y/o EPG de URL de receptor reserva cuando el receptor "
 "arranque"
 
 msgid ""
 "Import channels and/or EPG from remote receiver URL when receiver or enigma2 "
 "is restarted"
 msgstr ""
-"Importar canales y/o EPG de URL del receptor remoto cuando el receptor o "
+"Importar canales y/o EPG de URL del receptor reserva cuando el receptor o "
 "enigma2 se reinicien"
 
 msgid "Import from remote receiver URL"
-msgstr "Importar de la URL del receptor remoto de reserva"
+msgstr "Importar de la URL del receptor reserva"
 
 msgid "Import from fallback tuner failed, %s"
 msgstr "Importación del tuner reserva fallido, %s"
@@ -15038,7 +15059,7 @@ msgstr ""
 "servicios que sólo se pueden descodificar a través de Stream Relay."
 
 msgid "Port of fallback remote receiver"
-msgstr "Puerto del receptor remoto de reserva"
+msgstr "Puerto del receptor reserva"
 
 # Language
 msgid "Portugal"
@@ -15698,6 +15719,9 @@ msgstr "Nombre seleccionado de FB"
 
 msgid "RC selected type"
 msgstr "Tipo de FB seleccionado"
+
+msgid "Read failled"
+msgstr "Lectura fallida"
 
 #
 msgid "REC"
@@ -18541,7 +18565,7 @@ msgid "Select the time zone within the area or region."
 msgstr "Configura la zona horaria sin área o región."
 
 msgid "Select the timer from the fallback tuner by default"
-msgstr "Seleccionar el temporizador del sintonizador de reserva por defecto"
+msgstr "Seleccionar el temporizador del sintonizador reserva por defecto"
 
 #
 msgid "Select the tuner that controls the motorized dish."
@@ -19031,10 +19055,13 @@ msgid "Set the MAC address of your %s %s."
 msgstr "Configura la dirección MAC de tu %s %s."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
-msgstr "Configura el ID de usuario del OpenWebif de tu sintonizador de reserva"
+msgstr "Configura el ID de usuario del OpenWebif del sintonizador reserva"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Establece la relación de aspecto de los picons de canales."
+
+msgid "Set the Date/Time Format in standby."
+msgstr "Establezca el formato hora y fecha en reposo."
 
 msgid ""
 "Set the default location for your instant recordings. Press 'OK' to add new "
@@ -19089,10 +19116,10 @@ msgstr ""
 "'sterr' de los scripts."
 
 msgid "Set the password of the OpenWebif from your fallback tuner"
-msgstr "Configura la contraseña del OpenWebif de tu sintonizador de reserva"
+msgstr "Configura la contraseña del OpenWebif del sintonizador reserva"
 
 msgid "Set the port of the OpenWebif from your fallback tuner"
-msgstr "Configura el puerto del OpenWebif de tu sintonizador de reserva"
+msgstr "Configura el puerto del OpenWebif del sintonizador reserva"
 
 msgid "Set the position of the recording icons."
 msgstr "Establezca la posición de los iconos de grabación."
@@ -19115,6 +19142,9 @@ msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Configura la velocidad de desplazamiento de texto en el LCD."
+
+msgid "Set the password of the fallback receiver in the setting \"OpenWebIF\" to download EPG."
+msgstr "Establezca la contraseña del receptor reserva en el ajuste \"OpenWebIF\" para descargar EPG."
 
 msgid "Set the style of the channel list."
 msgstr "Establece el estilo de la lista de canales."
@@ -23723,10 +23753,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "URL of fallback remote receiver"
-msgstr "URL del receptor remoto de reserva"
-
-msgid "URL of fallback remote receiver."
-msgstr "URL del receptor remoto de reserva."
+msgstr "URL del receptor reserva"
 
 #
 msgid "USALS"
