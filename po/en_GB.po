@@ -6621,9 +6621,6 @@ msgstr ""
 msgid "EPG Cache Check"
 msgstr "EPG Cache Check"
 
-msgid "EPG cache does not exist in /etc/enigma2, /media/hdd or /media/usb from"
-msgstr ""
-
 msgid "EPG Channel/Service Selection"
 msgstr ""
 
@@ -9551,6 +9548,9 @@ msgid "Include teletext details"
 msgstr ""
 
 msgid "Include timer data"
+msgstr ""
+
+msgid "Incorrect password: Change the password in the OpenWebIF setting in the reserve tuner settings.\nYou must enter the password of the reserve receiver."
 msgstr ""
 
 msgid "Incorrect type service for PiP!"

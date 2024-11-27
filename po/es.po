@@ -7473,9 +7473,6 @@ msgstr "Acciones EPG de la lista"
 msgid "EPG Cache Check"
 msgstr "Verificación de caché EPG"
 
-msgid "EPG cache does not exist in /etc/enigma2, /media/hdd or /media/usb from"
-msgstr "El caché EPG no existe en /etc/enigma2, /media/hdd o /media/usb desde"
-
 msgid "EPG Channel/Service Selection"
 msgstr "Selección de canales/servicios de la EPG"
 
@@ -10833,6 +10830,9 @@ msgstr "Incluir detalles del teletexto"
 
 msgid "Include timer data"
 msgstr "Incluir los datos del temporizador"
+
+msgid "Incorrect password: Change the password in the OpenWebIF setting in the reserve tuner settings.\nYou must enter the password of the reserve receiver."
+msgstr "Contraseña incorrecta: Cambie la contraseña en el ajuste OpenWebIF en la configuración del tuner reserva.\nDebe ingresar la contraseña del receptor reserva."
 
 msgid "Incorrect type service for PiP!"
 msgstr "Servicio de tipo incorrecto para PiP!"
