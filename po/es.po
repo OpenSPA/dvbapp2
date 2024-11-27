@@ -1421,6 +1421,9 @@ msgstr ""
 "1. Establezca como canal de inicio en reposo este canal.\n"
 "2. Ponga el receptor en standby, la grabación entonces comenzará.\n"
 
+msgid "1. Tune to an imported channel with at least EPG EIT.\n2. Restart enigma2.\n3. Now try to download EPG cache from the reserve receiver."
+msgstr "1. Sintonice un canal importado con al menos EPG EIT.\n2. Reinicie Enigma2.\n3. Ahora intente descargar la caché EPG del receptor reserva."
+
 #
 msgid "1.0"
 msgstr "1.0"
@@ -4075,8 +4078,8 @@ msgstr "Cambiar interfaz"
 msgid "Change step size"
 msgstr "Cambiar tamaño del salto"
 
-msgid "Change the cache directory to Internal Flash in EPG Settings of the reserve receiver."
-msgstr "Cambie el directorio de caché a Flash interna en Ajustes de EPG del receptor de reserva."
+msgid "Change the cache directory to Internal Flash in EPG Settings on both receivers."
+msgstr "Cambie el directorio de caché a Flash interna en Ajustes de EPG en ambos receptores."
 
 msgid "Change to bouquet"
 msgstr "Cambiar a grupo"

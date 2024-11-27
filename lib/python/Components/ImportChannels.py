@@ -94,7 +94,10 @@ class ImportChannels():
 		if result:
 			self.checkEPGCallback()
 		else:
-			self.ImportChannelsNotDone(True, _("Change the cache directory to Internal Flash in EPG Settings of the reserve receiver."))
+			if not exists(self.DIR_ENIGMA2 + "epg.dat") and not exists(self.DIR_HDD + "epg.dat") and not exists(self.DIR_USB + "epg.dat"):
+				self.ImportChannelsNotDone(True, _("1. Tune to an imported channel with at least EPG EIT.\n2. Restart enigma2.\n3. Now try to download EPG cache from the reserve receiver."))
+			else:
+				self.ImportChannelsNotDone(True, _("Change the cache directory to Internal Flash in EPG Settings on both receivers."))
 
 	def forceSaveEPGonRemoteReceiver(self):
 		url = f"{self.url}/api/saveepg"

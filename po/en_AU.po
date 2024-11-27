@@ -1348,6 +1348,9 @@ msgstr ""
 msgid "1.2"
 msgstr ""
 
+msgid "1. Tune to an imported channel with at least EPG EIT.\n2. Restart enigma2.\n3. Now try to download EPG cache from the reserve receiver."
+msgstr ""
+
 msgid "10bit"
 msgstr ""
 
@@ -3731,7 +3734,7 @@ msgstr ""
 msgid "Change step size"
 msgstr ""
 
-msgid "Change the cache directory to Internal Flash in EPG Settings of the reserve receiver."
+msgid "Change the cache directory to Internal Flash in EPG Settings on both receivers."
 msgstr ""
 
 msgid "Change to Radio services mode"
