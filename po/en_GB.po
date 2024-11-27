@@ -3730,6 +3730,9 @@ msgstr ""
 msgid "Change step size"
 msgstr "Change step size"
 
+msgid "Change the cache directory to Internal Flash in EPG Settings of the reserve receiver."
+msgstr ""
+
 msgid "Change to Radio services mode"
 msgstr ""
 
@@ -16742,9 +16745,6 @@ msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Set the scrolling speed of text on the front display."
-
-msgid "Set the password of the fallback receiver in the setting \"OpenWebIF\" to download EPG."
-msgstr ""
 
 msgid "Set the style of the channel list."
 msgstr ""

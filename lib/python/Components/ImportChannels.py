@@ -94,7 +94,7 @@ class ImportChannels():
 		if result:
 			self.checkEPGCallback()
 		else:
-			self.ImportChannelsNotDone(True, _("Set the password of the fallback receiver in the setting \"OpenWebIF\" to download EPG."))
+			self.ImportChannelsNotDone(True, _("Change the cache directory to Internal Flash in EPG Settings of the reserve receiver."))
 
 	def forceSaveEPGonRemoteReceiver(self):
 		url = f"{self.url}/api/saveepg"

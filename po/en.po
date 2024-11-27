@@ -4071,6 +4071,9 @@ msgstr ""
 msgid "Change step size"
 msgstr ""
 
+msgid "Change the cache directory to Internal Flash in EPG Settings of the reserve receiver."
+msgstr ""
+
 msgid "Change to bouquet"
 msgstr ""
 
@@ -15680,9 +15683,6 @@ msgid "Set the scrolling speed of text on the front display, this is used by sof
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
-msgstr ""
-
-msgid "Set the password of the fallback receiver in the setting \"OpenWebIF\" to download EPG."
 msgstr ""
 
 msgid "Set the time before checking video source for resolution information."

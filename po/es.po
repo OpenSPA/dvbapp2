@@ -4075,6 +4075,9 @@ msgstr "Cambiar interfaz"
 msgid "Change step size"
 msgstr "Cambiar tamaño del salto"
 
+msgid "Change the cache directory to Internal Flash in EPG Settings of the reserve receiver."
+msgstr "Cambie el directorio de caché a Flash interna en Ajustes de EPG del receptor de reserva."
+
 msgid "Change to bouquet"
 msgstr "Cambiar a grupo"
 
@@ -19142,9 +19145,6 @@ msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Configura la velocidad de desplazamiento de texto en el LCD."
-
-msgid "Set the password of the fallback receiver in the setting \"OpenWebIF\" to download EPG."
-msgstr "Establezca la contraseña del receptor reserva en el ajuste \"OpenWebIF\" para descargar EPG."
 
 msgid "Set the style of the channel list."
 msgstr "Establece el estilo de la lista de canales."
