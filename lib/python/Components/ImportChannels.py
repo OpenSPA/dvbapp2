@@ -137,7 +137,6 @@ class ImportChannels():
 			if "Login incorrect" in str(err):
 				self.ImportChannelsNotDone(True, _("Incorrect password: Change the password in the OpenWebIF setting in the reserve tuner settings.\nYou must enter the password of the reserve receiver."))
 				login = False
-				return False
 			return False
 
 	def removeFiles(self, targetdir, target):
