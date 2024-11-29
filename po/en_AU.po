@@ -6968,6 +6968,9 @@ msgstr ""
 msgid "Enable intro screen"
 msgstr ""
 
+msgid "Enable manual URL typing"
+msgstr ""
+
 msgid "Enable multiple bouquets"
 msgstr ""
 
@@ -7059,6 +7062,9 @@ msgid "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr ""
 
 msgid "Enabled"
+msgstr ""
+
+msgid "Enabled you can manually enter the data for the booking receiver URL."
 msgstr ""
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."

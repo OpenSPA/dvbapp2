@@ -206,8 +206,8 @@ def InitUsageConfig():
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 	############# OPENSPA [morser] Add picons for service quality ############################
 	config.usage.quality_icon_mode = ConfigSelection(default = "0", choices = [
-		("0", _("None")), 
-		("1", _("Left from servicename")), 
+		("0", _("None")),
+		("1", _("Left from servicename")),
 		("2", _("Right from servicename"))])
 	config.usage.quality_icon_mode.addNotifier(refreshServiceList)
 	config.usage.quality_SDicon = ConfigYesNo(default = False)
@@ -687,6 +687,7 @@ def InitUsageConfig():
 	config.usage.remote_fallback_nok = ConfigYesNo(default=False)
 	config.usage.remote_fallback_extension_menu = ConfigYesNo(default=False)
 	config.usage.remote_fallback_external_timer = ConfigYesNo(default=False)
+	config.usage.remote_fallback_write_url_manual = ConfigYesNo(default=False)
 	config.usage.remote_fallback_external_timer_default = ConfigYesNo(default=True)
 	config.usage.remote_fallback_openwebif_customize = ConfigYesNo(default=False)
 	config.usage.remote_fallback_openwebif_userid = ConfigText(default="root")
@@ -2080,10 +2081,10 @@ def InitUsageConfig():
 	config.usage.yellowlong = ConfigSelection(default="audioset", choices=choices)
 	config.usage.greenlong = ConfigSelection(default="resolution", choices=choices)
 	config.usage.oklong = ConfigSelection(default="infobarepg", choices=choices)
-	
+
 
 	#####################################################
-	
+
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices=[
 		("0", _("Time")),
