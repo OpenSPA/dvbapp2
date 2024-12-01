@@ -8182,6 +8182,9 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr "Introduce el pin del canal"
 
+msgid "Enter URL"
+msgstr "Ingresar URL"
+
 msgid ""
 "Enter your current latitude. This is the number of degrees you are from the "
 "equator as a decimal."
@@ -23285,8 +23288,8 @@ msgstr ""
 "Para restaurar la imagen, use la opción Flash Online del Administrador de "
 "software."
 
-msgid "To view and sort channels with YELLOW button:\nYou can install AutoBouquetsMaker.\nDo you want to install it now?"
-msgstr "Para ver y clasificar canales con botón AMARILLO:\nPuedes instalar AutoBouquetsMaker.\n¿Quieres instalarlo ahora?"
+msgid "To add extras you need to install AutoBouquetsMaker.\nIf you press \"Yes\" please wait.\nDo you want to install it now?"
+msgstr "Para añadir extras necesitas instalar AutoBouquetsMaker.\nSi pulsa \"Sí\" por favor espera.\n¿Quieres instalarlo ahora?"
 
 #, python-format
 msgid "To where would you like to extract '%s'?"

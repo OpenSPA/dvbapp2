@@ -7239,7 +7239,10 @@ msgid "Enter the number stored in the positioner that corresponds to this satell
 msgstr ""
 
 msgid "Enter the service pin"
-msgstr "Enter the service pin"
+msgstr ""
+
+msgid "Enter URL"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
@@ -20242,7 +20245,7 @@ msgstr ""
 msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
 msgstr ""
 
-msgid "To view and sort channels with YELLOW button:\nYou can install AutoBouquetsMaker.\nDo you want to install it now?"
+msgid "To add extras you need to install AutoBouquetsMaker.\nIf you press \"Yes\" please wait.\nDo you want to install it now?"
 msgstr ""
 
 #, python-format

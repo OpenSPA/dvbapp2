@@ -840,7 +840,7 @@ def SatfinderMain(session, close=None, **kwargs):
 		if dvbreader_available or isPluginInstalled("AutoBouquetsMaker"):
 			session.openWithCallback(boundFunction(SatfinderCallback, close), SatfinderExtra)
 		else:
-			session.openWithCallback(InstallAutoBouquetsMaker, MessageBox, _("To view and sort channels with YELLOW button:\nYou can install AutoBouquetsMaker.\nDo you want to install it now?"), type=MessageBox.TYPE_YESNO, simple=True)
+			session.openWithCallback(InstallAutoBouquetsMaker, MessageBox, _("To add extras you need to install AutoBouquetsMaker.\nIf you press \"Yes\" please wait.\nDo you want to install it now?"), type=MessageBox.TYPE_YESNO, simple=True)
 
 
 
