@@ -69,7 +69,7 @@ class SetupFallbacktuner(Setup):
 				return
 		if self.avahiselect.value == "ip":
 			config.usage.remote_fallback.value = "http://%d.%d.%d.%d:%d" % (tuple(self.ip.value) + (self.port.value,))
-		elif self.avahiselect.value != "url" and not config.usage.remote_fallback_write_url_manual.value:
+		elif self.avahiselect.value != "url":
 			config.usage.remote_fallback.value = self.avahiselect.value
 		if self.avahiselect_seperate.value == "ip":
 			config.usage.remote_fallback_import_url.value = "http://%d.%d.%d.%d:%d" % (tuple(self.ip_seperate.value) + (self.port_seperate.value,))
@@ -112,7 +112,6 @@ class SetupFallbacktuner(Setup):
 		config.usage.remote_fallback.save()
 		config.usage.remote_fallback_external_timer.save()
 		config.usage.remote_fallback_external_timer_default.save()
-		config.usage.remote_fallback_write_url_manual.save()
 		config.usage.remote_fallback_openwebif_customize.save()
 		config.usage.remote_fallback_openwebif_userid.save()
 		config.usage.remote_fallback_openwebif_password.save()

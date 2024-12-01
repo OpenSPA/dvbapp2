@@ -687,7 +687,6 @@ def InitUsageConfig():
 	config.usage.remote_fallback_nok = ConfigYesNo(default=False)
 	config.usage.remote_fallback_extension_menu = ConfigYesNo(default=False)
 	config.usage.remote_fallback_external_timer = ConfigYesNo(default=False)
-	config.usage.remote_fallback_write_url_manual = ConfigYesNo(default=False)
 	config.usage.remote_fallback_external_timer_default = ConfigYesNo(default=True)
 	config.usage.remote_fallback_openwebif_customize = ConfigYesNo(default=False)
 	config.usage.remote_fallback_openwebif_userid = ConfigText(default="root")
