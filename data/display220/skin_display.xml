@@ -114,8 +114,8 @@
   </screen>
   <screen name="SetupSummary" position="0,0" size="220,176">
     <widget source="Title" render="Label" position="0,0" size="220,28" font="VFD; 32" halign="center" foregroundColor="azul" noWrap="1" />
-    <widget source="entry" render="Label" position="0,29" size="220,59" font="VFD; 30" transparent="1" valign="center" />
-    <widget source="value" render="Label" position="1,88" size="219,41" font="VFD; 30" transparent="1" valign="center" />
+    <widget source="SetupEntry" render="Label" position="0,29" size="220,59" font="VFD; 30" transparent="1" valign="center" />
+    <widget source="SetupValue" render="Label" position="1,88" size="219,41" font="VFD; 30" transparent="1" valign="center" />
     <panel name="RelojAbajo" />
   </screen>
 <!--<screen name="StandbySummary" position="0,0" size="220,176">
