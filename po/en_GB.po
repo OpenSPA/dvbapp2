@@ -2676,6 +2676,9 @@ msgstr ""
 msgid "AutoFS"
 msgstr ""
 
+msgid "AutoIns:"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr ""
 
@@ -14117,6 +14120,9 @@ msgstr "Really restart now?"
 msgid "Really shutdown now?"
 msgstr "Really shutdown now?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr ""
 
@@ -19596,6 +19602,9 @@ msgid ""
 "due to an error in StartEnigma.py"
 msgstr ""
 
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
@@ -21512,6 +21521,9 @@ msgstr ""
 
 msgid "View"
 msgstr "View"
+
+msgid "View All"
+msgstr ""
 
 msgid "View File"
 msgstr ""

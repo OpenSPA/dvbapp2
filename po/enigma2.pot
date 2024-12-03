@@ -2592,6 +2592,9 @@ msgstr ""
 msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"
 msgstr ""
 
+msgid "AutoIns:"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr ""
 
@@ -13585,6 +13588,9 @@ msgstr ""
 msgid "Really shutdown now?"
 msgstr ""
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr ""
 
@@ -18769,6 +18775,9 @@ msgid "The user interface of your %s %s is restarting\n"
 "due to an error in StartEnigma.py"
 msgstr ""
 
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr ""
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
@@ -20607,6 +20616,9 @@ msgid "Vietnamese"
 msgstr ""
 
 msgid "View"
+msgstr ""
+
+msgid "View All"
 msgstr ""
 
 msgid "View File"

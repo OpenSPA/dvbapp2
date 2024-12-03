@@ -2941,6 +2941,9 @@ msgstr "Auto (no disponible)"
 msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"
 msgstr "AutoBoquetsMaker se instaló correctamente.\nEs necesario reiniciar enigma2 para aplicar los cambios.\n¿Quiere hacerlo ahora?"
 
+msgid "AutoIns:"
+msgstr "AutoInstalar:"
+
 #
 msgid "AutoMountManager"
 msgstr "Administrador de automontaje"
@@ -15848,6 +15851,9 @@ msgstr "¿Seguro que quiere reiniciar ahora?"
 msgid "Really shutdown now?"
 msgstr "¿Seguro que quiere apagar ahora?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr "¿Quiere iniciar Kodi y detener la interfaz de usuario ahora?"
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "¿Seguro que quiere actualizar el panel frontal y reiniciar ahora?"
 
@@ -22335,6 +22341,9 @@ msgid ""
 msgstr ""
 "La interfaz de usuario de su %s %s se está reiniciando\n"
 "debido a un error en StartEnigma.py"
+
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "La interfaz de usuario de su %s %s se detendrá para ejecutar Kodi"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "El ancho de la imagen. La entrada se escalará para igualar este valor."
@@ -29299,6 +29308,9 @@ msgstr "Actualizar Plugins"
 
 msgid "Update the selected list of plugins"
 msgstr "Actualizar la lista de plugins seleccionada"
+
+msgid "View All"
+msgstr "Ver todo"
 
 msgid "View as grid"
 msgstr "Estilo cuadrícula"
