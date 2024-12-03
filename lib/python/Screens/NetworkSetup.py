@@ -701,7 +701,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 				havewol = True
 			if BoxInfo.getItem("machinebuild") in ("et10000", "vuultimo4k", "vuduo4kse") and self.iface == "eth0":
 				havewol = False
-			if havewol and self.onlyWakeOnWiFi is not True:
+			if havewol and "eth" in self.iface:
 				self.list.append(getConfigListEntry(_("Enable Wake On LAN"), config.network.wol))
 			self.extended = None
 			self.configStrings = None
