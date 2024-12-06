@@ -2942,7 +2942,7 @@ msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart 
 msgstr "AutoBoquetsMaker se instaló correctamente.\nEs necesario reiniciar enigma2 para aplicar los cambios.\n¿Quiere hacerlo ahora?"
 
 msgid "AutoIns:"
-msgstr "AutoInstalar:"
+msgstr "AutoInstalación:"
 
 #
 msgid "AutoMountManager"
@@ -11146,6 +11146,9 @@ msgstr "Internet"
 
 msgid "Interval between keys when repeating:"
 msgstr "Intervalo entre teclas durante la repetición:"
+
+msgid "Installed in adapter: "
+msgstr "Instalado en el adaptador: "
 
 msgid "Inuktitut"
 msgstr "Inuktitut"

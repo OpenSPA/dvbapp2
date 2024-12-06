@@ -9741,6 +9741,9 @@ msgstr "Installation finished."
 msgid "Installed"
 msgstr ""
 
+msgid "Installed in adapter: "
+msgstr ""
+
 msgid "Installing"
 msgstr "Installing"
 
