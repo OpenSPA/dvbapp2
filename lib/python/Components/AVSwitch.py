@@ -730,9 +730,7 @@ def InitAVSwitch():
 				("multichannel", _("Convert to multi-channel PCM")),
 				("force_ac3", _("Convert to AC3")),
 				("force_dts", _("Convert to DTS")),
-				("use_hdmi_cacenter", _("Use best / Controlled by HDMI")),
-				("wide", _("Wide")),
-				("extrawide", _("Extra wide"))
+				("use_hdmi_caps", _("Use best / Controlled by HDMI"))
 			])
 		else:
 			config.av.downmix_aac = ConfigYesNo(default=True)
@@ -749,10 +747,7 @@ def InitAVSwitch():
 			("passthrough", _("Pass-through")),
 			("multichannel", _("Convert to multi-channel PCM")),
 			("force_ac3", _("Convert to AC3")),
-			("force_dts", _("Convert to DTS")),
-			("use_hdmi_cacenter", _("Use best / Controlled by HDMI")),
-			("wide", _("Wide")),
-			("extrawide", _("Extra wide"))
+			("force_dts", _("Convert to DTS"))
 		])
 		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
 	if exists("/proc/stb/audio/aac_transcode_choices"):
@@ -1013,8 +1008,8 @@ class AVSwitchBase:
 		if len(modes) < 2:
 			self.modes_preferred = self.readAvailableModes()
 			print(f"[AVSwitch] Used default modes: {self.modes_preferred}.")
-		if len(self.modes_preferred) <= 2:
-			print(f"[AVSwitch] Preferend modes not okay, possible driver failer, length={len(self.modes_preferred)}.")
+		else:  # OenSPA [norhap] In automatic mode detect all available modes.
+			print(f"[AVSwitch] Used default available modes: {self.modes_preferred}.")
 			self.modes_preferred = self.readAvailableModes()
 		if readOnly:
 			return self.modes_preferred

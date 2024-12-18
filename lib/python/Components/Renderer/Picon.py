@@ -6,7 +6,7 @@ from enigma import ePixmap  # , ePicLoad
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename
+from Tools.Directories import pathExists, SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
 from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from Components.config import config, ConfigText, ConfigYesNo
@@ -26,7 +26,7 @@ def initPiconPaths():
 	for mp in ("/usr/share/enigma2/", "/", path):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
-		if not part.mountpoint.startswith("/media/hdd") or config.misc.picon_search_hdd.value == True: 
+		if not part.mountpoint.startswith("/media/hdd") or config.misc.picon_search_hdd.value == True:
 			onMountpointAdded(part.mountpoint)
 
 def onMountpointAdded(mountpoint):
@@ -120,15 +120,9 @@ def getPiconName(serviceName):
 		fields[2] = "1"  # Fallback to 1 for services with different service types
 		pngname = findPicon("_".join(fields))
 	if not pngname:
-		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
-		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
-		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").replace(_("(TV)"),"").replace(_("(Radio)"),"").replace("remote","").lower())
-		if name:
-			pngname = findPicon(name)
-			if not pngname:
-				name = sub("(fhd|uhd|hd|sd|4k)$", "", name)
-				if name:
-					pngname = findPicon(name)
+		if (sName := ServiceReference(serviceName).getServiceName()) and "SID 0x" not in sName and (utf8Name := sanitizeFilename(sName).lower()) and utf8Name != "__":  # avoid lookups on zero length service names
+			legacyName = sub("[^a-z0-9]", "", utf8Name.replace("&", "and").replace("+", "plus").replace("*", "star").replace(_("(TV)"), "").replace(_("(Radio)"), "").replace("remote", "").lower())  # legacy ascii service name picons
+			pngname = findPicon(utf8Name) or legacyName and findPicon(legacyName) or findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8Name).strip()) or legacyName and findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", legacyName).strip())
 	return pngname
 
 

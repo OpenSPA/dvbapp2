@@ -9,7 +9,7 @@ from subprocess import PIPE, Popen
 from time import localtime, strftime, strptime
 from urllib.request import urlopen
 
-from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from skin import parameters
@@ -18,7 +18,7 @@ from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
 from Components.Console import Console
 from Components.Harddisk import Harddisk, harddiskmanager
-from Components.InputDevice import REMOTE_DISPLAY_NAME, REMOTE_NAME, REMOTE_RCTYPE, remoteControl
+from Components.InputDevice import remoteControl
 from Components.Label import Label
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
@@ -1403,13 +1403,13 @@ class ReceiverInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		rcIndex = int(config.inputDevices.remotesIndex.value)
-		info.append(formatLine("P1", _("RC identification"), f"{remoteControl.remotes[rcIndex][REMOTE_DISPLAY_NAME]}  (Index: {rcIndex})"))
-		rcName = remoteControl.remotes[rcIndex][REMOTE_NAME]
+		info.append(formatLine("P1", _("RC identification"), f"{remoteControl.remotes[rcIndex][remoteControl.REMOTE_DISPLAY_NAME]}  (Index: {rcIndex})"))
+		rcName = remoteControl.remotes[rcIndex][remoteControl.REMOTE_NAME]
 		info.append(formatLine("P1", _("RC selected name"), rcName))
 		boxName = BoxInfo.getItem("rcname")
 		if boxName != rcName:
 			info.append(formatLine("P1", _("RC default name"), boxName))
-		rcType = remoteControl.remotes[rcIndex][REMOTE_RCTYPE]
+		rcType = remoteControl.remotes[rcIndex][remoteControl.REMOTE_RCTYPE]
 		info.append(formatLine("P1", _("RC selected type"), rcType))
 		boxType = BoxInfo.getItem("rctype")
 		if boxType != rcType:
@@ -1499,8 +1499,8 @@ class ReceiverInformation(InformationBase):
 		if hddList:
 			for hdd in hddList:
 				hdd = hdd[1]
-				capacity = hdd.diskSize() * 1000000
-				info.append(formatLine("P1", hdd.model(), f"{scaleNumber(capacity)}  ({scaleNumber(capacity, 'Iec')})"))
+				diskSize = hdd.diskSize() * 1000000
+				info.append(formatLine("P1", hdd.model(), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 		else:
 			info.append(formatLine("H", _("No hard disks detected.")))
 		info.append("")
@@ -1944,8 +1944,8 @@ class StorageInformation(InformationBase):
 				diskSize = stat.f_blocks * stat.f_frsize
 				diskFree = stat.f_bfree * stat.f_frsize
 				diskUsed = diskSize - diskFree
-				info.append(formatLine("P2", _("Mountpoint"), partition.mountpoint))
-				info.append(formatLine("P2", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+				info.append(formatLine("P2", _("Mount"), partition.mountpoint))
+				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 				info.append(formatLine("P2", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
 				info.append(formatLine("P2", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
 				break
@@ -1958,7 +1958,7 @@ class StorageInformation(InformationBase):
 				info.append(formatLine("S1", hdd.getDeviceName(), hdd.bus()))
 				info.append(formatLine("P2", _("Model"), hdd.model()))
 				diskSize = hdd.diskSize() * 1000000
-				info.append(formatLine("P2", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 				info.append(formatLine("P2", _("Sleeping"), (_("Yes") if hdd.isSleeping() else _("No"))))
 				for partition in partitions:
 					if partition.device and join("/dev", partition.device).startswith(hdd.getDeviceName()):
@@ -1967,8 +1967,8 @@ class StorageInformation(InformationBase):
 						diskSize = stat.f_blocks * stat.f_frsize
 						diskFree = stat.f_bfree * stat.f_frsize
 						diskUsed = diskSize - diskFree
-						info.append(formatLine("P3", _("Mountpoint"), partition.mountpoint))
-						info.append(formatLine("P3", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+						info.append(formatLine("P3", _("Mount"), partition.mountpoint))
+						info.append(formatLine("P3", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 						info.append(formatLine("P3", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
 						info.append(formatLine("P3", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
 		else:
@@ -1985,7 +1985,7 @@ class StorageInformation(InformationBase):
 				info.append(formatLine("S1", data[5]))
 				if data[0]:
 					info.append(formatLine("P2", _("Network address"), data[0]))
-					info.append(formatLine("P2", _("Capacity"), data[1]))
+					info.append(formatLine("P2", _("Size"), data[1]))
 					info.append(formatLine("P2", _("Used"), f"{data[2]}  ({data[4]})"))
 					info.append(formatLine("P2", _("Free"), data[3]))
 				else:
@@ -2079,8 +2079,10 @@ class SystemInformation(InformationBase):
 			("Mounted Volumes", ("/bin/mount", "/bin/mount"), None),
 			("Partition Table", None, "/proc/partitions")
 		]
-		if BoxInfo.getItem("HAVEEDIDDECODE"):
-			self.systemCommands.append(("EDID", ("/usr/bin/edid-decode", "/usr/bin/edid-decode", "/proc/stb/hdmi/raw_edid"), None))
+
+		edidPath = eAVControl.getInstance().getEDIDPath()
+		if edidPath:
+			self.systemCommands.append(("EDID", ("/usr/bin/edid-decode", "/usr/bin/edid-decode", edidPath), None))
 		self.systemCommandsIndex = 0
 		self.systemCommandsMax = len(self.systemCommands)
 		self.info = None

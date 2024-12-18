@@ -8,7 +8,6 @@ from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
-from Tools.HardwareInfo import HardwareInfo
 from Tools.Transponder import getChannelNumber, channel2frequency, supportedChannels
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
@@ -325,7 +324,7 @@ class CableTransponderSearchSupport:
 		except:
 			# older API
 			if nim_idx < 2:
-				if HardwareInfo().get_device_name() == "dm500hd":
+				if BoxInfo.getItem("model") == "dm500hd":
 					bus = 2
 				else:
 					bus = nim_idx
@@ -653,7 +652,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
-		self["header"] = Label(_("Manual Scan"))
 		if not self.scan_nims.value == "":
 			self.createSetup()
 			self["introduction"] = Label(_("Press OK to start the scan"))

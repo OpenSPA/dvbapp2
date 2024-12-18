@@ -9,7 +9,7 @@ from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIG
 
 from keyids import KEYIDS
 from skin import getcomponentTemplateNames, parameters, domScreens
-from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSequence, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
+from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSequence, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NimManager import nimmanager
@@ -158,7 +158,7 @@ def InitUsageConfig():
 			choices.append((dns.get("key"), _(dns.get("title"))))
 
 	config.usage.dns = ConfigSelection(default="dhcp-router", choices=choices)
-	config.usage.dnsMode = ConfigSelection(default=0, choices=[
+	config.usage.dnsMode = ConfigSelection(default=2, choices=[
 		(0, _("Prefer IPv4")),
 		(1, _("Prefer IPv6")),
 		(2, _("IPv4 only")),
@@ -206,8 +206,8 @@ def InitUsageConfig():
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 	############# OPENSPA [morser] Add picons for service quality ############################
 	config.usage.quality_icon_mode = ConfigSelection(default = "0", choices = [
-		("0", _("None")), 
-		("1", _("Left from servicename")), 
+		("0", _("None")),
+		("1", _("Left from servicename")),
 		("2", _("Right from servicename"))])
 	config.usage.quality_icon_mode.addNotifier(refreshServiceList)
 	config.usage.quality_SDicon = ConfigYesNo(default = False)
@@ -690,7 +690,7 @@ def InitUsageConfig():
 	config.usage.remote_fallback_external_timer_default = ConfigYesNo(default=True)
 	config.usage.remote_fallback_openwebif_customize = ConfigYesNo(default=False)
 	config.usage.remote_fallback_openwebif_userid = ConfigText(default="root")
-	config.usage.remote_fallback_openwebif_password = ConfigPassword(default="default")
+	config.usage.remote_fallback_openwebif_password = ConfigPassword(default="openspa")
 	config.usage.remote_fallback_openwebif_port = ConfigInteger(default=80, limits=(0, 65535))
 	config.usage.remote_fallback_dvbt_region = ConfigText(default="fallback DVB-T/T2 Europe")
 
@@ -2080,10 +2080,10 @@ def InitUsageConfig():
 	config.usage.yellowlong = ConfigSelection(default="audioset", choices=choices)
 	config.usage.greenlong = ConfigSelection(default="resolution", choices=choices)
 	config.usage.oklong = ConfigSelection(default="infobarepg", choices=choices)
-	
+
 
 	#####################################################
-	
+
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices=[
 		("0", _("Time")),
@@ -2279,8 +2279,10 @@ def InitUsageConfig():
 	config.oscaminfo.autoupdate = ConfigYesNo(default=False)
 	config.oscaminfo.username = ConfigText(default="username", fixed_size=False, visible_width=12)
 	config.oscaminfo.password = ConfigPassword(default="password", fixed_size=False)
-	config.oscaminfo.ip = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
-	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0, 65536))
+	config.oscaminfo.ip = ConfigText(default="127.0.0.1", fixed_size=False)
+	config.oscaminfo.port = ConfigInteger(default=83, limits=(0, 65536))
+	config.oscaminfo.usessl = ConfigYesNo(default=False)
+	config.oscaminfo.verifycert = ConfigYesNo(default=False)
 	choiceList = [
 		(0, _("Disabled"))
 	] + [(x, ngettext("%d Second", "%d Seconds", x) % x) for x in (2, 5, 10, 20, 30)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 3)]
@@ -2412,6 +2414,7 @@ def InitUsageConfig():
 		defaultPath = config.usage.timeshift_path.value
 		config.usage.timeshift_path.value = config.usage.timeshift_path.default
 		config.usage.timeshift_path.save()
+		configfile.save()  # This needs to be done once here to reset the legacy value.
 	config.timeshift.path = ConfigSelection(default=defaultPath, choices=[(defaultPath, defaultPath)])
 	config.timeshift.path.load()
 	savedPath = config.timeshift.path.saved_value
@@ -2442,6 +2445,15 @@ def InitUsageConfig():
 		eSettings.setTimeshiftPath(configElement.value)
 
 	config.timeshift.path.addNotifier(setTimeshiftPath)
+
+	config.timeshift.recordingPath = ConfigSelection(default="<default>", choices=choiceList)
+	config.timeshift.recordingPath.load()
+	if config.timeshift.recordingPath.saved_value:
+		savedValue = config.timeshift.recordingPath.saved_value if config.timeshift.recordingPath.saved_value.startswith("<") else pathjoin(config.timeshift.recordingPath.saved_value, "")
+		if savedValue and savedValue not in choiceList:
+			config.timeshift.recordingPath.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
+			config.timeshift.recordingPath.value = savedValue
+	config.timeshift.recordingPath.save()
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):

@@ -433,51 +433,42 @@ def InitLcd():
 		# 8 digit
 		if MACHINEBUILD in ('formuler1', 'osminiplus'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M", choices = [
-				("OFF","Off"),
-				("%H:%M",str(ntime.strftime(_("%H:%M")))),
-				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
-				("A%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
-				("A%H:%M %d %b",str(ntime.strftime(_("%H:%M <A> %d %b")))),
-				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d"))))])
+				("nothing", _("Nothing")),
+				("%H:%M", str(ntime.strftime(_("%H:%M")))),
+				("%H:%M %d/%m", str(ntime.strftime(_("%H:%M %d/%m")))),
+				("%H:%M %d/%m/%y", str(ntime.strftime(_("%H:%M %d/%m/%y")))),
+				("%H:%M %d %b", str(ntime.strftime(_("%H:%M %d %b")))),
+				("%H:%M %a %d", str(ntime.strftime(_("%H:%M %a %d"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
-		#12 digit
+		# 12 digit
 		elif MACHINEBUILD in ('vusolo2', 'osmega'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m", choices = [
-				("OFF","Off"),
-				("%H:%M",str(ntime.strftime(_("%H:%M")))),
-				("%H:%M %d/%m",str(ntime.strftime(_("%H:%M %d/%m")))),
-				("%H:%M %d %b",str(ntime.strftime(_("%H:%M %d %b")))),
-				("%H:%M %a %d",str(ntime.strftime(_("%H:%M %a %d")))),
-				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
-				("A%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
-				("A%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))),
-				("A%H:%M %d %b",str(ntime.strftime(_("%H:%M <A> %d %b")))),
-				("A%H:%M %d %b %y",str(ntime.strftime(_("%H:%M <A> %d %b %y")))),
-				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d")))),
-				("A%H:%M %a %d/%m",str(ntime.strftime(_("%H:%M <A> %a %d/%m")))),
-				("A%H:%M %a %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %a %d/%m/%y"))))])
+				("nothing", _("Nothing")),
+				("%H:%M", str(ntime.strftime(_("%H:%M")))),
+				("%H:%M %d/%m", str(ntime.strftime(_("%H:%M %d/%m")))),
+				("%H:%M %d %b", str(ntime.strftime(_("%H:%M %d %b")))),
+				("%H:%M %a %d", str(ntime.strftime(_("%H:%M %a %d")))),
+				("%H:%M %d/%m/%y", str(ntime.strftime(_("%H:%M %d/%m/%y")))),
+				("%H:%M %d %b %y", str(ntime.strftime(_("%H:%M %d %b %y")))),
+				("%H:%M %a %d/%m", str(ntime.strftime(_("%H:%M %a %d/%m")))),
+				("%H:%M %d/%m/%Y", str(ntime.strftime(_("%H:%M %d/%m/%Y")))),
+				("%H:%M %a %d/%m/%y", str(ntime.strftime(_("%H:%M %a %d/%m/%y")))),
+				("%H:%M %a %d/%m/%Y", str(ntime.strftime(_("%H:%M %a %d/%m/%Y"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
-		#16 digit
+		# 16 digit
 		elif MACHINEBUILD in ('sf3038', 'sf4008','mutant51'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m/%Y", choices = [
-				("OFF","Off"),
-				("%H:%M",str(ntime.strftime(_("%H:%M")))),
-				("%H:%M %d/%m",str(ntime.strftime(_("%H:%M %d/%m")))),
-				("%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M %d/%m/%y")))),
-				("%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M %d/%m/%Y")))),
-				("%H:%M %d %b",str(ntime.strftime(_("%H:%M %d %b")))),
-				("%H:%M %d %b %y",str(ntime.strftime(_("%H:%M %d %b %y")))),
-				("%H:%M %a %d",str(ntime.strftime(_("%H:%M %a %d")))),
-				("%H:%M %a %d/%m",str(ntime.strftime(_("%H:%M %a %d/%m")))),
-				("A%H:%M %d/%m",str(ntime.strftime(_("%H:%M <A> %d/%m")))),
-				("A%H:%M %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %d/%m/%y")))),
-				("A%H:%M %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %d/%m/%Y")))),
-				("A%H:%M %d %b",str(ntime.strftime(_("%H:%M <A> %d %b")))),
-				("A%H:%M %d %b %y",str(ntime.strftime(_("%H:%M <A> %d %b %y")))),
-				("A%H:%M %a %d",str(ntime.strftime(_("%H:%M <A> %a %d")))),
-				("A%H:%M %a %d/%m",str(ntime.strftime(_("%H:%M <A> %a %d/%m")))),
-				("A%H:%M %a %d/%m/%y",str(ntime.strftime(_("%H:%M <A> %a %d/%m/%y")))),
-				("A%H:%M %a %d/%m/%Y",str(ntime.strftime(_("%H:%M <A> %a %d/%m/%Y"))))])
+				("nothing", _("Nothing")),
+				("%H:%M", str(ntime.strftime(_("%H:%M")))),
+				("%H:%M %d/%m/%Y", str(ntime.strftime(_("%H:%M %d/%m/%Y")))),
+				("%H:%M %d/%m/%y", str(ntime.strftime(_("%H:%M %d/%m/%y")))),
+				("%H:%M %d/%m", str(ntime.strftime(_("%H:%M %d/%m")))),
+				("%H:%M %d %b", str(ntime.strftime(_("%H:%M %d %b")))),
+				("%H:%M %d %b %y", str(ntime.strftime(_("%H:%M %d %b %y")))),
+				("%H:%M %a %d", str(ntime.strftime(_("%H:%M %a %d")))),
+				("%H:%M %a %d/%m", str(ntime.strftime(_("%H:%M %a %d/%m")))),
+				("%H:%M %a %d/%m/%y", str(ntime.strftime(_("%H:%M %a %d/%m/%y")))),
+				("%H:%M %a %d/%m/%Y", str(ntime.strftime(_("%H:%M %a %d/%m/%Y"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		else:
 			config.usage.lcd_dateformat = ConfigNothing()

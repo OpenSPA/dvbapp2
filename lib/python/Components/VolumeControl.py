@@ -31,7 +31,7 @@ class VolumeControl:
 			globalActionMap.actions["volumeMuteLong"] = self.keyVolumeMuteLong
 			self.dvbVolumeControl = eDVBVolumecontrol.getInstance()
 			config.volumeControl = ConfigSubsection()
-			config.volumeControl.volume = ConfigInteger(default=20, limits=(0, 100))
+			config.volumeControl.volume = ConfigInteger(default=80, limits=(0, 100))
 			config.volumeControl.mute = ConfigBoolean(default=False)
 			config.volumeControl.pressStep = ConfigSelectionNumber(1, 10, 1, default=1)
 			config.volumeControl.pressStep.addNotifier(updateStep, initial_call=True, immediate_feedback=True)

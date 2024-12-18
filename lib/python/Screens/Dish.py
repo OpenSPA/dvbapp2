@@ -258,6 +258,7 @@ class Dishpip(Dish, Screen):
 		self["posGoto"] = Label("")
 		self["From"] = Label(_("From :"))
 		self["Goto"] = Label(_("Goto :"))
+		self["Tuner"] = Label(_("Tuner :"))
 		self["tunerName"] = Label("")
 		self["turnSpeed"] = Label("")
 		self.updateRotorSatList()
@@ -274,6 +275,7 @@ class Dishpip(Dish, Screen):
 		self.turn_time = self.total_time = None
 		self.close_timeout = self.moving_timeout = self.cur_polar = 0
 		self.__state = self.STATE_HIDDEN
+		self.noSkinReload = True
 
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)

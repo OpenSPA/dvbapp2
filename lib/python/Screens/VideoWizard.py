@@ -52,7 +52,7 @@ class VideoWizard(Wizard, ShowRemoteControl):
 			"2160p30": 5,
 			"smpte": 20
 		}
-		# preferred = self.avSwitch.readPreferredModes(saveMode=True, readOnly=True)
+		# preferred = avSwitch.readPreferredModes(saveMode=True)
 		preferred = []  # Don't resort because some TV sends wrong edid info
 		if preferred:
 			if "2160p" in preferred:
@@ -64,6 +64,7 @@ class VideoWizard(Wizard, ShowRemoteControl):
 			elif "1080p" in preferred:
 				sortKeys["1080p"] = 1
 				sortKeys["720p"] = 3
+
 		modes.sort(key=sortKey)
 		# print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
 		return modes
@@ -71,9 +72,9 @@ class VideoWizard(Wizard, ShowRemoteControl):
 	def listRates(self, mode=None):  # Called by wizardvideo.xml.
 		def sortKey(name):
 			return {
-				"multi": 1,
+				"multi": 3,
 				"auto": 2
-			}.get(name[0], 3)
+			}.get(name[0], 1)
 
 		if mode is None:
 			mode = self.mode
@@ -127,6 +128,10 @@ class VideoWizard(Wizard, ShowRemoteControl):
 			avSwitch.setMode(port=self.port, mode=mode, rate="multi")
 		else:
 			avSwitch.setMode(port=self.port, mode=mode, rate=rates[0][0])
+
+		if BoxInfo.getItem("machinebuild") == "gbquad4kpro" and mode.startswith("2160p"):  # Hack for GB QUAD 4K Pro
+			config.av.hdmicolordepth.value = "10bit"
+			config.av.hdmicolordepth.save()
 
 	def rateSelectionMade(self, index):  # Called by wizardvideo.xml.
 		# print("[WizardVideo] rateSelectionMade DEBUG: index='%s'." % index)

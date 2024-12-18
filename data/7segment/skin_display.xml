@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
-<!-- MyClockPanel -->	
+<!-- MyClockPanel -->
 	<screen name="MyClockPanel">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay"></convert>
 		</widget>
 	</screen>
-	
+
 <!-- MyRecPanel -->
 	<screen name="MyRecPanel">
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
@@ -57,12 +57,12 @@
 		<panel name="MyRecPanel" />
 	</screen>
 
-<!-- Numberzap -->    
+<!-- Numberzap -->
 	<screen name="NumberZapSummary" position="0,0" size="1,1">
 		<widget source="parent.numberSummary" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Number;nozero</convert>
 		</widget>
-	</screen> 
+	</screen>
 	<screen name="NumberZapPiconSummary" position="0,0" size="1,1">
 		<widget source="parent.numberSummary" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Number;nozero</convert>
@@ -138,11 +138,11 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="1,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="ConfigEntryTest">config.usage.show_in_standby,time,CheckSourceBoolean</convert>
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,time</convert>
 			<convert type="VfdDisplay">Clock</convert>
 		</widget>
 		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
-			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing,CheckSourceBoolean</convert>
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">

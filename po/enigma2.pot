@@ -1193,6 +1193,9 @@ msgstr ""
 msgid "%s has been disabled."
 msgstr ""
 
+msgid "%s imported from fallback tuner"
+msgstr ""
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1349,6 +1352,9 @@ msgid "1.1"
 msgstr ""
 
 msgid "1.2"
+msgstr ""
+
+msgid "1. Tune to an imported channel with at least EPG EIT.\n2. Restart enigma2.\n3. Now try to download EPG cache from the reserve receiver."
 msgstr ""
 
 msgid "10bit"
@@ -1702,6 +1708,12 @@ msgstr ""
 msgid "About..."
 msgstr ""
 
+msgid "Access not available:\nCheck HTTP authentication not is active in OpenWebIF on the receiver fallback or check data entered in settings.\n"
+msgstr ""
+
+msgid "Access not available:\nCheck HTTP authentication not is active in OpenWebIF on the receiver fallback or check data entered in settings."
+msgstr ""
+
 msgid "Access point"
 msgstr ""
 
@@ -1805,9 +1817,6 @@ msgid "Add RecordTimer"
 msgstr ""
 
 msgid "Add timer"
-msgstr ""
-
-msgid "add timer"
 msgstr ""
 
 msgid "Add Timer"
@@ -2578,6 +2587,12 @@ msgid "Auto standby"
 msgstr ""
 
 msgid "Auto(not available)"
+msgstr ""
+
+msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"
+msgstr ""
+
+msgid "AutoIns:"
 msgstr ""
 
 msgid "AutoMountManager"
@@ -3597,6 +3612,9 @@ msgstr ""
 msgid "Change step size"
 msgstr ""
 
+msgid "Change the cache directory to Internal Flash in EPG Settings on both receivers."
+msgstr ""
+
 msgid "Change to bouquet"
 msgstr ""
 
@@ -3615,6 +3633,9 @@ msgid "Changes need a system restart to take effect.\n"
 msgstr ""
 
 msgid "Channel"
+msgstr ""
+
+msgid "Channels"
 msgstr ""
 
 msgid "Channel +/- button mode"
@@ -3720,6 +3741,15 @@ msgid "Channel:"
 msgstr ""
 
 msgid "ChannelEPG Settings"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels imported successfully from"
+msgstr ""
+
+msgid "Channels only"
 msgstr ""
 
 msgid "Chap."
@@ -5072,6 +5102,9 @@ msgstr ""
 msgid "DVB subtitle black transparency"
 msgstr ""
 
+msgid "DVB type:"
+msgstr ""
+
 msgid "DVB-C"
 msgstr ""
 
@@ -5124,6 +5157,9 @@ msgid "Date"
 msgstr ""
 
 msgid "Date / Time"
+msgstr ""
+
+msgid "Date / Time format in standby"
 msgstr ""
 
 msgid "Date Time Input Actions"
@@ -6320,6 +6356,9 @@ msgstr ""
 msgid "EPG Display Actions"
 msgstr ""
 
+msgid "EPG imported successfully from"
+msgstr ""
+
 msgid "EPG Jump"
 msgstr ""
 
@@ -6748,6 +6787,9 @@ msgstr ""
 msgid "Encrypted: "
 msgstr ""
 
+msgid "Encrypted"
+msgstr ""
+
 msgid "Encryption"
 msgstr ""
 
@@ -6890,6 +6932,9 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr ""
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
 
@@ -6931,6 +6976,9 @@ msgid "Entry text only"
 msgstr ""
 
 msgid "Epg/Guide"
+msgstr ""
+
+msgid "EPG only"
 msgstr ""
 
 msgid "Equal to"
@@ -7539,6 +7587,9 @@ msgid "Failed"
 msgstr ""
 
 msgid "Failed to write /tmp/positionersetup.log: "
+msgstr ""
+
+msgid "Failed to download"
 msgstr ""
 
 msgid "Failed:"
@@ -9026,6 +9077,9 @@ msgstr ""
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr ""
 
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr ""
 
@@ -9129,6 +9183,9 @@ msgid "Include teletext details"
 msgstr ""
 
 msgid "Include timer data"
+msgstr ""
+
+msgid "Incorrect password: Change the password in the OpenWebIF setting in the reserve tuner settings.\nYou must enter the password of the reserve receiver."
 msgstr ""
 
 msgid "Incorrect type service for PiP!"
@@ -9317,6 +9374,9 @@ msgid "Installation finished."
 msgstr ""
 
 msgid "Installed"
+msgstr ""
+
+msgid "Installed in adapter: "
 msgstr ""
 
 msgid "Installing"
@@ -10327,6 +10387,9 @@ msgid "Manual configuration"
 msgstr ""
 
 msgid "Manual scan for services"
+msgstr ""
+
+msgid "Manual scan & signals"
 msgstr ""
 
 msgid "Manual transponder"
@@ -12117,6 +12180,9 @@ msgstr ""
 msgid "Other panel directory (%s)"
 msgstr ""
 
+msgid "Others"
+msgstr ""
+
 msgid "Output text:"
 msgstr ""
 
@@ -13418,6 +13484,9 @@ msgstr ""
 msgid "RC selected type"
 msgstr ""
 
+msgid "Read failled"
+msgstr ""
+
 msgid "REC"
 msgstr ""
 
@@ -13520,6 +13589,9 @@ msgid "Really restart now?"
 msgstr ""
 
 msgid "Really shutdown now?"
+msgstr ""
+
+msgid "Really start Kodi and stop user interface now?"
 msgstr ""
 
 msgid "Really upgrade the front panel and reboot now?"
@@ -15876,6 +15948,9 @@ msgstr ""
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr ""
 
+msgid "Services list"
+msgstr ""
+
 msgid "Set Base Time"
 msgstr ""
 
@@ -15938,6 +16013,9 @@ msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr ""
 
 msgid "Set the aspect ratio of the service picons."
+msgstr ""
+
+msgid "Set the Date/Time Format in standby."
 msgstr ""
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
@@ -18480,6 +18558,9 @@ msgid "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
+msgid "The data provided will not find services."
+msgstr ""
+
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
@@ -18695,6 +18776,9 @@ msgstr ""
 #, python-format
 msgid "The user interface of your %s %s is restarting\n"
 "due to an error in StartEnigma.py"
+msgstr ""
+
+msgid "The user interface of your %s %s will be stopped to run Kodi"
 msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
@@ -19308,6 +19392,9 @@ msgid "To restore the image check the manual or documentation for the receiver."
 msgstr ""
 
 msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
+
+msgid "To add extras you need to install AutoBouquetsMaker.\nIf you press \"Yes\" please wait.\nDo you want to install it now?"
 msgstr ""
 
 #, python-format
@@ -20534,6 +20621,9 @@ msgstr ""
 msgid "View"
 msgstr ""
 
+msgid "View All"
+msgstr ""
+
 msgid "View File"
 msgstr ""
 
@@ -20689,6 +20779,9 @@ msgid "want to stop and delete this recordings?"
 msgstr ""
 
 msgid "WARNING:"
+msgstr ""
+
+msgid "WARNING: Do not change your ISP DNS.\nUse other DNS data source."
 msgstr ""
 
 msgid "WEP"
@@ -22967,9 +23060,6 @@ msgstr ""
 msgid "Delete files"
 msgstr ""
 
-msgid "Manual Search"
-msgstr ""
-
 msgid "adjust your settings and close ... your settings are valid ..."
 msgstr ""
 
@@ -23618,6 +23708,9 @@ msgid "Select the video mode to be used on the TV."
 msgstr ""
 
 msgid "Select the refresh rate to be used on the TV."
+msgstr ""
+
+msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
 msgstr ""
 
 msgid "Ncam Info"

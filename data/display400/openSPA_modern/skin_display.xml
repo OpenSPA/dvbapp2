@@ -265,15 +265,15 @@
     <panel name="RelojAbajo" />
   </screen>
 	<screen name="ServiceScanSummary" position="0,0" size="400,240" backgroundColor="black">
-		<widget name="Title" position="0,0" size="398,44" font="VFD; 33" transparent="1" foregroundColor="azul" text="scan" noWrap="1" />
+		<widget source="Title" render="Label" position="0,0" size="398,44" font="VFD; 33" transparent="1" foregroundColor="azul" text="scan" noWrap="1" />
 		<widget name="Service" position="1,52" size="398,44" font="VFD; 28" transparent="1" noWrap="1" text="service"  foregroundColor="white"/>
 		<widget name="scan_progress" position="3,113" zPosition="1" borderWidth="2" size="389,26" backgroundColor="azul" foregroundColor="azul" transparent="1" />
 		<panel name="RelojAbajo" />
 	</screen>
 	<screen name="SetupSummary" position="0,0" size="400,240" backgroundColor="black">
 		<widget source="Title" render="Label" position="0,0" size="400,44" font="VFD; 32" halign="center" foregroundColor="azul" noWrap="1" />
-		<widget source="entry" render="Label" position="5,46" size="394,59" font="VFD; 30" transparent="1" valign="center"  foregroundColor="white"/>
-		<widget source="value" render="Label" position="5,105" size="393,61" font="VFD; 30" transparent="1" valign="center"  foregroundColor="white"/>
+		<widget source="SetupEntry" render="Label" position="5,46" size="394,59" font="VFD; 30" transparent="1" valign="center"  foregroundColor="white"/>
+		<widget source="SetupValue" render="Label" position="5,105" size="393,61" font="VFD; 30" transparent="1" valign="center"  foregroundColor="white"/>
 		<panel name="RelojAbajo" />
 	</screen>
 	<!--<screen name="StandbySummary" position="0,0" size="400,240">
