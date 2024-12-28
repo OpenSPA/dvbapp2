@@ -443,6 +443,8 @@ def runScreenTest():
 	vol = VolumeControl(session)
 	enigma.eProfileWrite("Processing Screen")
 	processing = Processing(session)
+	enigma.eProfileWrite("Global MessageBox Screen")
+	modalmessagebox = ModalMessageBox(session)
 	enigma.eProfileWrite("PowerKey")
 	power = PowerKey(session)
 	if enigma.getVFDSymbolsPoll():
@@ -855,6 +857,9 @@ from Components.VolumeControl import VolumeControl
 
 enigma.eProfileWrite("Processing")
 from Screens.Processing import Processing
+
+enigma.eProfileWrite("ModalMessageBox")
+from Screens.MessageBox import ModalMessageBox
 
 enigma.eProfileWrite("StackTracePrinter")
 from Components.StackTrace import StackTracePrinter
