@@ -1712,7 +1712,9 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			from Plugins.SystemPlugins.DeviceManager.HddSetup import HddSetup
 			self.session.open(HddSetup)
 	###########################################################################
-
+		else:
+			from Screens.DeviceManager import DeviceManager
+			self.session.open(DeviceManager)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
