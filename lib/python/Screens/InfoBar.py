@@ -68,7 +68,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			"openIMDB": (self.openIMDB, _("Open IMDb")),
 			"showMC": (self.showMediaCenter, _("Show the media center")),
 			"openSleepTimer": (self.openSleepTimer, _("Show the SleepTimer")),
-			"openPowerTimerList": (self.openPowerTimerList, _("Show the PowerTimer")),
+			"openSchedulerList": (self.openSchedulerList, _("Show the Scheduler")),
 			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),
 			"ZoomOff": (self.ZoomOff, _("Zoom Off")),
 			"showWWW": (self.showPORTAL, _("Open MediaStream")),
@@ -278,9 +278,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
 
-	def openPowerTimerList(self):
-		from Screens.Timers import PowerTimerOverview
-		self.session.open(PowerTimerOverview)
+	def openSchedulerList(self):
+		from Screens.Timers import SchedulerOverview
+		self.session.open(SchedulerOverview)
 
 	@staticmethod
 	def _getAutoTimerPluginFunc():
