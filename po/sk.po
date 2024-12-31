@@ -11148,7 +11148,7 @@ msgstr "Pripojenie neúspešné"
 msgid "Mount: "
 msgstr "Pripojiť: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Bod pripojenia"
 
 msgid "Mounts"

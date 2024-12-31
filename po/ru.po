@@ -11147,7 +11147,7 @@ msgstr "Монтирование не удалось"
 msgid "Mount: "
 msgstr "Смонтирован "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Точка монтирования"
 
 msgid "Mounts"

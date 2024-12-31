@@ -11094,7 +11094,7 @@ msgstr "挂载失败"
 msgid "Mount: "
 msgstr "挂载: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "挂载点"
 
 msgid "Mounts"

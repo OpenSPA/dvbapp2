@@ -11084,7 +11084,7 @@ msgstr "Монтирането се провали"
 msgid "Mount: "
 msgstr "Монтиране: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Точка на монтиране"
 
 msgid "Mounts"

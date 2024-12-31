@@ -11120,7 +11120,7 @@ msgstr "Liitos epäonnistui"
 msgid "Mount: "
 msgstr "Liitos: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Liitäntä"
 
 msgid "Mounts"

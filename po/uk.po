@@ -11149,7 +11149,7 @@ msgstr "Монтування невдале"
 msgid "Mount: "
 msgstr "Підключення: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Точка монтування"
 
 msgid "Mounts"

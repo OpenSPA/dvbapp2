@@ -11347,7 +11347,7 @@ msgstr "Haakimine nurjus"
 msgid "Mount: "
 msgstr "Haagitud: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"

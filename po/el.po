@@ -11100,7 +11100,7 @@ msgstr "Αποτυχία προσάρτησης"
 msgid "Mount: "
 msgstr "Προσάρτηση: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Σημείο προσάρτησης"
 
 msgid "Mounts"

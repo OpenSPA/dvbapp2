@@ -11602,7 +11602,7 @@ msgstr "安裝失敗"
 msgid "Mount: "
 msgstr "安裝(Mount)"
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 #, fuzzy

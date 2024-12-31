@@ -11154,7 +11154,7 @@ msgstr "Pajungimo klaida"
 msgid "Mount: "
 msgstr "Pajungta: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Prijungimo vieta"
 
 msgid "Mounts"

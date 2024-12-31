@@ -11105,7 +11105,7 @@ msgstr "Montaggio non riuscito"
 msgid "Mount: "
 msgstr "Montato in: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Punto di montaggio"
 
 msgid "Mounts"

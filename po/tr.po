@@ -11607,7 +11607,7 @@ msgstr "Mount başarısız oldu"
 msgid "Mount: "
 msgstr "Bağla: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Bağlantı noktası"
 
 msgid "Mounts"

@@ -11199,7 +11199,7 @@ msgstr "Csatolás nem sikerült"
 msgid "Mount: "
 msgstr "Csatlakozás: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"

@@ -11255,7 +11255,7 @@ msgstr "Mount mislukt"
 msgid "Mount: "
 msgstr "Mount: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Mountpunt"
 
 msgid "Mounts"

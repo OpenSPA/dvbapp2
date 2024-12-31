@@ -11726,8 +11726,8 @@ msgstr "Mount fehlgeschlagen!"
 msgid "Mount: "
 msgstr "Mount: "
 
-msgid "Mountpoint"
-msgstr "Mountpunkt"
+msgid "Mount point"
+msgstr "Einhängepunkt"
 
 msgid "Mounts"
 msgstr "Mounts"

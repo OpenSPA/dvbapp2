@@ -11231,7 +11231,7 @@ msgstr "Núi thất bại"
 msgid "Mount: "
 msgstr "Núi: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"
