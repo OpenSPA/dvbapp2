@@ -191,6 +191,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkSetup" screen="NetworkuShareSetup" /></item>
                 <item key="udpxy_setup" level="2" text="Udpxy Setup" weight="65"><screen module="NetworkSetup" screen="NetworkUdpxy"/></item>
 				<item key="xupnpd_setup" level="2" text="Xupnpd Setup" weight="70"><screen module="NetworkSetup" screen="NetworkXupnpd"/></item>
+				<item key="netsamba_setup" level="2" text="Samba Settings" weight="60" requires="samba"><screen module="NetworkSetup" screen="NetworkSambaSetup" /></item>
 			</menu>
 			<!-- Menu / Setup / System (Was: Menu / Setup / System / Extended System) -->
 			<menu key="extended" level="0" text="System" weight="95">
@@ -201,7 +202,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="harddisk_check" level="0" text="File System Check" weight="10"><screen module="HarddiskSetup" screen="HarddiskFsckSelection" /></item>
 					<item key="harddisk_convert" level="0" text="Convert EXT3 File System to EXT4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection" /></item>
 					<!--<item key="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item>-->
-					<!--item key="device_manager" level="0" text="Device Manager" weight="20"><screen module="DeviceManager" screen="DeviceManager" /></item-->					
+					<!--item key="device_manager" level="0" text="Device Manager" weight="20"><screen module="DeviceManager" screen="DeviceManager" /></item-->
 					<item key="swap_manager" level="2" text="Swap Manager" weight="30"><screen module="SwapManager" screen="Swap" /></item>
 					<item key="flash_expander" level="2" text="Flash Expander" weight="40"><screen module="FlashExpander" screen="FlashExpander" /></item>
 				</menu>

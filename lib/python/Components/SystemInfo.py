@@ -443,6 +443,7 @@ BoxInfo.setItem("minidlna", exists("/etc/init.d/minidlna"))
 BoxInfo.setItem("ushare", exists("/etc/init.d/ushare"))
 BoxInfo.setItem("udpxy", exists("/etc/init.d/udpxy"))
 BoxInfo.setItem("xupnpd", exists("/etc/init.d/xupnpd"))
+BoxInfo.setItem("samba", exists("/etc/init.d/samba"))
 
 # AI
 BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))

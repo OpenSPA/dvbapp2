@@ -1447,6 +1447,13 @@ def InitUsageConfig():
 	config.network.Inadyn_autostart = ConfigYesNo(default=False)
 	config.network.uShare_autostart = ConfigYesNo(default=False)
 
+	config.samba = ConfigSubsection()
+	config.samba.enableAutoShare = ConfigYesNo(default=True)
+	config.samba.autoShareAccess = ConfigSelection(default=1, choices=[
+		(0, _("Read Only")),
+		(1, _("Read Write"))
+	])
+
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection(default="leftright", choices=[
 		("leftright", _("Long Left/Right")),
