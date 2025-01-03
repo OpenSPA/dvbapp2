@@ -1,10 +1,9 @@
 from datetime import datetime
 from glob import glob
 from hashlib import md5
-from os import mkdir, rename, rmdir, stat
+from os import listdir, mkdir, rename, rmdir, stat
 from os.path import basename, exists, isdir, isfile, ismount, join as pathjoin
 from struct import calcsize, pack, unpack, error
-from subprocess import check_output
 from tempfile import mkdtemp
 
 # NOTE: This module must not import from SystemInfo.py as this module is
@@ -292,11 +291,11 @@ class MultiBootClass():
 		return line.replace("userdataroot", "rootuserdata").rsplit(f"{param}=", 1)[1].split(" ", 1)[0]
 
 	def getUUIDtoDevice(self, UUID):  # Returns None on failure.
-		lines = check_output(["/sbin/blkid"]).decode(encoding="UTF-8", errors="ignore").split("\n")
-		targetUUID = "UUID=%s" % UUID if "UUID=" not in UUID else UUID
-		for line in lines:
-			if targetUUID in line.replace('"', ''):
-				return line.split(":")[0].strip()
+		if UUID.startswith("UUID="):  # Remove the "UUID=" from startup files that have it.
+			UUID = UUID[5:]
+		for fileName in listdir("/dev/uuid"):
+			if fileReadLine(pathjoin("/dev/uuid", fileName)) == UUID:
+				return f"/dev/{fileName}"
 		return None
 
 	def loadCurrentSlotAndBootCodes(self):
