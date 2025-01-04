@@ -4218,6 +4218,9 @@ msgstr ""
 msgid "Check HDD"
 msgstr ""
 
+msgid "Check Internet connection and update packages.\n\nPress OK to continue."
+msgstr "Revisar Internet y actualizar paquetes.\n\nPulse OK para continuar."
+
 msgid "Check power and input state from TV"
 msgstr ""
 
@@ -6216,9 +6219,6 @@ msgid "Display next commit log"
 msgstr ""
 
 msgid "Display next system information screen"
-msgstr ""
-
-msgid "Display oscam information."
 msgstr ""
 
 msgid "Display previous commit log"
@@ -11883,9 +11883,6 @@ msgid "OSD Setup"
 msgstr ""
 
 msgid "OSD name request"
-msgstr ""
-
-msgid "OSCam Info"
 msgstr ""
 
 msgid "OSCam Information"

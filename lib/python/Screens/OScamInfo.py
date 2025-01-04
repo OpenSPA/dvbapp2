@@ -13,18 +13,19 @@ from ipaddress import ip_address
 from socket import getaddrinfo, gaierror
 
 # ENIGMA IMPORTS
-from enigma import eTimer
+from enigma import eTimer, ePicLoad
 from skin import parameters
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import getSysSoftcam
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Tools.BoundFunction import boundFunction
+from Components.Pixmap import Pixmap
 
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-1]
@@ -40,28 +41,27 @@ class OSCamGlobals():
 			return False, None, None, None, udata.encode()
 		proto, ip, port, user, pwd, api, signstatus = udata
 		webifok, url, result = self.callApi(proto=proto, ip=ip, port=port,
-						username=user, password=pwd, api=api,
-						fmt=fmt, part=part, label=label, log=log)
+			username=user, password=pwd, api=api,
+			fmt=fmt, part=part, label=label, log=log)
 		return webifok, api, url, signstatus, result
 
 	def confPath(self):
-		cam, api = "ncam", "api"
+		cam = "oscam" if getSysSoftcam() == "oscam" else "ncam"
 		webif = ipv6compiled = False
 		port = signstatus = data = error = conffile = url = verfile = None
-		cam = cam if cam in BoxInfo.getItem("CurrentSoftcam").split("/")[-1].lower() else "oscam"
 		verfilename = "%s.version" % cam
-		api = "%s%s" % (cam, api)
+		api = f"{cam}api"
 		if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
 			verfile = "/tmp/.%s/%s" % (verfilename.split('.')[0], verfilename)
 			if exists(verfile):
 				data = Path(verfile).read_text()
 		else:  # Find and parse running oscam, ncam (api)
 			webifok, url, result = self.callApi(proto="https" if config.oscaminfo.usessl.value else "http",
-												ip=str(config.oscaminfo.ip.value),
-												port=str(config.oscaminfo.port.value),
-												username=str(config.oscaminfo.username.value),
-												password=str(config.oscaminfo.password.value),
-												api=api, fmt="html", part="files", label=verfilename)
+				ip=str(config.oscaminfo.ip.value),
+				port=str(config.oscaminfo.port.value),
+				username=str(config.oscaminfo.username.value),
+				password=str(config.oscaminfo.password.value),
+				api=api, fmt="html", part="files", label=verfilename)
 			result = result.decode(encoding="latin-1", errors="ignore")
 			if webifok:
 				try:
@@ -96,7 +96,7 @@ class OSCamGlobals():
 
 	def getUserData(self):
 		ret = _("No system softcam configured!")
-		if BoxInfo.getItem("ShowOscamInfo"):
+		if getSysSoftcam():
 			webif, port, api, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam.conf', None)
 			proto, blocked = "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
 			user = pwd = None
@@ -179,7 +179,7 @@ class OSCamGlobals():
 class OSCamInfo(Screen, OSCamGlobals):
 	skin = """
 		<screen name="OSCamInfo" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OSCam Information" flags="wfNoBorder" resolution="1920,1080">
-			<ePixmap pixmap="icons/OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
+			<widget name="camlogo" position="15,15" size="80,80" scale="1" alphatest="blend" />
 			<widget source="Title" render="Label" position="15,15" size="1905,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1710,15" size="210,90" font="Regular;75" noWrap="1" halign="center" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
 				<convert type="ClockToText">Default</convert>
@@ -252,8 +252,9 @@ class OSCamInfo(Screen, OSCamGlobals):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "OSCamInfo"
-		self.setTitle(_("OSCamInfo: Information"))
+		self.setTitle("OSCam Info: " + _("Information") if getSysSoftcam() == "oscam" else "NCam Info: " + _("Information"))
 		self.rulist = []
+		self["camlogo"] = Pixmap()
 		self["buildinfos"] = StaticText()
 		self["extrainfos"] = StaticText()
 		self["timerinfos"] = StaticText()
@@ -299,6 +300,14 @@ class OSCamInfo(Screen, OSCamGlobals):
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 
 	def updateOScamData(self):
+		if getSysSoftcam() == "oscam":
+			self['camlogo'].instance.setPixmapFromFile("/usr/share/enigma2/icons/OscamLogo.png")
+		else:
+			self['camlogo'].instance.setPixmapFromFile("/usr/share/enigma2/icons/NCamLogo.png")
+		try:
+			self['camlogo'].instance.setPixmap(ePicLoad().getData().__deref__())
+		except Exception:
+			pass
 		webifok, api, url, signstatus, result = self.openWebIF()
 		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
@@ -420,7 +429,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.session.openWithCallback(self.menuCallback, OSCamInfoSetup)
 
 	def keyShutdown(self):
-		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down OSCam?\n\nATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down OSCam?\n\nATTENTION: To reactivate OSCam, enter CAMD Manager and press GREEN button."), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyRestart(self):
 		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart OSCam?\n\nHINT: This will take about 5 seconds!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
@@ -528,13 +537,13 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			</widget>
 			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
-			</widget>			
+			</widget>
 			<widget source="key_OK" render="Label" position="1395,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey">
 				<convert type="ConditionalShowHide" />
-			</widget>			
+			</widget>
 			<widget source="key_detailed" render="Label" position="1470,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey">
 				<convert type="ConditionalShowHide" />
-			</widget>			
+			</widget>
 			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
 		</screen>"""
 
