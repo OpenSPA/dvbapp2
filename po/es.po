@@ -7141,22 +7141,22 @@ msgstr "¿Seguro que quiere eliminar tu marcador %s?"
 
 #
 msgid ""
-"Do you really want to restart OSCam?\n"
+"Do you really want to restart %s?\n"
 "\n"
 "HINT: This will take about 5 seconds!"
 msgstr ""
-"¿Realmente quieres reiniciar OSCam?\n"
+"¿Realmente quieres reiniciar %s?\n"
 "\n"
 "CONSEJO: ¡Tardará unos 5 segundos!"
 
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, enter CAMD Manager and press GREEN button."
+"ATTENTION: To reactivate %s, enter CAMD Manager and press GREEN button."
 msgstr ""
-"¿De verdad quieres parar OSCam?\n"
+"¿De verdad quieres parar %s?\n"
 "\n"
-"ATENCIÓN: ¡Para reactivar OSCam, ingrese a Gestor de CAMD y pulse botón VERDE."
+"ATENCIÓN: ¡Para reactivar %s, ingrese a Gestor de CAMD y pulse botón VERDE."
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
