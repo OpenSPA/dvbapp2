@@ -441,7 +441,7 @@ def InitLcd():
 				("%H:%M %a %d", str(ntime.strftime(_("%H:%M %a %d"))))])
 			config.usage.lcd_dateformat.addNotifier(setDateFormat)
 		# 12 digit
-		elif MACHINEBUILD in ('vusolo2', 'osmega'):
+		elif MACHINEBUILD in ('vusolo2', 'osmega', 'lunix34k'):
 			config.usage.lcd_dateformat = ConfigSelection(default="%H:%M %d/%m", choices = [
 				("nothing", _("Nothing")),
 				("%H:%M", str(ntime.strftime(_("%H:%M")))),
