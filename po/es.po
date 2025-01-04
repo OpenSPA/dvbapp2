@@ -16504,8 +16504,12 @@ msgid "Restart GUI now?"
 msgstr "¿Reiniciar la interfaz ahora?"
 
 #
+
 msgid "Restart Network"
 msgstr "Reiniciar red"
+
+msgid "Restart NCam"
+msgstr "Reiniciar NCam"
 
 msgid "Restart Network Adapter"
 msgstr "Reiniciar adaptador de red"
@@ -20365,6 +20369,9 @@ msgid "Shutdown"
 msgstr "Apagar"
 
 #
+msgid "Shutdown NCam"
+msgstr "Parar NCam"
+
 msgid "Shutdown OSCam"
 msgstr "Parar OSCam"
 
