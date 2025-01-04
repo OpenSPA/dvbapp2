@@ -5931,9 +5931,6 @@ msgstr ""
 msgid "Display more information about this file"
 msgstr ""
 
-msgid "Display oscam information."
-msgstr ""
-
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -6079,7 +6076,7 @@ msgstr ""
 msgid ""
 "Do you really want to shut down OSCam?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate OSCam, enter CAMD Manager and press GREEN button."
 msgstr ""
 
 #, python-format
@@ -11847,9 +11844,6 @@ msgstr ""
 msgid "ONID"
 msgstr ""
 
-msgid "OSCam Info"
-msgstr ""
-
 msgid "OSCam Information"
 msgstr ""
 
@@ -11871,9 +11865,6 @@ msgstr ""
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
-msgstr ""
-
-msgid "OSCamInfo: Information"
 msgstr ""
 
 msgid "OSCamInfo: Log"
@@ -23711,9 +23702,6 @@ msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
 msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
-msgstr ""
-
-msgid "Ncam Info"
 msgstr ""
 
 msgid "Connected through another tuner"

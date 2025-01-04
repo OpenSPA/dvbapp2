@@ -6179,9 +6179,6 @@ msgstr ""
 msgid "Display more information about this file"
 msgstr ""
 
-msgid "Display oscam information."
-msgstr ""
-
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -6334,7 +6331,7 @@ msgstr ""
 msgid ""
 "Do you really want to shut down OSCam?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate OSCam, enter CAMD Manager and press GREEN button."
 msgstr ""
 
 #, python-format
@@ -12273,9 +12270,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr ""
 
-msgid "OSCam Info"
-msgstr ""
-
 msgid "OSCam Information"
 msgstr ""
 
@@ -12297,9 +12291,6 @@ msgstr ""
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
-msgstr ""
-
-msgid "OSCamInfo: Information"
 msgstr ""
 
 msgid "OSCamInfo: Log"

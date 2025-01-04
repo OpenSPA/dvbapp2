@@ -4265,6 +4265,12 @@ msgstr "Comprobar PDC"
 msgid "Check for PDC availability on each service"
 msgstr "Comprobar disponibilidad de PDC en cada servicio"
 
+msgid "Check Internet and update packages"
+msgstr "Revisar Internet y actualizar paquetes"
+
+msgid "Check Internet connection and update packages.\n\nPress OK to continue."
+msgstr "Revisar la conexión Internet y actualizar paquetes.\n\nPulse OK para continuar."
+
 msgid "Check power and input state from TV"
 msgstr "Compruebe el estado de la alimentación y la entrada del televisor"
 
@@ -6025,6 +6031,9 @@ msgstr "PID de subtítulos DVB e idioma"
 msgid "DVB subtitle black transparency"
 msgstr "Transparencia negra de subtítulos DVB"
 
+msgid "DVB subtitles color"
+msgstr "Subtítulos DVB en color"
+
 msgid "DVB type:"
 msgstr "Tipo DVB:"
 
@@ -6966,9 +6975,6 @@ msgstr "Mostrar un mensaje antes de reproducir la siguiente película"
 msgid "Display more information about this file"
 msgstr "Mostrar más información sobre este archivo"
 
-msgid "Display oscam information."
-msgstr "Mostrar información oscam."
-
 msgid "Display selection list as a selection menu"
 msgstr "Mostrar la lista de selección como un menú de selección"
 
@@ -7038,6 +7044,9 @@ msgstr "No hacer backup de la imagen"
 
 msgid "Do not change"
 msgstr "No cambiar"
+
+msgid "Do not check the Internet and packages"
+msgstr "No revisar Internet y paquetes"
 
 msgid "Do not flash image"
 msgstr "No instalar la imagen"
@@ -7143,13 +7152,11 @@ msgstr ""
 msgid ""
 "Do you really want to shut down OSCam?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried "
-"out!"
+"ATTENTION: To reactivate OSCam, enter CAMD Manager and press GREEN button."
 msgstr ""
-"¿De verdad quieres cerrar OSCam?\n"
+"¿De verdad quieres parar OSCam?\n"
 "\n"
-"ATENCIÓN: ¡Para reactivar OSCam, es necesario reiniciar completamente el "
-"receptor!"
+"ATENCIÓN: ¡Para reactivar OSCam, ingrese a Gestor de CAMD y pulse botón VERDE."
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -9801,6 +9808,9 @@ msgstr "Calibración GotoX"
 
 msgid "Grab"
 msgstr "Agarra"
+
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr "Los subtítulos gráficos DVB se mostrarán en el color seleccionado, en lugar de los colores originales."
 
 msgid "Graphical EPG"
 msgstr "Gráficos EPG"
@@ -13856,9 +13866,6 @@ msgstr "Sí, guíame por el proceso de actualización"
 msgid "ONID"
 msgstr "ONID"
 
-msgid "OSCam Info"
-msgstr "Info de OScam"
-
 msgid "OSCam Information"
 msgstr "Información de OScam"
 
@@ -13869,10 +13876,10 @@ msgid "OSCam webif disabled"
 msgstr "OScam webif desactivado"
 
 msgid "OSCamInfo Actions"
-msgstr "OScamInfo"
+msgstr "OSCam Info Acciones"
 
 msgid "OSCamInfo Log Actions"
-msgstr "Log OScamInfo"
+msgstr "Acciones Log OScam Info"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
@@ -13882,11 +13889,8 @@ msgstr "OSCamInfo: %s Derechos para '%s'"
 msgid "OSCamInfo: Entitlements for '%s'"
 msgstr "OSCamInfo: Derechos para '%s'"
 
-msgid "OSCamInfo: Information"
-msgstr "OSCamInfo: Información"
-
 msgid "OSCamInfo: Log"
-msgstr "OSCamInfo: Log"
+msgstr "OSCam Info: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -20362,7 +20366,7 @@ msgstr "Apagar"
 
 #
 msgid "Shutdown OSCam"
-msgstr "Apagar OSCam"
+msgstr "Parar OSCam"
 
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
@@ -25795,9 +25799,6 @@ msgstr "Año"
 msgid "Yellow"
 msgstr "Amarillo"
 
-msgid "Yellow DVB subtitles"
-msgstr "Subtítulos DVB en amarillo"
-
 msgid "Yemen"
 msgstr "Yemen"
 
@@ -28602,9 +28603,6 @@ msgstr "Seleccione la tasa de refresco que se usará en la TV."
 
 msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
 msgstr "Seleccione el modo de vídeo que se usará en la TV.\n\nSi un modo de video provoca pérdida de señal:\nPulse prolongado EXIT."
-
-msgid "Ncam Info"
-msgstr "Información Ncam"
 
 msgid "Connected through another tuner"
 msgstr "Conectado a través de otro sintonizador"

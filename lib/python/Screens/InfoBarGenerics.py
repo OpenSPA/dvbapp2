@@ -26,7 +26,7 @@ from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.SystemInfo import BoxInfo, getBoxDisplayName, getSysSoftcam
 from Components.Task import job_manager
 from Components.TimerList import TimerList  # Deprecated!
 from Components.Timeshift import InfoBarTimeshift
@@ -3123,7 +3123,6 @@ class InfoBarExtensions:
 		self.addExtension(extension=self.getOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getOScamInfo, type=InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension=self.getNcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getIpkUninstall, type=InfoBarExtensions.EXTENSION_LIST)
 		if config.usage.show_restart_network_extensionslist.getValue() is True:
 			self.addExtension(extension=self.getRestartNetwork, type=InfoBarExtensions.EXTENSION_LIST)
@@ -3170,40 +3169,22 @@ class InfoBarExtensions:
 		else:
 			return []
 
-	def getCCname(self):
-		return _("CCcam Info")
+	def getCCcam(self):
+		return "CCcam Info"
 
 	def getCCcamInfo(self):
-		if pathExists("/usr/bin/"):
-			softcams = listdir("/usr/bin/")
-		for softcam in softcams:
-			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
-				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
+		if getSysSoftcam() == "cccam" and config.cccaminfo.showInExtensions.value:
+			return [((boundFunction(self.getCCcam), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
 		else:
 			return []
 
-	def getOSname(self):
-		return _("OSCam Info")
+	def getOSCamNCam(self):
+		return "OSCam Info" if getSysSoftcam() == "oscam" else "NCam Info"
 
 	def getOScamInfo(self):
-		if pathExists("/usr/bin/"):
-			softcams = listdir("/usr/bin/")
-		for softcam in softcams:
-			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
-				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
-		else:
-			return []
-
-	## OPENSPA [morser] Add Ncam
-	def getNname(self):
-		return _("Ncam Info")
-
-	def getNcamInfo(self):
-		if pathExists('/usr/bin/'):
-			softcams = listdir('/usr/bin/')
-		for softcam in softcams:
-			if softcam.lower().startswith('ncam') and config.ncaminfo.showInExtensions.value:
-				return [((boundFunction(self.getNname), boundFunction(self.openNcamInfo), lambda: True), None)] or []
+		if getSysSoftcam() in ("oscam", "ncam+"):
+			if config.oscaminfo.showInExtensions.value or config.ncaminfo.showInExtensions.value:
+				return [((boundFunction(self.getOSCamNCam), boundFunction(self.openOScamInfo), lambda: True), None)] or []
 		else:
 			return []
 	########################################

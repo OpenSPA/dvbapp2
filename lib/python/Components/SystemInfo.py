@@ -231,8 +231,8 @@ def getModuleLayout():
 #		return False
 #	else:
 #		return len(glob("/etc/*.emu")) > 0
-
-
+#
+#
 #def hasSoftcam():
 #	if not isfile(NOEMU):
 #		for cam in listdir("/etc/init.d"):
@@ -242,9 +242,10 @@ def getModuleLayout():
 
 def getSysSoftcam():
 	if isfile(SOFTCAM):
-		cams = open(SOFTCAM).read()
+		cams = open(SOFTCAM).read()[0:5]
 		return cams.lower()
-	return ""
+	return None
+
 
 def updateSysSoftCam():
 	BoxInfo.setMutableItem("ShowOscamInfo", getSysSoftcam() in ("oscam", "ncam"))
@@ -253,6 +254,7 @@ def updateSysSoftCam():
 	#BoxInfo.setMutableItem("HasSoftcamEmu", hasSoftcamEmu())
 	#BoxInfo.setMutableItem("Softcams", getSoftcams())
 	#BoxInfo.setMutableItem("CurrentSoftcam", getCurrentSoftcam())
+
 
 def getBoxName():
 	box = MACHINEBUILD
