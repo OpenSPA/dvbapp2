@@ -3185,6 +3185,8 @@ class InfoBarExtensions:
 		if getSysSoftcam() in ("oscam", "ncam+"):
 			if config.oscaminfo.showInExtensions.value or config.ncaminfo.showInExtensions.value:
 				return [((boundFunction(self.getOSCamNCam), boundFunction(self.openOScamInfo), lambda: True), None)] or []
+			else:
+				return []
 		else:
 			return []
 	########################################
