@@ -6323,15 +6323,15 @@ msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr ""
 
 msgid ""
-"Do you really want to restart OSCam?\n"
+"Do you really want to restart %s?\n"
 "\n"
 "HINT: This will take about 5 seconds!"
 msgstr ""
 
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, enter CAMD Manager and press GREEN button."
+"ATTENTION: To reactivate %s, enter CAMD Manager and press GREEN button."
 msgstr ""
 
 #, python-format
