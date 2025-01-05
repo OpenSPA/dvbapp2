@@ -604,75 +604,81 @@ class AdapterSetup(ConfigListScreen, Screen):
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0, 0, 0, 0]))
 		# OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS.
-		ip = ""
-		dns = open(self.resolvFile, "r").readlines()
-		if len(dns) > 1:
-			for name in dns:
-				dnsip = name.replace("nameserver ", "")
-				if config.usage.dnsMode.value == 2:
-					if "192.168.0.1" in name or "192.168.1.1" in name:
-						if config.usage.dns.value == "dhcp-router" and fileContains("/etc/network/interfaces", "static"):
+		if exists(str(self.resolvFile)):
+			ip = ""
+			dns = open(self.resolvFile, "r").readlines()
+			if len(dns) > 1:
+				for name in dns:
+					dnsip = name.replace("nameserver ", "")
+					if config.usage.dnsMode.value == 2:
+						if "192.168.0.1" in name or "192.168.1.1" in name:
+							if config.usage.dns.value == "dhcp-router" and fileContains("/etc/network/interfaces", "static"):
+								if ":" not in name:
+									self.primaryDNS = NoSave(ConfigText(default=ip))
+									if str(self.primaryDNS) not in name:
+										ip = name.replace("nameserver ", "")
+										self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+										self.primaryDNS = NoSave(ConfigText(default=ip))
+						else:
 							if ":" not in name:
 								self.primaryDNS = NoSave(ConfigText(default=ip))
 								if str(self.primaryDNS) not in name:
 									ip = name.replace("nameserver ", "")
 									self.secondaryDNS = NoSave(ConfigText(default=dnsip))
-									self.primaryDNS = NoSave(ConfigText(default=ip))
 					else:
-						if ":" not in name:
-							self.primaryDNS = NoSave(ConfigText(default=ip))
-							if str(self.primaryDNS) not in name:
-								ip = name.replace("nameserver ", "")
-								self.secondaryDNS = NoSave(ConfigText(default=dnsip))
-				else:
-					if fileContains(self.resolvFile, ":"):
-						if config.usage.dnsMode.value == 3:
-							if ":" in name:
-								if config.usage.dns.value != "dhcp-router":
-									self.primaryDNS = NoSave(ConfigText(default=ip))
-									if str(self.primaryDNS) not in name:
-										ip = name.replace("nameserver ", "")
-										self.secondaryDNS = NoSave(ConfigText(default=dnsip))
-								else:
-									self.primaryDNS = NoSave(ConfigText(default=dnsip))
-									if str(self.primaryDNS) not in name:
-										ip = name.replace("nameserver ", "")
-										self.secondaryDNS = NoSave(ConfigText(default=dnsip))
-						else:
-							if config.usage.dnsMode.value == 0:
-								if ":" in name:
-									if config.usage.dns.value != "dhcp-router":
-										self.secondaryDNS = NoSave(ConfigText(default=ip))
-										if str(self.secondaryDNS) not in name:
-											ip = name.replace("nameserver ", "")
-									else:
-										self.secondaryDNS = NoSave(ConfigText(default=dnsip))
-								else:
-									self.primaryDNS = NoSave(ConfigText(default=dnsip)) if "192.168.0.1" in name or "192.168.1.1" in name else NoSave(ConfigText(default=ip))
-									if str(self.primaryDNS) not in name:
-										ip = name.replace("nameserver ", "")
-							else:
+						if fileContains(self.resolvFile, ":"):
+							if config.usage.dnsMode.value == 3:
 								if ":" in name:
 									if config.usage.dns.value != "dhcp-router":
 										self.primaryDNS = NoSave(ConfigText(default=ip))
 										if str(self.primaryDNS) not in name:
 											ip = name.replace("nameserver ", "")
+											self.secondaryDNS = NoSave(ConfigText(default=dnsip))
 									else:
 										self.primaryDNS = NoSave(ConfigText(default=dnsip))
+										if str(self.primaryDNS) not in name:
+											ip = name.replace("nameserver ", "")
+											self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+							else:
+								if config.usage.dnsMode.value == 0:
+									if ":" in name:
+										if config.usage.dns.value != "dhcp-router":
+											self.secondaryDNS = NoSave(ConfigText(default=ip))
+											if str(self.secondaryDNS) not in name:
+												ip = name.replace("nameserver ", "")
+										else:
+											self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+									else:
+										self.primaryDNS = NoSave(ConfigText(default=dnsip)) if "192.168.0.1" in name or "192.168.1.1" in name else NoSave(ConfigText(default=ip))
+										if str(self.primaryDNS) not in name:
+											ip = name.replace("nameserver ", "")
 								else:
-									self.secondaryDNS = NoSave(ConfigText(default=dnsip)) if "192.168.0.1" in name or "192.168.1.1" in name else NoSave(ConfigText(default=ip))
-									if str(self.secondaryDNS) not in name:
-										ip = name.replace("nameserver ", "")
-					else:
-						self.primaryDNS = NoSave(ConfigText(default=ip))
-						if str(self.primaryDNS) not in name:
-							ip = name.replace("nameserver ", "")
-							self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+									if ":" in name:
+										if config.usage.dns.value != "dhcp-router":
+											self.primaryDNS = NoSave(ConfigText(default=ip))
+											if str(self.primaryDNS) not in name:
+												ip = name.replace("nameserver ", "")
+										else:
+											self.primaryDNS = NoSave(ConfigText(default=dnsip))
+									else:
+										self.secondaryDNS = NoSave(ConfigText(default=dnsip)) if "192.168.0.1" in name or "192.168.1.1" in name else NoSave(ConfigText(default=ip))
+										if str(self.secondaryDNS) not in name:
+											ip = name.replace("nameserver ", "")
+						else:
+							self.primaryDNS = NoSave(ConfigText(default=ip))
+							if str(self.primaryDNS) not in name:
+								ip = name.replace("nameserver ", "")
+								self.secondaryDNS = NoSave(ConfigText(default=dnsip))
+			else:
+				for name in dns:
+					dnsip = name.replace("nameserver ", "")
+					self.primaryDNS = NoSave(ConfigText(default=dnsip))
 		else:
-			for name in dns:
-				dnsip = name.replace("nameserver ", "")
-				self.primaryDNS = NoSave(ConfigText(default=dnsip))
-		# END OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS.
+			nameserver = (iNetwork.getNameserverList() + [[0, 0, 0, 0]] * 2)[0:2]
+			self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
+			self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
+			self.ipTypeConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "ipv6") or False))
+			# END OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS.
 		self.ipTypeConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "ipv6") or False))
 
 	def createSetup(self):
