@@ -3432,7 +3432,7 @@ msgid "Bouquet Selector Navigation Actions"
 msgstr "Navegación Selector de listas"
 
 msgid "Bouquets"
-msgstr "Listas - Bouquets"
+msgstr "Listas - Favoritos"
 
 msgid "Bouquets start at 1"
 msgstr "Los bouquets comienzan en 1"
