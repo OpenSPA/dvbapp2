@@ -1550,7 +1550,19 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 
 msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
@@ -1562,16 +1574,6 @@ msgstr ""
 
 #, python-format
 msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
-msgstr ""
-
-#, python-format
-msgid "A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-
-#, python-format
-msgid "A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
 msgstr ""
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
@@ -3118,9 +3120,6 @@ msgstr ""
 msgid "Burundi"
 msgstr ""
 
-msgid "Bus: "
-msgstr ""
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3508,12 +3507,6 @@ msgid "Cannot find any signal ..., aborting !"
 msgstr ""
 
 msgid "Cannot move to trash can"
-msgstr ""
-
-msgid "Capacity"
-msgstr ""
-
-msgid "Capacity: "
 msgstr ""
 
 msgid "Cape Verde"
@@ -4349,9 +4342,6 @@ msgid "Configure the cursor behavior in the channel selection list. When opening
 msgstr ""
 
 msgid "Configure the display resolution and the font used for teletext."
-msgstr ""
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -7802,6 +7792,9 @@ msgid "File oscam.conf not found.\n"
 "Please enter username/password manually."
 msgstr ""
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -7812,9 +7805,6 @@ msgid "Filename"
 msgstr ""
 
 msgid "Files/folders to exclude from backup"
-msgstr ""
-
-msgid "Filesystem check your hard drive"
 msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -11462,7 +11452,14 @@ msgstr ""
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 
-msgid "No Settings loaded !!\n"
+msgid "No Internet connection"
+msgstr ""
+
+msgid "No Name"
+msgstr ""
+
+msgid ""
+"No Settings loaded !!\n"
 "\n"
 "Please install first a settinglist"
 msgstr ""
@@ -12660,6 +12657,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -14758,6 +14758,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -14900,6 +14903,15 @@ msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound track
 msgstr ""
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -15101,9 +15113,6 @@ msgstr ""
 msgid "Select Additional Backup Files"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr ""
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -15242,6 +15251,9 @@ msgid "Select files to exclude from backup"
 msgstr ""
 
 msgid "Select files/folders to backup"
+msgstr ""
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr ""
 
 msgid "Select how long to display status messages."
@@ -15477,6 +15489,9 @@ msgstr ""
 msgid "Select the display sequence of previously visited services."
 msgstr ""
 
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -15710,9 +15725,6 @@ msgid "Select your ATSC provider."
 msgstr ""
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -16147,12 +16159,6 @@ msgid "Setup Audiomode"
 msgstr ""
 
 msgid "Setup Enigma2"
-msgstr ""
-
-msgid "Setup FTP"
-msgstr ""
-
-msgid "Setup Harddisk"
 msgstr ""
 
 msgid "Setup Inadyn"
@@ -20819,9 +20825,6 @@ msgid "Wait please while scanning..."
 msgstr ""
 
 msgid "Waiting"
-msgstr ""
-
-msgid "Waiting for mount"
 msgstr ""
 
 msgid "Waiting for partition"
