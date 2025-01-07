@@ -4838,8 +4838,8 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr ""
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
-msgstr ""
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Konfigurirajte trajanje u minutama prije nego što se prikaže čuvar ekrana."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -18917,7 +18917,7 @@ msgstr ""
 msgid "Show screen menu path"
 msgstr "prikaži citat menia"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr ""
 
 msgid "Show script messages"

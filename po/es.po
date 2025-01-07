@@ -5052,9 +5052,8 @@ msgstr ""
 "Configure la resolución de la pantalla y la fuente utilizada para el "
 "teletexto."
 
-msgid ""
-"Configure the duration in minutes before the screen saver will be displayed."
-msgstr "Configura la duración en minutos para el salvapantallas."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Seleccione la duración de inactividad antes de que se muestre el protector de pantalla."
 
 msgid ""
 "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -20119,7 +20118,7 @@ msgstr "Mostrar lista de satélites"
 msgid "Show screen menu path"
 msgstr "Muestra la ruta del menú de pantalla"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Mostrar salvapantallas"
 
 msgid "Show script messages"
