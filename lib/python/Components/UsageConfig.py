@@ -2522,6 +2522,10 @@ def preferredInstantRecordPath():
 	return preferredPath(config.usage.instantrec_path.value)
 
 
+def preferredTimeShiftRecordingPath():
+	return preferredPath(config.timeshift.recordingPath.value) or defaultMoviePath()
+
+
 def defaultMoviePath():
 	return defaultRecordingLocation(config.usage.default_path.value)
 
