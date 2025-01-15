@@ -3740,6 +3740,9 @@ msgstr "Cálculo completado"
 msgid "Calibrate"
 msgstr "Calibrar"
 
+msgid "Cam Ci & Stream Relay"
+msgstr "Cam Ci & Stream Relay"
+
 msgid "Cambodia"
 msgstr "Camboya"
 
@@ -12992,6 +12995,9 @@ msgstr "Misterio"
 msgid "N/A"
 msgstr "N/A"
 
+msgid "NCam Information"
+msgstr "Información NCam"
+
 #
 msgid "NEXT"
 msgstr "SIGUIENTE"
@@ -13866,7 +13872,7 @@ msgid "ONID"
 msgstr "ONID"
 
 msgid "OSCam Information"
-msgstr "Información de OScam"
+msgstr "Información OSCam"
 
 msgid "OSCam Information Settings"
 msgstr "Información Oscam - Configuración"
