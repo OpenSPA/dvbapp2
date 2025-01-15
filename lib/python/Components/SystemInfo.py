@@ -248,9 +248,9 @@ def getSysSoftcam():
 
 
 def updateSysSoftCam():
-	BoxInfo.setMutableItem("ShowOscamInfo", getSysSoftcam() in ("oscam", "ncam"))
-	BoxInfo.setMutableItem("ShowCCCamInfo", getSysSoftcam() in ("cccam",))
-	#BoxInfo.setMutableItem("ShowNCamInfo", "ncam" in getSysSoftcam(), False)
+	BoxInfo.setMutableItem("ShowOscamInfo", getSysSoftcam() == ("oscam"))
+	BoxInfo.setMutableItem("ShowNcamInfo", getSysSoftcam() == ("ncam+"))
+	BoxInfo.setMutableItem("ShowCccamInfo", getSysSoftcam() == ("cccam"))
 	#BoxInfo.setMutableItem("HasSoftcamEmu", hasSoftcamEmu())
 	#BoxInfo.setMutableItem("Softcams", getSoftcams())
 	#BoxInfo.setMutableItem("CurrentSoftcam", getCurrentSoftcam())
