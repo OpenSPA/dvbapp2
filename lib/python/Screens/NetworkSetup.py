@@ -299,7 +299,7 @@ class DNSSettings(Setup):
 					dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("WARNING: Do not change your ISP DNS.\nUse other DNS data source.")))
 				self.dnsLength = item
 		else:
-			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
+			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x, fixed_size=False)) for x in self.dnsServers if isinstance(x, str)]
 			for item, entry in enumerate(items, start=1):
 				dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
 				self.dnsLength = item
