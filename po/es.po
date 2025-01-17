@@ -3740,9 +3740,6 @@ msgstr "Cálculo completado"
 msgid "Calibrate"
 msgstr "Calibrar"
 
-msgid "Cam Ci & Stream Relay"
-msgstr "Cam Ci & Stream Relay"
-
 msgid "Cambodia"
 msgstr "Camboya"
 

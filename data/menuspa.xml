@@ -79,7 +79,6 @@
 				<item key="led_setup" level="1" text="Configure front panel LEDs" weight="35" requires="LEDColorControl"><setup setupKey="LEDs" /></item>
 				<item key="lcd_clock_setup" weight="10" level="0" text="LCD Clock selection" requires="LCDClockSetup"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item>
 				<item key="input_device_setup" level="1" text="Input Devices Settings" weight="50"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
-				<item key="parental_setup" level="0" text="Parental Control Settings" weight="60"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 				<item key="remotecode" level="1" text="Remote Control Code Settings" weight="55" requires="RemoteCode">
 					<code>
 from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
@@ -148,13 +147,14 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="manual_scan" level="0" text="Manual Scan" weight="10"><screen module="ScanSetup" /></item>
 				<item key="fallbacktuner_settings" text="Fallback remote receiver setup"><screen module="SetupFallbacktuner"/></item>
 			</menu>
-			<!-- Menu / Setup / Cam Ci & Stream Relay -->
-			<menu key="cam" level="1" text="Cam Ci &amp; Stream Relay" weight="30">
+			<!-- Menu / Setup / Common interface -->
+			<menu key="cam" level="1" text="Decryption &amp; Parental Control" weight="30">
 				<item key="oscam_info" level="0" text="OSCam Information" weight="80" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OSCamInfo" /></item>
 				<item key="oscam_info" level="0" text="NCam Information" weight="70" requires="ShowNcamInfo"><screen module="OScamInfo" screen="OSCamInfo" /></item>
 				<item key="cccam_info" level="0" text="CCcam Information" weight="70" requires="ShowCccamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
 				<item key="streamrelay_settings" level="2" text="Stream Relay Settings" weight="110"><screen module="StreamRelaySetup" screen="StreamRelaySetup" /></item>
 				<item key="ci_selection" level="1" text="Common Interface Settings" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+				<item key="parental_setup" level="0" text="Parental Control Settings" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			</menu>
 			<!-- Menu / Setup / Software Management -->
 			<menu key="software_manager" level="0" text="Software Management" description="This menu offers options related managing the software on the %s %s." weight="50">

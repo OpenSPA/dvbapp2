@@ -3803,9 +3803,6 @@ msgstr ""
 msgid "Call-in"
 msgstr ""
 
-msgid "Cam Ci & Stream Relay"
-msgstr ""
-
 msgid "Cambodia"
 msgstr ""
 
