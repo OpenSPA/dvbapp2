@@ -3410,9 +3410,6 @@ msgstr ""
 msgid "Calibrate"
 msgstr ""
 
-msgid "Cam Ci & Stream Relay"
-msgstr ""
-
 msgid "Cambodia"
 msgstr ""
 

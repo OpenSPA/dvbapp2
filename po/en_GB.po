@@ -3417,9 +3417,6 @@ msgstr "Calculation complete"
 msgid "Calibrate"
 msgstr "Calibrate"
 
-msgid "Cam Ci & Stream Relay"
-msgstr ""
-
 msgid "Cambodia"
 msgstr ""
 
