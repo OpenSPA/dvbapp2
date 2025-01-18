@@ -1044,13 +1044,25 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							if (service_info)
 								service_info->getName(*m_cursor, text);
 							bool is3D = (eDVBDB::getInstance()->HasFlag(ref, 128) | text.find("3D") != std::string::npos) ? true: false;
+							bool isHD = false;
+							bool isUHD = false;
+							bool isIPTV = false;
+							const char *url = ref.path.c_str();
+
+							if (strstr(url, "://") && eConfigManager::getConfigBoolValue("config.usage.quality_IPTVicon", true))
+							{
+								isIPTV = true;
+							} else {
+								isHD = ref.data[0] == 25 | text.find(" HD") != std::string::npos | text.find(" FHD") != std::string::npos;
+								isUHD = ref.data[0] == 31 | text.find(" UHD") != std::string::npos | text.find(" 4K") != std::string::npos;
+							}
 
 							ePtr<gPixmap> &pixmap =
 								(is3D & eConfigManager::getConfigBoolValue("config.usage.quality_3Dicon", true)) ? m_pixmaps[pic3D] :
-								(ref.data[0] == 31 & eConfigManager::getConfigBoolValue("config.usage.quality_4Kicon", true)) ? m_pixmaps[pic4K] :
-								((ref.data[0] == 25 | text.find(" HD") != std::string::npos) & eConfigManager::getConfigBoolValue("config.usage.quality_HDicon", true)) ? m_pixmaps[picHD] :
-								(ref.type == eServiceReference::idServiceMP3 & eConfigManager::getConfigBoolValue("config.usage.quality_IPTVicon", true)) ? m_pixmaps[picIPTV] : 
-								(ref.data[0] == 1 & ref.type != eServiceReference::idServiceMP3 & eConfigManager::getConfigBoolValue("config.usage.quality_SDicon", false)) ? m_pixmaps[picSD]: m_pixmaps[picNone];
+								(isUHD & eConfigManager::getConfigBoolValue("config.usage.quality_4Kicon", true)) ? m_pixmaps[pic4K] :
+								(isHD & eConfigManager::getConfigBoolValue("config.usage.quality_HDicon", true)) ? m_pixmaps[picHD] :
+								(ref.data[0] == 1 & eConfigManager::getConfigBoolValue("config.usage.quality_SDicon", false)) ? m_pixmaps[picSD]:
+								isIPTV ? m_pixmaps[picIPTV] : m_pixmaps[picNone];
 
 							eSize pixmap_size = m_pixmaps[picHD]->size();
 
@@ -1105,7 +1117,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								serviceTypeXoffs = pixmap_size.width() + m_items_distances;
 							}
 							area.moveBy(offset);
-							if (service_info && service_info->isCrypted())
+							//OPENSPA [morser] prepare for IPTV crypted pic
+							const char *uri = ref.path.c_str();
+							bool isIPTVCrypted = (strstr(uri, "://") && ref.flags == eServiceReference::isIPTVCrypted); //OPENSPA [morser] prepare for IPTV crypted pic
+							if (service_info && service_info->isCrypted() || isIPTVCrypted)   //OPENSPA [morser] prepare for IPTV crypted pic
 							{
 								if (m_crypto_icon_mode == 2)
 								{
