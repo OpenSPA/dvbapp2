@@ -19,7 +19,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 from Screens.VideoWizard import VideoWizard
 from Screens.Wizard import wizardManager, Wizard
-from Tools.Directories import fileReadLine, fileWriteLines, isPluginInstalled, fileExists
+from Tools.Directories import fileReadLine, fileReadLines, fileWriteLines, isPluginInstalled, fileExists
 
 MODULE_NAME = __name__.split(".")[-1]
 
