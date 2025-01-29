@@ -3966,7 +3966,7 @@ msgstr "No se puede determinar el límite en el %s ..., ¡abortando!"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "No se puede encontrar ninguna señal..., ¡abortando!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "No se puede mover a la papelera"
 
 msgid "Capacity"
@@ -5168,14 +5168,8 @@ msgstr "Configurar la latitud de tu localización."
 msgid "Configure the longitude of your location."
 msgstr "Configurar la logitud de tu localización."
 
-msgid ""
-"Configure the minimum amount of disk space to be available for recordings. "
-"When the amount of space drops below this value, deleted items will be "
-"removed from the trash can."
-msgstr ""
-"Configurar el espacio en disco mínimo disponible para grabaciones. Cuando el "
-"espacio caiga por debajo de ese valor, los programas borrados se eliminarán "
-"de la papelera."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
+msgstr "Configurar el espacio en disco mínimo disponible para grabaciones. Cuando el espacio caiga por debajo de ese valor, los programas borrados se eliminarán de la papelera."
 
 msgid ""
 "Configure the minimum width before showing the 'i' icon, '0' is equal to not "
@@ -5190,12 +5184,8 @@ msgstr "Configurar el servidor de nombres (DNS)."
 msgid "Configure the netmask."
 msgstr "Configurar la máscara de red."
 
-msgid ""
-"Configure the number of days after which items are automatically removed "
-"from the trash can."
-msgstr ""
-"Configure el número de días después de que los elementos se eliminan "
-"automáticamente de la papelera."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
+msgstr "Configure el número de días después de que los elementos se eliminan automáticamente de la papelera."
 
 msgid ""
 "Configure the number of days old timers are kept before they are "
@@ -6834,8 +6824,8 @@ msgid "Directory"
 msgstr "Directorio"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "No existe el directorio %s."
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Error: No existe el directorio %s."
 
 #, python-format
 msgid "Directory '%s' can't be linked to recordings!"
@@ -7082,7 +7072,7 @@ msgstr "¿Realmente quieres eliminar %s ?"
 msgid "Do you really want to delete '%s'?"
 msgstr "¿Seguro que quiere eliminar %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "¿Realmente desea eliminar?"
 
 #, python-format
@@ -7118,7 +7108,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "¿Realmente quieres moverte a la papelera?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "¿Seguro que quiere eliminar permanentemente ‘%s’ de la papelera?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -7135,7 +7125,7 @@ msgstr "¿Seguro que quiere eliminar el temporizador de %s?"
 
 #
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "¿Seguro que quiere eliminar tu marcador %s?"
 
 #
@@ -9190,7 +9180,7 @@ msgstr "Comprobar sistema de archivos"
 msgid "File System Packages"
 msgstr "Paquetes de sistema de archivos"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "El archivo parece estar ocupado.\n"
 
 msgid ""
@@ -14531,7 +14521,7 @@ msgstr "Porcentaje/Barra derecha de progreso"
 msgid "Perform an on-line flash instead"
 msgstr "Realizar un flash en línea en su lugar"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "¿Eliminar permanentemente todas las grabaciones de la papelera?"
 
 msgid "Permanently remove all deleted items"
@@ -25417,7 +25407,7 @@ msgstr ""
 "Cuando está activado, controlar el consumo de potencia para detectar la "
 "detención del rotor (si está soportado por el sintonizador)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr ""
 "Cuando está activado, las papeleras en red se comprueban para vaciarlas."
 
