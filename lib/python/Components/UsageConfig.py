@@ -1,6 +1,6 @@
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
-from os import makedirs, remove, system as ossystem, mkdir, unlink
+from os import makedirs, remove, system as ossystem, mkdir, unlink, listdir
 from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
@@ -547,20 +547,23 @@ def InitUsageConfig():
 			mkdir(resolveFilename(SCOPE_PICON), 0o755)
 		except:
 			pass
-	config.misc.picon_path = ConfigText(default = resolveFilename(SCOPE_PICON))
-	if not config.usage.default_path.value.endswith('/'):
-		tmpvalue = config.misc.picon_path.value
-		config.misc.picon_path.setValue(tmpvalue + '/')
-		config.misc.picon_path.save()
-	def piconpathChanged(configElement):
-		if not config.misc.picon_path.value.endswith('/'):
-			tmpvalue = config.misc.picon_path.value
-			config.misc.picon_path.setValue(tmpvalue + '/')
-			config.misc.picon_path.save()
-	config.misc.picon_path.addNotifier(piconpathChanged, immediate_feedback = False)
-	config.misc.allowed_picon_paths = ConfigLocations(default = [resolveFilename(SCOPE_PICON)])
 
-	config.misc.picon_search_hdd = ConfigYesNo (default = False)
+	config.misc.allowed_picon_paths = ConfigLocations(default=[resolveFilename(SCOPE_PICON)])
+	config.misc.picon_path = ConfigText(default=resolveFilename(SCOPE_PICON))
+
+	def piconpathChanged(configElement):
+		if not exists(config.misc.picon_path.value):
+			config.misc.picon_path.value = config.misc.picon_path.value.replace("XPicons/", "").replace("picon/", "")
+		for picon in [x for x in listdir(config.misc.picon_path.value) if "XPicons" in x or "picon" in x]:
+			if "picon" not in config.misc.picon_path.value and "XPicons" not in config.misc.picon_path.value:
+				config.misc.picon_path.value = config.misc.picon_path.value + picon + "/"
+				config.misc.picon_path.save()
+		if "picon" not in config.misc.picon_path.value and "XPicons" not in config.misc.picon_path.value:
+			config.misc.picon_path.value = config.misc.picon_path.default
+			config.misc.picon_path.save()
+
+	config.misc.picon_path.addNotifier(piconpathChanged, immediate_feedback=False)
+	config.misc.picon_search_hdd = ConfigYesNo(default=False)
 	##############################################
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
