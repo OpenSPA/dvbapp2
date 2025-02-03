@@ -102,8 +102,8 @@
     <panel name="RelojAbajo" />
   </screen>
   <screen name="MenuSummary" position="0,0" size="220,176">
-    <widget source="Title" render="Label" position="top" size="*,52" font="VFD; 33" halign="center" valign="top" foregroundColor="azul" />
-    <widget source="entry" render="Label" position="top" size="*,53" font="VFD;32" halign="center" valign="center"/>
+    <widget source="Title" render="Label" position="0,0" size="220,28" font="VFD; 32" halign="center" valign="center" foregroundColor="azul" />
+    <widget source="entry" render="Label" position="0,29" size="220,146" font="VFD;32" halign="center" valign="top" />
     <panel name="RelojAbajo" />
   </screen>
   <screen name="ServiceScanSummary" position="0,0" size="220,176">
@@ -113,9 +113,9 @@
     <panel name="RelojAbajo" />
   </screen>
   <screen name="SetupSummary" position="0,0" size="220,176">
-    <widget source="Title" render="Label" position="0,0" size="220,28" font="VFD; 32" halign="center" foregroundColor="azul" noWrap="1" />
-    <widget source="SetupEntry" render="Label" position="0,29" size="220,59" font="VFD; 30" transparent="1" valign="center" />
-    <widget source="SetupValue" render="Label" position="1,88" size="219,41" font="VFD; 30" transparent="1" valign="center" />
+    <widget source="Title" render="Label" position="0,0" size="220,30" font="VFD; 30" halign="center" foregroundColor="azul" noWrap="1" />
+    <widget source="SetupEntry" render="Label" position="0,31" size="220,71" font="VFD; 26" transparent="1" valign="center" />
+    <widget source="SetupValue" render="Label" position="1,103" size="219,28" font="VFD; 26" transparent="1" valign="center" />
     <panel name="RelojAbajo" />
   </screen>
 <!--<screen name="StandbySummary" position="0,0" size="220,176">
