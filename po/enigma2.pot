@@ -23951,7 +23951,7 @@ msgstr ""
 msgid "Step"
 msgstr ""
 
-msgid "The Internet connection appears to be working.\n"
+msgid "The Internet connection is working.\n"
 "\n"
 "Press OK to continue."
 msgstr ""

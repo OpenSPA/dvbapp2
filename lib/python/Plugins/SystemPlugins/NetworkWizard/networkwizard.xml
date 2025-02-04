@@ -54,7 +54,7 @@ self.checkNetwork()
 		<condition>
 self.condition = (self.InterfaceState == True )
 		</condition>
-		<text value="The Internet connection appears to be working.\n\nPress OK to continue." />
+		<text value="The Internet connection is working.\n\nPress OK to continue." />
 		<displaytext value="Follow instructions on TV" />
 		<code>
 self.showIP()

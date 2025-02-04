@@ -28924,11 +28924,11 @@ msgstr "Paso"
 
 #
 msgid ""
-"The Internet connection appears to be working.\n"
+"The Internet connection is working.\n"
 "\n"
 "Press OK to continue."
 msgstr ""
-"La conexión a internet parece estar funcionando.\n"
+"La conexión a internet está funcionando.\n"
 "\n"
 "Pulsa OK para continuar."
 
