@@ -19373,7 +19373,7 @@ msgid "The IceTV server has requested password for %s."
 msgstr ""
 
 msgid ""
-"The Internet connection appears to be working.\n"
+"The Internet connection is working.\n"
 "\n"
 "Press OK to continue."
 msgstr ""
