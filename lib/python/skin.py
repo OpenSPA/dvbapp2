@@ -1969,8 +1969,10 @@ class TemplateParser():
 			alphaBlend = gradientData[4]
 		return direction, alphaBlend, gradientStart, gradientEnd, gradientMid, gradientStartSelected, gradientEndSelected, gradientMidSelected
 
-	def collectColors(self, attributes):
-		for color in ("backgroundColor", "backgroundColorMarked", "backgroundColorMarkedAndSelected", "backgroundColorSelected", "borderColor", "foregroundColor", "foregroundColorMarked", "foregroundColorMarkedAndSelected", "foregroundColorSelected"):
+	def collectColors(self, attributes, widgetColors=None):
+		if widgetColors is None:
+			widgetColors = ()
+		for color in ("backgroundColor", "backgroundColorMarked", "backgroundColorMarkedAndSelected", "backgroundColorSelected", "borderColor", "borderColorSelected", "foregroundColor", "foregroundColorMarked", "foregroundColorMarkedAndSelected", "foregroundColorSelected") + widgetColors:
 			translatedColor = self.resolveColor(attributes.get(color))
 			if translatedColor is not None:
 				attributes[color] = translatedColor
@@ -2023,6 +2025,9 @@ class TemplateParser():
 			return []
 		if itemIndex and excludeItemIndexes and itemIndex in excludeItemIndexes:
 			return []
+		if pos == "fill":
+			pos = "0,0"
+			size = f"{context.w},{context.h}"
 		if pos is not None:
 			pos, size = context.parse(pos, size, None)
 			skinAttributes.append(("position", pos))
@@ -2049,7 +2054,11 @@ class TemplateParser():
 			print(f'[TemplateParser] processPanel DEBUG: Position={widget.attrib.get("position")}, Size={widget.attrib.get("size")}.')
 			print(f"[TemplateParser] processPanel DEBUG: Parent x={context.x}, width={context.w}.")
 		position = widget.attrib.get("position")
-		if "left" in position or "right" in position:
+		if position == "fill":
+			position = [0, 0]
+			widget.attrib["position"] = "0,0"
+			widget.attrib["size"] = f"{context.w},{context.h}"
+		elif "left" in position or "right" in position:
 			pos = position.split(",")
 			top = 0
 			if len(pos) == 2 and pos[0] in ("left", "right") and pos[1].isdigit():
@@ -2270,7 +2279,8 @@ def readSkin(screen, skin, names, desktop):
 					args = {
 						"scale": context.scale,
 						"dom": widgetTemplates,
-						"size": widget.attrib.get("size")
+						"itemHeight": int(widget.attrib.get("itemHeight", 0)),
+						"itemWidth": int(widget.attrib.get("itemWidth", 0))
 					}
 					connection = converterClass(args)
 					connection.connect(source)

@@ -54,7 +54,8 @@ public:
 		isMarker=64,			// Marker
 		isGroup=128,			// is a group of services
 		isNumberedMarker=256, //use together with isMarker, to force the marker to be numbered
-		isInvisible=512 // use to make services or markers in a list invisable
+		isInvisible=512, // use to make services or markers in a list invisable
+		isIPTVCrypted=1024 // OPENSPA [morser] prepare for IPTV crypted pic
 	};
 	int flags; // flags will NOT be compared.
 

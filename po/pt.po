@@ -1,21 +1,21 @@
 # openATV <openatv@gmail.com>, 2021.
-# Carlos Manuel Ferreira Alves <me@carlosmfalves.eu>, 2023.
+# Carlos Manuel Ferreira Alves <me@carlosmfalves.eu>, 2023, 2025.
 # Pedro Figueiredo <pabfig@sapo.pt>, 2023.
 # ssantos <ssantos@web.de>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-03-28 13:02+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"PO-Revision-Date: 2025-01-25 17:05+0000\n"
+"Last-Translator: Carlos Manuel Ferreira Alves <me@carlosmfalves.eu>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -100,6 +100,9 @@ msgstr " Actualizar"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Carregador de arranque actualizado!!"
+
+msgid "# = Reboot Required"
+msgstr "# = Necessário Reiniciar"
 
 #
 msgid "%-H:%M"
@@ -6588,13 +6591,13 @@ msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Deseja mesmo remover o marcador %s?"
 
 msgid ""
-"Do you really want to restart OSCam?\n"
+"Do you really want to restart %s?\n"
 "\n"
 "HINT: This will take about 5 seconds!"
 msgstr ""
 
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
 "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
 msgstr ""
@@ -21451,7 +21454,7 @@ msgid "Tuner Setup"
 msgstr "Configuração do Sintonizador"
 
 msgid "Tuner data is not available!"
-msgstr ""
+msgstr "Dados do Tuner não estão disponíveis!"
 
 msgid "Tuner information"
 msgstr "Informações do sintonizador"
@@ -21497,6 +21500,9 @@ msgstr "Tipo de sintonizador %s"
 
 msgid "Tuners"
 msgstr "Sintonizadores"
+
+msgid "Tuners, Scanning & Reception"
+msgstr "Sintonizadores, Procura & Recepção"
 
 msgid "Tuning algorithm"
 msgstr ""

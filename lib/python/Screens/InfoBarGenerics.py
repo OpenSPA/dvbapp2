@@ -26,7 +26,7 @@ from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.SystemInfo import BoxInfo, getBoxDisplayName, getSysSoftcam
 from Components.Task import job_manager
 from Components.TimerList import TimerList  # Deprecated!
 from Components.Timeshift import InfoBarTimeshift
@@ -338,39 +338,39 @@ class InfoBarUnhandledKey:
 
 class InfoBarScreenSaver:
 	def __init__(self):
+		self.screenSaverTimer = eTimer()
+		self.screenSaverTimer.callback.append(self.screenSaverTimeout)
+		self.screenSaver = self.session.instantiateDialog(ScreenSaver)
 		self.onExecBegin.append(self.__onExecBegin)
 		self.onExecEnd.append(self.__onExecEnd)
-		self.screenSaverTimer = eTimer()
-		self.screenSaverTimer.callback.append(self.screensaverTimeout)
-		self.screensaver = self.session.instantiateDialog(ScreenSaver)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
-	def __layoutFinished(self):
-		self.screensaver.hide()
-
 	def __onExecBegin(self):
-		self.ScreenSaverTimerStart()
+		self.screenSaverTimerStart()
 
 	def __onExecEnd(self):
-		if self.screensaver.shown:
-			self.screensaver.hide()
-			eActionMap.getInstance().unbindAction("", self.keypressScreenSaver)
+		if self.screenSaver.shown:
+			self.screenSaver.hide()
+			eActionMap.getInstance().unbindAction("", self.screenSaverKeyPress)
 		self.screenSaverTimer.stop()
 
-	def ScreenSaverTimerStart(self):
-		time = int(config.usage.screen_saver.value)
+	def __layoutFinished(self):
+		self.screenSaver.hide()
+
+	def screenSaverTimerStart(self):
+		startTimer = config.usage.screenSaverStartTimer.value
 		flag = self.seekstate[0]
 		if not flag:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref and not (hasattr(self.session, "pipshown") and self.session.pipshown):
 				ref = ref.toString().split(":")
 				flag = ref[2] == "2" or ref[2] == "A" or splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
-		if time and flag:
-			self.screenSaverTimer.startLongTimer(time)
+		if startTimer and flag:
+			self.screenSaverTimer.startLongTimer(startTimer)
 		else:
 			self.screenSaverTimer.stop()
 
-	def screensaverTimeout(self):
+	def screenSaverTimeout(self):
 		if self.execing and not Screens.Standby.inStandby and not Screens.Standby.inTryQuitMainloop:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
@@ -378,15 +378,15 @@ class InfoBarScreenSaver:
 					self.pvrStateDialog.hide()
 				except Exception:
 					pass
-			self.screensaver.show()
-			eActionMap.getInstance().bindAction("", -maxsize - 1, self.keypressScreenSaver)
+			self.screenSaver.show()
+			eActionMap.getInstance().bindAction("", -maxsize - 1, self.screenSaverKeyPress)
 
-	def keypressScreenSaver(self, key, flag):
+	def screenSaverKeyPress(self, key, flag):
 		if flag:
-			self.screensaver.hide()
+			self.screenSaver.hide()
 			self.show()
-			self.ScreenSaverTimerStart()
-			eActionMap.getInstance().unbindAction("", self.keypressScreenSaver)
+			self.screenSaverTimerStart()
+			eActionMap.getInstance().unbindAction("", self.screenSaverKeyPress)
 
 
 class HideVBILine(Screen):
@@ -2541,8 +2541,8 @@ class InfoBarSeek:
 		for c in self.onPlayStateChanged:
 			c(self.seekstate)
 		self.checkSkipShowHideLock()
-		if hasattr(self, "ScreenSaverTimerStart"):
-			self.ScreenSaverTimerStart()
+		if hasattr(self, "screenSaverTimerStart"):
+			self.screenSaverTimerStart()
 		return True
 
 	def okButton(self):
@@ -3088,7 +3088,7 @@ class ExtensionsList(ChoiceBox):
 			extensionKeys.append(key or "")
 			extensionList.append((extension[0], extension[1]))
 
-		reorderConfig = "extension_order" if config.usage.sortExtensionslist.value == "user" else ""
+		reorderConfig = "extensionOrder" if config.usage.sortExtensionslist.value == "user" else ""
 		ChoiceBox.__init__(self, session, title=_("Please choose an extension..."), list=extensionList, keys=extensionKeys, reorderConfig=reorderConfig, skin_name="ExtensionsList")
 
 
@@ -3123,7 +3123,6 @@ class InfoBarExtensions:
 		self.addExtension(extension=self.getOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getOScamInfo, type=InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension=self.getNcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getIpkUninstall, type=InfoBarExtensions.EXTENSION_LIST)
 		if config.usage.show_restart_network_extensionslist.getValue() is True:
 			self.addExtension(extension=self.getRestartNetwork, type=InfoBarExtensions.EXTENSION_LIST)
@@ -3170,40 +3169,24 @@ class InfoBarExtensions:
 		else:
 			return []
 
-	def getCCname(self):
-		return _("CCcam Info")
+	def getCCcam(self):
+		return "CCcam Info"
 
 	def getCCcamInfo(self):
-		if pathExists("/usr/bin/"):
-			softcams = listdir("/usr/bin/")
-		for softcam in softcams:
-			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.value:
-				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
+		if getSysSoftcam() == "cccam" and config.cccaminfo.showInExtensions.value:
+			return [((boundFunction(self.getCCcam), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
 		else:
 			return []
 
-	def getOSname(self):
-		return _("OSCam Info")
+	def getOSCamNCam(self):
+		return "OSCam Info" if getSysSoftcam() == "oscam" else "NCam Info"
 
 	def getOScamInfo(self):
-		if pathExists("/usr/bin/"):
-			softcams = listdir("/usr/bin/")
-		for softcam in softcams:
-			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.value:
-				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
-		else:
-			return []
-
-	## OPENSPA [morser] Add Ncam
-	def getNname(self):
-		return _("Ncam Info")
-
-	def getNcamInfo(self):
-		if pathExists('/usr/bin/'):
-			softcams = listdir('/usr/bin/')
-		for softcam in softcams:
-			if softcam.lower().startswith('ncam') and config.ncaminfo.showInExtensions.value:
-				return [((boundFunction(self.getNname), boundFunction(self.openNcamInfo), lambda: True), None)] or []
+		if getSysSoftcam() in ("oscam", "ncam+"):
+			if config.oscaminfo.showInExtensions.value or config.ncaminfo.showInExtensions.value:
+				return [((boundFunction(self.getOSCamNCam), boundFunction(self.openOScamInfo), lambda: True), None)] or []
+			else:
+				return []
 		else:
 			return []
 	########################################
@@ -3492,8 +3475,8 @@ class InfoBarPiP:
 					print("[InfoBarGenerics] [LCDMiniTV] disable PiP")
 					eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
 				self.session.pipshown = False
-			if hasattr(self, "ScreenSaverTimerStart"):
-				self.ScreenSaverTimerStart()
+			if hasattr(self, "screenSaverTimerStart"):
+				self.screenSaverTimerStart()
 		else:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()

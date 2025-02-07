@@ -1,6 +1,6 @@
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
-from os import makedirs, remove, system as ossystem, mkdir
+from os import makedirs, remove, system as ossystem, mkdir, unlink, listdir
 from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
@@ -108,7 +108,8 @@ def InitUsageConfig():
 	])
 	config.usage.unhandledKeyTimeout = ConfigSelection(default=2, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 6)])
 	config.usage.show_spinner = ConfigYesNo(default=True)
-	config.usage.screen_saver = ConfigSelection(default="0", choices=[(0, _("Disabled"))] + [(x, _("%d Seconds") % x) for x in (5, 30)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 20, 30, 45, 60)])
+	config.usage.screenSaverStartTimer = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, _("%d Seconds") % x) for x in (5, 10, 20, 30, 40, 50)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 20, 30, 45, 60)])
+	config.usage.screenSaverMoveTimer = ConfigSelection(default=10, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 61)])
 	config.usage.informationShowAllMenuScreens = ConfigYesNo(default=False)
 	config.usage.informationExtraSpacing = ConfigYesNo(False)
 
@@ -545,20 +546,23 @@ def InitUsageConfig():
 			mkdir(resolveFilename(SCOPE_PICON), 0o755)
 		except:
 			pass
-	config.misc.picon_path = ConfigText(default = resolveFilename(SCOPE_PICON))
-	if not config.usage.default_path.value.endswith('/'):
-		tmpvalue = config.misc.picon_path.value
-		config.misc.picon_path.setValue(tmpvalue + '/')
-		config.misc.picon_path.save()
-	def piconpathChanged(configElement):
-		if not config.misc.picon_path.value.endswith('/'):
-			tmpvalue = config.misc.picon_path.value
-			config.misc.picon_path.setValue(tmpvalue + '/')
-			config.misc.picon_path.save()
-	config.misc.picon_path.addNotifier(piconpathChanged, immediate_feedback = False)
-	config.misc.allowed_picon_paths = ConfigLocations(default = [resolveFilename(SCOPE_PICON)])
 
-	config.misc.picon_search_hdd = ConfigYesNo (default = False)
+	config.misc.allowed_picon_paths = ConfigLocations(default=[resolveFilename(SCOPE_PICON)])
+	config.misc.picon_path = ConfigText(default=resolveFilename(SCOPE_PICON))
+
+	def piconpathChanged(configElement):
+		if not exists(config.misc.picon_path.value):
+			config.misc.picon_path.value = config.misc.picon_path.value.replace("XPicons/", "").replace("picon/", "")
+		for picon in [x for x in listdir(config.misc.picon_path.value) if "XPicons" in x or "picon" in x]:
+			if "picon" not in config.misc.picon_path.value and "XPicons" not in config.misc.picon_path.value:
+				config.misc.picon_path.value = config.misc.picon_path.value + picon + "/"
+				config.misc.picon_path.save()
+		if "picon" not in config.misc.picon_path.value and "XPicons" not in config.misc.picon_path.value:
+			config.misc.picon_path.value = config.misc.picon_path.default
+			config.misc.picon_path.save()
+
+	config.misc.picon_path.addNotifier(piconpathChanged, immediate_feedback=False)
+	config.misc.picon_search_hdd = ConfigYesNo(default=False)
 	##############################################
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
@@ -1700,6 +1704,7 @@ def InitUsageConfig():
 		eSubtitleSettings.setSubtitleBacktrans(configElement.value)
 
 	choiceList = [
+        (-1, _("Original")),
 		(0, _("No transparency")),
 		(12, "5%"),
 		(25, "10%"),
@@ -1719,7 +1724,7 @@ def InitUsageConfig():
 	def setDVBSubtitleBacktrans(configElement):
 		eSubtitleSettings.setDVBSubtitleBacktrans(configElement.value)
 
-	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default=0, choices=choiceList)
+	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default=-1, choices=choiceList)
 	config.subtitles.dvb_subtitles_backtrans.addNotifier(setDVBSubtitleBacktrans)
 
 	choiceList = []
@@ -1747,11 +1752,11 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitles_delay = ConfigSelection(default=0, choices=choiceList)
 	config.subtitles.pango_subtitles_delay.addNotifier(setPangoSubtitleDelay)
 
-	def setDVBSubtitleYellow(configElement):
-		eSubtitleSettings.setDVBSubtitleYellow(configElement.value)
+	def setDVBSubtitleColor(configElement):
+		eSubtitleSettings.setDVBSubtitleColor(configElement.value)
 
-	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default=False)
-	config.subtitles.dvb_subtitles_yellow.addNotifier(setDVBSubtitleYellow)
+	config.subtitles.dvb_subtitles_color = ConfigSelection(default=0, choices=[(0, _("Original")), (1, _("Yellow")), (2, _("Green")), (3, _("Magenta")), (4, _("Cyan"))])
+	config.subtitles.dvb_subtitles_color.addNotifier(setDVBSubtitleColor)
 
 	def setDVBSubtitleOriginalPosition(configElement):
 		eSubtitleSettings.setDVBSubtitleOriginalPosition(configElement.value)
@@ -2501,6 +2506,10 @@ def preferredTimerPath():
 
 def preferredInstantRecordPath():
 	return preferredPath(config.usage.instantrec_path.value)
+
+
+def preferredTimeShiftRecordingPath():
+	return preferredPath(config.timeshift.recordingPath.value) or defaultMoviePath()
 
 
 def defaultMoviePath():

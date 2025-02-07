@@ -6447,15 +6447,15 @@ msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "ท่านต้องการที่ลบบุ๊คมาร์ค %s ออกไปหรือไม่?"
 
 msgid ""
-"Do you really want to restart OSCam?\n"
+"Do you really want to restart %s?\n"
 "\n"
 "HINT: This will take about 5 seconds!"
 msgstr ""
 
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
 msgstr ""
 
 #, python-format

@@ -3623,7 +3623,7 @@ msgstr ""
 msgid "Cannot find any signal ..., aborting !"
 msgstr ""
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr ""
 
 msgid "Capacity"
@@ -4577,7 +4577,7 @@ msgstr ""
 msgid "Configure the longitude of your location."
 msgstr ""
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr ""
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4592,7 +4592,7 @@ msgstr ""
 msgid "Configure the network again"
 msgstr ""
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6058,7 +6058,7 @@ msgid "Directory"
 msgstr ""
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr ""
 
 #, python-format
@@ -6179,9 +6179,6 @@ msgstr ""
 msgid "Display more information about this file"
 msgstr ""
 
-msgid "Display oscam information."
-msgstr ""
-
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -6278,7 +6275,7 @@ msgstr ""
 msgid "Do you really want to delete '%s'?"
 msgstr ""
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr ""
 
 #, python-format
@@ -6307,7 +6304,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr ""
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6322,19 +6319,19 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr ""
 
 msgid ""
-"Do you really want to restart OSCam?\n"
+"Do you really want to restart %s?\n"
 "\n"
 "HINT: This will take about 5 seconds!"
 msgstr ""
 
 msgid ""
-"Do you really want to shut down OSCam?\n"
+"Do you really want to shut down %s?\n"
 "\n"
-"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+"ATTENTION: To reactivate %s, enter CAMD Manager and press GREEN button."
 msgstr ""
 
 #, python-format
@@ -8112,7 +8109,7 @@ msgstr ""
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr ""
 
 msgid ""
@@ -12273,9 +12270,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr ""
 
-msgid "OSCam Info"
-msgstr ""
-
 msgid "OSCam Information"
 msgstr ""
 
@@ -12297,9 +12291,6 @@ msgstr ""
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
-msgstr ""
-
-msgid "OSCamInfo: Information"
 msgstr ""
 
 msgid "OSCamInfo: Log"
@@ -12886,7 +12877,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr ""
 
 msgid "Permanently remove all deleted items"
@@ -19358,7 +19349,7 @@ msgid "The IceTV server has requested password for %s."
 msgstr ""
 
 msgid ""
-"The Internet connection appears to be working.\n"
+"The Internet connection is working.\n"
 "\n"
 "Press OK to continue."
 msgstr ""
@@ -21941,7 +21932,7 @@ msgstr ""
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr ""
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, number markers will be hidden."
