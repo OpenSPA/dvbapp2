@@ -1692,6 +1692,12 @@ msgstr ""
 msgid "AI-Powered translation subscription code"
 msgstr ""
 
+msgid "AI Translation mode"
+msgstr ""
+
+msgid "AI Translation optimization"
+msgstr ""
+
 msgid "ARM"
 msgstr ""
 
@@ -4427,9 +4433,6 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr ""
 
-msgid "Configure the AI-Powered translation language."
-msgstr ""
-
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
@@ -4476,9 +4479,6 @@ msgid "Configure the brightness level of the front panel display for normal oper
 msgstr ""
 
 msgid "Configure the brightness level of the front panel display for standby."
-msgstr ""
-
-msgid "Configure the color of the AI-Powered translations."
 msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -6811,9 +6811,6 @@ msgstr ""
 msgid "Enable 5V for active antenna"
 msgstr ""
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
-
 msgid "Enable Autorecord"
 msgstr ""
 
@@ -7224,6 +7221,9 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr ""
 
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
 msgid "Enter URL"
 msgstr ""
 
@@ -7240,9 +7240,6 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr ""
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr ""
-
-msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -15326,6 +15323,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -15516,6 +15516,9 @@ msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr ""
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
+msgstr ""
+
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
@@ -15853,6 +15856,9 @@ msgstr ""
 msgid "Select files/folders to backup"
 msgstr ""
 
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
+
 msgid "Select how long to display status messages."
 msgstr ""
 
@@ -16015,7 +16021,7 @@ msgstr ""
 msgid "Select the action for '%s'"
 msgstr ""
 
-msgid "Select the action to perform when the timer ends."
+msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
@@ -16031,6 +16037,9 @@ msgid "Select the channel or service to be used for this timer."
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
+msgstr ""
+
+msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr ""
 
 msgid "Select the current bookmarked location and exit"
@@ -19302,6 +19311,12 @@ msgstr ""
 
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
+msgstr ""
+
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr ""
+
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr ""
 
 msgid ""

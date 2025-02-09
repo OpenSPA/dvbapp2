@@ -1856,6 +1856,12 @@ msgstr "Idioma de traducción asistida por IA"
 msgid "AI-Powered translation subscription code"
 msgstr "Código de suscripción de la traducción asistida por IA"
 
+msgid "AI Translation mode"
+msgstr "Modo de traducción de IA"
+
+msgid "AI Translation optimization"
+msgstr "Optimización de la traducción con IA"
+
 msgid "ARM"
 msgstr "ARM"
 
@@ -4947,9 +4953,6 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Configurar el tipo de mando a distancia"
 
-msgid "Configure the AI-Powered translation language."
-msgstr "Configurar el idioma de la traducción asistida por IA."
-
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configurar el modo DiSEqC para este LNB."
 
@@ -5017,9 +5020,6 @@ msgstr "Configura el nivel de brillo del LCD durante su uso."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Configura el nivel de brillo del LCD en modo espera."
-
-msgid "Configure the color of the AI-Powered translations."
-msgstr "Configurar el color de la traducción asistida por IA."
 
 msgid ""
 "Configure the color of the external subtitles, alternative (normal in white, "
@@ -7694,10 +7694,6 @@ msgstr "Habilitar %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Habilitar 5V para la antena activa"
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
-"Activar traducción asistida por IA para todos los subtítulos DVB y teletexto."
-
 #
 msgid "Enable Autorecord"
 msgstr "Habilitar Autograbación"
@@ -8175,6 +8171,9 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr "Introduce el pin del canal"
 
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr "Ingrese el código de suscripción para habilitar completamente el complemento AI-Powered Translation, el código unificado para la prueba es 15."
+
 msgid "Enter URL"
 msgstr "Ingresar URL"
 
@@ -8212,10 +8211,6 @@ msgid ""
 msgstr ""
 "Introduce la URL de tus feeds personales para permitirte seleccionar "
 "paquetes de tu feed personal."
-
-msgid "Enter your subscription code, the unified code for trial is 15."
-msgstr ""
-"Ingresa tu código de suscripción, el código unificado para prueba es 15."
 
 #
 msgid "Entertainment"
@@ -17178,6 +17173,9 @@ msgstr "Ciencia y tecnología"
 msgid "Scope"
 msgstr "Alcance"
 
+msgid "Screen saver movement"
+msgstr "Movimiento del protector de pantalla"
+
 msgid "Script Manager"
 msgstr "Gestor de scripts"
 
@@ -17453,6 +17451,9 @@ msgstr ""
 "Selecciona 'Si' para mostrar archivos desconocidos en el visualizador del "
 "Administrador de archivos, selecciona 'No' para no procesar los archivos "
 "desconocidos."
+
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
+msgstr "Seleccione 'Sí' para habilitar la traducción impulsada por IA para todos los subtítulos de teletexto y DVB."
 
 #, python-format
 msgid "Select 'Yes' to enable autostart of '%s'."
@@ -17992,6 +17993,9 @@ msgstr "Selecciona archivos a excluir en el backup"
 msgid "Select files/folders to backup"
 msgstr "Seleccione archivos/carpetas para el backup"
 
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Seleccione cuánto tiempo la imagen del protector de pantalla permanecerá en la misma ubicación en la pantalla antes de ser movida."
+
 msgid "Select how long to display status messages."
 msgstr "Selecciona cuánto tiempo quieres mostrar los mensajes de estado."
 
@@ -18227,6 +18231,9 @@ msgstr "Seleccione la acción para '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Seleccione la acción a realizar cuando el temporizador termine."
 
+msgid "Select the AI-Powered Translation target language."
+msgstr "Seleccione el idioma de destino de traducción impulsada por IA."
+
 msgid ""
 "Select the animation speed of the button indicators in the help screens. "
 "'Disabled' turns off animation so that indicators jump between buttons."
@@ -18244,6 +18251,9 @@ msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Seleccione el carácter o la acción bajo el cursor del teclado"
+
+msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr "Seleccione el color que se utilizará para el texto de traducción impulsada por IA."
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Seleccionar la ubicación actual de los marcadores y salir"
@@ -21994,6 +22004,12 @@ msgstr "El log de commit '%s' no contiene información."
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "El archivo '%s' no se puede recuperar, por favor prueba más tarde."
+
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr "El modo AI que se utiliza para traducir idiomas. Puedes elegir el que ofrezca la traducción más precisa para el idioma de destino."
+
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgstr "El servicio de traducción impulsado por inteligencia artificial se optimizará para proporcionar el mejor rendimiento según la velocidad de carga de la conexión a Internet seleccionada."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
