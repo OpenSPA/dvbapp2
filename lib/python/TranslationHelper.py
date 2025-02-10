@@ -159,3 +159,6 @@ translate = _("Lower USB")
 translate = _("Back, right USB 3.0")
 translate = _("Back, left USB 3.0")
 translate = _("Back USB-C")
+translate = _("eMMC")
+translate = _("eSATA")
+translate = _("Playback Time:")  # used in Metrix skin

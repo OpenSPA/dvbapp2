@@ -3655,9 +3655,6 @@ msgstr ""
 msgid "Channel List"
 msgstr ""
 
-msgid "Channel List Menu"
-msgstr ""
-
 msgid "Channel Selection"
 msgstr ""
 
