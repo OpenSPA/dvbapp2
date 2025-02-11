@@ -9425,6 +9425,9 @@ msgstr ""
 msgid "Internal Flash"
 msgstr ""
 
+msgid "Internal SSD"
+msgstr ""
+
 msgid "Internal USB"
 msgstr ""
 
