@@ -1605,6 +1605,9 @@ msgstr ""
 "A recording has been started:\n"
 "%s"
 
+msgid "A recording has started:"
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -20246,7 +20249,10 @@ msgid "Title properties"
 msgstr "Title properties"
 
 msgid "Titleset mode"
-msgstr "Titleset mode"
+msgstr ""
+
+msgid "To be able to record, put the receiver into standby mode."
+msgstr ""
 
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""

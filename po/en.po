@@ -2010,6 +2010,9 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "A recording has started:"
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -18896,6 +18899,9 @@ msgid "Title properties"
 msgstr ""
 
 msgid "Titleset mode"
+msgstr ""
+
+msgid "To be able to record, put the receiver into standby mode."
 msgstr ""
 
 msgid "To restore the image:"

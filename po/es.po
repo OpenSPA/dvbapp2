@@ -1414,13 +1414,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid ""
-"1. Set this channel as the standby start channel.\n"
-"2. Put the receiver into standby, then recording will start.\n"
-msgstr ""
-"1. Establezca como canal de inicio en reposo este canal.\n"
-"2. Ponga el receptor en standby, la grabación entonces comenzará.\n"
-
 msgid "1. Tune to an imported channel with at least EPG EIT.\n2. Restart enigma2.\n3. Now try to download EPG cache from the reserve receiver."
 msgstr "1. Sintonice un canal importado con al menos EPG EIT.\n2. Reinicie Enigma2.\n3. Ahora intente descargar la caché EPG del receptor reserva."
 
@@ -1725,6 +1718,9 @@ msgid ""
 msgstr ""
 "Se ha iniciado una grabación:\n"
 "%s"
+
+msgid "A recording has started:"
+msgstr "Ha comenzado una grabación:"
 
 #
 msgid ""
@@ -23292,6 +23288,9 @@ msgstr "Propiedades de título"
 #
 msgid "Titleset mode"
 msgstr "Modo título"
+
+msgid "To be able to record, put the receiver into standby mode."
+msgstr "Para poder grabar ponga el receptor en modo de espera."
 
 msgid ""
 "To complete the setup the %s %s must connect to the Internet.  Connect the "
