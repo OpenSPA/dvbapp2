@@ -28688,7 +28688,7 @@ msgid "Connect to the Internet"
 msgstr "Conectar a internet"
 
 msgid "Continue with package download and installation"
-msgstr "Continuar con la descarga e instalación de paquetes"
+msgstr "Continuar con la descarga e instalación de paquetes básicos"
 
 msgid "Create Expander"
 msgstr "Crear expander"

@@ -71,7 +71,7 @@ self.condition = self.smallFlashSize or self.isFlashExpanderActive()
 		<displaytext value="Connect to the Internet" />
 		<list>
 			<listentry caption="Continue with package download and installation" step="update" />
-			<listentry caption="Skip package installation, only core packages will be available" step="timezone" />
+			<!--listentry caption="Skip package installation, only core packages will be available" step="timezone" / -->
 		</list>
 	</step>
 
