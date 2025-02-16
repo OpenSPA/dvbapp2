@@ -1186,7 +1186,7 @@ msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
-msgid "%s is no longer used. Should it be deleted?"
+msgid "\n%s is no longer used.\nYou want to delete services?"
 msgstr ""
 
 #, python-format
@@ -3950,7 +3950,7 @@ msgstr ""
 msgid "Chinese (Simplified)"
 msgstr ""
 
-msgid "Choice Box"
+msgid "Choice action"
 msgstr ""
 
 msgid "Choice List Actions"
@@ -5850,6 +5850,9 @@ msgstr ""
 msgid "Delete saved play list"
 msgstr ""
 
+msgid "Delete services"
+msgstr ""
+
 msgid "Delete the character to the left of text cursor"
 msgstr ""
 
@@ -6247,6 +6250,9 @@ msgid "Do not backup the image"
 msgstr ""
 
 msgid "Do not change"
+msgstr ""
+
+msgid "Do not delete services"
 msgstr ""
 
 msgid "Do not flash image"
@@ -11993,9 +11999,6 @@ msgid "No time shift found to save as recording!"
 msgstr ""
 
 msgid "No timeout"
-msgstr ""
-
-msgid "No to all"
 msgstr ""
 
 msgid "No transparency"
@@ -22226,9 +22229,6 @@ msgid "Yes"
 msgstr ""
 
 msgid "Yes (safe mode)"
-msgstr ""
-
-msgid "Yes to all"
 msgstr ""
 
 msgid "Yes, always"

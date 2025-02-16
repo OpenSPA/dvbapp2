@@ -1235,8 +1235,8 @@ msgstr "%s importados del tuner reserva"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
-msgid "%s is no longer used. Should it be deleted?"
-msgstr "%s ya no se utiliza. ¿Quieres borrarlo?"
+msgid "\n%s is no longer used.\nYou want to delete services?"
+msgstr "\n%s ya no se utiliza.\n¿Quieres eliminar los canales?"
 
 #, python-format
 msgid "%s long"
@@ -4325,8 +4325,8 @@ msgstr "Chino"
 msgid "Chinese (Simplified)"
 msgstr "Chino (simplificado)"
 
-msgid "Choice Box"
-msgstr "Elige receptor"
+msgid "Choice action"
+msgstr "Elige acción"
 
 msgid "Choice List Actions"
 msgstr "Acciones lista de opciones"
@@ -6599,6 +6599,9 @@ msgstr "Eliminar entrada en la lista de reproducción"
 msgid "Delete saved play list"
 msgstr "Eliminar lista de reproducción guardada"
 
+msgid "Delete services"
+msgstr "Eliminar canales"
+
 msgid "Delete the character to the left of text cursor"
 msgstr "Eliminar el carácter a la izquierda del cursor de texto"
 
@@ -7032,6 +7035,9 @@ msgstr "No cambiar"
 
 msgid "Do not check the Internet and packages"
 msgstr "No revisar Internet y paquetes"
+
+msgid "Do not delete services"
+msgstr "No eliminar canales"
 
 msgid "Do not flash image"
 msgstr "No instalar la imagen"
@@ -13521,10 +13527,6 @@ msgstr "¡No se encontró ningún Timeshift para guardar como grabación!"
 # UsageConfig.py
 msgid "No timeout"
 msgstr "Sin plazo"
-
-#
-msgid "No to all"
-msgstr "No a todo"
 
 msgid "No transparency"
 msgstr "Sin transparencia"
@@ -25822,10 +25824,6 @@ msgstr "Sí"
 
 msgid "Yes (safe mode)"
 msgstr "Sí (modo seguro)"
-
-#
-msgid "Yes to all"
-msgstr "Si a todo"
 
 msgid "Yes, always"
 msgstr "Sí, siempre"

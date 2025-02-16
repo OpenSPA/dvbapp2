@@ -15,7 +15,7 @@ config.misc.pluginlist.fcBookmarksOrder = ConfigText(default=f"['{_("Storage Dev
 class ChoiceBoxNew(Screen):
 	def __init__(self, session, text="", choiceList=None, selection=0, buttonList=None, reorderConfig=None, allowCancel=True, skinName=None, windowTitle=None):
 		Screen.__init__(self, session, enableHelp=True)
-		self.setTitle(windowTitle if windowTitle else _("Choice Box"))
+		self.setTitle(windowTitle if windowTitle else _("Choice action"))
 		self.skinName = ["ChoiceBox"]
 		if skinName:
 			if isinstance(skinName, str):
