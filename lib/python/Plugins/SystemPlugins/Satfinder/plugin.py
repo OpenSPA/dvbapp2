@@ -811,7 +811,7 @@ def SatfinderMain(session, close=None, **kwargs):
 			from time import sleep
 			autobouquetsmaker = {"package": "opkg update ; opkg install enigma2-plugin-systemplugins-autobouquetsmaker"}
 			OpkgComponent().startCmd(OpkgComponent.CMD_INSTALL, autobouquetsmaker)
-			sleep(2)
+			sleep(2.5)
 			if isPluginInstalled("AutoBouquetsMaker"):
 				session.openWithCallback(restartUI, MessageBox, _("AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"), MessageBox.TYPE_YESNO, simple=True)
 			else:
