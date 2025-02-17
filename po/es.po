@@ -4132,6 +4132,9 @@ msgstr "Información de canal"
 msgid "Channel List"
 msgstr "Lista de canales"
 
+msgid "Channel Number"
+msgstr "Número de canal"
+
 #
 msgid "Channel List Menu"
 msgstr "Menú de lista de canales"
@@ -19890,6 +19893,9 @@ msgstr "Mostrar detalles de la tarea resaltada"
 msgid "Show directories first"
 msgstr "Mostrar primero las carpetas"
 
+msgid "Show during operation"
+msgstr "Mostrar durante el funcionamiento"
+
 # Menue Anpassungen OSD
 msgid ""
 "Show encryption information in the InfoBar (when supported by the skin)."
@@ -22635,10 +22641,11 @@ msgstr ""
 "Esta opción te permite elegir cómo visualizar el tiempo restante, "
 "transcurrido o ambos."
 
-msgid ""
-"This option allows you choose if the display shows the time or nothing in "
-"Standby."
-msgstr "Esta opción le permite elegir si mostrar la hora o nada en reposo."
+msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
+msgstr "Esta opción le permite elegir cómo mostrar el tiempo restante/transcurrido para la reproducción multimedia."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Esta opción le permite elegir si la pantalla muestra la hora o nada en reposo."
 
 msgid ""
 "This option allows you choose how to display the remaining/elapsed time for "
@@ -22646,13 +22653,6 @@ msgid ""
 msgstr ""
 "Esta opción te permite elegir cómo visualizar el tiempo restante/"
 "transcurrido de la TV en directo."
-
-msgid ""
-"This option allows you choose how to display the remaining/elapsed time for "
-"media playback."
-msgstr ""
-"Esta opción te permite elegir cómo visualizar el tiempo restante/"
-"transcurrido en el reproductor de recursos."
 
 msgid ""
 "This option allows you choose the background color of transparent picons."
