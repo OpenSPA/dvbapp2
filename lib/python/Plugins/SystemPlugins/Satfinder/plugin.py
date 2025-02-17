@@ -1,4 +1,4 @@
-from enigma import eDVBResourceManager, eDVBFrontendParametersSatellite, iDVBFrontend
+from enigma import eDVBResourceManager, eDVBFrontendParametersSatellite, iDVBFrontend, eConsoleAppContainer
 
 from Screens.ScanSetup import ScanSetup, buildTerTransponder
 from Screens.ServiceScan import ServiceScan
@@ -86,13 +86,15 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.session.open(TryQuitMainloop, 3)
 
 	def extras(self):
+		eConsoleAppContainer().execute("opkg update")
+
 		def installAutoBouquetsMaker(answer=False):
 			if answer:
-				from Components.Opkg import OpkgComponent
 				from time import sleep
-				autobouquetsmaker = {"package": "enigma2-plugin-systemplugins-autobouquetsmaker"}
-				OpkgComponent().startCmd(OpkgComponent.CMD_INSTALL, autobouquetsmaker)
+				eConsoleAppContainer().execute("opkg install enigma2-plugin-systemplugins-autobouquetsmaker")
 				sleep(2.5)
+			if not isPluginInstalled("AutoBouquetsMaker"):
+				sleep(1)
 			if isPluginInstalled("AutoBouquetsMaker"):
 				self.session.openWithCallback(self.restartUI, MessageBox, _("AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"), MessageBox.TYPE_YESNO, simple=True)
 
