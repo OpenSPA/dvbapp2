@@ -224,9 +224,9 @@ class Session:
 			self.summary.show()
 
 	def doShutdown(self):
-		for function in self.onShutdown:
-			if callable(function):
-				function()
+		for callback in self.onShutdown:
+			if callable(callback):
+				callback()
 
 	def reloadDialogs(self):
 		for dialog in self.allDialogs:
@@ -591,7 +591,6 @@ def runScreenTest():
 	session.nav.stopService()
 	session.nav.shutdown()
 	session.doShutdown()
-	VolumeControl.instance.saveVolumeState()
 	configfile.save()
 	from Screens.InfoBarGenerics import saveResumePoints
 	saveResumePoints()
