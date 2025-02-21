@@ -8003,7 +8003,7 @@ msgid "Exit menu"
 msgstr "Menüden çık"
 
 #
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Film listesinden çık"
 
 #
@@ -11890,7 +11890,7 @@ msgstr "Film Listesi"
 msgid "Movie List Actions"
 msgstr "Film Listesi Eylemleri"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Film Listesi Kurulumu"
 
 #
@@ -11901,7 +11901,7 @@ msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Film oynatma geçersiz/uygun olmayan bir dizini kullanamaz."
 
 #
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Film seçimi"
 
 msgid "Movie/Drama"

@@ -8096,7 +8096,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "loka myndalista"
 
 #
@@ -12144,7 +12144,7 @@ msgstr ""
 msgid "Movie List Actions"
 msgstr "Staðsetning bíómynda"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr ""
 
 #, fuzzy
@@ -12155,7 +12155,7 @@ msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
 #, fuzzy
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Staðsetning bíómynda"
 
 msgid "Movie/Drama"

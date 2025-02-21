@@ -8347,7 +8347,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "izađi iz liste filmova"
 
 #
@@ -12426,7 +12426,7 @@ msgstr ""
 msgid "Movie List Actions"
 msgstr "Lokacija filmova"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr ""
 
 #
@@ -12439,7 +12439,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Lokacija filmova"
 
 msgid "Movie/Drama"

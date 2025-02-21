@@ -8632,7 +8632,7 @@ msgid "Exit menu"
 msgstr "Sortir del menú"
 
 #
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Llista de pel·lícules"
 
 #
@@ -12563,8 +12563,8 @@ msgstr "Llista de pel·lícules"
 msgid "Movie List Actions"
 msgstr "Llista de pel·lícules"
 
-msgid "Movie List Settings"
-msgstr "Configuració de llista de pel·lícules"
+msgid "Movie Selection Settings"
+msgstr "Configuració de selecció de pel·lícules"
 
 #
 msgid "Movie Player Actions"
@@ -12576,7 +12576,7 @@ msgstr ""
 "inapropiat."
 
 #
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Selecció de pel·lícules"
 
 msgid "Movie/Drama"
