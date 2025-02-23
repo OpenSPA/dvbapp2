@@ -1177,10 +1177,6 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Configuración"
 
@@ -22652,6 +22648,9 @@ msgstr "Esta opción le permite elegir cómo mostrar el tiempo restante/transcur
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Esta opción le permite elegir si la pantalla muestra la hora o nada en reposo."
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr "Esta opción le permite elegir si la pantalla muestra la hora, el número de canal o nada durante la operación."
 
 msgid ""
 "This option allows you choose how to display the remaining/elapsed time for "
