@@ -21084,6 +21084,9 @@ msgstr ""
 msgid "Your network configuration has been activated."
 msgstr ""
 
+msgid "Your network configuration has been disabled."
+msgstr ""
+
 msgid "Your password must have at least 5 characters."
 msgstr ""
 

@@ -26234,7 +26234,10 @@ msgstr ""
 
 #
 msgid "Your network configuration has been activated."
-msgstr "Tu configuración de red ha sido activada."
+msgstr "Su configuración de red ha sido activada."
+
+msgid "Your network configuration has been disabled."
+msgstr "Su configuración de red ha sido desactivada."
 
 msgid "Your password must have at least 5 characters."
 msgstr "Tu contraseña debe tener al menos 5 caracteres."

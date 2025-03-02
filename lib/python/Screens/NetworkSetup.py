@@ -34,6 +34,8 @@ from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
 BASE_GROUP = "packagegroup-base"
+interfacesfile = "/etc/network/interfaces"
+
 
 def serviceIsEnabled(service_name):  # [OPENSPA] [norhap]
 	autostartup = glob("/etc/rc2.d/S*" + service_name)
@@ -103,23 +105,21 @@ class NetworkAdapterSelection(Screen):
 		if not iNetwork.isWirelessInterface(iface):
 			if active is True:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wired-active.png"))
+				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/buttons/button_green.png"))
 			elif active is False:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wired-inactive.png"))
+				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/buttons/button_green_off.png"))
 			else:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wired.png"))
-		elif iNetwork.isWirelessInterface(iface):
+		if iNetwork.isWirelessInterface(iface):
 			if active is True:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless-active.png"))
+				defaultpng =LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/buttons/button_green.png"))
 			elif active is False:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless-inactive.png"))
+				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/buttons/button_green_off.png"))
 			else:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless.png"))
-		num_configured_if = len(iNetwork.getConfiguredAdapters())
-		if num_configured_if >= 2:
-			if default is True:
-				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "buttons/button_green.png"))
-			elif default is False:
-				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "buttons/button_green_off.png"))
 		if active is True:
 			activepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 		elif active is False:
@@ -287,7 +287,7 @@ class DNSSettings(Setup):
 		Setup.createSetup(self)
 		dnsList = self["config"].getList()
 		self.dnsStart = len(dnsList)
-		if not fileContains("/etc/network/interfaces", "static"):  # OpenSPA [norhap] Organize display lists in both formats.
+		if not fileContains(interfacesfile, "static"):  # OpenSPA [norhap] Organize display lists in both formats.
 			if config.usage.dnsMode.value not in (2,):
 				items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
 			else:
@@ -579,10 +579,9 @@ class AdapterSetup(ConfigListScreen, Screen):
 			if self.essid is None:
 				self.essid = self.wsconfig["ssid"]
 			if iNetwork.canWakeOnWiFi(self.iface):
-				iface_file = "/etc/network/interfaces"
 				default_v = False
-				if exists(iface_file):
-					with open(iface_file) as f:
+				if exists(interfacesfile):
+					with open(interfacesfile) as f:
 						output = f.read()
 					search_str = f"#only WakeOnWiFi {self.iface}"
 					if output.find(search_str) >= 0:
@@ -612,7 +611,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 					dnsip = name.replace("nameserver ", "")
 					if config.usage.dnsMode.value == 2:
 						if "192.168.0.1" in name or "192.168.1.1" in name:
-							if config.usage.dns.value == "dhcp-router" and fileContains("/etc/network/interfaces", "static"):
+							if config.usage.dns.value == "dhcp-router" and fileContains(interfacesfile, "static"):
 								if ":" not in name:
 									self.primaryDNS = NoSave(ConfigText(default=ip))
 									if str(self.primaryDNS) not in name:
@@ -734,6 +733,40 @@ class AdapterSetup(ConfigListScreen, Screen):
 								if not isExistBcmWifi:
 									self.list.append(self.encryptionType)
 							self.list.append(self.encryptionKey)
+		wlanactive = "auto wlan"  # start OpenSPA [norhap] check active second interface.
+		wlainactive = "# auto wlan"
+		lanactive = "auto eth"
+		laniactive = "# auto eth"
+		ifaces = False
+		if self.activateInterfaceEntry.value:
+			if exists(interfacesfile):
+				with open(interfacesfile) as f:
+					output = f.read()
+				if not iNetwork.isWirelessInterface(self.iface):
+					if output.find(wlainactive) >= 0:
+						ifaces = False
+					elif output.find(wlanactive) >= 0:
+						ifaces = True
+				else:
+					if output.find(laniactive) >= 0:
+						ifaces = False
+					elif output.find(lanactive) >= 0:
+						ifaces = True
+		else:
+			if exists(interfacesfile):
+				with open(interfacesfile) as f:
+					output = f.read()
+				if not iNetwork.isWirelessInterface(self.iface):
+					if output.find(wlainactive) >= 0:
+						ifaces = False
+					elif output.find(wlanactive) >= 0:
+						ifaces = True
+				else:
+					if output.find(laniactive) >= 0:
+						ifaces = False
+					elif output.find(lanactive) >= 0:
+						ifaces = True
+		self.twoIfacesActive = ifaces  # end OpenSPA [norhap] check active second interface.
 		self["config"].list = self.list
 
 	def newConfig(self):
@@ -770,7 +803,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 		if ret is True:
 			num_configured_if = len(iNetwork.getConfiguredAdapters())
 			if num_configured_if >= 1:
-				if self.iface in iNetwork.getConfiguredAdapters() or (self.iface in iNetwork.onlyWoWifaces and iNetwork.onlyWoWifaces[self.iface] is True):
+				if self.iface in iNetwork.getConfiguredAdapters() and not self.twoIfacesActive:
 					self.applyConfig(True)
 				else:
 					self.session.openWithCallback(self.secondIfaceFoundCB, MessageBox, _("A second configured interface has been found.\n\nDo you want to disable the second network interface?"), default=True)
@@ -814,7 +847,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 				iNetwork.writeNetworkConfig()
 				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type=MessageBox.TYPE_INFO, enable_input=False)
 			else:
-				if self.oldInterfaceState is False:
+				if self.oldInterfaceState is False and not self.activateInterfaceEntry.value:
 					iNetwork.activateInterface(self.iface, self.deactivateInterfaceCB)
 				else:
 					iNetwork.deactivateInterface(self.iface, self.activateInterfaceCB)
@@ -840,11 +873,12 @@ class AdapterSetup(ConfigListScreen, Screen):
 			self.applyConfigRef.close(True)
 
 	def applyConfigfinishedCB(self, data):
+		message = _("Your network configuration has been activated.") if self.activateInterfaceEntry.value else _("Your network configuration has been disabled.")
 		if data is True:
 			if self.finished_cb:
-				self.session.openWithCallback(lambda x: self.finished_cb(), MessageBox, _("Your network configuration has been activated."), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.openWithCallback(lambda x: self.finished_cb(), MessageBox, message, type=MessageBox.TYPE_INFO, timeout=10)
 			else:
-				self.session.openWithCallback(self.ConfigfinishedCB, MessageBox, _("Your network configuration has been activated."), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.openWithCallback(self.ConfigfinishedCB, MessageBox, message, type=MessageBox.TYPE_INFO, timeout=10)
 
 	def ConfigfinishedCB(self, data):
 		if data is not None and data is True:
