@@ -483,9 +483,21 @@ class TryQuitMainloop(MessageBox):
 			if BoxInfo.getItem("machinebuild") in ("vusolo4k", "pulse4k"):  # Workaround for white display flash.
 				eDBoxLCD.getInstance().setLCDBrightness(0)
 
-			quitMainloop(self.retval)
+			##### OPENSPA [morser] hide quit screen when kodi standalone launch
+			self.KodiStandalone = eTimer()
+			self.KodiStandalone.callback.append(self.LaunchKodi)
+			if self.retval == QUIT_KODI:
+				self.KodiStandalone.start(4000)
+			else:
+				quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)
+
+	def LaunchKodi(self):
+		self.KodiStandalone.stop()
+		self.quitScreen.hide()
+		quitMainloop(self.retval)
+	##################################################################################
 
 	def __onShow(self):
 		global inTryQuitMainloop
