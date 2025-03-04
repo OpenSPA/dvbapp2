@@ -96,6 +96,7 @@ class EventInfo(PerServiceBase, Source):
 			iPlayableService.evStart: self.gotEvent,
 			iPlayableService.evUpdatedEventInfo: self.gotEvent,
 			iPlayableService.evUpdatedInfo: self.gotEvent,
+			iPlayableService.evUpdateTags: self.gotEvent,
 			iPlayableService.evEnd: self.gotEvent
 		}, with_event=True)
 		self.epgQuery = eEPGCache.getInstance().lookupEventTime

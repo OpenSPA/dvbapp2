@@ -990,6 +990,9 @@ public:
 
 		evFccFailed,
 
+		evUpdateTags,
+		evUpdateIDv3Cover,
+
 		evUser = 0x100
 	};
 };
