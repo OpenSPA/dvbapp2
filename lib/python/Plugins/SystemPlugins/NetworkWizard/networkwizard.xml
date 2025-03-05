@@ -68,7 +68,7 @@ self.markDone()
 self.close()
 		</code>
 	</step>
-	<step id="checklanstatusend" nextstep="end">
+	<step id="checklanstatusend">
 		<condition>
 self.condition = (self.InterfaceState == False )
 		</condition>
