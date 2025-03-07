@@ -26236,6 +26236,9 @@ msgstr ""
 msgid "Your network configuration has been activated."
 msgstr "Su configuración de red ha sido activada."
 
+msgid "Your network settings have been activated.\n\nPress OK and wait for the next screen.\n\nIt will automatically switch to WLAN data."
+msgstr "Su configuración de red ha sido activada.\n\nPulse OK y espere en la siguiente pantalla.\n\nCambiará automáticamente a los datos WLAN."
+
 msgid "Your network configuration has been disabled."
 msgstr "Su configuración de red ha sido desactivada."
 
