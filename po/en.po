@@ -21084,7 +21084,7 @@ msgstr ""
 msgid "Your network configuration has been activated."
 msgstr ""
 
-msgid "Your network settings have been activated.\n\nPress OK and wait for the next screen.\n\nIt will automatically switch to WLAN data."
+msgid "Your network configuration has been activated.\n\nPress OK and wait for the next screen.\n\nIt will automatically switch to your WLAN data."
 msgstr ""
 
 msgid "Your network configuration has been disabled."
