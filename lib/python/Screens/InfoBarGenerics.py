@@ -229,7 +229,7 @@ class InfoBarStreamRelay:
 					playrefmod = playrefstring
 				playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
 				print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
-				playref.setAlternativeUrl(playrefstring)
+				playref.setAlternativeUrl(playrefstring, True)
 				return playref, True
 		return playref, False
 
