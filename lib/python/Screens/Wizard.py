@@ -491,8 +491,9 @@ class Wizard(Screen):
 		enabled = False
 		if self["config"].getCurrent():
 			if isinstance(self["config"].getCurrent()[1], (ConfigText, ConfigPassword)):
-				if self.__class__.__name__ != "NetworkWizard":  # This is a temporary hack to fix a problem with VirtualKeyBoard input.
+				if self.__class__.__name__ == "NetworkWizard":
 					enabled = True
+					self["VirtualKB"].setEnabled(enabled)
 				if "HelpWindow" in self:
 					if self["config"].getCurrent()[1].help_window.instance:
 						helpWindowPosition = self["HelpWindow"].getPosition()

@@ -602,7 +602,11 @@ class AdapterSetup(ConfigListScreen, Screen):
 			self.dhcpdefault = False
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0, 0, 0, 0]))
-		# OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS.
+		# OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS and text data input in VK for Wireless LAN.
+		if config.misc.firstrun.value and iNetwork.isWirelessInterface(self.iface):
+			self.activateInterfaceEntry.value = True
+			config.plugins.wlan.encryption.value = "WPA/WPA2"  # set encryption ..prepare to enter password in wizard.
+			config.plugins.wlan.encryption.save()
 		if exists(str(self.resolvFile)):
 			ip = ""
 			dns = open(self.resolvFile, "r").readlines()
