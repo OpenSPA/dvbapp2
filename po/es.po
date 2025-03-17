@@ -22180,6 +22180,9 @@ msgstr ""
 "Bitrate del codificador de video. Un valor más alto mejora la calidad e "
 "incrementa el tamaño del archivo."
 
+msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"
+msgstr "El bouquet \"Último escaneo\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
+
 msgid ""
 "The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
