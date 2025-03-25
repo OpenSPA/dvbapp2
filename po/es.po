@@ -4742,6 +4742,9 @@ msgstr[1] "Comandos finalizados."
 msgid "Command order"
 msgstr "Orden de comando"
 
+msgid "Command script"
+msgstr "Comando script"
+
 msgid "Command to run"
 msgstr "Comando a ejecutar"
 
@@ -5516,6 +5519,9 @@ msgstr "Contactar con el servidor IceTV y configurar su %s %s."
 
 msgid "Content"
 msgstr "Contenido"
+
+msgid "contents:"
+msgstr "contenido:"
 
 #
 msgid "Content does not fit on DVD!"
@@ -8025,6 +8031,9 @@ msgstr "Encriptación:"
 
 msgid "End"
 msgstr "Final"
+
+msgid "End of script."
+msgstr "Fin del script."
 
 #
 msgid "End time"
@@ -17029,13 +17038,8 @@ msgstr "Guardar directorio derecho al salir"
 msgid "Save settings and EPG data."
 msgstr "Guardar la configuración y los datos de EPG."
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"¿Guardar los comandos y la salida en un archivo?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "¿Guardar los comandos y la salida en un archivo?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Guardar la ubicación del directorio de la columna izquierda al salir."
@@ -23045,6 +23049,9 @@ msgstr ""
 
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Esto hará que el avance y rebobinado vayan a intervalos de x segs."
+
+msgid "This window will automatically close in %d seconds."
+msgstr "Esta ventana se cerrará automáticamente en %d segundos."
 
 #
 msgid "Three"

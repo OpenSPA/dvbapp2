@@ -4298,7 +4298,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Command order"
-msgstr "Command order"
+msgstr ""
+
+msgid "Command script"
+msgstr ""
 
 msgid "Command to run"
 msgstr ""
@@ -4839,13 +4842,16 @@ msgid "Contacting IceTV server and setting up your %s %s."
 msgstr ""
 
 msgid "Content"
-msgstr "Content"
+msgstr ""
+
+msgid "contents:"
+msgstr ""
 
 msgid "Content does not fit on DVD!"
-msgstr "Content does not fit on DVD!"
+msgstr ""
 
 msgid "Context"
-msgstr "Context"
+msgstr ""
 
 msgid "Continent"
 msgstr ""
@@ -7112,6 +7118,9 @@ msgid "End Bouquet Edit"
 msgstr ""
 
 msgid "End Favorites Edit"
+msgstr ""
+
+msgid "End of script."
 msgstr ""
 
 msgid "End time"
@@ -15220,10 +15229,7 @@ msgstr ""
 msgid "Save settings and EPG data."
 msgstr ""
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
 msgstr ""
 
 msgid "Save the left column directory location on exit."
@@ -20030,6 +20036,9 @@ msgstr ""
 "Are you sure?"
 
 msgid "This will go fast forward/backward with time frames of x secs."
+msgstr ""
+
+msgid "This window will automatically close in %d seconds."
 msgstr ""
 
 msgid "This wizard has finished"
