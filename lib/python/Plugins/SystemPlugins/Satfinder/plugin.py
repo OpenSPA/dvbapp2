@@ -93,10 +93,10 @@ class Satfinder(ScanSetup, ServiceScan):
 				from time import sleep
 				eConsoleAppContainer().execute("opkg install enigma2-plugin-systemplugins-autobouquetsmaker")
 				sleep(2.5)
-			if not isPluginInstalled("AutoBouquetsMaker"):
-				sleep(1)
-			if isPluginInstalled("AutoBouquetsMaker"):
-				self.session.openWithCallback(self.restartUI, MessageBox, _("AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"), MessageBox.TYPE_YESNO, simple=True)
+				if not isPluginInstalled("AutoBouquetsMaker"):
+					sleep(1)
+				if isPluginInstalled("AutoBouquetsMaker"):
+					self.session.openWithCallback(self.restartUI, MessageBox, _("AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"), MessageBox.TYPE_YESNO, simple=True)
 
 		if not isPluginInstalled("AutoBouquetsMaker"):
 			self.session.openWithCallback(installAutoBouquetsMaker, MessageBox, _("To add extras you need to install AutoBouquetsMaker.\nIf you press \"Yes\" please wait.\nDo you want to install it now?"), type=MessageBox.TYPE_YESNO, simple=True)
