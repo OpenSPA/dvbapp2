@@ -1,4 +1,4 @@
-name: enigma2
+name: enigma2 build
 
 on:
   push:
@@ -9,85 +9,100 @@ on:
 jobs:
   build:
     name: Build enigma2
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        gcc: [13]
-        python: ['3.12']
+        gcc: [14]
+        python: ['3.13']
     steps:
-    - name: Install prerequisites
-      run: |
-        sudo add-apt-repository -y ppa:deadsnakes/ppa
-        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-        sudo apt-get -q update
-        sudo apt remove -y libunwind-14-dev
-        sudo apt-get install g++-${{ matrix.gcc }}
-        sudo apt-get install linux-libc-dev
-        sudo apt-get install git
-        sudo apt-get install build-essential
-        sudo apt-get install automake
-        sudo apt-get install libtool
-        sudo apt-get install python${{ matrix.python }}-dev
-        sudo apt-get install zlib1g-dev
-        sudo apt-get install gettext
-        sudo apt-get install swig
-        sudo apt-get install libgstreamer1.0-dev
-        sudo apt-get install libgstreamer-plugins-base1.0-dev
-        sudo apt-get install libfreetype6-dev
-        sudo apt-get install libsigc++-2.0-dev
-        sudo apt-get install libfribidi-dev
-        sudo apt-get install libssl-dev
-        sudo apt-get install libavahi-client-dev
-        sudo apt-get install libjpeg-turbo8-dev
-        sudo apt-get install libgif-dev
-        sudo apt-get install libcurl4-openssl-dev
+      - name: Install prerequisites
+        run: |
+          sudo apt-get -q update
+          sudo add-apt-repository -y ppa:deadsnakes/ppa
+          sudo apt remove -y libunwind-14-dev
+          sudo apt-get install g++-${{ matrix.gcc }}
+          sudo apt-get install linux-libc-dev
+          sudo apt-get install git
+          sudo apt-get install build-essential
+          sudo apt-get install automake
+          sudo apt-get install autoconf
+          sudo apt-get install libtool
+          sudo apt-get install python${{ matrix.python }}-dev
+          sudo apt-get install zlib1g-dev
+          sudo apt-get install gettext
+          sudo apt-get install swig
+          sudo apt-get install libgstreamer1.0-dev
+          sudo apt-get install libgstreamer-plugins-base1.0-dev
+          sudo apt-get install libfreetype6-dev
+          sudo apt-get install libfribidi-dev
+          sudo apt-get install libavahi-client-dev
+          sudo apt-get install libjpeg-turbo8-dev
+          sudo apt-get install libgif-dev
+          sudo apt-get install libcurl4-openssl-dev
+          sudo apt-get install mm-common
 
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
 
-    - name: Build enigma2 dependencies, gcc-${{ matrix.gcc }}
-      env:
-        CC: "gcc-${{ matrix.gcc }}"
-        CXX: "g++-${{ matrix.gcc }}"
-      run: |
-        echo "installing libdvbsi++"
-        pushd .
-        cd /tmp
-        git clone --depth 1 https://github.com/oe-alliance/libdvbsi.git
-        cd libdvbsi
-        autoreconf -i
-        ./configure
-        make
-        sudo make install
-        popd
-        echo "installing tuxbox"
-        pushd .
-        cd /tmp
-        git clone --depth 1 https://github.com/oe-alliance/tuxtxt.git
-        cd tuxtxt/libtuxtxt
-        autoreconf -i
-        ./configure --with-boxtype=generic DVB_API_VERSION=5
-        make
-        sudo make install
-        cd ../tuxtxt
-        autoreconf -i
-        ./configure --with-boxtype=generic DVB_API_VERSION=5
-        make
-        sudo make install
-        popd
-
-    - name: Build enigma2
-      env:
-        CC: "gcc-${{ matrix.gcc }}"
-        CXX: "g++-${{ matrix.gcc }}"
-      run: |
-        pip3 install six
-        echo "compiling enigma2"
-        autoreconf -i
-        ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
-        make
-        python -m compileall .
-        echo done!
+      - name: Build enigma2 dependencies, gcc-${{ matrix.gcc }}
+        id: depends
+        continue-on-error: true
+        env:
+          CC: "gcc-${{ matrix.gcc }}"
+          CXX: "g++-${{ matrix.gcc }}"
+        run: |
+          echo "installing libdvbsi++"
+          pushd .
+          cd /tmp
+          git clone --depth 1 https://github.com/oe-alliance/libdvbsi.git
+          cd libdvbsi
+          autoreconf -i
+          ./configure
+          make
+          sudo make install
+          popd
+          echo "installing libsigc++-3"
+          pushd .
+          cd /tmp
+          git clone --depth 1 https://github.com/TwolDE2/libsigc--3.0.git
+          cd libsigc--3.0
+          autoreconf -i
+          ./configure
+          make
+          sudo make install
+          popd
+          echo "installing tuxbox"
+          pushd .
+          cd /tmp
+          git clone --depth 1 https://github.com/oe-alliance/tuxtxt.git
+          cd tuxtxt/libtuxtxt
+          autoreconf -i
+          ./configure --with-boxtype=generic DVB_API_VERSION=5
+          make
+          sudo make install
+          cd ../tuxtxt
+          autoreconf -i
+          ./configure --with-boxtype=generic DVB_API_VERSION=5
+          make
+          sudo make install
+          popd
+      - name: Check on failures
+        if: steps.depends.outcome != 'success'
+        run: |
+          cat /tmp/libdvbsi/config.log
+          exit 1
+      - name: Build enigma2
+        env:
+          CC: "gcc-${{ matrix.gcc }}"
+          CXX: "g++-${{ matrix.gcc }}"
+        run: |
+          pip3 install six
+          echo "compiling enigma2"
+          autoreconf -i
+          ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
+          make
+          python -m compileall .
+          echo done!
