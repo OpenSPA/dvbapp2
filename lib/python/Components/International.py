@@ -690,7 +690,7 @@ class International:
 		for country in self.COUNTRY_DATA.keys():
 			nimCountries[self.COUNTRY_DATA[country][self.COUNTRY_ALPHA3]] = _(self.COUNTRY_DATA[country][self.COUNTRY_TRANSLATED]) #### MOD OpenSPA [VillaK] for tranlate country
 		return nimCountries
-	
+
 	def addCallback(self, callback):
 		if not callback:
 			print(f"[International] Error: The callback '{callback}' can't be empty!")

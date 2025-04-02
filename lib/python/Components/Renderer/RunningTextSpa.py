@@ -1,5 +1,5 @@
 ﻿################################################################################
-#    RunningTextSpa.py - based en RunningText.py Running Text Renderer for Enigma2 
+#    RunningTextSpa.py - based en RunningText.py Running Text Renderer for Enigma2
 #    by vlamo
 #    Thanks to autor for share your job
 #    Version: 1.0 (03.02.2017 23:40)
@@ -99,7 +99,7 @@ class RunningTextSpa(Renderer):
 			return x
 		def setWrapFlag(attrib, value):
 			if (attrib.lower() == "wrap" and value == "0") or \
-			   (attrib.lower() == "nowrap" and value != "0"):
+				(attrib.lower() == "nowrap" and value != "0"):
 				self.txtflags &= ~RT_WRAP
 			else:
 				self.txtflags |= RT_WRAP
@@ -138,7 +138,6 @@ class RunningTextSpa(Renderer):
 							opt, val = (x.strip() for x in o.split('=', 1))
 						else:
 							opt, val = o.strip(), ""
-						
 						if opt == "":
 							continue
 						elif opt in ("wrap", "nowrap"):
@@ -177,16 +176,14 @@ class RunningTextSpa(Renderer):
 						self.scroll_label.setBackgroundColor(parseColor(value))
 					elif attrib == "transparent":
 						self.scroll_label.setTransparent(int(value))
-					
-						
-						
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)
-		
-		if self.mOneShot: self.mOneShot = max(self.mStepTimeout, self.mOneShot)
-		if self.mLoopTimeout: self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
-		if self.mPageDelay: self.mPageDelay = max(self.mStepTimeout, self.mPageDelay)
-		
+		if self.mOneShot:
+			self.mOneShot = max(self.mStepTimeout, self.mOneShot)
+		if self.mLoopTimeout:
+			self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
+		if self.mPageDelay:
+			self.mPageDelay = max(self.mStepTimeout, self.mPageDelay)
 		self.scroll_label.setFont(self.txfont)
 		if not (self.txtflags & RT_WRAP):
 			self.scroll_label.setNoWrap(1)
@@ -215,7 +212,7 @@ class RunningTextSpa(Renderer):
 		Renderer.connect(self, source)
 
 	def changed(self, what):
-		if not self.mTimer is None: self.mTimer.stop()
+		if self.mTimer is not None: self.mTimer.stop()
 		self.addstep=0
 		if what[0] == self.CHANGED_CLEAR:
 			self.txtext = ""
@@ -237,32 +234,25 @@ class RunningTextSpa(Renderer):
 			self.txtext = self.txtext.replace("\xe0\x8a"," ").replace(chr(0x8A)," ").replace("\n"," ").replace("\r"," ")
 
 		self.scroll_label.setText(self.txtext)
-	
-		if self.txtext == "" or \
-		   self.type == NONE or \
-		   self.scroll_label is None:
-			return False
 
+		if self.txtext == "" or \
+			self.type == NONE or \
+			self.scroll_label is None:
+			return False
 		if self.direction in (LEFT,RIGHT) or not (self.txtflags & RT_WRAP):
 			self.scroll_label.resize(eSize(self.txfont.pointSize * len(self.txtext),self.H)) # stupid workaround, have no better idea right now...
-		
 		text_size = self.scroll_label.calculateSize()
 		text_width = text_size.width()
 		text_height = text_size.height()
-
 		if self.direction in (LEFT,RIGHT) or not (self.txtflags & RT_WRAP):
 			text_width +=10
-		
 		self.mStop = None
 		# text height correction if necessary:
 		if self.lineHeight and self.direction in (TOP,BOTTOM):
 			text_height = max(text_height, (text_height + self.lineHeight - 1) / self.lineHeight * self.lineHeight)
-			
-		
 #		self.type =		0 - NONE; 1 - RUNNING; 2 - SWIMMING; 3 - AUTO(???)
 #		self.direction =	0 - LEFT; 1 - RIGHT;   2 - TOP;      3 - BOTTOM
 #		self.halign =		0 - LEFT; 1 - RIGHT;   2 - CENTER;   3 - BLOCK
-
 		if self.direction in (LEFT,RIGHT):
 			if not self.mAlways and text_width <= self.W:
 				return False
@@ -277,7 +267,7 @@ class RunningTextSpa(Renderer):
 					self.mStep = abs(self.mStep)
 					self.mStop = self.B - text_width + self.soffset[0] - self.mStep
 					self.P = self.A
-				if not self.mStartPoint is None:
+				if self.mStartPoint is not None:
 					if self.direction == LEFT:
 						self.mStop = self.P = max(self.A, min(self.W, self.mStartPoint))
 					else:
@@ -325,7 +315,7 @@ class RunningTextSpa(Renderer):
 					self.mStep = abs(self.mStep)
 					self.mStop = self.B - text_height + self.soffset[1] - self.mStep
 					self.P = self.A
-				if not self.mStartPoint is None:
+				if self.mStartPoint is not None:
 					if self.direction == TOP:
 						self.mStop = self.P = max(self.A, min(self.H, self.mStartPoint))
 					else:
@@ -354,25 +344,18 @@ class RunningTextSpa(Renderer):
 						self.P = self.A
 						self.mStep = abs(self.mStep)
 						self.mStop = self.A
-					
 			else:
 				return False
 		else:
 			return False
-
 		self.xW = max(self.W, text_width)
 		self.xH = max(self.H, text_height)
-		
 		self.scroll_label.resize(eSize(self.xW,self.xH))
-		
 		if self.mStartDelay:
 			if self.direction in (LEFT,RIGHT):
 				self.moveLabel(self.P, self.Y)
 			else: # if self.direction in (TOP,BOTTOM):
 				self.moveLabel(self.X, self.P)
-				
-		
-			
 		self.mTimer.stop()
 		self.mCount = self.mRepeat
 		self.mTimer.start(self.mStartDelay,True)
@@ -387,7 +370,6 @@ class RunningTextSpa(Renderer):
 			timeout = self.mStepTimeout
 			if self.mStep<0:
 				timeout = int(timeout/self.addtime)
-
 			if (self.mStop is not None) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
 				if (self.type == RUNNING) and (self.mOneShot > 0):
 					if (self.mRepeat > 0) and (self.mCount-1 <= 0): return
@@ -426,7 +408,6 @@ class RunningTextSpa(Renderer):
 						self.addstep=0
 				else:
 					self.mStep = -(self.mStep)
-				
 		self.P += (self.mStep+int(self.addstep))
 		if self.addstep>0:
 			self.addstep=self.addstep+0.2
