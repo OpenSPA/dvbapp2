@@ -890,15 +890,20 @@ class RecordTimerEntry(TimerEntry):
 						else:
 							AddNotificationWithCallback(self.failureCB, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
 					else:  # Zap without asking.
-						self.log(9, "Zap without asking.")
-						self.setRecordingPreferredTuner()
-						self.failureCB(True)
+						if not config.usage.remote_fallback_enabled.value:
+							self.log(9, "Zap without asking.")
+							self.setRecordingPreferredTuner()
+							self.failureCB(True)
+						else:  # Record with fallback tuner.[norhap] OpenSPA
+							self.log(9, "Record with fallback tuner.")
+							message = _("A recording has started:") + " " + f"{self.name}\n" + _("To be able to record, put the receiver into standby mode.")
+							AddNotification(MessageBox, message, MessageBox.TYPE_INFO, timeout=10, default=True)
 					return False
 				elif currentReference:
 					self.log(8, "Running service is not a live service so stopping it makes no sense.")
 				else:
 					self.log(8, "No service running so we don't need to stop it.")
-			if self.first_try_prepare == 4:  # Freeing a tuner failed.
+			if self.first_try_prepare == 4 and not config.usage.remote_fallback_enabled.value:  # Freeing a tuner failed not in fallback tuner. [norhap] OpenSPA
 				self.first_try_prepare += 1
 				self.log(8, "Freeing a tuner failed!")
 				if self.messageString:
@@ -985,9 +990,9 @@ class RecordTimerEntry(TimerEntry):
 					print("[RecordTimer] Recording is running or due to start within 15 minutes so not returning to deepstandby.")
 				self.wasInStandby = False
 				return True
-			elif abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - int(time())) <= 900 or NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer=0) or not NavigationInstance.instance.PowerTimer.isAutoDeepstandbyEnabled():
+			elif abs(NavigationInstance.instance.Scheduler.getNextPowerManagerTime() - int(time())) <= 900 or NavigationInstance.instance.Scheduler.isProcessing(exceptTimer=0) or not NavigationInstance.instance.Scheduler.isAutoDeepstandbyEnabled():
 				if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby) or (self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup):
-					print("[RecordTimer] PowerTimer due within next 15 minutes or is currently active so not returning to deepstandby.")
+					print("[RecordTimer] Scheduler run due within next 15 minutes or is currently active so not returning to deepstandby.")
 				self.wasInStandby = False
 				self.resetTimerWakeup()
 				return True
@@ -1357,9 +1362,11 @@ class RecordTimerEntry(TimerEntry):
 		self.messageBoxAnswerPending = False
 
 	def failureCB(self, answer):
+		if config.usage.remote_fallback_enabled.value:  # Record with fallback tuner.[norhap] OpenSPA
+			return
 		if answer:
 			self.log(13, "Okay, zapped away.")
-			self.messageString += _("The TV was switched to the recording service!\n") if not config.usage.remote_fallback_enabled.value else _("1. Set this channel as the standby start channel.\n2. Put the receiver into standby, then recording will start.\n")
+			self.messageString += _("The TV was switched to the recording service!\n")
 			self.messageStringShow = True
 			# NavigationInstance.instance.stopUserServices()
 			if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:

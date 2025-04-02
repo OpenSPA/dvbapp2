@@ -4520,7 +4520,7 @@ msgstr "Настройка поведения курсора в списке к�
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Установите разрешение экрана и выберите шрифт для телетекста."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Настройте продолжительность заставки в минутах."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -7723,7 +7723,7 @@ msgstr "Закрыть медиаплеер"
 msgid "Exit menu"
 msgstr "Выйти из меню"
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Закрыть список фильмов"
 
 msgid "Exit movie player?"
@@ -11147,7 +11147,7 @@ msgstr "Монтирование не удалось"
 msgid "Mount: "
 msgstr "Смонтирован "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Точка монтирования"
 
 msgid "Mounts"
@@ -11415,7 +11415,7 @@ msgstr "Список записей"
 msgid "Movie List Actions"
 msgstr "Действия по списку фильмов"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Настройка списка фильмов"
 
 msgid "Movie Player Actions"
@@ -11424,7 +11424,7 @@ msgstr "Действия проигрывателя фильмов"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "При воспроизведении файла нельзя использовать недопустимый/неподходящий каталог."
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Выбор записей"
 
 msgid "Movie/Drama"
@@ -17596,8 +17596,8 @@ msgstr "Показать список спутников"
 msgid "Show screen menu path"
 msgstr "Показать заставку"
 
-msgid "Show screensaver"
-msgstr "Показать заставку"
+msgid "Show screen saver"
+msgstr "Хранитель экрана"
 
 msgid "Show script messages"
 msgstr "Показывать сообщения скрипта"

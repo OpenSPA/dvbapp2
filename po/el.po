@@ -4484,7 +4484,7 @@ msgstr "Ρύθμιση της συμπεριφοράς του κέρσορα σ�
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Ρύθμιση της ανάλυσης της οθόνης και της γραμματοσειράς του τηλεκειμένου."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Ρύθμιση της διάρκειας σε λεπτά πριν την εμφάνιση της προφύλαξης οθόνης."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -7678,7 +7678,7 @@ msgstr "Έξοδος από την αναπαραγωγή πολυμέσων"
 msgid "Exit menu"
 msgstr "Μενού εξόδου"
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Έξοδος από τη λίστα ταινιών"
 
 msgid "Exit movie player?"
@@ -11100,7 +11100,7 @@ msgstr "Αποτυχία προσάρτησης"
 msgid "Mount: "
 msgstr "Προσάρτηση: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Σημείο προσάρτησης"
 
 msgid "Mounts"
@@ -11368,7 +11368,7 @@ msgstr "Λίστα ταινιών"
 msgid "Movie List Actions"
 msgstr "Ενέργειες λίστας ταινιών"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Ρυθμίσεις λίστας ταινιών"
 
 msgid "Movie Player Actions"
@@ -11377,7 +11377,7 @@ msgstr "Ενέργειες αναπαραγωγού ταινιών"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Η αναπαραγωγή ταινιών μπορεί να μην κάνει χρήση ενός μη έγκυρου/ακατάλληλου φακέλου."
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Επιλογή ταινιών"
 
 msgid "Movie/Drama"
@@ -17557,7 +17557,7 @@ msgstr "Εμφάνιση λίστας δορυφόρων"
 msgid "Show screen menu path"
 msgstr "Εμφάνιση διαδρομής μενού οθόνης"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Εμφάνιση προστασίας οθόνης"
 
 msgid "Show script messages"

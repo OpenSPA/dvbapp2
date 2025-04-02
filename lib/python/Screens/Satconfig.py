@@ -858,9 +858,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				else:
 					h = _("E")
 				sat_name = ("%d.%d" + h) % (orbpos // 10, orbpos % 10)
-			if confirmed[1] == "yes" or confirmed[1] == "no":
+			if confirmed[1] == "yes" or confirmed[1] == "no":  # simplified list of actions in services. [norhap] OpenSPA.
 				# TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
-				self.session.openWithCallback(self.deleteConfirmed, ChoiceBox, _("%s is no longer used. Should it be deleted?") % sat_name, [(_("Yes"), "yes"), (_("No"), "no"), (_("Yes to all"), "yestoall"), (_("No to all"), "notoall")], None, 1)
+				self.session.openWithCallback(self.deleteConfirmed, ChoiceBox, _("\n%s is no longer used.\nYou want to delete services?") % sat_name, [(_("Delete services"), "yestoall"), (_("Do not delete services"), "notoall")], None, 1)
 			if confirmed[1] == "yestoall" or confirmed[1] == "notoall":
 				self.deleteConfirmed(confirmed)
 			break
@@ -907,6 +907,20 @@ class NimSelection(Screen):
 							nimConfig.configMode.value = "loopthrough"
 							nimConfig.connectedTo.value = str(link)
 
+	def checkFBCLinks(self):
+		for x in nimmanager.nim_slots:
+			if self.showNim(x):
+				if x.isCompatible("DVB-S"):
+					slotid = x.slot
+					if isFBCLink(slotid):
+						link = getLinkedSlotID(slotid)
+						if link != -1:
+							linkNimConfig = nimmanager.getNimConfig(link).dvbs
+							if linkNimConfig.configMode.value == "nothing":
+								nimConfig = nimmanager.getNimConfig(slotid).dvbs
+								nimConfig.configMode.value = "nothing"  # Reset child if parent is "nothing"
+								nimConfig.configMode.save()
+
 	def exit(self):
 		self.close(True)
 
@@ -943,11 +957,12 @@ class NimSelection(Screen):
 			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
 
 	def NimSetupCB(self, index=None):
+		self.checkFBCLinks()
 		self.loadFBCLinks()
 		self.updateList(index)
 
 	def showNim(self, nim):
-		return True
+		return not nim.isEmpty()
 
 	def updateList(self, index=None):
 		self.list = []

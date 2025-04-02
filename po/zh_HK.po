@@ -4675,7 +4675,7 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr ""
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -7955,7 +7955,7 @@ msgstr ""
 msgid "Exit menu"
 msgstr ""
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr ""
 
 msgid "Exit movie player?"
@@ -11602,7 +11602,7 @@ msgstr "安裝失敗"
 msgid "Mount: "
 msgstr "安裝(Mount)"
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 #, fuzzy
@@ -11897,7 +11897,7 @@ msgid "Movie List Actions"
 msgstr "電影列表"
 
 #, fuzzy
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "已錄節目列表功能表"
 
 #, fuzzy
@@ -11907,7 +11907,7 @@ msgstr "電影位置"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr ""
 
 msgid "Movie/Drama"
@@ -18456,7 +18456,7 @@ msgstr "檢視衛星"
 msgid "Show screen menu path"
 msgstr "以列表形式顯示主功能表"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr ""
 
 msgid "Show script messages"

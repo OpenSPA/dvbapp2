@@ -361,7 +361,7 @@ class InitInputDevices:
 			data = False
 		configItem.enabled = ConfigYesNo(default=BoxInfo.getItem("RemoteEnable", data))
 		configItem.enabled.addNotifier(self.inputDevicesEnabledChanged)
-		configItem.name = ConfigText(default="")
+		configItem.name = ConfigText(default="", fixed_size=False)
 		configItem.name.addNotifier(self.inputDevicesNameChanged)
 		if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
 			data = 400

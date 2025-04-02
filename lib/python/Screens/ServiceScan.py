@@ -16,6 +16,8 @@ except ImportError:
 from Screens.InfoBar import InfoBar
 from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
+from Screens.MessageBox import MessageBox
+from Screens.Standby import TryQuitMainloop
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, resolveFilename
 from Tools.Transponder import getChannelNumber
 
@@ -430,6 +432,11 @@ class ServiceScan(Screen):
 					config.servicelist.lastmode.save()
 					self.currentServiceList.saveChannel(service)
 					self.keyCloseRecursive()
+				else:
+					def restartGUI(answer=False):
+						if answer:
+							self.session.open(TryQuitMainloop, 3)
+					self.session.openWithCallback(restartGUI, MessageBox, _("The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"), type=MessageBox.TYPE_YESNO, simple=True)
 		self.keyCancel()
 
 	def createSummary(self):

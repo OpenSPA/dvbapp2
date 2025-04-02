@@ -38,10 +38,11 @@
 		<!-- Menu / Timer -->
 		<menu key="timermenu" level="0" text="Timers" weight="7">
 			<item key="timer_edit" level="0" text="RecordTimers" weight="0"><screen module="Timers" screen="RecordTimerOverview" /></item>
-			<item key="powertimer_edit" level="0" text="PowerTimers" weight="5"><screen module="Timers" screen="PowerTimerOverview" /></item>
+			<item key="powertimer_edit" level="0" text="Scheduler" weight="5"><screen module="Timers" screen="SchedulerOverview" /></item>
 			<item key="crontimer_edit" level="0" text="Cron Timers" weight="10"><screen module="CronTimer" screen="CronTimers" /></item>
 			<item key="sleep" level="0" text="Sleep Timers" weight="20" requires="DeepstandbySupport"><screen module="SleepTimer" screen="SleepTimer" /></item>
 		</menu>
+		<item key="movie_selection" level="0" text="Movie Selection" weight="8" conditional="config.usage.movieSelectionInMenu.value"><screen module="MovieSelection" screen="MovieSelection" /></item>
 		<item key="plugin_selection" level="1" text="Plugin Browser" weight="10"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
 		<item key="scart_switch" level="1" text="VCR Scart Settings" weight="15" conditional="config.usage.show_vcr_scart.value" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 		<!-- Menu / Setup -->
@@ -171,7 +172,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<!-- Menu / Setup / Software Management / Advanced Options -->
 				<menu key="advanced_software" level="2" text="Advanced Options" description="Advanced options and settings." weight="20">
 					<item key="advanced_restore" level="2" text="Advanced Restore" description="Restore your backups by date." weight="16"><plugin system="SoftwareManager" screen="RestoreMenu" /></item>
-					<item key="backup_location" level="2" text="Select Backup Location" description="Select your backup device." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">4</plugin></item>
 					<item key="backup_default" level="2" text="Show Default Backup Files" description="Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">5</plugin></item>
 					<item key="backup_additional" level="2" text="Select Additional Backup Files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">6</plugin></item>
 					<item key="backup_excluded" level="2" text="Select Excluded Backup Files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">7</plugin></item>
@@ -187,16 +187,13 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
 				<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30" requires="minidlna"><screen module="NetworkSetup" screen="NetworkMiniDLNASetup" /></item>
 				<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkSetup" screen="NetworkuShareSetup" /></item>
+				<item key="netsamba_setup" level="2" text="Samba Settings" weight="60" requires="samba"><screen module="NetworkSetup" screen="NetworkSambaSetup" /></item>
 			</menu>
 			<!-- Menu / Setup / System (Was: Menu / Setup / System / Extended System) -->
 			<menu key="extended" level="0" text="System" weight="95">
 				<!-- Menu / Setup / System / Storage devices -->
 				<menu key="harddisk" level="0" text="Storage Devices" weight="45" requires="Harddisk">
-					<item key="harddisk_setup" level="1" text="Hard Disk Settings" weight="0"><setup setupKey="HardDisk" /></item>
-					<item key="harddisk_init" level="0" text="Format Storage Device" weight="5"><screen module="HarddiskSetup" screen="HarddiskSelection" /></item>
-					<item key="harddisk_check" level="0" text="File System Check" weight="10"><screen module="HarddiskSetup" screen="HarddiskFsckSelection" /></item>
-					<item key="harddisk_convert" level="0" text="Convert EXT3 File System to EXT4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection" /></item>
-					<item key="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item>
+					<item key="device_manager" level="0" text="Device Manager" weight="20"><screen module="DeviceManager" screen="DeviceManager" /></item>
 					<item key="swap_manager" level="2" text="Swap Manager" weight="30"><screen module="SwapManager" screen="Swap" /></item>
 					<item key="flash_expander" level="2" text="Flash Expander" weight="40"><screen module="FlashExpander" screen="FlashExpander" /></item>
 				</menu>

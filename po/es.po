@@ -1177,10 +1177,6 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Configuración"
 
@@ -1235,8 +1231,8 @@ msgstr "%s importados del tuner reserva"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
-msgid "%s is no longer used. Should it be deleted?"
-msgstr "%s ya no se utiliza. ¿Quieres borrarlo?"
+msgid "\n%s is no longer used.\nYou want to delete services?"
+msgstr "\n%s ya no se utiliza.\n¿Quieres eliminar los canales?"
 
 #, python-format
 msgid "%s long"
@@ -1413,13 +1409,6 @@ msgstr "0"
 #
 msgid "1"
 msgstr "1"
-
-msgid ""
-"1. Set this channel as the standby start channel.\n"
-"2. Put the receiver into standby, then recording will start.\n"
-msgstr ""
-"1. Establezca como canal de inicio en reposo este canal.\n"
-"2. Ponga el receptor en standby, la grabación entonces comenzará.\n"
 
 msgid "1. Tune to an imported channel with at least EPG EIT.\n2. Restart enigma2.\n3. Now try to download EPG cache from the reserve receiver."
 msgstr "1. Sintonice un canal importado con al menos EPG EIT.\n2. Reinicie Enigma2.\n3. Ahora intente descargar la caché EPG del receptor reserva."
@@ -1726,6 +1715,9 @@ msgstr ""
 "Se ha iniciado una grabación:\n"
 "%s"
 
+msgid "A recording has started:"
+msgstr "Ha comenzado una grabación:"
+
 #
 msgid ""
 "A recording is currently running.\n"
@@ -1855,6 +1847,12 @@ msgstr "Idioma de traducción asistida por IA"
 
 msgid "AI-Powered translation subscription code"
 msgstr "Código de suscripción de la traducción asistida por IA"
+
+msgid "AI Translation mode"
+msgstr "Modo de traducción de IA"
+
+msgid "AI Translation optimization"
+msgstr "Optimización de la traducción con IA"
 
 msgid "ARM"
 msgstr "ARM"
@@ -4130,6 +4128,9 @@ msgstr "Información de canal"
 msgid "Channel List"
 msgstr "Lista de canales"
 
+msgid "Channel Number"
+msgstr "Número de canal"
+
 #
 msgid "Channel List Menu"
 msgstr "Menú de lista de canales"
@@ -4323,8 +4324,8 @@ msgstr "Chino"
 msgid "Chinese (Simplified)"
 msgstr "Chino (simplificado)"
 
-msgid "Choice Box"
-msgstr "Elige receptor"
+msgid "Choice action"
+msgstr "Elige acción"
 
 msgid "Choice List Actions"
 msgstr "Acciones lista de opciones"
@@ -4741,6 +4742,9 @@ msgstr[1] "Comandos finalizados."
 msgid "Command order"
 msgstr "Orden de comando"
 
+msgid "Command script"
+msgstr "Comando script"
+
 msgid "Command to run"
 msgstr "Comando a ejecutar"
 
@@ -4947,9 +4951,6 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Configurar el tipo de mando a distancia"
 
-msgid "Configure the AI-Powered translation language."
-msgstr "Configurar el idioma de la traducción asistida por IA."
-
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configurar el modo DiSEqC para este LNB."
 
@@ -5018,9 +5019,6 @@ msgstr "Configura el nivel de brillo del LCD durante su uso."
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Configura el nivel de brillo del LCD en modo espera."
 
-msgid "Configure the color of the AI-Powered translations."
-msgstr "Configurar el color de la traducción asistida por IA."
-
 msgid ""
 "Configure the color of the external subtitles, alternative (normal in white, "
 "italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -5052,9 +5050,8 @@ msgstr ""
 "Configure la resolución de la pantalla y la fuente utilizada para el "
 "teletexto."
 
-msgid ""
-"Configure the duration in minutes before the screen saver will be displayed."
-msgstr "Configura la duración en minutos para el salvapantallas."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Seleccione la duración de inactividad antes de que se muestre el protector de pantalla."
 
 msgid ""
 "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -5522,6 +5519,9 @@ msgstr "Contactar con el servidor IceTV y configurar su %s %s."
 
 msgid "Content"
 msgstr "Contenido"
+
+msgid "contents:"
+msgstr "contenido:"
 
 #
 msgid "Content does not fit on DVD!"
@@ -6604,6 +6604,9 @@ msgstr "Eliminar entrada en la lista de reproducción"
 msgid "Delete saved play list"
 msgstr "Eliminar lista de reproducción guardada"
 
+msgid "Delete services"
+msgstr "Eliminar canales"
+
 msgid "Delete the character to the left of text cursor"
 msgstr "Eliminar el carácter a la izquierda del cursor de texto"
 
@@ -7037,6 +7040,9 @@ msgstr "No cambiar"
 
 msgid "Do not check the Internet and packages"
 msgstr "No revisar Internet y paquetes"
+
+msgid "Do not delete services"
+msgstr "No eliminar canales"
 
 msgid "Do not flash image"
 msgstr "No instalar la imagen"
@@ -7695,10 +7701,6 @@ msgstr "Habilitar %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Habilitar 5V para la antena activa"
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
-"Activar traducción asistida por IA para todos los subtítulos DVB y teletexto."
-
 #
 msgid "Enable Autorecord"
 msgstr "Habilitar Autograbación"
@@ -8030,6 +8032,9 @@ msgstr "Encriptación:"
 msgid "End"
 msgstr "Final"
 
+msgid "End of script."
+msgstr "Fin del script."
+
 #
 msgid "End time"
 msgstr "Hora de finalización"
@@ -8176,6 +8181,9 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr "Introduce el pin del canal"
 
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr "Ingrese el código de suscripción para habilitar completamente el complemento AI-Powered Translation, el código unificado para la prueba es 15."
+
 msgid "Enter URL"
 msgstr "Ingresar URL"
 
@@ -8213,10 +8221,6 @@ msgid ""
 msgstr ""
 "Introduce la URL de tus feeds personales para permitirte seleccionar "
 "paquetes de tu feed personal."
-
-msgid "Enter your subscription code, the unified code for trial is 15."
-msgstr ""
-"Ingresa tu código de suscripción, el código unificado para prueba es 15."
 
 #
 msgid "Entertainment"
@@ -8735,7 +8739,7 @@ msgid "Exit menu"
 msgstr "Salir del menu"
 
 #
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Salir de la lista de películas"
 
 msgid "Exit movie player?"
@@ -12587,7 +12591,7 @@ msgstr "Montaje fallido"
 msgid "Mount: "
 msgstr "Montaje: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Punto de montaje"
 
 msgid "Mounts"
@@ -12857,7 +12861,7 @@ msgstr "Lista de películas"
 msgid "Movie List Actions"
 msgstr "Lista de acciones de la película"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Configuración de la lista de películas"
 
 msgid "Movie Player Actions"
@@ -12868,8 +12872,8 @@ msgstr ""
 "La reproducción de la película no puede utilizar un directorio inválido/"
 "inapropiado."
 
-msgid "Movie selection"
-msgstr "Selección de película"
+msgid "Movie Selection"
+msgstr "Selección de películas"
 
 msgid "Movie/Drama"
 msgstr "Película/Drama"
@@ -13531,10 +13535,6 @@ msgstr "¡No se encontró ningún Timeshift para guardar como grabación!"
 # UsageConfig.py
 msgid "No timeout"
 msgstr "Sin plazo"
-
-#
-msgid "No to all"
-msgstr "No a todo"
 
 msgid "No transparency"
 msgstr "Sin transparencia"
@@ -17038,13 +17038,8 @@ msgstr "Guardar directorio derecho al salir"
 msgid "Save settings and EPG data."
 msgstr "Guardar la configuración y los datos de EPG."
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"¿Guardar los comandos y la salida en un archivo?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "¿Guardar los comandos y la salida en un archivo?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Guardar la ubicación del directorio de la columna izquierda al salir."
@@ -17178,6 +17173,9 @@ msgstr "Ciencia y tecnología"
 
 msgid "Scope"
 msgstr "Alcance"
+
+msgid "Screen saver movement"
+msgstr "Movimiento del protector de pantalla"
 
 msgid "Script Manager"
 msgstr "Gestor de scripts"
@@ -17455,6 +17453,9 @@ msgstr ""
 "Administrador de archivos, selecciona 'No' para no procesar los archivos "
 "desconocidos."
 
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
+msgstr "Seleccione 'Sí' para habilitar la traducción impulsada por IA para todos los subtítulos de teletexto y DVB."
+
 #, python-format
 msgid "Select 'Yes' to enable autostart of '%s'."
 msgstr "Seleccione \"Sí\" para activar el autoinicio de '%s'."
@@ -17713,6 +17714,9 @@ msgid ""
 msgstr ""
 "Selecciona ‘Sí’para mostrar la lista de canales después de cambiar entre "
 "modo radio y TV."
+
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr "Seleccione \"Sí\" para mostrar la entrada \"Selección de películas\" en el menú principal. Esto ofrece acceso a la pantalla de selección de películas cuando no hay ningún botón asignado en el mando."
 
 msgid ""
 "Select 'Yes' to show the current directory in the list of directories. Note "
@@ -17993,6 +17997,9 @@ msgstr "Selecciona archivos a excluir en el backup"
 msgid "Select files/folders to backup"
 msgstr "Seleccione archivos/carpetas para el backup"
 
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Seleccione cuánto tiempo la imagen del protector de pantalla permanecerá en la misma ubicación en la pantalla antes de ser movida."
+
 msgid "Select how long to display status messages."
 msgstr "Selecciona cuánto tiempo quieres mostrar los mensajes de estado."
 
@@ -18228,6 +18235,9 @@ msgstr "Seleccione la acción para '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Seleccione la acción a realizar cuando el temporizador termine."
 
+msgid "Select the AI-Powered Translation target language."
+msgstr "Seleccione el idioma de destino de traducción impulsada por IA."
+
 msgid ""
 "Select the animation speed of the button indicators in the help screens. "
 "'Disabled' turns off animation so that indicators jump between buttons."
@@ -18245,6 +18255,9 @@ msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Seleccione el carácter o la acción bajo el cursor del teclado"
+
+msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr "Seleccione el color que se utilizará para el texto de traducción impulsada por IA."
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Seleccionar la ubicación actual de los marcadores y salir"
@@ -19708,6 +19721,9 @@ msgstr "Mostrar Merlin EPG Center"
 msgid "Show MiniTV in the Front Display"
 msgstr "Mostrar MiniTV en el LCD"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr "Mostrar selección de películas en el menú principal"
+
 #
 msgid "Show Movies List"
 msgstr "Mostrar lista de películas"
@@ -19882,6 +19898,9 @@ msgstr "Mostrar detalles de la tarea resaltada"
 
 msgid "Show directories first"
 msgstr "Mostrar primero las carpetas"
+
+msgid "Show during operation"
+msgstr "Mostrar durante el funcionamiento"
 
 # Menue Anpassungen OSD
 msgid ""
@@ -20112,7 +20131,7 @@ msgstr "Mostrar lista de satélites"
 msgid "Show screen menu path"
 msgstr "Muestra la ruta del menú de pantalla"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Mostrar salvapantallas"
 
 msgid "Show script messages"
@@ -21996,6 +22015,12 @@ msgstr "El log de commit '%s' no contiene información."
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "El archivo '%s' no se puede recuperar, por favor prueba más tarde."
 
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr "El modo AI que se utiliza para traducir idiomas. Puedes elegir el que ofrezca la traducción más precisa para el idioma de destino."
+
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgstr "El servicio de traducción impulsado por inteligencia artificial se optimizará para proporcionar el mejor rendimiento según la velocidad de carga de la conexión a Internet seleccionada."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -22158,6 +22183,9 @@ msgid ""
 msgstr ""
 "Bitrate del codificador de video. Un valor más alto mejora la calidad e "
 "incrementa el tamaño del archivo."
+
+msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"
+msgstr "El bouquet \"Último escaneo\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
 
 msgid ""
 "The buffer time for time shift exceeds the specified limit in the settings.\n"
@@ -22622,10 +22650,14 @@ msgstr ""
 "Esta opción te permite elegir cómo visualizar el tiempo restante, "
 "transcurrido o ambos."
 
-msgid ""
-"This option allows you choose if the display shows the time or nothing in "
-"Standby."
-msgstr "Esta opción le permite elegir si mostrar la hora o nada en reposo."
+msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
+msgstr "Esta opción le permite elegir cómo mostrar el tiempo restante/transcurrido para la reproducción multimedia."
+
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr "Esta opción le permite elegir si la pantalla muestra la hora o nada en reposo."
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr "Esta opción le permite elegir si la pantalla muestra la hora, el número de canal o nada durante la operación."
 
 msgid ""
 "This option allows you choose how to display the remaining/elapsed time for "
@@ -22633,13 +22665,6 @@ msgid ""
 msgstr ""
 "Esta opción te permite elegir cómo visualizar el tiempo restante/"
 "transcurrido de la TV en directo."
-
-msgid ""
-"This option allows you choose how to display the remaining/elapsed time for "
-"media playback."
-msgstr ""
-"Esta opción te permite elegir cómo visualizar el tiempo restante/"
-"transcurrido en el reproductor de recursos."
 
 msgid ""
 "This option allows you choose the background color of transparent picons."
@@ -23025,6 +23050,9 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Esto hará que el avance y rebobinado vayan a intervalos de x segs."
 
+msgid "This window will automatically close in %d seconds."
+msgstr "Esta ventana se cerrará automáticamente en %d segundos."
+
 #
 msgid "Three"
 msgstr "Tres"
@@ -23277,6 +23305,9 @@ msgstr "Propiedades de título"
 #
 msgid "Titleset mode"
 msgstr "Modo título"
+
+msgid "To be able to record, put the receiver into standby mode."
+msgstr "Para poder grabar ponga el receptor en modo de espera."
 
 msgid ""
 "To complete the setup the %s %s must connect to the Internet.  Connect the "
@@ -25809,10 +25840,6 @@ msgstr "Sí"
 msgid "Yes (safe mode)"
 msgstr "Sí (modo seguro)"
 
-#
-msgid "Yes to all"
-msgstr "Si a todo"
-
 msgid "Yes, always"
 msgstr "Sí, siempre"
 
@@ -26217,7 +26244,13 @@ msgstr ""
 
 #
 msgid "Your network configuration has been activated."
-msgstr "Tu configuración de red ha sido activada."
+msgstr "Su configuración de red ha sido activada."
+
+msgid "Your network configuration has been activated.\n\nPress OK and wait for the next screen.\n\nIt will automatically switch to your WLAN data."
+msgstr "Su configuración de red ha sido activada.\n\nPulse OK y espere en la siguiente pantalla.\n\nCambiará automáticamente a sus datos WLAN."
+
+msgid "Your network configuration has been disabled."
+msgstr "Su configuración de red ha sido desactivada."
 
 msgid "Your password must have at least 5 characters."
 msgstr "Tu contraseña debe tener al menos 5 caracteres."
@@ -28674,7 +28707,7 @@ msgid "Connect to the Internet"
 msgstr "Conectar a internet"
 
 msgid "Continue with package download and installation"
-msgstr "Continuar con la descarga e instalación de paquetes"
+msgstr "Continuar con la descarga e instalación de paquetes básicos"
 
 msgid "Create Expander"
 msgstr "Crear expander"
@@ -28910,7 +28943,7 @@ msgstr "Apagando. Espera por favor..."
 
 msgid "Skip package installation, only core packages will be available"
 msgstr ""
-"Omitir instalación de paquetes, solo estarán disponibles los paquetes básicos"
+"Omitir instalación de paquetes, solo paquetes básicos (sin servicio FTP)"
 
 msgid "Small Box Preparation"
 msgstr "Preparación receptor"

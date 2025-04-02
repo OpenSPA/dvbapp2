@@ -177,7 +177,7 @@ class Console(Screen):
 				else:
 					lines = None
 			if lines:
-				self["text"].appendText(f"{self.scriptColorStart}>>> Command script '{cmdLine}' contents:\n{"\n".join(lines)}\n>>> End of script.{self.scriptColorEnd}\n")
+				self["text"].appendText(f"{self.scriptColorStart}>>> {_("Command script")} '{cmdLine}' {_("contents:")}\n{"\n".join(lines)}\n>>> {_("End of script.")}{self.scriptColorEnd}\n")
 		self["text"].appendText("\n")
 		return self.container.execute(cmd[0], *cmd) if isinstance(cmd, (list, tuple)) else self.container.execute(cmd)
 

@@ -4484,8 +4484,9 @@ msgstr "在频道选择列表中配置光标行为.打开频道选择列表时,�
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "配置用于图文电视的显示分辨率和字体."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
-msgstr "配置屏幕保护程序的持续时间(分钟)."
+msgid ""
+"Select the duration of inactivity before the screen saver will be displayed."
+msgstr "配置屏幕保护程序显示前的持续时间（分钟）。"
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -7677,8 +7678,8 @@ msgstr "退出媒体播放器"
 msgid "Exit menu"
 msgstr "退出菜单"
 
-msgid "Exit movie list"
-msgstr "退出电影列表"
+msgid "Exit Movie Selection"
+msgstr "退出影片列表"
 
 msgid "Exit movie player?"
 msgstr "是否退出电影播放器?"
@@ -11099,7 +11100,7 @@ msgstr "挂载失败"
 msgid "Mount: "
 msgstr "挂载: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "挂载点"
 
 msgid "Mounts"
@@ -11367,8 +11368,8 @@ msgstr "电影列表"
 msgid "Movie List Actions"
 msgstr "电影列表操作"
 
-msgid "Movie List Settings"
-msgstr "电影列表设置"
+msgid "Movie Selection Settings"
+msgstr "影片列表设置"
 
 msgid "Movie Player Actions"
 msgstr "电影播放器操作"
@@ -11376,8 +11377,8 @@ msgstr "电影播放器操作"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
-msgid "Movie selection"
-msgstr "电影选择"
+msgid "Movie Selection"
+msgstr "影片选择"
 
 msgid "Movie/Drama"
 msgstr "电影/剧情"
@@ -17520,7 +17521,7 @@ msgstr "显示卫星列表"
 msgid "Show screen menu path"
 msgstr "显示屏幕菜单路径"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "显示屏保"
 
 msgid "Show script messages"

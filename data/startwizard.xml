@@ -32,7 +32,8 @@ self.condition = not self.smallFlashSize and self.getFreeMemory() &lt; 128 and n
 		<list type="dynamic" source="swapDeviceList" evaluation="swapDeviceSelectionMade" onselect="swapDeviceSelectionMoved"/>
 		<code async="yes">
 self.readSwapDevices(self.afterAsyncCode)
-self["key_yellow"].setText(_("Format"))
+if not self.isFlashExpanderActive():
+	self["key_yellow"].setText(_("Format"))
 		</code>
 		<code pos="after" async="yes">
 if self.swapDevice and self.swapDevice != ".":
@@ -50,8 +51,15 @@ self.condition = self.swapDevice and self.swapDevice == "."
 		<displaytext value="Plug in USB device" />
 		<list>
 			<listentry caption="Retry" step="swap" />
-			<listentry caption="Cancel" step="network" />
+			<listentry caption="Cancel" step="devices" />
 		</list>
+	</step>
+
+	<step id="devices" nextstep="network">
+		<condition>
+self.condition = self.hasPartitions()
+		</condition>
+		<config screen="DeviceManagerMountPoints" module="DeviceManager" type="standalone" />
 	</step>
 
 	<step id="network">
@@ -63,7 +71,7 @@ self.condition = self.smallFlashSize or self.isFlashExpanderActive()
 		<displaytext value="Connect to the Internet" />
 		<list>
 			<listentry caption="Continue with package download and installation" step="update" />
-			<listentry caption="Skip package installation, only core packages will be available" step="timezone" />
+			<!--listentry caption="Skip package installation, only core packages will be available" step="timezone" / -->
 		</list>
 	</step>
 

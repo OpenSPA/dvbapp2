@@ -385,6 +385,7 @@ BoxInfo.setItem("LCDMiniTV", fileExists("/proc/stb/lcd/mode"))
 BoxInfo.setItem("LCDMiniTVPiP", BoxInfo.getItem("LCDMiniTV") and MACHINEBUILD not in ("gb800ueplus", "gbquad4k", "gbquad4kpro", "gbue4k"))
 BoxInfo.setItem("LCDSKINSetup", fileExists("/usr/share/enigma2/display") and not isPluginInstalled("LCD4linux") or BoxInfo.getItem("VuplusVFD") and DISPLAYTYPE not in ("7segment",))
 BoxInfo.setItem("LCDClockSetup", fileExists("/usr/share/enigma2/display") and DISPLAYTYPE in ('colorlcd220', 'colorlcd400', 'colorlcd400s', 'colorlcd480', 'colorlcd800') and not isPluginInstalled("LCD4linux"))
+BoxInfo.setItem("LCDSKIN", fileExists("/usr/share/enigma2/display"))
 BoxInfo.setItem("LEDButtons", MACHINEBUILD == "vuultimo")
 BoxInfo.setItem("LEDColorControl", fileExists("/proc/stb/fp/led_color"))
 BoxInfo.setItem("LEDPowerColor", fileExists("/proc/stb/fp/ledpowercolor"))
@@ -419,7 +420,7 @@ BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/pro
 BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
-BoxInfo.setItem("DisplaySetup", MODEL not in ("dreamone",))
+BoxInfo.setItem("DisplaySetup", MODEL not in ("dreamone", "gbmv200"))
 
 # Dont't sort.
 BoxInfo.setItem("ConfigDisplay", BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment",))
@@ -445,6 +446,7 @@ BoxInfo.setItem("minidlna", exists("/etc/init.d/minidlna"))
 BoxInfo.setItem("ushare", exists("/etc/init.d/ushare"))
 BoxInfo.setItem("udpxy", exists("/etc/init.d/udpxy"))
 BoxInfo.setItem("xupnpd", exists("/etc/init.d/xupnpd"))
+BoxInfo.setItem("samba", exists("/etc/init.d/samba"))
 
 # AI
 BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))

@@ -237,7 +237,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 				item_level = int(x.get("level", 0))
 				item_rectunerlevel = int(x.get("rectunerlevel", 0))
 
-				if not self.levelChanged in config.usage.setup_level.notifiers:
+				if self.levelChanged not in config.usage.setup_level.notifiers:
 					config.usage.setup_level.notifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
@@ -261,7 +261,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 				item_text = item_text.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				try:
-					b = eval(x.text or "");
+					b = eval(x.text or "")
 				except:
 					b = ""
 				if b == "":

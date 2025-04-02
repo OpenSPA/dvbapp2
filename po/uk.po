@@ -4522,8 +4522,8 @@ msgstr "Налаштування поведінки курсора у списк
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Налаштування розширення екрану і розмір шрифту для роботи з телетекстом."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
-msgstr "Через якийсь час показувати заставку."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Через якийсь час показати заставку."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Налаштуйте у хвилинах тривалість до активації таймера енергозбереження."
@@ -7725,7 +7725,7 @@ msgstr "Вийти з медіапрогравача"
 msgid "Exit menu"
 msgstr "Вийти з меню"
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Закрити список фільмів"
 
 msgid "Exit movie player?"
@@ -11149,7 +11149,7 @@ msgstr "Монтування невдале"
 msgid "Mount: "
 msgstr "Підключення: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Точка монтування"
 
 msgid "Mounts"
@@ -11417,7 +11417,7 @@ msgstr "Список записів"
 msgid "Movie List Actions"
 msgstr "Дії для списку записів"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Налаштування списку записів"
 
 msgid "Movie Player Actions"
@@ -11426,7 +11426,7 @@ msgstr "Дії для Плеєра записів"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Відтворення відео не може використовувати недійсний/невідповідний каталог."
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Вибір записів"
 
 msgid "Movie/Drama"
@@ -17598,7 +17598,7 @@ msgstr "Показати список супутників"
 msgid "Show screen menu path"
 msgstr "Показати шлях до екранного меню"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Показати заставку"
 
 msgid "Show script messages"

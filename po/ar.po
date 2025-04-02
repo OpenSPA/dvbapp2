@@ -4809,7 +4809,7 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr ""
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -8077,7 +8077,7 @@ msgstr "الخروج من مشغل الوسائط"
 msgid "Exit menu"
 msgstr ""
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "الخروج من قائمة الأفلام"
 
 msgid "Exit movie player?"
@@ -11684,7 +11684,7 @@ msgstr ""
 msgid "Mount: "
 msgstr ""
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"
@@ -11968,7 +11968,7 @@ msgstr ""
 msgid "Movie List Actions"
 msgstr "مكان الفيلم"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr ""
 
 #, fuzzy
@@ -11978,7 +11978,7 @@ msgstr "مكان الفيلم"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "أختيار الأفلام"
 
 msgid "Movie/Drama"
@@ -18423,7 +18423,7 @@ msgstr ""
 msgid "Show screen menu path"
 msgstr "أعرض قائمة دى فى دى الرئيسيه"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "عرض شاشة التوقف"
 
 msgid "Show script messages"

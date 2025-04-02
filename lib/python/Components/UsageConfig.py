@@ -112,6 +112,7 @@ def InitUsageConfig():
 	config.usage.screenSaverMoveTimer = ConfigSelection(default=10, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 61)])
 	config.usage.informationShowAllMenuScreens = ConfigYesNo(default=False)
 	config.usage.informationExtraSpacing = ConfigYesNo(False)
+	config.usage.movieSelectionInMenu = ConfigYesNo(False)
 
 	# Settings for servicemp3 and handling from cue sheet file.
 	config.usage.useVideoCuesheet = ConfigYesNo(default=True)  # Use marker for video media file.
@@ -165,7 +166,7 @@ def InitUsageConfig():
 		(2, _("IPv4 only")),
 		(3, _("IPv6 only"))
 	])
-	config.usage.dnsSuffix = ConfigText(default="")
+	config.usage.dnsSuffix = ConfigText(default="", fixed_size=False)
 	config.usage.dnsRotate = ConfigYesNo(default=False)
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
@@ -471,6 +472,7 @@ def InitUsageConfig():
 	config.usage.hdd_standby = ConfigSelection(default="300", choices=choiceList)
 	config.usage.hdd_standby_in_standby = ConfigSelection(default="-1", choices=[("-1", _("Same as in active"))] + choiceList)
 	config.usage.hdd_timer = ConfigYesNo(default=False)
+	config.usage.showUnknownDevices = ConfigYesNo(default=False)
 	config.usage.output_12V = ConfigSelection(default="do not change", choices=[
 		("do not change", _("Do not change")),
 		("off", _("Off")),
@@ -626,8 +628,8 @@ def InitUsageConfig():
 		("standby", _("Standby")),
 		("standby_noTVshutdown", _("Standby without TV shut down")),
 		("sleeptimer", _("SleepTimer")),
-		("powertimerStandby", _("PowerTimer Standby")),
-		("powertimerDeepStandby", _("PowerTimer deep standby"))
+		("schedulerStandby", _("Scheduler Standby")),
+		("schedulerDeepStandby", _("Scheduler deep standby"))
 	]
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=choiceList)
 	config.usage.on_short_powerpress = ConfigSelection(default="standby", choices=choiceList)
@@ -862,6 +864,12 @@ def InitUsageConfig():
 
 	config.usage.show_in_standby = ConfigSelection(default="time", choices=[
 		("time", _("Time")),
+		("nothing", _("Nothing"))
+	])
+
+	config.usage.show_in_operation = ConfigSelection(default="time", choices=[
+		("time", _("Time")),
+		("number", _("Channel Number")),
 		("nothing", _("Nothing"))
 	])
 
@@ -1360,6 +1368,16 @@ def InitUsageConfig():
 
 	config.crash.debugEPG.addNotifier(debugEPGhanged, immediate_feedback=False, initial_call=False)
 
+	def debugStorageChanged(configElement):
+		udevDebugFile = "/etc/udev/udev.debug"
+		if configElement.value:
+			fileWriteLine(udevDebugFile, "", source=MODULE_NAME)
+		elif exists(udevDebugFile):
+			unlink(udevDebugFile)
+		harddiskmanager.debug = configElement.value
+
+	config.crash.debugStorage.addNotifier(debugStorageChanged)
+
 	hddChoices = [("/etc/enigma2/", _("Internal Flash"))]
 	for partition in harddiskmanager.getMountedPartitions():
 		if exists(partition.mountpoint):
@@ -1450,6 +1468,13 @@ def InitUsageConfig():
 	config.network.Samba_autostart = ConfigYesNo(default=True)
 	config.network.Inadyn_autostart = ConfigYesNo(default=False)
 	config.network.uShare_autostart = ConfigYesNo(default=False)
+
+	config.samba = ConfigSubsection()
+	config.samba.enableAutoShare = ConfigYesNo(default=True)
+	config.samba.autoShareAccess = ConfigSelection(default=1, choices=[
+		(0, _("Read Only")),
+		(1, _("Read/Write"))
+	])
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection(default="leftright", choices=[
@@ -1860,6 +1885,7 @@ def InitUsageConfig():
 	langsAI.append(("ar_eg", _("Arabic (Egyptian)")))
 	langsAI.append(("ar_ma", _("Arabic (Moroccan)")))
 	langsAI.append(("ar_sy", _("Arabic (Syro-Lebanese)")))
+	langsAI.append(("ar_iq", _("Arabic (Iraq)")))
 	langsAI.append(("ar_tn", _("Arabic (Tunisian)")))
 	langsAI.sort(key=lambda x: x[1])
 
@@ -1875,6 +1901,13 @@ def InitUsageConfig():
 
 	config.subtitles.ai_translate_to = ConfigSelection(default=default, choices=langsAI)
 	config.subtitles.ai_translate_to.addNotifier(setAiTranslateTo)
+
+	def setAiMode(configElement):
+		eSubtitleSettings.setAiMode(configElement.value)
+
+	config.subtitles.ai_mode = ConfigSelection(default=1, choices=[(x, f"{_("Mode")} {x}") for x in range(1, 4)])
+	config.subtitles.ai_mode.addNotifier(setAiMode)
+
 	# AI end
 
 	config.autolanguage = ConfigSubsection()

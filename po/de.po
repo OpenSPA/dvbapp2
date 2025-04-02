@@ -4749,7 +4749,7 @@ msgstr "Position des Cursors beim Öffnen der Senderliste festlegen. Auf dem lau
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Bestimmt die Bildschirmauflösung und den Zeichensatz für die Videotext-Darstellung."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Die Verzögerungszeit des Bildschirmschoners, falls aktiviert, einstellen."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -8106,7 +8106,7 @@ msgid "Exit menu"
 msgstr "Menü verlassen"
 
 #
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Verlasse Filmauswahl"
 
 msgid "Exit movie player?"
@@ -11726,8 +11726,8 @@ msgstr "Mount fehlgeschlagen!"
 msgid "Mount: "
 msgstr "Mount: "
 
-msgid "Mountpoint"
-msgstr "Mountpunkt"
+msgid "Mount point"
+msgstr "Einhängepunkt"
 
 msgid "Mounts"
 msgstr "Mounts"
@@ -12016,7 +12016,7 @@ msgstr "Filmauswahl"
 msgid "Movie List Actions"
 msgstr "Filmauswahlaktionen"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Filmauswahl-Einstellungen"
 
 msgid "Movie Player Actions"
@@ -12025,7 +12025,7 @@ msgstr "Movieplayer-Aktionen"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Die Filmwiedergabe darf kein ungültiges/unpassendes Verzeichnis verwenden."
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Filmauswahl"
 
 msgid "Movie/Drama"
@@ -18663,7 +18663,7 @@ msgstr "Satellitenliste anzeigen"
 msgid "Show screen menu path"
 msgstr "Bildschirmmenüpfad anzeigen"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Bildschirmschoner anzeigen"
 
 msgid "Show script messages"

@@ -4487,7 +4487,7 @@ msgstr "Konfiguro sjelljen e kursorit në listën e përzgjedhjes së kanalit. K
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Konfiguro rezolucionin e ekranit dhe fontin e përdorur për teletekstin."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Konfiguro kohëzgjatjen në minuta për mbrojtësin e ekranit."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -7675,7 +7675,7 @@ msgstr "Dilni nga mediaplayer"
 msgid "Exit menu"
 msgstr "Dil nga menyja"
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Dil nga lista e filmave"
 
 msgid "Exit movie player?"
@@ -11095,7 +11095,7 @@ msgstr ""
 msgid "Mount: "
 msgstr ""
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"
@@ -11363,7 +11363,7 @@ msgstr ""
 msgid "Movie List Actions"
 msgstr ""
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr ""
 
 msgid "Movie Player Actions"
@@ -11372,7 +11372,7 @@ msgstr ""
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr ""
 
 msgid "Movie/Drama"
@@ -17468,7 +17468,7 @@ msgstr ""
 msgid "Show screen menu path"
 msgstr ""
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr ""
 
 msgid "Show script messages"

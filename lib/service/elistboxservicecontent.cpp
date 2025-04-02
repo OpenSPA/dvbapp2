@@ -1,7 +1,7 @@
 /*
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
 
-Copyright (c) 2023-2024 jbleyel
+Copyright (c) 2023-2025 jbleyel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -179,6 +179,17 @@ void eListboxPythonServiceContent::getNext(eServiceReference &ref)
 	}
 	else
 		ref = eServiceReference();
+}
+
+PyObject *eListboxPythonServiceContent::getList()
+{
+	ePyObject result = PyList_New(m_service_list.size());
+	int pos=0;
+	for (list::iterator it(m_service_list.begin()); it != m_service_list.end(); ++it)
+	{
+		PyList_SET_ITEM(result, pos++, NEW_eServiceReference(*it));
+	}
+	return result;
 }
 
 int eListboxPythonServiceContent::getNextBeginningWithChar(char c)

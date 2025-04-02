@@ -491,8 +491,9 @@ class Wizard(Screen):
 		enabled = False
 		if self["config"].getCurrent():
 			if isinstance(self["config"].getCurrent()[1], (ConfigText, ConfigPassword)):
-				if self.__class__.__name__ != "NetworkWizard":  # This is a temporary hack to fix a problem with VirtualKeyBoard input.
+				if self.__class__.__name__ == "NetworkWizard":
 					enabled = True
+					self["VirtualKB"].setEnabled(enabled)
 				if "HelpWindow" in self:
 					if self["config"].getCurrent()[1].help_window.instance:
 						helpWindowPosition = self["HelpWindow"].getPosition()
@@ -759,10 +760,12 @@ class Wizard(Screen):
 					self["config"].setList(eval("self.%s" % self.wizard[self.currStep]["config"]["source"])())
 				elif self.wizard[self.currStep]["config"]["screen"]:
 					if self.wizard[self.currStep]["config"]["type"] == "standalone":
+						def screenCallback(*retVal):
+							self.keySelect()
 						print("[Wizard] Loading an external config screen %s." % self.wizard[self.currStep]["config"]["screen"])
 						if self.updateValues in self.onShown:
 							self.onShown.remove(self.updateValues)
-						self.session.openWithCallback(self.keySelect, self.wizard[self.currStep]["config"]["screen"])
+						self.session.openWithCallback(screenCallback, self.wizard[self.currStep]["config"]["screen"])
 					else:
 						print("[Wizard] Extracting 'Config' widget from external screen %s." % self.wizard[self.currStep]["config"]["screen"])
 						self.configWidgetInstance.setZPosition(2)

@@ -1277,7 +1277,7 @@ msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
-msgid "%s is no longer used. Should it be deleted?"
+msgid "\n%s is no longer used.\nYou want to delete services?"
 msgstr ""
 
 #, python-format
@@ -1975,18 +1975,18 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
-msgstr ""
-
-#, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
 msgstr ""
 
 #, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 
 #, python-format
@@ -2010,6 +2010,9 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "A recording has started:"
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -2026,7 +2029,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -4276,7 +4279,7 @@ msgstr ""
 msgid "Chipset: BCM%s"
 msgstr ""
 
-msgid "Choice Box"
+msgid "Choice action"
 msgstr ""
 
 #, python-format
@@ -4557,6 +4560,9 @@ msgstr ""
 msgid "Command order"
 msgstr ""
 
+msgid "Command script"
+msgstr ""
+
 msgid "Command type"
 msgstr ""
 
@@ -4752,7 +4758,7 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr ""
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -5052,6 +5058,9 @@ msgid "Contacting IceTV server and setting up your %s %s."
 msgstr ""
 
 msgid "Content"
+msgstr ""
+
+msgid "contents:"
 msgstr ""
 
 msgid "Content does not fit on DVD!"
@@ -5933,6 +5942,9 @@ msgstr ""
 msgid "Delete saved play list"
 msgstr ""
 
+msgid "Delete services"
+msgstr ""
+
 msgid "Delete the character to the left of text cursor"
 msgstr ""
 
@@ -6285,6 +6297,9 @@ msgid "Do not center DVB subs on this service"
 msgstr ""
 
 msgid "Do not change"
+msgstr ""
+
+msgid "Do not delete services"
 msgstr ""
 
 msgid "Do not flash image"
@@ -7082,6 +7097,9 @@ msgstr ""
 msgid "End long"
 msgstr ""
 
+msgid "End of script."
+msgstr ""
+
 msgid "End time"
 msgstr ""
 
@@ -7418,7 +7436,7 @@ msgstr ""
 msgid "Even if TV has another input active?"
 msgstr ""
 
-msgid "Even if a 'Wakeup' PowerTimer starting?"
+msgid "Even if a 'Wakeup' Scheduler starting?"
 msgstr ""
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -7539,7 +7557,7 @@ msgstr ""
 msgid "Exit menu"
 msgstr ""
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr ""
 
 msgid "Exit movie player?"
@@ -10883,7 +10901,7 @@ msgstr ""
 msgid "Mount: "
 msgstr ""
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"
@@ -11073,13 +11091,13 @@ msgstr ""
 msgid "Movie List Actions"
 msgstr ""
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr ""
 
 msgid "Movie Player Actions"
 msgstr ""
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr ""
 
 msgid "Movie/Drama"
@@ -11607,9 +11625,6 @@ msgid "No tags are set on these movies."
 msgstr ""
 
 msgid "No timeout"
-msgstr ""
-
-msgid "No to all"
 msgstr ""
 
 msgid "No transparency"
@@ -13045,19 +13060,19 @@ msgstr ""
 msgid "PowerTimer"
 msgstr ""
 
-msgid "PowerTimer deep standby"
+msgid "Scheduler deep standby"
 msgstr ""
 
 msgid "PowerTimer Entry"
 msgstr ""
 
-msgid "PowerTimer log"
+msgid "Scheduler log"
 msgstr ""
 
-msgid "PowerTimer Overview"
+msgid "Scheduler Overview"
 msgstr ""
 
-msgid "PowerTimer Standby"
+msgid "Scheduler Standby"
 msgstr ""
 
 msgid "Predefined"
@@ -14646,10 +14661,7 @@ msgstr ""
 msgid "Save settings and EPG data."
 msgstr ""
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
 msgstr ""
 
 msgid "Save the left folder list location on exit."
@@ -14914,7 +14926,7 @@ msgstr ""
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr ""
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
 msgstr ""
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16466,7 +16478,7 @@ msgstr ""
 msgid "Show screen menu path"
 msgstr ""
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr ""
 
 msgid "Show selection for commit logs"
@@ -18102,6 +18114,9 @@ msgstr ""
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr ""
 
+msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"
+msgstr ""
+
 msgid ""
 "The buffer time for time shift exceeds the specified limit in the settings.\n"
 "What do you want to do ?"
@@ -18665,6 +18680,9 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr ""
 
+msgid "This window will automatically close in %d seconds."
+msgstr ""
+
 msgid "Three"
 msgstr ""
 
@@ -18896,6 +18914,9 @@ msgid "Title properties"
 msgstr ""
 
 msgid "Titleset mode"
+msgstr ""
+
+msgid "To be able to record, put the receiver into standby mode."
 msgstr ""
 
 msgid "To restore the image:"
@@ -20725,9 +20746,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-msgid "Yes to all"
-msgstr ""
-
 msgid "Yes, always"
 msgstr ""
 
@@ -21076,6 +21094,12 @@ msgid ""
 msgstr ""
 
 msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid "Your network configuration has been activated.\n\nPress OK and wait for the next screen.\n\nIt will automatically switch to your WLAN data."
+msgstr ""
+
+msgid "Your network configuration has been disabled."
 msgstr ""
 
 msgid "Your password must have at least 5 characters."

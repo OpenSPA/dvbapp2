@@ -4960,7 +4960,7 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr ""
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -8406,7 +8406,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Izhod iz seznama datotek"
 
 #
@@ -12200,7 +12200,7 @@ msgstr ""
 msgid "Mount: "
 msgstr ""
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"
@@ -12508,7 +12508,7 @@ msgstr "Seznam posnetkov"
 msgid "Movie List Actions"
 msgstr "Movie lokacija"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr ""
 
 #, fuzzy
@@ -12519,7 +12519,7 @@ msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
 #, fuzzy
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Movie lokacija"
 
 msgid "Movie/Drama"
@@ -19323,7 +19323,7 @@ msgstr ""
 msgid "Show screen menu path"
 msgstr "Prikaz menija oznak (tags)"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr ""
 
 msgid "Show script messages"

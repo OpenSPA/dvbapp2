@@ -7,15 +7,15 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 
 config.misc.pluginlist = ConfigSubsection()
-config.misc.pluginlist.eventinfo_order = ConfigText(default="")
-config.misc.pluginlist.extension_order = ConfigText(default="")
-config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
+config.misc.pluginlist.eventinfoOrder = ConfigText(default="[]")
+config.misc.pluginlist.extensionOrder = ConfigText(default="[]")
+config.misc.pluginlist.fcBookmarksOrder = ConfigText(default=f"['{_("Storage Devices")}']")
 
 
 class ChoiceBoxNew(Screen):
 	def __init__(self, session, text="", choiceList=None, selection=0, buttonList=None, reorderConfig=None, allowCancel=True, skinName=None, windowTitle=None):
 		Screen.__init__(self, session, enableHelp=True)
-		self.setTitle(windowTitle if windowTitle else _("Choice Box"))
+		self.setTitle(windowTitle if windowTitle else _("Choice action"))
 		self.skinName = ["ChoiceBox"]
 		if skinName:
 			if isinstance(skinName, str):
@@ -32,7 +32,7 @@ class ChoiceBoxNew(Screen):
 			if self.configOrder.value:
 				prevList = [x for x in zip(choiceList, buttonList)]
 				newList = []
-				for button in self.configOrder.value.split(","):
+				for button in eval(self.configOrder.value):
 					for entry in prevList:
 						if entry[0][0] == button:
 							prevList.remove(entry)
@@ -181,13 +181,13 @@ class ChoiceBoxNew(Screen):
 			self["list"].instance.goLineDown()
 		else:
 			self["list"].instance.goLineUp()
-		self.configOrder.value = ",".join(x[0][0] for x in self.choiceList)
+		self.configOrder.value = str([x[0][0] for x in self.choiceList])
 		self.configOrder.save()
 
 	def keyResetList(self):
 		def keyResetListCallback(answer):
 			if answer:
-				self.configOrder.value = ""
+				self.configOrder.value = self.configOrder.default
 				self.configOrder.save()
 
 		self.session.openWithCallback(keyResetListCallback, MessageBox, _("Reset list order to the default list order?"), MessageBox.TYPE_YESNO, windowTitle=self.getTitle())

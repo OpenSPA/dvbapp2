@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[8.4],[https://openspa.info])
+AC_INIT([enigma2],[8.5],[https://openspa.info])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
@@ -231,9 +231,12 @@ AS_IF([test "$MACHINEBUILD" == "gbtrio4k"],[AC_DEFINE(HWGBTRIO4K, 1,[gbtrio4k])]
 AS_IF([test "$MACHINEBUILD" == "gbtrio4kpro"],[AC_DEFINE(HWGBTRIO4KPRO, 1,[gbtrio4kpro])])
 AS_IF([test "$MACHINEBUILD" == "gbue4k"],[AC_DEFINE(HWGBUE4K, 1,[gbue4k])])
 AS_IF([test "$BOXTYPE" == "h7"],[AC_DEFINE(HWH7, 1,[h7])])
-AS_IF([test "$BOXTYPE" == "h9combo"],[AC_DEFINE(HWH9COMBO, 1,[h9combo])])
 AS_IF([test "$BOXTYPE" == "h9"],[AC_DEFINE(HWH9, 1,[h9])])
+AS_IF([test "$BOXTYPE" == "h9combo"],[AC_DEFINE(HWH9COMBO, 1,[h9combo])])
+AS_IF([test "$BOXTYPE" == "h9combose"],[AC_DEFINE(HWH9COMBOSE, 1,[h9combose])])
+AS_IF([test "$BOXTYPE" == "h9se"],[AC_DEFINE(HWH9SE, 1,[h9se])])
 AS_IF([test "$BOXTYPE" == "h10"],[AC_DEFINE(HWH10, 1,[h10])])
+AS_IF([test "$BOXTYPE" == "h11"],[AC_DEFINE(HWH11, 1,[h11])])
 AS_IF([test "$BOXTYPE" == "h17"],[AC_DEFINE(HWH17, 1,[h17])])
 AS_IF([test "$BOXTYPE" == "hd51"],[AC_DEFINE(HWHD51, 1,[hd51])])
 AS_IF([test "$BOXTYPE" == "hd61"],[AC_DEFINE(HWHD61, 1,[hd61])])
@@ -248,12 +251,19 @@ AS_IF([test "$BOXTYPE" == "sfx6008"],[AC_DEFINE(HWSFX6008, 1,[sfx6008])])
 AS_IF([test "$BOXTYPE" == "sx988"],[AC_DEFINE(HWSX988, 1,[sx988])])
 AS_IF([test "$BOXTYPE" == "sx88v2"],[AC_DEFINE(HWSX88V2, 1,[sx88v2])])
 AS_IF([test "$BOXTYPE" == "u5"],[AC_DEFINE(HWU5, 1,[u5])])
-AS_IF([test "$BOXTYPE" == "vusolo4k"],[AC_DEFINE(HWVUSOLO4K, 1,[vusolo4k])])
-AS_IF([test "$BOXTYPE" == "vuultimo4k"],[AC_DEFINE(HWVUULTIMO4K, 1,[vuultimo4k])])
+AS_IF([test "$BOXTYPE" == "ustym4kpro"],[AC_DEFINE(HWUSTYM4KPRO, 1,[ustym4kpro])])
+AS_IF([test "$BOXTYPE" == "vuduo2"],[AC_DEFINE(HWVUDUO2, 1,[vuduo2])])
 AS_IF([test "$BOXTYPE" == "vuduo4k"],[AC_DEFINE(HWVUDUO4K, 1,[vuduo4k])])
 AS_IF([test "$BOXTYPE" == "vuduo4kse"],[AC_DEFINE(HWVUDUO4KSE, 1,[vuduo4kse])])
-AS_IF([test "$BOXTYPE" == "vuduo2"],[AC_DEFINE(HWVUDUO2, 1,[vuduo2])])
+AS_IF([test "$BOXTYPE" == "vusolo2"],[AC_DEFINE(HWVUSOLO2, 1,[vusolo2])])
+AS_IF([test "$BOXTYPE" == "vusolo4k"],[AC_DEFINE(HWVUSOLO4K, 1,[vusolo4k])])
+AS_IF([test "$BOXTYPE" == "vusolose"],[AC_DEFINE(HWVUSOLOSE, 1,[vusolose])])
+AS_IF([test "$BOXTYPE" == "vuultimo"],[AC_DEFINE(HWVUULTIMO, 1,[vuultimo])])
+AS_IF([test "$BOXTYPE" == "vuultimo4k"],[AC_DEFINE(HWVUULTIMO4K, 1,[vuultimo4k])])
+AS_IF([test "$BOXTYPE" == "vuuno4k"],[AC_DEFINE(HWVUUNO4K, 1,[vuuno4k])])
 AS_IF([test "$BOXTYPE" == "vuuno4kse"],[AC_DEFINE(HWVUUNO4KSE, 1,[vuuno4kse])])
+AS_IF([test "$BOXTYPE" == "vuzero"],[AC_DEFINE(HWVUZERO, 1,[vuzero])])
+AS_IF([test "$BOXTYPE" == "vuzero4k"],[AC_DEFINE(HWVUZERO4K, 1,[vuzero4k])])
 
 
 AC_ARG_WITH(accelerationthreshold,
@@ -653,6 +663,7 @@ if test "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "sx98
 	AC_DEFINE(HAVE_HISILICON, 1,[define add HISILICON chip])
 	AC_DEFINE(CONFIG_HISILICON_FB, 1,[define add HISILICON framebuffer blit])
 	AC_DEFINE(FORCE_ALPHABLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
+	AC_DEFINE(FORCE_NO_ACCELERATION_SCALE, 1,[define when the framebuffer acceleration does not have scale support])
 fi
 
 if test "$BOXTYPE" == "et4x00" -o "$BOXTYPE" == "et5x00" -o "$BOXTYPE" == "et6x00" -o "$BOXTYPE" == "et7x00" -o "$BOXTYPE" == "et9x00" -o "$BOXTYPE" == "et8000" -o "$BOXTYPE" == "et8500" -o "$BOXTYPE" == "et8500s" -o "$BOXTYPE" == "et10000"; then
@@ -1018,6 +1029,7 @@ po/Makefile
 main/Makefile
 tools/Makefile
 tools/enigma2.sh
+hotplug/Makefile
 enigma2.pc
 ])
 AC_OUTPUT

@@ -4739,7 +4739,7 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configurar o aspect ratio da tela."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Configurar o intervalo em minutos para a proteção de tela."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -7992,7 +7992,7 @@ msgstr "Sair do reprodutor de mídia"
 msgid "Exit menu"
 msgstr ""
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Sair da lista de vídeos"
 
 msgid "Exit movie player?"
@@ -11564,7 +11564,7 @@ msgstr ""
 msgid "Mount: "
 msgstr ""
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"
@@ -11850,7 +11850,7 @@ msgid "Movie List Actions"
 msgstr "Seleção de gravação"
 
 #, fuzzy
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Menu da lista de filmes"
 
 #, fuzzy
@@ -11860,7 +11860,7 @@ msgstr "Seleção de gravação"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Selecionar vídeos"
 
 msgid "Movie/Drama"
@@ -18243,7 +18243,7 @@ msgstr ""
 msgid "Show screen menu path"
 msgstr "Mostrar menu de marcas"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Exibir protetor de tela"
 
 msgid "Show script messages"

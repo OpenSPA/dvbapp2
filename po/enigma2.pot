@@ -1142,10 +1142,6 @@ msgid "%s %sB"
 msgstr ""
 
 #, python-format
-msgid "%s (%04o)"
-msgstr ""
-
-#, python-format
 msgid "%s - Setup"
 msgstr ""
 
@@ -1198,7 +1194,7 @@ msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
-msgid "%s is no longer used. Should it be deleted?"
+msgid "\n%s is no longer used.\nYou want to delete services?"
 msgstr ""
 
 #, python-format
@@ -1550,28 +1546,30 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
-msgstr ""
-
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
-msgstr ""
-
-#, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
-msgstr ""
-
-#, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
-msgstr ""
-
-#, python-format
-msgid "A finished record timer wants to set your\n"
+msgid ""
+"A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
 
 #, python-format
-msgid "A finished record timer wants to shut down\n"
+msgid ""
+"A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
+msgstr ""
+
+#, python-format
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
+msgstr ""
+
+msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgstr ""
+
+#, python-format
+msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
@@ -1580,6 +1578,9 @@ msgstr ""
 #, python-format
 msgid "A recording has been started:\n"
 "%s"
+msgstr ""
+
+msgid "A recording has started:"
 msgstr ""
 
 msgid "A recording is currently running.\n"
@@ -1664,6 +1665,12 @@ msgid "AI-Powered translation language"
 msgstr ""
 
 msgid "AI-Powered translation subscription code"
+msgstr ""
+
+msgid "AI Translation mode"
+msgstr ""
+
+msgid "AI Translation optimization"
 msgstr ""
 
 msgid "ARM"
@@ -3118,9 +3125,6 @@ msgstr ""
 msgid "Burundi"
 msgstr ""
 
-msgid "Bus: "
-msgstr ""
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3510,12 +3514,6 @@ msgstr ""
 msgid "Can't move to trashcan!"
 msgstr ""
 
-msgid "Capacity"
-msgstr ""
-
-msgid "Capacity: "
-msgstr ""
-
 msgid "Cape Verde"
 msgstr ""
 
@@ -3656,7 +3654,7 @@ msgstr ""
 msgid "Channel List"
 msgstr ""
 
-msgid "Channel List Menu"
+msgid "Channel Number"
 msgstr ""
 
 msgid "Channel Selection"
@@ -3826,7 +3824,7 @@ msgstr ""
 msgid "Chinese (Simplified)"
 msgstr ""
 
-msgid "Choice Box"
+msgid "Choice action"
 msgstr ""
 
 msgid "Choice List Actions"
@@ -4145,6 +4143,9 @@ msgstr[1] ""
 msgid "Command order"
 msgstr ""
 
+msgid "Command script"
+msgstr ""
+
 msgid "Command to run"
 msgstr ""
 
@@ -4285,9 +4286,6 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr ""
 
-msgid "Configure the AI-Powered translation language."
-msgstr ""
-
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
@@ -4330,9 +4328,6 @@ msgstr ""
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr ""
 
-msgid "Configure the color of the AI-Powered translations."
-msgstr ""
-
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr ""
 
@@ -4349,9 +4344,6 @@ msgid "Configure the cursor behavior in the channel selection list. When opening
 msgstr ""
 
 msgid "Configure the display resolution and the font used for teletext."
-msgstr ""
-
-msgid "Configure the duration in minutes before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -4666,6 +4658,9 @@ msgid "Contacting IceTV server and setting up your %s %s."
 msgstr ""
 
 msgid "Content"
+msgstr ""
+
+msgid "contents:"
 msgstr ""
 
 msgid "Content does not fit on DVD!"
@@ -5615,6 +5610,9 @@ msgstr ""
 msgid "Delete saved play list"
 msgstr ""
 
+msgid "Delete services"
+msgstr ""
+
 msgid "Delete the character to the left of text cursor"
 msgstr ""
 
@@ -5998,6 +5996,9 @@ msgstr ""
 msgid "Do not change"
 msgstr ""
 
+msgid "Do not delete services"
+msgstr ""
+
 msgid "Do not flash image"
 msgstr ""
 
@@ -6021,9 +6022,6 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to delete '%s'?"
-msgstr ""
-
-msgid "Do you really want to delete?"
 msgstr ""
 
 #, python-format
@@ -6543,9 +6541,6 @@ msgstr ""
 msgid "Enable 5V for active antenna"
 msgstr ""
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
-
 msgid "Enable Autorecord"
 msgstr ""
 
@@ -6805,6 +6800,9 @@ msgstr ""
 msgid "End"
 msgstr ""
 
+msgid "End of script."
+msgstr ""
+
 msgid "End time"
 msgstr ""
 
@@ -6929,6 +6927,9 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr ""
 
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
 msgid "Enter URL"
 msgstr ""
 
@@ -6945,9 +6946,6 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr ""
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr ""
-
-msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -7255,7 +7253,7 @@ msgstr ""
 msgid "Even if TV has another input active?"
 msgstr ""
 
-msgid "Even if a 'Wakeup' PowerTimer starting?"
+msgid "Even if a 'Wakeup' Scheduler starting?"
 msgstr ""
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -7342,6 +7340,9 @@ msgstr ""
 msgid "Exit MAC address configuration"
 msgstr ""
 
+msgid "Exit Movie Selection"
+msgstr ""
+
 msgid "Exit Quad Channel Selection"
 msgstr ""
 
@@ -7373,9 +7374,6 @@ msgid "Exit mediaplayer"
 msgstr ""
 
 msgid "Exit menu"
-msgstr ""
-
-msgid "Exit movie list"
 msgstr ""
 
 msgid "Exit movie player?"
@@ -7802,6 +7800,9 @@ msgid "File oscam.conf not found.\n"
 "Please enter username/password manually."
 msgstr ""
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -7812,9 +7813,6 @@ msgid "Filename"
 msgstr ""
 
 msgid "Files/folders to exclude from backup"
-msgstr ""
-
-msgid "Filesystem check your hard drive"
 msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -9444,6 +9442,9 @@ msgstr ""
 msgid "Internal Flash"
 msgstr ""
 
+msgid "Internal SSD"
+msgstr ""
+
 msgid "Internal USB"
 msgstr ""
 
@@ -10775,7 +10776,7 @@ msgstr ""
 msgid "Mount: "
 msgstr ""
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"
@@ -11016,16 +11017,16 @@ msgstr ""
 msgid "Movie List Actions"
 msgstr ""
 
-msgid "Movie List Settings"
-msgstr ""
-
 msgid "Movie Player Actions"
 msgstr ""
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
+msgid "Movie Selection"
 msgstr ""
 
-msgid "Movie selection"
+msgid "Movie Selection Settings"
+msgstr ""
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
 msgid "Movie/Drama"
@@ -11462,7 +11463,14 @@ msgstr ""
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 
-msgid "No Settings loaded !!\n"
+msgid "No Internet connection"
+msgstr ""
+
+msgid "No Name"
+msgstr ""
+
+msgid ""
+"No Settings loaded !!\n"
 "\n"
 "Please install first a settinglist"
 msgstr ""
@@ -11586,9 +11594,6 @@ msgid "No time shift found to save as recording!"
 msgstr ""
 
 msgid "No timeout"
-msgstr ""
-
-msgid "No to all"
 msgstr ""
 
 msgid "No transparency"
@@ -12662,6 +12667,9 @@ msgstr ""
 msgid "Please enter the new file name:"
 msgstr ""
 
+msgid "Please enter the new name:"
+msgstr ""
+
 msgid "Please enter the new tag:"
 msgstr ""
 
@@ -12959,22 +12967,22 @@ msgstr ""
 msgid "PowerTimer"
 msgstr ""
 
-msgid "PowerTimer Actions"
+msgid "Scheduler Actions"
 msgstr ""
 
-msgid "PowerTimer Overview"
+msgid "Scheduler Overview"
 msgstr ""
 
 msgid "PowerTimer Settings"
 msgstr ""
 
-msgid "PowerTimer Standby"
+msgid "Scheduler Standby"
 msgstr ""
 
-msgid "PowerTimer deep standby"
+msgid "Scheduler deep standby"
 msgstr ""
 
-msgid "PowerTimer log"
+msgid "Scheduler log"
 msgstr ""
 
 msgid "PowerTimers"
@@ -14633,9 +14641,7 @@ msgstr ""
 msgid "Save settings and EPG data."
 msgstr ""
 
-#, python-format
-msgid "Save the commands and the output to a file?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
 msgstr ""
 
 msgid "Save the left column directory location on exit."
@@ -14756,6 +14762,9 @@ msgid "Science & Tech"
 msgstr ""
 
 msgid "Scope"
+msgstr ""
+
+msgid "Screen saver movement"
 msgstr ""
 
 msgid "Script Manager"
@@ -14902,6 +14911,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr ""
 
@@ -14933,6 +14951,9 @@ msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr ""
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
+msgstr ""
+
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr ""
 
 #, python-format
@@ -15035,6 +15056,9 @@ msgstr ""
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -15099,9 +15123,6 @@ msgid "Select 'Yes' to only send the DiSEqC command when changing from one satel
 msgstr ""
 
 msgid "Select Additional Backup Files"
-msgstr ""
-
-msgid "Select Backup Location"
 msgstr ""
 
 msgid "Select Bookmark"
@@ -15242,6 +15263,12 @@ msgid "Select files to exclude from backup"
 msgstr ""
 
 msgid "Select files/folders to backup"
+msgstr ""
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr ""
 
 msgid "Select how long to display status messages."
@@ -15405,7 +15432,7 @@ msgstr ""
 msgid "Select the action for '%s'"
 msgstr ""
 
-msgid "Select the action to perform when the timer ends."
+msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
@@ -15418,6 +15445,9 @@ msgid "Select the channel or service to be used for this timer."
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
+msgstr ""
+
+msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr ""
 
 msgid "Select the current bookmarked location and exit"
@@ -15475,6 +15505,9 @@ msgid "Select the display options for each menu entry item. If menu numbers are 
 msgstr ""
 
 msgid "Select the display sequence of previously visited services."
+msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 #, python-format
@@ -15710,9 +15743,6 @@ msgid "Select your ATSC provider."
 msgstr ""
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -16149,12 +16179,6 @@ msgstr ""
 msgid "Setup Enigma2"
 msgstr ""
 
-msgid "Setup FTP"
-msgstr ""
-
-msgid "Setup Harddisk"
-msgstr ""
-
 msgid "Setup Inadyn"
 msgstr ""
 
@@ -16489,6 +16513,9 @@ msgstr ""
 msgid "Show MiniTV in the Front Display"
 msgstr ""
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr ""
 
@@ -16652,6 +16679,9 @@ msgid "Show details of highlighted task"
 msgstr ""
 
 msgid "Show directories first"
+msgstr ""
+
+msgid "Show during operation"
 msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
@@ -16862,7 +16892,7 @@ msgstr ""
 msgid "Show screen menu path"
 msgstr ""
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr ""
 
 msgid "Show script messages"
@@ -18545,6 +18575,12 @@ msgstr ""
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr ""
+
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgstr ""
+
 msgid "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18646,6 +18682,9 @@ msgid "The backup succeeded. We will now continue to explain the upgrade process
 msgstr ""
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgstr ""
+
+msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"
 msgstr ""
 
 msgid "The buffer time for time shift exceeds the specified limit in the settings.\n"
@@ -18944,6 +18983,12 @@ msgstr ""
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr ""
 
+msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr ""
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
+
 msgid "This option allows you choose the background color of transparent picons."
 msgstr ""
 
@@ -19155,6 +19200,9 @@ msgid "This will (re-)calculate all positions of your rotor and may remove previ
 msgstr ""
 
 msgid "This will go fast forward/backward with time frames of x secs."
+msgstr ""
+
+msgid "This window will automatically close in %d seconds."
 msgstr ""
 
 msgid "Three"
@@ -19374,6 +19422,9 @@ msgid "Title properties"
 msgstr ""
 
 msgid "Titleset mode"
+msgstr ""
+
+msgid "To be able to record, put the receiver into standby mode."
 msgstr ""
 
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
@@ -20821,9 +20872,6 @@ msgstr ""
 msgid "Waiting"
 msgstr ""
 
-msgid "Waiting for mount"
-msgstr ""
-
 msgid "Waiting for partition"
 msgstr ""
 
@@ -21350,9 +21398,6 @@ msgstr ""
 msgid "Yes (safe mode)"
 msgstr ""
 
-msgid "Yes to all"
-msgstr ""
-
 msgid "Yes, always"
 msgstr ""
 
@@ -21639,6 +21684,12 @@ msgid "Your image is out of date!\n"
 msgstr ""
 
 msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid "Your network configuration has been activated.\n\nPress OK and wait for the next screen.\n\nIt will automatically switch to your WLAN data."
+msgstr ""
+
+msgid "Your network configuration has been disabled."
 msgstr ""
 
 msgid "Your password must have at least 5 characters."

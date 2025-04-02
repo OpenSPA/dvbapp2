@@ -4654,7 +4654,7 @@ msgstr "Kanal seçim listesindeki imleç davranışını yapılandırın. Kanal 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Teletekst için kullanılan ekran çözünürlüğünü ve yazı tipini yapılandırın."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Ekran koruyucu için süreyi dakika olarak yapılandırın."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -8003,7 +8003,7 @@ msgid "Exit menu"
 msgstr "Menüden çık"
 
 #
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Film listesinden çık"
 
 #
@@ -11607,7 +11607,7 @@ msgstr "Mount başarısız oldu"
 msgid "Mount: "
 msgstr "Bağla: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Bağlantı noktası"
 
 msgid "Mounts"
@@ -11890,7 +11890,7 @@ msgstr "Film Listesi"
 msgid "Movie List Actions"
 msgstr "Film Listesi Eylemleri"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Film Listesi Kurulumu"
 
 #
@@ -11901,7 +11901,7 @@ msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Film oynatma geçersiz/uygun olmayan bir dizini kullanamaz."
 
 #
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Film seçimi"
 
 msgid "Movie/Drama"
@@ -18397,7 +18397,7 @@ msgstr "Uydu listesini göster"
 msgid "Show screen menu path"
 msgstr "Ekran menüsü yolunu göster"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Ekrankoruyucuyu göster"
 
 msgid "Show script messages"

@@ -4521,7 +4521,7 @@ msgstr "Nastavte správanie kurzora v zozname pre výber kanála. Pri otvorení 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Nastavte rozlíšenie obrazovky a písmo používané pre teletext."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Nastavte čas v minútach pre šetrič obrazovky."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -7724,7 +7724,7 @@ msgstr "Ukončiť prehrávač médií"
 msgid "Exit menu"
 msgstr "Zatvoriť menu"
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Zatvoriť zoznam filmov"
 
 msgid "Exit movie player?"
@@ -11148,7 +11148,7 @@ msgstr "Pripojenie neúspešné"
 msgid "Mount: "
 msgstr "Pripojiť: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Bod pripojenia"
 
 msgid "Mounts"
@@ -11416,7 +11416,7 @@ msgstr "Zoznam filmov"
 msgid "Movie List Actions"
 msgstr "Akcie pre zoznam filmov"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Nastavenie zoznamu filmov"
 
 msgid "Movie Player Actions"
@@ -11425,7 +11425,7 @@ msgstr "Akcie pre prehrávač médií"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Prehrávanie filmov nemôže využívať neplatnú/nevhodnú zložku."
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Výber nahrávok"
 
 msgid "Movie/Drama"
@@ -17600,7 +17600,7 @@ msgstr "Zobraziť zoznam družíc"
 msgid "Show screen menu path"
 msgstr "Zobraziť cestu k menu na obrazovke"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Zobraziť šetrič obrazovky"
 
 msgid "Show script messages"

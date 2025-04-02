@@ -49,7 +49,7 @@ DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenSPA
 # DEFAULT_ZONE = "Amsterdam"  # OpenPLi
 # DEFAULT_ZONE = "Berlin"  # OpenATV
 DEFAULT_ZONE = "Madrid"  # OpenSPA
-TIMEZONE_FILE = "/etc/timezone.xml"  # This should be SCOPE_TIMEZONES_FILE!  This file moves arond the filesystem!!!  :(
+TIMEZONE_FILE = "/etc/timezone.xml"  # This should be SCOPE_TIMEZONES_FILE!  This file moves arond the file system!!!  :(
 TIMEZONE_DATA = "/usr/share/zoneinfo/"  # This should be SCOPE_TIMEZONES_DATA!
 
 

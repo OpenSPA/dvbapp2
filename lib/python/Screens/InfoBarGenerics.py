@@ -229,7 +229,7 @@ class InfoBarStreamRelay:
 					playrefmod = playrefstring
 				playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
 				print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
-				playref.setAlternativeUrl(playrefstring)
+				playref.setAlternativeUrl(playrefstring, True)
 				return playref, True
 		return playref, False
 
@@ -726,7 +726,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		for x in self.onShowHideNotifiers:
 			x(True)
 		self.startHideTimer()
-		VolumeControl.instance and VolumeControl.instance.showMute()
 
 	def doDimming(self):
 		if config.usage.show_infobar_do_dimming.value:
@@ -3418,7 +3417,7 @@ class InfoBarPiP:
 			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
-				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
+				self.addExtension((self.getSwapName, self.swapPiP, lambda: self.pipShown() and isStandardInfoBar(self)), "yellow")
 				self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
 			else:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
@@ -3486,7 +3485,10 @@ class InfoBarPiP:
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
-				newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if isStandardInfoBar(self):
+					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.getCurrentSelection()
+				else:
+					newservice = self.lastPiPService or self.servicelist.getCurrentSelection()
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -5102,11 +5104,11 @@ class InfoBarSleepTimer:
 		timeout = int(config.usage.shutdown_msgbox_timeout.value)
 		if action != "standby":
 			isRecordTime = abs(self.session.nav.RecordTimer.getNextRecordingTime() - time()) <= 900 or self.session.nav.RecordTimer.getStillRecording() or abs(self.session.nav.RecordTimer.getNextZapTime() - time()) <= 900
-			isPowerTime = abs(self.session.nav.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or self.session.nav.PowerTimer.isProcessing(exceptTimer=0)
-			if isRecordTime or isPowerTime:
+			isScheduler = abs(self.session.nav.Scheduler.getNextPowerManagerTime() - time()) <= 900 or self.session.nav.Scheduler.isProcessing(exceptTimer=0)
+			if isRecordTime or isScheduler:
 				timerMethod(1800, showMessage=False)  # 1800 = 30 minutes.
 				if not Screens.Standby.inStandby:
-					message = _("A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n\nGo to Deep Standby now?") % (name, brand, model)
+					message = _("A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n\nGo to Deep Standby now?") % (name, brand, model)
 					self.session.openWithCallback(boundFunction(self.timerStandby, action), MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True, windowTitle=name)
 				return None, None, None
 		return brand, model, timeout

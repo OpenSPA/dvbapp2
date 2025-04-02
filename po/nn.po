@@ -4917,7 +4917,7 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Konfigurer varigheten i minutter for skjermspareren."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -8316,7 +8316,7 @@ msgid "Exit menu"
 msgstr ""
 
 #
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Avslutt filmliste"
 
 #
@@ -12068,7 +12068,7 @@ msgstr ""
 msgid "Mount: "
 msgstr ""
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr ""
 
 msgid "Mounts"
@@ -12364,7 +12364,7 @@ msgstr "Filmliste"
 msgid "Movie List Actions"
 msgstr "Film utvalg"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Filmliste Oppsett"
 
 #
@@ -12376,7 +12376,7 @@ msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
 #
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Film utvalg"
 
 msgid "Movie/Drama"
@@ -19051,7 +19051,7 @@ msgstr ""
 msgid "Show screen menu path"
 msgstr "Vis skjermsparer"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Vis skjermsparer"
 
 msgid "Show script messages"

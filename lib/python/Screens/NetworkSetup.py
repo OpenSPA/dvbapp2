@@ -34,6 +34,8 @@ from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
 BASE_GROUP = "packagegroup-base"
+interfacesfile = "/etc/network/interfaces"
+
 
 def serviceIsEnabled(service_name):  # [OPENSPA] [norhap]
 	autostartup = glob("/etc/rc2.d/S*" + service_name)
@@ -103,23 +105,21 @@ class NetworkAdapterSelection(Screen):
 		if not iNetwork.isWirelessInterface(iface):
 			if active is True:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wired-active.png"))
+				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/buttons/button_green.png"))
 			elif active is False:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wired-inactive.png"))
+				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/buttons/button_green_off.png"))
 			else:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wired.png"))
-		elif iNetwork.isWirelessInterface(iface):
+		if iNetwork.isWirelessInterface(iface):
 			if active is True:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless-active.png"))
+				defaultpng =LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/buttons/button_green.png"))
 			elif active is False:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless-inactive.png"))
+				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/buttons/button_green_off.png"))
 			else:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless.png"))
-		num_configured_if = len(iNetwork.getConfiguredAdapters())
-		if num_configured_if >= 2:
-			if default is True:
-				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "buttons/button_green.png"))
-			elif default is False:
-				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "buttons/button_green_off.png"))
 		if active is True:
 			activepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 		elif active is False:
@@ -287,7 +287,7 @@ class DNSSettings(Setup):
 		Setup.createSetup(self)
 		dnsList = self["config"].getList()
 		self.dnsStart = len(dnsList)
-		if not fileContains("/etc/network/interfaces", "static"):  # OpenSPA [norhap] Organize display lists in both formats.
+		if not fileContains(interfacesfile, "static"):  # OpenSPA [norhap] Organize display lists in both formats.
 			if config.usage.dnsMode.value not in (2,):
 				items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
 			else:
@@ -299,7 +299,7 @@ class DNSSettings(Setup):
 					dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("WARNING: Do not change your ISP DNS.\nUse other DNS data source.")))
 				self.dnsLength = item
 		else:
-			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
+			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x, fixed_size=False)) for x in self.dnsServers if isinstance(x, str)]
 			for item, entry in enumerate(items, start=1):
 				dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
 				self.dnsLength = item
@@ -579,10 +579,9 @@ class AdapterSetup(ConfigListScreen, Screen):
 			if self.essid is None:
 				self.essid = self.wsconfig["ssid"]
 			if iNetwork.canWakeOnWiFi(self.iface):
-				iface_file = "/etc/network/interfaces"
 				default_v = False
-				if exists(iface_file):
-					with open(iface_file) as f:
+				if exists(interfacesfile):
+					with open(interfacesfile) as f:
 						output = f.read()
 					search_str = f"#only WakeOnWiFi {self.iface}"
 					if output.find(search_str) >= 0:
@@ -603,7 +602,11 @@ class AdapterSetup(ConfigListScreen, Screen):
 			self.dhcpdefault = False
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0, 0, 0, 0]))
-		# OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS.
+		# OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS and text data input in VK for Wireless LAN.
+		if config.misc.firstrun.value and iNetwork.isWirelessInterface(self.iface):
+			self.activateInterfaceEntry.value = True
+			config.plugins.wlan.encryption.value = "WPA/WPA2"  # set encryption ..prepare to enter password in wizard.
+			config.plugins.wlan.encryption.save()
 		if exists(str(self.resolvFile)):
 			ip = ""
 			dns = open(self.resolvFile, "r").readlines()
@@ -612,7 +615,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 					dnsip = name.replace("nameserver ", "")
 					if config.usage.dnsMode.value == 2:
 						if "192.168.0.1" in name or "192.168.1.1" in name:
-							if config.usage.dns.value == "dhcp-router" and fileContains("/etc/network/interfaces", "static"):
+							if config.usage.dns.value == "dhcp-router" and fileContains(interfacesfile, "static"):
 								if ":" not in name:
 									self.primaryDNS = NoSave(ConfigText(default=ip))
 									if str(self.primaryDNS) not in name:
@@ -677,7 +680,6 @@ class AdapterSetup(ConfigListScreen, Screen):
 			nameserver = (iNetwork.getNameserverList() + [[0, 0, 0, 0]] * 2)[0:2]
 			self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
 			self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
-			self.ipTypeConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "ipv6") or False))
 			# END OpenSPA [norhap] Display more intuitive INFO Primary and Secondary DNS.
 		self.ipTypeConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "ipv6") or False))
 
@@ -814,7 +816,7 @@ class AdapterSetup(ConfigListScreen, Screen):
 				iNetwork.writeNetworkConfig()
 				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type=MessageBox.TYPE_INFO, enable_input=False)
 			else:
-				if self.oldInterfaceState is False:
+				if self.oldInterfaceState is False and not self.activateInterfaceEntry.value:
 					iNetwork.activateInterface(self.iface, self.deactivateInterfaceCB)
 				else:
 					iNetwork.deactivateInterface(self.iface, self.activateInterfaceCB)
@@ -840,11 +842,15 @@ class AdapterSetup(ConfigListScreen, Screen):
 			self.applyConfigRef.close(True)
 
 	def applyConfigfinishedCB(self, data):
+		message = _("Your network configuration has been activated.") if self.activateInterfaceEntry.value else _("Your network configuration has been disabled.")
 		if data is True:
 			if self.finished_cb:
-				self.session.openWithCallback(lambda x: self.finished_cb(), MessageBox, _("Your network configuration has been activated."), type=MessageBox.TYPE_INFO, timeout=10)
+				if config.misc.firstrun.value and iNetwork.isWirelessInterface(self.iface):
+					self.session.openWithCallback(lambda x: self.finished_cb(), MessageBox, _("Your network configuration has been activated.\n\nPress OK and wait for the next screen.\n\nIt will automatically switch to your WLAN data."), type=MessageBox.TYPE_INFO)
+				else:
+					self.session.openWithCallback(lambda x: self.finished_cb(), MessageBox, message, type=MessageBox.TYPE_INFO, timeout=10)
 			else:
-				self.session.openWithCallback(self.ConfigfinishedCB, MessageBox, _("Your network configuration has been activated."), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.openWithCallback(self.ConfigfinishedCB, MessageBox, message, type=MessageBox.TYPE_INFO, timeout=10)
 
 	def ConfigfinishedCB(self, data):
 		if data is not None and data is True:
@@ -2212,6 +2218,12 @@ class NetworkMiniDLNASetup(Setup):
 			if selectedFiles:
 				self.selectedFiles = selectedFiles
 		self.session.openWithCallback(selectSharesCallBack, uShareSelection, self.selectedFiles)
+
+
+class NetworkSambaSetup(Setup):
+	def __init__(self, session):
+		Setup.__init__(self, session=session, setup="NetworkSamba")
+
 
 class NetworkPassword(Setup):
 	def __init__(self, session):

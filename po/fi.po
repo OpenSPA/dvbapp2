@@ -4493,7 +4493,7 @@ msgstr "Määritä kursorin toiminta kanavalistassa. Kun kanavalista avataan, vo
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Määritä näytön resoluutio ja teksti-tv:lle käytetty fontti."
 
-msgid "Configure the duration in minutes before the screen saver will be displayed."
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuinka pitkän ajan kuluttua se aktivoidaan."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -7693,7 +7693,7 @@ msgstr "Poistu Mediasoittimesta"
 msgid "Exit menu"
 msgstr "Poistu valikosta"
 
-msgid "Exit movie list"
+msgid "Exit Movie Selection"
 msgstr "Poistu tallenneluettelosta"
 
 msgid "Exit movie player?"
@@ -11120,7 +11120,7 @@ msgstr "Liitos epäonnistui"
 msgid "Mount: "
 msgstr "Liitos: "
 
-msgid "Mountpoint"
+msgid "Mount point"
 msgstr "Liitäntä"
 
 msgid "Mounts"
@@ -11390,7 +11390,7 @@ msgstr "Tallennuslista"
 msgid "Movie List Actions"
 msgstr "Tallenteen valinta"
 
-msgid "Movie List Settings"
+msgid "Movie Selection Settings"
 msgstr "Tallenneluettelon asetukset"
 
 msgid "Movie Player Actions"
@@ -11399,7 +11399,7 @@ msgstr "Tallennukset toiminnot"
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Toisto ei välttämättä käytä virheellistä/sopimatonta hakemistoa."
 
-msgid "Movie selection"
+msgid "Movie Selection"
 msgstr "Tallennukset"
 
 msgid "Movie/Drama"
@@ -17587,7 +17587,7 @@ msgstr "Näytä satelliitti lista"
 msgid "Show screen menu path"
 msgstr "Näytä näytön valikkopolku"
 
-msgid "Show screensaver"
+msgid "Show screen saver"
 msgstr "Näytönsäästäjä"
 
 msgid "Show script messages"
