@@ -173,7 +173,6 @@ class FrontendInfop(Converter, object):
 				return nims > 16
 			elif self.type == self.NIMACTIVER:
 				return nims > 17
-			
 		else:
 			ber = self.source.ber
 			if ber is None:

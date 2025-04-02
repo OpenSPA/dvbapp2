@@ -73,7 +73,7 @@ class StreamingClientsInfo(Screen):
 						except:
 							host = ""
 						info = ("T %s %s %s %s") % (ip, host, service_name, _("(VU+ type)"))
-						if not (info,(-1, x)) in self.clients:
+						if (info,(-1, x)) not in self.clients:
 							append = True
 							break
 				if append:
