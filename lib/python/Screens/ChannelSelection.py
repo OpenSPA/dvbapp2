@@ -42,6 +42,7 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+import Screens.Standby
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyboard
@@ -2335,12 +2336,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			iPlayableService.evStart: self.__evServiceStart,
 			iPlayableService.evEnd: self.__evServiceEnd
 		})
-		try:
-			if ChannelSelection.instance:
-				raise AssertionError("[ChannelSelection] Class InfoBar is a singleton class and just one instance of this class is allowed!")
-		except Exception:
-			pass
-		ChannelSelection.instance = self
+		if not ChannelSelection.instance:  # Use only the first instance of ChannelSelection
+			ChannelSelection.instance = self
 		self.startServiceRef = None
 		self.history_tv = []
 		self.history_radio = []
@@ -2389,8 +2386,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def __evServiceStart(self):
 		if self.dopipzap and hasattr(self.session, "pip"):
-			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentServiceReference() or eServiceReference())
+			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentService() or eServiceReference())
 		else:
+			# self.servicelist.setPlayableIgnoreService(self.session.nav.getCurrentServiceReferenceOriginal() or eServiceReference())
 			service = self.session.nav.getCurrentService()
 			if service:
 				info = service.info()
@@ -2452,13 +2450,28 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setModeRadio()
 		else:
 			self.setModeTv()
+
+		standbyScreen = None
+		doPlay = False
+		if self == ChannelSelection.instance and Screens.Standby.inStandby:  # Find Standby screen if already inStandby.
+			for screen in self.session.allDialogs:
+				if screen.__class__.__name__ == "Standby":
+					standbyScreen = screen
+					break
+
 		lastservice = eServiceReference(self.lastservice.value)
 		if lastservice.valid():
+			if standbyScreen:
+				standbyScreen.prev_running_service = lastservice  # Save the last service in Standby screen.
+				standbyScreen.correctChannelNumber = True
+			elif self == ChannelSelection.instance:
+				doPlay = True  # Do real playback only for the first instance and only if not in Standby
+
 			if self.isSubservices():
-				self.zap(ref=lastservice)
+				self.zap(ref=lastservice, doPlay=doPlay)
 				self.enterSubservices()
 			else:
-				self.zap()
+				self.zap(doPlay=doPlay)
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()
@@ -2547,7 +2560,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if hasattr(self.session, "pip"):
 			self.session.pip.inactive()
 
-	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
+	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None, doPlay=True):
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -2556,14 +2569,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if ref is None or ref != nref:
 				nref = self.session.pip.resolveAlternatePipService(nref)
 				if nref and (not checkParentalControl or parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
-					self.session.pip.playService(nref)
-					self.__evServiceStart()
-					self.showPipzapMessage()
+					zap_res = self.session.pip.playService(nref)
+					if zap_res == 1:
+						self.__evServiceStart()
+						self.showPipzapMessage()
+					elif zap_res == 2:
+						self.retryServicePlayTimer = eTimer()
+						self.retryServicePlayTimer.callback.append(boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))
+						self.retryServicePlayTimer.start(config.misc.softcam_streamrelay_delay.value, True)
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
 		elif ref is None or ref != nref:
-			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
+			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref, doPlay))
 		elif not preview_zap:
 			self.lastroot.value = ""  # force save root.
 			self.saveRoot()
@@ -2575,10 +2593,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.rootChanged = False
 			self.revertMode = None
 
-	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
+	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, doPlay, answer):
 		if answer:
 			self.new_service_played = True
-			self.session.nav.playService(nref)
+			if doPlay:
+				self.session.nav.playService(nref)
 			if not preview_zap:
 				self.lastroot.value = ""  # Force save root.
 				self.saveRoot()
@@ -3459,6 +3478,7 @@ class ChannelSelectionSetup(Setup):
 				for index, dialog in enumerate(session.dialog_stack):
 					if isinstance(dialog[0], ChannelSelection):
 						oldDialogIndex = (index, dialog[1])
+				ChannelSelection.instance = None
 				InfoBarInstance.servicelist = session.instantiateDialog(ChannelSelection)
 				InfoBarInstance.servicelist.summaries = oldSummarys
 				InfoBarInstance.servicelist.isTmp = False
