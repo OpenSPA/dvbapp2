@@ -13925,7 +13925,7 @@ msgstr "Octal"
 
 #
 msgid "Off"
-msgstr "Off"
+msgstr "Apagado"
 
 msgid "Offline decode delay (ms)"
 msgstr "Retraso de descodificación offline (ms)"
@@ -27191,7 +27191,7 @@ msgstr "de un disco usado de una capa."
 
 #
 msgid "off"
-msgstr "Apagado"
+msgstr "apagado"
 
 msgid "off or wpa2 on"
 msgstr "Apagado o wpa2 encendido"
