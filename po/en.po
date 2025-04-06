@@ -13048,9 +13048,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "PowerTimers"
-msgstr ""
-
 msgid "Power long"
 msgstr ""
 
@@ -13063,19 +13060,22 @@ msgstr ""
 msgid "Consult your receiver's manual for more information on power threshold."
 msgstr ""
 
-msgid "PowerTimer"
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
 msgstr ""
 
 msgid "Scheduler deep standby"
-msgstr ""
-
-msgid "PowerTimer Entry"
 msgstr ""
 
 msgid "Scheduler log"
 msgstr ""
 
 msgid "Scheduler Overview"
+msgstr ""
+
+msgid "Scheduler Settings"
 msgstr ""
 
 msgid "Scheduler Standby"

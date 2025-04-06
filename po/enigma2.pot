@@ -12973,19 +12973,10 @@ msgstr ""
 msgid "Consult your receiver's manual for more information on power threshold."
 msgstr ""
 
-msgid "PowerTimer"
+msgid "Scheduler"
 msgstr ""
 
 msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr ""
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
 msgstr ""
 
 msgid "Scheduler deep standby"
@@ -12994,7 +12985,13 @@ msgstr ""
 msgid "Scheduler log"
 msgstr ""
 
-msgid "PowerTimers"
+msgid "Scheduler Overview"
+msgstr ""
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
 msgstr ""
 
 msgid "Predefined"

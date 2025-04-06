@@ -1556,26 +1556,26 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
+"A finished scheduled timer wants to reboot your %s %s.\n"
 "Do that now?"
 
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to restart the user interface.\n"
+"A finished scheduled timer wants to restart the user interface.\n"
 "Do that now?"
 
 #, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to set your\n"
+"A finished scheduled timer wants to set your\n"
 "%s %s to standby. Do that now?"
 
 #, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
+"A finished scheduled timer wants to shutdown your %s %s.\n"
 "Do that now?"
 
 #, python-format
@@ -15352,6 +15352,27 @@ msgstr ""
 msgid "Scheduled save of epg.dat"
 msgstr ""
 
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler deep standby"
+msgstr ""
+
+msgid "Scheduler log"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr ""
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr ""
+
 msgid "Sci-Fi"
 msgstr ""
 
@@ -17747,9 +17768,6 @@ msgid "Show the Logs Settings screen"
 msgstr ""
 
 msgid "Show the OSCam information screen"
-msgstr ""
-
-msgid "Show the PowerTimer"
 msgstr ""
 
 msgid "Show the SleepTimer"

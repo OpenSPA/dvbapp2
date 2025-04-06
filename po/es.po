@@ -1654,27 +1654,23 @@ msgstr "¡Hay un archivo de medios en uso!"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"Un temporizador de alimentación quiere reiniciar tu %s %s. ¿Reiniciar ahora?"
+"Un temporizador programado quiere reiniciar tu %s %s. ¿Reiniciar ahora?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
-"Un temporizador de alimentación quiere reiniciar la interfaz de usuario. "
+"Un temporizador programado quiere reiniciar la interfaz de usuario. "
 "¿Reiniciar ahora?"
 
-# /usr/lib/enigma2/python/PowerTimer.py
-#, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
-"Un temporizador de alimentación quiere poner tu %s %s en modo espera. "
+"Un temporizador programado terminado desea configurar su quiere poner tu %s %s en modo espera. "
 "¿Hacerlo ahora?"
 
-# /usr/lib/enigma2/python/PowerTimer.py
-#, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
-msgstr "Un temporizador de alimentación quiere apagar tu %s %s. ¿Apagar ahora?"
+msgid "A finished scheduled wants to shut down your %s %s. Do that now?"
+msgstr "Un temporizador programado quiere apagar tu %s %s. ¿Apagar ahora?"
 
 #
 #, python-format
@@ -2263,7 +2259,7 @@ msgstr "Después del evento"
 msgid "After PowerLost"
 msgstr "Tras perder la alimentación"
 
-# PowerTimer
+# Scheduler
 msgid "After event"
 msgstr "Después del evento"
 
@@ -6297,7 +6293,7 @@ msgstr "Por defecto"
 msgid "Default  (keymap.xml)"
 msgstr "Predeterminado  (keymap.xml)"
 
-# PowerTimer
+# Scheduler
 msgid "Default 'After event' *"
 msgstr "Por defecto 'Después del evento' *"
 
@@ -8599,9 +8595,6 @@ msgstr "Etiopía"
 
 msgid "Even if TV has another input active?"
 msgstr "¿Incluso si la TV tiene otra entrada activa?"
-
-msgid "Even if a 'Wakeup' PowerTimer starting?"
-msgstr "¿Incluso si se inicia un temporizador de encendido?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
 msgstr ""
@@ -15155,31 +15148,6 @@ msgstr ""
 "Consulte el manual de su receptor para más información sobre el umbral de "
 "potencia."
 
-msgid "PowerTimer"
-msgstr "PowerTimer"
-
-msgid "PowerTimer Actions"
-msgstr "Acciones de PowerTimer"
-
-#
-msgid "PowerTimer Overview"
-msgstr "Temporizadores de alimentación"
-
-msgid "PowerTimer Settings"
-msgstr "Configuración de PowerTimer"
-
-msgid "PowerTimer Standby"
-msgstr "Temporizador de alimentación en reposo"
-
-msgid "PowerTimer deep standby"
-msgstr "PowerTimer deep standby"
-
-msgid "PowerTimer log"
-msgstr "Registro de PowerManager"
-
-msgid "PowerTimers"
-msgstr "Temporizadores de alimentación"
-
 msgid "Predefined"
 msgstr "Predefinido"
 
@@ -17170,6 +17138,27 @@ msgstr "Carga programada de epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Guardado programado de epg.dat"
+
+msgid "Scheduler"
+msgstr "Temporizadores Programados"
+
+msgid "Scheduler Actions"
+msgstr "Acciones del programador"
+
+msgid "Scheduler deep standby"
+msgstr "Programador en modo de espera profundo"
+
+msgid "Scheduler log"
+msgstr "Programador Log"
+
+msgid "Scheduler Overview"
+msgstr "Programador de Temporizadores"
+
+msgid "Scheduler Settings"
+msgstr "Configuración del programador"
+
+msgid "Scheduler Standby"
+msgstr "Programador en modo reposo"
 
 msgid "Sci-Fi"
 msgstr "Ciencia Ficción"
@@ -19204,11 +19193,11 @@ msgstr ""
 
 msgid ""
 "Set the time to wait for execute the default action in shutdown, standby or "
-"restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+"restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 "Configura el tiempo de espera para ejecutar la acción predeterminada en "
 "mensajes de apagado, reposo o reinicio., por ejemplo, utilizado en "
-"Temporizador de Grabación, Temporizador de encendido, Temporizador de "
+"Temporizador de Grabación, Temporizador programado, Temporizador de "
 "apagado, etc."
 
 msgid ""
@@ -22251,7 +22240,7 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
-"El temporizador de alimentación quiere poner el %s %s to %s.\n"
+"El temporizador programado quiere poner el %s %s to %s.\n"
 "\n"
 "Pulsa OK para continuar usando el %s %s."
 
