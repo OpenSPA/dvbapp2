@@ -15038,7 +15038,7 @@ msgid "Select action"
 msgstr ""
 
 #, python-format
-msgid "Select action for timer %s:"
+msgid "Select action for timer\n%s"
 msgstr ""
 
 msgid "Select Additional Backup Files"
@@ -21191,6 +21191,9 @@ msgstr ""
 msgid "Zap to channel and close (setup in menu)"
 msgstr ""
 
+msgid "Zap to event"
+msgstr ""
+
 msgid "Zap up"
 msgstr ""
 
@@ -21670,6 +21673,9 @@ msgid "empty"
 msgstr ""
 
 msgid "Enable PiP no HDR"
+msgstr ""
+
+msgid "Enable timer"
 msgstr ""
 
 msgid "enable bouquet edit"

@@ -7464,6 +7464,9 @@ msgstr ""
 "Los datos ECM se incluirán en el streaj. Esto habilita que un receptor "
 "cliente lo decodifique."
 
+msgid "Enable timer"
+msgstr "Habilitar temporizador"
+
 msgid "EJECTCD"
 msgstr "EXPULSIÓN DE CD"
 
@@ -9525,7 +9528,7 @@ msgid ""
 "\n"
 "Change the name again with your chosen one."
 msgstr ""
-"Desde \"Último escaneo\" se creó un nuevo bouquet con este nombre:\n"
+"Desde \"Último Escaneado\" se creó un nuevo bouquet con este nombre:\n"
 "\n"
 "\"Bouquet creado a renombrar\"\n"
 "\n"
@@ -11581,7 +11584,7 @@ msgid "Last page"
 msgstr "Última página"
 
 msgid "Last Scanned"
-msgstr "Último Escaneo"
+msgstr "Último Escaneado"
 
 #
 msgid "Last speed"
@@ -17948,8 +17951,8 @@ msgid "Select action"
 msgstr "Seleccione la acción"
 
 #, python-format
-msgid "Select action for timer %s:"
-msgstr "Seleccione acción para el temporizador %s:"
+msgid "Select action for timer\n%s"
+msgstr "Seleccione acción para el temporizador\n%s"
 
 msgid "Select additional files to backup"
 msgstr "Seleccionar los archivos adicionales del backup"
@@ -22185,7 +22188,7 @@ msgstr ""
 "incrementa el tamaño del archivo."
 
 msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"
-msgstr "El bouquet \"Último escaneo\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
+msgstr "El bouquet \"Último Escaneado\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
 
 msgid ""
 "The buffer time for time shift exceeds the specified limit in the settings.\n"
@@ -26353,6 +26356,9 @@ msgstr "Zap al canal (configuración en el menú)"
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zap para canalizar y cerrar (configuración en el menú)"
+
+msgid "Zap to event"
+msgstr "Zapea al evento"
 
 msgid "Zap up"
 msgstr "Cambiar abajo"

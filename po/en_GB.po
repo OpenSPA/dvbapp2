@@ -6906,6 +6906,9 @@ msgstr ""
 msgid "Enable Swap at startup"
 msgstr ""
 
+msgid "Enable timer"
+msgstr ""
+
 msgid "Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?"
 msgstr ""
 
@@ -15843,8 +15846,8 @@ msgid "Select action"
 msgstr "Select action"
 
 #, python-format
-msgid "Select action for timer %s:"
-msgstr "Select action for timer %s:"
+msgid "Select action for timer\n%s"
+msgstr ""
 
 msgid "Select additional files to backup"
 msgstr ""
@@ -22628,18 +22631,21 @@ msgid "Zap history sequence"
 msgstr ""
 
 msgid "Zap mode"
-msgstr "Zap mode"
+msgstr ""
 
 msgid "Zap next"
 msgstr ""
 
 msgid "Zap to"
-msgstr "Zap to"
+msgstr ""
 
 msgid "Zap to channel (setup in menu)"
 msgstr ""
 
 msgid "Zap to channel and close (setup in menu)"
+msgstr ""
+
+msgid "Zap to event"
 msgstr ""
 
 msgid "Zap up"
