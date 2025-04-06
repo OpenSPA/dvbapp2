@@ -17725,7 +17725,7 @@ msgstr ""
 "modo radio y TV."
 
 msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
-msgstr "Seleccione \"Sí\" para mostrar la entrada \"Selección de películas\" en el menú principal. Esto ofrece acceso a la pantalla de selección de películas cuando no hay ningún botón asignado en el mando."
+msgstr "Seleccione \"Sí\" para mostrar la entrada \"Selección de películas\" en Configuración. Esto ofrece acceso a la pantalla de selección de películas cuando no hay ningún botón asignado en el mando."
 
 msgid ""
 "Select 'Yes' to show the current directory in the list of directories. Note "

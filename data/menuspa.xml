@@ -60,6 +60,7 @@
 				<item key="sleep" level="0" text="Sleep Timers" weight="20" requires="DeepstandbySupport"><screen module="SleepTimer" screen="SleepTimer" /></item>
 			</menu>
 			<!-- Menu / Setup / Playback, Recording and Time Shift -->
+			<item key="movie_selection" level="0" text="Movie Selection" weight="8" conditional="config.usage.movieSelectionInMenu.value"><screen module="MovieSelection" screen="MovieSelection" /></item>
 			<menu key="rec" level="1" text="Playback, Recording &amp; Time Shift" weight="10">
 				<item key="playback_setup" level="0" text="Playback Settings" weight="10"><screen module="Playback" screen="PlaybackSettings" /></item>
 				<item key="recording_setup" level="0" text="Recording Settings" weight="15"><screen module="Recording" screen="RecordingSettings" /></item>
