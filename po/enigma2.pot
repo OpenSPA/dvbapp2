@@ -7790,6 +7790,9 @@ msgstr ""
 msgid "File Commander settings"
 msgstr ""
 
+msgid "File system"
+msgstr ""
+
 msgid "File System Check"
 msgstr ""
 
@@ -10780,6 +10783,9 @@ msgid "Mount: "
 msgstr ""
 
 msgid "Mount point"
+msgstr ""
+
+msgid "Mount Point"
 msgstr ""
 
 msgid "Mounts"

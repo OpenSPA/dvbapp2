@@ -9180,6 +9180,9 @@ msgstr "Administrador de archivos: Acciones del editor de texto"
 msgid "File Commander settings"
 msgstr "Ajustes del Administrador de archivos"
 
+msgid "File system"
+msgstr "Sistema de archivos"
+
 #
 msgid "File System Check"
 msgstr "Comprobar sistema de archivos"
@@ -12597,6 +12600,9 @@ msgstr "Montaje: "
 msgid "Mount point"
 msgstr "Punto de montaje"
 
+msgid "Mount Point"
+msgstr "Punto de Montaje"
+
 msgid "Mounts"
 msgstr "Montajes"
 
@@ -14923,7 +14929,7 @@ msgstr "Por favor, espere"
 
 #
 msgid "Please wait for activation of your network configuration..."
-msgstr "Espera a la activación de tu configuración de red…"
+msgstr "Espera a la activación de su configuración de red…"
 
 msgid "Please wait while gathering data..."
 msgstr "Espera mientras se recupera la información..."
