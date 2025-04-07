@@ -2471,6 +2471,7 @@ class EPGSelection(Screen):
 						self.enableTimer(timer)
 					elif choice[1] == "timereditlist":
 						self.session.open(TimerEditList)
+					self.onSelectionChanged()  # update green button action.
 			title = _("Select action for timer\n%s") % event.getEventName()
 			self.session.openWithCallback(scheduledTimersActions, ChoiceBox, title=title, choiceList=menu, buttonList=buttons)
 		else:
