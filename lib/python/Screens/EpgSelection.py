@@ -2455,7 +2455,7 @@ class EPGSelection(Screen):
 			buttons = ["red", "green"]
 			menu.append((_("Enable timer"), "enable") if timer.disabled else (_("Disable timer"), "disable"))
 			buttons.append("yellow")
-			menu.append((_("Timers"), "timereditlist"))
+			menu.append((_("RecordTimers"), "timereditlist"))
 			def scheduledTimersActions(choice):
 				if choice is not None:
 					if choice[1] == "delete":
