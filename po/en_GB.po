@@ -7603,6 +7603,9 @@ msgstr ""
 msgid "Even if a 'Zap' recording timer starting?"
 msgstr ""
 
+msgid "Event Channel"
+msgstr ""
+
 msgid "Event Info"
 msgstr "Event Info"
 
@@ -14035,6 +14038,12 @@ msgstr ""
 msgid "Read failled"
 msgstr ""
 
+msgid "Read Only"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
 msgid "REC"
 msgstr ""
 
@@ -15114,6 +15123,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr ""
 
@@ -16045,6 +16057,9 @@ msgstr ""
 msgid "Select the %s entry"
 msgstr ""
 
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -16428,6 +16443,9 @@ msgid "Select where the recording should be saved."
 msgstr ""
 
 msgid "Select wireless network"
+msgstr ""
+
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -22667,9 +22685,6 @@ msgid "Zap to channel (setup in menu)"
 msgstr ""
 
 msgid "Zap to channel and close (setup in menu)"
-msgstr ""
-
-msgid "Zap to event"
 msgstr ""
 
 msgid "Zap up"

@@ -2960,6 +2960,9 @@ msgstr "Búsqueda automática"
 msgid "Automatic Service Searching"
 msgstr "Búsqueda automática de servicios"
 
+msgid "Automatic shares access"
+msgstr "Acceso automático a acciones"
+
 msgid "Automatic resolution"
 msgstr "Resolución automática"
 
@@ -7700,7 +7703,9 @@ msgstr "Habilitar %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Habilitar 5V para la antena activa"
 
-#
+msgid "Enable automatic shares"
+msgstr "Habilitar acciones automáticas"
+
 msgid "Enable Autorecord"
 msgstr "Habilitar Autograbación"
 
@@ -8602,6 +8607,9 @@ msgstr ""
 
 msgid "Even if a 'Zap' recording timer starting?"
 msgstr "¿Incluso si se inicia un temporizador de grabación 'Zap'?"
+
+msgid "Event Channel"
+msgstr "Canal del evento"
 
 msgid "Event Info"
 msgstr "Información de programa"
@@ -13927,7 +13935,7 @@ msgstr "Octal"
 
 #
 msgid "Off"
-msgstr "Off"
+msgstr "Apagado"
 
 msgid "Offline decode delay (ms)"
 msgstr "Retraso de descodificación offline (ms)"
@@ -15712,6 +15720,12 @@ msgstr "Tipo de FB seleccionado"
 msgid "Read failled"
 msgstr "Lectura fallida"
 
+msgid "Read Only"
+msgstr "Solo lectura"
+
+msgid "Read/Write"
+msgstr "Lectura/Escritura"
+
 #
 msgid "REC"
 msgstr "REC"
@@ -16872,6 +16886,9 @@ msgstr "Cliente Samba"
 
 msgid "Samba Server"
 msgstr "Servidor Samba"
+
+msgid "Samba Settings"
+msgstr "Ajustes Samba"
 
 msgid "Same as in active"
 msgstr "Igual que en activo"
@@ -18165,6 +18182,9 @@ msgstr "Selecciona orden temporal de archivo de la columna actual"
 msgid "Select the %s entry"
 msgstr "Seleccione la entrada %s"
 
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr "Seleccione el modo de acceso para los recursos compartidos de Samba exportados automáticamente."
+
 msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""
 
@@ -18701,6 +18721,9 @@ msgstr "Selecciona la ubicación donde se debería guardar la grabación."
 
 msgid "Select wireless network"
 msgstr "Seleccione la red inalámbrica"
+
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr "Seleccione 'Sí' para permitir que cada dispositivo de almacenamiento detectado se exporte automáticamente como recurso compartido Samba."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Seleccione \"Sí\" para mostrar este programa en Plugins."
@@ -26352,9 +26375,6 @@ msgstr "Zap al canal (configuración en el menú)"
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zap para canalizar y cerrar (configuración en el menú)"
 
-msgid "Zap to event"
-msgstr "Zapea al evento"
-
 msgid "Zap up"
 msgstr "Cambiar abajo"
 
@@ -27192,7 +27212,7 @@ msgstr "de un disco usado de una capa."
 
 #
 msgid "off"
-msgstr "Apagado"
+msgstr "apagado"
 
 msgid "off or wpa2 on"
 msgstr "Apagado o wpa2 encendido"

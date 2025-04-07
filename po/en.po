@@ -7448,6 +7448,9 @@ msgstr ""
 msgid "Event"
 msgstr ""
 
+msgid "Event Channel"
+msgstr ""
+
 msgid "Event Info"
 msgstr ""
 
@@ -13563,6 +13566,12 @@ msgstr ""
 msgid "Read failled"
 msgstr ""
 
+msgid "Read Only"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
 msgid "REC "
 msgstr ""
 
@@ -14556,6 +14565,9 @@ msgstr ""
 msgid "Samba Setup"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr ""
 
@@ -15170,6 +15182,9 @@ msgstr ""
 msgid "Select the No / False response"
 msgstr ""
 
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr ""
 
@@ -15342,6 +15357,9 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr ""
 
 msgid "Select wireless network"
+msgstr ""
+
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -21195,9 +21213,6 @@ msgid "Zap to channel (setup in menu)"
 msgstr ""
 
 msgid "Zap to channel and close (setup in menu)"
-msgstr ""
-
-msgid "Zap to event"
 msgstr ""
 
 msgid "Zap up"

@@ -13492,6 +13492,12 @@ msgstr ""
 msgid "Read failled"
 msgstr ""
 
+msgid "Read Only"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
 msgid "REC"
 msgstr ""
 
@@ -14517,6 +14523,9 @@ msgstr ""
 msgid "Samba Client"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Samba Server"
 msgstr ""
 
@@ -15407,6 +15416,9 @@ msgstr ""
 msgid "Select the %s entry"
 msgstr ""
 
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -15740,6 +15752,9 @@ msgid "Select where the recording should be saved."
 msgstr ""
 
 msgid "Select wireless network"
+msgstr ""
+
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -21783,9 +21798,6 @@ msgstr ""
 msgid "Zap to channel and close (setup in menu)"
 msgstr ""
 
-msgid "Zap to event"
-msgstr ""
-
 msgid "Zap up"
 msgstr ""
 
@@ -23184,6 +23196,9 @@ msgid "Select(OK)"
 msgstr ""
 
 msgid "PLEASE TURN ON AND SET THE TIMER! ..."
+msgstr ""
+
+msgid "Event Channel"
 msgstr ""
 
 msgid "Event to be Scanned : {}"
