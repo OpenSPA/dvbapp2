@@ -7448,6 +7448,9 @@ msgstr ""
 msgid "Event"
 msgstr ""
 
+msgid "Event Channel"
+msgstr ""
+
 msgid "Event Info"
 msgstr ""
 
@@ -7890,6 +7893,9 @@ msgid "File Commander context menu"
 msgstr ""
 
 msgid "File Commander menu"
+msgstr ""
+
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -10904,6 +10910,9 @@ msgstr ""
 msgid "Mount point"
 msgstr ""
 
+msgid "Mount Point"
+msgstr ""
+
 msgid "Mounts"
 msgstr ""
 
@@ -13042,9 +13051,6 @@ msgstr ""
 msgid "Power On Display"
 msgstr ""
 
-msgid "PowerTimers"
-msgstr ""
-
 msgid "Power long"
 msgstr ""
 
@@ -13057,19 +13063,22 @@ msgstr ""
 msgid "Consult your receiver's manual for more information on power threshold."
 msgstr ""
 
-msgid "PowerTimer"
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
 msgstr ""
 
 msgid "Scheduler deep standby"
-msgstr ""
-
-msgid "PowerTimer Entry"
 msgstr ""
 
 msgid "Scheduler log"
 msgstr ""
 
 msgid "Scheduler Overview"
+msgstr ""
+
+msgid "Scheduler Settings"
 msgstr ""
 
 msgid "Scheduler Standby"
@@ -13555,6 +13564,12 @@ msgid "REC"
 msgstr ""
 
 msgid "Read failled"
+msgstr ""
+
+msgid "Read Only"
+msgstr ""
+
+msgid "Read/Write"
 msgstr ""
 
 msgid "REC "
@@ -14550,6 +14565,9 @@ msgstr ""
 msgid "Samba Setup"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr ""
 
@@ -15038,7 +15056,7 @@ msgid "Select action"
 msgstr ""
 
 #, python-format
-msgid "Select action for timer %s:"
+msgid "Select action for timer\n%s"
 msgstr ""
 
 msgid "Select Additional Backup Files"
@@ -15162,6 +15180,9 @@ msgid "Select target folder"
 msgstr ""
 
 msgid "Select the No / False response"
+msgstr ""
+
+msgid "Select the access mode for the automatically exported samba shares."
 msgstr ""
 
 msgid "Select the Swap File Size:"
@@ -15336,6 +15357,9 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr ""
 
 msgid "Select wireless network"
+msgstr ""
+
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -21670,6 +21694,9 @@ msgid "empty"
 msgstr ""
 
 msgid "Enable PiP no HDR"
+msgstr ""
+
+msgid "Enable timer"
 msgstr ""
 
 msgid "enable bouquet edit"

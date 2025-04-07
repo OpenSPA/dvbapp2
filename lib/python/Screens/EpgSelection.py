@@ -23,6 +23,7 @@ from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
+from Screens.TimerEdit import TimerEditList
 
 
 try:  # PiPServiceRelation installed?
@@ -77,6 +78,7 @@ class EPGSelection(Screen):
 		if self.session.pipshown:
 			self.Oldpipshown = True
 		self.session.pipshown = False
+		self.onClose.append(self.restorePiP)
 		self.cureventindex = None
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
@@ -1324,7 +1326,6 @@ class EPGSelection(Screen):
 			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showTimerList(self):
-		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
 
 	def showMovieSelection(self):
@@ -1429,7 +1430,7 @@ class EPGSelection(Screen):
 					menu.append((_("Enable timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func4))
 				else:
 					menu.append((_("Disable timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func3))
-			title = _("Select action for timer %s:") % event.getEventName()
+			title = _("Select action for timer\n%s") % event.getEventName()
 		else:
 			if not manual:
 				cb_func1 = lambda ret: self.doRecordTimer(True)
@@ -1782,16 +1783,18 @@ class EPGSelection(Screen):
 					self.session.nav.playService(self.StartRef)
 				else:
 					self.zapFunc(None, False)
+		self.closeEventViewDialog()
+		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
+			return
+		self.close(True)
+
+	def restorePiP(self):
 		if self.session.pipshown:
 			self.Oldpipshown = False
 			self.session.pipshown = False
 			del self.session.pip
 		if self.Oldpipshown:
 			self.session.pipshown = True
-		self.closeEventViewDialog()
-		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
-			return
-		self.close(True)
 
 	def zap(self):
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and "0:0:0:0:0:0:0:0:0" in self.session.nav.getCurrentlyPlayingServiceOrGroup().toString():
@@ -2441,6 +2444,38 @@ class EPGSelection(Screen):
 		if tmp is None:
 			return None, None
 		return tmp[2], tmp[2] + tmp[3]  # Event begin, event end.
+
+	def scheduledTimers(self):  # [norhap] OpenSPA funtion for Search scheduled Timers.
+		cur = self[f"list{self.activeList}"].getCurrent()
+		event = cur[0]
+		if event is None:
+			return
+		serviceref = cur[1]
+		serviceRefStr = serviceref.ref.toCompareString()
+		timer = self.getRecordEvent(serviceRefStr, event)
+		if timer:
+			menu = [(_("Delete Timer"), "delete"), (_("Edit Timer"), "edit")]
+			buttons = ["red", "green"]
+			menu.append((_("Enable timer"), "enable") if timer.disabled else (_("Disable timer"), "disable"))
+			buttons.append("yellow")
+			menu.append((_("RecordTimers"), "timereditlist"))
+			def scheduledTimersActions(choice):
+				if choice is not None:
+					if choice[1] == "delete":
+						self.removeTimer(timer)
+					elif choice[1] == "edit":
+						self.session.open(TimerEntry, timer)
+					elif choice[1] == "disable":
+						self.disableTimer(timer)
+					elif choice[1] == "enable":
+						self.enableTimer(timer)
+					elif choice[1] == "timereditlist":
+						self.session.open(TimerEditList)
+			title = _("Select action for timer\n%s") % event.getEventName()
+			self.session.openWithCallback(scheduledTimersActions, ChoiceBox, title=title, choiceList=menu, buttonList=buttons)
+		else:
+			newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event))
+			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 
 class SingleEPG(EPGSelection):

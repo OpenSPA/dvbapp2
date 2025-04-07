@@ -1654,27 +1654,23 @@ msgstr "¡Hay un archivo de medios en uso!"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"Un temporizador de alimentación quiere reiniciar tu %s %s. ¿Reiniciar ahora?"
+"Un temporizador programado quiere reiniciar tu %s %s. ¿Reiniciar ahora?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
-"Un temporizador de alimentación quiere reiniciar la interfaz de usuario. "
+"Un temporizador programado quiere reiniciar la interfaz de usuario. "
 "¿Reiniciar ahora?"
 
-# /usr/lib/enigma2/python/PowerTimer.py
-#, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
-"Un temporizador de alimentación quiere poner tu %s %s en modo espera. "
+"Un temporizador programado terminado desea configurar su quiere poner tu %s %s en modo espera. "
 "¿Hacerlo ahora?"
 
-# /usr/lib/enigma2/python/PowerTimer.py
-#, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
-msgstr "Un temporizador de alimentación quiere apagar tu %s %s. ¿Apagar ahora?"
+msgid "A finished scheduled wants to shut down your %s %s. Do that now?"
+msgstr "Un temporizador programado quiere apagar tu %s %s. ¿Apagar ahora?"
 
 #
 #, python-format
@@ -2263,7 +2259,7 @@ msgstr "Después del evento"
 msgid "After PowerLost"
 msgstr "Tras perder la alimentación"
 
-# PowerTimer
+# Scheduler
 msgid "After event"
 msgstr "Después del evento"
 
@@ -2963,6 +2959,9 @@ msgstr "Búsqueda automática"
 #
 msgid "Automatic Service Searching"
 msgstr "Búsqueda automática de servicios"
+
+msgid "Automatic shares access"
+msgstr "Acceso automático a acciones"
 
 msgid "Automatic resolution"
 msgstr "Resolución automática"
@@ -6297,7 +6296,7 @@ msgstr "Por defecto"
 msgid "Default  (keymap.xml)"
 msgstr "Predeterminado  (keymap.xml)"
 
-# PowerTimer
+# Scheduler
 msgid "Default 'After event' *"
 msgstr "Por defecto 'Después del evento' *"
 
@@ -7464,6 +7463,9 @@ msgstr ""
 "Los datos ECM se incluirán en el streaj. Esto habilita que un receptor "
 "cliente lo decodifique."
 
+msgid "Enable timer"
+msgstr "Habilitar temporizador"
+
 msgid "EJECTCD"
 msgstr "EXPULSIÓN DE CD"
 
@@ -7701,7 +7703,9 @@ msgstr "Habilitar %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Habilitar 5V para la antena activa"
 
-#
+msgid "Enable automatic shares"
+msgstr "Habilitar acciones automáticas"
+
 msgid "Enable Autorecord"
 msgstr "Habilitar Autograbación"
 
@@ -8597,15 +8601,15 @@ msgstr "Etiopía"
 msgid "Even if TV has another input active?"
 msgstr "¿Incluso si la TV tiene otra entrada activa?"
 
-msgid "Even if a 'Wakeup' PowerTimer starting?"
-msgstr "¿Incluso si se inicia un temporizador de encendido?"
-
 msgid "Even if a 'Zap and Record' recording timer starting?"
 msgstr ""
 "¿Incluso si se inicia un temporizador de grabación 'Zapeo y Grabación'?"
 
 msgid "Even if a 'Zap' recording timer starting?"
 msgstr "¿Incluso si se inicia un temporizador de grabación 'Zap'?"
+
+msgid "Event Channel"
+msgstr "Canal del evento"
 
 msgid "Event Info"
 msgstr "Información de programa"
@@ -9177,6 +9181,9 @@ msgstr "Administrador de archivos: Acciones del editor de texto"
 msgid "File Commander settings"
 msgstr "Ajustes del Administrador de archivos"
 
+msgid "File system"
+msgstr "Sistema de archivos"
+
 #
 msgid "File System Check"
 msgstr "Comprobar sistema de archivos"
@@ -9525,7 +9532,7 @@ msgid ""
 "\n"
 "Change the name again with your chosen one."
 msgstr ""
-"Desde \"Último escaneo\" se creó un nuevo bouquet con este nombre:\n"
+"Desde \"Último Escaneado\" se creó un nuevo bouquet con este nombre:\n"
 "\n"
 "\"Bouquet creado a renombrar\"\n"
 "\n"
@@ -11581,7 +11588,7 @@ msgid "Last page"
 msgstr "Última página"
 
 msgid "Last Scanned"
-msgstr "Último Escaneo"
+msgstr "Último Escaneado"
 
 #
 msgid "Last speed"
@@ -12593,6 +12600,9 @@ msgstr "Montaje: "
 
 msgid "Mount point"
 msgstr "Punto de montaje"
+
+msgid "Mount Point"
+msgstr "Punto de Montaje"
 
 msgid "Mounts"
 msgstr "Montajes"
@@ -13925,7 +13935,7 @@ msgstr "Octal"
 
 #
 msgid "Off"
-msgstr "Off"
+msgstr "Apagado"
 
 msgid "Offline decode delay (ms)"
 msgstr "Retraso de descodificación offline (ms)"
@@ -14920,7 +14930,7 @@ msgstr "Por favor, espere"
 
 #
 msgid "Please wait for activation of your network configuration..."
-msgstr "Espera a la activación de tu configuración de red…"
+msgstr "Espera a la activación de su configuración de red…"
 
 msgid "Please wait while gathering data..."
 msgstr "Espera mientras se recupera la información..."
@@ -15145,31 +15155,6 @@ msgid "Consult your receiver's manual for more information on power threshold."
 msgstr ""
 "Consulte el manual de su receptor para más información sobre el umbral de "
 "potencia."
-
-msgid "PowerTimer"
-msgstr "PowerTimer"
-
-msgid "PowerTimer Actions"
-msgstr "Acciones de PowerTimer"
-
-#
-msgid "PowerTimer Overview"
-msgstr "Temporizadores de alimentación"
-
-msgid "PowerTimer Settings"
-msgstr "Configuración de PowerTimer"
-
-msgid "PowerTimer Standby"
-msgstr "Temporizador de alimentación en reposo"
-
-msgid "PowerTimer deep standby"
-msgstr "PowerTimer deep standby"
-
-msgid "PowerTimer log"
-msgstr "Registro de PowerManager"
-
-msgid "PowerTimers"
-msgstr "Temporizadores de alimentación"
 
 msgid "Predefined"
 msgstr "Predefinido"
@@ -15734,6 +15719,12 @@ msgstr "Tipo de FB seleccionado"
 
 msgid "Read failled"
 msgstr "Lectura fallida"
+
+msgid "Read Only"
+msgstr "Solo lectura"
+
+msgid "Read/Write"
+msgstr "Lectura/Escritura"
 
 #
 msgid "REC"
@@ -16896,6 +16887,9 @@ msgstr "Cliente Samba"
 msgid "Samba Server"
 msgstr "Servidor Samba"
 
+msgid "Samba Settings"
+msgstr "Ajustes Samba"
+
 msgid "Same as in active"
 msgstr "Igual que en activo"
 
@@ -17161,6 +17155,27 @@ msgstr "Carga programada de epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Guardado programado de epg.dat"
+
+msgid "Scheduler"
+msgstr "Temporizadores Programados"
+
+msgid "Scheduler Actions"
+msgstr "Acciones del programador"
+
+msgid "Scheduler deep standby"
+msgstr "Programador en modo de espera profundo"
+
+msgid "Scheduler log"
+msgstr "Programador Log"
+
+msgid "Scheduler Overview"
+msgstr "Programador de Temporizadores"
+
+msgid "Scheduler Settings"
+msgstr "Configuración del programador"
+
+msgid "Scheduler Standby"
+msgstr "Programador en modo reposo"
 
 msgid "Sci-Fi"
 msgstr "Ciencia Ficción"
@@ -17716,7 +17731,7 @@ msgstr ""
 "modo radio y TV."
 
 msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
-msgstr "Seleccione \"Sí\" para mostrar la entrada \"Selección de películas\" en el menú principal. Esto ofrece acceso a la pantalla de selección de películas cuando no hay ningún botón asignado en el mando."
+msgstr "Seleccione \"Sí\" para mostrar la entrada \"Selección de películas\" en Configuración. Esto ofrece acceso a la pantalla de selección de películas cuando no hay ningún botón asignado en el mando."
 
 msgid ""
 "Select 'Yes' to show the current directory in the list of directories. Note "
@@ -17948,8 +17963,8 @@ msgid "Select action"
 msgstr "Seleccione la acción"
 
 #, python-format
-msgid "Select action for timer %s:"
-msgstr "Seleccione acción para el temporizador %s:"
+msgid "Select action for timer\n%s"
+msgstr "Seleccione acción para el temporizador\n%s"
 
 msgid "Select additional files to backup"
 msgstr "Seleccionar los archivos adicionales del backup"
@@ -18166,6 +18181,9 @@ msgstr "Selecciona orden temporal de archivo de la columna actual"
 #, python-format
 msgid "Select the %s entry"
 msgstr "Seleccione la entrada %s"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr "Seleccione el modo de acceso para los recursos compartidos de Samba exportados automáticamente."
 
 msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""
@@ -18704,6 +18722,9 @@ msgstr "Selecciona la ubicación donde se debería guardar la grabación."
 msgid "Select wireless network"
 msgstr "Seleccione la red inalámbrica"
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr "Seleccione 'Sí' para permitir que cada dispositivo de almacenamiento detectado se exporte automáticamente como recurso compartido Samba."
+
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Seleccione \"Sí\" para mostrar este programa en Plugins."
 
@@ -19195,11 +19216,11 @@ msgstr ""
 
 msgid ""
 "Set the time to wait for execute the default action in shutdown, standby or "
-"restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+"restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 "Configura el tiempo de espera para ejecutar la acción predeterminada en "
 "mensajes de apagado, reposo o reinicio., por ejemplo, utilizado en "
-"Temporizador de Grabación, Temporizador de encendido, Temporizador de "
+"Temporizador de Grabación, Temporizador programado, Temporizador de "
 "apagado, etc."
 
 msgid ""
@@ -22185,7 +22206,7 @@ msgstr ""
 "incrementa el tamaño del archivo."
 
 msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"
-msgstr "El bouquet \"Último escaneo\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
+msgstr "El bouquet \"Último Escaneado\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
 
 msgid ""
 "The buffer time for time shift exceeds the specified limit in the settings.\n"
@@ -22242,7 +22263,7 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
-"El temporizador de alimentación quiere poner el %s %s to %s.\n"
+"El temporizador programado quiere poner el %s %s to %s.\n"
 "\n"
 "Pulsa OK para continuar usando el %s %s."
 
@@ -27191,7 +27212,7 @@ msgstr "de un disco usado de una capa."
 
 #
 msgid "off"
-msgstr "Apagado"
+msgstr "apagado"
 
 msgid "off or wpa2 on"
 msgstr "Apagado o wpa2 encendido"
