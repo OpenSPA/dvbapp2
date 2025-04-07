@@ -833,6 +833,7 @@ class RecordTimerOverview(TimerOverviewBase):
 		self["timerlist"] = RecordTimerList([])
 		self.fallbackTimer = FallbackTimerList(self, self.fallbackRefresh)
 		TimerOverviewBase.__init__(self, session, mode=MODE_RECORD)
+		self["description"] = Label("")
 		self["Event"] = Event()
 		self["Service"] = ServiceEvent()
 
