@@ -2,9 +2,9 @@ name: enigma2 build
 
 on:
   push:
-    branches: [ 8.6 ]
+    branches: [ master ]
   pull_request:
-    branches: [ 8.6 ]
+    branches: [ master ]
 
 jobs:
   build:

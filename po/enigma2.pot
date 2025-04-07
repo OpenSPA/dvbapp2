@@ -6598,6 +6598,9 @@ msgstr ""
 msgid "Enable Swap at startup"
 msgstr ""
 
+msgid "Enable timer"
+msgstr ""
+
 msgid "Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?"
 msgstr ""
 
@@ -7785,6 +7788,9 @@ msgid "File Commander Text Editor Actions"
 msgstr ""
 
 msgid "File Commander settings"
+msgstr ""
+
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -10779,6 +10785,9 @@ msgstr ""
 msgid "Mount point"
 msgstr ""
 
+msgid "Mount Point"
+msgstr ""
+
 msgid "Mounts"
 msgstr ""
 
@@ -12964,19 +12973,10 @@ msgstr ""
 msgid "Consult your receiver's manual for more information on power threshold."
 msgstr ""
 
-msgid "PowerTimer"
+msgid "Scheduler"
 msgstr ""
 
 msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr ""
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
 msgstr ""
 
 msgid "Scheduler deep standby"
@@ -12985,7 +12985,13 @@ msgstr ""
 msgid "Scheduler log"
 msgstr ""
 
-msgid "PowerTimers"
+msgid "Scheduler Overview"
+msgstr ""
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
 msgstr ""
 
 msgid "Predefined"
@@ -13484,6 +13490,12 @@ msgid "RC selected type"
 msgstr ""
 
 msgid "Read failled"
+msgstr ""
+
+msgid "Read Only"
+msgstr ""
+
+msgid "Read/Write"
 msgstr ""
 
 msgid "REC"
@@ -14511,6 +14523,9 @@ msgstr ""
 msgid "Samba Client"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Samba Server"
 msgstr ""
 
@@ -15220,7 +15235,7 @@ msgid "Select action"
 msgstr ""
 
 #, python-format
-msgid "Select action for timer %s:"
+msgid "Select action for timer\n%s"
 msgstr ""
 
 msgid "Select additional files to backup"
@@ -15399,6 +15414,9 @@ msgstr ""
 
 #, python-format
 msgid "Select the %s entry"
+msgstr ""
+
+msgid "Select the access mode for the automatically exported samba shares."
 msgstr ""
 
 msgid "Select the No / False response"
@@ -15734,6 +15752,9 @@ msgid "Select where the recording should be saved."
 msgstr ""
 
 msgid "Select wireless network"
+msgstr ""
+
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -23175,6 +23196,9 @@ msgid "Select(OK)"
 msgstr ""
 
 msgid "PLEASE TURN ON AND SET THE TIMER! ..."
+msgstr ""
+
+msgid "Event Channel"
 msgstr ""
 
 msgid "Event to be Scanned : {}"

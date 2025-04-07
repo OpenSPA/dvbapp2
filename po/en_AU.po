@@ -1550,26 +1550,26 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
+"A finished scheduled timer wants to reboot your %s %s.\n"
 "Do that now?"
 
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to restart the user interface.\n"
+"A finished scheduled timer wants to restart the user interface.\n"
 "Do that now?"
 
 #, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to set your\n"
+"A finished scheduled timer wants to set your\n"
 "%s %s to standby. Do that now?"
 
 #, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
+"A finished scheduled timer wants to shutdown your %s %s.\n"
 "Do that now?"
 
 #, python-format
@@ -6895,6 +6895,9 @@ msgstr ""
 msgid "Enable Swap at startup"
 msgstr ""
 
+msgid "Enable timer"
+msgstr ""
+
 msgid "Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?"
 msgstr ""
 
@@ -7592,6 +7595,9 @@ msgstr ""
 msgid "Even if a 'Zap' recording timer starting?"
 msgstr ""
 
+msgid "Event Channel"
+msgstr ""
+
 msgid "Event Info"
 msgstr ""
 
@@ -8116,6 +8122,9 @@ msgid "File Commander Text Editor Actions"
 msgstr ""
 
 msgid "File Commander settings"
+msgstr ""
+
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -11166,6 +11175,9 @@ msgstr ""
 msgid "Mount point"
 msgstr ""
 
+msgid "Mount Point"
+msgstr ""
+
 msgid "Mounts"
 msgstr ""
 
@@ -14006,6 +14018,12 @@ msgstr ""
 msgid "Read failled"
 msgstr ""
 
+msgid "Read Only"
+msgstr ""
+
+msgid "Read/Write"
+msgstr ""
+
 msgid "REC"
 msgstr ""
 
@@ -15085,6 +15103,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr ""
 
@@ -15321,6 +15342,27 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler deep standby"
+msgstr ""
+
+msgid "Scheduler log"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr ""
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
 msgstr ""
 
 msgid "Sci-Fi"
@@ -15823,7 +15865,7 @@ msgid "Select action"
 msgstr ""
 
 #, python-format
-msgid "Select action for timer %s:"
+msgid "Select action for timer\n%s"
 msgstr ""
 
 msgid "Select additional files to backup"
@@ -15993,6 +16035,9 @@ msgstr ""
 
 #, python-format
 msgid "Select the %s entry"
+msgstr ""
+
+msgid "Select the access mode for the automatically exported samba shares."
 msgstr ""
 
 msgid "Select the No / False response"
@@ -16377,6 +16422,9 @@ msgid "Select where the recording should be saved."
 msgstr ""
 
 msgid "Select wireless network"
+msgstr ""
+
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -17715,9 +17763,6 @@ msgid "Show the Logs Settings screen"
 msgstr ""
 
 msgid "Show the OSCam information screen"
-msgstr ""
-
-msgid "Show the PowerTimer"
 msgstr ""
 
 msgid "Show the SleepTimer"
