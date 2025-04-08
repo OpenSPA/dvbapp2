@@ -20560,6 +20560,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -23196,9 +23199,6 @@ msgid "Select(OK)"
 msgstr ""
 
 msgid "PLEASE TURN ON AND SET THE TIMER! ..."
-msgstr ""
-
-msgid "Event Channel"
 msgstr ""
 
 msgid "Event to be Scanned : {}"
