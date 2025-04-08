@@ -5354,6 +5354,9 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+msgid "Custom mountpoint"
+msgstr ""
+
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr ""
 
@@ -5764,6 +5767,9 @@ msgid "Defaults"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the custom mountpoint for the device."
 msgstr ""
 
 msgid "Defined / Active"
@@ -12419,6 +12425,9 @@ msgstr ""
 msgid "Password changed."
 msgstr ""
 
+msgid "Path"
+msgstr ""
+
 msgid "Password:"
 msgstr ""
 
@@ -12998,6 +13007,9 @@ msgid "Portugal"
 msgstr ""
 
 msgid "Portuguese"
+msgstr ""
+
+msgid "Position"
 msgstr ""
 
 msgid "Position Setup"
@@ -15180,6 +15192,9 @@ msgid "Select the No / False response"
 msgstr ""
 
 msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
+
+msgid "Select the mountpoint for the device."
 msgstr ""
 
 msgid "Select the Swap File Size:"
