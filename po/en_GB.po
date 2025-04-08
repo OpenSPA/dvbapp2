@@ -7603,9 +7603,6 @@ msgstr ""
 msgid "Even if a 'Zap' recording timer starting?"
 msgstr ""
 
-msgid "Event Channel"
-msgstr ""
-
 msgid "Event Info"
 msgstr "Event Info"
 
@@ -21463,6 +21460,9 @@ msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
 msgid "Version"
+msgstr ""
+
+msgid "Verbose"
 msgstr ""
 
 msgid "Version: "

@@ -8608,9 +8608,6 @@ msgstr ""
 msgid "Even if a 'Zap' recording timer starting?"
 msgstr "¿Incluso si se inicia un temporizador de grabación 'Zap'?"
 
-msgid "Event Channel"
-msgstr "Canal del evento"
-
 msgid "Event Info"
 msgstr "Información de programa"
 
@@ -24660,6 +24657,9 @@ msgstr ""
 
 msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
+
+msgid "Verbose"
+msgstr "Abundante"
 
 msgid "Version"
 msgstr "Versión"
