@@ -5902,6 +5902,9 @@ msgstr "Compensaciones de volumen definidas actualmente:"
 msgid "Custom"
 msgstr "Personalizado"
 
+msgid "Custom mountpoint"
+msgstr "Punto de montaje personalizado"
+
 #
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Personalizar el intervalo de salto de las teclas ‘1’/‘3’"
@@ -6377,6 +6380,9 @@ msgid ""
 msgstr ""
 "Define el retardo adicional en milisegundos antes del inicio de los flujos "
 "http(s)."
+
+msgid "Define the custom mountpoint for the device."
+msgstr "Define el punto de montaje personalizado para el dispositivo."
 
 msgid "Define the DNS suffix."
 msgstr "Define el sufijo DNS."
@@ -14487,6 +14493,9 @@ msgstr "Configuración de la contraseña"
 msgid "Password changed."
 msgstr "Se ha cambiado la contraseña."
 
+msgid "Path"
+msgstr "Ruta"
+
 #, python-format
 msgid "Path '%s' missing!"
 msgstr "Ruta '%s' no encontrada!"
@@ -15087,6 +15096,9 @@ msgstr "Portugal"
 # Language
 msgid "Portuguese"
 msgstr "Portugués"
+
+msgid "Position"
+msgstr "Posición"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Posición de temporizadores finalizados en lista"
@@ -18181,6 +18193,9 @@ msgstr "Seleccione la entrada %s"
 
 msgid "Select the access mode for the automatically exported samba shares."
 msgstr "Seleccione el modo de acceso para los recursos compartidos de Samba exportados automáticamente."
+
+msgid "Select the mountpoint for the device."
+msgstr "Seleccione el punto de montaje para el dispositivo."
 
 msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""

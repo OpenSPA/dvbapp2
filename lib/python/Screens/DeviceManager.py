@@ -941,7 +941,7 @@ class DeviceManagerMountPoints(Setup):
 			fstabMountPoint = device[1]
 			if noMediaHdd:
 				fstabMountPoint = "/media/hdd"
-			choiceList = [("None", "None")]
+			choiceList = [("None", _("None"))]
 			if "sr" in device[0]:
 				fileSystems = ["auto", "iso9660", "udf"]
 				choiceList.extend([("/media/cdrom", "/media/cdrom"), ("/media/dvd", "/media/dvd")])

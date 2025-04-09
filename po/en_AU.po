@@ -5212,6 +5212,9 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+msgid "Custom mountpoint"
+msgstr ""
+
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr ""
 
@@ -5657,6 +5660,9 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid "Define the custom mountpoint for the device."
 msgstr ""
 
 msgid "Define the DNS suffix."
@@ -12855,6 +12861,9 @@ msgstr ""
 msgid "Password changed."
 msgstr ""
 
+msgid "Path"
+msgstr ""
+
 #, python-format
 msgid "Path '%s' missing!"
 msgstr ""
@@ -13422,6 +13431,9 @@ msgid "Portugal"
 msgstr ""
 
 msgid "Portuguese"
+msgstr ""
+
+msgid "Position"
 msgstr ""
 
 msgid "Position of finished Timers in Timerlist"
@@ -16035,6 +16047,9 @@ msgid "Select the %s entry"
 msgstr ""
 
 msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
+
+msgid "Select the mountpoint for the device."
 msgstr ""
 
 msgid "Select the No / False response"
