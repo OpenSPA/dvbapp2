@@ -5475,11 +5475,17 @@ msgstr "Satélites conectados"
 msgid "Connected to"
 msgstr "Conectado a"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Transcodificación conectada, límite - no PiP!"
+
 msgid "Connected: "
 msgstr "Conectado: "
 
 msgid "Connection information"
 msgstr "Información de conexión"
+
+msgid "Connector"
+msgstr "Conector"
 
 msgid "Console"
 msgstr "Consola"
@@ -10980,6 +10986,12 @@ msgstr "Entrada"
 msgid "Input "
 msgstr "Entrada "
 
+msgid "Input 1"
+msgstr "Entrada 1"
+
+msgid "Input 2"
+msgstr "Entrada 2"
+
 msgid "Input Device Settings"
 msgstr "Configuración del dispositivo de entrada"
 
@@ -14472,6 +14484,12 @@ msgstr "Paso"
 
 msgid "Pass-through"
 msgstr "Pass-through"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr "Retardo en el manejo del audio de paso AC3"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "Retardo en el manejo del audio de paso AC3+"
 
 #
 msgid "Password"
@@ -18407,6 +18425,9 @@ msgstr ""
 "marcador es la línea vertical dibujada en la EPG que muestra la hora actual. "
 "Cuanto mayor sea el valor, más se moverá el marcador hacia la derecha "
 "mostrando más historia y menos de los próximos eventos."
+
+msgid "Select the input connector you want to use."
+msgstr "Seleccione el conector de entrada que desea utilizar"
 
 msgid "Select the last item in list or move to the end of text"
 msgstr ""
@@ -24475,6 +24496,12 @@ msgstr "Memoria interna usada"
 #
 msgid "Used service scan type"
 msgstr "Tipo de búsqueda de canales usada"
+
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "Se utiliza para especificar el retraso cuando se cambia entre servicios y está habilitado el paso directo AC3."
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "Se utiliza para especificar el retraso cuando se cambia entre servicios y está habilitado el paso directo AC3+/Atmos."
 
 msgid "Used:"
 msgstr "Utilizado:"
