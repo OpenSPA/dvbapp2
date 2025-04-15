@@ -32,7 +32,6 @@ FEED_URLS = [
 	("openATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName")),
 	("OpenBH", "https://images.openbh.net/json/%s" % BoxInfo.getItem("model")),
 	("OpenPLi", "http://downloads.openpli.org/json/%s" % BoxInfo.getItem("model")),
-	("Open Vision", "https://images.openvision.dedyn.io/json/%s" % BoxInfo.getItem("model")),
 	("OpenViX", "https://www.openvix.co.uk/json/%s" % BoxInfo.getItem("machinebuild")),
 	("OpenHDF", "https://flash.hdfreaks.cc/openhdf/json/%s" % BoxInfo.getItem("machinebuild")),
 	("Open8eIGHT", "http://openeight.de/json/%s" % BoxInfo.getItem("machinebuild")),
