@@ -677,7 +677,7 @@
 		<key id="KEY_PVR" mapto="showMediaPlayer" flags="l" />
 		<!--
 		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
-		-->		
+		-->
 		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
 		<key id="KEY_HOMEPAGE" mapto="showWWW" flags="b" />
 		<key id="KEY_BOOKMARKS" mapto="showWWW" flags="b" />
@@ -1064,6 +1064,11 @@
 		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
 		<key id="KEY_BLUE" mapto="blue" flags="m" />
 	</map>
+
+	<map context="EPGCatchUpActions">
+ 		<key id="KEY_PLAY" mapto="play" flags="m" />
+  		<key id="KEY_PLAYPAUSE" mapto="play" flags="m" />
+ 	</map>
 
 	<map context="EventViewActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
