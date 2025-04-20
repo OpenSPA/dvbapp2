@@ -964,6 +964,10 @@ msgstr[0] "%d se ha actualizado el paquete del repositorio."
 msgstr[1] "%d se han actualizado los paquetes del repositorio."
 
 #, python-format
+msgid "%d jobs are running in the background!"
+msgstr "¡%d trabajos se están ejecutando en segundo plano!"
+
+#, python-format
 msgid "%d kB"
 msgstr "%d kB"
 
@@ -2527,6 +2531,10 @@ msgstr "Amlogic"
 
 msgid "Amlogic remote"
 msgstr "Amlogic remoto"
+
+#, python-format
+msgid "Amount %d / Success %d / Failed %d"
+msgstr "Cantidad %d / Éxito %d / Fallido %d"
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -6678,6 +6686,27 @@ msgstr "Dinamarca"
 
 msgid "Depth"
 msgstr "Profundidad"
+
+msgid "Descending"
+msgstr "Descendiendo"
+
+msgid "Descramble end time"
+msgstr "Decodificar la hora de finalización"
+
+msgid "Descramble in Standby"
+msgstr "Decodificar en reposo"
+
+msgid "Descramble in Standby finished"
+msgstr "Decodificar en reposo finalizada"
+
+msgid "Descramble recordings before Shutdown"
+msgstr "Decodificar grabaciones antes del apagado"
+
+msgid "Descramble start time"
+msgstr "Hora de inicio de descifrado"
+
+msgid "Descrambling options"
+msgstr "Opciones de descifrado"
 
 msgid "Description"
 msgstr "Descripción"
@@ -14649,6 +14678,9 @@ msgstr "Reproducción de DVDs"
 msgid "Play all audio files in the directory"
 msgstr "Reproduce todos los archivos de audio en el directorio"
 
+msgid "Play archive"
+msgstr "Archivo de reproducción"
+
 msgid "Play audio in background"
 msgstr "Reproducir audio en segundo plano"
 
@@ -17751,6 +17783,12 @@ msgstr ""
 "directorios. Nota : el administrador de archivos se tiene que reiniciar para "
 "que el cambio tenga efecto."
 
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
+msgstr "Seleccione 'Sí' para mostrar el nivel de volumen en cualquier cambio automático del nivel de volumen."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "'Ja' auswählen, um dieses Plugin im Plugin-Manager anzuzeigen."
+
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Seleccione \"Sí\" para separar tareas en acciones separadas."
 
@@ -17958,6 +17996,12 @@ msgstr "Seleccione el registro de confirmación de un repositorio para verlo:"
 #
 msgid "Select a script to run:"
 msgstr "Seleccione el script a ejecutar:"
+
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgstr "Seleccione un tiempo, cuando esté en modo de espera, después del cual se podrá continuar con la descodificación."
+
+msgid "Select a time, when in Standby, before which descramble can proceed."
+msgstr "Seleccione un momento, cuando esté en modo de espera, antes del cual se pueda realizar la descodificación."
 
 msgid "Select a softcam from the available list."
 msgstr "Seleccione una softcam de la lista disponible."
@@ -18741,9 +18785,6 @@ msgstr "Seleccione la red inalámbrica"
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Seleccione 'Sí' para permitir que cada dispositivo de almacenamiento detectado se exporte automáticamente como recurso compartido Samba."
 
-msgid "Select 'Yes' to show this plugin in the Plugin Browser."
-msgstr "Seleccione \"Sí\" para mostrar este programa en Plugins."
-
 #
 msgid "Select your ATSC provider."
 msgstr "Seleccionar tu proveedor ATSC."
@@ -19307,6 +19348,12 @@ msgid ""
 msgstr ""
 "Configurar en 'Deshabilitado' para reemplazar los espacios en nombres de "
 "archivo y directorio por caracteres de subrayado '_'."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgstr "Configúrelo en 'Habilitado' para descifrar grabaciones cifradas en cola en el modo de espera antes de apagar."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr "Establezca en 'Habilitado' para descifrar grabaciones cifradas en cola en modo de espera."
 
 msgid ""
 "Set to 'Yes', to enable automatic recording of the background timeshift "
@@ -22338,6 +22385,10 @@ msgid ""
 "proceed?"
 msgstr ""
 "El directorio de picons ya existe y se tiene que eliminar. Quieres proceder?"
+
+#, python-format
+msgid "The process will take approximately %d minutes to complete."
+msgstr "El proceso tardará aproximadamente %d minutos en completarse."
 
 #
 #, python-format
@@ -29025,6 +29076,12 @@ msgstr ""
 msgid "There are pending tasks:"
 msgstr "Hay tareas pendientes:"
 
+#, python-format
+msgid "There is %d scrambled recording, which will be unscrambled during Standby."
+msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
+msgstr[0] "Hay %d grabaciones codificadas, que se decodificarán durante el modo de espera."
+msgstr[1] "Hay %d grabación codificada, que se decodificará durante el modo de espera."
+
 #
 msgid "This wizard has finished"
 msgstr "El asistente ha terminado"
@@ -29293,6 +29350,9 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 "Selecciona 'Sí' para mostrar los paquetes de enlaces web en la pantalla de "
 "Descarga de Plugins."
+
+msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
+msgstr "Seleccione 'Sí' para apagar inmediatamente en lugar de iniciar la descodificación."
 
 msgid ""
 "Select the layout of the installed plugins in the Plugin Browser screen. "
