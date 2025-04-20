@@ -1054,6 +1054,7 @@ public:
 		evPvrTuneStart,
 		evRecordAborted,
 		evGstRecordEnded,
+		evPvrEof,
 	};
 	enum {
 		NoError=0,
@@ -1064,6 +1065,7 @@ public:
 		errTuneFailed=-255,
 		errMisconfiguration = -256,
 		errNoResources = -257,
+		errNoCiConnected = -258,
 	};
 };
 
@@ -1086,6 +1088,7 @@ public:
 	virtual SWIG_VOID(RESULT) frontendInfo(ePtr<iFrontendInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) stream(ePtr<iStreamableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) getServiceType(int &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) getFilenameExtension(std::string &SWIG_OUTPUT)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
