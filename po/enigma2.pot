@@ -7656,7 +7656,7 @@ msgstr ""
 msgid "Fallback remote receiver Port"
 msgstr ""
 
-msgid "Fallback remote receiver setup"
+msgid "Remote Receiver Settings"
 msgstr ""
 
 msgid "Fallback remote receiver URL"
