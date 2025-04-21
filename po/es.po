@@ -3964,7 +3964,14 @@ msgid "Cannot find any signal ..., aborting !"
 msgstr "No se puede encontrar ninguna señal..., ¡abortando!"
 
 msgid "Can't move to trashcan!"
-msgstr "No se puede mover a la papelera"
+msgstr "¡No se puede mover a la papelera!"
+
+msgid ""
+"Can't play the next time shift buffer file!\n"
+"Switch to live TV and restart time shift ?"
+msgstr ""
+"¡No se puede reproducir el siguiente archivo de búfer de cambio de tiempo!\n"
+"¿Cambiar a TV en vivo y reiniciar el cambio de horario?"
 
 msgid "Capacity"
 msgstr "Capacidad"
@@ -9720,6 +9727,9 @@ msgstr "Alemán"
 msgid "Germany"
 msgstr "Alemania"
 
+msgid "Getting event information failed!"
+msgstr "¡Error al obtener información del evento!"
+
 msgid "Getting Event Info failed!"
 msgstr "¡Error al obtener la información del programa!"
 
@@ -13566,6 +13576,9 @@ msgstr "No se encontró ningún sintonizador de satélite adecuado!"
 msgid "No tags are set on these movies."
 msgstr "No hay etiquetas en estas películas."
 
+msgid "No time shift buffer found to save as recording!"
+msgstr "¡No se encontró ningún búfer de cambio de tiempo para guardar como grabación!"
+
 msgid "No time shift found to save as recording!"
 msgstr "¡No se encontró ningún Timeshift para guardar como grabación!"
 
@@ -13791,13 +13804,13 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Not enough free Diskspace!\n"
+"Not enough free disk space!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
 msgstr ""
-"No hay suficiente espacio libre en el disco.\n"
+"No hay suficiente espacio libre en el disco!\n"
 "\n"
 "Tamaño de archivo: %sMB\n"
 "Espacio libre: %sMB\n"
@@ -16016,6 +16029,9 @@ msgstr "Grabación en curso"
 msgid "Recording started"
 msgstr "Grabación iniciada"
 
+msgid "Recording started, stopping time shift now."
+msgstr "Se inició la grabación, deteniendo el cambio de tiempo ahora."
+
 msgid "Recording stopped"
 msgstr "Grabación detenida"
 
@@ -17095,11 +17111,17 @@ msgstr "Guardar Timeshift como película y seguir grabando"
 msgid "Save time shift as movie and stop recording"
 msgstr "Guardar Timeshift como película y detener la grabación"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Guarde el buffer Timeshift ahora y continúe grabando"
+
 msgid "Saved lines in script messages"
 msgstr "Líneas guardadas en mensajes de script"
 
 msgid "Saving EPG Cache..."
 msgstr "Guardando caché EPG..."
+
+msgid "Saving time shift buffer, this might take a while."
+msgstr "Guardado del buffer time shift, esto puede demorar un tiempo."
 
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Guardando timeshift como película. ¡Esto podría llevar un rato!"
@@ -21330,6 +21352,12 @@ msgstr "Detener la actualización, si está en marcha, entonces salir"
 msgid "Stop time shift"
 msgstr "Detener Timeshift"
 
+msgid "Stop time shift and save time shift buffer as a movie"
+msgstr "Detener el cambio de tiempo y guardar el búfer time shift como una película"
+
+msgid "Stop time shift and save time shift buffer as a movie and start recording of current event"
+msgstr "Detenga el cambio de tiempo y guarde el búfer time shift como una película e inicie la grabación del evento actual"
+
 msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Detener timeshift y guardar buffer como película"
 
@@ -22231,6 +22259,13 @@ msgstr ""
 "Los autores no SE HACEN RESPONSABLES de la PÉRDIDA O DAÑO DE LOS DATOS!"
 
 msgid ""
+"The available disk space for time shift buffer is less than specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"El espacio disponible en disco para el búfer time shift es menor que el especificado en la configuración.\n"
+"¿Qué desea hacer?"
+
+msgid ""
 "The available disk space for time shift is less than specified in the "
 "settings.\n"
 "What do you want to do ?"
@@ -22272,11 +22307,11 @@ msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart e
 msgstr "El bouquet \"Último Escaneado\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
 
 msgid ""
-"The buffer time for time shift exceeds the specified limit in the settings.\n"
-"What do you want to do ?"
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
-"El buffer de timeshift excede el especificado en los ajustes.\n"
-"¿Qué quieres hacer?"
+"El búfer time shift supera el límite especificado en la configuración."
+"¿Qué desea hacer?"
 
 msgid ""
 "The channel may support VPS\n"
@@ -25753,6 +25788,9 @@ msgstr "¿Dónde quiere hacer el backup de sus ajustes?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "¿Dónde quieres guardar las grabaciones temporales de Timeshift?"
 
+msgid "Which time shift buffer event do you want to save?"
+msgstr "¿Qué evento de búfer de cambio de tiempo desea guardar?"
+
 msgid "Which event do you want to save permanently?"
 msgstr "¿Qué programa quieres guardar permanentemente?"
 
@@ -26077,8 +26115,15 @@ msgstr ""
 "Has elegido restaurar la configuración. Enigma2 se reiniciará después. Pulsa "
 "‘OK’ para inciar ahora la restauración."
 
-msgid "You have chosen to save the current time shift"
-msgstr "Usted ha elegido guardar el cambio de hora actual"
+msgid "You have chosen to save the current time shift buffer"
+msgstr "Has elegido guardar el buffer time shift actual"
+
+msgid ""
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
+"What do you want to do?"
+msgstr ""
+"Has elegido guardar el evento time shift actual, pero aún no ha finalizado\n"
+"¿Qué quieres hacer?"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not "
@@ -26120,8 +26165,8 @@ msgstr "¡Debe configurar al menos un comando!"
 msgid "You seem to be in time shift!"
 msgstr "¡Parece que estás en Timeshift!"
 
-msgid "You seem to be in time shift, Do you want to leave time shift ?"
-msgstr "Parece que estás en Timeshift. ¿Quieres abandonar Timeshift?"
+msgid "You seem to be in time shift, do you want to leave time shift?"
+msgstr "Pareces estar en time shift, ¿quieres salir del cambio temporal?"
 
 msgid ""
 "You seem to be in time shift, the service will briefly stop as time shift "

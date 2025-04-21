@@ -3401,12 +3401,16 @@ msgid "Can't create backup directory!"
 msgstr ""
 
 msgid ""
-"Can't going to live TV!\n"
+"Can't go to live TV!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
-msgid "Can't play the next time shift file!\n"
+msgid ""
+"Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift ?"
+msgstr ""
+
+msgid "Can't move to trashcan!"
 msgstr ""
 
 msgid "Can't play the previous time shift file! You can try again."
@@ -8279,7 +8283,7 @@ msgstr ""
 msgid "Germany"
 msgstr ""
 
-msgid "Getting Event Info failed!"
+msgid "Getting event information failed!"
 msgstr ""
 
 msgid "Getting plugin information. Please wait..."
@@ -11646,7 +11650,7 @@ msgstr ""
 msgid "No tags are set on these movies."
 msgstr ""
 
-msgid "No time shift found to save as recording!"
+msgid "No time shift buffer found to save as recording!"
 msgstr ""
 
 msgid "No timeout"
@@ -11821,7 +11825,8 @@ msgid "Not enough disk space. Please free up some disk space and try again. (%d 
 msgstr ""
 
 #, python-format
-msgid "Not enough free Diskspace!\n"
+msgid ""
+"Not enough free disk space!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
@@ -11857,7 +11862,7 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
 
-msgid "Now save time shift as movie and continues recording"
+msgid "Save time shift buffer now and continue recording"
 msgstr ""
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -13732,7 +13737,7 @@ msgstr ""
 msgid "Record now"
 msgstr ""
 
-msgid "Record started! Stopping time shift now ..."
+msgid "Recording started, stopping time shift now."
 msgstr ""
 
 #, python-format
@@ -14745,7 +14750,7 @@ msgstr ""
 msgid "Saving EPG Cache..."
 msgstr ""
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift buffer, this might take a while."
 msgstr ""
 
 msgid "Saving time shift files"
@@ -17998,10 +18003,10 @@ msgstr ""
 msgid "Stop time shift"
 msgstr ""
 
-msgid "Stop time shift and save time shift buffer as movie"
+msgid "Stop time shift and save time shift buffer as a movie"
 msgstr ""
 
-msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as a movie and start recording of current event"
 msgstr ""
 
 msgid "Stop time shift while recording"
@@ -18775,8 +18780,9 @@ msgstr ""
 msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr ""
 
-msgid "The available disk space for time shift is less than specified in the settings.\n"
-"What do you want to do ?"
+msgid ""
+"The available disk space for time shift buffer is less than specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 
 msgid "The backup can take up to about 15 minutes to complete."
@@ -18800,8 +18806,9 @@ msgstr ""
 msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"
 msgstr ""
 
-msgid "The buffer time for time shift exceeds the specified limit in the settings.\n"
-"What do you want to do ?"
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 
 msgid "The channel may support VPS\n"
@@ -21374,7 +21381,7 @@ msgstr ""
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr ""
 
-msgid "Which event do you want to save permanently?"
+msgid "Which time shift buffer event do you want to save?"
 msgstr ""
 
 msgid "While available"
@@ -21639,11 +21646,12 @@ msgstr ""
 msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
 msgstr ""
 
-msgid "You have chosen to save the current time shift"
+msgid "You have chosen to save the current time shift buffer"
 msgstr ""
 
-msgid "You have chosen to save the current time shift event, but the event has not yet finished\n"
-"What do you want to do ?"
+msgid ""
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
+"What do you want to do?"
 msgstr ""
 
 msgid "You have no script to run."
@@ -21675,7 +21683,7 @@ msgstr ""
 msgid "You seem to be in time shift!"
 msgstr ""
 
-msgid "You seem to be in time shift, Do you want to leave time shift ?"
+msgid "You seem to be in time shift, do you want to leave time shift?"
 msgstr ""
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
