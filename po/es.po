@@ -2042,11 +2042,17 @@ msgstr "Añadir temporizador de zapeo"
 msgid "Add a DNS entry"
 msgstr "Añadir una entrada DNS"
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr "Añadir un canal de RADIO a la lista de desplazamiento de volumen"
+
 msgid "Add a RecordTimer"
 msgstr "Añadir un temporizador de grabación"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Añadir un temporizador de grabación para el programa actual"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr "Agregar un servicio de TV a la lista de compensación de volumen"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Añadir un temporizador de zapeo para el programa actual"
@@ -2074,8 +2080,11 @@ msgstr "Añadir nuevo temporizador"
 msgid "Add a new title"
 msgstr "Añadir un nuevo título"
 
+msgid "Add a service to the Volume Offset list"
+msgstr "Añadir un canal a la lista de desplazamiento de volumen"
+
 msgid "Add a service to the Volume Offsets list"
-msgstr "Añadir un servicio a la lista de compensaciones de volumen"
+msgstr "Añadir un canal a la lista de compensaciones de volumen"
 
 msgid "Add a timer for the current event"
 msgstr "Añadir un temporizador para el evento actual"
@@ -2144,8 +2153,8 @@ msgstr "Añada nombres de canales a cada entrada #SERVICE."
 msgid "Add the current directory as a bookmark"
 msgstr "Añadir el directorio actual como favorito"
 
-msgid "Add the current service to the Volume Offsets list"
-msgstr "Añadir el servicio actual a la lista de compensaciones de volumen"
+msgid "Add the current/active service to the Volume Offset list"
+msgstr "Agregue un canal actual/activo a la lista de Desplazamiento de volumen"
 
 msgid "Add the selected service to a bouquet or alternative"
 msgstr "Añadir el servicio seleccionado a un favorito o alternativa"
@@ -2169,6 +2178,9 @@ msgstr "Añadir/Quitar el plugin seleccionado en/de la lista de borrados"
 
 msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Añadir/Quitar el plugin seleccionado en/de la lista de actualización"
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
+msgstr "Agregar o quitar el canal actual a la lista de desplazamiento de volumen"
 
 msgid "Adding schedule..."
 msgstr "Añadiendo calendario..."
@@ -2921,6 +2933,9 @@ msgstr "Registro de instalación automática"
 
 msgid "Auto multi-selection"
 msgstr "Selección múltiple auto"
+
+msgid "Auto show volume level"
+msgstr "Nivel de volumen de visualización automática"
 
 msgid "Auto shut down"
 msgstr "Apagado automático"
@@ -5912,6 +5927,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr "Compensaciones de volumen definidas actualmente:"
 
+msgid "Currently Remembered Volume Levels:"
+msgstr "Niveles de volumen recordados actualmente:"
+
 msgid "Custom"
 msgstr "Personalizado"
 
@@ -6332,7 +6350,7 @@ msgstr ""
 "del sistema (valores más altos = menor prioridad)."
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
-msgstr "Compensación por defecto de Dolby Digital / Dolby AC-3"
+msgstr "Desplazamiento predeterminado Dolby Digital/Dolby AC-3"
 
 msgid ""
 "Default I/O priority (ionice) for executed scripts. This can reduce the "
@@ -6380,9 +6398,6 @@ msgstr "Orden predeterminado para archivos en la columna izquierda."
 
 msgid "Default sort order for files in the right column."
 msgstr "Orden predeterminado para archivos en la columna derecha."
-
-msgid "Default volume offset"
-msgstr "Compensación de volumen predeterminado"
 
 #, python-format
 msgid "Default: '%s'."
@@ -17438,12 +17453,6 @@ msgstr ""
 "el temporizador."
 
 msgid ""
-"Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr ""
-"Seleccione \"Sí\" si los ajustes de volumen deben aplicarse a las pistas de "
-"sonido Dolby."
-
-msgid ""
 "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A "
 "command signal. Select 'No' for all other setups."
 msgstr ""
@@ -17864,6 +17873,9 @@ msgid ""
 msgstr ""
 "Seleccione \"Banda\" si utiliza un LNB \"Universal\", en caso contrario, "
 "consulte las especificaciones de su LNB."
+
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr "Seleccione 'Desactivado' para desactivar todos los ajustes automáticos de volumen. Seleccione 'Desplazamientos de volumen definidos' para asignar un desplazamiento específico al nivel de volumen del canal. Seleccione 'Último volumen usado/configurado' para recordar el último nivel de volumen usado para cada canal"
 
 msgid ""
 "Select 'Enabled' if this tuner has a signal cable connected, otherwise "
@@ -19319,6 +19331,10 @@ msgid ""
 msgstr ""
 "Configura el tipo de indicación de progreso en la pantalla de selección de "
 "canales."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr "Establezca el nivel de volumen para el canal '%s'."
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -22692,12 +22708,8 @@ msgstr "Este es el idioma seleccionado actualmente [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Este es el idioma local seleccionado actualmente [%s]"
 
-msgid ""
-"This is the initial / default volume offset applied to any services added "
-"the the volume adjust list."
-msgstr ""
-"Esta es la compensación de volumen inicial/predeterminada aplicada a "
-"cualquier servicio agregado a la lista de ajuste de volumen."
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr "Este es el desplazamiento de volumen inicial/predeterminado que se aplica a cualquier canal agregado a la lista de ajuste de volumen."
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -22718,12 +22730,8 @@ msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 "El menú ofrece opciones relacionadas con la gestión del software en el %s %s."
 
-msgid ""
-"This offset will only be used if the channel does not have its own volume "
-"offset."
-msgstr ""
-"Este compensación solo se utilizará si el canal no tiene su propia "
-"compensación de volumen."
+msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr "Este desplazamiento solo se utilizará si el canal no tiene su propio desplazamiento de volumen."
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -23499,6 +23507,9 @@ msgstr "Alternar auto refreso On/Off"
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Alternar entre listas grupos/epg"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr "Alternar entre los canales de TV y RADIO disponibles"
 
 msgid "Toggle display of image information"
 msgstr "Alternar visualización de la información de imagen"
@@ -25052,8 +25063,14 @@ msgstr "Acciones del ajuste de volumen"
 msgid "Volume Adjust Service Selection"
 msgstr "Ajuste de volumen de la selección de canales"
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr "Acciones de selección de servicio de ajuste de volumen"
+
 msgid "Volume Adjust Settings"
 msgstr "Configuraciones de ajuste de volumen"
+
+msgid "Volume adjustment mode"
+msgstr "Modo de ajuste de volumen"
 
 msgid "Volume display timer"
 msgstr "Tiempo visualización volumen"
@@ -28759,6 +28776,9 @@ msgstr "Selecciona el puerto de salida de vídeo con los botones ARRIBA/ABAJO"
 
 msgid "Default video mode selected for the TV."
 msgstr "Modo de vídeo predeterminado seleccionado para la TV."
+
+msgid "Default volume offset"
+msgstr "Desplazamiento de volumen predeterminado"
 
 msgid "Default video mode selected"
 msgstr "Modo de vídeo por defecto seleccionado"
