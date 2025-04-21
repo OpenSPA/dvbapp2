@@ -3994,8 +3994,8 @@ msgstr "PiP en cascada"
 msgid "Catalan / Valencian"
 msgstr "Catalán / Valenciano"
 
-msgid "Caution update not yet tested !!"
-msgstr "¡Cuidado, la actualización aún no ha sido probada!"
+msgid "Catch Up Player Actions"
+msgstr "Ponerse al día con acciones de reproducción"
 
 msgid "Cayman Islands"
 msgstr "Islas Caimán"
@@ -14678,8 +14678,8 @@ msgstr "Reproducción de DVDs"
 msgid "Play all audio files in the directory"
 msgstr "Reproduce todos los archivos de audio en el directorio"
 
-msgid "Play archive"
-msgstr "Archivo de reproducción"
+msgid "Play catch up service archive"
+msgstr "Archivo del servicio de recuperación de reproducción"
 
 msgid "Play audio in background"
 msgstr "Reproducir audio en segundo plano"
