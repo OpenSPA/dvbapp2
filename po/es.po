@@ -9033,7 +9033,7 @@ msgstr "IP del receptor reserva"
 msgid "Fallback remote receiver Port"
 msgstr "Puerto del receptor reserva"
 
-msgid "Fallback remote receiver setup"
+msgid "Remote Receiver Settings"
 msgstr "Ajustes del tuner reserva"
 
 msgid "Fallback remote receiver URL"
