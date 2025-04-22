@@ -16716,7 +16716,7 @@ msgstr "Ορισμός χρόνου απόκρυψης της μπάρας πλ�
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Ορισμός του χρόνου απόκρυψης της δεύτερης μπάρας πληροφοριών. Η μπάρα αποκρύπτεται πιέζοντας και το 'OK'."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Ρυθμίστε τον χρόνο αναμονής για την εκτέλεση της προεπιλεγμένης ενέργειας για τα μηνύματα τερματισμού, αναμονής ή επανεκκίνησης. (π.χ. χρήση στους χρονοδιακόπτες εγγραφής, λειτουργίας, ύπνου, ...)"
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
@@ -24403,14 +24403,6 @@ msgstr "®"
 
 #~ msgid "Update interval (in seconds)"
 #~ msgstr "Μεσοδιάστημα ενημέρωσης (σε δευτερόλεπτα)"
-
-#, python-format
-#~ msgid ""
-#~ "Your %s %s will be restarted after the removal of service\n"
-#~ "Do you want to remove now?"
-#~ msgstr ""
-#~ "Θα γίνει επανεκκίνηση του %s %s σας μετά την αφαίρεση της υπηρεσίας\n"
-#~ "Είστε έτοιμοι για αφαίρεση τώρα;"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "Αλλάξτε την ώρα τερματισμού της εγγραφής"
