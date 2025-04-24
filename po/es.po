@@ -3747,7 +3747,7 @@ msgid "Calculating..."
 msgstr "Calculando..."
 
 msgid "Calculation complete"
-msgstr "Cálculo completado"
+msgstr "Cálculo completo"
 
 msgid "Calibrate"
 msgstr "Calibrar"
@@ -9154,7 +9154,7 @@ msgid "File Commander"
 msgstr "Comando de archivos"
 
 msgid "File Commander - All tasks are complete."
-msgstr "Administrador de archivos - Todas las tareas se han completado."
+msgstr "Administrador de archivos - Todas las tareas están completas."
 
 msgid "File Commander Actions"
 msgstr "Acciones del Administrador de archivos"
@@ -22631,13 +22631,8 @@ msgstr "Este dispositivo ya está montado como HDD."
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Esta opción te permite cambiar audio a los altavoces BT."
 
-msgid ""
-"This allows you change the font size relative to skin size, so 1 increases "
-"by 1 point size, and -1 decreases by 1 point size."
-msgstr ""
-"Esto le permite cambiar el tamaño de la fuente en relación con el tamaño del "
-"skin, por lo que 1 aumenta en 1 punto de tamaño, y -1 disminuye en 1 punto "
-"de tamaño."
+msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
+msgstr "Esto le permite cambiar el tamaño de la fuente en relación con el tamaño del skin, por lo que 1 aumenta en 1 punto de tamaño, y -1 disminuye en 1 punto de tamaño."
 
 msgid "This allows you change the number of rows shown."
 msgstr "Te permite cambiar el número de filas mostradas."
