@@ -17246,7 +17246,7 @@ msgid "Scheduler log"
 msgstr "Programador Log"
 
 msgid "Scheduler Overview"
-msgstr "Programador de Temporizadores"
+msgstr "Descripción general del programador"
 
 msgid "Scheduler Settings"
 msgstr "Configuración del programador"
@@ -21619,10 +21619,10 @@ msgid "Swap services"
 msgstr "Cambiar canales"
 
 msgid "SwaptoNand"
-msgstr "Arrancar con memoria interna"
+msgstr "Cambiar a Flash"
 
 msgid "SwaptoSD"
-msgstr "Arrancar con SD"
+msgstr "Cambiar a SD"
 
 msgid "Swati"
 msgstr "Swati"
