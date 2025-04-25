@@ -4345,8 +4345,17 @@ msgstr "Chino"
 msgid "Chinese (Simplified)"
 msgstr "Chino (simplificado)"
 
+msgid "Chkroot Manager Actions"
+msgstr "Acciones del administrador Chkroot"
+
 msgid "Choice action"
 msgstr "Elige acción"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "¡Inicialización Chkroot MultiBoot en progreso!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Administrador MultiBoot Chkroot"
 
 msgid "Choice List Actions"
 msgstr "Acciones lista de opciones"
@@ -4402,6 +4411,15 @@ msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 "Elegir la frecuencia con la que se conectará al servidor IceTV para "
 "comprobar si hay actualizaciones."
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Cierre el Administrador MultiBoot Chkroot"
+
+msgid "Close the Device Manager screen"
+msgstr "Cerrar la pantalla del Administrador de dispositivos"
+
+msgid "Close the Device Manager screen and exit all menus"
+msgstr "Cerrar la pantalla del Administrador de dispositivos y salir de todos los menús"
 
 msgid ""
 "Choose the display formatting style for dates. 'D' / 'DD' is the date and "
@@ -7764,6 +7782,9 @@ msgstr "Habilitar Autograbación"
 
 msgid "Enable BT Audio"
 msgstr "Habilitar audio BT"
+
+msgid "Enable Chkroot MultiBoot"
+msgstr "Habilitar Chkroot MultiBoot"
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr "Habilitar compensaciones Dolby Digital / Dolby AC-3"
@@ -12448,10 +12469,6 @@ msgstr "Acciones del buzón de mensajes"
 
 msgid "Message pop up timeout"
 msgstr "Tiempo de espera del mensaje emergente"
-
-#
-msgid "Message..."
-msgstr "Mensaje..."
 
 msgid "Metering mode"
 msgstr "Modo de medición"
@@ -21194,6 +21211,9 @@ msgstr "Iniciar teletexto"
 msgid "Start test"
 msgstr "Comenzar prueba"
 
+msgid "Start the Chkroot initialization"
+msgstr "Iniciar la inicialización de Chkroot"
+
 msgid "Start the Kexec initialization"
 msgstr "Iniciar la inicialización Kexec"
 
@@ -21262,9 +21282,6 @@ msgstr "Estado del display en reposo"
 
 msgid "Status unavailable!"
 msgstr "Estado no disponible!"
-
-msgid "Status:"
-msgstr "Estado:"
 
 #
 msgid "Step east"
@@ -22116,6 +22133,12 @@ msgstr "Tu %s %s lee los datos guardados en EPG cada (horas)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Tu %s %s almacena los datos de EPG cada (horas)."
+
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "El %s %s se reiniciará dentro de 1 segundo."
+
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr "El %s %s se reiniciará en 10 segundos, a menos que haya slots eMMC para restaurar. Restaurar los slots eMMC puede tardar de 1 a 5 minutos por slot."
 
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
@@ -23379,10 +23402,7 @@ msgid "Timer recording location"
 msgstr "Ruta de grabación del temporizador"
 
 msgid "Timer selection"
-msgstr "Selección de grabación"
-
-msgid "Timer selection..."
-msgstr "Selección del temporizador …"
+msgstr "Selección del temporizador"
 
 #
 msgid "Timer type"
@@ -23609,10 +23629,10 @@ msgid "Transcode"
 msgstr "Transcodificar"
 
 msgid "Transcoding"
-msgstr "Transcoding"
+msgstr "Transcodificar"
 
-msgid "Transcoding: "
-msgstr "Transcodificar: "
+msgid "Translate Subs On This Service"
+msgstr "Traducir subtítulos en este canal"
 
 #
 msgid "Translation"
@@ -24107,29 +24127,11 @@ msgstr "Quitar como canal de inicio"
 msgid "Unsupported"
 msgstr "No soportado"
 
-msgid "Unused 0x22"
-msgstr ""
+msgid "Until standby/restart"
+msgstr "Hasta el modo reposo/reinicio"
 
-msgid "Unused 0x52"
-msgstr ""
-
-msgid "Unused 0x53"
-msgstr ""
-
-msgid "Unused 0x54"
-msgstr ""
-
-msgid "Unused 0x71"
-msgstr ""
-
-msgid "Unused 0x72"
-msgstr ""
-
-msgid "Unused 0xb1"
-msgstr ""
-
-msgid "Unused 0xb2"
-msgstr ""
+msgid "Unused %s"
+msgstr "No usado %s"
 
 msgid "Unzipping Image"
 msgstr "Descomprimiendo imagen"
@@ -26517,14 +26519,8 @@ msgstr "Acciones de zoom"
 msgid "Zoom In/Out TV"
 msgstr "Acercar/alejar TV"
 
-msgid "Zoom In/Out TV..."
-msgstr "Acercar/alejar TV…"
-
 msgid "Zoom Off"
-msgstr "Zoom off"
-
-msgid "Zoom Off..."
-msgstr "Zoom desconectado..."
+msgstr "Zoom desconectado"
 
 msgid "Zoom from left"
 msgstr "Zoom desde la izquierda"
@@ -27316,9 +27312,6 @@ msgstr "No comprobado"
 msgid "not used"
 msgstr "No utilizado"
 
-msgid "not_tested"
-msgstr "no probado"
-
 #
 msgid "nothing connected"
 msgstr "Nada conectado"
@@ -27573,35 +27566,8 @@ msgstr "Mostrar todas las etiquetas"
 msgid "Show Alternatives"
 msgstr "Mostrar alternativas"
 
-msgid "show cards with uphop 0"
-msgstr "Mostrar tarjetas con salto superior 0"
-
-msgid "show cards with uphop 1"
-msgstr "Mostrar tarjetas con salto superior 1"
-
-msgid "show cards with uphop 2"
-msgstr "Mostrar tarjetas con salto superior 2"
-
-msgid "show cards with uphop 3"
-msgstr "Mostrar tarjetas con salto superior 3"
-
-msgid "show cards with uphop 4"
-msgstr "Mostrar tarjetas con salto superior 4"
-
-msgid "show cards with uphop 5"
-msgstr "Mostrar tarjetas con salto superior 5"
-
-msgid "show cards with uphop 6"
-msgstr "Mostrar tarjetas con salto superior 6"
-
-msgid "show cards with uphop 7"
-msgstr "Mostrar tarjetas con salto superior 7"
-
-msgid "show cards with uphop 8"
-msgstr "Mostrar tarjetas con salto superior 8"
-
-msgid "show cards with uphop 9"
-msgstr "Mostrar tarjetas con salto superior 9"
+msgid "Show cards with uphop %s"
+msgstr "Mostrar tarjetas con salto superior %s"
 
 msgid "show picons in quickzap"
 msgstr "Mostrar picons en zapeo rápido"
@@ -27807,10 +27773,6 @@ msgid "untestable"
 msgstr "incomprobable"
 
 #
-msgid "until standby/restart"
-msgstr "Hasta el reposo/reinicio"
-
-#
 msgid "update"
 msgstr "actualización"
 
@@ -27881,10 +27843,6 @@ msgstr[1] "con los errores %d"
 # neu 04.01.13 husky
 msgid "with errors"
 msgstr "con errores"
-
-# neu 04.01.13 husky
-msgid "with_errors"
-msgstr "con_errores"
 
 #
 msgid "working"
@@ -28722,13 +28680,6 @@ msgstr "Seleccione un dispositivo para usar en los slots adicionales"
 #
 msgid "Slot Manager"
 msgstr "Administrador de slots"
-
-msgid ""
-"The %s %s will reboot within 10 seconds, unless there are eMMC slots to "
-"restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
-msgstr ""
-"El %s %s se reiniciará en 10 seg, al menos que haya slots eMMC a restaurar. "
-"Restaurar slots eMMC puede durar entre 1 y 5 minutos por slot."
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"

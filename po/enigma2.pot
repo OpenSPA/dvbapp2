@@ -6617,10 +6617,10 @@ msgstr ""
 msgid "Enable BT Audio"
 msgstr ""
 
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+msgid "Enable Chkroot MultiBoot"
 msgstr ""
 
-msgid "Enable Chkroot MultiBoot"
+msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr ""
 
 msgid "Enable EIT EPG"
@@ -10675,7 +10675,7 @@ msgstr ""
 msgid "Message pop up timeout"
 msgstr ""
 
-msgid "Message..."
+msgid "Message"
 msgstr ""
 
 msgid "Metering mode"
@@ -13649,7 +13649,7 @@ msgid "Reader"
 msgstr ""
 
 #, python-format
-msgid "Ready to install \"%s\" ?"
+msgid "Ready to install "%s"?"
 msgstr ""
 
 #, python-format
@@ -22889,6 +22889,9 @@ msgstr ""
 msgid "show all tags"
 msgstr ""
 
+msgid "Show Alternatives"
+msgstr ""
+
 msgid "show program information..."
 msgstr ""
 
@@ -22896,6 +22899,12 @@ msgid "Show Transponder Information"
 msgstr ""
 
 msgid "show/game show (general)"
+msgstr ""
+
+msgid "show picons in quickzap"
+msgstr ""
+
+msgid "show picons in service list"
 msgstr ""
 
 msgid "shuffle"
