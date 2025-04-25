@@ -13622,6 +13622,10 @@ msgid "Reader"
 msgstr ""
 
 #, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr ""
+
+#, python-format
 msgid "Ready to install \"%s\"?"
 msgstr ""
 
@@ -16746,6 +16750,10 @@ msgstr ""
 msgid "Show build information"
 msgstr ""
 
+#, python-format
+msgid "Show cards with uphop %s"
+msgstr ""
+
 msgid "Show channel number in InfoBar"
 msgstr ""
 
@@ -17923,7 +17931,7 @@ msgstr ""
 msgid "Status unavailable!"
 msgstr ""
 
-msgid "Status:"
+msgid "Step"
 msgstr ""
 
 msgid "Step east"
@@ -19522,9 +19530,6 @@ msgstr ""
 msgid "Timer selection"
 msgstr ""
 
-msgid "Timer selection..."
-msgstr ""
-
 msgid "Timer type"
 msgstr ""
 
@@ -19722,7 +19727,7 @@ msgstr ""
 msgid "Transcoding"
 msgstr ""
 
-msgid "Transcoding: "
+msgid "Translate Subs On This Service"
 msgstr ""
 
 msgid "Translation"
@@ -20142,28 +20147,10 @@ msgstr ""
 msgid "Unsupported"
 msgstr ""
 
-msgid "Unused 0x22"
+msgid "Until standby/restart"
 msgstr ""
 
-msgid "Unused 0x52"
-msgstr ""
-
-msgid "Unused 0x53"
-msgstr ""
-
-msgid "Unused 0x54"
-msgstr ""
-
-msgid "Unused 0x71"
-msgstr ""
-
-msgid "Unused 0x72"
-msgstr ""
-
-msgid "Unused 0xb1"
-msgstr ""
-
-msgid "Unused 0xb2"
+msgid "Unused %s"
 msgstr ""
 
 msgid "Unzipping Image"
@@ -21945,13 +21932,7 @@ msgstr ""
 msgid "Zoom In/Out TV"
 msgstr ""
 
-msgid "Zoom In/Out TV..."
-msgstr ""
-
 msgid "Zoom Off"
-msgstr ""
-
-msgid "Zoom Off..."
 msgstr ""
 
 msgid "Zoom from left"
@@ -22656,9 +22637,6 @@ msgstr ""
 msgid "not used"
 msgstr ""
 
-msgid "not_tested"
-msgstr ""
-
 msgid "nothing connected"
 msgstr ""
 
@@ -22871,45 +22849,6 @@ msgid "show all cards"
 msgstr ""
 
 msgid "show all tags"
-msgstr ""
-
-msgid "Show Alternatives"
-msgstr ""
-
-msgid "show cards with uphop 0"
-msgstr ""
-
-msgid "show cards with uphop 1"
-msgstr ""
-
-msgid "show cards with uphop 2"
-msgstr ""
-
-msgid "show cards with uphop 3"
-msgstr ""
-
-msgid "show cards with uphop 4"
-msgstr ""
-
-msgid "show cards with uphop 5"
-msgstr ""
-
-msgid "show cards with uphop 6"
-msgstr ""
-
-msgid "show cards with uphop 7"
-msgstr ""
-
-msgid "show cards with uphop 8"
-msgstr ""
-
-msgid "show cards with uphop 9"
-msgstr ""
-
-msgid "show picons in quickzap"
-msgstr ""
-
-msgid "show picons in service list"
 msgstr ""
 
 msgid "show program information..."
@@ -23149,9 +23088,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "with errors"
-msgstr ""
-
-msgid "with_errors"
 msgstr ""
 
 msgid "working"
