@@ -3836,7 +3836,16 @@ msgstr ""
 msgid "Chinese (Simplified)"
 msgstr ""
 
+msgid "Chkroot Manager Actions"
+msgstr ""
+
 msgid "Choice action"
+msgstr ""
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr ""
+
+msgid "Chkroot MultiBoot Manager"
 msgstr ""
 
 msgid "Choice List Actions"
@@ -4066,6 +4075,21 @@ msgid "Close dialog"
 msgstr ""
 
 msgid "Close screen"
+msgstr ""
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr ""
+
+msgid "Close the Device Manager screen"
+msgstr ""
+
+msgid "Close the Device Manager screen and exit all menus"
+msgstr ""
+
+msgid "Close the Kexec MultiBoot Manager"
+msgstr ""
+
+msgid "Close the Plugin Browser screen"
 msgstr ""
 
 msgid "Close the choice box"
@@ -6594,6 +6618,9 @@ msgid "Enable BT Audio"
 msgstr ""
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+msgstr ""
+
+msgid "Enable Chkroot MultiBoot"
 msgstr ""
 
 msgid "Enable EIT EPG"
@@ -17864,6 +17891,9 @@ msgstr ""
 msgid "Start test"
 msgstr ""
 
+msgid "Start the Chkroot initialization"
+msgstr ""
+
 msgid "Start the Kexec initialization"
 msgstr ""
 
@@ -18688,6 +18718,14 @@ msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr ""
 
 msgid "The %s %s stores the EPG data every (hours)."
+msgstr ""
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr ""
+
+#, python-format
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
 msgstr ""
 
 #, python-format
@@ -23756,9 +23794,6 @@ msgstr ""
 msgid "Choose the target location for the slots."
 msgstr ""
 
-msgid "Close the Kexec MultiBoot Manager"
-msgstr ""
-
 msgid "Create Slots"
 msgstr ""
 
@@ -23793,9 +23828,6 @@ msgid "Select a device to use for the additional slots"
 msgstr ""
 
 msgid "Slot Manager"
-msgstr ""
-
-msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
 msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
@@ -24166,9 +24198,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Add services to this bouquet?"
-msgstr ""
-
-msgid "Close the Plugin Browser screen"
 msgstr ""
 
 msgid "Development Packages"
