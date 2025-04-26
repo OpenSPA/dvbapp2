@@ -473,7 +473,7 @@ class FlashImage(Screen):
 				return
 			# OPENSPA [morser] set destination with spanewfirm
 			if self.destpath:
-				destination, isDevice = findMedia(self.destpath)
+				destination, isDevice = findMedia([self.destpath])
 			else:
 				destination, isDevice = findMedia(["/media/hdd", "/media/usb"])
 			if destination:
