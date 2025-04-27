@@ -843,10 +843,7 @@ class MultiBootClass():
 				if fsType == "FAT32":
 					return True
 				else:
-					sectorsPerFat_32 = int.from_bytes(bootSector[36:40], 'little')
-					if sectorsPerFat_32 != 0:
-						return True
-					return False
+					return int.from_bytes(bootSector[36:40], "little") != 0
 		except Exception:
 			return False
 
