@@ -136,7 +136,7 @@ class MultiBootManager(Screen):
 				imageList.extend(imageLists[bootCode])
 			if "" in imageLists:
 				imageList.extend(imageLists[""])
-			if self.initialize:
+			if hasattr(self, "initialize"):
 				self.initialize = False
 				for index, item in enumerate(imageList):
 					if item[0][1] and item[0][1][4]:
