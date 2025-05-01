@@ -276,7 +276,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 		</list>
 	</step>
 
-	<step id="scan" nextstep="reboot">
+	<step id="scan" nextstep="end">
 		<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value and not self.ExistsSPABackup()
@@ -307,7 +307,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 		<text value="Do you want to do another manual service scan?" />
 		<displaytext value="Do another manual service scan?" />
 		<list>
-			<listentry caption="No, scan later manually" step="reboot" />
+			<listentry caption="No, scan later manually" step="end" />
 			<listentry caption="Yes, do another manual scan now" step="manualscan" />
 		</list>
 	</step>
