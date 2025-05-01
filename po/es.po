@@ -9067,7 +9067,7 @@ msgstr "IP del receptor reserva"
 msgid "Fallback remote receiver Port"
 msgstr "Puerto del receptor reserva"
 
-msgid "Remote Receiver Settings"
+msgid "Fallback Remote Receiver Settings"
 msgstr "Ajustes del tuner reserva"
 
 msgid "Fallback remote receiver URL"
@@ -19238,6 +19238,9 @@ msgstr ""
 "Configura la ubicación por defecto de tus archivos Timeshift. Pulsa 'OK' "
 "para añadir ubicaciones nuevas o izquierda/derecha para escoger una actual."
 
+msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
+msgstr "Establezca la ubicación predeterminada para guardar sus archivos Timeshift. Pulse 'OK' para añadir nuevas ubicaciones y pulse IZQUIERDA/DERECHA para seleccionar una de las ubicaciones previamente definidas."
+
 msgid ""
 "Set the default movie selection location for your media files. Press 'OK' to "
 "add new locations, press 'LEFT'/'RIGHT' to select from previously defined "
@@ -23310,6 +23313,9 @@ msgstr "Guardar Timeshift durante el zapeo"
 
 msgid "Time shift save failed!"
 msgstr "¡Error al guardar Timeshift!"
+
+msgid "Time shift save location"
+msgstr "Ubicación para guardar Timeshift"
 
 msgid "Time shift save recording (Select event)"
 msgstr "Grabación de Timeshift guardada (seleccionar programa)"
