@@ -5476,6 +5476,9 @@ msgstr ""
 msgid "Defined / Active"
 msgstr ""
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr ""
 
@@ -9961,6 +9964,9 @@ msgid "Last used column"
 msgstr ""
 
 msgid "Last used share: "
+msgstr ""
+
+msgid "Last used/set volume"
 msgstr ""
 
 msgctxt "third event: 'third' event label"

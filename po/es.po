@@ -6436,6 +6436,9 @@ msgstr "Define el sufijo DNS."
 msgid "Defined / Active"
 msgstr "Definido / Activo"
 
+msgid "Defined volume offset"
+msgstr "Desplazamiento de volumen definido"
+
 msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
 "problematic with NAS."
@@ -11682,6 +11685,9 @@ msgstr "Última columna usada"
 
 msgid "Last used share: "
 msgstr "Último intercambio: "
+
+msgid "Last used/set volume"
+msgstr "Último volumen utilizado/configurado"
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
