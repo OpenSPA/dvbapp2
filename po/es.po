@@ -6868,7 +6868,7 @@ msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
 "End Action was disabled!"
 msgstr ""
-"La diferencia entre el inicio y el final del temporizador debe ser igual o mayor a %d minutos."
+"La diferencia entre el inicio y el final del temporizador debe ser igual o mayor a %d minuto.\n"
 "¡La acción de finalización fue deshabilitada!"
 
 msgid "Digit entry for service selection"
