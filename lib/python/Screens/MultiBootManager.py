@@ -128,7 +128,9 @@ class MultiBootManager(Screen):
 					if imageLists.get(boot) is None:
 						imageLists[boot] = []
 					current = currentMsg if boot == bootCode and slot == slotCode else ""
-					imageLists[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotImages[slot]["imagename"], current), (slot, boot, slotImages[slot]["status"], slotImages[slot]["ubi"], current != ""))))
+					device = slotImages[slot]["device"]
+					slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "USB"
+					imageLists[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotType, slotImages[slot]["imagename"], current), (slot, boot, slotImages[slot]["status"], slotImages[slot]["ubi"], current != ""))))
 			for bootCode in sorted(imageLists.keys()):
 				if bootCode == "":
 					continue
