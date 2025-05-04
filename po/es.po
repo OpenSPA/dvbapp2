@@ -268,8 +268,10 @@ msgid "%.2f GB"
 msgstr "%.2f GB"
 
 #, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
+msgid "%.2f Second"
+msgid_plural "%.2f Seconds"
+msgstr[0] "%.2f Segundo"
+msgstr[1] "%.2f Seconds"
 
 #, python-format
 msgid "%02d.%02d."
@@ -2764,7 +2766,7 @@ msgstr "Acciones de relación de aspecto"
 
 #
 msgid "Open Aspect Ratio Settings"
-msgstr "Lista de aspectos…"
+msgstr "Abrir configuración de relación de aspecto"
 
 msgid "Aspect ratio"
 msgstr "Aspecto"
@@ -2861,14 +2863,7 @@ msgstr "Selección de idioma de audio 4"
 
 #
 msgid "Open Audio options"
-msgstr "Opciones de audio..."
-
-# A/V Settings
-msgid "Audio volume step size"
-msgstr "Tamaño de la etapa de volumen del audio"
-
-msgid "Audio volume step size fast mode"
-msgstr "Modo rápido del tamaño de la etapa de volumen del audio"
+msgstr "Opciones de audio"
 
 # Language
 msgid "Australia"
@@ -3915,6 +3910,12 @@ msgstr "Cancelar extracción"
 
 msgid "Cancel save time shift as movie"
 msgstr "No guardar Timeshift como película"
+
+msgid "Cancel the scan and exit all menus"
+msgstr "Cancelar el escaneo y salir de todos los menús"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Cancelar el escaneo y salir del escáner"
 
 msgid "Cancel the selection"
 msgstr "Cancelar la selección"
@@ -11005,10 +11006,6 @@ msgstr "Modo barra de información EPG"
 msgid "InfoBar Event View Actions"
 msgstr "Acciones de la vista de eventos de la barra de información"
 
-#
-msgid "RDS Actions"
-msgstr "Acciones RDS de la barra de información"
-
 msgid "Show/Hide Actions"
 msgstr "Acciones de mostrar/ocultar de la barra de información"
 
@@ -13966,6 +13963,9 @@ msgstr "Sí, guíame por el proceso de actualización"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "Open RFmod Settings"
+msgstr "Mostrar ajuste RFmod"
+
 msgid "OSCam Information"
 msgstr "Información OSCam"
 
@@ -14644,6 +14644,15 @@ msgstr "Realizar un flash en línea en su lugar"
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "¿Eliminar permanentemente todas las grabaciones de la papelera?"
 
+msgid "Permanently disable the MultiBoot option?"
+msgstr "¿Desactivar permanentemente la opción MultiBoot?"
+
+msgid "Permanently ignore this device"
+msgstr "Ignorar permanentemente este dispositivo"
+
+msgid "Permanently mount as %s"
+msgstr "Montar permanentemente como %s"
+
 msgid "Permanently remove all deleted items"
 msgstr "Eliminar de forma permanente todos los elementos eliminados"
 
@@ -14794,6 +14803,9 @@ msgstr "Reproducir anterior"
 #
 msgid "Open Movie Selection"
 msgstr "Reproducir películas grabadas"
+
+msgid "Play selected service in a PiP window"
+msgstr "Canal seleccionado en la ventana PiP"
 
 msgid "Play Service With Stream Relay"
 msgstr "Reproducir servicio con Stream Relay"
@@ -15840,6 +15852,9 @@ msgstr "Solo lectura"
 
 msgid "Read/Write"
 msgstr "Lectura/Escritura"
+
+msgid "RDS Actions"
+msgstr "Acciones RDS de la barra de información"
 
 #
 msgid "REC"
@@ -18319,6 +18334,12 @@ msgstr "Seleccione la entrada %s"
 msgid "Select the access mode for the automatically exported samba shares."
 msgstr "Seleccione el modo de acceso para los recursos compartidos de Samba exportados automáticamente."
 
+msgid "Select the currently highlighted service and exit"
+msgstr "Seleccione el servicio actualmente resaltado y salga"
+
+msgid "Select the currently highlighted timer"
+msgstr "Seleccione el temporizador resaltado actualmente"
+
 msgid "Select the mountpoint for the device."
 msgstr "Seleccione el punto de montaje para el dispositivo."
 
@@ -19054,7 +19075,6 @@ msgstr "Nombre del canal"
 msgid "Service Number and Service Name"
 msgstr "Número de canal y nombre de canal"
 
-#
 msgid "Service Number, Picon and Service Name"
 msgstr "Nombre de canal, Picon y nombre de canal"
 
@@ -19064,18 +19084,22 @@ msgstr "Acciones selección de canales"
 msgid "Service Selection/Zap Actions"
 msgstr "Selección de canales/Acciones de zapeo"
 
-#
 msgid "Service Title mode"
 msgstr "Modo título de canales"
 
 msgid "Service Zap Actions"
 msgstr "Accions cambio de canales"
 
-#
+msgid "Service and PID information"
+msgstr "Información de servicio y PID"
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr "Información de servicio y PID para '%s'"
+
 msgid "Service font size"
 msgstr "Tamaño de fuente del canal"
 
-#
 msgid "Service has been added to the selected bouquet."
 msgstr "El canal ha sido añadido al grupo seleccionado."
 
@@ -19252,6 +19276,12 @@ msgstr "Configurar sistema"
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Configura la dirección MAC de tu %s %s."
+
+msgid "Set the skip time interval for the '%s' button."
+msgstr "Establezca el intervalo de tiempo de salto para el botón '%s'."
+
+msgid "Set the skip time interval for the '%s'/'%s' buttons."
+msgstr "Establezca el intervalo de tiempo de salto para los botones '%s'/'%s'."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Configura el ID de usuario del OpenWebif del sintonizador reserva"
@@ -19921,9 +19951,6 @@ msgstr "Mostrar PiP en MiniTV"
 
 msgid "Show PiP in the Front Display"
 msgstr "Mostrar PiP en el LCD"
-
-msgid "Open RFmod Settings"
-msgstr "Mostrar ajuste RFmod"
 
 msgid "Show Picon packages"
 msgstr "Mostrar paquetes de Picon"
@@ -29433,12 +29460,6 @@ msgstr "Mostrar paquetes OpenPLi"
 
 msgid "Show OpenViX packages"
 msgstr "Mostrar paquetes OpenViX"
-
-msgid "Show Picon packages"
-msgstr "Mostrar paquetes de picon"
-
-msgid "Show Plugin Skin packages"
-msgstr "Mostrar paquetes de skins"
 
 msgid "Show Security packages"
 msgstr "Mostrar paquetes de seguridad"
