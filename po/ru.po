@@ -15433,8 +15433,8 @@ msgstr "Перемотка вперёд длинная"
 msgid "Seekbar"
 msgstr "Искать"
 
-msgid "Seekbar activation"
-msgstr "Активация Seekbar"
+msgid "SeekBar activation"
+msgstr "Вызов панели перемотки"
 
 msgid "Seekbar sensibility"
 msgstr "Шаг Seekbar"
@@ -15954,8 +15954,8 @@ msgstr "Выберите провайдера для добавления..."
 msgid "Select refresh rate"
 msgstr "Выберите частоту обновления"
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Выберите кнопку активации Seekbar ВПРАВО/ВЛЕВО или << >> (долгое нажатие)."
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "Выберите активацию панели перемотки кнопками ВПРАВО/ВЛЕВО или ◀◀ / ▶▶ (долгое нажатие)."
 
 msgid "Select service information to view:"
 msgstr "Выберите информацию о канале для просмотра:"

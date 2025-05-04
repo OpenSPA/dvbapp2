@@ -15498,8 +15498,8 @@ msgstr ""
 msgid "Seekbar"
 msgstr ""
 
-msgid "Seekbar activation"
-msgstr ""
+msgid "SeekBar activation"
+msgstr "சீக்பார் செயல்படுத்தல்"
 
 msgid "Seekbar sensibility"
 msgstr ""
@@ -16046,8 +16046,8 @@ msgstr ""
 msgid "Select refresh rate"
 msgstr ""
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr ""
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "அம்பு எல்/ஆர் (நீண்ட) அல்லது << >> (நீண்ட) மூலம் செயல்படுத்தப்பட வேண்டிய சீக்பரைத் தேர்ந்தெடுக்கவும்."
 
 msgid "Select service information to view:"
 msgstr ""

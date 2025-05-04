@@ -16866,7 +16866,7 @@ msgstr "Pulsació llarga avanç ràpid"
 msgid "Seekbar"
 msgstr "Barra de recerca"
 
-msgid "Seekbar activation"
+msgid "SeekBar activation"
 msgstr "Activació de la barra de posicionament"
 
 msgid "Seekbar sensibility"
@@ -17572,13 +17572,8 @@ msgstr "Selecciona proveïdor per afegir …"
 msgid "Select refresh rate"
 msgstr "Seleccioneu el percentatge de refresc"
 
-msgid "Select satellites"
-msgstr "Selecciona satèl·lits"
-
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr ""
-"Selecciona barra de recerca que s'activarà amb fletxa Esq/Drt (pulsació "
-"prolongada) or <<>> (pulsación prolongada)"
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "Selecciona barra de recerca que s'activarà amb fletxa Esq/Drt (pulsació prolongada) or <<>> (pulsación prolongada)"
 
 #
 msgid "Select service to add..."

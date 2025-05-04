@@ -15373,8 +15373,8 @@ msgstr "向前长跳播"
 msgid "Seekbar"
 msgstr "搜索栏"
 
-msgid "Seekbar activation"
-msgstr "搜索栏激活"
+msgid "SeekBar activation"
+msgstr "进度条激活"
 
 msgid "Seekbar sensibility"
 msgstr "搜索栏灵敏度"
@@ -15894,8 +15894,8 @@ msgstr "选择并添加供应商..."
 msgid "Select refresh rate"
 msgstr "选择刷新率"
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "选择要激活的搜索栏,通过L/R箭头(长按)或<< >>(长按)."
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "选择要激活的进度条，通过（长按）左/右键或（长按）<< >>。"
 
 msgid "Select service information to view:"
 msgstr ""
