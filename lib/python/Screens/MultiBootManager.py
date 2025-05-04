@@ -121,7 +121,7 @@ class MultiBootManager(Screen):
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 			slotImageList = sorted(slotImages.keys(), key = best_sort)  ##### OPENSPA [morser] Add best sorted function ###############
 			currentMsg = "  -  %s" % _("Current")
-			slotMsg = _("Slot '%s': %s%s")
+			slotMsg = _("Slot '%s' %s: %s%s")
 			imageLists = {}
 			for slot in slotImageList:
 				for boot in slotImages[slot]["bootCodes"]:
