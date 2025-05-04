@@ -4238,6 +4238,9 @@ msgstr "Retardo al zapear con el primer botón"
 msgid "Service zap delay mode"
 msgstr "Modo de retardo al zapear"
 
+msgid "Service zap screen contents"
+msgstr "Contenido de la pantalla de canal zap"
+
 #
 msgid "Channel:"
 msgstr "Canal:"
@@ -13902,6 +13905,15 @@ msgstr ""
 msgid "Number"
 msgstr "Número"
 
+msgid "Number and name"
+msgstr "Número y nombre"
+
+msgid "Number and picon"
+msgstr "Número y picon"
+
+msgid "Number, name and picon"
+msgstr "Número, nombre y picon"
+
 msgid "Number of IP Addresses"
 msgstr "Número de direcciones IP"
 
@@ -13913,6 +13925,9 @@ msgstr "Número de filas"
 
 msgid "Number of rows to display."
 msgstr "Número de filas a mostrar."
+
+msgid "Number only"
+msgstr "Sólo números"
 
 msgid "Number or SMS style data entry"
 msgstr "Introducción de datos en forma de número o de SMS"
@@ -18581,6 +18596,9 @@ msgstr ""
 
 msgid "Select the next item in the list"
 msgstr "Seleccione el siguiente elemento de la lista"
+
+msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
+msgstr "Seleccione la información de canal preferida para mostrar, además del número de canal, en la pantalla emergente de selección de canal."
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr ""
@@ -29388,9 +29406,6 @@ msgstr "Mostrar paquetes de display"
 
 msgid "Show Driver packages"
 msgstr "Mostrar paquetes de drivers"
-
-msgid "Show Extension packages"
-msgstr "Mostrar paquetes de extensiones"
 
 msgid "Show Kernel packages"
 msgstr "Mostrar paquetes de kernel"
