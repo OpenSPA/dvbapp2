@@ -14100,8 +14100,8 @@ msgstr "Abrir"
 msgid "Open AutoTimer"
 msgstr "Abrir autotemporizadores"
 
-msgid "Open AutoTimerlist"
-msgstr "Abrir lista de temporizadores automáticos"
+msgid "Open AutoTimer Overview"
+msgstr "Abrir Temporizadores Automáticos"
 
 msgid "Open EPGSearch"
 msgstr "Abrir EPGSearch"
@@ -14121,12 +14121,12 @@ msgstr "Abrir configuraciones"
 msgid "Open Similar List Channel List"
 msgstr "Abrir lista de canales similares"
 
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Abrir lista de temporizadores"
 
 #
-msgid "Open bouquetlist"
-msgstr "Abrir lista"
+msgid "Open Bouquet selection"
+msgstr "Selección de favoritos abiertos"
 
 msgid "Open context menu"
 msgstr "Abrir el menú contextual"
@@ -14768,7 +14768,7 @@ msgid "Play previous"
 msgstr "Reproducir anterior"
 
 #
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Reproducir películas grabadas"
 
 msgid "Play Service With Stream Relay"
@@ -19767,7 +19767,7 @@ msgstr "Mostrar selección de audio"
 msgid "Show AutoTimer List"
 msgstr "Mostrar lista de autotemporizadores"
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Mostrar portal Box"
 
 msgid "Show CCcam Info"
@@ -19795,8 +19795,11 @@ msgstr "Mostrar EPG del canal actual…"
 msgid "Show EventView"
 msgstr "Mostrar vista de programa"
 
-msgid "Show Format Setup"
-msgstr "Mostrar el ajuste de formato"
+msgid "Show Extension packages"
+msgstr "Mostrar extensión de paquetes"
+
+msgid "Open VideoMode"
+msgstr "Abrir modo de vídeo"
 
 msgid "Show Graphical EPG"
 msgstr "Mostrar EPG gráfica"
@@ -19836,7 +19839,7 @@ msgstr "Mostrar la barra de información al pasar adelante/atrás"
 msgid "Show InfoBar picons"
 msgstr "Mostrar picon en la barra de información"
 
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Mostrar información"
 
 msgid "Show Live in MiniTV"
@@ -20316,7 +20319,7 @@ msgstr "Mostrar iconos de tipo de servicio"
 msgid "Show servicelist or movies"
 msgstr "Mostrar lista de programas o películas"
 
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Mostrar ajustes"
 
 msgid "Show setup default value"
@@ -20386,10 +20389,10 @@ msgstr "Mostrar pantalla de configuración de logs"
 msgid "Show the OSCam information screen"
 msgstr "Mostrar pantalla de información OSCam"
 
-msgid "Show the PowerTimer"
-msgstr "Mostrar temporizador de apagado"
+msgid "Open Scheduler Overview"
+msgstr "Descripción general del programador abierto"
 
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Mostrar temporizador de apagado"
 
 msgid "Show the information on current event."
@@ -20401,10 +20404,10 @@ msgstr "Mostrar lista de autotemporizadores."
 msgid "Show the list of timers."
 msgstr "Mostrar lista de temporizadores."
 
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Mostrar el centro multimedia"
 
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Mostrar el reproductor de medios"
 
 msgid "Show the media player..."
@@ -20413,18 +20416,18 @@ msgstr "Mostrar reproductor de recursos..."
 msgid "Show the plugin browser.."
 msgstr "Mostrar explorador de plugins..."
 
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Mostrar plugins"
 
 #
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Mostrar el reproductor de radio"
 
 msgid "Show the task list"
 msgstr "Mostrar lista de tareas"
 
 #
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Mostrar reproductor de TV"
 
 msgid "Show time elapsed as positive"
@@ -20581,7 +20584,7 @@ msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Título simple (compatibilidad para más reproductores)"
 
 # Mediaplayer Setup
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "Enumerar dispositivos de almacenamiento."
 
 msgid "Simple zoom"
@@ -23571,7 +23574,7 @@ msgstr "Alternar selecciones"
 msgid "Toggle service name display"
 msgstr "Alternar la visualización del nombre del canal"
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Cambia entre televisión y radio"
 
 msgid "Togo"
@@ -27155,7 +27158,7 @@ msgid "languages"
 msgstr "idiomas"
 
 #
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "Salir del reproductor de películas"
 
 #

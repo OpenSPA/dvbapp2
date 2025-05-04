@@ -13119,7 +13119,7 @@ msgid "Open AutoTimer"
 msgstr "AutoTimer anzeigen"
 
 #
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "AutoTimer-Liste anzeigen"
 
 msgid "Open EPGSearch"
@@ -13141,11 +13141,11 @@ msgid "Open Similar List Channel List"
 msgstr "Ähnliche Senderliste öffnen"
 
 #
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Timer anzeigen"
 
 #
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "Favoritenliste öffnen"
 
 msgid "Open context menu"
@@ -13784,7 +13784,7 @@ msgid "Play previous"
 msgstr "Vorherigen abspielen"
 
 #
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Aufgenommene Filme abspielen"
 
 msgid "Play selected service in a PiP window"
@@ -18133,7 +18133,7 @@ msgstr "Audiomenü"
 msgid "Show AutoTimer List"
 msgstr "Alle AutoTimer anzeigen"
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Box-Portal anzeigen"
 
 msgid "Show CCcam Info"
@@ -18170,7 +18170,7 @@ msgstr "Sendungsinformation anzeigen"
 msgid "Show Extension packages"
 msgstr "Erweiterungspakete anzeigen"
 
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "Samba-Einstellungen anzeigen"
 
 msgid "Show Graphical EPG"
@@ -18212,7 +18212,7 @@ msgid "Show InfoBar picons"
 msgstr "Senderlogo (Picon) in der Infoleiste anzeigen"
 
 #
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Informationen anzeigen"
 
 msgid "Show Kernel packages"
@@ -18698,7 +18698,7 @@ msgstr "Servicetyp-Symbole anzeigen"
 msgid "Show servicelist or movies"
 msgstr "Senderliste oder Filme anzeigen"
 
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Einstellungen anzeigen"
 
 msgid "Show setup default value"
@@ -18768,12 +18768,11 @@ msgstr "Log-Einstellung anzeigen"
 msgid "Show the OSCam information screen"
 msgstr "OSCam Info-Bildschirm anzeigen"
 
-#
-msgid "Show the PowerTimer"
-msgstr "PowerTimer anzeigen"
+msgid "Open Scheduler Overview"
+msgstr "Aufgabenplanung anzeigen"
 
 #
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Ausschalttimer anzeigen"
 
 msgid "Show the information on current event."
@@ -18788,10 +18787,10 @@ msgstr "Liste der AutoTimer anzeigen."
 msgid "Show the list of timers."
 msgstr "Liste der Timer anzeigen."
 
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Mediacenter anzeigen"
 
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Mediaplayer anzeigen"
 
 msgid "Show the media player..."
@@ -18800,18 +18799,18 @@ msgstr "Mediaplayer anzeigen"
 msgid "Show the plugin browser.."
 msgstr "Plugin-Manager anzeigen."
 
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Plugins anzeigen"
 
 #
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Radio-Wiedergabemodus"
 
 msgid "Show the task list"
 msgstr "Aufgabenliste anzeigen"
 
 #
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "TV-Wiedergabemodus"
 
 msgid "Show time elapsed as positive"
@@ -18954,8 +18953,8 @@ msgstr "Einfaches Verblassen"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Schlicht (bessere Kompatibilität mit alten DVD-Playern)"
 
-msgid "Simple umounter mass storage device."
-msgstr "Einfaches Entfernen des Massenspeichergerätes."
+msgid "Open Simple Umount"
+msgstr "Einfaches Entfernen des Datenträgers."
 
 msgid "Simple zoom"
 msgstr "Einfacher Zoom"
@@ -21592,7 +21591,7 @@ msgstr "Anzeige des Sendernamens ein- und ausschalten"
 msgid "Toggle the visibility of the highlighted plugin"
 msgstr "Sichtbarkeit des markierten Plugins umschalten"
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Zwischen TV und Radio wechseln"
 
 msgid "Togo"
@@ -24593,7 +24592,7 @@ msgid "languages"
 msgstr "Sprachen"
 
 #
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "Movieplayer verlassen"
 
 #

@@ -12763,7 +12763,7 @@ msgid "Open AutoTimer"
 msgstr "Buka PewaktuAuto"
 
 #, fuzzy
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "Buka Daftar PewaktuAuto..."
 
 #, fuzzy
@@ -12787,11 +12787,11 @@ msgid "Open Similar List Channel List"
 msgstr ""
 
 #, fuzzy
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Buka Daftar Pewaktu..."
 
 #, fuzzy
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "Open bouquetlist..."
 
 msgid "Open context menu"
@@ -13406,7 +13406,7 @@ msgid "Play previous"
 msgstr "Play previous"
 
 #, fuzzy
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Play recorded movies..."
 
 msgid "Play selected service in a PiP window"
@@ -17520,7 +17520,7 @@ msgid "Show AutoTimer List"
 msgstr "Show AutoTimer List"
 
 #, fuzzy
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Show Box Portal..."
 
 msgid "Show CCcam Info"
@@ -17557,7 +17557,7 @@ msgid "Show Extension packages"
 msgstr ""
 
 #, fuzzy
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "Show Format Setup..."
 
 msgid "Show Graphical EPG"
@@ -17595,7 +17595,7 @@ msgid "Show InfoBar picons"
 msgstr "Show InfoBar picons"
 
 #, fuzzy
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "show program information..."
 
 msgid "Show Kernel packages"
@@ -18072,7 +18072,7 @@ msgid "Show servicelist or movies"
 msgstr "Show servicelist or movies"
 
 #, fuzzy
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Show setup..."
 
 msgid "Show setup default value"
@@ -18141,12 +18141,11 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "Show the Power Timer..."
+msgid "Open Scheduler Overview"
+msgstr ""
 
 #, fuzzy
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Show the Sleep Timer..."
 
 #, fuzzy
@@ -18163,11 +18162,11 @@ msgid "Show the list of timers."
 msgstr "Show the list of timers."
 
 #, fuzzy
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Show the media center..."
 
 #, fuzzy
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Show the media player..."
 
 msgid "Show the media player..."
@@ -18177,18 +18176,18 @@ msgid "Show the plugin browser.."
 msgstr "Show the plugin browser.."
 
 #, fuzzy
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Show the plugins..."
 
 #, fuzzy
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Show the radio player..."
 
 msgid "Show the task list"
 msgstr ""
 
 #, fuzzy
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Show the tv player..."
 
 msgid "Show time elapsed as positive"
@@ -18324,7 +18323,7 @@ msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Simple titleset (compatibility for legacy players)"
 
 #, fuzzy
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "List of storage devices"
 
 msgid "Simple zoom"
@@ -20841,7 +20840,7 @@ msgid "Toggle the visibility of the highlighted plugin"
 msgstr ""
 
 #, fuzzy
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Toggles between tv and radio..."
 
 msgid "Togo"
@@ -23647,7 +23646,7 @@ msgid "languages"
 msgstr "languages"
 
 #, fuzzy
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "leave movie player..."
 
 msgid "left"

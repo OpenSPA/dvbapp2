@@ -12541,7 +12541,7 @@ msgid "Open AutoTimer"
 msgstr "Mở AutoTimer"
 
 #, fuzzy
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "Mở danh sách tự động ..."
 
 #, fuzzy
@@ -12565,11 +12565,11 @@ msgid "Open Similar List Channel List"
 msgstr ""
 
 #, fuzzy
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Mở danh sách hẹn giờ ..."
 
 #, fuzzy
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "Mở danh sách gói kênh ..."
 
 msgid "Open context menu"
@@ -13174,7 +13174,7 @@ msgid "Play previous"
 msgstr "Chơi trước"
 
 #, fuzzy
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Chơi phim đã ghi ..."
 
 msgid "Play selected service in a PiP window"
@@ -17251,7 +17251,7 @@ msgid "Show AutoTimer List"
 msgstr "Hiển thị danh sách tự động"
 
 #, fuzzy
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Hiển thị Cổng thông tin ..."
 
 msgid "Show CCcam Info"
@@ -17288,7 +17288,7 @@ msgid "Show Extension packages"
 msgstr ""
 
 #, fuzzy
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "Hiển thị thiết lập định dạng ..."
 
 msgid "Show Graphical EPG"
@@ -17325,7 +17325,7 @@ msgid "Show InfoBar picons"
 msgstr "Hiển thị picons infobar"
 
 #, fuzzy
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Hiển thị thông tin..."
 
 msgid "Show Kernel packages"
@@ -17793,7 +17793,7 @@ msgid "Show servicelist or movies"
 msgstr "Hiển thị người phục vụ hoặc phim"
 
 #, fuzzy
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Hiển thị thiết lập ..."
 
 msgid "Show setup default value"
@@ -17862,12 +17862,11 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "Hiển thị Bộ hẹn giờ nguồn ..."
+msgid "Open Scheduler Overview"
+msgstr ""
 
 #, fuzzy
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Hiển thị Đồng hồ ngủ ..."
 
 msgid "Show the information on current event."
@@ -17883,11 +17882,11 @@ msgid "Show the list of timers."
 msgstr "Hiển thị danh sách các bộ tính giờ."
 
 #, fuzzy
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Hiển thị trung tâm truyền thông ..."
 
 #, fuzzy
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Hiển thị trình phát phương tiện ..."
 
 msgid "Show the media player..."
@@ -17897,18 +17896,18 @@ msgid "Show the plugin browser.."
 msgstr "Hiển thị trình duyệt plugin .."
 
 #, fuzzy
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Hiển thị các plugin ..."
 
 #, fuzzy
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Hiển thị trình phát radio ..."
 
 msgid "Show the task list"
 msgstr ""
 
 #, fuzzy
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Hiển thị trình phát tv ..."
 
 msgid "Show time elapsed as positive"
@@ -18042,7 +18041,7 @@ msgstr "Đơn giản"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Tiêu đề đơn giản (khả năng tương thích cho người chơi cũ)"
 
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "Thiết bị lưu trữ hàng loạt đơn giản."
 
 msgid "Simple zoom"
@@ -20531,7 +20530,7 @@ msgid "Toggle the visibility of the highlighted plugin"
 msgstr ""
 
 #, fuzzy
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Chuyển đổi giữa tv và radio ..."
 
 msgid "Togo"
@@ -23322,7 +23321,7 @@ msgid "languages"
 msgstr "ngôn ngữ"
 
 #, fuzzy
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "rời khỏi máy nghe nhạc ..."
 
 msgid "left"

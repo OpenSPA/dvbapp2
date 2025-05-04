@@ -13008,7 +13008,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "הוסף טיימר"
 
 msgid "Open EPGSearch"
@@ -13031,12 +13031,12 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "עריכת טיימר"
 
 #
 #, fuzzy
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "End Bouquet Edit"
 
 msgid "Open context menu"
@@ -13669,7 +13669,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "...נגן סרטים שהוקלטו"
 
 msgid "Play selected service in a PiP window"
@@ -17880,7 +17880,7 @@ msgstr ""
 msgid "Show AutoTimer List"
 msgstr ""
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr ""
 
 msgid "Show CCcam Info"
@@ -17918,7 +17918,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "show DVD main menu"
 
 msgid "Show Graphical EPG"
@@ -17956,7 +17956,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "מידע"
 
 msgid "Show Kernel packages"
@@ -18456,7 +18456,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "show DVD main menu"
 
 msgid "Show setup default value"
@@ -18528,14 +18528,11 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "Show the tv player..."
+msgid "Open Scheduler Overview"
+msgstr ""
 
-#
 #, fuzzy
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Show the tv player..."
 
 #, fuzzy
@@ -18553,12 +18550,12 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "...הצג את נגן הרדיו"
 
 #
 #, fuzzy
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "...הצג את נגן הרדיו"
 
 msgid "Show the media player..."
@@ -18568,12 +18565,12 @@ msgid "Show the plugin browser.."
 msgstr ""
 
 #, fuzzy
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "הסר פלאגינים"
 
 #
 #, fuzzy
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "...הצג את נגן הרדיו"
 
 msgid "Show the task list"
@@ -18581,7 +18578,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Show the tv player..."
 
 msgid "Show time elapsed as positive"
@@ -18729,7 +18726,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "רשימת התקני אחסון"
 
 msgid "Simple zoom"
@@ -21297,7 +21294,7 @@ msgstr "סרוקת שירות"
 msgid "Toggle the visibility of the highlighted plugin"
 msgstr ""
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr ""
 
 msgid "Togo"
@@ -24156,7 +24153,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "leave movie player..."
 
 msgid "left"

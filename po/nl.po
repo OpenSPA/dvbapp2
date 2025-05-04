@@ -12530,7 +12530,7 @@ msgstr "Open"
 msgid "Open AutoTimer"
 msgstr "Open AutoTimer"
 
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "Open AutoTimerlijst"
 
 msgid "Open EPGSearch"
@@ -12551,10 +12551,10 @@ msgstr "Open instellingen"
 msgid "Open Similar List Channel List"
 msgstr "Open vergelijkbare Zenderlijst"
 
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Open Timerlijst"
 
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "Open favorietenlijst"
 
 msgid "Open context menu"
@@ -13148,7 +13148,7 @@ msgstr "Speel volgende (terug naar live TV)"
 msgid "Play previous"
 msgstr "Vorige afspelen"
 
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Opnames en films afspelen"
 
 msgid "Play selected service in a PiP window"
@@ -17238,7 +17238,7 @@ msgstr "Toon de audioselectie"
 msgid "Show AutoTimer List"
 msgstr "Toon AutoTimers"
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Toon Box Portal"
 
 msgid "Show CCcam Info"
@@ -17274,7 +17274,7 @@ msgstr "Toon programma overzicht"
 msgid "Show Extension packages"
 msgstr "Extensies"
 
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "Toon de format instellingen"
 
 msgid "Show Graphical EPG"
@@ -17310,7 +17310,7 @@ msgstr "Informatiebalk zichtbaar bij voor- en achteruit spoelen"
 msgid "Show InfoBar picons"
 msgstr "Toon picons op de informatiebalk"
 
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Toon informatie"
 
 msgid "Show Kernel packages"
@@ -17779,7 +17779,7 @@ msgstr "Toon icon voor tuner type"
 msgid "Show servicelist or movies"
 msgstr "Toon de zenderlijst of de films"
 
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Toon configuratie"
 
 msgid "Show setup default value"
@@ -17848,10 +17848,10 @@ msgstr "Toon de Log-instellingen"
 msgid "Show the OSCam information screen"
 msgstr "Het OSCam informatiescherm tonen"
 
-msgid "Show the PowerTimer"
-msgstr "Toon de PowerTimer"
+msgid "Open Scheduler Overview"
+msgstr ""
 
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Toon de SlaapTimer"
 
 msgid "Show the information on current event."
@@ -17866,10 +17866,10 @@ msgstr "Toon de AutoTimer-lijst."
 msgid "Show the list of timers."
 msgstr "Toon de timer-lijst."
 
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Toon het media center"
 
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Open Mediaspeler"
 
 msgid "Show the media player..."
@@ -17878,16 +17878,16 @@ msgstr "Open de mediaspeler..."
 msgid "Show the plugin browser.."
 msgstr "Toon de Plugin Browser.."
 
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Toon de plugins"
 
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Radio weergave modus"
 
 msgid "Show the task list"
 msgstr "De takenlijst weergeven"
 
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Toon de TV weergave modus"
 
 msgid "Show time elapsed as positive"
@@ -18021,7 +18021,7 @@ msgstr "Eenvoudig vervagen"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Eenvoudige titelset (compatibel met gewone spelers)"
 
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "Simple Umount opslagmedia apparaat."
 
 msgid "Simple zoom"
@@ -20555,7 +20555,7 @@ msgstr "Weergave van de zendernaam in- of uitschakelen"
 msgid "Toggle the visibility of the highlighted plugin"
 msgstr "Zichtbaarheid van de geselecteerde plugin wijzigen"
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Wissel tussen TV en Radio"
 
 msgid "Togo"
@@ -23375,7 +23375,7 @@ msgstr "Spring via nummer naar hoofdstuk"
 msgid "languages"
 msgstr "talen"
 
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "De Mediaspeler verlaten"
 
 msgid "left"

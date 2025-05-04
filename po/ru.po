@@ -12419,7 +12419,7 @@ msgstr "Открыть"
 msgid "Open AutoTimer"
 msgstr "Запустить автотаймер"
 
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "Открыть список автотаймеров"
 
 msgid "Open EPGSearch"
@@ -12440,11 +12440,11 @@ msgstr "Открыть настройки"
 msgid "Open Similar List Channel List"
 msgstr "Открыть похожий список Список каналов"
 
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Открыть список таймеров"
 
-msgid "Open bouquetlist"
-msgstr "Открыть список фаворитов"
+msgid "Open Bouquet selection"
+msgstr "Открыть список букетов"
 
 msgid "Open context menu"
 msgstr "Открыть контекстное меню"
@@ -13037,7 +13037,7 @@ msgstr "Играть дальше (вернуться к предыдущему 
 msgid "Play previous"
 msgstr "Играть предыдущий"
 
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Воспроизвести записанные видео"
 
 msgid "Play selected service in a PiP window"
@@ -17094,7 +17094,7 @@ msgstr "Показать выбор аудио"
 msgid "Show AutoTimer List"
 msgstr "Показать список автотаймера"
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Показать Box Portal"
 
 msgid "Show CCcam Info"
@@ -17130,7 +17130,7 @@ msgstr "Показать просмотр передач"
 msgid "Show Extension packages"
 msgstr "Показать пакеты расширений"
 
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "Показать настройку формата"
 
 msgid "Show Graphical EPG"
@@ -17166,7 +17166,7 @@ msgstr "Показать инфобар при навигации"
 msgid "Show InfoBar picons"
 msgstr "Показать пиконы инфобара"
 
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Показать информацию"
 
 msgid "Show Kernel packages"
@@ -17629,7 +17629,7 @@ msgstr "Показать иконку для типа канала"
 msgid "Show servicelist or movies"
 msgstr "Показать списки каналов или записей"
 
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Показать настройки"
 
 msgid "Show setup default value"
@@ -17698,10 +17698,10 @@ msgstr "Показать экран настроек логов"
 msgid "Show the OSCam information screen"
 msgstr "Показать экран информации OSCam"
 
-msgid "Show the PowerTimer"
-msgstr "Показать Таймер питания"
+msgid "Open Scheduler Overview"
+msgstr "Показать планировщик"
 
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Показать таймер сна"
 
 msgid "Show the information on current event."
@@ -17716,11 +17716,11 @@ msgstr "Показать список автотаймеров."
 msgid "Show the list of timers."
 msgstr "Показать список таймеров."
 
-msgid "Show the media center"
-msgstr "Показать медиа центр"
+msgid "Open MediaCenter"
+msgstr "Показать медиацентр"
 
-msgid "Show the media player"
-msgstr "Показать медиа плеер"
+msgid "Open Media Player"
+msgstr "Показать медиапроигрыватель"
 
 msgid "Show the media player..."
 msgstr "Показать медиа плеер..."
@@ -17728,17 +17728,17 @@ msgstr "Показать медиа плеер..."
 msgid "Show the plugin browser.."
 msgstr "Показать обозреватель плагинов..."
 
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Показать плагины"
 
-msgid "Show the radio player"
-msgstr "Показать радиоплеер"
+msgid "Open Radio bouquet selection"
+msgstr "Показать радиопроигрыватель"
 
 msgid "Show the task list"
 msgstr "Показать список задач"
 
-msgid "Show the tv player"
-msgstr "Показать ТВ-плеер"
+msgid "Open TV bouquet selection"
+msgstr "Показать ТВ-проигрыватель"
 
 msgid "Show time elapsed as positive"
 msgstr "Показать истёкшее время с положительным знаком"
@@ -17869,8 +17869,8 @@ msgstr "Простое затухание"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Простой заголовок (Совместимость с DVD плеерами)"
 
-msgid "Simple umounter mass storage device."
-msgstr "Простое устройство хранения данных umounter."
+msgid "Open Simple Umount"
+msgstr "Простое отключение устройства хранения данных."
 
 msgid "Simple zoom"
 msgstr "Простой масштаб"
@@ -20360,7 +20360,7 @@ msgstr "Переключить отображение названия кана�
 msgid "Toggle the visibility of the highlighted plugin"
 msgstr "Переключить видимость выделенного плагина"
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Переключение между ТВ и Радио"
 
 msgid "Togo"
@@ -23150,7 +23150,7 @@ msgstr "Перейти к главе по номеру"
 msgid "languages"
 msgstr "Языки"
 
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "Выйти из проигрывателя"
 
 msgid "left"
