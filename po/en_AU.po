@@ -1659,7 +1659,7 @@ msgstr ""
 "Disable TV and try again?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr ""
 
 msgid "AAC downmix"
@@ -2502,7 +2502,7 @@ msgstr ""
 msgid "Aspect Ratio Actions"
 msgstr ""
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr ""
 
 msgid "Aspect ratio"
@@ -2588,7 +2588,7 @@ msgstr ""
 msgid "Audio language selection 4"
 msgstr ""
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr ""
 
 msgid "Audio volume step size"
@@ -3570,7 +3570,7 @@ msgstr ""
 msgid "Cancel save time shift as movie"
 msgstr ""
 
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr ""
 
 msgid "Cancel selection and exit"
@@ -7218,7 +7218,7 @@ msgstr ""
 msgid "Enter if you are in the East or West hemisphere."
 msgstr ""
 
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr ""
 
 msgid "Enter new directory name:"
@@ -9634,10 +9634,10 @@ msgstr ""
 msgid "InfoBar Event View Actions"
 msgstr ""
 
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr ""
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr ""
 
 msgid "InfoBar fade-out speed"
@@ -10333,7 +10333,7 @@ msgstr ""
 msgid "Letterbox"
 msgstr ""
 
-msgid "Letterbox zoom"
+msgid "LetterBox zoom"
 msgstr ""
 
 msgid "Liberia"
@@ -10418,7 +10418,7 @@ msgstr ""
 msgid "Links"
 msgstr ""
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr ""
 
 msgid "List Navigation Actions"
@@ -11443,7 +11443,7 @@ msgstr ""
 msgid "Movie List"
 msgstr ""
 
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr ""
 
 msgid "Movie Selection Settings"
@@ -12476,10 +12476,10 @@ msgstr ""
 msgid "Open file sort menu"
 msgstr ""
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr ""
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr ""
 
 msgid "Open service list and select next channel"
@@ -12934,7 +12934,7 @@ msgstr ""
 msgid "PiP"
 msgstr ""
 
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr ""
 
 msgid "PiP with OSD"
@@ -12973,7 +12973,7 @@ msgstr ""
 msgid "Picture in EPG"
 msgstr ""
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr ""
 
 msgid "Picture in graphics"
@@ -13973,7 +13973,7 @@ msgstr ""
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr ""
 
 msgid "QuickEPG mode"
@@ -14306,7 +14306,7 @@ msgstr ""
 msgid "Red"
 msgstr ""
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr ""
 
 msgid "Red colored"
@@ -15407,7 +15407,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr ""
 
 msgid "Search Sats"
@@ -15425,7 +15425,7 @@ msgstr ""
 msgid "Search for similar events"
 msgstr ""
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr ""
 
 msgid "Search weather location ID"
@@ -16030,7 +16030,7 @@ msgstr ""
 msgid "Select sort method:"
 msgstr ""
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -16469,7 +16469,7 @@ msgstr ""
 msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr ""
 
 #, python-format
@@ -17191,7 +17191,7 @@ msgstr ""
 msgid "Show EPG"
 msgstr ""
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr ""
 
 msgid "Show EventView"
@@ -17215,7 +17215,7 @@ msgstr ""
 msgid "Show HDMI-Output Res"
 msgstr ""
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr ""
 
 msgid "Show InfoBar"
@@ -17302,7 +17302,7 @@ msgstr ""
 msgid "Show Plugin Skin packages"
 msgstr ""
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr ""
 
 msgid "Show Record Movies"
@@ -17482,7 +17482,7 @@ msgstr ""
 msgid "Show extension selection"
 msgstr ""
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr ""
 
 msgid "Show extra spacing in Information"
@@ -17573,7 +17573,7 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr ""
 
 msgid "Show next commit log"
@@ -17714,7 +17714,7 @@ msgstr ""
 msgid "Show setup default value"
 msgstr ""
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr ""
 
 msgid "Show shut down menu"
@@ -17765,7 +17765,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr ""
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -17783,7 +17783,7 @@ msgstr ""
 msgid "Open SleepTimer Settings"
 msgstr ""
 
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr ""
 
 msgid "Show the last opkg command's output"
@@ -17846,7 +17846,7 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr ""
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr ""
 
 msgid "Show vertical Program Guide"
@@ -18866,10 +18866,10 @@ msgstr ""
 msgid "Subtitle position"
 msgstr ""
 
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr ""
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr ""
 
 msgid "Subtitles"
@@ -18980,7 +18980,7 @@ msgstr ""
 msgid "Switch config"
 msgstr ""
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr ""
 
 msgid "Switch off the TV to correct input"
@@ -19016,7 +19016,7 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr ""
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr ""
 
 msgid "Switch to play list"
@@ -19025,10 +19025,10 @@ msgstr ""
 msgid "Switch to previous EPG Event"
 msgstr ""
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr ""
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr ""
 
 msgid "Switch to the available RADIO services"
@@ -20318,7 +20318,7 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr ""
 
 msgid "Toggle HDMI-In PiP"
@@ -20345,7 +20345,7 @@ msgstr ""
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr ""
 
 msgid "Toggle auto refresh On/Off"
@@ -20357,7 +20357,7 @@ msgstr ""
 msgid "Toggle display of image information"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -21611,7 +21611,7 @@ msgstr ""
 msgid "View photos..."
 msgstr ""
 
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr ""
 
 msgid "View the archive contents"
@@ -23467,7 +23467,7 @@ msgstr ""
 msgid "show DVD main menu"
 msgstr ""
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr ""
 
 msgid "show all cards"
@@ -23530,13 +23530,13 @@ msgstr ""
 msgid "skip backward"
 msgstr ""
 
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr ""
 
 msgid "skip forward"
 msgstr ""
 
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr ""
 
 msgid "slow"

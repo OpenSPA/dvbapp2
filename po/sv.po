@@ -1832,7 +1832,7 @@ msgstr ""
 "Inaktivera TV och försök igen?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr "AV förhållande är %s"
 
 msgid "AAC downmix"
@@ -2749,7 +2749,7 @@ msgstr "Bildförhållande/upplösning"
 msgid "Aspect Ratio Actions"
 msgstr "Bildförhållande/upplösning"
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr ""
 
 msgid "Aspect ratio"
@@ -2840,7 +2840,7 @@ msgstr "Val av ljudspråk 3"
 msgid "Audio language selection 4"
 msgstr "Val av ljudspråk 4"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr "Ljudalternativ..."
 
 #, fuzzy
@@ -3882,7 +3882,7 @@ msgstr "Spara inte time shift som film"
 
 #
 #, fuzzy
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr "Kanalval"
 
 msgid "Cancel selection and exit"
@@ -7782,7 +7782,7 @@ msgid "Enter if you are in the East or West hemisphere."
 msgstr ""
 
 #
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Gå till huvudmeny..."
 
 msgid "Enter new directory name:"
@@ -10375,10 +10375,10 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr "Information"
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr ""
 
 msgid "InfoBar fade-out speed"
@@ -11130,8 +11130,8 @@ msgid "Letterbox"
 msgstr "Letterbox"
 
 #
-msgid "Letterbox zoom"
-msgstr "Letterbox zoom"
+msgid "LetterBox zoom"
+msgstr "LetterBox zoom"
 
 msgid "Liberia"
 msgstr ""
@@ -11226,7 +11226,7 @@ msgstr "Länkade titlar med en DVD meny"
 msgid "Links"
 msgstr ""
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr "Lista EPG funktioner"
 
 msgid "List Navigation Actions"
@@ -12350,7 +12350,7 @@ msgstr "Filmlista"
 
 #
 #, fuzzy
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "Filmval"
 
 msgid "Movie Selection Settings"
@@ -13516,10 +13516,10 @@ msgstr "Öppna favoriter"
 msgid "Open file sort menu"
 msgstr ""
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr "Öppna satellitlistan"
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr "Öppna kanallista"
 
 msgid "Open service list and select next channel"
@@ -13993,7 +13993,7 @@ msgstr "BiB"
 
 #
 #, fuzzy
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "Sökväg"
 
 msgid "PiP with OSD"
@@ -14034,7 +14034,7 @@ msgstr ""
 msgid "Picture in EPG"
 msgstr "Bild i grafiken"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr ""
 
 #
@@ -15161,7 +15161,7 @@ msgstr ""
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr ""
 
 msgid "QuickEPG mode"
@@ -15521,7 +15521,7 @@ msgstr "Spela in"
 msgid "Red"
 msgstr "Röd"
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "Röd knapp..."
 
 #
@@ -16704,7 +16704,7 @@ msgstr ""
 msgid "Search"
 msgstr "Sök"
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr "Sök i IMDB efter information om aktuell film."
 
 msgid "Search Sats"
@@ -16723,7 +16723,7 @@ msgstr ""
 msgid "Search for similar events"
 msgstr "Sök efter liknande program"
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr "Sök i epg efter aktuellt program"
 
 #
@@ -17357,7 +17357,7 @@ msgstr "Välj kanal att lägga till..."
 msgid "Select sort method:"
 msgstr "Välj sorteringsmetod :"
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -17781,7 +17781,7 @@ msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 #, fuzzy
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr "Välj inmatningsenhet"
 
 #, python-format
@@ -18555,7 +18555,7 @@ msgstr ""
 msgid "Show EPG"
 msgstr ""
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr "Visa EPG för aktuell kanal ..."
 
 msgid "Show EventView"
@@ -18581,7 +18581,7 @@ msgid "Show HDMI-Output Res"
 msgstr ""
 
 #, fuzzy
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr "Visa RFmod inställning..."
 
 msgid "Show InfoBar"
@@ -18680,7 +18680,7 @@ msgstr ""
 msgid "Show Plugin Skin packages"
 msgstr ""
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr "Visa RFmod inställning..."
 
 msgid "Show Record Movies"
@@ -18877,7 +18877,7 @@ msgstr "Visa utökad beskrivning"
 msgid "Show extension selection"
 msgstr "Visa utökningsval"
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr "Visa utökningar..."
 
 msgid "Show extra spacing in Information"
@@ -18971,7 +18971,7 @@ msgstr "Visa filmer"
 msgid "Show multi channel EPG"
 msgstr "Visa multikanal EPG"
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr ""
 
 msgid "Show next commit log"
@@ -19124,7 +19124,7 @@ msgstr "Visa  EPG"
 msgid "Show setup default value"
 msgstr ""
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr ""
 
 #
@@ -19180,7 +19180,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr "Visa DreamPlex spelaren..."
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -19201,7 +19201,7 @@ msgid "Open SleepTimer Settings"
 msgstr "Visa tv spelare..."
 
 #, fuzzy
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr "Sök i IMDB efter information om aktuell film."
 
 msgid "Show the last opkg command's output"
@@ -19272,7 +19272,7 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr ""
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr ""
 
 #
@@ -20397,10 +20397,10 @@ msgid "Subtitle position"
 msgstr "Undertext position"
 
 #
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Undertextval"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Val av undertext..."
 
 #
@@ -20522,7 +20522,7 @@ msgstr "Växla mellan fillista / spellista"
 msgid "Switch config"
 msgstr "Byt config"
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr "Byt till nästa kanal"
 
 #, fuzzy
@@ -20564,7 +20564,7 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr "Växla till nästa subservice"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr "Växla till nästa kanal i historiken"
 
 #
@@ -20576,10 +20576,10 @@ msgstr "Växla till spellista"
 msgid "Switch to previous EPG Event"
 msgstr "Byt till föregående subservice"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr "Växla till föregående kanal"
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr "Växla till föregående kanal i historiken"
 
 msgid "Switch to the available RADIO services"
@@ -21956,7 +21956,7 @@ msgid "Today"
 msgstr "Idag"
 
 #, fuzzy
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr "Digital nedmixning"
 
 msgid "Toggle HDMI-In PiP"
@@ -21983,7 +21983,7 @@ msgstr "Skifta en klippmarkering på nuvarande position"
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr "Växla bildförhållande..."
 
 msgid "Toggle auto refresh On/Off"
@@ -21995,7 +21995,7 @@ msgstr "Växla mellan kanallista/epglista"
 msgid "Toggle display of image information"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -23353,7 +23353,7 @@ msgid "View photos..."
 msgstr "Visa Foton..."
 
 #
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Visa text-tv..."
 
 msgid "View the archive contents"
@@ -25357,7 +25357,7 @@ msgstr ""
 msgid "show DVD main menu"
 msgstr "visa DVD huvudmeny"
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr "visa EPG..."
 
 msgid "show all cards"
@@ -25424,7 +25424,7 @@ msgid "skip backward"
 msgstr "hoppa bakåt"
 
 #
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "hoppa bakåt (ange tid)"
 
 #
@@ -25432,7 +25432,7 @@ msgid "skip forward"
 msgstr "hoppa framåt"
 
 #
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "hoppa framåt (ange tid)"
 
 msgid "slow"

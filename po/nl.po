@@ -1670,7 +1670,7 @@ msgstr ""
 "Verander van zender en probeer het opnieuw.\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr "AV aspect is %s."
 
 msgid "AAC downmix"
@@ -2490,7 +2490,7 @@ msgstr "Aspect"
 msgid "Aspect Ratio Actions"
 msgstr "Beeldverhouding acties"
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr "Beeldverhouding..."
 
 msgid "Aspect ratio"
@@ -2576,7 +2576,7 @@ msgstr "Audio taalkeuze 3"
 msgid "Audio language selection 4"
 msgstr "Audio taalkeuze 4"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr "Audio opties..."
 
 msgid "Audio volume step size"
@@ -3561,7 +3561,7 @@ msgstr "Uitpakken annuleren"
 msgid "Cancel save time shift as movie"
 msgstr "Annuleer het opslaan van Timeshift als opname"
 
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr "Annuleer selectie"
 
 msgid "Cancel selection and exit"
@@ -7319,7 +7319,7 @@ msgstr "Geef aan of u op het noordelijke of het zuidelijke halfrond bent."
 msgid "Enter if you are in the East or West hemisphere."
 msgstr "Geef aan of u op het westelijke of het oostelijke halfrond bent."
 
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Ga naar hoofdmenu..."
 
 msgid "Enter new directory name:"
@@ -9736,10 +9736,10 @@ msgstr "Grafische InfoBar EPG"
 msgid "InfoBar Event View Actions"
 msgstr "InfoBar Acties"
 
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr "Informatiebalk RDS Acties"
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr "InfoBar Acties weergeven/verbergen"
 
 msgid "InfoBar fade-out speed"
@@ -10417,8 +10417,8 @@ msgstr "Lesotho"
 msgid "Letterbox"
 msgstr "Letterbox"
 
-msgid "Letterbox zoom"
-msgstr "Letterbox zoom"
+msgid "LetterBox zoom"
+msgstr "LetterBox zoom"
 
 msgid "Liberia"
 msgstr "Liberië"
@@ -10502,7 +10502,7 @@ msgstr "Verbind titels met een DVD menu"
 msgid "Links"
 msgstr "Links"
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr "Toon EPG functies..."
 
 msgid "List Navigation Actions"
@@ -11520,7 +11520,7 @@ msgstr "Opname overzicht Acties"
 msgid "Movie List"
 msgstr "Opnamelijst"
 
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "Opnamelijst Acties"
 
 msgid "Movie Selection Settings"
@@ -12572,10 +12572,10 @@ msgstr "Open de favorietenlijst"
 msgid "Open file sort menu"
 msgstr "Open het sorteermenu"
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr "Open satellieten lijst"
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr "Open de zenderlijst"
 
 msgid "Open service list and select next channel"
@@ -13015,7 +13015,7 @@ msgstr "Filippijnen"
 msgid "PiP"
 msgstr "PiP"
 
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "PiP Acties"
 
 msgid "PiP with OSD"
@@ -13054,7 +13054,7 @@ msgstr "Foto Informatie Acties"
 msgid "Picture in EPG"
 msgstr "Mini-TV in EPG"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr "Picture In Picture Instellingen"
 
 msgid "Picture in graphics"
@@ -14064,7 +14064,7 @@ msgstr "Snelstartmenu"
 msgid "Quick Menu Actions"
 msgstr "Snelstartmenu Acties"
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr "Quick Menu…"
 
 msgid "QuickEPG mode"
@@ -14387,7 +14387,7 @@ msgstr "Recovery modus"
 msgid "Red"
 msgstr "Rood"
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "Rode knop..."
 
 msgid "Red colored"
@@ -15466,7 +15466,7 @@ msgstr "Scroll-snelheid (software renderer)"
 msgid "Search"
 msgstr "Zoek"
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr "Zoek op IMDB naar informatie over huidig programma."
 
 msgid "Search Sats"
@@ -15486,7 +15486,7 @@ msgstr "Zoek naar gedeelde netwerk mappen"
 msgid "Search for similar events"
 msgstr "Zoek soortgelijke programma's"
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr "Doorzoek de epg voor huidig programma ."
 
 msgid "Search weather location ID"
@@ -16088,7 +16088,7 @@ msgstr "Selecteer zender om toe te voegen..."
 msgid "Select sort method:"
 msgstr "Selecteer sorteermethode:"
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr "Sub-zenders kiezen"
 
 msgid "Select system information to view:"
@@ -16514,7 +16514,7 @@ msgstr "Selecteer de tijdzone in uw gebied of regio."
 msgid "Select, toggle, process or edit the current entry"
 msgstr "Selecteer, wissel, verwerk of wijzig de huidige invoer"
 
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr "Ga naar het geselecteerde zender"
 
 #, python-format
@@ -17265,7 +17265,7 @@ msgstr "Drivers"
 msgid "Show EPG"
 msgstr "Toon EPG"
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr "Toon de EPG van de huidige zender..."
 
 msgid "Show EventView"
@@ -17289,7 +17289,7 @@ msgstr "Toon HDMI-uitgang resolutie"
 msgid "Show HDMI-Output Res"
 msgstr "Toon HDMI-uitgang res"
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr "Toon HDMI opname instellingen..."
 
 msgid "Show InfoBar"
@@ -17376,7 +17376,7 @@ msgstr "Picons"
 msgid "Show Plugin Skin packages"
 msgstr "Skinpacks"
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr "Toon RFmod instellingen..."
 
 msgid "Show Record Movies"
@@ -17557,7 +17557,7 @@ msgstr "Toon uitgebreide informatie"
 msgid "Show extension selection"
 msgstr "Toon het Extensies-menu"
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr "Toon het Extensies-menu..."
 
 msgid "Show extra spacing in Information"
@@ -17642,7 +17642,7 @@ msgstr "Toon opnames"
 msgid "Show multi channel EPG"
 msgstr "Toon de multi-zender EPG"
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr "Toon het Netwerk instellingen menu..."
 
 msgid "Show next commit log"
@@ -17785,7 +17785,7 @@ msgstr "Toon configuratie"
 msgid "Show setup default value"
 msgstr "Toon default instelwaarde"
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr "Toon het Instellingen menu..."
 
 msgid "Show shut down menu"
@@ -17836,7 +17836,7 @@ msgstr "Toon taakberichten als File Commander niet actief is en alle taken zijn 
 msgid "Show the CCcam Info Screen"
 msgstr "Toon het CCcam informatiescherm"
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr "Toon de Dreamplex speler..."
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -17854,7 +17854,7 @@ msgstr ""
 msgid "Open SleepTimer Settings"
 msgstr "Toon de SlaapTimer"
 
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr "Toon de informatie van huidig programma."
 
 msgid "Show the last opkg command's output"
@@ -17917,7 +17917,7 @@ msgstr "Toon onbekende videoresolutie als hogere of hoogste scherm resolutie."
 msgid "Show unknown video format as"
 msgstr "Toon onbekend video formaat als"
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr "Toon Bediening en GUI menu..."
 
 msgid "Show vertical Program Guide"
@@ -18937,10 +18937,10 @@ msgstr "Ondertitel taalkeuze 4"
 msgid "Subtitle position"
 msgstr "Verticale positie ondertitels"
 
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Ondertiteling"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Ondertitel selectie..."
 
 msgid "Subtitles"
@@ -19051,7 +19051,7 @@ msgstr "Schakel tussen bestands- en afspeellist"
 msgid "Switch config"
 msgstr "Wissel configuratie"
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr "Schakel naar volgende zender"
 
 msgid "Switch off the TV to correct input"
@@ -19087,7 +19087,7 @@ msgstr "Ga naar de bestandslijst "
 msgid "Switch to next EPG Event"
 msgstr "Ga naar de volgende EPG vermelding"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr "Schakel naar de volgende zender in de History"
 
 msgid "Switch to play list"
@@ -19096,10 +19096,10 @@ msgstr "Schakel naar afspeellijst"
 msgid "Switch to previous EPG Event"
 msgstr "Ga naar de vorige EPG vermelding"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr "Schakel naar de vorige zender"
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr "Schakel naar de vorige zender in de History"
 
 msgid "Switch to the available RADIO services"
@@ -20474,7 +20474,7 @@ msgstr "Waar wilt u '%s' uitpakken?"
 msgid "Today"
 msgstr "Vandaag"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr "Wissel digitale downmix..."
 
 msgid "Toggle HDMI-In PiP"
@@ -20501,7 +20501,7 @@ msgstr "Op de huidige positie een snijmarkering aanbrengen"
 msgid "Toggle all related files"
 msgstr "Tussen alle bijbehorende bestanden schakelen"
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr "Wissel aspectverhouding..."
 
 msgid "Toggle auto refresh On/Off"
@@ -20513,7 +20513,7 @@ msgstr "Wissel tussen de favorieten- en EPG-lijsten"
 msgid "Toggle display of image information"
 msgstr "Tussen diverse afbeeldingsinformatie schakelen"
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr "Wissel de weergave van de Informatiebalk"
 
 msgid "Toggle display of the image status overlay"
@@ -21798,7 +21798,7 @@ msgstr "Bekijk of bewerk dit %s script"
 msgid "View photos..."
 msgstr "Bekijk foto's..."
 
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Teletekst weergeven..."
 
 msgid "View the archive contents"
@@ -23678,7 +23678,7 @@ msgstr "shell"
 msgid "show DVD main menu"
 msgstr "DVD hoofdmenu weergeven"
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr "Toon EPG..."
 
 msgid "show all cards"
@@ -23741,13 +23741,13 @@ msgstr "Grootte"
 msgid "skip backward"
 msgstr "Achteruit springen"
 
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "Spring achteruit (tijd invoeren)"
 
 msgid "skip forward"
 msgstr "Vooruit springen"
 
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "Spring vooruit (tijd invoeren)"
 
 msgid "slow"

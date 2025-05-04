@@ -1985,7 +1985,7 @@ msgstr ""
 "Voleu desactivar la TV i tornar-ho a provar?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr "La relació d'aspecte és '%s'."
 
 msgid "AAC downmix"
@@ -2896,8 +2896,13 @@ msgstr "Aspecte"
 msgid "Aspect Ratio Actions"
 msgstr "Relació d'aspecte"
 
+<<<<<<< HEAD
 msgid "Aspect list..."
 msgstr "Llista d'aspectes..."
+=======
+msgid "Open Aspect Ratio Settings"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Aspect ratio"
 msgstr "Relació d'aspecteRelació d’aspecte"
@@ -2989,7 +2994,7 @@ msgstr "Selecció d’idiomes d’àudio 3"
 msgid "Audio language selection 4"
 msgstr "Selecció d’idiomes d’àudio 4"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr "Opcions d'àudio…"
 
 msgid "Audio volume step size"
@@ -4057,8 +4062,14 @@ msgid "Cancel save time shift as movie"
 msgstr "Cancel·lar el guardat del timeshift com a pel·lícula"
 
 #
+<<<<<<< HEAD
 msgid "Cancel selection"
 msgstr "Cancel·lar selecció"
+=======
+#, fuzzy
+msgid "Cancel the selection"
+msgstr "Selecció de canal"
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Cancel selection and exit"
 msgstr "Cancel·lar selección i sortir"
@@ -8078,7 +8089,7 @@ msgid "Enter if you are north or south of the equator."
 msgstr "Introduïu si esteu al nord o al sud de l’equador."
 
 #
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Entrar al menú principal..."
 
 msgid "Enter new directory name:"
@@ -10697,11 +10708,20 @@ msgid "InfoBar Event View Actions"
 msgstr "Accions barra d'informació visualitzador de programes"
 
 #
+<<<<<<< HEAD
 msgid "InfoBar RDS Actions"
 msgstr "Accions Infobar RDS"
 
 msgid "InfoBar Show/Hide Actions"
 msgstr "Accions Mostrar/Ocultar barra d'informació"
+=======
+#, fuzzy
+msgid "RDS Actions"
+msgstr "Informació"
+
+msgid "Show/Hide Actions"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "InfoBar fade-out speed"
 msgstr "Velocitat d'atenuació de la barra d'informació"
@@ -11396,8 +11416,8 @@ msgid "Letterbox"
 msgstr "Letterbox"
 
 #
-msgid "Letterbox zoom"
-msgstr "Letterbox zoom"
+msgid "LetterBox zoom"
+msgstr "LetterBox zoom"
 
 msgid "Liberia"
 msgstr "Liberia"
@@ -11490,8 +11510,13 @@ msgstr "Títulos vinculados con un menú de DVD"
 msgid "Links"
 msgstr "Enllaços"
 
+<<<<<<< HEAD
 msgid "List EPG functions..."
 msgstr "Llista funcions de l'EPG..."
+=======
+msgid "List available EPG functions"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "List Navigation Actions"
 msgstr "Accions navegació de llistes"
@@ -12560,11 +12585,17 @@ msgid "Movie List"
 msgstr "Llista de pel·lícules"
 
 #
+<<<<<<< HEAD
 msgid "Movie List Actions"
 msgstr "Llista de pel·lícules"
 
 msgid "Movie Selection Settings"
 msgstr "Configuració de selecció de pel·lícules"
+=======
+#, fuzzy
+msgid "Movie Selection Actions"
+msgstr "Selecció de gravació"
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 #
 msgid "Movie Player Actions"
@@ -13718,10 +13749,15 @@ msgstr "Color de subtítols extern"
 msgid "Open favorites list"
 msgstr "Obrir llista de favorits"
 
+<<<<<<< HEAD
 msgid "Open satellites list"
 msgstr "Obrir llista de satèl·lits"
+=======
+msgid "Open Satellites selection"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr "Obrir llista de canals"
 
 msgid "Open service list and select next channel"
@@ -14178,8 +14214,14 @@ msgid "PiP"
 msgstr "PiP"
 
 #
+<<<<<<< HEAD
 msgid "PiP Actions"
 msgstr "Accions PiP"
+=======
+#, fuzzy
+msgid "Picture in Picture Actions"
+msgstr "Descripció"
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "PiP with OSD"
 msgstr "PiP amb OSD"
@@ -14212,8 +14254,13 @@ msgstr "Informació de foto"
 msgid "Picture in EPG"
 msgstr "Foto a l'EPG"
 
+<<<<<<< HEAD
 msgid "Picture in Picture Setup"
 msgstr "Configuració PIP"
+=======
+msgid "Picture in Picture Settings"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 #
 msgid "Picture in graphics"
@@ -15275,12 +15322,17 @@ msgstr "EPG ràpid"
 msgid "Quick Launch Menu"
 msgstr "Menú d'inici ràpid"
 
+<<<<<<< HEAD
 msgid "Quick Menu..."
 msgstr "Menú ràpid..."
 
 #
 msgid "Quick zap"
 msgstr "Zap ràpid"
+=======
+msgid "Open QuickMenu"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "QuickEPG mode"
 msgstr "Mode d'EPG ràpid"
@@ -15646,8 +15698,13 @@ msgstr "Mode recuperació"
 msgid "Red"
 msgstr "Xarxa"
 
+<<<<<<< HEAD
 msgid "Red button..."
 msgstr "Botó vermell..."
+=======
+msgid "RED button / HbbTV"
+msgstr "Xarxa boto:"
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Red colored"
 msgstr "Xarxa color"
@@ -16762,8 +16819,13 @@ msgstr "Velocitat de desplaçament (renderitzat por software)"
 msgid "Search"
 msgstr "Buscar"
 
+<<<<<<< HEAD
 msgid "Search IMDb for information about current event."
 msgstr "Buscar informació sobre el programa actual a IMDb."
+=======
+msgid "Search IMDb for information about current event"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Search Sats"
 msgstr "Buscar satèl·lits"
@@ -16781,8 +16843,13 @@ msgstr "Busca recursos de xarxa"
 msgid "Search for similar events"
 msgstr "Buscar programes similars"
 
+<<<<<<< HEAD
 msgid "Search the epg for current event."
 msgstr "Buscar epg del programa actual."
+=======
+msgid "Search EPG for current event"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 #
 msgid "Search weather location ID"
@@ -17585,6 +17652,12 @@ msgstr "Seleccionar softcam"
 msgid "Select sort method:"
 msgstr "Seleccioneu el mètode d’ordenació:"
 
+<<<<<<< HEAD
+=======
+msgid "Open Subservices selection"
+msgstr ""
+
+>>>>>>> db21e01d18 ([InfoBarMenu])
 msgid "Select system information to view:"
 msgstr "Seleccionar la informació del sistema que es mostrarà:"
 
@@ -18106,8 +18179,14 @@ msgid "Select, toggle, process or edit the current entry"
 msgstr "Selecciona, canvia, processa o edita l'entrada actual"
 
 #
+<<<<<<< HEAD
 msgid "Select/Zap to selected service"
 msgstr "Selecciona/Canvia al canal seleccionat"
+=======
+#, fuzzy
+msgid "Select/Zap to the selected service"
+msgstr "Sisplau selecciona un subservei..."
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 #, python-format
 msgid ""
@@ -18995,7 +19074,7 @@ msgstr "Mostrar icones de pantalla"
 msgid "Show EPG"
 msgstr "Mostrar EPG"
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr "Mostrar la barra en canviar el programa…"
 
 msgid "Show EventView"
@@ -19017,8 +19096,13 @@ msgstr "Mostrar resolució de sortida HDMI"
 msgid "Show HDMI-Output Res"
 msgstr "Mostrar resolució de sortida HDMI"
 
+<<<<<<< HEAD
 msgid "Show HDMIRecord setup..."
 msgstr "Mostrar configuració HDMIRecord (Gravació HDMI)..."
+=======
+msgid "Open HDMIRecord Settings"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Show InfoBar"
 msgstr "Mostrar barra d'informació"
@@ -19091,11 +19175,16 @@ msgstr "Mostrar PiP en MiniTV"
 msgid "Show PiP in the Front Display"
 msgstr "Mostrar PiP en Display frontal"
 
+<<<<<<< HEAD
 msgid "Show RFmod setup..."
 msgstr "Mostrar configuració RFmod..."
 
 msgid "Show Readers/Proxies"
 msgstr "Mostrar lectors/proxys"
+=======
+msgid "Open RFmod Settings"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Show Record Movies"
 msgstr "Mostrar pel·lícules gravades"
@@ -19235,7 +19324,7 @@ msgstr "Mostra descripció ampliada"
 msgid "Show extension selection"
 msgstr "Mostra la selecció d’extensions"
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr "Mostra extensions..."
 
 msgid "Show extra spacing in Information"
@@ -19311,8 +19400,13 @@ msgstr "Mostra pel·lícules"
 msgid "Show multi channel EPG"
 msgstr "Mostra EPG multicanal"
 
+<<<<<<< HEAD
 msgid "Show network setup menu..."
 msgstr "Mostrar menú de configuració de xarxa..."
+=======
+msgid "Open Network Settings"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Show next commit log"
 msgstr "Mostrar pròxim log de commit"
@@ -19446,8 +19540,13 @@ msgstr "Mostrar configuració"
 msgid "Show setup default value"
 msgstr "Mostrar valor predeterminat de configuració"
 
+<<<<<<< HEAD
 msgid "Show setup menu..."
 msgstr "Mostrar menú de configuració..."
+=======
+msgid "Open Setup"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 #
 msgid "Show shut down menu"
@@ -19494,8 +19593,13 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr "Mostrar la pantalla d'informació CCcam"
 
+<<<<<<< HEAD
 msgid "Show the DreamPlex player..."
 msgstr "Mostrar reproductor DreamPlex..."
+=======
+msgid "Open DreamPlex"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Show the EIT Now/Next data in the InfoBar."
 msgstr "Mostrales dades d'EIT actual/següent al Infobar."
@@ -19515,8 +19619,17 @@ msgid "Show the SleepTimer"
 msgstr "Mostrar temporitzador d'apagat"
 
 #
+<<<<<<< HEAD
 msgid "Show the information on current event."
 msgstr "Mostrar la informació de l'esdeveniment actual."
+=======
+#, fuzzy
+msgid "Open event information"
+msgstr "Informació jeràrquica"
+
+msgid "Show the last opkg command's output"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Show the list of AutoTimers."
 msgstr "Mostrar la llista d'AutoTemporitzadors."
@@ -19583,8 +19696,13 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr "Mostrar format de video desconegut com"
 
+<<<<<<< HEAD
 msgid "Show usage and GUI menu..."
 msgstr "Mostrar menú Ús i interfície..."
+=======
+msgid "Open Usage and GUI Settings"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Show vertical Program Guide"
 msgstr "Mostrar EPG vertical"
@@ -20625,10 +20743,10 @@ msgid "Subtitle position"
 msgstr "Posició del subtítol"
 
 #
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Selecció de subtítols"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Selecció de subtítols…"
 
 #
@@ -20750,8 +20868,13 @@ msgstr "Canvia entre la llista de reproducció / llista de reproducció"
 msgid "Switch config"
 msgstr "Canviar configuració"
 
+<<<<<<< HEAD
 msgid "Switch next channel"
 msgstr "Canvia al pròxim canal"
+=======
+msgid "Zap to next service"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "Switch off the TV to correct input"
 msgstr "Apagar el televisor per corregir l'entrada"
@@ -20787,7 +20910,7 @@ msgstr "Canviar a panell de llista d'arxius"
 msgid "Switch to next EPG Event"
 msgstr "Canviar al programa posterior de l'EPG"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr "Canal següent en l'històric"
 
 #
@@ -20802,10 +20925,10 @@ msgstr "Canvia a la llista de reproducció"
 msgid "Switch to previous EPG Event"
 msgstr "Canviar al programa anterior de l'EPG"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr "Canvia al canal anterior"
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr "Canvia al canal anterior de la història"
 
 #
@@ -22471,7 +22594,7 @@ msgstr ""
 msgid "Today"
 msgstr "Avui"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr ""
 
 msgid "Toggle HDMI-In PiP"
@@ -22498,7 +22621,7 @@ msgstr "Posar una marca de tall en l'actual posició"
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr ""
 
 msgid "Toggle auto refresh On/Off"
@@ -22510,7 +22633,7 @@ msgstr ""
 msgid "Toggle display of image information"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -23892,7 +24015,7 @@ msgid "View photos..."
 msgstr "Veure fotos…"
 
 #
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Veure teletext..."
 
 msgid "View the archive contents"
@@ -26343,8 +26466,13 @@ msgstr ""
 msgid "show DVD main menu"
 msgstr "mostra el menú principal de DVD"
 
+<<<<<<< HEAD
 msgid "show EPG..."
 msgstr "mostrar EPG..."
+=======
+msgid "Open EPG"
+msgstr ""
+>>>>>>> db21e01d18 ([InfoBarMenu])
 
 msgid "show all cards"
 msgstr "mostrar totes les tarjetes"
@@ -26419,7 +26547,7 @@ msgid "skip backward"
 msgstr "saltar endarrere"
 
 #
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "saltar enrere (introduint el temps)"
 
 #
@@ -26427,7 +26555,7 @@ msgid "skip forward"
 msgstr "saltar endavant"
 
 #
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "saltar endavant (introduint el temps)"
 
 msgid "slow"

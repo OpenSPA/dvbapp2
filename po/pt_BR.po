@@ -1783,7 +1783,7 @@ msgstr ""
 "Tentar de novo?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr ""
 
 #, fuzzy
@@ -2656,7 +2656,7 @@ msgstr "Aspect ratio"
 msgid "Aspect Ratio Actions"
 msgstr "Aspect ratio"
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr ""
 
 msgid "Aspect ratio"
@@ -2747,7 +2747,7 @@ msgstr "Idioma de áudio 3"
 msgid "Audio language selection 4"
 msgstr "Idioma de áudio 4"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr "Opções de áudio"
 
 #, fuzzy
@@ -3753,7 +3753,7 @@ msgid "Cancel save time shift as movie"
 msgstr ""
 
 #, fuzzy
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr "Seleção de canal"
 
 msgid "Cancel selection and exit"
@@ -7498,7 +7498,7 @@ msgstr ""
 msgid "Enter if you are in the East or West hemisphere."
 msgstr ""
 
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Menu principal..."
 
 msgid "Enter new directory name:"
@@ -9979,10 +9979,10 @@ msgid "InfoBar Event View Actions"
 msgstr ""
 
 #, fuzzy
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr "Informação"
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr ""
 
 msgid "InfoBar fade-out speed"
@@ -10693,7 +10693,7 @@ msgid "Letterbox"
 msgstr "Letterbox"
 
 #, fuzzy
-msgid "Letterbox zoom"
+msgid "LetterBox zoom"
 msgstr "Letterbox"
 
 msgid "Liberia"
@@ -10779,7 +10779,7 @@ msgstr "Corresponder títulos a menu de DVD"
 msgid "Links"
 msgstr ""
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr "Listar opções do EPG..."
 
 msgid "List Navigation Actions"
@@ -11846,7 +11846,7 @@ msgid "Movie List"
 msgstr "lista de filmes"
 
 #, fuzzy
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "Seleção de gravação"
 
 #, fuzzy
@@ -12936,10 +12936,10 @@ msgid "Open file sort menu"
 msgstr ""
 
 #, fuzzy
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr "Abrir lista de canais"
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr "Abrir lista de canais"
 
 msgid "Open service list and select next channel"
@@ -13398,7 +13398,7 @@ msgid "PiP"
 msgstr "(PiP)"
 
 #, fuzzy
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "Localização"
 
 msgid "PiP with OSD"
@@ -13440,7 +13440,7 @@ msgstr ""
 msgid "Picture in EPG"
 msgstr "Mover PIP - Imagem na Imagem"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr ""
 
 #, fuzzy
@@ -14483,7 +14483,7 @@ msgstr ""
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr ""
 
 msgid "QuickEPG mode"
@@ -14823,7 +14823,7 @@ msgstr "Gravações"
 msgid "Red"
 msgstr "Rec"
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "Botão vermelho"
 
 msgid "Red colored"
@@ -15935,7 +15935,7 @@ msgstr ""
 msgid "Search"
 msgstr "Procurando..."
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr ""
 
 msgid "Search Sats"
@@ -15954,7 +15954,7 @@ msgid "Search for similar events"
 msgstr ""
 
 #, fuzzy
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr "Adic./Remov. gravação do evento atual"
 
 #, fuzzy
@@ -16565,7 +16565,7 @@ msgstr "Selecione o serviço para adicionar"
 msgid "Select sort method:"
 msgstr ""
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -16983,7 +16983,7 @@ msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 #, fuzzy
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr "Selecione o dispositivo de entrada"
 
 #, python-format
@@ -17734,7 +17734,7 @@ msgstr ""
 msgid "Show EPG"
 msgstr ""
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr "EPG do canal atual"
 
 msgid "Show EventView"
@@ -17759,7 +17759,7 @@ msgstr ""
 msgid "Show HDMI-Output Res"
 msgstr ""
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr ""
 
 msgid "Show InfoBar"
@@ -17852,7 +17852,7 @@ msgstr ""
 msgid "Show Plugin Skin packages"
 msgstr ""
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr ""
 
 msgid "Show Record Movies"
@@ -18043,7 +18043,7 @@ msgstr "Exibir descrição estendida"
 msgid "Show extension selection"
 msgstr ""
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr "Ver extensões..."
 
 msgid "Show extra spacing in Information"
@@ -18135,7 +18135,7 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr "Exibir EPG múltiplo"
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr ""
 
 msgid "Show next commit log"
@@ -18283,7 +18283,7 @@ msgstr "Mostrar menu de marcas"
 msgid "Show setup default value"
 msgstr ""
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr ""
 
 msgid "Show shut down menu"
@@ -18336,7 +18336,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr ""
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -18356,7 +18356,7 @@ msgid "Open SleepTimer Settings"
 msgstr "Mostrar TV..."
 
 #, fuzzy
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr "Adic./Remov. gravação do evento atual"
 
 msgid "Show the last opkg command's output"
@@ -18428,7 +18428,7 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr ""
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr ""
 
 #, fuzzy
@@ -19479,10 +19479,10 @@ msgstr "Idioma da legenda 4"
 msgid "Subtitle position"
 msgstr "Posição da legenda"
 
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Selecionar legenda"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Seleção de legendas..."
 
 msgid "Subtitles"
@@ -19598,7 +19598,7 @@ msgstr "Alternar entre arquivos/playlist"
 msgid "Switch config"
 msgstr "Última configuração"
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr "Próximo canal"
 
 #, fuzzy
@@ -19636,7 +19636,7 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr "Mudar para o próximo canal"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr "Próximo canal na memória"
 
 msgid "Switch to play list"
@@ -19646,10 +19646,10 @@ msgstr "Ver lista de reprodução"
 msgid "Switch to previous EPG Event"
 msgstr "Mudar para o canal anterior"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr "Mudar para o canal anterior"
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr "Canal anterior na memória"
 
 msgid "Switch to the available RADIO services"
@@ -20976,7 +20976,7 @@ msgstr ""
 msgid "Today"
 msgstr "Hoje"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr ""
 
 msgid "Toggle HDMI-In PiP"
@@ -21005,7 +21005,7 @@ msgid "Toggle all related files"
 msgstr ""
 
 #, fuzzy
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr "Aspect ratio"
 
 msgid "Toggle auto refresh On/Off"
@@ -21018,7 +21018,7 @@ msgstr "terminar edição de bouquets"
 msgid "Toggle display of image information"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -22309,7 +22309,7 @@ msgstr ""
 msgid "View photos..."
 msgstr "Ver fotos"
 
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Ver teletexto..."
 
 msgid "View the archive contents"
@@ -24197,7 +24197,7 @@ msgid "show DVD main menu"
 msgstr "Exibir menu de DVD"
 
 #, fuzzy
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr "Mostar EPG..."
 
 #, fuzzy
@@ -24265,14 +24265,14 @@ msgid "skip backward"
 msgstr "Retornar"
 
 #, fuzzy
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "Retroceder (inserir tempo)"
 
 msgid "skip forward"
 msgstr "Avançar"
 
 #, fuzzy
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "Avançar (inserir tempo)"
 
 msgid "slow"

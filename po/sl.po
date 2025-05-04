@@ -1850,7 +1850,7 @@ msgstr ""
 "Poskusim ponovno?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr ""
 
 #
@@ -2777,7 +2777,7 @@ msgstr ""
 msgid "Aspect Ratio Actions"
 msgstr "Izberite lokacijo"
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr ""
 
 msgid "Aspect ratio"
@@ -2876,7 +2876,7 @@ msgstr "Jezik zvočne sledi - 3"
 msgid "Audio language selection 4"
 msgstr "Jezik zvočne sledi - 4"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr ""
 
 msgid "Audio volume step size"
@@ -3938,7 +3938,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr "Seznam kanalov"
 
 msgid "Cancel selection and exit"
@@ -7890,7 +7890,7 @@ msgid "Enter if you are in the East or West hemisphere."
 msgstr ""
 
 #
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Vstop v glavni meni"
 
 msgid "Enter new directory name:"
@@ -10492,10 +10492,10 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr "Informacije"
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr ""
 
 msgid "InfoBar fade-out speed"
@@ -11263,7 +11263,7 @@ msgstr "Letterbox"
 
 #
 #, fuzzy
-msgid "Letterbox zoom"
+msgid "LetterBox zoom"
 msgstr "Letterbox"
 
 msgid "Liberia"
@@ -11362,7 +11362,7 @@ msgstr "Povezani naslovi z DVD menujem"
 msgid "Links"
 msgstr ""
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr ""
 
 msgid "List Navigation Actions"
@@ -12505,7 +12505,7 @@ msgid "Movie List"
 msgstr "Seznam posnetkov"
 
 #, fuzzy
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "Movie lokacija"
 
 msgid "Movie Selection Settings"
@@ -13689,10 +13689,10 @@ msgstr ""
 msgid "Open file sort menu"
 msgstr ""
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr ""
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr ""
 
 msgid "Open service list and select next channel"
@@ -14168,7 +14168,7 @@ msgstr "(PiP)"
 
 #
 #, fuzzy
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "Lokacija"
 
 msgid "PiP with OSD"
@@ -14209,7 +14209,7 @@ msgstr ""
 msgid "Picture in EPG"
 msgstr "Prestavi Sliko v Sliki"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr ""
 
 #
@@ -15361,7 +15361,7 @@ msgstr ""
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr ""
 
 msgid "QuickEPG mode"
@@ -15724,7 +15724,7 @@ msgstr "Nastavitve snemanja"
 msgid "Red"
 msgstr ""
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "Rdeča tipka..."
 
 msgid "Red colored"
@@ -16925,7 +16925,7 @@ msgstr ""
 msgid "Search"
 msgstr "Iskanje"
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr ""
 
 msgid "Search Sats"
@@ -16944,7 +16944,7 @@ msgstr ""
 msgid "Search for similar events"
 msgstr ""
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr ""
 
 #
@@ -17586,7 +17586,7 @@ msgstr "Izberite kanal, ki ga želite dodati."
 msgid "Select sort method:"
 msgstr ""
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -18012,7 +18012,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr "Izberite vhodno napravo"
 
 #, python-format
@@ -18784,7 +18784,7 @@ msgstr ""
 msgid "Show EPG"
 msgstr ""
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr ""
 
 msgid "Show EventView"
@@ -18810,7 +18810,7 @@ msgstr ""
 msgid "Show HDMI-Output Res"
 msgstr ""
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr ""
 
 msgid "Show InfoBar"
@@ -18910,7 +18910,7 @@ msgstr ""
 msgid "Show Plugin Skin packages"
 msgstr ""
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr ""
 
 msgid "Show Record Movies"
@@ -19115,7 +19115,7 @@ msgstr "Prikaz razširjenih informacij"
 msgid "Show extension selection"
 msgstr ""
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr ""
 
 msgid "Show extra spacing in Information"
@@ -19210,7 +19210,7 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr ""
 
 msgid "Show next commit log"
@@ -19366,7 +19366,7 @@ msgstr "Prikaz menija oznak (tags)"
 msgid "Show setup default value"
 msgstr ""
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr ""
 
 #
@@ -19421,7 +19421,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr ""
 
 #
@@ -19443,7 +19443,7 @@ msgid "Open SleepTimer Settings"
 msgstr "Prikaz TV predvajalnika"
 
 #, fuzzy
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr "Dodaj/Izbriši časovnik za trenutni dogodek"
 
 msgid "Show the last opkg command's output"
@@ -19517,7 +19517,7 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr ""
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr ""
 
 #
@@ -20659,10 +20659,10 @@ msgid "Subtitle position"
 msgstr ""
 
 #
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Izbira podnapisov"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Izbira podnapisov"
 
 #
@@ -20787,7 +20787,7 @@ msgstr "preklop na seznam datotek"
 msgid "Switch config"
 msgstr ""
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr ""
 
 #, fuzzy
@@ -20828,7 +20828,7 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr "Preklop na naslednjo pod-storitev"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr ""
 
 #
@@ -20841,10 +20841,10 @@ msgstr "preklop na seznam predvajanja"
 msgid "Switch to previous EPG Event"
 msgstr "Preklop na prejšnjo pod-storitev"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr ""
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr ""
 
 msgid "Switch to the available RADIO services"
@@ -22192,7 +22192,7 @@ msgstr ""
 msgid "Today"
 msgstr "Danes"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr ""
 
 msgid "Toggle HDMI-In PiP"
@@ -22219,7 +22219,7 @@ msgstr ""
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr ""
 
 msgid "Toggle auto refresh On/Off"
@@ -22233,7 +22233,7 @@ msgstr "Odprite listo priljubljenih paketov"
 msgid "Toggle display of image information"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -23592,7 +23592,7 @@ msgid "View photos..."
 msgstr "Ogled fotografij"
 
 #
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Ogled teleteksta"
 
 msgid "View the archive contents"
@@ -25584,7 +25584,7 @@ msgstr ""
 msgid "show DVD main menu"
 msgstr "Prikaz glavnega DVD menija"
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr ""
 
 msgid "show all cards"
@@ -25655,7 +25655,7 @@ msgid "skip backward"
 msgstr "Preskok nazaj"
 
 #
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "preskok nazaj (vnesite čas)"
 
 #
@@ -25663,7 +25663,7 @@ msgid "skip forward"
 msgstr "Preskok naprej"
 
 #
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "preskok naprej (vnesite čas)"
 
 msgid "slow"
