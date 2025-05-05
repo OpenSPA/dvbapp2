@@ -641,7 +641,8 @@ class InfoBarPlugins:
 
 
 class HideVBILine(Screen):
-	skin = """<screen position="0,0" size="%s,%s" backgroundColor="#000000" flags="wfNoBorder" />""" % (getDesktop(0).size().width(), getDesktop(0).size().height() / 360)
+	skin = """
+	<screen position="0,0" size="%s,%s" backgroundColor="#000000" flags="wfNoBorder" />""" % (getDesktop(0).size().width(), getDesktop(0).size().height() // 360)
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -652,9 +653,10 @@ class InfoBarScreenSaver:
 		self.screenSaverTimer = eTimer()
 		self.screenSaverTimer.callback.append(self.screenSaverTimeout)
 		self.screenSaver = self.session.instantiateDialog(ScreenSaver)
+		self.screenSaver.hide()
 		self.onExecBegin.append(self.__onExecBegin)
 		self.onExecEnd.append(self.__onExecEnd)
-		self.onLayoutFinish.append(self.__layoutFinished)
+		# self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __onExecBegin(self):
 		self.screenSaverTimerStart()
@@ -665,8 +667,19 @@ class InfoBarScreenSaver:
 			eActionMap.getInstance().unbindAction("", self.screenSaverKeyPress)
 		self.screenSaverTimer.stop()
 
-	def __layoutFinished(self):
-		self.screenSaver.hide()
+	# def __layoutFinished(self):
+	# 	self.screenSaver.hide()
+
+	def screenSaverTimeout(self):
+		if self.execing and not Screens.Standby.inStandby and not Screens.Standby.inTryQuitMainloop:
+			self.hide()
+			if hasattr(self, "pvrStateDialog"):
+				try:
+					self.pvrStateDialog.hide()
+				except Exception:
+					pass
+			self.screenSaver.show()
+			eActionMap.getInstance().bindAction("", -maxsize - 1, self.screenSaverKeyPress)
 
 	def screenSaverTimerStart(self):
 		startTimer = config.usage.screenSaverStartTimer.value
@@ -680,17 +693,6 @@ class InfoBarScreenSaver:
 			self.screenSaverTimer.startLongTimer(startTimer)
 		else:
 			self.screenSaverTimer.stop()
-
-	def screenSaverTimeout(self):
-		if self.execing and not Screens.Standby.inStandby and not Screens.Standby.inTryQuitMainloop:
-			self.hide()
-			if hasattr(self, "pvrStateDialog"):
-				try:
-					self.pvrStateDialog.hide()
-				except Exception:
-					pass
-			self.screenSaver.show()
-			eActionMap.getInstance().bindAction("", -maxsize - 3, self.screenSaverKeyPress)
 
 	def screenSaverKeyPress(self, key, flag):
 		if flag:
@@ -1729,10 +1731,10 @@ streamrelay = InfoBarStreamRelay()
 
 
 class TimerSelection(Screen):
-	def __init__(self, session, list):
+	def __init__(self, session, timerList):
 		Screen.__init__(self, session)
 		self.setTitle(_("Timer selection"))
-		self.list = list
+		self.list = timerList
 		self["timerlist"] = TimerList(self.list)
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"ok": (self.keySelected, _("Select the currently highlighted timer")),
@@ -2028,7 +2030,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.lastResetAlpha = True
 		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
-			self.SwitchSecondInfoBarScreen()
+			self.switchSecondInfoBarScreen()
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.__onExecBegin)
 		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_INFOBARLOADED):
@@ -2064,7 +2066,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			except Exception:
 				self.toggleShow()
 
-	def SwitchSecondInfoBarScreen(self):
+	def switchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
 			return
 		self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
@@ -2242,7 +2244,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.secondInfoBarWasShown = False
 				self.EventViewIsShown = False
 			elif self.secondInfoBarScreen and (config.usage.show_second_infobar.value == "2" or config.usage.show_second_infobar.value == "3") and not self.secondInfoBarScreen.shown:
-				self.SwitchSecondInfoBarScreen()
+				self.switchSecondInfoBarScreen()
 				self.hide()
 				self.secondInfoBarScreen.show()
 				self.secondInfoBarWasShown = True
@@ -3990,20 +3992,17 @@ class InfoBarAudioSelection:
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions", {
 			"audioSelection": (self.audioSelection, _("Open Audio options")),
-			"yellow_key": (self.yellow_key, _("Open Audio options")),
+			"yellow_key": (self.audioSelection, _("Open Audio options")),
 			"audioSelectionLong": (self.audioDownmixToggle, _("Toggle Dolby Digital down mix")),
 		}, prio=0, description=_("Audio Actions"))
 
-	def yellow_key(self):
-		from Screens.AudioSelection import AudioSelection
-		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelection(self):
-		from Screens.AudioSelection import AudioSelection
-		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		def audioSelectionCallback(result=None):
+			print(f"[InfoBarGenerics] InfoBarAudioSelection: Result='{result}'.")
 
-	def audioSelected(self, ret=None):
-		print("[InfoBarGenerics] [infobar::audioSelected]", ret)
+		from Screens.AudioSelection import AudioSelection
+		self.session.openWithCallback(audioSelectionCallback, AudioSelection, infobar=self)
 
 	def audioDownmixToggle(self, popup=True):
 		if BoxInfo.getItem("CanDownmixAC3"):
@@ -4028,8 +4027,6 @@ class InfoBarAudioSelection:
 			self.audioDownmixToggle(False)
 
 
-# Subservice processing.
-#
 instanceInfoBarSubserviceSelection = None
 
 
@@ -4043,7 +4040,7 @@ class InfoBarSubserviceSelection:
 		instanceInfoBarSubserviceSelection = self
 		self.subservicesGroups = self.loadSubservicesGroups()
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions", {
-			"selectSubservices": (self.keySelectSubservice, subservicesHelp())
+			"selectSubservices": (self.keySelectSubservice, subservicesHelp)
 		}, prio=0, description=_("Subservice Actions"))
 
 	def loadSubservicesGroups(self):
