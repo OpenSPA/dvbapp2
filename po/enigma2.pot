@@ -5933,6 +5933,9 @@ msgstr ""
 msgid "Disable background scanning"
 msgstr ""
 
+msgid "Disable Chkroot"
+msgstr ""
+
 msgid "Disable digital downmix"
 msgstr ""
 
@@ -5940,6 +5943,9 @@ msgid "Disable intro screen"
 msgstr ""
 
 msgid "Disable the HDD Process on VFD."
+msgstr ""
+
+msgid "Disable the MultiBoot option"
 msgstr ""
 
 msgid "Disable timer"

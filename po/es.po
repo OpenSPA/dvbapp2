@@ -6959,6 +6959,9 @@ msgstr "Deshabilitar Picture in Picture"
 msgid "Disable background scanning"
 msgstr "Deshabilitar la búsqueda en segundo plano"
 
+msgid "Disable Chkroot"
+msgstr "Deshabilitar Chkroot"
+
 msgid "Disable digital downmix"
 msgstr "Desactivar el downmix digital"
 
@@ -6968,6 +6971,9 @@ msgstr "Desactivar la pantalla de introducción"
 # Box Display
 msgid "Disable the HDD Process on VFD."
 msgstr "Desactivar proceso de HDD en VFD."
+
+msgid "Disable the MultiBoot option"
+msgstr "Deshabilitar la opción MultiBoot"
 
 #
 msgid "Disable timer"
