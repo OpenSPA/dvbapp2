@@ -6,11 +6,11 @@ from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Console import Console
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
-from Components.SystemInfo import BoxInfo
 from Screens.Console import Console as ConsoleScreen
 from Tools.Directories import fileExists, pathExists
 from Tools.MultiBoot import MultiBoot
@@ -18,7 +18,6 @@ from Tools.MultiBoot import MultiBoot
 ### OPENSPA [morser] prepare for kexec usb slots ####################
 from Components.Harddisk import harddiskmanager, Harddisk
 from Components.Console import Console
-from Components.SystemInfo import BoxInfo
 #####################################################################
 
 ##### OPENSPA [morser] Add best sorted function ###############
