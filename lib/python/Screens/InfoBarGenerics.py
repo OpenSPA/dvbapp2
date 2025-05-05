@@ -624,7 +624,7 @@ class InfoBarPlugins:  # Depends on InfoBarExtensions.
 	def getPluginList(self):  # Used in plugins
 		pluginList = []
 		for plugin in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
-			args = getfullargspec(p.__call__)[0]  # FIME: This is a performance issue and should be replaced.
+			args = getfullargspec(plugin.__call__)[0]  # FIME: This is a performance issue and should be replaced.
 			if len(args) in (1, 2) and isinstance(self, InfoBarChannelSelection):
 				pluginList.append(((boundFunction(self.getPluginName, plugin.name), boundFunction(self.runPlugin, plugin), lambda: True), None, plugin.name))
 		pluginList.sort(key=lambda x: x[2])  # Sort by name.
