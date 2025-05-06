@@ -56,7 +56,7 @@ class InfoBarTimeshift:
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
 			"timeshiftStart": (self.startTimeshift, _("Start time shift")),  # The "yellow key".
 			"timeshiftStop": (self.stopTimeshift, _("Stop time shift")),  # Currently undefined :), probably 'TV'.
-			"instantRecord": self.instantRecord,
+			"instantRecord": self.keyInstantRecord,
 			"restartTimeshift": self.restartTimeshift,
 			"seekFwdManual": (self.seekFwdManual, _("Seek forward (enter time)")),
 			"seekBackManual": (self.seekBackManual, _("Seek backward (enter time)")),
