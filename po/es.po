@@ -14174,14 +14174,14 @@ msgstr "Abrir la lista de servicios"
 msgid "Open service list and select next channel"
 msgstr "Abrir la lista de canales y seleccionar el siguiente canal"
 
-msgid "Open service list and select next channel for PiP"
+msgid "Open service list and select next service for PiP"
 msgstr "Abrir la lista de servicios y seleccionar el siguiente canal para PiP"
 
 #
-msgid "Open service list and select previous channel"
+msgid "Open service list and select previous service"
 msgstr "Abrir la lista de canales y seleccionar el canal anterior"
 
-msgid "Open service list and select previous channel for PiP"
+msgid "Open service list and select previous service for PiP"
 msgstr "Abrir la lista de servicios y seleccionar el canal anterior para PiP"
 
 #
@@ -21808,7 +21808,7 @@ msgid "Switch to next EPG Event"
 msgstr "Cambiar al evento EPG siguiente"
 
 #
-msgid "Zap to next service in the history"
+msgid "Zap to next service in history"
 msgstr "Cambiar al siguiente canal en el historial"
 
 # Mediaplayer Filelist Menue
@@ -21824,7 +21824,7 @@ msgid "Zap to previous service"
 msgstr "Cambiar al canal anterior"
 
 #
-msgid "Zap to previous service in the history"
+msgid "Zap to previous service in history"
 msgstr "Cambiar al canal anterior en el historial"
 
 msgid "Switch to the available RADIO services"
