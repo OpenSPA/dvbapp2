@@ -105,15 +105,6 @@ def getGStreamerVersionString():
 	return getGStreamerVersionString()
 
 
-def getFFmpegVersionString():
-	lines = fileReadLines("/var/lib/opkg/info/ffmpeg.control", source=MODULE_NAME)
-	if lines:
-		for line in lines:
-			if line[0:8] == "Version:":
-				return line[9:].split("+")[0]
-	return _("Not Installed")
-
-
 def getKernelVersionString():
 	version = fileReadLine("/proc/version", source=MODULE_NAME)
 	if version is None:
@@ -212,6 +203,7 @@ def getCPUInfoString():
 		return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "")
 		#return ("%s %s MHz (%s)") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount)
 
+
 def getSystemTemperature():
 	temperature = ""
 	if isfile("/proc/stb/sensors/temp0/value"):
@@ -227,6 +219,7 @@ def getSystemTemperature():
 
 def getChipSetString():
 	return str(BoxInfo.getItem("ChipsetString"))
+
 
 def getCPUBrand():
 	if BoxInfo.getItem("AmlogicFamily"):
@@ -290,6 +283,7 @@ def getDriverInstalledDate():
 	return _("Unknown")
 
 ######### OPENSPA [morser] Add missing functions for openspa Plugins ##################################################
+
 def getHardwareTypeString():
 	try:
 		if os.path.isfile("/proc/stb/info/boxtype"):
@@ -303,6 +297,7 @@ def getHardwareTypeString():
 	except:
 		pass
 	return _("unavailable")
+
 
 def getIsBroadcom():
 	try:
@@ -325,12 +320,14 @@ def getIsBroadcom():
 	except:
 		return False
 
+
 def getImageTypeString():
 	try:
 		return open("/etc/issue").readlines()[-2].capitalize().strip()[:-6]
 	except:
 		pass
 	return _("undefined")
+
 
 def getCPUSpeedString():
 	if getMachineBuild() in ('u41', 'u42', 'u43', 'u45'):
@@ -381,6 +378,7 @@ def getCPUSpeedString():
 		except IOError:
 			return _("unavailable")
 
+
 def getCPUString():
 	if getMachineBuild() in ('vuduo4k', 'vuduo4kse', 'osmio4k', 'osmio4kplus', 'osmini4k', 'dags72604', 'vuuno4kse', 'vuuno4k', 'vuultimo4k', 'vusolo4k', 'vuzero4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'et1x000', 'xc7439', 'h7', '8100s', 'et13000', 'sf5008'):
 		return "Broadcom"
@@ -406,6 +404,7 @@ def getCPUString():
 		except IOError:
 			return _("unavailable")
 
+
 def getCpuCoresString():
 	try:
 		file = open('/proc/cpuinfo', 'r')
@@ -428,6 +427,7 @@ def getCpuCoresString():
 	except IOError:
 		return _("unavailable")
 
+
 def getEnigmaDateString():
 	process = Popen(["opkg", "info", "enigma2"], stdout=PIPE, stderr=PIPE, universal_newlines=True)
 	stdout, stderr = process.communicate()
@@ -440,7 +440,6 @@ def getEnigmaDateString():
 					data = datetime.fromtimestamp(int(data))
 					return data.strftime("%Y-%m-%d")
 	return _("Unknown")
-
 
 #########################################################################################################################
 
@@ -490,6 +489,7 @@ def getGlibcVersion():
 		print("[About] Get glibc version failed.")
 	return _("Unknown")
 
+
 def getGccVersion():
 	try:
 		return pyversion.split("[GCC ")[1].replace("]", "")
@@ -497,19 +497,25 @@ def getGccVersion():
 		print("[About] Get gcc version failed.")
 	return _("Unknown")
 
+
 def getPythonVersionString():
 	try:
 		return pyversion.split(' ')[0]
 	except:
 		return _("Unknown")
 
-def getopensslVersionString():
-	lines = fileReadLines("/var/lib/opkg/info/openssl.control", source=MODULE_NAME)
-	if lines:
-		for line in lines:
-			if line[0:8] == "Version:":
-				return line[9:].split("+")[0]
-	return _("Not Installed")
+
+def getVersionFromOpkg(fileName):
+	return next((line[9:].split("+")[0] for line in fileReadLines(f"/var/lib/opkg/info/{fileName}.control", source=MODULE_NAME) if line.startswith("Version:")), ("Not Installed"))
+
+
+def getFileCompressionInfo():
+	result = Popen("strings /bin/bash | grep '$Id: UPX.*Copyright'", stdout=PIPE, shell=True, text=True)
+	# $Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved. $
+	output = result.communicate()[0]
+	parts = output.strip().split() if result.returncode == 0 and output else []
+	return f"{_("Enabled")} ({parts[1].lower()} {parts[2]})" if len(parts) >= 3 else _("Disabled")
+
 
 # For modules that do "from About import about"
 about = modules[__name__]
