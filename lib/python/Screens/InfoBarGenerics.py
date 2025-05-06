@@ -488,10 +488,6 @@ class InfoBarExtensions:
 		from Screens.OScamInfo import OSCamInfo
 		self.session.open(OSCamInfo)
 
-	def openNcamInfo(self):
-		from Screens.NcamInfo import NcamInfoMenu
-		self.session.open(NcamInfoMenu)
-
 	def openIpkUninstall(self):
 		from Screens.Ipkuninstall import Ipkuninstall
 		self.session.open(Ipkuninstall)
