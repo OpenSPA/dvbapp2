@@ -13345,7 +13345,7 @@ msgstr "Va rugam apasati OK pentru a continua"
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr ""
 
 msgid "Please select a distribution from which you would like to flash an image:"
@@ -14391,7 +14391,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr ""
 
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
+msgid "Recording time limited due to conflicting timer:%s"
 msgstr "Timp e inregistrare limitat datorat conflictului de timer %s"
 
 msgid "Record write error (no space on disk?)"
@@ -16102,7 +16102,7 @@ msgstr "Selectare canal de inregistrat"
 msgid "Select copy destination for:"
 msgstr ""
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr ""
 
 msgid "Select default File Commander directory:"

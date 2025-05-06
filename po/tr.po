@@ -13740,7 +13740,7 @@ msgstr "Lütfen devam etmek için OK tuşuna basın."
 msgid "Please press OK when ready"
 msgstr "Lütfen hazır olduğunuzda OK tuşuna basın"
 
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr "Varsayılan EPG tipini seçin..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
@@ -14828,7 +14828,7 @@ msgstr "Kayıt başladı! Zaman-kaydırma şimdi durduruluyor ..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
+msgid "Recording time limited due to conflicting timer:%s"
 msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt süresi sınırlandırılmış"
 
 msgid "Record write error (no space on disk?)"
@@ -16592,7 +16592,7 @@ msgstr "Kanal sesini seçin"
 msgid "Select copy destination for:"
 msgstr "Kopya için hedef seçin:"
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr "Varsayılan ERPG tipini seçin..."
 
 msgid "Select default File Commander directory:"

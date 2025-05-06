@@ -13738,7 +13738,7 @@ msgid "Please press OK when ready"
 msgstr ""
 
 #, fuzzy
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr "請選擇要刪除的播放列表..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
@@ -14839,7 +14839,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr ""
 
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
+msgid "Recording time limited due to conflicting timer:%s"
 msgstr "由於計時器 %s 衝突導致錄製時間受限"
 
 msgid "Record write error (no space on disk?)"
@@ -16603,7 +16603,7 @@ msgstr "選擇要錄製的頻道"
 msgid "Select copy destination for:"
 msgstr ""
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr ""
 
 msgid "Select default File Commander directory:"

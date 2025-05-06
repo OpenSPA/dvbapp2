@@ -14436,8 +14436,8 @@ msgstr "Si us plau, rem OK per arrancar kodi..."
 msgid "Please select a backup destination"
 msgstr "Si us plau selecciona destinació del backup"
 
-msgid "Please select a default EPG type..."
-msgstr "Sel·lecciona el tipus d'EPG per defecte..."
+msgid "Select default EPG type:"
+msgstr "Selecciona el tipus d'EPG per defecte:"
 
 msgid ""
 "Please select a distribution from which you would like to flash an image:"
@@ -15529,8 +15529,8 @@ msgstr "Gravació iniciada! Parant Timeshift..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
-msgstr "Temps de gravació limitat a causa d'un temporitzador en conflicte %s"
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Temps de registre limitat a causa del temporitzador en conflicte% s"
 
 msgid "Record write error (no space on disk?)"
 msgstr "Error d'escriptura de la gravació (no queda espai al disc?)"
@@ -17427,7 +17427,7 @@ msgid "Select copy destination for:"
 msgstr "Seleccioneu la destinació de la còpia per a:"
 
 msgid "Select default EPG type..."
-msgstr "Sel·leccionar el tipus d'EPG per defecte..."
+msgstr "Sel·leccionar el tipus d'EPG per defecte"
 
 msgid "Select default File Commander directory:"
 msgstr "Seleccionar directori predeterminat a l'Administrador d'arxius:"
