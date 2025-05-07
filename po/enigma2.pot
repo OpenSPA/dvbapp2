@@ -7899,6 +7899,11 @@ msgid "File appears to be busy!\n"
 msgstr ""
 
 msgid "File oscam.conf not found.\n"
+msgstr ""
+
+msgid "File compression"
+msgstr ""
+
 "Please enter username/password manually."
 msgstr ""
 
@@ -12934,9 +12939,6 @@ msgstr ""
 msgid "Please press OK to start Kodi..."
 msgstr ""
 
-msgid "Select default EPG type:"
-msgstr ""
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
@@ -13971,6 +13973,10 @@ msgstr ""
 msgid "Recording stopped"
 msgstr ""
 
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr ""
+
 msgid "Recording tuning failed"
 msgstr ""
 
@@ -14766,6 +14772,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba version"
+msgstr ""
+
 msgid "Same as in active"
 msgstr ""
 
@@ -15521,6 +15530,9 @@ msgid "Select copy destination for:"
 msgstr ""
 
 msgid "Select default EPG type"
+msgstr ""
+
+msgid "Select default EPG type:"
 msgstr ""
 
 msgid "Select default File Commander directory:"
@@ -22100,19 +22112,19 @@ msgstr ""
 msgid "Zap to next service"
 msgstr ""
 
-msgid "Zap to next service in the current bouquet"
+msgid "Zap to next service in history"
 msgstr ""
 
-msgid "Zap to next service in history"
+msgid "Zap to next service in the current bouquet"
 msgstr ""
 
 msgid "Zap to previous service"
 msgstr ""
 
-msgid "Zap to previous service in the current bouquet"
+msgid "Zap to previous service in history"
 msgstr ""
 
-msgid "Zap to previous service in history"
+msgid "Zap to previous service in the current bouquet"
 msgstr ""
 
 msgid "Zap up"
