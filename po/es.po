@@ -23437,9 +23437,6 @@ msgstr "Marcador de línea de tiempo"
 msgid "Timeline scale"
 msgstr "Escala de tiempo"
 
-msgid "Timer Actions"
-msgstr "Acciones de Temporizador"
-
 msgid "Timer Log Actions"
 msgstr "Acciones log del temporizador"
 

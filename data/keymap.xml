@@ -734,11 +734,6 @@
 		<key id="KEY_RED" mapto="activateRedButton" flags="b" />
 	</map>
 
-	<map context="InfobarTimerButtonActions">
-		<key id="KEY_PROGRAM" mapto="timerSelection" flags="b" />
-		<key id="KEY_CALENDAR" mapto="openAutoTimerList" flags="b" />
-	</map>
-
 	<map context="InfobarVmodeButtonActions">
 		<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
 		<key id="KEY_ANGLE" mapto="vmodeSelection" flags="m" />

@@ -19698,9 +19698,6 @@ msgstr ""
 msgid "Timeline scale"
 msgstr ""
 
-msgid "Timer Actions"
-msgstr ""
-
 msgid "Timer Log Actions"
 msgstr ""
 
