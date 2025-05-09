@@ -353,7 +353,7 @@ class InfoBarExtensions:
 		self.list = []
 		if config.plisettings.ColouredButtons.value:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", {
-				"extensions": (self.bluekey_ex, _("Open Extensions")),
+				"extensions": (self.keyExtensions, _("Open Extensions")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Open Plugin Browser")),
 				"showEventInfo": (self.SelectopenEventView, _("Open event information")),
 				"openTimerList": (self.showTimerList, _("Open RecordTimer Overview")),
@@ -365,7 +365,7 @@ class InfoBarExtensions:
 			}, prio=1, description=_("Extension Actions"))  # Lower priority.
 		else:
 			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", {
-				"extensions": (self.bluekey_ex, _("Open Extensions")),
+				"extensions": (self.keyExtensions, _("Open Extensions")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Open Plugin Browser")),
 				"showEventInfo": (self.SelectopenEventView, _("Open event information")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Open Media Player")),
@@ -382,7 +382,7 @@ class InfoBarExtensions:
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_EXTENSIONSINGLE):
 			p(self)
 
-	def bluekey_ex(self):
+	def keyExtensions(self):
 		self.showExtensionSelection()
 
 	def importChannels(self):
@@ -604,8 +604,7 @@ class InfoBarExtensions:
 			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 
-# Depends on InfoBarExtensions
-#
+
 class InfoBarPlugins:  # Depends on InfoBarExtensions.
 	def __init__(self):
 		self.addExtension(extension=self.getPluginList, type=InfoBarExtensions.EXTENSION_LIST)
