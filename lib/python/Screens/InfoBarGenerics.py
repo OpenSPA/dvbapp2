@@ -2421,7 +2421,7 @@ class InfoBarChannelSelection:
 	channelChange actions which open the channelSelection dialog."""
 
 	def __init__(self):
-		#instantiate forever
+		# instantiate forever
 		####### OPENSPA [morser] Support NewChannelSelection #####################################
 		try:
 			if config.misc.spazeChannelSelection.value:
@@ -2457,8 +2457,6 @@ class InfoBarChannelSelection:
 					helpText = _("Zap to next service in the current bouquet")
 			return helpText
 
-		# Instantiate forever.
-		self.servicelist = self.session.instantiateDialog(ChannelSelection)
 		self.servicelist2 = self.session.instantiateDialog(PiPZapSelection)
 		self.tscallback = None
 		if config.misc.initialchannelselection.value:
