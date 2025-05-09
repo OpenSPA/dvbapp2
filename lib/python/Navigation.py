@@ -435,7 +435,7 @@ class Navigation:
 	def serviceHook(self, ref):
 		wrappererror = None
 		nref = ref
-		if nref.getPath():
+		if hasattr(nref, "getPath"):
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_PLAYSERVICE):
 				(newurl, errormsg) = p(service=nref)
 				if errormsg:

@@ -382,18 +382,19 @@ class ChannelSelectionBase(Screen):
 	def setRoot(self, root, justSet=False):
 		if self.startRoot is None:
 			self.startRoot = self.getRoot()
-		path = root.getPath()
-		isBouquet = "FROM BOUQUET" in path and (root.flags & eServiceReference.isDirectory)
-		inBouquetRootList = "FROM BOUQUET \"bouquets." in path  # FIXME: Hack.
-		if not inBouquetRootList and isBouquet:
-			self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
-		elif path == serviceRefAppendPath(self.service_types_ref, "ORDER BY name").getPath():
-			self.servicelist.setMode(ServiceList.MODE_ALL)
-		else:
-			self.servicelist.setMode(ServiceList.MODE_NORMAL)
-		self.servicelist.setRoot(root, justSet)
-		self.rootChanged = True
-		self.buildTitle()
+		if root:
+			path = root.getPath()
+			isBouquet = "FROM BOUQUET" in path and (root.flags & eServiceReference.isDirectory)
+			inBouquetRootList = "FROM BOUQUET \"bouquets." in path  # FIXME: Hack.
+			if not inBouquetRootList and isBouquet:
+				self.servicelist.setMode(ServiceList.MODE_FAVOURITES)
+			elif path == serviceRefAppendPath(self.service_types_ref, "ORDER BY name").getPath():
+				self.servicelist.setMode(ServiceList.MODE_ALL)
+			else:
+				self.servicelist.setMode(ServiceList.MODE_NORMAL)
+			self.servicelist.setRoot(root, justSet)
+			self.rootChanged = True
+			self.buildTitle()
 
 	def clearPath(self):
 		del self.servicePath[:]
@@ -2727,8 +2728,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def saveRoot(self):
 		path = ""
 		for i in self.servicePath:
-			path += i.toString()
-			path += ";"
+			if i:
+				path += i.toString()
+				path += ";"
 		if path and path != self.lastroot.value:
 			if self.mode == MODE_RADIO and "FROM BOUQUET \"bouquets.tv\"" in path:
 				self.setModeTv()
@@ -2739,8 +2741,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.updateBouquetPath(path)
 
 	def restoreRoot(self):
-		tmp = [x for x in self.lastroot.value.split(";") if x != ""]
-		current = [x.toString() for x in self.servicePath]
+		tmp = [x for x in self.lastroot.value.split(";") if x]
+		current = [x.toString() for x in self.servicePath if x]
 		if tmp != current or self.rootChanged:
 			self.clearPath()
 			cnt = 0

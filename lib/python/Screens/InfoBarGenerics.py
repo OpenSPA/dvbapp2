@@ -604,7 +604,6 @@ class InfoBarExtensions:
 			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 
-
 class InfoBarPlugins:  # Depends on InfoBarExtensions.
 	def __init__(self):
 		self.addExtension(extension=self.getPluginList, type=InfoBarExtensions.EXTENSION_LIST)
