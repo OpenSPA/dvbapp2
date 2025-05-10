@@ -5754,7 +5754,7 @@ msgid "Crash Logs"
 msgstr "Crash Logs"
 
 msgid "Crash at skin error for debug reasons"
-msgstr "Bloqueo en el error de interfaz por motivos de depuración"
+msgstr "Crash en skin por motivos de depuración"
 
 #
 msgid "Create"
@@ -8007,47 +8007,34 @@ msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Habilite esta opción para agregar detalles DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB scan data to the debug log file."
-msgstr ""
-"Habilite esta opción para añadir datos de escaneo DVB adicionales al archivo "
-"de registro de depuración."
+msgstr "Habilite esta opción para añadir datos de escaneo DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB time sync data to the debug log file."
 msgstr "Habilite esta opción para agregar datos de sincronización de tiempo DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
-msgstr ""
-"Activa esta opción para añadir datos extra de la EPG al archivo de registro "
-"de depuración."
+msgstr "Activa esta opción para añadir datos extra de la EPG al archivo de registro de depuración."
 
 msgid "Enable this option to add extra teletext details to the debug log file."
 msgstr "Habilite esta opción para añadir detalles de teletexto adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
-msgstr ""
-"Habilitar esta opción para añadir los datos del mapeo del teclado al archivo "
-"del log de depuración."
+msgstr "Habilitar esta opción para añadir los datos del mapeo del teclado al archivo del log de depuración."
 
 msgid "Enable this option to add opkg output data to the debug log file."
-msgstr ""
-"Habilitar esta opción para añadir los datos de salida de opkg al archivo de "
-"registro de depuración."
+msgstr "Habilitar esta opción para añadir los datos de salida de opkg al archivo de registro de depuración."
 
 msgid "Enable this option to add remote control data to the debug log file."
-msgstr ""
-"Habilitar esta opción para añadir los datos del control remoto al archivo de "
-"registro de depuración."
+msgstr "Habilitar esta opción para añadir los datos del control remoto al archivo de registro de depuración."
 
-msgid ""
-"Enable this option to add screen names and resolution data to the debug log "
-"file."
-msgstr ""
-"Habilita esta opción para añadir los nombres de las pantallas y los datos de "
-"resolución al archivo de registro de depuración."
+msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr "Habilita esta opción para añadir los nombres de las pantallas y los datos de resolución al archivo de registro de depuración."
+
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr "Habilite esta opción para agregar información del dispositivo de almacenamiento detectado durante el arranque del sistema y eventos de conexión en caliente al archivo de registro de depuración."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
-msgstr ""
-"Activa esta opción para añadir los datos de depuración del temporizador al "
-"archivo de registro de depuración."
+msgstr "Activa esta opción para añadir los datos de depuración del temporizador al archivo de registro de depuración."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Habilite esta opción para mostrar todas las pantallas de información disponibles en la lista de elementos del menú Información."
@@ -10928,6 +10915,9 @@ msgstr "Incluir los datos del mando a distancia"
 
 msgid "Include screen load data"
 msgstr "Incluir datos de carga de la pantalla"
+
+msgid "Include storage device data"
+msgstr "Incluir datos del dispositivo de almacenamiento"
 
 msgid "Include teletext details"
 msgstr "Incluir detalles del teletexto"
