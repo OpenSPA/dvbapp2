@@ -17,21 +17,19 @@
 	<!-- Main Menu -->
 	<menu key="mainmenu" text="Main Menu" title="Main Menu">
 		<!-- added by mpiero -->
-		<menu key="openspa" weight="0" level="0" text="OpenSPA Menu" configcondition="config.misc.spazeMenuOpenspa.value">
+		<menu key="openspa" weight="0" level="0" text="OpenSPA Menu">
 			<menu key="openspa_-20" level="2" text="spaPANEL" />
-			<menu key="openspa_-4" level="2" text="MediaCenter" />
+			<menu key="openspa_-4" level="2" text="Multimedia" />
 			<menu key="openspa_-9" level="2" text="Customize" />
 			<menu key="openspa_-13" level="2" text="AddOns" />
 			<menu key="openspa_-1" level="2" text="Tv Options" />
-			<menu key="openspa_-8" level="2" text="Help" />
 			<!--spaPANEL -20
 				Movies 3 - Direct
-				MediaCenter -4
+				Multimedia -4
 				Kodi 44 - Direct
 				Customize -9
 				AddOns -13
 				Tv Options -1
-				Help -8
 				-->
 		</menu>
 		<!--  /added by mpiero -->
