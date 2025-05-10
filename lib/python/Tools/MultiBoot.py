@@ -766,7 +766,8 @@ class MultiBootClass():
 			rmdir(self.tempDir)
 			self.callback(0)
 
-	def emptySlot(self, slotCode, callback):
+	def emptySlot(self, slotCode, callback, remove=False):
+		self.remove = remove
 		self.manageSlot(slotCode, callback, self.hideSlot)
 
 	def restoreSlot(self, slotCode, callback):
@@ -792,7 +793,7 @@ class MultiBootClass():
 		else:
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
 			imageDir = join(self.tempDir, rootDir) if rootDir else self.tempDir
-			if self.bootSlots[self.slotCode].get("ubi", False) or fileHas("/proc/cmdline", "kexec=1"):
+			if self.bootSlots[self.slotCode].get("ubi", False) or fileHas("/proc/cmdline", "kexec=1") or self.remove:
 				try:
 					if isfile(join(imageDir, "usr/bin/enigma2")):
 						self.console.ePopen([REMOVE, REMOVE, "-rf", imageDir])
