@@ -784,8 +784,8 @@ class ChkrootInit(Screen):
 			if "others" in partition:
 				partition = partition.split()[-1]
 				cmdList = [
-				  f"echo 0 > {partition}/force_ro",
-				  f"dd if=/dev/zero of={partition} bs=512"
+					f"echo 0 > {partition}/force_ro",
+					f"dd if=/dev/zero of={partition} bs=512"
 				]
 				Console().eBatch(cmdList, removeCallback, debug=True)
 
