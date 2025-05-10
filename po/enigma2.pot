@@ -3844,6 +3844,9 @@ msgstr ""
 msgid "Chkroot MultiBoot Manager"
 msgstr ""
 
+msgid "Chkroot MultiBoot Remove in progress!"
+msgstr ""
+
 msgid "Choice List Actions"
 msgstr ""
 
@@ -13390,6 +13393,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press RED to remove MultiBoot!"
+msgstr ""
+
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
 
@@ -14141,6 +14147,12 @@ msgid "Remove"
 msgstr ""
 
 msgid "Remove Bookmark"
+msgstr ""
+
+msgid "Remove Chkroot"
+msgstr ""
+
+msgid "Remove Chkroot MultiBoot"
 msgstr ""
 
 msgid "Remove Confirmation"
@@ -23825,6 +23837,9 @@ msgstr ""
 #, python-format
 msgid "Really permanently delete MultiBoot files?\n"
 "%s"
+msgstr ""
+
+msgid "Really permanently delete MultiBoot Images?"
 msgstr ""
 
 msgid "Remove forever"

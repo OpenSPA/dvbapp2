@@ -3361,9 +3361,6 @@ msgstr "Bluetooth"
 msgid "Bluetooth Setup"
 msgstr "Ajuste de Bluetooth"
 
-msgid "Press red key to enable bluetooth."
-msgstr "Pulsar botón rojo para activar bluetooth."
-
 msgid "Bolivia"
 msgstr "Bolivia"
 
@@ -4360,6 +4357,9 @@ msgstr "¡Inicialización Chkroot MultiBoot en progreso!"
 
 msgid "Chkroot MultiBoot Manager"
 msgstr "Administrador MultiBoot Chkroot"
+
+msgid "Chkroot MultiBoot Remove in progress!"
+msgstr "¡Eliminación Chkroot MultiBoot en progreso!"
 
 msgid "Choice List Actions"
 msgstr "Acciones lista de opciones"
@@ -15449,6 +15449,12 @@ msgstr "Pulse OK para utilizar este idioma.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Pulse OK para utilizar esta configuración regional.  [%s]"
 
+msgid "Press RED to remove MultiBoot!"
+msgstr "¡Pulse botón ROJO para eliminar MultiBoot!"
+
+msgid "Press red key to enable bluetooth."
+msgstr "Pulsar botón rojo para activar bluetooth."
+
 msgid ""
 "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot "
 "to that image. If available, YELLOW will either delete or wipe the image. A "
@@ -16291,6 +16297,12 @@ msgstr "Eliminar"
 #
 msgid "Remove Bookmark"
 msgstr "Eliminar marcador"
+
+msgid "Remove Chkroot"
+msgstr "Eliminar Chkroot"
+
+msgid "Remove Chkroot MultiBoot"
+msgstr "Eliminar Chkroot MultiBoot"
 
 msgid "Remove Confirmation"
 msgstr "Confirmación de eliminación"
@@ -28511,6 +28523,9 @@ msgstr ""
 "¿Borrar realmente de forma permanente los archivos MultiBoot?\n"
 "%s"
 
+msgid "Really permanently delete MultiBoot Images?"
+msgstr "¿Realmente quiere eliminar permanentemente las imágenes MultiBoot?"
+
 msgid "Remove forever"
 msgstr "Eliminar Kexec"
 
@@ -28719,7 +28734,7 @@ msgid "Please select the device or Cancel to cancel the selection."
 msgstr "Seleccione el dispositivo o Cancelar para cancelar la selección."
 
 msgid "Press GREEN to enable MultiBoot!"
-msgstr "Pulsa botón verde para activar Multiboot!"
+msgstr "Pulsa botón VERDE para activar Multiboot!"
 
 #
 msgid "Remove Files"
