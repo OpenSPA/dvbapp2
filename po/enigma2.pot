@@ -1020,6 +1020,9 @@ msgstr[1] ""
 msgid "%d sec"
 msgstr ""
 
+msgid "%d slots have been created on the device.\n"
+msgstr ""
+
 #, python-format
 msgid "%d times"
 msgstr ""
@@ -15691,6 +15694,9 @@ msgstr ""
 msgid "Select system information to view:"
 msgstr ""
 
+msgid "Select target device for slot creation"
+msgstr ""
+
 msgid "Select temporary directory sort order for the current column"
 msgstr ""
 
@@ -16088,6 +16094,9 @@ msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 msgid "Select/Zap to the selected service"
+msgstr ""
+
+msgid "Selected device: %s"
 msgstr ""
 
 #, python-format
@@ -23975,10 +23984,16 @@ msgstr ""
 msgid "Choose the amount of additional slots."
 msgstr ""
 
+msgid "Choose the target device for the slots."
+msgstr ""
+
 msgid "Choose the target location for the slots."
 msgstr ""
 
 msgid "Create Slots"
+msgstr ""
+
+msgid "Create slots for the selected device"
 msgstr ""
 
 msgid "Create the additional slots on the selected device"
@@ -24006,6 +24021,9 @@ msgid "Remove Files"
 msgstr ""
 
 msgid "Remove the MultiBoot files"
+msgstr ""
+
+msgid "Select a device to create multiboot slots"
 msgstr ""
 
 msgid "Select a device to use for the additional slots"

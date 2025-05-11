@@ -1051,6 +1051,9 @@ msgstr[1] "%d paquetes fueron actualizados."
 msgid "%d sec"
 msgstr "%d seg"
 
+msgid "%d slots have been created on the device.\n"
+msgstr "Se han creado %d slots en el dispositivo.\n"
+
 #
 #, python-format
 msgid "%d times"
@@ -18323,6 +18326,9 @@ msgstr "Seleccionar subservicios"
 msgid "Select system information to view:"
 msgstr "Seleccione la información del sistema que desea ver:"
 
+msgid "Select target device for slot creation"
+msgstr "Seleccionar el dispositivo de destino para la creación de slot"
+
 msgid "Select temporary directory sort order for the current column"
 msgstr "Selecciona orden temporal de directorio de la columna actual"
 
@@ -18936,6 +18942,9 @@ msgstr "Seleccionar, alternar, procesar o editar la entrada actual"
 
 msgid "Select/Zap to the selected service"
 msgstr "Seleccionar/Zap al canal seleccionado"
+
+msgid "Selected device: %s"
+msgstr "Dispositivo seleccionado: %s"
 
 #, python-format
 msgid ""
@@ -28705,6 +28714,9 @@ msgstr "Añadir más slots"
 msgid "Choose the amount of additional slots."
 msgstr "Escoge la cantidad de slots adicionales."
 
+msgid "Choose the target device for the slots."
+msgstr "Elija el dispositivo de destino para los slots."
+
 msgid "Choose the target location for the slots."
 msgstr "Elija la ubicación de destino para los slots."
 
@@ -28713,6 +28725,9 @@ msgstr "Cerrar el administrador de multiBoot Kexec"
 
 msgid "Create Slots"
 msgstr "Crear slots"
+
+msgid "Create slots for the selected device"
+msgstr "Crear slots para el dispositivo seleccionado"
 
 msgid "Create the additional slots on the selected device"
 msgstr "Crear los slots adicionales en el dispositivo seleccionado"
@@ -28742,6 +28757,9 @@ msgstr "Eliminar archivos"
 
 msgid "Remove the MultiBoot files"
 msgstr "Eliminar los archivos multiboot"
+
+msgid "Select a device to create multiboot slots"
+msgstr "Seleccione un dispositivo para crear slots multiboot"
 
 msgid "Select a device to use for the additional slots"
 msgstr "Seleccione un dispositivo para usar en los slots adicionales"
