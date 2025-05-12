@@ -95,13 +95,7 @@ def InitDefaultPaths():
 	resolveFilename(SCOPE_CONFIG)
 
 
-skinResolveList = []
-lcdskinResolveList = []
-fontsResolveList = []
-
-
-def clearResolveLists():
-	global skinResolveList, lcdskinResolveList, fontsResolveList
+class ClearResolveLists:  # OpenSPA [norhap] list cleaning.
 	skinResolveList = []
 	lcdskinResolveList = []
 	fontsResolveList = []
@@ -165,8 +159,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 				if len(pluginCode) > 2:
 					path = join(plugins, pluginCode[0], pluginCode[1])
 	elif scope == SCOPE_GUISKIN:
-		global skinResolveList
-		if not skinResolveList:
+		if ClearResolveLists.skinResolveList == []:  # OpenSPA [norhap] set fixed this condition to be executed clearing lists class ClearResolveLists.
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
 			skin = dirname(config.skin.primary_skin.value)
 			skinResolveList = addIfExists([
@@ -184,8 +177,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 		else:
 			path = checkPaths(skinResolveList, base)
 	elif scope == SCOPE_LCDSKIN:
-		global lcdskinResolveList
-		if not lcdskinResolveList:
+		if ClearResolveLists.lcdskinResolveList == []:  # OpenSPA [norhap] set fixed this condition to be executed clearing lists class ClearResolveLists.
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
 			skin = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else ""
 			lcdskinResolveList = addIfExists([
@@ -198,8 +190,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 			])
 		path = checkPaths(lcdskinResolveList, base)
 	elif scope == SCOPE_FONTS:
-		global fontsResolveList
-		if not fontsResolveList:
+		if ClearResolveLists.fontsResolveList == []:  # OpenSPA [norhap] set fixed this condition to be executed clearing lists class ClearResolveLists.
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
 			skin = dirname(config.skin.primary_skin.value)
 			display = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else None
