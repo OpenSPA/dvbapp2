@@ -26483,7 +26483,7 @@ msgid "Zap to previous service in the current bouquet"
 msgstr "Cambiar al canal anterior en el boouquet actual"
 
 msgid "Zap to next service in the current bouquet"
-msgstr "Cambiar al canal anterior en el boouquet actual"
+msgstr "Cambiar al siguiente canal en el boouquet actual"
 
 msgid "Zap up"
 msgstr "Cambiar abajo"
