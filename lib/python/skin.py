@@ -920,9 +920,9 @@ class AttributeParser:
 	def applyOne(self, attribute, value):
 		# [norhap] OpenSPA exclude attributes spa.
 		attributespa = ["esFecha", "sizey", "posyDuration", "posygeticonogenero", "posgeticonogenero", "posBegin",
-			"sizeEvent", "sizeDuration", "sizeBegin", "sizeDate", "colorEvent", "colorDuration", "colorBegin",
-			"colorDeactivated", "colorDate", "posDuration", "posEvent", "posyBegin", "postxt", "posyEvent",
-			"fontBegin", "fontEvent", "fontDate", "fontDuration", "locationdescription", "locationfreespace"]
+			"sizeEvent", "sizeDuration", "sizeBegin", "sizeDate", "colorEvent", "colorDuration", "colorBegin", "colorLine",
+			"colorDeactivated", "colorDate", "posDuration", "posEvent", "posyBegin", "postxt", "posyEvent", "colorFolder",
+			"colorFondo", "fontBegin", "fontEvent", "fontDate", "fontDuration", "locationdescription", "locationfreespace"]
 		try:
 			if attribute not in attributespa:
 				getattr(self, attribute)(value)
