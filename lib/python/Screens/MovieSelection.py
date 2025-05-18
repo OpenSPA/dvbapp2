@@ -1603,7 +1603,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 						]
 						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title=f"{_("Recording in progress")}\n{name}", list=choices)
 						return
-				if int(time()) - st.st_mtime < 5 and not args:
+				if int(time()) == int(st.st_mtime) and not args:  # OpenSPA [norhap] Recording is busy when file stat is equal to "now".
 					# self.session.openWithCallback(self.delete, MessageBox, f"{_("File '%s' appears to be busy!") % name}\n\n{_("Do you really want to delete '%s'?") % name}", windowTitle=self.getTitle())
 					self.session.openWithCallback(self.delete, MessageBox, f"{_("File appears to be busy!\n")}\n{_("Do you really want to delete '%s'?") % name}", windowTitle=self.getTitle())
 					return
