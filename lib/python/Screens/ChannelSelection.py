@@ -1374,6 +1374,8 @@ class ChannelContextMenu(Screen):
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
 				appendWhenValid(current, menu, (_("Show Transponder Information"), boundFunction(self.showServiceInformations, current)), level=2)
+		if not config.misc.spazeChannelSelection.value or (config.misc.spazeChannelSelection.value and config.usage.standardchannelselection.value):  # OPENSPA [norhap] Exchange type of channel list.
+			appendWhenValid(current, menu, (_("Show service list") + " " + "OpenSPA", boundFunction(self.showServiceListOpenSPA, None)), level=2)
 		if self.subservices and not csel.isSubservices():
 			appendWhenValid(current, menu, (_("Show Subservices Of Active Service"), self.showSubservices), key="4")
 		if csel.bouquet_mark_edit == EDIT_OFF and not csel.entry_marked:
@@ -1716,6 +1718,14 @@ class ChannelContextMenu(Screen):
 	def showServiceInformations(self, current):
 		from Screens.Information import ServiceInformation  # The import needs to be here to prevent a cyclic import.
 		self.session.open(ServiceInformation, current)
+
+	def showServiceListOpenSPA(self, current):  # OPENSPA [norhap] Show OpenSPA channel list.
+		config.usage.standardchannelselection.value = False
+		from Screens.InfoBar import InfoBar
+		from Screens.newChannelSelection import newChannelSelection
+		if InfoBar and InfoBar.instance:
+			InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(newChannelSelection)
+		self.close(True)
 
 	def showSubservices(self):
 		self.csel.enterSubservices(self.csel.getCurrentSelection(), self.subservices)
