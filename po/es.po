@@ -19196,10 +19196,10 @@ msgid "Service width"
 msgstr "Ancho del canal"
 
 msgid "ServiceName"
-msgstr "Nombre del Servicio"
+msgstr "Nombre del Canal"
 
 msgid "ServicePicon"
-msgstr "ServicePicon"
+msgstr "Picon Canal"
 
 #
 msgid "Serviceinfo"
@@ -25496,12 +25496,8 @@ msgstr ""
 "Cuando está activado, continua hacia el próximo grupo cuando has alcanzado "
 "el último canal del grupo actual."
 
-msgid ""
-"When enabled, deleted recordings are moved to the trash can, instead of "
-"being deleted immediately."
-msgstr ""
-"Cuando está activado, las grabaciones borradas pasan a la papelera en vez de "
-"eliminarse inmediatamente."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
+msgstr "Cuando está habilitado, las grabaciones eliminadas se mueven a la papelera, en lugar de eliminarse inmediatamente."
 
 msgid ""
 "When enabled, external subtitles will be always turned on for playback movie."
