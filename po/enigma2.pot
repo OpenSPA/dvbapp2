@@ -13970,6 +13970,9 @@ msgstr ""
 msgid "Recording in progress"
 msgstr ""
 
+msgid "Recording is not possible with ServiceAPP enabled."
+msgstr ""
+
 msgid "Recording location"
 msgstr ""
 

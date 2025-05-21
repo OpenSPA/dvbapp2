@@ -13520,7 +13520,7 @@ msgid "No error"
 msgstr "Ningún error"
 
 msgid "No event information found, recording default is 24 hours."
-msgstr "No hay información del evento; grabando indefinidamente."
+msgstr "No se encontró información del evento, la grabación por defecto es de 24 horas."
 
 #
 msgid ""
@@ -16092,6 +16092,9 @@ msgstr "Grabación terminada"
 
 msgid "Recording in progress"
 msgstr "Grabación en curso"
+
+msgid "Recording is not possible with ServiceApp enabled."
+msgstr "No es posible grabar con ServiceApp habilitado."
 
 msgid "Recording location"
 msgstr "Ubicación de la grabación"

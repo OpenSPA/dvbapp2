@@ -22,7 +22,7 @@ import Screens.Standby
 from ServiceReference import ServiceReference
 from Tools.ASCIItranslit import legacyEncode
 from Tools.CIHelper import cihelper
-from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename, isPluginInstalled
 from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
 from Tools import Trashcan
 from Tools.XMLTools import stringToXML
@@ -42,6 +42,7 @@ TIMER_XML_FILE = resolveFilename(SCOPE_CONFIG, "timers.xml")
 TIMER_FLAG_FILE = "/tmp/was_rectimer_wakeup"
 
 wasRecTimerWakeup = False
+RecordingWithServiceApp = False
 
 
 class AFTEREVENT:
@@ -285,6 +286,13 @@ class RecordTimer(Timer):
 	# abort the timer. Don't run trough all the stages.
 	#
 	def doActivate(self, timer):
+		global RecordingWithServiceApp  # OpenSPA [norhap] IPTV recording actions with ServiceApp enabled
+		if timer.service_ref.ref.toString().startswith("4097:") and isPluginInstalled("ServiceApp") and config.plugins.serviceapp.servicemp3.replace.value or timer.service_ref.ref.toString()[:4] in ("5001", "5002"):
+			print("[RecordTimer][doActivate] ServiceApp enabled - recording disabled")
+			RecordingWithServiceApp = True
+			if config.usage.remote_fallback_enabled.value:
+				timer.state = RecordTimerEntry.StateEnded
+				AddPopup(f"Stream IPTV {timer.service_ref.ref.toString()[:4]}: " + _("Recording is not possible with ServiceApp enabled."), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 		if timer.shouldSkip():
 			timer.state = RecordTimerEntry.StateEnded
 		else:
@@ -744,7 +752,7 @@ class RecordTimerEntry(TimerEntry):
 		return f"RecordTimerEntry(name={self.name}, begin={ctime(self.begin)}, end={ctime(self.end)}, serviceref={self.service_ref}, justplay={self.justplay}, isAutoTimer={self.isAutoTimer}{iceTV}{disabled})"
 
 	def activate(self):
-		global InfoBar, wasRecTimerWakeup
+		global InfoBar, wasRecTimerWakeup, RecordingWithServiceApp
 		if not InfoBar:
 			try:
 				from Screens.InfoBar import InfoBar
@@ -921,8 +929,8 @@ class RecordTimerEntry(TimerEntry):
 				self.log(8, "Freeing a tuner failed!")
 				if self.messageString:
 					message = _("No tuner is available for recording a timer!\n\nThe following methods of freeing a tuner were tried without success:\n\n") + self.messageString
-				else:
-					message = _("No tuner is available for recording a timer!")
+				else:  # OpenSPA [norhap] IPTV recording show targeted message.
+					message = (_("No tuner is available for recording a timer!") if RecordingWithServiceApp is False else f"Stream IPTV {self.service_ref.ref.toString()[:4]}: " + _("Recording is not possible with ServiceApp enabled."))
 				if InfoBar and InfoBar.instance:
 					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_INFO, timeout=20)
 				else:

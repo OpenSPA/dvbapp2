@@ -3916,7 +3916,8 @@ class InfoBarInstantRecord:
 				end = info["end"]
 		else:
 			if limitEvent:
-				self.session.open(MessageBox, _("No event information found, recording default is 24 hours."), MessageBox.TYPE_INFO)
+				if not RecordTimerEntry.StateEnded:  # OpenSPA [norhap] with fallback tuner enabled and ServiceApp enabled in IPTV recording not show messaje.
+					self.session.open(MessageBox, _("No event information found, recording default is 24 hours."), MessageBox.TYPE_INFO)
 		if isinstance(serviceReference, eServiceReference):
 			serviceReference = ServiceReference(serviceReference)
 		if not limitEvent:
