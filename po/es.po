@@ -16093,8 +16093,8 @@ msgstr "Grabación terminada"
 msgid "Recording in progress"
 msgstr "Grabación en curso"
 
-msgid "Recording is not possible with ServiceApp enabled."
-msgstr "No es posible grabar con ServiceApp habilitado."
+msgid "Recording is not possible"
+msgstr "No es posible grabar"
 
 msgid "Recording location"
 msgstr "Ubicación de la grabación"
@@ -26888,7 +26888,7 @@ msgstr "Habilitar modo movimiento"
 
 #
 msgid "enabled"
-msgstr "Activado"
+msgstr "activado"
 
 #
 msgid "End Alternatives Edit"
