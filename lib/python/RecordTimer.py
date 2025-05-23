@@ -287,14 +287,15 @@ class RecordTimer(Timer):
 	#
 	def doActivate(self, timer):
 		# OpenSPA [norhap] IPTV actions with a player other than ServiceMP3 used.
-		if timer.service_ref.ref.toString().startswith("4097:") or timer.service_ref.ref.toString()[:4] in ("5001", "5002") or "%3a/" in timer.service_ref.ref.toString():
+		if "%3a/" in timer.service_ref.ref.toString():
+			message = "Stream IPTV " + timer.service_ref.ref.toString()[:4] + " " + _("It is not possible to record with") + " " + player + " " + _("enabled")
 			if player == "ServiceApp":
 				if config.plugins.serviceapp.servicemp3.replace.value:
 					timer.state = RecordTimerEntry.StateEnded
-					AddPopup("Stream IPTV " + timer.service_ref.ref.toString()[:4] + " " + _("It is not possible to record with") + " " + player + " " + _("enabled"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+					AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 			elif player == "ServiceHisilicon":
 				timer.state = RecordTimerEntry.StateEnded
-				AddPopup("Stream IPTV " + timer.service_ref.ref.toString()[:4] + " " + _("It is not possible to record with") + " " + player + " " + _("enabled"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+				AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 		if timer.shouldSkip():
 			timer.state = RecordTimerEntry.StateEnded
 		else:
