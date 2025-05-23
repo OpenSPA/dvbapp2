@@ -9644,6 +9644,9 @@ msgstr ""
 msgid "It follows:"
 msgstr ""
 
+msgid "It is not possible to record with"
+msgstr ""
+
 msgid "Italian"
 msgstr ""
 
@@ -13968,9 +13971,6 @@ msgid "Recording finished"
 msgstr ""
 
 msgid "Recording in progress"
-msgstr ""
-
-msgid "Recording is not possible"
 msgstr ""
 
 msgid "Recording location"

@@ -293,7 +293,7 @@ class RecordTimer(Timer):
 				NotPlayerEnigma = True
 				if config.usage.remote_fallback_enabled.value:
 					timer.state = RecordTimerEntry.StateEnded
-					AddPopup("Stream IPTV " + timer.service_ref.ref.toString()[:4] + ": " + _("Recording is not possible") + " " + player + " " + _("enabled"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+					AddPopup("Stream IPTV " + timer.service_ref.ref.toString()[:4] + ": " + _("It is not possible to record with") + " " + player + " " + _("enabled"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 		if timer.shouldSkip():
 			timer.state = RecordTimerEntry.StateEnded
 		else:
@@ -931,7 +931,7 @@ class RecordTimerEntry(TimerEntry):
 				if self.messageString:
 					message = _("No tuner is available for recording a timer!\n\nThe following methods of freeing a tuner were tried without success:\n\n") + self.messageString
 				else:  # OpenSPA [norhap] The recording shows an objective message.
-					message = (_("No tuner is available for recording a timer!") if NotPlayerEnigma is False else "Stream IPTV " + self.service_ref.ref.toString()[:4] + ": " + _("Recording is not possible") + " " + player + " " + _("enabled"))
+					message = (_("No tuner is available for recording a timer!") if NotPlayerEnigma is False else "Stream IPTV " + self.service_ref.ref.toString()[:4] + ": " + _("It is not possible to record with") + " " + player + " " + _("enabled"))
 				if InfoBar and InfoBar.instance:
 					InfoBar.instance.openInfoBarMessage(message, MessageBox.TYPE_INFO, timeout=20)
 				else:

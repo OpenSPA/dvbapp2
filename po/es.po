@@ -11307,6 +11307,9 @@ msgstr "Israel"
 msgid "It follows:"
 msgstr "Es lo siguiente:"
 
+msgid "It is not possible to record with"
+msgstr "No es posible grabar con"
+
 # Language
 msgid "Italian"
 msgstr "Italiano"
@@ -16092,9 +16095,6 @@ msgstr "Grabación terminada"
 
 msgid "Recording in progress"
 msgstr "Grabación en curso"
-
-msgid "Recording is not possible"
-msgstr "No es posible grabar"
 
 msgid "Recording location"
 msgstr "Ubicación de la grabación"
@@ -29321,32 +29321,20 @@ msgstr "Eliminar Plugin"
 msgid "Remove the selected list of plugins"
 msgstr "Eliminar la lista de plugins seleccionada"
 
-msgid ""
-"Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the "
-"Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes 'dev', 'staticdev', 'dbg' y 'doc' "
-"en la pantalla de Descarga de Plugins."
+msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr "Selecciona 'Sí' para mostrar los paquetes 'dev', 'staticdev', 'dbg' y 'doc' en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de skins de LCD en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de skins de LCD en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de OpenPLi en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de OpenPLi en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de OpenViX en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de OpenViX en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de enlaces web en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de enlaces web en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
 msgstr "Seleccione 'Sí' para apagar inmediatamente en lugar de iniciar la descodificación."
@@ -29473,29 +29461,19 @@ msgid "Show Gstreamer packages"
 msgstr "Mostrar paquetes gstreamer"
 
 msgid "Select 'Yes' to show kodi addons in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los addons de kodi en la pantalla de Descarga "
-"de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los addons de kodi en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show docker packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de docker en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de docker en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show python packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes python en la pantalla de Descarga "
-"de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes python en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show language packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de idioma en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de idioma en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de gstreamer en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de gstreamer en la pantalla de Descarga de Plugins."
 
 msgid "Reset Order"
 msgstr "Restablecer orden de clasificación"
