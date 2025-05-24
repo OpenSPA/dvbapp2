@@ -621,6 +621,8 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self.handleLeave(config.usage.on_movie_stop.value)
 
 	def leavePlayerOnExit(self):
+		if config.misc.spaMovieList.value:
+			self.close(True)
 		if self.shown:
 			self.hide()
 		elif self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
