@@ -2140,7 +2140,7 @@ msgstr "Añadir grabación (introducir hora de finalización)"
 
 #
 msgid "Add recording (Indefinitely - 24 hours)"
-msgstr "Añadir grabación (indefinida)"
+msgstr "Añadir grabación (24 horas)"
 
 #
 msgid "Add recording (Stop after current event)"
