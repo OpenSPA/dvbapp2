@@ -3607,9 +3607,11 @@ class InfoBarInstantRecord:
 			return
 
 		if isStandardInfoBar(self):
+			info = {}  # OpenSPA [norhap] detect event in dialog box.
+			self.getProgramInfoAndEvent(info, "")
 			commonRecord = [
-				(_("Add recording (Stop after current event)"), "event"),
-				(_("Add recording (Indefinitely - 24 hours)"), "indefinitely"),
+				(_("Add recording (Stop after current event)") if info["name"] else _("No event info found - record (1 hour)"), "event"),
+				(_("Add recording (Indefinitely - 24 hours)") if info["name"] else _("No event info found - record (24 hours)"), "indefinitely"),
 				(_("Add recording (Enter recording duration)"), "manualduration"),
 				(_("Add recording (Enter recording end time)"), "manualendtime")
 			]
@@ -3914,10 +3916,6 @@ class InfoBarInstantRecord:
 		if event is not None:
 			if limitEvent:
 				end = info["end"]
-		else:
-			if limitEvent:
-				if not RecordTimerEntry.StateEnded:  # OpenSPA [norhap] with fallback tuner enabled and ServiceApp enabled in IPTV recording not show message.
-					self.session.open(MessageBox, _("No event information found, recording default is 24 hours."), MessageBox.TYPE_INFO)
 		if isinstance(serviceReference, eServiceReference):
 			serviceReference = ServiceReference(serviceReference)
 		if not limitEvent:

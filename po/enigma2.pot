@@ -8882,6 +8882,9 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
+msgid "Hour"
+msgstr ""
+
 msgid "Hourly"
 msgstr ""
 
@@ -11647,7 +11650,10 @@ msgstr ""
 msgid "No error"
 msgstr ""
 
-msgid "No event information found, recording default is 24 hours."
+msgid "No event info found - record (1 hour)"
+msgstr ""
+
+msgid "No event info found - record (24 hours)"
 msgstr ""
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
