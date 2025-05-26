@@ -286,7 +286,10 @@ class DNSSettings(Setup):
 	def createSetup(self):  # NOSONAR silence S2638
 		Setup.createSetup(self)
 		dnsList = self["config"].getList()
+		if hasattr(self, "dnsStart"):
+			del dnsList[self.dnsStart:]
 		self.dnsStart = len(dnsList)
+		entry = None
 		if not fileContains(interfacesfile, "static"):  # OpenSPA [norhap] Organize display lists in both formats.
 			if config.usage.dnsMode.value not in (2,):
 				items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x)) for x in self.dnsServers if isinstance(x, str)]
@@ -297,13 +300,13 @@ class DNSSettings(Setup):
 					dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
 				else:
 					dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("WARNING: Do not change your ISP DNS.\nUse other DNS data source.")))
-				self.dnsLength = item
+				self.dnsLength = item if items else 0
 		else:
 			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x, fixed_size=False)) for x in self.dnsServers if isinstance(x, str)]
 			for item, entry in enumerate(items, start=1):
 				dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
-				self.dnsLength = item
-		if self.entryAdded:
+				self.dnsLength = item if items else 0
+		if self.entryAdded and entry:
 			entry.default = [256, 256, 256, 256]  # This triggers a cancel confirmation for unedited new entries.
 			self.entryAdded = False
 		self["config"].setList(dnsList)
