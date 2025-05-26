@@ -8882,9 +8882,6 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
-msgid "Hour"
-msgstr ""
-
 msgid "Hourly"
 msgstr ""
 
@@ -11648,9 +11645,6 @@ msgid "No entry in lcn db. Please do a service scan."
 msgstr ""
 
 msgid "No error"
-msgstr ""
-
-msgid "No event info found - record (1 hour)"
 msgstr ""
 
 msgid "No event info found - record (24 hours)"

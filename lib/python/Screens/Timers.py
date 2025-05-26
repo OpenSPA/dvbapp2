@@ -439,14 +439,9 @@ class RecordTimerList(TimerListBase):
 			else:
 				# text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP as PiP") if timer.pipzap else _("ZAP"))
 				text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP"))
-		else:  # OpenSPA [norhap] specify more intuitive recordings at 24 or 1 hour.
-			event = eEPGCache.getInstance().lookupEventId(timer.service_ref.ref, timer.eit) if timer.eit else None
-			if "1440 " + _("Minutes") == durationText:
-				text = "%s %s ... %s  (%s)" % (repeatedText, begin[1] + " ... 1 " + _("day"), fuzzyDate(timer.end)[1], durationText)
-			elif not event and "0 + 55 + 5 " + _("Minutes") == durationText:
-				text = "%s %s  (%s)" % (repeatedText, begin[1] + "...1 " + _("Hour"), durationText)
-			else:
-				text = "%s %s ... %s  (%s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], durationText)
+		else:  # OpenSPA [norhap] specify more intuitive time for 24 hour recordings.
+			duration = "1 " + _("day") + " ..."  if "1440 " + _("Minutes") == durationText else fuzzyDate(timer.end)[1]
+			text = "%s %s ... %s  (%s)" % (repeatedText, begin[1], duration, durationText)
 		if not processed and (not timer.disabled or (timer.repeated and timer.isRunning() and not timer.justplay)):
 			state = TIMER_STATES.get(timer.state, UNKNOWN)
 			if timer.state == TimerEntry.StateWaiting:

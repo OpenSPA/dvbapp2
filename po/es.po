@@ -10342,9 +10342,6 @@ msgstr "Tecla rápida"
 msgid "Hotkey Settings"
 msgstr "Configurar teclas"
 
-msgid "Hour"
-msgstr "Hora"
-
 msgid "Hourly"
 msgstr "Horario"
 
@@ -13524,9 +13521,6 @@ msgstr "No hay entrada en lcn db. Realice una exploración del servicio."
 #
 msgid "No error"
 msgstr "Ningún error"
-
-msgid "No event info found - record (1 hour)"
-msgstr "No se encontró información del evento - grabar (1 hora)"
 
 msgid "No event info found - record (24 hours)"
 msgstr "No se encontró información del evento - grabar (24 horas)"
