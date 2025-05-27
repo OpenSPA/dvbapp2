@@ -24304,6 +24304,18 @@ msgstr ""
 msgid "Skip package installation, only core packages will be available"
 msgstr ""
 
+msgid "Skip sensibility (Horizontal)"
+msgstr ""
+
+msgid "Skip sensibility (Vertical)"
+msgstr ""
+
+msgid "Skip time for '%s' button"
+msgstr ""
+
+msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
 msgid "Small Box Preparation"
 msgstr ""
 

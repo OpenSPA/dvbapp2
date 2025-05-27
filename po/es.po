@@ -2734,6 +2734,9 @@ msgstr "Armenia"
 msgid "Armenian"
 msgstr "Armenio"
 
+msgid "Arrow skip mode"
+msgstr "Modo de salto de flecha"
+
 msgid "Artist"
 msgstr "Artista"
 
@@ -5992,8 +5995,14 @@ msgstr "Personaliza los ajustes de Enigma2"
 msgid "Cut"
 msgstr "Cortar"
 
+msgid "CutList skip time for '%s' button"
+msgstr "Tiempo de omisión en CutList (plugin) para el botón '%s'"
+
+msgid "CutList skip time for '%s'/'%s' buttons"
+msgstr "Tiempo de omisión en CutList (plugin) para los botones '%s'/'%s'"
+
 msgid "Cutlist Editor"
-msgstr "Editor de lista de cortes"
+msgstr "Editor Cutlist (plugin)"
 
 msgid "Cutlist editor..."
 msgstr "Editor de listas de corte…"
@@ -6442,6 +6451,9 @@ msgstr "Define el sufijo DNS."
 
 msgid "Defined / Active"
 msgstr "Definido / Activo"
+
+msgid "Defined skips"
+msgstr "Saltos definidos"
 
 msgid "Defined volume offset"
 msgstr "Desplazamiento de volumen definido"
@@ -13934,6 +13946,9 @@ msgstr "Introducción de datos en forma de número o de SMS"
 msgid "Numbering mode"
 msgstr "Modo de numeración"
 
+msgid "Numeric skip mode"
+msgstr "Modo de salto numérico"
+
 msgid "OEM model"
 msgstr "Modelo OEM"
 
@@ -14627,6 +14642,9 @@ msgstr "Porcentaje izquierda"
 
 msgid "Percentage right"
 msgstr "Porcentaje derecha"
+
+msgid "Percentage skips"
+msgstr "Porcentaje de saltos"
 
 msgid "Percentage/Progress bar left"
 msgstr "Porcentaje/Barra izquierda de progreso"
@@ -18198,6 +18216,12 @@ msgstr ""
 "Seleccione la velocidad con la que la antena parabólica debe moverse entre "
 "los satélites."
 
+msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
+msgstr "Seleccione cómo actuarán los botones de flecha ('ARRIBA', 'ABAJO', 'IZQUIERDA' y 'DERECHA') durante las acciones de búsqueda."
+
+msgid "Select how the number buttons will act during seek actions."
+msgstr "Seleccione cómo actuarán los botones numéricos durante las acciones de búsqueda."
+
 msgid ""
 "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC "
 "switch, positioner, etc."
@@ -19286,6 +19310,12 @@ msgstr "Establecer servicio de inicio"
 msgid "Set system"
 msgstr "Configurar sistema"
 
+msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
+msgstr "Establezca el intervalo de tiempo de omisión del plugin CutList para los botones '%s'/'%s'."
+
+msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+msgstr "Establezca el porcentaje de omisión del botón IZQUIERDO/DERECHO para la barra de búsqueda."
+
 # NetworkSetup.py
 #, python-format
 msgid "Set the MAC address of your %s %s."
@@ -19296,6 +19326,9 @@ msgstr "Establezca el intervalo de tiempo de salto para el botón '%s'."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Establezca el intervalo de tiempo de salto para los botones '%s'/'%s'."
+
+msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+msgstr "Establezca el porcentaje de omisión del botón ARRIBA/ABAJO para la barra de búsqueda."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Configura el ID de usuario del OpenWebif del sintonizador reserva"
@@ -21856,6 +21889,9 @@ msgstr "Velocidad de símbolo y FEC"
 msgid "Symbolic link"
 msgstr "Enlace simbólico"
 
+msgid "Symmetrical skips"
+msgstr "Saltos simétricos"
+
 msgid "Sync NTP every (minutes)"
 msgstr "Sincronizar NTP cada (minutos)"
 
@@ -23604,8 +23640,11 @@ msgstr "Total:"
 msgid "Track"
 msgstr "Pista"
 
+msgid "Traditional"
+msgstr "Tradicional"
+
 msgid "Traditional Chinese"
-msgstr "Traditional Chinese"
+msgstr "Chino tradicional"
 
 #
 msgid "Transcode"
@@ -29038,6 +29077,18 @@ msgstr "Apagando. Espera por favor..."
 msgid "Skip package installation, only core packages will be available"
 msgstr ""
 "Omitir instalación de paquetes, solo paquetes básicos (sin servicio FTP)"
+
+msgid "Skip sensibility (Horizontal)"
+msgstr "Sensibilidad de salto (Horizontal)"
+
+msgid "Skip sensibility (Vertical)"
+msgstr "Sensibilidad de salto (Vertical)"
+
+msgid "Skip time for '%s' button"
+msgstr "Saltar tiempo para el botón '%s'"
+
+msgid "Skip time for '%s'/'%s' buttons"
+msgstr "Omitir tiempo para los botones '%s'/'%s'"
 
 msgid "Small Box Preparation"
 msgstr "Preparación receptor"

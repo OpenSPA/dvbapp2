@@ -621,7 +621,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self.handleLeave(config.usage.on_movie_stop.value)
 
 	def leavePlayerOnExit(self):
-		if config.misc.spaMovieList.value:
+		if config.misc.spaMovieList.value:  # OpenSPA [norhap] ensure exit from OpenSPA movie list.
 			self.close(True)
 		if self.shown:
 			self.hide()
