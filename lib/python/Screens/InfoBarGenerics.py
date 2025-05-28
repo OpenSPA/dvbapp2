@@ -3597,6 +3597,9 @@ class InfoBarInstantRecord:
 				self.recording = InfoBarInstance.recording
 		self.saveTimeshiftEventPopupActive = False
 
+	def instantRecord(self, serviceRef=None):  # OpenSPA [norhap] Used in spaQButton.
+		return self.keyInstantRecord(serviceRef=serviceRef)
+
 	def keyInstantRecord(self, serviceRef=None):
 		self.selectedInstantServiceRef = serviceRef
 		pirr = preferredInstantRecordPath()
