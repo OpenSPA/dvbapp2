@@ -15158,7 +15158,7 @@ msgid "Plugin Browser Update Actions"
 msgstr "Actualización del Explorador de Plugins"
 
 msgid "Plugin Browser layout"
-msgstr "Layout del Explorador de Plugins"
+msgstr "Estilo del Explorador de Plugins"
 
 msgid "Plugin Packages"
 msgstr "Paquetes de plugins"
@@ -22928,9 +22928,7 @@ msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Esta opción le permite activar la depuración en escala vertical."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
-msgstr ""
-"Esta opción te permite elegir configurar la vista de composición (texto o "
-"gráfico)."
+msgstr "Esta opción te permite elegir configurar la vista del diseño (texto o gráfico)."
 
 # Box Display
 msgid "This option allows you to Power Off the display."
