@@ -15158,7 +15158,7 @@ msgid "Plugin Browser Update Actions"
 msgstr "Actualización del Explorador de Plugins"
 
 msgid "Plugin Browser layout"
-msgstr "Estilo del Explorador de Plugins"
+msgstr "Diseño del Explorador de Plugins"
 
 msgid "Plugin Packages"
 msgstr "Paquetes de plugins"
@@ -29388,14 +29388,8 @@ msgstr "Selecciona 'Sí' para mostrar los paquetes de enlaces web en la pantalla
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
 msgstr "Seleccione 'Sí' para apagar inmediatamente en lugar de iniciar la descodificación."
 
-msgid ""
-"Select the layout of the installed plugins in the Plugin Browser screen. "
-"NOTE: The change is not immediate but will be seen when Plugin Browser is "
-"restarted!"
-msgstr ""
-"Selecciona el layout de los plugins instalados en la pantalla del navegador "
-"de plugins. NOTA: ¡El cambio no es inmediato, pero se verá cuando se "
-"reinicie el navegador de plugins!"
+msgid "Select the layout of the installed plugins in the Plugin Browser screen."
+msgstr "Seleccione el diseño de los plugins instalados en la pantalla del Navegador de plugins."
 
 msgid ""
 "Select the sort order of the Plugin Browser menu entries. User defined also "
