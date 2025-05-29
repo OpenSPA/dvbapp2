@@ -19,7 +19,7 @@ from Screens.MessageBox import MessageBox
 import Screens.Standby
 from Tools.ASCIItranslit import legacyEncode
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import SCOPE_TIMESHIFT, copyfile, fileExists, getRecordingFilename, resolveFilename
+from Tools.Directories import SCOPE_TIMESHIFT, copyfile, fileExists, getRecordingFilename, resolveFilename, isPluginInstalled
 from Tools.Notifications import AddNotification
 
 
@@ -376,16 +376,22 @@ class InfoBarTimeshift:
 		return 0
 
 	def startTimeshift(self):
-		ts = self.getTimeshift()
-		if ts is None:
-			# self.session.open(MessageBox, _("Time shift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
-			return self.playpauseService2()
-		if ts.isTimeshiftEnabled():
-			print("[Timeshift] Time shift already enabled.")
-			self.activateTimeshiftEndAndPause()
+		if not isPluginInstalled("spzTimeshift"):
+			ts = self.getTimeshift()
+			if ts is None:
+				# self.session.open(MessageBox, _("Time shift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
+				return self.playpauseService2()
+			if ts.isTimeshiftEnabled():
+				print("[Timeshift] Time shift already enabled.")
+				self.activateTimeshiftEndAndPause()
+			else:
+				self.activatePermanentTimeshift()
+				self.activateTimeshiftEndAndPause()
 		else:
-			self.activatePermanentTimeshift()
-			self.activateTimeshiftEndAndPause()
+			from Screens.InfoBar import InfoBar  # [norhap] initialize TimeShift OpenSPA.
+			servicelist = InfoBar.instance.servicelist
+			from Plugins.Extensions.spzTimeshift.plugin import main
+			main(self.session, servicelist)
 
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
