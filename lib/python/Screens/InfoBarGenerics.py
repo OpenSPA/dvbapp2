@@ -4184,17 +4184,11 @@ class InfoBarAspectSelection:
 	STATE_RESOLUTION = 2
 
 	def __init__(self):
-		if not isPluginInstalled("PermanentEvent"):  # OPENSPA [norhap] respect EXIT key of permanentEvent
-			self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", {
-				"aspectSelection": (self.GreenLongPress, _("Aspect list...")),
-				"exitLong": (self.switchTo720p, _("Switch to 720p video")),
-			}, prio=0, description=_("Aspect Ratio Actions"))
-			self.__ExGreen_state = self.STATE_HIDDEN
-		else:
-			self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", {
-				"aspectSelection": (self.GreenLongPress, _("Aspect list...")),
-			}, prio=0, description=_("Aspect Ratio Actions"))
-			self.__ExGreen_state = self.STATE_HIDDEN
+		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", {
+			"aspectSelection": (self.GreenLongPress, _("Aspect list...")),
+			"exitLong": (self.switchTo720p, _("Switch to 720p video")),
+		}, prio=0, description=_("Aspect Ratio Actions"))
+		self.__ExGreen_state = self.STATE_HIDDEN
 
 	# OPENSPA [morser] change option for long press
 	def GreenLongPress(self):
@@ -4300,9 +4294,10 @@ class InfoBarAspectSelection:
 			config.av.videorate[self.last_used_video_mode[1]].value = self.last_used_video_mode[2]
 			iAVSwitch.setMode(*self.last_used_video_mode)
 
-	def switchTo720p(self):  # use 720p video mode recover signal on your video port
-		iAVSwitch.setMode("HDMI", "720p", "50Hz")
-		self.session.openWithCallback(self.changeVideoMode, MessageBox, _("This function recovers your video signal in case of loss. The video has been changed to 720p.\nIf this is your case, please keep the video at 720P and do the following:\nGo to System > Receiver Setup > Video > Video Settings\nNow set a correct resolution.\n\nDo you want to keep the video at 720p?"), MessageBox.TYPE_YESNO, timeout=30, simple=True)
+	def switchTo720p(self):  # OpenSPA [norhap] use 720p video mode recover signal on your video port
+		if not isPluginInstalled("PermanentEvent"):
+			iAVSwitch.setMode("HDMI", "720p", "50Hz")
+			self.session.openWithCallback(self.changeVideoMode, MessageBox, _("This function recovers your video signal in case of loss. The video has been changed to 720p.\nIf this is your case, please keep the video at 720P and do the following:\nGo to System > Receiver Setup > Video > Video Settings\nNow set a correct resolution.\n\nDo you want to keep the video at 720p?"), MessageBox.TYPE_YESNO, timeout=30, simple=True)
 
 
 class InfoBarResolutionSelection:
