@@ -922,7 +922,9 @@ class AttributeParser:
 		attributespa = ["esFecha", "sizey", "posyDuration", "posygeticonogenero", "posgeticonogenero", "posBegin",
 			"sizeEvent", "sizeDuration", "sizeBegin", "sizeDate", "colorEvent", "colorDuration", "colorBegin", "colorLine",
 			"colorDeactivated", "colorDate", "posDuration", "posEvent", "posyBegin", "postxt", "posyEvent", "colorFolder",
-			"colorFondo", "fontBegin", "fontEvent", "fontDate", "fontDuration", "locationdescription", "locationfreespace"]
+			"colorFondo", "fontBegin", "fontEvent", "fontDate", "fontDuration", "locationdescription", "locationfreespace",
+			"backColorPrime", "foreColorTime", "foreColorPrime", "usePicon", "fontEventname", "fontServicename", "foreColorService",
+			"backColor", "BorderColor", "foreColorNoinfo", "backColorNoinfo", "BorderColorListarec", "eventForeColor", "eventNowForeColor"]
 		try:
 			if attribute not in attributespa:
 				getattr(self, attribute)(value)
