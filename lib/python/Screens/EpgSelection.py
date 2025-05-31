@@ -1,6 +1,6 @@
 from time import localtime, mktime, strftime, time
 
-from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
+from enigma import ePoint, eServiceCenter, eServiceReference, eTimer, eConsoleAppContainer
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
@@ -24,6 +24,7 @@ from Screens.Setup import Setup
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.TimerEdit import TimerEditList
+from Tools.Directories import isPluginInstalled
 
 
 try:  # PiPServiceRelation installed?
@@ -1318,7 +1319,18 @@ class EPGSelection(Screen):
 			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def addAutoTimer(self):
-		try:
+		def installAutoTimer(answer=False):  # OpenSPA [norhap] add install AutoTimer.
+			if answer:
+				from time import sleep
+				eConsoleAppContainer().execute("opkg install enigma2-plugin-extensions-autotimer")
+				sleep(6)
+				if isPluginInstalled("AutoTimer"):
+					self.session.open(MessageBox, _("AutoTimer was installed successfully."), MessageBox.TYPE_INFO, simple=True)
+
+		if not isPluginInstalled("AutoTimer"):
+			eConsoleAppContainer().execute("opkg update")
+			self.session.openWithCallback(installAutoTimer, MessageBox, _("The AutoTimer plugin is not installed.\nDo you want to install it now?"), type=MessageBox.TYPE_YESNO, simple=True)
+		else:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
 			cur = self[f"list{self.activeList}"].getCurrent()
 			event = cur[0]
@@ -1327,11 +1339,11 @@ class EPGSelection(Screen):
 			serviceref = cur[1]
 			addAutotimerFromEvent(self.session, evt=event, service=serviceref)
 			self.refreshTimer.start(3000)
-		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def addAutoTimerSilent(self):
-		try:
+		if not isPluginInstalled("AutoTimer"):  # OpenSPA [norhap] add install AutoTimer.
+			self.addAutoTimer()
+		else:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEventSilent
 			cur = self[f"list{self.activeList}"].getCurrent()
 			event = cur[0]
@@ -1340,8 +1352,6 @@ class EPGSelection(Screen):
 			serviceref = cur[1]
 			addAutotimerFromEventSilent(self.session, evt=event, service=serviceref)
 			self.refreshTimer.start(3000)
-		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showTimerList(self):
 		self.session.open(TimerEditList)
@@ -1353,7 +1363,9 @@ class EPGSelection(Screen):
 	def showAutoTimerList(self):
 		global autopoller
 		global autotimer
-		try:
+		if not isPluginInstalled("AutoTimer"):  # OpenSPA [norhap] add install AutoTimer.
+			self.addAutoTimer()
+		else:
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
@@ -1369,8 +1381,6 @@ class EPGSelection(Screen):
 				autopoller.stop()
 			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
 			self.session.openWithCallback(self.editCallback, AutoTimerOverview, autotimer)
-		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def editCallback(self, session):
 		global autopoller
