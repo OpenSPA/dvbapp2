@@ -74,16 +74,17 @@ class Session:
 
 	def processDelay(self):
 		callback = self.current_dialog.callback
-		retVal = self.current_dialog.returnValue
-		if self.current_dialog.isTmp:
-			self.current_dialog.doClose()
-			# dump(self.current_dialog)
-			del self.current_dialog
-		else:
-			del self.current_dialog.callback
-		self.popCurrent()
-		if callback is not None:
-			callback(*retVal)
+		if hasattr(self.current_dialog, "returnValue"):  # OpenSPA [norhap] if self.current_dialog is spzTimeshift not have attribute to return value.
+			retVal = self.current_dialog.returnValue
+			if self.current_dialog.isTmp:
+				self.current_dialog.doClose()
+				# dump(self.current_dialog)
+				del self.current_dialog
+			else:
+				del self.current_dialog.callback
+			self.popCurrent()
+			if callback is not None:
+				callback(*retVal)
 
 	def execBegin(self, first=True, do_show=True):
 		if self.in_exec:
