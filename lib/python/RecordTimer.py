@@ -296,6 +296,12 @@ class RecordTimer(Timer):
 			elif player == "ServiceHisilicon":
 				timer.state = RecordTimerEntry.StateEnded
 				AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+		elif isPluginInstalled("IPToSAT"):
+			from Plugins.Extensions.IPToSAT.plugin import isIPToSAT
+			if isIPToSAT() and config.plugins.IPToSAT.enable.value:
+				timer.state = RecordTimerEntry.StateEnded
+				message = _("It is not possible to record channels satellite") + " " + "IPToSAT " + config.plugins.IPToSAT.player.value + " " + _("enabled")
+				AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 		if timer.shouldSkip():
 			timer.state = RecordTimerEntry.StateEnded
 		else:

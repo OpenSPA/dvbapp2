@@ -11322,6 +11322,9 @@ msgstr "Es lo siguiente:"
 msgid "It is not possible to record with"
 msgstr "No es posible grabar con"
 
+msgid "It is not possible to record channels satellite"
+msgstr "No es posible grabar canales satélites"
+
 # Language
 msgid "Italian"
 msgstr "Italiano"
@@ -22273,12 +22276,8 @@ msgstr "El modo AI que se utiliza para traducir idiomas. Puedes elegir el que of
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "El servicio de traducción impulsado por inteligencia artificial se optimizará para proporcionar el mejor rendimiento según la velocidad de carga de la conexión a Internet seleccionada."
 
-msgid ""
-"The AutoTimer plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"El plugin autotemporizador no está instalado.\n"
-"Por favor, instálalo."
+msgid "The AutoTimer plugin is not installed.\nDo you want to install it now?"
+msgstr "El plugin AutoTimer no está instalado.\n¿Quiere instalarlo ahora?"
 
 msgid "The data provided will not find services."
 msgstr "Los datos facilitados no encontrará canales."
@@ -26709,6 +26708,9 @@ msgstr "Pistas de audio"
 #
 msgid "automatic"
 msgstr "Automático"
+
+msgid "AutoTimer was installed successfully."
+msgstr "AutoTimer se instaló exitosamente."
 
 #
 msgid "back"

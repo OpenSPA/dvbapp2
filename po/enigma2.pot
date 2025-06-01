@@ -2555,6 +2555,9 @@ msgstr ""
 msgid "Auto"
 msgstr ""
 
+msgid "AutoTimer was installed successfully."
+msgstr ""
+
 msgid "Auto Detect"
 msgstr ""
 
@@ -18933,8 +18936,7 @@ msgstr ""
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr ""
 
-msgid "The AutoTimer plugin is not installed!\n"
-"Please install it."
+msgid "The AutoTimer plugin is not installed.\nDo you want to install it now?"
 msgstr ""
 
 msgid "The data provided will not find services."
