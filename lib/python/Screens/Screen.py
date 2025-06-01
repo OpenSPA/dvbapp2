@@ -335,11 +335,11 @@ class Screen(dict):
 		return None
 
 	def addSummary(self, summary):
-		if summary is not None:
+		if summary is not None and summary not in self.summaries:  # OpenSPA [norhap] check that the item is not in list.
 			self.summaries.append(summary)
 
 	def removeSummary(self, summary):
-		if summary is not None:
+		if summary is not None and summary in self.summaries:  # OpenSPA [norhap] check that the item is in list.
 			self.summaries.remove(summary)
 
 	# These properties support legacy code that reaches into the internal variables of this class!
