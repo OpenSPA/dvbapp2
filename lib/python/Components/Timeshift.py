@@ -387,11 +387,18 @@ class InfoBarTimeshift:
 			else:
 				self.activatePermanentTimeshift()
 				self.activateTimeshiftEndAndPause()
-		else:
-			from Screens.InfoBar import InfoBar  # [norhap] initialize TimeShift OpenSPA.
+		else:  # [norhap] initialize TimeShift OpenSPA.
+			if config.timeshift.autorecord.value:  # plugin control recordings.
+				config.timeshift.autorecord.value = False
+				config.timeshift.autorecord.save()
+			if config.timeshift.startDelay.value != config.timeshift.startDelay.default:  # plugin control recordings.
+				config.timeshift.startDelay.value = config.timeshift.startDelay.default
+				config.timeshift.startDelay.save()
+			from Screens.InfoBar import InfoBar
 			servicelist = InfoBar.instance.servicelist
 			from Plugins.Extensions.spzTimeshift.plugin import main
 			main(self.session, servicelist)
+
 
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
