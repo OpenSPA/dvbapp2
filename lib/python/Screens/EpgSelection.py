@@ -1322,13 +1322,12 @@ class EPGSelection(Screen):
 		def installAutoTimer(answer=False):  # OpenSPA [norhap] add install AutoTimer.
 			if answer:
 				from time import sleep
-				eConsoleAppContainer().execute("opkg install enigma2-plugin-extensions-autotimer")
-				sleep(7)
+				eConsoleAppContainer().execute("opkg update ; opkg install enigma2-plugin-extensions-autotimer")
+				sleep(8)
 			if isPluginInstalled("AutoTimer"):
 				self.session.open(MessageBox, _("AutoTimer was installed successfully."), MessageBox.TYPE_INFO, simple=True)
 
 		if not isPluginInstalled("AutoTimer"):
-			eConsoleAppContainer().execute("opkg update")
 			self.session.openWithCallback(installAutoTimer, MessageBox, _("The AutoTimer plugin is not installed.\nDo you want to install it now?"), type=MessageBox.TYPE_YESNO, simple=True)
 		else:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
