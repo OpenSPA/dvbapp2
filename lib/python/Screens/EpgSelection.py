@@ -1323,9 +1323,9 @@ class EPGSelection(Screen):
 			if answer:
 				from time import sleep
 				eConsoleAppContainer().execute("opkg install enigma2-plugin-extensions-autotimer")
-				sleep(6)
-				if isPluginInstalled("AutoTimer"):
-					self.session.open(MessageBox, _("AutoTimer was installed successfully."), MessageBox.TYPE_INFO, simple=True)
+				sleep(7)
+			if isPluginInstalled("AutoTimer"):
+				self.session.open(MessageBox, _("AutoTimer was installed successfully."), MessageBox.TYPE_INFO, simple=True)
 
 		if not isPluginInstalled("AutoTimer"):
 			eConsoleAppContainer().execute("opkg update")

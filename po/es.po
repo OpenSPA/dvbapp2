@@ -11319,11 +11319,11 @@ msgstr "Israel"
 msgid "It follows:"
 msgstr "Es lo siguiente:"
 
-msgid "It is not possible to record with"
-msgstr "No es posible grabar con"
-
 msgid "It is not possible to record channels satellite"
 msgstr "No es posible grabar canales satélites"
+
+msgid "It is not possible to record with"
+msgstr "No es posible grabar con"
 
 # Language
 msgid "Italian"

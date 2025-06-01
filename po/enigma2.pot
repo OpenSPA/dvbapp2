@@ -9647,6 +9647,9 @@ msgstr ""
 msgid "It follows:"
 msgstr ""
 
+msgid "It is not possible to record channels satellite"
+msgstr ""
+
 msgid "It is not possible to record with"
 msgstr ""
 
