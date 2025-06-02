@@ -569,8 +569,8 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 					goto next;
 				}
 
-				if(m_debug)
-					eDebug("[eEPGCache] Removing event %04X at %ld.", ev_it->second->getEventID(), ev_it->second->getStartTime());
+//				if(m_debug)
+//					eDebug("[eEPGCache] Removing event %04X at %ld.", ev_it->second->getEventID(), ev_it->second->getStartTime());
 
 				// Remove existing event
 				if (timemap.erase(ev_it->second->getStartTime()) == 0)
@@ -627,8 +627,8 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 					break;
 			}
 
-			if(m_debug)
-				eDebug("[eEPGCache] Inserting event %04X at %ld.", event_id, new_start);
+//			if(m_debug)
+//				eDebug("[eEPGCache] Inserting event %04X at %ld.", event_id, new_start);
 
 			eventmap[event_id] = new_evt;
 			timemap[new_start] = new_evt;

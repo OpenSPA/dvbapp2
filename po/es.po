@@ -8700,6 +8700,9 @@ msgstr "¿Incluso si se inicia un temporizador de grabación 'Zap'?"
 msgid "Event Info"
 msgstr "Información de programa"
 
+msgid "Event Search"
+msgstr "Búsqueda de eventos"
+
 msgid "Event View"
 msgstr "Vista de programa"
 
