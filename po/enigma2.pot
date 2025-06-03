@@ -7373,9 +7373,6 @@ msgstr ""
 msgid "Event Info"
 msgstr ""
 
-msgid "Event Search"
-msgstr ""
-
 msgid "Event View"
 msgstr ""
 

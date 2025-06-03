@@ -121,7 +121,7 @@ class EPGSelection(Screen):
 			self["key_red"] = StaticText(_("IMDb Search"))
 			self["key_green"] = StaticText(_("Add Timer"))
 			self["key_yellow"] = StaticText(_("EPG Search"))
-			self["key_blue"] = StaticText(_("Event Search"))
+			self["key_blue"] = StaticText(_("Add AutoTimer"))
 		epgCursoractions = {
 			"up": (self.moveUp, _("Goto previous channel")),
 			"down": (self.moveDown, _("Goto next channel"))
@@ -1307,7 +1307,7 @@ class EPGSelection(Screen):
 
 	def openEPGSearch(self):
 		try:
-			from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSearch import EPGSearch
+			from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSearch import EPGSearch  # [norhap] initialize EPGSearch OpenSPA
 			try:
 				cur = self[f"list{self.activeList}"].getCurrent()
 				event = cur[0]
@@ -1319,32 +1319,25 @@ class EPGSelection(Screen):
 			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def addAutoTimer(self):
-		cur = self[f"list{self.activeList}"].getCurrent()  # OpenSPA [norhap] add spaTimerEntry events search.
-		event = cur[0]
-		try:
-			name = event.getEventName()
-			from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSearch import EPGSearch
-			self.session.open(EPGSearch, name, False)
-			# from Plugins.Extensions.spazeMenu.spzPlugins.spaTimerEntry.plugin import newsearch
-			# self.session.open(newsearch, name, False)
-		except ImportError:
-			def installAutoTimer(answer=False):
-				if answer:
-					from time import sleep
-					eConsoleAppContainer().execute("opkg update ; opkg install enigma2-plugin-extensions-autotimer")
-					sleep(8)
-				if isPluginInstalled("AutoTimer"):
-					self.session.open(MessageBox, _("AutoTimer was installed successfully."), MessageBox.TYPE_INFO, simple=True)
+		def installAutoTimer(answer=False):  # OpenSPA [norhap] add install AutoTimer.
+			if answer:
+				from time import sleep
+				eConsoleAppContainer().execute("opkg update ; opkg install enigma2-plugin-extensions-autotimer")
+				sleep(8)
+			if isPluginInstalled("AutoTimer"):
+				self.session.open(MessageBox, _("AutoTimer was installed successfully."), MessageBox.TYPE_INFO, simple=True)
 
-			if not isPluginInstalled("AutoTimer"):
-				self.session.openWithCallback(installAutoTimer, MessageBox, _("The AutoTimer plugin is not installed.\nDo you want to install it now?"), type=MessageBox.TYPE_YESNO, simple=True)
-			else:
-				from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
-				if not event:
-					return
-				serviceref = cur[1]
-				addAutotimerFromEvent(self.session, evt=event, service=serviceref)
-				self.refreshTimer.start(3000)
+		if not isPluginInstalled("AutoTimer"):
+			self.session.openWithCallback(installAutoTimer, MessageBox, _("The AutoTimer plugin is not installed.\nDo you want to install it now?"), type=MessageBox.TYPE_YESNO, simple=True)
+		else:
+			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
+			cur = self[f"list{self.activeList}"].getCurrent()
+			event = cur[0]
+			if not event:
+				return
+			serviceref = cur[1]
+			addAutotimerFromEvent(self.session, evt=event, service=serviceref)
+			self.refreshTimer.start(3000)
 
 	def addAutoTimerSilent(self):
 		if not isPluginInstalled("AutoTimer"):  # OpenSPA [norhap] add install AutoTimer.
@@ -1472,7 +1465,7 @@ class EPGSelection(Screen):
 					(_("Add RecordTimer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Add ZapTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapTimer),
 					(_("Add Zap+RecordTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapRecordTimer),
-					(_("Event Search"), "CALLFUNC", self.ChoiceBoxCB, self.addAutoTimerSilent)
+					(_("Add AutoTimer"), "CALLFUNC", self.ChoiceBoxCB, self.addAutoTimerSilent)
 				]
 				title = f"{event.getEventName()}?"
 			else:
@@ -2070,7 +2063,7 @@ class EPGSelection(Screen):
 			"timer": _("Add Timer"),
 			"imdb": _("IMDb Search"),
 			"tmdb": _("TMDB Search"),
-			"autotimer": _("Event Search"),
+			"autotimer": _("Add AutoTimer"),
 			"bouquetlist": _("Bouquet List"),
 			"epgsearch": _("EPG Search"),
 			"showmovies": _("Recordings"),
