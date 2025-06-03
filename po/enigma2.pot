@@ -2615,6 +2615,9 @@ msgstr ""
 msgid "AutoIns:"
 msgstr ""
 
+msgid "Automatic search"
+msgstr ""
+
 msgid "AutoMountManager"
 msgstr ""
 
@@ -18937,9 +18940,6 @@ msgid "The AI mode used for translating languages. You can choose the one that g
 msgstr ""
 
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
-msgstr ""
-
-msgid "The AutoTimer plugin is not installed.\nDo you want to install it now?"
 msgstr ""
 
 msgid "The data provided will not find services."

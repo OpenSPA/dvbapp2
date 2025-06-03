@@ -2954,6 +2954,9 @@ msgstr "AutoBoquetsMaker se instaló correctamente.\nEs necesario reiniciar enig
 msgid "AutoIns:"
 msgstr "AutoInstalación:"
 
+msgid "Automatic search"
+msgstr "Búsqueda automática"
+
 #
 msgid "AutoMountManager"
 msgstr "Administrador de automontaje"
@@ -22275,9 +22278,6 @@ msgstr "El modo AI que se utiliza para traducir idiomas. Puedes elegir el que of
 
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "El servicio de traducción impulsado por inteligencia artificial se optimizará para proporcionar el mejor rendimiento según la velocidad de carga de la conexión a Internet seleccionada."
-
-msgid "The AutoTimer plugin is not installed.\nDo you want to install it now?"
-msgstr "El plugin AutoTimer no está instalado.\n¿Quiere instalarlo ahora?"
 
 msgid "The data provided will not find services."
 msgstr "Los datos facilitados no encontrará canales."

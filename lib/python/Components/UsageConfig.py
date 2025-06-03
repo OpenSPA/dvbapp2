@@ -147,6 +147,8 @@ def InitUsageConfig():
 	])
 	# OPENSPA [norhap] change channel list type in context menu.
 	config.usage.standardchannelselection = ConfigBoolean(default=False)
+	# OPENSPA [norhap] wilcard for newsearch in screens standard EPG
+	config.usage.standardnewsearch = ConfigBoolean(default=False)
 
 	config.usage.numberZapTimeoutFirst = ConfigSelection(default=3000, choices=[(x, ngettext("%.2f Second", "%.2f Seconds", x / 1000.0) % (x / 1000.0)) for x in range(500, 5001, 250)])
 	config.usage.numberZapTimeoutOther = ConfigSelection(default=1000, choices=[(x, ngettext("%.2f Second", "%.2f Seconds", x / 1000.0) % (x / 1000.0)) for x in range(0, 5001, 250)])
