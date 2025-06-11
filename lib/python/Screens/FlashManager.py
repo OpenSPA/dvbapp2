@@ -134,7 +134,7 @@ class FlashManager(Screen):
 
 		def getImagesListCallback(retVal=None):  # The retVal argument absorbs the unwanted return value from MessageBox.
 			if self.imageFeed != "OpenSPA":  #### OPENSPA [morser] Set default feed: openspa
-				self.keyDistributionCallback("OpenSPA")  # No images can be found for the selected distribution so go back to the openSPA default.
+				self.keyDistributionCallback("OpenSPA")  # No images can be found for the selected distribution so go back to the OpenSPA default.
 
 		machinebuild = BoxInfo.getItem("machinebuild")
 		model = BoxInfo.getItem("model")

@@ -281,7 +281,7 @@ void bsodFatal(const char *component)
 	if (!bsodpython)
 	{
 		os_text << "Your receiver encountered a software problem, and needs to be restarted.\n"
-			"Please send the logfile " << crashlog_name << " to the openSPA forum (www.openspa.info).\n"
+			"Please send the logfile " << crashlog_name << " to the OpenSPA forum (www.openspa.info).\n"
 			"Your receiver will restart in 10 seconds.\n"
 			"Component: " << component;
 		os << os_text.str();
@@ -297,7 +297,7 @@ void bsodFatal(const char *component)
 			txt = "if it happens one more time";
 
 		os_text << "Your receiver encountered a Python software problem. There have been " << bsodcnt << " crashes so far.\n"
-			"Please send the logfile " << crashlog_name << " to the openSPA forum (www.openspa.info).\n"
+			"Please send the logfile " << crashlog_name << " to the OpenSPA forum (www.openspa.info).\n"
 			"Your receiver will restart " << txt << ".\n"
 			"Component: " << component;
 		os << os_text.str();
