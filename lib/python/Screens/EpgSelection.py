@@ -1321,6 +1321,7 @@ class EPGSelection(Screen):
 	def addAutoTimer(self):
 		if not isPluginInstalled("AutoTimer"):
 			config.usage.standardnewsearch.value = True  # OpenSPA [norhap] wildcard for failed events in newsearch.
+			name = ""
 			try:
 				from Plugins.Extensions.spazeMenu.spzPlugins.spaTimerEntry.plugin import newsearch  # [norhap] initialize newsearch OpenSPA
 				from Plugins.Extensions.spazeMenu.Popup import popupsession  # [norhap] check session popup (crash activeComponents "newsearh") the session belongs to Popup.
@@ -1330,8 +1331,10 @@ class EPGSelection(Screen):
 					name = event.getEventName()
 				except:
 					name = ""
-				if popupsession is False:
+				if popupsession is False and name:
 					self.session.open(newsearch, name, False)
+				else:
+					return
 			except ImportError:
 				self.openEPGSearch()  # If newsearch finds no events, EPGSearch OpenSPA wildcard is called.
 		else:
