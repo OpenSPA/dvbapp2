@@ -1324,17 +1324,13 @@ class EPGSelection(Screen):
 			name = ""
 			try:
 				from Plugins.Extensions.spazeMenu.spzPlugins.spaTimerEntry.plugin import newsearch  # [norhap] initialize newsearch OpenSPA
-				from Plugins.Extensions.spazeMenu.Popup import popupsession  # [norhap] check session popup (crash activeComponents "newsearh") the session belongs to Popup.
 				try:
 					cur = self[f"list{self.activeList}"].getCurrent()
 					event = cur[0]
 					name = event.getEventName()
 				except:
 					name = ""
-				if popupsession is False and name:
-					self.session.open(newsearch, name, False)
-				else:
-					return
+				self.session.open(newsearch, name, False)
 			except ImportError:
 				self.openEPGSearch()  # If newsearch finds no events, EPGSearch OpenSPA wildcard is called.
 		else:
