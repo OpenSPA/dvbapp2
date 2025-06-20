@@ -10968,6 +10968,9 @@ msgstr ""
 msgid "Move down a screen in the panel"
 msgstr ""
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down one line"
 msgstr ""
 
@@ -11111,6 +11114,9 @@ msgid "Move up a screen"
 msgstr ""
 
 msgid "Move up a screen in the panel"
+msgstr ""
+
+msgid "Move up a screen / Move to previous item"
 msgstr ""
 
 msgid "Move up one line"

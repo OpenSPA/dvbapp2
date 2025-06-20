@@ -12759,6 +12759,9 @@ msgstr "Desplazarse hacia abajo en una pantalla"
 msgid "Move down a screen in the panel"
 msgstr "Desplazarse pantalla abajo en el panel"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Bajar una pantalla / Pasar al siguiente elemento"
+
 msgid "Move down one line"
 msgstr "Desplazarse una línea más abajo"
 
@@ -12917,6 +12920,9 @@ msgstr "Avanzar una pantalla"
 
 msgid "Move up a screen in the panel"
 msgstr "Subir una pantalla en el panel"
+
+msgid "Move up a screen / Move to previous item"
+msgstr "Subir una pantalla / Ir al elemento anterior"
 
 msgid "Move up one line"
 msgstr "Subir una línea"
