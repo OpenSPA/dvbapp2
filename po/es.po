@@ -22305,12 +22305,8 @@ msgstr ""
 "El plugin de búsquedas EPG no está instalado.\n"
 "Por favor, instálalo."
 
-msgid ""
-"The IMDb plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"El plugin IMDb no está instalado.\n"
-"Por favor, instálalo."
+msgid "The [spzimdb] plugin is not installed!\nDo you want to install it?"
+msgstr "El plugin [spzimdb] no está instalado!.\n¿Quiere instalarlo ahora?"
 
 #, python-format
 msgid ""

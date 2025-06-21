@@ -18962,8 +18962,7 @@ msgid "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
 
-msgid "The IMDb plugin is not installed!\n"
-"Please install it."
+msgid "The [spzimdb] plugin is not installed!\nDo you want to install it?"
 msgstr ""
 
 #, python-format

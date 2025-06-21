@@ -1279,18 +1279,35 @@ class EPGSelection(Screen):
 			if serviceref is not None:
 				self.session.open(SingleEPG, serviceref)
 
-	def openIMDb(self):
+	def openIMDb(self):  # OpenSPA [norhap] install spzimdb.
 		try:
+			cur = self[f"list{self.activeList}"].getCurrent()
+			event = cur[0]
+			name = event.getEventName()
+			name = ""
 			from Plugins.Extensions.IMDb.plugin import IMDB
-			try:
-				cur = self[f"list{self.activeList}"].getCurrent()
-				event = cur[0]
-				name = event.getEventName()
-			except:
-				name = ""
 			self.session.open(IMDB, name, False)
-		except ImportError:
-			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+		except:
+			if isPluginInstalled("spzIMDB"):
+				from Plugins.Extensions.spzIMDB.plugin import getStrRef, spzIMDB
+				try:
+					cur = self[f"list{self.activeList}"].getCurrent()
+					event = cur[0]
+					name = event.getEventName()
+					serviceref = cur[1]
+					ref = getStrRef(serviceref.ref, name)
+				except:
+					name = ""
+				spzIMDB(self.session, tbusqueda=name, tevento=event, tref=ref)
+			else:
+				def doInstallspzIMDB(answer):
+					if answer:
+						try:
+							from Plugins.Extensions.OpenSPAPlug.plugin import OpenSPAPlug
+							self.session.open(OpenSPAPlug)
+						except:
+							pass
+				self.session.openWithCallback(doInstallspzIMDB, MessageBox, _("The [spzimdb] plugin is not installed!\nDo you want to install it?"), type=MessageBox.TYPE_YESNO, timeout=10)
 
 	def openTMDB(self):
 		try:
