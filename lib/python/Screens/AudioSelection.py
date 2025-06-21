@@ -1,4 +1,4 @@
-from enigma import iPlayableService, eTimer, eSize
+from enigma import eDVBDB, iPlayableService, eTimer, eSize
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -262,7 +262,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
 
 			if config.hdmicec.enabled.value and config.hdmicec.volume_forwarding.value and VolumeControl.instance:
-				volumeCtrl = VolumeControl.instance.dvbVolumeControl
+				volumeCtrl = VolumeControl.instance.volumeControl
 				self.settings.volume = ConfigSlider(default=volumeCtrl.getVolume(), increment=1, limits=(0, 100))
 				self.settings.volume.addNotifier(self.changeVolume, initial_call=False)
 				conflist.append(getConfigListEntry(_("Volume"), self.settings.volume, None))
@@ -284,7 +284,7 @@ class AudioSelection(ConfigListScreen, Screen):
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
-			self.setTitle(_("Subtitle selection"))
+			self.setTitle(_("Subtitle Selection"))
 
 			idx = 0
 			if (subtitlelist is not None):
@@ -323,7 +323,7 @@ class AudioSelection(ConfigListScreen, Screen):
 
 					elif x[0] == 2:
 						types = ("unknown", "embedded", "SSA file", "ASS file",
-								"SRT file", "VOB file", "PGS file")
+								"SRT file", "VOB file", "PGS file", "WebVTT")
 						try:
 							description = types[x[2]]
 						except:
@@ -393,7 +393,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		config.av.autovolume.save()
 
 	def changeVolume(self, volume):
-		VolumeControl.instance.dvbVolumeControl.setVolume(volume.value, volume.value)
+		VolumeControl.instance.volumeControl.setVolume(volume.value, volume.value)
 
 	def changeAC3Downmix(self, downmix):
 		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800', 'dreamone', 'dreamtwo'):
@@ -473,8 +473,11 @@ class AudioSelection(ConfigListScreen, Screen):
 	def changeAudio(self, audio):
 		track = int(audio)
 		if isinstance(track, int):
-			if self.session.nav.getCurrentService().audioTracks().getNumberOfTracks() > track:
+			service = self.session.nav.getCurrentService()
+			if service.audioTracks().getNumberOfTracks() > track:
 				self.audioTracks.selectTrack(track)
+				if self.session.nav.isCurrentServiceIPTV():
+					eDVBDB.getInstance().saveIptvServicelist()
 
 	def keyLeft(self):
 		if self.focus == FOCUS_CONFIG:
@@ -577,6 +580,8 @@ class AudioSelection(ConfigListScreen, Screen):
 				else:
 					self.enableSubtitle(cur[0][:5])
 					self.__updatedInfo()
+				if self.session.nav.isCurrentServiceIPTV():
+					eDVBDB.getInstance().saveIptvServicelist()
 			self.close(0)
 		elif self.focus == FOCUS_CONFIG:
 			self.keyRight()

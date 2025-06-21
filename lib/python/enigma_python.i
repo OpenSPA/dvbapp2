@@ -209,6 +209,7 @@ typedef long time_t;
 %immutable iCryptoInfo::usedcardid;
 %immutable eTuxtxtApp::appClosed;
 %immutable iDVBChannel::receivedTsidOnid;
+%immutable eStreamServer::streamStatusChanged;
 %include <lib/base/message.h>
 %include <lib/base/internetcheck.h>
 %include <lib/base/etpm.h>
@@ -336,6 +337,18 @@ public:
 %template(PSignal2VII) PSignal2<void,int,int>;
 
 %typemap(out) PSignal2VII {
+	$1 = $input->get();
+}
+
+template<class R, class P0, class P1, class P2> class PSignal3
+{
+public:
+	PyObject *get();
+};
+
+%template(PSignal3VISS) PSignal3<void,int,const char *,const char *>;
+
+%typemap(out) PSignal3VISS {
 	$1 = $input->get();
 }
 

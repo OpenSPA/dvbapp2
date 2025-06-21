@@ -60,19 +60,6 @@ RESULT eNavigation::setPiPService(const eServiceReference &service)
 	return 0;
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-RESULT eNavigation::connectEvent(const sigc::slot1<void, int> &event, ePtr<eConnection> &connection)
-{
-	connection = new eConnection(this, m_event.connect(event));
-	return 0;
-}
-
-RESULT eNavigation::connectRecordEvent(const sigc::slot2<void, ePtr<iRecordableService>, int> &event, ePtr<eConnection> &connection)
-{
-	connection = new eConnection(this, m_record_event.connect(event));
-	return 0;
-}
-#else
 RESULT eNavigation::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_event.connect(event));
@@ -84,7 +71,6 @@ RESULT eNavigation::connectRecordEvent(const sigc::slot<void(ePtr<iRecordableSer
 	connection = new eConnection(this, m_record_event.connect(event));
 	return 0;
 }
-#endif
 
 RESULT eNavigation::getCurrentService(ePtr<iPlayableService> &service)
 {
@@ -275,6 +261,25 @@ RESULT eNavigation::pause(int dop)
 		return p->pause();
 	else
 		return p->unpause();
+}
+
+void eNavigation::addStreamService(const std::string ref)
+{
+	std::vector<std::string>::iterator it = std::find(m_streamservices.begin(), m_streamservices.end(), ref);
+	if (it == m_streamservices.end())
+		m_streamservices.push_back(ref);
+}
+
+void eNavigation::removeStreamService(const std::string ref)
+{
+	std::vector<std::string>::iterator it = std::find(m_streamservices.begin(), m_streamservices.end(), ref);
+	if (it != m_streamservices.end())
+		m_streamservices.erase(it);
+}
+
+std::vector<std::string> eNavigation::getStreamServiceList()
+{
+	return m_streamservices;
 }
 
 eNavigation::eNavigation(iServiceHandler *serviceHandler, int decoder)

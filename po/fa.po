@@ -1734,7 +1734,7 @@ msgstr ""
 "غیر فعال کردن تلوزیون و سعی مجدد ؟\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr ""
 
 msgid "AAC downmix"
@@ -2588,7 +2588,7 @@ msgstr ""
 msgid "Aspect Ratio Actions"
 msgstr "انتخاب محل"
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr ""
 
 msgid "Aspect ratio"
@@ -2680,7 +2680,7 @@ msgstr "انتخاب زبان صدا 3"
 msgid "Audio language selection 4"
 msgstr "انتخاب زبان صدا 4"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr ""
 
 msgid "Audio volume step size"
@@ -3680,7 +3680,7 @@ msgid "Cancel save time shift as movie"
 msgstr ""
 
 #, fuzzy
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr "انتخاب کانال"
 
 msgid "Cancel selection and exit"
@@ -3736,12 +3736,12 @@ msgstr ""
 msgid "Cannot delete file"
 msgstr ""
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr ""
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr ""
 
 msgid "Cannot move to trash can"
@@ -3968,13 +3968,13 @@ msgstr "انتخاب کانال"
 msgid "Channel up"
 msgstr ""
 
-msgid "Channel zap delay another button"
+msgid "Service zap other button delay"
 msgstr ""
 
-msgid "Channel zap delay first button"
+msgid "Service zap first button delay"
 msgstr ""
 
-msgid "Channel zap delay mode"
+msgid "Service zap delay mode"
 msgstr ""
 
 msgid "Channel:"
@@ -6200,7 +6200,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
-"End Action was disabled !"
+"End Action was disabled!"
 msgstr ""
 
 #, fuzzy
@@ -7367,7 +7367,7 @@ msgstr ""
 msgid "Enter if you are in the East or West hemisphere."
 msgstr ""
 
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "ورود به منوی اصلی"
 
 msgid "Enter new directory name:"
@@ -9818,10 +9818,10 @@ msgid "InfoBar Event View Actions"
 msgstr ""
 
 #, fuzzy
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr "اطلاعات"
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr ""
 
 msgid "InfoBar fade-out speed"
@@ -10529,7 +10529,7 @@ msgid "Letterbox"
 msgstr "Letterbox"
 
 #, fuzzy
-msgid "Letterbox zoom"
+msgid "LetterBox zoom"
 msgstr "Letterbox"
 
 msgid "Liberia"
@@ -10616,7 +10616,7 @@ msgstr "عناوین لینک شده همراه یک منوی DVD"
 msgid "Links"
 msgstr ""
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr ""
 
 msgid "List Navigation Actions"
@@ -11097,7 +11097,7 @@ msgid "Maxdown: "
 msgstr ""
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr ""
 
 msgid "Maximum no of days"
@@ -11680,7 +11680,7 @@ msgid "Movie List"
 msgstr ""
 
 #, fuzzy
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "محل فیلم"
 
 msgid "Movie Selection Settings"
@@ -12544,7 +12544,7 @@ msgstr ""
 msgid "Number of IP Addresses"
 msgstr ""
 
-msgid "Number of digits in channel number"
+msgid "Number of digits in service number"
 msgstr ""
 
 msgid "Number of rows"
@@ -12723,7 +12723,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "خودکار flesh"
 
 msgid "Open EPGSearch"
@@ -12745,11 +12745,11 @@ msgid "Open Similar List Channel List"
 msgstr ""
 
 #, fuzzy
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "ویرایش زمان"
 
 #, fuzzy
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "پایان ویرایش لیست"
 
 msgid "Open context menu"
@@ -12767,10 +12767,10 @@ msgstr ""
 msgid "Open file sort menu"
 msgstr ""
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr ""
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr ""
 
 msgid "Open service list and select next channel"
@@ -13226,7 +13226,7 @@ msgid "PiP"
 msgstr "(تصویر در تصویر)"
 
 #, fuzzy
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "محل"
 
 msgid "PiP with OSD"
@@ -13266,7 +13266,7 @@ msgstr ""
 msgid "Picture in EPG"
 msgstr "جابجایی تصویر در تصویر"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr ""
 
 #, fuzzy
@@ -13372,7 +13372,7 @@ msgid "Play previous"
 msgstr "پخش قبلی"
 
 #, fuzzy
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "پخش فیلم های ضبط شده"
 
 msgid "Play selected service in a PiP window"
@@ -13483,7 +13483,7 @@ msgstr "لطفا دکمه OK را برای ادامه دادن فشار دهید
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr ""
 
 msgid "Please select a distribution from which you would like to flash an image:"
@@ -14309,7 +14309,7 @@ msgstr ""
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr ""
 
 msgid "QuickEPG mode"
@@ -14542,7 +14542,7 @@ msgstr ""
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
+msgid "Recording time limited due to conflicting timer:%s"
 msgstr ""
 
 msgid "Record write error (no space on disk?)"
@@ -14648,7 +14648,7 @@ msgstr "ضبط"
 msgid "Red"
 msgstr ""
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "دکمه قرمز"
 
 msgid "Red colored"
@@ -15758,7 +15758,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr ""
 
 msgid "Search Sats"
@@ -15776,7 +15776,7 @@ msgstr ""
 msgid "Search for similar events"
 msgstr ""
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr ""
 
 #, fuzzy
@@ -15844,7 +15844,7 @@ msgstr "صفحه کلید"
 msgid "Seekbar"
 msgstr "به دنبال"
 
-msgid "Seekbar activation"
+msgid "SeekBar activation"
 msgstr ""
 
 msgid "Seekbar sensibility"
@@ -16259,7 +16259,7 @@ msgstr "انتخاب کانال برای ضبط کردن از"
 msgid "Select copy destination for:"
 msgstr "انتخاب مقصد رونوشت برای:"
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr ""
 
 msgid "Select default File Commander directory:"
@@ -16372,7 +16372,7 @@ msgstr "انتخاب ارائه دهنده برای اضافه کردن"
 msgid "Select refresh rate"
 msgstr "انتخاب نرخ تجدید"
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 
 msgid "Select service information to view:"
@@ -16384,7 +16384,7 @@ msgstr "انتخاب کانال برای اضافه شدن"
 msgid "Select sort method:"
 msgstr ""
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -16803,7 +16803,7 @@ msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 #, fuzzy
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr "انتخاب دستگاه ورودی"
 
 #, python-format
@@ -17169,7 +17169,7 @@ msgstr ""
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr ""
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
@@ -17311,7 +17311,7 @@ msgstr ""
 msgid "Setup Videomode"
 msgstr ""
 
-msgid "Setup delay mode to zap to channels."
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr ""
 
 msgid "Setup each tuner for your satellite system"
@@ -17513,7 +17513,7 @@ msgstr ""
 msgid "Show AutoTimer List"
 msgstr ""
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr ""
 
 msgid "Show CCcam Info"
@@ -17540,7 +17540,7 @@ msgstr ""
 msgid "Show EPG"
 msgstr ""
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr ""
 
 msgid "Show EventView"
@@ -17550,7 +17550,7 @@ msgid "Show Extension packages"
 msgstr ""
 
 #, fuzzy
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "نمایش منوی برچسب"
 
 msgid "Show Graphical EPG"
@@ -17565,7 +17565,7 @@ msgstr ""
 msgid "Show HDMI-Output Res"
 msgstr ""
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr ""
 
 msgid "Show InfoBar"
@@ -17587,7 +17587,7 @@ msgid "Show InfoBar picons"
 msgstr ""
 
 #, fuzzy
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "اطلاعات"
 
 msgid "Show Kernel packages"
@@ -17656,7 +17656,7 @@ msgstr ""
 msgid "Show Plugin Skin packages"
 msgstr ""
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr ""
 
 msgid "Show Record Movies"
@@ -17844,7 +17844,7 @@ msgstr "نمایش توضیحات طولانی"
 msgid "Show extension selection"
 msgstr ""
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr ""
 
 msgid "Show extra spacing in Information"
@@ -17934,7 +17934,7 @@ msgstr ""
 msgid "Show multi channel EPG"
 msgstr ""
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr ""
 
 msgid "Show next commit log"
@@ -18075,13 +18075,13 @@ msgid "Show servicelist or movies"
 msgstr ""
 
 #, fuzzy
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "نمایش منوی برچسب"
 
 msgid "Show setup default value"
 msgstr ""
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr ""
 
 #, fuzzy
@@ -18135,7 +18135,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr ""
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -18147,16 +18147,15 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
+msgid "Open Scheduler Overview"
+msgstr ""
+
 #, fuzzy
-msgid "Show the PowerTimer"
+msgid "Open SleepTimer Settings"
 msgstr "نمایش پخش کننده تلوزیون"
 
 #, fuzzy
-msgid "Show the SleepTimer"
-msgstr "نمایش پخش کننده تلوزیون"
-
-#, fuzzy
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr "اطلاعات مدیریت نرم افزار"
 
 msgid "Show the last opkg command's output"
@@ -18169,11 +18168,11 @@ msgid "Show the list of timers."
 msgstr ""
 
 #, fuzzy
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "نمایش پخش کننده رادیو"
 
 #, fuzzy
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "نمایش پخش کننده رادیو"
 
 msgid "Show the media player..."
@@ -18183,18 +18182,18 @@ msgid "Show the plugin browser.."
 msgstr ""
 
 #, fuzzy
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "حذف پلاگین ها"
 
 #, fuzzy
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "نمایش پخش کننده رادیو"
 
 msgid "Show the task list"
 msgstr ""
 
 #, fuzzy
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "نمایش پخش کننده تلوزیون"
 
 msgid "Show time elapsed as positive"
@@ -18224,7 +18223,7 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr ""
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr ""
 
 #, fuzzy
@@ -18334,7 +18333,7 @@ msgid "Simple titleset (compatibility for legacy players)"
 msgstr ""
 
 #, fuzzy
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "لیست دستگاه های ذخیره سازی"
 
 msgid "Simple zoom"
@@ -19272,10 +19271,10 @@ msgstr "انتخاب زبان زیرنویس 4"
 msgid "Subtitle position"
 msgstr "مکان زیرنویس"
 
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "انتخاب زیرنویس"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "انتخاب زیرنویس"
 
 msgid "Subtitles"
@@ -19391,7 +19390,7 @@ msgstr "مراجعه به لیست فایل ها"
 msgid "Switch config"
 msgstr ""
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr ""
 
 msgid "Switch off the TV to correct input"
@@ -19429,7 +19428,7 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr "جابجایی به کانال فرعی بعدی"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr ""
 
 #, fuzzy
@@ -19440,10 +19439,10 @@ msgstr "مراجعه به لیست پخش"
 msgid "Switch to previous EPG Event"
 msgstr "جابجایی به کانال فرعی قبلی"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr ""
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr ""
 
 msgid "Switch to the available RADIO services"
@@ -19477,7 +19476,7 @@ msgstr ""
 msgid "Sync NTP every (minutes)"
 msgstr ""
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr ""
 
 msgid "Sync mode"
@@ -20125,7 +20124,7 @@ msgstr ""
 msgid "There is no information to show for '%s'."
 msgstr ""
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr ""
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
@@ -20164,7 +20163,7 @@ msgstr ""
 msgid "This allows you change the number of rows shown."
 msgstr ""
 
-msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgid "This allows you to set the maximum number of digits in a service number, up to 5."
 msgstr ""
 
 msgid "This bouquet is protected by a parental control PIN!"
@@ -20721,7 +20720,7 @@ msgstr ""
 msgid "Today"
 msgstr "امروز"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr ""
 
 msgid "Toggle HDMI-In PiP"
@@ -20748,7 +20747,7 @@ msgstr ""
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr ""
 
 msgid "Toggle auto refresh On/Off"
@@ -20760,7 +20759,7 @@ msgstr ""
 msgid "Toggle display of image information"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -20803,7 +20802,7 @@ msgstr "نام وسیله :"
 msgid "Toggle the visibility of the highlighted plugin"
 msgstr ""
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr ""
 
 msgid "Togo"
@@ -21731,10 +21730,10 @@ msgstr "تعریف شده توسط کاربر"
 msgid "User defined 0x%02x"
 msgstr "تعریف شده توسط کاربر"
 
-msgid "User defined delay when you press another button to zap to the channel."
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
 msgstr ""
 
-msgid "User defined delay when you press the first button to zap to the channel."
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
 msgstr ""
 
 #, fuzzy
@@ -22036,7 +22035,7 @@ msgstr ""
 msgid "View photos..."
 msgstr "نمایش عکس..."
 
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "نمایش تلتکست..."
 
 msgid "View the archive contents"
@@ -23587,7 +23586,7 @@ msgid "languages"
 msgstr "زبان"
 
 #, fuzzy
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "خروج از پخش کننده فیلم"
 
 msgid "left"
@@ -23894,7 +23893,7 @@ msgstr ""
 msgid "show DVD main menu"
 msgstr "نمایش منوی اصلی DVD"
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr ""
 
 msgid "show all cards"
@@ -23959,13 +23958,13 @@ msgstr ""
 msgid "skip backward"
 msgstr "پرش به عقب"
 
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "پرش به عقب - با وارد کردن مدت زمان"
 
 msgid "skip forward"
 msgstr "پرش به جلو"
 
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "پرش به جلو - با وارد کردن مدت زمان"
 
 msgid "slow"

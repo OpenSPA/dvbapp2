@@ -25,9 +25,13 @@ def InitAVSwitch():
 		avSwitch.createConfig()
 		print(f"[AVSwitch] Setting EDID override to '{configElement.value}'.")
 
+	delayChoices = [(i, _("%d ms") % i) for i in list(range(0, 3000, 100))]  # noqa: F821
+	config.av.passthrough_fix_long = ConfigSelection(choices=delayChoices, default=1200)
+	config.av.passthrough_fix_short = ConfigSelection(choices=delayChoices, default=100)
+
 	config.av.edid_override.addNotifier(setUnsupportModes)
 	config.av.yuvenabled = ConfigBoolean(default=MACHINEBUILD != "vuduo")
-	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make openSPA compatible with some plugins who still use config.av.osd_alpha.
+	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make OpenSPA compatible with some plugins who still use config.av.osd_alpha.
 	config.av.autores = ConfigSelection(default="disabled", choices=[
 		("disabled", _("Disabled")),
 		("simple", _("Simple")),
@@ -343,9 +347,9 @@ def InitAVSwitch():
 	BoxInfo.setItem("Canedidchecking", bypassEDID)
 	if bypassEDID:
 		def setEDIDBypass(configElement):
-			if configElement.value:
-				value = "00000001" if configElement.value else "00000000"
-				fileWriteLine("/proc/stb/hdmi/bypass_edid_checking", value, source=MODULE_NAME)
+			value = "00000001" if configElement.value else "00000000"
+			fileWriteLine("/proc/stb/hdmi/bypass_edid_checking", value, source=MODULE_NAME)
+
 		config.av.bypass_edid_checking = ConfigYesNo(default=True)
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:

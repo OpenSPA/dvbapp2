@@ -1696,7 +1696,7 @@ msgstr ""
 "Vypnúť TV a skúsiť znovu?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr "AV pomer strán je %s."
 
 msgid "AAC downmix"
@@ -2517,7 +2517,7 @@ msgstr "Pomer strán"
 msgid "Aspect Ratio Actions"
 msgstr "Akcie pomeru strán"
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr "Zoznam pomerov strán..."
 
 msgid "Aspect ratio"
@@ -2603,7 +2603,7 @@ msgstr "Voľba jazyka zvuku 3"
 msgid "Audio language selection 4"
 msgstr "Voľba jazyka zvuku 4"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr "Možnosti zvuku..."
 
 msgid "Audio volume step size"
@@ -3586,7 +3586,7 @@ msgstr "Zrušiť rozbaľovanie"
 msgid "Cancel save time shift as movie"
 msgstr "Zrušiť ukladanie timeshiftu ako filmu"
 
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr "Zrušiť výber"
 
 msgid "Cancel selection and exit"
@@ -3640,12 +3640,12 @@ msgstr "Zrušené na základe požiadavky používateľa"
 msgid "Cannot delete file"
 msgstr "Súbor nie je možné vymazať"
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr "Nie je možné určiť limit %s ..., prerušuje sa!"
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr "Nenašiel sa žiadny signál..., prerušuje sa!"
 
 msgid "Cannot move to trash can"
@@ -3863,13 +3863,13 @@ msgstr "Výber kanála:"
 msgid "Channel up"
 msgstr "Kanál nahor"
 
-msgid "Channel zap delay another button"
+msgid "Service zap other button delay"
 msgstr "Oneskorenie ďalších tlačidiel pri prepnutí kanála"
 
-msgid "Channel zap delay first button"
+msgid "Service zap first button delay"
 msgstr "Oneskorenie prvého tlačidla po prepnutí"
 
-msgid "Channel zap delay mode"
+msgid "Service zap delay mode"
 msgstr "Režim oneskorenia pri prepnutí kanála"
 
 msgid "Channel:"
@@ -6044,7 +6044,7 @@ msgstr "Dikcia"
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
-"End Action was disabled !"
+"End Action was disabled!"
 msgstr ""
 "Rozdiel medzi začiatkom a koncom časovača musí byť rovný alebo väčší ako %d minút.\n"
 "Akcia pri skončení bola deaktivovaná!"
@@ -7220,7 +7220,7 @@ msgstr "Zadajte, či ste severne alebo južne od rovníka."
 msgid "Enter if you are in the East or West hemisphere."
 msgstr "Zadajte, či ste na východnej alebo západnej pologuli."
 
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Otvoriť hlavné menu..."
 
 msgid "Enter new directory name:"
@@ -9627,10 +9627,10 @@ msgstr "Režim EPG v infolište"
 msgid "InfoBar Event View Actions"
 msgstr "Akcie zobrazenia udalostí v infolište"
 
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr "Akcie RDS v infolište"
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr "Zobraziť/skryť akcie infolišty"
 
 msgid "InfoBar fade-out speed"
@@ -10309,8 +10309,8 @@ msgstr "Lesotho"
 msgid "Letterbox"
 msgstr "Letterbox"
 
-msgid "Letterbox zoom"
-msgstr "Letterbox zoom"
+msgid "LetterBox zoom"
+msgstr "LetterBox zoom"
 
 msgid "Liberia"
 msgstr "Libéria"
@@ -10394,7 +10394,7 @@ msgstr "Tituly prepojené s menu DVD"
 msgid "Links"
 msgstr "Odkazy"
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr "Zoznam funkcií EPG…"
 
 msgid "List Navigation Actions"
@@ -10859,7 +10859,7 @@ msgid "Maxdown: "
 msgstr "Max. dolu: "
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr "Maximálny počet minút na preskočenie: %d!"
 
 msgid "Maximum no of days"
@@ -11413,7 +11413,7 @@ msgstr "Akcie zobrazenia udalosti pri filme"
 msgid "Movie List"
 msgstr "Zoznam filmov"
 
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "Akcie pre zoznam filmov"
 
 msgid "Movie Selection Settings"
@@ -12247,7 +12247,7 @@ msgstr "Číslo"
 msgid "Number of IP Addresses"
 msgstr "Počet IP adries"
 
-msgid "Number of digits in channel number"
+msgid "Number of digits in service number"
 msgstr "Počet číslic v čísle kanála"
 
 msgid "Number of rows"
@@ -12420,7 +12420,7 @@ msgstr "Otvoriť"
 msgid "Open AutoTimer"
 msgstr "Otvoriť automatický časovač"
 
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "Otvoriť zoznam automatických časovačov"
 
 msgid "Open EPGSearch"
@@ -12441,10 +12441,10 @@ msgstr "Otvoriť nastavenia"
 msgid "Open Similar List Channel List"
 msgstr "Otvoriť podobný zoznam kanálov"
 
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Otvoriť zoznam časovačov"
 
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "Otvoriť zoznam prehľadov"
 
 msgid "Open context menu"
@@ -12462,10 +12462,10 @@ msgstr "Otvoriť zoznam obľúbených"
 msgid "Open file sort menu"
 msgstr "Otvoriť menu pre zoraďovanie súborov"
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr "Otvoriť zoznam družíc"
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr "Otvoriť zoznam staníc"
 
 msgid "Open service list and select next channel"
@@ -12908,7 +12908,7 @@ msgstr "Filipíny"
 msgid "PiP"
 msgstr "PiP"
 
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "Akcie PiP"
 
 msgid "PiP with OSD"
@@ -12947,7 +12947,7 @@ msgstr "Akcie pre informácie o obrázku"
 msgid "Picture in EPG"
 msgstr "Obraz v EPG"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr "Nastavenie PiP"
 
 msgid "Picture in graphics"
@@ -13041,7 +13041,7 @@ msgstr "Prehrať nasledujúci (návrat na prechádzajúcu stanicu)"
 msgid "Play previous"
 msgstr "Prehrať predchádzajúci"
 
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Prehrať nahraté filmy"
 
 msgid "Play selected service in a PiP window"
@@ -13153,7 +13153,7 @@ msgstr "Na pokračovanie stlačte OK, prosím."
 msgid "Please press OK when ready"
 msgstr "Prosím, stlačte OK, keď budete pripravení"
 
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr "Prosím, zvoľte predvolený typ EPG…"
 
 msgid "Please select a distribution from which you would like to flash an image:"
@@ -13954,7 +13954,7 @@ msgstr "Rýchle menu"
 msgid "Quick Menu Actions"
 msgstr "Akcie rýchlej ponuky"
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr "Rýchle menu…"
 
 msgid "QuickEPG mode"
@@ -14177,7 +14177,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Nahrávanie spustené! Zastavuje sa timeshift…"
 
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
+msgid "Recording time limited due to conflicting timer:%s"
 msgstr "Čas nahrávania je obmedzený kvôli konfliktu časovačov %s"
 
 msgid "Record write error (no space on disk?)"
@@ -14277,7 +14277,7 @@ msgstr "Núdzový režim"
 msgid "Red"
 msgstr "Červená"
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "Červené tlačidlo…"
 
 msgid "Red colored"
@@ -15356,7 +15356,7 @@ msgstr "Rýchlosť rolovania (softvérový vykresľovač)"
 msgid "Search"
 msgstr "Hľadať"
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr "Vyhľadať v IMDb informáciu o aktuálnej udalosti."
 
 msgid "Search Sats"
@@ -15374,7 +15374,7 @@ msgstr "Vyľadanie sieťových zdieľaní"
 msgid "Search for similar events"
 msgstr "Hľadať podobné udalosti"
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr "Prehľadať EPG pre aktuálnu udalosť."
 
 msgid "Search weather location ID"
@@ -15437,7 +15437,7 @@ msgstr "Dlhý posun dopredu"
 msgid "Seekbar"
 msgstr "Vyhľadávací panel"
 
-msgid "Seekbar activation"
+msgid "SeekBar activation"
 msgstr "Aktivácia vyhľadávacieho panela"
 
 msgid "Seekbar sensibility"
@@ -15847,7 +15847,7 @@ msgstr "Vyberte zvukový kanál"
 msgid "Select copy destination for:"
 msgstr "Vyberte umiestnenie kópie pre:"
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr "Vyberte predvolený typ EPG…"
 
 msgid "Select default File Commander directory:"
@@ -15958,7 +15958,7 @@ msgstr "Vyberte poskytovateľa, ktorý sa má pridať…"
 msgid "Select refresh rate"
 msgstr "Vyberte obnovovaciu frekvenciu"
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Vyberte, ktorými tlačidlami sa má aktivovať panel pre posun: šípky L/R (dlhé stlačenie) alebo << >> (dlhé stlačenie)."
 
 msgid "Select service information to view:"
@@ -15970,7 +15970,7 @@ msgstr "Vyberte stanicu, ktorá sa má pridať…"
 msgid "Select sort method:"
 msgstr "Vyberte spôsob zoraďovania:"
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr "Vybrať podradené služby"
 
 msgid "Select system information to view:"
@@ -16388,7 +16388,7 @@ msgstr "Vyberte svoju časovú zónu alebo región."
 msgid "Select, toggle, process or edit the current entry"
 msgstr "Vyberte, prepnite, spracujte alebo upravte aktuálnu položku"
 
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr "Vybrať/prepnúť na vybraný kanál"
 
 #, python-format
@@ -16759,7 +16759,7 @@ msgstr "Nastavte trvanie zobrazenia infolišty."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Nastavte čas trvania zobrazenia druhej infolišty. Lišta zmizne aj po stlačení 'OK'."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Nastavenie času čakania na vykonanie predvolenej akcie v správach o vypnutí, pohotovostnom režime alebo reštarte. Používa sa napr. v časovačoch nahrávania, napájania, uspania atď."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
@@ -16902,7 +16902,7 @@ msgstr "Nastavenie videa/zvuku"
 msgid "Setup Videomode"
 msgstr "Nastavenie video režimu"
 
-msgid "Setup delay mode to zap to channels."
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Nastaviť režim oneskorenia pre prepínanie kanálov."
 
 msgid "Setup each tuner for your satellite system"
@@ -17098,7 +17098,7 @@ msgstr "Zobraziť výber zvuku"
 msgid "Show AutoTimer List"
 msgstr "Zobraziť zoznam autom. časovačov"
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Zobraziť Box Portal"
 
 msgid "Show CCcam Info"
@@ -17125,7 +17125,7 @@ msgstr "Zobraziť balíčky ovládačov"
 msgid "Show EPG"
 msgstr "Zobraziť EPG"
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr "Zobraziť EPG pre aktuálny kanál…"
 
 msgid "Show EventView"
@@ -17134,7 +17134,7 @@ msgstr "Zobraziť info o udalosti"
 msgid "Show Extension packages"
 msgstr "Zobraziť balíčky s rozšíreniami"
 
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "Zobraziť nastavenie formátu"
 
 msgid "Show Graphical EPG"
@@ -17149,7 +17149,7 @@ msgstr "Zobraziť výstupné rozlíšenie HDMI."
 msgid "Show HDMI-Output Res"
 msgstr "Zobraziť výst. rozlíšenie HDMI"
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr "Zobraziť nastavenie HDMIRecord…"
 
 msgid "Show InfoBar"
@@ -17170,7 +17170,7 @@ msgstr "Zobraziť infolištu pri skoku dopredu/dozadu"
 msgid "Show InfoBar picons"
 msgstr "Zobraziť pikony v infolište"
 
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Zobraziť informácie"
 
 msgid "Show Kernel packages"
@@ -17236,7 +17236,7 @@ msgstr "Zobraziť balíčky s pikonami"
 msgid "Show Plugin Skin packages"
 msgstr "Zobraziť balíčky pre vzhľad pluginu"
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr "Zobraziť nastavenie RFmod..."
 
 msgid "Show Record Movies"
@@ -17413,7 +17413,7 @@ msgstr "Zobraziť rozšírený popis"
 msgid "Show extension selection"
 msgstr "Zobraziť výber rozšírenia"
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr "Zobraziť rozšírenia..."
 
 msgid "Show extra spacing in Information"
@@ -17498,7 +17498,7 @@ msgstr "Zobraziť filmy"
 msgid "Show multi channel EPG"
 msgstr "Zobraziť multikanálový EPG"
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr "Zobraziť menu pre nastavenie siete…"
 
 msgid "Show next commit log"
@@ -17633,13 +17633,13 @@ msgstr "Zobraziť ikony typu stanice"
 msgid "Show servicelist or movies"
 msgstr "Zobraziť zoznam staníc alebo filmov"
 
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Zobraziť nastavenie"
 
 msgid "Show setup default value"
 msgstr "Zobraziť predvolenú hodnotu nastavenia"
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr "Zobraziť menu nastavení…"
 
 msgid "Show shut down menu"
@@ -17690,7 +17690,7 @@ msgstr "Zobraziť správy o úlohách, ak program Správca súborov nie je spust
 msgid "Show the CCcam Info Screen"
 msgstr "Zobraziť informačnú obrazovku CCcam"
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr "Zobraziť prehrávač DreamPlex…"
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -17702,13 +17702,13 @@ msgstr "Zobraziť obrazovku s nastaveniami záznamov"
 msgid "Show the OSCam information screen"
 msgstr "Zobraziť obrazovku informácií OScamu"
 
-msgid "Show the PowerTimer"
-msgstr "Zobraziť časovač napájania"
+msgid "Open Scheduler Overview"
+msgstr "Zobraziť plánovač"
 
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Zobraziť časovač uspania"
 
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr "Zobraziť informáciu pri aktuálnej udalosti."
 
 msgid "Show the last opkg command's output"
@@ -17720,10 +17720,10 @@ msgstr "Zobraziť zoznam autom. časovačov."
 msgid "Show the list of timers."
 msgstr "Zobraziť zoznam časovačov."
 
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Zobraziť centrum médií"
 
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Zobraziť prehrávač médií"
 
 msgid "Show the media player..."
@@ -17732,16 +17732,16 @@ msgstr "Zobraziť prehrávač médií…"
 msgid "Show the plugin browser.."
 msgstr "Zobraziť prehliadač pluginov."
 
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Zobraziť pluginy"
 
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Zobraziť prehrávač rádia"
 
 msgid "Show the task list"
 msgstr "Zobraziť zoznam úloh"
 
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Zobraziť prehrávač TV"
 
 msgid "Show time elapsed as positive"
@@ -17771,7 +17771,7 @@ msgstr "Zobraziť neznáme rozlíšenie videa ako najbližšie vyššie alebo na
 msgid "Show unknown video format as"
 msgstr "Zobraziť neznámy formát videa ako"
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr "Zobraziť použitie a GUI menu…"
 
 msgid "Show vertical Program Guide"
@@ -17873,7 +17873,7 @@ msgstr "Jednoduché zmiznutie"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Jednoduchá (kompatibilita so staršími prehrávačmi)"
 
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "Jednoduchý odpájač úložného zariadenia."
 
 msgid "Simple zoom"
@@ -18792,10 +18792,10 @@ msgstr "Voľba jazyka titulkov 4"
 msgid "Subtitle position"
 msgstr "Pozícia titulkov"
 
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Výber titulkov"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Výber titulkov…"
 
 msgid "Subtitles"
@@ -18906,7 +18906,7 @@ msgstr "Prepnúť medzi zoznamom súborov/playlistom"
 msgid "Switch config"
 msgstr "Nastavenie prepínania"
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr "Prepnúť na ďalší kanál"
 
 msgid "Switch off the TV to correct input"
@@ -18942,7 +18942,7 @@ msgstr "Prepnúť na panel so zoznamom súborov"
 msgid "Switch to next EPG Event"
 msgstr "Prepnúť na ďalšiu udalosť v EPG"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr "Prepnúť na ďalší kanál v histórii"
 
 msgid "Switch to play list"
@@ -18951,10 +18951,10 @@ msgstr "Prepnúť na playlist"
 msgid "Switch to previous EPG Event"
 msgstr "Prepnúť na predchádzajúcu udalosť v EPG"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr "Prepnúť na predchádzajúci kanál"
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr "Prepnúť na predchádzajúci kanál v histórii"
 
 msgid "Switch to the available RADIO services"
@@ -18987,7 +18987,7 @@ msgstr "Symbolický odkaz"
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronizovať NTP každých (min)"
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr "Zlyhanie synchronizácie, návrat na pôvodné hodnoty!"
 
 msgid "Sync mode"
@@ -19680,7 +19680,7 @@ msgstr "Existuje riziko, že sa vaše zariadenie %s %s po takejto veľkej on-lin
 msgid "There is no information to show for '%s'."
 msgstr "Nie sú žiadne informácie na zobrazenie pre '%s'."
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr "Nie je signál pre uzamknutie!"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
@@ -19717,7 +19717,7 @@ msgstr "Umožňuje zmeniť relatívnu veľkosť písma vzhľadom na veľkosť vz
 msgid "This allows you change the number of rows shown."
 msgstr "Umožňuje zmeniť počet zobrazených riadkov."
 
-msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgid "This allows you to set the maximum number of digits in a service number, up to 5."
 msgstr "Umožňuje nastaviť počet číslic na 5, ak máte viac ako 9999 kanálov."
 
 msgid "This bouquet is protected by a parental control PIN!"
@@ -20283,7 +20283,7 @@ msgstr "Kam sa má rozbaliť '%s'?"
 msgid "Today"
 msgstr "Dnes"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr "Prepnutie digitálneho downmixu…"
 
 msgid "Toggle HDMI-In PiP"
@@ -20310,7 +20310,7 @@ msgstr "Prepnúť strihovú značku na aktuálnej pozícii"
 msgid "Toggle all related files"
 msgstr "Prepnúť všetky súvisiace súbory"
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr "Prepnúť pomer strán…"
 
 msgid "Toggle auto refresh On/Off"
@@ -20322,7 +20322,7 @@ msgstr "Prepnúť medzi zoznamami prehľadov/EPG"
 msgid "Toggle display of image information"
 msgstr "Prepnúť zobrazenie informácií o image"
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr "Prepnúť zobrazenie infolišty"
 
 msgid "Toggle display of the image status overlay"
@@ -20364,7 +20364,7 @@ msgstr "Prepnúť zobrazenie názvu stanice/služby"
 msgid "Toggle the visibility of the highlighted plugin"
 msgstr "Prepnúť viditeľnosť zvýrazneného pluginu"
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Prepínanie medzi TV a rádiom"
 
 msgid "Togo"
@@ -21277,10 +21277,10 @@ msgstr "Definované používateľom"
 msgid "User defined 0x%02x"
 msgstr "Používateľom definované 0x%02x"
 
-msgid "User defined delay when you press another button to zap to the channel."
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
 msgstr "Používateľom určené oneskorenie po stlačení iného tlačidla na prepnutie na daný kanál."
 
-msgid "User defined delay when you press the first button to zap to the channel."
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
 msgstr "Používateľom uvedené oneskorenie po stlačení prvého tlačidla na prepnutie na daný kanál."
 
 msgid "User defined transponder"
@@ -21599,7 +21599,7 @@ msgstr "Zobraziť alebo upraviť tento skript pre %s"
 msgid "View photos..."
 msgstr "Zobraziť fotografie…"
 
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Zobraziť teletext…"
 
 msgid "View the archive contents"
@@ -23154,7 +23154,7 @@ msgstr "preskočiť na kapitolu podľa čísla"
 msgid "languages"
 msgstr "jazyky"
 
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "ukončiť prehrávač médií"
 
 msgid "left"
@@ -23459,7 +23459,7 @@ msgstr "shell"
 msgid "show DVD main menu"
 msgstr "zobraziť hlavné menu DVD"
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr "zobraziť EPG…"
 
 msgid "show all cards"
@@ -23522,13 +23522,13 @@ msgstr "veľkosť"
 msgid "skip backward"
 msgstr "skok dozadu"
 
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "skok dozadu (zadať čas)"
 
 msgid "skip forward"
 msgstr "preskočiť dopredu"
 
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "skok dopredu (zadať čas)"
 
 msgid "slow"
@@ -24468,14 +24468,6 @@ msgstr "®"
 
 #~ msgid "Update interval (in seconds)"
 #~ msgstr "Interval aktualizácie (s)"
-
-#, python-format
-#~ msgid ""
-#~ "Your %s %s will be restarted after the removal of service\n"
-#~ "Do you want to remove now?"
-#~ msgstr ""
-#~ "%s %s sa po odobratí služby reštartuje.\n"
-#~ "Má sa odstránenie ihneď spustiť?"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "Prosím, zmeňte čas ukončenia nahrávania"

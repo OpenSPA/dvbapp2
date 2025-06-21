@@ -249,8 +249,8 @@ int eDVBPMTParser::getProgramInfo(program &program)
 									s.subtitling_type = (*it)->getSubtitlingType();
 									switch(s.subtitling_type)
 									{
-									case 0x10 ... 0x15: // dvb subtitles normal
-									case 0x20 ... 0x25: // dvb subtitles hearing impaired
+									case 0x10 ... 0x16: // dvb subtitles normal
+									case 0x20 ... 0x26: // dvb subtitles hearing impaired
 										break;
 									default:
 										eDebug("[eDVBPMTParser] dvb subtitle %s PID %04x with wrong subtitling type (%02x)... force 0x10!!",
@@ -430,7 +430,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 					if (!num_descriptors && streamtype == 0x06 && prev_audio)
 					{
 						prev_audio->rdsPid = (*es)->getPid();
-						eDebug("[eDVBPMTParser] Rds PID %04x detected ? ! ?", prev_audio->rdsPid);
+						eDebug("[eDVBPMTParser] Rds PID %04x detected?!?", prev_audio->rdsPid);
 					}
 					//HEVC 4K for Topway
 					if (!num_descriptors && streamtype == 0xEA && !isvideo && !isaudio)

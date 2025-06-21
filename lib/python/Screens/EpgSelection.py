@@ -24,6 +24,7 @@ from Screens.Setup import Setup
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.TimerEdit import TimerEditList
+from Tools.Directories import isPluginInstalled
 
 
 try:  # PiPServiceRelation installed?
@@ -47,6 +48,7 @@ epgTypes = {
 
 
 class EPGSelection(Screen):
+	catchupPlayerFunc = None
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
@@ -78,6 +80,7 @@ class EPGSelection(Screen):
 		if self.session.pipshown:
 			self.Oldpipshown = True
 		self.session.pipshown = False
+		self.onClose.append(self.restorePiP)
 		self.cureventindex = None
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
@@ -118,7 +121,7 @@ class EPGSelection(Screen):
 			self["key_red"] = StaticText(_("IMDb Search"))
 			self["key_green"] = StaticText(_("Add Timer"))
 			self["key_yellow"] = StaticText(_("EPG Search"))
-			self["key_blue"] = StaticText(_("Add AutoTimer"))
+			self["key_blue"] = StaticText(_("Add AutoTimer") if isPluginInstalled("AutoTimer") else _("Automatic search"))
 		epgCursoractions = {
 			"up": (self.moveUp, _("Goto previous channel")),
 			"down": (self.moveDown, _("Goto next channel"))
@@ -150,6 +153,12 @@ class EPGSelection(Screen):
 			"info": (self.Info, _("Show detailed event info")),
 			"infolong": (self.InfoLong, _("Show single EPG for current channel"))
 		}
+
+		self["epgcatchupactions"] = HelpableActionMap(self, "EPGCatchUpActions", {
+			"play": (self.playCatchup, _("Play catch up service archive")),
+		}, prio=-2, description=_("Catch Up Player Actions"))
+		self["epgcatchupactions"].setEnabled(callable(self.catchupPlayerFunc))
+
 		if self.type == EPG_TYPE_SINGLE:
 			epgActions["epg"] = (self.Info, _("Show detailed event info"))
 			del epgActions["infolong"]
@@ -386,6 +395,17 @@ class EPGSelection(Screen):
 		}.get(self.type, (None, None))
 		if key:
 			self.session.openWithCallback(createSetupCallback, Setup, key)
+
+	def setupKeyPlayButtonDisplay(self, stime, service):
+		ena = self["list"].detectCatchupAvailable(stime, service)
+		self["epgcatchupactions"].setEnabled(ena)
+
+	def playCatchup(self):
+		event, service = self["list"].getCurrent()[:2]
+		stime = event and event.getBeginTime()
+		service = service and service.ref
+		if self["list"].detectCatchupAvailable(stime, service):
+			self.catchupPlayerFunc(event, service)
 
 	def togglePIG(self):
 		if self.type == EPG_TYPE_VERTICAL:
@@ -1259,18 +1279,35 @@ class EPGSelection(Screen):
 			if serviceref is not None:
 				self.session.open(SingleEPG, serviceref)
 
-	def openIMDb(self):
+	def openIMDb(self):  # OpenSPA [norhap] install spzimdb.
 		try:
+			cur = self[f"list{self.activeList}"].getCurrent()
+			event = cur[0]
+			name = event.getEventName()
+			name = ""
 			from Plugins.Extensions.IMDb.plugin import IMDB
-			try:
-				cur = self[f"list{self.activeList}"].getCurrent()
-				event = cur[0]
-				name = event.getEventName()
-			except:
-				name = ""
 			self.session.open(IMDB, name, False)
-		except ImportError:
-			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+		except:
+			if isPluginInstalled("spzIMDB"):
+				from Plugins.Extensions.spzIMDB.plugin import getStrRef, spzIMDB
+				try:
+					cur = self[f"list{self.activeList}"].getCurrent()
+					event = cur[0]
+					name = event.getEventName()
+					serviceref = cur[1]
+					ref = getStrRef(serviceref.ref, name)
+				except:
+					name = ""
+				spzIMDB(self.session, tbusqueda=name, tevento=event, tref=ref)
+			else:
+				def doInstallspzIMDB(answer):
+					if answer:
+						try:
+							from Plugins.Extensions.OpenSPAPlug.plugin import OpenSPAPlug
+							self.session.open(OpenSPAPlug)
+						except:
+							pass
+				self.session.openWithCallback(doInstallspzIMDB, MessageBox, _("The [spzimdb] plugin is not installed!\nDo you want to install it?"), type=MessageBox.TYPE_YESNO, timeout=10)
 
 	def openTMDB(self):
 		try:
@@ -1287,7 +1324,7 @@ class EPGSelection(Screen):
 
 	def openEPGSearch(self):
 		try:
-			from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
+			from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSearch import EPGSearch  # [norhap] initialize EPGSearch OpenSPA.
 			try:
 				cur = self[f"list{self.activeList}"].getCurrent()
 				event = cur[0]
@@ -1299,7 +1336,21 @@ class EPGSelection(Screen):
 			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def addAutoTimer(self):
-		try:
+		if not isPluginInstalled("AutoTimer"):
+			config.usage.standardnewsearch.value = True  # OpenSPA [norhap] wildcard for failed events in newsearch.
+			name = ""
+			try:
+				from Plugins.Extensions.spazeMenu.spzPlugins.spaTimerEntry.plugin import newsearch  # [norhap] initialize newsearch OpenSPA
+				try:
+					cur = self[f"list{self.activeList}"].getCurrent()
+					event = cur[0]
+					name = event.getEventName()
+				except:
+					name = ""
+				self.session.open(newsearch, name, False)
+			except ImportError:
+				self.openEPGSearch()  # If newsearch finds no events, EPGSearch OpenSPA wildcard is called.
+		else:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
 			cur = self[f"list{self.activeList}"].getCurrent()
 			event = cur[0]
@@ -1308,11 +1359,11 @@ class EPGSelection(Screen):
 			serviceref = cur[1]
 			addAutotimerFromEvent(self.session, evt=event, service=serviceref)
 			self.refreshTimer.start(3000)
-		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def addAutoTimerSilent(self):
-		try:
+		if not isPluginInstalled("AutoTimer"):  # OpenSPA [norhap] add install AutoTimer.
+			self.addAutoTimer()
+		else:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEventSilent
 			cur = self[f"list{self.activeList}"].getCurrent()
 			event = cur[0]
@@ -1321,8 +1372,6 @@ class EPGSelection(Screen):
 			serviceref = cur[1]
 			addAutotimerFromEventSilent(self.session, evt=event, service=serviceref)
 			self.refreshTimer.start(3000)
-		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showTimerList(self):
 		self.session.open(TimerEditList)
@@ -1334,7 +1383,9 @@ class EPGSelection(Screen):
 	def showAutoTimerList(self):
 		global autopoller
 		global autotimer
-		try:
+		if not isPluginInstalled("AutoTimer"):  # OpenSPA [norhap] add install AutoTimer.
+			self.addAutoTimer()
+		else:
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
@@ -1350,8 +1401,6 @@ class EPGSelection(Screen):
 				autopoller.stop()
 			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
 			self.session.openWithCallback(self.editCallback, AutoTimerOverview, autotimer)
-		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def editCallback(self, session):
 		global autopoller
@@ -1437,7 +1486,7 @@ class EPGSelection(Screen):
 					(_("Add RecordTimer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Add ZapTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapTimer),
 					(_("Add Zap+RecordTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapRecordTimer),
-					(_("Add AutoTimer"), "CALLFUNC", self.ChoiceBoxCB, self.addAutoTimerSilent)
+					(_("Add AutoTimer") if isPluginInstalled("AutoTimer") else _("Automatic search"), "CALLFUNC", self.ChoiceBoxCB, self.addAutoTimerSilent)
 				]
 				title = f"{event.getEventName()}?"
 			else:
@@ -1492,6 +1541,7 @@ class EPGSelection(Screen):
 		self["recordingactions"].setEnabled(False)
 		self["epgactions"].setEnabled(False)
 		self["dialogactions"].setEnabled(True)
+		self["epgcatchupactions"].setEnabled(False)
 		self.ChoiceBoxDialog.instantiateActionMap(True)
 		self.ChoiceBoxDialog.show()
 		if "input_actions" in self:
@@ -1735,6 +1785,8 @@ class EPGSelection(Screen):
 			self.key_green_choice = self.ADD_TIMER
 		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
+		if callable(self.catchupPlayerFunc):
+			self.setupKeyPlayButtonDisplay(event.getBeginTime(), serviceref)
 
 	def moveTimeLines(self, force=False):
 		self.updateTimelineTimer.start((60 - int(time()) % 60) * 1000)
@@ -1782,16 +1834,18 @@ class EPGSelection(Screen):
 					self.session.nav.playService(self.StartRef)
 				else:
 					self.zapFunc(None, False)
+		self.closeEventViewDialog()
+		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
+			return
+		self.close(True)
+
+	def restorePiP(self):
 		if self.session.pipshown:
 			self.Oldpipshown = False
 			self.session.pipshown = False
 			del self.session.pip
 		if self.Oldpipshown:
 			self.session.pipshown = True
-		self.closeEventViewDialog()
-		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
-			return
-		self.close(True)
 
 	def zap(self):
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and "0:0:0:0:0:0:0:0:0" in self.session.nav.getCurrentlyPlayingServiceOrGroup().toString():
@@ -2030,7 +2084,7 @@ class EPGSelection(Screen):
 			"timer": _("Add Timer"),
 			"imdb": _("IMDb Search"),
 			"tmdb": _("TMDB Search"),
-			"autotimer": _("Add AutoTimer"),
+			"autotimer": _("Add AutoTimer") if isPluginInstalled("AutoTimer") else _("Automatic search"),
 			"bouquetlist": _("Bouquet List"),
 			"epgsearch": _("EPG Search"),
 			"showmovies": _("Recordings"),

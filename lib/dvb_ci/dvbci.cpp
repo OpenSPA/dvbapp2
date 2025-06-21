@@ -38,7 +38,7 @@ static char *readInputCI(int NimNumber)
 	char id1[] = "NIM Socket";
 	char id2[] = "Input_Name";
 	char keys1[] = "1234567890";
-	char keys2[] = "12ABCDabcd";
+    char keys2[] = "123456789ABCDabcd";
 	char *inputName = 0;
 	char buf[256];
 	FILE *f;
@@ -94,17 +94,6 @@ static std::string getTunerLetterDM(int NimNumber)
 	{
 		std::string ret = std::string(srcCI);
 		free(srcCI);
-#ifdef HAVE_DM_FBC
-		if (ret.size() == 1)
-		{
-			int corr = 1;
-			if (NimNumber > 7)
-			{
-				corr = -7;
-			}
-			return ret + std::to_string(NimNumber + corr);
-		}
-#endif	
 		return ret;
 	}
 	return eDVBCISlot::getTunerLetter(NimNumber);
@@ -457,6 +446,9 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 		pmthandler->getService(service);
 
 		eTrace("[CI] recheck %p %s", pmthandler, ref.toString().c_str());
+		bool PVR = !ref.path.empty() && ref.path.starts_with("/") && ref.path.ends_with(".ts");
+		ref.path = "";
+
 		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
 			if (ci_it->plugged && ci_it->getCAManager())
 			{
@@ -535,7 +527,12 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 				{
 					eDVBNamespace ns = ref.getDVBNamespace();
 					mask |= 2;
-					if (!service) // subservice?
+
+					if(PVR && !service)
+					{
+						eDVBDB::getInstance()->getService(ref, service);
+					} 
+					else if (!service) // subservice?
 					{
 						eServiceReferenceDVB parent_ref = ref.getParentServiceReference();
 						eDVBDB::getInstance()->getService(parent_ref, service);
@@ -902,6 +899,17 @@ void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 			tmp = tmp->linked_next;
 		}
 	}
+}
+
+bool eDVBCIInterfaces::isCiConnected(eDVBServicePMTHandler *pmthandler)
+{
+	bool ret = false;
+	PMTHandlerList::iterator it=std::find(m_pmt_handlers.begin(), m_pmt_handlers.end(), pmthandler);
+	if (it != m_pmt_handlers.end() && it->cislot)
+	{
+		ret = true;
+	}
+	return ret;
 }
 
 int eDVBCIInterfaces::getMMIState(int slotid)

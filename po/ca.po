@@ -4325,14 +4325,14 @@ msgstr "Selecció de canal:"
 msgid "Channel up"
 msgstr "Canal amunt"
 
-msgid "Channel zap delay another button"
-msgstr "Un altre botó per al retard del canvi de canal"
+msgid "Service zap other button delay"
+msgstr "Retard d'un altre botó de zap de canal"
 
-msgid "Channel zap delay first button"
-msgstr "Primer botó per al retard del canvi de canal"
+msgid "Service zap first button delay"
+msgstr "Retard del primer botó de canal Zap"
 
-msgid "Channel zap delay mode"
-msgstr "Mode retard canvi de canal"
+msgid "Service zap delay mode"
+msgstr "Mode de retard de zap de canal"
 
 #
 msgid "Channel:"
@@ -14436,8 +14436,8 @@ msgstr "Si us plau, rem OK per arrancar kodi..."
 msgid "Please select a backup destination"
 msgstr "Si us plau selecciona destinació del backup"
 
-msgid "Please select a default EPG type..."
-msgstr "Sel·lecciona el tipus d'EPG per defecte..."
+msgid "Select default EPG type:"
+msgstr "Selecciona el tipus d'EPG per defecte:"
 
 msgid ""
 "Please select a distribution from which you would like to flash an image:"
@@ -15529,8 +15529,8 @@ msgstr "Gravació iniciada! Parant Timeshift..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer %s"
-msgstr "Temps de gravació limitat a causa d'un temporitzador en conflicte %s"
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Temps de registre limitat a causa del temporitzador en conflicte% s"
 
 msgid "Record write error (no space on disk?)"
 msgstr "Error d'escriptura de la gravació (no queda espai al disc?)"
@@ -16866,7 +16866,7 @@ msgstr "Pulsació llarga avanç ràpid"
 msgid "Seekbar"
 msgstr "Barra de recerca"
 
-msgid "Seekbar activation"
+msgid "SeekBar activation"
 msgstr "Activació de la barra de posicionament"
 
 msgid "Seekbar sensibility"
@@ -17427,7 +17427,7 @@ msgid "Select copy destination for:"
 msgstr "Seleccioneu la destinació de la còpia per a:"
 
 msgid "Select default EPG type..."
-msgstr "Sel·leccionar el tipus d'EPG per defecte..."
+msgstr "Sel·leccionar el tipus d'EPG per defecte"
 
 msgid "Select default File Commander directory:"
 msgstr "Seleccionar directori predeterminat a l'Administrador d'arxius:"
@@ -17572,13 +17572,8 @@ msgstr "Selecciona proveïdor per afegir …"
 msgid "Select refresh rate"
 msgstr "Seleccioneu el percentatge de refresc"
 
-msgid "Select satellites"
-msgstr "Selecciona satèl·lits"
-
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr ""
-"Selecciona barra de recerca que s'activarà amb fletxa Esq/Drt (pulsació "
-"prolongada) or <<>> (pulsación prolongada)"
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "Selecciona barra de recerca que s'activarà amb fletxa Esq/Drt (pulsació prolongada) or <<>> (pulsación prolongada)"
 
 #
 msgid "Select service to add..."
@@ -18755,8 +18750,8 @@ msgstr "Configurar Video/Àudio"
 msgid "Setup Videomode"
 msgstr "Configurar el mode de vídeo"
 
-msgid "Setup delay mode to zap to channels."
-msgstr "Configura el mode de retard per a fer zàping de canals."
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
+msgstr ""
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Configura cada sintonitzador del teu receptor"
@@ -23517,13 +23512,12 @@ msgstr "Definit per l'usuari"
 msgid "User defined 0x%02x"
 msgstr "Definit per l'usuari 0x%02x"
 
-msgid "User defined delay when you press another button to zap to the channel."
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
 msgstr ""
 "Retard definit per l'usuari quan es prem un altre botó per a canviar de "
 "canal."
 
-msgid ""
-"User defined delay when you press the first button to zap to the channel."
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
 msgstr ""
 "Retard definit per l'usuari quan es prem el primer botón per a canviar de "
 "canal."

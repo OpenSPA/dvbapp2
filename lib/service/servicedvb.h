@@ -95,12 +95,8 @@ class eDVBServicePlay: public eDVBServiceBase,
 public:
 	virtual ~eDVBServicePlay();
 
-		// iPlayableService
-#if SIGCXX_MAJOR_VERSION == 2
-	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
-#else
+	// iPlayableService
 	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
-#endif
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target, bool noaudio);
@@ -233,11 +229,7 @@ protected:
 
 	void serviceEvent(int event);
 	void serviceEventTimeshift(int event);
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal2<void,iPlayableService*,int> m_event;
-#else
 	sigc::signal<void(iPlayableService*,int)> m_event;
-#endif
 
 	bool m_is_stream;
 
@@ -321,6 +313,11 @@ protected:
 
 	ePtr<eTimer> m_nownext_timer;
 	void updateEpgCacheNowNext();
+
+#ifdef PASSTHROUGH_FIX
+	ePtr<eTimer> m_passthrough_fix_timer;
+	void forcePassthrough();
+#endif
 
 		/* radiotext */
 	ePtr<eDVBRdsDecoder> m_rds_decoder;

@@ -29,6 +29,11 @@
 		<device name="dreambox front panel">
 			<key id="KEY_POWER" mapto="deepstandby" flags="l" />
 		</device>
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_KPPLUS" mapto="volumeUp" flags="mr" />
+		<key id="KEY_KPMINUS" mapto="volumeDown" flags="mr" />
+		<key id="KEY_KPASTERISK" mapto="volumeMute" flags="m" />
+		<key id="KEY_KPASTERISK" mapto="volumeMuteLong" flags="l" />
 	</map>
 
 	<!--
@@ -410,6 +415,13 @@
 		<key id="KEY_I" mapto="log" flags="m" />
 	</map>
 
+	<map context="TVRadioActions">
+		<key id="KEY_TV" mapto="keyTV" flags="m" />
+		<key id="KEY_RADIO" mapto="keyRadio" flags="m" />
+		<key id="KEY_TV2" mapto="keyTVRadio" flags="m" />
+		<key id="KEY_FAVORITES" mapto="keyTVRadio" flags="m" />
+	</map>
+
 	<map context="VirtualKeyBoardActions">
 		<!-- Also uses NumberActions -->
 		<!-- Also uses TextEditActions -->
@@ -441,15 +453,6 @@
 		<key id="KEY_F12" mapto="next" flags="m" />
 		<key id="KEY_F10" mapto="last" flags="m" />
 		<key id="KEY_NEXTSONG" mapto="last" flags="m" />
-	</map>
-
-	<map context="VolumeAdjustActions">
-		<key id="KEY_YELLOW" mapto="addCurrentService" flags="m" />
-		<key id="KEY_BLUE" mapto="deleteService" flags="m" />
-		<key id="KEY_FAVORITES" mapto="addService" flags="m" />
-		<key id="KEY_TV" mapto="addService" flags="m" />
-		<key id="KEY_RADIO" mapto="addService" flags="m" />
-		<key id="KEY_EPG" mapto="debug" flags="m" />
 	</map>
 
 	<!--
@@ -677,7 +680,7 @@
 		<key id="KEY_PVR" mapto="showMediaPlayer" flags="l" />
 		<!--
 		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
-		-->		
+		-->
 		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
 		<key id="KEY_HOMEPAGE" mapto="showWWW" flags="b" />
 		<key id="KEY_BOOKMARKS" mapto="showWWW" flags="b" />
@@ -734,11 +737,6 @@
 
 	<map context="InfobarRedButtonActions">
 		<key id="KEY_RED" mapto="activateRedButton" flags="b" />
-	</map>
-
-	<map context="InfobarTimerButtonActions">
-		<key id="KEY_PROGRAM" mapto="timerSelection" flags="b" />
-		<key id="KEY_CALENDAR" mapto="openAutoTimerList" flags="b" />
 	</map>
 
 	<map context="InfobarVmodeButtonActions">
@@ -1034,11 +1032,6 @@
 		<key id="KEY_SPACE" mapto="contextMenu" flags="m" />
 	</map>
 
-	<map context="TvRadioActions">
-		<key id="KEY_TV" mapto="keyTV" flags="m" />
-		<key id="KEY_RADIO" mapto="keyRadio" flags="m" />
-	</map>
-
 	<map context="TimerEditActions">
 		<key id="KEY_INFO" mapto="log" flags="m" />
 		<key id="KEY_I" mapto="log" flags="m" />
@@ -1064,6 +1057,11 @@
 		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
 		<key id="KEY_BLUE" mapto="blue" flags="m" />
 	</map>
+
+	<map context="EPGCatchUpActions">
+ 		<key id="KEY_PLAY" mapto="play" flags="m" />
+  		<key id="KEY_PLAYPAUSE" mapto="play" flags="m" />
+ 	</map>
 
 	<map context="EventViewActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />

@@ -83,7 +83,7 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 			case 'a' ... 'f': c-=87; break;
 			case 'A' ... 'F': c-=55; break;
 			default:
-				eDebug("[eDVBDiseqcCommand] invalid character in hex string..ignore complete diseqc command !");
+				eDebug("[eDVBDiseqcCommand] invalid character in hex string..ignore complete diseqc command!");
 				return;
 		}
 		if ( i % 2 )
@@ -3391,11 +3391,7 @@ tune_error:
 	return res;
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-RESULT eDVBFrontend::connectStateChange(const sigc::slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)
-#else
 RESULT eDVBFrontend::connectStateChange(const sigc::slot<void(iDVBFrontend*)> &stateChange, ePtr<eConnection> &connection)
-#endif
 {
 	connection = new eConnection(this, m_stateChanged.connect(stateChange));
 	return 0;

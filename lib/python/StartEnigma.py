@@ -74,16 +74,17 @@ class Session:
 
 	def processDelay(self):
 		callback = self.current_dialog.callback
-		retVal = self.current_dialog.returnValue
-		if self.current_dialog.isTmp:
-			self.current_dialog.doClose()
-			# dump(self.current_dialog)
-			del self.current_dialog
-		else:
-			del self.current_dialog.callback
-		self.popCurrent()
-		if callback is not None:
-			callback(*retVal)
+		if hasattr(self.current_dialog, "returnValue"):  # OpenSPA [norhap] if self.current_dialog is spzTimeshift not have attribute to return value.
+			retVal = self.current_dialog.returnValue
+			if self.current_dialog.isTmp:
+				self.current_dialog.doClose()
+				# dump(self.current_dialog)
+				del self.current_dialog
+			else:
+				del self.current_dialog.callback
+			self.popCurrent()
+			if callback is not None:
+				callback(*retVal)
 
 	def execBegin(self, first=True, do_show=True):
 		if self.in_exec:
@@ -441,6 +442,8 @@ def runScreenTest():
 		runNextScreen(session, screensToRun)
 	enigma.eProfileWrite("VolumeControl Screen")
 	vol = VolumeControl(session)
+	enigma.eProfileWrite("VolumeAdjust")
+	vol = VolumeAdjust(session)
 	enigma.eProfileWrite("Processing Screen")
 	processing = Processing(session)
 	enigma.eProfileWrite("Global MessageBox Screen")
@@ -458,9 +461,6 @@ def runScreenTest():
 	initTrashcan(session)
 	enigma.eProfileWrite("VideoModeAutoStart")
 	from Screens.VideoMode import autostart
-	autostart(session)
-	enigma.eProfileWrite("VolumeAdjustAutoStart")
-	from Screens.VolumeAdjust import autostart
 	autostart(session)
 	enigma.eProfileWrite("RunReactor")
 	enigma.eProfileDone()
@@ -797,7 +797,6 @@ from skin import readSkin
 enigma.eProfileWrite("InitDefaultPaths")
 from Components.config import ConfigSubsection, NoSave, configfile
 from Tools.Directories import InitDefaultPaths, SCOPE_CONFIG, SCOPE_GUISKIN, SCOPE_PLUGINS, fileUpdateLine, resolveFilename
-import Components.RecordingConfig
 InitDefaultPaths()
 
 enigma.eProfileWrite("ConfigMisc")
@@ -853,7 +852,7 @@ enigma.eProfileWrite("CIHandler")
 from Screens.Ci import CiHandler
 
 enigma.eProfileWrite("VolumeControl")
-from Components.VolumeControl import VolumeControl
+from Screens.VolumeControl import VolumeAdjust, VolumeControl
 
 enigma.eProfileWrite("Processing")
 from Screens.Processing import Processing
@@ -893,6 +892,9 @@ InitRecordingConfig()
 enigma.eProfileWrite("InitUsageConfig")
 from Components.UsageConfig import InitUsageConfig, DEFAULTKEYMAP
 InitUsageConfig()
+
+enigma.eProfileWrite("InitPvrDescrambleConvert")
+from Components.PvrDescrambleConvert import pvr_descramble_convert
 
 enigma.eProfileWrite("InitTimeZones")
 from Components.Timezones import InitTimeZones

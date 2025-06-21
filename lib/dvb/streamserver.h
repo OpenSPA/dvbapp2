@@ -71,9 +71,18 @@ public:
 
 	static eStreamServer *getInstance();
 	void stopStream();
+	void startStream(const std::string serviceref, const std::string remotehost);
 	bool stopStreamClient(const std::string remotehost, const std::string serviceref);
 	PyObject *getConnectedClients();
 	PyObject *getConnectedClientDetails(int index);
+	PSignal3<void,int,const char *,const char *> streamStatusChanged;
+
+	enum
+	{
+		streamStatusChangedNewClient,
+		streamStatusChangedClientStopped,
+		streamStatusChangedClientDisconnected
+	};
 
 };
 

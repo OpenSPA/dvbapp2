@@ -1669,7 +1669,7 @@ msgstr ""
 "Vô hiệu hóa TV và thử lại?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr "Khía cạnh AV là%s."
 
 msgid "AAC downmix"
@@ -2501,7 +2501,7 @@ msgstr "Tỷ lệ khung hình"
 msgid "Aspect Ratio Actions"
 msgstr "Tỷ lệ khung hình"
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr "Tỷ lệ khung hình...."
 
 msgid "Aspect ratio"
@@ -2589,7 +2589,7 @@ msgstr "Lựa chọn ngôn ngữ âm thanh 23"
 msgid "Audio language selection 4"
 msgstr "Lựa chọn ngôn ngữ âm thanh 4"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr "Tùy chọn âm thanh ..."
 
 msgid "Audio volume step size"
@@ -3573,7 +3573,7 @@ msgid "Cancel save time shift as movie"
 msgstr "Hủy lưu timeshift như phim"
 
 #, fuzzy
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr "Chọn kênh"
 
 msgid "Cancel selection and exit"
@@ -3629,12 +3629,12 @@ msgstr "Hủy theo yêu cầu của người dùng"
 msgid "Cannot delete file"
 msgstr "Không thể xóa tập tin"
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr ""
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr "Không thể tìm thấy bất kỳ tín hiệu nào ..., hủy bỏ!"
 
 msgid "Cannot move to trash can"
@@ -3854,13 +3854,13 @@ msgstr "Chọn kênh:"
 msgid "Channel up"
 msgstr "Chuyển kênh lên"
 
-msgid "Channel zap delay another button"
+msgid "Service zap other button delay"
 msgstr "Kênh zap trì hoãn một nút khác"
 
-msgid "Channel zap delay first button"
+msgid "Service zap first button delay"
 msgstr "Nút trễ kênh zap"
 
-msgid "Channel zap delay mode"
+msgid "Service zap delay mode"
 msgstr "Chế độ trễ kênh zap"
 
 msgid "Channel:"
@@ -6055,7 +6055,7 @@ msgstr "Từ điển"
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
-"End Action was disabled !"
+"End Action was disabled!"
 msgstr ""
 "Sự khác biệt giữa thời gian bắt đầu và kết thúc phải bằng hoặc lớn hơn%d phút.\n"
 "Kết thúc hành động đã bị vô hiệu hóa!"
@@ -7234,7 +7234,7 @@ msgstr "Nhập nếu bạn ở phía bắc hoặc phía nam của đường xíc
 msgid "Enter if you are in the East or West hemisphere."
 msgstr "Nhập nếu bạn đang ở bán cầu đông hoặc tây."
 
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Vào menu chính ..."
 
 msgid "Enter new directory name:"
@@ -9676,10 +9676,10 @@ msgid "InfoBar Event View Actions"
 msgstr ""
 
 #, fuzzy
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr "Thông tin"
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr ""
 
 msgid "InfoBar fade-out speed"
@@ -10367,7 +10367,7 @@ msgstr "Lesicia"
 msgid "Letterbox"
 msgstr "Hộp thư"
 
-msgid "Letterbox zoom"
+msgid "LetterBox zoom"
 msgstr "Thu phóng hộp thư"
 
 msgid "Liberia"
@@ -10453,7 +10453,7 @@ msgstr "Tiêu đề được liên kết với menu DVD"
 msgid "Links"
 msgstr ""
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr "Liệt kê các chức năng EPG ..."
 
 msgid "List Navigation Actions"
@@ -10933,7 +10933,7 @@ msgid "Maxdown: "
 msgstr "Tối đa: "
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr "Số phút tối đa để nhảy %d!"
 
 msgid "Maximum no of days"
@@ -11515,7 +11515,7 @@ msgid "Movie List"
 msgstr "Danh sách phim"
 
 #, fuzzy
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "Lựa chọn phim"
 
 msgid "Movie Selection Settings"
@@ -12367,7 +12367,7 @@ msgstr "Con số"
 msgid "Number of IP Addresses"
 msgstr ""
 
-msgid "Number of digits in channel number"
+msgid "Number of digits in service number"
 msgstr "Số chữ số trong số kênh"
 
 msgid "Number of rows"
@@ -12541,7 +12541,7 @@ msgid "Open AutoTimer"
 msgstr "Mở AutoTimer"
 
 #, fuzzy
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "Mở danh sách tự động ..."
 
 #, fuzzy
@@ -12565,11 +12565,11 @@ msgid "Open Similar List Channel List"
 msgstr ""
 
 #, fuzzy
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Mở danh sách hẹn giờ ..."
 
 #, fuzzy
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "Mở danh sách gói kênh ..."
 
 msgid "Open context menu"
@@ -12587,10 +12587,10 @@ msgstr "Mở danh sách yêu thích"
 msgid "Open file sort menu"
 msgstr ""
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr "Mở danh sách vệ tinh"
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr "Mở danh sách dịch vụ"
 
 msgid "Open service list and select next channel"
@@ -13040,7 +13040,7 @@ msgid "PiP"
 msgstr "PiP"
 
 #, fuzzy
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "Thao tác nhanh"
 
 msgid "PiP with OSD"
@@ -13079,7 +13079,7 @@ msgstr ""
 msgid "Picture in EPG"
 msgstr "Hình ảnh trong EPG"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr "Hình ảnh trong Cài đặt hình ảnh"
 
 msgid "Picture in graphics"
@@ -13174,7 +13174,7 @@ msgid "Play previous"
 msgstr "Chơi trước"
 
 #, fuzzy
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Chơi phim đã ghi ..."
 
 msgid "Play selected service in a PiP window"
@@ -13284,7 +13284,7 @@ msgstr "Vui lòng nhấn OK để tiếp tục."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr "Vui lòng chọn loại EPG mặc định ..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
@@ -14089,7 +14089,7 @@ msgstr "Menu khởi động nhanh"
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr "Menu nhanh ..."
 
 msgid "QuickEPG mode"
@@ -14313,7 +14313,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Ghi lại bắt đầu! Dừng timeshift ngay bây giờ ..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
+msgid "Recording time limited due to conflicting timer:%s"
 msgstr "Ghi lại thời gian giới hạn do bộ đếm thời gian xung đột%s"
 
 msgid "Record write error (no space on disk?)"
@@ -14420,7 +14420,7 @@ msgstr "Chế độ phục hồi"
 msgid "Red"
 msgstr "Màu đỏ"
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "Nút màu đỏ ..."
 
 msgid "Red colored"
@@ -15504,7 +15504,7 @@ msgstr "Tốc độ cuộn (trình kết xuất phần mềm)"
 msgid "Search"
 msgstr "Tìm kiếm"
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr "Tìm kiếm IMDb để biết thông tin về sự kiện hiện tại."
 
 msgid "Search Sats"
@@ -15522,7 +15522,7 @@ msgstr "Tìm kiếm chia sẻ mạng"
 msgid "Search for similar events"
 msgstr "Tìm kiếm các sự kiện tương tự"
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr "Tìm kiếm epg cho sự kiện hiện tại."
 
 msgid "Search weather location ID"
@@ -15589,7 +15589,7 @@ msgstr "Tìm kiếm về phía trước"
 msgid "Seekbar"
 msgstr "Tìm kiếm quán bar"
 
-msgid "Seekbar activation"
+msgid "SeekBar activation"
 msgstr "Tìm kiếm kích hoạt"
 
 msgid "Seekbar sensibility"
@@ -15999,7 +15999,7 @@ msgstr "Chọn kênh audio"
 msgid "Select copy destination for:"
 msgstr "Chọn đích sao chép cho:"
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr "Chọn loại EPG mặc định ..."
 
 msgid "Select default File Commander directory:"
@@ -16110,7 +16110,7 @@ msgstr "Lựa chọn hướng dẫn cho logfile...."
 msgid "Select refresh rate"
 msgstr "Chọn tốc độ làm mới"
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Chọn thanh tìm kiếm được kích hoạt bằng mũi tên L / R (dài) hoặc << >> (dài)."
 
 msgid "Select service information to view:"
@@ -16122,7 +16122,7 @@ msgstr "Chọn dịch vụ để thêm ..."
 msgid "Select sort method:"
 msgstr "Chọn phương pháp sắp xếp:"
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -16541,7 +16541,7 @@ msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 #, fuzzy
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr "Chuyển sang kênh đã chọn"
 
 #, python-format
@@ -16911,7 +16911,7 @@ msgstr "Đặt thời gian để ẩn infobar."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Đặt thời gian để ẩn infobar thứ hai. Thanh cũng biến mất khi nhấn 'OK'."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
@@ -17051,7 +17051,7 @@ msgstr "Cài đặt video / âm thanh"
 msgid "Setup Videomode"
 msgstr "Thiết lập videomode"
 
-msgid "Setup delay mode to zap to channels."
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Cài đặt chế độ trễ để zap cho các kênh."
 
 msgid "Setup each tuner for your satellite system"
@@ -17251,7 +17251,7 @@ msgid "Show AutoTimer List"
 msgstr "Hiển thị danh sách tự động"
 
 #, fuzzy
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Hiển thị Cổng thông tin ..."
 
 msgid "Show CCcam Info"
@@ -17278,7 +17278,7 @@ msgstr ""
 msgid "Show EPG"
 msgstr "Hiển thị EPG"
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr "Hiển thị EPG cho kênh hiện tại ..."
 
 msgid "Show EventView"
@@ -17288,7 +17288,7 @@ msgid "Show Extension packages"
 msgstr ""
 
 #, fuzzy
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "Hiển thị thiết lập định dạng ..."
 
 msgid "Show Graphical EPG"
@@ -17303,7 +17303,7 @@ msgstr "Hiển thị độ phân giải đầu ra HDMI"
 msgid "Show HDMI-Output Res"
 msgstr "Hiển thị độ phân giải đầu ra HDMI"
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr "Hiển thị cài đặt HDMIRecord ..."
 
 msgid "Show InfoBar"
@@ -17325,7 +17325,7 @@ msgid "Show InfoBar picons"
 msgstr "Hiển thị picons infobar"
 
 #, fuzzy
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Hiển thị thông tin..."
 
 msgid "Show Kernel packages"
@@ -17391,7 +17391,7 @@ msgstr ""
 msgid "Show Plugin Skin packages"
 msgstr ""
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr "Hiển thị thiết lập RFmod ..."
 
 msgid "Show Record Movies"
@@ -17571,7 +17571,7 @@ msgstr "Hiển thị mô tả mở rộng"
 msgid "Show extension selection"
 msgstr "Hiển thị lựa chọn mở rộng"
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr "Hiển thị tiện ích mở rộng ..."
 
 msgid "Show extra spacing in Information"
@@ -17656,7 +17656,7 @@ msgstr "Xem phim"
 msgid "Show multi channel EPG"
 msgstr "Hiển thị EPG đa kênh"
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr ""
 
 msgid "Show next commit log"
@@ -17793,13 +17793,13 @@ msgid "Show servicelist or movies"
 msgstr "Hiển thị người phục vụ hoặc phim"
 
 #, fuzzy
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Hiển thị thiết lập ..."
 
 msgid "Show setup default value"
 msgstr ""
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr ""
 
 msgid "Show shut down menu"
@@ -17850,7 +17850,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr "Hiển thị trình phát DreamPlex ..."
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -17862,15 +17862,14 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "Hiển thị Bộ hẹn giờ nguồn ..."
+msgid "Open Scheduler Overview"
+msgstr ""
 
 #, fuzzy
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Hiển thị Đồng hồ ngủ ..."
 
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr "Hiển thị thông tin về sự kiện hiện tại."
 
 msgid "Show the last opkg command's output"
@@ -17883,11 +17882,11 @@ msgid "Show the list of timers."
 msgstr "Hiển thị danh sách các bộ tính giờ."
 
 #, fuzzy
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Hiển thị trung tâm truyền thông ..."
 
 #, fuzzy
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Hiển thị trình phát phương tiện ..."
 
 msgid "Show the media player..."
@@ -17897,18 +17896,18 @@ msgid "Show the plugin browser.."
 msgstr "Hiển thị trình duyệt plugin .."
 
 #, fuzzy
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Hiển thị các plugin ..."
 
 #, fuzzy
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Hiển thị trình phát radio ..."
 
 msgid "Show the task list"
 msgstr ""
 
 #, fuzzy
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Hiển thị trình phát tv ..."
 
 msgid "Show time elapsed as positive"
@@ -17939,7 +17938,7 @@ msgstr "Hiển thị Videoresolution không xác định là độ phân giải 
 msgid "Show unknown video format as"
 msgstr "Hiển thị định dạng video không xác định là"
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr ""
 
 msgid "Show vertical Program Guide"
@@ -18042,7 +18041,7 @@ msgstr "Đơn giản"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Tiêu đề đơn giản (khả năng tương thích cho người chơi cũ)"
 
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "Thiết bị lưu trữ hàng loạt đơn giản."
 
 msgid "Simple zoom"
@@ -18971,10 +18970,10 @@ msgstr "Lựa chọn ngôn ngữ phụ đề 4"
 msgid "Subtitle position"
 msgstr "Vị trí phụ đề"
 
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Lựa chọn phụ đề"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Lựa chọn phụ đề ..."
 
 msgid "Subtitles"
@@ -19087,7 +19086,7 @@ msgstr "Chuyển đổi giữa filelist / danh sách phát"
 msgid "Switch config"
 msgstr "Chuyển cấu hình"
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr "Chuyển sang kênh tiếp theo"
 
 msgid "Switch off the TV to correct input"
@@ -19124,7 +19123,7 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr "Chuyển sang dịch vụ phụ tiếp theo"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr "Chuyển sang kênh tiếp theo trong lịch sử"
 
 msgid "Switch to play list"
@@ -19134,10 +19133,10 @@ msgstr "Chuyển sang danh sách phát"
 msgid "Switch to previous EPG Event"
 msgstr "Chuyển sang dịch vụ phụ trước"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr "Chuyển sang kênh trước"
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr "Chuyển sang kênh trước đó trong lịch sử"
 
 msgid "Switch to the available RADIO services"
@@ -19170,7 +19169,7 @@ msgstr "Liên kết tượng trưng"
 msgid "Sync NTP every (minutes)"
 msgstr "Đồng bộ hóa NTP mỗi (phút)"
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr "Lỗi đồng bộ di chuyển trở lại nguồn gốc!"
 
 msgid "Sync mode"
@@ -19833,7 +19832,7 @@ msgstr ""
 msgid "There is no information to show for '%s'."
 msgstr ""
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr "Không có tín hiệu để khóa!"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
@@ -19875,7 +19874,7 @@ msgstr "Điều này cho phép bạn thay đổi kích thước phông chữ tư
 msgid "This allows you change the number of rows shown."
 msgstr "Điều này cho phép bạn thay đổi số lượng hàng được hiển thị."
 
-msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgid "This allows you to set the maximum number of digits in a service number, up to 5."
 msgstr "Điều này cho phép bạn đặt số chữ số thành 5, nếu bạn có nhiều hơn 9999 kênh."
 
 msgid "This bouquet is protected by a parental control PIN!"
@@ -20448,7 +20447,7 @@ msgstr ""
 msgid "Today"
 msgstr "Hôm nay"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr "Chuyển đổi chế độ xuống kỹ thuật số ..."
 
 msgid "Toggle HDMI-In PiP"
@@ -20475,7 +20474,7 @@ msgstr "Chuyển đổi dấu cắt ở vị trí hiện tại"
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr "Chuyển đổi tỷ lệ khung hình ..."
 
 msgid "Toggle auto refresh On/Off"
@@ -20487,7 +20486,7 @@ msgstr "Chuyển đổi giữa các danh sách bó / epg"
 msgid "Toggle display of image information"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -20531,7 +20530,7 @@ msgid "Toggle the visibility of the highlighted plugin"
 msgstr ""
 
 #, fuzzy
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Chuyển đổi giữa tv và radio ..."
 
 msgid "Togo"
@@ -21451,10 +21450,10 @@ msgstr "Đã xác định người dùng"
 msgid "User defined 0x%02x"
 msgstr "Đã xác định người dùng"
 
-msgid "User defined delay when you press another button to zap to the channel."
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
 msgstr "Người dùng xác định độ trễ khi bạn nhấn nút khác để tìm kênh."
 
-msgid "User defined delay when you press the first button to zap to the channel."
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
 msgstr "Người dùng xác định độ trễ khi bạn nhấn nút đầu tiên để hạ gục kênh."
 
 msgid "User defined transponder"
@@ -21751,7 +21750,7 @@ msgstr "Xem hoặc chỉnh sửa tập lệnh % s này"
 msgid "View photos..."
 msgstr "Xem ảnh..."
 
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Xem teletext ..."
 
 msgid "View the archive contents"
@@ -23322,7 +23321,7 @@ msgid "languages"
 msgstr "ngôn ngữ"
 
 #, fuzzy
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "rời khỏi máy nghe nhạc ..."
 
 msgid "left"
@@ -23631,7 +23630,7 @@ msgstr "vỏ"
 msgid "show DVD main menu"
 msgstr "hiển thị menu chính DVD"
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr "hiển thị EPG ..."
 
 msgid "show all cards"
@@ -23694,13 +23693,13 @@ msgstr ""
 msgid "skip backward"
 msgstr "bỏ qua lạc hậu"
 
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "bỏ qua lùi lại (nhập thời gian)"
 
 msgid "skip forward"
 msgstr "bỏ qua"
 
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "bỏ qua phía trước (nhập thời gian)"
 
 msgid "slow"

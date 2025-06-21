@@ -10,6 +10,9 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
 
+#include <lib/base/cfile.h>
+#include <lib/dvb/pmtparse.h>
+
 #include <lib/components/file_eraser.h>
 #include <lib/service/servicedvbrecord.h>
 #include <lib/service/event.h>
@@ -1082,12 +1085,18 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_subtitle_sync_timer(eTimer::create(eApp)),
 	m_nownext_timer(eTimer::create(eApp))
 {
+#ifdef PASSTHROUGH_FIX
+	m_passthrough_fix_timer = eTimer::create(eApp);
+#endif
 	if (connect_event)
 		CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_service_handler_timeshift.serviceEvent, eDVBServicePlay::serviceEventTimeshift);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
 	CONNECT(m_subtitle_sync_timer->timeout, eDVBServicePlay::checkSubtitleTiming);
 	CONNECT(m_nownext_timer->timeout, eDVBServicePlay::updateEpgCacheNowNext);
+#ifdef PASSTHROUGH_FIX
+	CONNECT(m_passthrough_fix_timer->timeout, eDVBServicePlay::forcePassthrough);
+#endif
 }
 
 eDVBServicePlay::~eDVBServicePlay()
@@ -1117,6 +1126,15 @@ eDVBServicePlay::~eDVBServicePlay()
 	}
 	if (m_subtitle_widget) m_subtitle_widget->destroy();
 }
+
+
+#ifdef PASSTHROUGH_FIX
+void eDVBServicePlay::forcePassthrough()
+{
+	eTrace("[eDVBServicePlay] Setting 'passthrough' to force correct operation");
+	CFile::writeStr("/proc/stb/audio/ac3", "passthrough");
+}
+#endif
 
 void eDVBServicePlay::gotNewEvent(int error)
 {
@@ -1520,11 +1538,7 @@ RESULT eDVBServicePlay::setTarget(int target, bool noaudio = false)
 	return 0;
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-RESULT eDVBServicePlay::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
-#else
 RESULT eDVBServicePlay::connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection)
-#endif
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;
@@ -2324,6 +2338,19 @@ int eDVBServicePlay::selectAudioStream(int i)
 		eDebug("[eDVBServicePlay] set audio pid %04x failed", apid);
 		return -4;
 	}
+
+#ifdef PASSTHROUGH_FIX
+	if (apidtype == eDVBPMTParser::audioStream::atAC3 || apidtype == eDVBPMTParser::audioStream::atAAC || apidtype == eDVBPMTParser::audioStream::atDDP) {
+		// Check if the audio type is AC3, AAC, or DDP and ensure passthrough mode is set correctly.
+		std::string pass = CFile::read("/proc/stb/audio/ac3");
+		if(pass.find("passthrough") != std::string::npos)
+		{
+			int shortAudioDelay = eSimpleConfig::getInt("config.av.passthrough_fix_short", 100);
+			m_passthrough_fix_timer->stop();
+			m_passthrough_fix_timer->start(shortAudioDelay, true);
+		}
+	}
+#endif
 
 	if (position != -1)
 	{
@@ -3581,8 +3608,8 @@ RESULT eDVBServicePlay::getSubtitleList(std::vector<SubtitleTrack> &subtitlelist
 					}
 					break;
 				}
-				case 0x10 ... 0x15:
-				case 0x20 ... 0x25: // dvb subtitles
+				case 0x10 ... 0x16: // dvb subtitles normal
+				case 0x20 ... 0x26: // dvb subtitles hearing impaired
 				{
 					track.type = 0;
 					track.pid = it->pid;
@@ -3622,34 +3649,33 @@ void eDVBServicePlay::newSubtitleStream()
 	m_event((iPlayableService*)this, evUpdatedInfo);
 }
 
+// How many seconds before subtitle pages are considered to have bad timing.
+#define MAX_SUBTITLE_LIFESPAN 90
+
+// Used to sort subtitles in chronological order
+bool compare_pts(const eDVBTeletextSubtitlePage &a, const eDVBTeletextSubtitlePage &b)
+{
+	return a.m_pts < b.m_pts;
+}
+
 void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 {
 	if (m_subtitle_widget)
 	{
-		int subtitledelay = 0;
-		pts_t pts;
-		m_decoder->getPTS(0, pts);
-		if (m_is_pvr || m_timeshift_enabled)
-		{
-			// This is wrong!
-			// eDebug("[eDVBServicePlay] Subtitle in recording/timeshift");
-			// subtitledelay = eSubtitleSettings::subtitle_noPTSrecordingdelay;
-		}
-		else
-		{
-			/* check the setting for subtitle delay in live playback, either with pts, or without pts */
-			subtitledelay = eSubtitleSettings::subtitle_bad_timing_delay;
-		}
+		
+		pts_t pts = 0;
+		if (m_decoder)
+			m_decoder->getPTS(0, pts);
 
-		// eDebug("[eDVBServicePlay] Subtitle get  TTX have_pts=%d pvr=%d timeshift=%d page.pts=%lld pts=%lld delay=%d", page.m_have_pts, m_is_pvr, m_timeshift_enabled, page.m_pts, pts, subtitledelay);
 		eDVBTeletextSubtitlePage tmppage = page;
-		tmppage.m_have_pts = true;
+		pts_t diff = tmppage.m_pts - pts;
 
-		if (abs(tmppage.m_pts - pts) > SUBT_TXT_ABNORMAL_PTS_DIFFS)
-			tmppage.m_pts = pts; // fix abnormal pts diffs
-
-		tmppage.m_pts += subtitledelay;
-		m_subtitle_pages.push_back(tmppage);
+		if (diff > 0 && diff < (MAX_SUBTITLE_LIFESPAN * 90000))
+		{
+			tmppage.m_pts += (m_is_pvr || m_timeshift_enabled) ? 0 : eSubtitleSettings::subtitle_bad_timing_delay;
+			m_subtitle_pages.push_back(tmppage);
+			m_subtitle_pages.sort(compare_pts);
+		}
 
 		checkSubtitleTiming();
 	}
@@ -3692,9 +3718,9 @@ void eDVBServicePlay::checkSubtitleTiming()
 			return;
 
 		int diff = show_time - pos;
-//		eDebug("[eDVBServicePlay] Subtitle show %d page.pts=%lld pts=%lld diff=%d", type, show_time, pos, diff);
+		// eDebug("[eDVBServicePlay] checkSubtitleTiming show %d page.pts=%lld pts=%lld diff=%d", type, show_time, pos, diff);
 
-		if (diff < 20*90)
+		if (diff < 20 * 90 || diff > MAX_SUBTITLE_LIFESPAN * 90000)
 		{
 			if (type == TELETEXT)
 			{

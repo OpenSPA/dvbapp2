@@ -2134,7 +2134,7 @@ msgid "AV Setup"
 msgstr ""
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr ""
 
 msgid "AZPlay"
@@ -2874,7 +2874,7 @@ msgstr ""
 msgid "Aspect Ratio Actions"
 msgstr ""
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr ""
 
 msgid "Aspect long"
@@ -2959,7 +2959,7 @@ msgstr ""
 msgid "Audio long"
 msgstr ""
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr ""
 
 msgid "Audio volume step size"
@@ -3940,7 +3940,7 @@ msgstr ""
 msgid "Cancel save time shift as movie"
 msgstr ""
 
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr ""
 
 msgid "Cancel the service selection"
@@ -3967,12 +3967,12 @@ msgstr ""
 msgid "Cannot delete file"
 msgstr ""
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr ""
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr ""
 
 msgid "Cannot find images - please try later"
@@ -4167,13 +4167,13 @@ msgstr ""
 msgid "Channel up"
 msgstr ""
 
-msgid "Channel zap delay another button"
+msgid "Service zap other button delay"
 msgstr ""
 
-msgid "Channel zap delay first button"
+msgid "Service zap first button delay"
 msgstr ""
 
-msgid "Channel zap delay mode"
+msgid "Service zap delay mode"
 msgstr ""
 
 msgid "Channel:"
@@ -6102,7 +6102,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
-"End Action was disabled !"
+"End Action was disabled!"
 msgstr ""
 
 msgid "Digit entry for service selection"
@@ -7200,7 +7200,7 @@ msgstr ""
 msgid "Enter if you are North or South of the equator."
 msgstr ""
 
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr ""
 
 msgid "Enter multi-file selection mode"
@@ -9348,10 +9348,10 @@ msgstr ""
 msgid "InfoBar Event View Actions"
 msgstr ""
 
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr ""
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr ""
 
 msgid "InfoBar EPG"
@@ -10101,7 +10101,7 @@ msgstr ""
 msgid "Letterbox"
 msgstr ""
 
-msgid "Letterbox zoom"
+msgid "LetterBox zoom"
 msgstr ""
 
 msgid "Liberia"
@@ -10173,7 +10173,7 @@ msgstr ""
 msgid "Links:"
 msgstr ""
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr ""
 
 msgid "List Navigation Actions"
@@ -10633,7 +10633,7 @@ msgid "Maxdown: "
 msgstr ""
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr ""
 
 msgid "Maximum no of days"
@@ -11100,7 +11100,7 @@ msgstr ""
 msgid "Movie List"
 msgstr ""
 
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr ""
 
 msgid "Movie Selection Settings"
@@ -11846,7 +11846,7 @@ msgstr ""
 msgid "Number"
 msgstr ""
 
-msgid "Number of digits in channel number"
+msgid "Number of digits in service number"
 msgstr ""
 
 msgid "Number of lines in script messages"
@@ -12008,7 +12008,7 @@ msgstr ""
 msgid "Open AutoTimer"
 msgstr ""
 
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr ""
 
 msgid "Open EPGSearch"
@@ -12023,10 +12023,10 @@ msgstr ""
 msgid "Open Similar List Channel List"
 msgstr ""
 
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr ""
 
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr ""
 
 msgid "Open context menu"
@@ -12038,22 +12038,22 @@ msgstr ""
 msgid "Open long"
 msgstr ""
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr ""
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr ""
 
-msgid "Open service list and select next channel"
+msgid "Open service list and select next service"
 msgstr ""
 
-msgid "Open service list and select next channel for PiP"
+msgid "Open service list and select next service for PiP"
 msgstr ""
 
-msgid "Open service list and select previous channel"
+msgid "Open service list and select previous service"
 msgstr ""
 
-msgid "Open service list and select previous channel for PiP"
+msgid "Open service list and select previous service for PiP"
 msgstr ""
 
 msgid "Open settings/actions menu"
@@ -12494,7 +12494,7 @@ msgstr ""
 msgid "PiP"
 msgstr ""
 
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr ""
 
 msgid "PiP-Zap"
@@ -12518,7 +12518,7 @@ msgstr ""
 msgid "Picture in EPG"
 msgstr ""
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr ""
 
 msgid "Picture in graphics"
@@ -12594,7 +12594,7 @@ msgstr ""
 msgid "Play previous"
 msgstr ""
 
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr ""
 
 msgid "Play title"
@@ -12723,7 +12723,7 @@ msgstr ""
 msgid "Please select a backup destination"
 msgstr ""
 
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr ""
 
 msgid "Please select a play list to delete..."
@@ -13512,7 +13512,7 @@ msgstr ""
 msgid "Quick Launch Menu"
 msgstr ""
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr ""
 
 msgid "Quick Select Actions"
@@ -13766,7 +13766,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr ""
 
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
+msgid "Recording time limited due to conflicting timer:%s"
 msgstr ""
 
 msgid "Record write error (no space on disk?)"
@@ -13852,7 +13852,7 @@ msgstr ""
 msgid "Red"
 msgstr ""
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr ""
 
 msgid "Red colored"
@@ -14824,7 +14824,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr ""
 
 msgid "Search Sats"
@@ -14842,7 +14842,7 @@ msgstr ""
 msgid "Search for similar events"
 msgstr ""
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr ""
 
 msgid "Search weather location ID"
@@ -14914,7 +14914,7 @@ msgstr ""
 msgid "Seekbar"
 msgstr ""
 
-msgid "Seekbar activation"
+msgid "SeekBar activation"
 msgstr ""
 
 msgid "Seekbar sensibility"
@@ -15095,7 +15095,7 @@ msgstr ""
 msgid "Select copy destination for:"
 msgstr ""
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr ""
 
 msgid "Select destination for:"
@@ -15173,7 +15173,7 @@ msgstr ""
 msgid "Select Satellites"
 msgstr ""
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 
 msgid "Select service to add..."
@@ -15401,7 +15401,7 @@ msgstr ""
 msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr ""
 
 #, python-format
@@ -15760,7 +15760,7 @@ msgstr ""
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr ""
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -15882,7 +15882,7 @@ msgstr ""
 msgid "Setup Videomode"
 msgstr ""
 
-msgid "Setup delay mode to zap to channels."
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr ""
 
 msgid "Setup each tuner for your satellite system"
@@ -16084,7 +16084,7 @@ msgstr ""
 msgid "Show AutoTimer List"
 msgstr ""
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr ""
 
 msgid "Show CCcam Info"
@@ -16111,13 +16111,13 @@ msgstr ""
 msgid "Show EPG"
 msgstr ""
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr ""
 
 msgid "Show EventView"
 msgstr ""
 
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr ""
 
 msgid "Show Graphical EPG"
@@ -16132,13 +16132,13 @@ msgstr ""
 msgid "Show HDMI-Output Res"
 msgstr ""
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr ""
 
 msgid "Show InfoBar"
 msgstr ""
 
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -16186,7 +16186,7 @@ msgstr ""
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr ""
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr ""
 
 msgid "Show Readers/Proxies"
@@ -16349,7 +16349,7 @@ msgstr ""
 msgid "Show extension selection"
 msgstr ""
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr ""
 
 msgid "Show favorites list"
@@ -16535,7 +16535,7 @@ msgstr ""
 msgid "Show servicelist or movies"
 msgstr ""
 
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr ""
 
 msgid "Show setup default value"
@@ -16583,7 +16583,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr ""
 
 msgid "Show the OScamInfo Screen"
@@ -16592,10 +16592,10 @@ msgstr ""
 msgid "Show the PowerTimer"
 msgstr ""
 
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr ""
 
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr ""
 
 msgid "Show the list of AutoTimers."
@@ -16604,10 +16604,10 @@ msgstr ""
 msgid "Show the list of timers."
 msgstr ""
 
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr ""
 
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr ""
 
 msgid "Show the media player..."
@@ -16616,13 +16616,13 @@ msgstr ""
 msgid "Show the plugin browser.."
 msgstr ""
 
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr ""
 
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr ""
 
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr ""
 
 msgid "Show time elapsed as positive"
@@ -16754,7 +16754,7 @@ msgstr ""
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr ""
 
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr ""
 
 msgid "Simple zoom"
@@ -17574,10 +17574,10 @@ msgstr ""
 msgid "Subtitle position"
 msgstr ""
 
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr ""
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr ""
 
 msgid "Subtitles"
@@ -17688,7 +17688,7 @@ msgstr ""
 msgid "Switch config"
 msgstr ""
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr ""
 
 msgid "Switch off the TV to correct input"
@@ -17712,7 +17712,7 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr ""
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in history"
 msgstr ""
 
 msgid "Switch to next sub service"
@@ -17724,10 +17724,10 @@ msgstr ""
 msgid "Switch to previous EPG Event"
 msgstr ""
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr ""
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in history"
 msgstr ""
 
 msgid "Switch to previous sub service"
@@ -17766,7 +17766,7 @@ msgstr ""
 msgid "Sync NTP every (minutes)"
 msgstr ""
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr ""
 
 msgid "Sync time using"
@@ -18317,7 +18317,7 @@ msgstr ""
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
 msgstr ""
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr ""
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
@@ -18357,7 +18357,7 @@ msgstr ""
 msgid "This allows you change the number of rows shown."
 msgstr ""
 
-msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgid "This allows you to set the maximum number of digits in a service number, up to 5."
 msgstr ""
 
 msgid "This allows you to show OpenPLi modules in downloads"
@@ -18964,10 +18964,10 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr ""
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr ""
 
 msgid "Toggle HDMI-In PiP"
@@ -18988,13 +18988,13 @@ msgstr ""
 msgid "Toggle a cut mark at the current position"
 msgstr ""
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr ""
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle new text inserts before or overwrites existing text"
@@ -19838,10 +19838,10 @@ msgstr ""
 msgid "User defined 0x%02x"
 msgstr ""
 
-msgid "User defined delay when you press another button to zap to the channel."
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
 msgstr ""
 
-msgid "User defined delay when you press the first button to zap to the channel."
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
 msgstr ""
 
 msgid "User defined transponder"
@@ -20147,7 +20147,7 @@ msgstr ""
 msgid "View photos..."
 msgstr ""
 
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr ""
 
 msgid "View video CD..."
@@ -22040,7 +22040,7 @@ msgstr ""
 msgid "languages"
 msgstr ""
 
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr ""
 
 msgid "left"
@@ -22534,7 +22534,7 @@ msgstr ""
 msgid "show DVD main menu"
 msgstr ""
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr ""
 
 msgid "show all cards"
@@ -22609,13 +22609,13 @@ msgstr ""
 msgid "skip backward"
 msgstr ""
 
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr ""
 
 msgid "skip forward"
 msgstr ""
 
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr ""
 
 #, python-format

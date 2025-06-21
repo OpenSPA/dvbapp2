@@ -368,9 +368,11 @@ class SchedulerList(TimerListBase):
 		minorWidth = (textWidth - self.statusOffset) // 4 - 5
 		majorWidth = textWidth - self.statusOffset - minorWidth - 10
 		res = [None]
+		functionName = timer.function and functionTimer.getItem(timer.function).get("name")
+		typeText = functionName or SCHEDULER_TYPE_NAMES.get(timer.timerType, UNKNOWN)
 		if repeatIcon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.indent, ((self.topHeight - self.iconHeight) // 2), self.iconWidth, self.iconHeight, repeatIcon, None, None, BT_SCALE))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset, 0, halfWidth, self.topHeight, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, SCHEDULER_TYPE_NAMES.get(timer.timerType, UNKNOWN)))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset, 0, halfWidth, self.topHeight, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, typeText))
 		if topText:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset + halfWidth + 10, 0, halfWidth, self.topHeight, 2, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, topText))
 		if stateIcon:
@@ -439,8 +441,9 @@ class RecordTimerList(TimerListBase):
 			else:
 				# text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP as PiP") if timer.pipzap else _("ZAP"))
 				text = "%s %s (%s)" % (repeatedText, begin[1], _("ZAP"))
-		else:
-			text = "%s %s ... %s  (%s)" % (repeatedText, begin[1], fuzzyDate(timer.end)[1], durationText)
+		else:  # OpenSPA [norhap] specify more intuitive time for 24 hour recordings.
+			duration = "1 " + _("day") + " ..."  if "1440 " + _("Minutes") == durationText else fuzzyDate(timer.end)[1]
+			text = "%s %s ... %s  (%s)" % (repeatedText, begin[1], duration, durationText)
 		if not processed and (not timer.disabled or (timer.repeated and timer.isRunning() and not timer.justplay)):
 			state = TIMER_STATES.get(timer.state, UNKNOWN)
 			if timer.state == TimerEntry.StateWaiting:
@@ -1588,7 +1591,7 @@ class RecordTimerEdit(Setup):
 			self.timerMarginAfter.value = 0
 		if self.timerEndTime.value == self.timerStartTime.value and self.timerAfterEvent.value != "nothing":
 			self.timerAfterEvent.value = "nothing"
-			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") % 1, MessageBox.TYPE_INFO, timeout=30, windowTitle=self.getTitle())
+			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled!") % 1, MessageBox.TYPE_INFO, timeout=30, windowTitle=self.getTitle())
 		self.timer.resetRepeated()
 		if self.timerRepeat.value == "once":
 			startDate = self.timerStartDate.value

@@ -268,8 +268,10 @@ msgid "%.2f GB"
 msgstr "%.2f GB"
 
 #, python-format
-msgid "%.3f MHz"
-msgstr "%.3f MHz"
+msgid "%.2f Second"
+msgid_plural "%.2f Seconds"
+msgstr[0] "%.2f Segundo"
+msgstr[1] "%.2f Seconds"
 
 #, python-format
 msgid "%02d.%02d."
@@ -964,6 +966,10 @@ msgstr[0] "%d se ha actualizado el paquete del repositorio."
 msgstr[1] "%d se han actualizado los paquetes del repositorio."
 
 #, python-format
+msgid "%d jobs are running in the background!"
+msgstr "¡%d trabajos se están ejecutando en segundo plano!"
+
+#, python-format
 msgid "%d kB"
 msgstr "%d kB"
 
@@ -1044,6 +1050,9 @@ msgstr[1] "%d paquetes fueron actualizados."
 #, python-format
 msgid "%d sec"
 msgstr "%d seg"
+
+msgid "%d slots have been created on the device.\n"
+msgstr "Se han creado %d slots en el dispositivo.\n"
 
 #
 #, python-format
@@ -1808,7 +1817,7 @@ msgstr ""
 "¿Quieres desactivar la televisión e intentarlo otra vez?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr "El aspecto AV es %s."
 
 msgid "AAC downmix"
@@ -2038,11 +2047,17 @@ msgstr "Añadir temporizador de zapeo"
 msgid "Add a DNS entry"
 msgstr "Añadir una entrada DNS"
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr "Añadir un canal de RADIO a la lista de desplazamiento de volumen"
+
 msgid "Add a RecordTimer"
 msgstr "Añadir un temporizador de grabación"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Añadir un temporizador de grabación para el programa actual"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr "Agregar un servicio de TV a la lista de compensación de volumen"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Añadir un temporizador de zapeo para el programa actual"
@@ -2070,8 +2085,11 @@ msgstr "Añadir nuevo temporizador"
 msgid "Add a new title"
 msgstr "Añadir un nuevo título"
 
+msgid "Add a service to the Volume Offset list"
+msgstr "Añadir un canal a la lista de desplazamiento de volumen"
+
 msgid "Add a service to the Volume Offsets list"
-msgstr "Añadir un servicio a la lista de compensaciones de volumen"
+msgstr "Añadir un canal a la lista de compensaciones de volumen"
 
 msgid "Add a timer for the current event"
 msgstr "Añadir un temporizador para el evento actual"
@@ -2122,7 +2140,7 @@ msgstr "Añadir grabación (introducir hora de finalización)"
 
 #
 msgid "Add recording (Indefinitely - 24 hours)"
-msgstr "Añadir grabación (indefinida)"
+msgstr "Añadir grabación (24 horas)"
 
 #
 msgid "Add recording (Stop after current event)"
@@ -2140,8 +2158,8 @@ msgstr "Añada nombres de canales a cada entrada #SERVICE."
 msgid "Add the current directory as a bookmark"
 msgstr "Añadir el directorio actual como favorito"
 
-msgid "Add the current service to the Volume Offsets list"
-msgstr "Añadir el servicio actual a la lista de compensaciones de volumen"
+msgid "Add the current/active service to the Volume Offset list"
+msgstr "Agregue un canal actual/activo a la lista de Desplazamiento de volumen"
 
 msgid "Add the selected service to a bouquet or alternative"
 msgstr "Añadir el servicio seleccionado a un favorito o alternativa"
@@ -2165,6 +2183,9 @@ msgstr "Añadir/Quitar el plugin seleccionado en/de la lista de borrados"
 
 msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Añadir/Quitar el plugin seleccionado en/de la lista de actualización"
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
+msgstr "Agregar o quitar el canal actual a la lista de desplazamiento de volumen"
 
 msgid "Adding schedule..."
 msgstr "Añadiendo calendario..."
@@ -2504,16 +2525,8 @@ msgstr "Preguntar siempre"
 msgid "Always include ECM in recordings"
 msgstr "Incluir siempre el ECM en las grabaciones"
 
-msgid ""
-"Always include ECM messages in recordings. This overrides the individual "
-"timer settings globally. It allows recordings to be always decrypted "
-"afterwards (sometimes called offline decoding), if supported by your "
-"receiver. Default: off."
-msgstr ""
-"Incluir siempre los mensajes ECM en las grabaciones. Esto anula los ajustes "
-"individuales del temporizador de forma global. Permite que las grabaciones "
-"se descifren siempre después (a veces llamado descifrado sin conexión), si "
-"es compatible con su receptor. Por defecto: desactivado."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
+msgstr "Incluir siempre mensajes ECM en las grabaciones. Esto anula la configuración individual del temporizador globalmente. Permite que las grabaciones se descifren siempre posteriormente (a veces llamado descodificación sin conexión), si su receptor lo admite."
 
 msgid "Always show bouquets"
 msgstr "Visualizar grupos siempre"
@@ -2535,6 +2548,10 @@ msgstr "Amlogic"
 
 msgid "Amlogic remote"
 msgstr "Amlogic remoto"
+
+#, python-format
+msgid "Amount %d / Success %d / Failed %d"
+msgstr "Cantidad %d / Éxito %d / Fallido %d"
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -2604,7 +2621,7 @@ msgstr "Árabe"
 msgid "Aragonese"
 msgstr "Aragonés"
 
-msgid "Are you ready to run the script ?"
+msgid "Are you ready to run the script?"
 msgstr "¿Estás seguro que quiere ejecutar el script?"
 
 msgid "Are you sure to cancel all changes?"
@@ -2717,6 +2734,9 @@ msgstr "Armenia"
 msgid "Armenian"
 msgstr "Armenio"
 
+msgid "Arrow skip mode"
+msgstr "Modo de salto de flecha"
+
 msgid "Artist"
 msgstr "Artista"
 
@@ -2751,8 +2771,8 @@ msgid "Aspect Ratio Actions"
 msgstr "Acciones de relación de aspecto"
 
 #
-msgid "Aspect list..."
-msgstr "Lista de aspectos…"
+msgid "Open Aspect Ratio Settings"
+msgstr "Abrir configuración de relación de aspecto"
 
 msgid "Aspect ratio"
 msgstr "Aspecto"
@@ -2848,15 +2868,8 @@ msgid "Audio language selection 4"
 msgstr "Selección de idioma de audio 4"
 
 #
-msgid "Audio options..."
-msgstr "Opciones de audio..."
-
-# A/V Settings
-msgid "Audio volume step size"
-msgstr "Tamaño de la etapa de volumen del audio"
-
-msgid "Audio volume step size fast mode"
-msgstr "Modo rápido del tamaño de la etapa de volumen del audio"
+msgid "Open Audio options"
+msgstr "Opciones de audio"
 
 # Language
 msgid "Australia"
@@ -2922,6 +2935,9 @@ msgstr "Registro de instalación automática"
 msgid "Auto multi-selection"
 msgstr "Selección múltiple auto"
 
+msgid "Auto show volume level"
+msgstr "Nivel de volumen de visualización automática"
+
 msgid "Auto shut down"
 msgstr "Apagado automático"
 
@@ -2937,6 +2953,9 @@ msgstr "AutoBoquetsMaker se instaló correctamente.\nEs necesario reiniciar enig
 
 msgid "AutoIns:"
 msgstr "AutoInstalación:"
+
+msgid "Automatic search"
+msgstr "Búsqueda automática"
 
 #
 msgid "AutoMountManager"
@@ -3351,9 +3370,6 @@ msgstr "Bluetooth"
 msgid "Bluetooth Setup"
 msgstr "Ajuste de Bluetooth"
 
-msgid "Press red key to enable bluetooth."
-msgstr "Pulsar botón rojo para activar bluetooth."
-
 msgid "Bolivia"
 msgstr "Bolivia"
 
@@ -3732,7 +3748,7 @@ msgid "Calculating..."
 msgstr "Calculando..."
 
 msgid "Calculation complete"
-msgstr "Cálculo completado"
+msgstr "Cálculo completo"
 
 msgid "Calibrate"
 msgstr "Calibrar"
@@ -3831,15 +3847,15 @@ msgid "Can't create backup directory!"
 msgstr "No se puede crear carpeta del backup!"
 
 msgid ""
-"Can't going to live TV!\n"
-"Switch to live TV and restart time shift ?"
+"Can't go to live TV!\n"
+"Switch to live TV and restart time shift?"
 msgstr ""
 "No se puede ir a la televisión en vivo!\n"
 "¿Cambiar a la TV en vivo y reiniciar Timeshift?"
 
 msgid ""
-"Can't play the next time shift file!\n"
-"Switch to live TV and restart time shift ?"
+"Can't play the next time shift buffer file!\n"
+"Switch to live TV and restart time shift?"
 msgstr ""
 "No se puede reproducir el archivo Timeshift siguiente!\n"
 "¿Cambiar a la TV en vivo y reiniciar Timeshift?"
@@ -3901,7 +3917,13 @@ msgstr "Cancelar extracción"
 msgid "Cancel save time shift as movie"
 msgstr "No guardar Timeshift como película"
 
-msgid "Cancel selection"
+msgid "Cancel the scan and exit all menus"
+msgstr "Cancelar el escaneo y salir de todos los menús"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Cancelar el escaneo y salir del escáner"
+
+msgid "Cancel the selection"
 msgstr "Cancelar la selección"
 
 msgid "Cancel selection and exit"
@@ -3955,16 +3977,23 @@ msgstr "Cancelado a petición del usuario"
 msgid "Cannot delete file"
 msgstr "No se puede borrar el archivo"
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr "No se puede determinar el límite en el %s ..., ¡abortando!"
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr "No se puede encontrar ninguna señal..., ¡abortando!"
 
 msgid "Can't move to trashcan!"
-msgstr "No se puede mover a la papelera"
+msgstr "¡No se puede mover a la papelera!"
+
+msgid ""
+"Can't play the next time shift buffer file!\n"
+"Switch to live TV and restart time shift ?"
+msgstr ""
+"¡No se puede reproducir el siguiente archivo de búfer de cambio de tiempo!\n"
+"¿Cambiar a TV en vivo y reiniciar el cambio de horario?"
 
 msgid "Capacity"
 msgstr "Capacidad"
@@ -3994,8 +4023,8 @@ msgstr "PiP en cascada"
 msgid "Catalan / Valencian"
 msgstr "Catalán / Valenciano"
 
-msgid "Caution update not yet tested !!"
-msgstr "¡Cuidado, la actualización aún no ha sido probada!"
+msgid "Catch Up Player Actions"
+msgstr "Ponerse al día con acciones de reproducción"
 
 msgid "Cayman Islands"
 msgstr "Islas Caimán"
@@ -4207,14 +4236,17 @@ msgstr "Selección del canal:"
 msgid "Channel up"
 msgstr "Subir canal"
 
-msgid "Channel zap delay another button"
+msgid "Service zap other button delay"
 msgstr "Retardo al zapear con otro botón"
 
-msgid "Channel zap delay first button"
+msgid "Service zap first button delay"
 msgstr "Retardo al zapear con el primer botón"
 
-msgid "Channel zap delay mode"
+msgid "Service zap delay mode"
 msgstr "Modo de retardo al zapear"
+
+msgid "Service zap screen contents"
+msgstr "Contenido de la pantalla de canal zap"
 
 #
 msgid "Channel:"
@@ -4323,8 +4355,20 @@ msgstr "Chino"
 msgid "Chinese (Simplified)"
 msgstr "Chino (simplificado)"
 
+msgid "Chkroot Manager Actions"
+msgstr "Acciones del administrador Chkroot"
+
 msgid "Choice action"
 msgstr "Elige acción"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "¡Inicialización Chkroot MultiBoot en progreso!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Administrador MultiBoot Chkroot"
+
+msgid "Chkroot MultiBoot Remove in progress!"
+msgstr "¡Eliminación Chkroot MultiBoot en progreso!"
 
 msgid "Choice List Actions"
 msgstr "Acciones lista de opciones"
@@ -4380,6 +4424,15 @@ msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 "Elegir la frecuencia con la que se conectará al servidor IceTV para "
 "comprobar si hay actualizaciones."
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Cierre el Administrador MultiBoot Chkroot"
+
+msgid "Close the Device Manager screen"
+msgstr "Cerrar la pantalla del Administrador de dispositivos"
+
+msgid "Close the Device Manager screen and exit all menus"
+msgstr "Cerrar la pantalla del Administrador de dispositivos y salir de todos los menús"
 
 msgid ""
 "Choose the display formatting style for dates. 'D' / 'DD' is the date and "
@@ -5475,11 +5528,17 @@ msgstr "Satélites conectados"
 msgid "Connected to"
 msgstr "Conectado a"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Transcodificación conectada, límite - no PiP!"
+
 msgid "Connected: "
 msgstr "Conectado: "
 
 msgid "Connection information"
 msgstr "Información de conexión"
+
+msgid "Connector"
+msgstr "Conector"
 
 msgid "Console"
 msgstr "Consola"
@@ -5704,7 +5763,7 @@ msgid "Crash Logs"
 msgstr "Crash Logs"
 
 msgid "Crash at skin error for debug reasons"
-msgstr "Bloqueo en el error de interfaz por motivos de depuración"
+msgstr "Crash en skin por motivos de depuración"
 
 #
 msgid "Create"
@@ -5899,6 +5958,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr "Compensaciones de volumen definidas actualmente:"
 
+msgid "Currently Remembered Volume Levels:"
+msgstr "Niveles de volumen recordados actualmente:"
+
 msgid "Custom"
 msgstr "Personalizado"
 
@@ -5936,8 +5998,14 @@ msgstr "Personaliza los ajustes de Enigma2"
 msgid "Cut"
 msgstr "Cortar"
 
+msgid "CutList skip time for '%s' button"
+msgstr "Tiempo de omisión en CutList (plugin) para el botón '%s'"
+
+msgid "CutList skip time for '%s'/'%s' buttons"
+msgstr "Tiempo de omisión en CutList (plugin) para los botones '%s'/'%s'"
+
 msgid "Cutlist Editor"
-msgstr "Editor de lista de cortes"
+msgstr "Editor Cutlist (plugin)"
 
 msgid "Cutlist editor..."
 msgstr "Editor de listas de corte…"
@@ -6319,7 +6387,7 @@ msgstr ""
 "del sistema (valores más altos = menor prioridad)."
 
 msgid "Default Dolby Digital / Dolby AC-3 offset"
-msgstr "Compensación por defecto de Dolby Digital / Dolby AC-3"
+msgstr "Desplazamiento predeterminado Dolby Digital/Dolby AC-3"
 
 msgid ""
 "Default I/O priority (ionice) for executed scripts. This can reduce the "
@@ -6368,9 +6436,6 @@ msgstr "Orden predeterminado para archivos en la columna izquierda."
 msgid "Default sort order for files in the right column."
 msgstr "Orden predeterminado para archivos en la columna derecha."
 
-msgid "Default volume offset"
-msgstr "Compensación de volumen predeterminado"
-
 #, python-format
 msgid "Default: '%s'."
 msgstr "Predeterminado: '%s'."
@@ -6389,6 +6454,12 @@ msgstr "Define el sufijo DNS."
 
 msgid "Defined / Active"
 msgstr "Definido / Activo"
+
+msgid "Defined skips"
+msgstr "Saltos definidos"
+
+msgid "Defined volume offset"
+msgstr "Desplazamiento de volumen definido"
 
 msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
@@ -6681,6 +6752,27 @@ msgstr "Dinamarca"
 msgid "Depth"
 msgstr "Profundidad"
 
+msgid "Descending"
+msgstr "Descendiendo"
+
+msgid "Descramble end time"
+msgstr "Decodificar la hora de finalización"
+
+msgid "Descramble in Standby"
+msgstr "Decodificar en reposo"
+
+msgid "Descramble in Standby finished"
+msgstr "Decodificar en reposo finalizada"
+
+msgid "Descramble recordings before Shutdown"
+msgstr "Decodificar grabaciones antes del apagado"
+
+msgid "Descramble start time"
+msgstr "Hora de inicio de descifrado"
+
+msgid "Descrambling options"
+msgstr "Opciones de descifrado"
+
 msgid "Description"
 msgstr "Descripción"
 
@@ -6795,13 +6887,11 @@ msgstr "Dicción"
 # PowerTimerEntry.py
 #, python-format
 msgid ""
-"Difference between timer begin and end must be equal or greater than %d "
-"minutes.\n"
-"End Action was disabled !"
+"Difference between timer begin and end must be equal or greater than %d minutes.\n"
+"End Action was disabled!"
 msgstr ""
-"La diferencia entre el inicio y final de un temporizador debe ser igual o "
-"mayor a %d minutos.\n"
-"¡La acción final fue desactivada!"
+"La diferencia entre el inicio y el final del temporizador debe ser igual o mayor a %d minuto.\n"
+"¡La acción de finalización fue deshabilitada!"
 
 msgid "Digit entry for service selection"
 msgstr "Entrada de dígitos para la selección del servicio"
@@ -6888,6 +6978,9 @@ msgstr "Deshabilitar Picture in Picture"
 msgid "Disable background scanning"
 msgstr "Deshabilitar la búsqueda en segundo plano"
 
+msgid "Disable Chkroot"
+msgstr "Deshabilitar Chkroot"
+
 msgid "Disable digital downmix"
 msgstr "Desactivar el downmix digital"
 
@@ -6897,6 +6990,9 @@ msgstr "Desactivar la pantalla de introducción"
 # Box Display
 msgid "Disable the HDD Process on VFD."
 msgstr "Desactivar proceso de HDD en VFD."
+
+msgid "Disable the MultiBoot option"
+msgstr "Deshabilitar la opción MultiBoot"
 
 #
 msgid "Disable timer"
@@ -7506,7 +7602,7 @@ msgid "EPG Other Actions"
 msgstr "Otras acciones de la EPG"
 
 msgid "EPG Search"
-msgstr "Búsqueda en EPG"
+msgstr "Buscar en EPG"
 
 #
 msgid "EPG Selection"
@@ -7718,6 +7814,9 @@ msgstr "Habilitar Autograbación"
 msgid "Enable BT Audio"
 msgstr "Habilitar audio BT"
 
+msgid "Enable Chkroot MultiBoot"
+msgstr "Habilitar Chkroot MultiBoot"
+
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr "Habilitar compensaciones Dolby Digital / Dolby AC-3"
 
@@ -7926,47 +8025,34 @@ msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Habilite esta opción para agregar detalles DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB scan data to the debug log file."
-msgstr ""
-"Habilite esta opción para añadir datos de escaneo DVB adicionales al archivo "
-"de registro de depuración."
+msgstr "Habilite esta opción para añadir datos de escaneo DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB time sync data to the debug log file."
 msgstr "Habilite esta opción para agregar datos de sincronización de tiempo DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
-msgstr ""
-"Activa esta opción para añadir datos extra de la EPG al archivo de registro "
-"de depuración."
+msgstr "Activa esta opción para añadir datos extra de la EPG al archivo de registro de depuración."
 
 msgid "Enable this option to add extra teletext details to the debug log file."
 msgstr "Habilite esta opción para añadir detalles de teletexto adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add keyboard key map data to the debug log file."
-msgstr ""
-"Habilitar esta opción para añadir los datos del mapeo del teclado al archivo "
-"del log de depuración."
+msgstr "Habilitar esta opción para añadir los datos del mapeo del teclado al archivo del log de depuración."
 
 msgid "Enable this option to add opkg output data to the debug log file."
-msgstr ""
-"Habilitar esta opción para añadir los datos de salida de opkg al archivo de "
-"registro de depuración."
+msgstr "Habilitar esta opción para añadir los datos de salida de opkg al archivo de registro de depuración."
 
 msgid "Enable this option to add remote control data to the debug log file."
-msgstr ""
-"Habilitar esta opción para añadir los datos del control remoto al archivo de "
-"registro de depuración."
+msgstr "Habilitar esta opción para añadir los datos del control remoto al archivo de registro de depuración."
 
-msgid ""
-"Enable this option to add screen names and resolution data to the debug log "
-"file."
-msgstr ""
-"Habilita esta opción para añadir los nombres de las pantallas y los datos de "
-"resolución al archivo de registro de depuración."
+msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr "Habilita esta opción para añadir los nombres de las pantallas y los datos de resolución al archivo de registro de depuración."
+
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr "Habilite esta opción para agregar información del dispositivo de almacenamiento detectado durante el arranque del sistema y eventos de conexión en caliente al archivo de registro de depuración."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
-msgstr ""
-"Activa esta opción para añadir los datos de depuración del temporizador al "
-"archivo de registro de depuración."
+msgstr "Activa esta opción para añadir los datos de depuración del temporizador al archivo de registro de depuración."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Habilite esta opción para mostrar todas las pantallas de información disponibles en la lista de elementos del menú Información."
@@ -8149,7 +8235,7 @@ msgid "Enter if you are North or South of the equator."
 msgstr "Indicar si estás al norte o al sur del ecuador."
 
 #
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Ir al menú principal..."
 
 msgid "Enter new directory name:"
@@ -8999,7 +9085,7 @@ msgstr "IP del receptor reserva"
 msgid "Fallback remote receiver Port"
 msgstr "Puerto del receptor reserva"
 
-msgid "Fallback remote receiver setup"
+msgid "Fallback Remote Receiver Settings"
 msgstr "Ajustes del tuner reserva"
 
 msgid "Fallback remote receiver URL"
@@ -9107,7 +9193,7 @@ msgid "File Commander"
 msgstr "Comando de archivos"
 
 msgid "File Commander - All tasks are complete."
-msgstr "Administrador de archivos - Todas las tareas se han completado."
+msgstr "Administrador de archivos - Todas las tareas están completas."
 
 msgid "File Commander Actions"
 msgstr "Acciones del Administrador de archivos"
@@ -9692,6 +9778,9 @@ msgstr "Alemán"
 
 msgid "Germany"
 msgstr "Alemania"
+
+msgid "Getting event information failed!"
+msgstr "¡Error al obtener información del evento!"
 
 msgid "Getting Event Info failed!"
 msgstr "¡Error al obtener la información del programa!"
@@ -10845,6 +10934,9 @@ msgstr "Incluir los datos del mando a distancia"
 msgid "Include screen load data"
 msgstr "Incluir datos de carga de la pantalla"
 
+msgid "Include storage device data"
+msgstr "Incluir datos del dispositivo de almacenamiento"
+
 msgid "Include teletext details"
 msgstr "Incluir detalles del teletexto"
 
@@ -10922,11 +11014,7 @@ msgstr "Modo barra de información EPG"
 msgid "InfoBar Event View Actions"
 msgstr "Acciones de la vista de eventos de la barra de información"
 
-#
-msgid "InfoBar RDS Actions"
-msgstr "Acciones RDS de la barra de información"
-
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr "Acciones de mostrar/ocultar de la barra de información"
 
 msgid "InfoBar fade-out speed"
@@ -10979,6 +11067,12 @@ msgstr "Entrada"
 #
 msgid "Input "
 msgstr "Entrada "
+
+msgid "Input 1"
+msgstr "Entrada 1"
+
+msgid "Input 2"
+msgstr "Entrada 2"
 
 msgid "Input Device Settings"
 msgstr "Configuración del dispositivo de entrada"
@@ -11227,6 +11321,12 @@ msgstr "Israel"
 
 msgid "It follows:"
 msgstr "Es lo siguiente:"
+
+msgid "It is not possible to record channels satellite"
+msgstr "No es posible grabar canales satélites"
+
+msgid "It is not possible to record with"
+msgstr "No es posible grabar con"
 
 # Language
 msgid "Italian"
@@ -11606,6 +11706,9 @@ msgstr "Última columna usada"
 msgid "Last used share: "
 msgstr "Último intercambio: "
 
+msgid "Last used/set volume"
+msgstr "Último volumen utilizado/configurado"
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Luego"
@@ -11671,7 +11774,7 @@ msgstr "Lesotho"
 msgid "Letterbox"
 msgstr "Buzón"
 
-msgid "Letterbox zoom"
+msgid "LetterBox zoom"
 msgstr "Zoom Buzón"
 
 msgid "Liberia"
@@ -11767,7 +11870,7 @@ msgid "Links"
 msgstr "Enlaces"
 
 #
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr "Enumerar funciones del EPG..."
 
 msgid "List Navigation Actions"
@@ -12264,7 +12367,7 @@ msgid "Maxdown: "
 msgstr "Máximo abajo: "
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr "¡Minutos máximos para saltar %d!"
 
 msgid "Maximum no of days"
@@ -12392,10 +12495,6 @@ msgstr "Acciones del buzón de mensajes"
 
 msgid "Message pop up timeout"
 msgstr "Tiempo de espera del mensaje emergente"
-
-#
-msgid "Message..."
-msgstr "Mensaje..."
 
 msgid "Metering mode"
 msgstr "Modo de medición"
@@ -12660,6 +12759,9 @@ msgstr "Desplazarse hacia abajo en una pantalla"
 msgid "Move down a screen in the panel"
 msgstr "Desplazarse pantalla abajo en el panel"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Bajar una pantalla / Pasar al siguiente elemento"
+
 msgid "Move down one line"
 msgstr "Desplazarse una línea más abajo"
 
@@ -12819,6 +12921,9 @@ msgstr "Avanzar una pantalla"
 msgid "Move up a screen in the panel"
 msgstr "Subir una pantalla en el panel"
 
+msgid "Move up a screen / Move to previous item"
+msgstr "Subir una pantalla / Ir al elemento anterior"
+
 msgid "Move up one line"
 msgstr "Subir una línea"
 
@@ -12871,7 +12976,7 @@ msgstr "Acciones de la vista de eventos de películas"
 msgid "Movie List"
 msgstr "Lista de películas"
 
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "Lista de acciones de la película"
 
 msgid "Movie Selection Settings"
@@ -13261,17 +13366,8 @@ msgstr "Nunca"
 msgid "Never abort"
 msgstr "No salir nunca"
 
-msgid ""
-"Never decrypt the content while recording. This overrides the individual "
-"timer settings globally. If enabled, recordings are stored in crypted "
-"presentation and must be decrypted afterwards (sometimes called offline "
-"decoding). Default: off."
-msgstr ""
-"No desencriptar el contenido mientras se graba. Esto anula los ajustes "
-"individuales del temporizador de forma global. Si está activada, las "
-"grabaciones se almacenan en una presentación cifrada y deben desencriptarse "
-"después (a veces se denomina decodificación sin conexión). Por defecto: "
-"desactivado."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
+msgstr "Nunca descifre el contenido durante la grabación. Esto anula la configuración del temporizador. Si está habilitado, las grabaciones se almacenan en formato cifrado y deben descifrarse posteriormente (a veces llamado descodificación sin conexión)."
 
 msgid "Never decrypt while recording"
 msgstr "Nunca descifrar durante la grabación"
@@ -13450,8 +13546,8 @@ msgstr "No hay entrada en lcn db. Realice una exploración del servicio."
 msgid "No error"
 msgstr "Ningún error"
 
-msgid "No event information found, recording default is 24 hours."
-msgstr "No hay información del evento; grabando indefinidamente."
+msgid "No event info found - record (24 hours)"
+msgstr "No se encontró información del evento - grabar (24 horas)"
 
 #
 msgid ""
@@ -13541,6 +13637,9 @@ msgstr "No se encontró ningún sintonizador de satélite adecuado!"
 #
 msgid "No tags are set on these movies."
 msgstr "No hay etiquetas en estas películas."
+
+msgid "No time shift buffer found to save as recording!"
+msgstr "¡No se encontró ningún búfer de cambio de tiempo para guardar como grabación!"
 
 msgid "No time shift found to save as recording!"
 msgstr "¡No se encontró ningún Timeshift para guardar como grabación!"
@@ -13767,13 +13866,13 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Not enough free Diskspace!\n"
+"Not enough free disk space!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
 msgstr ""
-"No hay suficiente espacio libre en el disco.\n"
+"No hay suficiente espacio libre en el disco!\n"
 "\n"
 "Tamaño de archivo: %sMB\n"
 "Espacio libre: %sMB\n"
@@ -13829,10 +13928,19 @@ msgstr ""
 msgid "Number"
 msgstr "Número"
 
+msgid "Number and name"
+msgstr "Número y nombre"
+
+msgid "Number and picon"
+msgstr "Número y picon"
+
+msgid "Number, name and picon"
+msgstr "Número, nombre y picon"
+
 msgid "Number of IP Addresses"
 msgstr "Número de direcciones IP"
 
-msgid "Number of digits in channel number"
+msgid "Number of digits in service number"
 msgstr "Número de dígitos para el número del canal"
 
 msgid "Number of rows"
@@ -13841,11 +13949,17 @@ msgstr "Número de filas"
 msgid "Number of rows to display."
 msgstr "Número de filas a mostrar."
 
+msgid "Number only"
+msgstr "Sólo números"
+
 msgid "Number or SMS style data entry"
 msgstr "Introducción de datos en forma de número o de SMS"
 
 msgid "Numbering mode"
 msgstr "Modo de numeración"
+
+msgid "Numeric skip mode"
+msgstr "Modo de salto numérico"
 
 msgid "OEM model"
 msgstr "Modelo OEM"
@@ -13871,6 +13985,9 @@ msgstr "Sí, guíame por el proceso de actualización"
 
 msgid "ONID"
 msgstr "ONID"
+
+msgid "Open RFmod Settings"
+msgstr "Mostrar ajuste RFmod"
 
 msgid "OSCam Information"
 msgstr "Información OSCam"
@@ -14027,8 +14144,8 @@ msgstr "Abrir"
 msgid "Open AutoTimer"
 msgstr "Abrir autotemporizadores"
 
-msgid "Open AutoTimerlist"
-msgstr "Abrir lista de temporizadores automáticos"
+msgid "Open AutoTimer Overview"
+msgstr "Abrir Temporizadores Automáticos"
 
 msgid "Open EPGSearch"
 msgstr "Abrir EPGSearch"
@@ -14048,12 +14165,12 @@ msgstr "Abrir configuraciones"
 msgid "Open Similar List Channel List"
 msgstr "Abrir lista de canales similares"
 
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Abrir lista de temporizadores"
 
 #
-msgid "Open bouquetlist"
-msgstr "Abrir lista"
+msgid "Open Bouquet selection"
+msgstr "Selección de favoritos abiertos"
 
 msgid "Open context menu"
 msgstr "Abrir el menú contextual"
@@ -14067,24 +14184,27 @@ msgstr "Abrir pantalla de administración de subtítulos externos"
 msgid "Open favorites list"
 msgstr "Abrir lista de favoritos"
 
-msgid "Open satellites list"
+msgid "Open file sort menu"
+msgstr "Abrir el menú de ordenación de archivos"
+
+msgid "Open Satellites selection"
 msgstr "Abrir lista de satélites"
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr "Abrir la lista de servicios"
 
 #
-msgid "Open service list and select next channel"
+msgid "Open service list and select next service"
 msgstr "Abrir la lista de canales y seleccionar el siguiente canal"
 
-msgid "Open service list and select next channel for PiP"
+msgid "Open service list and select next service for PiP"
 msgstr "Abrir la lista de servicios y seleccionar el siguiente canal para PiP"
 
 #
-msgid "Open service list and select previous channel"
+msgid "Open service list and select previous service"
 msgstr "Abrir la lista de canales y seleccionar el canal anterior"
 
-msgid "Open service list and select previous channel for PiP"
+msgid "Open service list and select previous service for PiP"
 msgstr "Abrir la lista de servicios y seleccionar el canal anterior para PiP"
 
 #
@@ -14241,27 +14361,27 @@ msgid "Overscan Test"
 msgstr "Prueba de sobreescaneo"
 
 #
-msgid "Overwrite Bootlogo Files ?"
+msgid "Overwrite Bootlogo Files?"
 msgstr "¿Sobreescribir bootlogo?"
 
 #
-msgid "Overwrite Driver Files ?"
+msgid "Overwrite Driver Files?"
 msgstr "¿Sobreescribir drivers?"
 
 #
-msgid "Overwrite Emu Files ?"
+msgid "Overwrite Emu Files?"
 msgstr "¿Sobreescribir los archivos de la Emu?"
 
 #
-msgid "Overwrite Picon Files ?"
+msgid "Overwrite Picon Files?"
 msgstr "¿Sobreescribir los picon?"
 
 #
-msgid "Overwrite Setting Files ?"
+msgid "Overwrite Setting Files?"
 msgstr "¿Sobreescribir los archivos de configuración?"
 
 #
-msgid "Overwrite Spinner Files ?"
+msgid "Overwrite Spinner Files?"
 msgstr "¿Sobreescribir archivos del spinner?"
 
 msgid "Overwrite bootlogo files during software upgrade?"
@@ -14473,6 +14593,12 @@ msgstr "Paso"
 msgid "Pass-through"
 msgstr "Pass-through"
 
+msgid "Passthrough audio handling delay AC3"
+msgstr "Retardo en el manejo del audio de paso AC3"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "Retardo en el manejo del audio de paso AC3+"
+
 #
 msgid "Password"
 msgstr "Contraseña"
@@ -14529,6 +14655,9 @@ msgstr "Porcentaje izquierda"
 msgid "Percentage right"
 msgstr "Porcentaje derecha"
 
+msgid "Percentage skips"
+msgstr "Porcentaje de saltos"
+
 msgid "Percentage/Progress bar left"
 msgstr "Porcentaje/Barra izquierda de progreso"
 
@@ -14540,6 +14669,15 @@ msgstr "Realizar un flash en línea en su lugar"
 
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "¿Eliminar permanentemente todas las grabaciones de la papelera?"
+
+msgid "Permanently disable the MultiBoot option?"
+msgstr "¿Desactivar permanentemente la opción MultiBoot?"
+
+msgid "Permanently ignore this device"
+msgstr "Ignorar permanentemente este dispositivo"
+
+msgid "Permanently mount as %s"
+msgstr "Montar permanentemente como %s"
 
 msgid "Permanently remove all deleted items"
 msgstr "Eliminar de forma permanente todos los elementos eliminados"
@@ -14563,7 +14701,7 @@ msgstr "Filipinas"
 msgid "PiP"
 msgstr "PiP"
 
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "Acciones PiP"
 
 msgid "PiP with OSD"
@@ -14599,7 +14737,7 @@ msgstr "Acciones de información de imágenes"
 msgid "Picture in EPG"
 msgstr "Imagen en EPG"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr "Configuración de imagen en imagen"
 
 msgid "Picture in graphics"
@@ -14648,6 +14786,9 @@ msgstr "Reproducción de DVDs"
 msgid "Play all audio files in the directory"
 msgstr "Reproduce todos los archivos de audio en el directorio"
 
+msgid "Play catch up service archive"
+msgstr "Archivo del servicio de recuperación de reproducción"
+
 msgid "Play audio in background"
 msgstr "Reproducir audio en segundo plano"
 
@@ -14686,8 +14827,11 @@ msgid "Play previous"
 msgstr "Reproducir anterior"
 
 #
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Reproducir películas grabadas"
+
+msgid "Play selected service in a PiP window"
+msgstr "Canal seleccionado en la ventana PiP"
 
 msgid "Play Service With Stream Relay"
 msgstr "Reproducir servicio con Stream Relay"
@@ -14816,7 +14960,7 @@ msgstr "Pulse OK para continuar."
 msgid "Please press OK to start Kodi..."
 msgstr "Por favor, pulse OK para iniciar Kodi..."
 
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr "Seleccione el tipo de EPG por defecto."
 
 msgid ""
@@ -15026,7 +15170,7 @@ msgid "Plugin Browser Update Actions"
 msgstr "Actualización del Explorador de Plugins"
 
 msgid "Plugin Browser layout"
-msgstr "Layout del Explorador de Plugins"
+msgstr "Diseño del Explorador de Plugins"
 
 msgid "Plugin Packages"
 msgstr "Paquetes de plugins"
@@ -15340,6 +15484,12 @@ msgstr "Pulse OK para utilizar este idioma.  [%s]"
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Pulse OK para utilizar esta configuración regional.  [%s]"
+
+msgid "Press RED to remove MultiBoot!"
+msgstr "¡Pulse botón ROJO para eliminar MultiBoot!"
+
+msgid "Press red key to enable bluetooth."
+msgstr "Pulsar botón rojo para activar bluetooth."
 
 msgid ""
 "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot "
@@ -15674,7 +15824,7 @@ msgid "Quick Menu Actions"
 msgstr "Acciones del menú rápido"
 
 #
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr "Menú rápido..."
 
 msgid "QuickEPG mode"
@@ -15734,6 +15884,9 @@ msgstr "Solo lectura"
 
 msgid "Read/Write"
 msgstr "Lectura/Escritura"
+
+msgid "RDS Actions"
+msgstr "Acciones RDS de la barra de información"
 
 #
 msgid "REC"
@@ -15797,11 +15950,11 @@ msgid "Reader"
 msgstr "Lector"
 
 #, python-format
-msgid "Ready to install \"%s\" ?"
+msgid "Ready to install \"%s\"?"
 msgstr "¿Listo para instalar %s?"
 
 #, python-format
-msgid "Ready to remove \"%s\" ?"
+msgid "Ready to remove \"%s\"?"
 msgstr "¿Listo para eliminar \"%s\"?"
 
 #, python-format
@@ -15926,8 +16079,8 @@ msgstr "Grabación iniciada. Deteniendo Timeshift..."
 
 #
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
-msgstr "Tiempo de grabación limitada por un conflicto con el temporizador %s"
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Grabación limitada en el tiempo por un conflicto con el temporizador %s"
 
 msgid "Record write error (no space on disk?)"
 msgstr "Error de escritura en el registro (¿no hay espacio en el disco?)"
@@ -15983,6 +16136,9 @@ msgstr "Grabación en curso"
 msgid "Recording started"
 msgstr "Grabación iniciada"
 
+msgid "Recording started, stopping time shift now."
+msgstr "Se inició la grabación, deteniendo el cambio de tiempo ahora."
+
 msgid "Recording stopped"
 msgstr "Grabación detenida"
 
@@ -16035,7 +16191,7 @@ msgid "Red"
 msgstr "Rojo"
 
 #
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "Tecla roja…"
 
 msgid "Red colored"
@@ -16177,6 +16333,12 @@ msgstr "Eliminar"
 #
 msgid "Remove Bookmark"
 msgstr "Eliminar marcador"
+
+msgid "Remove Chkroot"
+msgstr "Eliminar Chkroot"
+
+msgid "Remove Chkroot MultiBoot"
+msgstr "Eliminar Chkroot MultiBoot"
 
 msgid "Remove Confirmation"
 msgstr "Confirmación de eliminación"
@@ -17062,11 +17224,17 @@ msgstr "Guardar Timeshift como película y seguir grabando"
 msgid "Save time shift as movie and stop recording"
 msgstr "Guardar Timeshift como película y detener la grabación"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Guarde el buffer Timeshift ahora y continúe grabando"
+
 msgid "Saved lines in script messages"
 msgstr "Líneas guardadas en mensajes de script"
 
 msgid "Saving EPG Cache..."
 msgstr "Guardando caché EPG..."
+
+msgid "Saving time shift buffer, this might take a while."
+msgstr "Guardado del buffer time shift, esto puede demorar un tiempo."
 
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Guardando timeshift como película. ¡Esto podría llevar un rato!"
@@ -17178,7 +17346,7 @@ msgid "Scheduler log"
 msgstr "Programador Log"
 
 msgid "Scheduler Overview"
-msgstr "Programador de Temporizadores"
+msgstr "Descripción general del programador"
 
 msgid "Scheduler Settings"
 msgstr "Configuración del programador"
@@ -17219,7 +17387,7 @@ msgstr "Velocidad de scroll (renderizado por software)"
 msgid "Search"
 msgstr "Búsqueda"
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr "Buscar IMDb para información sobre el evento actual."
 
 msgid "Search Sats"
@@ -17238,7 +17406,7 @@ msgstr "Busca recursos compartidos en red"
 msgid "Search for similar events"
 msgstr "Buscar eventos similares"
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr "Buscar en el epg para el evento actual."
 
 msgid "Search weather location ID"
@@ -17322,7 +17490,7 @@ msgstr "Busqueda hacia delante langa"
 msgid "Seekbar"
 msgstr "Barra de busqueda"
 
-msgid "Seekbar activation"
+msgid "SeekBar activation"
 msgstr "Activación de la barra de búsqueda"
 
 msgid "Seekbar sensibility"
@@ -17381,12 +17549,6 @@ msgid ""
 msgstr ""
 "Seleccione \"Sí\" si se debe comprobar el tráfico de la red antes de activar "
 "el temporizador."
-
-msgid ""
-"Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr ""
-"Seleccione \"Sí\" si los ajustes de volumen deben aplicarse a las pistas de "
-"sonido Dolby."
 
 msgid ""
 "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A "
@@ -17750,6 +17912,12 @@ msgstr ""
 "directorios. Nota : el administrador de archivos se tiene que reiniciar para "
 "que el cambio tenga efecto."
 
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
+msgstr "Seleccione 'Sí' para mostrar el nivel de volumen en cualquier cambio automático del nivel de volumen."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "'Ja' auswählen, um dieses Plugin im Plugin-Manager anzuzeigen."
+
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Seleccione \"Sí\" para separar tareas en acciones separadas."
 
@@ -17803,6 +17971,9 @@ msgid ""
 msgstr ""
 "Seleccione \"Banda\" si utiliza un LNB \"Universal\", en caso contrario, "
 "consulte las especificaciones de su LNB."
+
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr "Seleccione 'Desactivado' para desactivar todos los ajustes automáticos de volumen. Seleccione 'Desplazamientos de volumen definidos' para asignar un desplazamiento específico al nivel de volumen del canal. Seleccione 'Último volumen usado/configurado' para recordar el último nivel de volumen usado para cada canal"
 
 msgid ""
 "Select 'Enabled' if this tuner has a signal cable connected, otherwise "
@@ -17958,6 +18129,12 @@ msgstr "Seleccione el registro de confirmación de un repositorio para verlo:"
 msgid "Select a script to run:"
 msgstr "Seleccione el script a ejecutar:"
 
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgstr "Seleccione un tiempo, cuando esté en modo de espera, después del cual se podrá continuar con la descodificación."
+
+msgid "Select a time, when in Standby, before which descramble can proceed."
+msgstr "Seleccione un momento, cuando esté en modo de espera, antes del cual se pueda realizar la descodificación."
+
 msgid "Select a softcam from the available list."
 msgstr "Seleccione una softcam de la lista disponible."
 
@@ -18005,7 +18182,7 @@ msgstr "Seleccione el canal de audio"
 msgid "Select copy destination for:"
 msgstr "Seleccionar ubicación de la copia de:"
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr "Seleccionar el tipo de EPG por defecto..."
 
 msgid "Select default File Commander directory:"
@@ -18050,6 +18227,12 @@ msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 "Seleccione la velocidad con la que la antena parabólica debe moverse entre "
 "los satélites."
+
+msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
+msgstr "Seleccione cómo actuarán los botones de flecha ('ARRIBA', 'ABAJO', 'IZQUIERDA' y 'DERECHA') durante las acciones de búsqueda."
+
+msgid "Select how the number buttons will act during seek actions."
+msgstr "Seleccione cómo actuarán los botones numéricos durante las acciones de búsqueda."
 
 msgid ""
 "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC "
@@ -18157,10 +18340,11 @@ msgstr "Seleccionar la tasa de refresco"
 msgid "Select Satellites"
 msgstr "Seleccionar satélites"
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr ""
-"Seleccionar la barra de búsqueda activada con flecha izquierda/derecha "
-"(largo) o << >> (largo)."
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "Seleccionar la barra de búsqueda activada con flecha izquierda/derecha (largo) o << >> (largo)."
+
+msgid "Select service information to view:"
+msgstr "Seleccione la información del servicio para ver:"
 
 #
 msgid "Select service to add..."
@@ -18175,11 +18359,14 @@ msgstr "Seleccionar softcam"
 msgid "Select sort method:"
 msgstr "Seleccione el método de ordenación:"
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr "Seleccionar subservicios"
 
 msgid "Select system information to view:"
 msgstr "Seleccione la información del sistema que desea ver:"
+
+msgid "Select target device for slot creation"
+msgstr "Seleccionar el dispositivo de destino para la creación de slot"
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "Selecciona orden temporal de directorio de la columna actual"
@@ -18193,6 +18380,12 @@ msgstr "Seleccione la entrada %s"
 
 msgid "Select the access mode for the automatically exported samba shares."
 msgstr "Seleccione el modo de acceso para los recursos compartidos de Samba exportados automáticamente."
+
+msgid "Select the currently highlighted service and exit"
+msgstr "Seleccione el servicio actualmente resaltado y salga"
+
+msgid "Select the currently highlighted timer"
+msgstr "Seleccione el temporizador resaltado actualmente"
 
 msgid "Select the mountpoint for the device."
 msgstr "Seleccione el punto de montaje para el dispositivo."
@@ -18342,6 +18535,12 @@ msgstr ""
 "reasignar el sintonizador a otro servicio. Solo se recomienda el uso de '0' "
 "en receptores con múltiples sintonizadores de satélite."
 
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
+msgstr "Retardo definido por el usuario cuando se pulsa otro botón para zapear al canal."
+
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
+msgstr "Retardo definido por el usuario cuando se pulsa el primer botón para zapear al canal."
+
 msgid ""
 "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to "
 "toggle between the lists. Select an assigned function and click on 'OK' to "
@@ -18408,6 +18607,9 @@ msgstr ""
 "Cuanto mayor sea el valor, más se moverá el marcador hacia la derecha "
 "mostrando más historia y menos de los próximos eventos."
 
+msgid "Select the input connector you want to use."
+msgstr "Seleccione el conector de entrada que desea utilizar"
+
 msgid "Select the last item in list or move to the end of text"
 msgstr ""
 "Seleccionar el último elemento de la lista o desplazarse al final del texto"
@@ -18471,6 +18673,9 @@ msgstr ""
 
 msgid "Select the next item in the list"
 msgstr "Seleccione el siguiente elemento de la lista"
+
+msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
+msgstr "Seleccione la información de canal preferida para mostrar, además del número de canal, en la pantalla emergente de selección de canal."
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr ""
@@ -18737,9 +18942,6 @@ msgstr "Seleccione la red inalámbrica"
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Seleccione 'Sí' para permitir que cada dispositivo de almacenamiento detectado se exporte automáticamente como recurso compartido Samba."
 
-msgid "Select 'Yes' to show this plugin in the Plugin Browser."
-msgstr "Seleccione \"Sí\" para mostrar este programa en Plugins."
-
 #
 msgid "Select your ATSC provider."
 msgstr "Seleccionar tu proveedor ATSC."
@@ -18777,8 +18979,11 @@ msgstr "Seleccione su zona horaria o región."
 msgid "Select, toggle, process or edit the current entry"
 msgstr "Seleccionar, alternar, procesar o editar la entrada actual"
 
-msgid "Select/Zap to selected service"
-msgstr "Seleccionar/Cambiar al canal seleccionado"
+msgid "Select/Zap to the selected service"
+msgstr "Seleccionar/Zap al canal seleccionado"
+
+msgid "Selected device: %s"
+msgstr "Dispositivo seleccionado: %s"
 
 #, python-format
 msgid ""
@@ -18920,7 +19125,6 @@ msgstr "Nombre del canal"
 msgid "Service Number and Service Name"
 msgstr "Número de canal y nombre de canal"
 
-#
 msgid "Service Number, Picon and Service Name"
 msgstr "Nombre de canal, Picon y nombre de canal"
 
@@ -18930,18 +19134,22 @@ msgstr "Acciones selección de canales"
 msgid "Service Selection/Zap Actions"
 msgstr "Selección de canales/Acciones de zapeo"
 
-#
 msgid "Service Title mode"
 msgstr "Modo título de canales"
 
 msgid "Service Zap Actions"
 msgstr "Accions cambio de canales"
 
-#
+msgid "Service and PID information"
+msgstr "Información de servicio y PID"
+
+#, python-format
+msgid "Service and PID information for '%s'"
+msgstr "Información de servicio y PID para '%s'"
+
 msgid "Service font size"
 msgstr "Tamaño de fuente del canal"
 
-#
 msgid "Service has been added to the selected bouquet."
 msgstr "El canal ha sido añadido al grupo seleccionado."
 
@@ -19027,10 +19235,10 @@ msgid "Service width"
 msgstr "Ancho del canal"
 
 msgid "ServiceName"
-msgstr "Nombre del Servicio"
+msgstr "Nombre del Canal"
 
 msgid "ServicePicon"
-msgstr "ServicePicon"
+msgstr "Picon Canal"
 
 #
 msgid "Serviceinfo"
@@ -19114,10 +19322,25 @@ msgstr "Establecer servicio de inicio"
 msgid "Set system"
 msgstr "Configurar sistema"
 
+msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
+msgstr "Establezca el intervalo de tiempo de omisión del plugin CutList para los botones '%s'/'%s'."
+
+msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+msgstr "Establezca el porcentaje de omisión del botón IZQUIERDO/DERECHO para la barra de búsqueda."
+
 # NetworkSetup.py
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Configura la dirección MAC de tu %s %s."
+
+msgid "Set the skip time interval for the '%s' button."
+msgstr "Establezca el intervalo de tiempo de salto para el botón '%s'."
+
+msgid "Set the skip time interval for the '%s'/'%s' buttons."
+msgstr "Establezca el intervalo de tiempo de salto para los botones '%s'/'%s'."
+
+msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+msgstr "Establezca el porcentaje de omisión del botón ARRIBA/ABAJO para la barra de búsqueda."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Configura el ID de usuario del OpenWebif del sintonizador reserva"
@@ -19143,6 +19366,9 @@ msgid ""
 msgstr ""
 "Configura la ubicación por defecto de tus archivos Timeshift. Pulsa 'OK' "
 "para añadir ubicaciones nuevas o izquierda/derecha para escoger una actual."
+
+msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
+msgstr "Establezca la ubicación predeterminada para guardar sus archivos Timeshift. Pulse 'OK' para añadir nuevas ubicaciones y pulse IZQUIERDA/DERECHA para seleccionar una de las ubicaciones previamente definidas."
 
 msgid ""
 "Set the default movie selection location for your media files. Press 'OK' to "
@@ -19219,21 +19445,11 @@ msgstr ""
 msgid "Set the time to hide the infobar."
 msgstr "Configura el tiempo antes de ocultar la barra de información."
 
-msgid ""
-"Set the time to hide the second infobar. The bar also disappears on pressing "
-"'OK'."
-msgstr ""
-"Configura el tiempo antes de ocultar la segunda barra de información. "
-"También se oculta pulsando ‘OK’."
+msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
+msgstr "Configura el tiempo antes de ocultar la segunda barra de información. También se oculta pulsando ‘OK’."
 
-msgid ""
-"Set the time to wait for execute the default action in shutdown, standby or "
-"restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
-msgstr ""
-"Configura el tiempo de espera para ejecutar la acción predeterminada en "
-"mensajes de apagado, reposo o reinicio., por ejemplo, utilizado en "
-"Temporizador de Grabación, Temporizador programado, Temporizador de "
-"apagado, etc."
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
+msgstr "Establezca el tiempo de espera para ejecutar la acción predeterminada en los mensajes de apagado, espera o reinicio, por ejemplo, utilizado en Temporizador de Grabación, Temporizador programado, Temporizador apagado, etc."
 
 msgid ""
 "Set the top left location of the busy spinner. The coordinates are scaled "
@@ -19252,6 +19468,10 @@ msgid ""
 msgstr ""
 "Configura el tipo de indicación de progreso en la pantalla de selección de "
 "canales."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr "Establezca el nivel de volumen para el canal '%s'."
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -19303,6 +19523,12 @@ msgid ""
 msgstr ""
 "Configurar en 'Deshabilitado' para reemplazar los espacios en nombres de "
 "archivo y directorio por caracteres de subrayado '_'."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgstr "Configúrelo en 'Habilitado' para descifrar grabaciones cifradas en cola en el modo de espera antes de apagar."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr "Establezca en 'Habilitado' para descifrar grabaciones cifradas en cola en modo de espera."
 
 msgid ""
 "Set to 'Yes', to enable automatic recording of the background timeshift "
@@ -19438,8 +19664,8 @@ msgstr "Configurar Video/Audio"
 msgid "Setup Videomode"
 msgstr "Configurar el modo de vídeo"
 
-msgid "Setup delay mode to zap to channels."
-msgstr "Configura el modo de retardo para zapear canales."
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
+msgstr "Seleccione si se aplicarán tiempos de espera al introducir dígitos en la pantalla emergente de selección de canal. Al exceder un tiempo de espera, se utilizará el número introducido para la selección. Los tiempos de espera predeterminados son 3 segundos para el primer dígito y 1 segundo para los demás."
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Configura cada sintonizador de tu receptor"
@@ -19657,7 +19883,7 @@ msgstr "Mostrar selección de audio"
 msgid "Show AutoTimer List"
 msgstr "Mostrar lista de autotemporizadores"
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Mostrar portal Box"
 
 msgid "Show CCcam Info"
@@ -19678,15 +19904,18 @@ msgstr "Mostrar iconos de pantalla"
 msgid "Show EPG"
 msgstr "Mostrar EPG"
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr "Mostrar EPG del canal actual…"
 
 #
 msgid "Show EventView"
 msgstr "Mostrar vista de programa"
 
-msgid "Show Format Setup"
-msgstr "Mostrar el ajuste de formato"
+msgid "Show Extension packages"
+msgstr "Mostrar extensión de paquetes"
+
+msgid "Open VideoMode"
+msgstr "Abrir modo de vídeo"
 
 msgid "Show Graphical EPG"
 msgstr "Mostrar EPG gráfica"
@@ -19701,8 +19930,8 @@ msgstr "Mostrar resolución de salida HDMI."
 msgid "Show HDMI-Output Res"
 msgstr "Mostrar resolución de salida HDMI"
 
-msgid "Show HDMIRecord setup..."
-msgstr "Mostrar configuración HDMIRecord..."
+msgid "Open HDMIRecord Settings"
+msgstr "Abrir configuración HDMIRecord"
 
 msgid "Show InfoBar"
 msgstr "Mostrar barra de información"
@@ -19726,7 +19955,7 @@ msgstr "Mostrar la barra de información al pasar adelante/atrás"
 msgid "Show InfoBar picons"
 msgstr "Mostrar picon en la barra de información"
 
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Mostrar información"
 
 msgid "Show Live in MiniTV"
@@ -19782,8 +20011,11 @@ msgstr "Mostrar PiP en MiniTV"
 msgid "Show PiP in the Front Display"
 msgstr "Mostrar PiP en el LCD"
 
-msgid "Show RFmod setup..."
-msgstr "Mostrar ajuste RFmod..."
+msgid "Show Picon packages"
+msgstr "Mostrar paquetes de Picon"
+
+msgid "Show Plugin Skin packages"
+msgstr "Mostrar paquetes de skins"
 
 msgid "Show Record Movies"
 msgstr "Mostrar películas grabadas"
@@ -19961,7 +20193,7 @@ msgstr "Mostrar descripción extendida"
 msgid "Show extension selection"
 msgstr "Mostrar la selección de extensión"
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr "Mostrar extensiones..."
 
 msgid "Show extra spacing in Information"
@@ -20056,8 +20288,8 @@ msgstr "Mostrar películas"
 msgid "Show multi channel EPG"
 msgstr "Mostrar MultiEPG"
 
-msgid "Show network setup menu..."
-msgstr "Mostrar menú de configuración de red..."
+msgid "Open Network Settings"
+msgstr "Abrir ajustes de red"
 
 msgid "Show next commit log"
 msgstr "Mostrar log del próximo commit"
@@ -20206,14 +20438,14 @@ msgstr "Mostrar iconos de tipo de servicio"
 msgid "Show servicelist or movies"
 msgstr "Mostrar lista de programas o películas"
 
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Mostrar ajustes"
 
 msgid "Show setup default value"
 msgstr "Mostrar valor predeterminado de configuración"
 
-msgid "Show setup menu..."
-msgstr "Mostrar menú de configuración..."
+msgid "Open Setup"
+msgstr "Abrir configuración"
 
 #
 msgid "Show shut down menu"
@@ -20264,7 +20496,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr "Mostrar pantalla de información CCcam"
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr "Mostrar reproductor DreamPlex..."
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -20276,14 +20508,14 @@ msgstr "Mostrar pantalla de configuración de logs"
 msgid "Show the OSCam information screen"
 msgstr "Mostrar pantalla de información OSCam"
 
-msgid "Show the PowerTimer"
+msgid "Open Scheduler Overview"
+msgstr "Descripción general del programador abierto"
+
+msgid "Open SleepTimer Settings"
 msgstr "Mostrar temporizador de apagado"
 
-msgid "Show the SleepTimer"
-msgstr "Mostrar temporizador de apagado"
-
-msgid "Show the information on current event."
-msgstr "Mostrar información del programa actual."
+msgid "Open event information"
+msgstr "Abrir información del evento"
 
 msgid "Show the list of AutoTimers."
 msgstr "Mostrar lista de autotemporizadores."
@@ -20291,10 +20523,10 @@ msgstr "Mostrar lista de autotemporizadores."
 msgid "Show the list of timers."
 msgstr "Mostrar lista de temporizadores."
 
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Mostrar el centro multimedia"
 
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Mostrar el reproductor de medios"
 
 msgid "Show the media player..."
@@ -20303,18 +20535,18 @@ msgstr "Mostrar reproductor de recursos..."
 msgid "Show the plugin browser.."
 msgstr "Mostrar explorador de plugins..."
 
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Mostrar plugins"
 
 #
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Mostrar el reproductor de radio"
 
 msgid "Show the task list"
 msgstr "Mostrar lista de tareas"
 
 #
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Mostrar reproductor de TV"
 
 msgid "Show time elapsed as positive"
@@ -20348,8 +20580,8 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr "Mostrar formato de vídeo desconocido como"
 
-msgid "Show usage and GUI menu..."
-msgstr "Mostrar menú de Uso e Interfaz..."
+msgid "Open Usage and GUI Settings"
+msgstr "Abrir configuración de uso y GUI"
 
 #
 msgid "Show vertical Program Guide"
@@ -20471,7 +20703,7 @@ msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Título simple (compatibilidad para más reproductores)"
 
 # Mediaplayer Setup
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "Enumerar dispositivos de almacenamiento."
 
 msgid "Simple zoom"
@@ -21117,6 +21349,9 @@ msgstr "Iniciar teletexto"
 msgid "Start test"
 msgstr "Comenzar prueba"
 
+msgid "Start the Chkroot initialization"
+msgstr "Iniciar la inicialización de Chkroot"
+
 msgid "Start the Kexec initialization"
 msgstr "Iniciar la inicialización Kexec"
 
@@ -21185,9 +21420,6 @@ msgstr "Estado del display en reposo"
 
 msgid "Status unavailable!"
 msgstr "Estado no disponible!"
-
-msgid "Status:"
-msgstr "Estado:"
 
 #
 msgid "Step east"
@@ -21278,6 +21510,12 @@ msgstr "Detener la actualización, si está en marcha, entonces salir"
 
 msgid "Stop time shift"
 msgstr "Detener Timeshift"
+
+msgid "Stop time shift and save time shift buffer as a movie"
+msgstr "Detener el cambio de tiempo y guardar el búfer time shift como una película"
+
+msgid "Stop time shift and save time shift buffer as a movie and start recording of current event"
+msgstr "Detenga el cambio de tiempo y guarde el búfer time shift como una película e inicie la grabación del evento actual"
 
 msgid "Stop time shift and save time shift buffer as movie"
 msgstr "Detener timeshift y guardar buffer como película"
@@ -21462,10 +21700,10 @@ msgid "Subtitle position"
 msgstr "Posición de subtítulos"
 
 #
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Selección de subtítulo"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Selección de subtítulos…"
 
 #
@@ -21536,10 +21774,10 @@ msgid "Swap services"
 msgstr "Cambiar canales"
 
 msgid "SwaptoNand"
-msgstr "Arrancar con memoria interna"
+msgstr "Cambiar a Flash"
 
 msgid "SwaptoSD"
-msgstr "Arrancar con SD"
+msgstr "Cambiar a SD"
 
 msgid "Swati"
 msgstr "Swati"
@@ -21589,10 +21827,6 @@ msgstr "Cambiar entre lista de archivos y lista de reproducción"
 msgid "Switch config"
 msgstr "Cambiar configuración"
 
-#
-msgid "Switch next channel"
-msgstr "Cambiar al siguiente canal"
-
 msgid "Switch off the TV to correct input"
 msgstr "Apague el televisor para corregir la entrada"
 
@@ -21628,10 +21862,6 @@ msgstr "Cambiar al panel de lista de archivos"
 msgid "Switch to next EPG Event"
 msgstr "Cambiar al evento EPG siguiente"
 
-#
-msgid "Switch to next channel in history"
-msgstr "Cambiar al siguiente canal en el historial"
-
 # Mediaplayer Filelist Menue
 msgid "Switch to play list"
 msgstr "Cambiar a lista de reproducción"
@@ -21639,14 +21869,6 @@ msgstr "Cambiar a lista de reproducción"
 #
 msgid "Switch to previous EPG Event"
 msgstr "Cambiar al evento EPG anterior"
-
-#
-msgid "Switch to previous channel"
-msgstr "Cambiar al canal anterior"
-
-#
-msgid "Switch to previous channel in history"
-msgstr "Cambiar al canal anterior en el historial"
 
 msgid "Switch to the available RADIO services"
 msgstr "Cambiar a servicios de radio disponibles"
@@ -21679,10 +21901,13 @@ msgstr "Velocidad de símbolo y FEC"
 msgid "Symbolic link"
 msgstr "Enlace simbólico"
 
+msgid "Symmetrical skips"
+msgstr "Saltos simétricos"
+
 msgid "Sync NTP every (minutes)"
 msgstr "Sincronizar NTP cada (minutos)"
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr "Error de sincronización regresando al origen!"
 
 msgid "Sync time using"
@@ -22034,6 +22259,12 @@ msgstr "Tu %s %s lee los datos guardados en EPG cada (horas)."
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Tu %s %s almacena los datos de EPG cada (horas)."
 
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "El %s %s se reiniciará dentro de 1 segundo."
+
+msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
+msgstr "El %s %s se reiniciará en 10 segundos, a menos que haya slots eMMC para restaurar. Restaurar los slots eMMC puede tardar de 1 a 5 minutos por slot."
+
 #, python-format
 msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
@@ -22053,13 +22284,6 @@ msgstr "El modo AI que se utiliza para traducir idiomas. Puedes elegir el que of
 
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "El servicio de traducción impulsado por inteligencia artificial se optimizará para proporcionar el mejor rendimiento según la velocidad de carga de la conexión a Internet seleccionada."
-
-msgid ""
-"The AutoTimer plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"El plugin autotemporizador no está instalado.\n"
-"Por favor, instálalo."
 
 msgid "The data provided will not find services."
 msgstr "Los datos facilitados no encontrará canales."
@@ -22081,12 +22305,8 @@ msgstr ""
 "El plugin de búsquedas EPG no está instalado.\n"
 "Por favor, instálalo."
 
-msgid ""
-"The IMDb plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"El plugin IMDb no está instalado.\n"
-"Por favor, instálalo."
+msgid "The [spzimdb] plugin is not installed!\nDo you want to install it?"
+msgstr "El plugin [spzimdb] no está instalado!.\n¿Quiere instalarlo ahora?"
 
 #, python-format
 msgid ""
@@ -22180,6 +22400,13 @@ msgstr ""
 "Los autores no SE HACEN RESPONSABLES de la PÉRDIDA O DAÑO DE LOS DATOS!"
 
 msgid ""
+"The available disk space for time shift buffer is less than specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"El espacio disponible en disco para el búfer time shift es menor que el especificado en la configuración.\n"
+"¿Qué desea hacer?"
+
+msgid ""
 "The available disk space for time shift is less than specified in the "
 "settings.\n"
 "What do you want to do ?"
@@ -22221,11 +22448,11 @@ msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart e
 msgstr "El bouquet \"Último Escaneado\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
 
 msgid ""
-"The buffer time for time shift exceeds the specified limit in the settings.\n"
-"What do you want to do ?"
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
-"El buffer de timeshift excede el especificado en los ajustes.\n"
-"¿Qué quieres hacer?"
+"El búfer time shift supera el límite especificado en la configuración."
+"¿Qué desea hacer?"
 
 msgid ""
 "The channel may support VPS\n"
@@ -22334,6 +22561,10 @@ msgid ""
 "proceed?"
 msgstr ""
 "El directorio de picons ya existe y se tiene que eliminar. Quieres proceder?"
+
+#, python-format
+msgid "The process will take approximately %d minutes to complete."
+msgstr "El proceso tardará aproximadamente %d minutos en completarse."
 
 #
 #, python-format
@@ -22491,7 +22722,7 @@ msgstr ""
 msgid "There is no information to show for '%s'."
 msgstr "No hay información a mostrar para '%s'."
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr "No hay señal para bloquear!"
 
 msgid ""
@@ -22537,23 +22768,14 @@ msgstr "Este dispositivo ya está montado como HDD."
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Esta opción te permite cambiar audio a los altavoces BT."
 
-msgid ""
-"This allows you change the font size relative to skin size, so 1 increases "
-"by 1 point size, and -1 decreases by 1 point size."
-msgstr ""
-"Esto le permite cambiar el tamaño de la fuente en relación con el tamaño del "
-"skin, por lo que 1 aumenta en 1 punto de tamaño, y -1 disminuye en 1 punto "
-"de tamaño."
+msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
+msgstr "Esto le permite cambiar el tamaño de la fuente en relación con el tamaño del skin, por lo que 1 aumenta en 1 punto de tamaño, y -1 disminuye en 1 punto de tamaño."
 
 msgid "This allows you change the number of rows shown."
 msgstr "Te permite cambiar el número de filas mostradas."
 
-msgid ""
-"This allows you to set the number of digits to 5, if you have more than 9999 "
-"channels."
-msgstr ""
-"Esta opción te permite establecer el número de dígitos a 5, si tienes más de "
-"9999 canales."
+msgid "This allows you to set the maximum number of digits in a service number, up to 5."
+msgstr "Esto le permite establecer el número máximo de dígitos en un número de canal, hasta 5."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Esta lista está protegida por un PIN de control parental!"
@@ -22602,12 +22824,8 @@ msgstr "Este es el idioma seleccionado actualmente [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Este es el idioma local seleccionado actualmente [%s]"
 
-msgid ""
-"This is the initial / default volume offset applied to any services added "
-"the the volume adjust list."
-msgstr ""
-"Esta es la compensación de volumen inicial/predeterminada aplicada a "
-"cualquier servicio agregado a la lista de ajuste de volumen."
+msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgstr "Este es el desplazamiento de volumen inicial/predeterminado que se aplica a cualquier canal agregado a la lista de ajuste de volumen."
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -22628,12 +22846,8 @@ msgid "This menu offers options related managing the software on the %s %s."
 msgstr ""
 "El menú ofrece opciones relacionadas con la gestión del software en el %s %s."
 
-msgid ""
-"This offset will only be used if the channel does not have its own volume "
-"offset."
-msgstr ""
-"Este compensación solo se utilizará si el canal no tiene su propia "
-"compensación de volumen."
+msgid "This offset will only be used if the channel does not have its own volume offset."
+msgstr "Este desplazamiento solo se utilizará si el canal no tiene su propio desplazamiento de volumen."
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -22715,9 +22929,7 @@ msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Esta opción le permite activar la depuración en escala vertical."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
-msgstr ""
-"Esta opción te permite elegir configurar la vista de composición (texto o "
-"gráfico)."
+msgstr "Esta opción te permite elegir configurar la vista del diseño (texto o gráfico)."
 
 # Box Display
 msgid "This option allows you to Power Off the display."
@@ -22739,131 +22951,70 @@ msgstr "Esta opción te permite reforzar los tonos verdes de la imagen."
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Esta opción te permite comprobar el bypass HDMI EDID"
 
+# A/V Settings
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Esta opción le permite cambiar la posición del altavoz virtual."
 
-msgid ""
-"This option allows you to choose from the two channel lists that are "
-"available."
-msgstr ""
-"Esta opción te permite elegir entre las dos listas de canales disponibles."
+msgid "This option allows you to choose from the two channel lists that are available."
+msgstr "Esta opción le permite elegir entre las dos listas de canales disponibles."
 
-msgid ""
-"This option allows you to choose how to display 1080p 24Hz on your TV. (as "
-"not all TV's support these resolutions)"
-msgstr ""
-"Esta opción te permite elegir cómo se mostrará tu TV a una resolución 1080p "
-"24Hz. (no todas las TVs soportan esta resolución)"
+msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Esta opción le permite elegir cómo se mostrará 1080p 24Hz en su TV. (no todas las TVs admiten estas resoluciones)"
 
-msgid ""
-"This option allows you to choose how to display 1080p 25Hz on your TV. (as "
-"not all TV's support these resolutions)"
-msgstr ""
-"Esta opción te permite elegir cómo se mostrará tu TV a una resolución 1080p "
-"25Hz. (no todas las TVs soportan esta resolución)"
+msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Esta opción le permite elegir cómo se mostrará 1080p 25Hz en su TV. (no todas las TVs admiten estas resoluciones)"
 
-msgid ""
-"This option allows you to choose how to display 1080p 30Hz on your TV. (as "
-"not all TV's support these resolutions)"
-msgstr ""
-"Esta opción te permite elegir cómo se mostrará tu TV a una resolución 1080p "
-"30Hz. (no todas las TVs soportan esta resolución)"
+msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Esta opción le permite elegir cómo se mostrará 1080p 30Hz en su TV. (no todas las TVs admiten estas resoluciones)"
 
-msgid ""
-"This option allows you to choose how to display 2160p 24Hz on your TV. (as "
-"not all TV's support these resolutions)"
-msgstr ""
-"Esta opción te permite elegir cómo se mostrará tu TV a una resolución 2160P "
-"24Hz. (no todas las TVs soportan esta resolución)"
+msgid "This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Esta opción le permite elegir cómo se mostrará 2160p 24Hz en su TV. (no todas las TVs admiten estas resoluciones)"
 
-msgid ""
-"This option allows you to choose how to display 2160p 25Hz on your TV. (as "
-"not all TV's support these resolutions)"
-msgstr ""
-"Esta opción te permite elegir cómo se mostrará tu TV a una resolución 2160p "
-"25Hz. (no todas las TVs soportan esta resolución)"
+msgid "This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Esta opción le permite elegir cómo se mostrará 2160p 25Hz en su TV. (no todas las TVs admiten estas resoluciones)"
 
-msgid ""
-"This option allows you to choose how to display 2160p 30Hz on your TV. (as "
-"not all TV's support these resolutions)"
-msgstr ""
-"Esta opción te permite elegir cómo se mostrará tu TV a una resolución 2160p "
-"30Hz. (no todas las TVs soportan esta resolución)"
+msgid "This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Esta opción le permite elegir cómo se mostrará 2160p 30Hz en su TV. (no todas las TVs admiten estas resoluciones)"
 
-msgid ""
-"This option allows you to choose how to display 720p 24Hz on your TV. (as "
-"not all TV's support these resolutions)"
-msgstr ""
-"Esta opción te permite elegir cómo se mostrará tu TV a una resolución 720p "
-"24Hz. (no todas las TVs soportan esta resolución)"
+msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Esta opción le permite elegir cómo se mostrará 720p 24Hz en su TV. (no todas las TVs admiten estas resoluciones)"
 
-msgid ""
-"This option allows you to choose how to display SD progressive 24Hz on your "
-"TV. (as not all TV's support these resolutions)"
-msgstr ""
-"Esta opción te permite elegir como se mostrará tu TV en SD progresivo 24Hz. "
-"(no todas las TVs soportan estas resoluciones)"
+msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Esta opción le permite elegir cómo se mostrará SD progresivo 24Hz en su TV. (no todas las TVs admiten estas resoluciones)"
 
-msgid ""
-"This option allows you to choose how to display standard definition video on "
-"your TV."
-msgstr ""
-"Esta opción te permite elegir cómo visualizar la definición de video "
-"estándar en tu TV."
+msgid "This option allows you to choose how to display standard definition video on your TV."
+msgstr "Esta opción te permite elegir cómo visualizar la definición de video estándar en tu TV."
 
-msgid ""
-"This option allows you to choose what the first button press jumps to in "
-"channel list screen, (so pressing '2' jumps to 'A' or '2' first), when "
-"'Quick Actions' preset actions are performed. "
-msgstr ""
-"Esta opción te permite elegir qué hace la primera pulsación de tecla en la "
-"lista de canales ('2' sube a 'A' o '2' primero). "
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. "
+msgstr "Esta opción te permite elegir qué hace la primera pulsación de tecla en la lista de canales ('2' sube a 'A' o '2' primero). "
 
-msgid ""
-"This option allows you to choose whether or not to display genre information "
-"for the event."
-msgstr ""
-"Esta opción te permite elegir si quieres visualizar la información del "
-"género del evento."
+msgid "This option allows you to choose whether or not to display genre information for the event."
+msgstr "Esta opción te permite elegir si quieres visualizar la información del género del evento."
 
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Esta opción te permite habilitar el audio 3D Surround."
 
-msgid ""
-"This option allows you to set offset values for different Letterbox "
-"resolutions."
-msgstr ""
-"Esta opción te permite establecer valores de compensación para diferentes "
-"resoluciones de formato Letterbox."
+msgid "This option allows you to set offset values for different Letterbox resolutions."
+msgstr "Esta opción te permite establecer valores de compensación para diferentes resoluciones de formato Letterbox."
 
-msgid ""
-"This option allows you to the SNR as a percentage (not all receivers support "
-"this)."
-msgstr ""
-"Esta opción permite visualizar SNR como porcentaje (no todos los receptores "
-"lo soportan)."
+msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
+msgstr "Esta opción permite visualizar SNR como porcentaje (no todos los receptores lo soportan)."
 
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Esta opción te permite usar todos los modos HDMI"
 
 msgid "This option allows you to view the old and new settings side by side."
-msgstr ""
-"Esta opción te permite ver los ajustes nuevos y antiguos, unos al lado de "
-"los otros."
+msgstr "Esta opción te permite ver los ajustes nuevos y antiguos, unos al lado de los otros."
 
 msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Esta opción configura el retraso general de audio para altavoces BT."
 
-msgid ""
-"This option configures the general audio delay of Dolby Digital sound tracks."
-msgstr ""
-"Esta opción configura el retraso general de audio de las pistas Dolby "
-"Digital."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgstr "Esta opción configura el retraso general de audio de las pistas Dolby Digital."
 
 msgid "This option configures the general audio delay of stereo sound tracks."
-msgstr ""
-"Esta opción configura el retraso general de audio de las pistas estéreo."
+msgstr "Esta opción configura el retraso general de audio de las pistas estéreo."
 
 msgid "This option configures the picture sharpness."
 msgstr "Esta opción configura la nitidez de la imagen."
@@ -22887,28 +23038,14 @@ msgstr "Esta opción te permite ajustar la transparencia del OSD."
 msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Esta opción te permite elegir el modo 3D del OSD."
 
-msgid ""
-"This option lets you show the 3D OSD menu option in the Extension Menu "
-"screen."
-msgstr ""
-"Esta opción le permite mostrar la opción de menú OSD 3D en la pantalla del "
-"Menú extensiones."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
+msgstr "Esta opción le permite mostrar la opción de menú OSD 3D en la pantalla del Menú extensiones."
 
-msgid ""
-"This option moves the PVR status display from a separate window into the "
-"MoviePlayer InfoBar."
-msgstr ""
-"Esta opción traslada el estado PVR de una ventana aparte a la barra de "
-"información del reproductor de películas."
+msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
+msgstr "Esta opción traslada el estado PVR de una ventana aparte a la barra de información del reproductor de películas."
 
-msgid ""
-"This option set the level of suppression of mosquito noise (Mosquito Noise "
-"is random aliasing as a result of strong compression). Obviously this goes "
-"at the cost of picture details."
-msgstr ""
-"Esta opción configura el nivel de supresión de ruido de mosquito (muestreo "
-"aleatorio, resultado de una fuerte compresión). Obviamente, se reduce el "
-"detalle en la imagen."
+msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
+msgstr "Esta opción configura el nivel de supresión de ruido de mosquito (muestreo aleatorio, resultado de una fuerte compresión). Obviamente, se reduce el detalle en la imagen."
 
 msgid "This option sets  the picture contrast."
 msgstr "Esta opción configura el contraste de la imagen."
@@ -22928,32 +23065,17 @@ msgstr "Esta opción configura el tono de la imagen."
 msgid "This option sets the picture saturation."
 msgstr "Esta opción configura la saturación de la imagen."
 
-msgid ""
-"This option sets the scaler sharpness, used when stretching picture from 4:3 "
-"to 16:9."
-msgstr ""
-"Esta opción configura la nitidez del escalamiento al estirar la imagen de "
-"4:3 a 16:9."
+msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
+msgstr "Esta opción configura la nitidez del escalamiento al estirar la imagen de 4:3 a 16:9."
 
-msgid ""
-"This option sets the suppression of false digital contours, that are the "
-"result of a limited number of discrete values."
-msgstr ""
-"Esta opción configura la supresión de bordes digitales falsos, resultado de "
-"un número limitado de valores discretos."
+msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
+msgstr "Esta opción configura la supresión de bordes digitales falsos, resultado de un número limitado de valores discretos."
 
-msgid ""
-"This option sets up the picture sharpness, used when the picture is being "
-"upscaled."
-msgstr ""
-"Esta opción configura la nitidez de la imagen cuando se está ampliando."
+msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
+msgstr "Esta opción configura la nitidez de la imagen cuando se está ampliando."
 
-msgid ""
-"This plugin can determine whether a programme begins earlier or lasts "
-"longer. The channel has to provide reliable data."
-msgstr ""
-"Este plugin puede determinar si un programa empieza antes o dura más. El "
-"canal tiene que proporcionar datos fiables."
+msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr "Este plugin puede determinar si un programa empieza antes o dura más. El canal tiene que proporcionar datos fiables."
 
 #
 msgid "This plugin is installed."
@@ -23207,6 +23329,9 @@ msgstr "Guardar Timeshift durante el zapeo"
 msgid "Time shift save failed!"
 msgstr "¡Error al guardar Timeshift!"
 
+msgid "Time shift save location"
+msgstr "Ubicación para guardar Timeshift"
+
 msgid "Time shift save recording (Select event)"
 msgstr "Grabación de Timeshift guardada (seleccionar programa)"
 
@@ -23255,9 +23380,6 @@ msgstr "Marcador de línea de tiempo"
 msgid "Timeline scale"
 msgstr "Escala de tiempo"
 
-msgid "Timer Actions"
-msgstr "Acciones de Temporizador"
-
 msgid "Timer Log Actions"
 msgstr "Acciones log del temporizador"
 
@@ -23298,10 +23420,7 @@ msgid "Timer recording location"
 msgstr "Ruta de grabación del temporizador"
 
 msgid "Timer selection"
-msgstr "Selección de grabación"
-
-msgid "Timer selection..."
-msgstr "Selección del temporizador …"
+msgstr "Selección del temporizador"
 
 #
 msgid "Timer type"
@@ -23373,7 +23492,7 @@ msgstr "¿Donde te gustaría extraer '%s'?"
 msgid "Today"
 msgstr "Hoy"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr "Alternar downmix digital ..."
 
 msgid "Toggle HDMI-In PiP"
@@ -23401,7 +23520,7 @@ msgstr "Cambiar una marca de corte a la posición actual"
 msgid "Toggle all related files"
 msgstr "Alternar todos los archivos relacionados"
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr "Cambia la relación de aspecto ..."
 
 msgid "Toggle auto refresh On/Off"
@@ -23410,11 +23529,14 @@ msgstr "Alternar auto refreso On/Off"
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Alternar entre listas grupos/epg"
 
+msgid "Toggle between the available TV and RADIO services"
+msgstr "Alternar entre los canales de TV y RADIO disponibles"
+
 msgid "Toggle display of image information"
 msgstr "Alternar visualización de la información de imagen"
 
-msgid "Toggle display of the InfoBar"
-msgstr "Alternar la visualización de la infobar"
+msgid "Cycle through the InfoBars"
+msgstr "Recorrer las barras de información"
 
 msgid "Toggle display of the image status overlay"
 msgstr "Alternar visualización de la superposición de estado de la imagen"
@@ -23452,7 +23574,7 @@ msgstr "Alternar selecciones"
 msgid "Toggle service name display"
 msgstr "Alternar la visualización del nombre del canal"
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Cambia entre televisión y radio"
 
 msgid "Togo"
@@ -23517,18 +23639,21 @@ msgstr "Total:"
 msgid "Track"
 msgstr "Pista"
 
+msgid "Traditional"
+msgstr "Tradicional"
+
 msgid "Traditional Chinese"
-msgstr "Traditional Chinese"
+msgstr "Chino tradicional"
 
 #
 msgid "Transcode"
 msgstr "Transcodificar"
 
 msgid "Transcoding"
-msgstr "Transcoding"
+msgstr "Transcodificar"
 
-msgid "Transcoding: "
-msgstr "Transcodificar: "
+msgid "Translate Subs On This Service"
+msgstr "Traducir subtítulos en este canal"
 
 #
 msgid "Translation"
@@ -24023,29 +24148,11 @@ msgstr "Quitar como canal de inicio"
 msgid "Unsupported"
 msgstr "No soportado"
 
-msgid "Unused 0x22"
-msgstr ""
+msgid "Until standby/restart"
+msgstr "Hasta el modo reposo/reinicio"
 
-msgid "Unused 0x52"
-msgstr ""
-
-msgid "Unused 0x53"
-msgstr ""
-
-msgid "Unused 0x54"
-msgstr ""
-
-msgid "Unused 0x71"
-msgstr ""
-
-msgid "Unused 0x72"
-msgstr ""
-
-msgid "Unused 0xb1"
-msgstr ""
-
-msgid "Unused 0xb2"
-msgstr ""
+msgid "Unused %s"
+msgstr "No usado %s"
 
 msgid "Unzipping Image"
 msgstr "Descomprimiendo imagen"
@@ -24476,6 +24583,12 @@ msgstr "Memoria interna usada"
 msgid "Used service scan type"
 msgstr "Tipo de búsqueda de canales usada"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "Se utiliza para especificar el retraso cuando se cambia entre servicios y está habilitado el paso directo AC3."
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "Se utiliza para especificar el retraso cuando se cambia entre servicios y está habilitado el paso directo AC3+/Atmos."
+
 msgid "Used:"
 msgstr "Utilizado:"
 
@@ -24503,17 +24616,6 @@ msgstr "Definido por el usuario"
 #, python-format
 msgid "User defined 0x%02x"
 msgstr "Definido por el usuario 0x%02x"
-
-msgid "User defined delay when you press another button to zap to the channel."
-msgstr ""
-"Retardo definido por el usuario cuando se pulsa otro botón para zapear al "
-"canal."
-
-msgid ""
-"User defined delay when you press the first button to zap to the channel."
-msgstr ""
-"Retardo definido por el usuario cuando se pulsa el primer botón para zapear "
-"al canal."
 
 #
 msgid "User defined transponder"
@@ -24895,7 +24997,7 @@ msgid "View photos..."
 msgstr "Mostrar fotos..."
 
 #
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Mostrar teletexto…"
 
 msgid "View the archive contents"
@@ -24956,8 +25058,14 @@ msgstr "Acciones del ajuste de volumen"
 msgid "Volume Adjust Service Selection"
 msgstr "Ajuste de volumen de la selección de canales"
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr "Acciones de selección de servicio de ajuste de volumen"
+
 msgid "Volume Adjust Settings"
 msgstr "Configuraciones de ajuste de volumen"
+
+msgid "Volume adjustment mode"
+msgstr "Modo de ajuste de volumen"
 
 msgid "Volume display timer"
 msgstr "Tiempo visualización volumen"
@@ -25429,12 +25537,8 @@ msgstr ""
 "Cuando está activado, continua hacia el próximo grupo cuando has alcanzado "
 "el último canal del grupo actual."
 
-msgid ""
-"When enabled, deleted recordings are moved to the trash can, instead of "
-"being deleted immediately."
-msgstr ""
-"Cuando está activado, las grabaciones borradas pasan a la papelera en vez de "
-"eliminarse inmediatamente."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
+msgstr "Cuando está habilitado, las grabaciones eliminadas se mueven a la papelera, en lugar de eliminarse inmediatamente."
 
 msgid ""
 "When enabled, external subtitles will be always turned on for playback movie."
@@ -25691,6 +25795,9 @@ msgstr "¿Dónde quiere hacer el backup de sus ajustes?"
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "¿Dónde quieres guardar las grabaciones temporales de Timeshift?"
+
+msgid "Which time shift buffer event do you want to save?"
+msgstr "¿Qué evento de búfer de cambio de tiempo desea guardar?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "¿Qué programa quieres guardar permanentemente?"
@@ -26016,8 +26123,15 @@ msgstr ""
 "Has elegido restaurar la configuración. Enigma2 se reiniciará después. Pulsa "
 "‘OK’ para inciar ahora la restauración."
 
-msgid "You have chosen to save the current time shift"
-msgstr "Usted ha elegido guardar el cambio de hora actual"
+msgid "You have chosen to save the current time shift buffer"
+msgstr "Has elegido guardar el buffer time shift actual"
+
+msgid ""
+"You have chosen to save the current time shift event, but the event has not yet finished\n"
+"What do you want to do?"
+msgstr ""
+"Has elegido guardar el evento time shift actual, pero aún no ha finalizado\n"
+"¿Qué quieres hacer?"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not "
@@ -26059,8 +26173,8 @@ msgstr "¡Debe configurar al menos un comando!"
 msgid "You seem to be in time shift!"
 msgstr "¡Parece que estás en Timeshift!"
 
-msgid "You seem to be in time shift, Do you want to leave time shift ?"
-msgstr "Parece que estás en Timeshift. ¿Quieres abandonar Timeshift?"
+msgid "You seem to be in time shift, do you want to leave time shift?"
+msgstr "Pareces estar en time shift, ¿quieres salir del cambio temporal?"
 
 msgid ""
 "You seem to be in time shift, the service will briefly stop as time shift "
@@ -26390,6 +26504,24 @@ msgstr "Zap al canal (configuración en el menú)"
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zap para canalizar y cerrar (configuración en el menú)"
 
+msgid "Zap to next service"
+msgstr "Cambiar al siguiente canal"
+
+msgid "Zap to next service in history"
+msgstr "Cambiar al siguiente canal en el historial"
+
+msgid "Zap to previous service"
+msgstr "Cambiar al canal anterior"
+
+msgid "Zap to previous service in history"
+msgstr "Cambiar al canal anterior en el historial"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Cambiar al canal anterior en el boouquet actual"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Cambiar al siguiente canal en el boouquet actual"
+
 msgid "Zap up"
 msgstr "Cambiar abajo"
 
@@ -26411,14 +26543,8 @@ msgstr "Acciones de zoom"
 msgid "Zoom In/Out TV"
 msgstr "Acercar/alejar TV"
 
-msgid "Zoom In/Out TV..."
-msgstr "Acercar/alejar TV…"
-
 msgid "Zoom Off"
-msgstr "Zoom off"
-
-msgid "Zoom Off..."
-msgstr "Zoom desconectado..."
+msgstr "Zoom desconectado"
 
 msgid "Zoom from left"
 msgstr "Zoom desde la izquierda"
@@ -26584,6 +26710,9 @@ msgstr "Pistas de audio"
 #
 msgid "automatic"
 msgstr "Automático"
+
+msgid "AutoTimer was installed successfully."
+msgstr "AutoTimer se instaló exitosamente."
 
 #
 msgid "back"
@@ -26800,7 +26929,7 @@ msgstr "Habilitar modo movimiento"
 
 #
 msgid "enabled"
-msgstr "Activado"
+msgstr "activado"
 
 #
 msgid "End Alternatives Edit"
@@ -27049,7 +27178,7 @@ msgid "languages"
 msgstr "idiomas"
 
 #
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "Salir del reproductor de películas"
 
 #
@@ -27209,9 +27338,6 @@ msgstr "No comprobado"
 #
 msgid "not used"
 msgstr "No utilizado"
-
-msgid "not_tested"
-msgstr "no probado"
 
 #
 msgid "nothing connected"
@@ -27454,7 +27580,7 @@ msgstr "bandeja"
 msgid "show DVD main menu"
 msgstr "Mostrar el menú principal de DVD"
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr "Mostrar EPG..."
 
 msgid "show all cards"
@@ -27467,35 +27593,8 @@ msgstr "Mostrar todas las etiquetas"
 msgid "Show Alternatives"
 msgstr "Mostrar alternativas"
 
-msgid "show cards with uphop 0"
-msgstr "Mostrar tarjetas con salto superior 0"
-
-msgid "show cards with uphop 1"
-msgstr "Mostrar tarjetas con salto superior 1"
-
-msgid "show cards with uphop 2"
-msgstr "Mostrar tarjetas con salto superior 2"
-
-msgid "show cards with uphop 3"
-msgstr "Mostrar tarjetas con salto superior 3"
-
-msgid "show cards with uphop 4"
-msgstr "Mostrar tarjetas con salto superior 4"
-
-msgid "show cards with uphop 5"
-msgstr "Mostrar tarjetas con salto superior 5"
-
-msgid "show cards with uphop 6"
-msgstr "Mostrar tarjetas con salto superior 6"
-
-msgid "show cards with uphop 7"
-msgstr "Mostrar tarjetas con salto superior 7"
-
-msgid "show cards with uphop 8"
-msgstr "Mostrar tarjetas con salto superior 8"
-
-msgid "show cards with uphop 9"
-msgstr "Mostrar tarjetas con salto superior 9"
+msgid "Show cards with uphop %s"
+msgstr "Mostrar tarjetas con salto superior %s"
 
 msgid "show picons in quickzap"
 msgstr "Mostrar picons en zapeo rápido"
@@ -27527,7 +27626,7 @@ msgid "skip backward"
 msgstr "Salto atrás"
 
 #
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "Salto atrás (introducir hora)"
 
 #
@@ -27535,7 +27634,7 @@ msgid "skip forward"
 msgstr "Salto adelante"
 
 #
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "Salto adelante (introducir tiempo)"
 
 msgid "slow"
@@ -27701,10 +27800,6 @@ msgid "untestable"
 msgstr "incomprobable"
 
 #
-msgid "until standby/restart"
-msgstr "Hasta el reposo/reinicio"
-
-#
 msgid "update"
 msgstr "actualización"
 
@@ -27775,10 +27870,6 @@ msgstr[1] "con los errores %d"
 # neu 04.01.13 husky
 msgid "with errors"
 msgstr "con errores"
-
-# neu 04.01.13 husky
-msgid "with_errors"
-msgstr "con_errores"
 
 #
 msgid "working"
@@ -28393,6 +28484,9 @@ msgstr ""
 "¿Borrar realmente de forma permanente los archivos MultiBoot?\n"
 "%s"
 
+msgid "Really permanently delete MultiBoot Images?"
+msgstr "¿Realmente quiere eliminar permanentemente las imágenes MultiBoot?"
+
 msgid "Remove forever"
 msgstr "Eliminar Kexec"
 
@@ -28572,6 +28666,9 @@ msgstr "Añadir más slots"
 msgid "Choose the amount of additional slots."
 msgstr "Escoge la cantidad de slots adicionales."
 
+msgid "Choose the target device for the slots."
+msgstr "Elija el dispositivo de destino para los slots."
+
 msgid "Choose the target location for the slots."
 msgstr "Elija la ubicación de destino para los slots."
 
@@ -28580,6 +28677,9 @@ msgstr "Cerrar el administrador de multiBoot Kexec"
 
 msgid "Create Slots"
 msgstr "Crear slots"
+
+msgid "Create slots for the selected device"
+msgstr "Crear slots para el dispositivo seleccionado"
 
 msgid "Create the additional slots on the selected device"
 msgstr "Crear los slots adicionales en el dispositivo seleccionado"
@@ -28601,7 +28701,7 @@ msgid "Please select the device or Cancel to cancel the selection."
 msgstr "Seleccione el dispositivo o Cancelar para cancelar la selección."
 
 msgid "Press GREEN to enable MultiBoot!"
-msgstr "Pulsa botón verde para activar Multiboot!"
+msgstr "Pulsa botón VERDE para activar Multiboot!"
 
 #
 msgid "Remove Files"
@@ -28610,19 +28710,15 @@ msgstr "Eliminar archivos"
 msgid "Remove the MultiBoot files"
 msgstr "Eliminar los archivos multiboot"
 
+msgid "Select a device to create multiboot slots"
+msgstr "Seleccione un dispositivo para crear slots multiboot"
+
 msgid "Select a device to use for the additional slots"
 msgstr "Seleccione un dispositivo para usar en los slots adicionales"
 
 #
 msgid "Slot Manager"
 msgstr "Administrador de slots"
-
-msgid ""
-"The %s %s will reboot within 10 seconds, unless there are eMMC slots to "
-"restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
-msgstr ""
-"El %s %s se reiniciará en 10 seg, al menos que haya slots eMMC a restaurar. "
-"Restaurar slots eMMC puede durar entre 1 y 5 minutos por slot."
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"
@@ -28653,6 +28749,9 @@ msgstr "Selecciona el puerto de salida de vídeo con los botones ARRIBA/ABAJO"
 
 msgid "Default video mode selected for the TV."
 msgstr "Modo de vídeo predeterminado seleccionado para la TV."
+
+msgid "Default volume offset"
+msgstr "Desplazamiento de volumen predeterminado"
 
 msgid "Default video mode selected"
 msgstr "Modo de vídeo por defecto seleccionado"
@@ -28981,6 +29080,18 @@ msgid "Skip package installation, only core packages will be available"
 msgstr ""
 "Omitir instalación de paquetes, solo paquetes básicos (sin servicio FTP)"
 
+msgid "Skip sensibility (Horizontal)"
+msgstr "Sensibilidad de salto (Horizontal)"
+
+msgid "Skip sensibility (Vertical)"
+msgstr "Sensibilidad de salto (Vertical)"
+
+msgid "Skip time for '%s' button"
+msgstr "Saltar tiempo para el botón '%s'"
+
+msgid "Skip time for '%s'/'%s' buttons"
+msgstr "Omitir tiempo para los botones '%s'/'%s'"
+
 msgid "Small Box Preparation"
 msgstr "Preparación receptor"
 
@@ -29014,6 +29125,12 @@ msgstr ""
 #
 msgid "There are pending tasks:"
 msgstr "Hay tareas pendientes:"
+
+#, python-format
+msgid "There is %d scrambled recording, which will be unscrambled during Standby."
+msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
+msgstr[0] "Hay %d grabaciones codificadas, que se decodificarán durante el modo de espera."
+msgstr[1] "Hay %d grabación codificada, que se decodificará durante el modo de espera."
 
 #
 msgid "This wizard has finished"
@@ -29257,41 +29374,26 @@ msgstr "Eliminar Plugin"
 msgid "Remove the selected list of plugins"
 msgstr "Eliminar la lista de plugins seleccionada"
 
-msgid ""
-"Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the "
-"Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes 'dev', 'staticdev', 'dbg' y 'doc' "
-"en la pantalla de Descarga de Plugins."
+msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
+msgstr "Selecciona 'Sí' para mostrar los paquetes 'dev', 'staticdev', 'dbg' y 'doc' en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show LCD skin packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de skins de LCD en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de skins de LCD en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de OpenPLi en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de OpenPLi en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de OpenViX en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de OpenViX en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de enlaces web en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de enlaces web en la pantalla de Descarga de Plugins."
 
-msgid ""
-"Select the layout of the installed plugins in the Plugin Browser screen. "
-"NOTE: The change is not immediate but will be seen when Plugin Browser is "
-"restarted!"
-msgstr ""
-"Selecciona el layout de los plugins instalados en la pantalla del navegador "
-"de plugins. NOTA: ¡El cambio no es inmediato, pero se verá cuando se "
-"reinicie el navegador de plugins!"
+msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
+msgstr "Seleccione 'Sí' para apagar inmediatamente en lugar de iniciar la descodificación."
+
+msgid "Select the layout of the installed plugins in the Plugin Browser screen."
+msgstr "Seleccione el diseño de los plugins instalados en la pantalla del Navegador de plugins."
 
 msgid ""
 "Select the sort order of the Plugin Browser menu entries. User defined also "
@@ -29313,9 +29415,6 @@ msgstr "Mostrar paquetes de display"
 msgid "Show Driver packages"
 msgstr "Mostrar paquetes de drivers"
 
-msgid "Show Extension packages"
-msgstr "Mostrar paquetes de extensiones"
-
 msgid "Show Kernel packages"
 msgstr "Mostrar paquetes de kernel"
 
@@ -29327,12 +29426,6 @@ msgstr "Mostrar paquetes OpenPLi"
 
 msgid "Show OpenViX packages"
 msgstr "Mostrar paquetes OpenViX"
-
-msgid "Show Picon packages"
-msgstr "Mostrar paquetes de picon"
-
-msgid "Show Plugin Skin packages"
-msgstr "Mostrar paquetes de skins"
 
 msgid "Show Security packages"
 msgstr "Mostrar paquetes de seguridad"
@@ -29415,29 +29508,19 @@ msgid "Show Gstreamer packages"
 msgstr "Mostrar paquetes gstreamer"
 
 msgid "Select 'Yes' to show kodi addons in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los addons de kodi en la pantalla de Descarga "
-"de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los addons de kodi en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show docker packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de docker en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de docker en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show python packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes python en la pantalla de Descarga "
-"de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes python en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show language packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de idioma en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de idioma en la pantalla de Descarga de Plugins."
 
 msgid "Select 'Yes' to show gstreamer packages in the Download Plugins screen."
-msgstr ""
-"Selecciona 'Sí' para mostrar los paquetes de gstreamer en la pantalla de "
-"Descarga de Plugins."
+msgstr "Selecciona 'Sí' para mostrar los paquetes de gstreamer en la pantalla de Descarga de Plugins."
 
 msgid "Reset Order"
 msgstr "Restablecer orden de clasificación"

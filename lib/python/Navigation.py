@@ -2,7 +2,7 @@ from os import remove
 from os.path import exists
 from time import ctime, time
 
-from enigma import eServiceCenter, eServiceReference, eTimer, getBestPlayableServiceReference, iPlayableService, iServiceInformation, pNavigation
+from enigma import eServiceCenter, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iServiceInformation, iRecordableService, iRecordableServicePtr, pNavigation
 
 import NavigationInstance
 import RecordTimer
@@ -12,6 +12,7 @@ from Components.config import config
 from Components.ImportChannels import ImportChannels
 from Components.ParentalControl import parentalControl
 from Components.PluginComponent import plugins
+from Components.RecordingConfig import recType
 from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar, MoviePlayer
@@ -29,6 +30,9 @@ MODULE_NAME = __name__.split(".")[-1]
 # TODO: Move most of the code to pNavgation and remove this stuff from python.
 #
 class Navigation:
+	playServiceExtensions = []
+	recordServiceExtensions = []
+
 	TIMER_TYPES = {
 		0: "Record-timer",
 		1: "Zap-timer",
@@ -41,15 +45,21 @@ class Navigation:
 			raise NavigationInstance.instance
 		NavigationInstance.instance = self  # This is needed to prevent circular imports
 		self.ServiceHandler = eServiceCenter.getInstance()
+		self.activeStreamings = []
+		self.indicatorRecordingsCount = None
+		self.anyRecordingsCount = None
+		self.realRecordingsCount = None
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.dispatchEvent)
 		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
+		eStreamServer.getInstance().streamStatusChanged.get().append(self.streamStatusChangedCB)
 		self.event = []
 		self.record_event = []
 		self.currentBouquetName = ""
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
+		self.originalPlayingServiceReference = None
 		Screens.Standby.TVstate()
 		self.skipWakeup = False
 		self.skipTVWakeup = False
@@ -284,40 +294,61 @@ class Navigation:
 
 	def dispatchRecordEvent(self, rec_service, event):
 		# print(f"[Navigation] Record_event {rec_service}, {event}.")
+		self.anyRecordingsCount = None
+		self.indicatorRecordingsCount = None
+		self.realRecordingsCount = None
 		for x in self.record_event:
 			x(rec_service, event)
 
-	def serviceHook(self, ref):
-		wrappererror = None
-		nref = ref
-		if nref.getPath():
-			for p in plugins.getPlugins(PluginDescriptor.WHERE_PLAYSERVICE):
-				(newurl, errormsg) = p(service=nref)
-				if errormsg:
-					wrappererror = _("Error getting link via %s\n%s") % (p.name, errormsg)
-					break
-				elif newurl:
-					nref.setAlternativeUrl(newurl)
-					break
-			if wrappererror:
-				AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
-		return nref, wrappererror
+	def restartService(self):
+		self.playService(self.currentlyPlayingServiceOrGroup, forceRestart=True)
 
-	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True, ignoreStreamRelay=False):
-		oldref = self.currentlyPlayingServiceOrGroup
-		if ref and oldref and ref == oldref and not forceRestart:
-			print("[Navigation] Ignore request to play already running service.  (1)")
-			return 1
-		print(f"[Navigation] Playing ref '{ref and ref.toString()}'.")
+	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True, ignoreStreamRelay=False, event=None):
+
 		if exists("/proc/stb/lcd/symbol_signal"):
 			signal = "1" if config.lcd.mode.value and ref and "0:0:0:0:0:0:0:0:0" not in ref.toString() else "0"
 			fileWriteLine("/proc/stb/lcd/symbol_signal", signal, source=MODULE_NAME)
+
+		# Some plugins send None as ref becasue want to shutdown enigma play system.
+		# So we have to stop current service if someone send None.
 		if ref is None:
 			self.stopService()
 			return 0
-		from Components.ServiceEventTracker import InfoBarCount
-		InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
+
+		oldref = self.currentlyPlayingServiceOrGroup
+
+		if ref and oldref and ref == oldref and not forceRestart:
+			print("[Navigation] Ignore request to play already running service.  (1)")
+			return 1
+
+		# from Components.ServiceEventTracker import InfoBarCount
+		# InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
+		InfoBarInstance = InfoBar.instance
+		isHandled = False
+
+		currentServiceSource = None
+		if InfoBarInstance:
+			currentServiceSource = InfoBarInstance.session.screen["CurrentService"]
+
+		if "%3a//" in ref.toString():
+			self.currentlyPlayingServiceReference = None
+			self.currentlyPlayingService = None
+			if currentServiceSource:
+				currentServiceSource.newService(False)
+
+		print(f"[Navigation] Playing ref '{ref and ref.toString()}'.")
+		self.currentlyPlayingServiceReference = ref
+		self.currentlyPlayingServiceOrGroup = ref
+		self.originalPlayingServiceReference = ref
+
 		isStreamRelay = False
+
+		if InfoBarInstance and currentServiceSource:
+			currentServiceSource.newService(ref)
+			InfoBarInstance.session.screen["Event_Now"].updateSource(self.currentlyPlayingServiceReference)
+			InfoBarInstance.session.screen["Event_Next"].updateSource(self.currentlyPlayingServiceReference)
+			InfoBarInstance.serviceStarted()
+
 		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl=False, forceRestart=forceRestart, adjust=adjust)):
 			if ref.flags & eServiceReference.isGroup:
 				oldref = self.currentlyPlayingServiceReference or eServiceReference()
@@ -368,6 +399,10 @@ class Navigation:
 					playref, wrappererror = self.serviceHook(playref)
 					if wrappererror:
 						return 1
+
+				for f in Navigation.playServiceExtensions:
+					playref, isHandled = f(self, playref, event, InfoBarInstance)
+
 				print(f"[Navigation] Playref is '{playref.toString()}'.")
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
@@ -385,9 +420,10 @@ class Navigation:
 					self.firstStart = False
 					self.retryServicePlayTimer.start(delay, True)
 					return 0
-				elif self.pnav.playService(playref):
+				elif not isHandled and self.pnav.playService(playref):
 					print(f"[Navigation] Failed to start '{playref.toString()}'.")
 					self.currentlyPlayingServiceReference = None
+					self.originalPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
 					if oldref and ("://" in oldref.getPath() or streamrelay.checkService(oldref)):
 						print("[Navigation] Streaming was active, try again.")  # Use timer to give the stream server the time to deallocate the tuner.
@@ -397,16 +433,38 @@ class Navigation:
 				self.skipServiceReferenceReset = False
 				if isStreamRelay and not self.isCurrentServiceStreamRelay:
 					self.isCurrentServiceStreamRelay = True
+				if InfoBarInstance and "%3a//" in playref.toString():
+					self.originalPlayingServiceReference = None
+					InfoBarInstance.serviceStarted()
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 		return 1
+
+	def serviceHook(self, ref):
+		wrappererror = None
+		nref = ref
+		if hasattr(nref, "getPath"):
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_PLAYSERVICE):
+				(newurl, errormsg) = p(service=nref)
+				if errormsg:
+					wrappererror = _("Error getting link via %s\n%s") % (p.name, errormsg)
+					break
+				elif newurl:
+					nref.setAlternativeUrl(newurl)
+					break
+			if wrappererror:
+				AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
+		return nref, wrappererror
 
 	def getCurrentlyPlayingServiceReference(self):
 		return self.currentlyPlayingServiceReference
 
 	def getCurrentlyPlayingServiceOrGroup(self):
 		return self.currentlyPlayingServiceOrGroup
+
+	def getCurrentServiceReferenceOriginal(self):
+		return self.originalPlayingServiceReference or self.currentlyPlayingServiceOrGroup
 
 	def getCurrentServiceRef(self):
 		curPlayService = self.getCurrentService()
@@ -437,6 +495,8 @@ class Navigation:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
 			if type != (pNavigation.isPseudoRecording | pNavigation.isFromEPGrefresh):
 				ref, isStreamRelay = streamrelay.streamrelayChecker(ref)
+				for f in Navigation.recordServiceExtensions:
+					ref = f(self, ref)
 				#if not isStreamRelay:
 				#	ref, wrappererror = self.serviceHook(ref)
 			service = ref and self.pnav and self.pnav.recordService(ref, simulate, type)
@@ -444,15 +504,33 @@ class Navigation:
 				print("[Navigation] Record returned non-zero.")
 		return service
 
-	def restartService(self):
-		self.playService(self.currentlyPlayingServiceOrGroup, forceRestart=True)
-
 	def stopRecordService(self, service):
-		ret = self.pnav and self.pnav.stopRecordService(service)
+		ret = -1
+		if service and isinstance(service, iRecordableServicePtr):
+			ret = self.pnav and self.pnav.stopRecordService(service)
 		return ret
 
+	def streamStatusChangedCB(self, status, sref, host):
+		if "127.0.0.1" in host:  # Ignore local host.
+			return
+		print(f"[Navigation] Stream status changed: {status}, {sref}, {host}.")
+		if status == 0:
+			self.activeStreamings = [sref]  # TODO: Check if this is correct. Add support for multiple streams.
+		else:
+			self.activeStreamings = []
+
+		self.anyRecordingsCount = None
+		self.indicatorRecordingsCount = None
+		self.realRecordingsCount = None
+
+		for x in self.record_event:
+			x(None, iRecordableService.evStart if status == 0 else iRecordableService.evEnd)
+
 	def getRecordings(self, simulate=False, type=pNavigation.isAnyRecording):
-		return self.pnav and self.pnav.getRecordings(simulate, type)
+		if ((type == pNavigation.isAnyRecording) or (type & pNavigation.isStreaming == pNavigation.isStreaming)) and self.activeStreamings:
+			return self.pnav and self.pnav.getRecordings(simulate, type) + self.activeStreamings
+		else:
+			return self.pnav and self.pnav.getRecordings(simulate, type)
 
 	def getRecordingsServices(self, type=pNavigation.isAnyRecording):
 		return self.pnav and self.pnav.getRecordingsServices(type)
@@ -484,8 +562,8 @@ class Navigation:
 				lastrecordEnd = 0
 				for timer in self.RecordTimer.timer_list:
 					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
-						if timer.afterEvent < 2:
-							timer.afterEvent = 2
+						if timer.afterEvent < 2 and timer.forceDeepStandby is False:
+							timer.forceDeepStandby = True
 							print(f"[Navigation] Set after-event for recording '{timer.name}' to deep standby.")
 						if timer.end > lastrecordEnd:
 							lastrecordEnd = timer.end + 900
@@ -496,6 +574,21 @@ class Navigation:
 		if not self.currentlyPlayingService:
 			self.currentlyPlayingService = self.pnav and self.pnav.getCurrentService()
 		return self.currentlyPlayingService
+
+	def getAnyRecordingsCount(self):
+		if self.anyRecordingsCount is None:
+			self.anyRecordingsCount = len(self.getRecordings(False, pNavigation.isAnyRecording))
+		return self.anyRecordingsCount
+
+	def getIndicatorRecordingsCount(self):
+		if self.indicatorRecordingsCount is None:
+			self.indicatorRecordingsCount = len(self.getRecordings(False, recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+		return self.indicatorRecordingsCount
+
+	def getRealRecordingsCount(self):
+		if self.realRecordingsCount is None:
+			self.realRecordingsCount = len(self.getRecordings(False, pNavigation.isRealRecording))
+		return self.realRecordingsCount
 
 	def stopService(self):
 		if self.pnav:

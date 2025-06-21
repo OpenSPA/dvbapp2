@@ -32,7 +32,6 @@ FEED_URLS = [
 	("openATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName")),
 	("OpenBH", "https://images.openbh.net/json/%s" % BoxInfo.getItem("model")),
 	("OpenPLi", "http://downloads.openpli.org/json/%s" % BoxInfo.getItem("model")),
-	("Open Vision", "https://images.openvision.dedyn.io/json/%s" % BoxInfo.getItem("model")),
 	("OpenViX", "https://www.openvix.co.uk/json/%s" % BoxInfo.getItem("machinebuild")),
 	("OpenHDF", "https://flash.hdfreaks.cc/openhdf/json/%s" % BoxInfo.getItem("machinebuild")),
 	("Open8eIGHT", "http://openeight.de/json/%s" % BoxInfo.getItem("machinebuild")),
@@ -135,7 +134,7 @@ class FlashManager(Screen):
 
 		def getImagesListCallback(retVal=None):  # The retVal argument absorbs the unwanted return value from MessageBox.
 			if self.imageFeed != "OpenSPA":  #### OPENSPA [morser] Set default feed: openspa
-				self.keyDistributionCallback("OpenSPA")  # No images can be found for the selected distribution so go back to the openSPA default.
+				self.keyDistributionCallback("OpenSPA")  # No images can be found for the selected distribution so go back to the OpenSPA default.
 
 		machinebuild = BoxInfo.getItem("machinebuild")
 		model = BoxInfo.getItem("model")
@@ -474,7 +473,7 @@ class FlashImage(Screen):
 				return
 			# OPENSPA [morser] set destination with spanewfirm
 			if self.destpath:
-				destination, isDevice = findMedia(self.destpath)
+				destination, isDevice = findMedia([self.destpath])
 			else:
 				destination, isDevice = findMedia(["/media/hdd", "/media/usb"])
 			if destination:
@@ -727,6 +726,7 @@ class FlashImage(Screen):
 				mtdRootFS = bootSlots[self.slotCode]["device"] if bootSlots[self.slotCode].get("ubi") else bootSlots[self.slotCode]["device"].split(sep)[2]
 				if MultiBoot.hasRootSubdir(self.slotCode):
 					rootSubDir = bootSlots[self.slotCode]["rootsubdir"]
+					currentSlot = MultiBoot.getCurrentSlotCode()
 			else:
 				mtdKernel = BoxInfo.getItem("mtdkernel")
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
@@ -738,10 +738,13 @@ class FlashImage(Screen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel]
 			elif BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-r%s" % mtdRootFS, "-a"]
-			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
-				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
-				cmdArgs = ["-rmmcblk0p1"]
+				cmdArgs = ["-rmmcblk0p1"] if rootSubDir is None else ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
+			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
+				if BoxInfo.getItem("chkrootmb"):
+					cmdArgs = ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
+				else:
+					cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm800se", "dm500hd"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-r%s" % mtdRootFS, "-f"]
 			elif BoxInfo.getItem("model") in ("zgemmah82h",):  # Temp solution ofgwrite kill e2 not allways works.

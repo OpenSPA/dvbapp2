@@ -1705,7 +1705,7 @@ msgstr ""
 "Išjungti TV ir pakartoti iš pradžių?\n"
 
 #, python-format
-msgid "A/V aspect ratio is '%s'."
+msgid "Aspect ratio set to '%s'."
 msgstr "Vaizdo kraštinių santykis '%s'."
 
 msgid "AAC downmix"
@@ -2528,7 +2528,7 @@ msgstr "Formatas"
 msgid "Aspect Ratio Actions"
 msgstr "Vaizdo formato veiksmai"
 
-msgid "Aspect list..."
+msgid "Open Aspect Ratio Settings"
 msgstr "Formatų sąrašas..."
 
 msgid "Aspect ratio"
@@ -2614,7 +2614,7 @@ msgstr "3-a pasirinkta garso kalba"
 msgid "Audio language selection 4"
 msgstr "4-a pasirinkta garso kalba"
 
-msgid "Audio options..."
+msgid "Open Audio options"
 msgstr "Garso parinktys..."
 
 msgid "Audio volume step size"
@@ -3597,7 +3597,7 @@ msgstr "Atšaukti išarchyvavimą"
 msgid "Cancel save time shift as movie"
 msgstr "Atšaukti laiko poslinkio, kaip filmo išsaugojimą"
 
-msgid "Cancel selection"
+msgid "Cancel the selection"
 msgstr "Atšaukti pasirinkimą"
 
 msgid "Cancel selection and exit"
@@ -3651,12 +3651,12 @@ msgstr "Atšauktas vartotojo"
 msgid "Cannot delete file"
 msgstr "Failo ištrinti nepavyko"
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr "Negalima nustatyti %s ribos ..., nutraukiama !"
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr "Jokio signalo nerasta …,  nutraukiama !"
 
 msgid "Cannot move to trash can"
@@ -3874,13 +3874,13 @@ msgstr "Kanalo pasirinkimas:"
 msgid "Channel up"
 msgstr "Kanalą aukštyn"
 
-msgid "Channel zap delay another button"
+msgid "Service zap other button delay"
 msgstr "Kanalo jungimo delsa kitu mygtuku"
 
-msgid "Channel zap delay first button"
+msgid "Service zap first button delay"
 msgstr "Kanalo jungimo delsa pirmu mygtuku"
 
-msgid "Channel zap delay mode"
+msgid "Service zap delay mode"
 msgstr "Kanalo jungimo delsos režimas"
 
 msgid "Channel:"
@@ -6056,7 +6056,7 @@ msgstr "Dikcija"
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
-"End Action was disabled !"
+"End Action was disabled!"
 msgstr ""
 "Skirtumas tarp laikmačio pradžios ir pabaigos turi būti lygus, arba didesnis, negu %d min.\n"
 "Pabaigos veiksmas buvo išjungtas!"
@@ -7224,7 +7224,7 @@ msgstr "Įrašykite, jei esate į šiaurę arba į pietus nuo pusiaujo."
 msgid "Enter if you are in the East or West hemisphere."
 msgstr "Įrašykite, jei esate rytų ar vakarų pusrutulyje."
 
-msgid "Enter main menu..."
+msgid "Open Main Menu"
 msgstr "Į pagrindinį meniu..."
 
 msgid "Enter new directory name:"
@@ -9633,10 +9633,10 @@ msgstr "Info juostos EPG režimas"
 msgid "InfoBar Event View Actions"
 msgstr "Informacijos juostos įvykių rodinio veiksmai"
 
-msgid "InfoBar RDS Actions"
+msgid "RDS Actions"
 msgstr "Info juostos RDS veiksmai"
 
-msgid "InfoBar Show/Hide Actions"
+msgid "Show/Hide Actions"
 msgstr "Informacijos juostos rodymo/slėpimo veiksmai"
 
 msgid "InfoBar fade-out speed"
@@ -10315,7 +10315,7 @@ msgstr "Lesotas"
 msgid "Letterbox"
 msgstr "Įterpiant juodas juostas"
 
-msgid "Letterbox zoom"
+msgid "LetterBox zoom"
 msgstr "Priartinimas, įterpiant juodas juostas"
 
 msgid "Liberia"
@@ -10400,7 +10400,7 @@ msgstr "Pavadinimai, susieti su DVD meniu"
 msgid "Links"
 msgstr "Nuorodos"
 
-msgid "List EPG functions..."
+msgid "List available EPG functions"
 msgstr "EPG funkcijų sąrašas..."
 
 msgid "List Navigation Actions"
@@ -10865,7 +10865,7 @@ msgid "Maxdown: "
 msgstr "Maksimaliai žemyn: "
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr "Maksimalus minučių skaičius, kad peršokti %d !"
 
 msgid "Maximum no of days"
@@ -11419,7 +11419,7 @@ msgstr "Filmo įvykio rodinio veiksmai"
 msgid "Movie List"
 msgstr "Kino filmų sąrašas"
 
-msgid "Movie List Actions"
+msgid "Movie Selection Actions"
 msgstr "Filmų sąrašo veiksmai"
 
 msgid "Movie Selection Settings"
@@ -12250,7 +12250,7 @@ msgstr "Numeris"
 msgid "Number of IP Addresses"
 msgstr "IP adresų skaičius"
 
-msgid "Number of digits in channel number"
+msgid "Number of digits in service number"
 msgstr "Kanalo numerio skaitmenų skaičius"
 
 msgid "Number of rows"
@@ -12423,7 +12423,7 @@ msgstr "Atverti"
 msgid "Open AutoTimer"
 msgstr "Atverti auto laikmatį"
 
-msgid "Open AutoTimerlist"
+msgid "Open AutoTimer Overview"
 msgstr "Atidaryti automatinį sąrašą"
 
 msgid "Open EPGSearch"
@@ -12444,10 +12444,10 @@ msgstr ""
 msgid "Open Similar List Channel List"
 msgstr "Atidaryti panašų sąrašo kanalų sąrašą"
 
-msgid "Open Timerlist"
+msgid "Open RecordTimer Overview"
 msgstr "Atverti laikmačių sąrašą"
 
-msgid "Open bouquetlist"
+msgid "Open Bouquet selection"
 msgstr "Atverti paketų sąrašą"
 
 msgid "Open context menu"
@@ -12465,10 +12465,10 @@ msgstr "Atverti mėgstamiausių sąrašą"
 msgid "Open file sort menu"
 msgstr "Atidaryti failų rūšiavimo meniu"
 
-msgid "Open satellites list"
+msgid "Open Satellites selection"
 msgstr "Atverti palydovų sąrašą"
 
-msgid "Open service list"
+msgid "Open Services / Reception selection"
 msgstr "Atverti kanalų sąrašą"
 
 msgid "Open service list and select next channel"
@@ -12908,7 +12908,7 @@ msgstr "Filipinai"
 msgid "PiP"
 msgstr "PiP"
 
-msgid "PiP Actions"
+msgid "Picture in Picture Actions"
 msgstr "PiP veiksmai"
 
 msgid "PiP with OSD"
@@ -12947,7 +12947,7 @@ msgstr "Paveikslėlio informacijos veiksmai"
 msgid "Picture in EPG"
 msgstr "Vaizdas EPG"
 
-msgid "Picture in Picture Setup"
+msgid "Picture in Picture Settings"
 msgstr "Vaizdo vaizde nustatymai"
 
 msgid "Picture in graphics"
@@ -13041,7 +13041,7 @@ msgstr "Paleisti sekantį (grįžti į buvusį kanalą)"
 msgid "Play previous"
 msgstr "Paleisti ankstesnį"
 
-msgid "Play recorded movies"
+msgid "Open Movie Selection"
 msgstr "Rodyti įrašytus filmus"
 
 msgid "Play selected service in a PiP window"
@@ -13153,7 +13153,7 @@ msgstr "Spauskite 'OK', kad tęsti."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a default EPG type..."
+msgid "Select default EPG type:"
 msgstr "Pasirinkite numatytąjį EPG tipą..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
@@ -13954,7 +13954,7 @@ msgstr "Greitosios paleisties meniu"
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Quick Menu..."
+msgid "Open QuickMenu"
 msgstr "Greitasis meniu..."
 
 msgid "QuickEPG mode"
@@ -14177,7 +14177,7 @@ msgid "Record started! Stopping time shift now ..."
 msgstr "Įrašas pradėtas! Laiko poslinkis stabdomas..."
 
 #, python-format
-msgid "Record time limited due to conflicting timer:%s"
+msgid "Recording time limited due to conflicting timer:%s"
 msgstr "Įrašo laikas apribotas dėl konfliktinio laikmačio %s"
 
 msgid "Record write error (no space on disk?)"
@@ -14277,7 +14277,7 @@ msgstr "Atkūrimo režimas"
 msgid "Red"
 msgstr "Raudonas"
 
-msgid "Red button..."
+msgid "RED button / HbbTV"
 msgstr "Raudonas mygtukas..."
 
 msgid "Red colored"
@@ -15356,7 +15356,7 @@ msgstr "Teksto slinkties greitis (programinis)"
 msgid "Search"
 msgstr "Ieškoti"
 
-msgid "Search IMDb for information about current event."
+msgid "Search IMDb for information about current event"
 msgstr "Ieškoti informacijos apie šį įvykį IMDb."
 
 msgid "Search Sats"
@@ -15374,7 +15374,7 @@ msgstr "Bendrų tinklo resursų paieška"
 msgid "Search for similar events"
 msgstr "Panašių įvykių paieška"
 
-msgid "Search the epg for current event."
+msgid "Search EPG for current event"
 msgstr "Ieškoti EPG apie šį įvykį."
 
 msgid "Search weather location ID"
@@ -15437,7 +15437,7 @@ msgstr "Ilgai spausti pirmyn"
 msgid "Seekbar"
 msgstr "Paieškos juostos jautrumas"
 
-msgid "Seekbar activation"
+msgid "SeekBar activation"
 msgstr "Paieškos juostos aktyvavimas"
 
 msgid "Seekbar sensibility"
@@ -15847,7 +15847,7 @@ msgstr "Pasirinkite kanalo garsą"
 msgid "Select copy destination for:"
 msgstr "Pasirinkite kopijos vietą:"
 
-msgid "Select default EPG type..."
+msgid "Select default EPG type"
 msgstr "Pasirinkite numatytąjį EPG tipą..."
 
 msgid "Select default File Commander directory:"
@@ -15958,7 +15958,7 @@ msgstr "Pasirinkite teikėją, kurį norite pridėti..."
 msgid "Select refresh rate"
 msgstr "Pasirinkite atnaujinimo dažnį"
 
-msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
 msgstr "Pasirinkite, kad paieškos juostą aktyvuoti rodyklėmis '</>' (ilgai), arba '<</>>' (ilgai)."
 
 msgid "Select service information to view:"
@@ -15970,7 +15970,7 @@ msgstr "Pasirinkite kanalą, kurį norite pridėti..."
 msgid "Select sort method:"
 msgstr "Pasirinkite rūšiavimo būdą:"
 
-msgid "Select subservices"
+msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -16382,7 +16382,7 @@ msgstr "Pasirinkite laiko juostos teritoriją arba regioną."
 msgid "Select, toggle, process or edit the current entry"
 msgstr "Pasirinkti, perjungti, apdoroti arba redaguoti dabartinį įrašą"
 
-msgid "Select/Zap to selected service"
+msgid "Select/Zap to the selected service"
 msgstr "Pasirinkti/Zap pasirinktai paslaugai"
 
 #, python-format
@@ -16750,7 +16750,7 @@ msgstr "Nustatykite laiką, kad paslėpti info juostą."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pat dingsta ir paspaudus 'OK'."
 
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Nustatykite laiką, per kurį laukiama numatytojo veiksmo vykdant išjungimo, budėjimo režimą ar iš naujo paleidžiant pranešimus. (pvz., naudojami laikmatį, įtampos laikmatį, miego laikmatį ir kt.)"
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
@@ -16890,7 +16890,7 @@ msgstr "Garso/vaizdo nustatymai"
 msgid "Setup Videomode"
 msgstr "Vaizdo režimo sąranka"
 
-msgid "Setup delay mode to zap to channels."
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr "Delsos nustatymas, perjungiant kanalus."
 
 msgid "Setup each tuner for your satellite system"
@@ -17086,7 +17086,7 @@ msgstr "Rodyti garso pasirinkimus"
 msgid "Show AutoTimer List"
 msgstr "Rodyti auto laikmačio sąrašą"
 
-msgid "Show Box Portal"
+msgid "Open Box Portal"
 msgstr "Rodyti lauko portalą"
 
 msgid "Show CCcam Info"
@@ -17113,7 +17113,7 @@ msgstr ""
 msgid "Show EPG"
 msgstr "Rodyti EPG"
 
-msgid "Show EPG for current channel..."
+msgid "Open EPG for current service"
 msgstr "Rodyti šio kanalo EPG..."
 
 msgid "Show EventView"
@@ -17122,7 +17122,7 @@ msgstr "Rodyti įvykių peržiūrą"
 msgid "Show Extension packages"
 msgstr ""
 
-msgid "Show Format Setup"
+msgid "Open VideoMode"
 msgstr "Rodyti formato nustatymą"
 
 msgid "Show Graphical EPG"
@@ -17137,7 +17137,7 @@ msgstr "Rodyti HDMI išvesties skiriamąją gebą"
 msgid "Show HDMI-Output Res"
 msgstr "Rodyti HDMI išvesties rezoliuciją"
 
-msgid "Show HDMIRecord setup..."
+msgid "Open HDMIRecord Settings"
 msgstr "Rodyti HDMI įrašų sąranką.."
 
 msgid "Show InfoBar"
@@ -17158,7 +17158,7 @@ msgstr "Rodyti info juostą praleidžiant į priekį/atgal"
 msgid "Show InfoBar picons"
 msgstr "Rodyti info juostos logotipus"
 
-msgid "Show Information"
+msgid "Open Information menu"
 msgstr "Rodyti informaciją"
 
 msgid "Show Kernel packages"
@@ -17224,7 +17224,7 @@ msgstr ""
 msgid "Show Plugin Skin packages"
 msgstr ""
 
-msgid "Show RFmod setup..."
+msgid "Open RFmod Settings"
 msgstr "Rodyti RF modulio sąranką..."
 
 msgid "Show Record Movies"
@@ -17401,7 +17401,7 @@ msgstr "Rodyti išplėstą aprašymą"
 msgid "Show extension selection"
 msgstr "Rodyti išplėtimų pasirinkimą"
 
-msgid "Show extensions..."
+msgid "Open Extensions"
 msgstr "Rodyti išplėtimus..."
 
 msgid "Show extra spacing in Information"
@@ -17486,7 +17486,7 @@ msgstr "Rodyti filmus"
 msgid "Show multi channel EPG"
 msgstr "Rodyti daugiakanalį EPG"
 
-msgid "Show network setup menu..."
+msgid "Open Network Settings"
 msgstr "Rodyti tinklo sąrankos meniu..."
 
 msgid "Show next commit log"
@@ -17621,13 +17621,13 @@ msgstr "Rodyti kanalo tipo piktogramas"
 msgid "Show servicelist or movies"
 msgstr "Rodyti kanalų sąrašą, arba filmus"
 
-msgid "Show setup"
+msgid "Open Setup menu"
 msgstr "Rodyti sąranką"
 
 msgid "Show setup default value"
 msgstr "Rodyti numatytąją nustatymo vertę"
 
-msgid "Show setup menu..."
+msgid "Open Setup"
 msgstr "Rodyti sąrankos meniu..."
 
 msgid "Show shut down menu"
@@ -17678,7 +17678,7 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr "Rodyti CCcam informacijos ekraną"
 
-msgid "Show the DreamPlex player..."
+msgid "Open DreamPlex"
 msgstr "Rodyti DreamPlex grotuvą..."
 
 msgid "Show the EIT Now/Next data in the InfoBar."
@@ -17690,13 +17690,13 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-msgid "Show the PowerTimer"
-msgstr "Rodyti išjungimo laikmatį..."
+msgid "Open Scheduler Overview"
+msgstr ""
 
-msgid "Show the SleepTimer"
+msgid "Open SleepTimer Settings"
 msgstr "Rodyti miego laikmatį"
 
-msgid "Show the information on current event."
+msgid "Open event information"
 msgstr "Rodyti informaciją apie dabartinį įvykį."
 
 msgid "Show the last opkg command's output"
@@ -17708,10 +17708,10 @@ msgstr "Rodyti auto laikmačių sąrašą."
 msgid "Show the list of timers."
 msgstr "Rodyti laikmačių sąrašą."
 
-msgid "Show the media center"
+msgid "Open MediaCenter"
 msgstr "Rodyti medijos centrą"
 
-msgid "Show the media player"
+msgid "Open Media Player"
 msgstr "Rodyti medijos grotuvą"
 
 msgid "Show the media player..."
@@ -17720,16 +17720,16 @@ msgstr "Rodyti medijos grotuvą..."
 msgid "Show the plugin browser.."
 msgstr "Rodyti priedų naršyklę..."
 
-msgid "Show the plugins"
+msgid "Open Plugin Browser"
 msgstr "Rodyti priedus"
 
-msgid "Show the radio player"
+msgid "Open Radio bouquet selection"
 msgstr "Rodyti radijo grotuvą"
 
 msgid "Show the task list"
 msgstr ""
 
-msgid "Show the tv player"
+msgid "Open TV bouquet selection"
 msgstr "Rodyti tv grotuvą"
 
 msgid "Show time elapsed as positive"
@@ -17759,7 +17759,7 @@ msgstr "Rodyti nežinomą vaizdo raišką, kaip kitą didesnę arba kaip didžia
 msgid "Show unknown video format as"
 msgstr "Rodyti nežinomą vaizdo formatą kaip"
 
-msgid "Show usage and GUI menu..."
+msgid "Open Usage and GUI Settings"
 msgstr "Rodyti naudojimą ir GUI meniu..."
 
 msgid "Show vertical Program Guide"
@@ -17861,7 +17861,7 @@ msgstr "Tiesiog išblukti"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Paprastas pavadinimo nustatymas (suderinama su senais grotuvais)"
 
-msgid "Simple umounter mass storage device."
+msgid "Open Simple Umount"
 msgstr "Paprastai atjungiamas saugojimo įrenginys."
 
 msgid "Simple zoom"
@@ -18780,10 +18780,10 @@ msgstr "4-a pasirinkta subtitrų kalba"
 msgid "Subtitle position"
 msgstr "Subtitrų padėtis"
 
-msgid "Subtitle selection"
+msgid "Subtitle Selection"
 msgstr "Subtitrų pasirinkimas"
 
-msgid "Subtitle selection..."
+msgid "Open Subtitle options"
 msgstr "Subtitrų pasirinkimas..."
 
 msgid "Subtitles"
@@ -18894,7 +18894,7 @@ msgstr "Perjungti iš failų sąrašo į grojaraštį"
 msgid "Switch config"
 msgstr "Perjungti konfigūraciją"
 
-msgid "Switch next channel"
+msgid "Zap to next service"
 msgstr "Perjungti kitą kanalą"
 
 msgid "Switch off the TV to correct input"
@@ -18930,7 +18930,7 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr "Perjungti į kitą EPG renginį"
 
-msgid "Switch to next channel in history"
+msgid "Zap to next service in the history"
 msgstr "Perjungti į kitą kanalą istorijoje"
 
 msgid "Switch to play list"
@@ -18939,10 +18939,10 @@ msgstr "Perjungti į grojaraštį"
 msgid "Switch to previous EPG Event"
 msgstr "Perjungti į ankstesnį EPG įvykį"
 
-msgid "Switch to previous channel"
+msgid "Zap to previous service"
 msgstr "Perjungti į ankstesnį kanalą"
 
-msgid "Switch to previous channel in history"
+msgid "Zap to previous service in the history"
 msgstr "Perjungti į ankstesnį kanalą istorijoje"
 
 msgid "Switch to the available RADIO services"
@@ -18975,7 +18975,7 @@ msgstr "Simbolinė nuoroda"
 msgid "Sync NTP every (minutes)"
 msgstr "Sinchronizuoti su NTP kas (min.)"
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr "Sinchronizavimo klaida, grįžtame prie originalo!"
 
 msgid "Sync mode"
@@ -19643,7 +19643,7 @@ msgstr "Yra rizika, kad jūsų %s %s nebus paleistas arba gali sugesti po tokio 
 msgid "There is no information to show for '%s'."
 msgstr ""
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr "Nėra signalo fiksavimui !"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
@@ -19682,7 +19682,7 @@ msgstr "Ši parinktis leidžia nustatyti šrifto dydį lyginant su temos dydžiu
 msgid "This allows you change the number of rows shown."
 msgstr "Ši parinktis leidžia nustatyti rodomų eilučių skaičių."
 
-msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgid "This allows you to set the maximum number of digits in a service number, up to 5."
 msgstr "Ši parinktis leidžia nustatyti 5 skaitmenų skaičių, jei turite daugiau nei 9999 kanalus."
 
 msgid "This bouquet is protected by a parental control PIN!"
@@ -20246,7 +20246,7 @@ msgstr ""
 msgid "Today"
 msgstr "Šiandien"
 
-msgid "Toggle Digital downmix..."
+msgid "Toggle Dolby Digital down mix"
 msgstr "Perjungti skaitmeninį suliejimą..."
 
 msgid "Toggle HDMI-In PiP"
@@ -20273,7 +20273,7 @@ msgstr "Perkelti iškirpimo žymeklį į dabartinę poziciją"
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Toggle aspect ratio..."
+msgid "Cycle through the available aspect ratios"
 msgstr "Perjungti kraštinių santykį..."
 
 msgid "Toggle auto refresh On/Off"
@@ -20285,7 +20285,7 @@ msgstr "Perjungti paketo / EPG sąrašus"
 msgid "Toggle display of image information"
 msgstr ""
 
-msgid "Toggle display of the InfoBar"
+msgid "Cycle through the InfoBars"
 msgstr "Perjungti informacinės juostos rodymą"
 
 msgid "Toggle display of the image status overlay"
@@ -20327,7 +20327,7 @@ msgstr "Perjungti kanalų pavadinimo rodymą"
 msgid "Toggle the visibility of the highlighted plugin"
 msgstr ""
 
-msgid "Toggles between tv and radio"
+msgid "Toggles between TV and Radio"
 msgstr "Perjungia tarp tv ir radijo..."
 
 msgid "Togo"
@@ -21237,10 +21237,10 @@ msgstr "Pasirinktas vartotojo"
 msgid "User defined 0x%02x"
 msgstr "Vartotojo pasirinkta 0x%02x"
 
-msgid "User defined delay when you press another button to zap to the channel."
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
 msgstr "Vartotojo apibrėžta delsa, kai spaudžiate kitą mygtuką jungiant į kanalą."
 
-msgid "User defined delay when you press the first button to zap to the channel."
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
 msgstr "Vartotojo apibrėžta delsa, paspaudus pirmą mygtuką jungiant į kanalą."
 
 msgid "User defined transponder"
@@ -21554,7 +21554,7 @@ msgstr "Peržiūrėkite arba redaguokite šį %s scenarijų"
 msgid "View photos..."
 msgstr "Žiūrėti fotografijas..."
 
-msgid "View teletext..."
+msgid "View Teletext"
 msgstr "Peržiūrėti teletekstą..."
 
 msgid "View the archive contents"
@@ -23101,7 +23101,7 @@ msgstr "peršokti į skyrių pagal numerį"
 msgid "languages"
 msgstr "kalbos"
 
-msgid "leave movie player"
+msgid "Leave movie player"
 msgstr "užverti filmų grotuvą"
 
 msgid "left"
@@ -23406,7 +23406,7 @@ msgstr "apvalkalas"
 msgid "show DVD main menu"
 msgstr "rodyti DVD pagrindinį meniu"
 
-msgid "show EPG..."
+msgid "Open EPG"
 msgstr "rodyti EPG..."
 
 msgid "show all cards"
@@ -23469,13 +23469,13 @@ msgstr "Dydis"
 msgid "skip backward"
 msgstr "praleisti atgal"
 
-msgid "skip backward (enter time)"
+msgid "Skip backward (enter time)"
 msgstr "praleisti atgal (įrašykite laiką)"
 
 msgid "skip forward"
 msgstr "praleisti į priekį"
 
-msgid "skip forward (enter time)"
+msgid "Skip forward (enter time)"
 msgstr "praleisti į priekį (įrašykite laiką)"
 
 msgid "slow"
@@ -24367,14 +24367,6 @@ msgstr "®"
 
 #~ msgid "Update interval (in seconds)"
 #~ msgstr "Atnaujinimo intervalas (sekundėmis)"
-
-#, python-format
-#~ msgid ""
-#~ "Your %s %s will be restarted after the removal of service\n"
-#~ "Do you want to remove now?"
-#~ msgstr ""
-#~ "Pašalinus paslaugą, jūsų %s %s bus paleistas iš naujo\n"
-#~ "Ar norite pašalinti dabar?"
 
 #~ msgid "Please change recording endtime"
 #~ msgstr "Pakeiskite įrašymo pabaigos laiką"
