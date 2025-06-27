@@ -12143,9 +12143,6 @@ msgstr ""
 msgid "Open AutoTimer"
 msgstr ""
 
-msgid "Open AutoTimer OverView"
-msgstr ""
-
 msgid "Open AutoTimer Overview"
 msgstr ""
 
@@ -12153,9 +12150,6 @@ msgid "Open Bouquet selection"
 msgstr ""
 
 msgid "Open Box Portal"
-msgstr ""
-
-msgid "Open DreamPlex"
 msgstr ""
 
 msgid "Open EPG"
@@ -13706,9 +13700,6 @@ msgstr ""
 msgid "QuickMenu"
 msgstr ""
 
-msgid "QuickMenu Actions"
-msgstr ""
-
 msgid "QuickMenu/Extensions"
 msgstr ""
 
@@ -15077,12 +15068,6 @@ msgid "Scrolling speed (software renderer)"
 msgstr ""
 
 msgid "Search"
-msgstr ""
-
-msgid "Search EPG for current event"
-msgstr ""
-
-msgid "Search IMDb for information about current event"
 msgstr ""
 
 msgid "Search Sats"
@@ -18954,13 +18939,8 @@ msgstr ""
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
-msgid "The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-
-msgid "The EPGSearch plugin is not installed!\n"
-"Please install it."
-msgstr ""
+msgid "The EPGSearch plugin is not installed!\nPlease install it."
+msgid ""
 
 msgid "The [spzimdb] plugin is not installed!\nDo you want to install it?"
 msgstr ""
