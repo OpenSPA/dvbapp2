@@ -293,6 +293,10 @@ class RecordTimer(Timer):
 				if config.plugins.serviceapp.servicemp3.replace.value:
 					timer.state = RecordTimerEntry.StateEnded
 					AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+				elif isPluginInstalled("ServiceHisilicon"):
+					message = "Stream IPTV " + timer.service_ref.ref.toString()[:4] + " " + _("It is not possible to record with") + " ServiceHisilicon " + _("enabled")
+					timer.state = RecordTimerEntry.StateEnded
+					AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 			elif player == "ServiceHisilicon":
 				timer.state = RecordTimerEntry.StateEnded
 				AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
