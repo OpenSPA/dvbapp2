@@ -19039,6 +19039,9 @@ msgid "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
 
+msgid "The channel selection mode has changed!\nOpen the channel selection again"
+msgstr ""
+
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 

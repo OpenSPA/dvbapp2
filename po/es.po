@@ -22285,6 +22285,9 @@ msgstr "El modo AI que se utiliza para traducir idiomas. Puedes elegir el que of
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "El servicio de traducción impulsado por inteligencia artificial se optimizará para proporcionar el mejor rendimiento según la velocidad de carga de la conexión a Internet seleccionada."
 
+msgid "The channel selection mode has changed!\nOpen the channel selection again"
+msgstr "¡El modo de selección de canales ha cambiado!\nAbra nuevamente la selección de canales"
+
 msgid "The data provided will not find services."
 msgstr "Los datos facilitados no encontrará canales."
 

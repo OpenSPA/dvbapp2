@@ -47,7 +47,7 @@ from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyboard
 from Tools.BoundFunction import boundFunction
-from Tools.Notifications import RemovePopup
+from Tools.Notifications import AddPopup, RemovePopup
 from Tools.NumericalTextInput import NumericalTextInput
 
 MODE_TV = 0
@@ -1725,6 +1725,7 @@ class ChannelContextMenu(Screen):
 		from Screens.newChannelSelection import newChannelSelection
 		if InfoBar and InfoBar.instance:
 			InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(newChannelSelection)
+		AddPopup(text=_("The channel selection mode has changed!\nOpen the channel selection again"), type=MessageBox.TYPE_INFO, timeout=8, id='NewChannelSelection')
 		self.close(True)
 
 	def showSubservices(self):
