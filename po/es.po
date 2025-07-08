@@ -20928,6 +20928,9 @@ msgstr "Slot '%s': %s%s"
 msgid "Slot Manager Actions"
 msgstr "Acciones del administrador de slots"
 
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr "Slot F: Backup completo del slot Flash (Imagen actual)"
+
 msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr "Slot R: Backup completo del slot raiz (Imagen actual)"
 
