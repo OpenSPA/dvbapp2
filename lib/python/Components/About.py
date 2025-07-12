@@ -100,11 +100,6 @@ def getEnigmaVersionString():
 	return str(BoxInfo.getItem("imageversion"))
 
 
-def getGStreamerVersionString():
-	from enigma import getGStreamerVersionString
-	return getGStreamerVersionString()
-
-
 def getKernelVersionString():
 	version = fileReadLine("/proc/version", source=MODULE_NAME)
 	if version is None:
@@ -215,10 +210,6 @@ def getSystemTemperature():
 	if temperature:
 		return "%s%s C" % (temperature, "\u00B0")
 	return temperature
-
-
-def getChipSetString():
-	return str(BoxInfo.getItem("ChipsetString"))
 
 
 def getCPUBrand():
