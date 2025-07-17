@@ -1293,6 +1293,9 @@ msgstr ""
 msgid "(FTA Service)"
 msgstr ""
 
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
+
 msgid "(empty)"
 msgstr ""
 
