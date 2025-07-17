@@ -1215,6 +1215,10 @@ msgid "%s not available."
 msgstr ""
 
 #, python-format
+msgid "%s version"
+msgstr ""
+
+#, python-format
 msgid "%s%d min"
 msgstr ""
 
@@ -1287,9 +1291,6 @@ msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr ""
 
 msgid "(FTA Service)"
-msgstr ""
-
-msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
 msgstr ""
 
 msgid "(empty)"
@@ -5150,9 +5151,6 @@ msgstr ""
 msgid "DUAL LAYER DVD"
 msgstr ""
 
-msgid "DVB API version"
-msgstr ""
-
 msgid "DVB CI Delay"
 msgstr ""
 
@@ -6977,9 +6975,6 @@ msgstr ""
 msgid "Enigma2 revision"
 msgstr ""
 
-msgid "Enigma2 version"
-msgstr ""
-
 msgid "Enigmalight"
 msgstr ""
 
@@ -7650,9 +7645,6 @@ msgstr ""
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr ""
 
-msgid "FFmpeg version"
-msgstr ""
-
 msgid "FIFO"
 msgstr ""
 
@@ -8257,12 +8249,6 @@ msgstr ""
 msgid "G"
 msgstr ""
 
-msgid "GB"
-msgstr ""
-
-msgid "GCC version"
-msgstr ""
-
 msgid "GREEN button"
 msgstr ""
 
@@ -8273,9 +8259,6 @@ msgid "GStreamer debug log category *"
 msgstr ""
 
 msgid "GStreamer debug log level *"
-msgstr ""
-
-msgid "GStreamer version"
 msgstr ""
 
 msgid "GUI Skin *"
@@ -8375,7 +8358,7 @@ msgstr ""
 msgid "Given device id"
 msgstr ""
 
-msgid "Glibc version"
+msgid "Go back to the previous step"
 msgstr ""
 
 msgid "Go down the list"
@@ -12323,9 +12306,6 @@ msgstr ""
 msgid "OpenPLi Packages"
 msgstr ""
 
-msgid "OpenSSL version"
-msgstr ""
-
 msgid "OpenVPN"
 msgstr ""
 
@@ -13646,9 +13626,6 @@ msgstr ""
 msgid "Python Packages"
 msgstr ""
 
-msgid "Python version"
-msgstr ""
-
 msgid "Qatar"
 msgstr ""
 
@@ -14794,9 +14771,6 @@ msgid "Samba Settings"
 msgstr ""
 
 msgid "Samba Server"
-msgstr ""
-
-msgid "Samba version"
 msgstr ""
 
 msgid "Same as in active"
@@ -20194,6 +20168,10 @@ msgid "Type of scan"
 msgstr ""
 
 msgid "Type: "
+msgstr ""
+
+#, python-format
+msgid "UBI slot %s%s"
 msgstr ""
 
 msgid "UBINIZE"
