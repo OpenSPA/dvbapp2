@@ -1033,6 +1033,7 @@ class UBISlotManager(Setup):
 			}.get(self.green, _("Help text uninitialized"))
 
 		self.UBISlotManagerLocation = ConfigSelection(default=None, choices=[(None, _("<Select a device>"))])
+		self.UBISlotManagerSlots = ConfigInteger(default=10, limits=(1, 20))
 		self.UBISlotManagerDevice = None
 		Setup.__init__(self, session=session, setup="UBISlotManager")
 		self.setTitle(_("Slot Manager"))
@@ -1119,7 +1120,7 @@ class UBISlotManager(Setup):
 			fd.write(startupContent)
 		with open(f"{MOUNTPOINT}/STARTUP_FLASH", "w") as fd:
 			fd.write(startupContent)
-		count = min(diskSize, 15)
+		count = min(diskSize, self.UBISlotManagerSlots.value)
 		for i in range(1, count + 1):
 			startupContent = f"kernel=/dev/{mtdKernel} root=UUID={uuidRootFS} rootsubdir=linuxrootfs{i} rootfstype=ext4\n"
 			with open(f"{MOUNTPOINT}/STARTUP_{i}", "w") as fd:
@@ -1149,6 +1150,7 @@ class UBISlotManager(Setup):
 			locations.append((path, path))
 			self.UBISlotManagerLocation.setSelectionList(default=None, choices=locations)
 			self.UBISlotManagerLocation.value = path
+			self.createSetup()
 		self.updateStatus("Selected device: %s" % self.deviceData[selection][1])
 
 	def partitionSizeGB(self, dev):
