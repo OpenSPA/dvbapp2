@@ -2756,11 +2756,11 @@ msgstr "Como plugin en la barra extendida"
 msgid "Ask user"
 msgstr "Preguntar al usuario"
 
-msgid "Ask user (with default as 'No')"
-msgstr "Preguntar antes (por defecto 'No')"
+msgid "Ask user (with default of 'No')"
+msgstr "Preguntar al usuario (con ‘no’ como predeterminado)"
 
-msgid "Ask user (with default as 'Yes')"
-msgstr "Preguntar antes (por defecto 'Si')"
+msgid "Ask user (with default of 'Yes')"
+msgstr "Preguntar al usuario (con ‘sí’ como predeterminado)"
 
 #
 msgid "Aspect"
@@ -2890,7 +2890,7 @@ msgstr "Modo de autorización"
 msgid "Auto"
 msgstr "Auto"
 
-msgid "Auto Detect"
+msgid "Auto detect"
 msgstr "Detección automática"
 
 #
@@ -3349,7 +3349,7 @@ msgstr "Pantalla negra hasta el bloqueo"
 msgid "Blinking REC"
 msgstr "Parpadeo de REC"
 
-msgid "Blinking REC Symbol"
+msgid "Blinking REC symbol"
 msgstr "Icono REC parpadeando"
 
 msgid "Block device"
@@ -4147,7 +4147,7 @@ msgstr "Canal / Servicio"
 msgid "Channel 1"
 msgstr "Canal 1"
 
-msgid "Channel 1 with Prime time"
+msgid "Channel 1 with prime time"
 msgstr "Canal 1 de máxima audiencia"
 
 msgid "Channel Info"
@@ -4156,7 +4156,7 @@ msgstr "Información de canal"
 msgid "Channel List"
 msgstr "Lista de canales"
 
-msgid "Channel Number"
+msgid "Channel number"
 msgstr "Número de canal"
 
 #
@@ -4764,6 +4764,9 @@ msgstr "Formato de color"
 
 msgid "Color space"
 msgstr "Espacio de color"
+
+msgid "Colored text"
+msgstr "Texto en color"
 
 msgid "Combined"
 msgstr "Combinado"
@@ -11246,7 +11249,7 @@ msgstr "Flash interna: %s %s "
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Flash interno: %s %s como recuperación USB"
 
-msgid "Internal hdd only"
+msgid "Internal disk only"
 msgstr "Sólo HDD interno"
 
 msgid "Internet"
@@ -11754,7 +11757,7 @@ msgid "Left column file sort"
 msgstr "Orden archivos columna izquierda"
 
 #
-msgid "Left from service name"
+msgid "Left of service name"
 msgstr "A la izquierda del nombre de canal"
 
 msgid "Left, wrapped"
@@ -12068,10 +12071,10 @@ msgstr "Ubicación de logs"
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Se borrarán los logs anteriores al número de días especificados."
 
-msgid "Long << / >>"
+msgid "Long <</>>"
 msgstr "Largo << / >>"
 
-msgid "Long Left/Right"
+msgid "Long LEFT/RIGHT"
 msgstr "Izquierda/Derecha largos"
 
 msgid "Long filenames"
@@ -13757,11 +13760,11 @@ msgstr "No, nunca"
 msgid "No, scan later manually"
 msgstr "No, buscar después manualmente"
 
-msgid "No, show the Plugin Browser"
-msgstr "No, mostrar Explorador de plugins"
+msgid "No, show Plugin Browser"
+msgstr "No, mostrar siempre el explorador de plugins"
 
-msgid "No, show the RecordTimer Overview"
-msgstr "No, mostrar la descripción general del temporizador de grabación"
+msgid "No, show RecordTimer Overview"
+msgstr "No, mostrar siempre la lista del temporizador"
 
 msgid "NodeID"
 msgstr "ID de nodo"
@@ -13840,8 +13843,8 @@ msgstr "No clasificado"
 msgid "Not Defined"
 msgstr "No Definido"
 
-msgid "Not Flashing"
-msgstr "Sin parpadeo"
+msgid "Non-flashing"
+msgstr "No parpadea"
 
 #
 msgid "Not Installed"
@@ -14721,7 +14724,7 @@ msgid "Picon"
 msgstr "Picon"
 
 #
-msgid "Picon and Service Name"
+msgid "Picon and service name"
 msgstr "Picon y nombre de canal"
 
 #
@@ -15895,7 +15898,7 @@ msgstr "REC"
 msgid "REC "
 msgstr "REC "
 
-msgid "REC Symbol"
+msgid "REC symbol"
 msgstr "Símbolo REC"
 
 msgid "REC Symbol in Standby"
@@ -16068,6 +16071,9 @@ msgstr "Grabar - igual que el botón de grabación"
 msgid "Record Actions"
 msgstr "Registrar las acciones"
 
+msgid "Record icon"
+msgstr "Icono de grabación"
+
 msgid "Record next"
 msgstr "Grabar próximo"
 
@@ -16083,7 +16089,7 @@ msgid "Recording time limited due to conflicting timer:%s"
 msgstr "Grabación limitada en el tiempo por un conflicto con el temporizador %s"
 
 msgid "Record write error (no space on disk?)"
-msgstr "Error de escritura en el registro (¿no hay espacio en el disco?)"
+msgstr "Error de escritura en grabación (¿no hay espacio en el disco?)"
 
 msgid "RecordTimer"
 msgstr "Temporizador de grabación"
@@ -16841,7 +16847,7 @@ msgid "Right column file sort"
 msgstr "Orden archivo columna derecha"
 
 #
-msgid "Right from service name"
+msgid "Right of service name"
 msgstr "A la derecha del nombre de canal"
 
 msgid "Right, wrapped"
@@ -17339,6 +17345,9 @@ msgstr "Temporizadores Programados"
 msgid "Scheduler Actions"
 msgstr "Acciones del programador"
 
+msgid "Scheduler standby"
+msgstr "Temporizador en reposo"
+
 msgid "Scheduler deep standby"
 msgstr "Programador en modo de espera profundo"
 
@@ -17350,9 +17359,6 @@ msgstr "Descripción general del programador"
 
 msgid "Scheduler Settings"
 msgstr "Configuración del programador"
-
-msgid "Scheduler Standby"
-msgstr "Programador en modo reposo"
 
 msgid "Sci-Fi"
 msgstr "Ciencia Ficción"
@@ -19117,12 +19123,11 @@ msgstr "ID Canales"
 msgid "Service Name"
 msgstr "Nombre del canal"
 
-#
-msgid "Service Number and Service Name"
-msgstr "Número de canal y nombre de canal"
+msgid "Service number and service name"
+msgstr "Número y nombre del canal"
 
-msgid "Service Number, Picon and Service Name"
-msgstr "Nombre de canal, Picon y nombre de canal"
+msgid "Service number, picon and service name"
+msgstr "Número de canal, picon y nombre del canal"
 
 msgid "Service Selection Actions"
 msgstr "Acciones selección de canales"
@@ -20765,7 +20770,7 @@ msgstr "Skin y resolución"
 msgid "Skin Selector"
 msgstr "Selector de skin"
 
-msgid "Skin Setting"
+msgid "Skin setting"
 msgstr "Configurar skin"
 
 msgid "Skin Settings"
@@ -26648,7 +26653,7 @@ msgstr "Aventura occidental guerra"
 msgid "advertisement/shopping"
 msgstr "Publicidad / compras"
 
-msgid "all up/down"
+msgid "All up/down"
 msgstr "Todo arriba/abajo"
 
 msgid "alpha then oldest"
@@ -26992,9 +26997,6 @@ msgstr "Fallido"
 msgid "fashion"
 msgstr "mora"
 
-msgid "fast"
-msgstr "Rápido"
-
 msgid "file can not displayed - file not found"
 msgstr "el archivo no se puede mostrar - archivo no encontrado"
 
@@ -27312,7 +27314,7 @@ msgid "no storage devices found"
 msgstr "No se han encontrado dispositivos de almacenamiento"
 
 msgid "normal"
-msgstr "Normal"
+msgstr "normal"
 
 #
 msgid "not"
@@ -27747,8 +27749,8 @@ msgstr "tradicional (rápido), resintonizar"
 msgid "tree delete"
 msgstr "Eliminar árbol"
 
-msgid "turbo"
-msgstr "turbo"
+msgid "Turbo"
+msgstr "Turbo"
 
 msgid "uShare"
 msgstr "uShare"
