@@ -15800,10 +15800,10 @@ msgstr "长按向前搜索"
 msgid "SeekBar activation"
 msgstr "进度条激活"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "进度条"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "进度条灵敏度"
 
 msgid "Seeking connected events"

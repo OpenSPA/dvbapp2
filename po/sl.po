@@ -17023,14 +17023,14 @@ msgstr "Jezik tipkovnice"
 
 #
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Iskanje"
 
 msgid "SeekBar activation"
 msgstr ""
 
 #
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Občutljivost seekbar"
 
 msgid "Seeking connected events"

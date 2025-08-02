@@ -15407,13 +15407,13 @@ msgstr "Hae eteenpäin (syötä aika)"
 msgid "Seek forward long"
 msgstr "Etsiä eteenpäin kauan"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Etsi"
 
 msgid "SeekBar activation"
 msgstr "Hakupalkin aktivointi"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Hakupalkin hypyn pituus (sek)"
 
 msgid "Seeking connected events"

@@ -4104,7 +4104,7 @@ msgstr ""
 msgid "Close the Plugin Browser screen"
 msgstr ""
 
-msgid "Close the Seekbar after returning to the starting point"
+msgid "Close the SeekBar after returning to the starting point"
 msgstr ""
 
 msgid "Close the choice box"
@@ -15128,10 +15128,10 @@ msgstr ""
 msgid "SeekBar activation"
 msgstr ""
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr ""
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr ""
 
 msgid "Seeking connected events"

@@ -1,4 +1,4 @@
-# English translations for tuxbox-enigma package.
+﻿# English translations for tuxbox-enigma package.
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
@@ -15757,13 +15757,13 @@ msgid "Seek forward long"
 msgstr "แป้นพิมพ์"
 
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "ค้นหา"
 
 msgid "SeekBar activation"
 msgstr ""
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr ""
 
 msgid "Seeking connected events"

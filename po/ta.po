@@ -1,4 +1,4 @@
-# SOME DESCRIPTIVE TITLE.
+﻿# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Languages add-on <noreply-addon-languages@weblate.org>, 2025.
@@ -15795,10 +15795,10 @@ msgstr "நீண்ட நேரம் முன்னோக்கி தேட
 msgid "SeekBar activation"
 msgstr "சீக்பார் செயல்படுத்தல்"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "சீக்பார்"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "சீக்பார் உணர்திறன்"
 
 msgid "Seeking connected events"

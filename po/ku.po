@@ -16038,14 +16038,14 @@ msgid "Seek forward long"
 msgstr "Seek forward"
 
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Seek"
 
 #, fuzzy
 msgid "SeekBar activation"
 msgstr "Select location"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr ""
 
 msgid "Seeking connected events"

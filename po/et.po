@@ -15792,13 +15792,13 @@ msgstr "Keri edasi (sisesta aeg)"
 msgid "Seek forward long"
 msgstr "Keri edasi"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Otsiriba"
 
 msgid "SeekBar activation"
 msgstr "Otsiriba käivitamine"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Otsiriba tundlikkus"
 
 msgid "Seeking connected events"

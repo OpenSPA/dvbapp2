@@ -15466,13 +15466,13 @@ msgstr "Søg fremad (indtast tid)"
 msgid "Seek forward long"
 msgstr "Søg fremad"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Søgebjælke"
 
 msgid "SeekBar activation"
 msgstr "Søgebjælke aktivering"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Søgebjælke følsomhed"
 
 msgid "Seeking connected events"

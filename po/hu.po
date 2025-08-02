@@ -15522,13 +15522,13 @@ msgstr "Ugrás előre (adja meg az időt)"
 msgid "Seek forward long"
 msgstr "Előre kihagyása"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Keresősáv"
 
 msgid "SeekBar activation"
 msgstr "Keresősáv aktiválása"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Keresősáv érzékenysége"
 
 msgid "Seeking connected events"

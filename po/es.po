@@ -17483,13 +17483,13 @@ msgid "SeekBar Actions"
 msgstr "Acciones de la barra de búsqueda"
 
 #
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Barra de busqueda"
 
 msgid "SeekBar activation"
 msgstr "Activación de la barra de búsqueda"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Sensibilidad de la barra de búsqueda"
 
 msgid "Seeking connected events"
@@ -28673,7 +28673,7 @@ msgstr "Elija la ubicación de destino para los slots."
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Cerrar el administrador de multiBoot Kexec"
 
-msgid "Close the Seekbar after returning to the starting point"
+msgid "Close the SeekBar after returning to the starting point"
 msgstr "Cerrar la barra de búsqueda después de regresar al punto de partida"
 
 msgid "Create Slots"

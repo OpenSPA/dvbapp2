@@ -15846,14 +15846,14 @@ msgstr "Seek forward (enter time)"
 msgid "Seek forward long"
 msgstr "Seek forward"
 
-msgid "Seekbar"
-msgstr "Seekbar"
+msgid "SeekBar"
+msgstr "SeekBar"
 
 msgid "SeekBar activation"
 msgstr "SeekBar activation"
 
-msgid "Seekbar sensibility"
-msgstr "Seekbar sensibility"
+msgid "SeekBar sensibility"
+msgstr "SeekBar sensibility"
 
 msgid "Seeking connected events"
 msgstr ""
