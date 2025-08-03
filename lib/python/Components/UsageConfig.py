@@ -604,7 +604,8 @@ def InitUsageConfig():
 	])
 	config.usage.next_movie_msg = ConfigYesNo(default=True)
 	config.usage.last_movie_played = ConfigText()
-	config.usage.leave_movieplayer_onExit = ConfigSelection(default="no", choices=[
+	config.usage.leave_movieplayer_onExit = ConfigSelection(default="no with popup", choices=[
+		("no with popup", _("No (with notification)")),
 		("no", _("No")),
 		("popup", _("With pop up")),
 		("without popup", _("Without pop up")),

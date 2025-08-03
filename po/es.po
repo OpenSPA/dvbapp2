@@ -13708,6 +13708,9 @@ msgstr "No se han encontrado datos válidos de la región"
 msgid "No wireless networks found! Searching..."
 msgstr "No se han encontrado redes inalámbricas. Buscando…"
 
+msgid "No (with notification)"
+msgstr "No (con notificación)"
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -15493,6 +15496,9 @@ msgstr "¡Pulse botón ROJO para eliminar MultiBoot!"
 
 msgid "Press red key to enable bluetooth."
 msgstr "Pulsar botón rojo para activar bluetooth."
+
+msgid "Press STOP and then EXIT to exit the movie list."
+msgstr "Pulse STOP y después EXIT para salir de la lista de películas."
 
 msgid ""
 "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot "

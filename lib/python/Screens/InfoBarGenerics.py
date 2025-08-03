@@ -71,6 +71,7 @@ AUDIO = False
 jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
+movieplayer_notification_exit = False  # OpenSPA [norhap] indicate how to exit the movie list.
 keyPressCallback = []
 
 
@@ -3820,6 +3821,7 @@ class InfoBarInstantRecord:
 		return self.keyInstantRecord(serviceRef=serviceRef)
 
 	def keyInstantRecord(self, serviceRef=None):
+		global movieplayer_notification_exit
 		self.selectedInstantServiceRef = serviceRef
 		pirr = preferredInstantRecordPath()
 		if not findSafeRecordPath(pirr) and not findSafeRecordPath(defaultMoviePath()):
@@ -3852,6 +3854,7 @@ class InfoBarInstantRecord:
 			commonRecord = []
 			commonTimeshift = []
 		if self.isInstantRecordRunning():
+			movieplayer_notification_exit = True if config.usage.leave_movieplayer_onExit.value == "no with popup" else False
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			choiceList = [
 				(_("Stop recording") if len(self.recording) == 1 else _("Delete or stop recordings"), "stop")
@@ -3877,6 +3880,7 @@ class InfoBarInstantRecord:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=choiceList)
 
 	def recordQuestionCallback(self, answer):  # Used in Timeshift and in plugins
+		global movieplayer_notification_exit
 		if answer is None or answer[1] == "no":
 			self.saveTimeshiftEventPopupActive = False
 			return
@@ -3935,6 +3939,9 @@ class InfoBarInstantRecord:
 			InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 		if answer[1] != "savetimeshiftEvent":
 			self.saveTimeshiftEventPopupActive = False
+		if movieplayer_notification_exit is True and isMoviePlayerInfoBar(self):
+			movieplayer_notification_exit = False
+			Notifications.AddNotification(MessageBox, _("Press STOP and then EXIT to exit the movie list."), MessageBox.TYPE_INFO, timeout=8)
 
 	def changeEndTime(self, entry):
 		def changeEndTimeCallback(result):

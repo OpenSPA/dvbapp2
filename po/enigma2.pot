@@ -2974,9 +2974,6 @@ msgstr ""
 msgid "Bluetooth Setup"
 msgstr ""
 
-msgid "Press red key to enable bluetooth."
-msgstr ""
-
 msgid "Bolivia"
 msgstr ""
 
@@ -11776,6 +11773,9 @@ msgstr ""
 msgid "No wireless networks found! Searching..."
 msgstr ""
 
+msgid "No (with notification)"
+msgstr ""
+
 msgid "No working local network adapter found.\n"
 "Please verify that you have attached a network cable and your network is configured correctly."
 msgstr ""
@@ -13400,7 +13400,13 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press red key to enable bluetooth."
+msgstr ""
+
 msgid "Press RED to remove MultiBoot!"
+msgstr ""
+
+msgid "Press STOP and then EXIT to exit the movie list."
 msgstr ""
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"

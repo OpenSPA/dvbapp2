@@ -12,6 +12,7 @@ from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Tools import Notifications
 from Tools.Directories import fileExists
 
 import enigma
@@ -621,8 +622,6 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self.handleLeave(config.usage.on_movie_stop.value)
 
 	def leavePlayerOnExit(self):
-		if config.misc.spaMovieList.value:  # OpenSPA [norhap] ensure exit from OpenSPA movie list.
-			self.close(True)
 		if self.shown:
 			self.hide()
 		elif self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
@@ -636,6 +635,8 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 			self.leavePlayerOnExitCallback(True)
 		elif config.usage.leave_movieplayer_onExit.value == "stop":
 			self.leavePlayer()
+		elif config.usage.leave_movieplayer_onExit.value == "no with popup":  # OpenSPA [norhap] indicate how to exit the movie list.
+			Notifications.AddNotification(MessageBox, _("Press STOP and then EXIT to exit the movie list."), MessageBox.TYPE_INFO, timeout=8)
 
 	def leavePlayerOnExitCallback(self, answer):
 		if answer:
