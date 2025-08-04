@@ -16,11 +16,12 @@ class RdsInfoDisplaySummary(Screen):
 		self.parent.onText.append(self.onText)
 
 	def onText(self, message):
-		self["message"].text = message
-		if message and len(message):
-			self.show()
-		else:
-			self.hide()
+		if hasattr(self, "message"):
+			self["message"].text = message
+			if message and len(message):
+				self.show()
+			else:
+				self.hide()
 
 
 class RdsInfoDisplay(Screen):
