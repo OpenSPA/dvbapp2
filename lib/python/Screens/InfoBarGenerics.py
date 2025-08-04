@@ -3853,7 +3853,7 @@ class InfoBarInstantRecord:
 			commonRecord = []
 			commonTimeshift = []
 		if self.isInstantRecordRunning():
-			self.notificationOnExit = True if config.usage.leave_movieplayer_onExit.value == "no with popup" else False
+			self.notificationOnExit = True if "no" in config.usage.leave_movieplayer_onExit.value else False
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			choiceList = [
 				(_("Stop recording") if len(self.recording) == 1 else _("Delete or stop recordings"), "stop")
