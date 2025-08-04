@@ -7,6 +7,7 @@ from shlex import split
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from Components.config import ConfigInteger, ConfigSelection
 from Components.Console import Console
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
@@ -34,6 +35,8 @@ def best_sort(elem):
 		x = 1000
 	return x
 ###############################################################
+
+MODULE_NAME = __name__.split(".")[-1]
 
 ACTION_SELECT = 0
 ACTION_CREATE = 1
