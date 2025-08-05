@@ -21,7 +21,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
 
-from .H9SDmanager import H9SDmanager
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
 from .ImageWizard import ImageWizard
 
@@ -57,9 +56,6 @@ def load_cache(cache_file):  # Does a cPickle load.
 	return cache_data
 
 # Helper for menu.xml
-class H9SDmanager(H9SDmanager):
-	pass
-
 class ImageWizard(ImageWizard):
 	pass
 
