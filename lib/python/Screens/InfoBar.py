@@ -635,7 +635,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 			self.leavePlayerOnExitCallback(True)
 		elif config.usage.leave_movieplayer_onExit.value == "stop":
 			self.leavePlayer()
-		elif config.usage.leave_movieplayer_onExit.value == "no with popup":  # OpenSPA [norhap] indicate how to exit the movie list.
+		elif config.usage.leave_movieplayer_onExit.value == "no with popup" or "no" in config.usage.leave_movieplayer_onExit.value and self.__class__.__name__ == "MoviePlayer" and self.session.nav.getRecordings():  # OpenSPA [norhap] indicate how to exit the movie list.
 			Notifications.AddNotification(MessageBox, _("Press STOP and then EXIT to exit the movie list."), MessageBox.TYPE_INFO, timeout=8)
 
 	def leavePlayerOnExitCallback(self, answer):
