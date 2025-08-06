@@ -51,6 +51,8 @@ def InitUsageConfig():
 
 	config.misc.spinnerPosition = ConfigSequence(default=[50, 50], limits=[(0, 1260), (0, 700)], seperator=",")
 
+	config.misc.disableServiceHiSilicon = ConfigYesNo(default=False)
+
 	config.workaround = ConfigSubsection()
 	config.workaround.deeprecord = ConfigYesNo(default=False)
 	config.workaround.wakeuptime = ConfigSelectionNumber(default=5, stepwidth=1, min=0, max=30, wraparound=True)
