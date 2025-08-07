@@ -96,17 +96,9 @@ def InitDefaultPaths():
 
 
 class ResolveLists:
-	Skin = []
+	skins = []
 	lcdSkin = []
 	fonts = []
-
-	def __init__(self):
-		pass
-
-	def clearResolveLists(self):
-		Skin.clear()
-		lcdSkin.clear()
-		fonts.clear()
 
 
 def resolveFilename(scope, base="", path_prefix=None):
@@ -167,10 +159,10 @@ def resolveFilename(scope, base="", path_prefix=None):
 				if len(pluginCode) > 2:
 					path = join(plugins, pluginCode[0], pluginCode[1])
 	elif scope == SCOPE_GUISKIN:
-		if not ResolveLists.Skin:  # OpenSPA [norhap] set fixed this condition to be executed clearing lists class ResolveLists.
+		if not ResolveLists.skins:  # OpenSPA [norhap] set fixed this condition to be executed clearing lists class ResolveLists.
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
 			skin = dirname(config.skin.primary_skin.value)
-			Skin = addIfExists([
+			skins = addIfExists([
 				join(scopeConfig, skin),
 				join(scopeConfig, "skin_common"),
 				join(scopeGUISkin, skin),
@@ -179,11 +171,11 @@ def resolveFilename(scope, base="", path_prefix=None):
 				scopeGUISkin  # Deprecate top level of SCOPE_GUISKIN directory to allow a clean up.
 			])
 		if base.endswith(".xml"):  # If the base filename ends with ".xml" then add scopeConfig to the resolveList for support of old skins.
-			resolveList = Skin[:]
+			resolveList = skins[:]
 			resolveList.insert(2, scopeConfig)
 			path = checkPaths(resolveList, base)
 		else:
-			path = checkPaths(Skin, base)
+			path = checkPaths(skins, base)
 	elif scope == SCOPE_LCDSKIN:
 		if not ResolveLists.lcdSkin:
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
