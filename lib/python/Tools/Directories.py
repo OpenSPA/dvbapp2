@@ -96,7 +96,7 @@ def InitDefaultPaths():
 
 
 class ResolveLists:
-	skins = []
+	skin = []
 	lcdSkin = []
 	fonts = []
 
@@ -159,63 +159,63 @@ def resolveFilename(scope, base="", path_prefix=None):
 				if len(pluginCode) > 2:
 					path = join(plugins, pluginCode[0], pluginCode[1])
 	elif scope == SCOPE_GUISKIN:
-		if not ResolveLists.skins:  # OpenSPA [norhap] set fixed this condition to be executed clearing lists class ResolveLists.
-			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
-			skin = dirname(config.skin.primary_skin.value)
-			skins = addIfExists([
-				join(scopeConfig, skin),
-				join(scopeConfig, "skin_common"),
-				join(scopeGUISkin, skin),
-				join(scopeGUISkin, f"skin_fallback_{getDesktop(0).size().height()}"),
-				join(scopeGUISkin, "skin_default"),
-				scopeGUISkin  # Deprecate top level of SCOPE_GUISKIN directory to allow a clean up.
-			])
+		ResolveLists.skin = []  # OpenSPA [norhap] clear lists before adding them.
+		from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
+		skin = dirname(config.skin.primary_skin.value)
+		ResolveLists.skin += addIfExists([
+			join(scopeConfig, skin),
+			join(scopeConfig, "skin_common"),
+			join(scopeGUISkin, skin),
+			join(scopeGUISkin, f"skin_fallback_{getDesktop(0).size().height()}"),
+			join(scopeGUISkin, "skin_default"),
+			scopeGUISkin  # Deprecate top level of SCOPE_GUISKIN directory to allow a clean up.
+		])
 		if base.endswith(".xml"):  # If the base filename ends with ".xml" then add scopeConfig to the resolveList for support of old skins.
-			resolveList = skins[:]
+			resolveList = ResolveLists.skin[:]
 			resolveList.insert(2, scopeConfig)
 			path = checkPaths(resolveList, base)
 		else:
-			path = checkPaths(skins, base)
+			path = checkPaths(ResolveLists.skin, base)
 	elif scope == SCOPE_LCDSKIN:
-		if not ResolveLists.lcdSkin:
-			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
-			skin = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else ""
-			lcdSkin = addIfExists([
-				join(scopeConfig, "display", skin),
-				join(scopeConfig, "display", "skin_common"),
-				join(scopeLCDSkin, skin),
-				join(scopeLCDSkin, f"skin_fallback_{getDesktop(1).size().height()}"),
-				join(scopeLCDSkin, "skin_default"),
-				scopeLCDSkin  # Deprecate top level of SCOPE_LCDSKIN directory to allow a clean up.
-			])
-		path = checkPaths(lcdSkin, base)
+		ResolveLists.lcdSkin = []  # OpenSPA [norhap] clear lists before adding them.
+		from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
+		skin = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else ""
+		ResolveLists.lcdSkin += addIfExists([
+			join(scopeConfig, "display", skin),
+			join(scopeConfig, "display", "skin_common"),
+			join(scopeLCDSkin, skin),
+			join(scopeLCDSkin, f"skin_fallback_{getDesktop(1).size().height()}"),
+			join(scopeLCDSkin, "skin_default"),
+			scopeLCDSkin  # Deprecate top level of SCOPE_LCDSKIN directory to allow a clean up.
+		])
+		path = checkPaths(ResolveLists.lcdSkin, base)
 	elif scope == SCOPE_FONTS:
-		if not ResolveLists.fonts:
-			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
-			skin = dirname(config.skin.primary_skin.value)
-			display = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else None
-			resolveList = [
-				join(scopeConfig, "fonts"),
-				join(scopeConfig, skin, "fonts"),
-				join(scopeConfig, skin)
-			]
-			if display:
-				resolveList.append(join(scopeConfig, "display", display, "fonts"))
-				resolveList.append(join(scopeConfig, "display", display))
-			resolveList.append(join(scopeConfig, "skin_common", "fonts"))
-			resolveList.append(join(scopeConfig, "skin_common"))
-			resolveList.append(join(scopeGUISkin, skin, "fonts"))
-			resolveList.append(join(scopeGUISkin, skin))
-			resolveList.append(join(scopeGUISkin, "skin_default", "fonts"))
-			resolveList.append(join(scopeGUISkin, "skin_default"))
-			if display:
-				resolveList.append(join(scopeLCDSkin, display, "fonts"))
-				resolveList.append(join(scopeLCDSkin, display))
-			resolveList.append(join(scopeLCDSkin, "skin_default", "fonts"))
-			resolveList.append(join(scopeLCDSkin, "skin_default"))
-			resolveList.append(scopeFonts)
-			fonts = addIfExists(resolveList)
-		path = checkPaths(fonts, base)
+		ResolveLists.fonts = []  # OpenSPA [norhap] clear lists before adding them.
+		from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
+		skin = dirname(config.skin.primary_skin.value)
+		display = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else None
+		resolveList = [
+			join(scopeConfig, "fonts"),
+			join(scopeConfig, skin, "fonts"),
+			join(scopeConfig, skin)
+		]
+		if display:
+			resolveList.append(join(scopeConfig, "display", display, "fonts"))
+			resolveList.append(join(scopeConfig, "display", display))
+		resolveList.append(join(scopeConfig, "skin_common", "fonts"))
+		resolveList.append(join(scopeConfig, "skin_common"))
+		resolveList.append(join(scopeGUISkin, skin, "fonts"))
+		resolveList.append(join(scopeGUISkin, skin))
+		resolveList.append(join(scopeGUISkin, "skin_default", "fonts"))
+		resolveList.append(join(scopeGUISkin, "skin_default"))
+		if display:
+			resolveList.append(join(scopeLCDSkin, display, "fonts"))
+			resolveList.append(join(scopeLCDSkin, display))
+		resolveList.append(join(scopeLCDSkin, "skin_default", "fonts"))
+		resolveList.append(join(scopeLCDSkin, "skin_default"))
+		resolveList.append(scopeFonts)
+		ResolveLists.fonts += addIfExists(resolveList)
+		path = checkPaths(ResolveLists.fonts, base)
 	elif scope == SCOPE_PLUGIN:
 		file = join(scopePlugins, base)
 		if exists(file):
