@@ -8797,6 +8797,9 @@ msgstr "Abandonar EPG"
 msgid "Exit File Commander"
 msgstr "Salir del administrador de archivos"
 
+msgid "Exit Flash Expander"
+msgstr "Salir de Flash Expander"
+
 msgid "Exit MAC address configuration"
 msgstr "Salir de la configuración de dirección MAC"
 
@@ -24419,6 +24422,9 @@ msgstr "Usar los nombres de canales de búsqueda rápida"
 msgid "Use fastscan channel numbering"
 msgstr "Usar la numeración de canales de búsqueda rápida"
 
+msgid "Use Flash Expander"
+msgstr "Usar Flash Expander"
+
 msgid "Use for load only x days in EPG."
 msgstr "Usar para cargar solo x días en EPG."
 
@@ -25294,6 +25300,9 @@ msgstr "Semanal"
 #, python-format
 msgid "Welcome to %s"
 msgstr "Bienvenido/a a %s"
+
+msgid "Welcome to Flash Expander"
+msgstr "Bienvenido a Flash Expander"
 
 msgid "Welcome to IceTV"
 msgstr "Bienvenido a IceTV"

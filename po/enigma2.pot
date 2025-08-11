@@ -7449,6 +7449,9 @@ msgstr ""
 msgid "Exit File Commander"
 msgstr ""
 
+msgid "Exit Flash Expander"
+msgstr ""
+
 msgid "Exit MAC address configuration"
 msgstr ""
 
@@ -20644,6 +20647,9 @@ msgstr ""
 msgid "Use fastscan channel numbering"
 msgstr ""
 
+msgid "Use Flash Expander"
+msgstr ""
+
 msgid "Use for load only x days in EPG."
 msgstr ""
 
@@ -21350,6 +21356,9 @@ msgstr ""
 
 #, python-format
 msgid "Welcome to %s"
+msgstr ""
+
+msgid "Welcome to Flash Expander"
 msgstr ""
 
 msgid "Welcome to IceTV"
