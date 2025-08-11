@@ -41,7 +41,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 		self.console = Console()
 		flashSize = statvfs('/')
 		flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2 ** 20
-		self.smallFlashSize = BoxInfo.getItem("SmallFlash") and flashSize < 260
+		self.smallFlashSize = BoxInfo.getItem("SmallFlash") or flashSize < 260
 		self.swapExists = "/dev/" in "".join(fileReadLines("/proc/swaps", default=[], source=MODULE_NAME))
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
