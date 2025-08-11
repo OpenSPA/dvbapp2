@@ -54,9 +54,9 @@
 ----------
 5 - Modify AppArmor config.
 
-echo 'kernel.apparmor_restrict_unprivileged_userns=0' | sudo tee /etc/sysctl.d/60-apparmor-namespace.conf > /dev/null && sudo sysctl --system
+    echo 'kernel.apparmor_restrict_unprivileged_userns=0' | sudo tee /etc/sysctl.d/60-apparmor-namespace.conf > /dev/null && sudo sysctl --system
 
-sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+    sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
 ----------
 6 - Add user openspabuilder
@@ -69,9 +69,11 @@ sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
     su - openspabuilder
 
 ----------
-8 - git config --global user.email "you@example.com"
+8 - Add your git user and email
 
-git config --global user.name "Your Name"
+    git config --global user.email "you@example.com"
+
+    git config --global user.name "Your Name"
 
 ----------
 9 - Create folder openspa8.x
@@ -103,24 +105,24 @@ git config --global user.name "Your Name"
 
 * Build an image with feed (build time 5-12h)
 
-    MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make image
+      MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make image
 
 * Build an image without feed (build time 1-2h)
 
-    MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make enigma2-image
+      MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make enigma2-image
 
 * Build the feeds
 
-    MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make feeds
+      MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make feeds
 
 * Build specific packages
 
-    MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make init
+      MACHINE=zgemmah9combo DISTRO=openspa DISTRO_TYPE=release make init
 
-    cd builds/openspa/release/zgemmah9combo/
+      cd builds/openspa/release/zgemmah9combo/
 
-    source env.source
+      source env.source
 
-    bitbake nfs-utils rpcbind ...
+      bitbake nfs-utils rpcbind ...
 
 ----------
