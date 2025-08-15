@@ -1588,6 +1588,9 @@ msgstr ""
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
 
+msgid "A new storage device has been connected:"
+msgstr ""
+
 #, python-format
 msgid "A recording has been started:\n"
 "%s"
@@ -18872,6 +18875,9 @@ msgid "Temp directory (%s)"
 msgstr ""
 
 msgid "Temporary directory"
+msgstr ""
+
+msgid "Temporarily mount as %s"
 msgstr ""
 
 msgid "Tennis"

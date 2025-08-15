@@ -149,7 +149,7 @@ class HotPlugManager:
 				newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 				newFstab.append(f"UUID={ID_FS_UUID} {mountPointHdd} {ID_FS_TYPE} defaults 0 0")
 				fileWriteLines("/etc/fstab", newFstab)
-				if not exists(mountPointHdd):
+				if not exists(mountPointHdd) and not exists(mountPoint):  # OpenSPA [norhap] Check that mountPoint does not exist.
 					mkdir(mountPoint, 0o755)
 				self.callMount = True
 				notFound = False

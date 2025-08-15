@@ -1711,6 +1711,9 @@ msgstr ""
 "botones activos y si la función requiere una pulsación prolongada o usar el "
 "botón SHIFT (MAYÚS)."
 
+msgid "A new storage device has been connected:"
+msgstr "Se ha conectado un nuevo dispositivo de almacenamiento:"
+
 #
 #, python-format
 msgid ""
@@ -22167,6 +22170,9 @@ msgstr "Directorio temporal (%s)"
 
 msgid "Temporary directory"
 msgstr "Directorio temporal"
+
+msgid "Temporarily mount as %s"
+msgstr "Montar temporalmente como %s"
 
 # Language
 msgid "Tennis"
