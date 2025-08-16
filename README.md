@@ -1,6 +1,6 @@
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 24.04.01 LTS (GNU/Linux 6.8.0-51-generic x86_64)
+> Ubuntu 24.04.1 (GNU/Linux 6.8.0-51-generic x86_64)
 
 ## minimum hardware requirement : ##
 
@@ -8,9 +8,9 @@
 > 
 > SWAP: 8GB
 > 
-> CPU:  Multi core\thread Model
-> 
-> HDD:  for Single Build 250GB Free, for Multibuild 500GB or more
+> CPU: CPU: Multi-Core/Multi-Threaded
+>
+> Storage: 250 GB free for a single build; 500 GB+ for multi-builds
 
 ## openSPA 8.x is build using oe-alliance build-environment and several git repositories: ##
 
