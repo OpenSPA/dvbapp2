@@ -951,8 +951,7 @@ class ChkrootSlotManager(Setup):
 
 		startIndex = max(existingNumbers) + 1 if existingNumbers else 1
 		maxSlots = min(diskSize, self.ChkrootSlotManagerSlots.value)
-		remainingSlots = maxSlots - len(existingNumbers)
-		endIndex = startIndex + remainingSlots - 1
+		endIndex = startIndex + maxSlots - 1
 		created = 0
 		for i in range(startIndex, endIndex + 1):
 			startupContent = f"kernel=/dev/{mtdKernel} root=UUID={uuidRootFS} rootsubdir=linuxrootfs{i} rootfstype=ext4 extra=true\n"
