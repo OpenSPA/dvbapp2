@@ -107,10 +107,11 @@ class MultiBootManager(Screen):
 			"blue": (self.restoreImage, _("Restore the highlighted slot"))
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restoreActions"].setEnabled(False)
-		if (BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT") or BoxInfo.getItem("HasChkrootMultiboot")) and not BoxInfo.getItem("hasUBIMB"):
-			self["moreSlotActions"] = HelpableActionMap(self, ["ColorActions"], {
-				"blue": (self.moreSlots, _("Add more slots"))
-			}, prio=0, description=_("MultiBoot Manager Actions"))
+		# if (BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT") or BoxInfo.getItem("HasChkrootMultiboot")) and not BoxInfo.getItem("hasUBIMB"):
+		self["moreSlotActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.moreSlots, _("Add more slots"))
+		}, prio=0, description=_("MultiBoot Manager Actions"))
+		self["moreSlotActions"].setEnabled(False)
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.initialize = True
 		self.callLater(self.getImagesList)
@@ -236,11 +237,13 @@ class MultiBootManager(Screen):
 		status = currentSelected[1][2]
 		ubi = currentSelected[1][3]
 		current = currentSelected[1][4]
+		self["moreSlotActions"].setEnabled(False)
 		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and current and not BoxInfo.getItem("hasUBIMB"):
 			self["description"].setText(_("Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."))
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText(_("Disable"))
 			self["key_blue"].setText(_("Add more slots"))
+			self["moreSlotActions"].setEnabled(True)
 			self["restartActions"].setEnabled(True)
 			self["deleteActions"].setEnabled(True)
 			self["restoreActions"].setEnabled(False)
@@ -708,10 +711,10 @@ class ChkrootInit(Screen):
 	skin = """
 	<screen name="ChkrootInit" title="Chkroot MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">
 		<widget name="description" position="0,0" size="e,e-50" font="Regular;20" />
-		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_red" render="Label" position="0,e-40" size="220,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_green" render="Label" position="230,e-40" size="220,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
@@ -849,7 +852,6 @@ class ChkrootSlotManager(Setup):
 			}.get(self.green, _("Help text uninitialized"))
 
 		self.ChkrootSlotManagerLocation = ConfigSelection(default=None, choices=[(None, _("<Select a device>"))])
-		self.ChkrootSlotManagerSlots = ConfigInteger(default=10, limits=(1, 20))
 		self.ChkrootSlotManagerDevice = None
 		Setup.__init__(self, session=session, setup="ChkrootSlotManager")
 		self.setTitle(_("Slot Manager"))
@@ -863,6 +865,8 @@ class ChkrootSlotManager(Setup):
 		self.console = Console()
 		self.deviceData = {}
 		self.green = ACTION_SELECT
+		# OpenSPA [norhap] number of slots allowed on the device.
+		self.deviceSlots = 0
 
 	def layoutFinished(self):
 		Setup.layoutFinished(self)
@@ -951,6 +955,9 @@ class ChkrootSlotManager(Setup):
 
 		startIndex = max(existingNumbers) + 1 if existingNumbers else 1
 		maxSlots = min(diskSize, self.ChkrootSlotManagerSlots.value)
+		# OpenSPA [morser] create and index only the added slots.
+		# remainingSlots = maxSlots - len(existingNumbers)
+		# endIndex = startIndex + remainingSlots - 1
 		endIndex = startIndex + maxSlots - 1
 		created = 0
 		for i in range(startIndex, endIndex + 1):
@@ -960,7 +967,7 @@ class ChkrootSlotManager(Setup):
 			created += 1
 		Console().ePopen(["/bin/sync"])
 		Console().ePopen(["/bin/umount", "/bin/umount", f"{MOUNTPOINT}"])
-		self.session.openWithCallback(closeStartUpCallback, MessageBox, _("Slots have been extended by %d..\n") % created, type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
+		self.session.openWithCallback(closeStartUpCallback, MessageBox, _("%d slots have been created on the device.\n") % self.ChkrootSlotManagerSlots.value, type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
 
 	def showDeviceSelection(self):
 		def readDevicesCallback():
@@ -983,6 +990,9 @@ class ChkrootSlotManager(Setup):
 			locations.append((path, path))
 			self.ChkrootSlotManagerLocation.setSelectionList(default=None, choices=locations)
 			self.ChkrootSlotManagerLocation.value = path
+			# OpenSPA [norhap] Only allows adding slots of the device size.
+			self.deviceSlots = self.partitionSizeGB(path)
+			self.ChkrootSlotManagerSlots = ConfigInteger(default=4, limits=(1, self.deviceSlots))
 			self.createSetup()
 		self.updateStatus("Selected device: %s" % self.deviceData[selection][1])
 
@@ -1026,6 +1036,10 @@ class ChkrootSlotManager(Setup):
 		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readDevicesCallback)
 
 	def updateStatus(self, footnote=None):
+		# OpenSPA [norhap] show number of slots allowed on the device.
+		if self.deviceSlots > 0:
+			footnote = _("Slots allowed for this device") + ": " + f"{self.deviceSlots}"
+			self.setFootnote(footnote)
 		self.green = ACTION_CREATE if self.ChkrootSlotManagerDevice else ACTION_SELECT
 		self["key_green"].setText({
 			ACTION_SELECT: _("Select Device"),

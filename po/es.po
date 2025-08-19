@@ -2680,6 +2680,9 @@ msgstr "¿Seguro que quiere borrar este log?\n"
 msgid "Are you sure you want to delete this?"
 msgstr "¿Seguro que quiere eliminar esto?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr "¿Seguro que deseas desactivar Chkroot Multiboot?"
+
 #
 msgid "Are you sure you want to exit this wizard?"
 msgstr "¿Seguro que quiere salir de este asistente?"
@@ -20947,8 +20950,11 @@ msgstr "Slot F: Backup completo del slot Flash (Imagen actual)"
 msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr "Slot R: Backup completo del slot raiz (Imagen actual)"
 
+msgid "Slots allowed for this device"
+msgstr "Slots permitidos para este dispositivo"
+
 msgid "Slot count"
-msgstr "Número de slot"
+msgstr "Número de slots"
 
 # Language
 msgid "Slovak"
@@ -28679,7 +28685,7 @@ msgid "Yes, and don't ask again for this session"
 msgstr "Sí, y no preguntar de nuevo en esta sesión"
 
 msgid "<Select a device>"
-msgstr "<Seleccionar un dispositivo>"
+msgstr "<Seleccione un dispositivo>"
 
 msgid "Add more slots"
 msgstr "Añadir más slots"
@@ -28687,8 +28693,8 @@ msgstr "Añadir más slots"
 msgid "Choose the amount of additional slots."
 msgstr "Escoge la cantidad de slots adicionales."
 
-msgid "Choose the target device for the slots."
-msgstr "Elija el dispositivo de destino para los slots."
+msgid "Choose the target device for the slots. Press OK or GREEN to select it."
+msgstr "Elija el dispositivo de destino para los slots. Pulse OK o VERDE para seleccionarlo."
 
 msgid "Choose the target location for the slots."
 msgstr "Elija la ubicación de destino para los slots."
