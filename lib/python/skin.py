@@ -21,7 +21,7 @@ if isPluginInstalled("spazeMenu"):
 	else:
 		DEFAULT_SKIN = "MetrixJRSD/skin.xml"
 else:
-	DEFAULT_SKIN = "MetrixHD/skin.xml"
+	DEFAULT_SKIN = "OctEtFHD/skin.xml"
 EMERGENCY_SKIN = "skin_default/skin.xml"
 EMERGENCY_NAME = "Default OE-A"
 DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if BoxInfo.getItem("grautec") else "skin_display.xml"
