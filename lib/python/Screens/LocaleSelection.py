@@ -291,7 +291,7 @@ class LocaleSelection(Screen):
 			locale = current[self.LIST_LOCALE]
 			permanent = sorted(international.getPermanentLocales(locale))
 			permanent = ", ".join(permanent)
-			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to purge all locales/languages except %s?") % permanent, default = False)
+			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to purge all locales/languages except %s?") % permanent, simple=True)
 		else:
 			self.close()
 

@@ -189,7 +189,7 @@ def formatLine(style, left, right=None):
 	leftIndent = "    " * int(style[1]) if styleLen > 1 and style[1].isdigit() else ""
 	rightStartColor = "" if styleLen > 2 and style[2] == "B" else r"\c%08x" % (INFO_COLOR.get(style[2], "V") if styleLen > 2 else INFO_COLOR["V"])
 	rightEndColor = "" if rightStartColor == "" else r"\c%08x" % INFO_COLOR["N"]
-	rightIndent = "    " * int(style[3]) if styleLen > 3 and style[3].isdigit() else ""
+	rightIndent = "    " * int(style[3]) if styleLen > 3 and style[3].isdigit() else "                    "
 	if right is None:
 		colon = "" if styleLen > 0 and style[0] in ("M", "P", "V") else ":"
 		return f"{leftIndent}{leftStartColor}{left}{colon}{leftEndColor}"
