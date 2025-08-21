@@ -10987,7 +10987,7 @@ msgid "Info button (short)"
 msgstr "Tecla INFO (corta)"
 
 msgid "Info file checksum"
-msgstr "Suma de comprobación del archivo de información"
+msgstr "Comprobación del archivo información"
 
 msgid "Info file override"
 msgstr "Anulación del archivo de información"
