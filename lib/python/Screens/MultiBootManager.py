@@ -786,13 +786,24 @@ class ChkrootInit(Screen):
 						("mmcblk0p2", "linuxrootfs4")
 					])
 			else:
+				####### OpenSPA [morser] Create 1 slot every 500Mb
+				number = 4
+				data = popen("df /").read()
+				if "/" in data:
+					flash = data.split("\n")
+					flash = flash[1] if len(flash) > 1 else None
+					if flash:
+						size = int(flash.split()[1].strip())
+						number = ceil(size / 500000)
+						number = min(number, 4)
+
 				rootMap = [
 					(mtdRootFs, "linuxrootfs1"),
-					(mtdRootFs, "linuxrootfs1"),
-					(mtdRootFs, "linuxrootfs2"),
-					(mtdRootFs, "linuxrootfs3"),
-					(mtdRootFs, "linuxrootfs4")
+					(mtdRootFs, "linuxrootfs1")
 				]
+				if number > 1:
+					for i in range(2, number + 1):
+						rootMap.append((mtdRootFs, f"linuxrootfs{i}"))
 
 			cmdList = [
 				f"mkfs.vfat -F 32 -n CHKROOT {device}",
@@ -803,6 +814,7 @@ class ChkrootInit(Screen):
 			for idx, (rootdev, subdir) in enumerate(rootMap):
 				suffix = "" if idx == 0 else f"_{idx}"
 				cmdList.append(f"echo 'kernel=/dev/{mtdKernel} root=/dev/{rootdev} rootsubdir={subdir}' > {mountpoint}/STARTUP{suffix}")
+			#######################################################################
 
 			cmdList.append(f"umount {mountpoint}")
 			Console().eBatch(cmdList, rootInitCallback, debug=True)
