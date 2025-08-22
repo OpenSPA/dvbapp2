@@ -7082,9 +7082,8 @@ msgid "Display selection list as a selection menu"
 msgstr "Mostrar la lista de selección como un menú de selección"
 
 # EPG Setup
-msgid "Display the EIT Now/Next event data in InfoBar."
-msgstr ""
-"Visualizar datos EIT de programa actual/siguiente en la barra de información."
+msgid "Display the EIT Now/Next event data in InfoBar"
+msgstr "Visualizar datos EIT de programa actual/siguiente en la InfoBar"
 
 msgid "Display the base locales or all locales for a language."
 msgstr "Mostrar las regiones básicas o todas las regiones de un idioma."
@@ -10999,7 +10998,7 @@ msgid "Info button (short)"
 msgstr "Tecla INFO (corta)"
 
 msgid "Info file checksum"
-msgstr "Suma de comprobación del archivo de información"
+msgstr "Comprobación del archivo información"
 
 msgid "Info file override"
 msgstr "Anulación del archivo de información"

@@ -217,7 +217,7 @@
 		<item level="2" text="Save EPG data" description="Configure if epg.dat should be saved at all.">config.epg.saveepg</item>
 		<item level="2" text="Scheduled save of epg.dat" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every (in hours)" description="The %s %s stores the EPG data every (hours)." requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
-		<item level="2" text="Show the EIT Now/Next data in the InfoBar." description="Display the EIT Now/Next event data in InfoBar.">config.usage.show_eit_nownext</item>
+		<item level="2" text="Show the EIT Now/Next data in the InfoBar." description="Display the EIT Now/Next event data in InfoBar">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
 		<item level="2" text="Show Items in EIT" description="Append Items in description for EIT events when is available.">config.epg.items_in_event_ext_descr</item>
 		<item level="2" text="Enable MHW EPG" description="Use MHW EPG information when it is available.">config.epg.mhw</item>
