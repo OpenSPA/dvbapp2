@@ -465,6 +465,8 @@ class MultiBootClass():
 					dev = info.get("feedsurl")
 					if "beta" in dev:
 						revision += " BETA"
+					if "oea" in dev:
+						revision += " OEA"
 				####################################################################
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
 				self.imageList[self.slotCode]["imagename"] = f"{info.get('displaydistro', info.get('distro'))} {info.get('imgversion')}{revision} ({compileDate})"
