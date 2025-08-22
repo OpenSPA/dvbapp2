@@ -22,8 +22,8 @@ from Tools.MultiBoot import MultiBoot
 
 ### OPENSPA [morser] prepare for kexec usb slots ####################
 from Components.Harddisk import harddiskmanager, Harddisk
-from Components.Console import Console
 #####################################################################
+
 
 ##### OPENSPA [morser] Add best sorted function ###############
 def best_sort(elem):
@@ -35,6 +35,7 @@ def best_sort(elem):
 		x = 1000
 	return x
 ###############################################################
+
 
 MODULE_NAME = __name__.split(".")[-1]
 
