@@ -21991,7 +21991,7 @@ msgstr ""
 msgid "Your %s %s is rebooting into Recovery Mode"
 msgstr ""
 
-msgid "Your %s %s is shutting down. Please wait..."
+msgid "Your %s %s is shutting down"
 msgstr ""
 
 #, python-format

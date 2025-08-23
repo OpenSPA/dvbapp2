@@ -26257,8 +26257,8 @@ msgstr "Reiniciando %s %s"
 msgid "Your %s %s is rebooting into Recovery Mode"
 msgstr "Su %s %s se está reiniciando en modo de recuperación"
 
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Tu %s %s está apagándose. Espera por favor..."
+msgid "Your %s %s is shutting down"
+msgstr "Su %s %s se está apagando"
 
 #
 #, python-format
