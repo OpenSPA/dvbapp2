@@ -2683,6 +2683,9 @@ msgstr "¿Seguro que quiere eliminar esto?"
 msgid "Are you sure you want to disable Chkroot Multiboot?"
 msgstr "¿Seguro que deseas desactivar Chkroot Multiboot?"
 
+msgid "Do you want to permanently delete the images in the slots in the flash?"
+msgstr "¿Quieres eliminar permanentemente las imágenes en los slots en la flash?"
+
 #
 msgid "Are you sure you want to exit this wizard?"
 msgstr "¿Seguro que quiere salir de este asistente?"

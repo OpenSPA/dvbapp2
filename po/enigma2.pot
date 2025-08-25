@@ -2378,6 +2378,9 @@ msgstr ""
 msgid "Are you sure you want to disable Chkroot Multiboot?"
 msgstr ""
 
+msgid "Do you want to permanently delete the images in the slots in the flash?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr ""
 

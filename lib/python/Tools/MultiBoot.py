@@ -797,7 +797,7 @@ class MultiBootClass():
 			imageDir = join(self.tempDir, rootDir) if rootDir else self.tempDir
 			if self.bootSlots[self.slotCode].get("ubi", False) or fileHas("/proc/cmdline", "kexec=1") or self.remove:
 				try:
-					if isfile(join(imageDir, "usr/bin/enigma2")):
+					if isfile(join(imageDir, "usr/bin/enigma2")) or (isfile(join(imageDir, "usr/bin/enigma2x.bin")) and self.remove):  # OPENSPA [morser] remove slot if is hide
 						self.console.ePopen([REMOVE, REMOVE, "-rf", imageDir])
 					mkdir(imageDir)
 				except OSError as err:

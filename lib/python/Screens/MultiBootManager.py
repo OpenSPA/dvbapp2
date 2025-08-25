@@ -188,9 +188,28 @@ class MultiBootManager(Screen):
 			print("[MultiBootManager] %s marked as deleted." % currentSelected[0])
 		self.getImagesList()
 
-	def disableChkrootAnswer(self, answer):
+	def disableChkrootAnswer(self, answer):   ## OPENSA [morser] add question to permanently delete the images in the slots
 		if answer:
+			self.session.openWithCallback(self.removeslotsAnswer, MessageBox, _("Do you want to permanently delete the images in the slots in the flash?"), simple=True, windowTitle=self.getTitle())
+
+	def removeslotsAnswer(self, answer):
+		def finalremove(answer):
+			pass
+
+		def removeSlots(slotImages):
+			if slotImages:
+				for slot in slotImages:
+					if int(slot)>1 and "mmcblk" in slotImages[str(slot)]["device"]:
+						print("[MultiBootManager] Remove slot %s" % slot)
+						MultiBoot.emptySlot(slot, finalremove, True)
 			MultiBoot.wipeChkroot(self.disableChkrootCallback)
+
+		if answer:
+			MultiBoot.getSlotImageList(removeSlots)
+		else:
+			MultiBoot.wipeChkroot(self.disableChkrootCallback)
+
+	############################################################################################################################		
 
 	def disableChkrootCallback(self, result):
 		if result not in (0, 1):
