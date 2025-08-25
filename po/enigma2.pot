@@ -11815,10 +11815,10 @@ msgstr ""
 msgid "No, scan later manually"
 msgstr ""
 
-msgid "No, show Plugin Browser"
+msgid "No, show the Plugin Browser"
 msgstr ""
 
-msgid "No, show RecordTimer Overview"
+msgid "No, show the RecordTimer Overview"
 msgstr ""
 
 msgid "NodeID"

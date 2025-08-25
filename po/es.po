@@ -13771,10 +13771,10 @@ msgstr "No, nunca"
 msgid "No, scan later manually"
 msgstr "No, buscar después manualmente"
 
-msgid "No, show Plugin Browser"
-msgstr "No, mostrar siempre el explorador de plugins"
+msgid "No, show the Plugin Browser"
+msgstr "No, mostrar el navegador de plugins"
 
-msgid "No, show RecordTimer Overview"
+msgid "No, show the RecordTimer Overview"
 msgstr "No, mostrar siempre la lista del temporizador"
 
 msgid "NodeID"
