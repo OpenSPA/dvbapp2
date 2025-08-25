@@ -1900,6 +1900,9 @@ msgstr "Abortando proceso de actualización"
 msgid "About"
 msgstr "Acerca de"
 
+msgid "About OpenSPA"
+msgstr "Acerca de OpenSPA"
+
 #
 msgid "About to start"
 msgstr "A punto de comenzar"

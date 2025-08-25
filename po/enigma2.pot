@@ -1721,6 +1721,9 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+msgid "About OpenSPA"
+msgstr ""
+
 msgid "About to start"
 msgstr ""
 
