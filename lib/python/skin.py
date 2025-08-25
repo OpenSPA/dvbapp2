@@ -16,12 +16,14 @@ from Tools.LoadPixmap import LoadPixmap
 MODULE_NAME = __name__.split(".")[-1].capitalize()
 
 if isPluginInstalled("spazeMenu"):
+	standardenigma = False
 	if BoxInfo.getItem("HasFullHDSkinSupport"):
 		DEFAULT_SKIN = "OpenStarHD/skin.xml"
 	else:
 		DEFAULT_SKIN = "MetrixJRSD/skin.xml"
 else:
-	DEFAULT_SKIN = "MetrixHD/skin.xml"
+	standardenigma = True
+	DEFAULT_SKIN = "OctEtFHD/skin.xml"
 EMERGENCY_SKIN = "skin_default/skin.xml"
 EMERGENCY_NAME = "Default OE-A"
 DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if BoxInfo.getItem("grautec") else "skin_display.xml"

@@ -6,7 +6,7 @@ from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eS
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
-from skin import getSkinFactor
+from skin import getSkinFactor, standardenigma
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config, configfile
@@ -1374,8 +1374,9 @@ class ChannelContextMenu(Screen):
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
 				appendWhenValid(current, menu, (_("Show Transponder Information"), boundFunction(self.showServiceInformations, current)), level=2)
-		if not config.misc.spazeChannelSelection.value or (config.misc.spazeChannelSelection.value and config.usage.standardchannelselection.value):  # OPENSPA [norhap] Exchange type of channel list.
-			appendWhenValid(current, menu, (_("Show service list") + " " + "OpenSPA", boundFunction(self.showServiceListOpenSPA, None)), level=2)
+		if standardenigma is False:
+			if not config.misc.spazeChannelSelection.value or (config.misc.spazeChannelSelection.value and config.usage.standardchannelselection.value):  # OPENSPA [norhap] Exchange type of channel list.
+				appendWhenValid(current, menu, (_("Show service list") + " " + "OpenSPA", boundFunction(self.showServiceListOpenSPA, None)), level=2)
 		if self.subservices and not csel.isSubservices():
 			appendWhenValid(current, menu, (_("Show Subservices Of Active Service"), self.showSubservices), key="4")
 		if csel.bouquet_mark_edit == EDIT_OFF and not csel.entry_marked:
@@ -2522,7 +2523,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.protectContextMenu = True
-					self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
+					self["key_green"].setText(_("Add Timer") if standardenigma is False else _("Reception Lists"))
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):
@@ -2841,7 +2842,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.correctChannelNumber()
 		self.editMode = False
 		self.protectContextMenu = True
-		self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
+		self["key_green"].setText(_("Add Timer") if standardenigma is False else _("Reception Lists"))
 		self.close(None)
 
 	def zapBack(self):
