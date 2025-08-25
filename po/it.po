@@ -15384,13 +15384,13 @@ msgstr "Cerca in avanti (inserisci l'ora)"
 msgid "Seek forward long"
 msgstr "Cerca in avanti a lungo"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Barra di ricerca"
 
 msgid "SeekBar activation"
 msgstr "Attivazione della barra di ricerca"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Sensibilità della barra di ricerca"
 
 msgid "Seeking connected events"

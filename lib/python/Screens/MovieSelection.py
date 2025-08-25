@@ -941,7 +941,11 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					except Exception as err:
 						print(f"[MovieSelection] Error: Cannot display!  ({str(err)})")
 					return
-				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.itemSelectedCheckTimeshiftCallback, ext, path))
+				if config.usage.movieSelectionInMenu.value:  # OpenSPA [norhap] Playback from Movie Selection in Main Menu. This can be revised for a better solution.
+					self.close(current)
+					Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.previewCheckTimeshiftCallback)
+				else:
+					Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.itemSelectedCheckTimeshiftCallback, ext, path))
 
 	def itemSelectedCheckTimeshiftCallback(self, ext, path, answer):
 		if answer:
@@ -967,7 +971,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		try:
 			path = join(config.movielist.last_videodir.value, ".e2settings.pkl")
 			with open(path, "wb") as fd:
-				dump(self.settings, fd)
+				dump(self.settings, fd, protocol=5)
 		except OSError as err:
 			print(f"[MovieSelection] Error {err.errno}: Failed to save settings to '{path}'!  ({err.strerror})")
 		# Also set config items, in case the user has a read-only disk.

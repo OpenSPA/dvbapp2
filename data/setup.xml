@@ -1,7 +1,4 @@
 <setupxml>
-	<setup key="audio_setup" title="Audio Settings">
-		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
-	</setup>
 	<setup key="Audio" title="Audio Settings" level="1" showOpenWebif="1">
 		<item level="1" text="Volume steps" description="Select the size of the volume step when the VOLUME buttons are pressed.">config.volumeControl.pressStep</item>
 		<item level="1" text="Long press volume steps" description="Select the size of the volume steps when the VOLUME buttons are held down.">config.volumeControl.longStep</item>
@@ -29,6 +26,9 @@
 		<item level="1" text="Audio Auto Volume Level" description="This option configures you can set Auto Volume Level." requires="CanAutoVolume">config.av.autovolume</item>
 		<item level="1" text="Enable BT Audio" description="This Option allows you to switch Audio to BT Speakers." requires="CanBTAudio">config.av.btaudio</item>
 		<item level="1" text="General BT Audio delay" description="This option configures the general audio delay for BT Speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
+	</setup>
+	<setup key="audio_setup" title="Audio Settings">
+		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
 	</setup>
 	<setup key="AutoLanguage" title="Auto Language Settings" level="1" showOpenWebif="1">
 		<item level="1" text="Audio language selection 1" description="Configure the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
@@ -64,12 +64,6 @@
 		<item level="0" text="Username" description="Edit the username.">config.cccaminfo.username</item>
 		<item level="0" text="Password" description="Edit the password.">config.cccaminfo.password</item>
 		<item level="0" text="Port" description="Edit the remote CCCam port.">config.cccaminfo.port</item>
-	</setup>
-	<setup key="CiSelection" title="Common Interface">
-		<item level="0" text="Common Settings"></item>
-		<item level="0" text="CI+ Helper*" description="Select 'Enable' to start the CI+ helper." requires="CIPlusHelper">config.cimisc.cihelperenabled</item>
-		<item level="0" text="DVB CI Delay" description="Set DVB CI delay." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
-		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
 	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
 		<item text="Channel Selection Screen" description="Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen." conditional="len(config.channelSelection.screenStyle.choices) > 1">config.channelSelection.screenStyle</item>
@@ -144,6 +138,16 @@
 		</if>
 		<item level="0" text="Set action for 'Info' key" description="Here you can set what is called when pressing the 'Info' key.">config.usage.servicelist_infokey</item>
 	</setup>
+	<setup key="ChkrootSlotManager" title="Slot Manager">
+		<item level="0" text="Target location" description="Choose the target device for the slots. Press OK or GREEN to select it.">self.ChkrootSlotManagerLocation</item>
+		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.ChkrootSlotManagerLocation.value">self.ChkrootSlotManagerSlots</item>
+	</setup>
+	<setup key="CiSelection" title="Common Interface">
+		<item level="0" text="Common Settings"></item>
+		<item level="0" text="CI+ Helper*" description="Select 'Enable' to start the CI+ helper." requires="CIPlusHelper">config.cimisc.cihelperenabled</item>
+		<item level="0" text="DVB CI Delay" description="Set DVB CI delay." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
+		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
+	</setup>
 	<setup key="Display" title="Display Settings" showOpenWebif="1">
 		<item level="0" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD." requires="FBLCDDisplay">config.lcd.fblcddisplay</item>
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>
@@ -213,7 +217,7 @@
 		<item level="2" text="Save EPG data" description="Configure if epg.dat should be saved at all.">config.epg.saveepg</item>
 		<item level="2" text="Scheduled save of epg.dat" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every (in hours)" description="The %s %s stores the EPG data every (hours)." requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
-		<item level="2" text="Show the EIT Now/Next data in the InfoBar." description="Display the EIT Now/Next event data in InfoBar.">config.usage.show_eit_nownext</item>
+		<item level="2" text="Show the EIT Now/Next data in the InfoBar." description="Display the EIT Now/Next event data in InfoBar">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
 		<item level="2" text="Show Items in EIT" description="Append Items in description for EIT events when is available.">config.epg.items_in_event_ext_descr</item>
 		<item level="2" text="Enable MHW EPG" description="Use MHW EPG information when it is available.">config.epg.mhw</item>
@@ -425,9 +429,6 @@
 	</setup>
 	<setup key="GPTSlotManager" title="Slot Manager">
 		<item level="0" text="Target location" description="Choose the target device for the slots.">self.GPTSlotManagerLocation</item>
-	</setup>
-	<setup key="UBISlotManager" title="Slot Manager">
-		<item level="0" text="Target location" description="Choose the target device for the slots.">self.UBISlotManagerLocation</item>
 	</setup>
 	<setup key="HardDisk" title="Hard Disk Settings" showOpenWebif="1">
 		<item level="0" text="Hard disk standby after" description="Configure the hard disk drive to go to standby after the specified idle time.">config.usage.hdd_standby</item>
@@ -675,7 +676,7 @@
 		<item level="2" text="CutList skip time for '%s'/'%s' buttons" description="Set the CutList Editor skip time interval for the '%s'/'%s' buttons." data="1,3">config.seek.defined["CUT_13"]</item>
 		<item level="2" text="CutList skip time for '%s'/'%s' buttons" description="Set the CutList Editor skip time interval for the '%s'/'%s' buttons." data="4,6">config.seek.defined["CUT_46"]</item>
 		<item level="2" text="CutList skip time for '%s'/'%s' buttons" description="Set the CutList Editor skip time interval for the '%s'/'%s' buttons." data="7,9">config.seek.defined["CUT_79"]</item>
-		<item level="2" text="Seekbar sensibility" description="Set the jump-size of the seekbar.">config.seek.sensibility</item>
+		<item level="2" text="SeekBar sensibility" description="Set the jump-size of the SeekBar.">config.seek.sensibility</item>
 		<item level="2" text="Custom skip time for '1'/'3' buttons" description="Configure the skip time interval for the '1'/'3' buttons.">config.seek.selfdefined_13</item>
 		<item level="2" text="Custom skip time for '4'/'6' buttons" description="Configure the skip time interval for the '4'/'6' buttons.">config.seek.selfdefined_46</item>
 		<item level="2" text="Custom skip time for '7'/'9' buttons" description="Configure the skip time interval for the '7'/'9' buttons.">config.seek.selfdefined_79</item>
@@ -696,6 +697,7 @@
 		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
+		<item level="2" text="Disable ServiceHiSilicon" description="Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code." requires="servicehisilicon" restart="gui">config.misc.disableServiceHiSilicon</item>
 	</setup>
 	<setup key="PluginBrowser" title="Plugin Browser Settings" showOpenWebif="1">
 		<item level="0" text="Plugin Browser layout" description="Select the layout of the installed plugins in the Plugin Browser screen.">config.usage.pluginListLayout</item>
@@ -986,7 +988,7 @@
 		<item level="2" text="Time shift save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
 		<item level="2" text="Stop time shift while recording" description="Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)">config.timeshift.stopWhileRecording</item>
 		<item level="2" text="Skip jumping to live while timeshifting with plugins" description="If set to 'yes', allows you to use timeshift with alternative audio plugins.">config.timeshift.skipReturnToLive</item>
-		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the seek bar to jump to a selected point within the event.">config.timeshift.showInfoBar</item>
+		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event.">config.timeshift.showInfoBar</item>
 		<item level="2" text="Time shift buffer limit" description="Older files in the time shift directory are removed on every event change.">config.timeshift.maxHours</item>
 		<item level="2" text="Time shift event limit" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority.">config.timeshift.maxEvents</item>
 		<item level="2" text="Time shift checking for older files" description="In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier.">config.timeshift.checkEvents</item>
@@ -1007,6 +1009,10 @@
 		<item level="2" text="Ignore DVB-C namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_cable</item>
 		<item level="2" text="Ignore DVB-T namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_terrestrial</item>
 		<item level="1" text="Delivery system workaround" description="Workaround for old tuner driver." requires="need_dsw">config.usage.enable_delivery_system_workaround</item>
+	</setup>
+	<setup key="UBISlotManager" title="Slot Manager">
+		<item level="0" text="Target location" description="Choose the target device for the slots.">self.UBISlotManagerLocation</item>
+		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.UBISlotManagerLocation.value">self.UBISlotManagerSlots</item>
 	</setup>
 	<setup key="Usage" title="Customize System Settings" showOpenWebif="1">
 		<item level="0" text="Settings mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
@@ -1054,7 +1060,7 @@
 		<item level="1" text="Sort Extension Menu" description="Select the sort order of the Extension Menu entries.">config.usage.sortExtensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extension Menu screen.">config.usage.show_restart_network_extensionslist</item>
 		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden.">config.usage.plugins_sort_mode</item>
-		<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically.">config.usage.sort_settings</item>
+		<!--<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically.">config.usage.sort_settings</item>-->
 		<item level="1" text="Show setup default value" description="Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description.">config.usage.setupShowDefault</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch.">config.usage.boolean_graphic</item>
 		<item level="2" text="Show additional slider value" description="Enable to display the current value of the slider at end of the slider bar.">config.usage.show_slider_value</item>

@@ -16020,7 +16020,7 @@ msgid "Seek forward long"
 msgstr "Avançar"
 
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Busca"
 
 #, fuzzy
@@ -16028,7 +16028,7 @@ msgid "SeekBar activation"
 msgstr "Selecione a localização "
 
 #, fuzzy
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Visibilidade do OSD"
 
 msgid "Seeking connected events"

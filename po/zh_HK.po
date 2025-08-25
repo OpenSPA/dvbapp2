@@ -16176,7 +16176,7 @@ msgid "Seek forward long"
 msgstr "快進"
 
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "跳過"
 
 #, fuzzy
@@ -16184,7 +16184,7 @@ msgid "SeekBar activation"
 msgstr "啟動交換檔"
 
 #, fuzzy
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "OSD 透明度"
 
 msgid "Seeking connected events"

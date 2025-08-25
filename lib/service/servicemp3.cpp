@@ -650,6 +650,7 @@ RESULT eMP3ServiceOfflineOperations::getListOfFilenames(std::list<std::string>& 
 	if ((pos = filename.rfind('.')) != std::string::npos) {
 		filename.erase(pos + 1);
 		res.push_back(filename + ".eit");
+		res.push_back(filename + ".txt");
 	}
 	return 0;
 }
@@ -4227,7 +4228,7 @@ RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack& track) {
 
 	// Initialize cache if needed
 	if (m_cachedSubtitleStream == -2 && !m_subtitleStreams.empty()) {
-		m_cachedSubtitleStream = 0;
+		m_cachedSubtitleStream = -1;
 
 		// Get configured languages
 		configvalue = eSubtitleSettings::subtitle_autoselect1;

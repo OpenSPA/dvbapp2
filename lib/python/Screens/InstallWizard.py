@@ -115,9 +115,9 @@ class InstallWizard(ConfigListScreen, Screen):
 
 class InstallWizardSmallBox(Screen):
 	skin = """
-	<screen name="InstallWizardSmallBox" position="center,center" size="520,185" resolution="1280,720">
+	<screen name="InstallWizardSmallBox" position="center,center" size="1000,120" resolution="1280,720">
 		<widget source="Title" render="Label" position="65,8" size="520,0" font="Regular;22" transparent="1"/>
-		<widget source="status" render="Label" position="75,10" size="435,55" font="Regular;22" transparent="1"/>
+		<widget source="status" render="Label" position="10,10" size="985,105" font="Regular;22" transparent="1"/>
 	</screen>"""
 
 	def __init__(self, session):

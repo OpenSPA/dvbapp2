@@ -15388,13 +15388,13 @@ msgstr "Avance rapide (saisir temps)"
 msgid "Seek forward long"
 msgstr "Chercher à avancer longtemps"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Barre de recherche"
 
 msgid "SeekBar activation"
 msgstr "Activation de la barre de recherche"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Sensibilité de la barre de recherche"
 
 msgid "Seeking connected events"

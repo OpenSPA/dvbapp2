@@ -161,7 +161,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="software_update" level="0" text="Software Update" description="Online update of your %s %s software." weight="11"><screen module="SoftwareUpdate" screen="SoftwareUpdate" /></item>
 				<item key="software_restore" level="0" text="Software Restore" description="Restore your %s %s with a new firmware." weight="12"><plugin system="SoftwareManager" screen="ImageWizard" /></item>
 				<item key="flash_online" level="0" text="Flash Online" description="Download and flash images on your %s %s." weight="13"><screen module="FlashManager" screen="FlashManager" /></item>
-				<item key="h9sdmanager" level="0" text="H9 SD Manager" description="Install image to SD or USB" weight="14" requires="HasSDswap"><plugin system="SoftwareManager" screen="H9SDmanager" /></item>
 				<item key="backup_image_dflash" level="0" text="Image Backup" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dFlash"><plugin extensions="dFlash" screen="dFlash" /></item>
 				<item key="backup_image_dbackup" level="0" text="Image Backup" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dBackup"><plugin extensions="dBackup" screen="dBackup" /></item>
 				<item key="backup_image" level="0" text="Image Backup" description="Backup your running %s %s image to HDD or USB." weight="14" requires="ImageBackup"><screen module="ImageBackup" screen="ImageBackup" /></item>
@@ -226,9 +225,7 @@ else:
 			<item key="shutdown" level="0" text="Shutdown" weight="5" requires="!DeepstandbySupport"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 			<item key="multiboot" level="0" text="MultiBoot Manager" weight="6" requires="canMultiBoot"><screen module="MultiBootManager" screen="MultiBootManager" /></item>
 			<item key="kexec_multiboot" level="2" text="Kexec Manager" weight="6" requires="cankexec"><screen module="MultiBootManager" screen="KexecInit">1</screen></item>
-			<item key="chroot_multiboot" level="2" text="Enable Chkroot MultiBoot" weight="6" requires="canchkroot"><screen module="MultiBootManager" screen="ChkrootInit">1</screen></item>
-			<item key="chroot_multiboot_rm" level="2" text="Remove Chkroot MultiBoot" weight="6" requires="HasChkrootMultiboot"><screen module="MultiBootManager" screen="ChkrootInit">1</screen></item>
-			<!--item key="SDswap" level="0" text="SDroot" weight="7" requires="HasSDswap"><screen module="SDswap" screen="SDswap">1</screen></item-->
+			<item key="chkroot_multiboot" level="2" text="Enable Chkroot MultiBoot" weight="6" requires="canchkroot"><screen module="MultiBootManager" screen="ChkrootInit">1</screen></item>
 			<item key="wol_standby" level="0" text="WOL Standby" weight="10" requires="GBWOL">
 				<code>
 from Screens.MessageBox import MessageBox

@@ -15546,13 +15546,13 @@ msgstr "Vooruit spoelen (tijd invoeren)"
 msgid "Seek forward long"
 msgstr "Vooruit spoelen Lang"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Spoelbalk"
 
 msgid "SeekBar activation"
 msgstr "Spoelbalk activeren"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Spoelbalk tijdsprong"
 
 msgid "Seeking connected events"

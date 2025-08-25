@@ -21,7 +21,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
 
-from .H9SDmanager import H9SDmanager
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
 from .ImageWizard import ImageWizard
 
@@ -36,7 +35,7 @@ def write_cache(cache_file, cache_data):  # Does a cPickle dump.
 		except OSError:
 			print("%s is a file" % dirname(cache_file))
 	with open(cache_file, "wb") as fd:
-		dump(cache_data, fd, -1)
+		dump(cache_data, fd, protocol=5)
 
 
 def valid_cache(cache_file, cache_ttl):  # See if the cache file exists and is still living.
@@ -57,9 +56,6 @@ def load_cache(cache_file):  # Does a cPickle load.
 	return cache_data
 
 # Helper for menu.xml
-class H9SDmanager(H9SDmanager):
-	pass
-
 class ImageWizard(ImageWizard):
 	pass
 

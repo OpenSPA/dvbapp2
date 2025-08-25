@@ -1711,6 +1711,9 @@ msgstr ""
 "botones activos y si la función requiere una pulsación prolongada o usar el "
 "botón SHIFT (MAYÚS)."
 
+msgid "A new storage device has been connected:"
+msgstr "Se ha conectado un nuevo dispositivo de almacenamiento:"
+
 #
 #, python-format
 msgid ""
@@ -2677,6 +2680,12 @@ msgstr "¿Seguro que quiere borrar este log?\n"
 msgid "Are you sure you want to delete this?"
 msgstr "¿Seguro que quiere eliminar esto?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr "¿Seguro que deseas desactivar Chkroot Multiboot?"
+
+msgid "Do you want to permanently delete the images in the slots in the flash?"
+msgstr "¿Quieres eliminar permanentemente las imágenes en los slots en la flash?"
+
 #
 msgid "Are you sure you want to exit this wizard?"
 msgstr "¿Seguro que quiere salir de este asistente?"
@@ -2756,11 +2765,11 @@ msgstr "Como plugin en la barra extendida"
 msgid "Ask user"
 msgstr "Preguntar al usuario"
 
-msgid "Ask user (with default as 'No')"
-msgstr "Preguntar antes (por defecto 'No')"
+msgid "Ask user (with default of 'No')"
+msgstr "Preguntar al usuario (con ‘no’ como predeterminado)"
 
-msgid "Ask user (with default as 'Yes')"
-msgstr "Preguntar antes (por defecto 'Si')"
+msgid "Ask user (with default of 'Yes')"
+msgstr "Preguntar al usuario (con ‘sí’ como predeterminado)"
 
 #
 msgid "Aspect"
@@ -2890,7 +2899,7 @@ msgstr "Modo de autorización"
 msgid "Auto"
 msgstr "Auto"
 
-msgid "Auto Detect"
+msgid "Auto detect"
 msgstr "Detección automática"
 
 #
@@ -3349,7 +3358,7 @@ msgstr "Pantalla negra hasta el bloqueo"
 msgid "Blinking REC"
 msgstr "Parpadeo de REC"
 
-msgid "Blinking REC Symbol"
+msgid "Blinking REC symbol"
 msgstr "Icono REC parpadeando"
 
 msgid "Block device"
@@ -4147,7 +4156,7 @@ msgstr "Canal / Servicio"
 msgid "Channel 1"
 msgstr "Canal 1"
 
-msgid "Channel 1 with Prime time"
+msgid "Channel 1 with prime time"
 msgstr "Canal 1 de máxima audiencia"
 
 msgid "Channel Info"
@@ -4156,7 +4165,7 @@ msgstr "Información de canal"
 msgid "Channel List"
 msgstr "Lista de canales"
 
-msgid "Channel Number"
+msgid "Channel number"
 msgstr "Número de canal"
 
 #
@@ -4764,6 +4773,9 @@ msgstr "Formato de color"
 
 msgid "Color space"
 msgstr "Espacio de color"
+
+msgid "Colored text"
+msgstr "Texto en color"
 
 msgid "Combined"
 msgstr "Combinado"
@@ -7073,9 +7085,8 @@ msgid "Display selection list as a selection menu"
 msgstr "Mostrar la lista de selección como un menú de selección"
 
 # EPG Setup
-msgid "Display the EIT Now/Next event data in InfoBar."
-msgstr ""
-"Visualizar datos EIT de programa actual/siguiente en la barra de información."
+msgid "Display the EIT Now/Next event data in InfoBar"
+msgstr "Visualizar datos EIT de programa actual/siguiente en la InfoBar"
 
 msgid "Display the base locales or all locales for a language."
 msgstr "Mostrar las regiones básicas o todas las regiones de un idioma."
@@ -8793,6 +8804,9 @@ msgstr "Abandonar EPG"
 
 msgid "Exit File Commander"
 msgstr "Salir del administrador de archivos"
+
+msgid "Exit Flash Expander"
+msgstr "Salir de Flash Expander"
 
 msgid "Exit MAC address configuration"
 msgstr "Salir de la configuración de dirección MAC"
@@ -11246,7 +11260,7 @@ msgstr "Flash interna: %s %s "
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Flash interno: %s %s como recuperación USB"
 
-msgid "Internal hdd only"
+msgid "Internal disk only"
 msgstr "Sólo HDD interno"
 
 msgid "Internet"
@@ -11754,7 +11768,7 @@ msgid "Left column file sort"
 msgstr "Orden archivos columna izquierda"
 
 #
-msgid "Left from service name"
+msgid "Left of service name"
 msgstr "A la izquierda del nombre de canal"
 
 msgid "Left, wrapped"
@@ -12068,10 +12082,10 @@ msgstr "Ubicación de logs"
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Se borrarán los logs anteriores al número de días especificados."
 
-msgid "Long << / >>"
+msgid "Long <</>>"
 msgstr "Largo << / >>"
 
-msgid "Long Left/Right"
+msgid "Long LEFT/RIGHT"
 msgstr "Izquierda/Derecha largos"
 
 msgid "Long filenames"
@@ -13705,6 +13719,9 @@ msgstr "No se han encontrado datos válidos de la región"
 msgid "No wireless networks found! Searching..."
 msgstr "No se han encontrado redes inalámbricas. Buscando…"
 
+msgid "No (with notification)"
+msgstr "No (con notificación)"
+
 #
 msgid ""
 "No working local network adapter found.\n"
@@ -13758,10 +13775,10 @@ msgid "No, scan later manually"
 msgstr "No, buscar después manualmente"
 
 msgid "No, show the Plugin Browser"
-msgstr "No, mostrar Explorador de plugins"
+msgstr "No, mostrar el navegador de plugins"
 
 msgid "No, show the RecordTimer Overview"
-msgstr "No, mostrar la descripción general del temporizador de grabación"
+msgstr "No, mostrar siempre la lista del temporizador"
 
 msgid "NodeID"
 msgstr "ID de nodo"
@@ -13840,8 +13857,8 @@ msgstr "No clasificado"
 msgid "Not Defined"
 msgstr "No Definido"
 
-msgid "Not Flashing"
-msgstr "Sin parpadeo"
+msgid "Non-flashing"
+msgstr "No parpadea"
 
 #
 msgid "Not Installed"
@@ -14721,7 +14738,7 @@ msgid "Picon"
 msgstr "Picon"
 
 #
-msgid "Picon and Service Name"
+msgid "Picon and service name"
 msgstr "Picon y nombre de canal"
 
 #
@@ -15491,6 +15508,9 @@ msgstr "¡Pulse botón ROJO para eliminar MultiBoot!"
 msgid "Press red key to enable bluetooth."
 msgstr "Pulsar botón rojo para activar bluetooth."
 
+msgid "Press STOP and then EXIT to exit the movie list."
+msgstr "Pulse STOP y después EXIT para salir de la lista de películas."
+
 msgid ""
 "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot "
 "to that image. If available, YELLOW will either delete or wipe the image. A "
@@ -15895,7 +15915,7 @@ msgstr "REC"
 msgid "REC "
 msgstr "REC "
 
-msgid "REC Symbol"
+msgid "REC symbol"
 msgstr "Símbolo REC"
 
 msgid "REC Symbol in Standby"
@@ -16068,6 +16088,9 @@ msgstr "Grabar - igual que el botón de grabación"
 msgid "Record Actions"
 msgstr "Registrar las acciones"
 
+msgid "Record icon"
+msgstr "Icono de grabación"
+
 msgid "Record next"
 msgstr "Grabar próximo"
 
@@ -16083,7 +16106,7 @@ msgid "Recording time limited due to conflicting timer:%s"
 msgstr "Grabación limitada en el tiempo por un conflicto con el temporizador %s"
 
 msgid "Record write error (no space on disk?)"
-msgstr "Error de escritura en el registro (¿no hay espacio en el disco?)"
+msgstr "Error de escritura en grabación (¿no hay espacio en el disco?)"
 
 msgid "RecordTimer"
 msgstr "Temporizador de grabación"
@@ -16841,7 +16864,7 @@ msgid "Right column file sort"
 msgstr "Orden archivo columna derecha"
 
 #
-msgid "Right from service name"
+msgid "Right of service name"
 msgstr "A la derecha del nombre de canal"
 
 msgid "Right, wrapped"
@@ -17339,6 +17362,9 @@ msgstr "Temporizadores Programados"
 msgid "Scheduler Actions"
 msgstr "Acciones del programador"
 
+msgid "Scheduler standby"
+msgstr "Temporizador en reposo"
+
 msgid "Scheduler deep standby"
 msgstr "Programador en modo de espera profundo"
 
@@ -17350,9 +17376,6 @@ msgstr "Descripción general del programador"
 
 msgid "Scheduler Settings"
 msgstr "Configuración del programador"
-
-msgid "Scheduler Standby"
-msgstr "Programador en modo reposo"
 
 msgid "Sci-Fi"
 msgstr "Ciencia Ficción"
@@ -17459,8 +17482,8 @@ msgid "Seek Actions"
 msgstr "Busque las acciones"
 
 #
-msgid "Seek back short"
-msgstr "Buscar hacia atrás"
+msgid "Seek Bar"
+msgstr "Barra de búsqueda"
 
 #
 msgid "Seek backward"
@@ -17475,25 +17498,21 @@ msgid "Seek forward"
 msgstr "Buscar hacia delante"
 
 #
-msgid "Seek forward  short"
-msgstr "Busqueda hacia delante  corta"
-
-#
 msgid "Seek forward (enter time)"
 msgstr "Buscar hacia delante (introducir hora)"
 
 #
-msgid "Seek forward long"
-msgstr "Busqueda hacia delante langa"
+msgid "SeekBar Actions"
+msgstr "Acciones de la barra de búsqueda"
 
 #
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Barra de busqueda"
 
 msgid "SeekBar activation"
 msgstr "Activación de la barra de búsqueda"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Sensibilidad de la barra de búsqueda"
 
 msgid "Seeking connected events"
@@ -19121,12 +19140,11 @@ msgstr "ID Canales"
 msgid "Service Name"
 msgstr "Nombre del canal"
 
-#
-msgid "Service Number and Service Name"
-msgstr "Número de canal y nombre de canal"
+msgid "Service number and service name"
+msgstr "Número y nombre del canal"
 
-msgid "Service Number, Picon and Service Name"
-msgstr "Nombre de canal, Picon y nombre de canal"
+msgid "Service number, picon and service name"
+msgstr "Número de canal, picon y nombre del canal"
 
 msgid "Service Selection Actions"
 msgstr "Acciones selección de canales"
@@ -20769,7 +20787,7 @@ msgstr "Skin y resolución"
 msgid "Skin Selector"
 msgstr "Selector de skin"
 
-msgid "Skin Setting"
+msgid "Skin setting"
 msgstr "Configurar skin"
 
 msgid "Skin Settings"
@@ -20928,11 +20946,17 @@ msgstr "Slot '%s': %s%s"
 msgid "Slot Manager Actions"
 msgstr "Acciones del administrador de slots"
 
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr "Slot F: Backup completo del slot Flash (Imagen actual)"
+
 msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr "Slot R: Backup completo del slot raiz (Imagen actual)"
 
+msgid "Slots allowed for this device"
+msgstr "Slots permitidos para este dispositivo"
+
 msgid "Slot count"
-msgstr "Número de slot"
+msgstr "Número de slots"
 
 # Language
 msgid "Slovak"
@@ -22155,6 +22179,9 @@ msgstr "Directorio temporal (%s)"
 msgid "Temporary directory"
 msgstr "Directorio temporal"
 
+msgid "Temporarily mount as %s"
+msgstr "Montar temporalmente como %s"
+
 # Language
 msgid "Tennis"
 msgstr "Tenis"
@@ -22285,6 +22312,9 @@ msgstr "El modo AI que se utiliza para traducir idiomas. Puedes elegir el que of
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "El servicio de traducción impulsado por inteligencia artificial se optimizará para proporcionar el mejor rendimiento según la velocidad de carga de la conexión a Internet seleccionada."
 
+msgid "The channel selection mode has changed!\nOpen the channel selection again"
+msgstr "¡El modo de selección de canales ha cambiado!\nAbra nuevamente la selección de canales"
+
 msgid "The data provided will not find services."
 msgstr "Los datos facilitados no encontrará canales."
 
@@ -22298,12 +22328,8 @@ msgstr ""
 "El plugin DreamPlex no está instalado.\n"
 "Por favor, instálalo."
 
-msgid ""
-"The EPGSearch plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"El plugin de búsquedas EPG no está instalado.\n"
-"Por favor, instálalo."
+msgid "The EPGSearch plugin is not installed!\nPlease install it."
+msgstr "El plugin de búsquedas EPG no está instalado.\nPor favor, instálalo."
 
 msgid "The [spzimdb] plugin is not installed!\nDo you want to install it?"
 msgstr "El plugin [spzimdb] no está instalado!.\n¿Quiere instalarlo ahora?"
@@ -24410,6 +24436,9 @@ msgstr "Usar los nombres de canales de búsqueda rápida"
 msgid "Use fastscan channel numbering"
 msgstr "Usar la numeración de canales de búsqueda rápida"
 
+msgid "Use Flash Expander"
+msgstr "Usar Flash Expander"
+
 msgid "Use for load only x days in EPG."
 msgstr "Usar para cargar solo x días en EPG."
 
@@ -25285,6 +25314,9 @@ msgstr "Semanal"
 #, python-format
 msgid "Welcome to %s"
 msgstr "Bienvenido/a a %s"
+
+msgid "Welcome to Flash Expander"
+msgstr "Bienvenido a Flash Expander"
 
 msgid "Welcome to IceTV"
 msgstr "Bienvenido a IceTV"
@@ -26228,8 +26260,8 @@ msgstr "Reiniciando %s %s"
 msgid "Your %s %s is rebooting into Recovery Mode"
 msgstr "Su %s %s se está reiniciando en modo de recuperación"
 
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Tu %s %s está apagándose. Espera por favor..."
+msgid "Your %s %s is shutting down"
+msgstr "Su %s %s se está apagando"
 
 #
 #, python-format
@@ -26650,7 +26682,7 @@ msgstr "Aventura occidental guerra"
 msgid "advertisement/shopping"
 msgstr "Publicidad / compras"
 
-msgid "all up/down"
+msgid "All up/down"
 msgstr "Todo arriba/abajo"
 
 msgid "alpha then oldest"
@@ -26994,9 +27026,6 @@ msgstr "Fallido"
 msgid "fashion"
 msgstr "mora"
 
-msgid "fast"
-msgstr "Rápido"
-
 msgid "file can not displayed - file not found"
 msgstr "el archivo no se puede mostrar - archivo no encontrado"
 
@@ -27314,7 +27343,7 @@ msgid "no storage devices found"
 msgstr "No se han encontrado dispositivos de almacenamiento"
 
 msgid "normal"
-msgstr "Normal"
+msgstr "normal"
 
 #
 msgid "not"
@@ -27749,8 +27778,8 @@ msgstr "tradicional (rápido), resintonizar"
 msgid "tree delete"
 msgstr "Eliminar árbol"
 
-msgid "turbo"
-msgstr "turbo"
+msgid "Turbo"
+msgstr "Turbo"
 
 msgid "uShare"
 msgstr "uShare"
@@ -28658,7 +28687,7 @@ msgid "Yes, and don't ask again for this session"
 msgstr "Sí, y no preguntar de nuevo en esta sesión"
 
 msgid "<Select a device>"
-msgstr "<Seleccionar un dispositivo>"
+msgstr "<Seleccione un dispositivo>"
 
 msgid "Add more slots"
 msgstr "Añadir más slots"
@@ -28666,14 +28695,17 @@ msgstr "Añadir más slots"
 msgid "Choose the amount of additional slots."
 msgstr "Escoge la cantidad de slots adicionales."
 
-msgid "Choose the target device for the slots."
-msgstr "Elija el dispositivo de destino para los slots."
+msgid "Choose the target device for the slots. Press OK or GREEN to select it."
+msgstr "Elija el dispositivo de destino para los slots. Pulse OK o VERDE para seleccionarlo."
 
 msgid "Choose the target location for the slots."
 msgstr "Elija la ubicación de destino para los slots."
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Cerrar el administrador de multiBoot Kexec"
+
+msgid "Close the SeekBar after returning to the starting point"
+msgstr "Cerrar la barra de búsqueda después de regresar al punto de partida"
 
 msgid "Create Slots"
 msgstr "Crear slots"

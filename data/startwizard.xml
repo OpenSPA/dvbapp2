@@ -9,7 +9,20 @@
 		</list>
 	</step>
 
-	<step id="flashexpander" nextstep="swap">
+	<step id="flashexpander" >
+		<condition>
+self.condition = self.smallFlashSize
+		</condition>
+		<buttons enable="OK,UP,DOWN" />
+		<text value="Welcome to Flash Expander" />
+		<displaytext value="Use UP/DOWN buttons to select option then press OK" />
+		<list>
+			<listentry caption="Use Flash Expander" step="initflashexpander" />
+			<listentry caption="Exit Flash Expander" step="network" />
+		</list>
+	</step>
+
+	<step id="initflashexpander" nextstep="swap">
 		<condition>
 self.condition = self.smallFlashSize
 		</condition>

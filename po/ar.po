@@ -16214,13 +16214,13 @@ msgstr "لوحة مفاتيح"
 
 #
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "بحـث"
 
 msgid "SeekBar activation"
 msgstr ""
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr ""
 
 msgid "Seeking connected events"

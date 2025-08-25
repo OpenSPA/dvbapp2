@@ -15683,13 +15683,13 @@ msgid "Seek forward long"
 msgstr "Tastatura"
 
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Cautare"
 
 msgid "SeekBar activation"
 msgstr ""
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr ""
 
 msgid "Seeking connected events"

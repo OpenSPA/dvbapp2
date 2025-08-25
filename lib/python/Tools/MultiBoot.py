@@ -177,7 +177,7 @@ class MultiBootClass():
 							# print(f"[MultiBoot] loadBootSlots DEBUG: 'UUID=' found for device '{uuidDevice}'.")
 							if uuidDevice:
 								device = uuidDevice
-						if exists(device) or device == "ubi0:ubifs":
+						if exists(device) or device in ("ubi0:ubifs", "ubi0:rootfs", "ubi0:dreambox-rootfs"):
 							if slotCode not in bootSlots:
 								bootSlots[slotCode] = {}
 								# print(f"[MultiBoot] Root dictionary entry in slot '{slotCode}' created.")
@@ -465,6 +465,8 @@ class MultiBootClass():
 					dev = info.get("feedsurl")
 					if "beta" in dev:
 						revision += " BETA"
+					if "oea" in dev:
+						revision += " OEA"
 				####################################################################
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
 				self.imageList[self.slotCode]["imagename"] = f"{info.get('displaydistro', info.get('distro'))} {info.get('imgversion')}{revision} ({compileDate})"
@@ -795,7 +797,7 @@ class MultiBootClass():
 			imageDir = join(self.tempDir, rootDir) if rootDir else self.tempDir
 			if self.bootSlots[self.slotCode].get("ubi", False) or fileHas("/proc/cmdline", "kexec=1") or self.remove:
 				try:
-					if isfile(join(imageDir, "usr/bin/enigma2")):
+					if isfile(join(imageDir, "usr/bin/enigma2")) or (isfile(join(imageDir, "usr/bin/enigma2x.bin")) and self.remove):  # OPENSPA [morser] remove slot if is hide
 						self.console.ePopen([REMOVE, REMOVE, "-rf", imageDir])
 					mkdir(imageDir)
 				except OSError as err:
@@ -866,5 +868,25 @@ class MultiBootClass():
 			return realpath(path)
 		else:
 			return path
+
+	def wipeChkroot(self, callback):
+		self.callback = callback
+		symlinkPath = "/dev/block/by-name/others"
+		if exists(symlinkPath):
+			realDevice = realpath(symlinkPath)
+			if realDevice == "/dev/mmcblk0boot1":
+				try:
+					with open("/sys/block/mmcblk0boot1/force_ro", "w") as fn:
+						fn.write("0")
+				except Exception as e:
+					self.callback(2)
+					return
+			if exists(realDevice) and exists(f"/sys/block/{basename(realDevice)}"):
+				self.console.ePopen(["dd", "dd", "if=/dev/zero", f"of={realDevice}", "bs=512"], self.wipeChkrootComplete)
+		else:
+			self.callback(2)
+
+	def wipeChkrootComplete(self, result, retval, extra_args=None):
+		self.callback(retval)
 
 MultiBoot = MultiBootClass()

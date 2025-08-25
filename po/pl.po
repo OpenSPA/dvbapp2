@@ -15440,13 +15440,13 @@ msgstr "Przewiń do przodu (wprowadź czas)"
 msgid "Seek forward long"
 msgstr "Szukaj do przodu długo"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Pasek stanu"
 
 msgid "SeekBar activation"
 msgstr "Aktywacja paska stanu"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Czułość paska stanu"
 
 msgid "Seeking connected events"

@@ -16376,13 +16376,13 @@ msgstr "Vorwärts suchen (Zeit eingeben)"
 msgid "Seek forward long"
 msgstr "Suche vorwärts lang"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Suchleiste"
 
 msgid "SeekBar activation"
 msgstr "Aktivierung der Suchleiste"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Sprungweite der Suchleiste"
 
 msgid "Seeking connected events"

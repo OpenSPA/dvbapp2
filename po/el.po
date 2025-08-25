@@ -15388,13 +15388,13 @@ msgstr "Μεταπήδηση εμπρός (σε χρόνο)"
 msgid "Seek forward long"
 msgstr "Αναζήτηση εμπρός παρατεταμένο"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Μπάρα αναζήτησης"
 
 msgid "SeekBar activation"
 msgstr "Ενεργοποίηση μπάρας αναζήτησης"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Ακρίβεια μπάρας αναζήτησης"
 
 msgid "Seeking connected events"
