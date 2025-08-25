@@ -2523,7 +2523,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.protectContextMenu = True
-					self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
+					self["key_green"].setText(_("Add Timer") if standardenigma is False else _("Reception Lists"))
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):
@@ -2842,7 +2842,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.correctChannelNumber()
 		self.editMode = False
 		self.protectContextMenu = True
-		self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
+		self["key_green"].setText(_("Add Timer") if standardenigma is False else _("Reception Lists"))
 		self.close(None)
 
 	def zapBack(self):
