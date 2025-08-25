@@ -1323,17 +1323,19 @@ class EPGSelection(Screen):
 			self.session.open(MessageBox, _("The TMDB plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openEPGSearch(self):
-		try:
-			from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSearch import EPGSearch  # [norhap] initialize EPGSearch OpenSPA.
+		cur = self[f"list{self.activeList}"].getCurrent()
+		event = cur[0]
+		name = event.getEventName() if hasattr(event, "getEventName") else None
+		if name:
 			try:
-				cur = self[f"list{self.activeList}"].getCurrent()
-				event = cur[0]
-				name = event.getEventName()
-			except:
-				name = ""
-			self.session.open(EPGSearch, name, False)
-		except ImportError:
-			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+				from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSearch import EPGSearch  # [norhap] initialize EPGSearch OpenSPA.
+				self.session.open(EPGSearch, name, False)
+			except ImportError:
+				try:
+					from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
+					self.session.open(EPGSearch, name, False)
+				except ImportError:
+					self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def addAutoTimer(self):
 		if not isPluginInstalled("AutoTimer"):
