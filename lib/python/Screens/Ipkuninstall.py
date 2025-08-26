@@ -1,6 +1,6 @@
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.ActionMap import ActionMap
 from Screens.Screen import Screen
@@ -42,7 +42,7 @@ class Ipkuninstall(Screen):
 			'ok': self.okPressed,
 			'cancel': self.exit
 		}, -1)
-		self['info'] = Label(_("Please select a category."))
+		self['info'] = StaticText(_("Please select a category."))
 		self.list = []
 		self['list'] = List(self.list)
 		self.onLayoutFinish.append(self.createMenu)
@@ -123,7 +123,7 @@ class IpkuninstallList(Screen):
 			'ok': self.okClicked,
 			'cancel': self.cancel
 		}, -1)
-		self['info'] = Label()
+		self['info'] = StaticText()
 		self['info'].setText(_("Please select the package to delete."))
 		self['list'] = MenuList([])
 		self.onShown.append(self.startSession)
