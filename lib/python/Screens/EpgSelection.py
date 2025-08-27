@@ -2,6 +2,7 @@ from time import localtime, mktime, strftime, time
 
 from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
 
+from skin import standardenigma
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
@@ -1279,35 +1280,33 @@ class EPGSelection(Screen):
 			if serviceref is not None:
 				self.session.open(SingleEPG, serviceref)
 
-	def openIMDb(self):  # OpenSPA [norhap] install spzimdb.
-		try:
-			cur = self[f"list{self.activeList}"].getCurrent()
-			event = cur[0]
-			name = event.getEventName()
-			name = ""
-			from Plugins.Extensions.IMDb.plugin import IMDB
-			self.session.open(IMDB, name, False)
-		except:
-			if isPluginInstalled("spzIMDB"):
-				from Plugins.Extensions.spzIMDB.plugin import getStrRef, spzIMDB
-				try:
-					cur = self[f"list{self.activeList}"].getCurrent()
-					event = cur[0]
-					name = event.getEventName()
-					serviceref = cur[1]
-					ref = getStrRef(serviceref.ref, name)
-				except:
-					name = ""
-				spzIMDB(self.session, tbusqueda=name, tevento=event, tref=ref)
-			else:
-				def doInstallspzIMDB(answer):
-					if answer:
-						try:
-							from Plugins.Extensions.OpenSPAPlug.plugin import OpenSPAPlug
-							self.session.open(OpenSPAPlug)
-						except:
-							pass
-				self.session.openWithCallback(doInstallspzIMDB, MessageBox, _("The [spzimdb] plugin is not installed!\nDo you want to install it?"), type=MessageBox.TYPE_YESNO, timeout=10)
+	def openIMDb(self):
+		cur = self[f"list{self.activeList}"].getCurrent()
+		event = cur[0]
+		name = event.getEventName() if hasattr(event, "getEventName") else None
+		if name:
+			try:
+				from Plugins.Extensions.IMDb.plugin import IMDB
+				self.session.open(IMDB, name, False)
+			except:
+				if isPluginInstalled("spzIMDB"):
+					from Plugins.Extensions.spzIMDB.plugin import getStrRef, spzIMDB
+					try:
+						serviceref = cur[1]
+						ref = getStrRef(serviceref.ref, name)
+					except:
+						name = ""
+					spzIMDB(self.session, tbusqueda=name, tevento=event, tref=ref)
+				else:
+					def doInstallspzIMDB(answer):  # OpenSPA [norhap] install spzimdb.
+						if answer:
+							try:
+								from Plugins.Extensions.OpenSPAPlug.plugin import OpenSPAPlug
+								self.session.open(OpenSPAPlug)
+							except:
+								pass
+					if standardenigma is False:
+						self.session.openWithCallback(doInstallspzIMDB, MessageBox, _("The [spzimdb] plugin is not installed!\nDo you want to install it?"), type=MessageBox.TYPE_YESNO, timeout=10)
 
 	def openTMDB(self):
 		try:
@@ -2084,7 +2083,7 @@ class EPGSelection(Screen):
 			"24plus": _("+24 Hours"),
 			"24minus": _("-24 Hours"),
 			"timer": _("Add Timer"),
-			"imdb": _("IMDb Search"),
+			"imdb": _("IMDb Search") if isPluginInstalled("IMDb") else _("Internet info"),
 			"tmdb": _("TMDB Search"),
 			"autotimer": _("Add AutoTimer") if isPluginInstalled("AutoTimer") else _("Automatic search"),
 			"bouquetlist": _("Bouquet List"),
