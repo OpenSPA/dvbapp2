@@ -224,14 +224,14 @@ class OSCamInfo(Screen, OSCamGlobals):
 				</convert>
 			</widget>
 			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#10ECEAF6" noWrap="0" scrollbarMode="showNever" />
-			<eLabel text="System Ram" position="15,964" size="171,42" font="Regular;27" halign="center" valign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
-			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="free" render="Label" position="648,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="buffer" render="Label" position="878,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="camname" render="Label" position="1108,964" size="125,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
-			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="System Ram" position="15,964" size="171,42" font="Regular;25" halign="center" valign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
+			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="free" render="Label" position="648,964" size="228,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="buffer" render="Label" position="878,964" size="228,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="camname" render="Label" position="1108,964" size="125,42" font="Regular;25" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
+			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
 			<eLabel name="red" position="20,1010" size="10,65" backgroundColor="red" zPosition="1" />
 			<eLabel name="green" position="320,1010" size="10,65" backgroundColor="green" zPosition="1" />
 			<eLabel name="blue" position="920,1010" size="10,65" backgroundColor="blue" zPosition="1" />
