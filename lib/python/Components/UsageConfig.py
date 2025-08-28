@@ -2247,7 +2247,7 @@ def InitUsageConfig():
 	config.epgselection.multi_preview_mode = ConfigYesNo(default=True)
 	config.epgselection.multi_ok = ConfigSelection(default="Zap", choices=choiceList)
 	config.epgselection.multi_oklong = ConfigSelection(default="Zap + Exit", choices=choiceList)
-	config.epgselection.multi_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
+	config.epgselection.multi_eventfs = ConfigSelectionNumber(default=0 if config.skin.primary_skin.value != "OctEtFHD/skin.xml" else -8, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.multi_itemsperpage = ConfigSelectionNumber(default=16, stepwidth=1, min=8, max=40, wraparound=True)
 	config.epgselection.graph_showbouquet = ConfigYesNo(default=False)
 	config.epgselection.graph_preview_mode = ConfigYesNo(default=True)
