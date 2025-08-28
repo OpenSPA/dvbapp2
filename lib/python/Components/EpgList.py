@@ -54,7 +54,7 @@ class EPGList(GUIComponent):
 		self.screenwidth = int(1280 * sf)  # important for compatibility to other plugins (e.g. partnerbox)
 		if sf == 1.5:
 			self.posx, self.posy, self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2, 13, 25, 25, 2))
-			self.column_service, self.column_time, self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240, 180, 120, 30))
+			self.column_service, self.column_time, self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240, 180, 120, 30) if config.skin.primary_skin.value != "OctEtFHD/skin.xml" else (420, 180, 130, 30))
 			self.progress_width, self.progress_height, self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (120, 15, 1))
 			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (75, 225))
 		else:
