@@ -325,13 +325,17 @@ class PliExtraInfo(Converter, Poll):
 		])
 
 	def createFrequency(self, feData):
-		return str(feData.get("frequency", ""))
+		# OpenSPA [norhap] Do not display three final figures.
+		frequency = int(feData.get("frequency", "") // 1000)
+		return str(frequency)
 
 	def createChannelNumber(self, feData, feRaw):
 		return "DVB-T" in feRaw.get("tuner_type") and feData.get("channel") or ""
 
 	def createSymbolRate(self, feData, feRaw):
-		return str(feData.get("bandwidth" if "DVB-T" in feRaw.get("tuner_type") else "symbol_rate", ""))
+		# OpenSPA [norhap] Do not display three final figures.
+		symbolrate = int(feData.get("bandwidth" if "DVB-T" in feRaw.get("tuner_type") else "symbol_rate", "") // 1000)
+		return str(symbolrate)
 
 	def createPolarization(self, feData):
 		return feData.get("polarization_abbreviation") or ""
