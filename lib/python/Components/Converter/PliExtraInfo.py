@@ -334,8 +334,8 @@ class PliExtraInfo(Converter, Poll):
 
 	def createSymbolRate(self, feData, feRaw):
 		# OpenSPA [norhap] Do not display three final figures.
-		symbolrate = int(feData.get("bandwidth" if "DVB-T" in feRaw.get("tuner_type") else "symbol_rate", "") // 1000)
-		return str(symbolrate)
+		bandwidthSymbolrate = feData.get("bandwidth", "") if "DVB-T" in feRaw.get("tuner_type") else int(feData.get("symbol_rate", "") // 1000)
+		return str(bandwidthSymbolrate)
 
 	def createPolarization(self, feData):
 		return feData.get("polarization_abbreviation") or ""
