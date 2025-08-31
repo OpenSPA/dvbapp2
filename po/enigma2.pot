@@ -49,6 +49,9 @@ msgid "\n"
 "[Installed Plugins]\n"
 msgstr ""
 
+msgid "Installed Plugins"
+msgstr ""
+
 msgid " "
 msgstr ""
 
