@@ -242,14 +242,14 @@ def getModuleLayout():
 
 def getSysSoftcam():
 	if isfile(SOFTCAM):
-		cams = open(SOFTCAM).read()[0:5]
-		return cams.lower()
+		cams = open(SOFTCAM).read()[:5]
+		return cams.lower().replace(" ", "")
 	return None
 
 
 def updateSysSoftCam():
 	BoxInfo.setMutableItem("ShowOscamInfo", getSysSoftcam() == ("oscam"))
-	BoxInfo.setMutableItem("ShowNcamInfo", getSysSoftcam() == ("ncam+"))
+	BoxInfo.setMutableItem("ShowNcamInfo", getSysSoftcam() in ("ncam+", "ncam"))
 	BoxInfo.setMutableItem("ShowCccamInfo", getSysSoftcam() == ("cccam"))
 	#BoxInfo.setMutableItem("HasSoftcamEmu", hasSoftcamEmu())
 	#BoxInfo.setMutableItem("Softcams", getSoftcams())
