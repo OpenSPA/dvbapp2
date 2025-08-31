@@ -139,7 +139,7 @@ def InitSkins():
 		result.append(skin)
 	# Add the activated optional skin parts.
 	if currentPrimarySkin is not None:
-		partsDir = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(currentPrimarySkin), "mySkin", ""))
+		partsDir = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(str(currentPrimarySkin)), "mySkin", ""))
 		if pathExists(partsDir) and currentPrimarySkin != DEFAULT_SKIN:
 			for file in sorted(listdir(partsDir)):
 				if file.startswith("skin_") and file.endswith(".xml"):
@@ -234,7 +234,7 @@ def loadSkinTemplates(skinTemplatesFileName):
 
 
 def reloadSkinTemplates():
-	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
+	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(str(currentPrimarySkin)), "skinTemplates.xml"))
 	loadSkinTemplates(skinTemplatesFileName)
 
 
@@ -288,7 +288,7 @@ def loadSkinTemplates(skinTemplatesFileNames):
 def reloadSkinTemplates(clear=False):
 	if clear:
 		componentTemplates.clear()
-	skinTemplatesFileName = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
+	skinTemplatesFileName = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(str(currentPrimarySkin)), "skinTemplates.xml"))
 	skinTemplatesFileNames = []
 	if isfile(skinTemplatesFileName):
 		skinTemplatesFileNames.append(skinTemplatesFileName)
