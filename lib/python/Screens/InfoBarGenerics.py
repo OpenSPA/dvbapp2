@@ -437,7 +437,7 @@ class InfoBarExtensions:
 		return "OSCam Info" if getSysSoftcam() == "oscam" else "NCam Info"
 
 	def getOScamInfo(self):
-		if getSysSoftcam() in ("oscam", "ncam+"):
+		if getSysSoftcam() in ("oscam", "ncam+", "ncam "):
 			if config.oscaminfo.showInExtensions.value or config.ncaminfo.showInExtensions.value:
 				return [((boundFunction(self.getOSCamNCam), boundFunction(self.openOScamInfo), lambda: True), None)] or []
 			else:
