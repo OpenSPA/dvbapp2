@@ -67,6 +67,9 @@ msgstr ""
 "\n"
 "[Plugins instalados]\n"
 
+msgid "Installed Plugins"
+msgstr "Plugins instalados"
+
 msgid " "
 msgstr " "
 
@@ -26156,7 +26159,7 @@ msgid ""
 "Press OK to start the restore now."
 msgstr ""
 "Has elegido restaurar la configuración. Enigma2 se reiniciará después. Pulsa "
-"‘OK’ para inciar ahora la restauración."
+"‘OK’ para iniciar ahora la restauración."
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Has elegido guardar el buffer time shift actual"
