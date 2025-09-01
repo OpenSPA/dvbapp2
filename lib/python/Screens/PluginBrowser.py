@@ -330,12 +330,12 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		else:
 			self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
 				"top": (self.keyTop, _("Move to the first item on the first screen")),
-				"left": (self.keyPageUp, _("Move up a screen")),
 				"up": (self.keyUp, _("Move up a line")),
 				"first": (self.keyFirst, _("Move to the first item on the current line")),
 				"last": (self.keyLast, _("Move to the last item on the current line")),
+				"left": (self.keyLeft, _("Move to the previous item in list")),
+				"right": (self.keyRight, _("Move to the next item in the list")),
 				"down": (self.keyDown, _("Move down a line")),
-				"right": (self.keyPageDown, _("Move down a screen")),
 				"bottom": (self.keyBottom, _("Move to the last item on the last screen"))
 			}, prio=0, description=_("Plugin Browser Navigation Actions"))
 		smsMsg = _("SMS style QuickSelect entry selection")
