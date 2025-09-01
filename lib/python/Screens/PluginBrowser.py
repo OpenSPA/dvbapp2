@@ -1680,9 +1680,9 @@ class PackageActionLog(Screen):
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.close, _("Close the screen")),
 			"top": (self["log"].moveTop, _("Move to first line / screen")),
-			"pageUp": (self["log"].pageUp, _("Move up a screen")),
+			"left": (self["log"].pageUp, _("Move up a screen")),
 			"up": (self["log"].moveUp, _("Move up a line")),
 			"down": (self["log"].moveDown, _("Move down a line")),
-			"pageDown": (self["log"].pageDown, _("Move down a screen")),
+			"right": (self["log"].pageDown, _("Move down a screen")),
 			"bottom": (self["log"].moveBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Plugin Action Log Actions"))
