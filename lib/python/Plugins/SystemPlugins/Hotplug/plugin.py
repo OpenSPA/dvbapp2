@@ -1,6 +1,6 @@
 from os import mkdir, remove
 from os.path import exists, isfile
-from twisted.internet import reactor
+from twisted.internet import reactor, error
 from twisted.internet.protocol import Factory, Protocol
 
 from enigma import getDeviceDB, eTimer
@@ -60,15 +60,14 @@ def autostart(reason, **kwargs):
 	if reason == 0:
 		print("[Hotplug] Starting hotplug handler.")
 		try:
-			if exists(HOTPLUG_SOCKET):
+			if exists(HOTPLUG_SOCKET):  # [OpenSPA] [norhap] Include CannotListenError.
 				remove(HOTPLUG_SOCKET)
-		except OSError:
+			cleanMediaDirs()  # Initial cleanup
+			factory = Factory()
+			factory.protocol = Hotplug
+			reactor.listenUNIX(HOTPLUG_SOCKET, factory)
+		except (OSError, error.CannotListenError):
 			pass
-		cleanMediaDirs()  # Initial cleanup
-		factory = Factory()
-		factory.protocol = Hotplug
-		reactor.listenUNIX(HOTPLUG_SOCKET, factory)
-
 
 class HotPlugManager:
 	def __init__(self):
