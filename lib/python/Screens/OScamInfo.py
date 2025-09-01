@@ -179,73 +179,73 @@ class OSCamGlobals():
 class OSCamInfo(Screen, OSCamGlobals):
 	skin = """
 		<screen name="OSCamInfo" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OSCam Information" flags="wfNoBorder" resolution="1920,1080">
-			<widget name="camlogo" position="15,15" size="80,80" scale="1" alphatest="blend" />
-			<widget source="Title" render="Label" position="15,15" size="1905,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
-			<widget source="global.CurrentTime" render="Label" position="1710,15" size="210,90" font="Regular;75" noWrap="1" halign="center" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+			<widget name="camlogo" position="15,15" size="80,80" scale="1" alphaTest="blend" />
+			<widget source="Title" render="Label" position="15,15" size="1905,60" font="Regular;40" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#10101010" />
+			<widget source="global.CurrentTime" render="Label" position="1710,15" size="210,90" font="Regular;75" noWrap="1" horizontalAlignment="center" verticalAlignment="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
 				<convert type="ClockToText">Default</convert>
 			</widget>
-			<widget source="global.CurrentTime" render="Label" position="1470,15" size="240,40" font="Regular;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+			<widget source="global.CurrentTime" render="Label" position="1470,15" size="240,40" font="Regular;24" noWrap="1" horizontalAlignment="right" verticalAlignment="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
 				<convert type="ClockToText">Format:%A</convert>
 			</widget>
-			<widget source="global.CurrentTime" render="Label" position="1470,51" size="240,40" font="Regular;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+			<widget source="global.CurrentTime" render="Label" position="1470,51" size="240,40" font="Regular;24" noWrap="1" horizontalAlignment="right" verticalAlignment="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
 				<convert type="ClockToText">Format:%e. %B</convert>
 			</widget>
-			<widget source="buildinfos" render="Label" position="360,64" size="1200,40" font="Regular;30" halign="center" valign="center" foregroundColor="#092CBDF" backgroundColor="#10101010"/>
-			<widget source="extrainfos" render="Label" position="15,102" size="1905,32" font="Regular;26" halign="center" valign="center" foregroundColor="#092CBDF" backgroundColor="#10101010"/>
-			<widget source="timerinfos" render="Label" position="15,136" size="1905,34" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010"/>
+			<widget source="buildinfos" render="Label" position="360,64" size="1200,40" font="Regular;30" horizontalAlignment="center" verticalAlignment="center" foregroundColor="#092CBDF" backgroundColor="#10101010"/>
+			<widget source="extrainfos" render="Label" position="15,102" size="1905,32" font="Regular;26" horizontalAlignment="center" verticalAlignment="center" foregroundColor="#092CBDF" backgroundColor="#10101010"/>
+			<widget source="timerinfos" render="Label" position="15,136" size="1905,34" font="Regular;27" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#10101010"/>
 			<!-- Server / Reader / Clients -->
-			<eLabel text="#" position="15,172" size="23,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Reader/User" position="40,172" size="173,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="AU" position="215,172" size="88,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Address" position="305,172" size="168,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Port" position="475,172" size="88,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Protocol" position="565,172" size="223,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="srvid:caid@provid" position="790,172" size="268,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Last Channel" position="1060,172" size="233,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="LB Value/Reader" position="1295,172" size="233,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Online\nIdle" position="1530,172" size="163,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Status" position="1695,172" size="210,36" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="#" position="15,172" size="23,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="Reader/User" position="40,172" size="173,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="AU" position="215,172" size="88,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="Address" position="305,172" size="195,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="Port" position="502,172" size="89,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="Protocol" position="593,172" size="195,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="srvid:caid@provid" position="790,172" size="268,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="Last Channel" position="1060,172" size="233,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="LB Value/Reader" position="1295,172" size="233,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="Online\nIdle" position="1530,172" size="163,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="Status" position="1695,172" size="210,36" font="Regular;23" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
 			<widget source="outlist" render="Listbox" position="15,210" size="1890,600" backgroundColor="#10b3b3b3" enableWrapAround="1" scrollbarMode="showOnDemand" >
 				<convert type="TemplatedMultiContent">
 					{"template": [  # index 0 is backgroundcolor
 					MultiContentEntryText(pos=(0,0), size=(23,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=1),  # type
 					MultiContentEntryText(pos=(25,0), size=(173,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=2),  # Reader/User
 					MultiContentEntryText(pos=(200,0), size=(88,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=3),  # AU
-					MultiContentEntryText(pos=(290,0), size=(168,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=4),  # Adress
-					MultiContentEntryText(pos=(460,0), size=(88,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=5),  # Port
-					MultiContentEntryText(pos=(550,0), size=(223,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=6),  # Protocol
+					MultiContentEntryText(pos=(290,0), size=(195,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=4),  # Adress
+					MultiContentEntryText(pos=(487,0), size=(89,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=5),  # Port
+					MultiContentEntryText(pos=(578,0), size=(195,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=6),  # Protocol
 					MultiContentEntryText(pos=(775,0), size=(268,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=7),  # srvid:caid@provid
 					MultiContentEntryText(pos=(1045,0), size=(233,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=8),  # Last Channel
 					MultiContentEntryText(pos=(1280,0), size=(233,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=9),  # LB Value/Reader
 					MultiContentEntryText(pos=(1515,0), size=(163,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=10),  # Online+Idle
 					MultiContentEntryText(pos=(1680,0), size=(210,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=11)  # Status
-					], "fonts": [gFont("Regular",27)], "itemHeight":75
+					], "fonts": [gFont("Regular",25)], "itemHeight":75
 					}
 				</convert>
 			</widget>
-			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#10ECEAF6" noWrap="0" scrollbarMode="showNever" />
-			<eLabel text="System Ram" position="15,964" size="171,42" font="Regular;25" halign="center" valign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
-			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="free" render="Label" position="648,964" size="228,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="buffer" render="Label" position="878,964" size="228,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="camname" render="Label" position="1108,964" size="125,42" font="Regular;25" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
-			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;25" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" horizontalAlignment="left" verticalAlignment="top" foregroundColor="black" backgroundColor="#10ECEAF6" noWrap="0" scrollbarMode="showNever" />
+			<eLabel text="System Ram" position="15,964" size="171,42" font="Regular;25" horizontalAlignment="center" verticalAlignment="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
+			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;25" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;25" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="free" render="Label" position="648,964" size="228,42" font="Regular;25" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="buffer" render="Label" position="878,964" size="228,42" font="Regular;25" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="camname" render="Label" position="1108,964" size="125,42" font="Regular;25" verticalAlignment="center" horizontalAlignment="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
+			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;25" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;25" horizontalAlignment="center" verticalAlignment="center" foregroundColor="white" backgroundColor="#105a5a5a" />
 			<eLabel name="red" position="20,1010" size="10,65" backgroundColor="red" zPosition="1" />
 			<eLabel name="green" position="320,1010" size="10,65" backgroundColor="green" zPosition="1" />
 			<eLabel name="blue" position="920,1010" size="10,65" backgroundColor="blue" zPosition="1" />
-			<widget source="key_red" render="Label" position="40,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
-			<widget source="key_green" render="Label" position="340,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
-			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
-			<widget source="key_OK" render="Label" position="1185,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey">
+			<widget source="key_red" render="Label" position="40,1020" size="380,42" font="Regular;30" horizontalAlignment="left" verticalAlignment="center" foregroundColor="grey" />
+			<widget source="key_green" render="Label" position="340,1020" size="380,42" font="Regular;30" horizontalAlignment="left" verticalAlignment="center" foregroundColor="grey" />
+			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" horizontalAlignment="left" verticalAlignment="center" foregroundColor="grey" />
+			<widget source="key_OK" render="Label" position="1185,1020" size="60,42" font="Regular;30" horizontalAlignment="center" verticalAlignment="center" foregroundColor="black" backgroundColor="grey">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_entitlements" render="Label" position="1260,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey">
+			<widget source="key_entitlements" render="Label" position="1260,1020" size="250,42" font="Regular;30" horizontalAlignment="left" verticalAlignment="center" foregroundColor="grey">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_menu" render="Label" position="1530,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
-			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
+			<widget source="key_menu" render="Label" position="1530,1020" size="150,42" font="Regular;30" horizontalAlignment="center" verticalAlignment="center" foregroundColor="black" backgroundColor="grey" />
+			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" horizontalAlignment="center" verticalAlignment="center" foregroundColor="black" backgroundColor="grey" />
 		</screen>
 		"""
 
