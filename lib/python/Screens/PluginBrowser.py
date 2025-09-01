@@ -35,7 +35,7 @@ INTERNET_TIMEOUT = 2
 FEED_SERVER = "openspa.webhop.info"
 ENIGMA_PREFIX = "enigma2-plugin-%s"
 PACKAGE_PREFIX = "%s"
-SOFTCAM_PREFIX = "enigma2-plugin-softcams-%s"
+SOFTCAM_PREFIX = "cam-%s"
 KERNEL_PREFIX = "kernel-module-%s"
 
 
@@ -1464,6 +1464,9 @@ class PackageAction(Screen, NumericalTextInput):
 					elif parts[0] == "gstreamer1.0":
 						packageCategory = "gstreamer"
 						packageName = ("-".join(parts[1:]))
+					elif parts[0] == "cam":
+						packageCategory = "softcams"
+						packageName = ("-".join(parts[1:]))
 				elif count > 1:
 					if parts[0] == "packagegroup":
 						packageCategory = "packagegroup"
@@ -1473,6 +1476,9 @@ class PackageAction(Screen, NumericalTextInput):
 						packageName = ("-".join(parts[1:]))
 					elif parts[0] == "docker":
 						packageCategory = "docker"
+						packageName = ("-".join(parts[1:]))
+					elif parts[0] == "cam":
+						packageCategory = "softcams"
 						packageName = ("-".join(parts[1:]))
 				else:
 					if self.modeData[self.DATA_MODE] == self.MODE_PACKAGE:
