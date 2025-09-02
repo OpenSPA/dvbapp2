@@ -89,11 +89,13 @@ class OSDCalibration(Setup):
 			colorButtonWidth = 270
 			fontSize = 30
 			iconButtonWidth = 120
-			itemHeight = 37
+			itemHeight = 40
 			menuFontSize = 52
 			spacer = 38
 			spacing = 15
-			textHeight = 150
+			textHeight = 160
+			entryFont = 30
+			valueFont = 28
 		case 1280:  # 1280x720 resolution.
 			buttonHeight = 40
 			colorButtonWidth = 180
@@ -103,7 +105,9 @@ class OSDCalibration(Setup):
 			menuFontSize = 25
 			spacer = 25
 			spacing = 10
-			textHeight = 100
+			textHeight = 105
+			entryFont = 25
+			valueFont = 20
 		case 1024:  # 1024x576 resolution.
 			buttonHeight = 22
 			colorButtonWidth = 140
@@ -113,7 +117,9 @@ class OSDCalibration(Setup):
 			menuFontSize = 20
 			spacer = 10
 			spacing = 10
-			textHeight = 80
+			textHeight = 82
+			entryFont = 20
+			valueFont = 15
 		case _:  # 720x576 resolution.
 			buttonHeight = 22
 			colorButtonWidth = 140
@@ -123,7 +129,9 @@ class OSDCalibration(Setup):
 			menuFontSize = 20
 			spacer = 10
 			spacing = 10
-			textHeight = 80
+			textHeight = 82
+			entryFont = 20
+			valueFont = 15
 	skin = f"""
 	<screen name="OSDCalibration" title="OSD Calibration Settings" position="fill" backgroundColor="#00000000" >
 		<eRectangle position="0,0" size="e,e" borderColor="#00FF0000" backgroundColor="#00000000" borderWidth="1" zPosition="+0" />
@@ -131,7 +139,7 @@ class OSDCalibration(Setup):
 		<eRectangle position="50,50" size="e-100,e-100" backgroundColor="#00000000" borderColor="#00FFFF00" borderWidth="1" zPosition="+2" />
 		<eRectangle position="75,75" size="e-150,e-150" backgroundColor="#00000000" borderColor="#000000FF" borderWidth="1" zPosition="+3" />
 		<widget name="text" position="85,85" size="e-170,{textHeight}" font="Regular;{fontSize}" foregroundColor="#00FFFF00" transparent="1" verticalAlignment="center" zPosition="+4" />
-		<widget name="config" position="300,{85 + textHeight + spacer}" size="e-600,{itemHeight * 7}" font="Regular;{menuFontSize}" itemHeight="{itemHeight}" transparent="1" zPosition="+4" />
+		<widget name="config" position="300,{85 + textHeight + spacer}" size="e-600,{itemHeight * 7}" font="Regular;{menuFontSize}" entryFont="Regular;{entryFont}" valueFont="Regular;{valueFont}" itemHeight="{itemHeight}" transparent="1" zPosition="+4" />
 		<widget name="footnote" position="0,0" size="0,0" />
 		<widget name="description" position="300,{85 + textHeight + spacer + (itemHeight * 7) + spacer}" size="e-600,{textHeight}" font="Regular;{fontSize}" foregroundColor="#00FFFFFF" transparent="1" verticalAlignment="center" zPosition="+4" />
 		<panel position="85,e-{85 + buttonHeight}" size="e-170,{buttonHeight}" layout="horizontal" spacing="{spacing}">
