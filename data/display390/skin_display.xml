@@ -147,8 +147,8 @@
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
 		<widget source="Title" render="Label" position="top" size="*,61" font="FdLcD;50" halign="left" />
-		<widget source="SetupEntry" render="Label" position="top" size="*,51" font="FdLcD;25" halign="left" />
-		<widget source="SetupValue" render="Label" position="top" size="*,51" font="FdLcD;25" halign="left" />
+		<widget source="entry" render="Label" position="top" size="*,51" font="FdLcD;25" halign="left" />
+		<widget source="value" render="Label" position="top" size="*,51" font="FdLcD;25" halign="left" />
 	</screen>
 
 <!-- misc-->
@@ -348,8 +348,8 @@
 	</screen>
 	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="390,240">
 		<widget source="SetupTitle" render="Label" position="0,38" size="390,26" font="FdLcD;24" halign="left" noWrap="1"  />
-		<widget source="SetupEntry" render="Label" position="0,66" size="390,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="SetupValue" render="Label" position="0,93" size="390,16" font="FdLcD;14" halign="left" transparent="1" />
+		<widget source="entry" render="Label" position="0,66" size="390,20" font="FdLcD;19" halign="left" noWrap="1" />
+		<widget source="value" render="Label" position="0,93" size="390,16" font="FdLcD;14" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />

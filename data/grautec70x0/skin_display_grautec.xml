@@ -402,8 +402,8 @@
 <screen name="SetupSummary" position="0,0" size="400,240">
 	<widget source="Title" render="Label" position="2,15" size="396,52" font="LCD1;52" halign="center" foregroundColor="oled1" backgroundColor="#000000"/>
     <ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,80" size="396,3" />
-	<widget source="SetupEntry" render="Label" position="18,95" size="384,52" font="LCD1;52" halign="center"/>
-	<widget source="SetupValue" render="Label" position="18,155" size="384,52" font="LCD1;52" halign="center"/>
+	<widget source="entry" render="Label" position="18,95" size="384,52" font="LCD1;52" halign="center"/>
+	<widget source="value" render="Label" position="18,155" size="384,52" font="LCD1;52" halign="center"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
@@ -462,8 +462,8 @@
 <screen name="TeleTextMenuSummary" position="0,0" size="400,240">
     <widget name="SetupTitle" position="2,5"  size="396,60" font="LCD1;56" halign="center" foregroundColor="oled1" backgroundColor="#000000" />
    	<ePixmap pixmap="/usr/share/enigma2/display/progress-lcd2.png" zPosition="1" position="2,60" size="396,3" />
-    <widget name="SetupEntry" position="2,75" size="396,50" font="LCD1;48" halign="center"/>
-    <widget name="SetupValue" position="2,132" size="396,50" font="LCD1;48" halign="center"/>
+    <widget name="entry" position="2,75" size="396,50" font="LCD1;48" halign="center"/>
+    <widget name="value" position="2,132" size="396,50" font="LCD1;48" halign="center"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>

@@ -261,8 +261,6 @@ class SetupSummary(ScreenSummary):
 		self["entry"] = StaticText("")
 		self["value"] = StaticText("")
 		self["SetupTitle"] = StaticText(parent.getTitle())  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupEntry"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupValue"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:
@@ -284,8 +282,6 @@ class SetupSummary(ScreenSummary):
 	def selectionChanged(self):
 		self["entry"].setText(self.parent.getCurrentEntry())
 		self["value"].setText(self.parent.getCurrentValue())
-		self["SetupEntry"].setText(self.parent.getCurrentEntry())  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupValue"].setText(self.parent.getCurrentValue())  # DEBUG: Deprecated widget name, this will be removed soon.
 
 #FIXSPA This part is a fallback for old Setup based Screens (OpenstarHD skin)##########################
 		if hasattr(self.parent, "getCurrentDescription") and "description" in self.parent:
