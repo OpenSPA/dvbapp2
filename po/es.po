@@ -25298,7 +25298,7 @@ msgstr "Paquetes de enlaces web"
 
 # UserInterfacePositioner
 msgid "Web browser base visibility"
-msgstr "Vsibilidad del navegador"
+msgstr "Visibilidad del navegador"
 
 #
 msgid "Wed"
