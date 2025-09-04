@@ -150,7 +150,7 @@ config.pluginfilter.settings = ConfigYesNo(default=True)
 config.pluginfilter.skincomponents = ConfigYesNo(default=False)
 config.pluginfilter.skinpacks = ConfigYesNo(default=True)
 config.pluginfilter.skins = ConfigYesNo(default=True)
-config.pluginfilter.softcams = ConfigYesNo(default=False)
+config.pluginfilter.softcams = ConfigYesNo(default=True)
 config.pluginfilter.src = ConfigYesNo(default=False)
 config.pluginfilter.subscription = ConfigYesNo(default=True)
 config.pluginfilter.systemplugins = ConfigYesNo(default=True)
@@ -1444,63 +1444,72 @@ class PackageAction(Screen, NumericalTextInput):
 		pluginList = []
 		for package in packages:
 			packageFile = package["Package"]
+			packageDescription = package["Description"] if "Description" in package else ""
+			packageVersion = package["Version"] if "Version" in package else ""
+			packageInstalled = package["Installed"] if "Installed" in package else False
+			packageUpdate = "Update" in package
 			if (self.displayFilter is None or self.displayFilter.search(packageFile)) and self.displayExclude.search(packageFile) is None:
 				allCount += 1
 				parts = packageFile.split("-")
 				count = len(parts)
-				if count > 2:
-					if parts[0] == "enigma2" and parts[1] == "plugin":
-						packageCategory = parts[2]
-						packageName = "-".join(parts[3:])
-					elif parts[0] == "kernel" and parts[1] == "module":
-						packageCategory = "kernel"
-						packageName = ("-".join(parts[2:])).replace(self.kernelVersion, "")
-					elif parts[0] == "enigma2" and parts[1] == "locale":
-						packageCategory = "po"
-						packageName = ("-".join(parts[2:]))
-					elif parts[0] == "kodi" and parts[1] == "addon":
-						packageCategory = "kodiaddon"
-						packageName = ("-".join(parts[2:]))
-					elif parts[0] == "gstreamer1.0":
-						packageCategory = "gstreamer"
-						packageName = ("-".join(parts[1:]))
-					elif parts[0] == "cam":
-						packageCategory = "softcams"
-						packageName = ("-".join(parts[1:]))
-				elif count > 1:
-					if parts[0] == "packagegroup":
-						packageCategory = "packagegroup"
-						packageName = ("-".join(parts[1:]))
-					elif parts[0] == "python3":
-						packageCategory = "python"
-						packageName = ("-".join(parts[1:]))
-					elif parts[0] == "docker":
-						packageCategory = "docker"
-						packageName = ("-".join(parts[1:]))
-					elif parts[0] == "cam":
-						packageCategory = "softcams"
-						packageName = ("-".join(parts[1:]))
-				else:
-					if self.modeData[self.DATA_MODE] == self.MODE_PACKAGE:
-						packageCategory = package.get("Section", "")
-						packageCategory = PACKAGE_CATEGORY_MAPPINGS.get(packageCategory, packageCategory)
-						packageName = packageFile
+				if parts[0] != "cam":  # OpenSPA [norhap] Do not filter from downloads cam packages (images OE-A).
+					if count > 2:
+						if parts[0] == "enigma2" and parts[1] == "plugin":
+							packageCategory = parts[2]
+							packageName = "-".join(parts[3:])
+						elif parts[0] == "kernel" and parts[1] == "module":
+							packageCategory = "kernel"
+							packageName = ("-".join(parts[2:])).replace(self.kernelVersion, "")
+						elif parts[0] == "enigma2" and parts[1] == "locale":
+							packageCategory = "po"
+							packageName = ("-".join(parts[2:]))
+						elif parts[0] == "kodi" and parts[1] == "addon":
+							packageCategory = "kodiaddon"
+							packageName = ("-".join(parts[2:]))
+						elif parts[0] == "gstreamer1.0":
+							packageCategory = "gstreamer"
+							packageName = ("-".join(parts[1:]))
+					elif count > 1:
+						if parts[0] == "packagegroup":
+							packageCategory = "packagegroup"
+							packageName = ("-".join(parts[1:]))
+						elif parts[0] == "python3":
+							packageCategory = "python"
+							packageName = ("-".join(parts[1:]))
+						elif parts[0] == "docker":
+							packageCategory = "docker"
+							packageName = ("-".join(parts[1:]))
 					else:
-						print(f"[PluginBrowser] PackageAction Error: Plugin package '{packageFile}' has no name!")
-						continue
-				if packageCategory not in PLUGIN_CATEGORIES and packageCategory not in PACKAGE_CATEGORIES:
-					packageCategory = ""
-				# print(f"[PluginBrowser] PackageAction DEBUG: Package='{packageFile}', Name='{packageName}', Category='{packageCategory}'.")
-				packageDescription = package["Description"] if "Description" in package else ""
-				packageVersion = package["Version"] if "Version" in package else ""
-				packageInstalled = package["Installed"] if "Installed" in package else False
-				packageUpdate = "Update" in package
-				if packageInstalled:
-					installCount += 1
-				if packageUpdate:
-					updateCount += 1
-				data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
-				pluginList.append(data)
+						if self.modeData[self.DATA_MODE] == self.MODE_PACKAGE:
+							packageCategory = package.get("Section", "")
+							packageCategory = PACKAGE_CATEGORY_MAPPINGS.get(packageCategory, packageCategory)
+							packageName = packageFile
+						else:
+							print(f"[PluginBrowser] PackageAction Error: Plugin package '{packageFile}' has no name!")
+							continue
+					if packageCategory not in PLUGIN_CATEGORIES and packageCategory not in PACKAGE_CATEGORIES:
+						packageCategory = ""
+					# print(f"[PluginBrowser] PackageAction DEBUG: Package='{packageFile}', Name='{packageName}', Category='{packageCategory}'.")
+					if packageInstalled:
+						installCount += 1
+					if packageUpdate:
+						updateCount += 1
+					data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+					pluginList.append(data)
+			if config.pluginfilter.softcams.value:  # OpenSPA [norhap] show packages cam in image OE-A.
+				packageSoftcams = package["Package"].split("-")
+				if not config.pluginfilter.extraopkgpackages.value:
+					if "cam" in packageSoftcams and "dbg" not in packageSoftcams and "dev" not in packageSoftcams:
+						packageCategory = "softcams"
+						packageName = "-".join(packageSoftcams)
+						data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+						pluginList.append(data)
+				else:
+					if "cam" in packageSoftcams:
+						packageCategory = "softcams"
+						packageName = "-".join(packageSoftcams)
+						data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+						pluginList.append(data)
 		print(f"[PluginBrowser] PackageAction Packages: {len(packages)} returned from opkg, {allCount} matched, {installCount} installed, {updateCount} have updates.")
 		installedText = ngettext("%d package installed.", "%d packages installed.", installCount) % installCount
 		updateText = ngettext("%d package has an update", "%d packages have updates.", updateCount) % updateCount

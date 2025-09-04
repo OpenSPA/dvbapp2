@@ -332,6 +332,7 @@ BoxInfo.setItem("InformationCommitLogs", commitLogs)
 # ]
 # BoxInfo.setItem("InformationDistributionWelcome", welcome)
 
+from skin import standardenigma  # OpenSPA [norhap] show packages cam in image OE-A.
 BoxInfo.setItem("12V_Output", Misc_Options.getInstance().detected_12V_output())  #FIXME : Do we need this?
 BoxInfo.setItem("3DMode", fileCheck("/proc/stb/fb/3dmode") or fileCheck("/proc/stb/fb/primary/3d"))
 BoxInfo.setItem("3DZNorm", fileCheck("/proc/stb/fb/znorm") or fileCheck("/proc/stb/fb/primary/zoffset"))
@@ -407,7 +408,7 @@ BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
 BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode") or MODEL in ("dreamone", "dreamtwo"))
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
-#BoxInfo.setItem("SoftCam", hasSoftcam())
+BoxInfo.setItem("SoftCam", standardenigma is True)
 BoxInfo.setItem("StandbyPowerLed", fileExists("/proc/stb/power/standbyled"))
 BoxInfo.setItem("STi", SOC_FAMILY.startswith("sti"))
 BoxInfo.setItem("SuspendPowerLed", fileExists("/proc/stb/power/suspendled"))
