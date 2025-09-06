@@ -1818,6 +1818,17 @@ class ConfigDirectory(ConfigText):
 		if callable(callback):
 			callback()
 
+	def getValue(self):
+		if self.text == "":
+			return None
+		else:
+			return ConfigText.getValue(self)
+
+	def setValue(self, value):
+		if value is None:
+			value = ""
+		ConfigText.setValue(self, value)
+
 	def getMulti(self, selected):
 		if self.text == "":
 			return ("mtext"[1 - selected:], _("List of storage devices"), list(range(0)))
