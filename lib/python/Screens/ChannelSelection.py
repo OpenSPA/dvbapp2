@@ -457,6 +457,7 @@ class ChannelSelectionBase(Screen):
 
 	def showAllServices(self):
 		self["key_green"].setText(_("Reception Lists"))
+		self["key_info"].setText(_("INFO"))
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, "ORDER BY name")
 			if not self.preEnterPath(ref.toString()):
@@ -469,6 +470,7 @@ class ChannelSelectionBase(Screen):
 						self.setCurrentSelectionAlternative(playingref)
 
 	def showSatellites(self, changeMode=False):
+		self["key_info"].setText("")
 		if not self.pathChangeDisabled:
 			ref = f"{self.service_types} FROM SATELLITES ORDER BY satellitePosition"  # OpenSPA [norhap] Display simple or extended list of satellites.
 			self["key_green"].setText(_("Simple") if self.showSatDetails else _("Extended"))
@@ -567,6 +569,7 @@ class ChannelSelectionBase(Screen):
 
 	def showProviders(self):
 		self["key_green"].setText(_("Reception Lists"))
+		self["key_info"].setText("")
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, " FROM PROVIDERS ORDER BY name")
 			if not self.preEnterPath(ref.toString()):
@@ -647,8 +650,10 @@ class ChannelSelectionBase(Screen):
 	def showFavourites(self):
 		self["key_green"].setText(_("Reception Lists"))
 		if not self.pathChangeDisabled:
+			self["key_info"].setText(_("INFO"))
 			if not self.preEnterPath(self.bouquet_root.toString()):
 				if self.isBasePathEqual(self.bouquet_root):
+					self["key_info"].setText("")
 					self.pathUp()
 				else:
 					currentRoot = self.getRoot()
@@ -2501,6 +2506,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
 			self.toggleMoveMarked()
 		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+			self["key_info"].setText(_("INFO"))
 			if self.isSubservices(ref):
 				self.enterSubservices()
 			elif parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
@@ -2524,6 +2530,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.editMode = False
 					self.protectContextMenu = True
 					self["key_green"].setText(_("Add Timer") if standardenigma is False else _("Reception Lists"))
+					self["key_info"].setText(_("INFO"))
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):
@@ -2843,6 +2850,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.editMode = False
 		self.protectContextMenu = True
 		self["key_green"].setText(_("Add Timer") if standardenigma is False else _("Reception Lists"))
+		self["key_info"].setText(_("INFO"))
 		self.close(None)
 
 	def zapBack(self):
