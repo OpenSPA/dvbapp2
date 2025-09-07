@@ -485,7 +485,7 @@ class HdmiCec:
 			try:
 				if HdmiCec.instance:
 					raise AssertionError("only one HdmiCec instance is allowed!")
-			except:
+			except Exception:
 				pass
 			HdmiCec.instance = self
 
@@ -768,8 +768,9 @@ class HdmiCec:
 			if cmd:
 				try:
 					data = data.decode("UTF-8")
-				except:
+				except UnicodeDecodeError:
 					data = data.decode("ISO-8859-1")
+
 				if config.misc.DeepStandby.value:  # no delay for messages before go in to deep-standby
 					if config.hdmicec.debug.value:
 						self.debugTx(address, cmd, data)
@@ -1107,7 +1108,7 @@ class HdmiCec:
 		if cmd:
 			try:
 				data = data.decode("UTF-8")
-			except:
+			except UnicodeDecodeError:
 				data = data.decode("ISO-8859-1")
 
 			if config.hdmicec.debug.value:
@@ -1362,7 +1363,7 @@ class HdmiCec:
 
 							try:
 								data = data.decode("UTF-8")
-							except:
+							except UnicodeDecodeError:
 								data = data.decode("ISO-8859-1")
 
 							if config.hdmicec.debug.value:

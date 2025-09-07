@@ -904,9 +904,10 @@ class MultiBootInformation(InformationBase):
 	def fetchInformation(self):
 		def fetchInformationCallback(slotImages):
 			self.slotImages = slotImages
-			for callback in self.onInformationUpdated:
-				if callable(callback):
-					callback()
+			if hasattr(self, "onInformationUpdated"):  # OpenSPA [norhap] ensure attribute.
+				for callback in self.onInformationUpdated:
+					if callable(callback):
+						callback()
 
 		self.informationTimer.stop()
 		MultiBoot.getSlotImageList(fetchInformationCallback)

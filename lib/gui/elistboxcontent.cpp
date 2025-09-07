@@ -1526,8 +1526,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 					if (size > 9)
 						pborderColorSelected = lookupColor(PyTuple_GET_ITEM(item, 9), data);
-					else
-						pborderColorSelected = pborderColor;
 				}
 
 				if (size > 10)
@@ -1550,8 +1548,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int cornerRadius = pCornerRadius ? PyLong_AsLong(pCornerRadius) : 0;
 				int cornerEdges = pCornerEdges ? PyLong_AsLong(pCornerEdges) : 15;
-				if (cornerRadius || cornerEdges)
-					bwidth = 0; // border not supported for rounded edges
 
 				if (selected && itemZoomContent)
 				{
@@ -1566,22 +1562,33 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					y += zoomoffs.y();
 				}
 
-				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
+				int radiusBorderWidth = (cornerRadius && cornerEdges) ? 0 : bwidth;
+				eRect rect(x + radiusBorderWidth, y + radiusBorderWidth, width - radiusBorderWidth * 2, height - radiusBorderWidth * 2);
 				painter.clip(rect);
 				{
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					if (cornerRadius && cornerEdges)
 					{
+						bool blend = false;
 						painter.setRadius(cornerRadius, cornerEdges);
 						if(mustClear) {
-							uint32_t color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
-							painter.setBackgroundColor(gRGB(color));
+							gRGB color = gRGB((uint32_t)PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor));
+							painter.setBackgroundColor(color);
+							blend = color.a > 0;
 						}
 						else
 						{
 							painter.setBackgroundColor(defaultBackColor);
+							blend = defaultBackColor.a > 0;
 						}
-						painter.drawRectangle(rect);
+
+						if(bwidth && pborderColor)
+						{
+							uint32_t color = PyLong_AsUnsignedLongMask((selected && pborderColorSelected) ? pborderColorSelected : pborderColor);
+							painter.setBorder(gRGB(color), bwidth);
+						}
+						bwidth = 0;
+						painter.drawRectangle(rect, blend);
 					}
 					else
 					{
@@ -1591,14 +1598,14 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				painter.clippop();
 
-				if (bwidth && cornerRadius == 0)
+				if(bwidth && pborderColor)
 				{
 					eRect rect(eRect(x, y, width, height));
 					painter.clip(rect);
 
 					if (pborderColor)
 					{
-						uint32_t color = PyLong_AsUnsignedLongMask(selected ? pborderColorSelected : pborderColor);
+						uint32_t color = PyLong_AsUnsignedLongMask(selected && pborderColorSelected ? pborderColorSelected : pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
 
@@ -1631,7 +1638,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						  pfnt = PyTuple_GET_ITEM(item, 5),
 						  pflags = PyTuple_GET_ITEM(item, 6),
 						  pstring = PyTuple_GET_ITEM(item, 7),
-						  pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, pborderWidth, pborderColor;
+						  pforeColor, pforeColorSelected, pbackColor, pbackColorSelected, pborderWidth, pborderColor, pTextBorderWidth, pTextBorderColor;
 
 				if (!(px && py && pwidth && pheight && pfnt && pflags && pstring))
 				{
@@ -1660,9 +1667,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 13)
 					pborderColor = lookupColor(PyTuple_GET_ITEM(item, 13), data);
 
-				if (PyLong_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
-					pstring = PyTuple_GetItem(data, PyLong_AsLong(pstring));
-
 				int radius = 0;
 				int edges = 0;
 
@@ -1671,6 +1675,15 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (size > 15)
 					edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 15));
+
+				if (size > 16)
+					pTextBorderWidth = PyTuple_GET_ITEM(item, 16);
+
+				if (size > 17)
+					pTextBorderColor = lookupColor(PyTuple_GET_ITEM(item, 17), data);
+
+				if (PyLong_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
+					pstring = PyTuple_GetItem(data, PyLong_AsLong(pstring));
 
 				/* don't do anything if we have 'None' as string */
 				if (!pstring || pstring == Py_None)
@@ -1688,6 +1701,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int flags = PyLong_AsLong(pflags);
 				int fnt = PyLong_AsLong(pfnt);
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 0;
+				int btwidth = pTextBorderWidth ? PyLong_AsLong(pTextBorderWidth) : border_size;
 
 				if (m_fonts.find(fnt) == m_fonts.end())
 				{
@@ -1708,10 +1722,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					y += zoomoffs.y();
 				}
 
-				if (radius)
-					bwidth = 0; // border is not supported yet
-
-				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
+				int radiusBorderWidth = (radius > 0) ? 0 : bwidth;
+				eRect rect(x + radiusBorderWidth, y + radiusBorderWidth, width - radiusBorderWidth * 2, height - radiusBorderWidth * 2);
 				painter.clip(rect);
 				{
 					gRegion rc(rect);
@@ -1719,14 +1731,25 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					if (radius)
 					{
+						bool blend = false;
 						painter.setRadius(radius, edges);
 						if(mustClear) {
-							uint32_t color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
-							painter.setBackgroundColor(gRGB(color));
+							gRGB color = gRGB((uint32_t)PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor));
+							painter.setBackgroundColor(color);
+							blend = color.a > 0;
 						}
-						else
+						else {
 							painter.setBackgroundColor(defaultBackColor);
-						painter.drawRectangle(rect);
+							blend = defaultBackColor.a > 0;
+						}
+
+						if(bwidth && pborderColor)
+						{
+							uint32_t color = PyLong_AsUnsignedLongMask(pborderColor);
+							painter.setBorder(gRGB(color), bwidth);
+						}
+						bwidth = 0;
+						painter.drawRectangle(rect, blend);
 
 						if (selected)
 						{
@@ -1773,7 +1796,15 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				else
 					painter.setFont(m_fonts[fnt]);
-				painter.renderText(rect, string, flags, border_color, border_size);
+
+				if (pTextBorderColor && btwidth)
+				{
+					uint32_t textBColor = PyLong_AsUnsignedLongMask(pTextBorderColor);
+					painter.renderText(rect, string, flags, gRGB(textBColor), btwidth);
+				}
+				else
+					painter.renderText(rect, string, flags, border_color, border_size);
+
 				painter.clippop();
 
 				// draw border

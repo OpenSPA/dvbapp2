@@ -83,8 +83,11 @@ class Session:
 			else:
 				del self.current_dialog.callback
 			self.popCurrent()
-			if callback is not None:
-				callback(*retVal)
+			try:  # OpenSPA [norhap] Make sure that callback is not None.
+				if callback is not None:
+					callback(*retVal)
+			except AttributeError:
+				print(str(AttributeError))
 
 	def execBegin(self, first=True, do_show=True):
 		if self.in_exec:
