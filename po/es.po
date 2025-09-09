@@ -22658,6 +22658,12 @@ msgstr ""
 "El ajuste de conexión unicable es incorrecto.\n"
 "Tal vez conexión recursiva de sintonizadores."
 
+msgid "The use of IPToSAT will be disabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr "Se deshabilitará el uso de IPToSAT.\nEs necesario reiniciar Enigma2.\n¿Quieres hacerlo ahora?"
+
+msgid "The use of IPToSAT will be enabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr "Se habilitará el uso de IPToSAT.\nEs necesario reiniciar Enigma2.\n¿Quieres hacerlo ahora?"
+
 msgid "The use of the reserve tuner will be disabled to use FCC.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
 msgstr "Se deshabilitará el uso del sintonizador reserva para usar FCC.\nEs necesario reiniciar Enigma2.\n¿Quieres hacerlo ahora?"
 

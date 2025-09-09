@@ -19212,6 +19212,12 @@ msgid "The unicable connection setting is wrong.\n"
 "Maybe recursive connection of tuners."
 msgstr ""
 
+msgid "The use of IPToSAT will be disabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr ""
+
+msgid "The use of IPToSAT will be enabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr ""
+
 msgid "The use of the reserve tuner will be disabled to use FCC.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
 msgstr ""
 
