@@ -10302,8 +10302,8 @@ msgstr "Modo de las teclas de historial"
 msgid "History next"
 msgstr "Historial siguiente"
 
-msgid "History zap"
-msgstr "Historial de zapeo"
+msgid "History Zap"
+msgstr "Historial de Zapeo"
 
 msgid "History Zap Actions"
 msgstr "Acciones historial de zapeo"

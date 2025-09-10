@@ -158,6 +158,7 @@ class ChannelSelectionBase(Screen):
 		self["key_green"] = StaticText(_("Reception Lists"))
 		self["key_yellow"] = StaticText(_("Providers"))
 		self["key_blue"] = StaticText(_("Bouquets"))
+		self["key_info"] = StaticText("")
 		self["list"] = ServiceListLegacy(self) if config.channelSelection.screenStyle.value == "" or config.channelSelection.widgetStyle.value == "" else ServiceList(self)
 		self.servicelist = self["list"]
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
@@ -650,7 +651,6 @@ class ChannelSelectionBase(Screen):
 	def showFavourites(self):
 		self["key_green"].setText(_("Reception Lists"))
 		if not self.pathChangeDisabled:
-			self["key_info"].setText(_("INFO"))
 			if not self.preEnterPath(self.bouquet_root.toString()):
 				if self.isBasePathEqual(self.bouquet_root):
 					self["key_info"].setText("")
@@ -664,6 +664,8 @@ class ChannelSelectionBase(Screen):
 							playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 							if playingref:
 								self.setCurrentSelectionAlternative(playingref)
+			else:
+				self["key_info"].setText(_("INFO"))
 
 	def numberSelectionActions(self, number):
 		if not (hasattr(self, "movemode") and self.movemode):
