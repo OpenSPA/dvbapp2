@@ -1577,15 +1577,15 @@ msgstr ""
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."

@@ -1664,25 +1664,17 @@ msgstr "Se creó un registro de cuelgues %s en '%s'"
 msgid "A file from media is in use!"
 msgstr "¡Hay un archivo de medios en uso!"
 
-# /usr/lib/enigma2/python/PowerTimer.py
-#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
-msgstr ""
-"Un temporizador programado quiere reiniciar tu %s %s. ¿Reiniciar ahora?"
+msgstr "Un temporizador programado quiere reiniciar su %s %s. ¿Reiniciar ahora?"
 
-# /usr/lib/enigma2/python/PowerTimer.py
 msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
-msgstr ""
-"Un temporizador programado quiere reiniciar la interfaz de usuario. "
-"¿Reiniciar ahora?"
+msgstr "Un temporizador programado quiere reiniciar la interfaz de usuario. ¿Reiniciar ahora?"
 
 msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
-msgstr ""
-"Un temporizador programado terminado desea configurar su quiere poner tu %s %s en modo espera. "
-"¿Hacerlo ahora?"
+msgstr "Un temporizador programado finalizado quiere poner su %s %s en modo de espera. ¿Quieres hacerlo ahora?"
 
-msgid "A finished scheduled wants to shut down your %s %s. Do that now?"
-msgstr "Un temporizador programado quiere apagar tu %s %s. ¿Apagar ahora?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
+msgstr "Un temporizador programado quiere apagar su %s %s. ¿Apagar ahora?"
 
 #
 #, python-format
