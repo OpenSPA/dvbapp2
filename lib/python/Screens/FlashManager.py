@@ -327,6 +327,7 @@ class FlashImage(Screen):
 		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
 		<widget name="info" position="0,60" size="e,130" font="Regular;25" valign="center" />
 		<widget name="progress" position="0,e-25" size="e,25" />
+		<widget name="progress_counter" position="360,60" size="e,25" font="Regular;25" />
 	</screen>"""
 
 	def __init__(self, session, imageName, source, downloadOnly=False, destpath=None): #OPENSPA [morser] Add destpath for spanewfirm
@@ -346,6 +347,7 @@ class FlashImage(Screen):
 		self["progress"] = ProgressBar()
 		self["progress"].setRange((0, 100))
 		self["progress"].setValue(0)
+		self["progress_counter"] = Label("")
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"cancel": (self.keyCancel, _("Cancel the flash process")),
 			"close": (self.keyCloseRecursive, _("Cancel the flash process and exit all menus")),
@@ -682,9 +684,12 @@ class FlashImage(Screen):
 
 	def downloadProgress(self, current, total):
 		self["progress"].setValue(100 * current // total)
+		self.progressCounter = int(100 * current / total)
+		self["progress_counter"].setText(str(self.progressCounter) + " %")
 
 	def downloadEnd(self, filename=None):
 		self.downloader.stop()
+		self["progress_counter"].hide()
 		self.unzip()
 
 	def downloadError(self, error):
