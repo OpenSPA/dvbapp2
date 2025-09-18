@@ -4662,6 +4662,12 @@ msgstr "Limpiar los registros de este temporizador"
 msgid "Clear the virtual memory caches"
 msgstr "Borrar las cachés de la memoria virtual"
 
+#, python-format
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] "Eliminar advertencia"
+msgstr[1] "Eliminar advertencias"
+
 msgid "Click the button on your remote you want to change."
 msgstr "Pulsa la tecla del mando que quieras cambiar."
 
@@ -11484,6 +11490,12 @@ msgstr "Mantener el historial de EPG (en minutos)"
 
 msgid "Keep service"
 msgstr "Mantener servicio"
+
+#, python-format
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] "Mantener advertencia"
+msgstr[1] "Mantener las advertencias"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -26650,7 +26662,7 @@ msgstr "Añadir alternativas"
 
 #
 msgid "Add Bouquet"
-msgstr "Añadir lista"
+msgstr "Añadir Favorito"
 
 msgid "Add Bouquet To Parental Protection"
 msgstr "Añadir lista a la protección parental"
@@ -29262,7 +29274,12 @@ msgid_plural "%d packages marked for update."
 msgstr[0] "Paquete %d marcado para actualizar."
 msgstr[1] "Paquetes %d marcados para actualizar."
 
-#
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] "%d Plugin no disponible:"
+msgstr[1] "%d Plugins no disponibles:"
+
 msgid "Add services to this bouquet?"
 msgstr "Añadir canales a esta lista?"
 
