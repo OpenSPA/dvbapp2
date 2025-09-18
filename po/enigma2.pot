@@ -4056,6 +4056,12 @@ msgstr ""
 msgid "Clear the virtual memory caches"
 msgstr ""
 
+#, python-format
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr ""
 
@@ -9797,6 +9803,12 @@ msgstr ""
 
 msgid "Keep service"
 msgstr ""
+
+#, python-format
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -24464,6 +24476,12 @@ msgstr[1] ""
 #, python-format
 msgid "%d package marked for update."
 msgid_plural "%d packages marked for update."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
 msgstr[0] ""
 msgstr[1] ""
 

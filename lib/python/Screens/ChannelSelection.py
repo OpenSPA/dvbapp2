@@ -6,7 +6,7 @@ from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eS
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
-from skin import getSkinFactor, standardenigma
+from skin import getSkinFactor, findSkinScreen, standardenigma
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config, configfile
@@ -471,14 +471,15 @@ class ChannelSelectionBase(Screen):
 						self.setCurrentSelectionAlternative(playingref)
 
 	def showSatellites(self, changeMode=False):
-		self["key_info"].setText("")
 		if not self.pathChangeDisabled:
 			ref = f"{self.service_types} FROM SATELLITES ORDER BY satellitePosition"  # OpenSPA [norhap] Display simple or extended list of satellites.
 			self["key_green"].setText(_("Simple") if self.showSatDetails else _("Extended"))
+			self["key_info"].setText(_("INFO"))
 			if not self.preEnterPath(ref):  # OpenSPA [norhap] Display simple or extended list of satellites.
 				ref = eServiceReference(ref)
 				justSet = False
 				prev = None
+				self["key_info"].setText("")
 				if self.isBasePathEqual(ref):
 					if self.isPrevPathEqual(ref):
 						justSet = True
@@ -1774,7 +1775,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showBouquetInputBox(self):
-		self.session.openWithCallback(self.bouquetInputCallback, VirtualKeyboard, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width=56, type=Input.TEXT)
+		self.session.openWithCallback(self.bouquetInputCallback, VirtualKeyboard, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visibleWidth=56, type=Input.TEXT)
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
@@ -2341,6 +2342,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.skinName = [config.channelSelection.screenStyle.value]
 		elif config.usage.use_pig.value:
 			self.skinName = ["ChannelSelection_PIG", "ChannelSelection"]
+		elif config.usage.servicelist_mode.value == "simple" and standardenigma and findSkinScreen("SimpleChannelSelection"):
+			self.skinName = "SimpleChannelSelection"
 		elif config.usage.servicelist_mode.value == "simple":
 			self.skinName = ["SlimChannelSelection", "SimpleChannelSelection", "ChannelSelection"]
 		else:
