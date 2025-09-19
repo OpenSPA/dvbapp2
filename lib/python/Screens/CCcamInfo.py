@@ -103,7 +103,7 @@ def getPage(url, callback, errback):
 	else:
 		try:
 			data = response.content.decode(encoding='UTF-8')
-		except:
+		except Exception:
 			data = response.content.decode(encoding='latin-1')
 		callback(data)
 #############################################################
@@ -1204,7 +1204,7 @@ class CCcamInfoSubMenu(Screen):
 				info += x + "\n"
 
 			return info
-		except:
+		except Exception:
 			return ""
 
 #############################################################
@@ -1248,7 +1248,7 @@ class CCcamInfoServerMenu(Screen):
 				info += x + "\n"
 
 			return info
-		except:
+		except Exception:
 			return ""
 
 	def okClicked(self):

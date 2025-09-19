@@ -31,7 +31,7 @@ from Tools.Directories import isPluginInstalled
 try:  # PiPServiceRelation installed?
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
 	plugin_PiPServiceRelation_installed = True
-except:
+except ImportError:
 	plugin_PiPServiceRelation_installed = False
 
 mepg_config_initialized = False
@@ -561,7 +561,7 @@ class EPGSelection(Screen):
 				self["list"].fillSingleEPG(service)
 				self["list"].sortSingleEPG(int(config.epgselection.sort.value))
 				self["list"].setCurrentIndex(index)
-			except:
+			except Exception:
 				pass
 		elif self.type == EPG_TYPE_VERTICAL:
 			curr = self[f"list{self.activeList}"].getSelectedEventId()
@@ -1315,7 +1315,7 @@ class EPGSelection(Screen):
 				cur = self[f"list{self.activeList}"].getCurrent()
 				event = cur[0]
 				name = event.getEventName()
-			except:
+			except Exception:
 				name = ""
 			self.session.open(tmdbScreen, name)
 		except ImportError:
@@ -1528,7 +1528,7 @@ class EPGSelection(Screen):
 		if choice:
 			try:
 				choice()
-			except:
+			except Exception:
 				choice
 
 	def showChoiceBoxDialog(self):
