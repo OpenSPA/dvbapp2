@@ -4,6 +4,7 @@ from skin import fonts, parameters, parseVerticalAlignment
 from Components.MenuList import MenuList
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
+from string import digits
 
 
 def ChoiceEntryComponent(key=None, text=None):
@@ -25,6 +26,8 @@ def ChoiceEntryComponent(key=None, text=None):
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/expanded.png"))
 			elif key == "verticalline":
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/verticalline.png"))
+			elif key not in list(digits) + ["red", "green", "yellow", "blue", "menu"]:
+				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "buttons/bullet.png"))
 			else:
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % key))
 			if png:

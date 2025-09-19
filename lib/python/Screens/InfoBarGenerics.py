@@ -63,6 +63,7 @@ from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, fileReadLines, fileWriteLines, isPluginInstalled, pathExists, resolveFilename
+from string import ascii_lowercase, ascii_uppercase, digits
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -334,7 +335,7 @@ class ExtensionsList(ChoiceBox):
 			extensionListAll.sort(key=lambda x: (x[3], x[0]))
 		else:
 			extensionListAll.sort(key=lambda x: x[3])
-		allKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+		allKeys = list(digits + ascii_lowercase + ascii_uppercase)
 		extensionList = []
 		extensionKeys = []
 		for extension in extensionListAll:
