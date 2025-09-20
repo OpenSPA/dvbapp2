@@ -390,7 +390,7 @@ def InitUsageConfig():
 		("3", _("2nd InfoBar ECM"))
 	])
 	config.usage.second_infobar_timeout = ConfigSelection(default="5", choices=choiceList)
-	config.usage.showInfoBarSubservices = ConfigSelection(default=1, choices=[
+	config.usage.showInfoBarSubservices = ConfigSelection(default=2, choices=[
 		(0, _("Off")),
 		(1, _("If EPG available")),
 		(2, _("Always"))
