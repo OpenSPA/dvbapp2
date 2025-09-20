@@ -31,7 +31,7 @@ from Tools.Directories import isPluginInstalled
 try:  # PiPServiceRelation installed?
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
 	plugin_PiPServiceRelation_installed = True
-except:
+except ImportError:
 	plugin_PiPServiceRelation_installed = False
 
 mepg_config_initialized = False
@@ -561,7 +561,7 @@ class EPGSelection(Screen):
 				self["list"].fillSingleEPG(service)
 				self["list"].sortSingleEPG(int(config.epgselection.sort.value))
 				self["list"].setCurrentIndex(index)
-			except:
+			except Exception:
 				pass
 		elif self.type == EPG_TYPE_VERTICAL:
 			curr = self[f"list{self.activeList}"].getSelectedEventId()
@@ -1315,7 +1315,7 @@ class EPGSelection(Screen):
 				cur = self[f"list{self.activeList}"].getCurrent()
 				event = cur[0]
 				name = event.getEventName()
-			except:
+			except Exception:
 				name = ""
 			self.session.open(tmdbScreen, name)
 		except ImportError:
@@ -1528,7 +1528,7 @@ class EPGSelection(Screen):
 		if choice:
 			try:
 				choice()
-			except:
+			except Exception:
 				choice
 
 	def showChoiceBoxDialog(self):
@@ -1542,7 +1542,8 @@ class EPGSelection(Screen):
 		self["recordingactions"].setEnabled(False)
 		self["epgactions"].setEnabled(False)
 		self["dialogactions"].setEnabled(True)
-		self["epgcatchupactions"].setEnabled(False)
+		if "epgcatchupactions" in self:
+			self["epgcatchupactions"].setEnabled(False)
 		self.ChoiceBoxDialog.instantiateActionMap(True)
 		self.ChoiceBoxDialog.show()
 		if "input_actions" in self:
@@ -1786,7 +1787,7 @@ class EPGSelection(Screen):
 			self.key_green_choice = self.ADD_TIMER
 		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
-		if callable(self.catchupPlayerFunc):
+		if "epgcatchupactions" in self and callable(self.catchupPlayerFunc):
 			self.setupKeyPlayButtonDisplay(event.getBeginTime(), serviceref)
 
 	def moveTimeLines(self, force=False):
