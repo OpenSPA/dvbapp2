@@ -1037,7 +1037,7 @@ def InitUsageConfig():
 		(_("%A %Y/%-m/%d"), _("Dayname Year/M/DD")),
 		(_("%A %Y/%-m/%-d"), _("Dayname Year/M/D"))]
 
-	config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y") if config.misc.locale.value == "es_ES" else _("%A %-d %B %Y"), choices=choicelist)
+	config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y") if config.misc.locale.value == "es_ES" and config.skin.primary_skin.value != "OctEtFHD/skin.xml" else _("%A %-d %B %Y"), choices=choicelist)
 
 	# TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 	config.usage.date.shortdayfull = ConfigText(default=_("%a %-d %B %Y"))
