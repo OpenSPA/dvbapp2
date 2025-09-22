@@ -52,7 +52,10 @@ class StartSwap:
 			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
 				d = normpath(p.mountpoint)
-				if exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith("/media/net") and not p.mountpoint.startswith("/media/autofs"):
+				if (exists(p.mountpoint) and not p.mountpoint.startswith("/media/net/")
+					and not p.mountpoint.startswith("/media/autofs/") and p.mountpoint != "/" or
+					exists(p.mountpoint) and not p.mountpoint.startswith("/media/net/")
+					and not p.mountpoint.startswith("/media/autofs/")):
 					devicelist.append((p.description, d))
 			if devicelist:
 				for device in devicelist:
@@ -181,12 +184,15 @@ class Swap(Screen):
 			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
 				d = normpath(p.mountpoint)
-				if exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith("/media/net") and not p.mountpoint.startswith("/media/autofs"):
+				if (exists(p.mountpoint) and not p.mountpoint.startswith("/media/net/")
+					and not p.mountpoint.startswith("/media/autofs/") and p.mountpoint != "/" or
+					exists(p.mountpoint) and not p.mountpoint.startswith("/media/net/")
+					and not p.mountpoint.startswith("/media/autofs/")):
 					devicelist.append((p.description, d))
 
 			for device in devicelist:
 				for filename in glob(device[1] + "/swap*"):
-					self.swapPlace = filename
+					self.swapPlace = filename.replace("//", "/")
 					self["key_green"].setText(_("Delete"))
 					info = stat(self.swapPlace)
 					self.swapsize = int(info[ST_SIZE]) // 1024
@@ -299,7 +305,7 @@ class Swap(Screen):
 			self["lab1"].setText(scanning)
 			self["lab1"].show()
 			swapsize = swapsize[1]
-			myfile = self.newPlace + "/swapfile"
+			myfile = self.newPlace + "swapfile"
 			self.commands = []
 			self.commands.append(f"dd if=/dev/zero of={myfile} bs=1024 count={swapsize} 2>/dev/null")
 			self.commands.append(f"mkswap {myfile}")
