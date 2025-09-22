@@ -5515,6 +5515,9 @@ msgstr ""
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
+msgid "Define the file system mount options."
+msgstr ""
+
 msgid "Define the DNS suffix."
 msgstr ""
 
@@ -6127,6 +6130,12 @@ msgid "Do not backup the image"
 msgstr ""
 
 msgid "Do not change"
+msgstr ""
+
+msgid "Do not check the Internet and packages"
+msgstr ""
+
+msgid "Do not Create Swap"
 msgstr ""
 
 msgid "Do not delete services"
@@ -6889,6 +6898,9 @@ msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -7951,6 +7963,9 @@ msgid "File transfer was cancelled by user"
 msgstr ""
 
 msgid "Filename"
+msgstr ""
+
+msgid "Filelist"
 msgstr ""
 
 msgid "Files/folders to exclude from backup"
@@ -11797,6 +11812,9 @@ msgstr ""
 msgid "No valid mount for '%s' found!"
 msgstr ""
 
+msgid "No valid mount for '%s' found!\nPress OK and then EXIT"
+msgstr ""
+
 msgid "No valid region details were found"
 msgstr ""
 
@@ -12387,6 +12405,9 @@ msgstr ""
 msgid "Optional parameter"
 msgstr ""
 
+msgid "Options"
+msgstr ""
+
 msgid "Orbital position"
 msgstr ""
 
@@ -12641,6 +12662,9 @@ msgid "Parliament"
 msgstr ""
 
 msgid "Partition"
+msgstr ""
+
+msgid "Partition Type"
 msgstr ""
 
 msgid "Partitions"
@@ -15866,6 +15890,9 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
+msgid "Select the file system for the device."
+msgstr ""
+
 msgid "Select the first item in list or move to the start of text"
 msgstr ""
 
@@ -15912,6 +15939,9 @@ msgid "Select the mode of the DNS."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
+msgstr ""
+
+msgid "Select the mount points"
 msgstr ""
 
 msgid "Select the movie path"
@@ -17418,6 +17448,9 @@ msgid "Show two lines per entry"
 msgstr ""
 
 msgid "Show underscore characters"
+msgstr ""
+
+msgid "Show unknown devices"
 msgstr ""
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
@@ -21698,6 +21731,9 @@ msgstr ""
 msgid "Wipe"
 msgstr ""
 
+msgid "Wipe Storage Device"
+msgstr ""
+
 msgid "Wireless LAN"
 msgstr ""
 
@@ -24214,6 +24250,9 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create Swap File"
+msgstr ""
+
 msgid "Create the flash expander in the selected device"
 msgstr ""
 
@@ -24287,9 +24326,6 @@ msgstr ""
 msgid "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "No Internet connection"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -24489,6 +24525,9 @@ msgid "Add services to this bouquet?"
 msgstr ""
 
 msgid "Development Packages"
+msgstr ""
+
+msgid "Device"
 msgstr ""
 
 msgid "Display Skin Packages"
