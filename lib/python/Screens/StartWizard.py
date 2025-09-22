@@ -120,7 +120,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 			commands.append("/sbin/swapon '%s'" % fileName)
 			self.console.eBatch(commands, creataSwapFileCallback, debug=True)
 		else:
-			self.session.open(MessageBox, _("No valid mount for '%s' found!") % path, type=MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("No valid mount for '%s' found!\nPress OK and then EXIT") % path, type=MessageBox.TYPE_ERROR)
 
 	def swapDeviceList(self):  # Called by startwizard.xml.
 		choiceList = []

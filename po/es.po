@@ -3112,7 +3112,7 @@ msgstr "Volver/Recuperar"
 
 #
 msgid "Background"
-msgstr "Fondo"
+msgstr "Continuar en segundo plano"
 
 msgid "Background color"
 msgstr "Color de fondo"
@@ -6465,6 +6465,9 @@ msgstr ""
 msgid "Define the custom mountpoint for the device."
 msgstr "Define el punto de montaje personalizado para el dispositivo."
 
+msgid "Define the file system mount options."
+msgstr "Define las opciones de montaje del sistema de archivos."
+
 msgid "Define the DNS suffix."
 msgstr "Define el sufijo DNS."
 
@@ -7156,6 +7159,9 @@ msgstr "No cambiar"
 
 msgid "Do not check the Internet and packages"
 msgstr "No revisar Internet y paquetes"
+
+msgid "Do not Create Swap"
+msgstr "No Crear Archivo Swap"
 
 msgid "Do not delete services"
 msgstr "No eliminar canales"
@@ -8071,6 +8077,9 @@ msgstr "Activa esta opción para añadir los datos de depuración del temporizad
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Habilite esta opción para mostrar todas las pantallas de información disponibles en la lista de elementos del menú Información."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr "Habilite esta opción para mostrar dispositivos de almacenamiento desconocidos en el administrador de dispositivos."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Habilitar esta opción si su sistema de antena necesita energía."
@@ -9208,7 +9217,7 @@ msgstr "Archivo %d de %d"
 
 #
 msgid "File Commander"
-msgstr "Comando de archivos"
+msgstr "Administrador de archivos"
 
 msgid "File Commander - All tasks are complete."
 msgstr "Administrador de archivos - Todas las tareas están completas."
@@ -9318,6 +9327,9 @@ msgstr "La transferencia de archivos fue cancelada por el usuario"
 #
 msgid "Filename"
 msgstr "Nombre del fichero"
+
+msgid "Filelist"
+msgstr "Lista de archivos"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Archivos/carpetas a excluir del backup"
@@ -12900,7 +12912,7 @@ msgid "Move to home of list"
 msgstr "Mover a la lista de inicio"
 
 msgid "Move to last line"
-msgstr "Move to last line"
+msgstr "Mover a la última línea"
 
 msgid "Move to last line / screen"
 msgstr "Pasar a la última línea / pantalla"
@@ -13723,6 +13735,9 @@ msgstr "No se ha detectado un dispositivo válido - Presiona OK"
 msgid "No valid mount for '%s' found!"
 msgstr "¡No se ha encontrado ningún montaje válido para el '%s'!"
 
+msgid "No valid mount for '%s' found!\nPress OK and then EXIT"
+msgstr "¡No se ha encontrado ningún montaje válido para el '%s'!\nPulse OK y luego EXIT"
+
 msgid "No valid region details were found"
 msgstr "No se han encontrado datos válidos de la región"
 
@@ -14325,10 +14340,11 @@ msgstr "Opción para activar el temporizador de reposo del hardware."
 msgid "Optional parameter"
 msgstr "Parámetro opcional"
 
+msgid "Options"
+msgstr "Opciones"
+
 msgid "Orbital position"
 msgstr "Posición orbital"
-
-
 
 msgid "Ordinary"
 msgstr "Ordinario"
@@ -14609,6 +14625,9 @@ msgstr "Parlamento"
 
 msgid "Partition"
 msgstr "Partición"
+
+msgid "Partition Type"
+msgstr "Tipo de partición"
 
 # InfoPanel
 msgid "Partitions"
@@ -14947,6 +14966,9 @@ msgstr "Por favor, introduce el nombre del nuevo directorio:"
 
 msgid "Please enter the new file name:"
 msgstr "Por favor, introduce el nombre del archivo nuevo:"
+
+msgid "Please enter the new name:"
+msgstr "Por favor, introduzca el nuevo nombre:"
 
 msgid "Please enter the new tag:"
 msgstr "Por favor, introduzca la nueva etiqueta:"
@@ -18608,6 +18630,9 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr "Selecciona el orden de archivos para la columna %s :"
 
+msgid "Select the file system for the device."
+msgstr "Seleccione el sistema de archivos para el dispositivo."
+
 msgid "Select the first item in list or move to the start of text"
 msgstr ""
 "Seleccionar el primer elemento de la lista o desplazarse al principio del "
@@ -18682,6 +18707,9 @@ msgstr ""
 "modelo no está en la lista, configure 'SCR' como 'Definido por el usuario' e "
 "introduzca los parámetros del dispositivo manualmente según sus "
 "especificaciones."
+
+msgid "Select the mount points"
+msgstr "Seleccione los puntos de montaje"
 
 #
 msgid "Select the movie path"
@@ -20599,6 +20627,9 @@ msgstr "Mostrar dos líneas por entrada"
 msgid "Show underscore characters"
 msgstr "Mostrar caracteres de subrayado"
 
+msgid "Show unknown devices"
+msgstr "Mostrar dispositivos desconocidos"
+
 msgid ""
 "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
@@ -22277,15 +22308,8 @@ msgstr ""
 msgid "The %s %s does not have an Internet connection."
 msgstr "El %s %s no tiene conexión a internet."
 
-msgid ""
-"The %s %s has a limited memory capacity. A swap file is required to increase "
-"the amount of available memory otherwise the %s %s may not work properly. "
-"Select the target device to hold the swap file."
-msgstr ""
-"El %s %s tiene capacidad limitada de memoria. Se requiere un archivo swap "
-"para aumentar la cantidad de memoria disponible, de otra forma el %s %s "
-"puede funcionar mal. Selecciona el dispositivo de destino para almacenar el "
-"archivo swap."
+msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file.\n\nPress EXIT if you do not want to create it."
+msgstr "El %s %s tiene capacidad limitada de memoria. Se requiere un archivo swap para aumentar la cantidad de memoria disponible, de otra forma el %s %s puede funcionar mal. Selecciona el dispositivo de destino para almacenar el archivo swap.\n\nPulse EXIT si no desea crearlo."
 
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "El %s %s está apagándose. Espera por favor..."
@@ -25872,6 +25896,9 @@ msgstr "Deportes de invierno"
 msgid "Wipe"
 msgstr "Limpiar"
 
+msgid "Wipe Storage Device"
+msgstr "Limpiar dispositivo de almacenamiento"
+
 #
 msgid "Wireless LAN"
 msgstr "Red LAN"
@@ -28898,6 +28925,9 @@ msgstr "Crear expander"
 msgid "Create swap"
 msgstr "Crear swap"
 
+msgid "Create Swap File"
+msgstr "Crear Archivo Swap"
+
 msgid "Create the flash expander in the selected device"
 msgstr "Crear la extensión de flash en el dispositivo seleccionado"
 
@@ -28988,6 +29018,9 @@ msgstr ""
 
 msgid "No Internet connection"
 msgstr "Sin conexión a internet"
+
+msgid "No Name"
+msgstr "Sin nombre"
 
 #
 msgid "Package installation failed."
@@ -29288,6 +29321,9 @@ msgstr "Cerrar el Navegador de Plugins"
 
 msgid "Development Packages"
 msgstr "Paquetes de desarrollo"
+
+msgid "Device"
+msgstr "Dispositivo"
 
 # Quick Menue
 msgid "Display Skin Packages"
