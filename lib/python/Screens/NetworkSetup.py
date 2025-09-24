@@ -929,6 +929,7 @@ class AdapterSetupConfiguration(Screen):
 		self["Statustext"] = StaticText()
 		self["statuspic"] = MultiPixmap()
 		self["statuspic"].hide()
+		self["devicepic"] = MultiPixmap()
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.reboottext = _("Your STB will restart after pressing OK on your remote control.")
 		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")
@@ -1066,6 +1067,7 @@ class AdapterSetupConfiguration(Screen):
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
 		if iNetwork.isWirelessInterface(self.iface):
+			self["devicepic"].setPixmapNum(1)
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except Exception:
@@ -1075,6 +1077,8 @@ class AdapterSetupConfiguration(Screen):
 				iStatus.getDataForInterface(self.iface, self.getInfoCB)
 		else:
 			iNetwork.getLinkState(self.iface, self.dataAvail)
+			self["devicepic"].setPixmapNum(0)
+		self["devicepic"].show()
 
 	def doNothing(self):
 		pass
