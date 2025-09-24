@@ -21402,6 +21402,9 @@ msgstr ""
 msgid "Weather"
 msgstr ""
 
+msgid "Weather Report"
+msgstr ""
+
 msgid "Web Interface"
 msgstr ""
 

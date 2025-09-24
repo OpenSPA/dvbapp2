@@ -25324,6 +25324,9 @@ msgstr "Reproducir las grabaciones"
 msgid "Weather"
 msgstr "Tiempo"
 
+msgid "Weather Report"
+msgstr "Informe Meteorológico"
+
 msgid "Web Interface"
 msgstr "Interfaz web"
 
