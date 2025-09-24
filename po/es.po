@@ -8028,19 +8028,14 @@ msgstr "Habilitar LCN terrestre:"
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Habilitar las opciones de ajuste avanzadas de HDMI-CEC."
 
-msgid ""
-"Enable this option to add MultiBoot information detected during system boot "
-"to the debug log file."
-msgstr ""
-"Active esta opción para añadir la información de MultiBoot detectada durante "
-"el arranque del sistema al archivo de registro de depuración."
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr "Habilite esta opción para agregar información de la base de datos del bouquet al archivo debug."
 
-msgid ""
-"Enable this option to add action map / remote control mapping data to the "
-"debug log file."
-msgstr ""
-"Habilitar esta opción para agregar datos de mapeo de mapa de acción / "
-"control remoto al archivo de registro de depuración."
+msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
+msgstr "Active esta opción para añadir la información de MultiBoot detectada durante el arranque del sistema al archivo de registro de depuración."
+
+msgid "Enable this option to add action map / remote control mapping data to the debug log file."
+msgstr "Habilitar esta opción para agregar datos de mapeo de mapa de acción / control remoto al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Habilite esta opción para agregar detalles DVB adicionales al archivo de registro de depuración."
@@ -10920,6 +10915,9 @@ msgstr "Incluir AIT en retransmisiones http"
 
 msgid "Include AIT in recordings"
 msgstr "Incluir AIT en grabaciones"
+
+msgid "Include bouquet DB data"
+msgstr "Incluir datos desde la DB del bouquet"
 
 msgid "Include CI assignment"
 msgstr "Incluir asignación CI"

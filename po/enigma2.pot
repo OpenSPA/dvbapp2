@@ -6861,6 +6861,9 @@ msgstr ""
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr ""
 
@@ -9286,6 +9289,9 @@ msgid "Include AIT in http streams"
 msgstr ""
 
 msgid "Include AIT in recordings"
+msgstr ""
+
+msgid "Include bouquet DB data"
 msgstr ""
 
 msgid "Include CI assignment"
