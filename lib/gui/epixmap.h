@@ -30,6 +30,7 @@ protected:
 	void checkSize();
 
 	std::string getClassName() const override { return std::string("ePixmap"); }
+
 private:
 	std::vector<ePtr<gPixmap>> m_frames;
 	std::vector<int> m_delays;
