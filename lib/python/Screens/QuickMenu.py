@@ -1,7 +1,7 @@
 from re import search, sub
 from os.path import exists, isdir, realpath
 
-from enigma import BT_SCALE, eEnv, eListboxPythonMultiContent, gFont, pNavigation
+from enigma import BT_SCALE, eEnv, eListboxPythonMultiContent, gFont, pNavigation  # noqa F401
 
 import NavigationInstance
 from skin import getSkinFactor

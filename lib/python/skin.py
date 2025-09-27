@@ -159,7 +159,7 @@ def InitSkins():
 	if resolution[0] and resolution[1]:
 		gMainDC.getInstance().setResolution(resolution[0], resolution[1])
 		getDesktop(GUI_SKIN_ID).resize(eSize(resolution[0], resolution[1]))
-	runCallbacks = True
+	runCallbacks = True  # noqa F841
 	# Load all XML templates.
 	reloadSkinTemplates()
 
@@ -2228,8 +2228,8 @@ def readSkin(screen, skin, names, desktop):
 	try:
 		if config.plugins.sdhdmaster.enable.value and config.plugins.sdhdmaster.ready.value and "OpenStarHD" not in str(config.skin.primary_skin.value).split("/")[0]:
 			from Plugins.Extensions.spazeMenu.spacvsd.spacvsd import openspa_sdhd
-			openspa_sdhd(myScreen,screen,path,names)
-	except:
+			openspa_sdhd(myScreen, screen, path, names)
+	except ImportError:
 		pass
 
 	screen.skinAttributes = []
