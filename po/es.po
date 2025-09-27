@@ -9381,6 +9381,9 @@ msgstr "Movimiento fino"
 msgid "Fine-tune"
 msgstr "Ajuste fino"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr "Ajuste el orden automático DiSEqC para que en su situación los satélites puedan detectarse más rápido."
+
 #
 msgid "Finished"
 msgstr "Terminado"
@@ -14177,6 +14180,9 @@ msgstr "Solo mueve la antena rápidamente antes de esta hora."
 
 msgid "Only on startup"
 msgstr "Sólo al inicio"
+
+msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
+msgstr "Seleccione 'Sí' solo si utiliza un multiswich que requiere una señal de comando DiSEqC Puerto A. Para todas las demás configuraciones, seleccione 'No'."
 
 msgid "Open"
 msgstr "Abrir"
@@ -19334,6 +19340,9 @@ msgstr "Establecer acción para el botón 'Info'"
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr "Configura sintonizadores alternativos de reserva para DVB-T/C o ATSC"
+
+msgid "Set auto DiSEqC search order"
+msgstr "Establecer el orden de búsqueda automática de DiSEqC"
 
 msgid "Set current CEC address as fixed address"
 msgstr "Fijar la dirección actual CEC como dirección fija"

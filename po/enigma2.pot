@@ -8018,6 +8018,9 @@ msgstr ""
 msgid "Fine-tune"
 msgstr ""
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr ""
 
@@ -12179,6 +12182,9 @@ msgid "Only move the dish quickly before this hour."
 msgstr ""
 
 msgid "Only on startup"
+msgstr ""
+
+msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr ""
 
 msgid "Open"
@@ -16405,6 +16411,9 @@ msgid "Set action for 'Info' key"
 msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set current CEC address as fixed address"
