@@ -5943,9 +5943,6 @@ msgstr "Modo actual: %s \n"
 msgid "Current settings:"
 msgstr "Configuración actual:"
 
-msgid "Current status"
-msgstr "Estado actual"
-
 msgid "Current time"
 msgstr "Hora actual"
 
@@ -6978,6 +6975,9 @@ msgstr "Deshabilitar"
 msgid "Disable Animations"
 msgstr "Desactivar animaciones"
 
+msgid "Disable background scanning"
+msgstr "Deshabilitar la búsqueda en segundo plano"
+
 msgid "Disable FCC during recordings"
 msgstr "Desactivar FCC durante las grabaciones"
 
@@ -6994,8 +6994,8 @@ msgstr "Desactivar MiniTV"
 msgid "Disable Picture in Picture"
 msgstr "Deshabilitar Picture in Picture"
 
-msgid "Disable background scanning"
-msgstr "Deshabilitar la búsqueda en segundo plano"
+msgid "Disable ServiceHiSilicon"
+msgstr "Deshabilitar ServiceHiSilicon"
 
 msgid "Disable Chkroot"
 msgstr "Deshabilitar Chkroot"
@@ -8092,9 +8092,6 @@ msgid ""
 msgstr ""
 "Habilitar para mostrar todas las opciones de los ajustes Verdadero/Falso, Sí/"
 "No, Encendido/Apagado y Habilitar/Deshabilitar como un interruptor gráfico."
-
-msgid "Enable to display setup entries alphabetically."
-msgstr "Habilitar para mostrar alfabéticamente las entradas de los ajustes."
 
 msgid ""
 "Enable to display the current value of the slider at end of the slider bar."
@@ -17662,6 +17659,9 @@ msgstr ""
 "operación. Selecciona 'No' para dejar activo el modo selección múltiple y "
 "las selecciones sin cambios."
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr "Seleccione 'Sí' para deshabilitar el PLUGIN ServiceHiSilicon para permitir el uso del código del reproductor multimedia interno por defecto."
+
 msgid ""
 "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within "
 "the EPG screen."
@@ -19724,9 +19724,6 @@ msgstr "Seleccione si se aplicarán tiempos de espera al introducir dígitos en 
 msgid "Setup each tuner for your satellite system"
 msgstr "Configura cada sintonizador de tu receptor"
 
-msgid "Setup entry sort"
-msgstr "Ordenar la pantalla de ajustes alfabéticamente"
-
 msgid "Setup how to control the channel changing."
 msgstr "Configura cómo controlar el cambio de canales."
 
@@ -21468,6 +21465,9 @@ msgstr "IP Estática / Personalizada"
 
 msgid "Status"
 msgstr "Estado"
+
+msgid "Status:"
+msgstr "Estado:"
 
 msgid "Status message timeout"
 msgstr "Tiempo de espera del mensaje de estado"
@@ -23868,6 +23868,9 @@ msgstr "Ajustes del sintonizador"
 #
 msgid "Tuner Setup"
 msgstr "Configuración de sintonizador"
+
+msgid "Tuner data is not available!"
+msgstr "¡Los datos del sintonizador no están disponibles!"
 
 msgid "Tuner information"
 msgstr "Tuner Information"

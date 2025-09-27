@@ -5016,9 +5016,6 @@ msgstr ""
 msgid "Current Status:"
 msgstr ""
 
-msgid "Current Status: "
-msgstr ""
-
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
 msgstr ""
@@ -5045,9 +5042,6 @@ msgid "Current mode: %s \n"
 msgstr ""
 
 msgid "Current settings:"
-msgstr ""
-
-msgid "Current status"
 msgstr ""
 
 msgid "Current time"
@@ -6878,9 +6872,6 @@ msgid "Enable this option to add MultiBoot information detected during system bo
 msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
-msgstr ""
-
-msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add extra DVB details to the debug log file."
