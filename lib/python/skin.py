@@ -2207,7 +2207,7 @@ def readSkin(screen, skin, names, desktop):
 		if config.plugins.sdhdmaster.enable.value and config.plugins.sdhdmaster.ready.value and "OpenStarHD" not in str(config.skin.primary_skin.value).split("/")[0]:
 			from Plugins.Extensions.spazeMenu.spacvsd.spacvsd import openspa_sdhd
 			openspa_sdhd(myScreen, screen, path, names)
-	except ImportError:
+	except Exception:
 		pass
 
 	screen.skinAttributes = []
