@@ -515,9 +515,13 @@ class CCcamInfoMain(Screen):
 
 	def readConfig(self):
 		self.url = "http://127.0.0.1:16001"
+
 		username = None
 		password = None
+
 		try:
+			f = open(CFG)
+
 			for line in f:
 				if line.startswith('WEBINFO LISTEN PORT :'):
 					port = getConfigValue(line)

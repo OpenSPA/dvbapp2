@@ -86,7 +86,7 @@ def onMountpointRemoved(mountpoint):
 			try:
 				searchPaths.remove(x)
 				print("[Picon] removed path: %s" % x)
-			except:
+			except Exception:
 				pass
 	#################################################################################
 	try:

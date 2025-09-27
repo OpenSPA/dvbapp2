@@ -8,7 +8,7 @@ from enigma import getDeviceDB, eTimer
 
 from Components.SystemInfo import BoxInfo
 from Components.Console import Console
-from Tools.Directories import fileHas, fileReadLines, fileReadLine, fileWriteLines
+from Tools.Directories import fileReadLines, fileReadLine, fileWriteLines
 from Tools.CList import CList
 
 MODEL = BoxInfo.getItem("model")

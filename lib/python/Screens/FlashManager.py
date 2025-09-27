@@ -150,7 +150,7 @@ class FlashManager(Screen):
 				try:
 					from Plugins.Extensions.spazeMenu.plugin import devx
 					feedURL += devx()
-				except:
+				except Exception:
 					pass
 			######################################################################
 			try:
@@ -162,7 +162,7 @@ class FlashManager(Screen):
 			except Exception:
 				print("[FlashManager] getImagesList Error: Unable to load json data from URL '%s'!" % feedURL)
 				self.imagesList = {}
-			searchFolders = []
+			searchFolders = []  # noqa F841
 			# Get all folders of /media/ and /media/net/
 			if not index:
 				for media in ["/media/%s" % x for x in listdir("/media")] + (["/media/net/%s" % x for x in listdir("/media/net")] if isdir("/media/net") else []):
@@ -495,7 +495,7 @@ class FlashImage(Screen):
 							self.session.openWithCallback(self.startBackupSettings, MessageBox, _("Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."), windowTitle=self.getTitle())
 					else:
 						self.startDownload() #OPENSPA [morser] ignore backup with spanewfirm
-				except OSError as err:
+				except OSError:
 					self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 			else:
 				self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
@@ -664,7 +664,7 @@ class FlashImage(Screen):
 					try:
 						from Plugins.Extensions.spazeMenu.plugin import BetaDownloader
 						BetaDownloader(self.source,self.zippedImage,report_hook=self.downloadProgress,end_callback=self.betaEnd)
-					except:
+					except Exception:
 						pass
 				else:
 					self.downloader = DownloadWithProgress(self.source, self.zippedImage)

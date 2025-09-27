@@ -334,7 +334,7 @@ class StandbySummary(Screen):
 			root = "/usr/share/enigma2/display/clock_skin/"
 			try:
 				what = open(root+"active").read()
-			except:
+			except Exception:
 				what = "clock_lcd_analog.xml"
 			tmpskin = root+what
 			self.skin = open(tmpskin,'r').read()

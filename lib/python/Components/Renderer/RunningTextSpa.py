@@ -94,7 +94,7 @@ class RunningTextSpa(Renderer):
 					x = min(limit, int(val))
 				else:
 					x = max(limit, int(val))
-			except:
+			except Exception:
 					x = default
 			return x
 		def setWrapFlag(attrib, value):
@@ -119,7 +119,7 @@ class RunningTextSpa(Renderer):
 					self.soffset = (int(x),int(y))
 					try:
 						self.scroll_label.setShadowOffset(ePoint(int(x),int(y)))
-					except:
+					except Exception:
 						pass
 				elif attrib == "borderWidth":			# fake for openpli-enigma2
 					self.soffset = (-int(value),-int(value))

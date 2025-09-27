@@ -4,6 +4,7 @@ from os import rename, strerror, system, unlink
 from os.path import exists
 from process import ProcessList
 from random import Random
+from time import sleep
 
 from enigma import eConsoleAppContainer, eTimer
 
@@ -29,7 +30,8 @@ from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileReadLines, fileReadXML, fileWriteLines, resolveFilename, fileContains
+from Screens.Standby import TryQuitMainloop
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileExists, fileReadLines, fileReadXML, fileWriteLines, resolveFilename, fileContains
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -2470,7 +2472,7 @@ class NetworkUdpxy(NetworkBaseScreen):
 			self.Console.ePopen("/etc/init.d/udpxy stop", self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
-		time.sleep(3)
+		sleep(3)
 		self.updateService()
 
 	def activateUdpxy(self):
@@ -2559,7 +2561,7 @@ class NetworkXupnpd(NetworkBaseScreen):
 			self.Console.ePopen("/etc/init.d/xupnpd stop", self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
-		time.sleep(3)
+		sleep(3)
 		self.updateService()
 
 	def activatexupnpd(self):

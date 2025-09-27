@@ -3,12 +3,11 @@ from Screens.Setup import setupdom
 from Screens.LocationBox import PiconLocationBox
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
-from Components.config import config, ConfigSelection, getConfigListEntry, configfile, ConfigText, ConfigYesNo, ConfigNothing
+from Components.config import config, ConfigSelection, getConfigListEntry, configfile, ConfigYesNo, ConfigNothing
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Pixmap import Pixmap
 from Tools.Directories import fileExists
-from Components.UsageConfig import preferredPath
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
@@ -155,7 +154,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 		try:
 			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
 				self.createSetup()
-		except:
+		except Exception:
 			pass
 
 	def getCurrentEntry(self):
@@ -192,7 +191,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 				self.entrydirname.value = res
 
 	def saveAll(self):
-		currentry = self["config"].getCurrent()
+		currentry = self["config"].getCurrent()  # noqa F841
 		config.misc.picon_path.value = self.picon_dirname.value
 		config.misc.picon_path.save()
 		config.misc.picon_search_hdd.save()
@@ -201,7 +200,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 		try:
 			from Components.Renderer import Picon
 			Picon.setPiconPath()
-		except:
+		except Exception:
 			pass
 		for x in self["config"].list:
 			x[1].save()
@@ -235,7 +234,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 				continue
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
-				item_rectunerlevel = int(x.get("rectunerlevel", 0))
+				item_rectunerlevel = int(x.get("rectunerlevel", 0))  # noqa F841
 
 				if self.levelChanged not in config.usage.setup_level.notifiers:
 					config.usage.setup_level.notifiers.append(self.levelChanged)
@@ -262,7 +261,7 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 				item_description = item_description.replace("%s %s","%s %s" % (getMachineBrand(), getMachineName()))
 				try:
 					b = eval(x.text or "")
-				except:
+				except Exception:
 					b = ""
 				if b == "":
 					continue

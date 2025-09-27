@@ -1,7 +1,7 @@
 from os import popen
 from math import ceil
-from os import listdir, remove, stat
-from os.path import exists, isdir, join, realpath
+from os import listdir
+from os.path import exists, join, realpath
 from re import compile
 from shlex import split
 
@@ -223,8 +223,6 @@ class MultiBootManager(Screen):
 			self.session.open(GPTSlotManager)
 		elif BoxInfo.getItem("HasChkrootMultiboot") and not BoxInfo.getItem("hasUBIMB"):
 			self.session.open(ChkrootSlotManager)
-		else:
-			self.session.open(KexecSlotManager)
 
 	def restoreImage(self):
 		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
@@ -388,7 +386,7 @@ class KexecInit(Screen):
 		self.txt += "\n\n"
 		for slot in slotImageList:
 			typeslot = "eMMC" if "mmcblk" in slotImages[slot]["device"] else "USB      "
-			slotx = "'%s' -" % slot
+			slotx = "'%s' -" % slot  # noqa F841
 			imagename = slotImages[slot]["imagename"]
 			if "root" in imagename.lower() and fileExists("/STARTUP.cpio.gz"):
 				date = "%s-%s-%s" % (BoxInfo.getItem("compiledate")[:4],BoxInfo.getItem("compiledate")[4:6],BoxInfo.getItem("compiledate")[-2:])
@@ -444,7 +442,7 @@ class KexecInit(Screen):
 			data = open("/STARTUP_4","r").read()
 			try:
 				uuid = data.split()[1].replace("root=","")
-			except:
+			except Exception:
 				uuid = None
 			if uuid:
 				MultiBoot.KexecUSBmoreSlots(self.model[2:], hiKey, uuid)

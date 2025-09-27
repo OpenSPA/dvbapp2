@@ -8093,6 +8093,9 @@ msgstr ""
 "Habilitar para mostrar todas las opciones de los ajustes Verdadero/Falso, Sí/"
 "No, Encendido/Apagado y Habilitar/Deshabilitar como un interruptor gráfico."
 
+msgid "Enable to display setup entries alphabetically."
+msgstr "Habilitar para mostrar alfabéticamente las entradas de los ajustes."
+
 msgid ""
 "Enable to display the current value of the slider at end of the slider bar."
 msgstr ""
@@ -19723,6 +19726,9 @@ msgstr "Seleccione si se aplicarán tiempos de espera al introducir dígitos en 
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Configura cada sintonizador de tu receptor"
+
+msgid "Setup entry sort"
+msgstr "Ordenar la pantalla de ajustes alfabéticamente"
 
 msgid "Setup how to control the channel changing."
 msgstr "Configura cómo controlar el cambio de canales."

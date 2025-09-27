@@ -559,7 +559,7 @@ def InitUsageConfig():
 	if not exists(resolveFilename(SCOPE_PICON)):
 		try:
 			mkdir(resolveFilename(SCOPE_PICON), 0o755)
-		except:
+		except Exception:
 			pass
 
 	config.misc.allowed_picon_paths = ConfigLocations(default=[resolveFilename(SCOPE_PICON)])

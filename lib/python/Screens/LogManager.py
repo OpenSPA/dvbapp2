@@ -303,7 +303,7 @@ class LogManager(Screen):
 		if self.logs:
 			try:
 				self.sel = self["list"].getCurrent()[0]
-			except:
+			except Exception:
 				self.sel = None
 			if self.sel and self["list"].getPath():
 				self.session.open(LogManagerViewLog, self.sel[0])

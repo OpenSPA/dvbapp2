@@ -6919,6 +6919,9 @@ msgstr ""
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr ""
 
+msgid "Enable to display setup entries alphabetically."
+msgstr ""
+
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr ""
 
@@ -16669,6 +16672,9 @@ msgid "Setup Videomode"
 msgstr ""
 
 msgid "Setup each tuner for your satellite system"
+msgstr ""
+
+msgid "Setup entry sort"
 msgstr ""
 
 msgid "Setup how to control the channel changing."

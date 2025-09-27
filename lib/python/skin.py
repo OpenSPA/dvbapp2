@@ -215,28 +215,6 @@ def loadSkin(filename, replace = False, scope=SCOPE_SKINS, desktop=getDesktop(GU
 		return True
 	return False
 
-# Method to load a skinTemplates.xml if one exists or load the templates from the screens.
-#
-def loadSkinTemplates(skinTemplatesFileName):
-	if isfile(skinTemplatesFileName):
-		print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
-		domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
-		if domStyles is not None:
-			for template in domStyles.findall("template"):
-				componentTemplates.add(template, skinTemplatesFileName)
-	else:
-		for screen in domScreens:
-			element, path = domScreens.get(screen, (None, None))
-			for template in element.findall(".//widget/templates/template"):
-				componentTemplates.add(template, None)
-	if config.crash.debugScreens.value:
-		print(f"[Skin] DEBUG: componentTemplates '{componentTemplates.templates}'.")
-
-
-def reloadSkinTemplates():
-	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(str(currentPrimarySkin)), "skinTemplates.xml"))
-	loadSkinTemplates(skinTemplatesFileName)
-
 
 def reloadSkins():
 	global colors, domScreens, fonts, menus, parameters, setups, switchPixmap

@@ -1,28 +1,30 @@
 from re import search, sub
 from os.path import exists, isdir, realpath
 
-from enigma import BT_SCALE, eEnv, eListboxPythonMultiContent, gFont, pNavigation  # noqa F401
+from enigma import BT_SCALE, eEnv, eListboxPythonMultiContent, eTimer, gFont, pNavigation  # noqa F401
 
 import NavigationInstance
 from skin import getSkinFactor
 from Components.ActionMap import HelpableActionMap
+from Components.config import config
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Network import iNetwork
-from Components.NimManager import nimmanager
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.Sources.List import List
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
 from Screens.CCcamInfo import CCcamInfoMain
 from Screens.HarddiskSetup import HarddiskConvertExt4Selection, HarddiskFsckSelection, HarddiskSelection
 from Screens.MountManager import HddMount
-from Screens.NetworkSetup import *
+from Screens.NetworkSetup import NetworkAdapterSelection
 from Screens.OScamInfo import OSCamInfo
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.PluginBrowser import PackageAction, PluginBrowser
-from Screens.RestartNetwork import RestartNetwork
+from Screens.RestartNetwork import RestartNetwork, AdapterSetup, NetworkServicesSetup, NetworkMiniDLNASetup, NetworkInadynSetup, NetworkuShareSetup
+from Screens.MessageBox import MessageBox
 from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Screen import Screen

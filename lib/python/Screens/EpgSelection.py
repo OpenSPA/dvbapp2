@@ -1288,13 +1288,13 @@ class EPGSelection(Screen):
 			try:
 				from Plugins.Extensions.IMDb.plugin import IMDB
 				self.session.open(IMDB, name, False)
-			except:
+			except ImportError:
 				if isPluginInstalled("spzIMDB"):
 					from Plugins.Extensions.spzIMDB.plugin import getStrRef, spzIMDB
 					try:
 						serviceref = cur[1]
 						ref = getStrRef(serviceref.ref, name)
-					except:
+					except Exception:
 						name = ""
 					spzIMDB(self.session, tbusqueda=name, tevento=event, tref=ref)
 				else:
@@ -1346,7 +1346,7 @@ class EPGSelection(Screen):
 					cur = self[f"list{self.activeList}"].getCurrent()
 					event = cur[0]
 					name = event.getEventName()
-				except:
+				except Exception:
 					name = ""
 				self.session.open(newsearch, name, False)
 			except ImportError:
@@ -1387,7 +1387,7 @@ class EPGSelection(Screen):
 		if not isPluginInstalled("AutoTimer"):  # OpenSPA [norhap] add install AutoTimer.
 			self.addAutoTimer()
 		else:
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
+			# from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 			autopoller = AutoPoller()
