@@ -15430,14 +15430,14 @@ msgstr "Перемотать вперёд (Введите время)"
 msgid "Seek forward long"
 msgstr "Перемотка вперёд длинная"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Искать"
 
 msgid "SeekBar activation"
 msgstr "Вызов панели перемотки"
 
-msgid "Seekbar sensibility"
-msgstr "Шаг Seekbar"
+msgid "SeekBar sensibility"
+msgstr "Шаг SeekBar"
 
 msgid "Seeking connected events"
 msgstr "Поиск связанных событий"
@@ -21231,7 +21231,7 @@ msgid "Use time jumps for fast forward/backward"
 msgstr "Шаги для быстрой перемотки вперёд/назад"
 
 msgid "Use time shift SeekBar while time shifting"
-msgstr "Использовать Seekbar во время работы таймшифта"
+msgstr "Использовать SeekBar во время работы таймшифта"
 
 msgid "Use viewer for unknown files"
 msgstr "Использовать просмотрщик для неизвестных файлов"

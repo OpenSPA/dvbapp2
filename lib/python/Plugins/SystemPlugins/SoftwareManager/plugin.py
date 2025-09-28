@@ -1,4 +1,4 @@
-from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, stat
+from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, stat  # noqa F401
 from os.path import dirname, exists, isdir, isfile, join as pathjoin
 from stat import ST_MTIME
 from pickle import dump, load
@@ -8,11 +8,11 @@ from enigma import getDesktop
 
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
-from Components.Harddisk import harddiskmanager
+from Components.Harddisk import harddiskmanager  # noqa F401
 from Components.Input import Input
 from Components.MenuList import MenuList
 from Components.Opkg import OpkgComponent
-from Components.PluginComponent import plugins
+from Components.PluginComponent import plugins  # noqa F401
 from Components.SelectionList import SelectionList
 from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
@@ -21,7 +21,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Opkg import Opkg
 from Screens.Screen import Screen
 
-from .H9SDmanager import H9SDmanager
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
 from .ImageWizard import ImageWizard
 
@@ -36,7 +35,7 @@ def write_cache(cache_file, cache_data):  # Does a cPickle dump.
 		except OSError:
 			print("%s is a file" % dirname(cache_file))
 	with open(cache_file, "wb") as fd:
-		dump(cache_data, fd, -1)
+		dump(cache_data, fd, protocol=5)
 
 
 def valid_cache(cache_file, cache_ttl):  # See if the cache file exists and is still living.
@@ -57,9 +56,6 @@ def load_cache(cache_file):  # Does a cPickle load.
 	return cache_data
 
 # Helper for menu.xml
-class H9SDmanager(H9SDmanager):
-	pass
-
 class ImageWizard(ImageWizard):
 	pass
 
@@ -148,7 +144,7 @@ class IPKGSource(Screen):
 			except OSError:
 				pass
 		desk = getDesktop(0)
-		x = int(desk.size().width())
+		x = int(desk.size().width())  # noqa F841
 		y = int(desk.size().height())
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -307,7 +303,7 @@ class BackupHelper(Screen):
 				from Plugins.Extensions.MediaScanner.plugin import scan
 				scan(self.session, self)
 				doClose = False
-			except:
+			except ImportError:
 				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
 		elif self.args == 5:
 			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True, mode="backupfiles")

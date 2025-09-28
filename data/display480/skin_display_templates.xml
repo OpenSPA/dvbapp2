@@ -484,8 +484,8 @@
 	<!-- SETUP -->
 	<screen name="SetupSummary" position="0,0" size="480,320"> 
 		<widget source="Title" render="Label" position="14,23" size="432,90" foregroundColor="white" font="FdLcD; 36" halign="center" valign="center" zPosition="2" />
-		<widget source="SetupEntry" render="Label" position="14,123" size="432,126" foregroundColor="white" font="FdLcDLight; 32" halign="center" valign="top" zPosition="2" />
-		<widget source="SetupValue" render="Label" position="24,236" size="432,66" foregroundColor="white" font="FdLcDLight; 28" halign="center" valign="bottom" zPosition="2" />
+		<widget source="entry" render="Label" position="14,123" size="432,126" foregroundColor="white" font="FdLcDLight; 32" halign="center" valign="top" zPosition="2" />
+		<widget source="value" render="Label" position="24,236" size="432,66" foregroundColor="white" font="FdLcDLight; 28" halign="center" valign="bottom" zPosition="2" />
 	</screen>
 
 	<!-- ET PORTAL -->

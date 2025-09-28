@@ -1,3 +1,5 @@
+# flake8: noqa E402
+
 from glob import glob
 from os.path import splitext
 
@@ -11,7 +13,8 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.SystemInfo import BoxInfo, getBoxDisplayName  # noqa F401
+from Tools import Notifications
 from Tools.Directories import fileExists
 
 import enigma
@@ -254,16 +257,16 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		try:
 			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 			self.session.open(MediaPlayer)
-			no_plugin = False
-		except Exception as e:
+			# no_plugin = False
+		except Exception:
 			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showMediaCenter(self):
 		try:
 			from Plugins.Extensions.BMediaCenter.plugin import DMC_MainMenu
 			self.session.open(DMC_MainMenu)
-			no_plugin = False
-		except Exception as e:
+			# no_plugin = False
+		except Exception:
 			self.session.open(MessageBox, _("The MediaCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSleepTimer(self):
@@ -284,9 +287,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		# AutoTimer plugin descriptor that opens the AutoTimer
 		# overview and is always present.
 
-		for l in plugins.getPlugins(PluginDescriptor.WHERE_MENU):
-			if l.name == _("Auto Timers"):  # Must use translated name same as in the po of plugin autotimer
-				menuEntry = l("timermenu")
+		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_MENU):
+			if plugin.name == _("Auto Timers"):  # Must use translated name same as in the po of plugin autotimer
+				menuEntry = plugin("timermenu")
 				if menuEntry and len(menuEntry[0]) > 1 and callable(menuEntry[0][1]):
 					return menuEntry[0][1]
 		return None
@@ -304,7 +307,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				if plugin.name == _("EPGSearch") or plugin.name == _("search EPG...") or plugin.name == "Durchsuche EPG...":
 					self.runPlugin(plugin)
 					break
-		except Exception as e:
+		except Exception:
 			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openIMDB(self):
@@ -313,7 +316,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				if plugin.name == _("IMDb Details"):
 					self.runPlugin(plugin)
 					break
-		except Exception as e:
+		except Exception:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSimpleUnmount(self):
@@ -322,7 +325,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				if plugin.name == _("SimpleUmount"):
 					self.runPlugin(plugin)
 					break
-		except Exception as e:
+		except Exception:
 			self.session.open(MessageBox, _("The SimpleUmount plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def ZoomInOut(self):
@@ -358,8 +361,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		try:
 			from Plugins.Extensions.MediaStream.plugin import MSmain as MediaStream
 			MediaStream(self.session)
-			no_plugin = False
-		except Exception as e:
+			# no_plugin = False
+		except Exception:
 			self.session.open(MessageBox, _("The MediaStream plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showSetup(self):
@@ -382,8 +385,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		try:
 			from Plugins.SystemPlugins.Videomode.plugin import videoSetupMain
 			self.session.instantiateDialog(videoSetupMain)
-			no_plugin = False
-		except Exception as e:
+			# no_plugin = False
+		except Exception:
 			self.session.open(MessageBox, _("The VideoMode plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showPluginBrowser(self):
@@ -621,8 +624,6 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self.handleLeave(config.usage.on_movie_stop.value)
 
 	def leavePlayerOnExit(self):
-		if config.misc.spaMovieList.value:  # OpenSPA [norhap] ensure exit from OpenSPA movie list.
-			self.close(True)
 		if self.shown:
 			self.hide()
 		elif self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
@@ -636,6 +637,8 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 			self.leavePlayerOnExitCallback(True)
 		elif config.usage.leave_movieplayer_onExit.value == "stop":
 			self.leavePlayer()
+		elif config.usage.leave_movieplayer_onExit.value == "no with popup" or "no" in config.usage.leave_movieplayer_onExit.value and self.__class__.__name__ == "MoviePlayer" and self.session.nav.getRecordings():  # OpenSPA [norhap] indicate how to exit the movie list.
+			Notifications.AddNotification(MessageBox, _("Press STOP and then EXIT to exit the movie list."), MessageBox.TYPE_INFO, timeout=8)
 
 	def leavePlayerOnExitCallback(self, answer):
 		if answer:
@@ -869,7 +872,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 				# no selection? Continue where we left off
 				if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					self.session.nav.playService(ref)
-			except:
+			except Exception:
 				pass
 
 	def getPlaylistServiceInfo(self, service):

@@ -5,7 +5,6 @@ from time import sleep
 from enigma import eAVControl, getDesktop
 
 from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionInteger, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
-from Components.About import about
 from Components.SystemInfo import BoxInfo
 from Tools.CList import CList
 from Tools.Directories import fileReadLine, fileWriteLine
@@ -451,7 +450,7 @@ def InitAVSwitch():
 		config.av.sync_mode = ConfigSelection(default="slow", choices=[
 			("slow", _("Slow Motion")),
 			("hold", _("Hold First Frame")),
-			("black", _("Black Screen")),
+			("black", _("Black screen")),
 		])
 		config.av.sync_mode.addNotifier(setSyncMode)
 	else:
@@ -952,13 +951,14 @@ class AVSwitchBase:
 		"NTSC",
 		"Multi"
 	]
+	chipSetString = BoxInfo.getItem("ChipsetString")
 	if AMLOGIC:
 		modes["HDMI"] = ["720p", "1080p", "smpte", "2160p30", "2160p", "1080i", "576p", "576i", "480p", "480i"]
-	elif (about.getChipSetString() in ("7366", "7376", "5272s", "7444", "7445", "7445s")) or MACHINEBUILD.startswith("osmio4k"):
+	elif (chipSetString in ("7366", "7376", "5272s", "7444", "7445", "7445s")):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
-	elif (about.getChipSetString() in ("7252", "7251", "7251S", "7252S", "7251s", "7252s", "72604", "7278", "7444s", "3798mv200", "3798mv200h", "3798cv200", "hi3798mv200", "hi3798mv200h", "hi3798cv200", "hi3798mv300", "3798mv300")) and not MACHINEBUILD.startswith("osmio4k"):
+	elif (chipSetString in ("7252", "7251", "7251S", "7252S", "7251s", "7252s", "72604", "7278", "7444s", "3798mv200", "3798mv200h", "3798cv200", "hi3798mv200", "hi3798mv200h", "hi3798cv200", "hi3798mv300", "3798mv300")):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "2160p30", "1080i", "576p", "576i", "480p", "480i"]
-	elif (about.getChipSetString() in ("7241", "7358", "7362", "73625", "7346", "7356", "73565", "7424", "7425", "7435", "7552", "7581", "7584", "75845", "7585", "pnx8493", "7162", "7111", "3716mv410", "hi3716mv410", "hi3716mv430", "3716mv430")):
+	elif (chipSetString in ("7241", "7358", "7362", "73625", "7346", "7356", "73565", "7424", "7425", "7435", "7552", "7581", "7584", "75845", "7585", "pnx8493", "7162", "7111", "3716mv410", "hi3716mv410", "hi3716mv430", "3716mv430")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 	else:
 		modes["HDMI"] = ["720p", "1080i", "576p", "576i", "480p", "480i"]

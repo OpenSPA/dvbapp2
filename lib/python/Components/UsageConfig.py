@@ -1,6 +1,6 @@
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
-from os import makedirs, remove, system as ossystem, mkdir, unlink, listdir
+from os import makedirs, remove, unlink, mkdir, listdir
 from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
@@ -9,13 +9,13 @@ from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIG
 
 from keyids import KEYIDS
 from skin import getcomponentTemplateNames, parameters, domScreens
-from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigSet, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, SCOPE_PICON, defaultRecordingLocation, fileReadXML, fileWriteLine, resolveFilename, isPluginInstalled
+from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, SCOPE_PICON, defaultRecordingLocation, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename, isPluginInstalled
 
 MODULE_NAME = __name__.split(".")[-1]
 DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
@@ -28,12 +28,12 @@ visuallyImpairedCommentary = "NAR qad"
 def InitUsageConfig():
 	AvailRemotes = [splitext(x)[0] for x in glob("/usr/share/enigma2/hardware/*.xml")]
 	RemoteChoices = []
-	DefaultRemote = BoxInfo.getItem("rcname")
+	DefaultRemote = BoxInfo.getItem("rcname")  # noqa F841
 
-	remoteSelectable = False
+	remoteSelectable = False  # noqa F841
 	if AvailRemotes is not None:
 		for remote in AvailRemotes:
-			pngfile = "%s.png" % remote
+			pngfile = f"{remote}.png"
 			if isfile(pngfile):
 				RemoteChoices.append(remote.split("/")[-1])
 
@@ -50,6 +50,8 @@ def InitUsageConfig():
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
 
 	config.misc.spinnerPosition = ConfigSequence(default=[50, 50], limits=[(0, 1260), (0, 700)], seperator=",")
+
+	config.misc.disableServiceHiSilicon = ConfigYesNo(default=False)
 
 	config.workaround = ConfigSubsection()
 	config.workaround.deeprecord = ConfigYesNo(default=False)
@@ -131,7 +133,7 @@ def InitUsageConfig():
 	])
 	config.usage.showdish = ConfigSelection(default="flashing", choices=[
 		("flashing", _("Flashing")),
-		("normal", _("Not Flashing")),
+		("normal", _("Non-flashing")),
 		("off", _("Off"))
 	])
 	# OPENSPA [morser] New config. Detect PowerLost
@@ -213,8 +215,8 @@ def InitUsageConfig():
 
 	config.usage.servicetype_icon_mode = ConfigSelection(default="0", choices=[
 		("0", _("None")),
-		("1", _("Left from service name")),
-		("2", _("Right from service name"))
+		("1", _("Left of service name")),
+		("2", _("Right of service name"))
 	])
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 	############# OPENSPA [morser] Add picons for service quality ############################
@@ -236,14 +238,14 @@ def InitUsageConfig():
 	##########################################################################################
 	config.usage.crypto_icon_mode = ConfigSelection(default="0", choices=[
 		("0", _("None")),
-		("1", _("Left from service name")),
-		("2", _("Right from service name"))
+		("1", _("Left of service name")),
+		("2", _("Right of service name"))
 	])
 	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
 	config.usage.record_indicator_mode = ConfigSelection(default="3", choices=[
 		("0", _("None")),
-		("1", _("Left from service name")),
-		("2", _("Right from service name")),
+		("1", _("Left of service name")),
+		("2", _("Right of service name")),
 		("3", _("Red colored"))
 	])
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
@@ -311,7 +313,7 @@ def InitUsageConfig():
 		("standard", _("Standard")),
 		("keep", _("Keep service")),
 		("reverseB", _("Reverse bouquet buttons")),
-		("keep reverseB", "%s + %s" % (_("Keep service"), _("Reverse bouquet buttons")))
+		("keep reverseB", f"{_("Keep service")} + {_("Reverse bouquet buttons")}")
 	])
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default=False)
 	config.usage.showpicon = ConfigYesNo(default=True)
@@ -324,8 +326,8 @@ def InitUsageConfig():
 	config.channelSelection.showCryptoIcon = ConfigYesNo(default=False)
 	config.channelSelection.recordIndicatorMode = ConfigSelection(default=2, choices=[
 		(0, _("None")),
-		(1, _("Record Icon")),
-		(2, _("Colored Text"))
+		(1, _("Record icon")),
+		(2, _("Colored text"))
 	])
 	config.channelSelection.piconRatio = ConfigSelection(default=167, choices=[
 		(167, _("XPicon, ZZZPicon")),
@@ -388,14 +390,14 @@ def InitUsageConfig():
 		("3", _("2nd InfoBar ECM"))
 	])
 	config.usage.second_infobar_timeout = ConfigSelection(default="5", choices=choiceList)
-	config.usage.showInfoBarSubservices = ConfigSelection(default=1, choices=[
+	config.usage.showInfoBarSubservices = ConfigSelection(default=2, choices=[
 		(0, _("Off")),
 		(1, _("If EPG available")),
 		(2, _("Always"))
 	])
 	config.usage.subservice = ConfigSelection(default=3, choices=[
-		(0, _("No, show the RecordTimer Overview")),
-		(1, _("No, show the Plugin Browser")),
+		(0, _("No, show RecordTimer Overview")),
+		(1, _("No, show Plugin Browser")),
 		(2, _("Yes, show RecordTimer if unavailable")),
 		(3, _("Yes, show Plugin Browser if unavailable"))
 	])
@@ -462,7 +464,7 @@ def InitUsageConfig():
 	config.usage.tuxtxt_TTFShiftX.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False, call_on_save_or_cancel=True)
 	config.usage.tuxtxt_TTFWidthFactor16.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False, call_on_save_or_cancel=True)
 	config.usage.tuxtxt_TTFHeightFactor16.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False, call_on_save_or_cancel=True)
-	config.usage.tuxtxt_CleanAlgo.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False, call_on_save_or_cancel=True)
+	config.usage.tuxtxt_CleanAlgo.addNotifier(patchTuxtxtConfFile, initial_call=True, immediate_feedback=False, call_on_save_or_cancel=True)
 
 	config.usage.sort_settings = ConfigYesNo(default=False)
 	config.usage.sort_menu_byname = ConfigYesNo(default=False)
@@ -518,17 +520,17 @@ def InitUsageConfig():
 			config.usage.default_path.value = savedPath
 	config.usage.default_path.save()
 	currentPath = config.usage.default_path.value
-	print("[UsageConfig] Checking/Creating current movie directory '%s'." % currentPath)
+	print(f"[UsageConfig] Checking/Creating current movie directory '{currentPath}'.")
 	try:
 		makedirs(currentPath, 0o755, exist_ok=True)
 	except OSError as err:
-		print("[UsageConfig] Error %d: Unable to create current movie directory '%s'!  (%s)" % (err.errno, currentPath, err.strerror))
+		print(f"[UsageConfig] Error {err.errno}: Unable to create current movie directory '{currentPath}'!  ({err.strerror})")
 		if defaultPath != currentPath:
-			print("[UsageConfig] Checking/Creating default movie directory '%s'." % defaultPath)
+			print(f"[UsageConfig] Checking/Creating default movie directory '{defaultPath}'.")
 			try:
 				makedirs(defaultPath, 0o755, exist_ok=True)
 			except OSError as err:
-				print("[UsageConfig] Error %d: Unable to create default movie directory '%s'!  (%s)" % (err.errno, defaultPath, err.strerror))
+				print(f"[UsageConfig] Error {err.errno}: Unable to create default movie directory '{defaultPath}'!  ({err.strerror})")
 
 	choiceList = [
 		("<default>", "<Default>"),
@@ -557,7 +559,7 @@ def InitUsageConfig():
 	if not exists(resolveFilename(SCOPE_PICON)):
 		try:
 			mkdir(resolveFilename(SCOPE_PICON), 0o755)
-		except:
+		except Exception:
 			pass
 
 	config.misc.allowed_picon_paths = ConfigLocations(default=[resolveFilename(SCOPE_PICON)])
@@ -583,8 +585,8 @@ def InitUsageConfig():
 	config.usage.movielist_trashcan_days = ConfigSelection(default=8, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 32)])
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
 	config.usage.on_movie_start = ConfigSelection(default="ask yes", choices=[
-		("ask yes", _("Ask user (with default as 'Yes')")),
-		("ask no", _("Ask user (with default as 'No')")),
+		("ask yes", _("Ask user (with default of 'Yes')")),
+		("ask no", _("Ask user (with default of 'No')")),
 		("resume", _("Resume from last position")),
 		("beginning", _("Start from the beginning"))])
 	config.usage.on_movie_stop = ConfigSelection(default="movielist", choices=[
@@ -604,7 +606,8 @@ def InitUsageConfig():
 	])
 	config.usage.next_movie_msg = ConfigYesNo(default=True)
 	config.usage.last_movie_played = ConfigText()
-	config.usage.leave_movieplayer_onExit = ConfigSelection(default="no", choices=[
+	config.usage.leave_movieplayer_onExit = ConfigSelection(default="no with popup", choices=[
+		("no with popup", _("No (with notification)")),
 		("no", _("No")),
 		("popup", _("With pop up")),
 		("without popup", _("Without pop up")),
@@ -639,7 +642,7 @@ def InitUsageConfig():
 		("standby", _("Standby")),
 		("standby_noTVshutdown", _("Standby without TV shut down")),
 		("sleeptimer", _("SleepTimer")),
-		("schedulerStandby", _("Scheduler Standby")),
+		("schedulerStandby", _("Scheduler standby")),
 		("schedulerDeepStandby", _("Scheduler deep standby"))
 	]
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=choiceList)
@@ -684,8 +687,8 @@ def InitUsageConfig():
 
 	def remote_fallback_changed(configElement):
 		if configElement.value:
-			configElement.value = "%s%s" % (not configElement.value.startswith("http://") and "http://" or "", configElement.value)
-			configElement.value = "%s%s" % (configElement.value, configElement.value.count(":") == 1 and ":8001" or "")
+			configElement.value = f"{not configElement.value.startswith("http://") and "http://" or ""}{configElement.value}"
+			configElement.value = f"{configElement.value}{configElement.value.count(":") == 1 and ":8001" or ""}"
 	config.usage.remote_fallback = ConfigText(default="", fixed_size=False)
 	config.usage.remote_fallback.addNotifier(remote_fallback_changed, immediate_feedback=False)
 	config.usage.remote_fallback_import_url = ConfigText(default="", fixed_size=False)
@@ -697,7 +700,12 @@ def InitUsageConfig():
 	config.usage.remote_fallback_dvb_c.addNotifier(remote_fallback_changed, immediate_feedback=False)
 	config.usage.remote_fallback_atsc = ConfigText(default="", fixed_size=False)
 	config.usage.remote_fallback_atsc.addNotifier(remote_fallback_changed, immediate_feedback=False)
-	config.usage.remote_fallback_import = ConfigSelection(default="", choices=[("", _("No")), ("channels", _("Channels only")), ("channels_epg", _("Channels and EPG")), ("epg", _("EPG only"))])
+	config.usage.remote_fallback_import = ConfigSelection(default="", choices=[
+		("", _("No")),
+		("channels", _("Channels only")),
+		("channels_epg", _("Channels and EPG")),
+		("epg", _("EPG only"))
+	])
 	config.usage.remote_fallback_import_restart = ConfigYesNo(default=False)
 	config.usage.remote_fallback_import_standby = ConfigYesNo(default=False)
 	config.usage.remote_fallback_ok = ConfigYesNo(default=False)
@@ -753,7 +761,7 @@ def InitUsageConfig():
 			name = nimmanager.nim_slots[x].getSlotName()
 			if len(name.split()) == 2:
 				name = name.split()[1]
-			slotName += "+%s" % name
+			slotName += f"+{name}"
 			slotsX.append(slotX)
 			multi.append((str(slotX), slotName))
 
@@ -770,7 +778,7 @@ def InitUsageConfig():
 				else:
 					if len(name.split()) == 2:
 						name = name.split()[1]
-					slotName += "+%s" % name
+					slotName += f"+{name}"
 		if slotName:
 			multi.append((str(slotX), slotName))
 	#
@@ -860,8 +868,8 @@ def InitUsageConfig():
 	# In use.
 	if BoxInfo.getItem("displaytype") in ("textlcd",):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Channel", choices=[
-			("Rec", _("REC Symbol")),
-			("RecBlink", _("Blinking REC Symbol")),
+			("Rec", _("REC symbol")),
+			("RecBlink", _("Blinking REC symbol")),
 			("Channel", _("Channel name"))
 		])
 	if BoxInfo.getItem("displaytype") in ("7segment",):
@@ -880,7 +888,7 @@ def InitUsageConfig():
 
 	config.usage.show_in_operation = ConfigSelection(default="time", choices=[
 		("time", _("Time")),
-		("number", _("Channel Number")),
+		("number", _("Channel number")),
 		("nothing", _("Nothing"))
 	])
 
@@ -897,7 +905,7 @@ def InitUsageConfig():
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default=False)
 	choiceList = [
-		("0", _("Skin Setting")),
+		("0", _("Skin setting")),
 		("1", _("Minutes")),
 		("2", _("Minutes Seconds")),
 		("3", _("Hours Minutes")),
@@ -946,17 +954,17 @@ def InitUsageConfig():
 
 	def PreferredTunerChanged(configElement):
 		config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
-		debugstring = ""
+		debugString = ""
 		elem2 = config.usage.frontend_priority_intval.value
 		if (int(elem2) > 0) and (int(elem2) & eDVBFrontend.preferredFrontendBinaryMode):
 			elem2 = int(elem2) - eDVBFrontend.preferredFrontendBinaryMode
-			debugstring = debugstring + "Binary +"
+			debugString = "{debugString}Binary +"
 		if (int(elem2) > 0) and (int(elem2) & eDVBFrontend.preferredFrontendPrioForced):
 			elem2 = int(elem2) - eDVBFrontend.preferredFrontendPrioForced
-			debugstring = debugstring + "Forced +"
+			debugString = "{debugString}Forced +"
 		if (int(elem2) > 0) and (int(elem2) & eDVBFrontend.preferredFrontendPrioHigh):
 			elem2 = int(elem2) - eDVBFrontend.preferredFrontendPrioHigh
-			debugstring = debugstring + "High +"
+			debugString = "{debugString}High +"  # noqa F841
 		setPreferredTuner(int(config.usage.frontend_priority_intval.value))
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
 	config.usage.frontend_priority_multiselect.addNotifier(PreferredTunerChanged)
@@ -1029,7 +1037,7 @@ def InitUsageConfig():
 		(_("%A %Y/%-m/%d"), _("Dayname Year/M/DD")),
 		(_("%A %Y/%-m/%-d"), _("Dayname Year/M/D"))]
 
-	config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y") if config.misc.locale.value == "es_ES" else _("%A %-d %B %Y"), choices=choicelist)
+	config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y") if config.misc.locale.value == "es_ES" and config.skin.primary_skin.value != "OctEtFHD/skin.xml" else _("%A %-d %B %Y"), choices=choicelist)
 
 	# TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 	config.usage.date.shortdayfull = ConfigText(default=_("%a %-d %B %Y"))
@@ -1159,7 +1167,7 @@ def InitUsageConfig():
 	try:
 		dateEnabled, timeEnabled = parameters.get("AllowUserDatesAndTimes", (0, 0))
 	except Exception as error:
-		print("[UsageConfig] Error loading 'AllowUserDatesAndTimes' skin parameter! (%s)" % error)
+		print(f"[UsageConfig] Error loading 'AllowUserDatesAndTimes' skin parameter! ({error})")
 		dateEnabled, timeEnabled = (0, 0)
 	if dateEnabled:
 		config.usage.date.enabled.value = True
@@ -1282,7 +1290,7 @@ def InitUsageConfig():
 	try:
 		dateDisplayEnabled, timeDisplayEnabled = parameters.get("AllowUserDatesAndTimesDisplay", (0, 0))
 	except Exception as error:
-		print("[UsageConfig] Error loading 'AllowUserDatesAndTimesDisplay' display skin parameter! (%s)" % error)
+		print(f"[UsageConfig] Error loading 'AllowUserDatesAndTimesDisplay' display skin parameter! ({error})")
 		dateDisplayEnabled, timeDisplayEnabled = (0, 0)
 	if dateDisplayEnabled:
 		config.usage.date.enabled_display.value = True
@@ -1398,7 +1406,7 @@ def InitUsageConfig():
 #	config.misc.epgcachepath = ConfigDirectory(default = '/etc/enigma2/')
 	config.misc.epgcachepath = ConfigSelection(default="/etc/enigma2/", choices=hddChoices)
 	config.misc.epgcachefilename = ConfigText(default="epg", fixed_size=False)
-	epgCacheFilename = "%s.dat" % config.misc.epgcachefilename.value.replace(".dat", "")
+	epgCacheFilename = f"{config.misc.epgcachefilename.value.replace(".dat", "")}.dat"
 	config.misc.epgcache_filename = ConfigText(default=pathjoin(config.misc.epgcachepath.value, epgCacheFilename))
 
 	def EpgCacheChanged(configElement):
@@ -1431,7 +1439,7 @@ def InitUsageConfig():
 	harddiskmanager.on_partition_list_change.append(partitionListChanged)
 
 	choiceList = [
-		("", _("Auto Detect")),
+		("", _("Auto detect")),
 		("ETSI", _("Generic")),
 		("AUS", _("Australia"))
 	]
@@ -1457,7 +1465,7 @@ def InitUsageConfig():
 
 	keymapchoices = []
 	for kmap in KM.keys():
-		kmfile = eEnv.resolve("${datadir}/enigma2/keymap.%s" % kmap)
+		kmfile = eEnv.resolve("${datadir}/enigma2/keymap." + kmap)
 		if isfile(kmfile):
 			keymapchoices.append((kmfile, KM.get(kmap)))
 
@@ -1489,8 +1497,8 @@ def InitUsageConfig():
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection(default="leftright", choices=[
-		("leftright", _("Long Left/Right")),
-		("ffrw", _("Long << / >>"))
+		("leftright", _("Long LEFT/RIGHT")),
+		("ffrw", _("Long <</>>"))
 	])
 	config.seek.sensibilityHorizontal = ConfigSelection(default=1.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
 	config.seek.sensibilityVertical = ConfigSelection(default=2.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
@@ -1623,7 +1631,7 @@ def InitUsageConfig():
 		try:
 			makedirs(debugPath, 0o755, exist_ok=True)
 		except OSError as err:
-			print("[UsageConfig] Error %d: Unable to create log directory '%s'!  (%s)" % (err.errno, debugPath, err.strerror))
+			print(f"[UsageConfig] Error {err.errno}: Unable to create log directory '{debugPath}'!  ({err.strerror})")
 
 	choiceList = [("/home/root/logs/", "/home/root/")]
 	for partition in harddiskmanager.getMountedPartitions():
@@ -1680,7 +1688,7 @@ def InitUsageConfig():
 	config.misc.erase_speed.addNotifier(updateEraseSpeed, immediate_feedback=False)
 	config.misc.erase_flags = ConfigSelection(default="1", choices=[
 		("0", _("Disable")),
-		("1", _("Internal hdd only")),
+		("1", _("Internal disk only")),
 		("3", _("Everywhere"))
 	])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback=False)
@@ -1825,7 +1833,13 @@ def InitUsageConfig():
 	def setDVBSubtitleColor(configElement):
 		eSubtitleSettings.setDVBSubtitleColor(configElement.value)
 
-	config.subtitles.dvb_subtitles_color = ConfigSelection(default=0, choices=[(0, _("Original")), (1, _("Yellow")), (2, _("Green")), (3, _("Magenta")), (4, _("Cyan"))])
+	config.subtitles.dvb_subtitles_color = ConfigSelection(default=0, choices=[
+		(0, _("Original")),
+		(1, _("Yellow")),
+		(2, _("Green")),
+		(3, _("Magenta")),
+		(4, _("Cyan"))
+	])
 	config.subtitles.dvb_subtitles_color.addNotifier(setDVBSubtitleColor)
 
 	def setDVBSubtitleOriginalPosition(configElement):
@@ -2205,16 +2219,16 @@ def InitUsageConfig():
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=00, max=59, wraparound=True)
 	# config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="servicename", choices=[
-	# 	("servicename", _("Service Name")),
+	# 	("servicename", _("Service name")),
 	# 	("picon", _("Picon")),
-	# 	("picon+servicename", _("Picon and Service Name"))
+	# 	("picon+servicename", _("Picon and service name"))
 	# ])
 	titleChoiceList = [
-		("servicename", _("Service Name")),
+		("servicename", _("Service name")),
 		("picon", _("Picon")),
-		("servicenumber+picon+servicename", _("Service Number, Picon and Service Name")),
-		("servicenumber+servicename", _("Service Number and Service Name")),
-		("picon+servicename", _("Picon and Service Name"))
+		("servicenumber+picon+servicename", _("Service number, picon and service name")),
+		("servicenumber+servicename", _("Service number and service name")),
+		("picon+servicename", _("Picon and service name"))
 	]
 	config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="picon+servicename", choices=titleChoiceList)
 	config.epgselection.infobar_servfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
@@ -2233,7 +2247,7 @@ def InitUsageConfig():
 	config.epgselection.multi_preview_mode = ConfigYesNo(default=True)
 	config.epgselection.multi_ok = ConfigSelection(default="Zap", choices=choiceList)
 	config.epgselection.multi_oklong = ConfigSelection(default="Zap + Exit", choices=choiceList)
-	config.epgselection.multi_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
+	config.epgselection.multi_eventfs = ConfigSelectionNumber(default=0 if config.skin.primary_skin.value != "OctEtFHD/skin.xml" else -8, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.multi_itemsperpage = ConfigSelectionNumber(default=16, stepwidth=1, min=8, max=40, wraparound=True)
 	config.epgselection.graph_showbouquet = ConfigYesNo(default=False)
 	config.epgselection.graph_preview_mode = ConfigYesNo(default=True)
@@ -2262,7 +2276,7 @@ def InitUsageConfig():
 		("standard", _("Standard")),
 		("primetime", _("Prime time")),
 		("channel1", _("Channel 1")),
-		("channel1+primetime", _("Channel 1 with Prime time"))
+		("channel1+primetime", _("Channel 1 with prime time"))
 	])
 	config.epgselection.graph_servfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.graph_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
@@ -2321,11 +2335,29 @@ def InitUsageConfig():
 
 	config.epgselection.vertical_itemsperpage = ConfigSelectionNumber(default=6, stepwidth=1, min=3, max=12, wraparound=True)
 	config.epgselection.vertical_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-10, max=10, wraparound=True)
-	config.epgselection.vertical_ok = ConfigSelection(choices=[("Channel Info", _("Channel Info")), ("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))], default="Channel Info")
-	config.epgselection.vertical_oklong = ConfigSelection(choices=[("Channel Info", _("Channel Info")), ("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))], default="Zap + Exit")
-	config.epgselection.vertical_info = ConfigSelection(choices=[("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default="Channel Info")
-	config.epgselection.vertical_infolong = ConfigSelection(choices=[("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default="Single EPG")
-	config.epgselection.vertical_channelbtn = ConfigSelection(choices=[("page", _("Previous/Next page")), ("scroll", _("all up/down")), ("24", _("-24h/+24 Hours"))], default="page")
+	config.epgselection.vertical_ok = ConfigSelection(default="Channel Info", choices=[
+		("Channel Info", _("Channel Info")),
+		("Zap", _("Zap")),
+		("Zap + Exit", _("Zap + Exit"))
+	])
+	config.epgselection.vertical_oklong = ConfigSelection(default="Zap + Exit", choices=[
+		("Channel Info", _("Channel Info")),
+		("Zap", _("Zap")),
+		("Zap + Exit", _("Zap + Exit"))
+	])
+	config.epgselection.vertical_info = ConfigSelection(default="Channel Info", choices=[
+		("Channel Info", _("Channel Info")),
+		("Single EPG", _("Single EPG"))
+	])
+	config.epgselection.vertical_infolong = ConfigSelection(default="Single EPG", choices=[
+		("Channel Info", _("Channel Info")),
+		("Single EPG", _("Single EPG"))
+	])
+	config.epgselection.vertical_channelbtn = ConfigSelection(default="page", choices=[
+		("page", _("Previous/Next page")),
+		("scroll", _("All up/down")),
+		("24", _("-24h/+24 Hours"))
+	])
 	config.epgselection.vertical_channelbtn_invert = ConfigYesNo(default=False)
 	config.epgselection.vertical_updownbtn = ConfigYesNo(default=True)
 	config.epgselection.vertical_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
@@ -2334,7 +2366,12 @@ def InitUsageConfig():
 	config.epgselection.vertical_pig = ConfigYesNo(default=False)
 	config.epgselection.vertical_eventmarker = ConfigYesNo(default=False)
 	config.epgselection.vertical_showlines = ConfigYesNo(default=True)
-	config.epgselection.vertical_startmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("primetime", _("Prime time")), ("channel1", _("Channel 1")), ("channel1+primetime", _("Channel 1 with Prime time"))])
+	config.epgselection.vertical_startmode = ConfigSelection(default="standard", choices=[
+		("standard", _("Standard")),
+		("primetime", _("Prime time")),
+		("channel1", _("Channel 1")),
+		("channel1+primetime", _("Channel 1 with prime time"))
+	])
 	config.epgselection.vertical_prevtime = ConfigClock(default=time())
 	choiceList = [
 		("autotimer", _("AutoTimer")),
@@ -2457,9 +2494,9 @@ def InitUsageConfig():
 		("cold", _("Unattended upgrade without GUI"))
 	])
 	config.plugins.softwaremanager.restoremode = ConfigSelection(default="turbo", choices=[
-		("turbo", _("turbo")),
-		("fast", _("fast")),
-		("slow", _("slow"))
+		("turbo", _("Turbo")),
+		("fast", _("Fast")),
+		("slow", _("Slow"))
 	])
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 	#
@@ -2508,17 +2545,17 @@ def InitUsageConfig():
 			config.timeshift.path.value = savedPath
 	config.timeshift.path.save()
 	currentPath = config.timeshift.path.value
-	print("[UsageConfig] Checking/Creating current time shift directory '%s'." % currentPath)
+	print(f"[UsageConfig] Checking/Creating current time shift directory '{currentPath}'.")
 	try:
 		makedirs(currentPath, 0o755, exist_ok=True)
 	except OSError as err:
-		print("[UsageConfig] Error %d: Unable to create current time shift directory '%s'!  (%s)" % (err.errno, currentPath, err.strerror))
+		print(f"[UsageConfig] Error {err.errno}: Unable to create current time shift directory '{currentPath}'!  ({err.strerror})")
 		if defaultPath != currentPath:
-			print("[UsageConfig] Checking/Creating default time shift directory '%s'." % defaultPath)
+			print(f"[UsageConfig] Checking/Creating default time shift directory '{defaultPath}'.")
 			try:
 				makedirs(defaultPath, 0o755, exist_ok=True)
 			except OSError as err:
-				print("[UsageConfig] Error %d: Unable to create default time shift directory '%s'!  (%s)" % (err.errno, defaultPath, err.strerror))
+				print(f"[UsageConfig] Error {err.errno}: Unable to create default time shift directory '{defaultPath}'!  ({err.strerror})")
 
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
@@ -2595,7 +2632,6 @@ def defaultMoviePath():
 
 
 def patchTuxtxtConfFile(dummyConfigElement):
-	print("[UsageConfig] TuxTxt: Patching tuxtxt2.conf.")
 	if config.usage.tuxtxt_font_and_res.value == "X11_SD":
 		tuxtxt2 = [
 			["UseTTF", 0],
@@ -2669,18 +2705,22 @@ def patchTuxtxtConfFile(dummyConfigElement):
 	tuxtxt2.append(["CleanAlgo", config.usage.tuxtxt_CleanAlgo.value])
 
 	TUXTXT_CFG_FILE = "/etc/tuxtxt/tuxtxt2.conf"
-	command = "sed -i -r '"
-	for f in tuxtxt2:
-		# Replace keyword (%s) followed by any value ([-0-9]+) by that keyword \1 and the new value %d.
-		command += r"s|(%s)\s+([-0-9]+)|\\1 %d|;" % (f[0], f[1])
-	command += "' %s" % TUXTXT_CFG_FILE
-	for f in tuxtxt2:
-		# If keyword is not found in file, append keyword and value.
-		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi" % (f[0], TUXTXT_CFG_FILE, f[0], f[1], TUXTXT_CFG_FILE)
-	try:
-		ossystem(command)
-	except:
-		print("[UsageConfig] TuxTxt Error: Failed to patch %s!" % TUXTXT_CFG_FILE)
-	print("[UsageConfig] TuxTxt: Patched tuxtxt2.conf.")
+	oldLines = fileReadLines(TUXTXT_CFG_FILE, [], source=MODULE_NAME)
+	oldLines.sort()
+	lines = [line.split() for line in oldLines if line]
+	keys = [f[0] for f in tuxtxt2]
 
-	config.usage.tuxtxt_ConfFileHasBeenPatched.setValue(True)
+	newLines = []
+	for line in lines:
+		if line[0] not in keys:
+			newLines.append(f"{line[0]} {line[1]}")
+
+	for line in tuxtxt2:
+		newLines.append(f"{line[0]} {line[1]}")
+
+	newLines.sort()
+	if oldLines != newLines:  # Only write if there are changes.
+		fileWriteLines(TUXTXT_CFG_FILE, newLines, source=MODULE_NAME)
+		print(f"[UsageConfig] TuxTxt: Patched {TUXTXT_CFG_FILE}.")
+
+	config.usage.tuxtxt_ConfFileHasBeenPatched.setValue(True)  # If False then patchTuxtxtConfFile will be called from the tutxt plugin.

@@ -4,7 +4,6 @@ from gettext import bindtextdomain, install, textdomain, translation
 from locale import Error as LocaleError, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME, setlocale
 from os import environ, listdir
 from os.path import isdir
-from subprocess import PIPE, Popen
 from Tools.CountryCodes import setISO3166
 
 from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, fileReadLines, resolveFilename
@@ -251,7 +250,7 @@ class International:
 		"yi": ("Yiddish", _("Yiddish"), "ייִדיש", "", "", ("US",)),
 		"yo": ("Yoruba", _("Yoruba"), "Yorùbá", "", "", ("NG",)),
 		"za": ("Zhuang / Chuang", _("Zhuang / Chuang"), "Saɯ cueŋƅ / Saw cuengh", "", "", ()),
-		"zh": ("Chinese", _("Chinese"), "中文", "", "", ("CN", "HK", "SG", "TW")),
+		"zh": ("Chinese", _("Chinese"), "中文", "", "", ("CN", "HK", "MO", "SG", "TW")),
 		"zu": ("Zulu", _("Zulu"), "isiZulu", "", "", ("ZA",))
 	}
 
@@ -598,11 +597,6 @@ class International:
 				print(f"[International] Package '{package}' supports {count} locale{'' if count == 1 else 's'} '{', '.join(packageLocales)}'.")
 		self.localeList.sort()
 		self.languageList.sort()
-
-	def activateLanguage(self, language, runCallbacks=True):
-		locale = "%s_%s" % (language, LANGUAGE_DATA[language][LANG_COUNTRYCODES][0]) if language in LANGUAGE_DATA else "en_US"
-		print("[International] Language '%s' is being activated as locale '%s'." % (language, locale))
-		return self.activateLocale(locale, runCallbacks=runCallbacks)
 
 	def getAvailablePackages(self, update=False):
 		if update or self.debugMode:

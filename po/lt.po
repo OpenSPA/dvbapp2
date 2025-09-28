@@ -15434,13 +15434,13 @@ msgstr "Persukti pirmyn (įrašykite laiką)"
 msgid "Seek forward long"
 msgstr "Ilgai spausti pirmyn"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Paieškos juostos jautrumas"
 
 msgid "SeekBar activation"
 msgstr "Paieškos juostos aktyvavimas"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Paieškos juostos jautrumas"
 
 msgid "Seeking connected events"

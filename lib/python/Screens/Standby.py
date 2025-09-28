@@ -18,7 +18,7 @@ from GlobalActions import globalActionMap
 import Screens.InfoBar
 from Screens.MessageBox import MessageBox, MessageBoxSummary
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import fileWriteLine, mediaFilesInUse
+from Tools.Directories import mediaFilesInUse
 import Tools.Notifications
 
 
@@ -268,7 +268,7 @@ class Standby2(Screen):
 		if self.paused_service:
 			self.paused_service.unPauseService()
 		elif self.prev_running_service:
-			service = self.prev_running_service.toString()
+			# service = self.prev_running_service.toString()
 			if config.servicelist.startupservice_onstandby.value:
 				self.session.nav.playService(eServiceReference(config.servicelist.startupservice.value))
 				self.correctChannelNumber = True
@@ -334,7 +334,7 @@ class StandbySummary(Screen):
 			root = "/usr/share/enigma2/display/clock_skin/"
 			try:
 				what = open(root+"active").read()
-			except:
+			except Exception:
 				what = "clock_lcd_analog.xml"
 			tmpskin = root+what
 			self.skin = open(tmpskin,'r').read()

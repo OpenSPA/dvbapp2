@@ -15434,13 +15434,13 @@ msgstr "Posun dopredu (zadať čas)"
 msgid "Seek forward long"
 msgstr "Dlhý posun dopredu"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Vyhľadávací panel"
 
 msgid "SeekBar activation"
 msgstr "Aktivácia vyhľadávacieho panela"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Citlivosť vyhľadávacieho panela"
 
 msgid "Seeking connected events"

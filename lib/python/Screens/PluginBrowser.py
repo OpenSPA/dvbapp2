@@ -35,7 +35,7 @@ INTERNET_TIMEOUT = 2
 FEED_SERVER = "openspa.webhop.info"
 ENIGMA_PREFIX = "enigma2-plugin-%s"
 PACKAGE_PREFIX = "%s"
-SOFTCAM_PREFIX = "enigma2-plugin-softcams-%s"
+SOFTCAM_PREFIX = "cam-%s"
 KERNEL_PREFIX = "kernel-module-%s"
 
 
@@ -150,7 +150,7 @@ config.pluginfilter.settings = ConfigYesNo(default=True)
 config.pluginfilter.skincomponents = ConfigYesNo(default=False)
 config.pluginfilter.skinpacks = ConfigYesNo(default=True)
 config.pluginfilter.skins = ConfigYesNo(default=True)
-config.pluginfilter.softcams = ConfigYesNo(default=False)
+config.pluginfilter.softcams = ConfigYesNo(default=True)
 config.pluginfilter.src = ConfigYesNo(default=False)
 config.pluginfilter.subscription = ConfigYesNo(default=True)
 config.pluginfilter.systemplugins = ConfigYesNo(default=True)
@@ -321,23 +321,21 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		if config.usage.pluginListLayout.value == PLUGIN_LIST:
 			self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
 				"top": (self.keyTop, _("Move to the first line / screen")),
-				"pageUp": (self.keyPageUp, _("Move up a screen")),
+				"left": (self.keyPageUp, _("Move up a screen")),
 				"up": (self.keyUp, _("Move up a line")),
 				"down": (self.keyDown, _("Move down a line")),
-				"pageDown": (self.keyPageDown, _("Move down a screen")),
+				"right": (self.keyPageDown, _("Move down a screen")),
 				"bottom": (self.keyBottom, _("Move to the last line / screen"))
 			}, prio=0, description=_("Plugin Browser Navigation Actions"))
 		else:
 			self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
 				"top": (self.keyTop, _("Move to the first item on the first screen")),
-				"pageUp": (self.keyPageUp, _("Move up a screen")),
 				"up": (self.keyUp, _("Move up a line")),
 				"first": (self.keyFirst, _("Move to the first item on the current line")),
+				"last": (self.keyLast, _("Move to the last item on the current line")),
 				"left": (self.keyLeft, _("Move to the previous item in list")),
 				"right": (self.keyRight, _("Move to the next item in the list")),
-				"last": (self.keyLast, _("Move to the last item on the current line")),
 				"down": (self.keyDown, _("Move down a line")),
-				"pageDown": (self.keyPageDown, _("Move down a screen")),
 				"bottom": (self.keyBottom, _("Move to the last item on the last screen"))
 			}, prio=0, description=_("Plugin Browser Navigation Actions"))
 		smsMsg = _("SMS style QuickSelect entry selection")
@@ -1028,14 +1026,14 @@ class PackageAction(Screen, NumericalTextInput):
 		self["logAction"].setEnabled(False)
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
 			"top": (self["plugins"].goTop, _("Move to the first item on the first screen")),
-			"pageUp": (self["plugins"].goPageUp, _("Move up a screen")),
+			"left": (self["plugins"].goPageUp, _("Move up a screen")),
 			"up": (self["plugins"].goLineUp, _("Move up a line")),
 			"first": (self.keyPreviousCategory, _("Move to the previous category in the list")),
 			"previous": (self.keyPreviousCategory, _("Move to the previous category in the list")),
 			"last": (self.keyNextCategory, _("Move to the next category in the list")),
 			"next": (self.keyNextCategory, _("Move to the next category in the list")),
 			"down": (self["plugins"].goLineDown, _("Move down a line")),
-			"pageDown": (self["plugins"].goPageDown, _("Move down a screen")),
+			"right": (self["plugins"].goPageDown, _("Move down a screen")),
 			"bottom": (self["plugins"].goBottom, _("Move to the last item on the last screen"))
 		}, prio=0, description=description)
 		self["legacyNavigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
@@ -1187,8 +1185,8 @@ class PackageAction(Screen, NumericalTextInput):
 			self.setWaiting(None)
 			print("[PluginBrowser] PackageAction Note: User aborted the 'opkg' plugin refresh!")
 		else:
-			if self.pluginsChanged:
-				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+			#if self.pluginsChanged:
+			#	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 			if self.reloadSettings:
 				self["description"].setText(_("Reloading bouquets and services."))
 				eDVBDB.getInstance().reloadServicelist()
@@ -1446,57 +1444,72 @@ class PackageAction(Screen, NumericalTextInput):
 		pluginList = []
 		for package in packages:
 			packageFile = package["Package"]
+			packageDescription = package["Description"] if "Description" in package else ""
+			packageVersion = package["Version"] if "Version" in package else ""
+			packageInstalled = package["Installed"] if "Installed" in package else False
+			packageUpdate = "Update" in package
 			if (self.displayFilter is None or self.displayFilter.search(packageFile)) and self.displayExclude.search(packageFile) is None:
 				allCount += 1
 				parts = packageFile.split("-")
 				count = len(parts)
-				if count > 2:
-					if parts[0] == "enigma2" and parts[1] == "plugin":
-						packageCategory = parts[2]
-						packageName = "-".join(parts[3:])
-					elif parts[0] == "kernel" and parts[1] == "module":
-						packageCategory = "kernel"
-						packageName = ("-".join(parts[2:])).replace(self.kernelVersion, "")
-					elif parts[0] == "enigma2" and parts[1] == "locale":
-						packageCategory = "po"
-						packageName = ("-".join(parts[2:]))
-					elif parts[0] == "kodi" and parts[1] == "addon":
-						packageCategory = "kodiaddon"
-						packageName = ("-".join(parts[2:]))
-					elif parts[0] == "gstreamer1.0":
-						packageCategory = "gstreamer"
-						packageName = ("-".join(parts[1:]))
-				elif count > 1:
-					if parts[0] == "packagegroup":
-						packageCategory = "packagegroup"
-						packageName = ("-".join(parts[1:]))
-					elif parts[0] == "python3":
-						packageCategory = "python"
-						packageName = ("-".join(parts[1:]))
-					elif parts[0] == "docker":
-						packageCategory = "docker"
-						packageName = ("-".join(parts[1:]))
-				else:
-					if self.modeData[self.DATA_MODE] == self.MODE_PACKAGE:
-						packageCategory = package.get("Section", "")
-						packageCategory = PACKAGE_CATEGORY_MAPPINGS.get(packageCategory, packageCategory)
-						packageName = packageFile
+				if parts[0] != "cam":  # OpenSPA [norhap] Do not filter from downloads cam packages (images OE-A).
+					if count > 2:
+						if parts[0] == "enigma2" and parts[1] == "plugin":
+							packageCategory = parts[2]
+							packageName = "-".join(parts[3:])
+						elif parts[0] == "kernel" and parts[1] == "module":
+							packageCategory = "kernel"
+							packageName = ("-".join(parts[2:])).replace(self.kernelVersion, "")
+						elif parts[0] == "enigma2" and parts[1] == "locale":
+							packageCategory = "po"
+							packageName = ("-".join(parts[2:]))
+						elif parts[0] == "kodi" and parts[1] == "addon":
+							packageCategory = "kodiaddon"
+							packageName = ("-".join(parts[2:]))
+						elif parts[0] == "gstreamer1.0":
+							packageCategory = "gstreamer"
+							packageName = ("-".join(parts[1:]))
+					elif count > 1:
+						if parts[0] == "packagegroup":
+							packageCategory = "packagegroup"
+							packageName = ("-".join(parts[1:]))
+						elif parts[0] == "python3":
+							packageCategory = "python"
+							packageName = ("-".join(parts[1:]))
+						elif parts[0] == "docker":
+							packageCategory = "docker"
+							packageName = ("-".join(parts[1:]))
 					else:
-						print(f"[PluginBrowser] PackageAction Error: Plugin package '{packageFile}' has no name!")
-						continue
-				if packageCategory not in PLUGIN_CATEGORIES and packageCategory not in PACKAGE_CATEGORIES:
-					packageCategory = ""
-				# print(f"[PluginBrowser] PackageAction DEBUG: Package='{packageFile}', Name='{packageName}', Category='{packageCategory}'.")
-				packageDescription = package["Description"] if "Description" in package else ""
-				packageVersion = package["Version"] if "Version" in package else ""
-				packageInstalled = package["Installed"] if "Installed" in package else False
-				packageUpdate = "Update" in package
-				if packageInstalled:
-					installCount += 1
-				if packageUpdate:
-					updateCount += 1
-				data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
-				pluginList.append(data)
+						if self.modeData[self.DATA_MODE] == self.MODE_PACKAGE:
+							packageCategory = package.get("Section", "")
+							packageCategory = PACKAGE_CATEGORY_MAPPINGS.get(packageCategory, packageCategory)
+							packageName = packageFile
+						else:
+							print(f"[PluginBrowser] PackageAction Error: Plugin package '{packageFile}' has no name!")
+							continue
+					if packageCategory not in PLUGIN_CATEGORIES and packageCategory not in PACKAGE_CATEGORIES:
+						packageCategory = ""
+					# print(f"[PluginBrowser] PackageAction DEBUG: Package='{packageFile}', Name='{packageName}', Category='{packageCategory}'.")
+					if packageInstalled:
+						installCount += 1
+					if packageUpdate:
+						updateCount += 1
+					data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+					pluginList.append(data)
+			if config.pluginfilter.softcams.value:  # OpenSPA [norhap] show packages cam in image OE-A.
+				packageSoftcams = package["Package"].split("-")
+				if not config.pluginfilter.extraopkgpackages.value:
+					if "cam" in packageSoftcams and "dbg" not in packageSoftcams and "dev" not in packageSoftcams:
+						packageCategory = "softcams"
+						packageName = "-".join(packageSoftcams)
+						data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+						pluginList.append(data)
+				else:
+					if "cam" in packageSoftcams:
+						packageCategory = "softcams"
+						packageName = "-".join(packageSoftcams)
+						data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+						pluginList.append(data)
 		print(f"[PluginBrowser] PackageAction Packages: {len(packages)} returned from opkg, {allCount} matched, {installCount} installed, {updateCount} have updates.")
 		installedText = ngettext("%d package installed.", "%d packages installed.", installCount) % installCount
 		updateText = ngettext("%d package has an update", "%d packages have updates.", updateCount) % updateCount
@@ -1682,9 +1695,9 @@ class PackageActionLog(Screen):
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.close, _("Close the screen")),
 			"top": (self["log"].moveTop, _("Move to first line / screen")),
-			"pageUp": (self["log"].pageUp, _("Move up a screen")),
+			"left": (self["log"].pageUp, _("Move up a screen")),
 			"up": (self["log"].moveUp, _("Move up a line")),
 			"down": (self["log"].moveDown, _("Move down a line")),
-			"pageDown": (self["log"].pageDown, _("Move down a screen")),
+			"right": (self["log"].pageDown, _("Move down a screen")),
 			"bottom": (self["log"].moveBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Plugin Action Log Actions"))

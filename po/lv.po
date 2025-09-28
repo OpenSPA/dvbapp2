@@ -16819,13 +16819,13 @@ msgstr "Klaviatūras izkārtojums"
 
 #
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Meklēt"
 
 msgid "SeekBar activation"
 msgstr ""
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr ""
 
 msgid "Seeking connected events"

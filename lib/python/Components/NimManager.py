@@ -187,7 +187,7 @@ class SecConfigure:
 						slot.multi_type = {}
 						for tunertype in types:
 							slot.multi_type[str(types.index(tunertype))] = tunertype
-		except:
+		except Exception:
 			pass
 
 		for slot in nim_slots:
@@ -243,7 +243,7 @@ class SecConfigure:
 						print("[NimManager] diseqcmode: ", nim.diseqcMode.value)
 						if nim.diseqcMode.value == "single":			#single
 							currentCircular = False
-							if nim.diseqcA.value in ("360", "560"):
+							if nim.diseqcA.value in (360, 560):
 								currentCircular = nim.simpleDiSEqCSetCircularLNB.value
 							if nim.simpleSingleSendDiSEqC.value:
 								self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcA.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.AA, diseqc13V=nim.diseqc13V.value, CircularLNB=currentCircular)
@@ -342,7 +342,7 @@ class SecConfigure:
 					self.linked[connto].append(slotid)
 				else:
 					advanced.unicableconnectedTo.save_forced = False
-		except:
+		except Exception:
 			pass
 
 		lnbSat = {}
@@ -772,7 +772,7 @@ class NIM:
 			if self.isMultiType():
 				_type = self.multi_type[self.config.multiType.value]
 				return _type
-		except:
+		except Exception:
 			pass
 		return self.type
 
@@ -1081,7 +1081,7 @@ class NimManager:
 						slot.multi_type = {}
 						for tunertype in types:
 							slot.multi_type[str(types.index(tunertype))] = tunertype
-		except:
+		except Exception:
 			pass
 
 		if self.hasNimType("DVB-S"):
@@ -1456,7 +1456,7 @@ class NimManager:
 					if "configMode" in nimConfig.content.items and nimConfig.configMode.value == "loopthrough" and int(nimConfig.connectedTo.value) == testnim:
 						slots.remove(testnim)
 						break
-				except:
+				except Exception:
 					pass
 
 		slots.sort()
@@ -2258,6 +2258,8 @@ def InitNimManager(nimmgr, update_slots=None):
 			nim.diseqcB = ConfigSatlist(list=diseqc_satlist_choices)
 			nim.diseqcC = ConfigSatlist(list=diseqc_satlist_choices)
 			nim.diseqcD = ConfigSatlist(list=diseqc_satlist_choices)
+			nim.autoDiSEqC_order_single = ConfigSelection([("all", _("All")), ("astra", "19.2/13/23.5/28.2 - °E"), ("east", "19.2/13/23.5/28.2/4.8/9/16/36/56 - °E"), ("west", "0.8/5/30 - °W"), ("circular", "36/56 - °E" + _(" (circular LNB)"))], "all")
+			nim.autoDiSEqC_order = ConfigSelection([("all", _("All")), ("astra", "19.2/13/23.5/28.2 - °E"), ("east", "19.2/13/23.5/28.2/4.8/9/16 - °E"), ("west", "0.8/5/30 - °W")], "all")
 			nim.positionerMode = ConfigSelection(positioner_mode_choices, "usals")
 			nim.userSatellitesList = ConfigText('[]')
 			nim.pressOKtoList = ConfigNothing()

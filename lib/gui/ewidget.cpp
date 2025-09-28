@@ -3,8 +3,7 @@
 
 extern void dumpRegion(const gRegion &region);
 
-eWidget::eWidget(eWidget *parent) : m_animation(this), m_parent(parent ? parent->child() : 0)
-{
+eWidget::eWidget(eWidget* parent) : m_animation(this), m_parent(parent ? parent->child() : 0) {
 	m_gradient_set = false;
 	m_gradient_direction = 0;
 	m_vis = 0;
@@ -15,8 +14,7 @@ eWidget::eWidget(eWidget *parent) : m_animation(this), m_parent(parent ? parent-
 	m_client_offset = eSize(0, 0);
 	if (m_parent)
 		m_vis = wVisShow;
-	if (m_parent)
-	{
+	if (m_parent) {
 		insertIntoParent();
 		m_parent->getStyle(m_style);
 	}
@@ -29,6 +27,8 @@ eWidget::eWidget(eWidget *parent) : m_animation(this), m_parent(parent ? parent-
 	m_have_border_color = false;
 	m_border_width = 0;
 	m_padding = eRect(0, 0, 0, 0);
+	m_tag = 0;
+	m_stack = nullptr;
 }
 
 void eWidget::move(ePoint pos)
@@ -49,6 +49,8 @@ void eWidget::move(ePoint pos)
 	/* try native move if supported. */
 	if ((m_vis & wVisShow) && ((!m_desktop) || m_desktop->movedWidget(this)))
 		invalidate();
+	if (m_stack)
+		m_stack->invalidateChilds();
 }
 
 void eWidget::resize(eSize size)
@@ -87,6 +89,8 @@ void eWidget::resize(eSize size)
 
 	recalcClipRegionsWhenVisible();
 	invalidate();
+	if (m_stack)
+		m_stack->invalidateChilds();
 }
 
 void eWidget::invalidate(const gRegion &region)
@@ -169,6 +173,8 @@ void eWidget::show()
 		abs.moveBy(abspos);
 		root->m_desktop->invalidate(abs, this, target_layer);
 	}
+	if (m_stack)
+		m_stack->invalidateChilds();
 }
 
 void eWidget::hide()
@@ -206,6 +212,8 @@ void eWidget::hide()
 		root->m_desktop->recalcClipRegions(root);
 		root->m_desktop->invalidate(abs);
 	}
+	if (m_stack)
+		m_stack->invalidateChilds();
 }
 
 void eWidget::raise()
@@ -394,16 +402,27 @@ int eWidget::event(int event, void *data, void *data2)
 					painter.setRadius(r, m_cornerRadiusEdges);
 				if (r && drawborder)
 				{
-					painter.setBackgroundColor(m_border_color);
-					painter.drawRectangle(eRect(ePoint(0, 0), size()));
-					if (r)
-						painter.setRadius(r, m_cornerRadiusEdges);
-					painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
-					painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
+
+					if(!m_gradient_set && m_alphaBlend) // use new drawRectangle only if no gradient and alphaBlend because otherwise we have a problem with eVideoWidget
+					{
+						painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
+						painter.setBorder(m_border_color, m_border_width);
+						painter.drawRectangle(eRect(ePoint(0, 0), size()), m_alphaBlend);
+					}
+					else
+					{
+						painter.setBackgroundColor(m_border_color);
+						painter.drawRectangle(eRect(ePoint(0, 0), size()));
+						if (r)
+							painter.setRadius(r, m_cornerRadiusEdges);
+						painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
+						painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
+					}
+
 					drawborder = false;
 				}
 				else
-					painter.drawRectangle(eRect(ePoint(0, 0), size()));
+					painter.drawRectangle(eRect(ePoint(0, 0), size()), !m_gradient_set && m_alphaBlend);
 			}
 			else
 			{
@@ -415,7 +434,15 @@ int eWidget::event(int event, void *data, void *data2)
 				}
 				else
 				{
-					painter.clear();
+					if(m_alphaBlend)
+					{
+						if(drawborder)
+							painter.setBorder(m_border_color, m_border_width);
+						painter.drawRectangle(eRect(ePoint(0, 0), size()), true);
+						drawborder = false;
+					}
+					else
+						painter.clear();
 				}
 			}
 			if (drawborder)

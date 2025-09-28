@@ -10,7 +10,7 @@ from ServiceReference import ServiceReference
 import socket
 try:
 	from Plugins.Extensions.OpenWebif.controllers.stream import streamList
-except:
+except Exception:
 	streamList = []
 
 class StreamingClientsInfo(Screen):
@@ -50,7 +50,7 @@ class StreamingClientsInfo(Screen):
 				try:
 					raw = socket.gethostbyaddr(ip)
 					host = raw[0]
-				except:
+				except Exception:
 					host = ""
 				info = ("%s %-8s %s %s") % (strtype, ip, host, service_name)
 				self.clients.append((info, (x[0], x[1])))
@@ -65,12 +65,12 @@ class StreamingClientsInfo(Screen):
 						ip = stream.clientIP or ip
 						try:
 							ip2 = ip.split(":")[-1]
-						except:
+						except Exception:
 							pass
 						try:
 							raw = socket.gethostbyaddr(ip2)
 							host = raw[0]
-						except:
+						except Exception:
 							host = ""
 						info = ("T %s %s %s %s") % (ip, host, service_name, _("(VU+ type)"))
 						if (info,(-1, x)) not in self.clients:

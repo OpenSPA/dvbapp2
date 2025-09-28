@@ -1,5 +1,4 @@
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Label import Label
 from Components.Sources.List import List
 from Components.ActionMap import ActionMap
@@ -9,7 +8,6 @@ from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
-from os import system
 
 menuid = 0
 

@@ -338,8 +338,8 @@
 	</screen>
 	<screen name="SetupSummary" position="0,0" size="400,240" backgroundColor="black">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,44" font="VFD; 32" halign="center" foregroundColor="azul" noWrap="1" />
-		<widget source="SetupEntry" render="Label"  position="5,36" size="394,101" font="VFD; 25" transparent="1" valign="center"  foregroundColor="white"/>
-		<widget source="SetupValue" render="Label" position="5,140" size="393,35" font="VFD; 25" transparent="1" valign="top" foregroundColor="white"/>
+		<widget source="entry" render="Label"  position="5,36" size="394,101" font="VFD; 25" transparent="1" valign="center"  foregroundColor="white"/>
+		<widget source="value" render="Label" position="5,140" size="393,35" font="VFD; 25" transparent="1" valign="top" foregroundColor="white"/>
 		<panel name="RelojAbajo" />
 	</screen>
 	<!--<screen name="StandbySummary" position="0,0" size="400,240">

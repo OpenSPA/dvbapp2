@@ -47,3 +47,4 @@ class NTPSyncPoller:
 
 
 ntpSyncPoller = NTPSyncPoller()
+ntpsyncpoller = ntpSyncPoller

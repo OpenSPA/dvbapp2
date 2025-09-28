@@ -2507,7 +2507,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 				treeSize = None
 				try:
 					treeSize = int([x for x in self.textBuffer.split("\n") if x][-1].split("\t")[0]) if self.textBuffer else None
-				except:
+				except Exception:
 					pass
 				if treeSize:
 					info[directorySizeIndex] = f"{_("Tree size")}:|{treeSize:,}   ({numberScaler.scale(treeSize, style="Si", maxNumLen=3, decimals=3)})   ({NumberScaler().scale(treeSize, style="Iec", maxNumLen=3, decimals=3)})"
@@ -2943,9 +2943,11 @@ class FileTransferTask(Task):
 				self.progressTimer.callback.append(self.progressUpdate)
 
 	def progressUpdate(self):
-		dstSize = float((self.dirSize(self.dstPath) - self.initialSize) if isdir(self.dstPath) else getsize(self.dstPath))
-		progress = dstSize / self.srcSize * 100.0
-		self.setProgress(progress)
+		if exists(self.dstPath):
+			dstSize = float((self.dirSize(self.dstPath) - self.initialSize) if isdir(self.dstPath) else getsize(self.dstPath))
+			self.setProgress(dstSize / self.srcSize * 100.0)
+		else:
+			self.setProgress(100)
 		self.progressTimer.start(self.updateTime, True)
 
 	def prepare(self):

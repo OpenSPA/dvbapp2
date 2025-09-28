@@ -52,7 +52,7 @@ class VolumeAdjustSettings(Setup):
 		Setup.__init__(self, session, setup="VolumeAdjust")
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self["offsetActions"] = HelpableActionMap(self, ["ColorActions", "TVRadioActions"], {
+		self["offsetActions"] = HelpableActionMap(self, ["ColorActions", "TvRadioActions"], {
 			"yellow": (self.keyAddRemoveService, _("Add/Remove the current service to/from the Volume Offset list")),
 			"keyTV": (self.keyAddTVService, _("Add a TV service to the Volume Offset list")),
 			"keyRadio": (self.keyAddRadioService, _("Add a RADIO service to the Volume Offset list")),
@@ -230,15 +230,15 @@ class VolumeAdjustServiceSelection(ChannelSelectionBase):
 			info = service.info()
 			if info:
 				self.servicelist.setPlayableIgnoreService(eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
-		self["volumeServiceActions"] = HelpableActionMap(self, ["SelectCancelActions", "TVRadioActions"], {
+		self["volumeServiceActions"] = HelpableActionMap(self, ["SelectCancelActions", "TvRadioActions"], {
 			"select": (self.keySelect, _("Select the currently highlighted service")),
 			"cancel": (self.keyCancel, _("Cancel the service selection")),
 			"keyTVRadio": (self.keyModeToggle, _("Toggle between the available TV and RADIO services"))
 		}, prio=0, description=_("Volume Adjust Service Selection Actions"))
-		self["tvAction"] = HelpableActionMap(self, ["TVRadioActions"], {
+		self["tvAction"] = HelpableActionMap(self, ["TvRadioActions"], {
 			"keyTV": (self.keyModeTV, _("Switch to the available TV services"))
 		}, prio=0, description=_("Volume Adjust Service Selection Actions"))
-		self["radioAction"] = HelpableActionMap(self, ["TVRadioActions"], {
+		self["radioAction"] = HelpableActionMap(self, ["TvRadioActions"], {
 			"keyRadio": (self.keyModeRadio, _("Switch to the available RADIO services"))
 		}, prio=0, description=_("Volume Adjust Service Selection Actions"))
 		match mode:
@@ -334,15 +334,15 @@ class VolumeAdjust:
 			print(f"[VolumeControl] Volume adjustment data initialized from '{self.VOLUME_FILE}'.")
 			for offsets in volumeDom.findall("offsets"):
 				for entry in offsets.findall("offset"):
-					serviceReference = unescape(entry.get("serviceReference"))
-					serviceName = unescape(entry.get("serviceName"))
+					serviceReference = unescape(entry.get("serviceReference", ""))
+					serviceName = unescape(entry.get("serviceName", ""))
 					offset = int(entry.get("value", 0))
 					if serviceReference and serviceName:
 						volumeOffsets[serviceReference] = [serviceName, offset]
 			for remembered in volumeDom.findall("remembered"):
 				for entry in remembered.findall("remember"):
-					serviceReference = unescape(entry.get("serviceReference"))
-					serviceName = unescape(entry.get("serviceName"))
+					serviceReference = unescape(entry.get("serviceReference", ""))
+					serviceName = unescape(entry.get("serviceName", ""))
 					last = int(entry.get("value", self.DEFAULT_VOLUME))
 					if serviceReference and serviceName:
 						volumeRemembered[serviceReference] = [serviceName, last]

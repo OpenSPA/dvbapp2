@@ -27,6 +27,7 @@ from Tools.Notifications import AddNotification, AddNotificationWithCallback, Ad
 from Tools import Trashcan
 from Tools.XMLTools import stringToXML
 
+# flake8: noqa E402
 
 # try:  # Import later (no error message on system start)!
 # 	from Screens.InfoBar import InfoBar
@@ -291,6 +292,10 @@ class RecordTimer(Timer):
 			message = "Stream IPTV " + timer.service_ref.ref.toString()[:4] + " " + _("It is not possible to record with") + " " + player + " " + _("enabled")
 			if player == "ServiceApp":
 				if config.plugins.serviceapp.servicemp3.replace.value:
+					timer.state = RecordTimerEntry.StateEnded
+					AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+				elif isPluginInstalled("ServiceHisilicon"):
+					message = "Stream IPTV " + timer.service_ref.ref.toString()[:4] + " " + _("It is not possible to record with") + " ServiceHisilicon " + _("enabled")
 					timer.state = RecordTimerEntry.StateEnded
 					AddPopup(message, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 			elif player == "ServiceHisilicon":

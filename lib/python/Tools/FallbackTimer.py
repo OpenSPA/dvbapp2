@@ -3,7 +3,6 @@ from Components.config import config
 from Screens.MessageBox import MessageBox
 from timer import TimerEntry as TimerObject
 from urllib.parse import quote
-from xml.etree.ElementTree import fromstring
 from json import loads
 from requests import get, exceptions
 from twisted.internet.threads import deferToThread
@@ -57,7 +56,7 @@ class FallbackTimerList():
 		if self.url:
 			try:
 				self.getUrl("api/timerlist").addCallback(self.gotFallbackTimerList).addErrback(self.fallback)
-			except:
+			except Exception:
 				self.fallback(_("Unexpected error while retrieving fallback tuner's timer information"))
 		else:
 			self.fallback()

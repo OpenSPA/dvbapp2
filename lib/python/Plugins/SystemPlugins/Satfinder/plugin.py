@@ -118,7 +118,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.tuner = Tuner(self.frontend)
 			self.createSetup()
 			self.retune()
-		except:
+		except Exception:
 			pass
 
 	def __onClose(self):

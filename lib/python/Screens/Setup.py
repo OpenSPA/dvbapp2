@@ -8,7 +8,7 @@ from Components.Label import Label
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename  # noqa F401
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -110,8 +110,8 @@ class Setup(ConfigListScreen, Screen):
 		elif self.list != oldList or self.showDefaultChanged or self.graphicSwitchChanged:
 			currentItem = self["config"].getCurrent()
 			self["config"].setList(self.list)
-			if config.usage.sort_settings.value:
-				self["config"].list.sort()
+			#if config.usage.sort_settings.value:
+			#	self["config"].list.sort()
 			self.moveToItem(currentItem)
 
 	def addItems(self, parentNode, including=True, indent=""):
@@ -145,9 +145,9 @@ class Setup(ConfigListScreen, Screen):
 		indent = element.get("indent", indent)
 		indent = int(indent) if indent and indent.isnumeric() else None
 		if restart == "gui" and not itemText.endswith("*"):  # Add "*" as restart indicator based on the restart attribute.
-			itemText = f"{itemText}*"
+			itemText = f"{itemText} *"
 		elif restart == "system" and not itemText.endswith("#"):  # Add "#" as reboot indicator based on the restart attribute.
-			itemText = f"{itemText}#"
+			itemText = f"{itemText} #"
 		item = eval(element.text) if element.text else ""
 		if item == "":
 			self.list.append((self.formatItemText(itemText, data),))  # Add the comment line to the config list.
@@ -261,8 +261,6 @@ class SetupSummary(ScreenSummary):
 		self["entry"] = StaticText("")
 		self["value"] = StaticText("")
 		self["SetupTitle"] = StaticText(parent.getTitle())  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupEntry"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupValue"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:
@@ -284,8 +282,6 @@ class SetupSummary(ScreenSummary):
 	def selectionChanged(self):
 		self["entry"].setText(self.parent.getCurrentEntry())
 		self["value"].setText(self.parent.getCurrentValue())
-		self["SetupEntry"].setText(self.parent.getCurrentEntry())  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupValue"].setText(self.parent.getCurrentValue())  # DEBUG: Deprecated widget name, this will be removed soon.
 
 #FIXSPA This part is a fallback for old Setup based Screens (OpenstarHD skin)##########################
 		if hasattr(self.parent, "getCurrentDescription") and "description" in self.parent:
@@ -302,7 +298,7 @@ class SetupSummary(ScreenSummary):
 def setupDom(setup=None, plugin=None):
 	# Constants for checkItems()
 	ROOT_ALLOWED = ("setup", )  # Tags allowed in top level of setupxml entry.
-	ELEMENT_ALLOWED = ("item", "if")  # Tags allowed in top level of setup entry.
+	ELEMENT_ALLOWED = ("item", "if")  # Tags allowed in top level of setup entry. # noqa F841
 	IF_ALLOWED = ("item", "if", "elif", "else")  # Tags allowed inside <if />.
 	AFTER_ELSE_ALLOWED = ("item", "if")  # Tags allowed after <elif /> or <else />.
 	CHILDREN_ALLOWED = ("setup", "if", )  # Tags that may have children.

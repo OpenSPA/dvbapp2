@@ -15427,13 +15427,13 @@ msgstr "Přeskočit dopředu (zadat čas)"
 msgid "Seek forward long"
 msgstr "Procházení dopředu - dlouhý stisk"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Panel vyhledávání"
 
 msgid "SeekBar activation"
 msgstr "Aktivace hledání"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Citlivost hledání"
 
 msgid "Seeking connected events"

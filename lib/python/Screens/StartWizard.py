@@ -1,7 +1,6 @@
 from os import listdir, makedirs, stat, statvfs
 from os.path import join, isdir
 from re import search
-from shlex import split
 
 from enigma import eTimer
 
@@ -41,7 +40,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 		self.console = Console()
 		flashSize = statvfs('/')
 		flashSize = (flashSize.f_frsize * flashSize.f_blocks) // 2 ** 20
-		self.smallFlashSize = BoxInfo.getItem("SmallFlash") and flashSize < 260
+		self.smallFlashSize = BoxInfo.getItem("SmallFlash") or flashSize < 260
 		self.swapExists = "/dev/" in "".join(fileReadLines("/proc/swaps", default=[], source=MODULE_NAME))
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
@@ -120,7 +119,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 			commands.append("/sbin/swapon '%s'" % fileName)
 			self.console.eBatch(commands, creataSwapFileCallback, debug=True)
 		else:
-			self.session.open(MessageBox, _("No valid mount for '%s' found!") % path, type=MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("No valid mount for '%s' found!\nPress OK and then EXIT") % path, type=MessageBox.TYPE_ERROR)
 
 	def swapDeviceList(self):  # Called by startwizard.xml.
 		choiceList = []
@@ -199,7 +198,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 			try:
 				from Plugins.Extensions.spaNewFirms.plugin import getRutaRes, backuppath, backupfile
 				response = getRutaRes() and self.smallFlashSize and (fileExists(backuppath+backupfile) or fileExists(backuppath+"openspabackup.tar.gz"))
-			except:
+			except Exception:
 				pass
 		return response
 

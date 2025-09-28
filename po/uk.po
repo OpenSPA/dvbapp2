@@ -15432,14 +15432,14 @@ msgstr "Перемотка вперед (введіть час)"
 msgid "Seek forward long"
 msgstr "Пошук вперед довго"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Панель пошуку"
 
 msgid "SeekBar activation"
-msgstr "Активація Seekbar"
+msgstr "Активація SeekBar"
 
-msgid "Seekbar sensibility"
-msgstr "Крок Seekbar"
+msgid "SeekBar sensibility"
+msgstr "Крок SeekBar"
 
 msgid "Seeking connected events"
 msgstr "Пошук пов'язаних подій"
@@ -15957,7 +15957,7 @@ msgid "Select refresh rate"
 msgstr "Виберіть частоту оновлення"
 
 msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Виберіть кнопку активації Seekbar вправо/вліво або << >> (довге натискання)."
+msgstr "Виберіть кнопку активації SeekBar вправо/вліво або << >> (довге натискання)."
 
 msgid "Select service information to view:"
 msgstr "Виберіть інформацію каналу для перегляду:"
@@ -16713,7 +16713,7 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "Встановіть час затримки між повтореннями, використовується програмний рендеринг в деяких скінах."
 
 msgid "Set the jump-size of the seekbar."
-msgstr "Встановити крок переходу для Seekbar."
+msgstr "Встановити крок переходу для SeekBar."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Встановіть кількість рядків, які будуть збережені для виводу 'stout' і 'stderr' у скриптах."
@@ -21233,7 +21233,7 @@ msgid "Use time jumps for fast forward/backward"
 msgstr "Кроки для швидкого перемотування вперед/назад"
 
 msgid "Use time shift SeekBar while time shifting"
-msgstr "Використовувати Seekbar під час роботи таймшифта"
+msgstr "Використовувати SeekBar під час роботи таймшифта"
 
 msgid "Use viewer for unknown files"
 msgstr "Використовувати засіб перегляду невідомих файлів"

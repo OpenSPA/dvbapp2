@@ -49,6 +49,9 @@ msgid "\n"
 "[Installed Plugins]\n"
 msgstr ""
 
+msgid "Installed Plugins"
+msgstr ""
+
 msgid " "
 msgstr ""
 
@@ -1215,6 +1218,10 @@ msgid "%s not available."
 msgstr ""
 
 #, python-format
+msgid "%s version"
+msgstr ""
+
+#, python-format
 msgid "%s%d min"
 msgstr ""
 
@@ -1570,18 +1577,21 @@ msgstr ""
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
+msgstr ""
+
+msgid "A new storage device has been connected:"
 msgstr ""
 
 #, python-format
@@ -1712,6 +1722,9 @@ msgid "Aborting update progress"
 msgstr ""
 
 msgid "About"
+msgstr ""
+
+msgid "About OpenSPA"
 msgstr ""
 
 msgid "About to start"
@@ -2368,6 +2381,12 @@ msgstr ""
 msgid "Are you sure you want to delete this?"
 msgstr ""
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
+msgid "Do you want to permanently delete the images in the slots in the flash?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr ""
 
@@ -2429,10 +2448,10 @@ msgstr ""
 msgid "Ask user"
 msgstr ""
 
-msgid "Ask user (with default as 'No')"
+msgid "Ask user (with default of 'No')"
 msgstr ""
 
-msgid "Ask user (with default as 'Yes')"
+msgid "Ask user (with default of 'Yes')"
 msgstr ""
 
 msgid "Aspect"
@@ -2558,7 +2577,7 @@ msgstr ""
 msgid "AutoTimer was installed successfully."
 msgstr ""
 
-msgid "Auto Detect"
+msgid "Auto detect"
 msgstr ""
 
 msgid "Auto Language"
@@ -2952,7 +2971,7 @@ msgstr ""
 msgid "Blinking REC"
 msgstr ""
 
-msgid "Blinking REC Symbol"
+msgid "Blinking REC symbol"
 msgstr ""
 
 msgid "Block device"
@@ -2968,9 +2987,6 @@ msgid "Bluetooth"
 msgstr ""
 
 msgid "Bluetooth Setup"
-msgstr ""
-
-msgid "Press red key to enable bluetooth."
 msgstr ""
 
 msgid "Bolivia"
@@ -3671,7 +3687,7 @@ msgstr ""
 msgid "Channel 1"
 msgstr ""
 
-msgid "Channel 1 with Prime time"
+msgid "Channel 1 with prime time"
 msgstr ""
 
 msgid "Channel Info"
@@ -3680,7 +3696,7 @@ msgstr ""
 msgid "Channel List"
 msgstr ""
 
-msgid "Channel Number"
+msgid "Channel number"
 msgstr ""
 
 msgid "Channel Selection"
@@ -4040,6 +4056,12 @@ msgstr ""
 msgid "Clear the virtual memory caches"
 msgstr ""
 
+#, python-format
+msgid "Clear warning"
+msgid_plural "Clear warnings"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Click the button on your remote you want to change."
 msgstr ""
 
@@ -4100,6 +4122,9 @@ msgstr ""
 msgid "Close the Plugin Browser screen"
 msgstr ""
 
+msgid "Close the SeekBar after returning to the starting point"
+msgstr ""
+
 msgid "Close the choice box"
 msgstr ""
 
@@ -4158,6 +4183,9 @@ msgid "Color format"
 msgstr ""
 
 msgid "Color space"
+msgstr ""
+
+msgid "Colored text"
 msgstr ""
 
 msgid "Combined"
@@ -4988,6 +5016,10 @@ msgstr ""
 msgid "Current Status:"
 msgstr ""
 
+#, python-format
+msgid "Current Temperature (SoC): %s °C"
+msgstr ""
+
 msgid "Current crash log"
 msgstr ""
 
@@ -5010,9 +5042,6 @@ msgid "Current mode: %s \n"
 msgstr ""
 
 msgid "Current settings:"
-msgstr ""
-
-msgid "Current status"
 msgstr ""
 
 msgid "Current time"
@@ -5148,9 +5177,6 @@ msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgstr ""
 
 msgid "DUAL LAYER DVD"
-msgstr ""
-
-msgid "DVB API version"
 msgstr ""
 
 msgid "DVB CI Delay"
@@ -5488,6 +5514,9 @@ msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
 msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Define the DNS suffix."
@@ -5956,6 +5985,9 @@ msgstr ""
 msgid "Disable Picture in Picture"
 msgstr ""
 
+msgid "Disable ServiceHiSilicon"
+msgstr ""
+
 msgid "Disable background scanning"
 msgstr ""
 
@@ -6102,6 +6134,12 @@ msgid "Do not backup the image"
 msgstr ""
 
 msgid "Do not change"
+msgstr ""
+
+msgid "Do not check the Internet and packages"
+msgstr ""
+
+msgid "Do not Create Swap"
 msgstr ""
 
 msgid "Do not delete services"
@@ -6827,6 +6865,9 @@ msgstr ""
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr ""
 
@@ -6864,6 +6905,9 @@ msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -6975,9 +7019,6 @@ msgid "Enigma2 information"
 msgstr ""
 
 msgid "Enigma2 revision"
-msgstr ""
-
-msgid "Enigma2 version"
 msgstr ""
 
 msgid "Enigmalight"
@@ -7448,6 +7489,9 @@ msgstr ""
 msgid "Exit File Commander"
 msgstr ""
 
+msgid "Exit Flash Expander"
+msgstr ""
+
 msgid "Exit MAC address configuration"
 msgstr ""
 
@@ -7648,9 +7692,6 @@ msgid "FFmpeg Probe"
 msgstr ""
 
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
-msgstr ""
-
-msgid "FFmpeg version"
 msgstr ""
 
 msgid "FIFO"
@@ -7931,6 +7972,9 @@ msgstr ""
 msgid "Filename"
 msgstr ""
 
+msgid "Filelist"
+msgstr ""
+
 msgid "Files/folders to exclude from backup"
 msgstr ""
 
@@ -7972,6 +8016,9 @@ msgid "Fine movement"
 msgstr ""
 
 msgid "Fine-tune"
+msgstr ""
+
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
 msgstr ""
 
 msgid "Finished"
@@ -8257,12 +8304,6 @@ msgstr ""
 msgid "G"
 msgstr ""
 
-msgid "GB"
-msgstr ""
-
-msgid "GCC version"
-msgstr ""
-
 msgid "GREEN button"
 msgstr ""
 
@@ -8273,9 +8314,6 @@ msgid "GStreamer debug log category *"
 msgstr ""
 
 msgid "GStreamer debug log level *"
-msgstr ""
-
-msgid "GStreamer version"
 msgstr ""
 
 msgid "GUI Skin *"
@@ -8375,7 +8413,7 @@ msgstr ""
 msgid "Given device id"
 msgstr ""
 
-msgid "Glibc version"
+msgid "Go back to the previous step"
 msgstr ""
 
 msgid "Go down the list"
@@ -9260,6 +9298,9 @@ msgstr ""
 msgid "Include AIT in recordings"
 msgstr ""
 
+msgid "Include bouquet DB data"
+msgstr ""
+
 msgid "Include CI assignment"
 msgstr ""
 
@@ -9581,7 +9622,7 @@ msgstr ""
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr ""
 
-msgid "Internal hdd only"
+msgid "Internal disk only"
 msgstr ""
 
 msgid "Internet"
@@ -9790,6 +9831,12 @@ msgstr ""
 
 msgid "Keep service"
 msgstr ""
+
+#, python-format
+msgid "Keep warning"
+msgid_plural "Keep warnings"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr ""
@@ -10049,7 +10096,7 @@ msgstr ""
 msgid "Left column file sort"
 msgstr ""
 
-msgid "Left from service name"
+msgid "Left of service name"
 msgstr ""
 
 msgid "Left, wrapped"
@@ -10327,10 +10374,10 @@ msgstr ""
 msgid "Logs older then the set no of days will be deleted."
 msgstr ""
 
-msgid "Long << / >>"
+msgid "Long <</>>"
 msgstr ""
 
-msgid "Long Left/Right"
+msgid "Long LEFT/RIGHT"
 msgstr ""
 
 msgid "Long filenames"
@@ -11778,10 +11825,16 @@ msgstr ""
 msgid "No valid mount for '%s' found!"
 msgstr ""
 
+msgid "No valid mount for '%s' found!\nPress OK and then EXIT"
+msgstr ""
+
 msgid "No valid region details were found"
 msgstr ""
 
 msgid "No wireless networks found! Searching..."
+msgstr ""
+
+msgid "No (with notification)"
 msgstr ""
 
 msgid "No working local network adapter found.\n"
@@ -11889,7 +11942,7 @@ msgstr ""
 msgid "Not Defined"
 msgstr ""
 
-msgid "Not Flashing"
+msgid "Non-flashing"
 msgstr ""
 
 msgid "Not Installed"
@@ -12131,6 +12184,9 @@ msgstr ""
 msgid "Only on startup"
 msgstr ""
 
+msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
+msgstr ""
+
 msgid "Open"
 msgstr ""
 
@@ -12143,9 +12199,6 @@ msgstr ""
 msgid "Open AutoTimer"
 msgstr ""
 
-msgid "Open AutoTimer OverView"
-msgstr ""
-
 msgid "Open AutoTimer Overview"
 msgstr ""
 
@@ -12153,9 +12206,6 @@ msgid "Open Bouquet selection"
 msgstr ""
 
 msgid "Open Box Portal"
-msgstr ""
-
-msgid "Open DreamPlex"
 msgstr ""
 
 msgid "Open EPG"
@@ -12329,9 +12379,6 @@ msgstr ""
 msgid "OpenPLi Packages"
 msgstr ""
 
-msgid "OpenSSL version"
-msgstr ""
-
 msgid "OpenVPN"
 msgstr ""
 
@@ -12372,6 +12419,9 @@ msgid "Option to enable the Hardware Standby Timer."
 msgstr ""
 
 msgid "Optional parameter"
+msgstr ""
+
+msgid "Options"
 msgstr ""
 
 msgid "Orbital position"
@@ -12630,6 +12680,9 @@ msgstr ""
 msgid "Partition"
 msgstr ""
 
+msgid "Partition Type"
+msgstr ""
+
 msgid "Partitions"
 msgstr ""
 
@@ -12758,7 +12811,10 @@ msgstr ""
 msgid "Picon"
 msgstr ""
 
-msgid "Picon and Service Name"
+msgid "Picon and service name"
+msgstr ""
+
+msgid "Picon Packages"
 msgstr ""
 
 msgid "Picon width"
@@ -13414,7 +13470,13 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press red key to enable bluetooth."
+msgstr ""
+
 msgid "Press RED to remove MultiBoot!"
+msgstr ""
+
+msgid "Press STOP and then EXIT to exit the movie list."
 msgstr ""
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
@@ -13652,9 +13714,6 @@ msgstr ""
 msgid "Python Packages"
 msgstr ""
 
-msgid "Python version"
-msgstr ""
-
 msgid "Qatar"
 msgstr ""
 
@@ -13704,9 +13763,6 @@ msgid "QuickEPG mode"
 msgstr ""
 
 msgid "QuickMenu"
-msgstr ""
-
-msgid "QuickMenu Actions"
 msgstr ""
 
 msgid "QuickMenu/Extensions"
@@ -13766,7 +13822,7 @@ msgstr ""
 msgid "REC "
 msgstr ""
 
-msgid "REC Symbol"
+msgid "REC symbol"
 msgstr ""
 
 msgid "REC Symbol in Standby"
@@ -13931,6 +13987,9 @@ msgid "Record - same as record button"
 msgstr ""
 
 msgid "Record Actions"
+msgstr ""
+
+msgid "Record icon"
 msgstr ""
 
 msgid "Record next"
@@ -14604,7 +14663,7 @@ msgstr ""
 msgid "Right column file sort"
 msgstr ""
 
-msgid "Right from service name"
+msgid "Right of service name"
 msgstr ""
 
 msgid "Right, wrapped"
@@ -14803,9 +14862,6 @@ msgid "Samba Settings"
 msgstr ""
 
 msgid "Samba Server"
-msgstr ""
-
-msgid "Samba version"
 msgstr ""
 
 msgid "Same as in active"
@@ -15046,6 +15102,9 @@ msgstr ""
 msgid "Scheduled save of epg.dat"
 msgstr ""
 
+msgid "Scheduler standby"
+msgstr ""
+
 msgid "Sci-Fi"
 msgstr ""
 
@@ -15077,12 +15136,6 @@ msgid "Scrolling speed (software renderer)"
 msgstr ""
 
 msgid "Search"
-msgstr ""
-
-msgid "Search EPG for current event"
-msgstr ""
-
-msgid "Search IMDb for information about current event"
 msgstr ""
 
 msgid "Search Sats"
@@ -15142,7 +15195,7 @@ msgstr ""
 msgid "Seek Actions"
 msgstr ""
 
-msgid "Seek back short"
+msgid "Seek Bar"
 msgstr ""
 
 msgid "Seek backward"
@@ -15154,22 +15207,19 @@ msgstr ""
 msgid "Seek forward"
 msgstr ""
 
-msgid "Seek forward  short"
-msgstr ""
-
 msgid "Seek forward (enter time)"
 msgstr ""
 
-msgid "Seek forward long"
+msgid "SeekBar Actions"
 msgstr ""
 
 msgid "SeekBar activation"
 msgstr ""
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr ""
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr ""
 
 msgid "Seeking connected events"
@@ -15230,6 +15280,9 @@ msgid "Select 'Yes' to continuously display all images in a loop, or select 'No'
 msgstr ""
 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr ""
+
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
 msgstr ""
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
@@ -15856,6 +15909,9 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
+msgid "Select the file system for the device."
+msgstr ""
+
 msgid "Select the first item in list or move to the start of text"
 msgstr ""
 
@@ -15902,6 +15958,9 @@ msgid "Select the mode of the DNS."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
+msgstr ""
+
+msgid "Select the mount points"
 msgstr ""
 
 msgid "Select the movie path"
@@ -16215,10 +16274,10 @@ msgstr ""
 msgid "Service Name"
 msgstr ""
 
-msgid "Service Number and Service Name"
+msgid "Service number and service name"
 msgstr ""
 
-msgid "Service Number, Picon and Service Name"
+msgid "Service number, picon and service name"
 msgstr ""
 
 msgid "Service Selection Actions"
@@ -16352,6 +16411,9 @@ msgid "Set action for 'Info' key"
 msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set current CEC address as fixed address"
@@ -17410,6 +17472,9 @@ msgstr ""
 msgid "Show underscore characters"
 msgstr ""
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
 
@@ -17575,7 +17640,7 @@ msgstr ""
 msgid "Skin Selector"
 msgstr ""
 
-msgid "Skin Setting"
+msgid "Skin setting"
 msgstr ""
 
 msgid "Skin Settings"
@@ -17596,19 +17661,65 @@ msgstr ""
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr ""
 
 msgid "Skip empty services"
 msgstr ""
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
+msgstr ""
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip forward %s%%"
 msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr ""
 
 msgid "Skip jumping to live while timeshifting with plugins"
+msgstr ""
+
+msgid "Skip package installation, only core packages will be available"
+msgstr ""
+
+msgid "Skip sensibility (Horizontal)"
+msgstr ""
+
+msgid "Skip sensibility (Vertical)"
+msgstr ""
+
+msgid "Skip time for '%s' button"
+msgstr ""
+
+msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 msgid "Sleep"
@@ -17736,6 +17847,9 @@ msgid "Slot Manager Actions"
 msgstr ""
 
 msgid "Slot R: Root Slot Image Backup (Current image)"
+msgstr ""
+
+msgid "Slots allowed for this device"
 msgstr ""
 
 msgid "Slot count"
@@ -18173,6 +18287,9 @@ msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status unavailable!"
+msgstr ""
+
+msgid "Status:"
 msgstr ""
 
 msgid "Step"
@@ -18845,6 +18962,9 @@ msgstr ""
 msgid "Temporary directory"
 msgstr ""
 
+msgid "Temporarily mount as %s"
+msgstr ""
+
 msgid "Tennis"
 msgstr ""
 
@@ -18954,13 +19074,8 @@ msgstr ""
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
-msgid "The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-
-msgid "The EPGSearch plugin is not installed!\n"
-"Please install it."
-msgstr ""
+msgid "The EPGSearch plugin is not installed!\nPlease install it."
+msgid ""
 
 msgid "The [spzimdb] plugin is not installed!\nDo you want to install it?"
 msgstr ""
@@ -19057,6 +19172,9 @@ msgstr ""
 
 msgid "The channel may support VPS\n"
 " Do you want to enable VPS?"
+msgstr ""
+
+msgid "The channel selection mode has changed!\nOpen the channel selection again"
 msgstr ""
 
 msgid "The command to wake from standby will be sent multiple times."
@@ -19162,6 +19280,12 @@ msgstr ""
 
 msgid "The unicable connection setting is wrong.\n"
 "Maybe recursive connection of tuners."
+msgstr ""
+
+msgid "The use of IPToSAT will be disabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr ""
+
+msgid "The use of IPToSAT will be enabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
 msgstr ""
 
 msgid "The use of the reserve tuner will be disabled to use FCC.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
@@ -20213,6 +20337,10 @@ msgstr ""
 msgid "Type: "
 msgstr ""
 
+#, python-format
+msgid "UBI slot %s%s"
+msgstr ""
+
 msgid "UBINIZE"
 msgstr ""
 
@@ -20614,6 +20742,9 @@ msgid "Use fastscan channel names"
 msgstr ""
 
 msgid "Use fastscan channel numbering"
+msgstr ""
+
+msgid "Use Flash Expander"
 msgstr ""
 
 msgid "Use for load only x days in EPG."
@@ -21296,6 +21427,9 @@ msgstr ""
 msgid "Weather"
 msgstr ""
 
+msgid "Weather Report"
+msgstr ""
+
 msgid "Web Interface"
 msgstr ""
 
@@ -21322,6 +21456,9 @@ msgstr ""
 
 #, python-format
 msgid "Welcome to %s"
+msgstr ""
+
+msgid "Welcome to Flash Expander"
 msgstr ""
 
 msgid "Welcome to IceTV"
@@ -21620,6 +21757,9 @@ msgid "Winter Sports"
 msgstr ""
 
 msgid "Wipe"
+msgstr ""
+
+msgid "Wipe Storage Device"
 msgstr ""
 
 msgid "Wireless LAN"
@@ -21942,7 +22082,7 @@ msgstr ""
 msgid "Your %s %s is rebooting into Recovery Mode"
 msgstr ""
 
-msgid "Your %s %s is shutting down. Please wait..."
+msgid "Your %s %s is shutting down"
 msgstr ""
 
 #, python-format
@@ -22269,7 +22409,7 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "all up/down"
+msgid "All up/down"
 msgstr ""
 
 msgid "alpha then oldest"
@@ -22570,9 +22710,6 @@ msgid "failed"
 msgstr ""
 
 msgid "fashion"
-msgstr ""
-
-msgid "fast"
 msgstr ""
 
 msgid "file can not displayed - file not found"
@@ -23227,7 +23364,7 @@ msgstr ""
 msgid "tree delete"
 msgstr ""
 
-msgid "turbo"
+msgid "Turbo"
 msgstr ""
 
 msgid "uShare"
@@ -23997,7 +24134,7 @@ msgstr ""
 msgid "Choose the amount of additional slots."
 msgstr ""
 
-msgid "Choose the target device for the slots."
+msgid "Choose the target device for the slots. Press OK or GREEN to select it."
 msgstr ""
 
 msgid "Choose the target location for the slots."
@@ -24141,6 +24278,9 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create Swap File"
+msgstr ""
+
 msgid "Create the flash expander in the selected device"
 msgstr ""
 
@@ -24214,9 +24354,6 @@ msgstr ""
 msgid "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "No Internet connection"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -24309,21 +24446,6 @@ msgid "Set up tuner [TUNER].\n"
 msgstr ""
 
 msgid "Shutting down. Please wait..."
-msgstr ""
-
-msgid "Skip package installation, only core packages will be available"
-msgstr ""
-
-msgid "Skip sensibility (Horizontal)"
-msgstr ""
-
-msgid "Skip sensibility (Vertical)"
-msgstr ""
-
-msgid "Skip time for '%s' button"
-msgstr ""
-
-msgid "Skip time for '%s'/'%s' buttons"
 msgstr ""
 
 msgid "Small Box Preparation"
@@ -24421,10 +24543,19 @@ msgid_plural "%d packages marked for update."
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-format
+msgid "%d plugin is not available:"
+msgid_plural "%d plugins are not available:"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Add services to this bouquet?"
 msgstr ""
 
 msgid "Development Packages"
+msgstr ""
+
+msgid "Device"
 msgstr ""
 
 msgid "Display Skin Packages"

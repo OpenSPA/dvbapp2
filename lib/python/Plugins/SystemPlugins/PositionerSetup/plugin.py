@@ -4,7 +4,7 @@ from random import SystemRandom
 from threading import Thread
 from threading import Event
 
-from enigma import eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer, iDVBFrontend, pNavigation
+from enigma import eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer, iDVBFrontend
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -236,7 +236,7 @@ class PositionerSetup(Screen):
 			self.rotorPositions = lnb.rotorPositions.value
 			self.turningspeedH = lnb.turningspeedH.float
 			self.turningspeedV = lnb.turningspeedV.float
-		except:  # some reasonable defaults from NimManager
+		except Exception:  # some reasonable defaults from NimManager
 			self.sitelon = 5.1
 			self.longitudeOrientation = 'east'
 			self.sitelat = 50.767
@@ -1120,7 +1120,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			"pls_code": eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
 			"t2mi_plp_id": eDVBFrontendParametersSatellite.No_T2MI_PLP_Id}
 		if frontendData is not None:
-			ttype = frontendData.get("tuner_type", "UNKNOWN")
+			ttype = frontendData.get("tuner_type", "UNKNOWN")  # noqa F841
 			defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
 			defaultSat["frequency"] = frontendData.get("frequency", 0) // 1000
 			defaultSat["inversion"] = frontendData.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown)

@@ -2,6 +2,7 @@ from time import localtime, mktime, strftime, time
 
 from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
 
+from skin import standardenigma
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
@@ -30,7 +31,7 @@ from Tools.Directories import isPluginInstalled
 try:  # PiPServiceRelation installed?
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
 	plugin_PiPServiceRelation_installed = True
-except:
+except ImportError:
 	plugin_PiPServiceRelation_installed = False
 
 mepg_config_initialized = False
@@ -560,18 +561,18 @@ class EPGSelection(Screen):
 				self["list"].fillSingleEPG(service)
 				self["list"].sortSingleEPG(int(config.epgselection.sort.value))
 				self["list"].setCurrentIndex(index)
-			except:
+			except Exception:
 				pass
 		elif self.type == EPG_TYPE_VERTICAL:
 			curr = self[f"list{self.activeList}"].getSelectedEventId()
 			currPrg = self.myServices[self.getActivePrg()]
-			l = self[f"list{self.activeList}"]
-			l.recalcEntrySize()
+			entry = self[f"list{self.activeList}"]
+			entry.recalcEntrySize()
 			service = ServiceReference(currPrg[0])
 			stime = None
 			if self.ask_time > time():
 				stime = self.ask_time
-			l.fillSingleEPG(service, stime)
+			entry.fillSingleEPG(service, stime)
 			self[f"list{self.activeList}"].moveToEventId(curr)
 
 	def moveUp(self):
@@ -1243,15 +1244,15 @@ class EPGSelection(Screen):
 		self.onCreate()
 
 	def eventViewCallback(self, setEvent, setService, val):
-		l = self[f"list{self.activeList}"]
-		old = l.getCurrent()
+		entry = self[f"list{self.activeList}"]
+		old = entry.getCurrent()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.updEvent(val, False)
 		elif val == -1:
 			self.moveUp()
 		elif val == +1:
 			self.moveDown()
-		cur = l.getCurrent()
+		cur = entry.getCurrent()
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and cur[0] is None and cur[1].ref != old[1].ref:
 			self.eventViewCallback(setEvent, setService, val)
 		else:
@@ -1274,40 +1275,38 @@ class EPGSelection(Screen):
 	def OpenSingleEPG(self):
 		cur = self[f"list{self.activeList}"].getCurrent()
 		if cur[0] is not None:
-			event = cur[0]
+			event = cur[0]  # noqa F841
 			serviceref = cur[1].ref
 			if serviceref is not None:
 				self.session.open(SingleEPG, serviceref)
 
-	def openIMDb(self):  # OpenSPA [norhap] install spzimdb.
-		try:
-			cur = self[f"list{self.activeList}"].getCurrent()
-			event = cur[0]
-			name = event.getEventName()
-			name = ""
-			from Plugins.Extensions.IMDb.plugin import IMDB
-			self.session.open(IMDB, name, False)
-		except:
-			if isPluginInstalled("spzIMDB"):
-				from Plugins.Extensions.spzIMDB.plugin import getStrRef, spzIMDB
-				try:
-					cur = self[f"list{self.activeList}"].getCurrent()
-					event = cur[0]
-					name = event.getEventName()
-					serviceref = cur[1]
-					ref = getStrRef(serviceref.ref, name)
-				except:
-					name = ""
-				spzIMDB(self.session, tbusqueda=name, tevento=event, tref=ref)
-			else:
-				def doInstallspzIMDB(answer):
-					if answer:
-						try:
-							from Plugins.Extensions.OpenSPAPlug.plugin import OpenSPAPlug
-							self.session.open(OpenSPAPlug)
-						except:
-							pass
-				self.session.openWithCallback(doInstallspzIMDB, MessageBox, _("The [spzimdb] plugin is not installed!\nDo you want to install it?"), type=MessageBox.TYPE_YESNO, timeout=10)
+	def openIMDb(self):
+		cur = self[f"list{self.activeList}"].getCurrent()
+		event = cur[0]
+		name = event.getEventName() if hasattr(event, "getEventName") else None
+		if name:
+			try:
+				from Plugins.Extensions.IMDb.plugin import IMDB
+				self.session.open(IMDB, name, False)
+			except ImportError:
+				if isPluginInstalled("spzIMDB"):
+					from Plugins.Extensions.spzIMDB.plugin import getStrRef, spzIMDB
+					try:
+						serviceref = cur[1]
+						ref = getStrRef(serviceref.ref, name)
+					except Exception:
+						name = ""
+					spzIMDB(self.session, tbusqueda=name, tevento=event, tref=ref)
+				else:
+					def doInstallspzIMDB(answer):  # OpenSPA [norhap] install spzimdb.
+						if answer:
+							try:
+								from Plugins.Extensions.OpenSPAPlug.plugin import OpenSPAPlug
+								self.session.open(OpenSPAPlug)
+							except ImportError:
+								pass
+					if standardenigma is False:
+						self.session.openWithCallback(doInstallspzIMDB, MessageBox, _("The [spzimdb] plugin is not installed!\nDo you want to install it?"), type=MessageBox.TYPE_YESNO, timeout=10)
 
 	def openTMDB(self):
 		try:
@@ -1316,24 +1315,26 @@ class EPGSelection(Screen):
 				cur = self[f"list{self.activeList}"].getCurrent()
 				event = cur[0]
 				name = event.getEventName()
-			except:
+			except Exception:
 				name = ""
 			self.session.open(tmdbScreen, name)
 		except ImportError:
 			self.session.open(MessageBox, _("The TMDB plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openEPGSearch(self):
-		try:
-			from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSearch import EPGSearch  # [norhap] initialize EPGSearch OpenSPA.
+		cur = self[f"list{self.activeList}"].getCurrent()
+		event = cur[0]
+		name = event.getEventName() if hasattr(event, "getEventName") else None
+		if name:
 			try:
-				cur = self[f"list{self.activeList}"].getCurrent()
-				event = cur[0]
-				name = event.getEventName()
-			except:
-				name = ""
-			self.session.open(EPGSearch, name, False)
-		except ImportError:
-			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+				from Plugins.Extensions.spazeMenu.spzPlugins.openSPATVGuide.EPGSearch import EPGSearch  # [norhap] initialize EPGSearch OpenSPA.
+				self.session.open(EPGSearch, name, False)
+			except ImportError:
+				try:
+					from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
+					self.session.open(EPGSearch, name, False)
+				except ImportError:
+					self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def addAutoTimer(self):
 		if not isPluginInstalled("AutoTimer"):
@@ -1345,7 +1346,7 @@ class EPGSelection(Screen):
 					cur = self[f"list{self.activeList}"].getCurrent()
 					event = cur[0]
 					name = event.getEventName()
-				except:
+				except Exception:
 					name = ""
 				self.session.open(newsearch, name, False)
 			except ImportError:
@@ -1386,7 +1387,7 @@ class EPGSelection(Screen):
 		if not isPluginInstalled("AutoTimer"):  # OpenSPA [norhap] add install AutoTimer.
 			self.addAutoTimer()
 		else:
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
+			# from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 			autopoller = AutoPoller()
@@ -1459,17 +1460,17 @@ class EPGSelection(Screen):
 		if foundtimer:
 			timer = foundtimer
 			if timer.isRunning():
-				cb_func1 = lambda ret: self.removeTimer(timer)
-				cb_func2 = lambda ret: self.editTimer(timer)
+				cb_func1 = lambda ret: self.removeTimer(timer)  # noqa E731
+				cb_func2 = lambda ret: self.editTimer(timer)  # noqa E731
 				menu = [
 					(_("Delete Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func2)
 				]
 			else:
-				cb_func1 = lambda ret: self.removeTimer(timer)
-				cb_func2 = lambda ret: self.editTimer(timer)
-				cb_func3 = lambda ret: self.disableTimer(timer)
-				cb_func4 = lambda ret: self.enableTimer(timer)
+				cb_func1 = lambda ret: self.removeTimer(timer)  # noqa E731
+				cb_func2 = lambda ret: self.editTimer(timer)  # noqa E731
+				cb_func3 = lambda ret: self.disableTimer(timer)  # noqa E731
+				cb_func4 = lambda ret: self.enableTimer(timer)  # noqa E731
 				menu = [
 					(_("Delete Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func2)
@@ -1481,7 +1482,7 @@ class EPGSelection(Screen):
 			title = _("Select action for timer\n%s") % event.getEventName()
 		else:
 			if not manual:
-				cb_func1 = lambda ret: self.doRecordTimer(True)
+				cb_func1 = lambda ret: self.doRecordTimer(True)  # noqa E731
 				menu = [
 					(_("Add RecordTimer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Add ZapTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapTimer),
@@ -1527,7 +1528,7 @@ class EPGSelection(Screen):
 		if choice:
 			try:
 				choice()
-			except:
+			except Exception:
 				choice
 
 	def showChoiceBoxDialog(self):
@@ -1541,7 +1542,8 @@ class EPGSelection(Screen):
 		self["recordingactions"].setEnabled(False)
 		self["epgactions"].setEnabled(False)
 		self["dialogactions"].setEnabled(True)
-		self["epgcatchupactions"].setEnabled(False)
+		if "epgcatchupactions" in self:
+			self["epgcatchupactions"].setEnabled(False)
 		self.ChoiceBoxDialog.instantiateActionMap(True)
 		self.ChoiceBoxDialog.show()
 		if "input_actions" in self:
@@ -1582,8 +1584,8 @@ class EPGSelection(Screen):
 		serviceref = cur[1]
 		if event is None:
 			return
-		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		eventid = event.getEventId()  # noqa F841
+		refstr = serviceref.ref.toString()  # noqa F841
 		newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event, isZapTimer=zap), justplay=zap)
 		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap, zaprecord)
 		retval = [True, self.InstantRecordDialog.retval()]
@@ -1785,7 +1787,7 @@ class EPGSelection(Screen):
 			self.key_green_choice = self.ADD_TIMER
 		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
-		if callable(self.catchupPlayerFunc):
+		if "epgcatchupactions" in self and callable(self.catchupPlayerFunc):
 			self.setupKeyPlayButtonDisplay(event.getBeginTime(), serviceref)
 
 	def moveTimeLines(self, force=False):
@@ -2082,7 +2084,7 @@ class EPGSelection(Screen):
 			"24plus": _("+24 Hours"),
 			"24minus": _("-24 Hours"),
 			"timer": _("Add Timer"),
-			"imdb": _("IMDb Search"),
+			"imdb": _("IMDb Search") if isPluginInstalled("IMDb") else _("Internet info"),
 			"tmdb": _("TMDB Search"),
 			"autotimer": _("Add AutoTimer") if isPluginInstalled("AutoTimer") else _("Automatic search"),
 			"bouquetlist": _("Bouquet List"),
@@ -2159,11 +2161,11 @@ class EPGSelection(Screen):
 		if x >= 0 and CurrentPrg[0]:
 			self["list1"].show()
 			self["currCh1"].setText(str(CurrentPrg[1]))
-			l = self["list1"]
-			l.recalcEntrySize()
+			entry = self["list1"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh1"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["Active1"].hide()
 			self["piconCh1"].newService(None)
@@ -2174,11 +2176,11 @@ class EPGSelection(Screen):
 			self["list2"].show()
 			CurrentPrg = self.myServices[prgIndex]
 			self["currCh2"].setText(str(CurrentPrg[1]))
-			l = self["list2"]
-			l.recalcEntrySize()
+			entry = self["list2"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh2"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["piconCh2"].newService(None)
 			self["currCh2"].setText(" ")
@@ -2188,11 +2190,11 @@ class EPGSelection(Screen):
 			self["list3"].show()
 			CurrentPrg = self.myServices[prgIndex]
 			self["currCh3"].setText(str(CurrentPrg[1]))
-			l = self["list3"]
-			l.recalcEntrySize()
+			entry = self["list3"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh3"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["piconCh3"].newService(None)
 			self["currCh3"].setText(" ")
@@ -2203,11 +2205,11 @@ class EPGSelection(Screen):
 				self["list4"].show()
 				CurrentPrg = self.myServices[prgIndex]
 				self["currCh4"].setText(str(CurrentPrg[1]))
-				l = self["list4"]
-				l.recalcEntrySize()
+				entry = self["list4"]
+				entry.recalcEntrySize()
 				myService = ServiceReference(CurrentPrg[0])
 				self["piconCh4"].newService(myService.ref)
-				l.fillSingleEPG(myService, stime)
+				entry.fillSingleEPG(myService, stime)
 			else:
 				self["piconCh4"].newService(None)
 				self["currCh4"].setText(" ")
@@ -2218,11 +2220,11 @@ class EPGSelection(Screen):
 				self["list5"].show()
 				CurrentPrg = self.myServices[prgIndex]
 				self["currCh5"].setText(str(CurrentPrg[1]))
-				l = self["list5"]
-				l.recalcEntrySize()
+				entry = self["list5"]
+				entry.recalcEntrySize()
 				myService = ServiceReference(CurrentPrg[0])
 				self["piconCh5"].newService(myService.ref)
-				l.fillSingleEPG(myService, stime)
+				entry.fillSingleEPG(myService, stime)
 			else:
 				self["piconCh5"].newService(None)
 				self["currCh5"].setText(" ")

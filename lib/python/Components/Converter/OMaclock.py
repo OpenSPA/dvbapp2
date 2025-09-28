@@ -1,5 +1,5 @@
 from Components.Converter.Converter import Converter
-from time import localtime, strftime
+from time import localtime
 from Components.Element import cached
 
 class OMaclock(Converter, object):

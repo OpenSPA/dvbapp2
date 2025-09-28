@@ -48,7 +48,7 @@ def InitConfig():
 		"/etc/default/crond", "/etc/dropbear/", "/etc/default/dropbear", "/home/", "/etc/samba/", "/etc/fstab", "/etc/inadyn.conf",
 		"/etc/network/interfaces", "/etc/wpa_supplicant.conf", "/etc/wpa_supplicant.ath0.conf", "/etc/ciplus/", "/etc/udev/known_devices",
 		"/etc/wpa_supplicant.wlan0.conf", "/etc/wpa_supplicant.wlan1.conf", "/etc/resolv.conf", "/etc/enigma2/nameserversdns.conf", "/etc/default_gw", "/etc/hostname", "/etc/hosts", "/etc/epgimport/", "/etc/exports",
-		"/etc/enigmalight.conf", "/etc/enigma2/volume.xml", "/etc/enigma2/ci_auth_slot_0.bin", "/etc/enigma2/ci_auth_slot_1.bin", "/etc/PrivateKey.key", "/etc/.ActiveCamd", "/etc/.CamdReStart.sh", "/etc/.CamdStart.sh",
+		"/etc/enigmalight.conf", "/etc/enigma2/volume.xml", "/etc/enigma2/ci_auth_slot_0.bin", "/etc/enigma2/ci_auth_slot_1.bin", "/etc/PrivateKey.key", "/etc/.ActiveCamd", "/etc/.CamdReStart.sh", "/etc/.CamdStart.sh", "/etc/keys",
 		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/",
 		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd",
 		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config",
@@ -62,6 +62,8 @@ def InitConfig():
 		"/etc/rc3.d/S99tuner.sh",
 		"/usr/bin/enigma2_pre_start.sh",
 		"/var/lib/bluetooth/",
+		"/var/lib/tailscale/",
+		"/var/lib/zerotier-one/",
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
@@ -753,11 +755,13 @@ class RestorePlugins(Screen):
 					else:
 						pluginlist.append(x[0])
 
-		cmdList = []
+		cmdList = ["opkg update"]
 		if pluginlistfirst:
-			cmdList.append("opkg install " + " ".join(pluginlistfirst) + " ; opkg update")
+			cmdList.append("opkg install " + " ".join(pluginlistfirst))
+			cmdList.append("opkg update")
 		if myipklistfirst:
-			cmdList.append("opkg install " + " ".join(myipklistfirst) + " ; opkg update")
+			cmdList.append("opkg install " + " ".join(myipklistfirst))
+			cmdList.append("opkg update")
 		if myipklist:
 			cmdList.append("opkg install " + " ".join(myipklist))
 		if pluginlist:

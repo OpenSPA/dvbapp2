@@ -53,6 +53,14 @@ AC_CHECK_LIB([jpeg], [jpeg_set_defaults], [LIBJPEG_LIBS="-ljpeg"], [AC_MSG_ERROR
 AC_SUBST(LIBJPEG_LIBS)
 AC_CHECK_LIB([ungif], [DGifOpen], [LIBGIF_LIBS="-lungif"], [AC_CHECK_LIB([gif], [DGifOpen], [LIBGIF_LIBS="-lgif"], [AC_MSG_ERROR([Could not find libgif or libungif])])])
 AC_SUBST(LIBGIF_LIBS)
+AC_CHECK_LIB([webp], [WebPDecodeRGB],[LIBWEBP_LIBS="-lwebp" AC_DEFINE([HAVE_WEBP], [1], [Define if libwebp is available])], [AC_MSG_WARN([Could not find libwebp, WebP support will be disabled.])])
+AC_SUBST(LIBWEBP_LIBS)
+
+PKG_CHECK_MODULES([SWSCALE], [libswscale], [
+    AC_DEFINE([HAVE_SWSCALE], [1], [Define if libswscale is available])
+], [
+    AC_MSG_WARN([Could not find libswscale, scaling support will be disabled.])
+])
 
 AC_ARG_WITH(e2rev,
 	AS_HELP_STRING([--with-e2rev],[value of E2REV, $withval]),
@@ -985,6 +993,7 @@ lib/Makefile
 lib/base/eenv.cpp
 lib/python/Makefile
 lib/python/Components/Makefile
+lib/python/Components/Addons/Makefile
 lib/python/Components/Converter/Makefile
 lib/python/Components/Renderer/Makefile
 lib/python/Components/Sources/Makefile

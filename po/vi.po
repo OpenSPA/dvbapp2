@@ -15586,13 +15586,13 @@ msgstr "Tìm kiếm về phía trước (nhập thời gian)"
 msgid "Seek forward long"
 msgstr "Tìm kiếm về phía trước"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Tìm kiếm quán bar"
 
 msgid "SeekBar activation"
 msgstr "Tìm kiếm kích hoạt"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Tìm kiếm sự nhạy cảm"
 
 msgid "Seeking connected events"

@@ -1,6 +1,6 @@
 from os import mkdir, remove
 from os.path import exists, isfile
-from twisted.internet import reactor
+from twisted.internet import reactor, error
 from twisted.internet.protocol import Factory, Protocol
 
 from enigma import getDeviceDB, eTimer
@@ -60,15 +60,14 @@ def autostart(reason, **kwargs):
 	if reason == 0:
 		print("[Hotplug] Starting hotplug handler.")
 		try:
-			if exists(HOTPLUG_SOCKET):
+			if exists(HOTPLUG_SOCKET):  # [OpenSPA] [norhap] Include CannotListenError.
 				remove(HOTPLUG_SOCKET)
-		except OSError:
+			cleanMediaDirs()  # Initial cleanup
+			factory = Factory()
+			factory.protocol = Hotplug
+			reactor.listenUNIX(HOTPLUG_SOCKET, factory)
+		except (OSError, error.CannotListenError):
 			pass
-		cleanMediaDirs()  # Initial cleanup
-		factory = Factory()
-		factory.protocol = Hotplug
-		reactor.listenUNIX(HOTPLUG_SOCKET, factory)
-
 
 class HotPlugManager:
 	def __init__(self):
@@ -146,10 +145,10 @@ class HotPlugManager:
 				knownDevices.append(f"{ID_FS_UUID}:{mountPointHdd}")
 				fileWriteLines("/etc/udev/known_devices", knownDevices)
 				fstab = fileReadLines("/etc/fstab")
-				newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
+				newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 				newFstab.append(f"UUID={ID_FS_UUID} {mountPointHdd} {ID_FS_TYPE} defaults 0 0")
 				fileWriteLines("/etc/fstab", newFstab)
-				if not exists(mountPointHdd):
+				if not exists(mountPointHdd) and not exists(mountPoint):  # OpenSPA [norhap] Check that mountPoint does not exist.
 					mkdir(mountPoint, 0o755)
 				self.callMount = True
 				notFound = False
@@ -178,19 +177,19 @@ class HotPlugManager:
 							Console().ePopen(f"/bin/mount -t {ID_FS_TYPE} {DEVNAME} {mountPoint}")
 						elif answer == 3:
 							knownDevices.append(f"{ID_FS_UUID}:{mountPoint}")
-							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
+							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPoint} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
 							self.callMount = True
 						elif answer == 4:
 							knownDevices.append(f"{ID_FS_UUID}:{mountPointHdd}")
-							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
+							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPointHdd} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
 							self.callMount = True
 						elif answer == 5:
 							knownDevices.append(f"{ID_FS_UUID}:{mountPointDevice}")
-							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
+							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPointDevice} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
 							self.callMount = True
@@ -255,11 +254,11 @@ class HotPlugManager:
 					self.removeTimer.stop()
 					self.removeTimer.start(2000)
 			elif action == "ifup":
-				interface = eventData.get("INTERFACE")
+				interface = eventData.get("INTERFACE")  # noqa F841
 			elif action == "ifdown":
-				interface = eventData.get("INTERFACE")
+				interface = eventData.get("INTERFACE")  # noqa F841
 			elif action == "online":
-				state = eventData.get("STATE")
+				state = eventData.get("STATE")  # noqa F841
 
 		else:
 			device = eventData.get("DEVPATH", "").split("/")[-1]

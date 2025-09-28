@@ -16799,13 +16799,13 @@ msgstr "Sök framåt"
 
 #
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Sök"
 
 msgid "SeekBar activation"
 msgstr "Aktivering sökfält"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Sökfältets noggrannhet"
 
 msgid "Seeking connected events"

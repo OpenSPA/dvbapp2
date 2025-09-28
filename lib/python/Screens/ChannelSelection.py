@@ -2,11 +2,11 @@ from os import listdir, remove, rename
 from os.path import join
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG, getBestPlayableServiceReference
+from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
-from skin import getSkinFactor
+from skin import getSkinFactor, findSkinScreen, standardenigma
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config, configfile
@@ -47,7 +47,7 @@ from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyboard
 from Tools.BoundFunction import boundFunction
-from Tools.Notifications import RemovePopup
+from Tools.Notifications import AddPopup, RemovePopup
 from Tools.NumericalTextInput import NumericalTextInput
 
 MODE_TV = 0
@@ -158,6 +158,7 @@ class ChannelSelectionBase(Screen):
 		self["key_green"] = StaticText(_("Reception Lists"))
 		self["key_yellow"] = StaticText(_("Providers"))
 		self["key_blue"] = StaticText(_("Bouquets"))
+		self["key_info"] = StaticText("")
 		self["list"] = ServiceListLegacy(self) if config.channelSelection.screenStyle.value == "" or config.channelSelection.widgetStyle.value == "" else ServiceList(self)
 		self.servicelist = self["list"]
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
@@ -406,7 +407,7 @@ class ChannelSelectionBase(Screen):
 	def getBouquetNumOffset(self, bouquet):
 		if not config.usage.multibouquet.value:
 			return 0
-		bStr = bouquet.toString()  # TODO Do we need this?
+		bStr = bouquet.toString()  # TODO Do we need this?  # noqa F841
 		offset = 0
 		if "userbouquet." in bouquet.toCompareString():
 			serviceHandler = eServiceCenter.getInstance()
@@ -457,6 +458,7 @@ class ChannelSelectionBase(Screen):
 
 	def showAllServices(self):
 		self["key_green"].setText(_("Reception Lists"))
+		self["key_info"].setText(_("INFO"))
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, "ORDER BY name")
 			if not self.preEnterPath(ref.toString()):
@@ -472,10 +474,12 @@ class ChannelSelectionBase(Screen):
 		if not self.pathChangeDisabled:
 			ref = f"{self.service_types} FROM SATELLITES ORDER BY satellitePosition"  # OpenSPA [norhap] Display simple or extended list of satellites.
 			self["key_green"].setText(_("Simple") if self.showSatDetails else _("Extended"))
+			self["key_info"].setText(_("INFO"))
 			if not self.preEnterPath(ref):  # OpenSPA [norhap] Display simple or extended list of satellites.
 				ref = eServiceReference(ref)
 				justSet = False
 				prev = None
+				self["key_info"].setText("")
 				if self.isBasePathEqual(ref):
 					if self.isPrevPathEqual(ref):
 						justSet = True
@@ -567,6 +571,7 @@ class ChannelSelectionBase(Screen):
 
 	def showProviders(self):
 		self["key_green"].setText(_("Reception Lists"))
+		self["key_info"].setText("")
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, " FROM PROVIDERS ORDER BY name")
 			if not self.preEnterPath(ref.toString()):
@@ -649,6 +654,7 @@ class ChannelSelectionBase(Screen):
 		if not self.pathChangeDisabled:
 			if not self.preEnterPath(self.bouquet_root.toString()):
 				if self.isBasePathEqual(self.bouquet_root):
+					self["key_info"].setText("")
 					self.pathUp()
 				else:
 					currentRoot = self.getRoot()
@@ -659,6 +665,8 @@ class ChannelSelectionBase(Screen):
 							playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 							if playingref:
 								self.setCurrentSelectionAlternative(playingref)
+			else:
+				self["key_info"].setText(_("INFO"))
 
 	def numberSelectionActions(self, number):
 		if not (hasattr(self, "movemode") and self.movemode):
@@ -1062,7 +1070,7 @@ class ChannelSelectionEdit:
 	def removeBouquet(self):
 		# refstr = self.getCurrentSelection().toString()  # DEBUG NOTE: This doesn't appear to be used.
 		# pos = refstr.find("FROM BOUQUET \"")  # DEBUG NOTE: This doesn't appear to be used.
-		filename = None
+		# filename = None
 		self.removeCurrentService(bouquet=True)
 
 	def removeSatelliteService(self):
@@ -1289,14 +1297,14 @@ class ChannelSelectionEdit:
 		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
 
 	def exitContext(self, close=False):
-		l = self["list"]
-		l.setFontsize()
-		l.setItemsPerPage()
-		# l.setMode("MODE_TV") # disabled because there is something wrong
-		# l.setMode("MODE_TV") automatically sets "hide number marker" to
+		entry = self["list"]
+		entry.setFontsize()
+		entry.setItemsPerPage()
+		# entry.setMode("MODE_TV") # disabled because there is something wrong
+		# entry.setMode("MODE_TV") automatically sets "hide number marker" to
 		# the config.usage.hide_number_markers.value so when we are in "move mode"
-		# we need to force display of the markers here after l.setMode("MODE_TV")
-		# has run. If l.setMode("MODE_TV") were ever removed above,
+		# we need to force display of the markers here after entry.setMode("MODE_TV")
+		# has run. If entry.setMode("MODE_TV") were ever removed above,
 		# "self.servicelist.setHideNumberMarker(False)" could be moved
 		# directly to the "else" clause of "def toggleMoveMode".
 		if self.movemode:
@@ -1374,8 +1382,9 @@ class ChannelContextMenu(Screen):
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
 				appendWhenValid(current, menu, (_("Show Transponder Information"), boundFunction(self.showServiceInformations, current)), level=2)
-		if not config.misc.spazeChannelSelection.value or (config.misc.spazeChannelSelection.value and config.usage.standardchannelselection.value):  # OPENSPA [norhap] Exchange type of channel list.
-			appendWhenValid(current, menu, (_("Show service list") + " " + "OpenSPA", boundFunction(self.showServiceListOpenSPA, None)), level=2)
+		if standardenigma is False:
+			if not config.misc.spazeChannelSelection.value or (config.misc.spazeChannelSelection.value and config.usage.standardchannelselection.value):  # OPENSPA [norhap] Exchange type of channel list.
+				appendWhenValid(current, menu, (_("Show service list") + " " + "OpenSPA", boundFunction(self.showServiceListOpenSPA, None)), level=2)
 		if self.subservices and not csel.isSubservices():
 			appendWhenValid(current, menu, (_("Show Subservices Of Active Service"), self.showSubservices), key="4")
 		if csel.bouquet_mark_edit == EDIT_OFF and not csel.entry_marked:
@@ -1725,6 +1734,7 @@ class ChannelContextMenu(Screen):
 		from Screens.newChannelSelection import newChannelSelection
 		if InfoBar and InfoBar.instance:
 			InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(newChannelSelection)
+		AddPopup(text=_("The channel selection mode has changed!\nOpen the channel selection again"), type=MessageBox.TYPE_INFO, timeout=8, id='NewChannelSelection')
 		self.close(True)
 
 	def showSubservices(self):
@@ -1765,7 +1775,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showBouquetInputBox(self):
-		self.session.openWithCallback(self.bouquetInputCallback, VirtualKeyboard, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width=56, type=Input.TEXT)
+		self.session.openWithCallback(self.bouquetInputCallback, VirtualKeyboard, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visibleWidth=56, type=Input.TEXT)
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
@@ -2028,7 +2038,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			eventidnext = None
 		else:
 			eventidnext = self.list[1][0]
-		eventname = str(self.list[0][1])
+		eventname = str(self.list[0][1])  # noqa F841
 		if eventid is None:
 			return
 		menu1 = _("Record now")
@@ -2125,12 +2135,12 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			return
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ":".join(timer.service_ref.ref.toString().split(":")[:11]) == refstr:
-				rt_func = lambda ret: self.removeTimer(timer)
+				rt_func = lambda ret: self.removeTimer(timer)  # noqa E731
 				if not next:
 					menu = [(_("Delete Timer"), "CALLFUNC", rt_func), (_("No"), "CALLFUNC", self.closeChoiceBoxDialog)]
 					title = _("Do you really want to remove the timer for %s?") % eventname
 				else:
-					cb_func2 = lambda ret: self.editTimer(timer)
+					cb_func2 = lambda ret: self.editTimer(timer)  # noqa E731
 					menu = [
 						(_("Delete Timer"), "CALLFUNC", self.RemoveTimerDialogCB, rt_func),
 						(_("Edit Timer"), "CALLFUNC", self.RemoveTimerDialogCB, cb_func2)
@@ -2332,6 +2342,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.skinName = [config.channelSelection.screenStyle.value]
 		elif config.usage.use_pig.value:
 			self.skinName = ["ChannelSelection_PIG", "ChannelSelection"]
+		elif config.usage.servicelist_mode.value == "simple" and standardenigma and findSkinScreen("SimpleChannelSelection"):
+			self.skinName = "SimpleChannelSelection"
 		elif config.usage.servicelist_mode.value == "simple":
 			self.skinName = ["SlimChannelSelection", "SimpleChannelSelection", "ChannelSelection"]
 		else:
@@ -2499,6 +2511,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
 			self.toggleMoveMarked()
 		elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+			self["key_info"].setText(_("INFO"))
 			if self.isSubservices(ref):
 				self.enterSubservices()
 			elif parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
@@ -2521,7 +2534,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.protectContextMenu = True
-					self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
+					self["key_green"].setText(_("Add Timer") if standardenigma is False else _("Reception Lists"))
+					self["key_info"].setText(_("INFO"))
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):
@@ -2729,7 +2743,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			pos += 1
 		# self.delhistpoint = pos + 1  # TODO Do we need this?
 		if pos < hlen and pos != self.history_pos:
-			tmp = self.history[pos]
+			tmp = self.history[pos]  # noqa F841
 			# self.history.append(tmp)
 			# del self.history[pos]
 			self.history_pos = pos
@@ -2840,7 +2854,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.correctChannelNumber()
 		self.editMode = False
 		self.protectContextMenu = True
-		self["key_green"].setText(_("Add Timer") if BoxInfo.getItem("distro") == "openspa" else _("Reception Lists"))
+		self["key_green"].setText(_("Add Timer") if standardenigma is False else _("Reception Lists"))
+		self["key_info"].setText(_("INFO"))
 		self.close(None)
 
 	def zapBack(self):

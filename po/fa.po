@@ -15841,13 +15841,13 @@ msgid "Seek forward long"
 msgstr "صفحه کلید"
 
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "به دنبال"
 
 msgid "SeekBar activation"
 msgstr ""
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr ""
 
 msgid "Seeking connected events"

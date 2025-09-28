@@ -16782,13 +16782,13 @@ msgstr "Søk forover"
 
 #
 #, fuzzy
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Søk"
 
 msgid "SeekBar activation"
 msgstr "Søkbar aktivering"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Søkbar sensibilitet"
 
 msgid "Seeking connected events"

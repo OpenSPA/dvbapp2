@@ -1,5 +1,5 @@
 from json import load
-from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk, remove
+from os import W_OK, access, listdir, major, makedirs, minor, mkdir, remove, sep, stat, statvfs, unlink, walk
 from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join, getsize
 from shutil import rmtree
 from time import time
@@ -42,7 +42,7 @@ FEED_URLS = [
 USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"}
 
 def checkImageFiles(files):
-	return len([x for x in files if "kernel" in x and ".bin" in x or x in ("zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.tar.bz2", "rootfs.ubi", "rootfs.bin", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2")]) >= 2
+	return sum(f.endswith((".nfi", ".tar.xz")) for f in files) == 1 or sum(("kernel" in f and f.endswith(".bin")) or f in {"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.ubi", "rootfs.bin", "rootfs.tar.bz2", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"} for f in files) >= 2
 
 
 class FlashManager(Screen):
@@ -150,7 +150,7 @@ class FlashManager(Screen):
 				try:
 					from Plugins.Extensions.spazeMenu.plugin import devx
 					feedURL += devx()
-				except:
+				except Exception:
 					pass
 			######################################################################
 			try:
@@ -162,7 +162,7 @@ class FlashManager(Screen):
 			except Exception:
 				print("[FlashManager] getImagesList Error: Unable to load json data from URL '%s'!" % feedURL)
 				self.imagesList = {}
-			searchFolders = []
+			searchFolders = []  # noqa F841
 			# Get all folders of /media/ and /media/net/
 			if not index:
 				for media in ["/media/%s" % x for x in listdir("/media")] + (["/media/net/%s" % x for x in listdir("/media/net")] if isdir("/media/net") else []):
@@ -327,6 +327,7 @@ class FlashImage(Screen):
 		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
 		<widget name="info" position="0,60" size="e,130" font="Regular;25" valign="center" />
 		<widget name="progress" position="0,e-25" size="e,25" />
+		<widget name="progress_counter" position="360,60" size="e,25" font="Regular;25" />
 	</screen>"""
 
 	def __init__(self, session, imageName, source, downloadOnly=False, destpath=None): #OPENSPA [morser] Add destpath for spanewfirm
@@ -346,6 +347,7 @@ class FlashImage(Screen):
 		self["progress"] = ProgressBar()
 		self["progress"].setRange((0, 100))
 		self["progress"].setValue(0)
+		self["progress_counter"] = Label("")
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"cancel": (self.keyCancel, _("Cancel the flash process")),
 			"close": (self.keyCloseRecursive, _("Cancel the flash process and exit all menus")),
@@ -353,6 +355,7 @@ class FlashImage(Screen):
 		}, prio=-1, description=_("Image Flash Actions"))
 		self.hide()
 		self.callLater(self.confirmation)
+		self.backupBasePath = config.plugins.configurationbackup.backuplocation.value if not exists("/media/hdd/") else "/media/hdd/"
 
 	def keyCancel(self, reply=None):
 		if self.containerOFGWrite or self.getImageList:
@@ -492,7 +495,7 @@ class FlashImage(Screen):
 							self.session.openWithCallback(self.startBackupSettings, MessageBox, _("Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."), windowTitle=self.getTitle())
 					else:
 						self.startDownload() #OPENSPA [morser] ignore backup with spanewfirm
-				except OSError as err:
+				except OSError:
 					self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 			else:
 				self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Could not find a suitable device! Please remove some downloaded images or attach another device (e.g. USB stick) with sufficient free space and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
@@ -517,7 +520,7 @@ class FlashImage(Screen):
 			text = _("Please select what to do after flash of the following image:")
 			text = "%s\n%s" % (text, self.imageName)
 			if BoxInfo.getItem("distro") in self.imageName:
-				if exists("/media/hdd/images/config/myrestore.sh"):
+				if exists(join(self.backupBasePath, "images/config/myrestore.sh")):
 					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
 				choices = [
 					(_("Upgrade (Flash & restore all)"), "restoresettingsandallplugins"),
@@ -548,24 +551,24 @@ class FlashImage(Screen):
 
 	def selectPrevPostFlashAction(self):
 		index = 1
-		if exists("/media/hdd/images/config/settings"):
+		if exists(join(self.backupBasePath, "images/config/settings")):
 			index = 3
-			if exists("/media/hdd/images/config/noplugins"):
+			if exists(join(self.backupBasePath, "images/config/noplugins")):
 				index = 2
-			if exists("/media/hdd/images/config/plugins"):
+			if exists(join(self.backupBasePath, "images/config/plugins")):
 				index = 0
 		return index
 
 	def postFlashActionCallback(self, choice):
 		if choice:
 			knownFlagFiles = ("settings", "plugins", "noplugins", "slow", "fast", "turbo")
-			for directory in listdir("/media"):  # Remove known flag files from devices other than /media/hdd.
-				if directory not in ("audiocd", "autofs", "hdd"):
+			for directory in listdir("/media"):  # Remove known flag files from devices other than self.backupBasePath.
+				if directory not in ("audiocd", "autofs", basename(self.backupBasePath.rstrip("/"))):
 					for flagFile in knownFlagFiles:
 						flagPath = join("/media", directory, "images/config", flagFile)
 						if isfile(flagPath) and getsize(flagPath) == 0:
 							unlink(flagPath)
-			rootFolder = "/media/hdd/images/config"
+			rootFolder = join(self.backupBasePath, "images/config")
 			if choice != "abort" and not self.recordCheck:
 				self.recordCheck = True
 				recording = self.session.nav.RecordTimer.isRecording()
@@ -661,7 +664,7 @@ class FlashImage(Screen):
 					try:
 						from Plugins.Extensions.spazeMenu.plugin import BetaDownloader
 						BetaDownloader(self.source,self.zippedImage,report_hook=self.downloadProgress,end_callback=self.betaEnd)
-					except:
+					except Exception:
 						pass
 				else:
 					self.downloader = DownloadWithProgress(self.source, self.zippedImage)
@@ -681,9 +684,12 @@ class FlashImage(Screen):
 
 	def downloadProgress(self, current, total):
 		self["progress"].setValue(100 * current // total)
+		self.progressCounter = int(100 * current / total)
+		self["progress_counter"].setText(str(self.progressCounter) + " %")
 
 	def downloadEnd(self, filename=None):
 		self.downloader.stop()
+		self["progress_counter"].hide()
 		self.unzip()
 
 	def downloadError(self, error):
@@ -704,6 +710,13 @@ class FlashImage(Screen):
 			zipData = ZipFile(self.zippedImage, mode="r")
 			zipData.extractall(self.unzippedImage)  # NOSONAR
 			zipData.close()
+			target = next(
+				(join(p, "rootfs.tar.bz2") for p, _, f in walk(self.unzippedImage)
+					if "rootfs.ubi" in f and "rootfs.tar.bz2" in f),
+				None
+			)
+			if target and exists(target):
+				remove(target)
 			self.flashImage()
 		except Exception as err:
 			print("[FlashManager] startUnzip Error: %s!" % str(err))
@@ -740,7 +753,7 @@ class FlashImage(Screen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-a"]
 			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-rmmcblk0p1"] if rootSubDir is None else ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
-			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
+			elif MultiBoot.canMultiBoot() and self.slotCode not in ("R", "F"):  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				if BoxInfo.getItem("chkrootmb"):
 					cmdArgs = ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
 				else:

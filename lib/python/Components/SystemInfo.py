@@ -1,8 +1,6 @@
 from ast import literal_eval
-from glob import glob
 from hashlib import md5
-from os import listdir, readlink
-from os.path import basename, exists, isfile, join, islink
+from os.path import exists, isfile, join
 from subprocess import PIPE, Popen
 
 from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD, eDVBCIInterfaces, getE2Rev
@@ -40,7 +38,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 						self.enigmaInfoList.append(item)
 						try:
 							self.boxInfo[item] = literal_eval(value)
-						except:  # Remove this code when the build system is updated.
+						except Exception:  # Remove this code when the build system is updated.
 							self.boxInfo[item] = value
 						# except Exception as err:  # Activate this replacement code when the build system is updated.
 						# 	print(f"[SystemInfo] Error: Information variable '{item}' with a value of '{value}' can not be loaded into BoxInfo!  ({err})")
@@ -242,14 +240,14 @@ def getModuleLayout():
 
 def getSysSoftcam():
 	if isfile(SOFTCAM):
-		cams = open(SOFTCAM).read()[0:5]
-		return cams.lower()
+		cams = open(SOFTCAM).read()[:5]
+		return cams.lower().replace(" ", "")
 	return None
 
 
 def updateSysSoftCam():
 	BoxInfo.setMutableItem("ShowOscamInfo", getSysSoftcam() == ("oscam"))
-	BoxInfo.setMutableItem("ShowNcamInfo", getSysSoftcam() == ("ncam+"))
+	BoxInfo.setMutableItem("ShowNcamInfo", getSysSoftcam() in ("ncam+", "ncam"))
 	BoxInfo.setMutableItem("ShowCccamInfo", getSysSoftcam() == ("cccam"))
 	#BoxInfo.setMutableItem("HasSoftcamEmu", hasSoftcamEmu())
 	#BoxInfo.setMutableItem("Softcams", getSoftcams())
@@ -346,7 +344,7 @@ BoxInfo.setItem("canMultiBoot", MultiBoot.getBootSlots())
 BoxInfo.setItem("HasKexecMultiboot", fileHas("/proc/cmdline", "kexec=1"))
 BoxInfo.setItem("cankexec", BoxInfo.getItem("kexecmb") and (fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz") and not BoxInfo.getItem("HasKexecMultiboot")) or (fileExists("/STARTUP.cpio.gz") and fileExists("/usr/bin/kernel_auto.bin") and fileExists("/STARTUP")))
 BoxInfo.setItem("HasChkrootMultiboot", MultiBoot.isFat32("/dev/block/by-name/others") or fileExists("/dev/block/by-name/startup"))
-BoxInfo.setItem("canchkroot", fileExists("/dev/block/by-name/others") and not BoxInfo.getItem("HasChkrootMultiboot") and not fileExists("/etc/.disableChkroot"))
+BoxInfo.setItem("canchkroot", (BoxInfo.getItem("hasUBIMB") or fileExists("/dev/block/by-name/others")) and not BoxInfo.getItem("HasChkrootMultiboot") and not fileExists("/etc/.disableChkroot"))
 BoxInfo.setItem("CanNotDoSimultaneousTranscodeAndPIP", MODEL in ("vusolo4k", "gbquad4k", "gbquad4kpro", "gbue4k"))
 BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "h17", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "sf8008", "sf8008m", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "ustym4ks2ottx", "beyonwizv2", "viper4k", "og2ott4k", "og2s4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
 BoxInfo.setItem("CanUse3DModeChoices", fileExists("/proc/stb/fb/3dmode_choices") and True or False)
@@ -369,8 +367,7 @@ BoxInfo.setItem("HasHiSi", pathExists("/proc/hisi"))
 BoxInfo.setItem("hasPIPVisibleProc", fileCheck("/proc/stb/vmpeg/1/visible"))
 BoxInfo.setItem("HasGPT", MODEL in ("dreamone", "dreamtwo") and pathExists("/dev/mmcblk0p7"))
 BoxInfo.setItem("HasMMC", fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda"))
-BoxInfo.setItem("HasSDmmc", MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in MTDROOTFS)
-BoxInfo.setItem("HasSDswap", MODEL in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1"))
+BoxInfo.setItem("HasSDmmc", MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots().get("2", "") and "mmcblk" in MTDROOTFS)
 BoxInfo.setItem("HaveCISSL", fileCheck("/etc/ssl/certs/customer.pem") and fileCheck("/etc/ssl/certs/device.pem"))
 BoxInfo.setItem("HaveID", fileCheck("/etc/.id"))
 #BoxInfo.setItem("HAVEINITCAM", haveInitCam())
@@ -408,7 +405,7 @@ BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
 BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode") or MODEL in ("dreamone", "dreamtwo"))
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
-#BoxInfo.setItem("SoftCam", hasSoftcam())
+BoxInfo.setItem("SoftCam",  not isPluginInstalled("spazeMenu"))
 BoxInfo.setItem("StandbyPowerLed", fileExists("/proc/stb/power/standbyled"))
 BoxInfo.setItem("STi", SOC_FAMILY.startswith("sti"))
 BoxInfo.setItem("SuspendPowerLed", fileExists("/proc/stb/power/suspendled"))
@@ -460,5 +457,6 @@ BoxInfo.setItem("CanDescrambleInStandby", any(x in fileReadLine("/proc/stb/tsmux
 
 BoxInfo.setItem("CanOfflineDecode", MODEL in ("hd51", "h7", "h17", "et10000", "et8000", "hd2400", "vs1500", "8100s"))
 
+BoxInfo.setItem("servicehisilicon", BoxInfo.getItem("mediaservice") == "servicehisilicon" and isPluginInstalled("ServiceHisilicon"))
 
 updateSysSoftCam()
