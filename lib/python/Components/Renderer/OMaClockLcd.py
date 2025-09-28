@@ -63,37 +63,37 @@ class OMaClockLcd(Renderer):
 		if LCDSIZE400:
 			width = 396
 			height = 240
-			position = 55
+			L = 55
 		elif LCDSIZE220:
 			width = 218
 			height = 176
-			position = 35
+			L = 35
 		else:
 			width = 218
 			height = 176
-			position = 35
+			L = 35
 		r = (width / 2)
 		r1 = (height / 2)
 
 		if opt == 'sec':
 			if LCDSIZE400:
-				position = position + 60
+				L = L + 60
 			elif LCDSIZE220:
-				position = position + 35
+				L = L + 35
 			else:
-				position = position + 50
+				L = L + 50
 			self.fColor = self.fColors
 		elif opt == 'min':
 			if LCDSIZE400:
-				position = position + 50
+				L = L + 50
 			elif LCDSIZE220:
-				position = position + 35
+				L = L + 35
 			else:
-				position = position + 40
+				L = L + 40
 			self.fColor = self.fColorm
 		else:
 			self.fColor = self.fColorh
-		(endX, endY,) = self.calc(self.forend, position, r, r1)
+		(endX, endY,) = self.calc(self.forend, L, r, r1)
 		self.line_draw(r, r1, endX, endY)
 
 	def line_draw(self, x0, y0, x1, y1):
