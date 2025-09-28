@@ -1,12 +1,10 @@
 from os import listdir
 from os.path import exists, getsize, isdir, join
 from re import sub
-from unicodedata import normalize
 from enigma import ePixmap  # , ePicLoad
 from Components.Renderer.Renderer import Renderer
-from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
 from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from Components.config import config, ConfigText, ConfigYesNo
@@ -76,6 +74,7 @@ def onMountpointRemoved(mountpoint):
 	global searchPaths
 	######## OPENSPA [morser] Delete All folders in mountpoint ######################
 	for x in searchPaths:
+		path = mountpoint
 		if mountpoint in x:
 			try:
 				searchPaths.remove(x)

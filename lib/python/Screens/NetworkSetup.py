@@ -4,6 +4,7 @@ from os import rename, strerror, system, unlink
 from os.path import exists
 from process import ProcessList
 from random import Random
+from time import sleep
 
 from enigma import eConsoleAppContainer, eTimer
 
@@ -29,7 +30,8 @@ from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileReadLines, fileReadXML, fileWriteLines, resolveFilename, fileContains
+from Screens.Standby import TryQuitMainloop
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileExists, fileReadLines, fileReadXML, fileWriteLines, resolveFilename, fileContains
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -157,7 +159,7 @@ class NetworkAdapterSelection(Screen):
 
 	def setDefaultInterface(self):
 		selection = self["list"].getCurrent()
-		num_if = len(self.list)
+		# num_if = len(self.list)
 		old_default_gw = None
 		num_configured_if = len(iNetwork.getConfiguredAdapters())
 		if exists("/etc/default_gw"):
@@ -318,7 +320,7 @@ class DNSSettings(Setup):
 			self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
 		elif current not in (config.usage.dnsMode, config.usage.dnsSuffix) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
 			self.dnsServers[index - self.dnsStart] = current.value[:]
-			option = self.dnsCheck(self.dnsServers, refresh=True)
+			option = self.dnsCheck(self.dnsServers, refresh=True)  # noqa F841
 		Setup.changedEntry(self)
 		self.updateControls()
 
@@ -389,7 +391,7 @@ class DNSSettings(Setup):
 		gateways = []
 		lines = []
 		lines = fileReadLines("/proc/net/route", lines, source=MODULE_NAME)
-		headings = lines.pop(0)
+		headings = lines.pop(0)  # noqa F841
 		for line in lines:
 			data = line.split()
 			if data[1] == "00000000" and int(data[3]) & 0x03 and data[7] == "00000000":  # If int(flags) & 0x03 is True this is a gateway (0x02) and it is up (0x01).
@@ -929,6 +931,7 @@ class AdapterSetupConfiguration(Screen):
 		self["Statustext"] = StaticText()
 		self["statuspic"] = MultiPixmap()
 		self["statuspic"].hide()
+		self["devicepic"] = MultiPixmap()
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.reboottext = _("Your STB will restart after pressing OK on your remote control.")
 		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")
@@ -962,7 +965,7 @@ class AdapterSetupConfiguration(Screen):
 			from wifi.exceptions import InterfaceError
 			try:
 				system(f"ifconfig {self.iface} up")
-				wlanresponse = list(Cell.all(iface))
+				wlanresponse = list(Cell.all(iface))  # noqa F841
 			except InterfaceError as ie:
 				print(f"[NetworkSetup] queryWirelessDevice InterfaceError: {str(ie)}")
 				return False
@@ -1066,6 +1069,7 @@ class AdapterSetupConfiguration(Screen):
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
 		if iNetwork.isWirelessInterface(self.iface):
+			self["devicepic"].setPixmapNum(1)
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except Exception:
@@ -1075,6 +1079,8 @@ class AdapterSetupConfiguration(Screen):
 				iStatus.getDataForInterface(self.iface, self.getInfoCB)
 		else:
 			iNetwork.getLinkState(self.iface, self.dataAvail)
+			self["devicepic"].setPixmapNum(0)
+		self["devicepic"].show()
 
 	def doNothing(self):
 		pass
@@ -2466,7 +2472,7 @@ class NetworkUdpxy(NetworkBaseScreen):
 			self.Console.ePopen("/etc/init.d/udpxy stop", self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
-		time.sleep(3)
+		sleep(3)
 		self.updateService()
 
 	def activateUdpxy(self):
@@ -2555,7 +2561,7 @@ class NetworkXupnpd(NetworkBaseScreen):
 			self.Console.ePopen("/etc/init.d/xupnpd stop", self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
-		time.sleep(3)
+		sleep(3)
 		self.updateService()
 
 	def activatexupnpd(self):

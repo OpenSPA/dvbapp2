@@ -1,7 +1,6 @@
 from os import listdir, makedirs, stat, statvfs
 from os.path import join, isdir
 from re import search
-from shlex import split
 
 from enigma import eTimer
 
@@ -199,7 +198,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 			try:
 				from Plugins.Extensions.spaNewFirms.plugin import getRutaRes, backuppath, backupfile
 				response = getRutaRes() and self.smallFlashSize and (fileExists(backuppath+backupfile) or fileExists(backuppath+"openspabackup.tar.gz"))
-			except:
+			except Exception:
 				pass
 		return response
 

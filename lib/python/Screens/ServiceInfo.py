@@ -162,7 +162,7 @@ class ServiceInfo(Screen):
 					(_("Videocodec, size & format"), resolution, TYPE_TEXT),
 					(_("Service reference"), ":".join(refstr.split(":")[:9]), TYPE_TEXT),
 					(_("URL"), refstr.split(":")[10].replace("%3a", ":"), TYPE_TEXT)]
-				subList = self.getSubtitleList()
+				subList = self.getSubtitleList()  # noqa F841
 			else:
 				if ":/" in refstr:
 				# mp4 videos, dvb-s-t recording
@@ -277,7 +277,7 @@ class ServiceInfo(Screen):
 							_("SRT file"), _("VOB file"), _("PGS file"))
 					try:
 						description = types[x[2]]
-					except:
+					except Exception:
 						description = _("unknown") + ": %s" % x[2]
 					subNumber = str(int(subNumber) + 1)
 					subList += [(_("Other Subtitles & lang"), "%s - %s - %s" % (subNumber, description, subLang), TYPE_TEXT)]
@@ -309,8 +309,10 @@ class ServiceInfo(Screen):
 			else:
 				tuner = (_("NIM & Type"), chr(ord('A') + frontendData["tuner_number"]) + " - " + frontendData["tuner_type"], TYPE_TEXT)
 			if frontendDataOrg["tuner_type"] == "DVB-S":
-				issy = lambda x: 0 if x == -1 else x
-				t2mi = lambda x: None if x == -1 else str(x)
+				def issy(x):  # OpenSPA [norhap] not lambda use def PEP8 E731
+					return 0 if x == -1 else x
+				def t2mi(x):  # OpenSPA [norhap] not lambda use def PEP8 E731
+					return None if x == -1 else str(x)
 				return (tuner,
 					(_("System & Modulation"), frontendData["system"] + " " + frontendData["modulation"], TYPE_TEXT),
 					(_("Orbital position"), frontendData["orbital_position"], TYPE_VALUE_DEC),
@@ -395,7 +397,7 @@ class ServiceInfo(Screen):
 				altColor = False
 				if caid[0] == int(ecmdata[1], 16) and (caid[1] == int(ecmdata[3], 16) or str(int(ecmdata[2], 16)) in provid):
 					right = "%s (%s)" % (right, _("active"))
-					altColor = True
+					altColor = True  # noqa F841
 				tlist.append(ServiceInfoListEntry(left, right))
 			if not tlist:
 				tlist.append(ServiceInfoListEntry(_("No ECMPids available")))

@@ -1,9 +1,7 @@
 from boxbranding import getBoxType, getMachineMtdKernel, getMachineMtdRoot
 from Components.ActionMap import ActionMap
 from Components.Console import Console
-from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop

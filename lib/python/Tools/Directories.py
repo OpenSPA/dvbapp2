@@ -357,7 +357,7 @@ def defaultRecordingLocation(candidate=None):
 		return candidate
 	try:
 		path = readlink("/hdd")  # First, try whatever /hdd points to, or /media/hdd.
-	except OSError as err:
+	except OSError:
 		path = "/media/hdd"
 	if not exists(path):  # Find the largest local disk.
 		from Components import Harddisk
@@ -671,7 +671,7 @@ def lsof():  # List of open files.
 				directory = join("/proc", pid, "fd")
 				for file in [join(directory, x) for x in listdir(directory)]:
 					lsof.append((pid, program, readlink(file)))
-			except OSError as err:
+			except OSError:
 				pass
 	return lsof
 

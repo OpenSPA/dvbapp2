@@ -5016,6 +5016,10 @@ msgstr ""
 msgid "Current Status:"
 msgstr ""
 
+#, python-format
+msgid "Current Temperature (SoC): %s °C"
+msgstr ""
+
 msgid "Current crash log"
 msgstr ""
 
@@ -5038,9 +5042,6 @@ msgid "Current mode: %s \n"
 msgstr ""
 
 msgid "Current settings:"
-msgstr ""
-
-msgid "Current status"
 msgstr ""
 
 msgid "Current time"
@@ -5984,6 +5985,9 @@ msgstr ""
 msgid "Disable Picture in Picture"
 msgstr ""
 
+msgid "Disable ServiceHiSilicon"
+msgstr ""
+
 msgid "Disable background scanning"
 msgstr ""
 
@@ -6859,6 +6863,9 @@ msgid "Enable terrestrial LCN:"
 msgstr ""
 
 msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
+
+msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
@@ -8009,6 +8016,9 @@ msgid "Fine movement"
 msgstr ""
 
 msgid "Fine-tune"
+msgstr ""
+
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
 msgstr ""
 
 msgid "Finished"
@@ -9286,6 +9296,9 @@ msgid "Include AIT in http streams"
 msgstr ""
 
 msgid "Include AIT in recordings"
+msgstr ""
+
+msgid "Include bouquet DB data"
 msgstr ""
 
 msgid "Include CI assignment"
@@ -12169,6 +12182,9 @@ msgid "Only move the dish quickly before this hour."
 msgstr ""
 
 msgid "Only on startup"
+msgstr ""
+
+msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr ""
 
 msgid "Open"
@@ -15266,6 +15282,9 @@ msgstr ""
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr ""
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr ""
 
@@ -16392,6 +16411,9 @@ msgid "Set action for 'Info' key"
 msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set current CEC address as fixed address"
@@ -18265,6 +18287,9 @@ msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status unavailable!"
+msgstr ""
+
+msgid "Status:"
 msgstr ""
 
 msgid "Step"

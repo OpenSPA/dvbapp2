@@ -3,8 +3,6 @@ from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.config import config
-from Tools.Directories import resolveFilename
 from os import path, walk
 from enigma import eEnv
 
@@ -49,7 +47,7 @@ class LCDClockSelector(Screen):
 	def layoutFinished(self):
 		try:
 			what = open(self.root+'active','r').read()
-		except:
+		except Exception:
 			what = "clock_lcd_analog.xml"
 		tmp = what
 		if tmp in self.clocklist:
@@ -100,7 +98,7 @@ class LCDClockSelector(Screen):
 		try:
 			pngpath = pngpath.replace(".xml", "_prev.png")
 			pngpath = self.root+pngpath
-		except:
+		except Exception:
 			pngpath = "usr/share/enigma2/display/clock_skin/noprev.png"
 		if not path.exists(pngpath):
 			pngpath = eEnv.resolve("${datadir}/enigma2/display/clock_skin/noprev.png")

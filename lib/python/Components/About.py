@@ -238,15 +238,15 @@ def getDriverInstalledDate():
 
 def getHardwareTypeString():
 	try:
-		if os.path.isfile("/proc/stb/info/boxtype"):
+		if isfile("/proc/stb/info/boxtype"):
 			return open("/proc/stb/info/boxtype").read().strip().upper()
-		if os.path.isfile("/proc/stb/info/azmodel"):
+		if isfile("/proc/stb/info/azmodel"):
 			return "AZBOX " + open("/proc/stb/info/azmodel").read().strip().upper() + "(" + open("/proc/stb/info/version").read().strip().upper() + ")"
-		if os.path.isfile("/proc/stb/info/vumodel"):
+		if isfile("/proc/stb/info/vumodel"):
 			return "VU+" + open("/proc/stb/info/vumodel").read().strip().upper() + "(" + open("/proc/stb/info/version").read().strip().upper() + ")"
-		if os.path.isfile("/proc/stb/info/model"):
+		if isfile("/proc/stb/info/model"):
 			return open("/proc/stb/info/model").read().strip().upper()
-	except:
+	except Exception:
 		pass
 	return _("unavailable")
 
@@ -269,14 +269,14 @@ def getIsBroadcom():
 			return True
 		else:
 			return False
-	except:
+	except Exception:
 		return False
 
 
 def getImageTypeString():
 	try:
 		return open("/etc/issue").readlines()[-2].capitalize().strip()[:-6]
-	except:
+	except Exception:
 		pass
 	return _("undefined")
 
@@ -309,7 +309,7 @@ def getCPUSpeedString():
 				return (CPUSpeed_Int, _("%s GHz") % str(round(CPUSpeed_Int / 1000, 1)))
 			else:
 				return (CPUSpeed_Int, _("%s MHz") % str(round(CPUSpeed_Int, 1)))
-		except:
+		except Exception:
 			return (1700, "1,7 GHz")
 	else:
 		try:

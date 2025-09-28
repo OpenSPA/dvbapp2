@@ -1,5 +1,5 @@
 from glob import glob
-from os import listdir, lstat, mkdir, popen, remove, statvfs, system, walk
+from os import listdir, lstat, mkdir, remove, statvfs, system, walk
 from os.path import abspath, dirname, exists, isfile, islink, ismount, join, realpath
 from re import search, sub
 from time import sleep, time
@@ -8,7 +8,7 @@ from enigma import getDeviceDB, eTimer
 
 from Components.SystemInfo import BoxInfo
 from Components.Console import Console
-from Tools.Directories import fileHas, fileReadLines, fileReadLine, fileWriteLines
+from Tools.Directories import fileReadLines, fileReadLine, fileWriteLines
 from Tools.CList import CList
 
 MODEL = BoxInfo.getItem("model")

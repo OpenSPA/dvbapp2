@@ -91,7 +91,7 @@ class StreamRelaySetup(Setup):
 		orbpos = 0
 		try:
 			orbpos = int(sref.split(":")[6], 16) >> 16
-		except:
+		except Exception:
 			pass
 		return orbpos
 

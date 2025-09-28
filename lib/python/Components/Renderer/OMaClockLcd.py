@@ -5,8 +5,6 @@ import math
 from Components.Renderer.Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
-from Components.VariableText import VariableText
-from Components.config import config
 
 from boxbranding import getBoxType
 
@@ -65,37 +63,37 @@ class OMaClockLcd(Renderer):
 		if LCDSIZE400:
 			width = 396
 			height = 240
-			l = 55
+			L = 55
 		elif LCDSIZE220:
 			width = 218
 			height = 176
-			l = 35
+			L = 35
 		else:
 			width = 218
 			height = 176
-			l = 35
+			L = 35
 		r = (width / 2)
 		r1 = (height / 2)
 
 		if opt == 'sec':
 			if LCDSIZE400:
-				l = l + 60
+				L = L + 60
 			elif LCDSIZE220:
-				l = l + 35
+				L = L + 35
 			else:
-				l = l + 50
+				L = L + 50
 			self.fColor = self.fColors
 		elif opt == 'min':
 			if LCDSIZE400:
-				l = l + 50
+				L = L + 50
 			elif LCDSIZE220:
-				l = l + 35
+				L = L + 35
 			else:
-				l = l + 40
+				L = L + 40
 			self.fColor = self.fColorm
 		else:
 			self.fColor = self.fColorh
-		(endX, endY,) = self.calc(self.forend, l, r, r1)
+		(endX, endY,) = self.calc(self.forend, L, r, r1)
 		self.line_draw(r, r1, endX, endY)
 
 	def line_draw(self, x0, y0, x1, y1):
@@ -130,7 +128,7 @@ class OMaClockLcd(Renderer):
 			sopt = int(opt[0])
 			if len(opt) < 2:
 				opt.append('')
-		except Exception as e:
+		except Exception:
 			return
 
 		if (what[0] == self.CHANGED_CLEAR):
