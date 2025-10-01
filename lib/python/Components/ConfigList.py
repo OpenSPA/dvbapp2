@@ -175,20 +175,6 @@ class ConfigList(GUIComponent):
 				x()
 
 	#########################################################################
-	def applySkin(self, desktop, screen):
-		if self.skinAttributes is not None:
-			attribs = []
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "sepLineColor":
-					attribs.append(("separatorColor", value))
-				elif attrib == "sepLineThickness":
-					pass
-					# self.sepLineThickness = int(value) # This is currently not working
-				else:
-					attribs.append((attrib, value))
-			self.skinAttributes = attribs
-		return GUIComponent.applySkin(self, desktop, screen)
-
 
 class ConfigListScreen:
 	def __init__(self, list, session=None, on_change=None, fullUI=False, allowDefault=False):
