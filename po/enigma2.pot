@@ -13858,6 +13858,12 @@ msgstr ""
 msgid "Random Password"
 msgstr ""
 
+msgid "Rated on the station"
+msgstr ""
+
+msgid "Rating defined by broadcaster"
+msgstr ""
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr ""

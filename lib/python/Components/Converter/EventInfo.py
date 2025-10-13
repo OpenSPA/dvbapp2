@@ -15,15 +15,15 @@ from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 class ETSIClassifications(dict):
 	def __init__(self):
 		def shortRating(age):
-			if age == 0:
+			if age < 4:
 				return _("All ages")
 			elif age <= 15:
 				age += 3
 				return f"{age}+"
 
 		def longRating(age):
-			if age == 0:
-				return _("Rating undefined")
+			if age < 4:
+				return _("All ages")
 			elif age <= 15:
 				age += 3
 				return _("Minimum age %d years") % age
@@ -131,9 +131,9 @@ class ItaClassifications(dict):
 # is no match in the classification object.
 #
 # If there is no matching country then the default ETSI should be selected.
-#
+# ETSIClassifications OpenSPA [norhap]                SHORT                                                                                         LONG                                                                                                                   ICONS
 COUNTRIES = {
-	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ETSI-na.png")),
+	"ETSI": (ETSIClassifications(), lambda age: ((_("%d+") % (age + 3) if age < 19 else _("All ages") if age < 7 else _("Rated on the station"), _("Minimum age %d years") % (age + 3) if age < 16 else _("All ages") if age < 7 else _("Rating defined by broadcaster"), "ratings/ETSI-%d.png" % (age + 3) if age < 16 else "ratings/ETSI-ALL.png" if age < 7 else "ratings/ETSI-BC.png"))),
 	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png")),
 	"GBR": (GbrClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/GBR-na.png")),
 	"ITA": (ItaClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ITA-na.png"))
@@ -443,6 +443,15 @@ class EventInfo(Converter, Poll):
 						if config.misc.epgratingcountry.value:
 							classifications = COUNTRIES[config.misc.epgratingcountry.value]
 						rating = classifications[self.RATING_NORMAL].get(age, classifications[self.RATING_DEFAULT](age))
+						if rating:
+							result = {
+								self.RATING: trimText(rating[self.RATING_LONG]),
+								self.RATING_CODE: trimText(rating[self.RATING_SHORT]),
+								self.RATING_ICON: resolveFilename(SCOPE_GUISKIN, rating[self.RATING_IMAGE])
+							}.get(self.token)
+					else:  # OpenSPA [norhap] add defined in broadcaster.
+						classifications = COUNTRIES["ETSI"]
+						rating = classifications[self.RATING_NORMAL].get(100, classifications[self.RATING_DEFAULT](100))
 						if rating:
 							result = {
 								self.RATING: trimText(rating[self.RATING_LONG]),
