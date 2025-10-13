@@ -3,7 +3,7 @@ from os.path import isfile
 from enigma import eRCInput, eTimer, eWindow, getDesktop
 
 from skin import GUI_SKIN_ID, applyAllAttributes, menus, screens, setups
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.GUIComponent import GUIComponent
 from Components.Pixmap import Pixmap
@@ -34,6 +34,7 @@ class Screen(dict):
 		self.onExecEnd = []
 		self.onClose = []
 		self.onLayoutFinish = []
+		self.onContentChanged = []
 		self.onShown = []
 		self.onShow = []
 		self.onHide = []
@@ -56,9 +57,10 @@ class Screen(dict):
 		if self.screenImage:
 			self["Image"] = Pixmap()
 		if enableHelp:
-			self["helpActions"] = ActionMap(["HelpActions"], {
+			self["helpAction"] = HelpableActionMap(self, ["HelpAction"], {
+				# "displayHelp": (self.showHelp, _("Display the context sensitive help screen"))
 				"displayHelp": self.showHelp
-			}, prio=0)
+			}, prio=0, description=_("Help Action"))
 			self["key_help"] = StaticText(_("HELP"))
 
 	def __repr__(self):
@@ -265,6 +267,13 @@ class Screen(dict):
 		self.__callLaterTimer = eTimer()
 		self.__callLaterTimer.callback.append(method)
 		self.__callLaterTimer.start(0, True)
+
+	def screenContentChanged(self):
+		for method in self.onContentChanged:
+			if not isinstance(method, type(self.close)):
+				exec(method, globals(), locals())
+			else:
+				method()
 
 	def applySkin(self):
 		bounds = (getDesktop(GUI_SKIN_ID).size().width(), getDesktop(GUI_SKIN_ID).size().height())

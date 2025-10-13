@@ -2,35 +2,10 @@
 
 Radius / Rectangle Feature of gPixmap
 
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
-
 Copyright (c) 2023-2025 jbleyel, zKhadiri
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-1. Non-Commercial Use: You may not use the Software or any derivative works
-   for commercial purposes without obtaining explicit permission from the
-   copyright holder.
-2. Share Alike: If you distribute or publicly perform the Software or any
-   derivative works, you must do so under the same license terms, and you
-   must make the source code of any derivative works available to the
-   public.
-3. Attribution: You must give appropriate credit to the original author(s)
-   of the Software by including a prominent notice in your derivative works.
-THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
-ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
-For more details about the CC BY-NC-SA 4.0 License, please visit:
-https://creativecommons.org/licenses/by-nc-sa/4.0/
+This code may be used commercially. Attribution must be given to the original author.
+Licensed under GPLv2.
 */
 
 
@@ -1954,8 +1929,7 @@ void gPixmap::blitRounded8BitScaled(const gPixmap &src, const eRect &pos, const 
 	}
 }
 
-void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, int cornerRadius, uint8_t edges,
-				   int flag) {
+void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, int cornerRadius, uint8_t edges, int flag) {
 	bool accel = (surface->data_phys && src.surface->data_phys);
 	bool accumulate = accel && (gAccel::getInstance()->accumulate() >= 0);
 	int accelerationthreshold = GFX_SURFACE_BLIT_ACCELERATION_THRESHOLD;
@@ -2030,8 +2004,7 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 			eRect srcarea = area;
 
 			if (flag & blitScale)
-				srcarea = eRect(srcarea.x() * FIX / scale_x, srcarea.y() * FIX / scale_y,
-								srcarea.width() * FIX / scale_x, srcarea.height() * FIX / scale_y);
+				srcarea = eRect(srcarea.x() * FIX / scale_x, srcarea.y() * FIX / scale_y, srcarea.width() * FIX / scale_x, srcarea.height() * FIX / scale_y);
 
 			totalsurface += srcarea.surface() * src.surface->bypp;
 		}
@@ -2047,7 +2020,7 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 
 	for (unsigned int i = 0; i < clip.rects.size(); ++i) {
 		//		eDebug("[gPixmap] clip rect: %d %d %d %d", clip.rects[i].x(), clip.rects[i].y(), clip.rects[i].width(),
-		//clip.rects[i].height());
+		// clip.rects[i].height());
 		eRect area = pos; /* pos is the virtual (pre-clipping) area on the dest, which can be larger/smaller than src if
 							 scaling is enabled */
 		area &= clip.rects[i];
@@ -2063,8 +2036,7 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 		//			srcarea.x(), srcarea.y(), srcarea.width(), srcarea.height());
 
 		if (flag & blitScale)
-			srcarea = eRect(srcarea.x() * FIX / scale_x, srcarea.y() * FIX / scale_y, srcarea.width() * FIX / scale_x,
-							srcarea.height() * FIX / scale_y);
+			srcarea = eRect(srcarea.x() * FIX / scale_x, srcarea.y() * FIX / scale_y, srcarea.width() * FIX / scale_x, srcarea.height() * FIX / scale_y);
 
 		//		eDebug("[gPixmap] srcarea after scale: %d %d %d %d",
 		//			srcarea.x(), srcarea.y(), srcarea.width(), srcarea.height());
@@ -2086,8 +2058,8 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 			}
 #ifdef GPIXMAP_DEBUG
 			s.stop();
-			eDebug("[gPixmap] [BLITBENCH] cpu blitRounded %dx%d transparent %d (%d bytes) took %u us", pos.width(),
-				   pos.height(), src.surface->transparent, srcarea.surface() * src.surface->bypp, s.elapsed_us());
+			eDebug("[gPixmap] [BLITBENCH] cpu blitRounded %dx%d transparent %d (%d bytes) took %u us", pos.width(), pos.height(), src.surface->transparent, srcarea.surface() * src.surface->bypp,
+				   s.elapsed_us());
 #endif
 			continue;
 		}
@@ -2154,8 +2126,7 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag)) {
 #ifdef GPIXMAP_DEBUG
 				s.stop();
-				eDebug("[gPixmap] [BLITBENCH] accel blit (%d bytes) took %u us", srcarea.surface() * src.surface->bypp,
-					   s.elapsed_us());
+				eDebug("[gPixmap] [BLITBENCH] accel blit (%d bytes) took %u us", srcarea.surface() * src.surface->bypp, s.elapsed_us());
 #endif
 #ifdef GPIXMAP_CHECK_THRESHOLD
 				acceltime = s.elapsed_us();
@@ -2215,8 +2186,7 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 				}
 			} else if ((surface->bpp == 32) && (src.surface->bpp == 32)) {
 				const int src_stride = src.surface->stride;
-				const uint8_t* srcptr =
-					(const uint8_t*)src.surface->data + srcarea.left() * src.surface->bypp + srcarea.top() * src_stride;
+				const uint8_t* srcptr = (const uint8_t*)src.surface->data + srcarea.left() * src.surface->bypp + srcarea.top() * src_stride;
 				uint8_t* dstptr = (uint8_t*)surface->data + area.left() * surface->bypp + area.top() * surface->stride;
 				const int width = area.width();
 				const int height = area.height();
@@ -2258,13 +2228,12 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 					}
 				}
 			} else {
-				eWarning("[gPixmap] unimplemented: scale on non-accel surface %d->%d bpp", src.surface->bpp,
-						 surface->bpp);
+				eWarning("[gPixmap] unimplemented: scale on non-accel surface %d->%d bpp", src.surface->bpp, surface->bpp);
 			}
 #ifdef GPIXMAP_DEBUG
 			s.stop();
-			eDebug("[gPixmap] [BLITBENCH] CPU scale blit %dx%d transparent %d (%d bytes) took %u us", pos.width(),
-				   pos.height(), src.surface->transparent, srcarea.surface() * src.surface->bypp, s.elapsed_us());
+			eDebug("[gPixmap] [BLITBENCH] CPU scale blit %dx%d transparent %d (%d bytes) took %u us", pos.width(), pos.height(), src.surface->transparent, srcarea.surface() * src.surface->bypp,
+				   s.elapsed_us());
 #ifdef GPIXMAP_CHECK_THRESHOLD
 			if (accel) {
 				adjustBlitThreshold(s.elapsed_us(), srcarea.surface() * src.surface->bypp);
@@ -2448,28 +2417,39 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 					}
 				} else if (flag & blitAlphaTest) {
 					while (width--) {
-						if (!((*srcp) & 0xFF000000)) {
-							srcp++;
+						uint32_t icol = *srcp++;
+						uint8_t a = (icol >> 24) & 0xFF;
+
+						if (a == 0) {
 							dstp++;
 						} else {
-							uint32_t icol = *srcp++;
+							uint8_t r = (icol >> 16) & 0xFF;
+							uint8_t g = (icol >> 8) & 0xFF;
+							uint8_t b = icol & 0xFF;
+
 #if BYTE_ORDER == LITTLE_ENDIAN
-							*dstp++ = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 |
-											   (icol & 0xFF0000) >> 19);
+							*dstp++ = bswap_16((b >> 3) << 11 | (g >> 2) << 5 | (r >> 3));
 #else
-							*dstp++ =
-								((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
+							*dstp++ = (b >> 3) << 11 | (g >> 2) << 5 | (r >> 3);
 #endif
 						}
 					}
 				} else {
 					while (width--) {
 						uint32_t icol = *srcp++;
+						uint8_t a = (icol >> 24) & 0xFF;
+						uint8_t r = (icol >> 16) & 0xFF;
+						uint8_t g = (icol >> 8) & 0xFF;
+						uint8_t b = icol & 0xFF;
+
+						if (a == 0) {
+							r = g = b = 0;
+						}
+
 #if BYTE_ORDER == LITTLE_ENDIAN
-						*dstp++ = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 |
-										   (icol & 0xFF0000) >> 19);
+						*dstp++ = bswap_16((b >> 3) << 11 | (g >> 2) << 5 | (r >> 3));
 #else
-						*dstp++ = ((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
+						*dstp++ = (b >> 3) << 11 | (g >> 2) << 5 | (r >> 3);
 #endif
 					}
 				}
@@ -2480,8 +2460,7 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 			eWarning("[gPixmap] cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
 #ifdef GPIXMAP_DEBUG
 		s.stop();
-		eDebug("[gPixmap] [BLITBENCH] cpu blit %dx%d transparent %d (%d bytes) took %u us", pos.width(), pos.height(),
-			   src.surface->transparent, srcarea.surface() * src.surface->bypp, s.elapsed_us());
+		eDebug("[gPixmap] [BLITBENCH] cpu blit %dx%d transparent %d (%d bytes) took %u us", pos.width(), pos.height(), src.surface->transparent, srcarea.surface() * src.surface->bypp, s.elapsed_us());
 #ifdef GPIXMAP_CHECK_THRESHOLD
 		if (accel) {
 			adjustBlitThreshold(s.elapsed_us(), srcarea.surface() * src.surface->bypp);

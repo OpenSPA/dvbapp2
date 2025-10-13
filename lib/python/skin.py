@@ -1022,6 +1022,9 @@ class AttributeParser:
 	def conditional(self, value):
 		pass
 
+	def connection(self, value):  # This is only used for Addons.
+		pass
+
 	def cornerRadius(self, value):
 		radius, edgeValue = parseRadius(value)
 		self.guiObject.setCornerRadius(radius, edgeValue)
@@ -1298,11 +1301,11 @@ class AttributeParser:
 		mode = parseZoom(data[2], "selectionZoomSize") if len(data) == 3 else eListbox.zoomContentZoom
 		self.guiObject.setSelectionZoomSize(size[0], size[1], mode)
 
-	def separatorSize(self, value):
-		self.guiObject.setSeparatorSize(eRect(*parseSeparator("separatorSize", value)))
-
-	def separatorColor(self, value):
+	def separatorLineColor(self, value):
 		self.guiObject.setSeparatorColor(parseColor(value, 0x00000000))
+
+	def separatorLineSize(self, value):
+		self.guiObject.setSeparatorSize(eRect(*parseSeparator("separatorLineSize", value)))
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value, 0x00000000))
@@ -1416,7 +1419,12 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 					pass  # Load palette. (Not yet implemented!)
 	for tag in domSkin.findall("include"):
 		filename = tag.attrib.get("filename")
-		if filename:
+		try:
+			conditional = not (x := tag.attrib.get("conditional")) or eval(x)
+		except Exception as err:
+			skinError(f"Tag 'include' with 'conditional' attribute '{conditional}' resulted in error '{err}'")
+			conditional = False
+		if filename and conditional:
 			resolved = resolveFilename(scope, filename, path_prefix=pathSkin)
 			if isfile(resolved):
 				loadSkin(resolved, scope=scope, desktop=desktop, screenID=screenID)
