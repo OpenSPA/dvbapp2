@@ -15989,11 +15989,8 @@ msgstr "Aleatorio"
 msgid "Random Password"
 msgstr "Contraseña aleatoria"
 
-msgid "Rated on the station"
-msgstr "Calificado en la emisora"
-
-msgid "Rating defined by broadcaster"
-msgstr "Clasificación definida por la emisora"
+msgid "Possible rated in broadcaster"
+msgstr "Posible Clasificación en la emisora"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
