@@ -77,6 +77,7 @@ class Wizard(Screen):
 		self.numSteps = len(self.wizard)
 		if showStepSlider:
 			self["stepslider"] = Slider(1, self.numSteps)
+			self["step"] = Label()  # OpenSPA [norhap] show counter in progress.
 		if showList:
 			self["list"] = List([])  # MenuList([])
 			self["list"].onSelectionChanged.append(self.listChanged)
@@ -597,6 +598,8 @@ class Wizard(Screen):
 				self["step"].setText("%s %d/%d" % (_("Step"), self.currStep, self.numSteps))  # IanSav: Translation change "Step " to "Step".
 			if self.showStepSlider:
 				self["stepslider"].setValue(self.currStep)
+				self.progressCounter = int(100 * self.currStep / self.numSteps)  # OpenSPA [norhap] show counter in progress.
+				self["step"].setText(str(self.progressCounter) + " %" if self.progressCounter < 96 else str(100) + " %")
 			if self.wizard[self.currStep]["timeout"]:
 				self.timerReset()
 				self.timeoutTimer.start(1000)
