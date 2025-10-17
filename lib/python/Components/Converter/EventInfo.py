@@ -133,7 +133,7 @@ class ItaClassifications(dict):
 # If there is no matching country then the default ETSI should be selected.
 # ETSIClassifications OpenSPA [norhap]                SHORT                                                                                         LONG                                                                                                                   ICONS
 COUNTRIES = {
-	"ETSI": (ETSIClassifications(), lambda age: ((_("%d+") % (age + 3) if age < 19 else _("All ages") if age < 7 else _("Rated on the station"), _("Minimum age %d years") % (age + 3) if age < 16 else _("All ages") if age < 7 else _("Rating defined by broadcaster"), "ratings/ETSI-%d.png" % (age + 3) if age < 16 else "ratings/ETSI-ALL.png" if age < 7 else "ratings/ETSI-BC.png"))),
+	"ETSI": (ETSIClassifications(), lambda age: ((_("%d+") % (age + 3) if age < 19 else _("All ages") if age < 7 else _("Possible rated in broadcaster"), _("Minimum age %d years") % (age + 3) if age < 16 else _("All ages") if age < 7 else _("Possible rated in broadcaster"), "ratings/ETSI-%d.png" % (age + 3) if age < 16 else "ratings/ETSI-ALL.png" if age < 7 else "ratings/ETSI-BC.png"))),
 	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png")),
 	"GBR": (GbrClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/GBR-na.png")),
 	"ITA": (ItaClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ITA-na.png"))
