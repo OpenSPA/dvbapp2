@@ -199,6 +199,10 @@ def getCPUBrand():
 	return result
 
 
+def getChipSetString():
+	return str(BoxInfo.getItem("ChipsetString"))
+
+
 def getCPUArch():
 	if BoxInfo.getItem("ArchIsARM64"):
 		result = _("ARM64")
