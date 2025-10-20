@@ -3906,9 +3906,6 @@ msgstr ""
 msgid "Choose dvb wait delay for ci response."
 msgstr ""
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
-msgstr ""
-
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
@@ -6495,6 +6492,9 @@ msgid "EPG Channel/Service Selection"
 msgstr ""
 
 msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG history"
 msgstr ""
 
 msgid "EPG imported successfully from"
@@ -9824,9 +9824,6 @@ msgid "Kazakh"
 msgstr ""
 
 msgid "Kazakhstan"
-msgstr ""
-
-msgid "Keep EPG history (in minutes)"
 msgstr ""
 
 msgid "Keep service"
@@ -15655,6 +15652,9 @@ msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr ""
+
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."

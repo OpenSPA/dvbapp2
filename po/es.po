@@ -4417,16 +4417,6 @@ msgstr ""
 msgid "Choose dvb wait delay for ci response."
 msgstr "Elegir el retardo de espera dvb para la respuesta ci."
 
-msgid ""
-"Choose how much EPG history, if any, to keep in the EPG cache. This historic "
-"data can be browsed in any of the EPG views. This can be useful when you "
-"need information about an event which has recently finished."
-msgstr ""
-"Elija la cuanto historial de la EPG desea ver, en caso de que haya alguno, "
-"para mantenerlo en la caché de la EPG. Estos datos históricos se pueden "
-"consultar en cualquiera de las vistas de la EPG. Esto puede ser útil cuando "
-"se necesita información sobre un evento que ha terminado recientemente."
-
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 "Elegir la frecuencia con la que se conectará al servidor IceTV para "
@@ -7609,6 +7599,9 @@ msgstr "Selección de canales/servicios de la EPG"
 
 msgid "EPG Display Actions"
 msgstr "Acciones de visualización de la EPG"
+
+msgid "EPG history"
+msgstr "Historial de la EPG"
 
 msgid "EPG imported successfully from"
 msgstr "EPG importada con éxito desde"
@@ -11497,9 +11490,6 @@ msgstr "Kazajo"
 
 msgid "Kazakhstan"
 msgstr "Kazajistán"
-
-msgid "Keep EPG history (in minutes)"
-msgstr "Mantener el historial de EPG (en minutos)"
 
 msgid "Keep service"
 msgstr "Mantener servicio"
@@ -18258,6 +18248,9 @@ msgstr "Selecciona archivos a excluir en el backup"
 #
 msgid "Select files/folders to backup"
 msgstr "Seleccione archivos/carpetas para el backup"
+
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Seleccione cuánto historial de la EPG, si lo hay, se guardará en la caché de la EPG. Estos datos históricos se pueden consultar en cualquier vista de la EPG. Esto puede ser útil para obtener información sobre un evento finalizado."
 
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Seleccione cuánto tiempo la imagen del protector de pantalla permanecerá en la misma ubicación en la pantalla antes de ser movida."
