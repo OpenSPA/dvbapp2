@@ -104,12 +104,12 @@ class ItaClassifications(dict):
 		#            0   1   2   3    4    5    6     7     8     9     10    11    12    13    14    15
 		shortText = ("", "", "", "T", "T", "T", "BA", "BA", "BA", "12", "12", "12", "14", "14", "14", "18")
 		longText = {
-			"": _("Non Classificato"),
-			"T": _("Per Tutti"),
-			"BA": _("Bambini Accompagnati"),
-			"12": _("Dai 12 anni in su"),
-			"14": _("Dai 14 anni in su"),
-			"18": _("Dai 18 anni in su")
+			"": "Non Classificato",
+			"T": "Per Tutti",
+			"BA": "Bambini Accompagnati",
+			"12": "Dai 12 anni in su",
+			"14": "Dai 14 anni in su",
+			"18": "Dai 18 anni in su"
 		}
 		images = {
 			"": "ratings/blank.png",
@@ -133,10 +133,10 @@ class ItaClassifications(dict):
 # If there is no matching country then the default ETSI should be selected.
 # ETSIClassifications OpenSPA [norhap]                SHORT                                                                                         LONG                                                                                                                   ICONS
 COUNTRIES = {
-	"ETSI": (ETSIClassifications(), lambda age: ((_("%d+") % (age + 3) if age < 19 else _("All ages") if age < 7 else _("Possible rated in broadcaster"), _("Minimum age %d years") % (age + 3) if age < 16 else _("All ages") if age < 7 else _("Possible rated in broadcaster"), "ratings/ETSI-%d.png" % (age + 3) if age < 16 else "ratings/ETSI-ALL.png" if age < 7 else "ratings/ETSI-BC.png"))),
-	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png")),
-	"GBR": (GbrClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/GBR-na.png")),
-	"ITA": (ItaClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ITA-na.png"))
+	"ETSI": (ETSIClassifications(), lambda age: ((_("%d+") % (age + 3) if age < 19 else _("All ages") if age < 7 else _("Possible rated in broadcaster"), _("Minimum age %d years") % (age + 3) if age < 16 else _("All ages") if age < 7 else _("Possible rated in broadcaster"), "ratings/ETSI-%d.png" % (age + 3) if age < 16 else "ratings/ETSI-ALL.png" if age < 7 else "ratings/ETSI-BC.png", 0x222222))),
+	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png", 0x222222)),
+	"GBR": (GbrClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/GBR-na.png", 0x222222)),
+	"ITA": (ItaClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ITA-na.png", 0x222222))
 }
 
 
@@ -477,7 +477,7 @@ class EventInfo(Converter, Poll):
 						rating = country[self.RATING_NORMAL].get(age, country[self.RATING_DEFAULT](age))
 						ageText = rating[self.RATING_SHORT].strip().replace("+", "")
 						color = rating[self.RATING_COLOR]
-						return f"{ageText};{hex(color)}"
+						return f"{ageText};#{color:08X}"
 				case self.RUNNING_STATUS:
 					if event.getPdcPil():
 						result = {

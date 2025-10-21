@@ -13,13 +13,22 @@
 #include <string>
 #include <lib/base/elock.h>
 
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <fcntl.h>
+
 extern "C" {
 #include <jpeglib.h>
 #include <gif_lib.h>
 }
 
+#include <webp/decode.h>
+
 #include <nanosvg.h>
 #include <nanosvgrast.h>
+
+#include <lib/gdi/picexif.h>
 
 /* TODO: I wonder why this function ALWAYS returns 0 */
 int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
@@ -490,16 +499,147 @@ int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, 
 	return 0;
 }
 
-int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width, int height, int cached, float scale, int keepAspect, int align)
-{
-	if (endsWith(filename, ".png"))
+
+int detectImageType(const char* filename) {
+	unsigned char id[12] = {0};
+	int fd = ::open(filename, O_RDONLY);
+	if (fd != -1) {
+		ssize_t n = ::read(fd, id, sizeof(id));
+		::close(fd);
+
+		if (n > 4) {
+			if (id[1] == 'P' && id[2] == 'N' && id[3] == 'G')
+				return F_PNG;
+
+			if ((n > 9 && id[6] == 'J' && id[7] == 'F' && id[8] == 'I' && id[9] == 'F') || (id[0] == 0xFF && id[1] == 0xD8 && id[2] == 0xFF))
+				return F_JPEG;
+
+			if (id[0] == 'B' && id[1] == 'M')
+				return F_BMP;
+
+			if (id[0] == 'G' && id[1] == 'I' && id[2] == 'F')
+				return F_GIF;
+
+			if (n > 11 && id[0] == 'R' && id[1] == 'I' && id[2] == 'F' && id[3] == 'F' && id[8] == 'W' && id[9] == 'E' && id[10] == 'B' && id[11] == 'P')
+				return F_WEBP;
+
+			if (id[0] == '<' && (id[1] == 's' || id[1] == 'S') && (id[2] == 'v' || id[2] == 'V') && (id[3] == 'g' || id[3] == 'G'))
+				return F_SVG;
+		}
+	}
+	return -1;
+}
+
+bool isAnimatedGIF(const char* filename) {
+	int fd = ::open(filename, O_RDONLY);
+	if (fd != -1) {
+		char header[6];
+		ssize_t n = ::read(fd, header, 6);
+		if (n != 6) {
+			::close(fd);
+			return false;
+		}
+
+		if (!(header[0] == 'G' && header[1] == 'I' && header[2] == 'F' && header[4] == '8')) {
+			::close(fd);
+			return false;
+		}
+
+		int frameCount = 0;
+		unsigned char byte = 0;
+		unsigned char label = 0;
+
+		while (true) {
+			ssize_t bytesRead = ::read(fd, &byte, 1);
+			if (bytesRead != 1)
+				break;
+
+			if (byte == 0x21) {
+				if (::read(fd, &label, 1) != 1)
+					break;
+				if (label == 0xF9) {
+					::lseek(fd, 6, SEEK_CUR);
+				}
+			} else if (byte == 0x2C) {
+				frameCount++;
+				if (frameCount > 1) {
+					::close(fd);
+					return true;
+				}
+				::lseek(fd, 9, SEEK_CUR);
+			}
+		}
+		::close(fd);
+	}
+	return false;
+}
+
+int loadWEBP(ePtr<gPixmap>& result, const char* filename, int cached) {
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
+
+	CFile infile(filename, "rb");
+	result = 0;
+
+	FILE* f = infile;
+	if (!f)
+		return -1;
+
+	fseek(f, 0, SEEK_END);
+	long file_size = ftell(f);
+	fseek(f, 0, SEEK_SET);
+
+	if (file_size <= 0)
+		return -1;
+
+	std::vector<uint8_t> data(file_size);
+	if (fread(data.data(), 1, file_size, f) != (size_t)file_size)
+		return -1;
+
+	int width = 0, height = 0;
+	WebPBitstreamFeatures features;
+	if (WebPGetFeatures(data.data(), data.size(), &features) != VP8_STATUS_OK) {
+		eWarning("[loadWEBP] WebP decode failed: %s", filename);
+		return -1;
+	}
+
+	uint8_t* decoded = WebPDecodeRGBA(data.data(), data.size(), &width, &height);
+	if (!decoded) {
+		eWarning("[loadWEBP] WebP decode failed: %s", filename);
+		return -1;
+	}
+
+	result = new gPixmap(width, height, 32, cached ? PixmapCache::PixmapDisposed : NULL);
+	result->surface->transparent = features.has_alpha;
+
+	unsigned char* dst = (unsigned char*)result->surface->data;
+	int stride = result->surface->stride;
+	for (int y = 0; y < height; ++y)
+		memcpy(dst + y * stride, decoded + y * width * 4, width * 4);
+
+	WebPFree(decoded);
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
+	return 0;
+}
+
+int loadImage(ePtr<gPixmap>& result, const char* filename, int accel, int width, int height, int cached, float scale, int keepAspect, int align, bool autoDetect) {
+	int detect = -1;
+	if (autoDetect)
+		detect = detectImageType(filename);
+
+	if (detect == F_PNG || endsWith(filename, ".png"))
 		return loadPNG(result, filename, accel, cached == -1 ? 1 : cached);
-	else if (endsWith(filename, ".svg"))
+	else if (detect == F_SVG || endsWith(filename, ".svg"))
 		return loadSVG(result, filename, cached == -1 ? 1 : cached, width, height, scale, keepAspect, align);
-	else if (endsWith(filename, ".jpg"))
+	else if (detect == F_JPEG || endsWith(filename, ".jpg"))
 		return loadJPG(result, filename, cached == -1 ? 0 : cached);
-	else if (endsWith(filename, ".gif"))
+	else if (detect == F_GIF || endsWith(filename, ".gif"))
 		return loadGIF(result, filename, accel, cached == -1 ? 0 : cached);
+	else if (detect == F_WEBP || endsWith(filename, ".webp"))
+		return loadWEBP(result, filename, cached == -1 ? 0 : cached);
 	return 0;
 }
 
