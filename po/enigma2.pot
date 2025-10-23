@@ -17506,6 +17506,9 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr ""
 
+msgid "Show VBI Line For This Service"
+msgstr ""
+
 msgid "Show vertical Program Guide"
 msgstr ""
 
@@ -17518,11 +17521,8 @@ msgstr ""
 msgid "Show watch status"
 msgstr ""
 
-msgid "Show VBI Line For This Service"
-msgstr ""
-
-msgid "Show/Games show"
-msgstr ""
+msgid "Show/Game show"
+msgid ""
 
 msgid "Show/Hide Actions"
 msgstr ""

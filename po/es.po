@@ -20664,8 +20664,8 @@ msgstr "Mostrar tipo de reloj"
 msgid "Show VBI Line For This Service"
 msgstr "Mostrar línea VBI para este servicio"
 
-msgid "Show/Games show"
-msgstr "Mostrar juegos"
+msgid "Show/Game show"
+msgstr "Programa de espectáculos/programa de juegos"
 
 msgid "Show/Hide focus bar"
 msgstr "Mostrar/Ocultar barra de enfoque"

@@ -17782,7 +17782,7 @@ msgstr "Показать предупреждение при остановке 
 msgid "Show watch status"
 msgstr "Статус иконок в списке записей"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Шоу/Игровое шоу"
 
 msgid "Show/Hide focus bar"

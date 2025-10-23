@@ -17576,7 +17576,7 @@ msgstr "Vis varsling når timeskift stoppes"
 msgid "Show watch status"
 msgstr "Vis avspillings indikator i opptaksliste"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr ""
 
 msgid "Show/Hide focus bar"
