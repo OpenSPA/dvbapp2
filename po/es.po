@@ -8263,21 +8263,14 @@ msgstr "Por favor, ponga el pin correcto"
 msgid "Enter pin code"
 msgstr "Introduce el código pin"
 
-msgid ""
-"Enter the frequency at which you LNB switches between low band and high "
-"band. For more information consult the specifications of your LNB."
-msgstr ""
-"Introducir la frecuencia a la que su LNB cambia entre banda baja y alta. "
-"Para más información consulte la hoja de especificaciones de su LNB."
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Introduzca la duración que se añadirá al búfer de streaming tras un error. Este búfer adicional puede ayudar a evitar problemas de steaming adicionales por falta de espacio."
 
-msgid ""
-"Enter the frequency step size for the tuner to use when searching for cable "
-"multiplexes. For more information consult your cable provider's "
-"documentation."
-msgstr ""
-"Introducir el tamaño del paso de frecuencia que el sintonizador deba usar "
-"cuando busque los múltiplex de cable. Para más información, consulte la "
-"documentación de su proveedor de cable."
+msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
+msgstr "Introducir la frecuencia a la que su LNB cambia entre banda baja y alta. Para más información consulte la hoja de especificaciones de su LNB."
+
+msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
+msgstr "Introducir el tamaño del paso de frecuencia que el sintonizador deba usar cuando busque los múltiplex de cable. Para más información, consulte la documentación de su proveedor de cable."
 
 msgid ""
 "Enter the number stored in the positioner that corresponds to this satellite."
@@ -20664,8 +20657,8 @@ msgstr "Mostrar tipo de reloj"
 msgid "Show VBI Line For This Service"
 msgstr "Mostrar línea VBI para este servicio"
 
-msgid "Show/Games show"
-msgstr "Mostrar juegos"
+msgid "Show/Game show"
+msgstr "Programa de espectáculos/programa de juegos"
 
 msgid "Show/Hide focus bar"
 msgstr "Mostrar/Ocultar barra de enfoque"
@@ -21309,6 +21302,9 @@ msgstr "Español/Castellano"
 msgid "Special"
 msgstr "Especial"
 
+msgid "Special characteristics"
+msgstr "Características especiales"
+
 msgid "Special 1"
 msgstr "Especial 1"
 
@@ -21679,9 +21675,11 @@ msgstr "Acciones de información de streaming"
 msgid "Streaming Tuner Information"
 msgstr "Información sintonizador de streaming"
 
-#
 msgid "Streaming recording ended"
-msgstr "Grabación stream finalizada"
+msgstr "Grabación streaming finalizada"
+
+msgid "Streaming recovery delay"
+msgstr "Retraso en la recuperación straming"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"

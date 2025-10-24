@@ -19598,8 +19598,11 @@ msgstr "Mostra l’avís quan s’atura el torn horari"
 msgid "Show watch status"
 msgstr "Mostra les icones d’estat a movielist"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Espectacle/Espectacle de jocs"
+
+msgid "Show/Hide Actions"
+msgstr "Mostrar/Ocultar Acciones"
 
 msgid "Show/Hide focus bar"
 msgstr "Mostrar/Ocultar barra de focus"
