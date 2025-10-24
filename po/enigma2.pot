@@ -4723,6 +4723,9 @@ msgstr ""
 msgid "Console Utility Packages"
 msgstr ""
 
+msgid "Constcw"
+msgstr ""
+
 msgid "Constellation"
 msgstr ""
 

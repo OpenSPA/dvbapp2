@@ -3373,6 +3373,9 @@ msgstr "Azul"
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
+msgid "Bluetooth Audio"
+msgstr "Audio Bluetooth"
+
 # Quick Menue
 msgid "Bluetooth Setup"
 msgstr "Ajuste de Bluetooth"
@@ -4011,6 +4014,10 @@ msgstr "Capacidad: "
 
 msgid "Cape Verde"
 msgstr "Cabo Verde"
+
+#, python-format
+msgid "Card reader %d"
+msgstr "Lector de tarjeta %d"
 
 msgid "Cards: "
 msgstr "Tarjetas: "
@@ -5560,6 +5567,12 @@ msgstr "Paquetes de consola"
 
 msgid "Console Utility Packages"
 msgstr "Paquetes de utilidades de consola"
+
+msgid "Constcw"
+msgstr "Constcw"
+
+msgid "Constellation"
+msgstr "Constelación"
 
 #
 msgid "Constellation & FFT mode"
@@ -7591,6 +7604,9 @@ msgstr "Acciones de la EPG"
 msgid "EPG Bouquet Actions"
 msgstr "Acciones EPG de la lista"
 
+msgid "EPG button mode"
+msgstr "Modo de la tecla EPG"
+
 msgid "EPG Cache Check"
 msgstr "Verificación de caché EPG"
 
@@ -7599,6 +7615,9 @@ msgstr "Selección de canales/servicios de la EPG"
 
 msgid "EPG Display Actions"
 msgstr "Acciones de visualización de la EPG"
+
+msgid "EPG filename"
+msgstr "Nombre de archivo EPG"
 
 msgid "EPG history"
 msgstr "Historial de la EPG"
@@ -7628,12 +7647,6 @@ msgstr "Ajustes de EPG"
 
 msgid "EPG Setup"
 msgstr "Configuración de EPG"
-
-msgid "EPG button mode"
-msgstr "Modo de la tecla EPG"
-
-msgid "EPG filename"
-msgstr "Nombre de archivo EPG"
 
 msgid ""
 "EPG key : Switch to channel list\n"
@@ -7806,6 +7819,9 @@ msgstr "Vacío"
 
 msgid "Empty file"
 msgstr "Archivo vacío"
+
+msgid "Emulator"
+msgstr "Emulador"
 
 #
 msgid "Enable"
@@ -10141,6 +10157,9 @@ msgstr "Altura"
 
 msgid "Help"
 msgstr "Ayuda"
+
+msgid "Help Action"
+msgstr "Acción de Ayuda"
 
 msgid "Help Screen Information"
 msgstr "Información de la pantalla de ayuda"
@@ -14470,6 +14489,9 @@ msgstr "PCR PID"
 msgid "PDC"
 msgstr "PDC"
 
+msgid "PG - Parental Guidance"
+msgstr "PG - Orientación parental"
+
 msgid "PGS file"
 msgstr "Archivo PGS"
 
@@ -18242,9 +18264,6 @@ msgstr "Selecciona archivos a excluir en el backup"
 msgid "Select files/folders to backup"
 msgstr "Seleccione archivos/carpetas para el backup"
 
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Seleccione cuánto historial de la EPG, si lo hay, se guardará en la caché de la EPG. Estos datos históricos se pueden consultar en cualquier vista de la EPG. Esto puede ser útil para obtener información sobre un evento finalizado."
-
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Seleccione cuánto tiempo la imagen del protector de pantalla permanecerá en la misma ubicación en la pantalla antes de ser movida."
 
@@ -18266,6 +18285,9 @@ msgstr ""
 
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Seleccione durante cuánto tiempo, en segundos, se mostrarán las pantallas de volumen y silencio antes de que se oculten automáticamente."
+
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Elija la cuanto historial de la EPG desea ver, en caso de que haya alguno, para mantenerlo en la caché de la EPG. Estos datos históricos se pueden consultar en cualquiera de las vistas de la EPG. Esto puede ser útil cuando se necesita información sobre un evento que ha terminado recientemente."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Seleccione la frecuencia con la que se debe repetir este temporizador."
@@ -21679,7 +21701,7 @@ msgid "Streaming recording ended"
 msgstr "Grabación streaming finalizada"
 
 msgid "Streaming recovery delay"
-msgstr "Retraso en la recuperación straming"
+msgstr "Retraso en la recuperación del streaming"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -21790,6 +21812,15 @@ msgstr "Conseguido:"
 
 msgid "Sudan"
 msgstr "Sudan"
+
+msgid "Suitable for ages 12+"
+msgstr "Apta para mayores de 12+"
+
+msgid "Suitable for ages 15+"
+msgstr "Apta para mayores de 15+"
+
+msgid "Suitable only for Adults"
+msgstr "Apta solo para adultos"
 
 #
 msgid "Sun"
@@ -24046,14 +24077,18 @@ msgstr "URL del receptor reserva"
 msgid "USALS"
 msgstr "USALS"
 
-msgid ""
-"USALS automatically moves a motorized dish to the correct satellite based on "
-"the coordinates entered by the user. Without USALS each satellite will need "
-"to be setup and saved individually."
-msgstr ""
-"USALS mueve automáticamente una antena motorizada al satélite correcto "
-"basado en las coordenadas introducidas por el usuario. Sin USALS se "
-"necesitará configurar y guardar individualmente cada satélite."
+msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
+msgstr "USALS mueve automáticamente una antena motorizada al satélite correcto basado en las coordenadas introducidas por el usuario. Sin USALS se necesitará configurar y guardar individualmente cada satélite."
+
+msgid "U - Suitable for all"
+msgstr "U - Apta para todos"
+
+#, python-format
+msgid "UBI slot %s%s"
+msgstr "Slot UBI %s%s"
+
+msgid "USB reader %d"
+msgstr "Lector USB %d"
 
 #, python-format
 msgid "USB slot %s%s"
