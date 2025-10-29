@@ -14046,6 +14046,12 @@ msgstr "OScam webif desactivado"
 msgid "OSCamInfo Actions"
 msgstr "OSCam Info Acciones"
 
+msgid "OSCamInfo Capability Actions"
+msgstr "OSCamInfo Acciones Capacidades"
+
+msgid "OSCamInfo: Capabilities"
+msgstr "OSCamInfo: Capacidades"
+
 msgid "OSCamInfo Log Actions"
 msgstr "Acciones Log OScam Info"
 
@@ -14219,6 +14225,9 @@ msgstr "Abrir lista de temporizadores"
 #
 msgid "Open Bouquet selection"
 msgstr "Selección de favoritos abiertos"
+
+msgid "Open Capability"
+msgstr "Capacidad abierta"
 
 msgid "Open context menu"
 msgstr "Abrir el menú contextual"
@@ -19962,6 +19971,9 @@ msgstr "Mostrar lista de autotemporizadores"
 
 msgid "Open Box Portal"
 msgstr "Mostrar portal Box"
+
+msgid "Show Capabilities"
+msgstr "Mostrar capacidades"
 
 msgid "Show CCcam Info"
 msgstr "Mostrar Info CCcam"
@@ -28776,6 +28788,9 @@ msgstr ""
 
 msgid "Yes, and don't ask again for this session"
 msgstr "Sí, y no preguntar de nuevo en esta sesión"
+
+msgid "<no capabilities found>"
+msgstr "<No se encontraron capacidades>"
 
 msgid "<Select a device>"
 msgstr "<Seleccione un dispositivo>"

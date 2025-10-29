@@ -12084,7 +12084,13 @@ msgstr ""
 msgid "OSCamInfo Actions"
 msgstr ""
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
+msgstr ""
+
+msgid "OSCamInfo: Capabilities"
 msgstr ""
 
 #, python-format
@@ -12228,6 +12234,9 @@ msgid "Open Bouquet selection"
 msgstr ""
 
 msgid "Open Box Portal"
+msgstr ""
+
+msgid "Open Capability"
 msgstr ""
 
 msgid "Open EPG"
@@ -16902,6 +16911,9 @@ msgid "Show Audioselection"
 msgstr ""
 
 msgid "Show AutoTimer List"
+msgstr ""
+
+msgid "Show Capabilities"
 msgstr ""
 
 msgid "Show CCcam Info"
@@ -24176,6 +24188,9 @@ msgid "Are you sure to continue? Images were lost in slots 1 to 3"
 msgstr ""
 
 msgid "Yes, and don't ask again for this session"
+msgstr ""
+
+msgid "<no capabilities found>"
 msgstr ""
 
 msgid "<Select a device>"
