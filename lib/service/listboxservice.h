@@ -89,6 +89,7 @@ public:
 		pic3D,   // OPENSPA [morser] Add for service quality picons
 		picIPTV, // OPENSPA [morser] Add for service quality picons
 		picNone, // OPENSPA [morser] Add for service quality picons
+		picCatchup,
 		picElements
 	};
 
