@@ -850,7 +850,7 @@ class OSCamInfoCapability(Screen, OSCamGlobals):
 			"up": (self.keyPageUp, _("Move up a page")),
 			"down": (self.keyPageDown, _("Move down a page")),
 			"pageDown": (self.keyPageDown, _("Move down a page"))
-			}, prio=1, description=_("OSCamInfo Capability Actions"))
+		}, prio=1, description=_("OSCamInfo Capability Actions"))
 		self.onLayoutFinish.append(self.onLayoutFinished)
 
 	def onLayoutFinished(self):
