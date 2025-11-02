@@ -4,11 +4,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2016-04-02 23:16+0200\n"
-"Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
-"Language-Team: jurica@dream-multimedia.eu\n"
-"Language: hr_HR\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2024-11-03 19:00+0000\n"
+"Last-Translator: Dejan <pitbul@vip.hr>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -7708,6 +7708,9 @@ msgid "Enter pin code"
 msgstr ""
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
@@ -19738,6 +19741,9 @@ msgstr ""
 msgid "Special Features Settings"
 msgstr ""
 
+msgid "Special characteristics"
+msgstr ""
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
@@ -20115,6 +20121,9 @@ msgstr ""
 #, fuzzy
 msgid "Streaming recording ended"
 msgstr "Molim promjenite završno vijeme snimanja"
+
+msgid "Streaming recovery delay"
+msgstr ""
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
