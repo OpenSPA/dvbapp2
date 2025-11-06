@@ -12102,11 +12102,11 @@ msgstr ""
 msgid "OSCamInfo Log Actions"
 msgstr ""
 
-msgid "OSCamInfo: Capabilities"
-msgstr ""
-
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Capabilities"
 msgstr ""
 
 #, python-format
@@ -15845,7 +15845,7 @@ msgstr ""
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
 
-msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr ""
 
 msgid "Select the mountpoint for the device."
@@ -15889,9 +15889,6 @@ msgid "Select the action for '%s'"
 msgstr ""
 
 msgid "Select the AI-Powered Translation target language."
-msgstr ""
-
-msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr ""
 
 msgid "Select the channel from which to record:"
@@ -15978,6 +15975,9 @@ msgstr ""
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -16048,6 +16048,9 @@ msgstr ""
 msgid "Select the next item in the list"
 msgstr ""
 
+msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
+msgstr ""
+
 msgid "Select the previous item in list or move the cursor left"
 msgstr ""
 
@@ -16100,6 +16103,9 @@ msgid "Select the sort order of the menu entries. User defined also allows the m
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
+msgstr ""
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -16943,9 +16949,6 @@ msgstr ""
 msgid "Show AutoTimer List"
 msgstr ""
 
-msgid "Show Capabilities"
-msgstr ""
-
 msgid "Show CCcam Info"
 msgstr ""
 
@@ -16953,6 +16956,9 @@ msgid "Show CCcam in extensions"
 msgstr ""
 
 msgid "Show CI messages"
+msgstr ""
+
+msgid "Show Capabilities"
 msgstr ""
 
 msgid "Show Default Backup Files"
@@ -18241,10 +18247,10 @@ msgstr ""
 msgid "Standby"
 msgstr ""
 
-msgid "Standby execution"
+msgid "Standby / Restart"
 msgstr ""
 
-msgid "Standby / Restart"
+msgid "Standby execution"
 msgstr ""
 
 msgid "Standby without TV shut down"
