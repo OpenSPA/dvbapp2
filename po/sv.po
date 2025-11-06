@@ -13446,8 +13446,8 @@ msgstr "endast HD"
 msgid "Only free scan"
 msgstr "Bara fri sökning"
 
-msgid "Only in standby"
-msgstr ""
+msgid "Only in Standby"
+msgstr "Endast i standby"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr ""
