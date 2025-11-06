@@ -11707,6 +11707,9 @@ msgstr "Etiqueta"
 msgid "Language"
 msgstr "Idioma"
 
+msgid "Languages"
+msgstr "Idiomas"
+
 #, python-format
 msgid "Language %s (%s) installed and selected."
 msgstr "Idioma %s (%s) instalado y seleccionado."
@@ -26784,17 +26787,17 @@ msgstr "Añadir a protección parental"
 msgid "address:"
 msgstr "Dirección:"
 
-msgid "adult movie/drama"
-msgstr "Película para adultos / drama"
+msgid "Adult movie/Drama"
+msgstr "Película para adultos/Drama"
 
 msgid "advanced"
 msgstr "avanzado"
 
-msgid "adventure/western/war"
-msgstr "Aventura occidental guerra"
+msgid "Adventure/Western/War"
+msgstr "Aventura/Oeste/Guerra"
 
-msgid "advertisement/shopping"
-msgstr "Publicidad / compras"
+msgid "Advertisement/Shopping"
+msgstr "Publicidad/Compras"
 
 msgid "All up/down"
 msgstr "Todo arriba/abajo"
@@ -26833,8 +26836,8 @@ msgstr "Arte/cultura (general)"
 msgid "arts/culture (without music, general)"
 msgstr "Artes / cultura (sin música, general)"
 
-msgid "arts/culture magazine"
-msgstr "Revista de artes y cultura"
+msgid "Arts/Culture magazines"
+msgstr "Revistas de artes y cultura"
 
 msgid "athletics"
 msgstr "atletismo"
@@ -26883,8 +26886,8 @@ msgstr "Mejor"
 msgid "black"
 msgstr "Negro"
 
-msgid "black & white"
-msgstr "blanco y negro"
+msgid "Black & White"
+msgstr "Blanco y Negro"
 
 #
 msgid "blacklist"
@@ -26894,8 +26897,8 @@ msgstr "Lista negra"
 msgid "blue"
 msgstr "Azul"
 
-msgid "broadcasting/press"
-msgstr "prensa/redifusión"
+msgid "Broadcasting/Press"
+msgstr "Radiodifusión/Prensa"
 
 #
 #, python-format
@@ -26920,8 +26923,8 @@ msgstr "Lector de tarjetas"
 msgid "cardserver"
 msgstr ""
 
-msgid "cartoon/puppets"
-msgstr "dibujos animados/marionetas"
+msgid "Cartoons/Puppets"
+msgstr "Dibujos animados/Marionetas"
 
 #
 msgid "chapters"
@@ -26995,8 +26998,8 @@ msgstr "Borrar corte"
 msgid "deleted"
 msgstr "eliminado"
 
-msgid "detective/thriller"
-msgstr "investigación/thriller"
+msgid "Detective/Thriller"
+msgstr "Investigación/Thriller"
 
 #
 msgid "Disable Move Mode"
@@ -27010,8 +27013,8 @@ msgstr "Deshabilitado"
 msgid "disconnected"
 msgstr "Desconectado"
 
-msgid "discussion/interview/debate"
-msgstr "debate/entrevista/discusión"
+msgid "Discussion/Interview/Debate"
+msgstr "Debate/Entrevista/Discusión"
 
 msgid "documentary"
 msgstr "documental"
@@ -27041,8 +27044,8 @@ msgstr "ecm time:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-msgid "economics/social advisory"
-msgstr "economía/asesores"
+msgid "Economics/Social advisory"
+msgstr "Economía/Asesores"
 
 #
 msgid "Edit Alternatives"
@@ -27108,8 +27111,8 @@ msgstr "Entretenimiento (general)"
 msgid "equal to"
 msgstr "igual a"
 
-msgid "equestrian"
-msgstr "ecuestre"
+msgid "Equestrian"
+msgstr "Ecuestre"
 
 msgid "error starting scanning"
 msgstr "Error iniciando la exploración"
@@ -27124,8 +27127,8 @@ msgstr "Ejecutar cortes (requiere MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "Salir del reproductor de DVD o volver al navegador de archivos"
 
-msgid "experimental film/video"
-msgstr "cine/video experimental"
+msgid "Experimental film/video"
+msgstr "Cine/Video experimental"
 
 msgid "extensions."
 msgstr "Extensiones."
@@ -27137,8 +27140,8 @@ msgstr "Conectado externamente a"
 msgid "failed"
 msgstr "Fallido"
 
-msgid "fashion"
-msgstr "mora"
+msgid "Fashion"
+msgstr "Mora"
 
 msgid "file can not displayed - file not found"
 msgstr "el archivo no se puede mostrar - archivo no encontrado"
@@ -27151,17 +27154,17 @@ msgstr "Formatos de archivo (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "Nombre de archivo"
 
-msgid "film/cinema"
-msgstr "cine/películas"
+msgid "Film/Cinema"
+msgstr "Cine/Películas"
 
 msgid "Find Currently Playing Service"
 msgstr "Encontrar canal que se está reproduciendo"
 
-msgid "fine arts"
-msgstr "bellas artes"
+msgid "Fine arts"
+msgstr "Bellas artes"
 
-msgid "fitness & health"
-msgstr "ejercicio y salud"
+msgid "Fitness and Health"
+msgstr "Ejercicio y Salud"
 
 msgid "flat alphabetic"
 msgstr "Orden alfabético plano"
@@ -27169,14 +27172,14 @@ msgstr "Orden alfabético plano"
 msgid "flat alphabetic reverse"
 msgstr "Invertir a orden alfabético plano"
 
-msgid "folk/traditional music"
-msgstr "Música folklórica / tradicional"
+msgid "Folk/Traditional music"
+msgstr "Música folklórica/Tradicional"
 
-msgid "football/soccer"
-msgstr "fútbol Futbol"
+msgid "Football/Soccer"
+msgstr "Fútbol"
 
-msgid "foreign countries/expeditions"
-msgstr "Países extranjeros / expediciones"
+msgid "Foreign countries/Expeditions"
+msgstr "Países extranjeros/Expediciones"
 
 #
 msgid "forward to the next chapter"
@@ -27193,11 +27196,11 @@ msgstr "Espacio libre en disco"
 msgid "from"
 msgstr "de"
 
-msgid "further education"
-msgstr "educación avanzada"
+msgid "Further education"
+msgstr "Educación avanzada"
 
-msgid "game show/quiz/contest"
-msgstr "Concurso de juegos"
+msgid "Game show/Quiz/Contest"
+msgstr "Concurso de Preguntas y Respuestas"
 
 msgid "gardening"
 msgstr "jardinería"
@@ -27231,8 +27234,8 @@ msgstr "h:mmAM/PM"
 msgid "h:mmam/pm"
 msgstr "h:mmam/pm"
 
-msgid "handicraft"
-msgstr "artesanía"
+msgid "Handicraft"
+msgstr "Artesanía"
 
 msgid "handled"
 msgstr "Gestionado"
@@ -27335,11 +27338,11 @@ msgstr "Ocio aficiones (general)"
 msgid "length"
 msgstr "Longitud"
 
-msgid "literature"
-msgstr "literatura"
+msgid "Literature"
+msgstr "Literatura"
 
-msgid "live broadcast"
-msgstr "transmisión en vivo"
+msgid "Live broadcast"
+msgstr "Transmisión en vivo"
 
 #
 msgid "locked"
@@ -27351,18 +27354,18 @@ msgstr "largo"
 msgid "loopthrough to"
 msgstr "Conectado a"
 
-msgid "magazines/reports/documentary"
-msgstr "documentales/entrevistas/informes"
+msgid "Magazines/Reports/Documentary"
+msgstr "Documentales/Entrevistas/Informes"
 
 #
 msgid "manual"
 msgstr "Manual"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "Deportes marciales"
 
-msgid "medicine/physiology/psychology"
-msgstr "Medicina / fisiología / psicología"
+msgid "Medicine/Physiology/Psychology"
+msgstr "Medicina/Fisiología/Psicología"
 
 #
 msgid "min"
@@ -27375,8 +27378,8 @@ msgstr "Mes"
 msgid "motor sport"
 msgstr "Deporte de motor"
 
-msgid "motoring"
-msgstr "automovilismo"
+msgid "Motoring"
+msgstr "Automovilismo"
 
 msgid "move"
 msgstr "Mover"
@@ -27405,8 +27408,8 @@ msgstr "Música (general)"
 msgid "music/ballet/dance (general)"
 msgstr "Música / ballet / danza (general)"
 
-msgid "musical/opera"
-msgstr "musical/opera"
+msgid "Musical/Opera"
+msgstr "Musical/Opera"
 
 msgid "n/a"
 msgstr "N/A"
@@ -27414,23 +27417,23 @@ msgstr "N/A"
 msgid "name"
 msgstr "nombre"
 
-msgid "nature/animals/environment"
-msgstr "Naturaleza / animales / recurso ambiente"
+msgid "Nature/Animals/Environment"
+msgstr "Naturaleza/Animales/Recurso ambiente"
 
-msgid "new media"
-msgstr "nuevos recursos de comunicacion"
+msgid "New media"
+msgstr "Nuevos medios"
 
 msgid "news (general)"
 msgstr "Noticias (general)"
 
-msgid "news magazine"
-msgstr "revista de noticias"
+msgid "News magazine"
+msgstr "Revista de noticias"
 
 msgid "news/current affairs (general)"
-msgstr "Noticias / actualidad (general)"
+msgstr "Noticias/actualidad (general)"
 
-msgid "news/weather report"
-msgstr "Noticias / informe meteorológico"
+msgid "News/Weather report"
+msgstr "Noticias/Informe meteorológico"
 
 #
 msgid "no CAId selected"
@@ -27527,8 +27530,8 @@ msgstr "paquetes seleccionados."
 msgid "pass"
 msgstr "Paso"
 
-msgid "performing arts"
-msgstr "las artes escénicas"
+msgid "Performing arts"
+msgstr "Las artes escénicas"
 
 msgid "pid:"
 msgstr "pid:"
@@ -27560,8 +27563,8 @@ msgstr "plugins"
 msgid "pm"
 msgstr "pm"
 
-msgid "popular culture/traditional arts"
-msgstr "Cultura popular / artes tradicionales"
+msgid "Popular culture/Traditional arts"
+msgstr "Cultura popular/Artes tradicionales"
 
 msgid "pre-school children's program"
 msgstr "Programa infantil de preescolar"
@@ -27589,8 +27592,8 @@ msgstr "confiable, resintonizar"
 msgid "religion"
 msgstr "religión"
 
-msgid "remarkable people"
-msgstr "gente destacada"
+msgid "Remarkable people"
+msgstr "Gente destacada"
 
 #
 msgid "remove after this position"
@@ -27670,8 +27673,8 @@ msgstr "Rebobinar al capítulo anterior"
 msgid "right"
 msgstr "derecha"
 
-msgid "rock/pop"
-msgstr "rock/pop"
+msgid "Rock/Pop"
+msgstr "Rock/Pop"
 
 msgid "romance"
 msgstr "romance"
@@ -27691,8 +27694,8 @@ msgstr ""
 msgid "scan state"
 msgstr "Estado de la búsqueda"
 
-msgid "science fiction/fantasy/horror"
-msgstr "Ciencia ficción / fantasía / horror"
+msgid "Science fiction/Fantasy/Horror"
+msgstr "Ciencia ficción/Fantasía/Miedo"
 
 msgid "search EPG..."
 msgstr "Búsqueda EPG ..."
@@ -27701,11 +27704,11 @@ msgstr "Búsqueda EPG ..."
 msgid "select CAId's"
 msgstr "Seleccionar CAId's"
 
-msgid "serious music/classic music"
-msgstr "Música seria / música clásica"
+msgid "Serious music/Classic music"
+msgstr "Música seria/Música clásica"
 
-msgid "serious/classical/religious/historical movie/drama"
-msgstr "Seria / clásica / religiosa / película histórica / drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
+msgstr "Seria/Clásica/Religiosa/Película histórica/Drama"
 
 msgid "service PIN"
 msgstr "PIN del canal"
@@ -27783,14 +27786,14 @@ msgstr "Salto adelante (introducir tiempo)"
 msgid "slow"
 msgstr "Lento"
 
-msgid "soap/melodrama/folkloric"
-msgstr "Jabón / melodram / folclórico"
+msgid "Soap/Melodrama/Folkloric"
+msgstr "Jabón/Melodrama/Folclórico"
 
 msgid "social/political issues/economics (general)"
 msgstr "Cuestiones sociales / políticas / economía (general)"
 
-msgid "social/spiritual science"
-msgstr "Ciencia social / espiritual"
+msgid "Social/Spiritual sciences"
+msgstr "Ciencia social/Espiritual"
 
 msgid "softcam"
 msgstr "softcam"
@@ -27807,7 +27810,7 @@ msgstr "Deportes (general)"
 msgid "sports (general)"
 msgstr "Deportes (general)"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "Revista de deportes"
 
 #
@@ -27856,8 +27859,8 @@ msgstr "programa de entrevistas"
 msgid "team sports"
 msgstr "deportes de equipo"
 
-msgid "technology/natural science"
-msgstr "Tecnología / ciencia natural"
+msgid "Technology/Natural sciences"
+msgstr "Tecnología/Ciencias naturales"
 
 msgid "teletext"
 msgstr "Teletexto"
@@ -27866,8 +27869,8 @@ msgstr "Teletexto"
 msgid "template file"
 msgstr "Archivo de plantilla"
 
-msgid "tennis/squash"
-msgstr "tenis/squash"
+msgid "Tennis/Squash"
+msgstr "Tenis/Squash"
 
 msgid "text"
 msgstr "texto"
@@ -27880,8 +27883,8 @@ msgstr "Esta grabación"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Configurar hora, capítulo, audio, información de subtítulos"
 
-msgid "tourism/travel"
-msgstr "viajes/turismo"
+msgid "Tourism/Travel"
+msgstr "Viajes/Turismo"
 
 msgid "traditional (fast)"
 msgstr "tradicional (rápido)"
@@ -27935,8 +27938,8 @@ msgstr "Desconocido"
 msgid "unknown error"
 msgstr "Error desconocido"
 
-msgid "unpublished"
-msgstr "no publicado"
+msgid "Unpublished"
+msgstr "No publicado"
 
 #
 msgid "untestable"
@@ -27962,8 +27965,8 @@ msgstr "definido por el usuario"
 msgid "using:"
 msgstr "Utilizando:"
 
-msgid "variety show"
-msgstr "show de variedades"
+msgid "Variety show"
+msgstr "Espectáculo de variedades"
 
 #
 msgid "view extensions..."
@@ -27976,8 +27979,8 @@ msgstr "violeta"
 msgid "wait for mmi..."
 msgstr "esperar a MMI…"
 
-msgid "water sport"
-msgstr "deportes acuáticos"
+msgid "Water sport"
+msgstr "Deportes acuáticos"
 
 msgid "west"
 msgstr "oeste"
@@ -27997,8 +28000,8 @@ msgstr ""
 msgid "width"
 msgstr "Ancho"
 
-msgid "winter sport"
-msgstr "deportes de invierno"
+msgid "Winter sport"
+msgstr "Deportes de invierno"
 
 msgid "wireless network interface"
 msgstr "Interfaz inalámbrica de red"
