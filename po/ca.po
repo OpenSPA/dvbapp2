@@ -13659,7 +13659,7 @@ msgstr "només HD"
 msgid "Only free scan"
 msgstr "Només exploració gratuïta"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "Només en repòs"
 
 msgid ""

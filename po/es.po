@@ -5537,6 +5537,9 @@ msgstr "Clientes conectados"
 msgid "Connected satellites"
 msgstr "Satélites conectados"
 
+msgid "Connected through another tuner"
+msgstr "Conectado a través de otro sintonizador"
+
 #
 msgid "Connected to"
 msgstr "Conectado a"
@@ -8517,6 +8520,12 @@ msgstr "Error al abrir el archivo de grabación"
 msgid "Error reading webpage!"
 msgstr "¡Error leyendo la página web!"
 
+msgid "Error Retry count"
+msgstr "Recuento de reintentos de error"
+
+msgid "Error Retry delay"
+msgstr "Retraso de reintento por error"
+
 msgid "Error text:"
 msgstr "Texto de error :"
 
@@ -10780,6 +10789,9 @@ msgstr "Ignorar la subred del espacio DVB-S"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignorar la subred del espacio DVB-T"
+
+msgid "Ignore Standby"
+msgstr "Ignorar en reposo"
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Ignorar el encendido inesperado y permanecer en reposo"
@@ -13411,6 +13423,9 @@ msgstr "Nunca descifre el contenido durante la grabación. Esto anula la configu
 msgid "Never decrypt while recording"
 msgstr "Nunca descifrar durante la grabación"
 
+msgid "Never in Standby"
+msgstr "Nunca en reposo"
+
 #
 msgid "New"
 msgstr "Nuevo"
@@ -14171,7 +14186,7 @@ msgstr "Solo HD"
 msgid "Only free scan"
 msgstr "Solo canales FTA"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "Solo en reposo"
 
 msgid ""
@@ -18279,13 +18294,8 @@ msgstr "Seleccione cuánto tiempo la imagen del protector de pantalla permanecer
 msgid "Select how long to display status messages."
 msgstr "Selecciona cuánto tiempo quieres mostrar los mensajes de estado."
 
-msgid ""
-"Select how long to display the button error pop up. Button input is still "
-"permitted while the pop up is displayed."
-msgstr ""
-"Seleccione cuánto tiempo se mostrará la ventana emergente de error del "
-"botón. La entrada a traves de los botones sigue estando permitida mientras "
-"se muestra la ventana emergente."
+msgid "Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed."
+msgstr "Seleccione cuánto tiempo se mostrará la ventana emergente de error del botón. La entrada a traves de los botones sigue estando permitida mientras se muestra la ventana emergente."
 
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
@@ -18312,12 +18322,11 @@ msgstr "Seleccione cómo actuarán los botones de flecha ('ARRIBA', 'ABAJO', 'IZ
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Seleccione cómo actuarán los botones numéricos durante las acciones de búsqueda."
 
-msgid ""
-"Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC "
-"switch, positioner, etc."
-msgstr ""
-"Seleccione cómo está configurada la antena parabólica, es decir, antena "
-"fija, LNB único, interruptor DiSEqC, posicionador, etc."
+msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
+msgstr "Seleccione cómo está configurada la antena parabólica, es decir, antena fija, LNB único, interruptor DiSEqC, posicionador, etc."
+
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr "Seleccione cómo se gestiona la programación con respecto al modo de espera."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleccione cómo activar el modo EPG rápido."
@@ -18459,11 +18468,20 @@ msgstr "Seleccione la entrada %s"
 msgid "Select the access mode for the automatically exported samba shares."
 msgstr "Seleccione el modo de acceso para los recursos compartidos de Samba exportados automáticamente."
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr "Seleccione el tiempo que debe transcurrir después de un error en la tarea antes de intentar ejecutarla de nuevo."
+
 msgid "Select the currently highlighted service and exit"
 msgstr "Seleccione el servicio actualmente resaltado y salga"
 
 msgid "Select the currently highlighted timer"
 msgstr "Seleccione el temporizador resaltado actualmente"
+
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr "Seleccione la hora límite para activar este temporizador. Pasada esta hora, el temporizador no se activará aunque se cumplan otras condiciones."
+
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Seleccione la lista de reglas LCN que se aplicarán a la búsqueda."
 
 msgid "Select the mountpoint for the device."
 msgstr "Seleccione el punto de montaje para el dispositivo."
@@ -18471,60 +18489,39 @@ msgstr "Seleccione el punto de montaje para el dispositivo."
 msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""
 
+msgid "Select the refresh rate to be used on the TV."
+msgstr "Seleccione la tasa de refresco que se usará en la TV."
 #
+
+msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
+msgstr "Seleccione la hora de inicio a partir de la cual se activará este temporizador. Antes de esta hora, el temporizador no se activará aunque se cumplan otras condiciones."
+
 msgid "Select the Swap File Size:"
 msgstr "Seleccione el tamaño de la memoria Swap:"
 
-msgid ""
-"Select the Unicable channel to be assigned to this tuner. This is a unique "
-"value. Be certain that no other device connected to this same Unicable "
-"system is allocated to the same Unicable channel."
-msgstr ""
-"Seleccione el canal Unicable que se asignará a este sintonizador. Este es un "
-"valor único. Asegúrese de que ningún otro dispositivo conectado a este mismo "
-"sistema Unicable esté asignado al mismo canal Unicable."
+msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
+msgstr "Seleccione el modo de vídeo que se usará en la TV.\n\nSi un modo de video provoca pérdida de señal:\nPulse prolongado EXIT."
 
-msgid ""
-"Select the User Band channel to be assigned to this tuner. This is an index "
-"into the table of frequencies the SCR LNB uses to pass the requested "
-"transponder to the tuner."
-msgstr ""
-"Seleccione el canal de Banda de Usuario que se asignará a este sintonizador. "
-"Se trata de un índice en la tabla de frecuencias que el LNB SCR utiliza para "
-"pasar el transpondedor solicitado al sintonizador."
+msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
+msgstr "Selecciona 'Sí' para activar nuevos temporizadores de zapeo para tener un tiempo de finalización activado y definido por defecto."
 
-msgid ""
-"Select the User Band channel to be assigned to this tuner. This is an index "
-"into the table of frequencies the SCR switch uses to pass the requested "
-"transponder to the tuner."
-msgstr ""
-"Seleccione el canal de Banda de Usuario que se asignará a este sintonizador. "
-"Se trata de un índice en la tabla de frecuencias que el conmutador SCR "
-"utiliza para pasar el transpondedor solicitado al sintonizador."
+msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
+msgstr "Seleccione el canal Unicable que se asignará a este sintonizador. Este es un valor único. Asegúrese de que ningún otro dispositivo conectado a este mismo sistema Unicable esté asignado al mismo canal Unicable."
 
-msgid ""
-"Select the User Band frequency to be assigned to this tuner. This is the "
-"frequency the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr ""
-"Seleccione la frecuencia de banda de usuario que se asignará a este "
-"sintonizador. Esta es la frecuencia que el LNB SCR utiliza para pasar el "
-"transpondedor solicitado al sintonizador."
+msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR LNB uses to pass the requested transponder to the tuner."
+msgstr "Seleccione el canal de Banda de Usuario que se asignará a este sintonizador. Se trata de un índice en la tabla de frecuencias que el LNB SCR utiliza para pasar el transpondedor solicitado al sintonizador."
 
-msgid ""
-"Select the User Band frequency to be assigned to this tuner. This is the "
-"frequency the SCR switch or SCR LNB uses to pass the requested transponder "
-"to the tuner."
-msgstr ""
-"Seleccione la frecuencia de banda de usuario que se asignará a este "
-"sintonizador. Esta es la frecuencia que el conmutador SCR o el LNB SCR "
-"utiliza para pasar el transpondedor solicitado al sintonizador."
+msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."
+msgstr "Seleccione el canal de Banda de Usuario que se asignará a este sintonizador. Se trata de un índice en la tabla de frecuencias que el conmutador SCR utiliza para pasar el transpondedor solicitado al sintonizador."
 
-msgid ""
-"Select the User Band frequency to be assigned to this tuner. This is the "
-"frequency the SCR switch uses to pass the requested transponder to the tuner."
-msgstr ""
-"Select the User Band frequency to be assigned to this tuner. This is the "
-"frequency the SCR switch uses to pass the requested transponder to the tuner."
+msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR LNB uses to pass the requested transponder to the tuner."
+msgstr "Seleccione la frecuencia de banda de usuario que se asignará a este sintonizador. Esta es la frecuencia que el LNB SCR utiliza para pasar el transpondedor solicitado al sintonizador."
+
+msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
+msgstr "Seleccione la frecuencia de banda de usuario que se asignará a este sintonizador. Esta es la frecuencia que el conmutador SCR o el LNB SCR utiliza para pasar el transpondedor solicitado al sintonizador."
+
+msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
+msgstr "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 
 msgid "Select the Yes / True response"
 msgstr "Seleccione respuesta Sí / Verdadero"
@@ -18757,6 +18754,9 @@ msgstr ""
 
 msgid "Select the next item in the list"
 msgstr "Seleccione el siguiente elemento de la lista"
+
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr "Seleccione el número de veces que se reintentará una tarea si se produce un error al ejecutarla."
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Seleccione la información de canal preferida para mostrar, además del número de canal, en la pantalla emergente de selección de canal."
@@ -21390,6 +21390,9 @@ msgstr "Estandar lista"
 msgid "Standby"
 msgstr "Reposo"
 
+msgid "Standby execution"
+msgstr "Ejecución en reposo"
+
 msgid "Standby / Restart"
 msgstr "Apagado / Reinicio"
 
@@ -21439,6 +21442,9 @@ msgstr "Iniciar o parar servicio"
 
 msgid "Start recording current event"
 msgstr "Iniciar grabación del evento actual"
+
+msgid "Start retry"
+msgstr "Reintentar iniciar"
 
 msgid "Start service"
 msgstr "Iniciar servicio"
@@ -23496,6 +23502,22 @@ msgstr "Marcador de línea de tiempo"
 msgid "Timeline scale"
 msgstr "Escala de tiempo"
 
+msgid "Timer edit"
+msgstr "Editar temporizador"
+
+msgid "Timer editor"
+msgstr "Editor de temporizador"
+
+msgid "Timer end window"
+msgstr "Ventana de fin de temporizador"
+
+#
+msgid "Timer entry"
+msgstr "Entrada de temporizador"
+
+msgid "Timer log"
+msgstr "Historial de temporizadores"
+
 msgid "Timer Log Actions"
 msgstr "Acciones log del temporizador"
 
@@ -23503,19 +23525,8 @@ msgstr "Acciones log del temporizador"
 msgid "Timer Sanity Error"
 msgstr "Error de temporizador"
 
-msgid "Timer edit"
-msgstr "Editar temporizador"
-
-msgid "Timer editor"
-msgstr "Editor de temporizador"
-
-#
-msgid "Timer entry"
-msgstr "Entrada de temporizador"
-
-#
-msgid "Timer log"
-msgstr "Historial de temporizadores"
+msgid "Timer start window"
+msgstr "Ventana de inicio del temporizador"
 
 #, python-format
 msgid ""
@@ -28901,25 +28912,6 @@ msgstr "Modo automático de vídeo seleccionado para la TV."
 msgid "Auto video mode selected"
 msgstr "Modo de vídeo automático seleccionado"
 
-msgid "Select the list of LCN rules to be applied to the scan."
-msgstr "Seleccione la lista de reglas LCN que se aplicarán a la búsqueda."
-
-msgid "Select the refresh rate to be used on the TV."
-msgstr "Seleccione la tasa de refresco que se usará en la TV."
-
-msgid "Select the video mode to be used on the TV.\n\nIf a video mode causes signal loss:\nLong press EXIT."
-msgstr "Seleccione el modo de vídeo que se usará en la TV.\n\nSi un modo de video provoca pérdida de señal:\nPulse prolongado EXIT."
-
-msgid "Connected through another tuner"
-msgstr "Conectado a través de otro sintonizador"
-
-msgid ""
-"Select 'Yes' to enable new Zap timers to have an end time turned on and "
-"defined by default."
-msgstr ""
-"Selecciona 'Sí' para activar nuevos temporizadores de zapeo para tener un "
-"tiempo de finalización activado y definido por defecto."
-
 msgid "Load EPG Cache"
 msgstr "Cargar caché EPG"
 
@@ -29525,6 +29517,9 @@ msgstr "Eliminar Plugin"
 
 msgid "Remove the selected list of plugins"
 msgstr "Eliminar la lista de plugins seleccionada"
+
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr "Seleccione 'Sí' para reprogramar la tarea para cuando el receptor entre o salga del modo de espera. El cambio de estado debe ocurrir dentro del intervalo de programación de la tarea; de lo contrario, la tarea no se ejecutará."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Selecciona 'Sí' para mostrar los paquetes 'dev', 'staticdev', 'dbg' y 'doc' en la pantalla de Descarga de Plugins."
