@@ -2383,7 +2383,7 @@ msgstr ""
 msgid "Always use smart1080p mode"
 msgstr ""
 
-msgid "American Football"
+msgid "American football"
 msgstr ""
 
 msgid "American Samoa"
@@ -5274,7 +5274,7 @@ msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "آدرس فعلی CEC"
 
 msgid "Current CEC address"
@@ -8316,7 +8316,7 @@ msgstr ""
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr ""
 
 msgid "Filter extensions"
@@ -8700,7 +8700,7 @@ msgstr ""
 msgid "Gambia"
 msgstr ""
 
-msgid "Game Show"
+msgid "Game show"
 msgstr ""
 
 #, fuzzy
@@ -9314,7 +9314,7 @@ msgstr "سرعت چرخش افقی"
 msgid "Horror"
 msgstr "خطا"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr ""
 
 msgid "Hostname"
@@ -11244,7 +11244,7 @@ msgid "Middle - Lite image"
 msgstr ""
 
 #, fuzzy
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "کانال ها"
 
 msgid "MiniDLNA"
@@ -14429,7 +14429,7 @@ msgstr ""
 msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
-msgid "Real Life"
+msgid "Real life"
 msgstr ""
 
 msgid "Real or pseudo recordings"
@@ -15329,7 +15329,7 @@ msgstr ""
 msgid "Rugby"
 msgstr ""
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr ""
 
 msgid "Run"
@@ -17448,7 +17448,7 @@ msgid "Shopping"
 msgstr "حذف شد"
 
 #, fuzzy
-msgid "Short Film"
+msgid "Short film"
 msgstr "نام های کوتاه فایل"
 
 msgid "Short filenames"
@@ -18603,7 +18603,7 @@ msgstr "صاف"
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr ""
 
 msgid "Soccer"
@@ -19610,7 +19610,7 @@ msgstr ""
 msgid "Tajikistan"
 msgstr ""
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr ""
 
 msgid "Tamil"
@@ -24183,6 +24183,10 @@ msgstr "زرد"
 msgid "yes (keep feeds)"
 msgstr "بله نگه داشتن feeds"
 
+#, fuzzy
+msgid "Languages"
+msgstr "زبان"
+
 msgid "®"
 msgstr ""
 
@@ -24440,10 +24444,6 @@ msgstr ""
 #
 #~ msgid "Trying to download a new packet list. Please wait..."
 #~ msgstr "تلاش برای دانلود لیست بسته های جدید ، لطفا صبر کنید"
-
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "زبان"
 
 #, fuzzy
 #~ msgid "Locales"

@@ -2550,7 +2550,7 @@ msgstr "Vis alltid favoritter"
 msgid "Always use smart1080p mode"
 msgstr ""
 
-msgid "American Football"
+msgid "American football"
 msgstr ""
 
 msgid "American Samoa"
@@ -5575,7 +5575,7 @@ msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Nyheter Aktuelle saker"
 
 msgid "Current CEC address"
@@ -8796,7 +8796,7 @@ msgstr ""
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr ""
 
 msgid "Filter extensions"
@@ -9212,7 +9212,7 @@ msgid "Gambia"
 msgstr ""
 
 #, fuzzy
-msgid "Game Show"
+msgid "Game show"
 msgstr "Vis spill showet"
 
 #, fuzzy
@@ -9865,7 +9865,7 @@ msgstr "Horisontal snu hastighet"
 msgid "Horror"
 msgstr "Feil"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr ""
 
 msgid "Hostname"
@@ -11910,7 +11910,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Kanaler"
 
 msgid "MiniDLNA"
@@ -15278,7 +15278,7 @@ msgstr "Klar til å installere \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Klar til å fjerne \"%s\" ?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr ""
 
 msgid "Real or pseudo recordings"
@@ -16240,7 +16240,7 @@ msgstr ""
 msgid "Rugby"
 msgstr ""
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr ""
 
 msgid "Run"
@@ -18433,7 +18433,7 @@ msgid "Shopping"
 msgstr "Zapped"
 
 #, fuzzy
-msgid "Short Film"
+msgid "Short film"
 msgstr "Korte filnavn"
 
 msgid "Short filenames"
@@ -19640,7 +19640,7 @@ msgstr "Glatt"
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr ""
 
 msgid "Soccer"
@@ -20711,7 +20711,7 @@ msgid "Tajikistan"
 msgstr ""
 
 #, fuzzy
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "talkshow"
 
 msgid "Tamil"
@@ -25625,6 +25625,11 @@ msgstr "gul"
 msgid "yes (keep feeds)"
 msgstr "ja (behold feeds)"
 
+#
+#, fuzzy
+msgid "Languages"
+msgstr "Språk"
+
 msgid "®"
 msgstr ""
 
@@ -26119,11 +26124,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Error: Unable to process the command!  Please try again later."
 #~ msgstr "Beklager feeds er nede for vedlikehold, vennligst prøv igjen senere."
-
-#
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Språk"
 
 #, fuzzy
 #~ msgid "Locales"

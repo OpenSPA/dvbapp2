@@ -2282,7 +2282,7 @@ msgstr "Gjithmonë shfaq buqetë"
 msgid "Always use smart1080p mode"
 msgstr "Përdor gjithmonë modalitetin smart1080p"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Futbolli Amerikan"
 
 msgid "American Samoa"
@@ -5106,7 +5106,7 @@ msgstr "Aktuale"
 msgid "Current 1/1"
 msgstr "1/1 aktuale"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Çështjet aktuale"
 
 msgid "Current CEC address"
@@ -8120,8 +8120,8 @@ msgstr "Kontrolloni sistemin e skedarëve Harddiskun tuaj"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Plotësoni EPG-të e kanalit nga EPG e transmetuar ku nuk ka IceTV EPG për kanalin"
 
-msgid "Film-Noir"
-msgstr "Film-Noir"
+msgid "Film-noir"
+msgstr "Film-noir"
 
 msgid "Filter extensions"
 msgstr ""
@@ -8487,7 +8487,7 @@ msgstr "Galician"
 msgid "Gambia"
 msgstr "Gambia"
 
-msgid "Game Show"
+msgid "Game show"
 msgstr "Shfaqja e lojës"
 
 msgid "Ganda"
@@ -9079,7 +9079,7 @@ msgstr "Shpejtësia e rrotullimit horizontal"
 msgid "Horror"
 msgstr "Tmerr"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Gare me kuaj"
 
 msgid "Hostname"
@@ -10950,7 +10950,7 @@ msgstr ""
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini Series"
+msgid "Mini series"
 msgstr ""
 
 msgid "MiniDLNA"
@@ -13978,7 +13978,7 @@ msgstr "Gati për të instaluar \"%s\"?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Gati për të hequr \"%s\" ?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Jeta reale"
 
 msgid "Real or pseudo recordings"
@@ -14843,7 +14843,7 @@ msgstr ""
 msgid "Rugby"
 msgstr ""
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr ""
 
 msgid "Run"
@@ -16903,7 +16903,7 @@ msgstr ""
 msgid "Shopping"
 msgstr ""
 
-msgid "Short Film"
+msgid "Short film"
 msgstr ""
 
 msgid "Short filenames"
@@ -18004,7 +18004,7 @@ msgstr ""
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr ""
 
 msgid "Soccer"
@@ -18975,7 +18975,7 @@ msgstr "Taxhik"
 msgid "Tajikistan"
 msgstr "Taxhikistan"
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "Bisedë, debat"
 
 msgid "Tamil"
@@ -23495,6 +23495,9 @@ msgstr "e verdhë"
 
 msgid "yes (keep feeds)"
 msgstr "Po (mbani ushqim)"
+
+msgid "Languages"
+msgstr ""
 
 msgid "®"
 msgstr "®"
