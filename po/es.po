@@ -2535,7 +2535,7 @@ msgstr "Visualizar grupos siempre"
 msgid "Always use smart1080p mode"
 msgstr "Usar siempre el modo smart1080p"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Fútbol americano"
 
 msgid "American Samoa"
@@ -5908,7 +5908,7 @@ msgstr "Actual"
 msgid "Current 1/1"
 msgstr "Actual 1/1"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Asuntos de actualidad"
 
 msgid "Current CEC address"
@@ -9350,7 +9350,7 @@ msgstr ""
 "Rellenar las EPGs de los canales a partir de la EPG de emisión cuando no hay "
 "una EPG de IceTV para el canal"
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr "Cine negro"
 
 msgid "Filter extensions"
@@ -9745,7 +9745,7 @@ msgstr "Gallego"
 msgid "Gambia"
 msgstr "Gambia"
 
-msgid "Game Show"
+msgid "Game show"
 msgstr "Programa de juegos"
 
 msgid "Ganda"
@@ -10380,7 +10380,7 @@ msgstr "Velocidad de giro horizontal"
 msgid "Horror"
 msgstr "Horror"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Carreras de caballos"
 
 msgid "Hostname"
@@ -12572,7 +12572,7 @@ msgid "Mini DLNA Setting Actions"
 msgstr "Acciones de configuración de Mini DLNA"
 
 #
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Mini Serie"
 
 msgid "MiniDLNA"
@@ -16983,7 +16983,7 @@ msgstr "Remando"
 msgid "Rugby"
 msgstr "Rugby"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Liga de Rugby"
 
 #
@@ -19900,7 +19900,7 @@ msgstr "Shona"
 msgid "Shopping"
 msgstr "Compras"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Cortometraje"
 
 msgid "Short filenames"
@@ -21083,7 +21083,7 @@ msgstr "Suavizar"
 msgid "SoC family"
 msgstr "Familia SoC"
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "Telenovela"
 
 msgid "Soccer"
@@ -22165,7 +22165,7 @@ msgstr "Tajik"
 msgid "Tajikistan"
 msgstr "Tajikistan"
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "Programa de entrevistas"
 
 msgid "Tamil"

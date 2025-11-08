@@ -2316,7 +2316,7 @@ msgstr "Csatornacsomagok állandó mutatása"
 msgid "Always use smart1080p mode"
 msgstr "Mindig intelligens 1080p módot használjon"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Amerikai futball"
 
 msgid "American Samoa"
@@ -5146,7 +5146,7 @@ msgstr ""
 msgid "Current 1/1"
 msgstr ""
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Aktuális ügyek"
 
 msgid "Current CEC address"
@@ -8174,8 +8174,8 @@ msgstr "A merevlemez fájlrendszerének ellenőrzése"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
 
-msgid "Film-Noir"
-msgstr "Film-Noir"
+msgid "Film-noir"
+msgstr "Film-noir"
 
 msgid "Filter extensions"
 msgstr ""
@@ -8546,8 +8546,8 @@ msgstr ""
 msgid "Gambia"
 msgstr "Gambia"
 
-msgid "Game Show"
-msgstr "Game Show"
+msgid "Game show"
+msgstr "Game show"
 
 #, fuzzy
 msgid "Ganda"
@@ -9144,7 +9144,7 @@ msgstr "Horizontális tuningolási sebesség"
 msgid "Horror"
 msgstr "Horror"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Lóverseny"
 
 msgid "Hostname"
@@ -11049,7 +11049,7 @@ msgstr "középre"
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Mini sorozat"
 
 msgid "MiniDLNA"
@@ -14152,7 +14152,7 @@ msgstr "Készen áll a telepítésre \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Készen áll a törlésre \"%s\" ?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Való élet"
 
 msgid "Real or pseudo recordings"
@@ -15018,7 +15018,7 @@ msgstr "Evezés"
 msgid "Rugby"
 msgstr "Rögbi"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Rögbi Liga"
 
 msgid "Run"
@@ -17117,7 +17117,7 @@ msgstr ""
 msgid "Shopping"
 msgstr "Vásárlás"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Rövidfilm"
 
 msgid "Short filenames"
@@ -18233,7 +18233,7 @@ msgstr "Simítás"
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "Szappanopera"
 
 msgid "Soccer"
@@ -19228,8 +19228,8 @@ msgstr "Tádzsikisztán"
 msgid "Tajikistan"
 msgstr "Tádzsikisztán"
 
-msgid "Talk Show"
-msgstr "Talk Show"
+msgid "Talk show"
+msgstr "Talk show"
 
 #, fuzzy
 msgid "Tamil"
@@ -23810,6 +23810,10 @@ msgstr "sárga"
 msgid "yes (keep feeds)"
 msgstr "igen (állapotok megtartása)"
 
+#, fuzzy
+msgid "Languages"
+msgstr "Kezelő felület nyelve"
+
 msgid "®"
 msgstr "®"
 
@@ -24533,10 +24537,6 @@ msgstr "®"
 #, fuzzy
 #~ msgid "Error: Unable to process the command!  Please try again later."
 #~ msgstr "Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, próbálja meg később."
-
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Kezelő felület nyelve"
 
 #, fuzzy
 #~ msgid "Locales"

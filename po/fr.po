@@ -2281,7 +2281,7 @@ msgstr "Toujours afficher les bouquets"
 msgid "Always use smart1080p mode"
 msgstr "Toujours utiliser le mode intelligent1080p"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Football américain"
 
 msgid "American Samoa"
@@ -5110,7 +5110,7 @@ msgstr ""
 msgid "Current 1/1"
 msgstr ""
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Affaires courantes"
 
 msgid "Current CEC address"
@@ -8128,7 +8128,7 @@ msgstr "Vérification du système de fichiers de votre disque dur"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Remplir les EPG des chaînes à partir de l'EPG de diffusion lorsqu'il n'existe pas d'EPG IceTV pour la chaîne"
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr "Film noir"
 
 msgid "Filter extensions"
@@ -8496,7 +8496,7 @@ msgid "Gambia"
 msgstr "Gambie"
 
 # TODO
-msgid "Game Show"
+msgid "Game show"
 msgstr "Jeu télévisé"
 
 msgid "Ganda"
@@ -9088,7 +9088,7 @@ msgstr "Vitesse de rotation horizontale"
 msgid "Horror"
 msgstr "Horreur"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Course de chevaux"
 
 msgid "Hostname"
@@ -10960,7 +10960,7 @@ msgstr "centre"
 msgid "Middle - Lite image"
 msgstr ""
 
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Mini série"
 
 msgid "MiniDLNA"
@@ -14024,7 +14024,7 @@ msgstr "Prêt à installer '%s' ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Prêt à supprimer '%s' ?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Vie réelle"
 
 msgid "Real or pseudo recordings"
@@ -14894,7 +14894,7 @@ msgstr "Aviron"
 msgid "Rugby"
 msgstr "Rugby"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Ligue de rugby"
 
 msgid "Run"
@@ -16975,7 +16975,7 @@ msgstr "Shona"
 msgid "Shopping"
 msgstr "Achats"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Court métrage"
 
 msgid "Short filenames"
@@ -18081,7 +18081,7 @@ msgstr "Adouci"
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "Feuilleton"
 
 msgid "Soccer"
@@ -19065,7 +19065,7 @@ msgstr "Tadjik"
 msgid "Tajikistan"
 msgstr "Tadjikistan"
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "Débat télévisé"
 
 msgid "Tamil"
@@ -23635,6 +23635,9 @@ msgstr "Jaune"
 msgid "yes (keep feeds)"
 msgstr "Oui (garder feeds)"
 
+msgid "Languages"
+msgstr "Langues"
+
 msgid "®"
 msgstr "®"
 
@@ -24361,9 +24364,6 @@ msgstr "®"
 
 #~ msgid "Error: Unable to process the command!  Please try again later."
 #~ msgstr "Erreur : Impossible de traiter la commande !  Veuillez réessayer plus tard."
-
-#~ msgid "Languages"
-#~ msgstr "Langues"
 
 #~ msgid "Locales"
 #~ msgstr "Locales"

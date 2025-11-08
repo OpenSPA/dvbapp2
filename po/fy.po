@@ -2506,7 +2506,7 @@ msgstr ""
 msgid "Always use smart1080p mode"
 msgstr ""
 
-msgid "American Football"
+msgid "American football"
 msgstr ""
 
 msgid "American Samoa"
@@ -5520,7 +5520,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Hjoeddeiske ferzje :"
 
 msgid "Current CEC address"
@@ -8737,7 +8737,7 @@ msgstr ""
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr ""
 
 msgid "Filter extensions"
@@ -9153,7 +9153,7 @@ msgstr ""
 msgid "Gambia"
 msgstr ""
 
-msgid "Game Show"
+msgid "Game show"
 msgstr ""
 
 #
@@ -9798,7 +9798,7 @@ msgstr ""
 msgid "Horror"
 msgstr "Flater"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr ""
 
 msgid "Hostname"
@@ -11865,7 +11865,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Kanalen"
 
 msgid "MiniDLNA"
@@ -15254,7 +15254,7 @@ msgstr ""
 msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
-msgid "Real Life"
+msgid "Real life"
 msgstr ""
 
 msgid "Real or pseudo recordings"
@@ -16226,7 +16226,7 @@ msgstr ""
 msgid "Rugby"
 msgstr ""
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr ""
 
 msgid "Run"
@@ -18428,7 +18428,7 @@ msgstr ""
 msgid "Shopping"
 msgstr "knipt"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr ""
 
 msgid "Short filenames"
@@ -19649,7 +19649,7 @@ msgstr ""
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr ""
 
 msgid "Soccer"
@@ -20713,7 +20713,7 @@ msgstr ""
 msgid "Tajikistan"
 msgstr ""
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr ""
 
 msgid "Tamil"
@@ -25555,6 +25555,11 @@ msgstr "giel"
 msgid "yes (keep feeds)"
 msgstr "ja (feeds hâlde)"
 
+#
+#, fuzzy
+msgid "Languages"
+msgstr "Taal"
+
 msgid "®"
 msgstr ""
 
@@ -25815,11 +25820,6 @@ msgstr ""
 #
 #~ msgid "none"
 #~ msgstr "gjin"
-
-#
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Taal"
 
 #
 #, fuzzy

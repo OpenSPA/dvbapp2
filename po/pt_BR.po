@@ -2435,7 +2435,7 @@ msgstr "copiar para bouquets"
 msgid "Always use smart1080p mode"
 msgstr ""
 
-msgid "American Football"
+msgid "American football"
 msgstr ""
 
 msgid "American Samoa"
@@ -5386,7 +5386,7 @@ msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Notícias atuais"
 
 msgid "Current CEC address"
@@ -8449,7 +8449,7 @@ msgstr ""
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr ""
 
 msgid "Filter extensions"
@@ -8840,7 +8840,7 @@ msgid "Gambia"
 msgstr ""
 
 #, fuzzy
-msgid "Game Show"
+msgid "Game show"
 msgstr "Mostrar games show"
 
 #, fuzzy
@@ -9470,7 +9470,7 @@ msgstr "Velocidade de rotação horizontal"
 msgid "Horror"
 msgstr "Erro"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr ""
 
 msgid "Hostname"
@@ -11415,7 +11415,7 @@ msgid "Middle - Lite image"
 msgstr ""
 
 #, fuzzy
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Serviços"
 
 msgid "MiniDLNA"
@@ -14603,7 +14603,7 @@ msgstr ""
 msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
-msgid "Real Life"
+msgid "Real life"
 msgstr ""
 
 msgid "Real or pseudo recordings"
@@ -15509,7 +15509,7 @@ msgstr ""
 msgid "Rugby"
 msgstr ""
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr ""
 
 msgid "Run"
@@ -17641,7 +17641,7 @@ msgid "Shopping"
 msgstr "Zapped"
 
 #, fuzzy
-msgid "Short Film"
+msgid "Short film"
 msgstr "Nomes curtos de arquivos"
 
 msgid "Short filenames"
@@ -18805,7 +18805,7 @@ msgstr ""
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr ""
 
 msgid "Soccer"
@@ -19819,7 +19819,7 @@ msgid "Tajikistan"
 msgstr ""
 
 #, fuzzy
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "talk show"
 
 msgid "Tamil"
@@ -24499,6 +24499,10 @@ msgstr "Amarelo"
 msgid "yes (keep feeds)"
 msgstr "Sim (manter os feeds)"
 
+#, fuzzy
+msgid "Languages"
+msgstr "Idioma"
+
 msgid "®"
 msgstr ""
 
@@ -24879,10 +24883,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Error: Unable to process the command!  Please try again later."
 #~ msgstr "Sem atualizações disponíveis. Por favor tente mais tarde."
-
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Idioma"
 
 #, fuzzy
 #~ msgid "Locales"

@@ -2272,7 +2272,7 @@ msgstr "Mostra sempre i bouquet"
 msgid "Always use smart1080p mode"
 msgstr "Usa sempre la modalità smart1080p"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Football americano"
 
 msgid "American Samoa"
@@ -5102,7 +5102,7 @@ msgstr "Attuale"
 msgid "Current 1/1"
 msgstr "Attuale 1/1"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Attualità"
 
 msgid "Current CEC address"
@@ -8128,7 +8128,7 @@ msgstr "Controllo del file system del disco rigido"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Compila EPG del canale dall'EPG trasmesso dove non c'è EPG IceTV per il canale"
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr "Film noir"
 
 msgid "Filter extensions"
@@ -8495,7 +8495,7 @@ msgstr "Galiziano"
 msgid "Gambia"
 msgstr "Gambia"
 
-msgid "Game Show"
+msgid "Game show"
 msgstr "Spettacolo di giochi"
 
 msgid "Ganda"
@@ -9087,7 +9087,7 @@ msgstr "Velocità di rotazione orizzontale"
 msgid "Horror"
 msgstr "Orrore"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Ippica"
 
 msgid "Hostname"
@@ -10958,7 +10958,7 @@ msgstr "Medio"
 msgid "Middle - Lite image"
 msgstr "Medio - Immagine lite"
 
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Miniserie"
 
 msgid "MiniDLNA"
@@ -14023,7 +14023,7 @@ msgstr "Pronto a installare \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Pronto a rimuovere \"%s\"?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Vita reale"
 
 msgid "Real or pseudo recordings"
@@ -14890,7 +14890,7 @@ msgstr "Canottaggio"
 msgid "Rugby"
 msgstr "Rugby"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Lega di rugby"
 
 msgid "Run"
@@ -16985,7 +16985,7 @@ msgstr "Shona"
 msgid "Shopping"
 msgstr "Acquisti"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Cortometraggio"
 
 msgid "Short filenames"
@@ -18086,7 +18086,7 @@ msgstr "Smussatura immagini"
 msgid "SoC family"
 msgstr "Famiglia SoC"
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "Telenovela"
 
 msgid "Soccer"
@@ -19064,8 +19064,8 @@ msgstr "Tagico"
 msgid "Tajikistan"
 msgstr "Tajikistan"
 
-msgid "Talk Show"
-msgstr "Talk Show"
+msgid "Talk show"
+msgstr "Talk show"
 
 msgid "Tamil"
 msgstr "Tamil"
@@ -23692,6 +23692,9 @@ msgstr "giallo"
 msgid "yes (keep feeds)"
 msgstr "sì (mantieni feed)"
 
+msgid "Languages"
+msgstr "Lingue"
+
 msgid "®"
 msgstr "®"
 
@@ -24691,9 +24694,6 @@ msgstr "®"
 
 #~ msgid "Force OPKG clean mode"
 #~ msgstr "Forza la modalità clean su OPKG"
-
-#~ msgid "Languages"
-#~ msgstr "Lingue"
 
 #~ msgid "Locales"
 #~ msgstr "Localizzazioni"
