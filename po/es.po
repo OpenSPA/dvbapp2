@@ -17747,6 +17747,9 @@ msgstr ""
 "dispositivo. Si se selecciona \"No\", se restablecen los valores "
 "predeterminados de los dispositivos."
 
+msgid "Select 'Yes' to enable handle streaming corruption issues and try to make a precise recovery."
+msgstr "Seleccione 'Sí' para habilitar la opción de manejar problemas de corrupción de transmisión e intentar realizar una recuperación precisa."
+
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de EPG."
 
@@ -21715,6 +21718,9 @@ msgstr "Retransmitiendo"
 msgid "Streaming Information Actions"
 msgstr "Acciones de información de streaming"
 
+msgid "Streaming precise recovery"
+msgstr "Recuperación precisa en streaming"
+
 msgid "Streaming Tuner Information"
 msgstr "Información sintonizador de streaming"
 
@@ -25517,17 +25523,8 @@ msgstr "¿Qué te gustaría hacer con el archivo del script?"
 msgid "What would you like to do?"
 msgstr "¿Qué te gustaría hacer?"
 
-msgid ""
-"Select 'Yes' to enable the loading of unlinked user bouquets. That is, user "
-"bouquets that are not included in the bouquets.tv or bouquets.radio files "
-"will be loaded. This allows you to, for example, create bouquets that do not "
-"conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr ""
-"Selecciona 'Sí' para activar la carga de listas de canales desvinculadas. "
-"Esto significa que se cargarán las listas de canales no incluidas en los "
-"archivos bouquets.tv o bouquets.radio. Esto permite, por ejemplo, crear "
-"listas que no entren en conflicto ni sean reemplazadas por listas que "
-"provienen de paquetes de configuración."
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Selecciona 'Sí' para activar la carga de listas de canales desvinculadas. Esto significa que se cargarán las listas de canales no incluidas en los archivos bouquets.tv o bouquets.radio. Esto permite, por ejemplo, crear listas que no entren en conflicto ni sean reemplazadas por listas que provienen de paquetes de configuración."
 
 # /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
