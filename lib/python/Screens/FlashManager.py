@@ -327,7 +327,7 @@ class FlashImage(Screen):
 		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
 		<widget name="info" position="0,60" size="e,130" font="Regular;25" valign="center" />
 		<widget name="progress" position="0,e-25" size="e,25" />
-		<widget name="progress_counter" position="360,60" size="e,25" font="Regular;25" />
+		<widget name="progress_counter" position="360,60" size="e,35" font="Regular;25" />
 	</screen>"""
 
 	def __init__(self, session, imageName, source, downloadOnly=False, destpath=None): #OPENSPA [morser] Add destpath for spanewfirm
