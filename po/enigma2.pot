@@ -15638,9 +15638,6 @@ msgstr ""
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
-msgid "Select 'Yes' to enable handle streaming corruption issues and try to make a precise recovery."
-msgstr ""
-
 msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and defined by default."
 msgstr ""
 
