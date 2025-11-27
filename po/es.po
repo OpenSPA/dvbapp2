@@ -17747,9 +17747,6 @@ msgstr ""
 "dispositivo. Si se selecciona \"No\", se restablecen los valores "
 "predeterminados de los dispositivos."
 
-msgid "Select 'Yes' to enable handle streaming corruption issues and try to make a precise recovery."
-msgstr "Seleccione 'Sí' para habilitar la opción de manejar problemas de corrupción de transmisión e intentar realizar una recuperación precisa."
-
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de EPG."
 
