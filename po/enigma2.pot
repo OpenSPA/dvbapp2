@@ -2006,6 +2006,9 @@ msgstr ""
 msgid "Adult Audience, Strong Violence 15+"
 msgstr ""
 
+msgid "Adult movie/Drama"
+msgstr ""
+
 msgid "Advanced"
 msgstr ""
 
@@ -2025,6 +2028,12 @@ msgid "Advanced video enhancement setup"
 msgstr ""
 
 msgid "Adventure"
+msgstr ""
+
+msgid "Adventure/Western/War"
+msgstr ""
+
+msgid "Advertisement/Shopping"
 msgstr ""
 
 msgid "Afar"
@@ -2252,10 +2261,10 @@ msgstr ""
 msgid "Always use smart1080p mode"
 msgstr ""
 
-msgid "American football"
+msgid "American Samoa"
 msgstr ""
 
-msgid "American Samoa"
+msgid "American football"
 msgstr ""
 
 msgid "Amharic"
@@ -2275,6 +2284,9 @@ msgid "An attempt is made to capture the current TV status. If this is not possi
 msgstr ""
 
 msgid "An unknown error occurred!"
+msgstr ""
+
+msgid "Ancient"
 msgstr ""
 
 msgid "Andorra"
@@ -2308,6 +2320,9 @@ msgid "Antarctica"
 msgstr ""
 
 msgid "Antigua and Barbuda"
+msgstr ""
+
+msgid "Antiques"
 msgstr ""
 
 msgid "Any activity"
@@ -2430,13 +2445,19 @@ msgstr ""
 msgid "Arrow skip mode"
 msgstr ""
 
+msgid "Art/Literature"
+msgstr ""
+
 msgid "Artist"
 msgstr ""
 
-msgid "Arts & Culture"
+msgid "Arts"
 msgstr ""
 
 msgid "Arts/Culture"
+msgstr ""
+
+msgid "Arts/Culture magazines"
 msgstr ""
 
 msgid "Aruba"
@@ -2844,6 +2865,9 @@ msgstr ""
 msgid "Bahrain"
 msgstr ""
 
+msgid "Ballet"
+msgstr ""
+
 msgid "Bambara"
 msgstr ""
 
@@ -2963,6 +2987,15 @@ msgid "Bitrate:"
 msgstr ""
 
 msgid "Black"
+msgstr ""
+
+msgid "Black & White"
+msgstr ""
+
+msgid "Black screen"
+msgstr ""
+
+msgid "blacklist"
 msgstr ""
 
 msgid "Black screen till locked"
@@ -3101,6 +3134,9 @@ msgstr ""
 msgid "Broadcast systems"
 msgstr ""
 
+msgid "Broadcasting/Press"
+msgstr ""
+
 msgid "Broadcom"
 msgstr ""
 
@@ -3158,6 +3194,9 @@ msgid "Burn to medium"
 msgstr ""
 
 msgid "Burundi"
+msgstr ""
+
+msgid "Business"
 msgstr ""
 
 msgid "Business & Finance"
@@ -3578,6 +3617,12 @@ msgstr ""
 msgid "Cartoon"
 msgstr ""
 
+msgid "Cartoons"
+msgstr ""
+
+msgid "Cartoons/Puppets"
+msgstr ""
+
 msgid "Cascade PiP"
 msgstr ""
 
@@ -3802,6 +3847,9 @@ msgstr ""
 msgid "Character device"
 msgstr ""
 
+msgid "Chat Show"
+msgstr ""
+
 msgid "Chechen"
 msgstr ""
 
@@ -4015,6 +4063,9 @@ msgstr ""
 msgid "City"
 msgstr ""
 
+msgid "Classical"
+msgstr ""
+
 msgid "Clean (Just flash and start clean)"
 msgstr ""
 
@@ -4132,6 +4183,9 @@ msgstr ""
 msgid "Close the current screen"
 msgstr ""
 
+msgid "Close the documentation screen"
+msgstr ""
+
 msgid "Close the screen"
 msgstr ""
 
@@ -4151,6 +4205,9 @@ msgid "Close title selection"
 msgstr ""
 
 msgid "Cloudflare DNS"
+msgstr ""
+
+msgid "Club/Dance"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5008,9 +5065,6 @@ msgstr ""
 msgid "Current 1/1"
 msgstr ""
 
-msgid "Current affairs"
-msgstr ""
-
 msgid "Current CEC address"
 msgstr ""
 
@@ -5025,6 +5079,9 @@ msgstr ""
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
+msgstr ""
+
+msgid "Current affairs"
 msgstr ""
 
 msgid "Current crash log"
@@ -5244,6 +5301,9 @@ msgid "Dance"
 msgstr ""
 
 msgid "Danish"
+msgstr ""
+
+msgid "Darts"
 msgstr ""
 
 msgid "Date"
@@ -5851,6 +5911,21 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
+msgid "deleted"
+msgstr ""
+
+msgid "Detective"
+msgstr ""
+
+msgid "Detective/Thriller"
+msgstr ""
+
+msgid "Development Packages"
+msgstr ""
+
+msgid "Device"
+msgstr ""
+
 msgid "Device Manager"
 msgstr ""
 
@@ -5873,6 +5948,9 @@ msgid "Device: "
 msgstr ""
 
 msgid "Devices"
+msgstr ""
+
+msgid "Disable Move Mode"
 msgstr ""
 
 msgid "DiSEqC"
@@ -6029,6 +6107,12 @@ msgid "Disabled or WPA/WPA2"
 msgstr ""
 
 msgid "Disabled use of FCC to use fallback tuner.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
+msgstr ""
+
+msgid "Discussion"
+msgstr ""
+
+msgid "Discussion/Interview/Debate"
 msgstr ""
 
 msgid "Dish"
@@ -6331,6 +6415,9 @@ msgstr ""
 msgid "Do you want to update your box?"
 msgstr ""
 
+msgid "Docudrama"
+msgstr ""
+
 msgid "Documentary"
 msgstr ""
 
@@ -6577,7 +6664,13 @@ msgstr ""
 msgid "East limit set"
 msgstr ""
 
+msgid "Easy Listening"
+msgstr ""
+
 msgid "EasyMedia"
+msgstr ""
+
+msgid "Economics/Social advisory"
 msgstr ""
 
 msgid "Ecuador"
@@ -6661,6 +6754,9 @@ msgid "Education/Information"
 msgstr ""
 
 msgid "Education/Science/Factual"
+msgstr ""
+
+msgid "Educational"
 msgstr ""
 
 msgid "Egypt"
@@ -7156,7 +7252,13 @@ msgstr ""
 msgid "Equatorial Guinea"
 msgstr ""
 
+msgid "Equestrian"
+msgstr ""
+
 msgid "Eritrea"
+msgstr ""
+
+msgid "Erotic"
 msgstr ""
 
 msgid "Error"
@@ -7281,6 +7383,12 @@ msgid "Error opening recording file"
 msgstr ""
 
 msgid "Error reading webpage!"
+msgstr ""
+
+msgid "error starting scanning"
+msgstr ""
+
+msgid "error while scanning"
 msgstr ""
 
 msgid "Error text:"
@@ -7469,6 +7577,9 @@ msgstr ""
 msgid "EventViewEPG Actions"
 msgstr ""
 
+msgid "Events"
+msgstr ""
+
 msgid "Everyday"
 msgstr ""
 
@@ -7589,6 +7700,9 @@ msgstr ""
 msgid "Expand"
 msgstr ""
 
+msgid "Experimental film/video"
+msgstr ""
+
 msgid "Experimental mode"
 msgstr ""
 
@@ -7680,6 +7794,9 @@ msgstr ""
 msgid "Extract the package contents"
 msgstr ""
 
+msgid "Extreme"
+msgstr ""
+
 msgid "Extrude from left"
 msgstr ""
 
@@ -7750,6 +7867,9 @@ msgid "Factory Reset"
 msgstr ""
 
 msgid "Factory release"
+msgstr ""
+
+msgid "Factual"
 msgstr ""
 
 msgid "Fade the InfoBar on hide."
@@ -7831,6 +7951,9 @@ msgstr ""
 msgid "Farsi / Persian"
 msgstr ""
 
+msgid "Fashion"
+msgstr ""
+
 msgid "Fast"
 msgstr ""
 
@@ -7856,6 +7979,12 @@ msgid "Fast forward speeds"
 msgstr ""
 
 msgid "Favorites"
+msgstr ""
+
+msgid "Feature"
+msgstr ""
+
+msgid "Features"
 msgstr ""
 
 msgid "Feed URL"
@@ -8012,6 +8141,9 @@ msgstr ""
 msgid "Film-noir"
 msgstr ""
 
+msgid "Film/Cinema"
+msgstr ""
+
 msgid "Filter extensions"
 msgstr ""
 
@@ -8038,6 +8170,9 @@ msgid "Find similar events in the EPG"
 msgstr ""
 
 msgid "Finding available log files, please wait..."
+msgstr ""
+
+msgid "Fine arts"
 msgstr ""
 
 msgid "Fine movement"
@@ -8071,6 +8206,9 @@ msgid "First playable time shift file!"
 msgstr ""
 
 msgid "Fishing"
+msgstr ""
+
+msgid "Fitness and Health"
 msgstr ""
 
 msgid "Fixed"
@@ -8152,6 +8290,12 @@ msgid "Flat by position on remote"
 msgstr ""
 
 msgid "Following tasks will be done after you press OK!"
+msgstr "
+
+msgid "Folk and Country"
+msgstr ""
+
+msgid "Folk/Traditional music"
 msgstr ""
 
 msgid "Font size"
@@ -8164,6 +8308,9 @@ msgid "Food/Wine"
 msgstr ""
 
 msgid "Football"
+msgstr ""
+
+msgid "Football/Soccer"
 msgstr ""
 
 msgid "For how many minutes do you want to record?"
@@ -8194,6 +8341,9 @@ msgid "Force disabled"
 msgstr ""
 
 msgid "Force enabled"
+msgstr ""
+
+msgid "Foreign countries/Expeditions"
 msgstr ""
 
 msgid "Format"
@@ -8329,6 +8479,9 @@ msgstr ""
 msgid "FullHD Test"
 msgstr ""
 
+msgid "Further education"
+msgstr ""
+
 msgid "G"
 msgstr ""
 
@@ -8363,6 +8516,9 @@ msgid "Gambia"
 msgstr ""
 
 msgid "Game show"
+msgstr ""
+
+msgid "Game show/Quiz/Contest"
 msgstr ""
 
 msgid "Ganda"
@@ -8460,6 +8616,18 @@ msgid "Go to parent directory of the current column"
 msgstr ""
 
 msgid "Go to standby"
+msgstr ""
+
+msgid "Go to the first page of documentation"
+msgstr ""
+
+msgid "Go to the last page of documentation"
+msgstr ""
+
+msgid "Go to the next page of documentation"
+msgstr ""
+
+msgid "Go to the previous page of documentation"
 msgstr ""
 
 msgid "Go up the list"
@@ -8696,6 +8864,9 @@ msgstr ""
 msgid "Halt"
 msgstr ""
 
+msgid "Handicraft"
+msgstr ""
+
 msgid "Handle Python crashes"
 msgstr ""
 
@@ -8864,6 +9035,9 @@ msgstr ""
 msgid "Hindi"
 msgstr ""
 
+msgid "Hip Hop"
+msgstr ""
+
 msgid "Hiri Motu"
 msgstr ""
 
@@ -8910,6 +9084,9 @@ msgid "Holy See (Vatican City State)"
 msgstr ""
 
 msgid "Home"
+msgstr ""
+
+msgid "Home and Garden"
 msgstr ""
 
 msgid "Homepage"
@@ -9066,6 +9243,9 @@ msgid "ISO speed rating"
 msgstr ""
 
 msgid "ISP"
+msgstr ""
+
+msgid "Ice Hockey"
 msgstr ""
 
 msgid "IceTV"
@@ -9674,6 +9854,9 @@ msgstr ""
 msgid "Invalid"
 msgstr ""
 
+msgid "Invalid Help Page"
+msgstr ""
+
 msgid "Invalid location!"
 msgstr ""
 
@@ -9753,6 +9936,9 @@ msgid "Japanese"
 msgstr ""
 
 msgid "Javanese"
+msgstr ""
+
+msgid "Jazz"
 msgstr ""
 
 msgid "Jersey"
@@ -10051,6 +10237,9 @@ msgstr ""
 msgid "Language selection"
 msgstr ""
 
+msgid "Languages"
+msgstr ""
+
 msgid "Lao"
 msgstr ""
 
@@ -10255,6 +10444,9 @@ msgstr ""
 msgid "Lists reloaded!"
 msgstr ""
 
+msgid "Literature"
+msgstr ""
+
 msgid "Lithuania"
 msgstr ""
 
@@ -10265,6 +10457,9 @@ msgid "Live"
 msgstr ""
 
 msgid "Live TV Actions"
+msgstr ""
+
+msgid "Live broadcast"
 msgstr ""
 
 msgid "Load"
@@ -10518,6 +10713,15 @@ msgstr ""
 msgid "Madagascar"
 msgstr ""
 
+msgid "Magazine"
+msgstr ""
+
+msgid "Magazines/Reports/Documentary"
+msgstr ""
+
+msgid "Magenta"
+msgstr ""
+
 msgid "Magic"
 msgstr ""
 
@@ -10648,6 +10852,9 @@ msgstr ""
 msgid "Marshallese"
 msgstr ""
 
+msgid "Martial sports"
+msgstr ""
+
 msgid "Martinique"
 msgstr ""
 
@@ -10731,6 +10938,9 @@ msgid "MediaStream"
 msgstr ""
 
 msgid "Medical"
+msgstr ""
+
+msgid "Medicine/Physiology/Psychology"
 msgstr ""
 
 msgid "Medium is not a writeable DVD!"
@@ -10959,13 +11169,19 @@ msgstr ""
 msgid "Most recent last"
 msgstr ""
 
-msgid "Motor Sport"
-msgstr ""
-
 msgid "Motor command retries"
 msgstr ""
 
 msgid "Motor running timeout"
+msgstr ""
+
+msgid "Motor sport"
+msgstr ""
+
+msgid "Motoring"
+msgstr ""
+
+msgid "Motors"
 msgstr ""
 
 msgid "Mount"
@@ -11341,6 +11557,9 @@ msgstr ""
 msgid "Musical"
 msgstr ""
 
+msgid "Musical/Opera"
+msgstr ""
+
 msgid "Mute"
 msgstr ""
 
@@ -11419,6 +11638,12 @@ msgstr ""
 msgid "Namibia"
 msgstr ""
 
+msgid "Narration"
+msgstr ""
+
+msgid "National Music"
+msgstr ""
+
 msgid "Native"
 msgstr ""
 
@@ -11429,6 +11654,9 @@ msgid "Native name (Descending)"
 msgstr ""
 
 msgid "Nature"
+msgstr ""
+
+msgid "Nature/Animals/Environment"
 msgstr ""
 
 msgid "Nauru"
@@ -11606,6 +11834,9 @@ msgstr ""
 msgid "New event info"
 msgstr ""
 
+msgid "New media"
+msgstr ""
+
 msgid "New password"
 msgstr ""
 
@@ -11630,7 +11861,19 @@ msgstr ""
 msgid "News"
 msgstr ""
 
+msgid "News and Weather"
+msgstr ""
+
+msgid "News magazine"
+msgstr ""
+
 msgid "News/Current affairs"
+msgstr ""
+
+msgid "News/Documentary"
+msgstr ""
+
+msgid "News/Weather report"
 msgstr ""
 
 msgid "Next"
@@ -11676,6 +11919,9 @@ msgid "No"
 msgstr ""
 
 msgid "No (supported) DVDROM found!"
+msgstr ""
+
+msgid "No Category"
 msgstr ""
 
 msgid "No Connection"
@@ -12435,6 +12681,9 @@ msgid "OpenViX Packages"
 msgstr ""
 
 msgid "OpenVpn Log"
+msgstr ""
+
+msgid "Opera"
 msgstr ""
 
 msgid "Operating LED status in deep standby mode"
@@ -13244,6 +13493,12 @@ msgstr ""
 msgid "Polish"
 msgstr ""
 
+msgid "Politics"
+msgstr ""
+
+msgid "Popular culture/Traditional arts"
+msgstr ""
+
 msgid "Popup"
 msgstr ""
 
@@ -13889,6 +14144,9 @@ msgstr ""
 msgid "RF Output Settings"
 msgstr ""
 
+msgid "Racing"
+msgstr ""
+
 msgid "Radio"
 msgstr ""
 
@@ -14218,6 +14476,9 @@ msgstr ""
 msgid "Religion"
 msgstr ""
 
+msgid "Religious"
+msgstr ""
+
 msgid "Reload Bookmarks"
 msgstr ""
 
@@ -14249,6 +14510,9 @@ msgid "Remaining minutes/Progress bar left"
 msgstr ""
 
 msgid "Remaining minutes/Progress bar right"
+msgstr ""
+
+msgid "Remarkable people"
 msgstr ""
 
 msgid "Remember last service in PiP"
@@ -14694,6 +14958,9 @@ msgstr ""
 msgid "Reverse list"
 msgstr ""
 
+msgid "Review"
+msgstr ""
+
 msgid "Rewind"
 msgstr ""
 
@@ -14721,10 +14988,13 @@ msgstr ""
 msgid "Right, wrapped"
 msgstr ""
 
+msgid "Rock/Pop"
+msgstr ""
+
 msgid "Roll-off"
 msgstr ""
 
-msgid "Romance"
+msgid "romance"
 msgstr ""
 
 msgid "Romania"
@@ -15157,6 +15427,9 @@ msgstr ""
 msgid "Scheduler standby"
 msgstr ""
 
+msgid "Sci-FI"
+msgstr ""
+
 msgid "Sci-Fi"
 msgstr ""
 
@@ -15164,6 +15437,9 @@ msgid "Science"
 msgstr ""
 
 msgid "Science & Tech"
+msgstr ""
+
+msgid "Science fiction/Fantasy/Horror"
 msgstr ""
 
 msgid "Scope"
@@ -16329,6 +16605,12 @@ msgstr ""
 msgid "Serial No"
 msgstr ""
 
+msgid "Serious music/Classic music"
+msgstr ""
+
+msgid "Serious/Classical/Religious/Historical/Drama"
+msgstr ""
+
 msgid "Server down"
 msgstr ""
 
@@ -16895,13 +17177,13 @@ msgstr ""
 msgid "Shopping"
 msgstr ""
 
-msgid "Short film"
-msgstr ""
-
 msgid "Short filenames"
 msgstr ""
 
 msgid "Short filenames with time"
+msgstr ""
+
+msgid "Short film"
 msgstr ""
 
 msgid "Should the crash counter be reset to prevent a restart?"
@@ -17596,6 +17878,9 @@ msgstr ""
 msgid "Show/Hide focus bar"
 msgstr ""
 
+msgid "Showbiz"
+msgstr ""
+
 msgid "Showiframe"
 msgstr ""
 
@@ -17985,16 +18270,28 @@ msgstr ""
 msgid "Smooth"
 msgstr ""
 
+msgid "Snooker/Pool"
+msgstr ""
+
 msgid "SoC family"
 msgstr ""
 
+msgid "Soap"
+msgstr ""
+
 msgid "Soap opera"
+msgstr ""
+
+msgid "Soap/Melodrama/Folkloric"
 msgstr ""
 
 msgid "Soccer"
 msgstr ""
 
 msgid "Social/Political/Economics"
+msgstr ""
+
+msgid "Social/Spiritual sciences"
 msgstr ""
 
 msgid "Society & Culture"
@@ -18159,6 +18456,9 @@ msgstr ""
 msgid "Sotho, Southern"
 msgstr ""
 
+msgid "Soul/Rhythm Blues"
+msgstr ""
+
 msgid "Sound"
 msgstr ""
 
@@ -18239,6 +18539,9 @@ msgid "Sport"
 msgstr ""
 
 msgid "Sports"
+msgstr ""
+
+msgid "Sports magazines"
 msgstr ""
 
 msgid "Sri Lanka"
@@ -19001,6 +19304,12 @@ msgstr ""
 msgid "Tatar"
 msgstr ""
 
+msgid "Technology"
+msgstr ""
+
+msgid "Technology/Natural sciences"
+msgstr ""
+
 msgid "Teletext"
 msgstr ""
 
@@ -19081,6 +19390,9 @@ msgid "Temporarily mount as %s"
 msgstr ""
 
 msgid "Tennis"
+msgstr ""
+
+msgid "Tennis/Squash"
 msgstr ""
 
 msgid "Terrestrial"
@@ -20198,6 +20510,9 @@ msgstr ""
 msgid "Total:"
 msgstr ""
 
+msgid "Tourism/Travel"
+msgstr ""
+
 msgid "Track"
 msgstr ""
 
@@ -20245,6 +20560,12 @@ msgid "Transponder information for '%s'"
 msgstr ""
 
 msgid "Transponder Time"
+msgstr ""
+
+msgid "Transport"
+msgstr ""
+
+msgid "Transport Stream ID (TSID)"
 msgstr ""
 
 msgid "Transport Stream Type"
@@ -20527,6 +20848,9 @@ msgstr ""
 msgid "Undefined"
 msgstr ""
 
+msgid "Under 5"
+msgstr ""
+
 msgid "Undetermined"
 msgstr ""
 
@@ -20624,6 +20948,9 @@ msgid "Unmount"
 msgstr ""
 
 msgid "Unpack File"
+msgstr ""
+
+msgid "Unpublished"
 msgstr ""
 
 msgid "Unscramble and record ECM"
@@ -21145,6 +21472,9 @@ msgstr ""
 msgid "Variety"
 msgstr ""
 
+msgid "Variety show"
+msgstr ""
+
 msgid "Various"
 msgstr ""
 
@@ -21552,6 +21882,12 @@ msgstr ""
 msgid "Watch movies..."
 msgstr ""
 
+msgid "Water sport"
+msgstr ""
+
+msgid "Watersports"
+msgstr ""
+
 msgid "Weather"
 msgstr ""
 
@@ -21878,7 +22214,7 @@ msgstr ""
 msgid "Width / Height"
 msgstr ""
 
-msgid "Winter Sports"
+msgid "Winter sport"
 msgstr ""
 
 msgid "Wipe"
@@ -21955,6 +22291,12 @@ msgstr ""
 msgid "Workaround for old tuner driver."
 msgstr ""
 
+msgid "World Affairs"
+msgstr ""
+
+msgid "World Cultures"
+msgstr ""
+
 #, python-format
 msgid "Would you save the entered PIN %s persistent?"
 msgstr ""
@@ -21984,6 +22326,9 @@ msgid "X11 Packages"
 msgstr ""
 
 msgid "XBox 360 support"
+msgstr ""
+
+msgid "XML Help Actions"
 msgstr ""
 
 msgid "XPicon, ZZZPicon"
@@ -22157,6 +22502,9 @@ msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
+msgstr ""
+
+msgid "You managed to jump to an invalid page. Stop it :-)"
 msgstr ""
 
 msgid "You must set at least one command!"
@@ -22522,16 +22870,7 @@ msgstr ""
 msgid "address:"
 msgstr ""
 
-msgid "Adult movie/Drama"
-msgstr ""
-
 msgid "advanced"
-msgstr ""
-
-msgid "Adventure/Western/War"
-msgstr ""
-
-msgid "Advertisement/Shopping"
 msgstr ""
 
 msgid "All up/down"
@@ -22568,12 +22907,6 @@ msgstr ""
 msgid "arts/culture (without music, general)"
 msgstr ""
 
-msgid "Arts/Culture magazines"
-msgstr ""
-
-msgid "athletics"
-msgstr ""
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr ""
@@ -22594,9 +22927,6 @@ msgstr ""
 msgid "background image"
 msgstr ""
 
-msgid "ballet"
-msgstr ""
-
 #, python-format
 msgid "bc%d"
 msgstr ""
@@ -22607,16 +22937,7 @@ msgstr ""
 msgid "black"
 msgstr ""
 
-msgid "Black & White"
-msgstr ""
-
-msgid "blacklist"
-msgstr ""
-
 msgid "blue"
-msgstr ""
-
-msgid "Broadcasting/Press"
 msgstr ""
 
 #, python-format
@@ -22641,9 +22962,6 @@ msgstr ""
 msgid "cardserver"
 msgstr ""
 
-msgid "Cartoons/Puppets"
-msgstr ""
-
 msgid "chapters"
 msgstr ""
 
@@ -22659,9 +22977,6 @@ msgstr ""
 msgid "close share view"
 msgstr ""
 
-msgid "comedy"
-msgstr ""
-
 msgid "comedy (general)"
 msgstr ""
 
@@ -22672,9 +22987,6 @@ msgid "confirmed"
 msgstr ""
 
 msgid "connected"
-msgstr ""
-
-msgid "cooking"
 msgstr ""
 
 msgid "copy"
@@ -22704,25 +23016,10 @@ msgstr ""
 msgid "delete cut"
 msgstr ""
 
-msgid "deleted"
-msgstr ""
-
-msgid "Detective/Thriller"
-msgstr ""
-
-msgid "Disable Move Mode"
-msgstr ""
-
 msgid "disabled"
 msgstr ""
 
 msgid "disconnected"
-msgstr ""
-
-msgid "Discussion/Interview/Debate"
-msgstr ""
-
-msgid "documentary"
 msgstr ""
 
 msgid "documentary (general)"
@@ -22750,16 +23047,10 @@ msgstr ""
 msgid "ecm.info"
 msgstr ""
 
-msgid "Economics/Social advisory"
-msgstr ""
-
 msgid "Edit Alternatives"
 msgstr ""
 
 msgid "education/information (general)"
-msgstr ""
-
-msgid "education/science/factual topics (general)"
 msgstr ""
 
 msgid "embedded"
@@ -22807,22 +23098,7 @@ msgstr ""
 msgid "equal to"
 msgstr ""
 
-msgid "Equestrian"
-msgstr ""
-
-msgid "error starting scanning"
-msgstr ""
-
-msgid "error while scanning"
-msgstr ""
-
 msgid "execute cuts (requires MovieCut plugin)"
-msgstr ""
-
-msgid "exit DVD player or return to file browser"
-msgstr ""
-
-msgid "Experimental film/video"
 msgstr ""
 
 msgid "extensions."
@@ -22834,9 +23110,6 @@ msgstr ""
 msgid "failed"
 msgstr ""
 
-msgid "Fashion"
-msgstr ""
-
 msgid "file can not displayed - file not found"
 msgstr ""
 
@@ -22846,31 +23119,13 @@ msgstr ""
 msgid "filename"
 msgstr ""
 
-msgid "Film/Cinema"
-msgstr ""
-
 msgid "Find Currently Playing Service"
-msgstr ""
-
-msgid "Fine arts"
-msgstr ""
-
-msgid "Fitness and Health"
 msgstr ""
 
 msgid "flat alphabetic"
 msgstr ""
 
 msgid "flat alphabetic reverse"
-msgstr ""
-
-msgid "Folk/Traditional music"
-msgstr ""
-
-msgid "Football/Soccer"
-msgstr ""
-
-msgid "Foreign countries/Expeditions"
 msgstr ""
 
 msgid "forward to the next chapter"
@@ -22883,15 +23138,6 @@ msgid "free diskspace"
 msgstr ""
 
 msgid "from"
-msgstr ""
-
-msgid "Further education"
-msgstr ""
-
-msgid "Game show/Quiz/Contest"
-msgstr ""
-
-msgid "gardening"
 msgstr ""
 
 msgid "get the cards' server"
@@ -22919,9 +23165,6 @@ msgid "h:mmAM/PM"
 msgstr ""
 
 msgid "h:mmam/pm"
-msgstr ""
-
-msgid "Handicraft"
 msgstr ""
 
 msgid "handled"
@@ -22999,25 +23242,13 @@ msgstr ""
 msgid "jump to chapter by number"
 msgstr ""
 
-msgid "languages"
-msgstr ""
-
 msgid "left"
-msgstr ""
-
-msgid "leisure hobbies (general)"
 msgstr ""
 
 msgid "length"
 msgstr ""
 
 msgid "lime"
-msgstr ""
-
-msgid "Literature"
-msgstr ""
-
-msgid "Live broadcast"
 msgstr ""
 
 msgid "locked"
@@ -23029,28 +23260,13 @@ msgstr ""
 msgid "loopthrough to"
 msgstr ""
 
-msgid "Magazines/Reports/Documentary"
-msgstr ""
-
 msgid "manual"
-msgstr ""
-
-msgid "Martial sports"
-msgstr ""
-
-msgid "Medicine/Physiology/Psychology"
 msgstr ""
 
 msgid "min"
 msgstr ""
 
 msgid "month"
-msgstr ""
-
-msgid "motor sport"
-msgstr ""
-
-msgid "Motoring"
 msgstr ""
 
 msgid "move"
@@ -23074,34 +23290,13 @@ msgstr ""
 msgid "music (general)"
 msgstr ""
 
-msgid "music/ballet/dance (general)"
-msgstr ""
-
-msgid "Musical/Opera"
-msgstr ""
-
 msgid "n/a"
 msgstr ""
 
 msgid "name"
 msgstr ""
 
-msgid "Nature/Animals/Environment"
-msgstr ""
-
-msgid "New media"
-msgstr ""
-
 msgid "news (general)"
-msgstr ""
-
-msgid "News magazine"
-msgstr ""
-
-msgid "news/current affairs (general)"
-msgstr ""
-
-msgid "News/Weather report"
 msgstr ""
 
 msgid "no CAId selected"
@@ -23185,6 +23380,9 @@ msgstr ""
 msgid "Performing arts"
 msgstr ""
 
+msgid "Perform the upgrade?"
+msgstr ""
+
 msgid "pid:"
 msgstr ""
 
@@ -23212,9 +23410,6 @@ msgstr ""
 msgid "pm"
 msgstr ""
 
-msgid "Popular culture/Traditional arts"
-msgstr ""
-
 msgid "pre-school children's program"
 msgstr ""
 
@@ -23234,12 +23429,6 @@ msgid "reliable"
 msgstr ""
 
 msgid "reliable, retune"
-msgstr ""
-
-msgid "religion"
-msgstr ""
-
-msgid "Remarkable people"
 msgstr ""
 
 msgid "remove after this position"
@@ -23306,34 +23495,19 @@ msgstr ""
 msgid "right"
 msgstr ""
 
-msgid "Rock/Pop"
+msgid "rose"
 msgstr ""
 
-msgid "romance"
-msgstr ""
-
-msgid "satellites.xml not found or corrupted!\n"
-"It is possible to watch TV,\n"
-"but it's not possible to search for new TV channels\n"
-"or to configure tuner settings"
+msgid "satellites.xml not found or corrupted!\nIt is possible to watch TV,\nbut it's not possible to search for new TV channels\nor to configure tuner settings"
 msgstr ""
 
 msgid "scan state"
-msgstr ""
-
-msgid "Science fiction/Fantasy/Horror"
 msgstr ""
 
 msgid "search EPG..."
 msgstr ""
 
 msgid "select CAId's"
-msgstr ""
-
-msgid "Serious music/Classic music"
-msgstr ""
-
-msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr ""
 
 msgid "service PIN"
@@ -23393,13 +23567,7 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "Soap/Melodrama/Folkloric"
-msgstr ""
-
 msgid "social/political issues/economics (general)"
-msgstr ""
-
-msgid "Social/Spiritual sciences"
 msgstr ""
 
 msgid "softcam"
@@ -23412,12 +23580,6 @@ msgid "special events"
 msgstr ""
 
 msgid "sport (general)"
-msgstr ""
-
-msgid "sports (general)"
-msgstr ""
-
-msgid "Sports magazines"
 msgstr ""
 
 msgid "standard"
@@ -23453,22 +23615,13 @@ msgstr ""
 msgid "system:"
 msgstr ""
 
-msgid "talk show"
-msgstr ""
-
 msgid "team sports"
-msgstr ""
-
-msgid "Technology/Natural sciences"
 msgstr ""
 
 msgid "teletext"
 msgstr ""
 
 msgid "template file"
-msgstr ""
-
-msgid "Tennis/Squash"
 msgstr ""
 
 msgid "text"
@@ -23478,9 +23631,6 @@ msgid "this recording"
 msgstr ""
 
 msgid "toggle time, chapter, audio, subtitle info"
-msgstr ""
-
-msgid "Tourism/Travel"
 msgstr ""
 
 msgid "traditional (fast)"
@@ -23531,9 +23681,6 @@ msgstr ""
 msgid "unknown error"
 msgstr ""
 
-msgid "Unpublished"
-msgstr ""
-
 msgid "untestable"
 msgstr ""
 
@@ -23555,16 +23702,10 @@ msgstr ""
 msgid "using:"
 msgstr ""
 
-msgid "Variety show"
-msgstr ""
-
 msgid "violet"
 msgstr ""
 
 msgid "wait for mmi..."
-msgstr ""
-
-msgid "Water sport"
 msgstr ""
 
 msgid "west"
@@ -23579,9 +23720,6 @@ msgid "when asking question about this log\n"
 msgstr ""
 
 msgid "width"
-msgstr ""
-
-msgid "Winter sport"
 msgstr ""
 
 msgid "wireless network interface"
@@ -23605,7 +23743,6 @@ msgstr ""
 msgid "yes (keep feeds)"
 msgstr ""
 
-#, python-format
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
@@ -24490,9 +24627,6 @@ msgstr ""
 msgid "Package installation failed."
 msgstr ""
 
-msgid "Perform the upgrade?"
-msgstr ""
-
 msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
 msgstr ""
 
@@ -24678,12 +24812,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Add services to this bouquet?"
-msgstr ""
-
-msgid "Development Packages"
-msgstr ""
-
-msgid "Device"
 msgstr ""
 
 msgid "Display Skin Packages"
@@ -25067,9 +25195,6 @@ msgid "Language not installed. Yellow to install"
 msgstr ""
 
 msgid "EPG Days: %s"
-msgstr ""
-
-msgid "Black screen"
 msgstr ""
 
 msgid "Select folder where your picons are located."
