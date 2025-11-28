@@ -8290,7 +8290,7 @@ msgid "Flat by position on remote"
 msgstr ""
 
 msgid "Following tasks will be done after you press OK!"
-msgstr "
+msgstr ""
 
 msgid "Folk and Country"
 msgstr ""
