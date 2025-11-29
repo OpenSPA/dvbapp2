@@ -690,7 +690,6 @@ class FlashImage(Screen):
 
 	def downloadEnd(self, filename=None):
 		self.downloader.stop()
-		self["progress_counter"].hide()
 		self.unzip()
 
 	def downloadError(self, error):
@@ -701,6 +700,7 @@ class FlashImage(Screen):
 		self["header"].setText(_("Unzipping Image"))
 		self["summary_header"].setText(self["header"].getText())
 		self["info"].setText("%s\n\n%s" % (self.imageName, _("Please wait")))
+		self["progress_counter"].hide()
 		self["progress"].hide()
 		self.delay = eTimer()
 		self.delay.callback.append(self.startUnzip)
