@@ -324,13 +324,13 @@ class FlashManager(Screen):
 class FlashImage(Screen):
 	skin = """
 	<screen name="FlashImage" title="Flash Image" position="center,center" size="720,225" resolution="1280,720">
-		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
+		<widget name="header" position="0,0" size="615,50" font="Regular;35" valign="center" />
 		<widget name="info" position="0,60" size="e,130" font="Regular;25" valign="center" />
 		<widget name="progress" position="0,e-25" size="e,25" />
-		<widget name="progress_counter" position="360,60" size="e,35" font="Regular;25" />
+		<widget name="progress_counter" position="620,10" size="99,35" font="Regular;25" />
 	</screen>"""
 
-	def __init__(self, session, imageName, source, downloadOnly=False, destpath=None): #OPENSPA [morser] Add destpath for spanewfirm
+	def __init__(self, session, imageName, source, downloadOnly=False, destpath=None):  # OPENSPA [morser] Add destpath for spanewfirm
 		Screen.__init__(self, session, enableHelp=True)
 		self.imageName = imageName
 		self.source = source.replace("á","%C3%A1").replace(" ","%20")  # OPENSPA [morser] Replace for openspa download
