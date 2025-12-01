@@ -135,17 +135,13 @@ class SetupFallbacktuner(Setup):
 	def syncWithFCC(self):  # sync with FCC.
 		def disableFCC(answer=False):
 			if answer:
-				if isPluginInstalled("IPToSAT"):
-					config.usage.remote_fallback_enabled.save()
 				if config.plugins.fccsetup.activate.value:
 					config.plugins.fccsetup.activate.value = False
 					config.plugins.fccsetup.activate.save()
 					config.usage.remote_fallback_enabled.value = True
 					config.usage.remote_fallback_enabled.save()
-				self.session.open(TryQuitMainloop, 3)
-			else:
-				config.usage.remote_fallback_enabled.value = False
 				self.keySaveAll()
+				self.session.open(TryQuitMainloop, 3)
 
 		inTimeshift = InfoBar and InfoBar.instance and InfoBar.ptsGetTimeshiftStatus(InfoBar.instance)
 		if not inTimeshift and not self.session.nav.getRecordings():
