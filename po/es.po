@@ -4294,6 +4294,9 @@ msgstr "Capítulo:"
 msgid "Character device"
 msgstr "Dispositivo de caracteres"
 
+msgid "Chat show"
+msgstr "Programa de chat"
+
 #
 msgid "Chechen"
 msgstr "Checheno"
@@ -7700,6 +7703,9 @@ msgstr "Este"
 msgid "East limit set"
 msgstr "Límite este"
 
+msgid "Easy listening"
+msgstr "Fácil de escuchar"
+
 msgid "EasyMedia"
 msgstr "EasyMedia"
 
@@ -7792,7 +7798,7 @@ msgstr "Educación"
 msgid "Education/Information"
 msgstr "Educación/Información"
 
-msgid "Education/Science/Factual"
+msgid "Education/Science/Factual topics"
 msgstr "Educación/Ciencia/Realidad"
 
 msgid "Egypt"
@@ -10519,6 +10525,9 @@ msgstr "Índice de velocidad ISO"
 msgid "ISP"
 msgstr "ISP"
 
+msgid "Ice hockey"
+msgstr "Hockey sobre hielo"
+
 msgid "IceTV"
 msgstr "IceTV"
 
@@ -13237,6 +13246,12 @@ msgstr "Nombre del espacio y posición orbital."
 msgid "Namibia"
 msgstr "Namibia"
 
+msgid "Narration"
+msgstr "Narración"
+
+msgid "National music"
+msgstr "Música nacional"
+
 msgid "Native"
 msgstr "Nativo"
 
@@ -13530,6 +13545,9 @@ msgstr "No"
 #
 msgid "No (supported) DVDROM found!"
 msgstr "¡No se encontró ningún DVDROM (compatible)!"
+
+msgid "No category"
+msgstr "Sin categoría"
 
 #
 msgid "No Connection"
@@ -17448,6 +17466,9 @@ msgstr "Descripción general del programador"
 msgid "Scheduler Settings"
 msgstr "Configuración del programador"
 
+msgid "Science fiction"
+msgstr "Ciencia ficción"
+
 msgid "Sci-Fi"
 msgstr "Ciencia Ficción"
 
@@ -21288,6 +21309,9 @@ msgstr "Orden : Directorios por %s %s; Archivos por %s %s."
 #
 msgid "Sotho, Southern"
 msgstr "Sotho, Sur"
+
+msgid "Soul/Rhythm and Blues"
+msgstr "Soul/Ritmo y Blues"
 
 #
 msgid "Sound"
@@ -25955,8 +25979,8 @@ msgstr "Ancho"
 msgid "Width / Height"
 msgstr "Ancho/Alto"
 
-msgid "Winter Sports"
-msgstr "Deportes de invierno"
+msgid "Winter sports"
+msgstr "deportes de invierno"
 
 msgid "Wipe"
 msgstr "Limpiar"
@@ -26055,6 +26079,12 @@ msgstr ""
 
 msgid "Workaround for old tuner driver."
 msgstr "Solución alternativa para el driver del sintonizador antiguo."
+
+msgid "World Affairs"
+msgstr "Asuntos mundiales"
+
+msgid "World cultures"
+msgstr "Culturas del mundo"
 
 #, python-format
 msgid "Would you save the entered PIN %s persistent?"
@@ -26824,7 +26854,7 @@ msgstr ""
 msgid "arts/culture (general)"
 msgstr "Arte/cultura (general)"
 
-msgid "arts/culture (without music, general)"
+msgid "Arts/Culture (without music)"
 msgstr "Artes / cultura (sin música, general)"
 
 msgid "Arts/Culture magazines"
@@ -26924,7 +26954,7 @@ msgstr "Capítulos"
 msgid "children's (general)"
 msgstr "Programa para niños (general)"
 
-msgid "children's/youth program (general)"
+msgid "Children's/Youth programs"
 msgstr "Programa para niños / jóvenes (general)"
 
 msgid "clip overscan / letterbox borders"
@@ -27090,10 +27120,10 @@ msgstr "Fin de edición de favoritos"
 msgid "enigma2 and network"
 msgstr "Enigma2 y red"
 
-msgid "entertainment (10-16 year old)"
+msgid "Entertainment programs for 10 to 16"
 msgstr "entretenimiento (10-16 años)"
 
-msgid "entertainment (6-14 year old)"
+msgid "Entertainment programs for 6 to 14"
 msgstr "entretenimiento (6-14 años)"
 
 msgid "entertainment (general)"
@@ -27265,7 +27295,7 @@ msgstr "Saltos:"
 msgid "increase uphop by 1"
 msgstr "Aumentar salto superior en 1"
 
-msgid "information/education/school program"
+msgid "Informational/Educational/School programs"
 msgstr "Información / educación / programa escolar"
 
 msgid "infotainment (general)"
@@ -27557,7 +27587,7 @@ msgstr "pm"
 msgid "Popular culture/Traditional arts"
 msgstr "Cultura popular/Artes tradicionales"
 
-msgid "pre-school children's program"
+msgid "Pre-school children's program"
 msgstr "Programa infantil de preescolar"
 
 msgid "provid:"
@@ -27780,7 +27810,7 @@ msgstr "Lento"
 msgid "Soap/Melodrama/Folkloric"
 msgstr "Jabón/Melodrama/Folclórico"
 
-msgid "social/political issues/economics (general)"
+msgid "Social/political issues/economics (general)"
 msgstr "Cuestiones sociales / políticas / economía (general)"
 
 msgid "Social/Spiritual sciences"
@@ -27792,7 +27822,7 @@ msgstr "softcam"
 msgid "special (general)"
 msgstr "especial (general)"
 
-msgid "special events"
+msgid "Special events (Olympic games, World cup, etc.)"
 msgstr "especial eventos"
 
 msgid "sport (general)"
@@ -27847,7 +27877,7 @@ msgstr "Sistema:"
 msgid "talk show"
 msgstr "programa de entrevistas"
 
-msgid "team sports"
+msgid "Team sports (excluding Football)"
 msgstr "deportes de equipo"
 
 msgid "Technology/Natural sciences"
