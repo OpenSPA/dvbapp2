@@ -7805,9 +7805,6 @@ msgstr ""
 msgid "FCC enabled"
 msgstr ""
 
-msgid "FCC usage will be disabled to use the fallback tuner.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
-msgstr ""
-
 msgid "FEC"
 msgstr ""
 
@@ -19689,9 +19686,6 @@ msgid "The use of IPToSAT will be disabled.\nEnigma2 needs to be restarted.\nDo 
 msgstr ""
 
 msgid "The use of IPToSAT will be enabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
-msgstr ""
-
-msgid "The use of the reserve tuner will be disabled to use FCC.\nEnigma2 needs to be restarted.\nDo you want to do it now?"
 msgstr ""
 
 #, python-format
