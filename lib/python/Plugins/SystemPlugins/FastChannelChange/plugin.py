@@ -457,6 +457,7 @@ class FCCSetup(Setup):
 		Setup.keySave(self)
 		FCCChanged()
 
+
 def ToggleUpdate():
 	if config.plugins.fccsetup.activate.value:
 		config.plugins.fccsetup.activate.value = False
