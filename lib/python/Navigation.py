@@ -22,7 +22,7 @@ import Screens.Standby
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileWriteLine
 from Tools.StbHardware import getFPWasTimerWakeup
-from Tools.Notifications import AddPopup
+from Tools.Notifications import AddPopup, AddNotification
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -281,9 +281,8 @@ class Navigation:
 
 	def gotostandby(self):
 		if not Screens.Standby.inStandby:
-			import Tools.Notifications
 			print("[Navigation] Now entering standby.")
-			Tools.Notifications.AddNotification(Screens.Standby.Standby)
+			AddNotification(Screens.Standby.Standby)
 
 	def dispatchEvent(self, i):
 		for x in self.event:
@@ -423,6 +422,8 @@ class Navigation:
 					self.firstStart = False
 					self.retryServicePlayTimer.start(delay, True)
 					return 0
+				elif BoxInfo.getItem("FCCactive") and config.usage.remote_fallback_enabled.value:
+					AddNotification(MessageBox, _("It is not compatible to have fallback tuner and FCC activated simultaneously.\nActivate only the function you wish to use."), type=MessageBox.TYPE_ERROR, timeout=0)
 				elif not isHandled and self.pnav.playService(playref):
 					print(f"[Navigation] Failed to start '{playref.toString()}'.")
 					self.currentlyPlayingServiceReference = None

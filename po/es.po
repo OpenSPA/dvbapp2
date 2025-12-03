@@ -11370,6 +11370,9 @@ msgstr "Israel"
 msgid "It follows:"
 msgstr "Es lo siguiente:"
 
+msgid "It is not compatible to have fallback tuner and FCC activated simultaneously.\nActivate only the function you wish to use."
+msgstr "No es compatible tener el tuner reserva y FCC activados simultáneamente.\nActive solo la función que desee utilizar."
+
 msgid "It is not possible to record channels satellite"
 msgstr "No es posible grabar canales satélites"
 
