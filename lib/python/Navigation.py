@@ -394,6 +394,8 @@ class Navigation:
 					self.pnav.stopService()
 				else:
 					self.skipServiceReferenceReset = True
+					from enigma import eFCCServiceManager  # OpenSPA [norhap] Set FCC not enabled if fallback tuner is active.
+					eFCCServiceManager.getInstance().setFCCEnable(False) if config.usage.remote_fallback_enabled.value else eFCCServiceManager.getInstance().setFCCEnable(True)
 				self.currentlyPlayingServiceReference = playref
 				if not ignoreStreamRelay:
 					playref, isStreamRelay = streamrelay.streamrelayChecker(playref)
@@ -422,8 +424,6 @@ class Navigation:
 					self.firstStart = False
 					self.retryServicePlayTimer.start(delay, True)
 					return 0
-				elif BoxInfo.getItem("FCCactive") and config.usage.remote_fallback_enabled.value:
-					AddNotification(MessageBox, _("It is not compatible to have fallback tuner and FCC activated simultaneously.\nActivate only the function you wish to use."), type=MessageBox.TYPE_ERROR, timeout=0)
 				elif not isHandled and self.pnav.playService(playref):
 					print(f"[Navigation] Failed to start '{playref.toString()}'.")
 					self.currentlyPlayingServiceReference = None

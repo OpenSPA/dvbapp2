@@ -9901,9 +9901,6 @@ msgstr ""
 msgid "It follows:"
 msgstr ""
 
-msgid "It is not compatible to have fallback tuner and FCC activated simultaneously.\nActivate only the function you wish to use."
-msgstr ""
-
 msgid "It is not possible to record channels satellite"
 msgstr ""
 
