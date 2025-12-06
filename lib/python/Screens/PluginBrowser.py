@@ -1510,6 +1510,12 @@ class PackageAction(Screen, NumericalTextInput):
 						packageName = "-".join(packageSoftcams)
 						data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
 						pluginList.append(data)
+			# OpenSPA [norhap] show packages no visible in categoryes to Other Packages.
+			if "clearmen" in packageFile.split("-")[1:] and "dbg" not in packageFile.split("-") and "dev" not in packageFile.split("-"):
+				packageCategory = ""
+				packageName = "-".join(packageFile.split("-")[1:])
+				data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+				pluginList.append(data)
 		print(f"[PluginBrowser] PackageAction Packages: {len(packages)} returned from opkg, {allCount} matched, {installCount} installed, {updateCount} have updates.")
 		installedText = ngettext("%d package installed.", "%d packages installed.", installCount) % installCount
 		updateText = ngettext("%d package has an update", "%d packages have updates.", updateCount) % updateCount
