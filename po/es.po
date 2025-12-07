@@ -10589,7 +10589,7 @@ msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr ""
 "Si está habilitado, se usará el motor de reproducción del nuevo Gstreamer."
 
-msgid "If enabled, a time window is used to detect wake-ups from deep standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
+msgid "If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
 msgstr "Si está habilitado, se utiliza una ventana de tiempo para detectar reactivaciones desde el modo de espera completo activadas por un temporizador. La configuración predeterminada está deshabilitada y utiliza una señal especial del receptor. Sin embargo, algunos dispositivos envían una señal incorrecta o no envían ninguna, lo que provoca un fallo en la detección de reactivación."
 
 msgid ""
