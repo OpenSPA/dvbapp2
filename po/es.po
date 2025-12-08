@@ -3172,12 +3172,8 @@ msgstr "Realizar copia de sus ajustes %s %s."
 msgid "Backup your current image"
 msgstr "Backup de tu imagen actual"
 
-msgid ""
-"Backup your current image to HDD or USB. This will make a 1:1 copy of your "
-"box"
-msgstr ""
-"Backup de su imagen actual al HDD o USB. Realizará una copia 1:1 de su "
-"receptor"
+msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."
+msgstr "Copia de seguridad de su imagen actual al HDD o USB. Realizará una copia 1:1 de su receptor"
 
 msgid "Backup your current settings"
 msgstr "Backup de los ajustes actuales"
@@ -4643,7 +4639,7 @@ msgstr "Pulsa la tecla del mando que quieras cambiar."
 msgid "Client"
 msgstr "Cliente"
 
-msgid "Client is streaming from this box!"
+msgid "Client is streaming from this receiver!"
 msgstr "¡El cliente está transmitiendo desde este receptor!"
 
 msgid "ClientIP"
@@ -4943,7 +4939,7 @@ msgstr ""
 "Configura si y como de ancha será la columna del canal en la lista de "
 "canales."
 
-msgid "Configure if epg.dat should be saved at all."
+msgid "Configure if 'epg.dat' should be saved at all."
 msgstr "Configura si epg.dat se guardará siempre."
 
 msgid "Configure if service picons will be shown in quickzap."
@@ -5045,7 +5041,7 @@ msgid ""
 "operation."
 msgstr "Configura el nivel de brillo del LCD durante su uso."
 
-msgid "Configure the brightness level of the front panel display for Standby."
+msgid "Configure the brightness level of the front panel display for standby mode."
 msgstr "Configura el nivel de brillo del LCD en modo reposo."
 
 msgid ""
@@ -6411,6 +6407,18 @@ msgstr "Orden predeterminado para archivos en la columna izquierda."
 msgid "Default sort order for files in the right column."
 msgstr "Orden predeterminado para archivos en la columna derecha."
 
+msgid "Default video mode selected"
+msgstr "Modo de vídeo predeterminado seleccionado"
+
+msgid "Default video mode selected for the TV."
+msgstr "Modo de vídeo predeterminado seleccionado para el televisor."
+
+msgid "Default volume offset"
+msgstr "Desplazamiento de volumen predeterminado"
+
+msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "La activación predeterminada es 5 minutos antes del modo de espera completo. Ajuste el tiempo de activación si es demasiado pronto o demasiado tarde, por ejemplo, para unidades de red."
+
 #, python-format
 msgid "Default: '%s'."
 msgstr "Predeterminado: '%s'."
@@ -6601,7 +6609,7 @@ msgstr "Eliminar todas las etiquetas"
 msgid "Delete all the text"
 msgstr "Eliminar todo el texto"
 
-msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
+msgid "Delete and uninstall Plugins. This will remove the Plugin from your receiver."
 msgstr "Eliminar y desinstalar Plugins. Se eliminará el plugin de tu receptor"
 
 msgid "Delete character to left of cursor or select AM times"
@@ -9397,8 +9405,8 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr "¡Directorio '%s' no permitido!"
 
-msgid "Flash on the fly your your Receiver software."
-msgstr "Instala por OTA el software de tu receptor."
+msgid "Flash your receiver software on the fly."
+msgstr "Flashea por OTA el software de tu receptor."
 
 msgid "Flash type"
 msgstr "Tipo de memoria interna"
@@ -10555,21 +10563,11 @@ msgstr ""
 "Si una acción es configurable por el usuario, su entrada de ayuda se marcará "
 "con un sufijo '(C)'."
 
-msgid ""
-"If enabled and necessary, the plugin will wake up the Receiver from Deep-"
-"Standby for the defined starting time to control whether the programme "
-"begins earlier."
-msgstr ""
-"Si está habilitado y es necesario, el plugin encenderá el receptor del "
-"reposo profundo a la hora de inicio definida para controlar si el programa "
-"empieza antes."
+msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgstr "Si está habilitado y es necesario, el plugin despertará al receptor del reposo profundo para la hora de inicio definida para controlar si el programa comienza antes."
 
-msgid ""
-"If enabled the output resolution of the box will try to match the resolution "
-"of the video contents resolution"
-msgstr ""
-"Si se activa la resolución de salida el receptor, intentará buscar la "
-"resolución del contenido del vídeo"
+msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
+msgstr "Si se activa la resolución de salida el receptor, intentará buscar la resolución del contenido del vídeo"
 
 msgid "If enabled the video will always be de-interlaced."
 msgstr "Si se activa la imagen siempre se desentrelazará."
@@ -11580,7 +11578,7 @@ msgstr "LED normal"
 msgid "LED Standby"
 msgstr "LED en espera"
 
-msgid "LED brightness during Deep Standby."
+msgid "LED brightness during deep standby."
 msgstr "Brillo del LED durante el apagado."
 
 msgid "LED brightness during normal operations."
@@ -11907,7 +11905,7 @@ msgstr "Cargando la información, por favor espere..."
 msgid "Loading slot information, please wait..."
 msgstr "Cargando información del slot, por favor espere..."
 
-msgid "Local box"
+msgid "Local receiver"
 msgstr "Receptor local"
 
 msgid "Local date/time"
@@ -12220,6 +12218,12 @@ msgstr "Administrar %s"
 #
 msgid "Manage Locale/Language Selection settings"
 msgstr "Gestionar los ajustes de selección del idioma regional"
+
+msgid "Manage Plugins"
+msgstr "Administrar Plugins"
+
+msgid "Manage Plugins. This will remove/install Plugins on your receiver."
+msgstr "Administrar complementos. Esto eliminará o instalará complementos en su receptor."
 
 msgid "Manage and explore directories and files."
 msgstr "Organizar y explorar directorios y archivos."
@@ -15287,7 +15291,7 @@ msgstr "Estado del LED de alimentación en espera"
 msgid "Power LED can be turned on or off here."
 msgstr "Aquí se puede encender o apagar el LED de alimentación."
 
-msgid "Power LED state during Deep Standby."
+msgid "Power LED state during deep standby."
 msgstr "Estado del LED de alimentación durante reposo profundo."
 
 msgid "Power LED state during standby."
@@ -15602,7 +15606,7 @@ msgstr "Información del procesador"
 msgid "Profile"
 msgstr "Perfil"
 
-msgid "Profile: Local box"
+msgid "Profile: Local receiver"
 msgstr "Perfil: receptor local"
 
 msgid "Program"
@@ -16328,7 +16332,7 @@ msgstr "Configuración botones del mando"
 msgid "Remote Control Code Settings"
 msgstr "Código de mando"
 
-msgid "Remote box"
+msgid "Remote receiver"
 msgstr "Receptor remoto"
 
 msgid "Remote control information"
@@ -16754,12 +16758,8 @@ msgstr "Restaura tu %s %s con un nuevo firmware."
 msgid "Restore your backups by date."
 msgstr "Restaurar por fecha sus copias de seguridad."
 
-msgid ""
-"Restore your settings back from a backup. After restore the box will restart "
-"to activated the new settings"
-msgstr ""
-"Restaura tus ajustes desde un backup. Después de restaurar, el receptor se "
-"reiniciará para a activar los nuevos ajustes"
+msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
+msgstr "Restaurar sus ajustes desde un backup. Después de restaurar, el receptor se reiniciará para a activar los nuevos ajustes."
 
 msgid "Restoring..."
 msgstr "Restaurando..."
@@ -17338,10 +17338,10 @@ msgid ""
 msgstr ""
 "Buscar lamedbs por defecto ordenados por satélite con un motor conectado"
 
-msgid "Scheduled load of epg.dat"
+msgid "Scheduled load of 'epg.dat'"
 msgstr "Carga programada de epg.dat"
 
-msgid "Scheduled save of epg.dat"
+msgid "Scheduled save of 'epg.dat'"
 msgstr "Guardado programado de epg.dat"
 
 msgid "Scheduler"
@@ -19515,7 +19515,7 @@ msgstr "Establezca en 'Deshabilitado' para reemplazar los caracteres de subrayad
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
 msgstr "Configúrelo en 'Habilitado' para descifrar grabaciones cifradas en cola en el modo de espera antes de apagar."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
 msgstr "Establezca en 'Habilitado' para descifrar grabaciones cifradas en cola en modo de espera."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -21398,6 +21398,9 @@ msgstr "IP Estática / Personalizada"
 
 msgid "Status"
 msgstr "Estado"
+
+msgid "Status of the display in Deep Standby"
+msgstr "Estado de la pantalla en modo de Reposo Profundo"
 
 msgid "Status:"
 msgstr "Estado:"
@@ -24198,7 +24201,7 @@ msgstr ""
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Actualiza/Realiza backup del firmware, ajustes de Backup/Restauración"
 
-msgid "Update/Backup/Restore your box"
+msgid "Update/Backup/Restore your receiver"
 msgstr "Actualizar/Backup/Restaurar su receptor"
 
 msgid "Updated"
@@ -25849,7 +25852,7 @@ msgid "With this option you can switch off the display during operation."
 msgstr ""
 "Con esta opción puedes desconectar el display durante el funcionamiento."
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in deep standby mode."
 msgstr "Con esta opción puedes desconectar el display en reposo profundo."
 
 msgid "With this option you can switch off the display in standby mode."
@@ -28340,9 +28343,6 @@ msgstr "Ubicación de los picons"
 msgid "Search picons in /media/hdd"
 msgstr "Buscar picons en /media/hdd"
 
-msgid "Manage Plugins"
-msgstr "Administrar Plugins"
-
 msgid "Plugin Manager Actions"
 msgstr "Acciones del administrador de plugins"
 
@@ -28714,15 +28714,6 @@ msgstr "Asistente de vídeo"
 #
 msgid "Select video output port with UP/DOWN buttons"
 msgstr "Selecciona el puerto de salida de vídeo con los botones ARRIBA/ABAJO"
-
-msgid "Default video mode selected for the TV."
-msgstr "Modo de vídeo predeterminado seleccionado para la TV."
-
-msgid "Default volume offset"
-msgstr "Desplazamiento de volumen predeterminado"
-
-msgid "Default video mode selected"
-msgstr "Modo de vídeo por defecto seleccionado"
 
 #
 msgid "Auto video mode selected for the TV."

@@ -417,7 +417,7 @@ class TryQuitMainloop(MessageBox):
 			default_yes = False
 			timeout = 30
 		elif eStreamServer.getInstance().getConnectedClients() or StreamServiceList:
-			reason = _("Client is streaming from this box!")
+			reason = _("Client is streaming from this receiver!")
 			default_yes = False
 			timeout = 30
 			clients = eStreamServer.getInstance().getConnectedClients()

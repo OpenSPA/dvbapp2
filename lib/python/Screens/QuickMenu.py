@@ -173,7 +173,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.menu = 0
 		self.list = []
 		self.oldlist = []
-		self.list.append(QuickMenuEntryComponent("Software Manager", _("Update/Backup/Restore your box"), _("Update/Backup your firmware, Backup/Restore settings")))
+		self.list.append(QuickMenuEntryComponent("Software Manager", _("Update/Backup/Restore your receiver"), _("Update/Backup your firmware, Backup/Restore settings")))
 		if BoxInfo.getItem("SoftCam"):
 			self.list.append(QuickMenuEntryComponent("Softcam", _("Start/stop/select cam"), _("Start/stop/select your cam, You need to install first a softcam")))
 		self.list.append(QuickMenuEntryComponent("System", _("System Setup"), _("Setup your System")))
