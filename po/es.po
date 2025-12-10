@@ -6787,8 +6787,8 @@ msgstr ""
 "incompatibles con los existentes. Aunque en la mayoría de los casos esto es "
 "inocuo, es posible que su %s %s experimente problemas."
 
-msgid "Destination of fallback remote receiver"
-msgstr "Destino del receptor reserva"
+msgid "Destination of fallback remote receiver."
+msgstr "URL del receptor reserva."
 
 msgid "Destination of fallback remote receiver for ATSC"
 msgstr "Destino del receptor reserva para ATSC"
@@ -10755,8 +10755,8 @@ msgstr "Reinicie inmediatamente los dispositivos seleccionados."
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Importar canales y/o EPG desde la URL del receptor remoto cuando se reinicia el receptor o la GUI."
 
-msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
-msgstr "Importar canales y/o EPG de URL de receptor reserva cuando el receptor arranque"
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
+msgstr "Importar canales y/o EPG de URL de receptor reserva cuando el receptor arranque."
 
 msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
 msgstr "Importe canales y/o EPG desde la URL del receptor remoto, incluso cuando el receptor esté saliendo del modo reposo."
@@ -17762,14 +17762,8 @@ msgstr ""
 "aplique cualquier configuración. Esta es la forma más fiable de Restauración "
 "de Fábrica."
 
-msgid ""
-"Select 'Yes' to remove all timer configuration data. Selecting this option "
-"will clear all timers, autotimers and power timers."
-msgstr ""
-"Seleccione \"Sí\" para eliminar todos los datos de configuración de los "
-"temporizadores. Al seleccionar esta opción, se borrarán todos los "
-"temporizadores, los temporizadores automáticos y los temporizadores de "
-"encendido."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
+msgstr "Seleccione \"Sí\" para eliminar todos los datos de configuración del temporizador. Al seleccionar esta opción, se borrarán todos los temporizadores, temporizadores automáticos y programaciones."
 
 msgid ""
 "Select 'Yes' to remove all tuning data. Selecting this option will remove "
@@ -19522,7 +19516,10 @@ msgid "Set to 'Yes', to enable automatic recording of the background time shift 
 msgstr "Establezca en 'Sí' para habilitar la grabación automática del búfer time shift."
 
 msgid "Set to the desired primetime hour."
-msgstr "Configura la hora de máxima audiencia."
+msgstr "Establezca la hora de máxima audiencia."
+
+msgid "Set to the desired primetime minutes."
+msgstr "Establezca los minutos de máxima audiencia."
 
 msgid "Set to what you want the button to do."
 msgstr "Configura lo que quiere que haga la tecla."
@@ -24768,6 +24765,9 @@ msgstr ""
 
 msgid "Verbose"
 msgstr "Abundante"
+
+msgid "Verify WebIf SSL certificate"
+msgstr "Verificar el certificado SSL de WebIf"
 
 msgid "Version"
 msgstr "Versión"
