@@ -5125,7 +5125,7 @@ msgid "Configure the general audio volume step size (limit 1-10)."
 msgstr "Configure el tamaño de la etapa de volumen de audio general (límite 1-10)."
 
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
-msgstr "Configura el disco duro para que vaya a modo de espera tras el tiempo de inactividad especificado cuando el decodificador está en reposo."
+msgstr "Configura el disco duro para que vaya a modo de espera tras el tiempo de inactividad especificado cuando el receptor está en reposo."
 
 msgid "Configure the hard disk drive to go to Standby after the specified idle time."
 msgstr "Configurar el tiempo sin uso tras el cual el disco duro irá a reposo."
