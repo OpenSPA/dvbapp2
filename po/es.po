@@ -3166,7 +3166,7 @@ msgid "Backup your current image"
 msgstr "Backup de tu imagen actual"
 
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."
-msgstr "Copia de seguridad de su imagen actual al HDD o USB. Realizará una copia 1:1 de su receptor"
+msgstr "Copia de seguridad de su imagen actual al HDD o USB. Realizará una copia 1:1 de su receptor."
 
 msgid "Backup your current settings"
 msgstr "Backup de los ajustes actuales"
@@ -3324,9 +3324,11 @@ msgstr "Bislama"
 msgid "Bitrate"
 msgstr "Tasa de bits"
 
-#
 msgid "Bitrate:"
 msgstr "Bitrate:"
+
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
+msgstr "Establezca la tasa de bits del codificador de vídeo. Los valores más altos mejoran la calidad y también aumentan el tamaño del archivo."
 
 msgid "Black"
 msgstr "Negro"
@@ -4422,39 +4424,20 @@ msgstr "Cerrar la pantalla del Administrador de dispositivos"
 msgid "Close the Device Manager screen and exit all menus"
 msgstr "Cerrar la pantalla del Administrador de dispositivos y salir de todos los menús"
 
-msgid ""
-"Choose the display formatting style for dates. 'D' / 'DD' is the date and "
-"'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for "
-"single digit values.) The screen display will be based on your choice but "
-"can be influenced by the skin."
-msgstr ""
-"Elegir el estilo de formato de visualización para las fechas. 'D' / 'DD' es "
-"la fecha y 'M' / 'MM' es el mes en dígitos.  ('DD' y 'MM' tienen ceros a la "
-"izquierda para los valores de un solo dígito). La visualización en pantalla "
-"se basará en su elección pero podría estar influida por la interfaz."
+msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Elegir el estilo de formato de visualización para las fechas. 'D' / 'DD' es la fecha y 'M' / 'MM' es el mes en dígitos.  ('DD' y 'MM' tienen ceros a la izquierda para los valores de un solo dígito). La visualización en pantalla se basará en su elección pero podría estar influida por la interfaz."
 
-msgid ""
-"Choose the display formatting style for times. 'H' / 'HH' is the hour for a "
-"24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the "
-"minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for "
-"single digit values.) The screen display will be based on your choice but "
-"can be influenced by the skin."
-msgstr ""
-"Elegir el estilo de formato de visualización de las horas. 'H' / 'HH' es la "
-"hora para un reloj de 24 horas, 'h' / 'hh' es la hora para un reloj de 12 "
-"horas, 'mm' son los minutos y 'ss' son los segundos.  ('HH' y 'hh' tienen "
-"ceros a la izquierda para los valores de un solo dígito). La visualización "
-"de la pantalla se basará en su elección pero podría estar influida por la "
-"interfaz."
+msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Elegir el estilo de formato de visualización de las horas. 'H' / 'HH' es la hora para un reloj de 24 horas, 'h' / 'hh' es la hora para un reloj de 12 horas, 'mm' son los minutos y 'ss' son los segundos.  ('HH' y 'hh' tienen ceros a la izquierda para los valores de un solo dígito). La visualización de la pantalla se basará en su elección pero podría estar influida por la interfaz."
 
 msgid "Choose the fallback font."
 msgstr "Escoge la fuente alternativa."
 
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Seleccione el formato de visualización de fechas en el panel frontal. 'D'/'DD' representa la fecha y 'M'/'MM' el mes en dígitos ('DD' and 'MM' tienen ceros a la izquierda para valores de un solo dígito). La visualización en pantalla dependerá de su elección, pero puede verse afectada por la skin."
+msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Elegir el estilo de formato de visualización del display para las fechas. 'D' / 'DD' es la fecha y 'M' / 'MM' es el mes en dígitos.  ('DD' y 'MM' tienen ceros a la izquierda para los valores de un solo dígito). La visualización en pantalla se basará en su elección pero podría estar influida por la interfaz."
 
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' the minutes ('HH' and 'hh' have leading zeros for single digit values). The front panel display will be based on your choice but can be influenced any applicable skin."
-msgstr "Seleccione el formato de la hora en la pantalla del panel frontal. 'H'/'HH' corresponde a la hora en un reloj de 24 horas, 'h'/'hh' corresponde a la hora en un reloj de 12 horas y 'mm' corresponde a los minutos ('HH' y 'hh' tienen ceros a la izquierda para valores de un solo dígito). La visualización del panel frontal se basará en su elección, pero puede modificarse con cualquier diseño aplicable."
+msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
+msgstr "Elegir el estilo de formato del display para las horas. 'H' / 'HH' es la hora para un reloj de 24 horas, 'h' / 'hh' es la hora para un reloj de 12 horas, 'mm' son los minutos. ('HH' y 'hh' tienen ceros a la izquierda para los valores de un solo dígito). La pantalla del panel frontal se basará en su elección pero podría estar influida por cualquier interfaz aplicable."
 
 msgid "Choose the location for crash and debug logs."
 msgstr "Elige la ubicación de los logs de fallo y depuración."
@@ -5034,7 +5017,7 @@ msgid ""
 "operation."
 msgstr "Configura el nivel de brillo del LCD durante su uso."
 
-msgid "Configure the brightness level of the front panel display for Standby mode."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Configura el nivel de brillo del LCD en modo reposo."
 
 msgid ""
@@ -5067,9 +5050,6 @@ msgid "Configure the display resolution and the font used for teletext."
 msgstr ""
 "Configure la resolución de la pantalla y la fuente utilizada para el "
 "teletexto."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Seleccione la duración de inactividad antes de que se muestre el protector de pantalla."
 
 msgid ""
 "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -5367,14 +5347,8 @@ msgid ""
 msgstr ""
 "Configurar si las pistas de sonido multicanal deben ser mezcladas a estéreo."
 
-msgid ""
-"Configure whether the 'recording' symbol (in the display skin and LCD skin) "
-"is visible for real recordings only or also for streaming and pseudo "
-"recordings (e.g. in EPGrefresh)"
-msgstr ""
-"Configurar si el símbolo de grabación (tanto de la pantalla como del LCD) es "
-"visible solo durante grabaciones reales o también para retransmisiones y "
-"pseudo grabaciones (por ejemplo el refresco de la EPG)."
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
+msgstr "Configurar si el símbolo de grabación (tanto de la pantalla como del LCD) es visible solo durante grabaciones reales o también para retransmisiones y pseudo grabaciones (por ejemplo el refresco de la EPG)."
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Configure el formato de color que se debe utilizar en la salida SCART."
@@ -8065,7 +8039,7 @@ msgstr "Habilita una función para que el receptor pueda descodificar streams (s
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Permite enviar los mismos comandos de TV tanto para reposo profundo como para el reposo normal."
 
-msgid "Enables timeshift to use alternative audio plugins."
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Si se ajusta a \"sí\", permite utilizar timeshift con plugins de audio alternativos."
 
 msgid "Encrypted: "
@@ -10754,21 +10728,14 @@ msgstr "Importación del tuner reserva fallido, %s"
 msgid "Import remote receiver URL"
 msgstr "Importar URL del receptor remoto"
 
-msgid ""
-"In addition to the check at an event start, a repetitive check can be used, "
-"so that the conditions 'buffer limit in hours' or 'check free space' are "
-"detected earlier."
-msgstr ""
-"Además de la comprobación al inicio del evento, se puede usar una "
-"comprobación repetitiva, así se detectarán antes las condiciones ‘límite de "
-"buffer en horas’ y ‘comprobar espacio libre’."
+msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+msgstr "Además de la comprobación al inicio del evento, se puede usar una comprobación repetitiva, así se detectarán antes las condiciones ‘límite de buffer en horas’ y ‘comprobar espacio libre’."
 
-msgid ""
-"In expert mode, configure which tuners will be preferred for recordings, "
-"when more than one tuner is available."
-msgstr ""
-"En el modo experto, configure qué sintonizadores se preferirán para las "
-"grabaciones, cuando haya más de un sintonizador disponible."
+msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
+msgstr "En el modo experto, configure qué sintonizadores se preferirán para las grabaciones, cuando haya más de un sintonizador disponible."
+
+msgid "In most cases this should be set to 'No'. Only set to 'Yes' if you have a very specific need."
+msgstr "En la mayoría de los casos, esta opción debería estar configurada como \"No\"."
 
 msgid "In most cases, leave this disabled. Enable only if you have a very specific need."
 msgstr "En la mayoría de los casos, desactive esta opción. Habilítela solo si tiene una necesidad muy específica."
@@ -14270,9 +14237,8 @@ msgstr "Acciones del registro de Opkg"
 msgid "Option"
 msgstr "Opción"
 
-# Menue Anpassungen OSD
-msgid "Option to disable picons on the Infobar."
-msgstr "Opción para desactivar picons en Infobar."
+msgid "Option to disable picons on the InfoBar."
+msgstr "Opción para desactivar picon de la InfoBar"
 
 # HDD Standby
 msgid "Option to enable the hardware Standby timer."
@@ -15724,8 +15690,11 @@ msgstr "Purga"
 
 # #-#-#-#-#  catalog.po (OpenATV)  #-#-#-#-#
 #
-msgid "Purge 'Trash' after x days"
-msgstr "Vaciar 'Papelera' después de x días"
+msgid "Purge 'Trash' after"
+msgstr "Vaciar 'Papelera' después de"
+
+msgid "Purge Deleted User Bouquets"
+msgstr "Limpiar listas de usuario eliminadas"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr ""
@@ -16560,8 +16529,8 @@ msgstr "Tipo de recurso requerido:"
 msgid "Rereading partition table"
 msgstr "Releyendo tabla de particiones"
 
-msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
-msgstr "Reprograme la tarea para que se ejecute cuando el receptor entre o salga del reposo. El cambio de estado debe ocurrir dentro del intervalo programado de la tarea; de lo contrario, esta no se ejecutará."
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
+msgstr "Seleccione 'Sí' para reprogramar la tarea para que se ejecute cuando el receptor entre o salga del modo de espera. El cambio de estado debe ocurrir dentro del intervalo programado de la tarea; de lo contrario, esta no se ejecutará."
 
 msgid "Reserved"
 msgstr "Reservado"
@@ -18123,7 +18092,7 @@ msgstr "Seleccione el registro de confirmación de un repositorio para verlo:"
 msgid "Select a script to run:"
 msgstr "Seleccione el script a ejecutar:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr "Seleccione un tiempo, cuando esté en modo de espera, después del cual se podrá continuar con la descodificación."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
@@ -18229,8 +18198,8 @@ msgstr "Seleccione cómo actuarán los botones numéricos durante las acciones d
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Seleccione cómo está configurada la antena parabólica, es decir, antena fija, LNB único, interruptor DiSEqC, posicionador, etc."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
-msgstr "Seleccione cómo se gestiona la programación con respecto al modo de espera."
+msgid "Select how the schedule is handled with respect to Standby."
+msgstr "Seleccione cómo se gestiona la programación con respecto al reposo."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleccione cómo activar el modo EPG rápido."
@@ -18381,9 +18350,6 @@ msgstr "Seleccione el servicio actualmente resaltado y salga"
 msgid "Select the currently highlighted timer"
 msgstr "Seleccione el temporizador resaltado actualmente"
 
-msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
-msgstr "Seleccione la hora límite para activar este temporizador. Pasada esta hora, el temporizador no se activará aunque se cumplan otras condiciones."
-
 msgid "Select the list of LCN rules to be applied to the scan."
 msgstr "Seleccione la lista de reglas LCN que se aplicarán a la búsqueda."
 
@@ -18396,9 +18362,6 @@ msgstr "Seleccione la respuesta \"No\" / \"Falso\""
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Seleccione la tasa de refresco que se usará en la TV."
 #
-
-msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
-msgstr "Seleccione la hora de inicio a partir de la cual se activará este temporizador. Antes de esta hora, el temporizador no se activará aunque se cumplan otras condiciones."
 
 msgid "Select the Swap File Size:"
 msgstr "Seleccione el tamaño de la memoria Swap:"
@@ -18544,9 +18507,13 @@ msgstr ""
 "seleccionar directamente las entradas de menú numeradas."
 
 msgid "Select the display sequence of previously visited services."
-msgstr ""
-"Seleccione la secuencia de visualización de los servicios visitados "
-"anteriormente."
+msgstr "Seleccione la secuencia de visualización de los servicios visitados anteriormente."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Configura la duración en minutos para el salvapantallas."
+
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr "Seleccione la hora límite para activar este temporizador. Pasada esta hora, el temporizador no se activará aunque se cumplan otras condiciones."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -18764,12 +18731,11 @@ msgstr ""
 msgid "Select the source of the default DNS settings."
 msgstr "Selecciona el origen de las configuraciones predeterminadas de DNS."
 
-msgid ""
-"Select the starting/initial column to be activated on File Commander start "
-"up."
-msgstr ""
-"Selecciona la columna que se activará de inicio al arranque del "
-"Administrador de archivos."
+msgid "Select the starting/initial column to be activated on File Commander start up."
+msgstr "Selecciona la columna que se activará de inicio al arranque del Administrador de archivos."
+
+msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
+msgstr "Seleccione la hora de inicio a partir de la cual se activará este temporizador. Antes de esta hora, el temporizador no se activará aunque se cumplan otras condiciones."
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Selecciona las etiquetas que deberían usarse para esta grabación."
@@ -19276,6 +19242,9 @@ msgstr "Establecer fijo"
 msgid "Set fps for external subtitles"
 msgstr "Establecer fps para subtítulos externos"
 
+msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
+msgstr "Configura el tiempo antes de ocultar la segunda barra de información. También se oculta pulsando ‘OK’."
+
 msgid "Set interface as the default Interface"
 msgstr "Establecer interfaz como la interfaz predeterminada"
 
@@ -19398,8 +19367,7 @@ msgstr "Configura el puerto del OpenWebif del sintonizador reserva."
 msgid "Set the position of the recording icons."
 msgstr "Establezca la posición de los iconos de grabación."
 
-# Menue Anpassungen OSD
-msgid "Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info."
+msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Establezca el tipo de pantalla que aparece al presionar 'OK' cuando la barra de información muestra la segunda barra de información Lite o la información del evento."
 
 msgid ""
@@ -19422,9 +19390,6 @@ msgstr ""
 
 msgid "Set the time to hide the InfoBar."
 msgstr "Configura el tiempo antes de ocultar la InfoBar."
-
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
-msgstr "Configura el tiempo antes de ocultar la segunda barra de información. También se oculta pulsando ‘OK’."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Establezca el tiempo de espera para ejecutar la acción predeterminada en los mensajes de apagado, espera o reinicio, por ejemplo, utilizado en Temporizador de Grabación, Temporizador programado, Temporizador apagado, etc."
@@ -19489,7 +19454,7 @@ msgstr ""
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Establezca en 'Deshabilitado' para reemplazar los caracteres de subrayado '_' en los nombres de archivos y directorios con espacios."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
 msgstr "Configúrelo en 'Habilitado' para descifrar grabaciones cifradas en cola en el modo de espera antes de apagar."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -20292,8 +20257,8 @@ msgstr "Mostrar notificación cuando la importación de canales no fue con éxit
 msgid "Show notification when import channels was successful"
 msgstr "Mostrar notificación cuando la importación de canales fue con éxito"
 
-msgid "Show or hide the extended description (skin dependent)."
-msgstr "Mostrar u ocultar la descripción extendida (dependiendo del aspecto)."
+msgid "Show or hide the extended description. This functionality may be skin dependent."
+msgstr "Mostrar u ocultar la descripción ampliada (depende del skin)."
 
 msgid "Show parting lines"
 msgstr "Mostrar líneas de separación"
@@ -21893,8 +21858,8 @@ msgstr "Enlace simbólico"
 msgid "Symmetrical skips"
 msgstr "Saltos simétricos"
 
-msgid "Sync NTP every (minutes)"
-msgstr "Sincronizar NTP cada (minutos)"
+msgid "Sync NTP every"
+msgstr "Sincronizar NTP cada"
 
 msgid "Sync failure moving back to origin!"
 msgstr "Error de sincronización regresando al origen!"
@@ -22924,10 +22889,10 @@ msgstr "Esta opción le permite elegir cómo se mostrará SD progresivo 24Hz en 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Esta opción te permite elegir cómo visualizar la definición de video estándar en tu TV."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Esta opción te permite elegir cómo visualizar el tiempo restante/transcurrido de la TV en directo."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
 msgstr "Esta opción te permite elegir cómo visualizar el tiempo restante/transcurrido en el reproductor de recursos."
 
 msgid "This option allows you to choose if the display shows the time or nothing in Standby."
@@ -22942,7 +22907,7 @@ msgstr "Esta opción te permite elegir el color de fondo de los picon transparen
 msgid "This option allows you to choose the option for Subservice indicator or selection."
 msgstr "Esta opción le permite elegir la opción de indicador o selección de subservicio."
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed."
 msgstr "Esta opción le permite elegir a qué saltará la primera vez que presione el botón en la pantalla de lista de canales (pulsar '2' saltará a 'A' o '2' primero) cuando se realicen acciones preestablecidas de 'Acciones rápidas'."
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
@@ -25430,36 +25395,19 @@ msgstr ""
 
 #
 msgid "When enabled, a pop up message will be shown when a recording starts."
-msgstr ""
-"Cuando está activado, aparecerá un mensaje cuando empiece una grabación."
+msgstr "Cuando está activado, aparecerá un mensaje cuando empiece una grabación."
 
-msgid ""
-"When enabled, a recording is allowed to abort picture-in-picture mode, when "
-"there are no free tuners."
-msgstr ""
-"Cuando está activado, una grabación puede forzar la salida del modo PiP "
-"cuando no hay sintonizadores libres."
+msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
+msgstr "Cuando está activado, una grabación puede forzar la salida del modo PiP cuando no hay sintonizadores libres."
 
-msgid ""
-"When enabled, a recording is allowed to abort pseudo recordings, when there "
-"are no free tuners."
-msgstr ""
-"Cuando está activado, una grabación puede abortar una pseudo-grabación, "
-"cuando no haya sintonizadores libres."
+msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
+msgstr "Cuando está activado, una grabación puede abortar una pseudo-grabación, cuando no haya sintonizadores libres."
 
-msgid ""
-"When enabled, a recording is allowed to abort streaming, when there are no "
-"free tuners."
-msgstr ""
-"Cuando está activado, una grabación puede abortar el streaming cuando no "
-"haya sintonizadores libres."
+msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
+msgstr "Cuando está activado, una grabación puede abortar una retransmisión, cuando no haya sintonizadores libres."
 
-msgid ""
-"When enabled, a recording is allowed to interrupt live TV, when there are no "
-"free tuners."
-msgstr ""
-"Cuando está activado, la grabación puede interrumpir la TV en directo si no "
-"hay sintonizadores libres."
+msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
+msgstr "Cuando está activado, la grabación puede interrumpir la TV en directo si no hay sintonizadores libres."
 
 msgid ""
 "When enabled, a warning will be displayed and the user will get an option to "
@@ -25576,12 +25524,12 @@ msgstr ""
 "Cuando está activado, las páginas del teletexto se guardan en caché y se "
 "agiliza el acceso."
 
-msgid ""
-"When enabled, teletext subtitles will be displayed at their original "
-"position."
-msgstr ""
-"Cuando está activado, los subtítulos del teletexto aparecen en su posición "
-"original."
+msgid "When enabled, teletext subtitles will be displayed at their original position."
+msgstr "Cuando está activado, los subtítulos del teletexto aparecen en su posición original."
+
+# /data/setup.xml
+msgid "When enabled, the PiP can be closed by pressing the EXIT button."
+msgstr "Cuando está activado, PiP puede cerrarse con la tecla EXIT."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr ""
@@ -25829,10 +25777,10 @@ msgstr ""
 msgid "With this option you can switch off the display during operation."
 msgstr "Con esta opción puedes desconectar el display durante el funcionamiento."
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in Deep Standby."
 msgstr "Con esta opción puedes desconectar el display en reposo profundo."
 
-msgid "With this option you can switch off the display in Standby mode."
+msgid "With this option you can switch off the display in Standby."
 msgstr "Con esta opción puedes desconectar el display en reposo."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
@@ -27366,9 +27314,6 @@ msgstr "provid:"
 
 msgid "provider:"
 msgstr "Proveedor:"
-
-msgid "Purge Deleted User Bouquets"
-msgstr "Limpiar listas de usuario eliminadas"
 
 #
 msgid "red"
