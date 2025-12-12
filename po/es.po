@@ -7842,7 +7842,7 @@ msgid "Enable VPS-Plugin"
 msgstr "Activar plugin VPS"
 
 msgid "Enable ViaSat EPG"
-msgstr "Enable EPG ViaSat"
+msgstr "Habilitar EPG ViaSat"
 
 msgid "Enable Virgin EPG"
 msgstr "Habilitar EPG Virgin"
@@ -10530,7 +10530,7 @@ msgid "If enabled and necessary, the plugin will wake up the receiver from deep 
 msgstr "Si está habilitado y es necesario, el plugin despertará al receptor del reposo profundo para la hora de inicio definida para controlar si el programa comienza antes."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
-msgstr "Si se activa la resolución de salida el receptor, intentará buscar la resolución del contenido del vídeo"
+msgstr "Si se activa la resolución de salida el receptor, intentará buscar la resolución del contenido del vídeo."
 
 msgid "If enabled the video will always be de-interlaced."
 msgstr "Si se activa la imagen siempre se desentrelazará."
