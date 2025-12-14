@@ -304,7 +304,7 @@ def getButtonSetupFunctions():
 			file = file[:-3]
 			ButtonSetupFunctions.append((f"{_('Shellscript')} {file}", f"Shellscript/{file}", "Shellscripts"))
 	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", textPlugins))
-	ButtonSetupFunctions.append((_("QuickMenu"), "Module/Screens.QuickMenu/QuickMenu", textPlugins))
+	# ButtonSetupFunctions.append((_("QuickMenu"), "Module/Screens.QuickMenu/QuickMenu", textPlugins))
 	if isPluginInstalled("Kodi"):
 		ButtonSetupFunctions.append((_("Kodi MediaCenter"), "Kodi/", textPlugins))
 	if isPluginInstalled("BluetoothSetup"):
@@ -704,9 +704,9 @@ class InfoBarButtonSetup():
 			elif selected[0] == "ScriptRunner":
 				from Screens.ScriptRunner import ScriptRunner
 				self.session.open(ScriptRunner)
-			elif selected[0] == "QuickMenu":
-				from Screens.QuickMenu import QuickMenu
-				self.session.open(QuickMenu)
+			# elif selected[0] == "QuickMenu":
+			# from Screens.QuickMenu import QuickMenu
+			# self.session.open(QuickMenu)
 			elif selected[0] == "Kodi":
 				if isPluginInstalled("Kodi"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen

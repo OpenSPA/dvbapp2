@@ -16239,6 +16239,9 @@ msgstr "Relevant PIDs Routing"
 msgid "Religion"
 msgstr "Religión"
 
+msgid "Reload blacklists"
+msgstr "Recargar listas negras"
+
 msgid "Reload Bookmarks"
 msgstr "Recargar los favoritos"
 
@@ -16246,8 +16249,8 @@ msgstr "Recargar los favoritos"
 msgid "Reload Services"
 msgstr "Recargar canales"
 
-msgid "Reload blacklists"
-msgstr "Recargar listas negras"
+msgid "Reload Skin"
+msgstr "Recargar Skin"
 
 msgid "Reloading EPG Cache..."
 msgstr "Recargando caché EPG..."
