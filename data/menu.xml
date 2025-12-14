@@ -81,6 +81,7 @@
 				<item key="skin_setup" level="0" text="Skin Settings" weight="25"><screen module="SkinSelection" screen="SkinSelection" /></item>
 				<item key="display_setup" level="0" text="Display Settings" weight="30" requires="DisplaySetup"><setup setupKey="Display" /></item>
 				<item key="led_setup" level="1" text="Configure front panel LEDs" weight="35" requires="LEDColorControl"><setup setupKey="LEDs" /></item>
+				<item key="buttonsetup_setup" level="2" text="Hotkey Settings" weight="45"><screen module="ButtonSetup" screen="ButtonSetup" /></item>
 				<item key="input_device_setup" level="1" text="Input Devices Settings" weight="50"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item key="remotecode" level="1" text="Remote Control Code Settings" weight="55" requires="RemoteCode">
 					<code>

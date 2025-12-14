@@ -15354,6 +15354,9 @@ msgstr "Pulse EXIT para volver a la pantalla de ayuda."
 msgid "Press OK for MultiBoot selection."
 msgstr "Pulse OK para la selección de MultiBoot."
 
+msgid "Press OK on the selected key."
+msgstr "Pulse \"OK\" en la tecla seleccionada."
+
 #
 msgid "Press OK on your remote control to continue."
 msgstr "Pulse OK en el mando para continuar."

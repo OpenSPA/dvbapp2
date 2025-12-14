@@ -272,10 +272,12 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.Information/ServiceInformation", textSetup))
 	ButtonSetupFunctions.append((_("SkinSelection"), "Module/Screens.SkinSelection/SkinSelection", textSetup))
 	ButtonSetupFunctions.append((_("RecordTimer"), "Module/Screens.Timers/RecordTimerOverview", textSetup))
-	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", textSetup))
+	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/openAutoTimerList", textSetup))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
 			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], textSetup))
+	for plugin in plugins.getPluginsForMenu("video"):
+		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/video/" + plugin[2], textSetup))
 	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", textPower))
 	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", textPower))
 	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", textPower))
@@ -329,6 +331,7 @@ class ButtonSetup(Screen):
 		self.getFunctions()
 		self["actions"] = ActionMap(["OkCancelActions"], {  # No help available, HELP is a changeable button!
 			"cancel": self.close,
+			"ok": self.keyOk,
 		}, prio=-1)
 		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], dict((x[1], self.ButtonSetupGlobal) for x in BUTTON_SETUP_KEYS))
 		self.longKeyPressed = False
@@ -336,6 +339,9 @@ class ButtonSetup(Screen):
 		self.onExecBegin.append(self.getFunctions)
 		self.onShown.append(self.disableKeyMap)
 		self.onClose.append(self.enableKeyMap)
+
+	def keyOk(self):
+		self.session.openWithCallback(self.close, ButtonSetupSelect, self["list"].l.getCurrentSelection())
 
 	def layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
@@ -355,6 +361,7 @@ class ButtonSetup(Screen):
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 106, 5, "ListboxActions", "pageDown")
 
 	def ButtonSetupGlobal(self, key):
+		self["description"].setText("")
 		if self.longKeyPressed:
 			self.longKeyPressed = False
 		count = len(BUTTON_SETUP_KEYS) or 10
@@ -365,7 +372,8 @@ class ButtonSetup(Screen):
 					self.longKeyPressed = True
 				break
 		self.getFunctions()
-		self.session.open(ButtonSetupSelect, self["list"].getCurrent())
+		self["description"].setText(_("Press OK on the selected key."))
+		# self.session.open(ButtonSetupSelect, self["list"].getCurrent())
 
 	def getFunctions(self):
 		key = self["list"].getCurrent()[0][1]
@@ -517,13 +525,13 @@ class ButtonSetupSelect(Screen):
 			configValue.append(button[0][1])
 		self.config.value = ",".join(configValue)
 		self.config.save()
-		self.close()
+		self.session.openWithCallback(self.close, ButtonSetup)
 
 	def cancel(self):
 		if self.selected != self.prevSelected:
 			self.session.openWithCallback(self.cancelCallback, MessageBox, _("Are you sure to cancel all changes?"), default=False)
 		else:
-			self.close()
+			self.session.openWithCallback(self.close, ButtonSetup)
 
 	def cancelCallback(self, answer):
 		answer and self.close()

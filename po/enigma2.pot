@@ -13713,6 +13713,9 @@ msgstr ""
 msgid "Press OK for MultiBoot selection."
 msgstr ""
 
+msgid "Press OK on the selected key."
+msgstr ""
+
 msgid "Press OK on your remote control to continue."
 msgstr ""
 
