@@ -23,7 +23,7 @@
 			<menu key="openspa_-9" level="2" text="Customize" />
 			<menu key="openspa_-13" level="2" text="AddOns" />
 			<menu key="openspa_-1" level="2" text="Tv Options" />
-			<!--spaPANEL -20
+			<!-- spaPANEL -20
 				Movies 3 - Direct
 				Multimedia -4
 				Kodi 44 - Direct
@@ -32,7 +32,7 @@
 				Tv Options -1
 				-->
 		</menu>
-		<!--  /added by mpiero -->
+		<!-- /added by mpiero -->
 		<item key="plugin_selection" level="1" text="Plugin Browser" weight="10"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
 		<item key="scart_switch" level="1" text="VCR Scart Settings" weight="15" conditional="config.usage.show_vcr_scart.value" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 		<!-- Menu / Setup -->
@@ -67,16 +67,16 @@
 			</menu>
 			<!-- Menu / Setup / GUI (Was: Menu / Settings / System) -->
 			<menu key="system" level="0" text="Usage &amp; GUI" weight="15">
-				<!-- Menu / Setup / GUI / Display-->
+				<!-- Menu / Setup / GUI / Display -->
 				<item key="user_interface" level="0" text="OSD Settings" weight="0"><screen module="PiconPaths" screen="PiconPathsSetup" /></item>
 				<item key="remote_setup" level="0" text="Remote Control Button Settings" weight="5"><setup setupKey="RemoteButton" /></item>
 				<item key="channelselection_setup" level="0" text="Channel Selection Settings" weight="10"><setup setupKey="ChannelSelection" /></item>
 				<item key="usage_setup" level="0" text="Customize System Settings" weight="15"><setup setupKey="Usage" /></item>
-				<!--item key="specialfeatures_menu" level="0" text="Special Features Settings" weight="20"><setup setupKey="SpecialFeatures" /></item-->
+				<!-- item key="specialfeatures_menu" level="0" text="Special Features Settings" weight="20"><setup setupKey="SpecialFeatures" /></item -->
 				<item key="skin_setup" level="0" text="Skin Settings" weight="25"><screen module="SkinSelection" screen="SkinSelection" /></item>
 				<item key="display_setup" level="0" text="Display Settings" weight="30" requires="DisplaySetup"><setup setupKey="Display" /></item>
 				<item key="led_setup" level="1" text="Configure front panel LEDs" weight="35" requires="LEDColorControl"><setup setupKey="LEDs" /></item>
-				<item key="buttonsetup_setup" level="2" text="Hotkey Settings" weight="45"><screen module="ButtonSetup" screen="ButtonSetup" /></item>
+				<!-- item key="buttonsetup_setup" level="2" text="Hotkey Settings" weight="45"><screen module="ButtonSetup" screen="ButtonSetup" /></item -->
 				<item key="lcd_clock_setup" weight="10" level="0" text="LCD Clock selection" requires="LCDClockSetup"><screen module="LcdClockSelector" screen="LCDClockSelector"/></item>
 				<item key="input_device_setup" level="1" text="Input Devices Settings" weight="50"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item key="remotecode" level="1" text="Remote Control Code Settings" weight="55" requires="RemoteCode">
@@ -197,7 +197,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<!-- Menu / Setup / System / Storage devices -->
 				<menu key="harddisk" level="0" text="Storage Devices" weight="45" requires="Harddisk">
 					<!-- item key="device_manager" level="0" text="Device Manager" weight="20"><screen module="DeviceManager" screen="DeviceManager" /></item -->
-					<!--<item key="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item>-->
+					<!-- <item key="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item> -->
 					<item key="swap_manager" level="2" text="Swap Manager" weight="70"><screen module="SwapManager" screen="Swap" /></item>
 					<item key="flash_expander" level="2" text="Flash Expander" weight="80"><screen module="FlashExpander" screen="FlashExpander" /></item>
 				</menu>
