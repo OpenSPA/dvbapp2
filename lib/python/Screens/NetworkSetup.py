@@ -190,7 +190,6 @@ class NetworkAdapterSelection(Screen):
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
 		iNetwork.stopRestartConsole()
-		iNetwork.stopGetInterfacesConsole()
 
 	def restartLan(self):
 		iNetwork.restartNetwork(self.restartLanDataAvail)
