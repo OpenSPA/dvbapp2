@@ -26370,7 +26370,7 @@ msgid "Zap back to service before tuner setup?"
 msgstr "¿Volver al último canal antes de configurar el sintonizador?"
 
 msgid "Zap down"
-msgstr "Cambiar arriba"
+msgstr "Cambiar abajo"
 
 msgid "Zap focus to Picture in Picture"
 msgstr "Cambiar enfoque a Picture in Picture"
@@ -26418,7 +26418,7 @@ msgid "Zap to next service in the current bouquet"
 msgstr "Cambiar al siguiente canal en el boouquet actual"
 
 msgid "Zap up"
-msgstr "Cambiar abajo"
+msgstr "Cambiar arriba"
 
 msgid "Zap+Record next"
 msgstr "Zapear+Grabar siguiente"

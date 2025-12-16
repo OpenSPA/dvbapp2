@@ -224,7 +224,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Disable digital downmix"), "Infobar/audioDownmixOff", textInfoBar))
 	ButtonSetupFunctions.append((_("Switch to Radio mode"), "Infobar/showRadio", textInfoBar))
 	ButtonSetupFunctions.append((_("Switch to TV mode"), "Infobar/showTv", textInfoBar))
-	ButtonSetupFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", textInfoBar))
+	# ButtonSetupFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", textInfoBar))  # OpenSPA [norhap] Do not execute self.openServiceList in InfoBar, this will cause you to open service list and switch back to the old channel.
 	ButtonSetupFunctions.append((_("Show movies"), "Infobar/showMovies", textInfoBar))
 	ButtonSetupFunctions.append((_("Instant record"), "Infobar/instantRecord", textInfoBar))
 	ButtonSetupFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", textInfoBar))

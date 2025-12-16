@@ -2695,18 +2695,18 @@ class InfoBarChannelSelection:
 
 	def LeftPressed(self):
 		if config.usage.leftrightmode.value == "1":
-			self.servicelist.historyBack()   #OPENSPA [morser] History zap with <>
+			self.servicelist.historyBack()  # OPENSPA [morser] History zap with <>
 		elif config.usage.leftrightmode.value == "2":
 			self.openInfoBarEPG()
-		else:
+		elif not config.misc.ButtonSetup.cross_left.value:  # OpenSPA [norhap] image OEA: Button Setup with cross_left to Open Service List not Zap.
 			self.zapUp()
 
 	def RightPressed(self):
 		if config.usage.leftrightmode.value == "1":
-			self.servicelist.historyNext()   #OPENSPA [morser] History zap with <>
+			self.servicelist.historyNext()  # OPENSPA [morser] History zap with <>
 		elif config.usage.leftrightmode.value == "2":
 			self.openInfoBarEPG()
-		else:
+		elif not config.misc.ButtonSetup.cross_right.value:  # OpenSPA [norhap] image OEA: Button Setup with cros_right to Open Service List not Zap.
 			self.zapDown()
 
 	def UpPressed(self):
