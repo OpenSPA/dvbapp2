@@ -28,6 +28,7 @@ class ImportChannels():
 	DIR_TMP = "/tmp/"
 
 	def __init__(self):
+		self.remoteEPGpath = None
 		if config.usage.remote_fallback_enabled.value and config.usage.remote_fallback_import.value and config.usage.remote_fallback.value and "ChannelsImport" not in [x.name for x in threading.enumerate()]:
 			self.header = None
 			if config.usage.remote_fallback_enabled.value and config.usage.remote_fallback_import.value and config.usage.remote_fallback_import_url.value != "same" and config.usage.remote_fallback_import_url.value:
@@ -187,6 +188,13 @@ class ImportChannels():
 			remove(config.misc.epgcache_filename.value)
 		except OSError:
 			pass
+		if self.remoteEPGpath == self.DIR_HDD:
+			config.misc.epgcachepath.value = self.DIR_HDD
+		elif self.remoteEPGpath == self.DIR_USB:
+			config.misc.epgcachepath.value = self.DIR_USB
+		elif self.remoteEPGpath == self.DIR_ENIGMA2:
+			config.misc.epgcachepath.value = self.DIR_ENIGMA2
+		config.misc.epgcachepath.save()
 		move(self.DIR_TMP + "epg.dat", config.misc.epgcache_filename.value)
 		self.removeFiles(self.DIR_TMP, "epg.dat")
 		eEPGCache.getInstance().load()
