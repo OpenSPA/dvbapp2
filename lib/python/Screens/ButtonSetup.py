@@ -347,6 +347,9 @@ class ButtonSetup(Screen):
 		self["choosen"].selectionEnabled(0)
 
 	def disableKeyMap(self):
+		if isPluginInstalled("spaQButton"):
+			from Plugins.Extensions.spaQButton.plugin import spaQButton
+			self.session.openWithCallback(self.close, spaQButton)
 		globalActionMap.setEnabled(False)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
