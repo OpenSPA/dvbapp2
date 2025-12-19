@@ -4469,7 +4469,7 @@ msgstr ""
 msgid "Configure the contrast level of the front panel display."
 msgstr ""
 
-msgid "Configure the current key map file."
+msgid "Configure the current key map file. If you assign a different function to any of these keys in 'Hotkey Settings', the function assigned in that settings menu will prevail."
 msgstr ""
 
 msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."

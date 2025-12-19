@@ -5034,8 +5034,8 @@ msgstr "Configurar el color de los subtítulos del teletexto."
 msgid "Configure the contrast level of the front panel display."
 msgstr "Configure el nivel de contraste de la pantalla del panel frontal."
 
-msgid "Configure the current key map file."
-msgstr "Configurar el archivo de mapeo de botones actual."
+msgid "Configure the current key map file. If you assign a different function to any of these keys in 'Hotkey Settings', the function assigned in that settings menu will prevail."
+msgstr "Configurar el archivo de mapeo de botones actual. Si asigna una función diferente a cualquiera de estas teclas en 'Configurar teclas', prevalecerá la función asignada en ese menú de configuración."
 
 msgid ""
 "Configure the cursor behavior in the channel selection list. When opening "
