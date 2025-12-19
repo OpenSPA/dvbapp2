@@ -2694,7 +2694,7 @@ class InfoBarChannelSelection:
 		self.openServiceList()
 
 	def LeftPressed(self):
-		if not config.misc.ButtonSetup.cross_left.value:  # OpenSPA [norhap] Button Setup with cros_right to Open Service List not Zap.
+		if not config.misc.ButtonSetup.cross_left.value:  # OpenSPA [norhap] Hotkey Settings with cros_left to "open service list", not execute Zap
 			if config.usage.leftrightmode.value == "1":
 				self.servicelist.historyBack()  # OPENSPA [morser] History zap with <>
 			elif config.usage.leftrightmode.value == "2":
@@ -2703,7 +2703,7 @@ class InfoBarChannelSelection:
 				self.zapUp()
 
 	def RightPressed(self):
-		if not config.misc.ButtonSetup.cross_right.value:  # OpenSPA [norhap] Button Setup with cros_right to Open Service List not Zap.
+		if not config.misc.ButtonSetup.cross_right.value:  # OpenSPA [norhap] Hotkey Settings with cros_right to "open service list", not execute Zap.
 			if config.usage.leftrightmode.value == "1":
 				self.servicelist.historyNext()  # OPENSPA [morser] History zap with <>
 			elif config.usage.leftrightmode.value == "2":
