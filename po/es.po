@@ -5989,9 +5989,11 @@ msgstr "Ajustes DNS"
 msgid "DNS data source"
 msgstr "Fuente de datos DNS"
 
-#
-msgid "DNS mode"
-msgstr "Modo DNS"
+msgid "DNS protocol mode"
+msgstr "Modo de protocolo DNS"
+
+msgid "DNS rotate"
+msgstr "Rotación DNS"
 
 msgid "DNS suffix"
 msgstr "Sufijo DNS"
@@ -6385,20 +6387,14 @@ msgstr "Desplazamiento de volumen predeterminado"
 msgid "Default: '%s'."
 msgstr "Predeterminado: '%s'."
 
-msgid ""
-"Define additional delay in milliseconds before start of http(s) streams."
-msgstr ""
-"Define el retardo adicional en milisegundos antes del inicio de los streams "
-"http(s)."
+msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr "Define el retardo adicional en milisegundos antes del inicio de los streams http(s)."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Define el punto de montaje personalizado para el dispositivo."
 
 msgid "Define the file system mount options."
 msgstr "Define las opciones de montaje del sistema de archivos."
-
-msgid "Define the DNS suffix."
-msgstr "Define el sufijo DNS."
 
 msgid "Defined / Active"
 msgstr "Definido / Activo"
@@ -18589,9 +18585,8 @@ msgstr ""
 "Seleccione el método de restauración de la resolución de la pantalla y del "
 "framebuffer al salir del teletexto."
 
-#
-msgid "Select the mode of the DNS."
-msgstr "Seleccione el modo del DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgstr "Seleccione si se deben usar IPv4, IPv6 o ambos protocolos. Si ambos están habilitados, cuál se debe preferir."
 
 msgid ""
 "Select the model number of your Unicable device. If the model number is not "
@@ -18734,8 +18729,8 @@ msgstr ""
 "Selecciona el orden de las entradas del menú. Definido por el usuario "
 "también permite ocultar las entradas del menú."
 
-msgid "Select the source of the default DNS settings."
-msgstr "Selecciona el origen de las configuraciones predeterminadas de DNS."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
+msgstr "Seleccione el/los servidor/servidores DNS que se utilizarán para resolver las búsquedas de host."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Selecciona la columna que se activará de inicio al arranque del Administrador de archivos."
@@ -21188,6 +21183,9 @@ msgstr "Características especiales"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Especificar el directorio a usar cuando se inicie el Media Player."
 
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgstr "Especifique el sufijo DNS de red que se aplicará cuando solo se proporcione el nombre del host. Esto facilita que el solucionador DNS encuentre el host solicitado."
+
 msgid "Speed"
 msgstr "Velocidad"
 
@@ -23022,6 +23020,9 @@ msgid "This plugin will be removed."
 msgstr "Se desinstalará este plugin."
 
 #
+msgid "This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr "Esta rotación cambia el orden en que se utiliza la lista de servidores DNS y puede evitar problemas si un servidor DNS de la lista deja de estar disponible."
+
 msgid "This service is protected by a parental control PIN!"
 msgstr "Este servicio está protegido por un PIN de control parental!"
 
