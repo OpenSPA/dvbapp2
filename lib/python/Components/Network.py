@@ -37,6 +37,7 @@ class Network:
 		self.configuredNetworkAdapters = []
 		self.nameservers = []
 		self.ethtool_bin = "/usr/sbin/ethtool"
+		self.console = Console()
 		self.linkConsole = Console()
 		self.restartConsole = Console()
 		self.deactivateInterfaceConsole = Console()
@@ -152,12 +153,13 @@ class Network:
 				self.ifaces[name]["ipv6"] = item["ipv6"]
 
 		print(f"[Network] DEBUG: '{iface}' InterfaceData={self.ifaces[iface]}")
-		self.configuredNetworkAdapters = self.configuredInterfaces  # Save configured interface list.
-		self.loadNameserverConfig()  # Load name servers only once.
-		self.config_ready = True
-		self.msgPlugins()
-		if callback and callable(callback):
-			callback(True)
+		if self.console and len(self.console.appContainers) == 0:
+			self.configuredNetworkAdapters = self.configuredInterfaces  # Save configured interface list.
+			self.loadNameserverConfig()  # Load name servers only once.
+			self.config_ready = True
+			self.msgPlugins()
+			if callback and callable(callback):
+				callback(True)
 
 	def getAddrInet(self, iface, callback):
 		data = {"up": False, "dhcp": False, "preup": False, "predown": False}
@@ -553,6 +555,11 @@ class Network:
 		if self.restartConsole is not None and len(self.restartConsole.appContainers):
 			for name in list(self.restartConsole.appContainers.keys()):
 				self.restartConsole.kill(name)
+
+	def stopGetInterfacesConsole(self):
+		if self.console is not None and len(self.console.appContainers):
+			for name in list(self.console.appContainers.keys()):
+				self.console.kill(name)
 
 	def stopDeactivateInterfaceConsole(self):
 		if self.deactivateInterfaceConsole is not None:
