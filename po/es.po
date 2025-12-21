@@ -4548,6 +4548,15 @@ msgstr "Chuvash"
 msgid "Circular LNB"
 msgstr "LNB circular"
 
+msgid "CIRA Canadian Shield (Family)"
+msgstr "Escudo Canadiense CIRA (Familia)"
+
+msgid "CIRA Canadian Shield (Private)"
+msgstr "Escudo Canadiense CIRA (Privado)"
+
+msgid "CIRA Canadian Shield (Protected)"
+msgstr "Escudo Canadiense CIRA (Protegido)"
+
 #
 msgid "Circular left"
 msgstr "Circular izquierda"
@@ -4573,6 +4582,15 @@ msgstr "Limpiar y borrar todos los temporizadores completados"
 
 msgid "Clean up and remove all completed timers?"
 msgstr "Limpiar y borrar todos los temporizadores completados?"
+
+msgid "CleanBrowsing (Adult Filter)"
+msgstr "Navegación limpia (filtro para adultos)"
+
+msgid "CleanBrowsing (Family Filter)"
+msgstr "Navegación limpia (filtro para Familia)"
+
+msgid "CleanBrowsing (Security Filter)"
+msgstr "Navegación limpia (filtro de seguridad)"
 
 msgid "Cleaning Trashes"
 msgstr "Vaciando papeleras"
@@ -5561,6 +5579,21 @@ msgstr "Reproducción continua (bucle)"
 
 msgid "Contrast"
 msgstr "Contraste"
+
+msgid "Control D (Ads + Tracking)"
+msgstr "Control D (Anuncios + Seguimiento)"
+
+msgid "Control D (Family Friendly)"
+msgstr "Control D (Apto para familias)"
+
+msgid "Control D (Malware)"
+msgstr "Control D (Malware)"
+
+msgid "Control D (Uncensored)"
+msgstr "Control D (Sin censura)"
+
+msgid "Control D (Unfiltered)"
+msgstr "Control D (sin filtro)"
 
 msgid "Control LED can be turned on or off here."
 msgstr "El LED de control se puede encender o apagar aquí."
