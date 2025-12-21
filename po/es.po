@@ -6025,8 +6025,8 @@ msgstr "Fuente de datos DNS"
 msgid "DNS protocol mode"
 msgstr "Modo de protocolo DNS"
 
-msgid "DNS rotate"
-msgstr "Rotación DNS"
+msgid "Use DNS rotation"
+msgstr "Utilizar la rotación DNS"
 
 msgid "DNS suffix"
 msgstr "Sufijo DNS"
@@ -18762,9 +18762,6 @@ msgstr ""
 "Selecciona el orden de las entradas del menú. Definido por el usuario "
 "también permite ocultar las entradas del menú."
 
-msgid "Select the the DNS server/servers that will be used to resolve host lookups."
-msgstr "Seleccione el/los servidor/servidores DNS que se utilizarán para resolver las búsquedas de host."
-
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Selecciona la columna que se activará de inicio al arranque del Administrador de archivos."
 
@@ -18773,6 +18770,9 @@ msgstr "Seleccione la hora de inicio a partir de la cual se activará este tempo
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Selecciona las etiquetas que deberían usarse para esta grabación."
+
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "Seleccione el(los) servidor(es) DNS que se utilizarán para buscar el nombre del host para resolver la dirección IP."
 
 msgid "Select the time after which this timer can start."
 msgstr "Selecciona la hora después de la cual puede empezar el temporizador."
@@ -23035,6 +23035,9 @@ msgstr "Esta opción configura la nitidez de la imagen cuando se está ampliando
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Este plugin puede determinar si un programa empieza antes o dura más. El canal tiene que proporcionar datos fiables."
+
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr "Seleccione 'Sí' para habilitar la rotación de entradas DNS. Esta rotación cambia el orden en que se utiliza la lista de servidores DNS y puede evitar problemas si un servidor DNS de la lista deja de estar disponible."
 
 #
 msgid "This plugin is installed."
