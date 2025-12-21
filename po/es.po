@@ -1248,7 +1248,7 @@ msgstr "\n%s ya no se utiliza.\n¿Quieres eliminar los canales?"
 
 #, python-format
 msgid "%s long"
-msgstr "%s duración"
+msgstr "%s prolongado"
 
 #, python-format
 msgid "%s not available."
