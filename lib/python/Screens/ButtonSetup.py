@@ -174,7 +174,7 @@ def getButtonSetupFunctions():
 	textSetup = _("Setup")
 	textEPG = _("EPG")
 	textInfoBar = _("InfoBar")
-	textScanning = _("Scanning")
+	textScanning = _("Tuners, Scanning & Reception")
 	textPower = _("Power")
 	textPlugins = _("Plugins")
 	ButtonSetupFunctions = []
@@ -264,6 +264,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", textScanning))
 	ButtonSetupFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", textScanning))
 	ButtonSetupFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", textScanning))
+	ButtonSetupFunctions.append((_("Fallback Remote Receiver Settings"), "Module/Screens.SetupFallbacktuner/SetupFallbacktuner", textScanning))
 	for plugin in plugins.getPluginsForMenu("scan"):
 		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], textScanning))
 	ButtonSetupFunctions.append((_("Network Settings"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", textSetup))
