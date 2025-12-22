@@ -157,10 +157,13 @@ config.pluginfilter.systemplugins = ConfigYesNo(default=True)
 config.pluginfilter.vix = ConfigYesNo(default=False)
 config.pluginfilter.weblinks = ConfigYesNo(default=True)
 config.pluginfilter.userfeed = ConfigText(default="https://", fixed_size=False)
+config.pluginfilter.otherpackages = ConfigYesNo(default=False)  # OpenSPA [norhap] show packages no visible in Other packages.
+
 
 def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
 
 def esHD():
 	if getDesktop(0).size().width() > 1400:
@@ -168,6 +171,7 @@ def esHD():
 	else:
 		return False
 ################################################################
+
 
 class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 	if esHD():
@@ -1510,12 +1514,18 @@ class PackageAction(Screen, NumericalTextInput):
 						packageName = "-".join(packageSoftcams)
 						data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
 						pluginList.append(data)
-			# OpenSPA [norhap] show packages no visible in categoryes to Other Packages.
-			if "clearmen" in packageFile.split("-")[1:] and "dbg" not in packageFile.split("-") and "dev" not in packageFile.split("-"):
-				packageCategory = ""
-				packageName = "-".join(packageFile.split("-")[1:])
-				data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
-				pluginList.append(data)
+			if config.pluginfilter.otherpackages.value:  # OpenSPA [norhap] show packages no visible in Other packages.
+				ignoresources = "dbg" not in packageFile.split("-") and "dev" not in packageFile.split("-")
+				if "clearmen" in packageFile.split("-")[1:] and ignoresources:
+					packageCategory = ""
+					packageName = "-".join(packageFile.split("-")[1:])
+					data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+					pluginList.append(data)
+				if "dnscrypt" in packageFile.split("-")[0:] and ignoresources:
+					packageCategory = ""
+					packageName = "-".join(packageFile.split("-")[0:])
+					data = (packageFile, packageCategory, packageName, packageDescription, packageVersion, packageInstalled, packageUpdate)
+					pluginList.append(data)
 		print(f"[PluginBrowser] PackageAction Packages: {len(packages)} returned from opkg, {allCount} matched, {installCount} installed, {updateCount} have updates.")
 		installedText = ngettext("%d package installed.", "%d packages installed.", installCount) % installCount
 		updateText = ngettext("%d package has an update", "%d packages have updates.", updateCount) % updateCount

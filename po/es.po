@@ -19962,6 +19962,9 @@ msgstr "Mostrar información de OSCam"
 msgid "Show OScam in extensions"
 msgstr "Mostrar OScam en extensiones"
 
+msgid "Show other packages"
+msgstr "Mostrar otros paquetes"
+
 msgid "Show PVR status in MoviePlayer InfoBar"
 msgstr "Mostrar estado PVR en la barra de info del reproductor de películas"
 
@@ -29303,6 +29306,9 @@ msgstr "Selecciona 'Sí' para mostrar los paquetes de OpenPLi en la pantalla de 
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
 msgstr "Selecciona 'Sí' para mostrar los paquetes de OpenViX en la pantalla de Descarga de Plugins."
+
+msgid "Select 'Yes' to show other types of packages in 'Other packages'."
+msgstr "Seleccione 'Sí' para mostrar otros tipos de paquetes en 'Otros paquetes'."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Selecciona 'Sí' para mostrar los paquetes de enlaces web en la pantalla de Descarga de Plugins."
