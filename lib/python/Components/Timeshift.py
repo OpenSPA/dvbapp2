@@ -403,7 +403,6 @@ class InfoBarTimeshift:
 			from Plugins.Extensions.spzTimeshift.plugin import main
 			main(self.session, servicelist)
 
-
 	def stopTimeshift(self):
 		ts = self.getTimeshift()
 		if ts and ts.isTimeshiftEnabled():

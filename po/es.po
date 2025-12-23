@@ -1310,12 +1310,8 @@ msgstr "%sMostrar 1080i como 1080p"
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "‘%s’ contiene %d archivo(s) y %d sub-directorios.\n"
 
-msgid ""
-"'Buffer in hours' or 'number of last events'. For deleting older time shift "
-"files, the condition which occurred first has priority."
-msgstr ""
-"‘Buffer en horas’ o ‘número de últimos eventos’. Se eliminarán los archivos "
-"más antiguos primero."
+msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+msgstr "‘Búfer en horas’ o ‘número de últimos eventos’. Para eliminar archivos timeshift antiguos, la condición que ocurrió primero tiene prioridad."
 
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Gestionar el reposo de la TV' tiene mayor prioridad que 'Gestionar la entrada de la TV'."
@@ -3844,14 +3840,14 @@ msgid ""
 "Switch to live TV and restart time shift?"
 msgstr ""
 "No se puede ir a la televisión en vivo!\n"
-"¿Cambiar a la TV en vivo y reiniciar Timeshift?"
+"¿Cambiar a la TV en vivo y reiniciar timeshift?"
 
 msgid ""
 "Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift?"
 msgstr ""
-"No se puede reproducir el archivo Timeshift siguiente!\n"
-"¿Cambiar a la TV en vivo y reiniciar Timeshift?"
+"No se puede reproducir el archivo timeshift siguiente!\n"
+"¿Cambiar a la TV en vivo y reiniciar timeshift?"
 
 msgid "Can't play the previous time shift file! You can try again."
 msgstr ""
@@ -3908,7 +3904,7 @@ msgid "Cancel extraction"
 msgstr "Cancelar extracción"
 
 msgid "Cancel save time shift as movie"
-msgstr "No guardar Timeshift como película"
+msgstr "No guardar timeshift como película"
 
 msgid "Cancel the scan and exit all menus"
 msgstr "Cancelar el escaneo y salir de todos los menús"
@@ -5813,7 +5809,7 @@ msgid "Creating file system"
 msgstr "Creando sistema de archivos"
 
 msgid "Creating hard link to time shift file failed!"
-msgstr "¡Falló la creación de un enlace físico al archivo Timeshift!"
+msgstr "¡Falló la creación de un enlace físico al archivo timeshift!"
 
 msgid "Creating partition"
 msgstr "Creando partición"
@@ -6667,7 +6663,7 @@ msgid "Delete the character under the text cursor"
 msgstr "Eliminar el carácter debajo el cursor de texto"
 
 msgid "Delete the current time shift buffer and restart time shift"
-msgstr "Eliminar buffer actual y reiniciar timeshift"
+msgstr "Eliminar búfer actual y reiniciar timeshift"
 
 msgid "Delete the currently displayed log file"
 msgstr "Eliminar el archivo de registro mostrado actualmente"
@@ -10758,7 +10754,7 @@ msgid "Import remote receiver URL"
 msgstr "Importar URL del receptor remoto"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Además de la comprobación al inicio del evento, se puede usar una comprobación repetitiva, así se detectarán antes las condiciones ‘límite de buffer en horas’ y ‘comprobar espacio libre’."
+msgstr "Además de la comprobación al inicio del evento, se puede usar una comprobación repetitiva, así se detectarán antes las condiciones ‘Límite de búfer para timeshift [en horas]’ y ‘Comprobación de espacio libre timeshift’."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "En el modo experto, configure qué sintonizadores se preferirán para las grabaciones, cuando haya más de un sintonizador disponible."
@@ -12429,7 +12425,7 @@ msgid "Merge broadcast EPG with IceTV"
 msgstr "Combinar la EPG de emisión con IceTV"
 
 msgid "Merging time shift files"
-msgstr "Fusionando archivos Timeshift"
+msgstr "Fusionando archivos timeshift"
 
 msgid "Merlin EPG Center"
 msgstr "Centro de EPG Merlin"
@@ -13603,7 +13599,7 @@ msgid "No time shift buffer found to save as recording!"
 msgstr "¡No se encontró ningún búfer de cambio de tiempo para guardar como grabación!"
 
 msgid "No time shift found to save as recording!"
-msgstr "¡No se encontró ningún Timeshift para guardar como grabación!"
+msgstr "¡No se encontró ningún timeshift para guardar como grabación!"
 
 # UsageConfig.py
 msgid "No timeout"
@@ -16075,7 +16071,7 @@ msgid "Record now"
 msgstr "Grabar ahora"
 
 msgid "Record started! Stopping time shift now ..."
-msgstr "Grabación iniciada. Deteniendo Timeshift..."
+msgstr "Grabación iniciada. Deteniendo timeshift..."
 
 #
 #, python-format
@@ -17221,13 +17217,13 @@ msgid "Save the right column directory location on exit."
 msgstr "Guardar la ubicación del directorio de la columna derecha al salir."
 
 msgid "Save time shift as movie and continue recording"
-msgstr "Guardar Timeshift como película y seguir grabando"
+msgstr "Guardar timeshift como película y seguir grabando"
 
 msgid "Save time shift as movie and stop recording"
-msgstr "Guardar Timeshift como película y detener la grabación"
+msgstr "Guardar timeshift como película y detener la grabación"
 
 msgid "Save time shift buffer now and continue recording"
-msgstr "Guarde el buffer Timeshift ahora y continúe grabando"
+msgstr "Guarde el búfer timeshift ahora y continúe grabando"
 
 msgid "Saved lines in script messages"
 msgstr "Líneas guardadas en mensajes de script"
@@ -17236,13 +17232,13 @@ msgid "Saving EPG Cache..."
 msgstr "Guardando caché EPG..."
 
 msgid "Saving time shift buffer, this might take a while."
-msgstr "Guardado del buffer time shift, esto puede demorar un tiempo."
+msgstr "Guardado del búfer timeshift, esto puede demorar un tiempo."
 
 msgid "Saving time shift as movie now. This might take a while!"
 msgstr "Guardando timeshift como película. ¡Esto podría llevar un rato!"
 
 msgid "Saving time shift files"
-msgstr "Guardando archivos Timeshift"
+msgstr "Guardando archivos timeshift"
 
 #
 msgid "Scaler sharpness"
@@ -17518,14 +17514,9 @@ msgstr ""
 "Seleccione 'A' o 'B' si su sistema de antena lo requiere, de lo contrario "
 "seleccione 'Ninguno'. Si no está seguro, seleccione 'Ninguno'."
 
-msgid ""
-"Select 'No' to make time shift use a single buffer file. Use 'Time shift "
-"checking for older files [in minutes]' and 'Time shift checking for free "
-"space?' to control the size of the buffer file."
-msgstr ""
-"Si se ajusta a ‘no’, timeshift usará solo un fichero como buffer. Se "
-"recomienda ajustar ‘Comprobación de archivos más antiguos de Timeshift [en "
-"minutos]’ y ‘¿Comprobación de espacio libre de timeshift?’."
+msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+msgstr "Si se ajusta a ‘No’, timeshift usará solo un archivo búfer. Se recomienda ajustar ‘Comprobación de archivos timeshift más antiguos [en "
+"minutos]’ y ‘Comprobación de espacio libre timeshift‘."
 
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr ""
@@ -17575,12 +17566,8 @@ msgstr ""
 "Seleccione \"Sí\" para mantener la barra de información en pantalla, sin "
 "tiempo de espera, mientras la reproducción multimedia está en pausa."
 
-msgid ""
-"Select 'Yes' to allow use of the seek bar to jump to a selected point within "
-"the event."
-msgstr ""
-"Si se ajusta a 'sí', te permitirá usar la barra de búsqueda para avanzar a "
-"cualquier momento del programa."
+msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+msgstr "Si se ajusta a 'sí', te permitirá usar la barra de búsqueda para avanzar a cualquier momento del evento."
 
 msgid ""
 "Select 'Yes' to always show the bouquet screen first when opening the "
@@ -18299,7 +18286,7 @@ msgstr "Seleccione si este temporizador debe repetirse."
 
 msgid "Select if time shift must continue when set to record."
 msgstr ""
-"Seleccione si Timeshift debe continuar cuando haya una grabación pendiente."
+"Seleccione si timeshift debe continuar cuando haya una grabación pendiente."
 
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Seleccione si quieres que el modo Subcanal se active."
@@ -19350,11 +19337,11 @@ msgid ""
 "to add new locations, press 'LEFT'/'RIGHT' to select from previously defined "
 "locations."
 msgstr ""
-"Configura la ubicación por defecto de tus archivos Timeshift. Pulsa 'OK' "
+"Configura la ubicación por defecto de tus archivos timeshift. Pulsa 'OK' "
 "para añadir ubicaciones nuevas o izquierda/derecha para escoger una actual."
 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
-msgstr "Establezca la ubicación predeterminada para guardar sus archivos Timeshift. Pulse 'OK' para añadir nuevas ubicaciones y pulse IZQUIERDA/DERECHA para seleccionar una de las ubicaciones previamente definidas."
+msgstr "Establezca la ubicación predeterminada para guardar sus archivos timeshift. Pulse 'OK' para añadir nuevas ubicaciones y pulse IZQUIERDA/DERECHA para seleccionar una de las ubicaciones previamente definidas."
 
 msgid ""
 "Set the default movie selection location for your media files. Press 'OK' to "
@@ -19495,7 +19482,7 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Establezca en 'Habilitado' para descifrar grabaciones cifradas en cola en modo de espera."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Establezca en 'Sí' para habilitar la grabación automática del búfer time shift."
+msgstr "Establezca en 'Sí' para habilitar la grabación automática del búfer timeshift."
 
 msgid "Set to the desired primetime hour."
 msgstr "Establezca la hora de máxima audiencia."
@@ -20765,7 +20752,7 @@ msgid "Skip forward"
 msgstr "Saltar hacia delante"
 
 msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "Saltar cambio al directo mientras esté timeshift activado con plugins"
+msgstr "No saltes a TV en directo cuando uses plugins con timeshift"
 
 msgid "Sleep"
 msgstr "Dormir"
@@ -21493,7 +21480,7 @@ msgid "Stop the update, if running, then exit"
 msgstr "Detener la actualización, si está en marcha, entonces salir"
 
 msgid "Stop time shift"
-msgstr "Detener Timeshift"
+msgstr "Detener timeshift"
 
 msgid "Stop time shift and save time shift buffer as a movie"
 msgstr "Detener el cambio de tiempo y guardar el búfer time shift como una película"
@@ -21502,7 +21489,7 @@ msgid "Stop time shift and save time shift buffer as a movie and start recording
 msgstr "Detenga el cambio de tiempo y guarde el búfer time shift como una película e inicie la grabación del evento actual"
 
 msgid "Stop time shift and save time shift buffer as movie"
-msgstr "Detener timeshift y guardar buffer como película"
+msgstr "Detener timeshift y guardar búfer como película"
 
 msgid ""
 "Stop time shift and save time shift buffer as movie and start recording of "
@@ -21512,7 +21499,7 @@ msgstr ""
 "actual"
 
 msgid "Stop time shift while recording"
-msgstr "Detener Timeshift durante la grabación"
+msgstr "Detener timeshift durante la grabación"
 
 msgid "Stop timer recording"
 msgstr "Detener temporizador de grabación"
@@ -21524,7 +21511,7 @@ msgid "Stopping Softcam"
 msgstr "Deteniendo Softcam"
 
 msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "Desactiva el cambio de tiempo durante la grabación (recomendado para memorias USB)."
+msgstr "Desactiva timeshift durante la grabación (recomendado para memorias USB)."
 
 msgid "Storage / Disk Information"
 msgstr "Almacenamiento / Información de disco"
@@ -22496,7 +22483,7 @@ msgid ""
 "The file system on your time shift device does not support hard links.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
-"El sistema de archivos de su dispositivo Timeshift no admite enlaces duros.\n"
+"El sistema de archivos de su dispositivo timeshift no admite enlaces duros.\n"
 "Asegúrese de que está formateado en EXT2, EXT3 o EXT4!"
 
 #, python-format
@@ -23265,20 +23252,20 @@ msgid "Time shift buffer delete after zap"
 msgstr "Eliminación del búfer timeshift después de zapear"
 
 msgid "Time shift buffer limit"
-msgstr "Límite de buffer para Timeshift [en horas]"
+msgstr "Límite de búfer para timeshift [en horas]"
 
 #
 msgid "Time shift buffer location"
-msgstr "Ubicación de Timeshift"
+msgstr "Ubicación de timeshift"
 
 msgid "Time shift checking for free space"
-msgstr "Comprobación de espacio libre de timeshift"
+msgstr "Comprobación de espacio libre timeshift"
 
 msgid "Time shift checking for older files"
-msgstr "Comprobación de archivos Timeshift más antiguos"
+msgstr "Comprobación de archivos timeshift más antiguos"
 
 msgid "Time shift event based file splitting"
-msgstr "Evento de timeshift basado en la divisón de archivos"
+msgstr "División de archivo basada en eventos de timeshift"
 
 msgid "Time shift event limit"
 msgstr "Límite de últimos eventos de timeshift [número de eventos]"
@@ -23292,19 +23279,19 @@ msgid "Time shift not possible!"
 msgstr "¡Timeshift no es posible!"
 
 msgid "Time shift save action on zap"
-msgstr "Guardar Timeshift durante el zapeo"
+msgstr "Guardar timeshift durante el zapeo"
 
 msgid "Time shift save failed!"
-msgstr "¡Error al guardar Timeshift!"
+msgstr "¡Error al guardar timeshift!"
 
 msgid "Time shift save location"
-msgstr "Ubicación para guardar Timeshift"
+msgstr "Ubicación para guardar timeshift"
 
 msgid "Time shift save recording (Select event)"
-msgstr "Grabación de Timeshift guardada (seleccionar programa)"
+msgstr "Grabación de timeshift guardada (seleccionar programa)"
 
 msgid "Time shift save recording (Stop after current event)"
-msgstr "Grabación de Timeshift guardada (detener después del programa actual)"
+msgstr "Grabación de timeshift guardada (detener después del programa actual)"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "¡Timeshift guardado en su disco duro!"
@@ -24548,7 +24535,7 @@ msgstr "Usar saltos de tiempo para el avance y rebobinado"
 
 # Timeshift Einstellungen
 msgid "Use time shift SeekBar while time shifting"
-msgstr "Use la barra de búsqueda de Timeshift mientras cambia de tiempo"
+msgstr "Use la barra de búsqueda de timeshift"
 
 msgid "Use viewer for unknown files"
 msgstr "Usar visor para archivos desconocidos"
@@ -25729,7 +25716,7 @@ msgstr "¿Dónde quiere hacer el backup de sus ajustes?"
 
 #
 msgid "Where do you want to save temporary time shift recordings?"
-msgstr "¿Dónde quieres guardar las grabaciones temporales de Timeshift?"
+msgstr "¿Dónde quieres guardar las grabaciones temporales de timeshift?"
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "¿Qué evento de búfer de cambio de tiempo desea guardar?"
@@ -25934,7 +25921,7 @@ msgid "Yes, backup my settings!"
 msgstr "Sí, ¡realice un backup de mis ajustes!"
 
 msgid "Yes, but don't save time shift as movie"
-msgstr "Sí, pero no guardes Timeshift como película"
+msgstr "Sí, pero no guardes timeshift como película"
 
 msgid "Yes, show Plugin Browser if unavailable"
 msgstr "Sí, mostrar el Explorador de Plugins si no está disponible"
@@ -25943,10 +25930,10 @@ msgid "Yes, show RecordTimer if unavailable"
 msgstr "Sí, mostrar el Temporizador de grabación si no está disponible"
 
 msgid "Yes, but save time shift as movie and continue recording"
-msgstr "Sí, pero guarda Timeshift como película y sigue grabando"
+msgstr "Sí, pero guarda timeshift como película y sigue grabando"
 
 msgid "Yes, but save time shift as movie and stop recording"
-msgstr "Sí, pero guarda Timeshift como película y detén la grabación"
+msgstr "Sí, pero guarda timeshift como película y detén la grabación"
 
 # InfoBar.py
 msgid "Yes, delete this movie and return to movie list"
@@ -26059,7 +26046,7 @@ msgstr ""
 "‘OK’ para iniciar ahora la restauración."
 
 msgid "You have chosen to save the current time shift buffer"
-msgstr "Has elegido guardar el buffer time shift actual"
+msgstr "Has elegido guardar el búfer time shift actual"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
@@ -26106,7 +26093,7 @@ msgid "You must set at least one command!"
 msgstr "¡Debe configurar al menos un comando!"
 
 msgid "You seem to be in time shift!"
-msgstr "¡Parece que estás en Timeshift!"
+msgstr "¡Parece que estás en timeshift!"
 
 msgid "You seem to be in time shift, do you want to leave time shift?"
 msgstr "Pareces estar en time shift, ¿quieres salir del cambio temporal?"
@@ -26498,7 +26485,7 @@ msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] ¡Error al fusionar registros!"
 
 msgid "[Timeshift] Restarting time shift!"
-msgstr "[TimeShift] ¡Reiniciando Timeshift!"
+msgstr "[Timeshift] ¡Reiniciando timeshift!"
 
 msgid "[alternative edit]"
 msgstr "[edición alternativa]"
