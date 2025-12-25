@@ -23400,8 +23400,8 @@ msgstr "Temporizadores"
 msgid "Timeshift"
 msgstr "Timeshift"
 
-msgid "Timeshift Actived"
-msgstr "Timeshift Activado"
+msgid "Timeshift Active"
+msgstr "Timeshift Activo"
 
 msgid "Timezone"
 msgstr "Zona horaria"

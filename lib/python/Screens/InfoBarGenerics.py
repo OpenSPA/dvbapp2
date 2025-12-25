@@ -3580,7 +3580,7 @@ class InfoBarPVRState:
 			self._mayShow()
 
 
-class TimeshiftActived(Screen):  # OpenSPA [norhap] Show text "Timeshift Actived" in InfoBarTimeshiftState.
+class TimeshiftActive(Screen):  # OpenSPA [norhap] Show text "Timeshift Active" in InfoBarTimeshiftState.
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
@@ -3590,7 +3590,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show=True)
 		self.onPlayStateChanged.append(self.__timeshiftEventName)
 		self.onHide.append(self.__hideTimeshiftState)
-		self.timeshiftActived = self.session.instantiateDialog(TimeshiftActived)  # OpenSPA [norhap] Show Screen TimeshiftActived.
+		self.timeshiftActive = self.session.instantiateDialog(TimeshiftActive)  # OpenSPA [norhap] Show Screen TimeshiftActive.
 
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
@@ -3598,14 +3598,18 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 			if config.timeshift.showInfoBar.value:
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
-			self.timeshiftActived.show()  # OpenSPA [norhap] Show text "Timeshift Actived".
+			self.timeshiftActive.show()  # OpenSPA [norhap] Show text "Timeshift Active".
+		else:
+			if config.timeshift.startDelay.value:
+				self.timeshiftActive.show()  # OpenSPA [norhap] Show text "Timeshift Active".
 		if not self.isSeekable():
 			self.startHideTimer()
+			self.timeshiftActive.hide()  # OpenSPA [norhap] Hide text "Timeshift Active".
 
 	def __hideTimeshiftState(self):
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
 		self.pvrStateDialog.hide()
-		self.timeshiftActived.hide()  # OpenSPA [norhap] Hide text "Timeshift Actived".
+		self.timeshiftActive.hide()  # OpenSPA [norhap] Hide text "Timeshift Active".
 
 	def __timeshiftEventName(self, state):
 		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):
