@@ -20752,7 +20752,7 @@ msgid "Skip forward"
 msgstr "Saltar hacia delante"
 
 msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "No saltes a TV en directo cuando uses plugins con timeshift"
+msgstr "No saltar a TV en directo cuando uses plugins con timeshift"
 
 msgid "Sleep"
 msgstr "Dormir"
@@ -23400,6 +23400,9 @@ msgstr "Temporizadores"
 msgid "Timeshift"
 msgstr "Timeshift"
 
+msgid "Timeshift Actived"
+msgstr "Timeshift Activado"
+
 msgid "Timezone"
 msgstr "Zona horaria"
 
@@ -25350,9 +25353,6 @@ msgstr "¿Qué te gustaría hacer con el archivo del script?"
 msgid "What would you like to do?"
 msgstr "¿Qué te gustaría hacer?"
 
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Selecciona 'Sí' para activar la carga de listas de canales desvinculadas. Esto significa que se cargarán las listas de canales no incluidas en los archivos bouquets.tv o bouquets.radio. Esto permite, por ejemplo, crear listas que no entren en conflicto ni sean reemplazadas por listas que provienen de paquetes de configuración."
-
 # /data/setup.xml
 msgid "When enabled, the PiP can be closed using the EXIT button."
 msgstr "Cuando está activado, PiP puede cerrarse con la tecla EXIT."
@@ -26096,7 +26096,7 @@ msgid "You seem to be in time shift!"
 msgstr "¡Parece que estás en timeshift!"
 
 msgid "You seem to be in time shift, do you want to leave time shift?"
-msgstr "Pareces estar en time shift, ¿quieres salir del cambio temporal?"
+msgstr "Pareces estar en timeshift, ¿quieres salir de timeshift?"
 
 msgid ""
 "You seem to be in time shift, the service will briefly stop as time shift "
@@ -29281,6 +29281,9 @@ msgstr "Eliminar la lista de plugins seleccionada"
 
 msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr "Reprograme la tarea para que se ejecute cuando el receptor entre o salga del modo de espera. El cambio de estado debe ocurrir dentro del intervalo programado de la tarea; de lo contrario, esta no se ejecutará."
+
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Selecciona 'Sí' para activar la carga de listas de canales desvinculadas. Esto significa que se cargarán las listas de canales no incluidas en los archivos bouquets.tv o bouquets.radio. Esto permite, por ejemplo, crear listas que no entren en conflicto ni sean reemplazadas por listas que provienen de paquetes de configuración."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Selecciona 'Sí' para mostrar los paquetes 'dev', 'staticdev', 'dbg' y 'doc' en la pantalla de Descarga de Plugins."
