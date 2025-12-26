@@ -3677,6 +3677,9 @@ msgstr "Slot CI: "
 msgid "CIFS/Samba Settings"
 msgstr "Configurar Samba"
 
+msgid "CI+ Helper*"
+msgstr "CI+ Ayuda*"
+
 msgid "CPU"
 msgstr "CPU"
 
@@ -4591,6 +4594,9 @@ msgstr "Navegación limpia (filtro de seguridad)"
 msgid "Cleaning Trashes"
 msgstr "Vaciando papeleras"
 
+msgid "Cleaning Trashcan"
+msgstr "Limpieza Papelera"
+
 msgid "Cleanup"
 msgstr "Limpiar"
 
@@ -4695,8 +4701,8 @@ msgstr "Cerrar esta pantalla"
 msgid "Close title selection"
 msgstr "Cerrar selección de título"
 
-msgid "Cloudflare DNS"
-msgstr "DNS de Cloudflare"
+msgid "Club/Dance"
+msgstr "Club/Baile"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Islas Cocos (Keeling)"
@@ -4804,13 +4810,6 @@ msgstr "Configuración Interfaz común"
 # boot-up action
 msgid "Common Setup Actions"
 msgstr "Acciones comunes de ajustes"
-
-#
-msgid "Communication"
-msgstr "Comunicación"
-
-msgid "Comodo Secure DNS"
-msgstr "DNS seguro Comodo"
 
 msgid "Comoros"
 msgstr "Comoras"
@@ -5576,20 +5575,11 @@ msgstr "Reproducción continua (bucle)"
 msgid "Contrast"
 msgstr "Contraste"
 
-msgid "Control D (Ads + Tracking)"
-msgstr "Control D (Anuncios + Seguimiento)"
+msgid "Contrast Video"
+msgstr "Contraste de Vídeo"
 
-msgid "Control D (Family Friendly)"
-msgstr "Control D (Apto para familias)"
-
-msgid "Control D (Malware)"
-msgstr "Control D (Malware)"
-
-msgid "Control D (Uncensored)"
-msgstr "Control D (Sin censura)"
-
-msgid "Control D (Unfiltered)"
-msgstr "Control D (sin filtro)"
+msgid "Contrast Video & OSD"
+msgstr "Contraste de Vídeo & OSD"
 
 msgid "Control LED can be turned on or off here."
 msgstr "El LED de control se puede encender o apagar aquí."
@@ -6020,9 +6010,6 @@ msgstr "Fuente de datos DNS"
 
 msgid "DNS protocol mode"
 msgstr "Modo de protocolo DNS"
-
-msgid "Use DNS rotation"
-msgstr "Utilizar la rotación DNS"
 
 msgid "DNS suffix"
 msgstr "Sufijo DNS"
@@ -9801,9 +9788,6 @@ msgstr "Oro"
 
 msgid "Golf"
 msgstr "Golf"
-
-msgid "Google DNS"
-msgstr "DNS de Google"
 
 msgid "Goto"
 msgstr "Ir a"
@@ -13744,12 +13728,6 @@ msgstr "No lineal"
 msgid "None"
 msgstr "Ninguno"
 
-msgid "NordVPN Secure DNS"
-msgstr "DNS seguro de NordVPN"
-
-msgid "NordVPN Smart DNS"
-msgstr "DNS Smart NordVPN"
-
 msgid "Norfolk Island"
 msgstr "Isla de Norfolk"
 
@@ -14216,12 +14194,6 @@ msgstr "Abrir la vista EPG de servicio único"
 
 msgid "Open with File Commander"
 msgstr "Abrir con el Comandante de Archivos"
-
-msgid "OpenDNS FamilyShield"
-msgstr "OpenDNS FamilyShield"
-
-msgid "OpenDNS Home"
-msgstr "Inicio de OpenDNS"
 
 msgid "OpenPLi Packages"
 msgstr "Paquetes OpenPLi"
@@ -15781,15 +15753,6 @@ msgstr "Canal Quad PiP "
 
 msgid "Quad PiP is not available."
 msgstr "No está disponible la función Quad PiP."
-
-msgid "Quad9 DNS"
-msgstr "Quad9 DNS"
-
-msgid "Quad9 ECS DNS"
-msgstr "DNS Quad9 ECS"
-
-msgid "Quad9 Unsecured DNS"
-msgstr "DNS inseguro Quad9"
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -17637,13 +17600,11 @@ msgstr "Seleccione 'Sí' para habilitar la traducción impulsada por IA para tod
 msgid "Select 'Yes' to enable autostart of '%s'."
 msgstr "Seleccione \"Sí\" para activar el autoinicio de '%s'."
 
-msgid ""
-"Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
-"resets the devices settings to their default values."
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
 msgstr ""
-"Seleccione \"Sí\" para permitir la edición de los ajustes de este "
-"dispositivo. Si se selecciona \"No\", se restablecen los valores "
-"predeterminados de los dispositivos."
+
+msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
+msgstr "Seleccione \"Sí\" para permitir la edición de los ajustes de este dispositivo. Si se selecciona \"No\", se restablecen los valores predeterminados de los dispositivos."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de EPG."
@@ -18378,6 +18339,9 @@ msgstr "Seleccione la lista de reglas LCN que se aplicarán a la búsqueda."
 msgid "Select the mountpoint for the device."
 msgstr "Seleccione el punto de montaje para el dispositivo."
 
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "Seleccione el(los) servidor(es) DNS que se utilizarán para buscar el nombre del host para resolver la dirección IP."
+
 msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""
 
@@ -18757,9 +18721,6 @@ msgstr "Seleccione la hora de inicio a partir de la cual se activará este tempo
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Selecciona las etiquetas que deberían usarse para esta grabación."
-
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
-msgstr "Seleccione el(los) servidor(es) DNS que se utilizarán para buscar el nombre del host para resolver la dirección IP."
 
 msgid "Select the time after which this timer can start."
 msgstr "Selecciona la hora después de la cual puede empezar el temporizador."
@@ -23026,9 +22987,6 @@ msgstr "Esta opción configura la nitidez de la imagen cuando se está ampliando
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Este plugin puede determinar si un programa empieza antes o dura más. El canal tiene que proporcionar datos fiables."
 
-msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
-msgstr "Seleccione 'Sí' para habilitar la rotación de entradas DNS. Esta rotación cambia el orden en que se utiliza la lista de servidores DNS y puede evitar problemas si un servidor DNS de la lista deja de estar disponible."
-
 #
 msgid "This plugin is installed."
 msgstr "Este plugin está instalado."
@@ -23980,6 +23938,9 @@ msgstr "Ucrania"
 msgid "Ukrainian"
 msgstr "Ucraniano"
 
+msgid "Unable to initialize Kexec MultiBoot!"
+msgstr "Imposible inicializar Multiboot Kexec!"
+
 #
 msgid "Unattended upgrade without GUI"
 msgstr "Actualización desatendida sin interfaz"
@@ -24279,6 +24240,9 @@ msgstr "Usar 'Papelera' in lista de películas"
 #
 msgid "Use DHCP"
 msgstr "Usar DHCP"
+
+msgid "Use DNS rotation"
+msgstr "Utilizar la rotación DNS"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "¿Usar desentrelazado para señal de video 1080i?"
@@ -28638,9 +28602,6 @@ msgstr "Seleccione un dispositivo para usar en los slots adicionales"
 #
 msgid "Slot Manager"
 msgstr "Administrador de slots"
-
-msgid "Unable to initialize Kexec MultiBoot!"
-msgstr "Imposible inicializar Multiboot Kexec!"
 
 #
 msgid ""
