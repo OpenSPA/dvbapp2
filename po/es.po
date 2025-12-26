@@ -2038,9 +2038,6 @@ msgstr "Añadir temporizador de zapeo+grabación"
 msgid "Add ZapTimer"
 msgstr "Añadir temporizador de zapeo"
 
-msgid "Add a DNS entry"
-msgstr "Añadir una entrada DNS"
-
 msgid "Add a RADIO service to the Volume Offset list"
 msgstr "Añadir un canal de RADIO a la lista de desplazamiento de volumen"
 
@@ -2283,6 +2280,9 @@ msgstr "Después de grabar"
 
 msgid "After zap"
 msgstr "Tras el zapping"
+
+msgid "Aggregate data only"
+msgstr "Solo datos agregados"
 
 msgid "Akan"
 msgstr "Akan"
@@ -2579,6 +2579,9 @@ msgstr "Velocidad de animación"
 
 msgid "Animations"
 msgstr "Animaciones"
+
+msgid "Anonymize client IPs"
+msgstr "Anonimizar las IP de los clientes"
 
 msgid "Antarctica"
 msgstr "Antártida"
@@ -5999,9 +6002,6 @@ msgstr "DMM avanzado"
 msgid "DMM normal"
 msgstr "DMM normal"
 
-msgid "DNS (Dynamic Name Server) Actions"
-msgstr "Acciones de DNS (Sistema de Nombres de Dominio)"
-
 msgid "DNS Settings"
 msgstr "Ajustes DNS"
 
@@ -6013,6 +6013,12 @@ msgstr "Modo de protocolo DNS"
 
 msgid "DNS suffix"
 msgstr "Sufijo DNS"
+
+msgid "DNSCrypt"
+msgstr "DNSCrypt"
+
+msgid "DNSCrypt Resolver"
+msgstr "Resolver DNSCrypt"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6309,9 +6315,6 @@ msgstr "Descifrado & control parental"
 
 #
 msgid "Deep Standby"
-msgstr "Reposo profundo"
-
-msgid "Deep standby"
 msgstr "Reposo profundo"
 
 msgid "Default"
@@ -7925,6 +7928,9 @@ msgstr "Activar importación de temporizador del sintonizador reserva"
 
 msgid "Enable intro screen"
 msgstr "Habilitar pantalla de introducción"
+
+msgid "Enable monitoring UI"
+msgstr "Habilitar la interfaz de usuario de monitorización"
 
 msgid "Enable multiple bouquets"
 msgstr "Habilitar múltiples grupos"
@@ -12572,6 +12578,15 @@ msgstr "Mongolia"
 msgid "Mongolian"
 msgstr "Mongol"
 
+msgid "Monitoring UI password"
+msgstr "Supervisión de la contraseña de la interfaz de usuario"
+
+msgid "Monitoring UI port"
+msgstr "Supervisión del puerto de la interfaz de usuario"
+
+msgid "Monitoring UI username"
+msgstr "Supervisión del nombre de la interfaz de usuario"
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -12736,12 +12751,6 @@ msgstr "Tarea de movimiento en cola."
 
 msgid "Move only highlighted file"
 msgstr "Mover solo el archivo resaltado"
-
-msgid "Move the current DNS entry down one line"
-msgstr "Mover la entrada DNS actual una línea hacia abajo"
-
-msgid "Move the current DNS entry up one line"
-msgstr "Mover la entrada DNS actual una línea hacia arriba"
 
 msgid "Move the current bookmark down"
 msgstr "Mover el marcador actual hacia abajo"
@@ -14087,6 +14096,15 @@ msgstr "Sólo al inicio"
 
 msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr "Seleccione 'Sí' solo si utiliza un multiswich que requiere una señal de comando DiSEqC Puerto A. Para todas las demás configuraciones, seleccione 'No'."
+
+msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
+msgstr "Utilice únicamente servidores DNS que implementen el protocolo DNS sobre HTTPS. Esto permite que las búsquedas DNS se realicen mediante el protocolo HTTPS cifrado."
+
+msgid "Only use DNS servers implementing the DNSCrypt protocol."
+msgstr "Utilice únicamente servidores DNS que implementen el protocolo DNSCrypt."
+
+msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
+msgstr "Utilice únicamente servidores DNS que implementen el protocolo DNS sobre HTTPS Oblivious. Esto añade una capa adicional de privacidad al añadir una capa de proxy a la solicitud DNS sobre HTTPS."
 
 msgid "Open"
 msgstr "Abrir"
@@ -15540,6 +15558,15 @@ msgstr "Minuto de máxima audiencia"
 msgid "Priority"
 msgstr "Prioridad"
 
+msgid "Privacy level"
+msgstr "Nivel de privacidad"
+
+msgid "Problem starting scan"
+msgstr "Problema al iniciar la búsqueda"
+
+msgid "Problem while scanning"
+msgstr "Problema al escanear"
+
 msgid "Proc model"
 msgstr "Modelo de Proc"
 
@@ -16314,9 +16341,6 @@ msgstr "Eliminar la entrada del canal quad"
 
 msgid "Remove Service"
 msgstr "Eliminar servicio"
-
-msgid "Remove a DNS entry"
-msgstr "Eliminar una entrada DNS"
 
 #
 msgid "Remove a mark"
@@ -17609,25 +17633,17 @@ msgstr "Seleccione \"Sí\" para permitir la edición de los ajustes de este disp
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
 msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de EPG."
 
-msgid ""
-"Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' "
-"to preview the currently selected channel. Press 'OK' again to exit the EPG "
-"and zap to the selected channel. Press 'EXIT' to exit the EPG and return to "
-"the previously selected channel."
-msgstr ""
-"Si se ajusta a 'sí', podrás previsualizar canales en la lista de canales. "
-"Pulsa 'OK' para previsualizar el canal escogido. Pulsa otra vez 'OK' para "
-"salir y pasar a ese canal. Pulsa 'EXIT' para volver al canal original."
+msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
+msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de canales. Pulsa 'OK' para previsualizar el canal escogido. Pulsa otra vez 'OK' para salir y pasar a ese canal. Pulsa 'EXIT' para volver al canal original."
 
-msgid ""
-"Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown "
-"when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy "
-"navigation for users who prefer it."
-msgstr ""
-"Selecciona 'Sí' para habilitar el uso de los botones IZQUIERDO/DERECHO para "
-"mover Página arriba/Página abajo cuando los botones IZQUIERDO/DERECHO no "
-"están definidos. Esto proporciona una navegación heredada para los usuarios "
-"que la prefieran."
+msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
+msgstr "Cuando está activado, Enigma2 cargará los grupos de usuario de canales desvinculados. Esto significa que los grupos de usuario de canales disponibles, pero no incluidos en los archivos bouquets.tv o bouquets.radio, serán cargados. Esto permite, por ejemplo, conservar tus grupos de usuario cuando los ajustes instalados son actualizados"
+
+msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
+msgstr "Seleccione 'Sí' para habilitar la interfaz web de UI de monitoreo para el subsistema DNSCrypt."
+
+msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
+msgstr "Selecciona 'Sí' para habilitar el uso de los botones IZQUIERDO/DERECHO para mover Página arriba/Página abajo cuando los botones IZQUIERDO/DERECHO no están definidos. Esto proporciona una navegación heredada para los usuarios que la prefieran."
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "Si se ajusta a ‘sí’, no se mostrarán los canales sin EPG."
@@ -19013,6 +19029,15 @@ msgstr "Serial No"
 msgid "Server down"
 msgstr "Servidor caido"
 
+msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgstr "El servidor no debe implementar su propia lista negra. Algunos servidores pueden implementar sus propias listas negras para bloquear sitios por motivos de control parental, bloqueo de anuncios, etc"
+
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data."
+msgstr "El servidor no debe registrar las consultas de los usuarios (declarativo). Esto puede mejorar la privacidad de las búsquedas DNS al no registrar la solicitud en el servidor que proporciona los datos."
+
+msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
+msgstr "El servidor debe ser compatible con las Extensiones de Seguridad DNS (DNSSEC). Esta es una opción de firma de datos que protege la integridad de los datos DNS contra vulnerabilidades como el envenenamiento de caché."
+
 msgid "Servers"
 msgstr "Servidores"
 
@@ -19340,14 +19365,23 @@ msgstr ""
 "Configurar el número de líneas que se guardará para las salidas  'stout' y "
 "'sterr' de los scripts."
 
+msgid "Set the password for the monitoring UI web interface."
+msgstr "Establezca la contraseña para la interfaz web de UI de monitoreo."
+
 msgid "Set the password of the OpenWebif from your fallback tuner."
 msgstr "Configura la contraseña del OpenWebif del sintonizador reserva."
+
+msgid "Set the port address (8080-9999) for the monitoring UI web interface."
+msgstr "Establezca la dirección del puerto (8080-9999) para la interfaz web de UI de monitoreo."
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr "Configura el puerto del OpenWebif del sintonizador reserva."
 
 msgid "Set the position of the recording icons."
 msgstr "Establezca la posición de los iconos de grabación."
+
+msgid "Set the privacy level for the monitoring UI web interface."
+msgstr "Establezca el nivel de privacidad para la interfaz web de UI de monitoreo."
 
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Establezca el tipo de pantalla que aparece al presionar 'OK' cuando la barra de información muestra la segunda barra de información Lite o la información del evento."
@@ -19384,6 +19418,9 @@ msgid ""
 msgstr ""
 "Configura el tipo de indicación de progreso en la pantalla de selección de "
 "canales."
+
+msgid "Set the username for the monitoring UI web interface."
+msgstr "Establezca el nombre de usuario para la interfaz web de UI de monitoreo."
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
@@ -22220,7 +22257,7 @@ msgstr "El archivo '%s' no se puede recuperar, por favor prueba más tarde."
 msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
 msgstr "El modo AI que se utiliza para traducir idiomas. Puedes elegir el que ofrezca la traducción más precisa para el idioma de destino."
 
-msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the Internet connection upload speed selected."
 msgstr "El servicio de traducción impulsado por inteligencia artificial se optimizará para proporcionar el mejor rendimiento según la velocidad de carga de la conexión a Internet seleccionada."
 
 msgid "The channel selection mode has changed!\nOpen the channel selection again"
@@ -22741,7 +22778,7 @@ msgstr "Este es el idioma seleccionado actualmente [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Este es el idioma local seleccionado actualmente [%s]"
 
-msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgid "This is the initial / default volume offset applied to any services added to the volume adjust list."
 msgstr "Este es el desplazamiento de volumen inicial/predeterminado que se aplica a cualquier canal agregado a la lista de ajuste de volumen."
 
 msgid ""
@@ -24241,14 +24278,23 @@ msgstr "Usar 'Papelera' in lista de películas"
 msgid "Use DHCP"
 msgstr "Usar DHCP"
 
+msgid "Use DNS cache"
+msgstr "Usar caché DNS"
+
 msgid "Use DNS rotation"
 msgstr "Utilizar la rotación DNS"
+
+msgid "Use DNSCrypt servers"
+msgstr "Utilice servidores DNSCrypt"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "¿Usar desentrelazado para señal de video 1080i?"
 
 msgid "Use description lines"
 msgstr "Utilice líneas descriptivas"
+
+msgid "Use DoH servers"
+msgstr "Usar servidores DoH"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Usar información EPG de EIT cuando esté disponible."
@@ -24275,8 +24321,11 @@ msgstr "Usar información EPG de MHW cuando esté disponible."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Usar información EPG de Netmed cuando esté disponible."
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Usar información de EPG OpenTV cuando esté disponible."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr "Utilice la guía electrónica de programación (EPG) de OpenTV. Requiere sintonizar un transpondedor específico para absorber la EPG."
+
+msgid "Use ODoH servers"
+msgstr "Utilice servidores ODoH"
 
 msgid "Use QuickSelect"
 msgstr "Usar selección rápida"
@@ -24301,6 +24350,9 @@ msgstr "Usar información EPG de Virgin cuando esté disponible."
 
 msgid "Use Zap timer end times"
 msgstr "Usar temporizador de zapeo con tiempo de finalización"
+
+msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
+msgstr "Utilice un caché de DNS para almacenar localmente búsquedas de DNS recientes para mejorar el rendimiento, reducir la latencia y el tráfico saliente."
 
 #
 msgid "Use a gateway"
@@ -24375,8 +24427,17 @@ msgstr "Usar pasos logarítmicos"
 msgid "Use official channel numbering"
 msgstr "Usar la numeración oficial de canales"
 
+msgid "Use only DNSSEC servers"
+msgstr "Utilice únicamente servidores DNSSEC"
+
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Usar solo para la activación en WLan (WoW)"
+
+msgid "Use only no-filter servers"
+msgstr "Utilice únicamente servidores sin filtros"
+
+msgid "Use only no-log servers"
+msgstr "Utilice únicamente servidores sin registros"
 
 msgid "Use original DVB subtitle position"
 msgstr "Usar la posición por defecto para subtítulos DVB"
@@ -27778,6 +27839,27 @@ msgstr "®"
 msgid "DVB-USB Device Manager"
 msgstr "Gestor de dispositivos DVB-USB"
 
+#~ msgid "Add a DNS entry"
+#~ msgstr "Añadir una entrada DNS"
+
+#~ msgid "DNS (Dynamic Name Server) Actions"
+#~ msgstr "Acciones de DNS (Sistema de Nombres de Dominio)"
+
+#~ msgid "Deep standby"
+#~ msgstr "Apagar"
+
+#~ msgid "Move the current DNS entry down one line"
+#~ msgstr "Mover la entrada DNS actual una línea hacia abajo"
+
+#~ msgid "Move the current DNS entry up one line"
+#~ msgstr "Mover la entrada DNS actual una línea hacia arriba"
+
+#~ msgid "Remove a DNS entry"
+#~ msgstr "Eliminar una entrada DNS"
+
+#~ msgid "Cloudflare DNS"
+#~ msgstr "DNS de Cloudflare"
+
 msgid "Now in"
 msgstr "Ahora en"
 
@@ -29242,9 +29324,6 @@ msgstr "Eliminar la lista de plugins seleccionada"
 
 msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr "Reprograme la tarea para que se ejecute cuando el receptor entre o salga del modo de espera. El cambio de estado debe ocurrir dentro del intervalo programado de la tarea; de lo contrario, esta no se ejecutará."
-
-msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "Selecciona 'Sí' para activar la carga de listas de canales desvinculadas. Esto significa que se cargarán las listas de canales no incluidas en los archivos bouquets.tv o bouquets.radio. Esto permite, por ejemplo, crear listas que no entren en conflicto ni sean reemplazadas por listas que provienen de paquetes de configuración."
 
 msgid "Select 'Yes' to show 'dev', 'staticdev', 'dbg' and 'doc' packages in the Download Plugins screen."
 msgstr "Selecciona 'Sí' para mostrar los paquetes 'dev', 'staticdev', 'dbg' y 'doc' en la pantalla de Descarga de Plugins."
