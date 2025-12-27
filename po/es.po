@@ -29467,7 +29467,7 @@ msgid "Select the location where the picon files will be installed."
 msgstr "Selecciona la ubicación donde se instalarán los archivos picon."
 
 msgid "Set DVB CI delay."
-msgstr "Estableceer retraso DVB CI."
+msgstr "Establecer retraso DVB CI."
 
 msgid "Set CI Boot delay."
 msgstr "Retraso arranque CI."
