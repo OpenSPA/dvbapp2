@@ -16660,7 +16660,7 @@ msgstr ""
 msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr ""
 
-msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data."
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
 msgstr ""
 
 msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
@@ -22992,6 +22992,9 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
+msgid "Aqua"
+msgstr ""
+
 #, python-format
 msgid "audio track (%s) format"
 msgstr ""
@@ -23004,6 +23007,9 @@ msgid "audio tracks"
 msgstr ""
 
 msgid "automatic"
+msgstr ""
+
+msgid "Azure"
 msgstr ""
 
 msgid "back"
@@ -23303,7 +23309,7 @@ msgstr ""
 msgid "length"
 msgstr ""
 
-msgid "lime"
+msgid "Lime"
 msgstr ""
 
 msgid "locked"
@@ -23399,19 +23405,23 @@ msgstr ""
 msgid "offset is"
 msgstr ""
 
+msgid "original language"
+msgstr ""
+
+msgid "Olympic blue"
+msgstr ""
+
 msgid "on READ ONLY medium."
 msgstr ""
 
-msgid "original language"
+msgid "Orange"
+
 msgstr ""
 
 msgid "package"
 msgstr ""
 
 msgid "packages"
-msgstr ""
-
-msgid "orange"
 msgstr ""
 
 msgid "packages selected."
@@ -23441,6 +23451,9 @@ msgstr ""
 msgid "Play In PiP Window"
 msgstr ""
 
+msgid "Pink"
+msgstr ""
+
 msgid "please wait, loading picture..."
 msgstr ""
 
@@ -23460,6 +23473,9 @@ msgid "provider:"
 msgstr ""
 
 msgid "Purge Deleted User Bouquets"
+msgstr ""
+
+msgid "Purple"
 msgstr ""
 
 msgid "red"
@@ -23535,7 +23551,7 @@ msgstr ""
 msgid "right"
 msgstr ""
 
-msgid "rose"
+msgid "Rose"
 msgstr ""
 
 msgid "satellites.xml not found or corrupted!\nIt is possible to watch TV,\nbut it's not possible to search for new TV channels\nor to configure tuner settings"

@@ -19032,7 +19032,7 @@ msgstr "Servidor caido"
 msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr "El servidor no debe implementar su propia lista negra. Algunos servidores pueden implementar sus propias listas negras para bloquear sitios por motivos de control parental, bloqueo de anuncios, etc"
 
-msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data."
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
 msgstr "El servidor no debe registrar las consultas de los usuarios (declarativo). Esto puede mejorar la privacidad de las búsquedas DNS al no registrar la solicitud en el servidor que proporciona los datos."
 
 msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
@@ -26621,6 +26621,9 @@ msgstr "y"
 msgid "and never ask again this session again"
 msgstr "y no preguntar de nuevo en esta sesión"
 
+msgid "Aqua"
+msgstr "Agua"
+
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -26660,6 +26663,9 @@ msgstr "Automático"
 
 msgid "AutoTimer was installed successfully."
 msgstr "AutoTimer se instaló exitosamente."
+
+msgid "Azure"
+msgstr "Azur"
 
 #
 msgid "back"
@@ -27142,6 +27148,9 @@ msgstr "Literatura"
 msgid "Live broadcast"
 msgstr "Transmisión en vivo"
 
+msgid "Lime"
+msgstr "Cal"
+
 #
 msgid "locked"
 msgstr "Bloqueado"
@@ -27305,12 +27314,18 @@ msgstr "Apagado o wpa2 encendido"
 msgid "offset is"
 msgstr "Está con variación"
 
+msgid "Olympic blue"
+msgstr "Azul olimpico"
+
 #
 msgid "on READ ONLY medium."
 msgstr "En disco de sólo lectura."
 
 msgid "original language"
 msgstr "idioma original"
+
+msgid "Orange"
+msgstr "Naranja"
 
 msgid "package"
 msgstr "paquete"
@@ -27346,6 +27361,9 @@ msgstr "Reproducir en PiP"
 msgid "Play In PiP Window"
 msgstr "Reproducir en ventana PiP"
 
+msgid "Pink"
+msgstr "Rosa"
+
 #
 msgid "please wait, loading picture..."
 msgstr "Espera mientras se carga la foto..."
@@ -27372,6 +27390,9 @@ msgstr "provid:"
 
 msgid "provider:"
 msgstr "Proveedor:"
+
+msgid "Purple"
+msgstr "Púrpura"
 
 #
 msgid "red"
@@ -27473,6 +27494,9 @@ msgstr "Rock/Pop"
 
 msgid "romance"
 msgstr "romance"
+
+msgid "Rose"
+msgstr "Rosa"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
