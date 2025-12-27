@@ -2,35 +2,10 @@
 
 Scroll Text Feature of eLabel
 
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
-
 Copyright (c) 2025 jbleyel
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-1. Non-Commercial Use: You may not use the Software or any derivative works
-   for commercial purposes without obtaining explicit permission from the
-   copyright holder.
-2. Share Alike: If you distribute or publicly perform the Software or any
-   derivative works, you must do so under the same license terms, and you
-   must make the source code of any derivative works available to the
-   public.
-3. Attribution: You must give appropriate credit to the original author(s)
-   of the Software by including a prominent notice in your derivative works.
-THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
-ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
-For more details about the CC BY-NC-SA 4.0 License, please visit:
-https://creativecommons.org/licenses/by-nc-sa/4.0/
+This code may be used commercially. Attribution must be given to the original author.
+Licensed under GPLv2.
 */
 
 
@@ -38,7 +13,7 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
 #include <lib/gui/elabel.h>
 #include <lib/gui/ewindowstyleskinned.h>
 
-eLabel::eLabel(eWidget* parent, int markedPos) : eWidget(parent), scrollTimer(eTimer::create(eApp)), m_textPixmap(nullptr) {
+eLabel::eLabel(eWidget* parent, int markedPos) : eWidget(parent), m_textPixmap(nullptr) {
 	m_pos = markedPos;
 	ePtr<eWindowStyle> style;
 	getStyle(style);
@@ -48,8 +23,6 @@ eLabel::eLabel(eWidget* parent, int markedPos) : eWidget(parent), scrollTimer(eT
 	// default to topleft alignment
 	m_valign = alignTop;
 	m_halign = alignBidi;
-
-	CONNECT(scrollTimer->timeout, eLabel::updateScrollPosition);
 }
 
 int eLabel::event(int event, void* data, void* data2) {
@@ -74,9 +47,11 @@ int eLabel::event(int event, void* data, void* data2) {
 					srcY = m_scroll_pos;
 
 				// perform blit of the text pixmap
-				eSize s(size());
-				eRect rec = eRect(ePoint(0, 0), size());
-				painter.blit(m_textPixmap, eRect(ePoint(-srcX, -srcY), s), rec, 0);
+				int visibleW = size().width() - m_padding.x() - m_padding.width();
+				int visibleH = size().height() - m_padding.y() - m_padding.height();
+				eSize s = eSize(visibleW, visibleH);
+				eRect rec = eRect(ePoint(m_padding.x(), m_padding.y()), s);
+				painter.blit(m_textPixmap, eRect(ePoint(-srcX + m_padding.x(), -srcY + m_padding.y()), s), rec, 0);
 
 				m_paint_pixmap = false;
 				// skip the normal renderText logic for scrolling
@@ -108,8 +83,8 @@ int eLabel::event(int event, void* data, void* data2) {
 			int posY = m_padding.y();
 
 			// visible area (account for left/top + right/bottom padding)
-			int visibleW = size().width() - m_padding.x() - m_padding.right();
-			int visibleH = size().height() - m_padding.y() - m_padding.bottom();
+			int visibleW = size().width() - m_padding.x() - m_padding.width();
+			int visibleH = size().height() - m_padding.y() - m_padding.height();
 			if (visibleW < 0)
 				visibleW = 0;
 			if (visibleH < 0)
@@ -120,10 +95,10 @@ int eLabel::event(int event, void* data, void* data2) {
 			/* For horizontal scroll we need full text width, height = visibleH.
 			   For vertical scroll we need full text height, width = visibleW.
 			   For non-scrolling modes we keep the visible area. */
-			if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight) {
+			if (m_scroll_text && (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight)) {
 				rectW = m_text_size.width(); // full text width (no-wrap computed earlier)
 				rectH = visibleH;
-			} else if (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom) {
+			} else if (m_scroll_text && (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom)) {
 				rectW = visibleW;
 				rectH = m_text_size.height(); // full text height (wrapped)
 			} else {
@@ -148,9 +123,17 @@ int eLabel::event(int event, void* data, void* data2) {
 					position.setY(position.y() - m_scroll_pos);
 			}
 
+
 			// if we don't have shadow, m_shadow_offset will be 0,0
 			// draw border/outline first
 			auto shadowposition = eRect(position.x() - m_shadow_offset.x(), position.y() - m_shadow_offset.y(), position.width() - m_shadow_offset.x(), position.height() - m_shadow_offset.y());
+
+			// If scrolling text is active
+			// clip to the visible padded area. Otherwise do normal rendering.
+			if (m_scroll_text) {
+				eRect clipRect(ePoint(m_padding.x(), m_padding.y()), eSize(visibleW, visibleH));
+				painter.resetClip(clipRect);
+			}
 
 			painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset, m_tab_width);
 
@@ -192,25 +175,27 @@ void eLabel::updateTextSize() {
 
 	stopScroll();
 
+	int visibleW = std::max(1, size().width() - m_padding.x() - m_padding.width());
+	int visibleH = std::max(1, size().height() - m_padding.y() - m_padding.height());
+	eSize s = eSize(visibleW, visibleH);
 	if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight) {
-		m_text_size = calculateTextSize(m_font, m_text, size(), true); // nowrap
-		if (m_text_size.width() > size().width()) {
+		m_text_size = calculateTextSize(m_font, m_text, s, true); // nowrap
+		if (m_text_size.width() > s.width()) {
+			m_text_size.setWidth(m_text_size.width() + m_font->pointSize / 10); // avoid issues with rounding
 			m_scroll_text = true;
 			if (m_scroll_config.mode == eScrollConfig::scrollModeRoll)
-				m_text_size.setWidth(m_text_size.width() + size().width() * 1.5);
+				m_text_size.setWidth(m_text_size.width() + s.width() * 1.5);
 		}
 	} else if (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom) {
-		m_text_size = calculateTextSize(m_font, m_text, size(), false); // allow wrap
-		if (m_text_size.height() > size().height()) {
+		m_text_size = calculateTextSize(m_font, m_text, s, false); // allow wrap
+		if (m_text_size.height() > s.height()) {
+			m_text_size.setHeight(m_text_size.height() + m_font->pointSize / 10); // avoid issues with rounding
 			if (m_scroll_config.mode == eScrollConfig::scrollModeRoll)
-				m_text_size.setHeight(m_text_size.height() + size().height() * 1.5);
+				m_text_size.setHeight(m_text_size.height() + s.height() * 1.5);
 			m_scroll_text = true;
 		}
 	}
 	if (m_scroll_text) {
-		int visibleW = std::max(1, size().width() - m_padding.x() - m_padding.right());
-		int visibleH = std::max(1, size().height() - m_padding.y() - m_padding.bottom());
-
 		if (m_scroll_config.direction == eScrollConfig::scrollRight)
 			m_scroll_pos = std::max(0, m_text_size.width() - visibleW);
 		else if (m_scroll_config.direction == eScrollConfig::scrollBottom)
@@ -231,6 +216,9 @@ void eLabel::updateTextSize() {
 void eLabel::createScrollPixmap() {
 	if (!m_scroll_text)
 		return;
+
+	int visibleW = std::max(1, size().width() - m_padding.x() - m_padding.width());
+	int visibleH = std::max(1, size().height() - m_padding.y() - m_padding.height());
 
 	int w = std::max(m_text_size.width(), size().width());
 	int h = std::max(m_text_size.height(), size().height());
@@ -262,10 +250,10 @@ void eLabel::createScrollPixmap() {
 	else if (m_have_foreground_color)
 		p.setForegroundColor(m_foreground_color);
 
-	int posX = m_padding.x();
-	int posY = m_padding.y();
-	w = s.width() - m_padding.x() - m_padding.right();
-	h = s.height() - m_padding.y() - m_padding.bottom();
+	int posX = 0;
+	int posY = 0;
+	w = s.width();
+	h = s.height();
 
 	auto position = eRect(posX, posY, w, h);
 
@@ -285,12 +273,12 @@ void eLabel::createScrollPixmap() {
 
 	if (m_scroll_config.mode == eScrollConfig::scrollModeRoll) {
 		if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight)
-			posX = s.width() - size().width();
+			posX = s.width() - visibleW;
 		else
-			posY = s.height() - size().height();
+			posY = s.height() - visibleH;
 
-		w = s.width() - m_padding.x() - m_padding.right();
-		h = s.height() - m_padding.y() - m_padding.bottom();
+		w = s.width();
+		h = s.height();
 
 		auto position = eRect(posX, posY, w, h);
 
@@ -308,6 +296,9 @@ void eLabel::createScrollPixmap() {
 			p.renderText(position, m_text, flags, gRGB(), 0, m_pos, &m_text_shaddowoffset, m_tab_width);
 		}
 	}
+
+	m_paint_pixmap = false;
+	invalidate();
 }
 
 void eLabel::setText(const std::string& string) {
@@ -445,11 +436,17 @@ void eLabel::setScrollText(int direction, long delay, long startDelay, long endD
 	m_scroll_config.stepSize = std::max(stepSize, 1);
 	m_scroll_config.mode = mode;
 	m_scroll_config.cached = (mode == eScrollConfig::scrollModeBounceCached || mode == eScrollConfig::scrollModeCached || mode == eScrollConfig::scrollModeRoll);
+	// ensure timer exists before stopping/clearing scroll state (stopScroll assumes scrollTimer)
+	if (!scrollTimer) {
+		scrollTimer = eTimer::create(eApp);
+		CONNECT(scrollTimer->timeout, eLabel::updateScrollPosition);
+	}
 	stopScroll();
 }
 
 void eLabel::stopScroll() {
-	scrollTimer->stop();
+	if (scrollTimer)
+		scrollTimer->stop();
 	m_end_delay_active = false;
 	m_scroll_text = false;
 	m_scroll_pos = 0;
@@ -463,8 +460,8 @@ void eLabel::updateScrollPosition() {
 		return;
 
 	// calculate visible area
-	int visibleW = std::max(1, size().width() - m_padding.x() - m_padding.right());
-	int visibleH = std::max(1, size().height() - m_padding.y() - m_padding.bottom());
+	int visibleW = std::max(1, size().width() - m_padding.x() - m_padding.width());
+	int visibleH = std::max(1, size().height() - m_padding.y() - m_padding.height());
 
 	// compute max_scroll depending on direction
 	int max_scroll = 0;
@@ -478,7 +475,7 @@ void eLabel::updateScrollPosition() {
 	bool reverse = (m_scroll_config.direction == eScrollConfig::scrollRight || m_scroll_config.direction == eScrollConfig::scrollBottom);
 
 	// in bounce mode, swap direction when m_scroll_swap is active
-	if (m_scroll_config.mode == eScrollConfig::scrollModeBounce && m_scroll_swap)
+	if ((m_scroll_config.mode == eScrollConfig::scrollModeBounce || m_scroll_config.mode == eScrollConfig::scrollModeBounceCached) && m_scroll_swap)
 		reverse = !reverse;
 
 	if (reverse)
@@ -503,6 +500,7 @@ void eLabel::updateScrollPosition() {
 			// use startDelay when we returned to the beginning (0)
 			long bounceDelay = (m_scroll_pos == max_scroll) ? m_scroll_config.endDelay : m_scroll_config.startDelay;
 			if (!m_end_delay_active && bounceDelay > 0) {
+				// don't toggle m_scroll_swap immediately — toggle AFTER the delay
 				m_end_delay_active = true;
 				m_scroll_started = false;
 				scrollTimer->stop();

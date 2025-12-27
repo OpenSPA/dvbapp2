@@ -8110,6 +8110,12 @@ msgstr ""
 "quan cerqueu múltiplex per cable. Per obtenir més informació, consulteu la "
 "documentació del proveïdor de cable."
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
+msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
+msgstr "Introduïu la freqüència a la qual canvia LNB entre banda baixa i banda alta. Per a més informació, consulteu la fitxa específica del vostre LNB."
+
 msgid ""
 "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr ""
@@ -13653,7 +13659,7 @@ msgstr "només HD"
 msgid "Only free scan"
 msgstr "Només exploració gratuïta"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "Només en repòs"
 
 msgid ""
@@ -19598,8 +19604,11 @@ msgstr "Mostra l’avís quan s’atura el torn horari"
 msgid "Show watch status"
 msgstr "Mostra les icones d’estat a movielist"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Espectacle/Espectacle de jocs"
+
+msgid "Show/Hide Actions"
+msgstr "Mostrar/Ocultar Acciones"
 
 msgid "Show/Hide focus bar"
 msgstr "Mostrar/Ocultar barra de focus"
@@ -20221,6 +20230,9 @@ msgstr "Especial 2"
 msgid "Special Features Settings"
 msgstr "Configuració de característiques especials"
 
+msgid "Special characteristics"
+msgstr ""
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Especificar el directori a utilitzar al iniciar Media Player."
 
@@ -20535,6 +20547,9 @@ msgstr "Informació sintonització streaming"
 #
 msgid "Streaming recording ended"
 msgstr "Gravació de streaming finalizada"
+
+msgid "Streaming recovery delay"
+msgstr ""
 
 #, python-format
 msgid "Streaming tuner information for %s %s"

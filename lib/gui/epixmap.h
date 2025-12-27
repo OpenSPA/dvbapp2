@@ -14,7 +14,7 @@ public:
 
 	void setPixmap(gPixmap* pixmap);
 	void setPixmap(ePtr<gPixmap>& pixmap);
-	void setPixmapFromFile(const char* filename);
+	void setPixmapFromFile(const char* filename, bool autoDetect = false);
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 	void setScale(int scale); // DEPRECATED
 	void setPixmapScale(int flags);
@@ -23,6 +23,7 @@ public:
 	void setAniPixmapFromFile(const char* filename, bool autostart = false);
 	void startAnimation(bool once = false);
 	void stopAnimation() { m_animTimer->stop(); }
+	eSize getPixmapSize() const { return (m_pixmap) ? m_pixmap->size() : eSize(0, 0); }
 
 protected:
 	ePtr<gPixmap> m_pixmap;

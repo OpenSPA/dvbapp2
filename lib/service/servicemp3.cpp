@@ -1,33 +1,8 @@
 /*
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
-
 Copyright (c) 2025 jbleyel and others
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-1. Non-Commercial Use: You may not use the Software or any derivative works
-   for commercial purposes without obtaining explicit permission from the
-   copyright holder.
-2. Share Alike: If you distribute or publicly perform the Software or any
-   derivative works, you must do so under the same license terms, and you
-   must make the source code of any derivative works available to the
-   public.
-3. Attribution: You must give appropriate credit to the original author(s)
-   of the Software by including a prominent notice in your derivative works.
-THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
-ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
-For more details about the CC BY-NC-SA 4.0 License, please visit:
-https://creativecommons.org/licenses/by-nc-sa/4.0/
+This code may be used commercially. Attribution must be given to the original author.
+Licensed under GPLv2.
 */
 
 
@@ -244,6 +219,7 @@ struct SubtitleEntry {
 	uint64_t start_time_ms;
 	uint64_t end_time_ms;
 	uint64_t vtt_mpegts_base;
+	uint64_t local_offset_ms;
 	std::string text;
 };
 
@@ -303,6 +279,10 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 	uint64_t start_ms = 0, end_ms = 0, vtt_mpegts_base = 0, local_offset_ms = 0;
 	bool expecting_text = false;
 
+	// Persistent across calls to detect MPEGTS jumps between segments
+	static uint64_t s_last_mpegts_ms = 0;
+	static bool s_has_last_mpegts = false;
+
 	while (std::getline(stream, line)) {
 		if (!line.empty() && line.back() == '\r')
 			line.pop_back();
@@ -325,6 +305,18 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 				if (vtt_mpegts_base < 1000000) // Ignore less than 1000000
 					vtt_mpegts_base = 0;
 				parse_timecode(local_str, local_offset_ms);
+				// Detect backward jumps in MPEGTS (advertisement -> content switch)
+				if (vtt_mpegts_base > 0) {
+					const uint64_t local_mpegts_ms = vtt_mpegts_base / 90; // 90kHz -> ms
+					if (s_has_last_mpegts && local_mpegts_ms < s_last_mpegts_ms) {
+						// If MPEGTS jump back -> deactivate this segment.
+						eDebug("[parseWebVTT] MPEGTS backward jump detected: %llu -> %llu, disabling mapping for this segment", (unsigned long long)s_last_mpegts_ms,
+							   (unsigned long long)local_mpegts_ms);
+						vtt_mpegts_base = 0; // reset offsets
+					}
+					s_last_mpegts_ms = local_mpegts_ms;
+					s_has_last_mpegts = true;
+				}
 			}
 			continue;
 		}
@@ -335,6 +327,7 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 				entry.start_time_ms = start_ms;
 				entry.end_time_ms = end_ms;
 				entry.vtt_mpegts_base = vtt_mpegts_base;
+				entry.local_offset_ms = local_offset_ms;
 				entry.text = current_text;
 				subs_out.push_back(entry);
 				current_text.clear();
@@ -351,11 +344,9 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 			// Apply timestamp mapping adjustment
 			// ignore for now
 			/*
-			if (vtt_mpegts_base > 0)
-			{
+			if (vtt_mpegts_base > 0) {
 				const uint64_t local_mpegts_ms = vtt_mpegts_base / 90; // MPEGTS-Ticks (90 kHz) → ms
 				const int64_t delta = static_cast<int64_t>(local_mpegts_ms) - static_cast<int64_t>(local_offset_ms);
-
 				start_ms += delta;
 				end_ms += delta;
 			}
@@ -379,6 +370,7 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 		entry.start_time_ms = start_ms;
 		entry.end_time_ms = end_ms;
 		entry.vtt_mpegts_base = vtt_mpegts_base;
+		entry.local_offset_ms = local_offset_ms;
 		entry.text = current_text;
 		subs_out.push_back(entry);
 	}
@@ -898,6 +890,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_clear_buffers = true;
 	m_initial_start = false;
 	m_send_ev_start = true;
+	m_pending_seek_pos = 0;
 	m_first_paused = false;
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 	m_audiosink_not_running = false;
@@ -1419,6 +1412,7 @@ RESULT eServiceMP3::start() {
 	ASSERT(m_state == stIdle);
 
 	m_subtitles_paused = false;
+	m_base_mpegts = -1;  // Reset MPEGTS base for WebVTT at new start
 	if (m_gst_playbin) {
 		eDebug("[eServiceMP3] *** starting pipeline ****");
 		GstStateChangeReturn ret;
@@ -1674,6 +1668,20 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 	// eDebug("[eServiceMP3] seekToImpl pts_t to %" G_GINT64_FORMAT, (gint64)to);
 	/* convert pts to nanoseconds */
 	m_last_seek_pos = to;
+	m_base_mpegts = -1;  // Reset when seeking to avoid stale base
+
+	if(m_pending_seek_pos == 0 && to > 0)
+	{
+		GstState state;
+		gst_element_get_state(m_gst_playbin, &state, NULL, 0);
+
+		if (state < GST_STATE_PAUSED) {
+			eDebug("[eServiceMP3] seekTo delayed (state=%d)", state);
+			m_pending_seek_pos = to;
+			return 0;
+		}
+	}
+
 	if (!gst_element_seek(m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME,
 						  (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT), GST_SEEK_TYPE_SET,
 						  (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE)) {
@@ -1706,7 +1714,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
  */
 RESULT eServiceMP3::seekTo(pts_t to) {
 	RESULT ret = -1;
-	// eDebug("[eServiceMP3] seekTo(pts_t to)");
+	// eDebug("[eServiceMP3] seekTo pts_t to %" G_GINT64_FORMAT, (gint64)to);
 	if (m_gst_playbin) {
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
@@ -2541,9 +2549,10 @@ RESULT eServiceMP3::selectTrack(unsigned int i) {
  * @param[in] force If true, forces the clearing of buffers even if not initially started.
  */
 void eServiceMP3::clearBuffers(bool force) {
+#ifdef PASSTHROUGH_FIX
 	if ((!m_initial_start || !m_clear_buffers) && !force)
 		return;
-
+#endif
 	bool validposition = false;
 	pts_t ppos = 0;
 	if (getPlayPosition(ppos) >= 0) {
@@ -2927,18 +2936,27 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 								}
 							}
 						}
-
 						if (autoaudio)
+#ifdef PASSTHROUGH_FIX
 							selectAudioStream(autoaudio);
+#else
+							selectTrack(autoaudio);
+#endif
 					} else {
+#ifdef PASSTHROUGH_FIX
 						selectAudioStream(m_currentAudioStream);
+#else
+						selectTrack(m_currentAudioStream);
+#endif
 					}
+#ifdef PASSTHROUGH_FIX
 					m_clear_buffers = false;
 					if (!m_initial_start) {
 						if (!m_sourceinfo.is_streaming)
 							seekTo(0);
 						m_initial_start = true;
 					}
+#endif
 					if (!m_first_paused)
 						m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					m_first_paused = false;
@@ -3199,6 +3217,13 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE before evUpdatedInfo");
 					m_event((iPlayableService*)this, evUpdatedInfo);
 				}
+
+				if (m_pending_seek_pos > 0) {
+					eDebug("[eServiceMP3] Performing deferred seek to %llds", m_pending_seek_pos);
+					seekTo(m_pending_seek_pos);
+					m_pending_seek_pos = -1;
+				}
+
 			} else {
 				m_send_ev_start = true;
 			}
@@ -3773,8 +3798,6 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 			// eDebug(">>>\n%s\n<<<", vtt_string.c_str());
 
 			if (parseWebVTT(vtt_string, parsed_subs)) {
-				static int64_t base_mpegts = 0; // Store first MPEGTS as base
-
 				for (const auto& sub : parsed_subs) {
 					if (sub.vtt_mpegts_base) {
 						if (!m_vtt_live)
@@ -3783,8 +3806,8 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 						int64_t delta = 0;
 
 						// Initialize base MPEGTS with first subtitle's MPEGTS
-						if (base_mpegts == 0) {
-							base_mpegts = sub.vtt_mpegts_base;
+						if (m_base_mpegts == -1) {
+							m_base_mpegts = sub.vtt_mpegts_base;
 						}
 
 						if (decoder_pts >= 0) {
@@ -3792,7 +3815,7 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 							const uint64_t pts_mask = (1ULL << 33) - 1; // 33-bit mask
 
 							// Calculate delta based on MPEGTS difference
-							delta = (sub.vtt_mpegts_base - base_mpegts) / 90; // Convert to ms
+							delta = (sub.vtt_mpegts_base - m_base_mpegts) / 90; // Convert to ms
 						}
 
 						int64_t adjusted_start = sub.start_time_ms + delta;
@@ -4148,6 +4171,9 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
 		m_dvb_subtitle_sync_timer->stop();
 		m_dvb_subtitle_pages.clear();
 		m_subtitle_pages.clear();
+		m_initial_vtt_mpegts = 0;
+		m_vtt_live = false;
+		m_vtt_live_base_time = -1;
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
 		m_currentSubtitleStream = track.pid;
@@ -4199,6 +4225,9 @@ RESULT eServiceMP3::disableSubtitles() {
 	m_dvb_subtitle_sync_timer->stop();
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
+	m_initial_vtt_mpegts = 0;
+	m_vtt_live = false;
+	m_vtt_live_base_time = -1;
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
 	if (m_subtitle_widget)

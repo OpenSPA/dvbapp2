@@ -174,7 +174,7 @@ def getButtonSetupFunctions():
 	textSetup = _("Setup")
 	textEPG = _("EPG")
 	textInfoBar = _("InfoBar")
-	textScanning = _("Scanning")
+	textScanning = _("Tuners, Scanning & Reception")
 	textPower = _("Power")
 	textPlugins = _("Plugins")
 	ButtonSetupFunctions = []
@@ -224,7 +224,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Disable digital downmix"), "Infobar/audioDownmixOff", textInfoBar))
 	ButtonSetupFunctions.append((_("Switch to Radio mode"), "Infobar/showRadio", textInfoBar))
 	ButtonSetupFunctions.append((_("Switch to TV mode"), "Infobar/showTv", textInfoBar))
-	ButtonSetupFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", textInfoBar))
+	# ButtonSetupFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", textInfoBar))  # OpenSPA [norhap] Do not execute self.openServiceList in InfoBar, this will cause you to open service list and switch back to the old channel.
 	ButtonSetupFunctions.append((_("Show movies"), "Infobar/showMovies", textInfoBar))
 	ButtonSetupFunctions.append((_("Instant record"), "Infobar/instantRecord", textInfoBar))
 	ButtonSetupFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", textInfoBar))
@@ -264,6 +264,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", textScanning))
 	ButtonSetupFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", textScanning))
 	ButtonSetupFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", textScanning))
+	ButtonSetupFunctions.append((_("Fallback Remote Receiver Settings"), "Module/Screens.SetupFallbacktuner/SetupFallbacktuner", textScanning))
 	for plugin in plugins.getPluginsForMenu("scan"):
 		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], textScanning))
 	ButtonSetupFunctions.append((_("Network Settings"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", textSetup))
@@ -272,10 +273,12 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.Information/ServiceInformation", textSetup))
 	ButtonSetupFunctions.append((_("SkinSelection"), "Module/Screens.SkinSelection/SkinSelection", textSetup))
 	ButtonSetupFunctions.append((_("RecordTimer"), "Module/Screens.Timers/RecordTimerOverview", textSetup))
-	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", textSetup))
+	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/openAutoTimerList", textSetup))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
 			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], textSetup))
+	for plugin in plugins.getPluginsForMenu("video"):
+		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/video/" + plugin[2], textSetup))
 	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", textPower))
 	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", textPower))
 	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", textPower))
@@ -302,7 +305,7 @@ def getButtonSetupFunctions():
 			file = file[:-3]
 			ButtonSetupFunctions.append((f"{_('Shellscript')} {file}", f"Shellscript/{file}", "Shellscripts"))
 	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", textPlugins))
-	ButtonSetupFunctions.append((_("QuickMenu"), "Module/Screens.QuickMenu/QuickMenu", textPlugins))
+	# ButtonSetupFunctions.append((_("QuickMenu"), "Module/Screens.QuickMenu/QuickMenu", textPlugins))
 	if isPluginInstalled("Kodi"):
 		ButtonSetupFunctions.append((_("Kodi MediaCenter"), "Kodi/", textPlugins))
 	if isPluginInstalled("BluetoothSetup"):
@@ -329,6 +332,7 @@ class ButtonSetup(Screen):
 		self.getFunctions()
 		self["actions"] = ActionMap(["OkCancelActions"], {  # No help available, HELP is a changeable button!
 			"cancel": self.close,
+			"ok": self.keyOk,
 		}, prio=-1)
 		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], dict((x[1], self.ButtonSetupGlobal) for x in BUTTON_SETUP_KEYS))
 		self.longKeyPressed = False
@@ -337,10 +341,16 @@ class ButtonSetup(Screen):
 		self.onShown.append(self.disableKeyMap)
 		self.onClose.append(self.enableKeyMap)
 
+	def keyOk(self):
+		self.session.openWithCallback(self.close, ButtonSetupSelect, self["list"].l.getCurrentSelection())
+
 	def layoutFinished(self):
 		self["choosen"].selectionEnabled(0)
 
 	def disableKeyMap(self):
+		if isPluginInstalled("spaQButton"):
+			from Plugins.Extensions.spaQButton.plugin import spaQButton
+			self.session.openWithCallback(self.close, spaQButton)
 		globalActionMap.setEnabled(False)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
 		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
@@ -355,6 +365,7 @@ class ButtonSetup(Screen):
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 106, 5, "ListboxActions", "pageDown")
 
 	def ButtonSetupGlobal(self, key):
+		self["description"].setText("")
 		if self.longKeyPressed:
 			self.longKeyPressed = False
 		count = len(BUTTON_SETUP_KEYS) or 10
@@ -365,7 +376,8 @@ class ButtonSetup(Screen):
 					self.longKeyPressed = True
 				break
 		self.getFunctions()
-		self.session.open(ButtonSetupSelect, self["list"].getCurrent())
+		self["description"].setText(_("Press OK on the selected key."))
+		# self.session.open(ButtonSetupSelect, self["list"].getCurrent())
 
 	def getFunctions(self):
 		key = self["list"].getCurrent()[0][1]
@@ -517,13 +529,13 @@ class ButtonSetupSelect(Screen):
 			configValue.append(button[0][1])
 		self.config.value = ",".join(configValue)
 		self.config.save()
-		self.close()
+		self.session.openWithCallback(self.close, ButtonSetup)
 
 	def cancel(self):
 		if self.selected != self.prevSelected:
 			self.session.openWithCallback(self.cancelCallback, MessageBox, _("Are you sure to cancel all changes?"), default=False)
 		else:
-			self.close()
+			self.session.openWithCallback(self.close, ButtonSetup)
 
 	def cancelCallback(self, answer):
 		answer and self.close()
@@ -696,9 +708,9 @@ class InfoBarButtonSetup():
 			elif selected[0] == "ScriptRunner":
 				from Screens.ScriptRunner import ScriptRunner
 				self.session.open(ScriptRunner)
-			elif selected[0] == "QuickMenu":
-				from Screens.QuickMenu import QuickMenu
-				self.session.open(QuickMenu)
+			# elif selected[0] == "QuickMenu":
+			# from Screens.QuickMenu import QuickMenu
+			# self.session.open(QuickMenu)
 			elif selected[0] == "Kodi":
 				if isPluginInstalled("Kodi"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen

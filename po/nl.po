@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-06-30 12:17+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -2282,8 +2282,8 @@ msgstr "Toon eerst de favorietenlijsten"
 msgid "Always use smart1080p mode"
 msgstr "Gebruik altijd smart1080p modus"
 
-msgid "American Football"
-msgstr "American Football"
+msgid "American football"
+msgstr "American football"
 
 msgid "American Samoa"
 msgstr "Amerikaans Samoa"
@@ -5218,7 +5218,7 @@ msgstr "Huidige"
 msgid "Current 1/1"
 msgstr "Current 1/1"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Nieuws/Actualiteiten"
 
 msgid "Current CEC address"
@@ -5377,7 +5377,7 @@ msgstr "DNS instellingen"
 msgid "DNS data source"
 msgstr "DNS gegevensbron"
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr "DNS Modus"
 
 msgid "DNS suffix"
@@ -5748,7 +5748,7 @@ msgstr "Softcam instellen voor deze zender"
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Geef een aanvullende vertraging op in milliseconden voorafgaand aan de start van http(s) streams."
 
-msgid "Define the DNS suffix."
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Het DNS-achtervoegsel invullen."
 
 msgid "Defined / Active"
@@ -7337,6 +7337,9 @@ msgstr "Voer pincode in"
 msgid "Enter text via an attached keyboard"
 msgstr "Tekst invoeren via een aangesloten toetsenbord"
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Geef de frequentie op waarbij uw LNB schakelt tussen de hoge en de lage band. Voor meer informatie zie de specificaties van uw LNB."
 
@@ -8268,7 +8271,7 @@ msgstr "Het bestandssysteem van uw harde schijf controleren."
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Laat de zender EPG automatisch actualiseren wanneer er geen IceTV EPG beschikbaar is"
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr "Misdaadfilm"
 
 msgid "Filter extensions"
@@ -8635,7 +8638,7 @@ msgstr "Galicisch"
 msgid "Gambia"
 msgstr "Gambia"
 
-msgid "Game Show"
+msgid "Game show"
 msgstr "Quiz"
 
 msgid "Ganda"
@@ -9230,7 +9233,7 @@ msgstr "Horizontale draaisnelheid"
 msgid "Horror"
 msgstr "Horror"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Paardenrace"
 
 msgid "Hostname"
@@ -11105,8 +11108,8 @@ msgstr "Midden"
 msgid "Middle - Lite image"
 msgstr "Midden- Lite image"
 
-msgid "Mini Series"
-msgstr "Mini Series"
+msgid "Mini series"
+msgstr "Mini series"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
@@ -12509,7 +12512,7 @@ msgstr "Alleen HD"
 msgid "Only free scan"
 msgstr "Alleen ongecodeerde zenders scannen"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "alleen in stand-by"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14178,7 +14181,7 @@ msgstr "Gereed om \"%s\" te installeren?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Gereed om \"%s\" te verwijderen?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Reality"
 
 msgid "Real or pseudo recordings"
@@ -15045,7 +15048,7 @@ msgstr "Roeien"
 msgid "Rugby"
 msgstr "Rugby"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Rugby Competitie"
 
 msgid "Run"
@@ -16275,7 +16278,7 @@ msgstr "Selecteer de fabrikant van uw SCR-apparaat. Wanneer deze niet in de lijs
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Selecteer de methode voor het herstellen van de schermresolutie en framebuffer bij het verlaten van Teletekst."
 
-msgid "Select the mode of the DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "DNS-modus selecteren."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16356,7 +16359,7 @@ msgstr "Selecteer de volgorde en zichtbaarheid van de menu items."
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Selecteer de locatie waar u de upgradebestanden wilt ophalen."
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
 msgstr "De gegevensbron van de default DNS instellingen selecteren."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17172,7 +17175,7 @@ msgstr "Shona"
 msgid "Shopping"
 msgstr "Winkelen"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Korte film"
 
 msgid "Short filenames"
@@ -17932,7 +17935,7 @@ msgstr "Toon waarschuwing als Timeshift gestopt wordt"
 msgid "Show watch status"
 msgstr "Toon een status icon in de opnamelijst"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Show/Quiz"
 
 msgid "Show/Hide focus bar"
@@ -18281,7 +18284,7 @@ msgstr "Vloeiend"
 msgid "SoC family"
 msgstr "SoC familie"
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "Soapserie"
 
 msgid "Soccer"
@@ -18515,6 +18518,9 @@ msgstr "Speciaal 2"
 
 msgid "Special Features Settings"
 msgstr "Speciale functies"
+
+msgid "Special characteristics"
+msgstr ""
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Selecteer de map die bij het starten van de Mediaspeler geopend moet worden."
@@ -18850,6 +18856,9 @@ msgstr "Streaming Tuner informatie"
 
 msgid "Streaming recording ended"
 msgstr "Streaming opname beëindigd"
+
+msgid "Streaming recovery delay"
+msgstr ""
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -19254,7 +19263,7 @@ msgstr "Tadzjieks"
 msgid "Tajikistan"
 msgstr "Tadzjikistan"
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "Talkshow"
 
 msgid "Tamil"
@@ -23954,6 +23963,9 @@ msgstr "Geel"
 msgid "yes (keep feeds)"
 msgstr "ja (bewaar feeds)"
 
+msgid "Languages"
+msgstr "Talen"
+
 msgid "®"
 msgstr "®"
 
@@ -24862,9 +24874,6 @@ msgstr "®"
 
 #~ msgid "Force OPKG clean mode"
 #~ msgstr "OPKG clean-mode forceren"
-
-#~ msgid "Languages"
-#~ msgstr "Talen"
 
 #~ msgid "Locales"
 #~ msgstr "Locales"

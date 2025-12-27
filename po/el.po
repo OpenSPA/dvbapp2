@@ -2273,7 +2273,7 @@ msgstr "Πάντα εμφάνιση των μπουκέτων"
 msgid "Always use smart1080p mode"
 msgstr "Χρήση πάντα της έξυπνης λειτουργίας 1080p"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Αμερικάνικο ποδόσφαιρο"
 
 msgid "American Samoa"
@@ -5103,7 +5103,7 @@ msgstr "Τρέχον"
 msgid "Current 1/1"
 msgstr "Τρέχον 1/1"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Επικαιρότητα"
 
 msgid "Current CEC address"
@@ -5262,7 +5262,7 @@ msgstr "Ρυθμίσεις DNS"
 msgid "DNS data source"
 msgstr "Πηγή δεδομένων DNS"
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr "Λειτουργία DNS"
 
 msgid "DNS suffix"
@@ -5633,7 +5633,7 @@ msgstr "Ορισμός softcam για αυτή την υπηρεσία"
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Καθορισμός πρόσθετης καθυστέρησης σε χιλιοστά του δευτερολέπτου πριν από την έναρξη των ροών http(s)."
 
-msgid "Define the DNS suffix."
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Ορισμός επιθήματος DNS."
 
 msgid "Defined / Active"
@@ -8120,7 +8120,7 @@ msgstr "Έλεγχος συστήματος αρχείων του σκληρού
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Συμπλήρωση των EPG των καναλιών από τους εκπεμπόμενους, όταν δεν υπάρχει IceTV EPG για το κανάλι"
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr "Φιλμ νουάρ"
 
 msgid "Filter extensions"
@@ -8487,7 +8487,7 @@ msgstr "Γαλικιακά"
 msgid "Gambia"
 msgstr "Γκάμπια"
 
-msgid "Game Show"
+msgid "Game show"
 msgstr "Τηλεπαιχνίδι"
 
 msgid "Ganda"
@@ -9079,7 +9079,7 @@ msgstr "Ταχύτητα περιστροφής σε οριζόντια πόλω
 msgid "Horror"
 msgstr "Τρόμος"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Ιπποδρομίες"
 
 msgid "Hostname"
@@ -10950,7 +10950,7 @@ msgstr "Μέση"
 msgid "Middle - Lite image"
 msgstr "Μέσος - ελαφρύ image"
 
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Μίνι σειρά"
 
 msgid "MiniDLNA"
@@ -12354,7 +12354,7 @@ msgstr "μόνο HD"
 msgid "Only free scan"
 msgstr "Ανίχνευση μόνο των ελεύθερων"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "Μόνο στην αναμονή"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14021,7 +14021,7 @@ msgstr "Εγκατάσταση του \"%s\" ;"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Αφαίρεση του \"%s\" ;"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Πραγματική ζωή"
 
 msgid "Real or pseudo recordings"
@@ -14888,7 +14888,7 @@ msgstr "Κωπηλασία"
 msgid "Rugby"
 msgstr "Ράγκμπι"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Πρωτάθλημα ράγκμπι"
 
 msgid "Run"
@@ -16108,7 +16108,7 @@ msgstr "Επιλέξτε τον κατασκευαστή της SCR συσκευ
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Επιλογή της μεθόδου επαναφοράς της ανάλυσης της οθόνης και της μνήμης καρέ κατά την έξοδο από το τηλεκείμενο."
 
-msgid "Select the mode of the DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Επιλογή λειτουργίας DNS."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16189,7 +16189,7 @@ msgstr "Επιλογή της σειράς ταξινόμησης των στο�
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Επιλέξτε τη θέση προέλευσης από την οποία θα λάβετε τα αρχεία αναβάθμισης."
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
 msgstr "Επιλογή της πηγής ρυθμίσεων του προεπιλεγμένου DNS."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -16989,7 +16989,7 @@ msgstr "Σόνα"
 msgid "Shopping"
 msgstr "Αγορές/ψώνια"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Ταινία μικρού μήκους"
 
 msgid "Short filenames"
@@ -17743,7 +17743,7 @@ msgstr "Εμφάνιση προειδοποίησης όταν η χρονομε
 msgid "Show watch status"
 msgstr "Εμφάνιση της κατάστασης παρακολούθησης"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Σόου/τηλεπαιχνίδι"
 
 msgid "Show/Hide focus bar"
@@ -18090,7 +18090,7 @@ msgstr "Ομαλό"
 msgid "SoC family"
 msgstr "Οικογένεια SoC"
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "Σαπουνόπερα"
 
 msgid "Soccer"
@@ -19062,8 +19062,8 @@ msgstr "Τατζικικά"
 msgid "Tajikistan"
 msgstr "Τατζικιστάν"
 
-msgid "Talk Show"
-msgstr "Talk Show"
+msgid "Talk show"
+msgstr "Talk show"
 
 msgid "Tamil"
 msgstr "Ταμίλ"
@@ -23690,6 +23690,9 @@ msgstr "κίτρινο"
 msgid "yes (keep feeds)"
 msgstr "ναι (διατήρηση των feeds)"
 
+msgid "Languages"
+msgstr "Γλώσσες"
+
 msgid "®"
 msgstr "®"
 
@@ -24559,9 +24562,6 @@ msgstr "®"
 
 #~ msgid "Force OPKG clean mode"
 #~ msgstr "Αναγκαστική καθαρή λειτουργία OPKG"
-
-#~ msgid "Languages"
-#~ msgstr "Γλώσσες"
 
 #~ msgid "Locales"
 #~ msgstr "Διάλεκτοι"

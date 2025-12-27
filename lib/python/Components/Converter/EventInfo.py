@@ -5,7 +5,7 @@ from enigma import eEPGCache, eServiceEventEnums, eServiceReference, iServiceInf
 from ServiceReference import ServiceReference
 from Components.config import config
 from Components.Element import cached
-from Components.Converter.genre import getGenreStringSub
+from Components.Genres import genres
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from Tools.Conversions import UnitScaler
@@ -15,15 +15,15 @@ from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 class ETSIClassifications(dict):
 	def __init__(self):
 		def shortRating(age):
-			if age == 0:
+			if age < 4:
 				return _("All ages")
 			elif age <= 15:
 				age += 3
 				return f"{age}+"
 
 		def longRating(age):
-			if age == 0:
-				return _("Rating undefined")
+			if age < 4:
+				return _("All ages")
 			elif age <= 15:
 				age += 3
 				return _("Minimum age %d years") % age
@@ -35,10 +35,12 @@ class ETSIClassifications(dict):
 				age += 3
 				return "ratings/ETSI-%d.png" % age
 
-		self.update([(index, (shortRating(classification), longRating(classification), imageRating(classification))) for index, classification in enumerate(range(16))])
+		#         0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15
+		colors = (0x000000, 0x00A822, 0x00A822, 0x00A822, 0x007DCA, 0x007DCA, 0x007DCA, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723, 0xD70723, 0xD70723)
+		self.update([(index, (shortRating(classification), longRating(classification), imageRating(classification), colors[index])) for index, classification in enumerate(range(16))])
 
 
-class AusClassifications(dict):
+class AusClassifications(dict):  # Note: Australia does not color its ratings.  In most cases the rating icon is preferred!
 	def __init__(self):
 		# In Australia "Not Classified" (NC) is to be displayed as an empty string.
 		#            0   1   2    3    4    5    6    7    8     9     10   11   12    13    14    15
@@ -65,7 +67,61 @@ class AusClassifications(dict):
 			"AV": "ratings/AUS-AV.png",
 			"R": "ratings/AUS-R.png"
 		}
-		self.update([(index, (classification, longText[classification], images[classification])) for index, classification in enumerate(shortText)])
+		#         0         1         2          3        4         5          6         7         8         9        10        11        12        13        14        15
+		colors = (0x000000, 0x00A822, 0x00A822, 0x00A822, 0x007DCA, 0x007DCA, 0x007DCA, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723, 0xD70723, 0xD70723)
+		self.update([(index, (classification, longText[classification], images[classification], colors[index])) for index, classification in enumerate(shortText)])
+
+
+class GbrClassifications(dict):  # Note: When I last contacted Ofcom I was told that there are no TV ratings.  These are cinema ratings.
+	def __init__(self):
+		# British Board of Film Classification
+		#            0   1   2   3    4    5    6     7     8     9     10    11    12    13    14    15
+		shortText = ("", "", "", "U", "U", "U", "PG", "PG", "PG", "12", "12", "12", "15", "15", "15", "18")
+		longText = {
+			"": _("Not Classified"),
+			"U": _("U - Suitable for all"),
+			"PG": _("PG - Parental Guidance"),
+			"12": _("Suitable for ages 12+"),
+			"15": _("Suitable for ages 15+"),
+			"18": _("Suitable only for Adults")
+		}
+		images = {
+			"": "ratings/blank.png",
+			"U": "ratings/GBR-U.png",
+			"PG": "ratings/GBR-PG.png",
+			"12": "ratings/GBR-12.png",
+			"15": "ratings/GBR-15.png",
+			"18": "ratings/GBR-18.png"
+		}
+		#         0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15
+		colors = (0x000000, 0x000000, 0x000000, 0x00A822, 0x00A822, 0x00A822, 0xFAB800, 0xFAB800, 0xFAB800, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723)
+		self.update([(index, (classification, longText[classification], images[classification], colors[index])) for index, classification in enumerate(shortText)])
+
+
+class ItaClassifications(dict):
+	def __init__(self):
+		# The classifications used by Sky Italia
+		#            0   1   2   3    4    5    6     7     8     9     10    11    12    13    14    15
+		shortText = ("", "", "", "T", "T", "T", "BA", "BA", "BA", "12", "12", "12", "14", "14", "14", "18")
+		longText = {
+			"": "Non Classificato",
+			"T": "Per Tutti",
+			"BA": "Bambini Accompagnati",
+			"12": "Dai 12 anni in su",
+			"14": "Dai 14 anni in su",
+			"18": "Dai 18 anni in su"
+		}
+		images = {
+			"": "ratings/blank.png",
+			"T": "ratings/ITA-T.png",
+			"BA": "ratings/ITA-BA.png",
+			"12": "ratings/ITA-12.png",
+			"14": "ratings/ITA-14.png",
+			"18": "ratings/ITA-18.png"
+		}
+		#         0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15
+		colors = (0x000000, 0x00A822, 0x00A822, 0x00A822, 0x007DCA, 0x007DCA, 0x007DCA, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723, 0xD70723, 0xD70723)
+		self.update([(index, (classification, longText[classification], images[classification], colors[index])) for index, classification in enumerate(shortText)])
 
 
 # Each country classification object in the map tuple must be an object that
@@ -75,10 +131,23 @@ class AusClassifications(dict):
 # is no match in the classification object.
 #
 # If there is no matching country then the default ETSI should be selected.
-#
+# ETSIClassifications OpenSPA [norhap]                SHORT                                                                                         LONG                                                                                                                   ICONS
 COUNTRIES = {
-	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ETSI-na.png")),
-	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png"))
+	"ETSI": (ETSIClassifications(), lambda age: ((_("%d+") % (age + 3) if age < 19 else _("All ages") if age < 7 else _("Possible rated in broadcaster"), _("Minimum age %d years") % (age + 3) if age < 16 else _("All ages") if age < 7 else _("Possible rated in broadcaster"), "ratings/ETSI-%d.png" % (age + 3) if age < 16 else "ratings/ETSI-ALL.png" if age < 7 else "ratings/ETSI-BC.png", 0x222222))),
+	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png", 0x222222)),
+	"GBR": (GbrClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/GBR-na.png", 0x222222)),
+	"ITA": (ItaClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ITA-na.png", 0x222222))
+}
+
+
+# OpenTV country codes: epgchanneldata.cpp
+# eEPGChannelData::getOpenTvParentalRating
+OPENTV_COUNTRIES = {
+	"OT1": "GBR",
+	"OT2": "ITA",
+	"OT3": "AUS",
+	"OT4": "NZL",
+	"OTV": "ETSI"
 }
 
 
@@ -117,25 +186,27 @@ class EventInfo(Converter, Poll):
 	RATING_COUNTRY = 31
 	RATING_ICON = 32
 	RATING_RAW = 33
-	REMAINING = 34
-	REMAINING_VFD = 35
-	RUNNING_STATUS = 36
-	SERVICE_NAME = 37
-	SERVICE_REFERENCE = 38
-	SHORT_DESCRIPTION = 39
-	START_TIME = 40
-	THIRD_DESCRIPTION = 41
-	THIRD_DURATION = 42
-	THIRD_END_TIME = 43
-	THIRD_NAME = 44
-	THIRD_NAME2 = 45
-	THIRD_START_TIME = 46
-	THIRD_TIMES = 47
-	TIMES = 48
+	RATING_TEXT_AND_COLOR = 34
+	REMAINING = 35
+	REMAINING_VFD = 36
+	RUNNING_STATUS = 37
+	SERVICE_NAME = 38
+	SERVICE_REFERENCE = 39
+	SHORT_DESCRIPTION = 40
+	START_TIME = 41
+	THIRD_DESCRIPTION = 42
+	THIRD_DURATION = 43
+	THIRD_END_TIME = 44
+	THIRD_NAME = 45
+	THIRD_NAME2 = 46
+	THIRD_START_TIME = 47
+	THIRD_TIMES = 48
+	TIMES = 49
 
 	RATING_SHORT = 0
 	RATING_LONG = 1
 	RATING_IMAGE = 2
+	RATING_COLOR = 3
 
 	RATING_NORMAL = 0
 	RATING_DEFAULT = 1
@@ -184,6 +255,7 @@ class EventInfo(Converter, Poll):
 			"RatingCountry": ("token", self.RATING_COUNTRY, 0),
 			"RatingIcon": ("token", self.RATING_ICON, 0),
 			"RatingRaw": ("token", self.RATING_RAW, 0),
+			"RatingTextAndColor": ("token", self.RATING_TEXT_AND_COLOR, 0),
 			"RawRating": ("token", self.RATING_RAW, 0),
 			"Remaining": ("token", self.REMAINING, 60000),
 			"RemainingVFD": ("token", self.REMAINING_VFD, 60000),
@@ -300,15 +372,19 @@ class EventInfo(Converter, Poll):
 					result = formatDescription(event.getShortDescription(), event.getExtendedDescription())
 				case self.GENRE | self.GENRE_LIST:
 					if config.usage.show_genre_info.value:
-						genres = event.getGenreDataList()
-						if genres:
+						genreList = event.getGenreDataList()
+						if genreList:
 							if self.token == self.GENRE:
-								genres = genres[0:1]
+								genreList = genreList[0:1]
 							rating = event.getParentalData()
 							country = rating.getCountryCode().upper() if rating else "ETSI"
-							if config.misc.epggenrecountry.value:
-								country = config.misc.epggenrecountry.value
-							result = self.separator.join((genreText for genreText in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genreText))
+							if country in OPENTV_COUNTRIES:
+								country = f"{OPENTV_COUNTRIES[country]}OpenTV"
+								result = self.separator.join((genreText for genreText in (trimText(genres.getGenreLevelTwoText(genre[0], genre[1], country=country)) for genre in genreList) if genreText))
+							else:
+								if config.misc.epggenrecountry.value:
+									country = config.misc.epggenrecountry.value
+								result = self.separator.join((genreText for genreText in (trimText(genres.getGenreLevelTwoText(genre[0], genre[1], country=country)) for genre in genreList) if genreText))
 				case self.ID:
 					result = trimText(event.getEventId())
 				case self.MEDIA_PATH:
@@ -373,6 +449,15 @@ class EventInfo(Converter, Poll):
 								self.RATING_CODE: trimText(rating[self.RATING_SHORT]),
 								self.RATING_ICON: resolveFilename(SCOPE_GUISKIN, rating[self.RATING_IMAGE])
 							}.get(self.token)
+					else:  # OpenSPA [norhap] add defined in broadcaster.
+						classifications = COUNTRIES["ETSI"]
+						rating = classifications[self.RATING_NORMAL].get(100, classifications[self.RATING_DEFAULT](100))
+						if rating:
+							result = {
+								self.RATING: trimText(rating[self.RATING_LONG]),
+								self.RATING_CODE: trimText(rating[self.RATING_SHORT]),
+								self.RATING_ICON: resolveFilename(SCOPE_GUISKIN, rating[self.RATING_IMAGE])
+							}.get(self.token)
 				case self.RATING_COUNTRY:
 					rating = event.getParentalData()
 					if rating:
@@ -381,6 +466,18 @@ class EventInfo(Converter, Poll):
 					rating = event.getParentalData()
 					if rating:
 						result = f"{rating.getRating()}"
+				case self.RATING_TEXT_AND_COLOR:
+					rating = event.getParentalData()
+					if rating:
+						age = rating.getRating()
+						country = rating.getCountryCode().upper()
+						if country in OPENTV_COUNTRIES:
+							country = OPENTV_COUNTRIES[country]
+						country = COUNTRIES[country] if country in COUNTRIES else COUNTRIES["ETSI"]
+						rating = country[self.RATING_NORMAL].get(age, country[self.RATING_DEFAULT](age))
+						ageText = rating[self.RATING_SHORT].strip().replace("+", "")
+						color = rating[self.RATING_COLOR]
+						return f"{ageText};#{color:08X}"
 				case self.RUNNING_STATUS:
 					if event.getPdcPil():
 						result = {

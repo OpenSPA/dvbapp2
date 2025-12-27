@@ -41,7 +41,7 @@ def InitUsageConfig():
 	config.misc.SettingsVersion.value = [1, 1]
 	config.misc.SettingsVersion.save_forced = True
 	config.misc.SettingsVersion.save()
-	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, _("%d Minutes") % 30), (60, _("%d Hour") % 1), (1440, _("%d Hours") % 24)])
+	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, ngettext("%d Minute", "%d Minutes", 30) % 30)] + [(x * 60, ngettext("%d Hour", "%d Hours", x) % x) for x in (1, 24)])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 
 	config.misc.extraopkgpackages = ConfigYesNo(default=False)
@@ -170,7 +170,7 @@ def InitUsageConfig():
 	fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
 	for dns in fileDom.findall("dnsserver"):
 		if dns.get("key", ""):
-			choices.append((dns.get("key"), _(dns.get("title"))))
+			choices.append((dns.get("key"), dns.get("title")))
 
 	config.usage.dns = ConfigSelection(default="dhcp-router", choices=choices)
 	config.usage.dnsMode = ConfigSelection(default=2, choices=[
@@ -623,7 +623,7 @@ def InitUsageConfig():
 	choiceList = [
 		(0, _("Disabled")),
 		(-1, _("At end of current program"))
-	] + [(x * 60, _("%d Minutes") % x) for x in range(15, 241, 15)]
+	] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(15, 241, 15)]
 	config.usage.sleepTimer = ConfigSelection(default=0, choices=choiceList)
 	choiceList = [
 		(0, _("Disabled"))
@@ -926,14 +926,8 @@ def InitUsageConfig():
 	config.usage.swap_time_remaining_on_vfd = ConfigSelection(default="0", choices=choiceList)
 	config.usage.elapsed_time_positive_osd = ConfigYesNo(default=False)
 	config.usage.elapsed_time_positive_vfd = ConfigYesNo(default=False)
-	config.usage.lcd_scroll_delay = ConfigSelection(default="10000", choices=[
-		("10000", _("%d Seconds") % 10),
-		("20000", _("%d Seconds") % 20),
-		("30000", _("%d Seconds") % 30),
-		("60000", _("%d Minute") % 1),
-		("300000", _("%d Minutes") % 5),
-		("noscrolling", _("Off"))
-	])
+	choices = [(str(x * 1000), ngettext("%d Second", "%d Seconds", x) % x) for x in [10, 20, 30]] + [(str(x * 60000), ngettext("%d Minute", "%d Minutes", x) % x) for x in [1, 5]] + [("noscrolling", _("Off"))]
+	config.usage.lcd_scroll_delay = ConfigSelection(default="10000", choices=choices)
 	config.usage.lcd_scroll_speed = ConfigSelection(default="300", choices=[
 		("500", _("Slow")),
 		("300", _("Normal")),
@@ -1360,7 +1354,25 @@ def InitUsageConfig():
 		eEPGCache.getInstance().setEpgmaxdays(config.epg.maxdays.getValue())
 	config.epg.maxdays.addNotifier(EpgmaxdaysChanged)
 
-	config.epg.histminutes = ConfigSelectionNumber(min=0, max=1440, stepwidth=30, default=0, wraparound=True)
+	def displayPeriod(number):
+		for minutes, singular, plural in [
+			(60 * 24 * 7, "%d Week", "%d Weeks"),
+			(60 * 24, "%d Day", "%d Days"),
+			(60, "%d Hour", "%d Hours"),
+			(1, "%d Minute", "%d Minutes")
+		]:
+			value = int(number / minutes)
+			if value:
+				return ngettext(singular, plural, value) % value
+
+	choices = [(0, _("None"))] + [(x, displayPeriod(x)) for x in (
+		[x * 15 for x in range(1, 4)] +  # 15, 30, 45 minutes.
+		[x * 60 for x in range(1, 9)] +  # 60, 120, ..., 480 minutes (1 to 8 hours).
+		[x * 120 for x in range(5, 12)] +  # 600, 720, ..., 1320 minutes (10 to 22 hours).
+		[x * 60 * 24 for x in range(1, 7)] +  # 1440, 2880, ..., 8640 minutes (1 to 6 days).
+		[x * 60 * 24 * 7 for x in range(1, 5)]  # 10080, 20160, ..., 40320 minutes (1 to 4 weeks).
+	)]
+	config.epg.histminutes = ConfigSelection(default=0, choices=choices)
 
 	def EpgHistorySecondsChanged(configElement):
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value * 60)
@@ -1378,8 +1390,8 @@ def InitUsageConfig():
 		Components.EpgLoadSave.EpgCacheSaveCheck()
 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback=False)
 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback=False)
-	config.epg.cacheloadtimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
-	config.epg.cachesavetimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
+	config.epg.cacheloadtimer = ConfigSelection(default=24, choices=[(x, ngettext("%d Hour", "%d Hours", x) % x) for x in range(1, 25)])
+	config.epg.cachesavetimer = ConfigSelection(default=24, choices=[(x, ngettext("%d Hour", "%d Hours", x) % x) for x in range(1, 25)])
 
 	def debugEPGhanged(configElement):
 		from enigma import eEPGCache
@@ -1443,8 +1455,12 @@ def InitUsageConfig():
 		("ETSI", _("Generic")),
 		("AUS", _("Australia"))
 	]
-	config.misc.epgratingcountry = ConfigSelection(default="", choices=choiceList)
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=choiceList)
+	choiceList.extend([
+		("GBR", _("United Kingdom")),
+		("ITA", _("Italy"))
+	])
+	config.misc.epgratingcountry = ConfigSelection(default="", choices=choiceList)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
@@ -2212,10 +2228,10 @@ def InitUsageConfig():
 	config.epgselection.infobar_ok = ConfigSelection(default="Zap", choices=choiceList)
 	config.epgselection.infobar_oklong = ConfigSelection(default="Zap + Exit", choices=choiceList)
 	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default=2, stepwidth=1, min=1, max=4, wraparound=True)
-	config.epgselection.infobar_roundto = ConfigSelection(default="15", choices=[(str(x), _("%d Minutes") % x) for x in (15, 30, 60)])
-	config.epgselection.infobar_histminutes = ConfigSelection(default="0", choices=[(str(x), _("%d Minutes") % x) for x in range(0, 121, 15)])
+	config.epgselection.infobar_roundto = ConfigSelection(default="15", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (15, 30, 60)])
+	config.epgselection.infobar_histminutes = ConfigSelection(default="0", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in range(0, 121, 15)])
 	config.epgselection.infobar_prevtime = ConfigClock(default=time())
-	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), _("%d Minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
+	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=00, max=59, wraparound=True)
 	# config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="servicename", choices=[
@@ -2265,10 +2281,10 @@ def InitUsageConfig():
 		("Channel Info", _("Channel Info")),
 		("Single EPG", _("Single EPG"))
 	])
-	config.epgselection.graph_roundto = ConfigSelection(default="15", choices=[(str(x), _("%d Minutes") % x) for x in (15, 30, 60)])
-	config.epgselection.graph_histminutes = ConfigSelection(default="0", choices=[(str(x), _("%d Minutes") % x) for x in range(0, 121, 15)])
+	config.epgselection.graph_roundto = ConfigSelection(default="15", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (15, 30, 60)])
+	config.epgselection.graph_histminutes = ConfigSelection(default="0", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in range(0, 121, 15)])
 	config.epgselection.graph_prevtime = ConfigClock(default=time())
-	config.epgselection.graph_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), _("%d Minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
+	config.epgselection.graph_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
 	config.epgselection.graph_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.graph_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=00, max=59, wraparound=True)
 	config.epgselection.graph_servicetitle_mode = ConfigSelection(default="picon+servicename", choices=titleChoiceList)
@@ -2518,6 +2534,7 @@ def InitUsageConfig():
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default=False))
 	config.timeshift.maxEvents = ConfigSelection(default=12, choices=[(x, ngettext("%d Event", "%d Events", x) % x) for x in range(1, 999)])
 	config.timeshift.maxHours = ConfigSelection(default=12, choices=[(x, ngettext("%d Hour", "%d Hours", x) % x) for x in range(1, 999)])
+	config.timeshift.recoveryBufferDelay = ConfigSelection(default=300, choices=[(x, _("%d ms") % x) for x in range(100, 1500, 100)])
 	config.timeshift.skipReturnToLive = ConfigYesNo(default=False)
 	config.timeshift.showInfoBar = ConfigYesNo(default=True)
 	config.timeshift.showLiveTVMsg = ConfigYesNo(default=True)

@@ -425,6 +425,7 @@ public:
 
 		sGamma,
 		sVideoInfo,
+		sIsRecoveringStream,
 
 		sUser = 0x100
 	};

@@ -22,7 +22,7 @@ import Screens.Standby
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileWriteLine
 from Tools.StbHardware import getFPWasTimerWakeup
-from Tools.Notifications import AddPopup
+from Tools.Notifications import AddPopup, AddNotification
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -159,10 +159,12 @@ class Navigation:
 		else:
 			self.wakeupCheck(False)
 		# TODO
-		# if config.usage.remote_fallback_import_restart.value:
-		#	ImportChannels()
-		# if config.usage.remote_fallback_import.value and not config.usage.remote_fallback_import_restart.value:
-		#	ImportChannels()
+		"""
+		if config.usage.remote_fallback_import_restart.value:
+			ImportChannels()
+		if config.usage.remote_fallback_import.value and not config.usage.remote_fallback_import_restart.value:
+			ImportChannels()
+		"""
 
 	def wakeupCheck(self, runCheck=True):
 		now = time()
@@ -279,9 +281,8 @@ class Navigation:
 
 	def gotostandby(self):
 		if not Screens.Standby.inStandby:
-			import Tools.Notifications
 			print("[Navigation] Now entering standby.")
-			Tools.Notifications.AddNotification(Screens.Standby.Standby)
+			AddNotification(Screens.Standby.Standby)
 
 	def dispatchEvent(self, i):
 		for x in self.event:
@@ -353,12 +354,13 @@ class Navigation:
 			if ref.flags & eServiceReference.isGroup:
 				oldref = self.currentlyPlayingServiceReference or eServiceReference()
 				playref = getBestPlayableServiceReference(ref, oldref)
-				if not ignoreStreamRelay:
-					playref, isStreamRelay = streamrelay.streamrelayChecker(playref)
-				if not isStreamRelay:
-					playref, wrappererror = self.serviceHook(playref)
-					if wrappererror:
-						return 1
+				if playref:
+					if not ignoreStreamRelay:
+						playref, isStreamRelay = streamrelay.streamrelayChecker(playref)
+					if not isStreamRelay:
+						playref, wrappererror = self.serviceHook(playref)
+						if wrappererror:
+							return 1
 				print(f"[Navigation] Playref is '{str(playref)}'.")
 				if playref and oldref and playref == oldref and not forceRestart:
 					print("[Navigation] Ignore request to play already running service.  (2)")
@@ -392,6 +394,8 @@ class Navigation:
 					self.pnav.stopService()
 				else:
 					self.skipServiceReferenceReset = True
+					from enigma import eFCCServiceManager  # OpenSPA [norhap] Set FCC not enabled if fallback tuner is active.
+					eFCCServiceManager.getInstance().setFCCEnable(False) if config.usage.remote_fallback_enabled.value else eFCCServiceManager.getInstance().setFCCEnable(True)
 				self.currentlyPlayingServiceReference = playref
 				if not ignoreStreamRelay:
 					playref, isStreamRelay = streamrelay.streamrelayChecker(playref)
@@ -431,8 +435,7 @@ class Navigation:
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
 				self.skipServiceReferenceReset = False
-				if isStreamRelay and not self.isCurrentServiceStreamRelay:
-					self.isCurrentServiceStreamRelay = True
+				self.isCurrentServiceStreamRelay = isStreamRelay
 				if InfoBarInstance and "%3a//" in playref.toString():
 					self.originalPlayingServiceReference = None
 					InfoBarInstance.serviceStarted()
@@ -497,8 +500,10 @@ class Navigation:
 				ref, isStreamRelay = streamrelay.streamrelayChecker(ref)
 				for f in Navigation.recordServiceExtensions:
 					ref = f(self, ref)
-				#if not isStreamRelay:
-				#	ref, wrappererror = self.serviceHook(ref)
+				"""
+				if not isStreamRelay:
+					ref, wrappererror = self.serviceHook(ref)
+				"""
 			service = ref and self.pnav and self.pnav.recordService(ref, simulate, type)
 			if service is None:
 				print("[Navigation] Record returned non-zero.")

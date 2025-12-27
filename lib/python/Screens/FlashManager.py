@@ -67,14 +67,14 @@ class FlashManager(Screen):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, destpath=None):   #OPENSPA [morser] Add destpath for spanewfirm
+	def __init__(self, session, destpath=None):  # OPENSPA [morser] Add destpath for spanewfirm
 		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["FlashManager", "FlashOnline"]
 		self.imageFeed = "OpenSPA"  #### OPENSPA [morser] Set default feed: openspa
 		self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)
 		self.imagesList = {}
 		self.expanded = []
-		self.destpath=destpath #OPENSPA [morser] Add destpath for spanewfirm
+		self.destpath = destpath  # OPENSPA [morser] Add destpath for spanewfirm
 		self.setIndex = 0
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Cancel the image selection and exit")),
@@ -324,13 +324,13 @@ class FlashManager(Screen):
 class FlashImage(Screen):
 	skin = """
 	<screen name="FlashImage" title="Flash Image" position="center,center" size="720,225" resolution="1280,720">
-		<widget name="header" position="0,0" size="e,50" font="Regular;35" valign="center" />
+		<widget name="header" position="0,0" size="615,50" font="Regular;35" valign="center" />
 		<widget name="info" position="0,60" size="e,130" font="Regular;25" valign="center" />
 		<widget name="progress" position="0,e-25" size="e,25" />
-		<widget name="progress_counter" position="360,60" size="e,25" font="Regular;25" />
+		<widget name="progress_counter" position="620,10" size="99,35" font="Regular;25" />
 	</screen>"""
 
-	def __init__(self, session, imageName, source, downloadOnly=False, destpath=None): #OPENSPA [morser] Add destpath for spanewfirm
+	def __init__(self, session, imageName, source, downloadOnly=False, destpath=None):  # OPENSPA [morser] Add destpath for spanewfirm
 		Screen.__init__(self, session, enableHelp=True)
 		self.imageName = imageName
 		self.source = source.replace("á","%C3%A1").replace(" ","%20")  # OPENSPA [morser] Replace for openspa download
@@ -340,7 +340,7 @@ class FlashImage(Screen):
 		self.getImageList = None
 		self.downloader = None
 		self.downloadOnly = downloadOnly
-		self.destpath=destpath #OPENSPA [morser] Add destpath for spanewfirm
+		self.destpath = destpath  # OPENSPA [morser] Add destpath for spanewfirm
 		self["header"] = Label(_("Backup Settings"))
 		self["info"] = Label(_("Save settings and EPG data."))
 		self["summary_header"] = StaticText(self["header"].getText())
@@ -378,10 +378,10 @@ class FlashImage(Screen):
 			return 0
 
 	def confirmation(self):
-		if MultiBoot.canMultiBoot():
+		if MultiBoot.canMultiBoot() and not self.downloadOnly:
 			self.getImageList = MultiBoot.getSlotImageList(self.getImageListCallback)
 		else:
-			self.checkMedia(True)
+			self.checkMedia("no_backup")
 
 	def getImageListCallback(self, imageDictionary):
 		##### OPENSPA [morser] Add best sorted function ###############
@@ -399,7 +399,7 @@ class FlashImage(Screen):
 		print("[FlashManager] Current image slot is '%s'." % currentSlotCode)
 		choices = []
 		default = 0
-		for index, slotCode in enumerate(sorted(imageDictionary.keys(),key = best_sort)): ##### OPENSPA [morser] Add best sorted function ###############
+		for index, slotCode in enumerate(sorted(imageDictionary.keys(),key = best_sort)):  ##### OPENSPA [morser] Add best sorted function ###############
 			print("[FlashManager] Image Slot '%s': %s." % (slotCode, str(imageDictionary[slotCode])))
 			if slotCode == currentSlotCode:
 				choices.append((_("Slot '%s':  %s  -  Current") % (slotCode, imageDictionary[slotCode]["imagename"]), (slotCode, True)))
@@ -438,6 +438,8 @@ class FlashImage(Screen):
 
 	def checkMedia(self, choice):
 		if choice:
+			self.recordCheck = not MultiBoot.canMultiBoot() or (MultiBoot.getCurrentSlotCode() == choice[0] if isinstance(choice, (tuple, list)) else True)  # Ignore recordCheck if not the current slot
+
 			def findMedia(paths):
 				def availableSpace(path):
 					if isdir(path) and access(path, W_OK):
@@ -466,10 +468,10 @@ class FlashImage(Screen):
 				devices.sort(key=lambda x: x[1], reverse=True)
 				mounts.sort(key=lambda x: x[1], reverse=True)
 				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
-			if "backup" not in str(choice):
+			if "backup" not in str(choice) and not self.downloadOnly:
 				if MultiBoot.canMultiBoot():
 					self.slotCode = choice[0]
-				if BoxInfo.getItem("distro") in self.imageName and not self.destpath: #OPENSPA [morser] Only Backup with no spanewfirm:
+				if BoxInfo.getItem("distro") in self.imageName and not self.destpath:  # OPENSPA [morser] Only Backup with no spanewfirm:
 					self.session.openWithCallback(self.backupQuestionCallback, MessageBox, _("Do you want to backup settings?"), default=True, timeout=10, windowTitle=self.getTitle())
 				else:
 					self.backupQuestionCallback(None)
@@ -488,13 +490,16 @@ class FlashImage(Screen):
 						unlink(destination)
 					if not isdir(destination):
 						mkdir(destination)
-					if not self.destpath: #OPENSPA [morser] ignore backup with spanewfirm
-						if isDevice or "no_backup" == choice:
-							self.startBackupSettings(choice)
+					if not self.downloadOnly:
+						if not self.destpath:  # OPENSPA [morser] ignore backup with spanewfirm
+							if isDevice or "no_backup" == choice:
+								self.startBackupSettings(choice)
+							else:
+								self.session.openWithCallback(self.startBackupSettings, MessageBox, _("Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."), windowTitle=self.getTitle())
 						else:
-							self.session.openWithCallback(self.startBackupSettings, MessageBox, _("Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."), windowTitle=self.getTitle())
+							self.startDownload()  # OPENSPA [morser] ignore backup with spanewfirm
 					else:
-						self.startDownload() #OPENSPA [morser] ignore backup with spanewfirm
+						self.startDownload()
 				except OSError:
 					self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 			else:
@@ -569,8 +574,8 @@ class FlashImage(Screen):
 						if isfile(flagPath) and getsize(flagPath) == 0:
 							unlink(flagPath)
 			rootFolder = join(self.backupBasePath, "images/config")
-			if choice != "abort" and not self.recordCheck:
-				self.recordCheck = True
+			if choice != "abort" and self.recordCheck:
+				self.recordCheck = False
 				recording = self.session.nav.RecordTimer.isRecording()
 				nextRecordingTime = self.session.nav.RecordTimer.getNextRecordingTime()
 				if recording or (nextRecordingTime > 0 and (nextRecordingTime - time()) < 360):
@@ -689,8 +694,10 @@ class FlashImage(Screen):
 
 	def downloadEnd(self, filename=None):
 		self.downloader.stop()
-		self["progress_counter"].hide()
-		self.unzip()
+		if self.downloadOnly:
+			self.close()
+		else:
+			self.unzip()
 
 	def downloadError(self, error):
 		self.downloader.stop()
@@ -700,6 +707,7 @@ class FlashImage(Screen):
 		self["header"].setText(_("Unzipping Image"))
 		self["summary_header"].setText(self["header"].getText())
 		self["info"].setText("%s\n\n%s" % (self.imageName, _("Please wait")))
+		self["progress_counter"].hide()
 		self["progress"].hide()
 		self.delay = eTimer()
 		self.delay.callback.append(self.startUnzip)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2288,7 +2288,7 @@ msgid "Always use smart1080p mode"
 msgstr "Luôn sử dụng chế độ smart1080p"
 
 #, fuzzy
-msgid "American Football"
+msgid "American football"
 msgstr "American Samoa"
 
 msgid "American Samoa"
@@ -5140,7 +5140,7 @@ msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Tin tức thời sự"
 
 msgid "Current CEC address"
@@ -5299,7 +5299,7 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr ""
 
 msgid "DNS suffix"
@@ -5678,7 +5678,7 @@ msgstr ""
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
-msgid "Define the DNS suffix."
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7252,6 +7252,9 @@ msgstr "Nhập mã PIN"
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Nhập tần số mà LNB của bạn chuyển đổi giữa băng tần thấp và băng tần cao. Để biết thêm thông tin tham khảo bảng thông số kỹ thuật của LNB của bạn."
 
@@ -8185,7 +8188,7 @@ msgstr "Hệ thống tập tin kiểm tra đĩa cứng của bạn"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr ""
 
 msgid "Filter extensions"
@@ -8562,7 +8565,7 @@ msgid "Gambia"
 msgstr "Gambia"
 
 #, fuzzy
-msgid "Game Show"
+msgid "Game show"
 msgstr "Chương trình trò chơi"
 
 #, fuzzy
@@ -9168,7 +9171,7 @@ msgstr "Tốc độ quay ngang"
 msgid "Horror"
 msgstr "Lỗi"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr ""
 
 msgid "Hostname"
@@ -11077,7 +11080,7 @@ msgid "Middle - Lite image"
 msgstr ""
 
 #, fuzzy
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Tất cả các nhà cung cấp dịch vụ"
 
 msgid "MiniDLNA"
@@ -12519,7 +12522,7 @@ msgstr "chỉ HD"
 msgid "Only free scan"
 msgstr "Chỉ quét miễn phí"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "chỉ trong chế độ chờ"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14204,7 +14207,7 @@ msgstr "Sẵn sàng để cài đặt \"% s\"?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Sẵn sàng xóa \"% s\"?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr ""
 
 msgid "Real or pseudo recordings"
@@ -15080,7 +15083,7 @@ msgstr ""
 msgid "Rugby"
 msgstr ""
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr ""
 
 msgid "Run"
@@ -16305,7 +16308,7 @@ msgstr "Chọn nhà sản xuất thiết bị SCR của bạn. Nếu nhà sản 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Chọn phương pháp khôi phục độ phân giải màn hình và bộ đệm khung khi rời teletext."
 
-msgid "Select the mode of the DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16385,7 +16388,7 @@ msgstr ""
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17183,7 +17186,7 @@ msgid "Shopping"
 msgstr "hạ gục"
 
 #, fuzzy
-msgid "Short Film"
+msgid "Short film"
 msgstr "Tên tập tin ngắn"
 
 msgid "Short filenames"
@@ -17954,7 +17957,7 @@ msgid "Show watch status"
 msgstr "Hiển thị biểu tượng trạng thái trong Movielist"
 
 #, fuzzy
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Chương trình trò chơi"
 
 msgid "Show/Hide focus bar"
@@ -18301,7 +18304,7 @@ msgstr "Trơn tru"
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr ""
 
 msgid "Soccer"
@@ -18539,6 +18542,9 @@ msgstr "Đặc biệt 2"
 
 msgid "Special Features Settings"
 msgstr "Tính năng đặc biệt"
+
+msgid "Special characteristics"
+msgstr ""
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
@@ -18882,6 +18888,9 @@ msgstr ""
 #, fuzzy
 msgid "Streaming recording ended"
 msgstr "Thay đổi ghi âm (thời gian kết thúc)"
+
+msgid "Streaming recovery delay"
+msgstr ""
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -19293,7 +19302,7 @@ msgid "Tajikistan"
 msgstr "Tajikistan"
 
 #, fuzzy
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "tọa đàm"
 
 msgid "Tamil"
@@ -23908,6 +23917,10 @@ msgstr "màu vàng"
 msgid "yes (keep feeds)"
 msgstr "có (giữ thức ăn)"
 
+#, fuzzy
+msgid "Languages"
+msgstr "Ngôn ngữ"
+
 msgid "®"
 msgstr ""
 
@@ -24633,10 +24646,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Error: Unable to process the command!  Please try again later."
 #~ msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau."
-
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Ngôn ngữ"
 
 #, fuzzy
 #~ msgid "Locales"

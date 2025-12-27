@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-05 05:50+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-10-25 18:22+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -2313,7 +2313,7 @@ msgstr "总是显示频道群"
 msgid "Always use smart1080p mode"
 msgstr "总是使用 智能1080p 模式"
 
-msgid "American Football"
+msgid "American football"
 msgstr "美式足球"
 
 msgid "American Samoa"
@@ -5212,7 +5212,7 @@ msgstr "当前"
 msgid "Current 1/1"
 msgstr "当前 1/1"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "时事"
 
 msgid "Current CEC address"
@@ -5392,7 +5392,7 @@ msgstr "DNS 设置"
 msgid "DNS data source"
 msgstr "DNS 数据源"
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr "DNS 模式"
 
 msgid "DNS name or IP address"
@@ -5769,7 +5769,7 @@ msgstr "为该频道定义 Softcam"
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "定义http(s)串流启动前的附加延迟（以毫秒为单位）。"
 
-msgid "Define the DNS suffix."
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "定义 DNS 后缀。"
 
 msgid "Define the custom mountpoint for the device."
@@ -7377,6 +7377,9 @@ msgstr "输入 PIN 码"
 msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "输入高频头在低频段和高频段之间切换的频率。有关更多信息，请参阅高频头的规格。"
 
@@ -8325,7 +8328,7 @@ msgstr "要从备份中排除的文件/文件夹"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "在没有 IceTV EPG 的广播 EPG 中填写频道 EPG"
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr "黑色电影"
 
 msgid "Filter extensions"
@@ -8677,7 +8680,7 @@ msgstr "加利西亚语"
 msgid "Gambia"
 msgstr "冈比亚"
 
-msgid "Game Show"
+msgid "Game show"
 msgstr "游戏秀"
 
 msgid "Ganda"
@@ -9269,7 +9272,7 @@ msgstr "水平转动速度"
 msgid "Horror"
 msgstr "恐怖"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "赛马"
 
 msgid "Host"
@@ -11165,7 +11168,7 @@ msgstr "中等"
 msgid "Middle - Lite image"
 msgstr "中 - 精简镜像"
 
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "迷你系列"
 
 msgid "MiniDLNA"
@@ -12620,7 +12623,7 @@ msgstr "仅高清"
 msgid "Only free scan"
 msgstr "仅扫描免费频道"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "只在待机"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14396,7 +14399,7 @@ msgstr "准备好安装 \"%s\" 了吗？"
 msgid "Ready to remove \"%s\"?"
 msgstr "准备好移除 \"%s\" 了吗？"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "现实生活"
 
 msgid "Real or pseudo recordings"
@@ -15263,7 +15266,7 @@ msgstr "赛艇"
 msgid "Rugby"
 msgstr "橄榄球"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "橄榄球联盟"
 
 msgid "Run"
@@ -16598,7 +16601,7 @@ msgstr "选择 SCR 设备的制造商。 如果制造商未列出，请将“SCR
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "选择退出图文电视时恢复屏幕分辨率和帧缓冲的处理方法。"
 
-msgid "Select the mode of the DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "选择DNS的模式。"
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16707,7 +16710,7 @@ msgstr "选择菜单项的排序顺序。用户定义还允许隐藏菜单项。
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "选择获取升级文件的源位置。"
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
 msgstr "选择默认 DNS 设置的来源。"
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17526,7 +17529,7 @@ msgstr "绍纳"
 msgid "Shopping"
 msgstr "购物"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "短片"
 
 msgid "Short filenames"
@@ -18230,7 +18233,7 @@ msgstr "时移停止时显示警告"
 msgid "Show watch status"
 msgstr "显示观看状态"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "显示/游戏秀"
 
 msgid "Show/Hide Actions"
@@ -18598,7 +18601,7 @@ msgstr "平滑"
 msgid "SoC family"
 msgstr "SoC 系列"
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "肥皂剧"
 
 msgid "Soccer"
@@ -18833,6 +18836,9 @@ msgstr "特殊2"
 
 msgid "Special Features Settings"
 msgstr "特别功能设置"
+
+msgid "Special characteristics"
+msgstr "特殊属性"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "指定启动媒体播放器时要使用的目录。"
@@ -19168,6 +19174,9 @@ msgstr "串流调谐器信息"
 
 msgid "Streaming recording ended"
 msgstr "流媒体录制结束"
+
+msgid "Streaming recovery delay"
+msgstr "流媒体恢复延迟"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -19558,7 +19567,7 @@ msgstr "塔吉克"
 msgid "Tajikistan"
 msgstr "塔吉克斯坦"
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "脱口秀"
 
 msgid "Tamil"
@@ -24128,6 +24137,9 @@ msgstr "黄色"
 msgid "yes (keep feeds)"
 msgstr "是（保留订阅源）"
 
+msgid "Languages"
+msgstr "语言"
+
 msgid "®"
 msgstr "®"
 
@@ -25331,9 +25343,6 @@ msgstr "®"
 
 #~ msgid "Error: Unable to process the command!  Please try again later."
 #~ msgstr "错误:无法处理命令.请稍后再试."
-
-#~ msgid "Languages"
-#~ msgstr "语言"
 
 #~ msgid "Locales"
 #~ msgstr "本地"

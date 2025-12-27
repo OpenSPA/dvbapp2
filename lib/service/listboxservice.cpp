@@ -66,6 +66,7 @@ void eListboxServiceContent::removeCurrent()
 void eListboxServiceContent::FillFinished()
 {
 	m_size = m_list.size();
+	m_size_visible = cursorResolve(m_size - 1) + 1;
 	cursorHome();
 
 	if (m_listbox)
@@ -760,6 +761,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		bool serviceFallback = false;
 		int isplayable_value;
 
+		bool isCatchUpAvailable = false;
+		std::string orig_ref_str = ref.toString();
+
+		if (orig_ref_str.find("catchupdays=") != std::string::npos) {
+			isCatchUpAvailable = true;
+		}
+
 		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid())
 		{
 			isplayable_value = service_info->isPlayable(*m_cursor, m_is_playable_ignore);
@@ -1010,6 +1018,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							const char *filename = ref.path.c_str();
 							ePtr<gPixmap> &pixmap =
 								(m_cursor->flags & eServiceReference::isGroup) ? m_pixmaps[picServiceGroup] :
+								(isCatchUpAvailable) ? m_pixmaps[picCatchup] :
 								(strstr(filename, "://")) ? m_pixmaps[picStream] :
 								(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
 								(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];

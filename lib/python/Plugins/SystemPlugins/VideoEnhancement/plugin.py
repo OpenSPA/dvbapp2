@@ -402,9 +402,9 @@ def videoEnhancementSetupMain(session, **kwargs):
 
 
 def startSetup(menuid):
-	if menuid != "video_menu":
-		return []
-	return [(_("Video enhancement setup"), videoEnhancementSetupMain, "videoenhancement_setup", 5)]
+	if menuid == "video_menu" or menuid == "video":
+		return [(_("Video enhancement setup"), videoEnhancementSetupMain, "videoenhancement_setup", 5)]
+	return []
 
 
 def Plugins(**kwargs):

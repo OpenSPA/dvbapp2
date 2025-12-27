@@ -3,10 +3,7 @@ from enigma import getPeerStreamingBoxes
 from Screens.Setup import Setup
 from Components.config import config, configfile, ConfigSelection, ConfigIP, ConfigInteger
 from Components.ImportChannels import ImportChannels
-from Tools.Directories import isPluginInstalled
-from Screens.MessageBox import MessageBox
-from Screens.InfoBar import InfoBar
-from Screens.Standby import TryQuitMainloop
+
 
 class SetupFallbacktuner(Setup):
 	def __init__(self, session):
@@ -63,14 +60,6 @@ class SetupFallbacktuner(Setup):
 		self.port_atsc = ConfigInteger(default=portDefault, limits=(1, 65535))
 
 	def keySave(self):
-		if isPluginInstalled("FastChannelChange"):  # OpenSPA [norhap] sync with FCC and IPToSAT.
-			if isPluginInstalled("IPToSAT"):
-				if config.plugins.IPToSAT.enable.value or config.plugins.fccsetup.activate.value:
-					self.syncWithFCC()
-					return
-			if config.usage.remote_fallback_enabled.value and config.plugins.fccsetup.activate.value:
-				self.syncWithFCC()
-				return
 		if self.avahiselect.value == "ip":
 			config.usage.remote_fallback.value = "http://%d.%d.%d.%d:%d" % (tuple(self.ip.value) + (self.port.value,))
 		elif self.avahiselect.value != "url":
@@ -105,6 +94,9 @@ class SetupFallbacktuner(Setup):
 			config.usage.remote_fallback_alternative.value = False
 		if config.usage.remote_fallback_import_url.value == config.usage.remote_fallback.value:
 			config.usage.remote_fallback_import_url.value = ""
+		self.keySaveAll()
+
+	def keySaveAll(self):
 		config.usage.remote_fallback_enabled.save()
 		config.usage.remote_fallback_import.save()
 		config.usage.remote_fallback_import_url.save()
@@ -128,31 +120,3 @@ class SetupFallbacktuner(Setup):
 		if not self.remote_fallback_prev and config.usage.remote_fallback_import.value:
 			ImportChannels()
 		self.close(False)
-
-	def syncWithFCC(self):  # sync with FCC.
-		def disableFCC(answer=False):
-			if answer:
-				if isPluginInstalled("IPToSAT"):
-					config.usage.remote_fallback_enabled.save()
-				if config.plugins.fccsetup.activate.value:
-					config.plugins.fccsetup.activate.value = False
-					config.plugins.fccsetup.activate.save()
-					config.usage.remote_fallback_enabled.value = True
-					config.usage.remote_fallback_enabled.save()
-				self.session.open(TryQuitMainloop, 3)
-			else:
-				config.usage.remote_fallback_enabled.value = False
-				Setup.keySave(self)
-
-		inTimeshift = InfoBar and InfoBar.instance and InfoBar.ptsGetTimeshiftStatus(InfoBar.instance)
-		if not inTimeshift and not self.session.nav.getRecordings():
-			if config.plugins.fccsetup.activate.value:
-				self.session.openWithCallback(disableFCC, MessageBox, _("FCC usage will be disabled to use the fallback tuner.\nEnigma2 needs to be restarted.\nDo you want to do it now?"), type=MessageBox.TYPE_YESNO, simple=True)
-			else:
-				if config.usage.remote_fallback_enabled.value:
-					self.session.openWithCallback(disableFCC, MessageBox, _("The use of IPToSAT will be disabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"), type=MessageBox.TYPE_YESNO, simple=True)
-				else:
-					self.session.openWithCallback(disableFCC, MessageBox, _("The use of IPToSAT will be enabled.\nEnigma2 needs to be restarted.\nDo you want to do it now?"), type=MessageBox.TYPE_YESNO, simple=True)
-		else:
-			config.usage.remote_fallback_enabled.value = False
-			Setup.keySave(self)

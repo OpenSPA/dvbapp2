@@ -5,7 +5,6 @@ from os.path import exists, isdir, join
 
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Components.Button import Button
 from Components.config import NoSave, configfile, ConfigSubsection, ConfigText, ConfigLocations
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
@@ -64,6 +63,8 @@ def InitConfig():
 		"/var/lib/bluetooth/",
 		"/var/lib/tailscale/",
 		"/var/lib/zerotier-one/",
+		"/etc/enigma2/AutoBouquetsMaker/custom/",
+		"/etc/enigma2/AutoBouquetsMaker/providers/",
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
@@ -182,7 +183,7 @@ class BackupScreen(ConfigListScreen, Screen):
 							installed = set(line.split()[0] for line in pkgs)
 							preinstalled = set(line.split()[0] for line in fd)
 							removed = preinstalled - installed
-							removed = [package for package in removed if package.startswith("enigma2-plugin-") or package.startswith("enigma2-locale-")]
+							removed = [x for x in removed]
 							if removed:
 								fileWriteLines("/tmp/removed-list.txt", removed)
 								backupDirs += " tmp/removed-list.txt"
@@ -228,14 +229,22 @@ class BackupScreen(ConfigListScreen, Screen):
 			self.session.open(MessageBox, _("No suitable backup locations found!"), MessageBox.TYPE_ERROR, timeout=5)
 
 	def backupFinishedCB(self, retval=None):
-		print("[BackupScreen] DEBUG backupFinishedCB")
-		if self.finishedCallback:
-			self.finishedCallback()
+		# print("[BackupScreen] DEBUG backupFinishedCB")
+		try:
+			fullbackupFilename = join(self.backuppath, getBackupFilename())
+			fileOK = exists(fullbackupFilename) and stat(fullbackupFilename).st_size > 0
+		except OSError:
+			fileOK = False
+		if fileOK:
+			if self.finishedCallback:
+				self.finishedCallback()
+			else:
+				config.usage.shutdownOK.setValue(self.shutdownOKOld)
+				config.usage.shutdownOK.save()
+				configfile.save()
+				self.close(True)
 		else:
-			config.usage.shutdownOK.setValue(self.shutdownOKOld)
-			config.usage.shutdownOK.save()
-			configfile.save()
-			self.close(True)
+			self.backupErrorCB()
 
 	def backupErrorCB(self, retval=None):
 		if self.finishedCallback:
@@ -334,7 +343,7 @@ class BackupSelection(Screen):
 	def saveSelection(self):
 		if self.readOnly:
 			pass
-			#self.close(None)
+			# self.close(None)
 		else:
 			self.selectedFiles = self["checkList"].getSelectedList()
 			self.configBackupDirs.setValue(self.selectedFiles)
@@ -693,6 +702,28 @@ class installedPlugins(Screen):
 
 
 class RestorePlugins(Screen):
+	skin = """
+	<screen name="RestorePlugins" position="center,center" size="720,600" resolution="1280,720">
+		<widget source="menu" render="Listbox" position="10,10" size="700,490" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryText(pos = (50, 1), size = (650, 25), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 0),
+					MultiContentEntryPixmapAlphaBlend(pos = (5, 1), size = (24, 24), png = 1, flags = BT_SCALE),
+					],
+					"fonts": [gFont("Regular",19), gFont("Regular",16)],
+					"itemHeight": 30
+				}
+			</convert>
+		</widget>
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" noWrap="1" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" noWrap="1" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	"""
+
 	def __init__(self, session, menulist, removelist=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("Restore Plugins"))
@@ -706,8 +737,8 @@ class RestorePlugins(Screen):
 		self.container = eConsoleAppContainer()
 		self["menu"] = List([])
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
-		self["key_green"] = Button(_("Install"))
-		self["key_red"] = Button(_("Cancel"))
+		self["key_green"] = StaticText(_("Install"))
+		self["key_red"] = StaticText(_("Cancel"))
 		self["summary_description"] = StaticText("")
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],

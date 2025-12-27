@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -2435,7 +2435,7 @@ msgstr "copiar para bouquets"
 msgid "Always use smart1080p mode"
 msgstr ""
 
-msgid "American Football"
+msgid "American football"
 msgstr ""
 
 msgid "American Samoa"
@@ -5386,7 +5386,7 @@ msgid "Current 1/1"
 msgstr ""
 
 #, fuzzy
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Notícias atuais"
 
 msgid "Current CEC address"
@@ -5550,7 +5550,7 @@ msgstr ""
 msgid "DNS data source"
 msgstr ""
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr ""
 
 msgid "DNS suffix"
@@ -5933,7 +5933,7 @@ msgstr ""
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
-msgid "Define the DNS suffix."
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7516,6 +7516,9 @@ msgstr "Informe a senha"
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr ""
 
@@ -8446,7 +8449,7 @@ msgstr ""
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr ""
 
 msgid "Filter extensions"
@@ -8837,7 +8840,7 @@ msgid "Gambia"
 msgstr ""
 
 #, fuzzy
-msgid "Game Show"
+msgid "Game show"
 msgstr "Mostrar games show"
 
 #, fuzzy
@@ -9467,7 +9470,7 @@ msgstr "Velocidade de rotação horizontal"
 msgid "Horror"
 msgstr "Erro"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr ""
 
 msgid "Hostname"
@@ -11412,7 +11415,7 @@ msgid "Middle - Lite image"
 msgstr ""
 
 #, fuzzy
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Serviços"
 
 msgid "MiniDLNA"
@@ -12868,7 +12871,7 @@ msgstr ""
 msgid "Only free scan"
 msgstr "Apenas FTA"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr ""
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14600,7 +14603,7 @@ msgstr ""
 msgid "Ready to remove \"%s\" ?"
 msgstr ""
 
-msgid "Real Life"
+msgid "Real life"
 msgstr ""
 
 msgid "Real or pseudo recordings"
@@ -15506,7 +15509,7 @@ msgstr ""
 msgid "Rugby"
 msgstr ""
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr ""
 
 msgid "Run"
@@ -16747,7 +16750,7 @@ msgstr ""
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr ""
 
-msgid "Select the mode of the DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16826,7 +16829,7 @@ msgstr ""
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17638,7 +17641,7 @@ msgid "Shopping"
 msgstr "Zapped"
 
 #, fuzzy
-msgid "Short Film"
+msgid "Short film"
 msgstr "Nomes curtos de arquivos"
 
 msgid "Short filenames"
@@ -18445,7 +18448,7 @@ msgid "Show watch status"
 msgstr "Exibir ícones de estado na lista de gravações"
 
 #, fuzzy
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Mostrar games show"
 
 msgid "Show/Hide focus bar"
@@ -18802,7 +18805,7 @@ msgstr ""
 msgid "SoC family"
 msgstr ""
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr ""
 
 msgid "Soccer"
@@ -19041,6 +19044,9 @@ msgid "Special 2"
 msgstr "eventos especiais"
 
 msgid "Special Features Settings"
+msgstr ""
+
+msgid "Special characteristics"
 msgstr ""
 
 msgid "Specify the directory to use when starting Media Player."
@@ -19389,6 +19395,9 @@ msgstr ""
 #, fuzzy
 msgid "Streaming recording ended"
 msgstr "Alterar a gravação (tempo final)"
+
+msgid "Streaming recovery delay"
+msgstr ""
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -19810,7 +19819,7 @@ msgid "Tajikistan"
 msgstr ""
 
 #, fuzzy
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "talk show"
 
 msgid "Tamil"
@@ -24490,6 +24499,10 @@ msgstr "Amarelo"
 msgid "yes (keep feeds)"
 msgstr "Sim (manter os feeds)"
 
+#, fuzzy
+msgid "Languages"
+msgstr "Idioma"
+
 msgid "®"
 msgstr ""
 
@@ -24870,10 +24883,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Error: Unable to process the command!  Please try again later."
 #~ msgstr "Sem atualizações disponíveis. Por favor tente mais tarde."
-
-#, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Idioma"
 
 #, fuzzy
 #~ msgid "Locales"

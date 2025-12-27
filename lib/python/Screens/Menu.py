@@ -278,15 +278,14 @@ class Menu(Screen, ProtectedScreen):
 					if data:
 						self.menuList.append(data)
 		if self.menuID:
-			for plugin in plugins.getPluginsForMenu(self.menuID):  # Plugins.
+			for plugin, description in plugins.getPluginsForMenuWithDescription(self.menuID):  # Plugins.
 				# print(f"[Menu] DEBUG 1: Plugin data={str(plugin)}.")
 				pluginKey = plugin[PLUGIN_KEY]  # Check if a plugin overrides an existing menu.
 				for entry in self.menuList:
 					if entry[PLUGIN_KEY] == pluginKey:
 						self.menuList.remove(entry)
 						break
-				description = plugins.getDescriptionForMenuEntryID(self.menuID, pluginKey)  # It is assumed that description is already translated by the plugin!
-				if description and "%s %s" in description:
+				if "%s %s" in description:
 					description = description % getBoxDisplayName()
 				image = self.getMenuEntryImage(plugin[PLUGIN_KEY], lastKey)
 				if len(plugin) > PLUGIN_CLOSEALL and plugin[PLUGIN_CLOSEALL]:  # Was "len(plugin) > 4".

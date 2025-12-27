@@ -2694,20 +2694,22 @@ class InfoBarChannelSelection:
 		self.openServiceList()
 
 	def LeftPressed(self):
-		if config.usage.leftrightmode.value == "1":
-			self.servicelist.historyBack()   #OPENSPA [morser] History zap with <>
-		elif config.usage.leftrightmode.value == "2":
-			self.openInfoBarEPG()
-		else:
-			self.zapUp()
+		if not config.misc.ButtonSetup.cross_left.value:  # OpenSPA [norhap] Hotkey Settings with cros_left to "open service list", not execute Zap
+			if config.usage.leftrightmode.value == "1":
+				self.servicelist.historyBack()  # OPENSPA [morser] History zap with <>
+			elif config.usage.leftrightmode.value == "2":
+				self.openInfoBarEPG()
+			else:
+				self.zapUp()
 
 	def RightPressed(self):
-		if config.usage.leftrightmode.value == "1":
-			self.servicelist.historyNext()   #OPENSPA [morser] History zap with <>
-		elif config.usage.leftrightmode.value == "2":
-			self.openInfoBarEPG()
-		else:
-			self.zapDown()
+		if not config.misc.ButtonSetup.cross_right.value:  # OpenSPA [norhap] Hotkey Settings with cros_right to "open service list", not execute Zap.
+			if config.usage.leftrightmode.value == "1":
+				self.servicelist.historyNext()  # OPENSPA [morser] History zap with <>
+			elif config.usage.leftrightmode.value == "2":
+				self.openInfoBarEPG()
+			else:
+				self.zapDown()
 
 	def UpPressed(self):
 		if config.usage.updownbutton_mode.value == "0":
@@ -3578,11 +3580,17 @@ class InfoBarPVRState:
 			self._mayShow()
 
 
+class TimeshiftActive(Screen):  # OpenSPA [norhap] Show text "Timeshift Active" in InfoBarTimeshiftState.
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show=True)
 		self.onPlayStateChanged.append(self.__timeshiftEventName)
 		self.onHide.append(self.__hideTimeshiftState)
+		self.timeshiftActive = self.session.instantiateDialog(TimeshiftActive)  # OpenSPA [norhap] Show Screen TimeshiftActive.
 
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
@@ -3590,12 +3598,18 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 			if config.timeshift.showInfoBar.value:
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
+			self.timeshiftActive.show()  # OpenSPA [norhap] Show text "Timeshift Active".
+		else:
+			if config.timeshift.startDelay.value:
+				self.timeshiftActive.show()  # OpenSPA [norhap] Show text "Timeshift Active".
 		if not self.isSeekable():
 			self.startHideTimer()
+			self.timeshiftActive.hide()  # OpenSPA [norhap] Hide text "Timeshift Active".
 
 	def __hideTimeshiftState(self):
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
 		self.pvrStateDialog.hide()
+		self.timeshiftActive.hide()  # OpenSPA [norhap] Hide text "Timeshift Active".
 
 	def __timeshiftEventName(self, state):
 		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):

@@ -1,22 +1,28 @@
-from enigma import eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, iPlayableService, iRecordableService, eServiceReference, iServiceInformation, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_HALIGN_CENTER, eTimer, getDesktop, eSize, eStreamServer
-from skin import parseScale, applySkinFactor, parseColor, parseFont, parameters
+from enigma import eAVControl, eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, iPlayableService, iRecordableService, eServiceReference, iServiceInformation, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_HALIGN_CENTER, eTimer, getDesktop, eSize, eStreamServer
+from skin import applySkinFactor, parseColor, parseFont, parameters
 
 from Components.Addons.GUIAddon import GUIAddon
-from Components.Converter.PliExtraInfo import createCurrentCaidLabel
-from Components.Converter.ServiceInfo import getVideoHeight
-from Components.Converter.VAudioInfo import StdAudioDesc
 from Components.Label import Label
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StreamService import StreamServiceList
 from Components.NimManager import nimmanager
-from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Tools.GetEcmInfo import createCurrentCaidLabel
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Hex2strColor import Hex2strColor
 
 import NavigationInstance
 import re
+
+
+def StdAudioDesc(desc):
+	return desc
+
+
+def getVideoHeight(info):
+	val = eAVControl.getInstance().getResolutionY(0)
+	return val if val else info.getInfo(iServiceInformation.sVideoHeight)
 
 
 class ServiceInfoBar(GUIAddon):
@@ -56,6 +62,7 @@ class ServiceInfoBar(GUIAddon):
 		self.frontendInfoSource = None
 		self.isCryptedDetected = False
 		self.tunerColors = parameters.get("FrontendInfoColors", (0x0000FF00, 0x00FFFF00, 0x007F7F7F))  # tuner active, busy, available colors
+		self.instanceInfoBarSubserviceSelection = None
 
 	def onContainerShown(self):
 		self.textRenderer.GUIcreate(self.relatedScreen.instance)
@@ -100,8 +107,8 @@ class ServiceInfoBar(GUIAddon):
 	def gotRecordEvent(self, service, event):
 		prevRecords = self.records_running
 		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
-			recs = self.nav.getRecordings()
-			self.records_running = len(recs)
+			recs = self.nav.getRealRecordingsCount()
+			self.records_running = recs
 			if self.records_running != prevRecords:
 				self.updateAddon()
 
@@ -155,7 +162,7 @@ class ServiceInfoBar(GUIAddon):
 			if not info:
 				return None
 
-			if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
+			if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getIsStreamRelay():
 				self.isCryptedDetected = False
 
 			video_height = None
@@ -184,7 +191,7 @@ class ServiceInfoBar(GUIAddon):
 							return key
 						idx += 1
 			elif key == "crypt" and not isRef:
-				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
+				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getIsStreamRelay():
 					return key + "_off"
 				if info.getInfo(iServiceInformation.sIsCrypted) == 1:
 					self.isCryptedDetected = True
@@ -202,15 +209,19 @@ class ServiceInfoBar(GUIAddon):
 				if info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
 					return key
 			elif key == "subservices" and not isRef:
-				if hasActiveSubservicesForCurrentChannel(service):
-					return key
+				if self.instanceInfoBarSubserviceSelection is None:
+					from Screens.InfoBarGenerics import instanceInfoBarSubserviceSelection  # This must be here as the class won't be initialized at module load time.
+					self.instanceInfoBarSubserviceSelection = instanceInfoBarSubserviceSelection
+				if info and self.instanceInfoBarSubserviceSelection:
+					if self.instanceInfoBarSubserviceSelection.hasActiveSubservicesForCurrentService(info.getInfoString(iServiceInformation.sServiceref)):
+						return key
 			elif key == "stream" and not isRef:
 				if self.streamServer is None:
 					return None
 				if service.streamed() is not None and ((self.streamServer.getConnectedClients() or StreamServiceList) and True or False):
 					return key
 			elif key == "currentCrypto":
-				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
+				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getIsStreamRelay():
 					self.refreshCryptoInfo.stop()
 					self.currentCrypto = ""
 					return key + "_off"
@@ -251,7 +262,7 @@ class ServiceInfoBar(GUIAddon):
 				if match and int(match.group(1)) > 0:
 					return key
 			elif key == "servicetype":
-				if "%3a//" in pending_sref.lower() and pending_service_ref and not pending_service_ref.getStreamRelay():
+				if "%3a//" in pending_sref.lower() and pending_service_ref and not pending_service_ref.getIsStreamRelay():
 					return "iptv"
 				elif not isRef:
 					if self.frontendInfoSource:
@@ -361,10 +372,10 @@ class ServiceInfoBar(GUIAddon):
 		for (attrib, value) in self.skinAttributes[:]:
 			if attrib == "pixmaps":
 				self.pixmaps = {k: v for k, v in (item.split(':') for item in value.split(','))}
-			if attrib == "pixmapsDisabled":
+			elif attrib == "pixmapsDisabled":
 				self.pixmapsDisabled = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "spacing":
-				self.spacing = parseScale(value)
+				self.spacing = self.parseScale(value)
 			elif attrib == "alignment":
 				self.alignment = value
 			elif attrib == "orientation":
@@ -380,7 +391,7 @@ class ServiceInfoBar(GUIAddon):
 			elif attrib == "separatorLineColor":
 				self.foreColor = parseColor(value).argb()
 			elif attrib == "separatorLineThickness":
-				self.separatorLineThickness = parseScale(value)
+				self.separatorLineThickness = self.parseScale(value)
 			elif attrib == "autoresizeMode":
 				self.autoresizeMode = value
 			elif attrib == "font":

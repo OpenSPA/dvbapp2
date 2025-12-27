@@ -2,33 +2,8 @@
 
 WebP support and libswscale scaling additions Copyright (c) 2025 by jbleyel
 
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-1. Non-Commercial Use: You may not use the Software or any derivative works
-   for commercial purposes without obtaining explicit permission from the
-   copyright holder.
-2. Share Alike: If you distribute or publicly perform the Software or any
-   derivative works, you must do so under the same license terms, and you
-   must make the source code of any derivative works available to the
-   public.
-3. Attribution: You must give appropriate credit to the original author(s)
-   of the Software by including a prominent notice in your derivative works.
-THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
-ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
-For more details about the CC BY-NC-SA 4.0 License, please visit:
-https://creativecommons.org/licenses/by-nc-sa/4.0/
+This code may be used commercially. Attribution must be given to the original author.
+Licensed under GPLv2.
 */
 
 #define PNG_SKIP_SETJMP_CHECK
@@ -52,9 +27,7 @@ extern "C" {
 #define NANOSVGRAST_IMPLEMENTATION
 #include <nanosvgrast.h>
 
-#ifdef HAVE_WEBP
 #include <webp/decode.h>
-#endif
 
 #ifdef HAVE_SWSCALE
 extern "C" {
@@ -503,10 +476,8 @@ static void png_load(Cfilepara* filepara, uint32_t background, bool forceRGB = f
 		if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
 			png_set_gray_to_rgb(png_ptr);
 
-		if ((color_type == PNG_COLOR_TYPE_PALETTE) || (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8) ||
-			(png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS) && !(color_type & PNG_COLOR_MASK_ALPHA))) {
+		if ((color_type == PNG_COLOR_TYPE_PALETTE) || (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8) || (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)))
 			png_set_expand(png_ptr);
-		}
 
 		if (forceRGB && (color_type & PNG_COLOR_MASK_ALPHA)) {
 			png_set_strip_alpha(png_ptr);
@@ -519,10 +490,9 @@ static void png_load(Cfilepara* filepara, uint32_t background, bool forceRGB = f
 			png_set_background(png_ptr, &bg, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
 		}
 
-		int number_passes = 1;
 		if (interlace_type != PNG_INTERLACE_NONE) {
-			number_passes = png_set_interlace_handling(png_ptr);
-			eDebug("[ePicLoad] PNG interlaced, using %d passes", number_passes);
+			png_set_interlace_handling(png_ptr);
+			eTrace("[ePicLoad] PNG interlaced, using interlace handling");
 		}
 		png_read_update_info(png_ptr, info_ptr);
 
@@ -541,19 +511,30 @@ static void png_load(Cfilepara* filepara, uint32_t background, bool forceRGB = f
 			return;
 		}
 
-		// Read rows
-		for (int pass = 0; pass < number_passes; pass++) {
-			fbptr = (png_byte*)pic_buffer;
-			for (unsigned int i = 0; i < height; i++, fbptr += width * bpp)
-				png_read_row(png_ptr, fbptr, NULL);
+		// always use png_read_image (works for interlaced and non-interlaced)
+		png_bytep* rowptr = new png_bytep[height];
+		if (!rowptr) {
+			eDebug("[ePicLoad] Error malloc rowptr");
+			delete[] pic_buffer;
+			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+			return;
 		}
+		for (unsigned int y = 0; y < height; ++y)
+			rowptr[y] = pic_buffer + y * (width * bpp);
+
+		png_read_image(png_ptr, rowptr);
+		delete[] rowptr;
+
+
 		png_read_end(png_ptr, info_ptr);
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 
 		// Assign output
+		// eDebug("[ePicLoad] bpp %d / transparent %d", bpp, filepara->transparent);
+
 		if (bpp == 4 && filepara->transparent) {
-			filepara->bits = 32;
 			filepara->pic_buffer = pic_buffer;
+			filepara->bits = 32;
 		} else if (bpp == 4) {
 			// Precompute blend table (static, initialized once)
 			static bool blend_init = false;
@@ -896,8 +877,6 @@ ERROR_R:
 #endif
 }
 
-#ifdef HAVE_WEBP
-
 static void webp_load(Cfilepara* filepara, bool forceRGB = false) {
 	FILE* f = fopen(filepara->file, "rb");
 	if (!f) {
@@ -964,8 +943,6 @@ static void webp_load(Cfilepara* filepara, bool forceRGB = false) {
 	filepara->pic_buffer = decoded;
 }
 
-#endif
-
 //---------------------------------------------------------------------------------------------
 
 ePicLoad::ePicLoad() : m_filepara(NULL), m_exif(NULL), threadrunning(false), m_conf(), msg_thread(this, 1, "ePicLoad_thread"), msg_main(eApp, 1, "ePicLoad_main") {
@@ -1011,7 +988,7 @@ void ePicLoad::decodePic() {
 		getExif(m_filepara->file, m_filepara->id);
 	switch (m_filepara->id) {
 		case F_PNG:
-			png_load(m_filepara, m_conf.background);
+			png_load(m_filepara, m_conf.background, m_conf.forceRGB);
 			break;
 		case F_JPEG:
 			m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
@@ -1027,11 +1004,9 @@ void ePicLoad::decodePic() {
 		case F_SVG:
 			svg_load(m_filepara);
 			break;
-#ifdef HAVE_WEBP
 		case F_WEBP:
 			webp_load(m_filepara);
 			break;
-#endif
 	}
 }
 
@@ -1044,7 +1019,7 @@ void ePicLoad::decodeThumb() {
 	std::string cachedir = "/.Thumbnails";
 
 	getExif(m_filepara->file, m_filepara->id, 1);
-	if (m_exif && m_exif->m_exifinfo->IsExif) {
+	if (m_exif && m_exif->m_exifinfo && m_exif->m_exifinfo->IsExif) {
 		if (m_exif->m_exifinfo->Thumnailstate == 2) {
 			free(m_filepara->file);
 			m_filepara->file = strdup(THUMBNAILTMPFILE);
@@ -1114,11 +1089,9 @@ void ePicLoad::decodeThumb() {
 		case F_SVG:
 			svg_load(m_filepara, true);
 			break;
-#ifdef HAVE_WEBP
 		case F_WEBP:
 			webp_load(m_filepara, true);
 			break;
-#endif
 	}
 	// eDebug("[ePicLoad] getThumb picture loaded %s", m_filepara->file);
 
@@ -1252,12 +1225,7 @@ int ePicLoad::startThread(int what, const char* file, int x, int y, bool async) 
 	int file_id = getFileType(file);
 	if (file_id < 0) {
 		eDebug("[ePicLoad] <format not supported>");
-		if (async) {
-			msg_thread.send(Message(Message::decode_error));
-			run();
-			return 0;
-		} else
-			return 1;
+		return 1;
 	}
 
 	m_filepara = new Cfilepara(file, file_id, getSize(file));
@@ -1268,12 +1236,7 @@ int ePicLoad::startThread(int what, const char* file, int x, int y, bool async) 
 		delete m_filepara;
 		m_filepara = NULL;
 		eDebug("[ePicLoad] <error in Para>");
-		if (async) {
-			msg_thread.send(Message(Message::decode_error));
-			run();
-			return 0;
-		} else
-			return 1;
+		return 1;
 	}
 	if (async) {
 		msg_thread.send(Message(what == 1 ? Message::decode_Pic : Message::decode_Thumb));
@@ -1298,7 +1261,7 @@ PyObject* ePicLoad::getInfo(const char* filename) {
 
 	// FIXME : m_filepara destroyed by getData. Need refactor this but plugins rely in it :(
 	getExif(filename, m_filepara ? m_filepara->id : -1);
-	if (m_exif && m_exif->m_exifinfo->IsExif) {
+	if (m_exif && m_exif->m_exifinfo && m_exif->m_exifinfo->IsExif) {
 		char tmp[256];
 		int pos = 0;
 		list = PyList_New(23);
@@ -1349,6 +1312,10 @@ bool ePicLoad::getExif(const char* filename, int fileType, int Thumb) {
 			fileType = getFileType(filename);
 		if (fileType == F_PNG || fileType == F_JPEG)
 			return m_exif->DecodeExif(filename, Thumb, fileType);
+		else {
+			strcpy(m_exif->m_szLastError, "No exif data found");
+			return false;
+		}
 	}
 	return true;
 }
@@ -1479,7 +1446,7 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 			gRGB bg(m_conf.background);
 			background = surface->clut.findOrAddColor(bg);
 		} else {
-			background = m_conf.background;
+			background = m_conf.background ^ 0xFF000000;
 		}
 
 		if (yoff != 0) {
@@ -1785,7 +1752,17 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 	m_conf.aspect_ratio = as == 0 ? 0.0 : aspectRatio / as;
 	m_conf.usecache = useCache;
 	m_conf.auto_orientation = auto_orientation;
-	m_conf.resizetype = resizeType;
+	m_conf.forceRGB = false;
+
+	if (resizeType > 100)
+	{
+#ifdef LCD_FORCE_RGB
+		m_conf.forceRGB = true;
+#endif
+		m_conf.resizetype = resizeType - 100;
+	}
+	else
+		m_conf.resizetype = resizeType;
 
 	if (bg_str[0] == '#' && strlen(bg_str) == 9)
 		m_conf.background = static_cast<uint32_t>(strtoul(bg_str + 1, NULL, 16));
@@ -1816,10 +1793,8 @@ int ePicLoad::getFileType(const char* file) {
 		return F_BMP;
 	else if (id[0] == 'G' && id[1] == 'I' && id[2] == 'F')
 		return F_GIF;
-#ifdef HAVE_WEBP
 	else if (id[0] == 'R' && id[1] == 'I' && id[2] == 'F' && id[3] == 'F' && id[8] == 'W' && id[9] == 'E' && id[10] == 'B' && id[11] == 'P')
 		return F_WEBP;
-#endif
 	else if (id[0] == '<' && id[1] == 's' && id[2] == 'v' && id[3] == 'g')
 		return F_SVG;
 	else if (endsWith(file, ".svg"))

@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
-"PO-Revision-Date: 2025-01-25 17:05+0000\n"
-"Last-Translator: Atec <dr.atec@gmail.com>\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
+"PO-Revision-Date: 2025-11-09 09:51+0000\n"
+"Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 msgid ""
 "\n"
@@ -2308,7 +2308,7 @@ msgstr "Vždy zobraziť prehľady"
 msgid "Always use smart1080p mode"
 msgstr "Vždy použiť smart-režim 1080p"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Americký futbal"
 
 msgid "American Samoa"
@@ -5140,7 +5140,7 @@ msgstr "Aktuálne"
 msgid "Current 1/1"
 msgstr "Aktuálne 1/1"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Aktuálne udalosti"
 
 msgid "Current CEC address"
@@ -5299,7 +5299,7 @@ msgstr "Nastavenia DNS"
 msgid "DNS data source"
 msgstr "Zdroj údajov DNS"
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr "Režim DNS"
 
 msgid "DNS suffix"
@@ -5670,7 +5670,7 @@ msgstr "Definovať softcam pre túto stanicu"
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Zadajte dodatočné oneskorenie (v milisekundách) pred spustením streamov http(s)."
 
-msgid "Define the DNS suffix."
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "Definujte príponu DNS."
 
 msgid "Defined / Active"
@@ -7238,6 +7238,9 @@ msgstr "Zadajte PIN kód"
 msgid "Enter text via an attached keyboard"
 msgstr "Zadajte text pomocou pripojenej klávesnice"
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Zadajte dobu, ktorá sa pridá do vyrov. pamäte pre streamovanie po chybe v streamovaní. Predíde sa tak ďalším chybám kvôli nedostatočnej vyrovnávacej pamäti."
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Zadajte frekvenciu, pri ktorej sa LNB prepína medzi nízkym a vysokým pásmom. Viac informácií získate v špecifikáciách vášho LNB."
 
@@ -8166,8 +8169,8 @@ msgstr "Kontrola súborového systému pevného disku"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Doplniť EPG pre stanicu z vysielaného EPG, ak IceTV EPG pre túto stanicu neobsahuje"
 
-msgid "Film-Noir"
-msgstr "Film-Noir"
+msgid "Film-noir"
+msgstr "Film noir"
 
 msgid "Filter extensions"
 msgstr "Filtrovať rozšírenia"
@@ -8533,8 +8536,8 @@ msgstr "galícijčina"
 msgid "Gambia"
 msgstr "Gambia"
 
-msgid "Game Show"
-msgstr "Herné show"
+msgid "Game show"
+msgstr "Herná show"
 
 msgid "Ganda"
 msgstr "Ganda"
@@ -9125,7 +9128,7 @@ msgstr "Horizontálna rýchlosť otáčania"
 msgid "Horror"
 msgstr "Horor"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Jazda na koni"
 
 msgid "Hostname"
@@ -10998,8 +11001,8 @@ msgstr "Stred"
 msgid "Middle - Lite image"
 msgstr "Stredný – lite image"
 
-msgid "Mini Series"
-msgstr "Minisérie"
+msgid "Mini series"
+msgstr "Miniséria"
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
@@ -12399,7 +12402,7 @@ msgstr "Len HD"
 msgid "Only free scan"
 msgstr "Hľadať len nekódované"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "Len v pohotovostnom režime"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14068,7 +14071,7 @@ msgstr "Spustiť inštaláciu \"%s\"?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Odstrániť \"%s\"?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Skutočný život"
 
 msgid "Real or pseudo recordings"
@@ -14935,7 +14938,7 @@ msgstr "Veslovanie"
 msgid "Rugby"
 msgstr "Ragby"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Ligové ragby"
 
 msgid "Run"
@@ -16151,7 +16154,7 @@ msgstr "Vyberte výrobcu vášho zariadenia SCR. Ak nie je výrobca uvedený v z
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Vyberte metódu obnovenia rozlíšenia obrazovky a vyrovávacej pamäte pri vypnutí teletextu."
 
-msgid "Select the mode of the DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Vyberte režim DNS."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16232,7 +16235,7 @@ msgstr "Vyberte poradie zoraďovania položiek menu. Používateľské nastaveni
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Vyberte zdrojové umiestnenie na získanie aktualizačných súborov."
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
 msgstr "Vyberte zdroj predvolených nastavení DNS."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17032,7 +17035,7 @@ msgstr "Šona (Shona)"
 msgid "Shopping"
 msgstr "Nakupovanie"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Krátky film"
 
 msgid "Short filenames"
@@ -17786,8 +17789,8 @@ msgstr "Zobraziť varovanie pri zastavení timeshiftu"
 msgid "Show watch status"
 msgstr "Zobraziť stavové ikony v zozname filmov"
 
-msgid "Show/Games show"
-msgstr "Show/herné show"
+msgid "Show/Game show"
+msgstr "Show/herná show"
 
 msgid "Show/Hide focus bar"
 msgstr "Zobraziť/skryť panel pre zameranie"
@@ -18135,8 +18138,8 @@ msgstr "Vyhladzovanie"
 msgid "SoC family"
 msgstr "Rodina SoC"
 
-msgid "Soap Opera"
-msgstr "Telenovela"
+msgid "Soap opera"
+msgstr "Telenovela/mydlová opera"
 
 msgid "Soccer"
 msgstr "Futbal"
@@ -18370,6 +18373,9 @@ msgstr "Špeciálne 2"
 
 msgid "Special Features Settings"
 msgstr "Nastavenie osobitných funkcií"
+
+msgid "Special characteristics"
+msgstr "Špeciálne charakteristiky"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Zadajte priečinok, ktorý sa použije pri spustení prehrávača médií."
@@ -18705,6 +18711,9 @@ msgstr "Informácie o streamujúcom tuneri"
 
 msgid "Streaming recording ended"
 msgstr "Nahrávanie streamovania ukončené"
+
+msgid "Streaming recovery delay"
+msgstr "Oneskorenie obnovenia streamovania"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -19107,7 +19116,7 @@ msgstr "tadžičtina"
 msgid "Tajikistan"
 msgstr "Tadžikistan"
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "Talk show"
 
 msgid "Tamil"
@@ -23013,8 +23022,8 @@ msgstr "film/kino"
 msgid "fine arts"
 msgstr "výtvarné umenie"
 
-msgid "fitness & health"
-msgstr "fitness & zdravie"
+msgid "Fitness and Health"
+msgstr "fitness a zdravie"
 
 msgid "flat alphabetic"
 msgstr "abecedne, vrátane priečinkov"
@@ -23508,7 +23517,7 @@ msgid "show program information..."
 msgstr "zobraziť informácie o programe…"
 
 msgid "show/game show (general)"
-msgstr "show/game show (všeobecne)"
+msgstr "show/herná show (všeobecne)"
 
 msgid "shuffle"
 msgstr "náhodné zoradenie"
@@ -23735,6 +23744,9 @@ msgstr "žlté"
 
 msgid "yes (keep feeds)"
 msgstr "áno (zachovať zdroje)"
+
+msgid "Languages"
+msgstr "Jazyky"
 
 msgid "®"
 msgstr "®"
@@ -24705,9 +24717,6 @@ msgstr "®"
 
 #~ msgid "Force OPKG clean mode"
 #~ msgstr "Vynútiť čistý režim OPKG"
-
-#~ msgid "Languages"
-#~ msgstr "Jazyky"
 
 #~ msgid "Locales"
 #~ msgstr "Miestne nastavenia"

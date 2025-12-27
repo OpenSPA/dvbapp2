@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-06-14 06:41+0000\n"
-"Last-Translator: DreamOSat Forum <info@dreamosat-forum.com>\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-04-14 12:33+0000\n"
+"Last-Translator: tanerkaderli <taner.kaderli@live.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -2346,7 +2346,7 @@ msgstr "Buketleri hep göster"
 msgid "Always use smart1080p mode"
 msgstr "Her zaman smart1080p modunu kullanın"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Amerikan Futbolu"
 
 msgid "American Samoa"
@@ -5294,7 +5294,7 @@ msgstr "Akım"
 msgid "Current 1/1"
 msgstr "Güncel 1/1"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Haber / güncel olaylar (genel)"
 
 msgid "Current CEC address"
@@ -5464,7 +5464,7 @@ msgstr "DNS Ayarları"
 msgid "DNS data source"
 msgstr "DNS veri kaynağı"
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr "DNS modu"
 
 msgid "DNS suffix"
@@ -5850,7 +5850,7 @@ msgstr "Bu Hizmet İçin Softcam'i Tanımlayın"
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Http(s) akışlarının başlamasından önce milisaniye cinsinden ek gecikme tanımlayın."
 
-msgid "Define the DNS suffix."
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr "DNS son ekini tanımlayın."
 
 msgid "Defined / Active"
@@ -7495,6 +7495,9 @@ msgstr "PIN girin"
 msgid "Enter text via an attached keyboard"
 msgstr "Ekli bir klavye aracılığıyla metin girin"
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "LNB'nin düşük bant ve yüksek bant arasında geçiş yaptığı frekansı girin. Daha fazla bilgi için LNB'nizin teknik özelliklerine bakın."
 
@@ -8466,7 +8469,7 @@ msgstr "Harddisk dosya sistemi kontrolü"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Kanal için IceTV EPG'si olmayan yayın EPG'sinden kanal EPG'lerini doldurun"
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr "Kara film"
 
 msgid "Filter extensions"
@@ -8857,7 +8860,7 @@ msgstr "Galiçyaca"
 msgid "Gambia"
 msgstr "Gambiya"
 
-msgid "Game Show"
+msgid "Game show"
 msgstr "Oyun şovu"
 
 msgid "Ganda"
@@ -9477,7 +9480,7 @@ msgstr "Yatay dönüş hızı"
 msgid "Horror"
 msgstr "Korku"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "At yarışı"
 
 msgid "Hostname"
@@ -11447,7 +11450,7 @@ msgid "Middle - Lite image"
 msgstr "Orta - Basit resim"
 
 #
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Mini dizi"
 
 msgid "MiniDLNA"
@@ -12952,7 +12955,7 @@ msgstr "Sadece HD"
 msgid "Only free scan"
 msgstr "Yanlızca şifresiz arama"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "Sadece bekleme modunda"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14708,7 +14711,7 @@ msgstr "Kurmaya hazır mısınız \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Kaldırmaya hazır mısınız \"%s\" ?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Gerçek hayat"
 
 msgid "Real or pseudo recordings"
@@ -15640,7 +15643,7 @@ msgstr "Kürek"
 msgid "Rugby"
 msgstr "Ragbi"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Rugby Ligi"
 
 msgid "Run"
@@ -16902,7 +16905,7 @@ msgstr "SCR cihazınızın üreticisini seçin. Üretici listelenmemişse, 'SCR'
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Teletext'ten çıkarken ekran çözünürlüğünü ve çerçeveyi geri yükleme yöntemini seçin."
 
-msgid "Select the mode of the DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "DNS modunu seçin."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16984,7 +16987,7 @@ msgstr "Menü girişlerinin sıralama düzenini seçin. Kullanıcı tanımlı me
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Yükseltme dosyalarının alınacağı kaynak konumu seçin."
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
 msgstr "Varsayılan DNS ayarlarının kaynağını seçin."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17809,7 +17812,7 @@ msgstr "Shona Dili"
 msgid "Shopping"
 msgstr "Alışveriş"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Kısa film"
 
 msgid "Short filenames"
@@ -18590,7 +18593,7 @@ msgstr "Film durdurulduğu zaman uyar"
 msgid "Show watch status"
 msgstr "Film listesinde durum simgelerini göster"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Gösteri Oyunlarını göster"
 
 msgid "Show/Hide focus bar"
@@ -18960,7 +18963,7 @@ msgstr "Pürüzsüz"
 msgid "SoC family"
 msgstr "SoC ailesi"
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "Pembe dizi"
 
 msgid "Soccer"
@@ -19205,6 +19208,9 @@ msgstr "Özel 2"
 
 msgid "Special Features Settings"
 msgstr "Özel özellikler"
+
+msgid "Special characteristics"
+msgstr ""
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Media Player'ı başlatırken kullanılacak dizini belirtin."
@@ -19566,6 +19572,9 @@ msgstr "Akış Ayarlayıcı Bilgileri"
 
 msgid "Streaming recording ended"
 msgstr "Akış kaydı sona erdi"
+
+msgid "Streaming recovery delay"
+msgstr ""
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -19989,7 +19998,7 @@ msgstr "Tacikçe"
 msgid "Tajikistan"
 msgstr "Tacikistan"
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "Sohbet programı"
 
 msgid "Tamil"
@@ -24862,6 +24871,10 @@ msgstr "sarı"
 msgid "yes (keep feeds)"
 msgstr "evet (beslemeleri tut)"
 
+#
+msgid "Languages"
+msgstr "Dil"
+
 msgid "®"
 msgstr "®"
 
@@ -25762,10 +25775,6 @@ msgstr "®"
 
 #~ msgid "Force OPKG clean mode"
 #~ msgstr "OPKG temizleme modunu zorla"
-
-#
-#~ msgid "Languages"
-#~ msgstr "Dil"
 
 #~ msgid "Locales"
 #~ msgstr "Yerel ayarlar"

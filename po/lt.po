@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2023-06-04 19:16+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -2317,7 +2317,7 @@ msgstr "Visada rodyti paketus"
 msgid "Always use smart1080p mode"
 msgstr "Visada naudoti išmanų 1080p režimą"
 
-msgid "American Football"
+msgid "American football"
 msgstr "Amerikietiškas futbolas"
 
 msgid "American Samoa"
@@ -5152,7 +5152,7 @@ msgstr "Dabartinis"
 msgid "Current 1/1"
 msgstr "Dabartinis 1/1"
 
-msgid "Current Affairs"
+msgid "Current affairs"
 msgstr "Dabartiniai reikalai"
 
 msgid "Current CEC address"
@@ -5311,7 +5311,7 @@ msgstr "DNS parametrai"
 msgid "DNS data source"
 msgstr "DNS duomenų šaltinis"
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr ""
 
 msgid "DNS suffix"
@@ -5682,7 +5682,7 @@ msgstr ""
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Nustatykite papildomą milisekundžių delsą prieš pradedant http (-us) srautus."
 
-msgid "Define the DNS suffix."
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7242,6 +7242,9 @@ msgstr "Įrašykite pin kodą"
 msgid "Enter text via an attached keyboard"
 msgstr ""
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Įrašykite dažnį, kuriuo jūs LNB perjungiate tarp žemos ir aukščiausios juostos. Daugiau informacijos rasite LNB specifikacijų lape."
 
@@ -8172,7 +8175,7 @@ msgstr "Tikrinama HDD failų sistema"
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Užpildykite kanalų EPG iš transliacijos EPG, kai nėra IceTV EPG kanalo"
 
-msgid "Film-Noir"
+msgid "Film-noir"
 msgstr "Juodas filmas"
 
 msgid "Filter extensions"
@@ -8539,7 +8542,7 @@ msgstr "Galisų"
 msgid "Gambia"
 msgstr "Gambija"
 
-msgid "Game Show"
+msgid "Game show"
 msgstr "Žaidimų šou"
 
 msgid "Ganda"
@@ -9131,7 +9134,7 @@ msgstr "Horizontalus sukimosi greitis"
 msgid "Horror"
 msgstr "Siaubo"
 
-msgid "Horse Racing"
+msgid "Horse racing"
 msgstr "Žirgų lenktynės"
 
 msgid "Hostname"
@@ -11004,7 +11007,7 @@ msgstr "vidutinis"
 msgid "Middle - Lite image"
 msgstr "Vidutinis - Mažasis atvaizdas"
 
-msgid "Mini Series"
+msgid "Mini series"
 msgstr "Mini serijos"
 
 msgid "MiniDLNA"
@@ -12402,7 +12405,7 @@ msgstr "tik HD"
 msgid "Only free scan"
 msgstr "Ieškoti tik nekoduotų kanalų"
 
-msgid "Only in standby"
+msgid "Only in Standby"
 msgstr "tik budėjimo režime"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14068,7 +14071,7 @@ msgstr "Pasirengę įdiegti \"%s\" ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Pasirengę pašalinti \"%s\" ?"
 
-msgid "Real Life"
+msgid "Real life"
 msgstr "Tikras gyvenimas"
 
 msgid "Real or pseudo recordings"
@@ -14935,7 +14938,7 @@ msgstr "Irklavimas"
 msgid "Rugby"
 msgstr "Regbis"
 
-msgid "Rugby League"
+msgid "Rugby league"
 msgstr "Regbio lyga"
 
 msgid "Run"
@@ -16151,7 +16154,7 @@ msgstr "Pasirinkite SCR įrenginio gamintoją. Jei gamintojas nėra įtrauktas �
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Pasirinkite ekrano rezoliucijos atkūrimo metodą ir kadrų buferizaciją išeinant iš teleteksto."
 
-msgid "Select the mode of the DNS."
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
@@ -16229,7 +16232,7 @@ msgstr "Pasirinkite meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas 
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the the DNS server/servers that will be used to resolve host lookups."
 msgstr "Pasirinkite numatytųjų DNS parametrų šaltinį."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17020,7 +17023,7 @@ msgstr "Šonų"
 msgid "Shopping"
 msgstr "Apsipirkimas"
 
-msgid "Short Film"
+msgid "Short film"
 msgstr "Trumpas filmas"
 
 msgid "Short filenames"
@@ -17774,7 +17777,7 @@ msgstr "Rodyti perspėjimą, sustojus laiko poslinkiui"
 msgid "Show watch status"
 msgstr "Rodyti žiūrėjimo būseną"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Šou/žaidimų šou"
 
 msgid "Show/Hide focus bar"
@@ -18123,7 +18126,7 @@ msgstr "Glotnumas"
 msgid "SoC family"
 msgstr "SoC šeima"
 
-msgid "Soap Opera"
+msgid "Soap opera"
 msgstr "Muilo opera"
 
 msgid "Soccer"
@@ -18358,6 +18361,9 @@ msgstr "Simboliai 2"
 
 msgid "Special Features Settings"
 msgstr "Specialiųjų funkcijų parametrai"
+
+msgid "Special characteristics"
+msgstr ""
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Nurodykite katalogą, kuris bus naudojamas paleidžiant Medija leistuvą."
@@ -18693,6 +18699,9 @@ msgstr ""
 
 msgid "Streaming recording ended"
 msgstr "Srauto įrašas baigtas"
+
+msgid "Streaming recovery delay"
+msgstr ""
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -19095,7 +19104,7 @@ msgstr "Tadžikų"
 msgid "Tajikistan"
 msgstr "Tadžikistanas"
 
-msgid "Talk Show"
+msgid "Talk show"
 msgstr "﻿Pokalbių šou"
 
 msgid "Tamil"
@@ -23683,6 +23692,9 @@ msgstr "geltonas"
 msgid "yes (keep feeds)"
 msgstr "taip (išsaugoti šaltinius)"
 
+msgid "Languages"
+msgstr "Kalbos"
+
 msgid "®"
 msgstr "®"
 
@@ -24489,9 +24501,6 @@ msgstr "®"
 
 #~ msgid "Error: Unable to process the command!  Please try again later."
 #~ msgstr "Klaida: nepavyko apdoroti komandos!  Bandykite dar kartą vėliau."
-
-#~ msgid "Languages"
-#~ msgstr "Kalbos"
 
 #~ msgid "Locales"
 #~ msgstr "Lokalės"
