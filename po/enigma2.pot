@@ -2336,6 +2336,9 @@ msgstr ""
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr ""
 
+msgid "Aqua"
+msgstr ""
+
 msgid "Arabic"
 msgstr ""
 
@@ -2733,6 +2736,9 @@ msgid "Azerbaijan"
 msgstr ""
 
 msgid "Azerbaijani"
+msgstr ""
+
+msgid "Azure"
 msgstr ""
 
 msgid "B"
@@ -10385,6 +10391,9 @@ msgstr ""
 msgid "Limburgan / Limburger / Limburgish"
 msgstr ""
 
+msgid "Lime"
+msgstr ""
+
 msgid "Limit character set for recording filenames"
 msgstr ""
 
@@ -11175,15 +11184,6 @@ msgid "Mongolia"
 msgstr ""
 
 msgid "Mongolian"
-msgstr ""
-
-msgid "Monitoring UI password"
-msgstr ""
-
-msgid "Monitoring UI port"
-msgstr ""
-
-msgid "Monitoring UI username"
 msgstr ""
 
 msgid "Montenegro"
@@ -12436,6 +12436,9 @@ msgstr ""
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr ""
 
+msgid "Olympic blue"
+msgstr ""
+
 msgid "Olympics"
 msgstr ""
 
@@ -12743,6 +12746,9 @@ msgid "Optional parameter"
 msgstr ""
 
 msgid "Options"
+msgstr ""
+
+msgid "Orange"
 msgstr ""
 
 msgid "Orbital position"
@@ -13170,6 +13176,9 @@ msgid "Pillarbox"
 msgstr ""
 
 msgid "Pilot"
+msgstr ""
+
+msgid "Pink"
 msgstr ""
 
 msgid "Pitcairn"
@@ -14033,6 +14042,9 @@ msgid "Purge all but the current and permanent locales/languages. Add the curren
 msgstr ""
 
 msgid "Purging all unused locales/languages..."
+msgstr ""
+
+msgid "Purple"
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -15045,6 +15057,9 @@ msgid "Root directory"
 msgstr ""
 
 msgid "Root file"
+msgstr ""
+
+msgid "Rose"
 msgstr ""
 
 msgid "Rotor turning speed"
@@ -22992,9 +23007,6 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid "Aqua"
-msgstr ""
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr ""
@@ -23007,9 +23019,6 @@ msgid "audio tracks"
 msgstr ""
 
 msgid "automatic"
-msgstr ""
-
-msgid "Azure"
 msgstr ""
 
 msgid "back"
@@ -23309,9 +23318,6 @@ msgstr ""
 msgid "length"
 msgstr ""
 
-msgid "Lime"
-msgstr ""
-
 msgid "locked"
 msgstr ""
 
@@ -23405,9 +23411,6 @@ msgstr ""
 msgid "offset is"
 msgstr ""
 
-msgid "original language"
-msgstr ""
-
 msgid "Olympic blue"
 msgstr ""
 
@@ -23415,7 +23418,6 @@ msgid "on READ ONLY medium."
 msgstr ""
 
 msgid "Orange"
-
 msgstr ""
 
 msgid "package"
@@ -23451,9 +23453,6 @@ msgstr ""
 msgid "Play In PiP Window"
 msgstr ""
 
-msgid "Pink"
-msgstr ""
-
 msgid "please wait, loading picture..."
 msgstr ""
 
@@ -23473,9 +23472,6 @@ msgid "provider:"
 msgstr ""
 
 msgid "Purge Deleted User Bouquets"
-msgstr ""
-
-msgid "Purple"
 msgstr ""
 
 msgid "red"
@@ -23549,9 +23545,6 @@ msgid "rewind to the previous chapter"
 msgstr ""
 
 msgid "right"
-msgstr ""
-
-msgid "Rose"
 msgstr ""
 
 msgid "satellites.xml not found or corrupted!\nIt is possible to watch TV,\nbut it's not possible to search for new TV channels\nor to configure tuner settings"
@@ -23765,14 +23758,6 @@ msgid "wait for mmi..."
 msgstr ""
 
 msgid "west"
-msgstr ""
-
-msgid "when asking question about this log"
-msgstr ""
-
-msgid "when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
 msgstr ""
 
 msgid "width"
