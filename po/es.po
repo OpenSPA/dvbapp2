@@ -24311,8 +24311,11 @@ msgstr "Usar información EPG de MHW cuando esté disponible."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Usar información EPG de Netmed cuando esté disponible."
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Usar información de EPG OpenTV cuando esté disponible."
+msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
+msgstr "Utilice la guía electrónica de programación (EPG) de OpenTV. Requiere sintonizar un transpondedor específico para absorber la EPG."
+
+msgid "Use ODoH servers"
+msgstr "Utilice servidores ODoH"
 
 msgid "Use QuickSelect"
 msgstr "Usar selección rápida"
