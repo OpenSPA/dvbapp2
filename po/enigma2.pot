@@ -20355,7 +20355,7 @@ msgstr ""
 msgid "Timeshift"
 msgstr ""
 
-msgid "Timeshift Actived"
+msgid "Timeshift Active"
 msgstr ""
 
 msgid "Timezone"

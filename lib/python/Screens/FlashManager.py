@@ -74,7 +74,7 @@ class FlashManager(Screen):
 		self.setTitle(_("Flash Manager - %s Images") % self.imageFeed)
 		self.imagesList = {}
 		self.expanded = []
-		self.destpath=destpath  # OPENSPA [morser] Add destpath for spanewfirm
+		self.destpath = destpath  # OPENSPA [morser] Add destpath for spanewfirm
 		self.setIndex = 0
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Cancel the image selection and exit")),
@@ -340,7 +340,7 @@ class FlashImage(Screen):
 		self.getImageList = None
 		self.downloader = None
 		self.downloadOnly = downloadOnly
-		self.destpath=destpath  # OPENSPA [morser] Add destpath for spanewfirm
+		self.destpath = destpath  # OPENSPA [morser] Add destpath for spanewfirm
 		self["header"] = Label(_("Backup Settings"))
 		self["info"] = Label(_("Save settings and EPG data."))
 		self["summary_header"] = StaticText(self["header"].getText())
