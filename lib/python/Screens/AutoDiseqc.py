@@ -13,7 +13,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		"A", "B", "C", "D"
 	]
 
-	universal_central_sats_frequencies = [
+	sat_frequencies = [
 		# Astra 19.2E ntv
 		(
 			12188,
@@ -233,17 +233,17 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		),
 	]
 
-	circular_sats_frequencies = [
-		# Express AMU1 36.0E NTV Plus
+	circular_sat_frequencies = [
+		# Express AMU1 36.0E NHK World Japan
 		(
-			11785,
+			12341,
 			27500,
-			eDVBFrontendParametersSatellite.Polarisation_CircularRight,
+			eDVBFrontendParametersSatellite.Polarisation_CircularLeft,
 			eDVBFrontendParametersSatellite.FEC_3_4,
 			eDVBFrontendParametersSatellite.Inversion_Off,
 			360,
-			eDVBFrontendParametersSatellite.System_DVB_S2,
-			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
 			eDVBFrontendParametersSatellite.RollOff_auto,
 			eDVBFrontendParametersSatellite.Pilot_Unknown,
 			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
@@ -251,7 +251,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
 			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
-			13,
+			11,
 			112,
 			"Express AMU1 36.0°E"
 		),
@@ -296,29 +296,6 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			706,
 			1536,
 			"Thor 5/6/7 0.8w"),
-	]
-
-	circular_sat_frequencies = [
-		# express AMU1 360 NHK World Japan
-		(
-			12341,
-			27500,
-			eDVBFrontendParametersSatellite.Polarisation_CircularLeft,
-			eDVBFrontendParametersSatellite.FEC_3_4,
-			eDVBFrontendParametersSatellite.Inversion_Off,
-			360,
-			eDVBFrontendParametersSatellite.System_DVB_S,
-			eDVBFrontendParametersSatellite.Modulation_Auto,
-			eDVBFrontendParametersSatellite.RollOff_auto,
-			eDVBFrontendParametersSatellite.Pilot_Unknown,
-			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
-			eDVBFrontendParametersSatellite.PLS_Gold,
-			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
-			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
-			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
-			11,
-			112,
-			"Express AMU1 36.0e"),
 	]
 
 	SAT_TABLE_FREQUENCY = 0
