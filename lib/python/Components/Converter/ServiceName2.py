@@ -40,6 +40,7 @@ class ServiceName2(Converter):
 	SATELLITE = 7
 	ALLREF = 8
 	FORMAT = 9
+	BOUQUETREF = 10
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -49,6 +50,8 @@ class ServiceName2(Converter):
 			self.type = self.NUMBER
 		elif type == "Bouquet":
 			self.type = self.BOUQUET
+		elif type == "Bouquetref":
+			self.type = self.BOUQUETREF
 		elif type == "Provider":
 			self.type = self.PROVIDER
 		elif type == "Reference":
@@ -137,12 +140,12 @@ class ServiceName2(Converter):
 			lastpath = isRadioService and config.radio.lastroot.value or config.tv.lastroot.value
 			if "FROM BOUQUET" not in lastpath:
 				if "FROM PROVIDERS" in lastpath:
-					return "P", _("Provider")
+					return "P", _("Provider"), None
 				if "FROM SATELLITES" in lastpath:
-					return "S", _("Satellites")
+					return "S", _("Satellites"), None
 				if ") ORDER BY name" in lastpath:
-					return "A", _("All Services")
-				return 0, "N/A"
+					return "A", _("All Services"), None
+				return 0, "N/A", None
 			try:
 				acount = config.plugins.NumberZapExt.enable.value and config.plugins.NumberZapExt.acount.value or config.usage.alternative_number_mode.value
 			except Exception:
@@ -176,8 +179,8 @@ class ServiceName2(Converter):
 			if service is not None:
 				info = serviceHandler.info(bouquet)
 				name = info and info.getName(bouquet) or ""
-				return number, name
-		return 0, ""
+				return number, name, bouquet
+		return 0, "", None
 
 	def getProviderName(self, ref):
 		if isinstance(ref, eServiceReference):
@@ -519,11 +522,17 @@ class ServiceName2(Converter):
 					num = service and service.getChannelNum() or ""
 					return str(num)
 				except Exception:
-					num, bouq = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
+					num, bouq, bouqref = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
 					return num and str(num) or ""
 			case self.BOUQUET:
-				num, bouq = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
+				num, bouq, bouqref = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
 				return bouq
+			case self.BOUQUETREF:
+				num, bouq, bouqref = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
+				if bouqref:
+					return bouqref.toString()
+				else:
+					return ""
 			case self.PROVIDER:
 				if self.isStream:
 					if self.refstr and ("%3a//" in self.refstr):
@@ -596,10 +605,10 @@ class ServiceName2(Converter):
 							if num:
 								ret += str(num)
 							else:
-								num, bouq = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
+								num, bouq, bouqref = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
 								ret += num and str(num) or ""
 						case "B":  # Bouquet.
-							num, bouq = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
+							num, bouq, bouqref = self.getServiceNumber(ref or eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
 							ret += bouq
 						case "P":  # Provider.
 							if self.isStream:
@@ -658,7 +667,7 @@ class ServiceName2(Converter):
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] in (iPlayableService.evStart,):
 			self.refstr = self.isStream = self.ref = self.info = self.tpdata = None
-			if self.type in (self.NUMBER, self.BOUQUET) or \
+			if self.type in (self.NUMBER, self.BOUQUET, self.BOUQUETREF) or \
 				(self.type == self.FORMAT and ("%n" in self.sfmt or "%B" in self.sfmt)):
 				self.what = what
 				self.Timer.start(200, True)
