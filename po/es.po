@@ -2604,6 +2604,9 @@ msgstr "Aplicar cualquier cambio del idioma regional activo y salir"
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Aplicar el idioma regional actualmente resaltado y salir"
 
+msgid "Aqua"
+msgstr "Agua"
+
 msgid "Arabic"
 msgstr "Árabe"
 
@@ -3038,6 +3041,9 @@ msgstr "Azerbaiyán"
 
 msgid "Azerbaijani"
 msgstr "Azerbaiyano"
+
+msgid "Azure"
+msgstr "Azur"
 
 #
 msgid "B"
@@ -6402,6 +6408,9 @@ msgstr "Modo de vídeo predeterminado seleccionado para el televisor."
 msgid "Default volume offset"
 msgstr "Desplazamiento de volumen predeterminado"
 
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "La activación predeterminada es 5 minutos antes del modo de espera completo. Ajuste el tiempo de activación si es demasiado pronto o demasiado tarde, por ejemplo, para unidades de red."
+
 #, python-format
 msgid "Default: '%s'."
 msgstr "Predeterminado: '%s'."
@@ -6974,14 +6983,11 @@ msgstr "PIP deshabilitado.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Desactivado o WPA/WPA2"
 
-msgid ""
-"Disabled use of FCC to use fallback tuner.\n"
-"Enigma2 needs to be restarted.\n"
-"Do you want to do it now?"
-msgstr ""
-"Se ha deshabilitado el uso de FCC para usar el tuner reserva.\n"
-"Es necesario reiniciar enigma2.\n"
-"¿Quieres hacerlo ahora?"
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Detener timeshift si se ejecuta a la par que se está grabando (aconsejable para memoria USB)"
+
+msgid "Disabling Chkroot failed!"
+msgstr "¡Error al deshabilitar Chkroot!"
 
 #
 msgid "Dish"
@@ -7492,8 +7498,11 @@ msgstr "Versión de los controladores"
 msgid "Duplex"
 msgstr "Dúplex"
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Durante este tiempo, se verifican el transmisor y el destino de la grabación. Si el destino (p. ej., NAS) no está listo a tiempo, se puede aumentar este tiempo."
+
+msgid "Duplicate the current line"
+msgstr "Duplicar la línea actual"
 
 # Language
 msgid "Dutch"
@@ -8054,8 +8063,8 @@ msgstr "Habilitado"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Habilita una función para que el receptor pueda descodificar streams (si los datos ECM se incluyen en el stream y hay una tarjeta válida)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Permite enviar los mismos comandos de TV tanto para reposo profundo como para el reposo normal."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Establezca en 'Sí' para habilitar el envío de los mismos comandos de TV para el modo de espera profundo y para el modo reposo."
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Si se ajusta a \"sí\", permite utilizar timeshift con plugins de audio alternativos."
@@ -9063,8 +9072,8 @@ msgid "Fallback Timer"
 msgstr "Temporizador de reserva"
 
 #
-msgid "Fallback tuner setup"
-msgstr "Configuración del sintonizador reserva"
+msgid "Fallback Tuner Setup"
+msgstr "Ajustes del Sintonizador Reserva"
 
 msgid "False"
 msgstr "Falso"
@@ -11733,6 +11742,9 @@ msgstr ""
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Limburgan / Limburger / Limburgish"
 
+msgid "Lime"
+msgstr "Cal"
+
 msgid "Limit character set for recording filenames"
 msgstr "Limitar caracteres en los nombres de los archivos de las grabaciones"
 
@@ -12577,15 +12589,6 @@ msgstr "Mongolia"
 
 msgid "Mongolian"
 msgstr "Mongol"
-
-msgid "Monitoring UI password"
-msgstr "Supervisión de la contraseña de la interfaz de usuario"
-
-msgid "Monitoring UI port"
-msgstr "Supervisión del puerto de la interfaz de usuario"
-
-msgid "Monitoring UI username"
-msgstr "Supervisión del nombre de la interfaz de usuario"
 
 msgid "Montenegro"
 msgstr "Montenegro"
@@ -14025,6 +14028,9 @@ msgstr ""
 "Los archivos más antiguos en el directorio de timeshift serán eliminados en "
 "cada cambio de evento."
 
+msgid "Olympic blue"
+msgstr "Azul olimpico"
+
 msgid "Olympics"
 msgstr "Juegos Olímpicos"
 
@@ -14264,6 +14270,9 @@ msgstr "Parámetro opcional"
 
 msgid "Options"
 msgstr "Opciones"
+
+msgid "Orange"
+msgstr "Naranja"
 
 msgid "Orbital position"
 msgstr "Posición orbital"
@@ -14726,6 +14735,9 @@ msgstr "Columnas"
 #
 msgid "Pilot"
 msgstr "Piloto"
+
+msgid "Pink"
+msgstr "Rosa"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -15739,6 +15751,9 @@ msgstr ""
 
 msgid "Purging all unused locales/languages..."
 msgstr "Limpiar todos los idiomas/regiones no utilizados..."
+
+msgid "Purple"
+msgstr "Púrpura"
 
 msgid "Pushto / Pashto"
 msgstr "Pushto / Pashto"
@@ -16857,6 +16872,9 @@ msgstr "Directorio raíz"
 
 msgid "Root file"
 msgstr "Archivo raíz"
+
+msgid "Rose"
+msgstr "Rosa"
 
 #
 msgid "Rotor turning speed"
@@ -22441,9 +22459,6 @@ msgstr ""
 "No se puede modificar la selección del backup predeterminado.\n"
 "Por favor, utilice la selección 'adicional' y 'excluida' del backup."
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "La activación predeterminada es 5 minutos antes del modo de espera completo. Ajuste el tiempo de activación si es demasiado pronto o demasiado tarde, por ejemplo, para unidades de red."
-
 msgid ""
 "The default settings are wake up time - 5 minutes and timer begin time + 5 "
 "minutes. This setting changed the time window before the wake up time. So "
@@ -25181,8 +25196,8 @@ msgstr "Reactivar TV desde reposo"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr "El encendido desde reposo profundo está activado"
 
-msgid "Wake up time before a timer begins [mins]"
-msgstr "Tiempo de encendido antes que empiece un temporizador [min]"
+msgid "Wake up time before a timer begins"
+msgstr "Hora de despertarse antes de que comience el temporizador"
 
 msgid "Wake up to standby"
 msgstr "Encender para reposo"
@@ -25725,8 +25740,8 @@ msgstr ""
 "Cuando el recuadro rojo esté correctamente visible pulse el botón VERDE para "
 "guardar los ajustes y salir."
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
-msgstr "Al sintonizar un servicio, el sistema normalmente escanea el transpondedor en busca de cambios y los guarda. Habilítelo solo si sabe lo que está haciendo."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
+msgstr "Al sintonizar un canal, el sistema normalmente escanea el transpondedor en busca de cambios y los guarda. Habilítelo solo si sabe lo que está haciendo."
 
 msgid ""
 "When yes, VPS will be enabled on instant records (stop after current event), "
@@ -26621,9 +26636,6 @@ msgstr "y"
 msgid "and never ask again this session again"
 msgstr "y no preguntar de nuevo en esta sesión"
 
-msgid "Aqua"
-msgstr "Agua"
-
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
@@ -26631,25 +26643,15 @@ msgstr ""
 "¿está seguro de que quiere restaurar\n"
 "el siguiente backup?:\n"
 
-msgid "arts/culture (general)"
-msgstr "Arte/cultura (general)"
-
 msgid "Arts/Culture (without music)"
 msgstr "Artes / cultura (sin música, general)"
 
 msgid "Arts/Culture magazines"
 msgstr "Revistas de artes y cultura"
 
-msgid "athletics"
-msgstr "atletismo"
-
-#
-#, python-format
 msgid "audio track (%s) format"
 msgstr "Formato de pista de audio (%s)"
 
-#
-#, python-format
 msgid "audio track (%s) language"
 msgstr "Idioma de pista de audio (%s)"
 
@@ -26664,10 +26666,6 @@ msgstr "Automático"
 msgid "AutoTimer was installed successfully."
 msgstr "AutoTimer se instaló exitosamente."
 
-msgid "Azure"
-msgstr "Azur"
-
-#
 msgid "back"
 msgstr "Atrás"
 
@@ -27148,10 +27146,6 @@ msgstr "Literatura"
 msgid "Live broadcast"
 msgstr "Transmisión en vivo"
 
-msgid "Lime"
-msgstr "Cal"
-
-#
 msgid "locked"
 msgstr "Bloqueado"
 
@@ -27314,18 +27308,8 @@ msgstr "Apagado o wpa2 encendido"
 msgid "offset is"
 msgstr "Está con variación"
 
-msgid "Olympic blue"
-msgstr "Azul olimpico"
-
-#
 msgid "on READ ONLY medium."
 msgstr "En disco de sólo lectura."
-
-msgid "original language"
-msgstr "idioma original"
-
-msgid "Orange"
-msgstr "Naranja"
 
 msgid "package"
 msgstr "paquete"
@@ -27361,10 +27345,6 @@ msgstr "Reproducir en PiP"
 msgid "Play In PiP Window"
 msgstr "Reproducir en ventana PiP"
 
-msgid "Pink"
-msgstr "Rosa"
-
-#
 msgid "please wait, loading picture..."
 msgstr "Espera mientras se carga la foto..."
 
@@ -27390,9 +27370,6 @@ msgstr "provid:"
 
 msgid "provider:"
 msgstr "Proveedor:"
-
-msgid "Purple"
-msgstr "Púrpura"
 
 #
 msgid "red"
@@ -27491,12 +27468,6 @@ msgstr "derecha"
 
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
-
-msgid "romance"
-msgstr "romance"
-
-msgid "Rose"
-msgstr "Rosa"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -27804,18 +27775,6 @@ msgstr "Deportes acuáticos"
 msgid "west"
 msgstr "oeste"
 
-msgid "when asking question about this log"
-msgstr "Al hacer preguntas acerca de este registro"
-
-msgid ""
-"when asking question about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"Al hacer preguntas acerca de este registro\n"
-"\n"
-"Se le ha enviado una copia."
-
 msgid "width"
 msgstr "Ancho"
 
@@ -27862,6 +27821,9 @@ msgstr "®"
 
 msgid "DVB-USB Device Manager"
 msgstr "Gestor de dispositivos DVB-USB"
+
+#~ msgid "white"
+#~ msgstr "Blanco"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "Añadir una entrada DNS"
