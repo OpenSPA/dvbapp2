@@ -13,7 +13,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		"A", "B", "C", "D"
 	]
 
-	sat_frequencies = [
+	universal_central_sats_frequencies = [
 		# Astra 19.2E ntv
 		(
 			12188,
@@ -164,7 +164,6 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			64,
 			"Eutelsat 16A 16.0°E"
 		),
-
 	]
 
 	universal_west_sats_frequencies = [
@@ -231,9 +230,30 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			6,
 			"Hispasat 30.0°W"
 		),
+		# thor  3592 CT24
+		(
+			12072,
+			28000,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_7_8,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			3592,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			706,
+			1536,
+			"Thor 5/6/7 0.8w"
+		),
 	]
 
-	circular_sat_frequencies = [
+	circular_sats_frequencies = [
 		# Express AMU1 36.0E NHK World Japan
 		(
 			12341,
@@ -276,26 +296,6 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			112,
 			"Express AT1 56.0°E"
 		),
-		# thor  3592 CT24
-		(
-			12072,
-			28000,
-			eDVBFrontendParametersSatellite.Polarisation_Vertical,
-			eDVBFrontendParametersSatellite.FEC_7_8,
-			eDVBFrontendParametersSatellite.Inversion_Off,
-			3592,
-			eDVBFrontendParametersSatellite.System_DVB_S,
-			eDVBFrontendParametersSatellite.Modulation_Auto,
-			eDVBFrontendParametersSatellite.RollOff_auto,
-			eDVBFrontendParametersSatellite.Pilot_Unknown,
-			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
-			eDVBFrontendParametersSatellite.PLS_Gold,
-			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
-			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
-			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
-			706,
-			1536,
-			"Thor 5/6/7 0.8w"),
 	]
 
 	SAT_TABLE_FREQUENCY = 0
@@ -335,16 +335,21 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		self.simple_tone = simple_tone
 		self.simple_sat_change = simple_sat_change
 		self.found_sats = []
-		self.circular_setup = False
-		sat_found = False
-		for x in self.sat_frequencies:
-			if x[self.SAT_TABLE_ORBPOS] == 360:
-				sat_found = True
-		if self.nr_of_ports == 1:
-			if not sat_found:
-				self.sat_frequencies += self.circular_sat_frequencies
-		elif sat_found:
-			self.sat_frequencies.remove(x)
+		self.circular_setup = 0
+		if order == "all":
+			self.sat_frequencies = self.universal_central_sats_frequencies[:] + self.universal_east_sats_frequencies[:] + self.universal_west_sats_frequencies[:]
+			if nr_of_ports == 1:
+				self.sat_frequencies += self.circular_sats_frequencies[:]
+		elif order == "astra":
+			self.sat_frequencies = self.universal_central_sats_frequencies[:]
+		elif order == "east":
+			self.sat_frequencies = self.universal_central_sats_frequencies[:] + self.universal_east_sats_frequencies[:]
+			if nr_of_ports == 1:
+				self.sat_frequencies += self.circular_sats_frequencies[:]
+		elif order == "west":
+			self.sat_frequencies = self.universal_west_sats_frequencies[:]
+		elif order == "circular":
+			self.sat_frequencies = self.circular_sats_frequencies[:]
 		if not self.openFrontend():
 			self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.session.nav.stopService()
@@ -437,7 +442,10 @@ class AutoDiseqc(ConfigListScreen, Screen):
 				config.Nims[self.feid].dvbs.diseqcMode.value = "single"
 				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] == 360 and not self.found_sats:
 					config.Nims[self.feid].dvbs.simpleDiSEqCSetCircularLNB.value = True
-					self.circular_setup = True
+					self.circular_setup = 1
+				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] == 560 and not self.found_sats:
+					config.Nims[self.feid].dvbs.simpleDiSEqCSetCircularLNB.value = True
+					self.circular_setup = 2
 
 			config.Nims[self.feid].dvbs.configMode.value = "simple"
 			config.Nims[self.feid].dvbs.simpleDiSEqCSetVoltageTone = self.simple_tone
@@ -447,7 +455,15 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			self.state += 1
 
 		elif self.state == 1:
-			if self.circular_setup:
+			if self.diseqc[self.port_index] != 3600:
+				self.statusTimer.stop()
+				self.count = 0
+				self.state = 0
+				self.index = len(self.sat_frequencies) - 1
+				self.tunerStopScan(False)
+				return
+
+			if self.circular_setup == 1:
 				if self.raw_channel:
 					self.raw_channel.receivedTsidOnid.get().remove(self.gotTsidOnid)
 				del self.frontend
@@ -457,6 +473,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 					self.raw_channel = None
 				if self.raw_channel:
 					self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
+
 			InitNimManager(nimmanager)
 
 			self.tuner = Tuner(self.frontend)
