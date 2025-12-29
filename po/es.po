@@ -17230,6 +17230,9 @@ msgstr "Guardar timeshift como película y detener la grabación"
 msgid "Save time shift buffer now and continue recording"
 msgstr "Guarde el búfer timeshift ahora y continúe grabando"
 
+msgid "Save timeshift with the STOP key"
+msgstr "Guardar timeshift con la tecla STOP"
+
 msgid "Saved lines in script messages"
 msgstr "Líneas guardadas en mensajes de script"
 
@@ -17554,6 +17557,9 @@ msgstr ""
 "Seleccione \"Sí\" si está utilizando un multiswitch que requiere una señal "
 "de comando DiSEqC en el Puerto-A. Seleccione 'No' para todas las demás "
 "configuraciones."
+
+msgid "Select 'Yes' if you want to save timeshift current with the STOP key when zapping to the next channel."
+msgstr "Seleccione 'Sí' si desea guardar timeshift actual con la tecla STOP al cambiar al siguiente canal."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
 msgstr "Seleccione 'Sí' si desea activar el televisor cuando se inicie el temporizador de encendido 'Encendido'."

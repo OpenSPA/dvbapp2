@@ -863,7 +863,7 @@ class InfoBarTimeshift:
 					message = message_space
 					choice = choice_save
 				case "livetv":
-					message = message_livetv
+					message = "" if config.timeshift.saveWithStopKey.value and config.timeshift.skipReturnToLive.value and config.timeshift.startDelay.value and config.timeshift.favoriteSaveAction.value == "askuser" else message_livetv
 					choice = choice_livetv
 				case "nextfile":
 					message = message_nextfile
