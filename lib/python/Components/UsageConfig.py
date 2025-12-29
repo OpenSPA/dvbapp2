@@ -2543,7 +2543,7 @@ def InitUsageConfig():
 	config.timeshift.checkEvents = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in (15, 30, 60, 120, 240, 480)])
 	config.timeshift.checkFreeSpace = ConfigSelection(default=0, choices=[(0, _("No"))] + [(x * 1024, _("%d GB") % x) for x in (1, 2, 4, 8)])
 	config.timeshift.deleteAfterZap = ConfigYesNo(default=True)
-	config.timeshift.saveWithStopKey = ConfigYesNo(default=False)	
+	config.timeshift.saveWithStopKey = ConfigYesNo(default=False)
 	config.timeshift.favoriteSaveAction = ConfigSelection(default="askuser", choices=[
 		("askuser", _("Ask user")),
 		("savetimeshift", _("Save and stop")),
