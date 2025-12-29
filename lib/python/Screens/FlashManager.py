@@ -684,7 +684,7 @@ class FlashImage(Screen):
 
 	##### OPENSPA [morser] Prepare for beta images #######################
 	def betaEnd(self):
-		self.unzip()
+		self.unzip() if not self.downloadOnly else self.close()
 	######################################################################
 
 	def downloadProgress(self, current, total):
@@ -694,10 +694,7 @@ class FlashImage(Screen):
 
 	def downloadEnd(self, filename=None):
 		self.downloader.stop()
-		if self.downloadOnly:
-			self.close()
-		else:
-			self.unzip()
+		self.unzip() if not self.downloadOnly else self.close()
 
 	def downloadError(self, error):
 		self.downloader.stop()
