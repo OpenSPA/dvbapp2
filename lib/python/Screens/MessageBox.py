@@ -39,7 +39,7 @@ class MessageBox(Screen):
 			self.list = [(_("Yes"), True), (_("No"), False)] if list is None else list
 			self["list"] = MenuList(self.list)
 			if isinstance(default, bool):
-				self.startIndex = 0 if default else 1
+				self.startIndex = 0 if default and list else 1
 			elif isinstance(default, int):
 				self.startIndex = default
 			else:
