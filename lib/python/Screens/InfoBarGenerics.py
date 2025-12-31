@@ -3877,7 +3877,7 @@ class InfoBarInstantRecord:
 			self.notificationOnExit = True if "no" in config.usage.leave_movieplayer_onExit.value else False
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			choiceList = [
-				(_("Stop recording") if len(self.recording) == 1 else _("Delete or stop recordings"), "stop")
+				(_("Stop recording") if len(self.recording) == 1 else _("Stop or delete recordings"), "stop")
 			] + commonRecord + [
 				(_("Change recording (Duration)"), "changeduration"),
 				(_("Change recording (End time)"), "changeendtime")
@@ -4073,6 +4073,11 @@ class InfoBarInstantRecord:
 			if answer:
 				self.session.nav.RecordTimer.removeEntry(self.recording[entry])
 				remove = self.recording.remove(self.recording[entry])
+			else:
+				if entry is not None and entry != -1:
+					msg = _("Do you want to delete this recording?") + "\n"
+					msg += self.recording[entry].name + "\n"
+					self.session.openWithCallback(confirmDeleteRecording, MessageBox, msg, MessageBox.TYPE_YESNO)
 
 		def confirmDeleteRecording(answer=False):
 			if answer:
@@ -4080,17 +4085,12 @@ class InfoBarInstantRecord:
 				if self.deleteRecording:
 					self.moveToTrash(self.recording[entry])
 				self.recording.remove(self.recording[entry])
-			else:
-				if entry is not None and entry != -1:
-					msg = _("Do you want to stop this recording?") + "\n"
-					msg += self.recording[entry].name + "\n"
-					self.session.openWithCallback(stopRecordingOrCancel, MessageBox, msg, MessageBox.TYPE_YESNO)
 
 		if entry is not None and entry != -1:
 			if self.deleteRecording:
-				msg = _("want to stop and delete this recording?") + "\n"
+				msg = _("Do you want to stop this recording?") + "\n" + _("Choose \"No\" to delete it") + "\n"
 			msg += self.recording[entry].name + "\n"
-			self.session.openWithCallback(confirmDeleteRecording, MessageBox, msg, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(stopRecordingOrCancel, MessageBox, msg, MessageBox.TYPE_YESNO)
 
 	def stopDeleteSingleEntryRecording(self, entry=-1):
 		def confirmDeleteRecording(answer=False):

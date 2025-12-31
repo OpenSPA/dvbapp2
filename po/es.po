@@ -4397,6 +4397,9 @@ msgstr "Elección en dónde poner \"%s\""
 msgid "Choose Bouquet"
 msgstr "Elige grupo"
 
+msgid "Choose \"No\" to delete it"
+msgstr "Seleccione \"No\" para eliminarla"
+
 msgid "Choose Tuner"
 msgstr "Elige sintonizador"
 
@@ -6638,9 +6641,6 @@ msgstr "Eliminar registro"
 msgid "Delete only highlighted file"
 msgstr "Eliminar solo archivo resaltado"
 
-msgid "Delete or stop recordings"
-msgstr "Eliminar o detener grabaciones"
-
 msgid "Delete or Wipe the highlighted slot"
 msgstr "Eliminar o borrar la ranura resaltada"
 
@@ -7287,6 +7287,9 @@ msgstr "¿Desea eliminar los ajustes antiguos de / etc / enigma2 primero?"
 
 msgid "Do you want to delete this log file?"
 msgstr "¿Desea eliminar este archivo de registro?"
+
+msgid "Do you want to delete this recording?"
+msgstr "¿Quieres eliminar esta grabación?"
 
 #
 msgid "Do you want to do a service scan?"
@@ -21458,6 +21461,9 @@ msgstr "Detener el evento actual pero no los siguientes"
 
 msgid "Stop entry"
 msgstr "Detener entrada"
+
+msgid "Stop or delete recordings"
+msgstr "Detener o eliminar grabaciones"
 
 #
 msgid "Stop playing this movie?"
