@@ -4088,8 +4088,8 @@ class InfoBarInstantRecord:
 
 		if entry is not None and entry != -1:
 			if self.deleteRecording:
-				msg = _("Do you want to stop this recording?") + "\n" + _("Choose \"No\" to delete it") + "\n"
-			msg += self.recording[entry].name + "\n"
+				msg = _("Do you want to stop this recording?") + "\n"
+			msg += self.recording[entry].name + "\n" + _("Choose \"No\" to delete it")
 			self.session.openWithCallback(stopRecordingOrCancel, MessageBox, msg, MessageBox.TYPE_YESNO)
 
 	def stopDeleteSingleEntryRecording(self, entry=-1):
