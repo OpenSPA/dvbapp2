@@ -6426,6 +6426,12 @@ msgid "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
 
+msgid "Do you want to stop and delete this recording?"
+msgstr ""
+
+msgid "Do you want to stop and delete this recordings?"
+msgstr ""
+
 msgid "Do you want to stop this recording?"
 msgstr ""
 
@@ -21879,9 +21885,6 @@ msgid "WAN Geolocation"
 msgstr ""
 
 msgid "WAN connection information"
-msgstr ""
-
-msgid "want to stop and delete this recording?"
 msgstr ""
 
 msgid "want to stop and delete this recordings?"

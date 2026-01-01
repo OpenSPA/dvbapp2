@@ -4102,7 +4102,7 @@ class InfoBarInstantRecord:
 
 		if entry is not None and entry != -1:
 			if self.deleteRecording:
-				msg = _("want to stop and delete this recording?") + "\n"
+				msg = _("Do you want to stop and delete this recording?") + "\n"
 			msg += self.recording[entry].name + "\n"
 			self.session.openWithCallback(confirmDeleteRecording, MessageBox, msg, MessageBox.TYPE_YESNO)
 
@@ -4116,7 +4116,7 @@ class InfoBarInstantRecord:
 						self.moveToTrash(entry[0])
 
 		if self.deleteRecording:
-			msg = _("want to stop and delete this recordings?") + "\n"
+			msg = _("Do you want to stop and delete this recordings?") + "\n"
 		for entry in items:
 			msg += entry[0].name + "\n"
 		self.session.openWithCallback(confirmDeleteAllRecordings, MessageBox, msg, MessageBox.TYPE_YESNO)
