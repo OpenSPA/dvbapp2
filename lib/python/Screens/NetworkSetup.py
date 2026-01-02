@@ -2582,7 +2582,6 @@ class NetworkZerotierSetup(Setup):
 		items = []
 		serviceOnline = False
 		serviceVersion = ""
-		membership = None
 		name = ""
 		status = ""
 		ipv4 = ""
