@@ -131,7 +131,7 @@ class NetworkAdapterSelection(Screen):
 		for adapter in self.adapters:
 			active_int = iNetwork.getAdapterAttribute(adapter[1], "up")
 			if "eth" in adapter[1] or "wlan" in adapter[1]:
-				self.list.append(self.buildInterfaceList(adapter[1], _(adapter[0]), default_int, active_int))
+				self.list.append(self.buildInterfaceList(adapter[1], _(adapter[0]), 0, active_int))
 		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			self["key_blue"].setText(_("Network Wizard"))
 		self["list"].setList(self.list)
