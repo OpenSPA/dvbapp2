@@ -3,7 +3,6 @@ from math import ceil
 from os import listdir
 from os.path import exists, isdir, join, realpath
 from re import compile
-from shlex import split
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
