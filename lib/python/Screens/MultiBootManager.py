@@ -17,7 +17,7 @@ from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop
 from Screens.Console import Console as ConsoleScreen
-from Tools.Directories import fileExists, fileWriteLine, fileReadLine
+from Tools.Directories import fileExists, fileReadLines, fileReadLine, fileWriteLine, fileWriteLines
 from Tools.MultiBoot import MultiBoot
 
 ### OPENSPA [morser] prepare for kexec usb slots ####################
@@ -183,9 +183,9 @@ class MultiBootManager(Screen):
 	def deleteImageCallback(self, result):
 		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
 		if result:
-			print("[MultiBootManager] %s deletion was not completely successful, status %d!" % (currentSelected[0], result))
+			print(f"[MultiBootManager] {currentSelected[0]} deletion was not completely successful, status {result}!")
 		else:
-			print("[MultiBootManager] %s marked as deleted." % currentSelected[0])
+			print(f"[MultiBootManager] {currentSelected[0]} marked as deleted.")
 		self.getImagesList()
 
 	def disableChkrootAnswer(self, answer):   ## OPENSPA [morser] add question to permanently delete the images in the slots
@@ -231,9 +231,9 @@ class MultiBootManager(Screen):
 	def restoreImageCallback(self, result):
 		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
 		if result:
-			print("[MultiBootManager] %s restoration was not completely successful, status %d!" % (currentSelected[0], result))
+			print(f"[MultiBootManager] {currentSelected[0]} restoration was not completely successful, status {result}!")
 		else:
-			print("[MultiBootManager] %s restored." % currentSelected[0])
+			print(f"[MultiBootManager] {currentSelected[0]} restored.")
 		self.getImagesList()
 
 	def reboot(self):
@@ -243,9 +243,9 @@ class MultiBootManager(Screen):
 	def rebootCallback(self, result):
 		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
 		if result:
-			print("[MultiBootManager] %s activation was not completely successful, status %d!" % (currentSelected[0], result))
+			print(f"[MultiBootManager] {currentSelected[0]} activation was not completely successful, status {result}!")
 		else:
-			print("[MultiBootManager] %s activated." % currentSelected[0])
+			print(f"[MultiBootManager] {currentSelected[0]} activated.")
 			self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def selectionChanged(self):
@@ -572,11 +572,9 @@ class GPTSlotManager(Setup):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append((_("Device"), self.GPTSlotManagerLocation))
 		if self.GPTSlotManagerDevice:
 			self.list.append((_("Number of Slots"), self.GPTSlotManagerSlots))
-		self["config"].list = self.list
-		self["config"].setList(self.list)
+		Setup.createSetup(self, appendItems=self.list)
 
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
@@ -607,30 +605,21 @@ class GPTSlotManager(Setup):
 		def createStartupFiles():
 			numSlots = self.GPTSlotManagerSlots.value
 			for i in range(numSlots):
-				slot = 5 + i
-				part = 2 + i
-				kernel = 2 + i
-				content = f"root=/dev/mmcblk1p{part} rootfstype=ext4 kernel=/kernel{kernel}.img"
-				path = join("/data", f"STARTUP_{slot}")
+				content = f"root=/dev/mmcblk1p{i + 2} rootfstype=ext4 kernel=/kernel{i + 2}.img\n"
+				path = join("/data", f"STARTUP_{i + 5}")
 				if not exists(path):
-					with open(path, "w") as fd:
-						fd.write(f"{content}\n")
+					fileWriteLine(path, content, source=MODULE_NAME)
 
 		def update_bootconfig():
 			numSlots = self.GPTSlotManagerSlots.value
-			bootInfo = ""
+			bootInfo = []
 			for i in range(numSlots):
-				slot = 5 + i
-				kernel = 2 + i
-				bootInfo += f"""
-[SDcard Slot {slot}]
-cmd=fatload mmc 0:1 1080000 /kernel{kernel}.img;bootm;
-arg=${{bootargs}} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4"""
+				bootInfo.append(f"[SDcard Slot {i + 5}]")
+				bootInfo.append(f"cmd=fatload mmc 0:1 1080000 /kernel{i + 2}.img;bootm;")
+				bootInfo.append("arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4")
 
 			bootConfig = "/data/bootconfig.txt"
-			with open(bootConfig, 'r') as file:
-				lines = file.readlines()
-
+			lines = fileReadLines(bootConfig, [], source=MODULE_NAME)
 			newlines = []
 			skipblock = False
 			for line in lines:
@@ -645,22 +634,18 @@ arg=${{bootargs}} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=108
 
 			for i in range(len(lines) - 1, -1, -1):
 				if lines[i].strip().startswith("["):
-					lines.insert(i, bootInfo.strip() + '\n')
+					lines = lines[:i] + bootInfo + lines[i:]
 					break
 
 			if numSlots > 4:
 				for idx, line in enumerate(lines):
 					if line.startswith("fb_pos="):
-						lines[idx] = "fb_pos=100,450\n"
+						lines[idx] = "fb_pos=100,450"
 					elif line.startswith("fb_size="):
-						lines[idx] = "fb_size=1080,300\n"
+						lines[idx] = "fb_size=1080,300"
 					elif line.startswith("font_size="):
-						lines[idx] = "font_size=2\n"
+						lines[idx] = "font_size=2"
 
-			with open(bootConfig, 'w') as file:
-				file.writelines(lines)
-			with open(bootConfig, 'r') as file:
-				lines = file.readlines()
 			recovery_index = None
 			for i, line in enumerate(lines):
 				if line.strip() == "[   Recovery   ]":
@@ -668,13 +653,11 @@ arg=${{bootargs}} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=108
 					break
 			if recovery_index is not None:
 				del lines[recovery_index:recovery_index + 3]
-			with open(bootConfig, 'w') as file:
-				file.writelines(lines)
+			fileWriteLines(bootConfig, lines, source=MODULE_NAME)
 
 		def formatDevice():
 			TARGET = "mmcblk1"
 			TARGET_DEVICE = f"/dev/{TARGET}"
-			DEVICE_LABEL = "dreambox-rootfs"
 			numSlots = self.GPTSlotManagerSlots.value
 
 			if exists(TARGET_DEVICE):
@@ -711,18 +694,16 @@ arg=${{bootargs}} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=108
 
 	def showDeviceSelection(self):
 		def readDevicesCallback():
-			choiceList = [
-				(_("Cancel"), "")
-			]
+			choiceList = [(_("Cancel"), "")]
 			for deviceData in self.deviceData.items():
-				choiceList.append(("%s (%s)" % (deviceData[1], deviceData[0]), 1))
+				choiceList.append((f"{deviceData[1]} ({deviceData[0]})", 1))
 			self.session.openWithCallback(self.deviceSelectionCallback, MessageBox, text=_("Please select the device or Cancel to cancel the selection."), list=choiceList, windowTitle=self.getTitle())
 
 		self.readDevices(readDevicesCallback)
 
 	def deviceSelectionCallback(self, selection):
 		if selection:
-			print("[GPTSlotManager] deviceSelectionCallback DEBUG: selection=%s." % selection)
+			print(f"[GPTSlotManager] deviceSelectionCallback DEBUG: selection={selection}.")
 			self.GPTSlotManagerDevice = selection
 			locations = self.GPTSlotManagerLocation.getSelectionList()
 			path = self.deviceData[selection][0]
@@ -732,7 +713,7 @@ arg=${{bootargs}} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=108
 				self.GPTSlotManagerLocation.setSelectionList(default=None, choices=locations)
 				self.GPTSlotManagerLocation.value = path
 			self.GPTSlotManagerDevice = selection
-			self.updateStatus("Found SDCARD: %s" % name)
+			self.updateStatus(f"Found SDCARD: {name}")
 			devicePath = self.deviceData[selection][0]
 			diskSize = self.partitionSizeGB(devicePath)
 			print(f"[GPTSlotManager] devicePath={devicePath}, diskSize={diskSize}GB")
@@ -750,8 +731,8 @@ arg=${{bootargs}} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=108
 	def readDevices(self, callback=None):
 		def readDevicesCallback():
 			base = "mmcblk1"
-			devbase = "/dev/" + base
-			sysbase = "/sys/block/" + base
+			devbase = f"/dev/{base}"
+			sysbase = f"/sys/block/{base}"
 			self.deviceData = {}
 			if not isdir(sysbase) or not exists(devbase):
 				self.updateStatus()
@@ -1058,7 +1039,7 @@ class ChkrootSlotManager(Setup):
 		def readDevicesCallback():
 			choiceList = [(_("Cancel"), None)]
 			for device_id, (path, name) in self.deviceData.items():
-				choiceList.append(("%s (%s)" % (name, path), device_id))
+				choiceList.append((f"{name} ({path})", device_id))
 			self.session.openWithCallback(self.deviceSelectionCallback, MessageBox, text=_("Select target device for slot creation"), list=choiceList, windowTitle=self.getTitle())
 		self.readDevices(readDevicesCallback)
 
@@ -1079,7 +1060,7 @@ class ChkrootSlotManager(Setup):
 			self.deviceSlots = self.partitionSizeGB(path)
 			self.ChkrootSlotManagerSlots = ConfigInteger(default=4, limits=(1, self.deviceSlots))
 			self.createSetup()
-		self.updateStatus("Selected device: %s" % self.deviceData[selection][1])
+		self.updateStatus(f"Selected device: {self.deviceData[selection][1]}")
 
 	def partitionSizeGB(self, dev):
 		try:
@@ -1101,7 +1082,7 @@ class ChkrootSlotManager(Setup):
 						return token[len(mode):]
 				return None
 
-			print("[ChkrootSlotManager] readDevicesCallback DEBUG: retVal=%s, output='%s'." % (retVal, output))
+			print(f"[ChkrootSlotManager] readDevicesCallback DEBUG: retVal={retVal}, output='{output}'.")
 			mtdblack = BoxInfo.getItem("mtdblack") or ""
 			blacklist = mtdblack.strip().split()
 
@@ -1244,7 +1225,7 @@ class UBISlotManager(Setup):
 		def readDevicesCallback():
 			choiceList = [(_("Cancel"), None)]
 			for device_id, (path, name) in self.deviceData.items():
-				choiceList.append(("%s (%s)" % (name, path), device_id))
+				choiceList.append((f"{name} ({path})", device_id))
 			self.session.openWithCallback(self.deviceSelectionCallback, MessageBox, text=_("Select target device for slot creation"), list=choiceList, windowTitle=self.getTitle())
 		self.readDevices(readDevicesCallback)
 
@@ -1262,7 +1243,7 @@ class UBISlotManager(Setup):
 			self.UBISlotManagerLocation.setSelectionList(default=None, choices=locations)
 			self.UBISlotManagerLocation.value = path
 			self.createSetup()
-		self.updateStatus("Selected device: %s" % self.deviceData[selection][1])
+		self.updateStatus(f"Selected device: {self.deviceData[selection][1]}")
 
 	def partitionSizeGB(self, dev):
 		try:
@@ -1284,7 +1265,7 @@ class UBISlotManager(Setup):
 						return token[len(mode):]
 				return None
 
-			print("[UBISlotManager] readDevicesCallback DEBUG: retVal=%s, output='%s'." % (retVal, output))
+			print(f"[UBISlotManager] readDevicesCallback DEBUG: retVal={retVal}, output='{output}'.")
 			mtdblack = BoxInfo.getItem("mtdblack") or ""
 			blacklist = mtdblack.strip().split()
 
