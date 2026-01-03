@@ -192,7 +192,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
                 <item key="udpxy_setup" level="2" text="Udpxy Setup" weight="65"><screen module="NetworkSetup" screen="NetworkUdpxy"/></item>
 				<item key="xupnpd_setup" level="2" text="Xupnpd Setup" weight="70"><screen module="NetworkSetup" screen="NetworkXupnpd"/></item>
 				<item key="netsamba_setup" level="2" text="Samba Settings" weight="60" requires="samba"><screen module="NetworkSetup" screen="NetworkSambaSetup" /></item>
-				<item key="zerotier_setup" level="2" text="Zerotier Settings" weight="65" requires="zerotier"><screen module="NetworkSetup" screen="NetworkZerotierSetup" /></item>				
+				<!-- item key="zerotier_setup" level="2" text="ZeroTier Settings" weight="65" requires="zerotier"><screen module="NetworkSetup" screen="NetworkZeroTierSetup" /></item -->
 			</menu>
 			<!-- Menu / Setup / System (Was: Menu / Setup / System / Extended System) -->
 			<menu key="extended" level="0" text="System" weight="95">

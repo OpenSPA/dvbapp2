@@ -2518,7 +2518,7 @@ class NetworkZerotierSetup(Setup):
 		self.cachedToken = None
 		self.lastInfo = None
 		self.joined = False
-		Setup.__init__(self, session=session, setup="NetworkZerotier")
+		Setup.__init__(self, session=session, setup="NetworkZeroTier")
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText(_("Refresh"))
 		self["zerotierActions"] = HelpableActionMap(self, ["ColorActions"], {
@@ -2529,7 +2529,7 @@ class NetworkZerotierSetup(Setup):
 
 	def changedEntry(self):
 		current = self["config"].getCurrent()
-		if current and len(current) > 1 and current[1] is config.network.zerotierNetworkId:
+		if current and len(current) > 1 and current[1] is config.network.ZeroTierNetworkId:
 			self.createSetup()
 			self.setJoinLeaveButton()
 		return Setup.changedEntry(self)
@@ -2585,7 +2585,7 @@ class NetworkZerotierSetup(Setup):
 		return False
 
 	def setJoinLeaveButton(self):
-		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		nwid = str(config.network.ZeroTierNetworkId.value or "").strip()
 		if not nwid:
 			self["key_yellow"].setText("")
 			self["zerotierActions"].setEnabled(False)
@@ -2595,7 +2595,7 @@ class NetworkZerotierSetup(Setup):
 		self["key_yellow"].setText(_("Leave") if self.joined else _("Join"))
 
 	def toggleJoinLeave(self):
-		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		nwid = str(config.network.ZeroTierNetworkId.value or "").strip()
 		if not nwid:
 			return
 
@@ -2609,7 +2609,7 @@ class NetworkZerotierSetup(Setup):
 		self.refreshInfo()
 
 	def createSetup(self):  # NOSONAR silence S2638
-		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		nwid = str(config.network.ZeroTierNetworkId.value or "").strip()
 		if not nwid:
 			self.lastInfo = None
 			Setup.createSetup(self, appendItems=[])
@@ -2647,13 +2647,13 @@ class NetworkZerotierSetup(Setup):
 		items.append(getConfigListEntry((_("Joined"), 0), ReadOnly(NoSave(ConfigText(default=_("Yes") if self.joined else _("No"), fixed_size=False)))))
 		items.append(getConfigListEntry((_("Service online"), 0), ReadOnly(NoSave(ConfigText(default=_("Yes") if serviceOnline else _("No"), fixed_size=False)))))
 		if serviceVersion:
-			items.append(getConfigListEntry((_("ZeroTier version"), 0), ReadOnly(NoSave(ConfigText(default=serviceVersion, fixed_size=False)))))
+			items.append(getConfigListEntry((_("Version"), 0), ReadOnly(NoSave(ConfigText(default=serviceVersion, fixed_size=False)))))
 
 		if self.joined:
 			if name:
-				items.append(getConfigListEntry((_("Network name"), 0), ReadOnly(NoSave(ConfigText(default=name, fixed_size=False)))))
+				items.append(getConfigListEntry((_("Name"), 0), ReadOnly(NoSave(ConfigText(default=name, fixed_size=False)))))
 			if status:
-				items.append(getConfigListEntry((_("Network status"), 0), ReadOnly(NoSave(ConfigText(default=status, fixed_size=False)))))
+				items.append(getConfigListEntry((_("Status"), 0), ReadOnly(NoSave(ConfigText(default=status, fixed_size=False)))))
 			items.append(getConfigListEntry((_("Tunnel IPv4"), 0), ReadOnly(NoSave(ConfigText(default=ipv4 or _("N/A"), fixed_size=False)))))
 			items.append(getConfigListEntry((_("Tunnel IPv6"), 0), ReadOnly(NoSave(ConfigText(default=ipv6 or _("N/A"), fixed_size=False)))))
 		else:
