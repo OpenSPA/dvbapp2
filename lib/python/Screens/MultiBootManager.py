@@ -1,7 +1,7 @@
 from os import popen
 from math import ceil
 from os import listdir
-from os.path import exists, join, realpath
+from os.path import exists, isdir, join, realpath
 from re import compile
 from shlex import split
 
