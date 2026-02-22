@@ -18222,7 +18222,7 @@ msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act dur
 msgstr "Seleccione cómo actuarán los botones de flecha 'ARRIBA', 'ABAJO', 'IZQUIERDA' y 'DERECHA' durante las acciones de búsqueda."
 
 msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
-msgstr "Seleccione cómo se procesa el flujo de datos descifrados. 'Automático' utiliza escrituras asíncronas (menor consumo de CPU) con retorno automático a escrituras síncronas si no se admite AIO del kernel. 'Síncrono' fuerza escrituras bloqueantes (estable, máxima compatibilidad)."
+msgstr "Seleccione cómo se procesa el stream de datos descifrados. 'Automático' utiliza escrituras asíncronas (menor consumo de CPU) con retorno automático a escrituras síncronas si no se admite AIO del kernel. 'Síncrono' fuerza escrituras bloqueantes (estable, máxima compatibilidad)."
 
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Seleccione cómo actuarán los botones numéricos durante las acciones de búsqueda."
@@ -21928,6 +21928,9 @@ msgstr "Sincronizar NTP cada"
 msgid "Sync failure moving back to origin!"
 msgstr "Error de sincronización regresando al origen!"
 
+msgid "Sync mode"
+msgstr "Modo de sincronización"
+
 msgid "Sync time using"
 msgstr "Sincronizar hora usando"
 
@@ -21936,7 +21939,7 @@ msgid "Synchronize system time using transponder or Internet."
 msgstr "Sincronizar hora de sistema mediante transpondedor o internet."
 
 msgid "Synchronous"
-msgstr "Sincrónico"
+msgstr "Síncrono"
 
 msgid "Syrian Arab Republic"
 msgstr "República Árabe Siria"

@@ -19351,6 +19351,9 @@ msgstr ""
 msgid "Sync failure moving back to origin!"
 msgstr ""
 
+msgid "Sync mode"
+msgstr ""
+
 msgid "Sync time using"
 msgstr ""
 
