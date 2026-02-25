@@ -958,7 +958,7 @@ void eDVBScan::channelDone()
 						eDVBFrontendParametersTerrestrial terr;
 						terr.set(d);
 						feparm->setDVBT(terr);
-						
+
 						unsigned long hash=0;
 						feparm->getHash(hash);
 						ns = buildNamespace(onid, tsid, hash);
@@ -1116,7 +1116,7 @@ void eDVBScan::channelDone()
 
 							int signal = 0;
 							ePtr<iDVBFrontend> fe;
-							
+
 							if (!m_channel->getFrontend(fe))
 								signal = fe->readFrontendData(iFrontendInformation_ENUMS::signalQuality);
 
@@ -1358,6 +1358,7 @@ void eDVBScan::channelDone()
 				m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
 			if (i.second)
 			{
+				m_new_servicerefs.push_back(ref);
 				m_last_service = i.first;
 				m_event(evtNewService);
 			}
@@ -1446,8 +1447,9 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 	m_new_channels.clear();
 	m_tuner_data.clear();
 	m_new_services.clear();
+	m_new_servicerefs.clear();
 	m_last_service = m_new_services.end();
-		
+
 	if (m_flags & scanBlindSearch)
 	{
 		/*
@@ -1510,6 +1512,17 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 		bool clearTerrestrial=false;
 		bool clearCable=false;
 		std::set<unsigned int> scanned_sat_positions;
+
+		for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::const_iterator
+			service(m_new_services.begin()); service != m_new_services.end(); ++service)
+		{
+			ePtr<eDVBService> dvb_service;
+			if (!db->getService(service->first, dvb_service))
+			{
+				if (dvb_service->m_flags & eDVBService::dxDontshow)
+					service->second->m_flags |= eDVBService::dxDontshow;
+			}
+		}
 
 		std::list<ePtr<iDVBFrontendParameters> >::iterator it(m_ch_scanned.begin());
 		for (;it != m_ch_scanned.end(); ++it)
@@ -1759,10 +1772,10 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 		{
 			bouquet->m_bouquet_name = "Last Scanned";
 
-			for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::const_iterator
-				service(m_new_services.begin()); service != m_new_services.end(); ++service)
+			for (std::vector<eServiceReferenceDVB>::const_iterator
+				service(m_new_servicerefs.begin()); service != m_new_servicerefs.end(); ++service)
 			{
-				bouquet->m_services.push_back(service->first);
+				bouquet->m_services.push_back(*service);
 			}
 			bouquet->flushChanges();
 			eDVBDB::getInstance()->renumberBouquet();
@@ -1846,7 +1859,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 					{
 					/* DISH/BEV servicetypes: */
 					case 128:
-					case 131: /*Sky UK OpenTV EPG channel */ 
+					case 131: /*Sky UK OpenTV EPG channel */
 					case 133:
 					case 137:
 					case 144:
@@ -1933,6 +1946,21 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 
 					/* Remove old entry with wrong serviceType */
 					m_new_services.erase(sit);
+
+					/* Update m_new_servicerefs: replace old serviceRef with correct SDT serviceType */
+					for (std::vector<eServiceReferenceDVB>::iterator srit = m_new_servicerefs.begin();
+						srit != m_new_servicerefs.end(); ++srit)
+					{
+						if (srit->getServiceID() == ref.getServiceID() &&
+							srit->getDVBNamespace() == ref.getDVBNamespace() &&
+							srit->getTransportStreamID() == ref.getTransportStreamID() &&
+							srit->getOriginalNetworkID() == ref.getOriginalNetworkID())
+						{
+							*srit = ref;  /* Update with correct serviceType */
+							break;
+						}
+					}
+
 					found_existing = true;
 					SCAN_eDebug("[eDVBScan] SID %04x: replacing PMT entry (type %d) with SDT entry (type %d)",
 						ref.getServiceID().get(), sit->first.getServiceType(), ref.getServiceType());
@@ -1946,6 +1974,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 
 			if (i.second && !found_existing)
 			{
+				m_new_servicerefs.push_back(ref);
 				m_last_service = i.first;
 				m_event(evtNewService);
 			}
@@ -2093,6 +2122,21 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 
 					/* Remove old entry with wrong serviceType */
 					m_new_services.erase(sit);
+
+					/* Update m_new_servicerefs: replace old serviceRef with correct VCT serviceType */
+					for (std::vector<eServiceReferenceDVB>::iterator srit = m_new_servicerefs.begin();
+						srit != m_new_servicerefs.end(); ++srit)
+					{
+						if (srit->getServiceID() == ref.getServiceID() &&
+							srit->getDVBNamespace() == ref.getDVBNamespace() &&
+							srit->getTransportStreamID() == ref.getTransportStreamID() &&
+							srit->getOriginalNetworkID() == ref.getOriginalNetworkID())
+						{
+							*srit = ref;  /* Update with correct serviceType */
+							break;
+						}
+					}
+
 					found_existing = true;
 					SCAN_eDebug("[eDVBScan] SID %04x: replacing PMT entry (type %d) with VCT entry (type %d)",
 						ref.getServiceID().get(), sit->first.getServiceType(), ref.getServiceType());
@@ -2106,6 +2150,7 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 
 			if (i.second && !found_existing)
 			{
+				m_new_servicerefs.push_back(ref);
 				m_last_service = i.first;
 				m_event(evtNewService);
 			}
