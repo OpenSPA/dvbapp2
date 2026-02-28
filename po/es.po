@@ -991,6 +991,30 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d package found."
+msgid_plural "%d packages found."
+msgstr[0] "%d paquete encontrado."
+msgstr[1] "%d paquetes encontrados."
+
+#, python-format
+msgid "%d package has an update."
+msgid_plural "%d packages have updates."
+msgstr[0] "El paquete %d tiene una actualización."
+msgstr[1] "Los paquetes %d tienen actualizaciones."
+
+#, python-format
+msgid "%d package installable."
+msgid_plural "%d packages installable."
+msgstr[0] "%d paquete instalable."
+msgstr[1] "%d paquetes instalables."
+
+#, python-format
+msgid "%d package installed."
+msgid_plural "%d packages installed."
+msgstr[0] "%d paquete instalado."
+msgstr[1] "%d paquetes instalados."
+
+#, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
 msgstr[0] "%d paquete marcado para instalar."
@@ -2939,7 +2963,7 @@ msgid "Auto standby"
 msgstr "Reposo automático"
 
 #
-msgid "Auto(not available)"
+msgid "Auto (not available)"
 msgstr "Auto (no disponible)"
 
 msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"
@@ -6383,8 +6407,8 @@ msgstr "Carpeta columna derecha predeterminada"
 msgid "Default settings"
 msgstr "Ajustes por defecto"
 
-msgid "Default sort order for directories in the left column"
-msgstr "Orden predeterminado para carpetas en la columna izquierda"
+msgid "Default sort order for directories in the left column."
+msgstr "Orden predeterminado para carpetas en la columna izquierda."
 
 msgid "Default sort order for directories in the right column."
 msgstr "Orden predeterminado para carpetas en la columna derecha."
@@ -15130,13 +15154,15 @@ msgstr "Por favor espere, se está eliminando la copia de la memoria interna. Es
 msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
 msgstr "Por favor espere, la memoria flash se está copiando a flash expander. Esto podría tardar unos minutos en completarse."
 
-
 #, python-format
 msgid "Please wait, restarting %s."
 msgstr "Por favor, espere, se está reiniciando %s."
 
 msgid "Please wait."
 msgstr "Espera por favor."
+
+msgid "Please wait, swap is being created. This could take a few minutes to complete."
+msgstr "Espere, se está creando el intercambio. Puede tardar unos minutos."
 
 #
 msgid "Please wait..."
@@ -22848,29 +22874,29 @@ msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 "Esta opción te permite ajustar el nivel de contraste dinámico de la imagen."
 
-msgid "This option allows you can config the Colordepth for UHD"
-msgstr "Esta opción le permite configurar la profundidad de color para UHD"
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Esta opción le permite configurar la profundidad de color para UHD."
 
-msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "Esta opción le permite configurar la colorimetría para HDR"
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Esta opción le permite configurar la colorimetría para HDR."
 
-msgid "This option allows you can config the Colorspace from Auto to RGB"
-msgstr "Esta opción le permite configurar el espacio de colores de Auto a RGB"
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Esta opción le permite configurar el espacio de colores de Auto a RGB."
 
-msgid "This option allows you can enable or disable the 10 Bit Color Mode"
-msgstr "Esta opción permite activar o desactivar el modo de color de 10 bits"
+msgid "This option allows you to enable or disable the 10 Bit Color Mode."
+msgstr "Esta opción permite activar o desactivar el modo de color de 10 bits."
 
-msgid "This option allows you can enable or disable the 12 Bit Color Mode"
-msgstr "Esta opción permite activar o desactivar el modo de color de 12 bits"
+msgid "This option allows you to enable or disable the 12 Bit Color Mode."
+msgstr "Esta opción permite activar o desactivar el modo de color de 12 bits."
 
-msgid "This option allows you can force the HDR Modes for UHD"
-msgstr "Esta opción te permite forzar los modos HDR para UHD"
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Esta opción te permite forzar los modos HDR para UHD."
 
-msgid "This option allows you can force the HDR10 Modes for UHD"
-msgstr "Esta opción te permite forzar los modos HDR10 para UHD"
+msgid "This option allows you to force the HDR10 Modes for UHD."
+msgstr "Esta opción te permite forzar los modos HDR10 para UHD."
 
-msgid "This option allows you can force the HLG Modes for UHD"
-msgstr "Esta opción te permite forzar los modos HLG para UHD"
+msgid "This option allows you to force the HLG Modes for UHD."
+msgstr "Esta opción te permite forzar los modos HLG para UHD."
 
 msgid ""
 "This option allows you to choose how to display elapsed time, as + or -."
@@ -22911,8 +22937,8 @@ msgstr "Esta opción te permite reforzar los tonos azules de la imagen."
 msgid "This option allows you to boost the green tones in the picture."
 msgstr "Esta opción te permite reforzar los tonos verdes de la imagen."
 
-msgid "This option allows you to bypass HDMI EDID check"
-msgstr "Esta opción te permite comprobar el bypass HDMI EDID"
+msgid "This option allows you to bypass HDMI EDID check."
+msgstr "Esta opción te permite comprobar el bypass HDMI EDID."
 
 # A/V Settings
 msgid "This option allows you to change the virtual loudspeaker position."
@@ -22982,8 +23008,8 @@ msgstr "Esta opción te permite establecer valores de compensación para diferen
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Esta opción permite visualizar SNR como porcentaje (no todos los receptores lo soportan)."
 
-msgid "This option allows you to use all HDMI Modes"
-msgstr "Esta opción te permite usar todos los modos HDMI"
+msgid "This option allows you to use all HDMI Modes."
+msgstr "Esta opción te permite usar todos los modos HDMI."
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Esta opción te permite ver los ajustes nuevos y antiguos, unos al lado de los otros."
@@ -29159,30 +29185,6 @@ msgstr "Tu receptor no tiene conexión a internet"
 
 msgid "inactive"
 msgstr "inactivo"
-
-#, python-format
-msgid "%d package found."
-msgid_plural "%d packages found."
-msgstr[0] "%d paquete encontrado."
-msgstr[1] "%d paquetes encontrados."
-
-#, python-format
-msgid "%d package has an update"
-msgid_plural "%d packages have updates."
-msgstr[0] "%d paquete tiene una actualización"
-msgstr[1] "%d paquetes tienen una actualización."
-
-#, python-format
-msgid "%d package installable."
-msgid_plural "%d packages installable."
-msgstr[0] "%d paquete instalable."
-msgstr[1] "%d paquetes instalables."
-
-#, python-format
-msgid "%d package installed."
-msgid_plural "%d packages installed."
-msgstr[0] "%d paquete instalado."
-msgstr[1] "%d paquetes instalados."
 
 #, python-format
 msgid "%d package marked for update."
