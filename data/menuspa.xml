@@ -152,8 +152,9 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="oscam_info" level="0" text="OSCam Information" weight="80" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OSCamInfo" /></item>
 				<item key="oscam_info" level="0" text="NCam Information" weight="70" requires="ShowNcamInfo"><screen module="OScamInfo" screen="OSCamInfo" /></item>
 				<item key="cccam_info" level="0" text="CCcam Information" weight="70" requires="ShowCccamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
-				<item key="streamrelay_settings" level="2" text="Stream Relay Settings" weight="110"><screen module="StreamRelaySetup" screen="StreamRelaySetup" /></item>
 				<item key="ci_selection" level="1" text="Common Interface Settings" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+				<item key="softcsa_settings" level="0" text="SoftCSA Settings" weight="105" requires="HasSoftCSA"><setup setupKey="SoftCSA" /></item>
+				<item key="streamrelay_settings" level="2" text="Stream Relay Settings" weight="110"><screen module="StreamRelaySetup" screen="StreamRelaySetup" /></item>
 				<item key="parental_setup" level="0" text="Parental Control Settings" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			</menu>
 			<!-- Menu / Setup / Software Management -->
@@ -183,6 +184,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Setup / Network -->
 			<menu key="network" level="0" text="Network" weight="60">
 				<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
+				<item key="dns_setup" level="1" text="DNS Settings" weight="10"><screen module="NetworkSetup" screen="DNSSettings" /></item>
 				<item key="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
 				<item key="networkservices_setup" level="2" text="Network Services" weight="9"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
 				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
@@ -191,6 +193,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
                 <item key="udpxy_setup" level="2" text="Udpxy Setup" weight="65"><screen module="NetworkSetup" screen="NetworkUdpxy"/></item>
 				<item key="xupnpd_setup" level="2" text="Xupnpd Setup" weight="70"><screen module="NetworkSetup" screen="NetworkXupnpd"/></item>
 				<item key="netsamba_setup" level="2" text="Samba Settings" weight="60" requires="samba"><screen module="NetworkSetup" screen="NetworkSambaSetup" /></item>
+				<!-- item key="zerotier_setup" level="2" text="ZeroTier Settings" weight="65" requires="zerotier"><screen module="NetworkSetup" screen="NetworkZeroTierSetup" /></item -->
 			</menu>
 			<!-- Menu / Setup / System (Was: Menu / Setup / System / Extended System) -->
 			<menu key="extended" level="0" text="System" weight="95">

@@ -132,7 +132,7 @@ SCHEDULER_VALUES = dict([(SCHEDULER_TYPES[x], x) for x in SCHEDULER_TYPES.keys()
 SCHEDULER_TYPE_NAMES = {
 	SCHEDULER_TYPE.AUTODEEPSTANDBY: _("Auto deep standby") if DEEPSTANDBY_SUPPORT else _("Auto shut down"),
 	SCHEDULER_TYPE.AUTOSTANDBY: _("Auto standby"),
-	SCHEDULER_TYPE.DEEPSTANDBY: _("Deep standby") if DEEPSTANDBY_SUPPORT else _("Shut down"),
+	SCHEDULER_TYPE.DEEPSTANDBY: _("Deep Standby") if DEEPSTANDBY_SUPPORT else _("Shut down"),
 	SCHEDULER_TYPE.NONE: _("Do nothing"),
 	SCHEDULER_TYPE.REBOOT: _("Reboot"),
 	SCHEDULER_TYPE.RESTART: _("Restart GUI"),
@@ -820,13 +820,15 @@ class SchedulerOverview(TimerOverviewBase):
 			self.session.nav.Scheduler.cleanup()
 			self.reloadTimerList()
 
-	# def refill(self):
-	#	length = len(self.timerList)
-	#	self.fillTimerList()
-	#	if length and length != len(self.timerList):
-	#		self["timerlist"].entryRemoved(self["timerlist"].getCurrentIndex())
-	#	else:
-	#		self["timerlist"].invalidate()
+	"""
+	def refill(self):
+		length = len(self.timerList)
+		self.fillTimerList()
+		if length and length != len(self.timerList):
+			self["timerlist"].entryRemoved(self["timerlist"].getCurrentIndex())
+		else:
+			self["timerlist"].invalidate()
+	"""
 
 
 class RecordTimerOverview(TimerOverviewBase):
@@ -1488,8 +1490,8 @@ class RecordTimerEdit(Setup):
 		self.timerDescription = ConfigText(default=self.timer.description.replace("\x8a", " ").replace("\n", " "), visible_width=50, fixed_size=False)
 		self.timerType = ConfigSelection(default=RECORDTIMER_TYPES.get(self.timer.justplay + 2 * self.timer.always_zap, "record"), choices=[
 			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.RECORD), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.RECORD)),
-			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP)),
-			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP_RECORD), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP_RECORD))
+			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP_RECORD), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP_RECORD)),
+			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP))
 		])
 		self.timerRepeat = ConfigSelection(default=type, choices=REPEAT_CHOICES)
 		self.timerRepeatPeriod = ConfigSelection(default=repeated, choices=REPEAT_OPTIONS)
@@ -1812,7 +1814,9 @@ class InstantRecordTimerEdit(RecordTimerEdit):
 
 	def keySave(self, result=None):
 		if self.timer.justplay:
-			self.timer.begin += config.recording.zap_margin_before.value * 60
+			# Reset margins for zap timers.
+			# self.timer.begin += config.recording.zap_margin_before.value * 60
+			# self.timer.marginBefore = 0
 			self.timer.hasEndTime = config.recording.zap_has_endtime.value
 			if not self.timer.hasEndTime:
 				self.timer.end = self.timer.begin + 1

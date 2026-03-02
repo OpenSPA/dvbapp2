@@ -10548,7 +10548,7 @@ msgid "Last flash"
 msgstr "Última instal·lació"
 
 msgid "Last Scanned"
-msgstr "Escanejat per darrera vegada"
+msgstr "Últim escanejat"
 
 #
 msgid "Last speed"
@@ -17794,7 +17794,10 @@ msgid "Show next page"
 msgstr "Mostrar pàgina següent"
 
 msgid "Show next picture"
-msgstr "Mostrar pròxima foto"
+msgstr "Mostra la imatge següent"
+
+msgid "Show next service information screen"
+msgstr "Mostra la pantalla d'informació del següent servei"
 
 msgid "Show next system information screen"
 msgstr "Mostrar pròxima pantalla d'informació de sistema"
@@ -23349,7 +23352,9 @@ msgstr "pistes d’àudio"
 msgid "automatic"
 msgstr "automatic"
 
-#
+msgid "Available"
+msgstr "Disponible"
+
 msgid "back"
 msgstr "enrere"
 

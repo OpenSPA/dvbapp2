@@ -55,7 +55,7 @@ def InitUsageConfig():
 
 	config.workaround = ConfigSubsection()
 	config.workaround.deeprecord = ConfigYesNo(default=False)
-	config.workaround.wakeuptime = ConfigSelectionNumber(default=5, stepwidth=1, min=0, max=30, wraparound=True)
+	config.workaround.wakeuptime = ConfigSelection(default=5, choices=[(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(31)])
 	config.workaround.wakeupwindow = ConfigSelectionNumber(default=5, stepwidth=5, min=5, max=60, wraparound=True)
 
 	config.usage = ConfigSubsection()
@@ -110,8 +110,13 @@ def InitUsageConfig():
 	])
 	config.usage.unhandledKeyTimeout = ConfigSelection(default=2, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 6)])
 	config.usage.show_spinner = ConfigYesNo(default=True)
-	config.usage.screenSaverStartTimer = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, _("%d Seconds") % x) for x in (5, 10, 20, 30, 40, 50)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 20, 30, 45, 60)])
+	config.usage.screenSaverStartTimer = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, ngettext("%d Second", "%d Seconds", x) % x) for x in (5, 10, 20, 30, 40, 50)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 20, 30, 45, 60)])
 	config.usage.screenSaverMoveTimer = ConfigSelection(default=10, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 61)])
+	config.usage.screenSaverMode = ConfigSelection(default=1, choices=[
+		(0, _("Blank screen")),
+		(1, _("Logo")),
+		(2, _("Picon"))
+	])
 	config.usage.informationShowAllMenuScreens = ConfigYesNo(default=False)
 	config.usage.informationExtraSpacing = ConfigYesNo(False)
 	config.usage.movieSelectionInMenu = ConfigYesNo(False)
@@ -167,6 +172,8 @@ def InitUsageConfig():
 		("dhcp-router", _("Router / Gateway")),
 		("custom", _("Static IP / Custom"))
 	]
+	if BoxInfo.getItem("DNSCrypt"):
+		choices.append(("dnscrypt", _("DNSCrypt Resolver")))
 	fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
 	for dns in fileDom.findall("dnsserver"):
 		if dns.get("key", ""):
@@ -181,6 +188,23 @@ def InitUsageConfig():
 	])
 	config.usage.dnsSuffix = ConfigText(default="", fixed_size=False)
 	config.usage.dnsRotate = ConfigYesNo(default=False)
+
+	config.usage.DNSCryptProtocol = ConfigYesNo(default=True)
+	config.usage.DNSCryptDoH = ConfigYesNo(default=True)
+	config.usage.DNSCryptODoH = ConfigYesNo(default=False)
+	config.usage.DNSCryptDNSSEC = ConfigYesNo(default=False)
+	config.usage.DNSCryptNoLog = ConfigYesNo(default=True)
+	config.usage.DNSCryptNoFilter = ConfigYesNo(default=True)
+	config.usage.DNSCryptCache = ConfigYesNo(default=True)
+	config.usage.DNSCryptUI = ConfigYesNo(default=False)
+	config.usage.DNSCryptUsername = ConfigText(default="root", fixed_size=False, visible_width=12)
+	config.usage.DNSCryptPassword = ConfigPassword(default="enigma2", fixed_size=False)
+	config.usage.DNSCryptPort = ConfigInteger(default=9012, limits=(8080, 9999))
+	config.usage.DNSCryptPrivacy = ConfigSelection(default=1, choices=[
+		(0, _("Show all details")),
+		(1, _("Anonymize client IPs")),
+		(2, _("Aggregate data only"))
+	])
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
@@ -370,7 +394,7 @@ def InitUsageConfig():
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default=False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default=True)
 
-	config.usage.shutdown_msgbox_timeout = ConfigSelection(default="120", choices=[(str(x), _("%d Seconds") % x) for x in range(10, 301, 10)])
+	config.usage.shutdown_msgbox_timeout = ConfigSelection(default="120", choices=[(str(x), ngettext("%d Second", "%d Seconds", x) % x) for x in range(10, 301, 10)])
 	choiceList = [
 		("0", _("No timeout"))
 	] + [(str(x), ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 21)]
@@ -481,7 +505,7 @@ def InitUsageConfig():
 
 	choiceList = [
 		("0", _("No standby"))
-	] + [(str(x), _("%d Seconds") % x) for x in (10, 30)] + [(str(x * 60), ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 5, 10, 20, 30)] + [(str(x * 3600), ngettext("%d Hour", "%d Hours", x) % x) for x in (1, 2, 4)]
+	] + [(str(x), ngettext("%d Second", "%d Seconds", x) % x) for x in (10, 30)] + [(str(x * 60), ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 5, 10, 20, 30)] + [(str(x * 3600), ngettext("%d Hour", "%d Hours", x) % x) for x in (1, 2, 4)]
 	config.usage.hdd_standby = ConfigSelection(default="300", choices=choiceList)
 	config.usage.hdd_standby_in_standby = ConfigSelection(default="-1", choices=[("-1", _("Same as in active"))] + choiceList)
 	config.usage.hdd_timer = ConfigYesNo(default=False)
@@ -1504,6 +1528,8 @@ def InitUsageConfig():
 	config.network.Inadyn_autostart = ConfigYesNo(default=False)
 	config.network.uShare_autostart = ConfigYesNo(default=False)
 
+	config.network.ZeroTierNetworkId = ConfigText(default=" " * 16, fixed_size=True)
+
 	config.samba = ConfigSubsection()
 	config.samba.enableAutoShare = ConfigYesNo(default=True)
 	config.samba.autoShareAccess = ConfigSelection(default=1, choices=[
@@ -2441,6 +2467,20 @@ def InitUsageConfig():
 	config.ncaminfo.intervall = ConfigSelectionNumber(min = 1, max = 600, stepwidth = 1, default = 10, wraparound = True)
 	BoxInfo.setItem("NcamInstalled", False)
 
+	config.softcsa = ConfigSubsection()
+	config.softcsa.decoderRelease = ConfigSelection(default=0, choices=[
+			(0, _("Quick")),
+			(1, _("Normal"))
+	])
+	config.softcsa.syncMode = ConfigSelection(default=0, choices=[
+			(0, _("Automatic")),
+			(1, _("Synchronous"))
+	])
+	config.softcsa.waitForDataTimeout = ConfigSelection(
+		default=800,
+		choices=[(x, _("%d ms") % x) for x in range(100, 2001, 100)]
+	)
+
 	config.misc.softcam_streamrelay_url = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
 	config.misc.softcam_streamrelay_port = ConfigInteger(default=17999, limits=(0, 65535))
 	config.misc.softcam_streamrelay_delay = ConfigSelectionNumber(min=0, max=2000, stepwidth=50, default=0, wraparound=True)
@@ -2536,6 +2576,7 @@ def InitUsageConfig():
 	config.timeshift.maxEvents = ConfigSelection(default=12, choices=[(x, ngettext("%d Event", "%d Events", x) % x) for x in range(1, 999)])
 	config.timeshift.maxHours = ConfigSelection(default=12, choices=[(x, ngettext("%d Hour", "%d Hours", x) % x) for x in range(1, 999)])
 	config.timeshift.recoveryBufferDelay = ConfigSelection(default=300, choices=[(x, _("%d ms") % x) for x in range(100, 1500, 100)])
+	config.timeshift.hwLatencyCorrection = ConfigSelection(default=2000, choices=[(x, _("%d ms") % x) for x in range(0, 2100, 100)])
 	config.timeshift.skipReturnToLive = ConfigYesNo(default=False)
 	config.timeshift.showInfoBar = ConfigYesNo(default=True)
 	config.timeshift.showLiveTVMsg = ConfigYesNo(default=True)

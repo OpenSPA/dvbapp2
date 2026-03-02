@@ -40,7 +40,7 @@ class SkinSelection(Setup):
 			path = join(directory, "skin.xml")
 			if exists(join(self.guiRoot, path)):
 				if not fileReadXML(f"{self.guiRoot}{path}"):  # [OpenSPA] [norhap] parse files XML.
-					label = f'Error {_("File")} {self.guiRoot}{path}'
+					label = f'{_("File error")} {self.guiRoot}{path}'
 				else:
 					label = _("< Default >") if directory == "skin_default" else directory
 				if directory == "MetrixHD":

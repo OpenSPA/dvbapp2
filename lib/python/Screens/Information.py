@@ -7,7 +7,7 @@ from os.path import basename, getmtime, isdir, isfile, join
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation, eDVBCSAEngine
 
 from ServiceReference import ServiceReference
 from skin import parameters
@@ -676,6 +676,8 @@ class DistributionInformation(InformationBase):
 		mediaService = BoxInfo.getItem("mediaservice")
 		if mediaService:
 			info.append(formatLine("P1", _("Media service"), mediaService.replace("enigma2-plugin-systemplugins-", "")))
+		if eDVBCSAEngine.isAvailable():
+			info.append(formatLine("P1", _("Software descrambling"), _("Available")))
 		info.append("")
 		info.append(formatLine("S", _("Build information")))
 		if self.extraSpacing:
@@ -696,14 +698,24 @@ class DistributionInformation(InformationBase):
 		info.append(formatLine("S", _("Software information")))
 		if self.extraSpacing:
 			info.append("")
-		info.append(formatLine("P1", _("GCC version"), about.getGccVersion()))
-		info.append(formatLine("P1", _("Glibc version"), about.getGlibcVersion()))
-		info.append(formatLine("P1", _("OpenSSL version"), about.getVersionFromOpkg("openssl")))
-		info.append(formatLine("P1", _("Python version"), about.getPythonVersionString()))
-		info.append(formatLine("P1", _("Rust version"), BoxInfo.getItem("rust")))
-		info.append(formatLine("P1", _("Samba version"), about.getVersionFromOpkg("samba")))
-		info.append(formatLine("P1", _("GStreamer version"), getGStreamerVersionString().replace("GStreamer ", "")))
-		info.append(formatLine("P1", _("FFmpeg version"), about.getVersionFromOpkg("ffmpeg")))
+		versions = [
+			("GCC", about.getGccVersion()),
+			("Glibc", about.getGlibcVersion()),
+			("OpenSSL", about.getVersionFromOpkg("openssl")),
+			("Python", about.getPythonVersionString()),
+			("Rust", BoxInfo.getItem("rust")),
+			("Samba", about.getVersionFromOpkg("samba")),
+			("GStreamer", getGStreamerVersionString().replace("GStreamer ", "")),
+			("FFmpeg", about.getVersionFromOpkg("ffmpeg"))
+		]
+		if eDVBCSAEngine.isAvailable():
+			libName = eDVBCSAEngine.getLibraryName()
+			libVersion = eDVBCSAEngine.getLibraryVersion()
+			if libName and libVersion:
+				libName = libName.capitalize()
+				versions.append((libName, libVersion))
+		for version in versions:
+			info.append(formatLine("P1", _("%s version") % version[0], version[1]))
 		bootId = fileReadLine("/proc/sys/kernel/random/boot_id", source=MODULE_NAME)
 		if bootId:
 			info.append(formatLine("P1", _("Boot ID"), bootId))
@@ -1388,7 +1400,7 @@ class ReceiverInformation(InformationBase):
 		if procModel != MODEL:
 			info.append(formatLine("P1", _("Proc model"), procModel))
 		procModelType = getBoxProcTypeName()
-		if procModelType and procModelType != "unknown":
+		if procModelType and procModelType != _("Unknown"):
 			info.append(formatLine("P1", _("Hardware type"), procModelType))
 		hwSerial = getHWSerial()
 		if hwSerial:

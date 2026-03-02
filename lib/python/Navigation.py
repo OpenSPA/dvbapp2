@@ -395,7 +395,12 @@ class Navigation:
 				else:
 					self.skipServiceReferenceReset = True
 					from enigma import eFCCServiceManager  # OpenSPA [norhap] Set FCC not enabled if fallback tuner is active.
-					eFCCServiceManager.getInstance().setFCCEnable(False) if config.usage.remote_fallback_enabled.value else eFCCServiceManager.getInstance().setFCCEnable(True)
+					if config.usage.remote_fallback_enabled.value:
+						eFCCServiceManager.getInstance().setFCCEnable(False)
+						self.serviceHook(playref)
+						return 1
+					else:
+						eFCCServiceManager.getInstance().setFCCEnable(True)
 				self.currentlyPlayingServiceReference = playref
 				if not ignoreStreamRelay:
 					playref, isStreamRelay = streamrelay.streamrelayChecker(playref)
@@ -447,7 +452,9 @@ class Navigation:
 	def serviceHook(self, ref):
 		wrappererror = None
 		nref = ref
-		if hasattr(nref, "getPath"):
+		if config.usage.remote_fallback_enabled.value and BoxInfo.getItem("FCCactive"):
+			return AddPopup(_("Fallback tuner and FCC activated. Activate only one function."), type=MessageBox.TYPE_ERROR, timeout=10)
+		elif hasattr(nref, "getPath"):
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_PLAYSERVICE):
 				(newurl, errormsg) = p(service=nref)
 				if errormsg:

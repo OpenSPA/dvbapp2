@@ -278,7 +278,8 @@ def getButtonSetupFunctions():
 		if plugin[2]:
 			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], textSetup))
 	for plugin in plugins.getPluginsForMenu("video"):
-		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/video/" + plugin[2], textSetup))
+		if isPluginInstalled("VideoEnhancement"):
+			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/video/" + plugin[2], textSetup))
 	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", textPower))
 	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", textPower))
 	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", textPower))
@@ -292,9 +293,10 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Device Manager"), "Module/Screens.DeviceManager/DeviceManager", textSetup))
 	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/Subtitle", textSetup))
 	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", textSetup))
-	if BoxInfo.getItem("SoftCam"):
-		ButtonSetupFunctions.append((_("Oscam Information"), "Module/Screens.OScamInfo/OSCamInfo", textPlugins))
-		ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", textPlugins))
+	if BoxInfo.getItem("ShowOscamInfo") or BoxInfo.getItem("ShowNcamInfo"):
+		ButtonSetupFunctions.append((_("OSCam Information"), "Module/Screens.OScamInfo/OSCamInfo", textInfoBar))
+	if BoxInfo.getItem("ShowCccamInfo"):
+		ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", textInfoBar))
 	ButtonSetupFunctions.append((_("Movieplayer"), "Infobar/showMoviePlayer", textPlugins))
 	if isdir("/etc/ppanels"):
 		for file in [x for x in listdir("/etc/ppanels") if x.endswith(".xml")]:

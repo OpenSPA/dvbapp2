@@ -201,7 +201,7 @@ class InfoBarUnhandledKey:
 			KEYIDS["KEY_DOWN"],  # 108.
 			KEYIDS["KEY_CHANNELUP"],  # 402.
 			KEYIDS["KEY_CHANNELDOWN"],  # 403.
-			KEYIDS["KEY_NEXT"],  #407.
+			KEYIDS["KEY_NEXT"],  # 407.
 			KEYIDS["KEY_PREVIOUS"]  # 412.
 		)
 
@@ -839,8 +839,6 @@ class InfoBarNumberZap:
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
-			elif self.servicelist.history and self.servicelist.isSubservices():
-				self.servicelist.setHistoryPath()
 			elif len(self.servicelist.history) > 1 or config.usage.panicbutton.value:
 				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
@@ -1863,60 +1861,67 @@ class InfoBarSeek:
 class InfoBarStreamRelay:
 	FILENAME = "/etc/enigma2/whitelist_streamrelay"
 
-	def __init__(self) -> None:
-		self.streamRelay = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
-		self.streamRelay = [streamRelay for streamRelay in self.streamRelay if streamRelay]
+	def __init__(self):
+		self.reload()
+
+	def reload(self):
+		data = fileReadLines(self.FILENAME, default=[], source=self.__class__.__name__)
+		self.__services = self.__sanitizeData(data)
+
+	def __sanitizeData(self, data: list):
+		return list(set([match(r"([0-9A-F]+:){10}", line.strip()).group(0) for line in data if line and match(r"^(?:[0-9A-F]+:){10}", line.strip())]))
 
 	def check(self, nav, service):
-		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toString() in self.streamRelay
+		return (service or nav.getCurrentlyPlayingServiceReference()) and service.toCompareString() in self.__services
 
 	def write(self):
-		fileWriteLines(self.FILENAME, self.streamRelay, source=self.__class__.__name__)
+		fileWriteLines(self.FILENAME, self.__services, source=self.__class__.__name__)
 
 	def toggle(self, nav, service):
 		if isinstance(service, list):
 			serviceList = service
-			serviceList = [service.toString() for service in serviceList]
-			self.streamRelay = list(set(serviceList + self.streamRelay))
+			serviceList = [service.toCompareString() for service in serviceList]
+			self.__services = list(set(serviceList + self.__services))
 			self.write()
 		else:
 			service = service or nav.getCurrentlyPlayingServiceReference()
 			if service:
-				servicestring = service.toString()
-				if servicestring in self.streamRelay:
-					self.streamRelay.remove(servicestring)
+				servicestring = service.toCompareString()
+				currentlyPlaying = nav.getCurrentlyPlayingServiceReference()
+				if servicestring in self.__services:
+					self.__services.remove(servicestring)
 				else:
-					self.streamRelay.append(servicestring)
-					if nav.getCurrentlyPlayingServiceReference() and nav.getCurrentlyPlayingServiceReference() == service:
-						nav.restartService()
+					self.__services.append(servicestring)
 				self.write()
+				if currentlyPlaying and currentlyPlaying == service:
+					nav.restartService()
 
 	def getData(self):
-		return self.streamRelay
+		return self.__services
 
 	def setData(self, value):
-		self.streamRelay = value
+		self.__services = value
 		self.write()
 
 	data = property(getData, setData)
 
 	def streamrelayChecker(self, playref):
 		if hasattr(playref, "toCompareString"):
-			playrefstring = playref.toString()
-			if "%3a//" not in playrefstring and playrefstring in self.streamRelay:
+			playrefstring = playref.toCompareString()
+			if "%3a//" not in playrefstring and playrefstring in self.__services:
 				url = f'http://{".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)}:{config.misc.softcam_streamrelay_port.value}/'
 				if "127.0.0.1" in url:
 					playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(":"))])
 				else:
 					playrefmod = playrefstring
 				playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
-				print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
+				print(f"[{self.__class__.__name__}] Play service {playref.toCompareString()} via streamrelay")
 				playref.setAlternativeUrl(playrefstring, True)
 				return playref, True
 		return playref, False
 
 	def checkService(self, service):
-		return service and service.toString() in self.streamRelay
+		return service and service.toCompareString() in self.__services
 
 
 streamrelay = InfoBarStreamRelay()
@@ -3877,7 +3882,7 @@ class InfoBarInstantRecord:
 			self.notificationOnExit = True if "no" in config.usage.leave_movieplayer_onExit.value else False
 			title = _("A recording is currently running.\nWhat do you want to do?")
 			choiceList = [
-				(_("Stop recording") if len(self.recording) == 1 else _("Delete or stop recordings"), "stop")
+				(_("Stop recording") if len(self.recording) == 1 else _("Stop or delete recordings"), "stop")
 			] + commonRecord + [
 				(_("Change recording (Duration)"), "changeduration"),
 				(_("Change recording (End time)"), "changeendtime")
@@ -4073,6 +4078,11 @@ class InfoBarInstantRecord:
 			if answer:
 				self.session.nav.RecordTimer.removeEntry(self.recording[entry])
 				remove = self.recording.remove(self.recording[entry])
+			else:
+				if entry is not None and entry != -1:
+					msg = _("Do you want to delete this recording?") + "\n"
+					msg += self.recording[entry].name + "\n"
+					self.session.openWithCallback(confirmDeleteRecording, MessageBox, msg, MessageBox.TYPE_YESNO)
 
 		def confirmDeleteRecording(answer=False):
 			if answer:
@@ -4080,17 +4090,12 @@ class InfoBarInstantRecord:
 				if self.deleteRecording:
 					self.moveToTrash(self.recording[entry])
 				self.recording.remove(self.recording[entry])
-			else:
-				if entry is not None and entry != -1:
-					msg = _("Do you want to stop this recording?") + "\n"
-					msg += self.recording[entry].name + "\n"
-					self.session.openWithCallback(stopRecordingOrCancel, MessageBox, msg, MessageBox.TYPE_YESNO)
 
 		if entry is not None and entry != -1:
 			if self.deleteRecording:
-				msg = _("want to stop and delete this recording?") + "\n"
-			msg += self.recording[entry].name + "\n"
-			self.session.openWithCallback(confirmDeleteRecording, MessageBox, msg, MessageBox.TYPE_YESNO)
+				msg = _("Do you want to stop this recording?") + "\n"
+			msg += self.recording[entry].name + "\n" + _("Choose \"No\" to delete it")
+			self.session.openWithCallback(stopRecordingOrCancel, MessageBox, msg, MessageBox.TYPE_YESNO)
 
 	def stopDeleteSingleEntryRecording(self, entry=-1):
 		def confirmDeleteRecording(answer=False):
@@ -4102,7 +4107,7 @@ class InfoBarInstantRecord:
 
 		if entry is not None and entry != -1:
 			if self.deleteRecording:
-				msg = _("want to stop and delete this recording?") + "\n"
+				msg = _("Do you want to stop and delete this recording?") + "\n"
 			msg += self.recording[entry].name + "\n"
 			self.session.openWithCallback(confirmDeleteRecording, MessageBox, msg, MessageBox.TYPE_YESNO)
 
@@ -4116,7 +4121,7 @@ class InfoBarInstantRecord:
 						self.moveToTrash(entry[0])
 
 		if self.deleteRecording:
-			msg = _("want to stop and delete this recordings?") + "\n"
+			msg = _("Do you want to stop and delete this recordings?") + "\n"
 		for entry in items:
 			msg += entry[0].name + "\n"
 		self.session.openWithCallback(confirmDeleteAllRecordings, MessageBox, msg, MessageBox.TYPE_YESNO)
@@ -4556,8 +4561,8 @@ class InfoBarResolutionSelection:
 		xRes = avControl.getResolutionX(0)
 		resList = []
 		resList.append((_("Exit"), "exit"))
-		resList.append((_("Auto(not available)"), "auto"))
-		resList.append((_("Video: ") + "%dx%d@%gHz" % (xRes, yRes, fps), ""))
+		resList.append((_("Auto (not available)"), "auto"))
+		resList.append((_("Video") + ": %dx%d@%gHz" % (xRes, yRes, fps), ""))
 		resList.append(("--", ""))
 		# Do we need a new sorting with this way here or should we disable some choices?
 		videoModes = iAVSwitch.readPreferredModes(readOnly=True)

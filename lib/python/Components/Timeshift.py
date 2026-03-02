@@ -873,6 +873,9 @@ class InfoBarTimeshift:
 			if message:
 				self.ptsAskUser_wait = True
 				self.session.openWithCallback(ptsAskUserCallback, MessageBox, message, simple=True, list=choice, timeout=30)
+			elif config.timeshift.saveWithStopKey.value:  # OpenSPA [norhap] Show InfoBarTimeshift with saveWithStopKey.
+				from Screens.InfoBarGenerics import InfoBarShowHide
+				InfoBarShowHide.toggleShow(self)
 
 	def stopTimeshiftAskUserCallback(self, answer):
 		ts = self.getTimeshift()
