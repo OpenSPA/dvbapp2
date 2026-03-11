@@ -7235,7 +7235,7 @@ msgid ""
 msgstr ""
 "¿Realmente quieres reiniciar %s?\n"
 "\n"
-"CONSEJO: ¡Tardará unos 5 segundos!"
+"¡Tardará unos 5 segundos!"
 
 msgid ""
 "Do you really want to shut down %s?\n"
