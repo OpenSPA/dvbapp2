@@ -125,6 +125,7 @@ def InitUsageConfig():
 	config.usage.useVideoCuesheet = ConfigYesNo(default=True)  # Use marker for video media file.
 	config.usage.useAudioCuesheet = ConfigYesNo(default=True)  # Use marker for audio media file.
 	config.usage.useChapterInfo = ConfigYesNo(default=True)  # Show chapter positions (gst >= 1 and supported media files).
+	config.usage.nativeCuesheetSupport = ConfigYesNo(default=False)  # Enable extended cut file support.
 
 	config.usage.shutdownOK = ConfigBoolean(default=True)
 	config.usage.shutdownNOK_action = ConfigSelection(default="normal", choices=[
@@ -1976,31 +1977,31 @@ def InitUsageConfig():
 	])
 	config.subtitles.ai_connection_speed.addNotifier(setAiConnectionSpeed)
 
-	langsAI = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'eu', 'be', 'bn', 'bs', 'bg', 'ca', 'zh', 'co', 'hr', 'cs', 'da', 'nl', 'en', 'eo', 'fr', 'fi', 'fy', 'gl', 'ka', 'de', 'el', 'ht', 'ha', 'hu', 'is', 'ig', 'ga', 'it', 'ja', 'jv', 'kn', 'kk', 'km', 'rw', 'ko', 'ku', 'ky', 'lo', 'la', 'lv', 'lt', 'lb', 'mk', 'mg', 'ms', 'mt', 'mi', 'mr', 'mn', 'no', 'ny', 'or', 'ps', 'fa', 'pl', 'pt', 'ro', 'ru', 'sm', 'gd', 'sr', 'st', 'sn', 'sk', 'sl', 'so', 'es', 'su', 'sw', 'sv', 'tl', 'tg', 'te', 'th', 'tr', 'tk', 'uk', 'ur', 'ug', 'uz', 'cy', 'xh', 'yi', 'yo', 'zu']
-	langsAI = [(x, international.LANGUAGE_DATA[x][1]) for x in langsAI]
-	langsAI.append(("zh-CN", _("Chinese (Simplified)")))
-	langsAI.append(("ceb", _("Cebuano")))
-	langsAI.append(("haw", _("Hawaiian")))
-	langsAI.append(("iw", _("Hebrew")))
-	langsAI.append(("hmn", _("Hmong")))
-	langsAI.append(("ar_eg", _("Arabic (Egyptian)")))
-	langsAI.append(("ar_ma", _("Arabic (Moroccan)")))
-	langsAI.append(("ar_sy", _("Arabic (Syro-Lebanese)")))
-	langsAI.append(("ar_iq", _("Arabic (Iraq)")))
-	langsAI.append(("ar_tn", _("Arabic (Tunisian)")))
-	langsAI.sort(key=lambda x: x[1])
+	langs_ai = ["af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "zh", "co", "hr", "cs", "da", "nl", "en", "eo", "fr", "fi", "fy", "gl", "ka", "de", "el", "ht", "ha", "hu", "is", "ig", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "mt", "mi", "mr", "mn", "no", "ny", "or", "ps", "fa", "pl", "pt", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "cy", "xh", "yi", "yo", "zu", "et"]
+	langs_ai = [(x, international.LANGUAGE_DATA[x][1]) for x in langs_ai]
+	langs_ai.append(("zh-CN", _("Chinese (Simplified)")))
+	langs_ai.append(("ceb", _("Cebuano")))
+	langs_ai.append(("haw", _("Hawaiian")))
+	langs_ai.append(("iw", _("Hebrew")))
+	langs_ai.append(("hmn", _("Hmong")))
+	langs_ai.append(("ar_eg", _("Arabic (Egyptian)")))
+	langs_ai.append(("ar_ma", _("Arabic (Moroccan)")))
+	langs_ai.append(("ar_sy", _("Arabic (Syro-Lebanese)")))
+	langs_ai.append(("ar_iq", _("Arabic (Iraq)")))
+	langs_ai.append(("ar_tn", _("Arabic (Tunisian)")))
+	langs_ai.sort(key=lambda x: x[1])
 
 	default = config.misc.locale.value
 	default = default.split("_")[0] if "_" in default else default
 	if default == "zh":
 		default = "zh-CN"
-	if default not in [x[0] for x in langsAI]:
+	if default not in [x[0] for x in langs_ai]:
 		default = "en"
 
 	def setAiTranslateTo(configElement):
 		eSubtitleSettings.setAiTranslateTo(configElement.value)
 
-	config.subtitles.ai_translate_to = ConfigSelection(default=default, choices=langsAI)
+	config.subtitles.ai_translate_to = ConfigSelection(default=default, choices=langs_ai)
 	config.subtitles.ai_translate_to.addNotifier(setAiTranslateTo)
 
 	def setAiMode(configElement):
@@ -2477,8 +2478,12 @@ def InitUsageConfig():
 			(1, _("Synchronous"))
 	])
 	config.softcsa.waitForDataTimeout = ConfigSelection(
-		default=800,
-		choices=[(x, _("%d ms") % x) for x in range(100, 2001, 100)]
+		default=0,
+		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 2001, 100)]
+	)
+	config.softcsa.bufferTime = ConfigSelection(
+		default=0,
+		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 2001, 100)]
 	)
 
 	config.misc.softcam_streamrelay_url = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)

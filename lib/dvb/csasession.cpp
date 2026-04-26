@@ -146,14 +146,14 @@ void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_
 		m_ecm_mode = info.ecm_mode;
 		m_ecm_mode_detected = true;
 
+		m_ecm_analyzed = true;
+		m_csa_alt = info.is_csa_alt;
+
 		if (info.is_csa_alt && !m_active)
 		{
-			m_ecm_analyzed = true;
-			m_csa_alt = true;
 			if (shouldSuppressActivation && shouldSuppressActivation())
 			{
 				eDebug("[eDVBCSASession] ECM Monitor: CSA-ALT cached but activation suppressed (CI module)");
-				stopECMMonitor();
 			}
 			else
 			{
@@ -161,6 +161,8 @@ void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_
 				setActive(true);
 			}
 		}
+
+		return;
 	}
 
 	// Create section reader
@@ -256,7 +258,6 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 				if (shouldSuppressActivation && shouldSuppressActivation())
 				{
 					eDebug("[eDVBCSASession] Activation suppressed (CI module handles decryption)");
-					stopECMMonitor();
 				}
 				else
 				{
@@ -267,8 +268,9 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 		else
 		{
 			eDebug("[eDVBCSASession] ECM analyzed: Not CSA-ALT, hardware descrambling will be used");
-			stopECMMonitor();
 		}
+
+		stopECMMonitor();
 	}
 }
 
@@ -439,6 +441,13 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 	else
 	{
 		eDVBCWHandler::getInstance()->updateEcmMode(m_cw_service_id, m_engine, ecm_mode);
+		// Set key if engine missed it (e.g. replayed CW from m_pending_cw)
+		if ((parity == 0 && !m_engine->hasEvenKey()) || (parity == 1 && !m_engine->hasOddKey()))
+		{
+			m_engine->setKey(parity, ecm_mode, (const uint8_t*)cw);
+			eDebug("[eDVBCSASession] CW set (missed by CWHandler): parity=%d, hasEven=%d, hasOdd=%d",
+				parity, m_engine->hasEvenKey(), m_engine->hasOddKey());
+		}
 	}
 
 	if (m_ecm_mode != ecm_mode)

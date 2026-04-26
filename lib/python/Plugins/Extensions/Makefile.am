@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions
 
-SUBDIRS = CutListEditor DVDBurn FileCommander MediaPlayer MediaScanner PicturePlayer SocketMMI TuxboxPlugins StreamlinkWrapper YTDLWrapper YTDLPWrapper
+SUBDIRS = AtileHD CutListEditor DVDBurn FileCommander MediaPlayer MediaScanner PicturePlayer SocketMMI TuxboxPlugins StreamlinkWrapper YTDLWrapper YTDLPWrapper
 
 if HAVE_LIBDDVD
 SUBDIRS += DVDPlayer

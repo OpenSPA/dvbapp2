@@ -2904,23 +2904,23 @@ msgstr "Autor: "
 msgid "Authoring mode"
 msgstr "Modo de autorización"
 
-#
 msgid "Auto"
 msgstr "Auto"
 
 msgid "Auto detect"
 msgstr "Detección automática"
 
-#
 msgid "Auto Language"
 msgstr "Idioma automático"
 
-#
 msgid "Auto Language Selection"
 msgstr "Selección automática de idioma"
 
 msgid "Auto Language Settings"
 msgstr "Selección automática de idioma"
+
+msgid "Auto (not available)"
+msgstr "Auto (no disponible)"
 
 msgid "Auto SCART switching"
 msgstr "Cambio automático de SCART"
@@ -2961,10 +2961,6 @@ msgstr "Apagado automático"
 
 msgid "Auto standby"
 msgstr "Reposo automático"
-
-#
-msgid "Auto (not available)"
-msgstr "Auto (no disponible)"
 
 msgid "AutoBoquetsMaker was installed successfully.\nIt is necessary to restart enigma2 to apply the changes.\nDo you want to do it now?"
 msgstr "AutoBoquetsMaker se instaló correctamente.\nEs necesario reiniciar enigma2 para aplicar los cambios.\n¿Quiere hacerlo ahora?"
@@ -5821,6 +5817,9 @@ msgstr "Creando sistema de archivos"
 msgid "Creating hard link to time shift file failed!"
 msgstr "¡Falló la creación de un enlace físico al archivo timeshift!"
 
+msgid "Creating or activating the swap file failed.\n\n%s"
+msgstr "Error al crear o activar swap.\n\n%s"
+
 msgid "Creating partition"
 msgstr "Creando partición"
 
@@ -6331,6 +6330,9 @@ msgstr "Formato tiempo del log de depuración *"
 
 msgid "Decoder release strategy"
 msgstr "Estrategia de lanzamiento del decodificador"
+
+msgid "Decoder start delay"
+msgstr "Retardo de inicio del decodificador"
 
 msgid "Decoder start timeout"
 msgstr "Tiempo de espera de inicio del decodificador"
@@ -7235,7 +7237,7 @@ msgid ""
 msgstr ""
 "¿Realmente quieres reiniciar %s?\n"
 "\n"
-"CONSEJO: ¡Tardará unos 5 segundos!"
+"¡Tardará unos 5 segundos!"
 
 msgid ""
 "Do you really want to shut down %s?\n"
@@ -7832,6 +7834,12 @@ msgstr "Habilitar compensaciones Dolby Digital / Dolby AC-3"
 msgid "Enable EIT EPG"
 msgstr "Habilitar EPG EIT"
 
+msgid "Enable extended cut file support"
+msgstr "Habilitar compatibilidad extendida con archivos de corte"
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr "Habilitar la compatibilidad con archivos de corte extendidos. Esto generará un archivo de corte con más información y no solo con marcadores"
+
 msgid "Enable Fast Channel Change"
 msgstr "Habiliar el cambio rápido de canal"
 
@@ -7991,7 +7999,7 @@ msgid "Enable preview"
 msgstr "Habilitar vista previa"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
-msgstr "Permite que el receptor remoto intente sintonizar canales que no se pueden sintonizar localmente (ej.: el sintonizador está ocupado o el canal no está disponible en el sintonizador local). Especifique la URL completa, incluyendo http:// y el número de puerto (normalmente 8001), ej.: http://receptor_remoto:8001."
+msgstr "Permite que el receptor reserva intente sintonizar canales que no se pueden sintonizar localmente (ej.: el sintonizador está ocupado o el canal no está disponible en el sintonizador local). Especifique la URL completa, incluyendo http:// y el número de puerto (normalmente 8001), ej.: http://receptor_reserva:8001."
 
 msgid "Enable teletext caching"
 msgstr "Habilitar caché de teletexto"
@@ -12167,12 +12175,8 @@ msgstr "Mantenga su dispositivo de arranque múltiple."
 msgid "Make"
 msgstr "Construir"
 
-msgid ""
-"Make it possible to manually initiate the channels import and/or EPG via the "
-"extension menu"
-msgstr ""
-"Posibilidad de iniciar manualmente la importación de canales y/o EPG a "
-"través del menú extensiones"
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
+msgstr "Permitir iniciar manualmente la importación de canales y/o la guía electrónica de programación (EPG) a través del menú de la extensión."
 
 #
 msgid "Make this mark an 'in' point"
@@ -12350,8 +12354,8 @@ msgstr "Número máximo de días en EPG"
 msgid "Maximum space used (MB)"
 msgstr "Espacio máximo utilizado (MB):"
 
-msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
-msgstr "Tiempo máximo de espera para los datos entrantes y las claves de descifrado (CW) antes de iniciar el decodificador. Normalmente, ambos llegan mucho más rápido y esto solo se aplica en casos especiales."
+msgid "Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting."
+msgstr "Tiempo máximo de espera para la primera clave de descifrado (CW) antes de iniciar el decodificador. Si se selecciona 'Desactivado', el decodificador se inicia inmediatamente sin esperar."
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -17281,8 +17285,8 @@ msgstr "Guardando archivos timeshift"
 msgid "Scaler sharpness"
 msgstr "Nitidez del escalado"
 
-msgid "Scaler vertical dejagging"
-msgstr "Escalar dejagging vertical"
+msgid "Scaler vertical anti-aliasing"
+msgstr "Escalador suavizado vertical"
 
 msgid "Scaling mode"
 msgstr "Modo escalado"
@@ -18528,6 +18532,9 @@ msgstr ""
 
 msgid "Select the delay before the timer activates."
 msgstr "Seleccione el retardo antes de que se active el temporizador."
+
+msgid "Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time."
+msgstr "Seleccione el retardo para almacenar en búfer los datos decodificados antes de iniciar la reproducción. Esto puede reducir las interrupciones de audio AC3 al garantizar que haya suficientes datos disponibles cuando se inicie el decodificador. Los valores más altos proporcionan mayor estabilidad, pero aumentan el tiempo de cambio de canal."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Selecciona el retardo que usará al cerrar un servicio Stream Relay antes de reasignar el sintonizador a otro servicio. Solo se recomienda el uso de '0' en receptores con múltiples sintonizadores de satélite."
@@ -20315,19 +20322,11 @@ msgstr "Mostrar foto siguiente"
 msgid "Show next system information screen"
 msgstr "Mostrar siguiente pantalla de información del sistema"
 
-msgid ""
-"Show notification when import channels and/or EPG from remote receiver URL "
-"did not complete"
-msgstr ""
-"Mostrar notificación cuando no se complete la importación de canales y/o EPG "
-"de la URL del receptor remoto"
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
+msgstr "Mostrar notificación cuando la importación de canales y/o EPG desde la URL del receptor remoto no se haya completado."
 
-msgid ""
-"Show notification when import channels and/or EPG from remote receiver URL "
-"is completed"
-msgstr ""
-"Mostrar notificación cuando se complete la importación de canales y/o EPG de "
-"la URL del receptor remoto"
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
+msgstr "Mostrar notificación cuando se haya completado la importación de canales y/o EPG desde la URL del receptor remoto."
 
 msgid "Show notification when import channels was not successful"
 msgstr "Mostrar notificación cuando la importación de canales no fue con éxito"
@@ -22874,15 +22873,6 @@ msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 "Esta opción te permite ajustar el nivel de contraste dinámico de la imagen."
 
-msgid "This option allows you to config the Colordepth for UHD."
-msgstr "Esta opción le permite configurar la profundidad de color para UHD."
-
-msgid "This option allows you to config the Colorimetry for HDR."
-msgstr "Esta opción le permite configurar la colorimetría para HDR."
-
-msgid "This option allows you to config the Colorspace from Auto to RGB."
-msgstr "Esta opción le permite configurar el espacio de colores de Auto a RGB."
-
 msgid "This option allows you to enable or disable the 10 Bit Color Mode."
 msgstr "Esta opción permite activar o desactivar el modo de color de 10 bits."
 
@@ -22907,15 +22897,11 @@ msgstr ""
 msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
 msgstr "Esta opción le permite elegir cómo mostrar el tiempo restante, el tiempo transcurrido o ambos."
 
-msgid ""
-"This option allows you enable smoothing filter to control the dithering "
-"process."
-msgstr ""
-"Esta opción le permite activar el filtro de suavizado para controlar el "
-"proceso de tramado."
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Controlar el filtro de suavizado utilizado para el proceso de tramado."
 
-msgid "This option allows you enable the vertical scaler dejagging."
-msgstr "Esta opción le permite activar la depuración en escala vertical."
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Controlar el uso del suavizado de escala vertical."
 
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Esta opción te permite elegir configurar la vista del diseño (texto o gráfico)."
@@ -22997,6 +22983,15 @@ msgstr "Esta opción le permite elegir a qué saltará la primera vez que presio
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Esta opción te permite elegir si quieres visualizar la información del género del evento."
+
+msgid "This option allows you to config the Colordepth for UHD."
+msgstr "Esta opción le permite configurar la profundidad de color para UHD."
+
+msgid "This option allows you to config the Colorimetry for HDR."
+msgstr "Esta opción le permite configurar la colorimetría para HDR."
+
+msgid "This option allows you to config the Colorspace from Auto to RGB."
+msgstr "Esta opción le permite configurar el espacio de color de Automático a RGB."
 
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
@@ -25463,10 +25458,10 @@ msgstr ""
 "encienda."
 
 msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "Cuando está activado, se importa el temporizador del sintonizador de reserva."
+msgstr "Cuando está activado, se importa el temporizador del receptor reserva."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "Cuando está habilitado, el temporizador del sintonizador reserva es el temporizador por defecto."
+msgstr "Cuando está activado, el temporizador del receptor reserva es el temporizador por defecto."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Cuando esté activado, podrás personalizar los ajustes OpenWebIf en el sintonizador reserva"

@@ -45,7 +45,7 @@ def Plugins(**kwargs):
 
 
 def menu(menuid, **kwargs):
-	exclude = ["MetrixHD/skin.MySkin.xml", "MetrixHD/skin.xml", "SevenHD/skin.xml", "KravenVB/skin.xml", "OverlayHD/skin.xml"]
+	exclude = ["MetrixHD/skin.MySkin.xml", "MetrixHD/skin.xml", "SevenHD/skin.xml", "KravenVB/skin.xml", "OverlayHD/skin.xml", "OpenStarHD/skin.xml", "openplusHD/skin.xml", "openSPA_JRLG1080/skin.xml", "openSPA_JRLG/skin.xml", "MetrixJR/skin.xml", "MetrixJRSD/skin.xml", "basic_retro_HD/skin.xml", "BlackModernHD_openSPA/skin.xml", "BlackSPA/skin.xml", "confluence_openspa_hd/skin.xml", "estuaryHD_openspa/skin.xml", "Spa24HD/skin.xml"]
 	if menuid == "system" and config.skin.primary_skin.value not in exclude:
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
@@ -68,7 +68,7 @@ def isInteger(s):
 
 class WeatherLocationChoiceList(Screen):
 	skin = """
-		<screen name="WeatherLocationChoiceList" position="center,center" size="1280,720" title="Location list" >
+		<screen name="WeatherLocationChoiceList" position="center,center" size="1280,720" title="Location list" resolution="1280,720">
 			<widget source="Title" render="Label" position="70,47" size="950,43" font="Regular;35" transparent="1" />
 			<widget name="choicelist" position="70,115" size="700,480" scrollbarMode="showOnDemand" scrollbarWidth="6" transparent="1" />
 			<eLabel position=" 55,675" size="290, 5" zPosition="-10" backgroundColor="red" />
@@ -117,7 +117,7 @@ class WeatherLocationChoiceList(Screen):
 class AtileHD_Config(ConfigListScreen, Screen):
 
 	skin = """
-		<screen name="AtileHD_Config" position="center,center" size="1280,720" title="AtileHD Setup" >
+		<screen name="AtileHD_Config" position="center,center" size="1280,720" title="AtileHD Setup" resolution="1280,720">
 			<widget source="Title" render="Label" position="70,47" size="950,43" font="Regular;35" transparent="1" />
 			<widget name="config" position="70,115" size="700,480" scrollbarMode="showOnDemand" scrollbarWidth="6" transparent="1" />
 			<widget name="Picture" position="808,342" size="400,225" alphatest="on" />
@@ -575,7 +575,7 @@ class AtileHD_About(Screen):
 class AtileHDScreens(Screen):
 
 	skin = """
-		<screen name="AtileHDScreens" position="center,center" size="1280,720" title="AtileHD Setup">
+		<screen name="AtileHDScreens" position="center,center" size="1280,720" title="AtileHD Setup" resolution="1280,720">
 			<widget source="Title" render="Label" position="70,47" size="950,43" font="Regular;35" transparent="1" />
 			<widget source="menu" render="Listbox" position="70,115" size="700,480" scrollbarMode="showOnDemand" scrollbarWidth="6" scrollbarSliderBorderWidth="1" enableWrapAround="1" transparent="1">
 				<convert type="TemplatedMultiContent">

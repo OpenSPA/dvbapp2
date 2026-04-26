@@ -944,7 +944,7 @@ AX_CXX_COMPILE_STDCXX([20], [ext], [mandatory])
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CFLAGS="$CFLAGS -Wall"
 
-CXXFLAGS="$CXXFLAGS -Wall \
+CXXFLAGS="$CXXFLAGS -Wall -Wno-psabi \
  	-Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-security \
  	-Wimplicit-fallthrough=5 -Wdangling-else -Wno-error=stringop-truncation \
  	$BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $GLES_CFLAGS $ALSA_CFLAGS $FFMPEG_CFLAGS"
@@ -1005,6 +1005,8 @@ lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
 lib/python/Plugins/Extensions/Makefile
+lib/python/Plugins/Extensions/AtileHD/Makefile
+lib/python/Plugins/Extensions/AtileHD/pic/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile

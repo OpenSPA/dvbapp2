@@ -3,7 +3,7 @@ from hashlib import md5
 from os.path import exists, isfile, join
 from subprocess import PIPE, Popen
 
-from enigma import eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, Misc_Options
+from enigma import eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getOARev, Misc_Options
 from Tools.Directories import fileCheck, fileExists, fileHas, fileReadLine, fileReadLines, isPluginInstalled, pathExists, resolveFilename, SCOPE_LIBDIR, SCOPE_SKINS
 from Tools.MultiBoot import MultiBoot
 
@@ -315,8 +315,14 @@ try:
 	branch = f"?sha={branch}"
 except IndexError:
 	branch = ""
+try:
+	oaBranch = getOARev()
+	oaBranch = f"?sha={oaBranch}" if oaBranch else ""
+except Exception:
+	oaBranch = ""
 commitLogs = [
 	("OpenSPA Enigma2", "https://github.com/OpenSPA/dvbapp2/commits%s" % branch),
+	("OE-Alliance Core", f"https://api.github.com/repos/oe-alliance/oe-alliance-core/commits{oaBranch}"),
 	("OE-Alliance Plugins", "https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits"),
 	("Enigma2 Plugins", "https://api.github.com/repos/oe-alliance/enigma2-plugins/commits"),
 	("OpenWebif", "https://api.github.com/repos/E2OpenPlugins/e2openplugin-OpenWebif/commits")

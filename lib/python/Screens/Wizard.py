@@ -684,6 +684,9 @@ class Wizard(Screen):
 
 	def finished(self, gotoStep=None, *args, **kwargs):
 		print("[Wizard] Running finished() code.")
+		if not hasattr(self, "onShown"):
+			print("[Wizard] DEBUG: Screen already torn down, ignoring finished().")
+			return
 		currStep = self.currStep
 		if self.updateValues not in self.onShown:
 			self.onShown.append(self.updateValues)
@@ -724,6 +727,9 @@ class Wizard(Screen):
 		return False
 
 	def afterAsyncCode(self):
+		if not hasattr(self, "onShown"):
+			print("[Wizard] DEBUG: Screen already torn down, ignoring afterAsyncCode().")
+			return
 		if self.updateValues not in self.onShown:
 			self.onShown.append(self.updateValues)
 		if self.codeAfter:
