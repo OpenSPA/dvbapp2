@@ -1954,7 +1954,7 @@ class SkinContextHorizontal(SkinContext):
 		return (SizeTuple(pos), SizeTuple(size))
 
 
-class TemplateParser():
+class TemplateParser:
 	def __init__(self, debug=False):
 		self.debug = debug
 		self.processors = {
@@ -2053,19 +2053,29 @@ class TemplateParser():
 		size = None
 		skinAttributes = []
 		itemIndex = ""
+		conditional = None
 		for attrib, value in node.items():  # Walk all attributes.
 			if attrib not in ignore:
-				newValue = value
 				match attrib:
+					case "conditional":
+						conditional = value
 					case "position":
-						pos = newValue
+						pos = value
 					case "size":
-						size = newValue
+						size = value
 					case "index":
 						itemIndex = value
-						skinAttributes.append((attrib, newValue))
+						skinAttributes.append((attrib, value))
 					case _:
-						skinAttributes.append((attrib, newValue))
+						skinAttributes.append((attrib, value))
+
+		if conditional is not None:
+			try:
+				if not eval(conditional):
+					return []
+			except Exception as err:
+				skinError(f"collectAttributes 'conditional' '{conditional}' resulted in error '{err}'")
+				return []
 		if itemIndex and includeItemIndexes and itemIndex not in includeItemIndexes:
 			return []
 		if itemIndex and excludeItemIndexes and itemIndex in excludeItemIndexes:
