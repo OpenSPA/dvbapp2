@@ -2304,6 +2304,9 @@ msgstr "Tras el zapping"
 msgid "Aggregate data only"
 msgstr "Solo datos agregados"
 
+msgid "Aggressive"
+msgstr "Agresivo"
+
 msgid "Akan"
 msgstr "Akan"
 
