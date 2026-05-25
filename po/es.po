@@ -10381,7 +10381,7 @@ msgid "Hours Minutes Seconds"
 msgstr "Horas Minutos Segundos"
 
 msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
-msgstr "Cómo liberar el decodificador de hardware al cambiar al descifrado por software. La opción 'Rápido' libera inmediatamente (cambio más rápido). La opción 'Normal' realiza primero un apagado limpio (más estable en algunos dispositivos). La opción 'Agresiv0' realiza un reinicio completo del descifrador entre canales cifrados."
+msgstr "Cómo liberar el decodificador de hardware al cambiar al descifrado por software. La opción 'Rápido' libera inmediatamente (cambio más rápido). La opción 'Normal' realiza primero un apagado limpio (más estable en algunos dispositivos). La opción 'Agresivo' realiza un reinicio completo del descifrador entre canales cifrados."
 
 msgid "Http(s) stream start delay"
 msgstr "Retraso en el inicio del stream http(s)"
