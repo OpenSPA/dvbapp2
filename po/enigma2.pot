@@ -3158,6 +3158,18 @@ msgstr ""
 msgid "Brightness (Standby)"
 msgstr ""
 
+msgid "Brightness Video"
+msgstr ""
+
+msgid "Brightness Video & OSD"
+msgstr ""
+
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "British Indian Ocean Territory"
 msgstr ""
 
@@ -3654,6 +3666,12 @@ msgid "Cartoons/Puppets"
 msgstr ""
 
 msgid "Cascade PiP"
+msgstr ""
+
+msgid "Case insensitive"
+msgstr ""
+
+msgid "Case sensitive"
 msgstr ""
 
 msgid "Catalan / Valencian"
@@ -4859,10 +4877,19 @@ msgstr ""
 msgid "Contrast Video & OSD"
 msgstr ""
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr ""
 
 msgid "Control files:"
+msgstr ""
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
 msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
@@ -5026,6 +5053,21 @@ msgid "Create a randomly generated password"
 msgstr ""
 
 msgid "Create a symbolic link"
+msgstr ""
+
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
 msgstr ""
 
 #, python-format
@@ -7066,6 +7108,12 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
@@ -8176,6 +8224,9 @@ msgstr ""
 msgid "File compression"
 msgstr ""
 
+msgid "File sorting mode"
+msgstr ""
+
 msgid "File system"
 msgstr ""
 
@@ -8527,6 +8578,9 @@ msgid "Full Stretch"
 msgstr ""
 
 msgid "Full factory reset"
+msgstr ""
+
+msgid "Full range (no clipping)"
 msgstr ""
 
 msgid "Full screen"
@@ -8963,6 +9017,9 @@ msgid "Hardware information"
 msgstr ""
 
 msgid "Hardware latency correction"
+msgstr ""
+
+msgid "Hardware revision"
 msgstr ""
 
 msgid "Hardware serial"
@@ -9611,6 +9668,9 @@ msgid "Include screen load data"
 msgstr ""
 
 msgid "Include teletext details"
+msgstr ""
+
+msgid "Include text encoding data"
 msgstr ""
 
 msgid "Include timer data"
@@ -10457,6 +10517,12 @@ msgstr ""
 msgid "Limit west"
 msgstr ""
 
+msgid "Limited memory size, swap file required"
+msgstr ""
+
+msgid "Limited range (64..940)"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr ""
 
@@ -10709,6 +10775,9 @@ msgid "Loop through to"
 msgstr ""
 
 msgid "Lower Framerate saves CPU Time."
+msgstr ""
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
 msgstr ""
 
 msgid "Lower USB"
@@ -14269,6 +14338,12 @@ msgid "RED long"
 msgstr ""
 
 msgid "RF Output Settings"
+msgstr ""
+
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
 msgstr ""
 
 msgid "Racing"
@@ -21336,6 +21411,9 @@ msgstr ""
 msgid "Uphops: "
 msgstr ""
 
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
+
 msgid "Upper USB"
 msgstr ""
 
@@ -24819,9 +24897,6 @@ msgid "Go back to the previous step"
 msgstr ""
 
 msgid "Immediately exit the wizard (Debug mode only)"
-msgstr ""
-
-msgid "Limited memory size, swap file required"
 msgstr ""
 
 msgid "Network wizard completed.\n"
