@@ -23671,9 +23671,6 @@ msgstr ""
 msgid "of a SINGLE layer medium used."
 msgstr ""
 
-msgid "off"
-msgstr ""
-
 msgid "off or wpa2 on"
 msgstr ""
 
