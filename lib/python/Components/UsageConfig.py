@@ -146,7 +146,7 @@ def InitUsageConfig():
 	config.usage.PowerLost = ConfigBoolean(default=False)
 	###############################################
 	config.usage.multibouquet = ConfigYesNo(default=True)
-	config.usage.numberZapDigits = ConfigSelection(default=4, choices=[(x, ngettext("%d Digit", "%d Digits", x) % x) for x in range(1, 6)])
+	config.usage.numberZapDigits = ConfigSelection(default=4, choices=[(x, ngettext("%d Digit", "%d Digits", x) % x) for x in range(1, 7)])
 	config.usage.numberZapDisplay = ConfigSelection(default="number", choices=[
 		("number", _("Number only")),
 		("name", _("Number and name")),
