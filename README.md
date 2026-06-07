@@ -1,6 +1,6 @@
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 24.04.1 (GNU/Linux 6.8.0-51-generic x86_64)
+> Ubuntu 24.04.4 (GNU/Linux 6.8.0-111-generic x86_64)
 
 ## minimum hardware requirement : ##
 
