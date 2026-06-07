@@ -4534,6 +4534,9 @@ msgstr "Seleccione si las pistas de sonido del canal DTS deben ser mezcladas o t
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Seleccione si las pistas de sonido del canal DTS deben ser mezcladas en estéreo."
 
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr "Seleccione si las pistas de audio Dolby TrueHD deben transmitirse o decodificarse."
+
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Seleccione si las pistas de sonido del canal WMA Pro deben ser remezcladas o transcodificadas."
 
@@ -5605,6 +5608,9 @@ msgstr "El LED de control se puede encender o apagar aquí."
 
 msgid "Control files:"
 msgstr "Archivos de control:"
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr "Controle cómo se ordenarán los archivos en las pantallas que muestran una lista de archivos. La distinción entre mayúsculas y minúsculas agrupará primero los archivos en mayúsculas y luego los archivos en minúsculas. No distingue entre mayúsculas y minúsculas y ordenará los archivos alfabéticamente, ignorando las mayúsculas y minúsculas."
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr ""
@@ -9296,6 +9302,9 @@ msgstr "Paquetes de sistema de archivos"
 
 msgid "File appears to be busy!\n"
 msgstr "El archivo parece estar ocupado.\n"
+
+msgid "File sorting mode"
+msgstr "Modo de clasificación de archivos"
 
 msgid "File transfer was canceled by user!"
 msgstr "La transferencia de archivos se canceló por el usuario!"
