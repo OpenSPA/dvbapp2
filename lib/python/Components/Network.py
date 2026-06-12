@@ -250,9 +250,9 @@ class Network:
 					configStrings = [f"{enabledComment}{x}" for x in configStrings]
 					configStrings = "\n".join(configStrings)
 				lines.append(configStrings)
-			if iface["preup"] is not False and "configStrings" not in iface:
+			if iface["preup"] is not False and ("configStrings" not in iface or "wlan3" in ifacename and "ip" in iface):
 				lines.append(f"{enabledComment}{iface["preup"]}")
-			if iface["predown"] is not False and "configStrings" not in iface:
+			if iface["predown"] is not False and ("configStrings" not in iface or "wlan3" in ifacename and "ip" in iface):
 				lines.append(f"{enabledComment}{iface["predown"]}")
 			lines.append("")
 		fileWriteLines(self.networkInterfaceFile, lines, source=MODULE_NAME)
