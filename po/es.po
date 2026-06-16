@@ -6094,6 +6094,12 @@ msgstr "Tipo DVB:"
 msgid "DVB-C"
 msgstr "DVB-C"
 
+msgid "DVB-C / Cable only"
+msgstr "DVB-C / solo por Cable"
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgstr "DVB-C y DVB-T/T2 con interruptor coaxial externo de 5 V"
+
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANEXO B"
 
@@ -6110,6 +6116,9 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
+
+msgid "DVB-T/T2 / Terrestrial only"
+msgstr "DVB-T/T2 / solo por Terrestre"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -10409,6 +10418,9 @@ msgstr "Hungría"
 
 msgid "Hybrid Tuner"
 msgstr "Sintonizador híbrido"
+
+msgid "Hybrid tuner mode"
+msgstr "Modo de sintonizador híbrido"
 
 msgid "Hz"
 msgstr "Hz"
@@ -18280,6 +18292,9 @@ msgstr "Seleccione cómo está configurada la antena parabólica, es decir, ante
 
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Seleccione cómo se gestiona la programación con respecto al reposo."
+
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+msgstr "Seleccione cómo se conecta este sintonizador DVB-C/T. Utilice la opción de interruptor coaxial externo únicamente con un interruptor coaxial controlado por 5 V."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleccione cómo activar el modo EPG rápido."
