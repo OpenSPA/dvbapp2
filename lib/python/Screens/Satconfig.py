@@ -124,113 +124,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						self.saveAll()
 					self.newConfig()
 
-	def keyLeft(self):
-		cur = self["config"].getCurrent()
-		if cur and isFBCLink(self.nim.slot):
-			checkList = (self.advancedLof, self.advancedConnected)
-			if cur in checkList:
-				return
-		ConfigListScreen.keyLeft(self)
-		if cur in (self.advancedSelectSatsEntry, self.selectSatsEntry) and cur:
-			self.keyOk()
-		else:
-			if cur in (self.hybridTunerMode, self.multiType) and cur:
-				self.applyHybridTunerMode()
-				self.saveAll()
-			self.newConfig()
-			
 	def setTextKeyBlue(self):
 		self["key_blue"].setText("")
 		if self["config"].isChanged():
 			self["key_blue"].setText(_("Set Default"))
-
-	def keyRight(self):
-		cur = self["config"].getCurrent()
-		if cur and isFBCLink(self.nim.slot):
-			checkList = (self.advancedLof, self.advancedConnected)
-			if cur in checkList:
-				return
-		ConfigListScreen.keyRight(self)
-		if cur in (self.advancedSelectSatsEntry, self.selectSatsEntry) and cur:
-			self.keyOk()
-		else:
-			if cur in (self.hybridTunerMode, self.multiType) and cur:
-				self.applyHybridTunerMode()
-				self.saveAll()
-			self.newConfig()
-
-	def handleKeyFileCallback(self, answer):
-		ConfigListScreen.handleKeyFileCallback(self, answer)
-		self.newConfig()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
-		else:
-			self.restoreService(_("Zap back to service before tuner setup?"))
-
-	def saveAll(self):
-		if self.isCableTerrestrialHybrid():
-			self.applyHybridTunerMode()
-			self.nimConfig.hybridTunerMode.save()
-			self.nimConfig.dvbc.configMode.save()
-			self.nimConfig.dvbt.configMode.save()
-			try:
-				self.nimConfig.multiType.save()
-			except Exception:
-				pass
-		if self.nim.isCompatible("DVB-S"):
-			# Reset connectedTo to all choices to properly store the default value.
-			choices = []
-			nimlist = nimmanager.getNimListOfType("DVB-S", self.slotid)
-			for id in nimlist:
-				choices.append((str(id), nimmanager.getNimDescription(id)))
-			self.nimConfig.dvbs.connectedTo.setChoices(choices)
-			# Sanity check for empty sat list.
-			if self.nimConfig.dvbs.configMode.value != "satposdepends" and len(nimmanager.getSatListForNim(self.slotid)) < 1:
-				self.nimConfig.dvbs.configMode.value = "nothing"
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-		for x in self["config"].list:
-			x[1].cancel()
-		if hasattr(self, "originalTerrestrialRegion"):
-			self.nimConfig.dvbt.terrestrial.value = self.originalTerrestrialRegion
-			self.nimConfig.dvbt.terrestrial.save()
-		if hasattr(self, "originalCableRegion"):
-			self.nimConfig.dvbc.scan_provider.value = self.originalCableRegion
-			self.nimConfig.dvbc.scan_provider.save()
-		# We need to call saveAll to reset the connectedTo choices.
-		self.saveAll()
-		self.restoreService(_("Zap back to service before tuner setup?"))
-
-	def changeConfigurationMode(self):
-		if self.configMode:
-			if self.nim.isCompatible("DVB-S"):
-				self.nimConfig.dvbs.configMode.selectNext()
-			elif self.nim.isCompatible("DVB-C"):
-				self.nimConfig.dvbc.configMode.selectNext()
-			elif self.nim.isCompatible("DVB-T"):
-				self.nimConfig.dvbt.configMode.selectNext()
-			else:
-				pass
-			self["config"].invalidate(self.configMode)
-			self.setTextKeyBlue()
-			self.createSetup()
-
-	def nothingConnectedShortcut(self):
-		if self["config"].isChanged():
-			for x in self["config"].list:
-				x[1].cancel()
-			self.setTextKeyBlue()
-			self.createSetup()
-
-	def countrycodeToCountry(self, cc):
-		return self.nimCountries.get(cc.upper(), cc).upper()
 
 	def createSimpleSetup(self, mode):
 		nim = self.nimConfig.dvbs
@@ -1002,6 +899,27 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.createSetup()
 
 	def keyBlue(self):
+		if self["config"].isChanged():
+			for x in self["config"].list:
+				x[1].cancel()
+			self.setTextKeyBlue()
+			self.createSetup()
+
+	def changeConfigurationMode(self):
+		if self.configMode:
+			if self.nim.isCompatible("DVB-S"):
+				self.nimConfig.dvbs.configMode.selectNext()
+			elif self.nim.isCompatible("DVB-C"):
+				self.nimConfig.dvbc.configMode.selectNext()
+			elif self.nim.isCompatible("DVB-T"):
+				self.nimConfig.dvbt.configMode.selectNext()
+			else:
+				pass
+			self["config"].invalidate(self.configMode)
+			self.setTextKeyBlue()
+			self.createSetup()
+
+	def nothingConnectedShortcut(self):
 		if self["config"].isChanged():
 			for x in self["config"].list:
 				x[1].cancel()
