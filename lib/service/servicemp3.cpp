@@ -31,6 +31,7 @@ Licensed under GPLv2.
 
 #include <lib/base/cfile.h>
 
+#include <cctype>
 #include <cstdint>
 #include <cstdlib>
 #include <fstream>
@@ -83,6 +84,102 @@ typedef enum {
 static bool first_play_eServicemp3 = false;
 static GstElement *dvb_audiosink, *dvb_videosink, *dvb_subsink;
 static bool dvb_audiosink_ok, dvb_videosink_ok, dvb_subsink_ok;
+
+static std::string gstLaunchQuote(const std::string& value)
+{
+	std::string quoted = "\"";
+	for (std::string::const_iterator it = value.begin(); it != value.end(); ++it) {
+		if (*it == '\\' || *it == '"')
+			quoted += '\\';
+		quoted += *it;
+	}
+	quoted += "\"";
+	return quoted;
+}
+
+static bool isDashUri(const std::string& uri)
+{
+	std::string lower = uri;
+	for (std::string::iterator it = lower.begin(); it != lower.end(); ++it)
+		*it = static_cast<char>(tolower(static_cast<unsigned char>(*it)));
+	return lower.find(".mpd") != std::string::npos ||
+	       lower.find("manifest.mpd") != std::string::npos ||
+	       lower.find("application/dash+xml") != std::string::npos;
+}
+
+/* g_object_set on missing prop logs a critical; skip for sinks that don't expose it. */
+static void gstSetBoolIfAvailable(GstElement* element, const char* property, gboolean value)
+{
+	if (!element || !property) return;
+	if (g_object_class_find_property(G_OBJECT_GET_CLASS(element), property))
+		g_object_set(G_OBJECT(element), property, value, NULL);
+}
+
+static void gstSetStringIfAvailable(GstElement* element, const char* property, const std::string& value)
+{
+	if (!element || !property || value.empty()) return;
+	if (g_object_class_find_property(G_OBJECT_GET_CLASS(element), property))
+		g_object_set(G_OBJECT(element), property, value.c_str(), NULL);
+}
+
+static GstElement* createDashPlaybackPipeline(const std::string& uri, const std::string& useragent)
+{
+	/* HW audio sink expects stream-format=raw post-aacparse. */
+#ifdef DREAMNEXTGEN
+	const char *vsink_factory = "dreamvideosink";
+	const char *asink_factory = "dreamaudiosink";
+#else
+	const char *vsink_factory = "dvbvideosink";
+	const char *asink_factory = "dvbaudiosink";
+#endif
+	std::string pipeline =
+		"souphttpsrc name=dashsrc location=" + gstLaunchQuote(uri) + " timeout=60 retries=20 "
+		"! dashdemux name=d connection-speed=4000 max-bitrate=3200000 "
+		"max-video-width=1280 max-video-height=720 max-video-framerate=50/1 "
+		"presentation-delay=6s "
+		"d.video_00 ! queue max-size-buffers=0 max-size-bytes=4194304 max-size-time=5000000000 "
+		"! qtdemux ! h264parse "
+		"! video/x-h264,stream-format=avc,alignment=au "
+		"! " + vsink_factory + " name=dashvideosink "
+		"d.audio_00 ! queue max-size-buffers=0 max-size-bytes=1048576 max-size-time=5000000000 "
+		"! qtdemux ! aacparse "
+		"! audio/mpeg,mpegversion=4,framed=true,stream-format=raw "
+		"! " + asink_factory + " name=dashaudiosink";
+
+	GError* error = NULL;
+	GstElement* element = gst_parse_launch(pipeline.c_str(), &error);
+	if (!element) {
+		eWarning("[eServiceMP3] failed to create DASH pipeline: %s",
+		         error ? error->message : "unknown error");
+		if (error) g_error_free(error);
+		return NULL;
+	}
+	if (error) {
+		eWarning("[eServiceMP3] DASH pipeline parse warning: %s", error->message);
+		g_error_free(error);
+	}
+
+	GstElement* source = gst_bin_get_by_name(GST_BIN(element), "dashsrc");
+	if (source) {
+		gstSetBoolIfAvailable(source, "ssl-strict", FALSE);
+		gstSetStringIfAvailable(source, "user-agent", useragent);
+		gst_object_unref(source);
+	}
+	/* e2-sync/e2-async are dvb*sink-only; no-op on dream*sinks. */
+	GstElement* vsink = gst_bin_get_by_name(GST_BIN(element), "dashvideosink");
+	if (vsink) {
+		gstSetBoolIfAvailable(vsink, "e2-sync",  FALSE);
+		gstSetBoolIfAvailable(vsink, "e2-async", FALSE);
+		gst_object_unref(vsink);
+	}
+	GstElement* asink = gst_bin_get_by_name(GST_BIN(element), "dashaudiosink");
+	if (asink) {
+		gstSetBoolIfAvailable(asink, "e2-sync",  FALSE);
+		gstSetBoolIfAvailable(asink, "e2-async", FALSE);
+		gst_object_unref(asink);
+	}
+	return element;
+}
 
 /*static functions */
 
@@ -945,11 +1042,13 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_first_paused = false;
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 	m_audiosink_not_running = false;
+	m_is_dash_pipeline = false;
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
 	m_play_position_timer = eTimer::create(eApp);
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
 	m_last_seek_count = -10;
 	m_seeking_or_paused = false;
+	m_last_trickseek_ms = 0;
 	m_to_paused = false;
 	m_last_seek_pos = 0;
 	m_media_lenght = 0;
@@ -1100,6 +1199,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_sourceinfo.audiotype = atDRA;
 	} else if (strcasecmp(ext, ".m3u8") == 0)
 		m_sourceinfo.is_hls = TRUE;
+	else if (strcasecmp(ext, ".mpd") == 0) {
+		m_sourceinfo.is_video = TRUE;  /* .mpd → DASH pipeline branch below */
+	}
 	else if (strcasecmp(ext, ".mp3") == 0) {
 		m_sourceinfo.audiotype = atMP3;
 		m_sourceinfo.is_audio = TRUE;
@@ -1161,6 +1263,35 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	} else
 		uri = g_filename_to_uri(filename, NULL, NULL);
 
+	std::string uri_string = uri ? uri : "";
+	m_is_dash_pipeline = m_sourceinfo.is_streaming && isDashUri(uri_string);
+
+	if (m_is_dash_pipeline) {
+		/* playbin auto-plug stalls dreamvideosink on .mpd; build explicit pipeline. */
+		eDebug("[eServiceMP3] DASH uri=%s", uri);
+		m_is_live = true;
+		m_use_prefillbuffer = false;
+		m_gst_playbin = createDashPlaybackPipeline(uri_string, m_useragent);
+		if (m_gst_playbin) {
+			GstBus* bus = gst_pipeline_get_bus(GST_PIPELINE(m_gst_playbin));
+			gst_bus_set_sync_handler(bus, gstBusSyncHandler, this, NULL);
+			gst_object_unref(bus);
+
+			/* Single AAC entry for the audio-track UI; track switching N/A. */
+			m_audioStreams.clear();
+			audioStream audio;
+			audio.type = atAAC;
+			audio.language_code = "und";
+			audio.codec = "AAC";
+			m_audioStreams.push_back(audio);
+			m_currentAudioStream = 0;
+		} else {
+			m_event((iPlayableService*)this, evUser + 12);
+			m_gst_playbin = NULL;
+			m_errorInfo.error_message = "failed to create GStreamer DASH pipeline!\n";
+			eDebug("[eServiceMP3] sorry, can't play DASH: %s", m_errorInfo.error_message.c_str());
+		}
+	} else {
 	eDebug("[eServiceMP3] playbin uri=%s", uri);
 	if (suburi != NULL)
 		eDebug("[eServiceMP3] playbin suburi=%s", suburi);
@@ -1278,6 +1409,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_errorInfo.error_message = "failed to create GStreamer pipeline!\n";
 		eDebug("[eServiceMP3] sorry, can't play: %s", m_errorInfo.error_message.c_str());
 	}
+	}  /* end !m_is_dash_pipeline */
 	g_free(uri);
 	if (suburi != NULL)
 		g_free(suburi);
@@ -1733,6 +1865,16 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 		}
 	}
 
+	/* 200ms gate against seek-spam: stacked FLUSH seeks deadlock the
+	 * main thread. UI position is updated before the gate. */
+	struct timespec tsk; clock_gettime(CLOCK_MONOTONIC, &tsk);
+	int64_t now_ms_k = (int64_t)tsk.tv_sec * 1000 + tsk.tv_nsec / 1000000;
+	if (now_ms_k - m_last_trickseek_ms < 200) {
+		eDebug("[eServiceMP3] seekToImpl throttled (%dms since last gst seek)",
+		       (int)(now_ms_k - m_last_trickseek_ms));
+		return 0;
+	}
+	m_last_trickseek_ms = now_ms_k;
 	if (!gst_element_seek(m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME,
 						  (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT), GST_SEEK_TYPE_SET,
 						  (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE)) {
@@ -1790,6 +1932,21 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 	if (!m_gst_playbin)
 		return -1;
 	// eDebug("[eServiceMP3] trickSeek %.1f", ratio);
+
+	/* 500ms gate against FF/SlowMotion ratio spam. ratio 0.0 (pause)
+	 * and 1.0 (resume) always pass — they are state transitions. */
+	bool is_trick_ratio = !(ratio > -0.01 && ratio < 0.01)
+	                     && (ratio < 0.99 || ratio > 1.01);
+	if (is_trick_ratio) {
+		struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
+		int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+		if (now_ms - m_last_trickseek_ms < 500) {
+			eDebug("[eServiceMP3] trickSeek throttled (%dms since last, ratio=%.1f)",
+			       (int)(now_ms - m_last_trickseek_ms), ratio);
+			return 0;
+		}
+		m_last_trickseek_ms = now_ms;
+	}
 	GstState state, pending;
 	GstStateChangeReturn ret;
 	int pos_ret = -1;
@@ -2570,6 +2727,8 @@ int eServiceMP3::getNumberOfTracks() {
  * @return int Returns the index of the current audio track, or -1 if no audio stream is set.
  */
 int eServiceMP3::getCurrentTrack() {
+	if (m_is_dash_pipeline)
+		return m_currentAudioStream >= 0 ? m_currentAudioStream : 0;
 	if (m_currentAudioStream == -1)
 		g_object_get(m_gst_playbin, "current-audio", &m_currentAudioStream, NULL);
 	return m_currentAudioStream;
@@ -2643,6 +2802,11 @@ void eServiceMP3::clearBuffers(bool force) {
  * @return int Returns 0 on success, or -1 if the selection fails.
  */
 int eServiceMP3::selectAudioStream(int i, bool skipAudioFix) {
+	if (m_is_dash_pipeline) {
+		/* Single-track DASH pipeline; any non-zero index = unsupported. */
+		m_currentAudioStream = 0;
+		return i == 0 ? 0 : -1;
+	}
 	int current_audio, current_audio_orig;
 	g_object_get(m_gst_playbin, "current-audio", &current_audio_orig, NULL);
 	g_object_set(m_gst_playbin, "current-audio", i, NULL);
@@ -3142,6 +3306,15 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 			if (GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
 				break;
 
+			if (m_is_dash_pipeline) {
+				/* No playbin n-video/n-audio to introspect; streams pre-registered. */
+				if (m_send_ev_start) {
+					m_event((iPlayableService*)this, evUpdatedInfo);
+					m_send_ev_start = false;
+				}
+				break;
+			}
+
 			if (m_send_ev_start) {
 				gint i, n_video = 0, n_audio = 0, n_text = 0;
 				// bool codec_tofix = false;
@@ -3370,6 +3543,8 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 			break;
 		}
 		case GST_MESSAGE_BUFFERING:
+			if (m_is_dash_pipeline)
+				break;  /* dashdemux's own buffering, not playbin's — ignore */
 			if (m_sourceinfo.is_streaming) {
 				// GstBufferingMode mode;
 				gst_message_parse_buffering(msg, &(m_bufferInfo.bufferPercent));

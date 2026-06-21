@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
 "PO-Revision-Date: 2025-06-16 09:06+0000\n"
 "Last-Translator: ikvat <ikvat@hotmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -2121,6 +2121,9 @@ msgstr "Après zapping"
 msgid "Aggregate data only"
 msgstr ""
 
+msgid "Aggressive"
+msgstr ""
+
 msgid "Akan"
 msgstr "Akan"
 
@@ -3237,6 +3240,12 @@ msgstr ""
 msgid "Brightness Video & OSD"
 msgstr ""
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "British Indian Ocean Territory"
 msgstr "Territoire britannique de l'océan Indien"
 
@@ -3764,6 +3773,12 @@ msgstr "Dessin animé/Marionnettes"
 
 msgid "Cascade PiP"
 msgstr "PiP en cascade"
+
+msgid "Case insensitive"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
 
 msgid "Catalan / Valencian"
 msgstr "Catalan / Valencien"
@@ -4345,12 +4360,6 @@ msgstr "Colombie"
 
 msgid "Color"
 msgstr "Couleur"
-
-msgid "Color Bottom"
-msgstr ""
-
-msgid "Color Top"
-msgstr ""
 
 msgid "Color format"
 msgstr "Format de couleur"
@@ -4987,10 +4996,19 @@ msgstr ""
 msgid "Contrast Video & OSD"
 msgstr ""
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr "La LED de contrôle peut être allumée ou éteinte ici."
 
 msgid "Control files:"
+msgstr ""
+
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
 msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
@@ -4998,6 +5016,12 @@ msgstr "Contrôle la position des programmations terminées dans la liste des pr
 
 msgid "Control the InfoBar fading speed."
 msgstr "Vitesse de l'effacement progressif de la barre d'info"
+
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Cette option vous permet d'activer le filtre de lissage pour contrôler le processus de tramage."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Cette option vous permet d'activer la mise à l'échelle verticale dejagging."
 
 msgid "Control your Softcams"
 msgstr "Contrôlez vos softcams"
@@ -5160,9 +5184,6 @@ msgid "Create application loader dump."
 msgstr ""
 
 msgid "Create backup image zip file."
-msgstr ""
-
-msgid "Create boot dump."
 msgstr ""
 
 msgid "Create boot image dump."
@@ -7206,6 +7227,12 @@ msgstr "Activer le log de débogage *"
 msgid "Enable digital downmix"
 msgstr "Activer downmix numérique"
 
+msgid "Enable extended cut file support"
+msgstr ""
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr ""
+
 msgid "Enable fallback remote receiver"
 msgstr "Activer le récepteur distant de repli"
 
@@ -7285,6 +7312,9 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr "Activez cette option pour ajouter des noms d'écran et des données de résolution au fichier journal de débogage."
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add text encoding information to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
@@ -8426,6 +8456,9 @@ msgstr "Le fichier semble être occupé.\n"
 msgid "File compression"
 msgstr ""
 
+msgid "File sorting mode"
+msgstr ""
+
 msgid "File system"
 msgstr ""
 
@@ -8766,6 +8799,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full range (no clipping)"
+msgstr ""
+
 msgid "Full screen"
 msgstr "Plein écran"
 
@@ -9080,6 +9116,9 @@ msgstr "Guyane"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H : = Horaire / J : = Journalier / S : = Hebdomadaire / M : = Mensuel"
 
@@ -9195,6 +9234,9 @@ msgid "Hardware information"
 msgstr ""
 
 msgid "Hardware latency correction"
+msgstr ""
+
+msgid "Hardware revision"
 msgstr ""
 
 msgid "Hardware serial"
@@ -9461,7 +9503,7 @@ msgstr "Heures Mins"
 msgid "Hours Minutes Seconds"
 msgstr "Heures Mins Secs"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -9487,9 +9529,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr ""
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nouveau modèle"
 
 msgid "IMDb Details"
 msgstr "Détails IMDb"
@@ -9884,6 +9923,9 @@ msgstr "Inclure les données du périphérique de stockage"
 
 msgid "Include teletext details"
 msgstr "Inclure les détails du télétexte"
+
+msgid "Include text encoding data"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Inclure les donnée du timer"
@@ -10720,6 +10762,9 @@ msgstr "Limite ouest"
 msgid "Limited memory size, swap file required"
 msgstr ""
 
+msgid "Limited range (64..940)"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr "Limites annulées"
 
@@ -10973,6 +11018,9 @@ msgstr "Rebouclé par"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Un taux de rafraîchissement plus bas préservera du temps CPU"
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr ""
 
 msgid "Lower USB"
 msgstr "USB du bas"
@@ -14603,6 +14651,12 @@ msgstr "Rouge long"
 msgid "RF Output Settings"
 msgstr "Sortie RF"
 
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
+msgstr ""
+
 msgid "Racing"
 msgstr ""
 
@@ -17163,6 +17217,9 @@ msgstr "Choisissez si les pistes audio des canaux DTS doivent être mixées ou t
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Choisir si les pistes sonores du canal DTS doivent être converties en mode stéréo."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr ""
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
@@ -20630,8 +20687,8 @@ msgstr "Cela vous permet de modifier la taille de la police relativement à la t
 msgid "This allows you to change the number of rows shown."
 msgstr "Permet de modifier le nombre de lignes affichées."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Cela vous permet de définir le nombre de chiffre à 5, si vous avez plus de 9999 chaînes."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Cela vous permet de définir le nombre de chiffre à 6, si vous avez plus de 99999 chaînes."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "ce bouquet est protégé par un PIN contrôle parental"
@@ -20674,12 +20731,6 @@ msgstr "Cette option permet de réduire le bloc-bruit dans l'image. Evidemment, 
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Cette option permet de régler le niveau de contraste dynamique de l'image."
-
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Cette option vous permet d'activer le filtre de lissage pour contrôler le processus de tramage."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Cette option vous permet d'activer la mise à l'échelle verticale dejagging."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Cette option vous permet de désactiver l'affichage."
@@ -20867,18 +20918,6 @@ msgstr "Cette option définit la netteté de mise à l'échelle, utilisé lors d
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Cette option définit la supression de faux contours numériques, qui sont le résultat d'un nombre limité de valeurs discrètes."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr ""
-
-msgid "This option sets the video & osd picture contrast."
-msgstr ""
-
-msgid "This option sets the video picture brightness."
-msgstr ""
-
-msgid "This option sets the video picture contrast."
-msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Cette option définit la netteté de l'image, utilisée lorsque l'image est rehaussée."
@@ -21950,6 +21989,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops : "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
 
 msgid "Upper USB"
 msgstr "USB supérieur"
@@ -24314,6 +24356,9 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nouveau modèle"
 
 #~ msgid " "
 #~ msgstr " "

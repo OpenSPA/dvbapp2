@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
-"PO-Revision-Date: 2026-03-17 11:09+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
+"PO-Revision-Date: 2026-06-17 09:16+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.7.dev0\n"
 
 msgid ""
 "\n"
@@ -2122,6 +2122,9 @@ msgstr "Vaihdoin jälkeen"
 msgid "Aggregate data only"
 msgstr "Aggregoituja tietoja vain"
 
+msgid "Aggressive"
+msgstr "Aggressiivinen"
+
 msgid "Akan"
 msgstr "Akan"
 
@@ -3237,6 +3240,12 @@ msgstr "Kuvan kirkkaus"
 msgid "Brightness Video & OSD"
 msgstr "Kuvan Kirkkaus & kuvaruutu"
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "Kirkkaus kohdistetaan video- ja käyttöliittymän yhteiseen näyttöön. Vaikuttaa kaikkeen näytöllä näkyvään, myös tähän valikkoon."
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "Kirkkaus kohdistetaan vain videoon. Tämä ei vaikuta valikoihin eikä käyttöliittymään."
+
 msgid "British Indian Ocean Territory"
 msgstr "Brittiläinen Intian valtameren alue"
 
@@ -3765,6 +3774,12 @@ msgstr "piirretty/nukke"
 
 msgid "Cascade PiP"
 msgstr "Aktivoi PiP"
+
+msgid "Case insensitive"
+msgstr "Haun tarkkuus"
+
+msgid "Case sensitive"
+msgstr "Haun tarkkuus"
 
 msgid "Catalan / Valencian"
 msgstr "Catalan / Valencian"
@@ -4343,12 +4358,6 @@ msgstr "Colombia"
 
 msgid "Color"
 msgstr "Väri"
-
-msgid "Color Bottom"
-msgstr "Väri näppäin"
-
-msgid "Color Top"
-msgstr "Päällimmäinen Väri"
 
 msgid "Color format"
 msgstr "Väriformaatti"
@@ -4991,17 +5000,32 @@ msgstr "Kontrasti Video"
 msgid "Contrast Video & OSD"
 msgstr "Kontrasti Video & kuvaruutu"
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "Kontrasti kohdistetaan video ja käyttöliittymän yhteiseen näyttöön. Vaikuttaa kaikkeen näytöllä näkyvään, myös tähän valikkoon."
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "Kontrasti vaikuttaa vain videoon. Ei vaikuta valikoihin eikä käyttöliittymään."
+
 msgid "Control LED can be turned on or off here."
 msgstr "LED voidaan kytkeä päälle tai pois täältä."
 
 msgid "Control files:"
 msgstr "Hallitse tiedostoja:"
 
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr "Määrittää tiedostoluetteloiden lajittelutavan. Kirjainkoolla erotteleva lajittelu näyttää isot kirjaimet ensin. Kirjainkoosta riippumaton lajittelu ohittaa kirjainkoon."
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Hallitse sijaintia, kuinka valmiit ajastukset näytetään ajastinluettelossa."
 
 msgid "Control the InfoBar fading speed."
 msgstr "Määrittää tietopalkin häivytysnopeuden"
+
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Tämä asetus ottaa käyttöön pehmennyssuodattimen sävyjen sekoituksessa."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Tämä asetus ottaa käyttöön skaalaimen pystysuuntaisen sahalaitojen poiston."
 
 msgid "Control your Softcams"
 msgstr "Hallinnoi softcameja"
@@ -5166,9 +5190,6 @@ msgstr "Luo sovelluksen lataajan muistikuva."
 msgid "Create backup image zip file."
 msgstr "Luo varmuuskopiointi image zip tiedosto."
 
-msgid "Create boot dump."
-msgstr "Luo käynnistysmuistikuva."
-
 msgid "Create boot image dump."
 msgstr "Luo käynnistyskuvan muistikuva."
 
@@ -5230,6 +5251,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Swap tiedoston luominen tai aktivoiminen epäonnistui.\n"
+"\n"
+"%s"
 
 msgid "Creating partition"
 msgstr "Luodaan osiota"
@@ -7217,6 +7241,12 @@ msgstr "Ota käyttöön vianselvitysloki *"
 msgid "Enable digital downmix"
 msgstr "Vaihda muunto stereoksi"
 
+msgid "Enable extended cut file support"
+msgstr "Ota käyttöön Laajennettu leikkaus tuki"
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr "Ota käyttöön laajennettu leikkaustiedostotuki. Tallentaa leikkaustiedot tarkemmin, ei vain merkkejä."
+
 msgid "Enable fallback remote receiver"
 msgstr "Ota käyttöön etävastaanotin"
 
@@ -7297,6 +7327,9 @@ msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näytön nimiä j
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Ota tämä asetus käyttöön lisätäksesi järjestelmän käynnistyksen ja hot plug tapahtumat debug lokitiedostoon."
+
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr "Ota käyttöön tämä asetus lisätäksesi tekstikoodaus­tiedot debug-lokitiedostoon."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä ajastin tiedot vianmääritys lokitiedostoon."
@@ -8438,6 +8471,9 @@ msgstr "Tiedosto näyttää olevan käytössä.\n"
 msgid "File compression"
 msgstr "Tiedostopakkaus"
 
+msgid "File sorting mode"
+msgstr "Tiedoston lajittelutila"
+
 msgid "File system"
 msgstr "Tiedostojärjestelmä"
 
@@ -8778,6 +8814,9 @@ msgstr "Kokoruutu"
 msgid "Full factory reset"
 msgstr "Täydellinen tehdasasetusten palautus"
 
+msgid "Full range (no clipping)"
+msgstr "Täydellinen (ei leikata)"
+
 msgid "Full screen"
 msgstr "Kokoruutu"
 
@@ -9091,6 +9130,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 uusi malli"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Tunneittain / D: = Päivittäin / W: = Viikoittain / M: = Kuukausittain"
 
@@ -9207,6 +9249,9 @@ msgstr "Laitteen tiedot"
 
 msgid "Hardware latency correction"
 msgstr "Laitteistoviiveen korjaus"
+
+msgid "Hardware revision"
+msgstr "Laitteiston tarkistus"
 
 msgid "Hardware serial"
 msgstr "Laitteen sarjanumero"
@@ -9472,8 +9517,8 @@ msgstr "Tunnit Minuutit"
 msgid "Hours Minutes Seconds"
 msgstr "Tunnit Minuutit Sekunnit"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr "Kuinka vapauttaa laitteistodekooderi siirryttäessä ohjelmistopurkuun: \"Nopea\" vapauttaa dekooderin heti (nopeampi kanavanvaihto). \"Normaali\" suorittaa ensin siistin sammutuksen (vakaa joillakin bokseilla)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgstr "Määrittää, miten laitteiston dekooderi vapautetaan siirryttäessä ohjelmalliseen salauksen purkuun. 'Nopea' vapauttaa sen heti (nopeampi kanavanvaihto). 'Normaali' tekee ensin hallitun sulkemisen (vakavampi ja vakaampi joillakin laitteilla). 'Aggressiivinen' suorittaa täyden salauksenpurkuyksikön nollauksen salattujen kanavien välillä."
 
 msgid "Http(s) stream start delay"
 msgstr "Http/https streamin käynnistysviive"
@@ -9498,9 +9543,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "I/O-prioriteetti skripteille"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 uusi malli"
 
 msgid "IMDb Details"
 msgstr "IMDb Lisätiedot"
@@ -9900,6 +9942,9 @@ msgstr "Sisältää tallennuslaitteen tiedot"
 
 msgid "Include teletext details"
 msgstr "Teksitv teksityksen yksityiskohdat"
+
+msgid "Include text encoding data"
+msgstr "Sisältää tekstin koodaustiedot"
 
 msgid "Include timer data"
 msgstr "Sisällytä ajastimen tiedot"
@@ -10736,6 +10781,9 @@ msgstr "Raja länteen"
 msgid "Limited memory size, swap file required"
 msgstr "Rajoitettu muistin koko, swap tiedosto tarvitaan"
 
+msgid "Limited range (64..940)"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr "Rajat pois"
 
@@ -10989,6 +11037,9 @@ msgstr "Läpisyöttö"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Matalampi kuvataajuus vähentää CPU-kuormaa"
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr ""
 
 msgid "Lower USB"
 msgstr "Alempi USB"
@@ -14628,6 +14679,12 @@ msgstr "Punainen (pitkä)"
 msgid "RF Output Settings"
 msgstr "RF ulostulo"
 
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
+msgstr ""
+
 msgid "Racing"
 msgstr "Moottoriurheilu"
 
@@ -17203,6 +17260,9 @@ msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr ""
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Valitse DNS tila."
@@ -20708,8 +20768,8 @@ msgstr "Määrittää tekstikoon suhteessa teeman määritykseen. Arvo 1 suurent
 msgid "This allows you to change the number of rows shown."
 msgstr "Määrittää, montako riviä näytetään."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Määrittää, näytetäänkö kanavanumerossa maksimissaan 4 vai 5 numeroa (tapauksessa, jossa kanavia on enemmän kuin 9999)."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Määrittää, näytetäänkö kanavanumerossa maksimissaan 4 vai 6 numeroa (tapauksessa, jossa kanavia on enemmän kuin 99999)."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Tämä kanava on suojattu lapsilukolla!"
@@ -20752,12 +20812,6 @@ msgstr "Tämä asetus vähentää pakkausneliöiden näkymistä kuvassa. Tämä 
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Määrittää kuvan dynaamisen kontrastin määrän."
-
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Tämä asetus ottaa käyttöön pehmennyssuodattimen sävyjen sekoituksessa."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Tämä asetus ottaa käyttöön skaalaimen pystysuuntaisen sahalaitojen poiston."
 
 msgid "This option allows you to Power Off the display."
 msgstr ""
@@ -20946,18 +21000,6 @@ msgstr "Tämä asetus määrittää skaalaimen terävyyden, käytetään kun kuv
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Tämä asetus määrittää ääriviivakorostumien vaimennuksen."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr "Tämä asetus asettaa toiston & kuvaruudun kirkkauden."
-
-msgid "This option sets the video & osd picture contrast."
-msgstr "Tämä asetus määrittää toiston & kuvan kontrastin."
-
-msgid "This option sets the video picture brightness."
-msgstr "Tämä asetus määrittää kuvan kirkkauden."
-
-msgid "This option sets the video picture contrast."
-msgstr "Tämä asetus määrittää videon kontrastin."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Tämä asetus määrittää kuvan terävyyden, käytetään kun kuva skaalataan suurempaan tarkkuuteen."
@@ -22021,6 +22063,9 @@ msgstr "Ylöshyppy -"
 
 msgid "Uphops: "
 msgstr "Ylöshypyt: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
 
 msgid "Upper USB"
 msgstr "Ylempi USB"
@@ -24427,6 +24472,33 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Color Bottom"
+#~ msgstr "Väri näppäin"
+
+#~ msgid "Color Top"
+#~ msgstr "Päällimmäinen Väri"
+
+#~ msgid "Create boot dump."
+#~ msgstr "Luo käynnistysmuistikuva."
+
+#~ msgid "This option sets the video & osd picture brightness."
+#~ msgstr "Tämä asetus asettaa toiston & kuvaruudun kirkkauden."
+
+#~ msgid "This option sets the video & osd picture contrast."
+#~ msgstr "Tämä asetus määrittää toiston & kuvan kontrastin."
+
+#~ msgid "This option sets the video picture brightness."
+#~ msgstr "Tämä asetus määrittää kuvan kirkkauden."
+
+#~ msgid "This option sets the video picture contrast."
+#~ msgstr "Tämä asetus määrittää videon kontrastin."
+
+#~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+#~ msgstr "Kuinka vapauttaa laitteistodekooderi siirryttäessä ohjelmistopurkuun: \"Nopea\" vapauttaa dekooderin heti (nopeampi kanavanvaihto). \"Normaali\" suorittaa ensin siistin sammutuksen (vakaa joillakin bokseilla)."
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 uusi malli"
 
 #~ msgid " "
 #~ msgstr " "

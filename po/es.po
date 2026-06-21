@@ -2304,6 +2304,9 @@ msgstr "Tras el zapping"
 msgid "Aggregate data only"
 msgstr "Solo datos agregados"
 
+msgid "Aggressive"
+msgstr "Agresivo"
+
 msgid "Akan"
 msgstr "Akan"
 
@@ -4531,6 +4534,9 @@ msgstr "Seleccione si las pistas de sonido del canal DTS deben ser mezcladas o t
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Seleccione si las pistas de sonido del canal DTS deben ser mezcladas en estéreo."
 
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr "Seleccione si las pistas de audio Dolby TrueHD deben transmitirse o decodificarse."
+
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Seleccione si las pistas de sonido del canal WMA Pro deben ser remezcladas o transcodificadas."
 
@@ -5603,6 +5609,9 @@ msgstr "El LED de control se puede encender o apagar aquí."
 msgid "Control files:"
 msgstr "Archivos de control:"
 
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr "Controle cómo se ordenarán los archivos en las pantallas que muestran una lista de archivos. La distinción entre mayúsculas y minúsculas agrupará primero los archivos en mayúsculas y luego los archivos en minúsculas. No distingue entre mayúsculas y minúsculas y ordenará los archivos alfabéticamente, ignorando las mayúsculas y minúsculas."
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr ""
 "Controla en qué posición se mostrará un temporizador finalizado en la lista "
@@ -5610,6 +5619,12 @@ msgstr ""
 
 msgid "Control the InfoBar fading speed."
 msgstr "Controlar la atenuación de la infobar."
+
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Controlar el filtro de suavizado utilizado para el proceso de tramado."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Controlar el uso del suavizado de escala vertical."
 
 msgid "Control your Softcams"
 msgstr "Controla tus Softcams"
@@ -6079,6 +6094,12 @@ msgstr "Tipo DVB:"
 msgid "DVB-C"
 msgstr "DVB-C"
 
+msgid "DVB-C / Cable only"
+msgstr "DVB-C / solo por Cable"
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgstr "DVB-C y DVB-T/T2 con interruptor coaxial externo de 5 V"
+
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANEXO B"
 
@@ -6095,6 +6116,9 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
+
+msgid "DVB-T/T2 / Terrestrial only"
+msgstr "DVB-T/T2 / solo por Terrestre"
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -9288,6 +9312,9 @@ msgstr "Paquetes de sistema de archivos"
 msgid "File appears to be busy!\n"
 msgstr "El archivo parece estar ocupado.\n"
 
+msgid "File sorting mode"
+msgstr "Modo de clasificación de archivos"
+
 msgid "File transfer was canceled by user!"
 msgstr "La transferencia de archivos se canceló por el usuario!"
 
@@ -9977,6 +10004,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nuevo Modelo"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = horario / D: = diario / W: = semanal / M: = mensual"
 
@@ -10368,8 +10398,8 @@ msgstr "Horas Minutos"
 msgid "Hours Minutes Seconds"
 msgstr "Horas Minutos Segundos"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr "Cómo liberar el decodificador de hardware al cambiar a descifrado por software. La opción 'Rápido' libera inmediatamente (zapping más rápido). La opción 'Normal' realiza primero un apagado limpio (más estable en algunas máquinas)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgstr "Cómo liberar el decodificador de hardware al cambiar al descifrado por software. La opción 'Rápido' libera inmediatamente (cambio más rápido). La opción 'Normal' realiza primero un apagado limpio (más estable en algunos dispositivos). La opción 'Agresivo' realiza un reinicio completo del descifrador entre canales cifrados."
 
 msgid "Http(s) stream start delay"
 msgstr "Retraso en el inicio del stream http(s)"
@@ -10389,6 +10419,9 @@ msgstr "Hungría"
 msgid "Hybrid Tuner"
 msgstr "Sintonizador híbrido"
 
+msgid "Hybrid tuner mode"
+msgstr "Modo de sintonizador híbrido"
+
 msgid "Hz"
 msgstr "Hz"
 
@@ -10398,9 +10431,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "Prioridad E/S para scripts"
-
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nuevo modelo"
 
 msgid "IMDb Details"
 msgstr "Detalles IMDb"
@@ -18263,6 +18293,9 @@ msgstr "Seleccione cómo está configurada la antena parabólica, es decir, ante
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Seleccione cómo se gestiona la programación con respecto al reposo."
 
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+msgstr "Seleccione cómo se conecta este sintonizador DVB-C/T. Utilice la opción de interruptor coaxial externo únicamente con un interruptor coaxial controlado por 5 V."
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleccione cómo activar el modo EPG rápido."
 
@@ -22896,12 +22929,6 @@ msgstr ""
 
 msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
 msgstr "Esta opción le permite elegir cómo mostrar el tiempo restante, el tiempo transcurrido o ambos."
-
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Controlar el filtro de suavizado utilizado para el proceso de tramado."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Controlar el uso del suavizado de escala vertical."
 
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Esta opción te permite elegir configurar la vista del diseño (texto o gráfico)."
@@ -27854,22 +27881,13 @@ msgstr "Amarillo"
 msgid "yes (keep feeds)"
 msgstr "Sí (conservar fuentes)"
 
-#
 #, python-format
-msgid ""
-"your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"Tu %s %s podría estar inutilizable. Consulta el manual antes de reiniciar tu "
-"%s %s."
-
-msgid "®"
-msgstr "®"
+msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
+msgstr "Su %s %s podría estar inutilizable. Consulta el manual antes de reiniciar tu asistencia antes de reiniciar su %s %s."
 
 msgid "DVB-USB Device Manager"
 msgstr "Gestor de dispositivos DVB-USB"
 
-#
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Sólo disponible si hay más de una interfaz activa."
 

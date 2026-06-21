@@ -361,6 +361,8 @@ private:
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
 	bool m_audiosink_not_running;
+	/* DASH path: bypass playbin, build explicit pipeline via gst_parse_launch */
+	bool m_is_dash_pipeline;
 	/* servicemMP3 chapter TOC support CVR */
 	bool m_use_chapter_entries;
 	/* last used seek position gst-1 only */
@@ -372,6 +374,7 @@ private:
 	bool m_seeking_or_paused;
 	bool m_to_paused;
 	gint64 m_pending_seek_pos;
+	int64_t m_last_trickseek_ms;   /* CLOCK_MONOTONIC, throttle 500ms */
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;

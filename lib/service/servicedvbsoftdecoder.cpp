@@ -201,9 +201,15 @@ void eDVBSoftDecoder::stop()
 	// Disconnect from source PMT handler events
 	m_source_event_conn.disconnect();
 
-	// Stop recorder thread FIRST, then close DVR fd.
-	// In async mode this ensures pending AIO completes on a valid fd.
-	// In sync mode poll() times out after 1s, then thread sees m_stop and exits.
+	// Close decoder demux filter fds without DMX_STOP ioctl.
+	// On mipsel (Broadcom), DMX_STOP on PVR-sourced demux either
+	// deadlocks (no data flowing) or crashes (NULL deref in playpump).
+	// freeDecoder() closes fds via destructors — the kernel cleans up
+	// filters without going through the playpump path.
+	m_video_event_conn = nullptr;
+	if (m_decoder)
+		m_decoder->freeDecoder();
+
 	if (m_record)
 	{
 		eDebug("[eDVBSoftDecoder] Stopping recorder thread");
@@ -217,16 +223,6 @@ void eDVBSoftDecoder::stop()
 		eDebug("[eDVBSoftDecoder] Closing DVR fd %d", m_dvr_fd);
 		::close(m_dvr_fd);
 		m_dvr_fd = -1;
-	}
-
-	// Stop decoder - release PID filters and pause
-	if (m_decoder)
-	{
-		eDebug("[eDVBSoftDecoder] Stopping decoder");
-		m_decoder->pause();
-		m_decoder->setVideoPID(-1, -1);
-		m_decoder->setAudioPID(-1, -1);
-		m_decoder->set();  // Apply the changes to release PID filters
 	}
 
 	// Release decode demux
@@ -311,14 +307,6 @@ int eDVBSoftDecoder::setupRecorder()
 		uint8_t demux_id = 0;
 		m_decode_demux->getCADemuxID(demux_id);
 		eDebug("[eDVBSoftDecoder] Decode demux ID: %d (from PVR handler)", demux_id);
-
-		// Set demux source to PVR (critical for decoder to read from DVR)
-		eDVBDemux *demux_raw = (eDVBDemux*)m_decode_demux.operator->();
-		if (demux_raw)
-		{
-			demux_raw->setSourcePVR(demux_id);
-			eDebug("[eDVBSoftDecoder] Set demux %d source to PVR (DVR%d)", demux_id, demux_id);
-		}
 
 		int fd = m_decode_demux->openDVR(O_WRONLY);
 		if (fd >= 0)
@@ -805,6 +793,59 @@ int eDVBSoftDecoder::setTrickmode()
 // ============================================================================
 // Audio Control - Delegate to decoder
 // ============================================================================
+
+void eDVBSoftDecoder::setNoAudio(bool noaudio, int preferred_pid)
+{
+	if (!m_decoder || !m_decoder_started)
+	{
+		m_noaudio = noaudio;
+		return;
+	}
+
+	if (m_noaudio == noaudio)
+		return;
+
+	m_noaudio = noaudio;
+
+	if (noaudio)
+	{
+		m_decoder->setAudioPID(-1, -1);
+		m_decoder->set();
+		return;
+	}
+
+	eDVBServicePMTHandler::program program;
+	if (m_source_handler.getProgramInfo(program) || program.audioStreams.empty())
+		return;
+
+	int apid = -1, atype = -1;
+
+	if (preferred_pid > 0)
+	{
+		for (const auto& a : program.audioStreams)
+		{
+			if (a.pid == preferred_pid)
+			{
+				apid = a.pid;
+				atype = a.type;
+				break;
+			}
+		}
+	}
+
+	if (apid == -1)
+	{
+		unsigned int audio_index = program.defaultAudioStream;
+		if (audio_index >= program.audioStreams.size())
+			audio_index = 0;
+		apid = program.audioStreams[audio_index].pid;
+		atype = program.audioStreams[audio_index].type;
+	}
+
+	m_decoder->setAudioPID(apid, atype);
+	m_decoder->set();
+	m_audio_pid_selected(apid);
+}
 
 int eDVBSoftDecoder::setAudioPID(int pid, int type)
 {

@@ -1706,6 +1706,9 @@ msgstr ""
 msgid "AV Setup"
 msgstr ""
 
+msgid "AV receiver, soundbar and remote"
+msgstr ""
+
 msgid "Abkhazian"
 msgstr ""
 
@@ -2064,6 +2067,9 @@ msgid "After zap"
 msgstr ""
 
 msgid "Aggregate data only"
+msgstr ""
+
+msgid "Aggressive"
 msgstr ""
 
 msgid "Akan"
@@ -3155,6 +3161,18 @@ msgstr ""
 msgid "Brightness (Standby)"
 msgstr ""
 
+msgid "Brightness Video"
+msgstr ""
+
+msgid "Brightness Video & OSD"
+msgstr ""
+
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "British Indian Ocean Territory"
 msgstr ""
 
@@ -3651,6 +3669,12 @@ msgid "Cartoons/Puppets"
 msgstr ""
 
 msgid "Cascade PiP"
+msgstr ""
+
+msgid "Case insensitive"
+msgstr ""
+
+msgid "Case sensitive"
 msgstr ""
 
 msgid "Catalan / Valencian"
@@ -4856,16 +4880,31 @@ msgstr ""
 msgid "Contrast Video & OSD"
 msgstr ""
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr ""
 
 msgid "Control files:"
 msgstr ""
 
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr ""
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr ""
 
 msgid "Control the InfoBar fading speed."
+msgstr ""
+
+msgid "Control the smoothing filter used for the dithering process."
+msgstr ""
+
+msgid "Control the use of vertical scaler anti-aliasing."
 msgstr ""
 
 msgid "Control your Softcams"
@@ -5017,6 +5056,21 @@ msgid "Create a randomly generated password"
 msgstr ""
 
 msgid "Create a symbolic link"
+msgstr ""
+
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
 msgstr ""
 
 #, python-format
@@ -5281,10 +5335,16 @@ msgstr ""
 msgid "DVB-C"
 msgstr ""
 
+msgid "DVB-C / Cable only"
+msgstr ""
+
 msgid "DVB-C ANNEX B"
 msgstr ""
 
 msgid "DVB-C ANNEX C"
+msgstr ""
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
 msgstr ""
 
 msgid "DVB-S"
@@ -5294,6 +5354,9 @@ msgid "DVB-S2"
 msgstr ""
 
 msgid "DVB-T"
+msgstr ""
+
+msgid "DVB-T/T2 / Terrestrial only"
 msgstr ""
 
 msgid "DVB-T2"
@@ -6465,6 +6528,9 @@ msgstr ""
 msgid "Dolby Digital downmix is now"
 msgstr ""
 
+msgid "Dolby TrueHD"
+msgstr ""
+
 msgid "Domain"
 msgstr ""
 
@@ -6970,6 +7036,12 @@ msgstr ""
 msgid "Enable digital downmix"
 msgstr ""
 
+msgid "Enable extended cut file support"
+msgstr ""
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr ""
+
 msgid "Enable fallback remote receiver"
 msgstr ""
 
@@ -7049,6 +7121,12 @@ msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add text encoding information to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
@@ -8161,6 +8239,9 @@ msgstr ""
 msgid "File compression"
 msgstr ""
 
+msgid "File sorting mode"
+msgstr ""
+
 msgid "File system"
 msgstr ""
 
@@ -8378,6 +8459,9 @@ msgstr ""
 msgid "Force Legacy Signal stats"
 msgstr ""
 
+msgid "Force TV input to this receiver"
+msgstr ""
+
 msgid "Force ToneBurst"
 msgstr ""
 
@@ -8512,6 +8596,9 @@ msgid "Full Stretch"
 msgstr ""
 
 msgid "Full factory reset"
+msgstr ""
+
+msgid "Full range (no clipping)"
 msgstr ""
 
 msgid "Full screen"
@@ -8827,6 +8914,9 @@ msgstr ""
 msgid "H"
 msgstr ""
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr ""
 
@@ -8945,6 +9035,9 @@ msgid "Hardware information"
 msgstr ""
 
 msgid "Hardware latency correction"
+msgstr ""
+
+msgid "Hardware revision"
 msgstr ""
 
 msgid "Hardware serial"
@@ -9190,7 +9283,7 @@ msgstr ""
 msgid "Hours Minutes Seconds"
 msgstr ""
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' resets the HW-descrambler slots and also bypasses the in-process CSA-ALT cache."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -9206,6 +9299,9 @@ msgid "Hungary"
 msgstr ""
 
 msgid "Hybrid Tuner"
+msgstr ""
+
+msgid "Hybrid tuner mode"
 msgstr ""
 
 msgid "Hz"
@@ -9593,6 +9689,9 @@ msgid "Include screen load data"
 msgstr ""
 
 msgid "Include teletext details"
+msgstr ""
+
+msgid "Include text encoding data"
 msgstr ""
 
 msgid "Include timer data"
@@ -10439,6 +10538,12 @@ msgstr ""
 msgid "Limit west"
 msgstr ""
 
+msgid "Limited memory size, swap file required"
+msgstr ""
+
+msgid "Limited range (64..940)"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr ""
 
@@ -10691,6 +10796,9 @@ msgid "Loop through to"
 msgstr ""
 
 msgid "Lower Framerate saves CPU Time."
+msgstr ""
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
 msgstr ""
 
 msgid "Lower USB"
@@ -14118,7 +14226,7 @@ msgstr ""
 msgid "Put TV in Standby"
 msgstr ""
 
-msgid "Put your AV Receiver in Standby"
+msgid "Put your AV Receiver or Soundbar in Standby"
 msgstr ""
 
 msgid "Python"
@@ -14251,6 +14359,12 @@ msgid "RED long"
 msgstr ""
 
 msgid "RF Output Settings"
+msgstr ""
+
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
 msgstr ""
 
 msgid "Racing"
@@ -16162,6 +16276,9 @@ msgstr ""
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr ""
 
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr ""
 
@@ -16674,6 +16791,9 @@ msgid "Select whether DTS channel audio tracks should be downmixed or transcoded
 msgstr ""
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr ""
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr ""
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
@@ -19482,7 +19602,13 @@ msgstr ""
 msgid "TV button mode"
 msgstr ""
 
+msgid "TV input and receiver wakeup"
+msgstr ""
+
 msgid "TV physical address report"
+msgstr ""
+
+msgid "TV power"
 msgstr ""
 
 msgid "TXT PID"
@@ -20055,7 +20181,7 @@ msgstr ""
 msgid "This allows you to change the number of rows shown."
 msgstr ""
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
 msgstr ""
 
 msgid "This bouquet is protected by a parental control PIN!"
@@ -20098,12 +20224,6 @@ msgid "This option allows to reduce the block-noise in the picture. Obviously th
 msgstr ""
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
-msgstr ""
-
-msgid "Control the smoothing filter used for the dithering process."
-msgstr ""
-
-msgid "Control the use of vertical scaler anti-aliasing."
 msgstr ""
 
 msgid "This option allows you to Power Off the display."
@@ -20569,6 +20689,9 @@ msgid "Timeshift Active"
 msgstr ""
 
 msgid "Timezone"
+msgstr ""
+
+msgid "Timing and diagnostics"
 msgstr ""
 
 msgid "Timor-Leste / East Timor"
@@ -21324,6 +21447,9 @@ msgstr ""
 msgid "Uphops: "
 msgstr ""
 
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
+
 msgid "Upper USB"
 msgstr ""
 
@@ -22012,7 +22138,7 @@ msgstr ""
 msgid "Volume down"
 msgstr ""
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
 msgid "Volume steps"
@@ -22106,7 +22232,7 @@ msgstr ""
 msgid "Wake up to standby"
 msgstr ""
 
-msgid "Wake up your AV Receiver from Standby"
+msgid "Wake up your AV Receiver or Soundbar from Standby"
 msgstr ""
 
 msgid "Wallis and Futuna"
@@ -22365,13 +22491,13 @@ msgstr ""
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr ""
 
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
+msgstr ""
+
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
+msgstr ""
+
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
-msgstr ""
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr ""
-
-msgid "When enabled, the receiver will automatically be switched on."
 msgstr ""
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
@@ -22450,6 +22576,9 @@ msgid "When the receiver wakes from Standby or Deep Standby it will send a comma
 msgstr ""
 
 msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
+msgstr ""
+
+msgid "When the receiver wakes from Standby, send stream path and routing commands so the TV switches from another HDMI input back to this receiver."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -24807,9 +24936,6 @@ msgid "Go back to the previous step"
 msgstr ""
 
 msgid "Immediately exit the wizard (Debug mode only)"
-msgstr ""
-
-msgid "Limited memory size, swap file required"
 msgstr ""
 
 msgid "Network wizard completed.\n"

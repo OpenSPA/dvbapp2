@@ -2,10 +2,17 @@
 
 eStack::eStack(eWidget* parent, LayoutDirection dir) : eWidget(parent), m_direction(dir) {
 	m_spacing = 0;
+	setTransparent(1);
 }
 
 void eStack::setLayoutDirection(LayoutDirection dir) {
 	m_direction = dir;
+	recalcLayout();
+}
+
+void eStack::show()
+{
+	eWidget::show();
 	recalcLayout();
 }
 
@@ -47,6 +54,8 @@ void eStack::recalcLayout() {
 
 	if (stack_w < 0 || stack_h < 0)
 		return;
+	if (!isVisible())
+		return;
 
 	int x = 0, y = 0;
 	int xr = stack_w;
@@ -78,8 +87,8 @@ void eStack::recalcLayout() {
 				lcount++;
 			} else if (child->align() & eStackAlignRight) {
 				cx = xr - cw;
-				xr -= cx;
-				if (lcount > 0) {
+				xr -= cw;
+				if (rcount > 0) {
 					cx -= m_spacing;
 					xr -= m_spacing;
 				}
@@ -91,7 +100,7 @@ void eStack::recalcLayout() {
 		} else {
 			if (child->align() & eStackAlignTop) {
 				cy = y;
-				y += cy;
+				y += ch;
 				if (tcount > 0) {
 					y += m_spacing;
 					cy += m_spacing;
@@ -99,7 +108,7 @@ void eStack::recalcLayout() {
 				tcount++;
 			} else if (child->align() & eStackAlignBottom) {
 				cy = yb - ch;
-				yb -= cy;
+				yb -= ch;
 				if (bcount > 0) {
 					cy -= m_spacing;
 					yb -= m_spacing;

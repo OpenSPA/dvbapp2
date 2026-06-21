@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
-"PO-Revision-Date: 2026-03-31 21:50+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
+"PO-Revision-Date: 2026-06-05 11:10+0000\n"
 "Last-Translator: Mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -2174,6 +2174,9 @@ msgstr "Kanal değiştirmeden sonra"
 msgid "Aggregate data only"
 msgstr "Yalnızca toplu veriler"
 
+msgid "Aggressive"
+msgstr "Agresif"
+
 msgid "Akan"
 msgstr "Akan"
 
@@ -3344,6 +3347,12 @@ msgstr "Görüntü Parlaklığı"
 msgid "Brightness Video & OSD"
 msgstr "Görüntü Parlaklığı & Ekranda Gösterim"
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "Bu parlaklık ayarı, birleştirilmiş görüntü + OSD çıkışına uygulanır. Bu, menü de dahil olmak üzere ekrandaki her şeyi etkiler."
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "Bu parlaklık ayarı, yalnızca görüntü katmanına uygulanır. Enigma2 menülerini veya OSD'yi etkilemez."
+
 msgid "British Indian Ocean Territory"
 msgstr "İngiliz Hint Okyanusu Bölgesi"
 
@@ -3883,6 +3892,12 @@ msgstr "Çizgi Filmler/Kuklalar"
 
 msgid "Cascade PiP"
 msgstr "Cascade PiP"
+
+msgid "Case insensitive"
+msgstr "Büyük/küçük harfe duyarlı değil"
+
+msgid "Case sensitive"
+msgstr "Büyük/küçük harfe duyarlı"
 
 msgid "Catalan / Valencian"
 msgstr "Katalan / Valensiya"
@@ -4488,12 +4503,6 @@ msgstr "Kolombiya"
 #
 msgid "Color"
 msgstr "Renk"
-
-msgid "Color Bottom"
-msgstr "Renk Alt Kısım"
-
-msgid "Color Top"
-msgstr "Renk Üst Kısım"
 
 msgid "Color format"
 msgstr "Renk biçimi"
@@ -5159,17 +5168,32 @@ msgstr "Görüntü Kontrastı"
 msgid "Contrast Video & OSD"
 msgstr "Görüntü Kontrastı & Ekranda Gösterim"
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "Bu kontrast ayarı, birleştirilmiş görüntü + OSD çıkışına uygulanır. Bu, menü de dahil olmak üzere ekrandaki her şeyi etkiler."
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "Bu kontrast ayarı, yalnızca görüntü katmanına uygulanır. Enigma2 menülerini veya OSD'yi etkilemez."
+
 msgid "Control LED can be turned on or off here."
 msgstr "Kontrol LED'i buradan açılıp kapatılabilir."
 
 msgid "Control files:"
 msgstr "Kontrol dosyaları:"
 
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr "Dosya listesi görüntülenen ekranlarda dosyaların nasıl sıralanacağını belirleyin. “Büyük/küçük harfe duyarlı” seçeneği, büyük harfli dosyaları önce, ardından küçük harfli dosyaları gruplandırır. “Büyük/küçük harfe duyarlı değil” seçeneği ise büyük/küçük harf ayrımı yapmadan dosyaları alfabetik olarak sıralar."
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Zamanlayıcı Listesinde bitmiş zamanlayıcıların nasıl gösterileceğinin kontrolü."
 
 msgid "Control the InfoBar fading speed."
 msgstr "Bilgi çubuğu solma hızını kontrol edin."
+
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Titreşim giderme işlemi için kullanılan yumuşatma filtresini kontrol edin."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Dikey ölçekleyici kenar yumuşatma kullanımını kontrol edin."
 
 msgid "Control your Softcams"
 msgstr "Softcam'leri kontrol edin"
@@ -5338,9 +5362,6 @@ msgstr "Uygulama yükleyici dökümü oluşturun."
 
 msgid "Create backup image zip file."
 msgstr "Yedekleme yazılımı için zip dosyası oluşturuluyor."
-
-msgid "Create boot dump."
-msgstr "Önyükleme dökümü oluşturun."
 
 msgid "Create boot image dump."
 msgstr "Önyükleme yazılımı dökümü oluşturun."
@@ -7488,6 +7509,12 @@ msgstr "Hata ayıklama günlüğünü etkinleştir *"
 msgid "Enable digital downmix"
 msgstr "Dijital downmix'i etkinleştir"
 
+msgid "Enable extended cut file support"
+msgstr "Genişletilmiş kesim dosyası desteğini etkinleştirin"
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr "Genişletilmiş kesim dosyası desteğini etkinleştirin. Bu, kesime yalnızca işaretleyici değil, daha fazla bilgi ekleyecektir."
+
 msgid "Enable fallback remote receiver"
 msgstr "Yedek uzak alıcıyı etkinleştir"
 
@@ -7569,6 +7596,9 @@ msgstr "Hata ayıklama günlük dosyasına ekran adları ve çözünürlük veri
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Sistem önyükleme ve çalışırken takma olayları sırasında algılanan depolama aygıtı bilgilerini hata ayıklama günlük dosyasına eklemek için bu seçeneği etkinleştirin."
+
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr "Hata ayıklama günlüğü dosyasına metin kodlama bilgilerini eklemek için bu seçeneği etkinleştirin."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Zamanlayıcı hata ayıklama verilerini hata ayıklama günlük dosyasına eklemek için bu seçeneği etkinleştirin."
@@ -8761,6 +8791,9 @@ msgstr "Dosya meşgul görünüyor!\n"
 msgid "File compression"
 msgstr "Dosya sıkıştırma"
 
+msgid "File sorting mode"
+msgstr "Dosya sıralama modu"
+
 msgid "File system"
 msgstr "Dosya sistemi"
 
@@ -9124,6 +9157,9 @@ msgstr "Tam Esneme"
 msgid "Full factory reset"
 msgstr "Tam fabrika ayarlarına sıfırlama"
 
+msgid "Full range (no clipping)"
+msgstr "Tam aralık (kırpma yok)"
+
 msgid "Full screen"
 msgstr "Tam Ekran"
 
@@ -9451,6 +9487,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 yeni Model"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Saatlik / D: = Günlük / W: = Haftalık / M: = Aylık"
 
@@ -9571,6 +9610,9 @@ msgstr "Donanım bilgileri"
 
 msgid "Hardware latency correction"
 msgstr "Donanım gecikme düzeltmesi"
+
+msgid "Hardware revision"
+msgstr "Donanım revizyonu"
 
 msgid "Hardware serial"
 msgstr "Donanım seri numarası"
@@ -9846,8 +9888,8 @@ msgstr "Saatler Dakikalar"
 msgid "Hours Minutes Seconds"
 msgstr "Saatler Dakikalar Saniyeler"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr "Yazılım tabanlı şifre çözmeye geçildiğinde donanım kod çözücüsünün nasıl devre dışı bırakılacağı. 'Hızlı' seçeneği anında devre dışı bırakır (daha hızlı şifre çözme). 'Normal' seçeneği ise önce temiz bir kapatma işlemi gerçekleştirir (bazı cihazlarda daha kararlı)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgstr "Yazılım tabanlı şifre çözmeye geçildiğinde donanım kod çözücüsünün nasıl devre dışı bırakılacağı aşağıda açıklanmıştır. 'Hızlı' seçeneği anında devre dışı bırakır (daha hızlı kanal değiştirme). 'Normal' seçeneği önce temiz bir kapatma işlemi gerçekleştirir (bazı cihazlarda daha kararlı). 'Agresif' seçeneği ise şifreli kanallar arasında tam bir şifre çözücü sıfırlaması yapar."
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) akışı başlatma gecikmesi"
@@ -9875,9 +9917,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "Komut dosyaları için I/O önceliği"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 yeni model"
 
 msgid "IMDb Details"
 msgstr "IMDb Ayrıntıları"
@@ -10281,6 +10320,9 @@ msgstr "Depolama aygıtı verilerini dahil et"
 
 msgid "Include teletext details"
 msgstr "Teletext detaylarını dahil et"
+
+msgid "Include text encoding data"
+msgstr "Metin kodlama verilerini dahil et"
 
 msgid "Include timer data"
 msgstr "Zamanlayıcı verilerini dahil et"
@@ -11167,6 +11209,9 @@ msgstr "Batı limiti"
 msgid "Limited memory size, swap file required"
 msgstr "Sınırlı bellek boyutu, takas dosyası gerekli"
 
+msgid "Limited range (64..940)"
+msgstr "Sınırlı aralık (64..940)"
+
 #
 msgid "Limits cancelled"
 msgstr "Limitler iptal edildi"
@@ -11437,6 +11482,9 @@ msgstr "Döngüye gir"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Daha düşük kare hızı, işlemci süresinden tasarruf sağlar."
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr "RGB çıkışında alt kırpma limiti. 'Tam aralık' = alt kırpma yok, 'Sınırlı aralık' RGB çıkışlarını 64'e kadar kırpar (yayın için güvenli)."
 
 msgid "Lower USB"
 msgstr "Alt USB"
@@ -15285,6 +15333,12 @@ msgstr "KIRMIZI tuş uzun"
 msgid "RF Output Settings"
 msgstr "RF Çıkış Ayarları"
 
+msgid "RGB clamp (lower)"
+msgstr "RGB kelepçesi (alt)"
+
+msgid "RGB clamp (upper)"
+msgstr "RGB kelepçesi (üst)"
+
 msgid "Racing"
 msgstr "Yarış"
 
@@ -17962,6 +18016,9 @@ msgstr "DTS kanal ses parçalarının downmix mi yoksa transkodlama mı yapılac
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "DTS kanal ses parçalarının stereoya indirgenip karıştırılmayacağını seçin."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr "Dolby TrueHD ses parçalarının olduğu gibi mi yoksa çözümlenerek mi iletileceğini seçin."
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "IPv4, IPv6 veya her iki protokolün de kullanılacağını seçin. Her ikisi de etkinleştirilmişse, hangisinin tercih edileceğini belirtin."
@@ -21600,8 +21657,8 @@ msgstr "Bu, yazı tipi boyutunu arayüz boyutuna göre değiştirmenize olanak t
 msgid "This allows you to change the number of rows shown."
 msgstr "Bu gösterilen satır sayısını değiştirmenize izin verir."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Bu özellik kanal numarasındaki maksimum basamak sayısını en fazla 5'e kadar ayarlamanıza olanak tanır."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Bu özellik kanal numarasındaki maksimum basamak sayısını en fazla 6'e kadar ayarlamanıza olanak tanır."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Bu buket bir ebeveyn kontrol PIN kodu ile korunmaktadır!"
@@ -21644,12 +21701,6 @@ msgstr "Bu seçenek görüntüdeki blok gürültüsünü azaltmaya olanak tanır
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Bu seçenek görüntünün dinamik kontrast düzeyini ayarlamanızı sağlar."
-
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Titreşim giderme işlemi için kullanılan yumuşatma filtresini kontrol edin."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Dikey ölçekleyici kenar yumuşatma kullanımını kontrol edin."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Bu seçenek ekranı kapatmanıza olanak tanır."
@@ -21836,18 +21887,6 @@ msgstr "Bu seçenek görüntüyü 4:3'ten 16:9'a genişletirken kullanılan öl�
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Bu seçenek sınırlı sayıda ayrık değerin sonucu olan yanlış dijital konturların bastırılmasını sağlar."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr "Bu seçenek görüntü & ekranda gösterim parlaklığını ayarlar."
-
-msgid "This option sets the video & osd picture contrast."
-msgstr "Bu seçenek görüntü ve ekranda gösterim kontrastını ayarlar."
-
-msgid "This option sets the video picture brightness."
-msgstr "Bu seçenek video görüntü parlaklığını ayarlar."
-
-msgid "This option sets the video picture contrast."
-msgstr "Bu seçenek video görüntü kontrastını ayarlar."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Bu seçenek resim büyütülürken kullanılan resim keskinliğini ayarlar."
@@ -22977,6 +23016,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr "Üst RGB çıkış kırpma sınırı. ‘Tam aralık’ = üst kırpma yok, ‘Sınırlı aralık’ RGB çıkışlarını 940'a kırpar (yayın için güvenli)."
 
 msgid "Upper USB"
 msgstr "Üst USB"
@@ -25532,6 +25574,33 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Color Bottom"
+#~ msgstr "Renk Alt Kısım"
+
+#~ msgid "Color Top"
+#~ msgstr "Renk Üst Kısım"
+
+#~ msgid "Create boot dump."
+#~ msgstr "Önyükleme dökümü oluşturun."
+
+#~ msgid "This option sets the video & osd picture brightness."
+#~ msgstr "Bu seçenek görüntü & ekranda gösterim parlaklığını ayarlar."
+
+#~ msgid "This option sets the video & osd picture contrast."
+#~ msgstr "Bu seçenek görüntü ve ekranda gösterim kontrastını ayarlar."
+
+#~ msgid "This option sets the video picture brightness."
+#~ msgstr "Bu seçenek video görüntü parlaklığını ayarlar."
+
+#~ msgid "This option sets the video picture contrast."
+#~ msgstr "Bu seçenek video görüntü kontrastını ayarlar."
+
+#~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+#~ msgstr "Yazılım tabanlı şifre çözmeye geçildiğinde donanım kod çözücüsünün nasıl devre dışı bırakılacağı. 'Hızlı' seçeneği anında devre dışı bırakır (daha hızlı şifre çözme). 'Normal' seçeneği ise önce temiz bir kapatma işlemi gerçekleştirir (bazı cihazlarda daha kararlı)."
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 yeni model"
 
 #~ msgid " "
 #~ msgstr " "

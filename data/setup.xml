@@ -14,6 +14,7 @@
 		<item level="1" text="AC3 plus transcoding" description="Select whether AC3 Plus audio tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
 		<item level="1" text="DTS downmix" description="Select whether DTS channel audio tracks should be downmixed to stereo." requires="CanDownmixDTS">config.av.downmix_dts</item>
 		<item level="1" text="DTS/DTS-HD HR/DTS-HD MA/DTS:X" description="Select whether DTS channel audio tracks should be downmixed or transcoded." requires="CanDTSHD">config.av.dtshd</item>
+		<item level="1" text="Dolby TrueHD" description="Select whether Dolby TrueHD audio tracks should be passed through or decoded." requires="CanTrueHD">config.av.truehd</item>
 		<item level="1" text="WMA Pro" description="Select whether WMA Pro channel audio tracks should be downmixed or transcoded." requires="CanWMAPRO">config.av.wmapro</item>
 		<item level="1" text="AAC downmix" description="Select whether multichannel audio tracks should be downmixed to stereo." requires="CanDownmixAAC">config.av.downmix_aac</item>
 		<item level="1" text="AAC plus downmix" description="Select whether multichannel audio tracks should be downmixed to stereo." requires="CanDownmixAACPlus">config.av.downmix_aacplus</item>
@@ -129,7 +130,7 @@
 			<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.channelSelection.recordIndicatorMode</item>
 		</if>
 		<item level="1" text="Zap mode" description="Setup how to control the channel changing." requires="ZapMode">config.misc.zapmode</item>
-		<item level="2" text="Number of digits in service number" description="This allows you to set the maximum number of digits in a service number, up to 5.">config.usage.numberZapDigits</item>
+		<item level="2" text="Number of digits in service number" description="This allows you to set the maximum number of digits in a service number, up to 6.">config.usage.numberZapDigits</item>
 		<item level="2" text="Service zap screen contents" description="Select the preferred service information to display, in addition to the service number, for the service selection pop up screen.">config.usage.numberZapDisplay</item>
 		<item level="2" text="Service zap delay mode" description="Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second.">config.usage.numberZapTimeouts</item>
 		<if conditional="config.usage.numberZapTimeouts.value == 'user'">
@@ -456,6 +457,7 @@
 		<item level="0" text="Enabled" description="Enable or disable using HDMI-CEC.">config.hdmicec.enabled</item>
 		<if conditional="config.hdmicec.enabled.value">
 			<item level="0" text="Advanced Settings" description="Enable the advanced HDMI-CEC setting options.">config.hdmicec.advanced_settings</item>
+			<item level="0" text="TV power"></item>
 			<item level="0" text="Regard Deep Standby as Standby" description="Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby.">config.hdmicec.handle_deepstandby_events</item>
 			<item level="0" text="Wait for timesync at startup" description="If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.handle_deepstandby_events.value and config.workaround.deeprecord.value">config.hdmicec.deepstandby_waitfortimesync</item>
 			<item level="0" text="Put TV in Standby" description="Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby.">config.hdmicec.control_tv_standby</item>
@@ -466,7 +468,9 @@
 				<item level="0" text="Even if a 'Zap and Record' recording timer starting?" description="Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting.">config.hdmicec.tv_wakeup_zapandrecordtimer</item>
 				<item level="0" text="Even if a 'Wakeup' scheduled task starting?" description="Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting.">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
+			<item level="0" text="TV input and receiver wakeup"></item>
 			<item level="0" text="Switch TV to correct input" description="When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver.">config.hdmicec.report_active_source</item>
+			<item level="0" text="Force TV input to this receiver" description="When the receiver wakes from Standby, send stream path and routing commands so the TV switches from another HDMI input back to this receiver." conditional="config.hdmicec.report_active_source.value">config.hdmicec.force_tv_input</item>
 			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
 			<item level="0" text="Handle wake up from TV" description="When enabled, the receiver will automatically wake from Standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle Standby from TV" description="When enabled, the receiver will automatically return to Standby when the TV is turned off.">config.hdmicec.handle_tv_standby</item>
@@ -474,10 +478,12 @@
 				<item level="0" text="Process action from TV" description="Select the receiver action when the TV switches away from the receiver input.">config.hdmicec.handle_tv_input</item>
 				<item level="0" text="Time delay until Standby or Deep Standby" description="'Handle Standby from TV' has a higher priority than 'Handle input from TV'." conditional="config.hdmicec.handle_tv_standby.value != 'disabled' or config.hdmicec.handle_tv_input.value != 'disabled'">config.hdmicec.handle_tv_delaytime</item>
 			</if>
-			<item level="0" text="Forward volume keys" description="Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!">config.hdmicec.volume_forwarding</item>
-			<item level="0" text="Put your AV Receiver in Standby" description="When enabled, the receiver will automatically be switched off.">config.hdmicec.control_receiver_standby</item>
-			<item level="0" text="Wake up your AV Receiver from Standby" description="When enabled, the receiver will automatically be switched on.">config.hdmicec.control_receiver_wakeup</item>
+			<item level="0" text="AV receiver, soundbar and remote"></item>
 			<item level="0" text="Use TV remote control" description="Allows the TV remote to be used to control the receiver.">config.hdmicec.report_active_menu</item>
+			<item level="0" text="Forward volume keys" description="Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!">config.hdmicec.volume_forwarding</item>
+			<item level="0" text="Put your AV Receiver or Soundbar in Standby" description="When enabled, the connected AV receiver or soundbar will automatically be switched off.">config.hdmicec.control_receiver_standby</item>
+			<item level="0" text="Wake up your AV Receiver or Soundbar from Standby" description="When enabled, the connected AV receiver or soundbar will automatically be switched on.">config.hdmicec.control_receiver_wakeup</item>
+			<item level="0" text="Timing and diagnostics"></item>
 			<item level="0" text="Minimum send interval" description="Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms.">config.hdmicec.minimum_send_interval</item>
 			<if conditional="config.hdmicec.advanced_settings.value">
 				<item level="0" text="Repeat the sent standby and wake up commands" description="Try to send repeated commands if not all commands were executed (e.g. TV wake up, but not switched to correct input).">config.hdmicec.messages_repeat</item>
@@ -533,12 +539,13 @@
 		<item level="2" text="Include opkg output data" description="Enable this option to add opkg output data to the debug log file.">config.crash.debugOpkg</item>
 		<item level="2" text="Include timer data" description="Enable this option to add timer debugging data to the debug log file.">config.crash.debugTimers</item>
 		<item level="2" text="Include EPG data" description="Enable this option to add extra EPG data to the debug log file.">config.crash.debugEPG</item>
-		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file.">config.crash.debugDVBScan</item>
-		<item level="2" text="Include DVB timesync data" description="Enable this option to add extra DVB time sync data to the debug log file.">config.crash.debugDVBTime</item>
-		<item level="2" text="Include DVB details" description="Enable this option to add extra DVB details to the debug log file.">config.crash.debugDVB</item>
-		<item level="2" text="Include teletext details" description="Enable this option to add extra teletext details to the debug log file.">config.crash.debugTeletext</item>
+		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file." restart="gui">config.crash.debugDVBScan</item>
+		<item level="2" text="Include DVB timesync data" description="Enable this option to add extra DVB time sync data to the debug log file." restart="gui">config.crash.debugDVBTime</item>
+		<item level="2" text="Include DVB details" description="Enable this option to add extra DVB details to the debug log file." restart="gui">config.crash.debugDVB</item>
+		<item level="2" text="Include teletext details" description="Enable this option to add extra teletext details to the debug log file." restart="gui">config.crash.debugTeletext</item>
 		<item level="2" text="Include storage device data" description="Enable this option to add storage device information detected during system boot and hot plug events to the debug log file.">config.crash.debugStorage</item>
-		<item level="2" text="Include bouquet DB data" description="Enable this option to add bouquet database information to the debug log file.">config.crash.debugDVBDB</item>
+		<item level="2" text="Include bouquet DB data" description="Enable this option to add bouquet database information to the debug log file." restart="gui">config.crash.debugDVBDB</item>
+		<item level="2" text="Include text encoding data" description="Enable this option to add text encoding information to the debug log file." restart="gui">config.crash.debugTextEncoding</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in Extension Menu" description="Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Maximum no of days" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
@@ -967,7 +974,7 @@
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
 	</setup>
 	<setup key="SoftCSA" title="SoftCSA Settings">
-		<item level="0" text="Decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)." restart="gui">config.softcsa.decoderRelease</item>
+		<item level="0" text="Decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels." restart="gui">config.softcsa.decoderRelease</item>
 		<item level="0" text="Sync mode" description="Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)." restart="gui">config.softcsa.syncMode</item>
 		<item level="2" text="Decoder start timeout" description="Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting." restart="gui">config.softcsa.waitForDataTimeout</item>
 		<item level="2" text="Decoder start delay" description="Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time." restart="gui">config.softcsa.bufferTime</item>
@@ -1104,6 +1111,7 @@
 		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extension Menu screen.">config.usage.show_restart_network_extensionslist</item>
 		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden.">config.usage.plugins_sort_mode</item>
 		<!--<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically.">config.usage.sort_settings</item>-->
+		<item level="1" text="File sorting mode" description="Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case.">config.usage.fileSortCaseMode</item>
 		<item level="1" text="Show setup default value" description="Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description.">config.usage.setupShowDefault</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch.">config.usage.boolean_graphic</item>
 		<item level="2" text="Show additional slider value" description="Enable to display the current value of the slider at end of the slider bar.">config.usage.show_slider_value</item>

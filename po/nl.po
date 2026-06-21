@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -2123,6 +2123,9 @@ msgstr "Na het zappen"
 msgid "Aggregate data only"
 msgstr ""
 
+msgid "Aggressive"
+msgstr ""
+
 msgid "Akan"
 msgstr "Akan"
 
@@ -3239,6 +3242,12 @@ msgstr "Helderheid van het beeld"
 msgid "Brightness Video & OSD"
 msgstr "Helderheid van het beeld & OSD"
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "British Indian Ocean Territory"
 msgstr "Brits Indische Oceaanterritorium"
 
@@ -3766,6 +3775,12 @@ msgstr "tekenfilm/poppen"
 
 msgid "Cascade PiP"
 msgstr "Waterval PiP"
+
+msgid "Case insensitive"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr ""
 
 msgid "Catalan / Valencian"
 msgstr "Catalaans / Valenciaans"
@@ -4349,12 +4364,6 @@ msgstr "Colombia"
 
 msgid "Color"
 msgstr "Kleur"
-
-msgid "Color Bottom"
-msgstr "Kleur onder"
-
-msgid "Color Top"
-msgstr "Kleur boven"
 
 msgid "Color format"
 msgstr "Kleurformaat"
@@ -5100,17 +5109,36 @@ msgstr "Beeldcontrast"
 msgid "Contrast Video & OSD"
 msgstr "Contrast voor beeld & OSD"
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr ""
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr ""
+
 msgid "Control LED can be turned on or off here."
 msgstr "Power LED kan hier worden in- of uitgeschakeld."
 
 msgid "Control files:"
 msgstr "Controle bestanden:"
 
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr ""
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Stel in waar voltooide timers in de timerlijst moeten staan."
 
 msgid "Control the InfoBar fading speed."
 msgstr "Stel de snelheid in voor het vervagen van de informatiebalk"
+
+msgid "Control the smoothing filter used for the dithering process."
+msgstr ""
+"Met deze optie kunt u een Dithering-filter activeren. Dithering is het gebruiken van tussenkleuren om het beeld meer vloeiender, dus minder blokkerig te maken.\n"
+"(Default: Gedeactiveerd)"
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr ""
+"Met deze optie kunt dat u de verticale scaler dejagging inschakelen.\n"
+"(Default: Gedeactiveerd)"
 
 msgid "Control your Softcams"
 msgstr "Softcams beheren"
@@ -5274,9 +5302,6 @@ msgstr "Applicatie Loader-Dump opslaan."
 
 msgid "Create backup image zip file."
 msgstr "Een Image-Backup-zip-bestand opslaan."
-
-msgid "Create boot dump."
-msgstr "Boot-dump opslaan."
 
 msgid "Create boot image dump."
 msgstr "Boot-image-dump bestand opslaan."
@@ -7340,6 +7365,12 @@ msgstr "Activeer debug log *"
 msgid "Enable digital downmix"
 msgstr "DD/DTS Downmix activeren"
 
+msgid "Enable extended cut file support"
+msgstr ""
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr ""
+
 msgid "Enable fallback remote receiver"
 msgstr "De Fallback tuner activeren"
 
@@ -7420,6 +7451,9 @@ msgstr "Activeer deze optie om schermnamen en resolutiegegevens mee te nemen in 
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Activeren, om tijdens het booten of via Hot-Plug gevonden informatie van opslagmedia in het Debug-Log bestand toe te voegen."
+
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Activeer deze optie om Timer debug gegevens mee te nemen in het debug log bestand."
@@ -8574,6 +8608,9 @@ msgstr "Bestand mogelijk in gebruik door ander proces.\n"
 msgid "File compression"
 msgstr "Bestandscompressie"
 
+msgid "File sorting mode"
+msgstr ""
+
 msgid "File system"
 msgstr "Bestandssysteem"
 
@@ -8914,6 +8951,9 @@ msgstr "Volledig uitgerekt"
 msgid "Full factory reset"
 msgstr "Volledige reset naar fabrieksinstellingen"
 
+msgid "Full range (no clipping)"
+msgstr ""
+
 msgid "Full screen"
 msgstr "Volledig scherm"
 
@@ -9227,6 +9267,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "U: = Uurlijks / D: = Dagelijks / W: = Wekelijks / M: = Maandelijks"
 
@@ -9342,6 +9385,9 @@ msgid "Hardware information"
 msgstr "Hardware informatie"
 
 msgid "Hardware latency correction"
+msgstr ""
+
+msgid "Hardware revision"
 msgstr ""
 
 msgid "Hardware serial"
@@ -9611,7 +9657,7 @@ msgstr "Uren minuten"
 msgid "Hours Minutes Seconds"
 msgstr "Uren minuten seconden"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -9637,9 +9683,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "I/O prioriteit voor scripts"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nieuw Model"
 
 msgid "IMDb Details"
 msgstr "IMDb details"
@@ -10038,6 +10081,9 @@ msgstr "Inclusief gegevens van opslagmedia"
 
 msgid "Include teletext details"
 msgstr "Inclusief Teletekst details"
+
+msgid "Include text encoding data"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Inclusief timer gegevens"
@@ -10874,6 +10920,9 @@ msgstr "Limiet west"
 msgid "Limited memory size, swap file required"
 msgstr "Beperkte geheugengrootte, een Swap-file is noodzakelijk"
 
+msgid "Limited range (64..940)"
+msgstr ""
+
 msgid "Limits cancelled"
 msgstr "Limieten uitgeschakeld"
 
@@ -11127,6 +11176,9 @@ msgstr "Doorlus naar"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Lagere framesnelheid bespaart CPU tijd"
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr ""
 
 msgid "Lower USB"
 msgstr "USB Beneden"
@@ -14766,6 +14818,12 @@ msgstr "ROOD-lang"
 msgid "RF Output Settings"
 msgstr "RF modulator"
 
+msgid "RGB clamp (lower)"
+msgstr ""
+
+msgid "RGB clamp (upper)"
+msgstr ""
+
 msgid "Racing"
 msgstr ""
 
@@ -17347,6 +17405,9 @@ msgstr "Selecteer of DTS-geluid moeten worden gedownmixed of getranscodeerd."
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Selecteer of DTS geluidsspoor moet worden teruggebracht naar stereo."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr ""
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "DNS-modus selecteren."
@@ -20880,8 +20941,8 @@ msgstr ""
 msgid "This allows you to change the number of rows shown."
 msgstr "Hier kunt u het aantal zenderregels in de zenderlijst wijzigen. Standaard is 18 zenders."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Hiermee kunt u het aantal cijfers instellen op 5, als u meer dan 9999 zenders heeft."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Hiermee kunt u het aantal cijfers instellen op 6, als u meer dan 99999 zenders heeft."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Deze favorietenlijst is beschermd met een PIN-code (kinderslot)!"
@@ -20926,16 +20987,6 @@ msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 "Hiermee bepaalt u de mate van dynamisch contrast in het beeld.\n"
 "(Default: 0)"
-
-msgid "Control the smoothing filter used for the dithering process."
-msgstr ""
-"Met deze optie kunt u een Dithering-filter activeren. Dithering is het gebruiken van tussenkleuren om het beeld meer vloeiender, dus minder blokkerig te maken.\n"
-"(Default: Gedeactiveerd)"
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr ""
-"Met deze optie kunt dat u de verticale scaler dejagging inschakelen.\n"
-"(Default: Gedeactiveerd)"
 
 msgid "This option allows you to Power Off the display."
 msgstr "Met deze optie kunt u het display uitschakelen."
@@ -21149,18 +21200,6 @@ msgid "This option sets the suppression of false digital contours, that are the 
 msgstr ""
 "Hier stelt u de onderdrukking in van valse digitale contouren, die het resultaat zijn van een beperkt aantal discrete waarden.\n"
 "(Default: 0)"
-
-msgid "This option sets the video & osd picture brightness."
-msgstr "Met deze optie stelt u de helderheid van het video & osd-beeld in."
-
-msgid "This option sets the video & osd picture contrast."
-msgstr "Met deze optie stelt u het video & osd beeldcontrast in."
-
-msgid "This option sets the video picture brightness."
-msgstr "Met deze optie stelt u de helderheid in."
-
-msgid "This option sets the video picture contrast."
-msgstr "Met deze optie stelt u het contrast in."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr ""
@@ -22225,6 +22264,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr ""
 
 msgid "Upper USB"
 msgstr "USB boven"
@@ -24647,6 +24689,30 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Color Bottom"
+#~ msgstr "Kleur onder"
+
+#~ msgid "Color Top"
+#~ msgstr "Kleur boven"
+
+#~ msgid "Create boot dump."
+#~ msgstr "Boot-dump opslaan."
+
+#~ msgid "This option sets the video & osd picture brightness."
+#~ msgstr "Met deze optie stelt u de helderheid van het video & osd-beeld in."
+
+#~ msgid "This option sets the video & osd picture contrast."
+#~ msgstr "Met deze optie stelt u het video & osd beeldcontrast in."
+
+#~ msgid "This option sets the video picture brightness."
+#~ msgstr "Met deze optie stelt u de helderheid in."
+
+#~ msgid "This option sets the video picture contrast."
+#~ msgstr "Met deze optie stelt u het contrast in."
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nieuw Model"
 
 #~ msgid " "
 #~ msgstr " "

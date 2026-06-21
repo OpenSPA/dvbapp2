@@ -45,7 +45,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import InstantRecordingEndTime
 from Screens.Dish import Dish
 from Screens.EpgSelection import EPGSelection
-from Screens.EventView import EventViewEPGSelect, EventViewSimple
+from Screens.EventView import showEventViewCallback
 from Screens.InputBox import InputBox
 from Screens.Menu import Menu, findMenu
 from Screens.MessageBox import MessageBox
@@ -106,10 +106,13 @@ def setResumePoint(session):
 				for k, v in list(resumePointCache.items()):
 					if v[0] < lru:
 						candidate = k
-						filepath = realpath(candidate.split(":")[-1])
-						mountpoint = findMountPoint(filepath)
-						if ismount(mountpoint) and not exists(filepath):
-							del resumePointCache[candidate]
+						try:
+							filepath = realpath(candidate.split(":")[-1])
+							mountpoint = findMountPoint(filepath)
+							if ismount(mountpoint) and not exists(filepath):
+								del resumePointCache[candidate]
+						except (UnicodeEncodeError, OSError):
+							pass
 				saveResumePoints()
 
 
@@ -2524,10 +2527,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.is_now_next = True
 		if epglist:
 			if not simple:
-				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+				self.eventView = showEventViewCallback(self.closed, self.session, False, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 				self.dlg_stack.append(self.eventView)
 			else:
-				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
+				self.eventView = showEventViewCallback(self.closed, self.session, True, epglist[0], ServiceReference(ref))
 				self.dlg_stack = None
 
 	def getNowNext(self):
@@ -3000,9 +3003,9 @@ class InfoBarSimpleEventView:
 				self.is_now_next = True
 		if epglist:
 			if not simple:
-				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+				self.eventView = showEventViewCallback(self.closed, self.session, False, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 			else:
-				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
+				self.eventView = showEventViewCallback(self.closed, self.session, True, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
 	def eventViewCallback(self, setEvent, setService, val):  # Used for Now/Next display.
@@ -3431,9 +3434,9 @@ class InfoBarEPG:
 				self.is_now_next = True
 		if epglist:
 			if not simple:
-				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+				self.eventView = showEventViewCallback(self.closed, self.session, False, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
 			else:
-				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
+				self.eventView = showEventViewCallback(self.closed, self.session, True, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
 	def eventViewCallback(self, setEvent, setService, val):  # Used for Now/Next display.

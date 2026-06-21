@@ -131,6 +131,12 @@ class ServiceName2(Converter):
 						break
 					if not (s.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)):
 						num += 1
+						reference = ref.toString()
+						if int(reference.split(":")[0]) >= 4097:
+							nameref = reference.split(":")[-1]
+							names = s.toString().split(":")[-1]
+							if "{" in s.toString() and "}" in s.toString() and nameref == names:
+								return s, num
 						if s == ref:
 							return s, num
 			return None, num
@@ -176,7 +182,7 @@ class ServiceName2(Converter):
 							service, number = searchHelper(serviceHandler, number, bouquet)
 							if service is not None and cur == bouquet:
 								break
-			if service is not None:
+			if bouquet is not None:
 				info = serviceHandler.info(bouquet)
 				name = info and info.getName(bouquet) or ""
 				return number, name, bouquet

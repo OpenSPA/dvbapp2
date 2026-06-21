@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 10:19+0000\n"
-"PO-Revision-Date: 2026-03-31 05:09+0000\n"
+"POT-Creation-Date: 2026-06-05 05:46+0000\n"
+"PO-Revision-Date: 2026-06-06 11:58+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.6\n"
 
 msgid ""
 "\n"
@@ -2149,6 +2149,9 @@ msgstr "Posle zap"
 msgid "Aggregate data only"
 msgstr "Samo zbirni podaci"
 
+msgid "Aggressive"
+msgstr "Agresivan"
+
 msgid "Akan"
 msgstr "Akan"
 
@@ -3264,6 +3267,12 @@ msgstr "Osvetljenje Videa"
 msgid "Brightness Video & OSD"
 msgstr "Osvetljenje Videa & OSD"
 
+msgid "Brightness applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "Osvetljenje primenjeno na kombinovani video + OSD izlaz. Utiče na sve na ekranu uključujući i ovaj meni."
+
+msgid "Brightness applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "Osvetljenje primenjeno samo na sloj videa. Ne utiče na enigma2 menije ili OSD."
+
 msgid "British Indian Ocean Territory"
 msgstr "British Indian Ocean Territory"
 
@@ -3791,6 +3800,12 @@ msgstr "Crtaći/ Lutke"
 
 msgid "Cascade PiP"
 msgstr "Kaskadni PiP"
+
+msgid "Case insensitive"
+msgstr "Nezavisno od velikih i malih slova"
+
+msgid "Case sensitive"
+msgstr "Osetljivo na velika i mala slova"
 
 msgid "Catalan / Valencian"
 msgstr "Catalan / Valencian"
@@ -4370,12 +4385,6 @@ msgstr "Colombia"
 
 msgid "Color"
 msgstr "Boja"
-
-msgid "Color Bottom"
-msgstr "Boja Dole"
-
-msgid "Color Top"
-msgstr "Boja Gore"
 
 msgid "Color format"
 msgstr "Format Boje"
@@ -5019,17 +5028,32 @@ msgstr "Kontrast Videa"
 msgid "Contrast Video & OSD"
 msgstr "Kontrast Videa & OSD"
 
+msgid "Contrast applied to the combined video + OSD output. Affects everything on screen including this menu."
+msgstr "Kontrast primenjen na kombinovani video + OSD izlaz. Uticaće na sve na ekranu, uključujući ovaj meni."
+
+msgid "Contrast applied to the video layer only. Does not affect enigma2 menus or OSD."
+msgstr "Kontrast se primenjuje samo na video sloj. Ne utiče na enigma2 menije ili OSD."
+
 msgid "Control LED can be turned on or off here."
 msgstr "Kontrolni LED se ovde može uključiti ili isključiti."
 
 msgid "Control files:"
 msgstr "Kontrolni fajlovi:"
 
+msgid "Control how files will be sorted in screens that show a file list. Case sensitive will group uppercase files first followed by lowercase files. Case insensitive will sort files alphabetically, ignoring case."
+msgstr "Kontrolišite kako će fajlovi biti sortirani na ekranima koji prikazuju listu fajlova. Osetljivo na velika i mala slova će grupisati fajlove sa velikim slovima prvo, a zatim fajlove sa malim slovima. Neosetljivo na velika i mala slova će sortirati fajlove alfabetski, ignorišući razliku u slovima."
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Kontrolna pozicija završenih tajmera na spisku tajmera."
 
 msgid "Control the InfoBar fading speed."
 msgstr "Kontrolisanje brzine isčezavanja info trake."
+
+msgid "Control the smoothing filter used for the dithering process."
+msgstr "Оva opcija omogućava da omogućite filter za uglačavanje kontroliše proces zatamnjavanja."
+
+msgid "Control the use of vertical scaler anti-aliasing."
+msgstr "Оva opcija omogućava da omogućite vertikalno pomeranje razmere."
 
 msgid "Control your Softcams"
 msgstr "Kontroliši svoj Softcam"
@@ -5193,9 +5217,6 @@ msgstr "Kreirajte deponiju utovarivača aplikacija."
 
 msgid "Create backup image zip file."
 msgstr "Kreirajte rezervnu sliku zip datoteku."
-
-msgid "Create boot dump."
-msgstr "Kreiraj boot dump."
 
 msgid "Create boot image dump."
 msgstr "Kreirajte boot imidž dump."
@@ -7249,6 +7270,12 @@ msgstr "Omogući log otklanjanja greške *"
 msgid "Enable digital downmix"
 msgstr "Omogući digital downmix"
 
+msgid "Enable extended cut file support"
+msgstr "Omogući podršku za fajlove sa proširenim isečkom"
+
+msgid "Enable extended cut file support. This will write cut with more information and not only marker."
+msgstr "Omogući podršku za fajlove sa proširenim rezom. Ovo će zapisivati rez sa više informacija, a ne samo marker."
+
 msgid "Enable fallback remote receiver"
 msgstr "Omogući povrati udaljeni resiver"
 
@@ -7329,6 +7356,9 @@ msgstr "Omogući opciju dodavanja imena ekrana i podatke rezolucije u fajl evide
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
 msgstr "Omogućite ovu opciju da dodate informacije o uređaju za skladištenje otkrivene tokom pokretanja sistema i hot plug događaja u datoteku dnevnika za otklanjanje grešaka."
+
+msgid "Enable this option to add text encoding information to the debug log file."
+msgstr "Omogućite ovu opciju da dodate informacije o kodiranju teksta u datoteku dnevnika za otklanjanje grešaka."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Omogući opciju dodavanja tajmera i podatke u fajl evidencije otklanjanja greške."
@@ -8472,6 +8502,9 @@ msgstr "Izgleda da je fajl zauzet.\n"
 msgid "File compression"
 msgstr "Fajl kompresija"
 
+msgid "File sorting mode"
+msgstr "Režim sortiranja datoteka"
+
 msgid "File system"
 msgstr "Sistem fajla"
 
@@ -8812,6 +8845,9 @@ msgstr "Puno Razvlačenje"
 msgid "Full factory reset"
 msgstr "Fabrički reset"
 
+msgid "Full range (no clipping)"
+msgstr "Puni opseg (bez sečenja)"
+
 msgid "Full screen"
 msgstr "Ceo ekran"
 
@@ -9125,6 +9161,9 @@ msgstr "Guyana"
 msgid "H"
 msgstr "H"
 
+msgid "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr "H8SE/I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 novi Model"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Časovno / D: = Svakodnevno / W: = Nedeljno / M: = Mesečno"
 
@@ -9241,6 +9280,9 @@ msgstr "Hardver info"
 
 msgid "Hardware latency correction"
 msgstr "Ispravka kašnjenja hardvera"
+
+msgid "Hardware revision"
+msgstr "Revizija hardvera"
 
 msgid "Hardware serial"
 msgstr "Hardver serijski broj"
@@ -9506,8 +9548,8 @@ msgstr "Sat Minute"
 msgid "Hours Minutes Seconds"
 msgstr "Čas Minute Sekunde"
 
-msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr "Kako osloboditi hardverski dekoder prilikom prelaska na softversko dešifrovanje. 'Brzo' ga odmah oslobađa (brže prebacivanje kanala). 'Normalno' prvo vrši pravilno gašenje (stabilnije na nekim uređajima)."
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels."
+msgstr "Kako osloboditi hardverski dekoder prilikom prelaska na softversko dekodiranje. 'Brzo' oslobađa odmah (brže prebacivanje kanala). 'Normalno' prvo izvršava čisto gašenje (stabilnije na nekim uređajima). 'Agresivno' vrši potpuno pokretanje dekodera između šifrovanih kanala."
 
 msgid "Http(s) stream start delay"
 msgstr "Kašnjenje početka http strima"
@@ -9532,9 +9574,6 @@ msgstr "I"
 
 msgid "I/O priority for scripts"
 msgstr "I/O prioritet za skripte"
-
-msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 novi Model"
 
 msgid "IMDb Details"
 msgstr "IMDb Detalji"
@@ -9929,6 +9968,9 @@ msgstr "Uključite podatke o uređaju za skladištenje"
 
 msgid "Include teletext details"
 msgstr "Uključite detalje teleteksta"
+
+msgid "Include text encoding data"
+msgstr "Uključi podatke o kodiranju teksta"
 
 msgid "Include timer data"
 msgstr "Uključiti tajmer podatke"
@@ -10766,6 +10808,9 @@ msgstr "Limit zapad"
 msgid "Limited memory size, swap file required"
 msgstr "Ograničena veličina memorije, potrebna je zamena fajla"
 
+msgid "Limited range (64..940)"
+msgstr "Ograničen opseg (64..940)"
+
 msgid "Limits cancelled"
 msgstr "Limit otkazan"
 
@@ -11020,6 +11065,9 @@ msgstr "Petlja kroz"
 
 msgid "Lower Framerate saves CPU Time."
 msgstr "Niža brzina frejma štedi CPU vreme."
+
+msgid "Lower RGB output clipping limit. 'Full range' = no lower clipping, 'Limited range' clips RGB outputs to 64 (broadcast safe)."
+msgstr "Donja granica isecanja RGB izlaza. 'Puni opseg' = nema donjeg isecanja, 'Ograničeni opseg' seče RGB izlaze na 64 (bezbedno za emitovanje)."
 
 msgid "Lower USB"
 msgstr "Donji USB"
@@ -14653,6 +14701,12 @@ msgstr "CRVENO dugo"
 msgid "RF Output Settings"
 msgstr "RF Izlaz Postavke"
 
+msgid "RGB clamp (lower)"
+msgstr "RGB ograničenje (donje)"
+
+msgid "RGB clamp (upper)"
+msgstr "RGB ograničenje (gornje)"
+
 msgid "Racing"
 msgstr "Trkanje"
 
@@ -17219,6 +17273,9 @@ msgstr "Izaberi da li DTS kanal treba da bude downmixed ili transkodiran."
 
 msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Izaberi da li DTS kanal treba da bude downmixed u stereo."
+
+msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
+msgstr "Odaberite da li Dolby TrueHD audio zapisi treba da se proslede ili dekodiraju."
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Odaberite da li treba koristiti IPv4, IPv6 ili oba protokola. Ako su oba omogućena, navedite koji treba imati prednost."
@@ -20723,8 +20780,8 @@ msgstr "Ovo vam omogućava da promenite veličinu fonta u odnosu na veličinu sk
 msgid "This allows you to change the number of rows shown."
 msgstr "Ovo vam omogućava da promenite broj prikazanih redova."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Ovo vam omogućava da postavite maksimalan broj cifara u servis broju, do 5."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Ovo vam omogućava da postavite maksimalan broj cifara u servis broju, do 6."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Ovaj buket je zaštićen pinom roditeljske kontrole!"
@@ -20767,12 +20824,6 @@ msgstr "Ova opcija omogućava da se smanji blok-buka na slici. Očigledno je to 
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Ova opcija omogućava postavljanje nivoa dinamičkog kontrasta slike."
-
-msgid "Control the smoothing filter used for the dithering process."
-msgstr "Оva opcija omogućava da omogućite filter za uglačavanje kontroliše proces zatamnjavanja."
-
-msgid "Control the use of vertical scaler anti-aliasing."
-msgstr "Оva opcija omogućava da omogućite vertikalno pomeranje razmere."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Оva opcija omogućava da isključite ekran."
@@ -20959,18 +21010,6 @@ msgstr "Оva opcija postavlja oštrinu skale koja se koristi prilikom rastezanja
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Оva opcija postavlja suzbijanje lažnih digitalnih kontura, koje su rezultat ograničenog broja diskretnih vrednosti."
-
-msgid "This option sets the video & osd picture brightness."
-msgstr "Ova opcija postavlja video i osvetljenje slike."
-
-msgid "This option sets the video & osd picture contrast."
-msgstr "Ova opcija postavlja video & osd kontrast slike."
-
-msgid "This option sets the video picture brightness."
-msgstr "Ova opcija postavlja video svetlinu slike."
-
-msgid "This option sets the video picture contrast."
-msgstr "Ova opcija postavlja video kontrast slike."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Оva opcija podešava oštrinu slike koja se koristi prilikom upscaled slike."
@@ -22033,6 +22072,9 @@ msgstr "Uphops -"
 
 msgid "Uphops: "
 msgstr "Uphops: "
+
+msgid "Upper RGB output clipping limit. 'Full range' = no upper clipping, 'Limited range' clips RGB outputs to 940 (broadcast safe)."
+msgstr "Gornja granica ograničenje senčanja RGB izlaza. 'Puni opseg' = bez gornjeg ograničenja senčanja, 'Ograničeni opseg' ograničava RGB izlaze na 940 (sigurno za emitovanje)."
 
 msgid "Upper USB"
 msgstr "Gornji USB"
@@ -24434,6 +24476,33 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Color Bottom"
+#~ msgstr "Boja Dole"
+
+#~ msgid "Color Top"
+#~ msgstr "Boja Gore"
+
+#~ msgid "Create boot dump."
+#~ msgstr "Kreiraj boot dump."
+
+#~ msgid "This option sets the video & osd picture brightness."
+#~ msgstr "Ova opcija postavlja video i osvetljenje slike."
+
+#~ msgid "This option sets the video & osd picture contrast."
+#~ msgstr "Ova opcija postavlja video & osd kontrast slike."
+
+#~ msgid "This option sets the video picture brightness."
+#~ msgstr "Ova opcija postavlja video svetlinu slike."
+
+#~ msgid "This option sets the video picture contrast."
+#~ msgstr "Ova opcija postavlja video kontrast slike."
+
+#~ msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+#~ msgstr "Kako osloboditi hardverski dekoder prilikom prelaska na softversko dešifrovanje. 'Brzo' ga odmah oslobađa (brže prebacivanje kanala). 'Normalno' prvo vrši pravilno gašenje (stabilnije na nekim uređajima)."
+
+#~ msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+#~ msgstr "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 novi Model"
 
 #~ msgid " "
 #~ msgstr " ."

@@ -23,7 +23,10 @@ if isPluginInstalled("spazeMenu"):
 		DEFAULT_SKIN = "MetrixJRSD/skin.xml"
 else:
 	standardenigma = True
-	DEFAULT_SKIN = "OctEtFHD/skin.xml"
+	if BoxInfo.getItem("HasFullHDSkinSupport"):
+		DEFAULT_SKIN = "OctEtFHD/skin.xml"
+	else:
+		DEFAULT_SKIN = "OctEtHD/skin.xml"
 EMERGENCY_SKIN = "skin_default/skin.xml"
 EMERGENCY_NAME = "Default OE-A"
 DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if BoxInfo.getItem("grautec") else "skin_display.xml"
@@ -1019,6 +1022,9 @@ class AttributeParser:
 	def borderWidth(self, value):
 		self.guiObject.setBorderWidth(self.applyVerticalScale(value))
 
+	def condition(self, value):
+		pass
+
 	def conditional(self, value):
 		pass
 
@@ -1626,10 +1632,17 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		for label in tag.findall("label"):
 			style.setLabelFont(parseFont(label.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 		for listBox in tag.findall("listbox"):
-			pageSize = parseInteger(listBox.attrib.get("pageSize", eListbox.DefaultPageSize), eListbox.DefaultPageSize)
 			enableWrapAround = parseBoolean("enablewraparound", listBox.attrib.get("enableWrapAround", "True" if eListbox.DefaultWrapAround else "False"))
 			style.setListboxFont(parseFont(listBox.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 			scrollbarBorderWidth = parseInteger(listBox.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth), eListbox.DefaultScrollBarBorderWidth)
+			horizontalAlignment = listBox.attrib.get("horizontalAlignment")
+			if horizontalAlignment:
+				horizontalAlignment = parseHorizontalAlignment(horizontalAlignment)
+				eListbox.setDefaultHorizontalAlignment(horizontalAlignment)
+			verticalAlignment = listBox.attrib.get("verticalAlignment")
+			if verticalAlignment:
+				verticalAlignment = parseVerticalAlignment(verticalAlignment)
+				eListbox.setDefaultVerticalAlignment(verticalAlignment)
 			if "scrollbarBorderWidth" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarBorderWidth"] = scrollbarBorderWidth
 			scrollbarMode = parseScrollbarMode(listBox.attrib.get("scrollbarMode", scrollbarModes[eListbox.DefaultScrollBarMode]))
@@ -1647,7 +1660,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			scrollbarRadius = parseRadius(listBox.attrib.get("scrollbarRadius", "0"))
 			if "scrollbarRadius" not in scrollLabelStyle:
 				scrollLabelStyle["scrollbarRadius"] = scrollbarRadius
-			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround, pageSize)
+			eListbox.setDefaultScrollbarStyle(scrollbarWidth, scrollbarOffset, scrollbarBorderWidth, scrollbarScroll, scrollbarMode, enableWrapAround)
 			eListbox.setDefaultScrollbarRadius(*scrollbarRadius)
 		for scrollLabel in tag.findall("scrolllabel"):
 			scrollLabelStyle["scrollbarBorderWidth"] = parseInteger(scrollLabel.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth), eListbox.DefaultScrollBarBorderWidth)
@@ -1690,7 +1703,7 @@ class additionalWidget:
 		self.children = []
 
 
-class ComponentTemplates():
+class ComponentTemplates:
 	def __init__(self):
 		self.changedTimes = {}
 		self.templates = {}
@@ -1888,7 +1901,8 @@ class SkinContextVertical(SkinContext):
 				self.h -= (height + self.spacing)
 				self.y += (height + self.spacing)
 			elif pos == "center":
-				pos = (left, (self.h - height) / 2)
+				originY = self.by - self.bh
+				pos = (left, originY + (self.bh - height) / 2)
 				size = (width, height)
 			else:
 				if pos in variables:
@@ -1940,7 +1954,8 @@ class SkinContextHorizontal(SkinContext):
 				size = (width, height)
 				self.w -= (width + self.spacing)
 			elif pos == "center":
-				pos = ((self.w - width) / 2, top)
+				originX = self.rx - self.rw
+				pos = (originX + (self.rw - width) / 2, top)
 				size = (width, height)
 			else:
 				if pos in variables:
@@ -1954,7 +1969,7 @@ class SkinContextHorizontal(SkinContext):
 		return (SizeTuple(pos), SizeTuple(size))
 
 
-class TemplateParser():
+class TemplateParser:
 	def __init__(self, debug=False):
 		self.debug = debug
 		self.processors = {
@@ -2053,19 +2068,29 @@ class TemplateParser():
 		size = None
 		skinAttributes = []
 		itemIndex = ""
+		conditional = None
 		for attrib, value in node.items():  # Walk all attributes.
 			if attrib not in ignore:
-				newValue = value
 				match attrib:
+					case "conditional":
+						conditional = value
 					case "position":
-						pos = newValue
+						pos = value
 					case "size":
-						size = newValue
+						size = value
 					case "index":
 						itemIndex = value
-						skinAttributes.append((attrib, newValue))
+						skinAttributes.append((attrib, value))
 					case _:
-						skinAttributes.append((attrib, newValue))
+						skinAttributes.append((attrib, value))
+
+		if conditional is not None:
+			try:
+				if not eval(conditional):
+					return []
+			except Exception as err:
+				skinError(f"collectAttributes 'conditional' '{conditional}' resulted in error '{err}'")
+				return []
 		if itemIndex and includeItemIndexes and itemIndex not in includeItemIndexes:
 			return []
 		if itemIndex and excludeItemIndexes and itemIndex in excludeItemIndexes:
@@ -2462,6 +2487,21 @@ def readSkin(screen, skin, names, desktop):
 		for layout in widgets.findall('layout'):
 			processLayouts(layout, context)
 		for widget in widgets:
+			condition = widget.attrib.get("condition", "")
+			if "config." in condition or "BoxInfo" in condition:
+				negate = condition.startswith("!")
+				if negate:
+					condition = condition[1:]
+				try:
+					if bool(eval(condition)) == negate:
+						continue
+				except AttributeError:
+					if not negate:
+						continue
+				except Exception as err:
+					print(f"[Skin] Error: Screen condition '{myName}' widget '{widget.tag}' {str(err)}!")
+					if not negate:
+						continue
 			conditional = widget.attrib.get("conditional")
 			if conditional and not [x for x in conditional.split(",") if x in screen.keys()]:
 				continue
@@ -2483,14 +2523,25 @@ def readSkin(screen, skin, names, desktop):
 
 	def processPanel(widget, context, stack=None):
 		name = widget.attrib.get("name")
+		panelPosition = widget.attrib.get("position")
+		panelSize = widget.attrib.get("size")
+		panelFont = widget.attrib.get("font")
+		panelLayout = widget.attrib.get("layout")
 		if name:
 			try:
 				screen = domScreens[name]
 			except KeyError:
 				print(f"[Skin] Error: Unable to find screen '{name}' referred in screen '{myName}'!")
 			else:
-				processScreen(screen[0], context)
-		layout = widget.attrib.get("layout")
+				if panelPosition is not None and panelSize is not None:
+					try:
+						includeContext = SkinContext(context, panelPosition, panelSize, panelFont)
+					except Exception as err:
+						raise SkinError(f"Failed to create include context (position='{panelPosition}', size='{panelSize}', font='{panelFont}') in context '{context}': {err}")
+				else:
+					includeContext = context
+				processScreen(screen[0], includeContext)
+		layout = panelLayout
 		classes = {
 			"stack": SkinContextStack,
 			"vertical": SkinContextVertical,
@@ -2498,12 +2549,12 @@ def readSkin(screen, skin, names, desktop):
 		}
 		contextClass = classes.get(layout, SkinContext)
 		try:
-			contextScreen = contextClass(context, widget.attrib.get("position"), widget.attrib.get("size"), widget.attrib.get("font"))
+			contextScreen = contextClass(context, panelPosition, panelSize, panelFont)
 			spacing = widget.attrib.get("spacing")
 			if spacing:
 				contextScreen.spacing = int(spacing)
 		except Exception as err:
-			raise SkinError(f"Failed to create skin context (position='{widget.attrib.get('position')}', size='{widget.attrib.get('size')}', font='{widget.attrib.get('font')}') in context '{context}': {err}")
+			raise SkinError(f"Failed to create skin context (position='{panelPosition}', size='{panelSize}', font='{panelFont}') in context '{context}': {err}")
 		processScreen(widget, contextScreen)
 
 	def processStack(widget, context, stack=None):
@@ -2527,6 +2578,7 @@ def readSkin(screen, skin, names, desktop):
 			item.skinAttributes.append(("size", (contextScreen.w, contextScreen.h)))
 			item.skinAttributes.append(("position", (contextScreen.x, contextScreen.y)))
 			item.skinAttributes.append(("spacing", contextScreen.spacing))
+			item.skinAttributes.append(("tag", widget.attrib.get("tag", "0")))
 			item = proccesStackAddition(widget, stack, item)
 			screen.stacks.append(item)
 		except Exception as err:

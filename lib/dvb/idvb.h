@@ -764,6 +764,12 @@ public:
 		   can be shared between multiple decoders.
 		*/
 	virtual RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode) = 0;
+
+	/* Force the push thread's read position to the given byte offset.
+	 * Default no-op — only used by RAM timeshift where the normal
+	 * cue-sheet seek path (through tstools) is not available. */
+	virtual void forceSourcePosition(off_t /*offset*/) {}
+
 		/* skipping must be done with a cue sheet */
 };
 
@@ -852,6 +858,10 @@ public:
 	virtual bool canFlush() const { return false; }
 
 	virtual RESULT flush() { return -1; }
+
+	/** Release demux filters by closing fds (no DMX_STOP ioctl).
+	 *  Prevents deadlock/crash on mipsel PVR-sourced demuxes. */
+	virtual void freeDecoder() { /* default no-op; mipsel decoder overrides */ }
 
 	struct videoEvent
 	{

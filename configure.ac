@@ -46,6 +46,8 @@ PKG_CHECK_MODULES(LIBDDVD, libdreamdvd, HAVE_LIBDDVD="yes", HAVE_LIBDDVD="no")
 AM_CONDITIONAL(HAVE_LIBDDVD, test "$HAVE_LIBDDVD" = "yes")
 PKG_CHECK_MODULES(AVAHI, avahi-client)
 
+AC_CHECK_LIB([atomic], [__atomic_exchange_8], [LIBATOMIC_LIBS="-latomic"], [LIBATOMIC_LIBS=""])
+AC_SUBST(LIBATOMIC_LIBS)
 AC_CHECK_LIB([udfread], [udfread_init])
 AC_CHECK_LIB([dl], [dlopen], [LIBDL_LIBS="-ldl"], [AC_MSG_ERROR([Could not find libdl])])
 AC_SUBST(LIBDL_LIBS)
@@ -57,9 +59,9 @@ AC_CHECK_LIB([webp], [WebPDecodeRGB],[LIBWEBP_LIBS="-lwebp"], [AC_MSG_ERROR([Cou
 AC_SUBST(LIBWEBP_LIBS)
 
 PKG_CHECK_MODULES([SWSCALE], [libswscale], [
-    AC_DEFINE([HAVE_SWSCALE], [1], [Define if libswscale is available])
+	AC_DEFINE([HAVE_SWSCALE], [1], [Define if libswscale is available])
 ], [
-    AC_MSG_WARN([Could not find libswscale, scaling support will be disabled.])
+	AC_MSG_WARN([Could not find libswscale, scaling support will be disabled.])
 ])
 
 AC_ARG_WITH(e2rev,
@@ -635,6 +637,10 @@ AC_DEFINE_UNQUOTED(SUBT_TXT_ABNORMAL_PTS_DIFFS, $with_subttxtabnormalptsdiffs,[C
 
 if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm800se" -o "$BOXTYPE" == "dm800sev2" -o "$BOXTYPE" == "dm7020hd" -o "$BOXTYPE" == "dm7020hdv2" -o "$BOXTYPE" == "dreamone" -o "$BOXTYPE" == "dreamtwo" -o "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920"; then
 	AC_DEFINE(DREAMBOX_DUAL_TUNER, 1,[define BOXTYPE DM7080])
+fi
+
+if test "$BOXTYPE" == "dreamtwo"; then
+	AC_DEFINE(LCD_COLOR_BYTESWAP_16, 1, [LCD 16-bit Byte-Swap])
 fi
 
 if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm900" -o "$BOXTYPE" == "dm920" -o "$BOXTYPE" == "dm520"; then
