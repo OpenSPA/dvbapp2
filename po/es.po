@@ -6642,7 +6642,7 @@ msgid "Delete all the text"
 msgstr "Eliminar todo el texto"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your receiver."
-msgstr "Eliminar y desinstalar Plugins. Se eliminará el plugin de tu receptor"
+msgstr "Eliminar y desinstalar Plugins. Se eliminará el plugin de tu receptor."
 
 msgid "Delete character to left of cursor or select AM times"
 msgstr "Eliminar carácter a la izquierda del cursor o seleccionar horas AM"
@@ -16545,11 +16545,17 @@ msgstr "Renombrar nombre y descripción para nuevos eventos"
 msgid "Rename only highlighted file"
 msgstr "Renombrar solo el archivo resaltado"
 
+msgid "Rename slot '%s' (leave empty to reset):"
+msgstr "Cambie el nombre del slot '%s' (déjela vacía para restablecerla):"
+
 msgid "Rename the proposed file to be created"
 msgstr "Cambiar el nombre del archivo propuesto para ser creado"
 
 msgid "Rename the selected service"
 msgstr "Renombrar el servicio seleccionado"
+
+msgid "Rename the selected slot"
+msgstr "Cambiar el nombre del slot seleccionado"
 
 msgid "Rename this tag"
 msgstr "Cambia el nombre de esta etiqueta"
@@ -25786,19 +25792,14 @@ msgstr ""
 "Cuando el contenido tiene un ratio de 4:3, elige si quieres escalar o "
 "estirar la imagen."
 
-msgid ""
-"When the input cursor reaches this point (percentage of the width, from "
-"either side) scroll the text to the cursor."
-msgstr ""
-"Cuando el cursor de entrada alcance este punto (porcentaje del ancho, desde "
-"cualquier lado) desplaza el texto hasta el cursor."
+msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
+msgstr "Cuando el cursor de entrada alcance este punto (porcentaje del ancho, desde cualquier lado) desplaza el texto hasta el cursor."
 
-msgid ""
-"When the receiver wakes from Standby or Deep Standby it will send a command "
-"to the TV to bring it out of standby."
-msgstr ""
-"Cuando el receptor encienda del reposo o de reposo profundo, enviará un "
-"comando al televisor para que salga del reposo."
+msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of standby."
+msgstr "Cuando el receptor encienda del reposo o de reposo profundo, enviará un comando al televisor para que salga del reposo."
+
+msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgstr "Cuando el receptor sale del modo reposo, envíe la fuente activa, la ruta del stream y los comandos de enrutamiento para que el televisor cambie a la entrada HDMI conectada al receptor."
 
 msgid ""
 "When the red box is correctly visible press the GREEN button to save the "
