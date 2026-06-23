@@ -1891,6 +1891,9 @@ msgstr "Proveedor ATSC"
 msgid "AV Setup"
 msgstr "Configurar AV"
 
+msgid "AV receiver, soundbar and remote"
+msgstr "Receptor AV, barra de sonido y control remoto"
+
 msgid "Abkhazian"
 msgstr "Abkhazian"
 
