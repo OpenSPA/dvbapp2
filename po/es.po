@@ -2129,6 +2129,9 @@ msgstr "Agregar carpeta seleccionada a los marcadores"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Añadir acciones heredadas IZQUIERDA/DERECHA"
 
+msgid "Add slots"
+msgstr "Añadir slots"
+
 msgid "Add new CCcam line"
 msgstr "Añadir una nueva línea CCcam"
 
@@ -2692,8 +2695,8 @@ msgstr "¿Seguro que quiere borrar este log?\n"
 msgid "Are you sure you want to delete this?"
 msgstr "¿Seguro que quiere eliminar esto?"
 
-msgid "Are you sure you want to disable Chkroot Multiboot?"
-msgstr "¿Seguro que deseas desactivar Chkroot Multiboot?"
+msgid "Disable Chkroot Multiboot?"
+msgstr "¿Deshabilitar Chkroot Multiboot?"
 
 msgid "Do you want to permanently delete the images in the slots in the flash?"
 msgstr "¿Quieres eliminar permanentemente las imágenes en los slots en la flash?"
@@ -6684,8 +6687,8 @@ msgstr "Eliminar registro"
 msgid "Delete only highlighted file"
 msgstr "Eliminar solo archivo resaltado"
 
-msgid "Delete or Wipe the highlighted slot"
-msgstr "Eliminar o borrar la ranura resaltada"
+msgid "Empty or Wipe the highlighted slot"
+msgstr "Vacíe o elimine el slot resaltado"
 
 #
 msgid "Delete play list entry"
@@ -15558,6 +15561,12 @@ msgstr ""
 "botón AZUL. Una imagen borrada se elimina por completo y no se puede "
 "restaurar!"
 
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
+msgstr "Pulse los botones ARRIBA/ABAJO para seleccionar un slot y pulse OK o VERDE para reiniciar en ese slot. Si está disponible, el botón AMARILLO eliminará o borrará el slot. Un slot eliminado se puede restaurar con el botón AZUL. ¡Un slot borrado se elimina por completo y no se puede restaurar!"
+
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
+msgstr "Pulsa los botones ARRIBA/ABAJO para seleccionar un slot y, a continuación, pulsa OK o VERDE para reiniciar en ese slot. Si está disponible, el botón AMARILLO desactiva MultiBoot, elimina o borra el slot seleccionado. Pulsa AZUL para añadir más slots."
+
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
 "(this also overrides any other actions assigned to emulation button)."
@@ -16554,8 +16563,8 @@ msgstr "Cambiar el nombre del archivo propuesto para ser creado"
 msgid "Rename the selected service"
 msgstr "Renombrar el servicio seleccionado"
 
-msgid "Rename the selected slot"
-msgstr "Cambiar el nombre del slot seleccionado"
+msgid "Rename the highlighted slot"
+msgstr "Cambie el nombre del slot resaltado."
 
 msgid "Rename this tag"
 msgstr "Cambia el nombre de esta etiqueta"
