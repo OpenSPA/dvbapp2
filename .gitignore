@@ -49,3 +49,5 @@ doxy/
 *.wsuo
 *.bin
 /.vs
+.claude
+__pycache__
