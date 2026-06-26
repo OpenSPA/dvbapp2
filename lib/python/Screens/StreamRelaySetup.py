@@ -10,7 +10,7 @@ class StreamRelaySetup(Setup):
 	def __init__(self, session):
 		self.serviceitems = []
 		self.services = streamrelay.data[:]
-		Setup.__init__(self, session=session, setup="streamrelay")
+		Setup.__init__(self, session=session, setup="StreamRelay")
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["addActions"] = HelpableActionMap(self, ["ColorActions"], {
