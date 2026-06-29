@@ -4494,19 +4494,11 @@ msgstr "Seleccione el nombre del archivo que contiene los datos de la guía elec
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Elija la opción para corregir datos EPG no válidos."
 
-msgid ""
-"Choose the skin to be used for the GUI interface. Press 'GREEN' to activate "
-"the skin."
-msgstr ""
-"Elige la skin que se utilizará para la interfaz GUI. Pulsa \"VERDE\" para "
-"activar la skin."
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr "Elige la skin que se utilizará para la interfaz GUI. Pulsa \"VERDE\" para activar la skin."
 
-msgid ""
-"Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' "
-"to activate the skin."
-msgstr ""
-"Elige la skin que se utilizará para la interfaz LCD/panel frontal. Pulse "
-"'VERDE' para activar la skin."
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr "Elija la apariencia que se usará para la interfaz. Pulse \"VERDE\" para activar la skin."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
@@ -17640,12 +17632,17 @@ msgstr "Seleccione 'Sí' si desea activar el televisor para que se inicie el tem
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Seleccione 'Sí' si desea activar el televisor para que se inicie el temporizador de grabación 'Zapeo'."
 
-msgid ""
-"Select 'Yes' the keep the InfoBar displayed, with no timeout, while media "
-"playback is paused."
-msgstr ""
-"Seleccione \"Sí\" para mantener la barra de información en pantalla, sin "
-"tiempo de espera, mientras la reproducción multimedia está en pausa."
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Seleccione 'Sí' si desea activar el televisor cuando se inicie una tarea programada de 'Activación'."
+
+msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
+msgstr "Seleccione \"Sí\" para mantener la barra de información en pantalla, sin tiempo de espera, mientras la reproducción multimedia está en pausa."
+
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
+msgstr "Cuando esté habilitado, permita que cada dispositivo de almacenamiento detectado se exporte automáticamente como un recurso compartido de Samba."
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "Seleccione 'Sí' para permitir que el SPV ajuste los temporizadores de grabación basándose en los datos del Control de entrega de programas (PDC) transmitidos. Para que esto funcione, el servicio debe proporcionar datos PDC de eventos confiables."
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Si se ajusta a 'sí', te permitirá usar la barra de búsqueda para avanzar a cualquier momento del evento."
@@ -18494,6 +18491,9 @@ msgstr "Seleccione la frecuencia de la banda de usuario que se asignará a este 
 
 msgid "Select the Yes / True response"
 msgstr "Seleccione respuesta Sí / Verdadero"
+
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
+msgstr "Seleccione el modo de acceso, Lectura/Escritura o Sólo lectura, aplicado a todos los recursos compartidos de Samba exportados automáticamente."
 
 #, python-format
 msgid "Select the action for '%s'"
@@ -23106,9 +23106,6 @@ msgstr "Esta opción configura la supresión de bordes digitales falsos, resulta
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Esta opción configura la nitidez de la imagen cuando se está ampliando."
-
-msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
-msgstr "Seleccione 'Sí' para permitir que el VPS ajuste los temporizadores de grabación según los datos de control de entrega de programas (PDC) de la transmisión. Para que esto funcione, el servicio debe proporcionar datos PDC de eventos fiables."
 
 #
 msgid "This plugin is installed."
