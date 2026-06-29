@@ -9096,9 +9096,17 @@ msgstr "Islas Malvinas"
 msgid "Fallback API did not return a valid result."
 msgstr "API alternativo no devuelve un resultado válido."
 
-#
-msgid "Fallback Font *"
-msgstr "Fuente de reserva *"
+msgid "Fallback Font"
+msgstr "Fuente de reserva"
+
+msgid "Fallback Remote Receiver Settings"
+msgstr "Ajustes del tuner reserva"
+
+msgid "Fallback Timer"
+msgstr "Temporizador de reserva"
+
+msgid "Fallback Tuner Setup"
+msgstr "Ajustes del Sintonizador Reserva"
 
 msgid "Fallback remote receiver"
 msgstr "Receptor remoto de reserva"
@@ -9108,9 +9116,6 @@ msgstr "IP del receptor reserva"
 
 msgid "Fallback remote receiver Port"
 msgstr "Puerto del receptor reserva"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr "Ajustes del tuner reserva"
 
 msgid "Fallback remote receiver URL"
 msgstr "URL del receptor reserva"
@@ -9123,12 +9128,6 @@ msgstr "Receptor reserva para DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Receptor reserva para DVB-T"
-
-msgid "Fallback Timer"
-msgstr "Temporizador de reserva"
-
-msgid "Fallback Tuner Setup"
-msgstr "Ajustes del Sintonizador Reserva"
 
 msgid "False"
 msgstr "Falso"
@@ -9709,11 +9708,8 @@ msgstr "Categoría de registro de depuración de GStreamer *"
 msgid "GStreamer debug log level *"
 msgstr "Nivel de registro de depuración de GStreamer *"
 
-msgid "GStreamer version"
-msgstr "Versión de GStreamer"
-
-msgid "GUI Skin *"
-msgstr "Skin Interfaz de usuario *"
+msgid "GUI Skin"
+msgstr "Skin Interfaz de usuario"
 
 msgid "Gabon"
 msgstr "Gabón"
@@ -11579,11 +11575,8 @@ msgstr "Conexión de red local"
 msgid "LCD scroll speed"
 msgstr "Velocidad de desplazamiento del LCD"
 
-msgid "LCD/Front panel *"
-msgstr "LCD/Panel frontal *"
-
-msgid "LCN numbering"
-msgstr "Numeración LCN"
+msgid "LCD/Front panel"
+msgstr "LCD/Panel frontal"
 
 msgid "LCN Scanner"
 msgstr "Escáner LCN"
@@ -11591,11 +11584,14 @@ msgstr "Escáner LCN"
 msgid "LCN Scanner Actions"
 msgstr "Acciones del escáner LCN"
 
+msgid "LCN Scanner Settings"
+msgstr "Configuración del escáner LCN"
+
 msgid "LCN Scanner plugin for DVB-C/T/T2 services"
 msgstr "Plugin de escáner LCN para servicios DVB-C/T/T2"
 
-msgid "LCN Scanner Settings"
-msgstr "Configuración del escáner LCN"
+msgid "LCN numbering"
+msgstr "Numeración LCN"
 
 msgid "LCN rules"
 msgstr "Reglas LCN"
