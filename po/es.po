@@ -10405,9 +10405,6 @@ msgstr "Hungría"
 msgid "Hybrid Tuner"
 msgstr "Sintonizador híbrido"
 
-msgid "Hybrid tuner mode"
-msgstr "Modo de sintonizador híbrido"
-
 msgid "Hz"
 msgstr "Hz"
 
@@ -18295,7 +18292,7 @@ msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Seleccione cómo se gestiona la programación con respecto al reposo."
 
 msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
-msgstr "Seleccione cómo se conecta este sintonizador DVB-C/T. Utilice la opción de interruptor coaxial externo únicamente con un interruptor coaxial controlado por 5 V."
+msgstr "Seleccione cómo se conecta este sintonizador DVB-C/T. Utilice la opción de interruptor coaxial externo solo con un interruptor coaxial controlado de 5 V."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleccione cómo activar el modo EPG rápido."
