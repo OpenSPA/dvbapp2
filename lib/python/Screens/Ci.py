@@ -1,6 +1,6 @@
 from os import remove
 from os.path import exists
-from enigma import eTimer, eDVBCI_UI
+from enigma import eTimer, eDVBCI_UI, iServiceInformation
 
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
@@ -15,6 +15,87 @@ import Screens.Standby
 from Tools.BoundFunction import boundFunction
 
 forceNotShowCiMessages = False
+autoResetTimers = {}
+readyPollTimers = {}
+MAX_READY_WAIT_SECONDS = 60
+
+
+def isCurrentServiceScrambled():
+	session = getattr(CiHandler, "session", None)
+	if not session:
+		return False
+	try:
+		service = session.nav.getCurrentService()
+		if not service:
+			return False
+		info = service.info()
+		if not info:
+			return False
+		caids = info.getInfoObject(iServiceInformation.sCAIDs)
+		return bool(caids)
+	except Exception as e:
+		print(f"[CI] Could not determine if current service is scrambled, re-zapping just in case: {e}")
+		return True
+
+
+def reZapCurrentService():
+	session = getattr(CiHandler, "session", None)
+	if not session:
+		return
+	if not isCurrentServiceScrambled():
+		print("[CI] Current service is not scrambled/using CA, skipping re-zap")
+		return
+	try:
+		nav = session.nav
+		ref = nav.getCurrentlyPlayingServiceReference()
+		if ref:
+			print("[CI] Re-zapping current service to restore CI decoding")
+			nav.stopService()
+			nav.playService(ref)
+	except Exception as e:
+		print(f"[CI] Re-zap after CI reset/init failed: {e}")
+
+
+def getRezapSettleDelay(slot):
+	try:
+		return int(config.ci[slot].rezapsettledelay.value)
+	except (KeyError, AttributeError, ValueError):
+		return 0
+
+
+def pollCIModuleReady(slot, elapsed=0):
+	state = eDVBCI_UI.getInstance().getState(slot)
+	if state == 2:
+		readyPollTimers.pop(slot, None)
+		settleDelay = getRezapSettleDelay(slot)
+		if settleDelay > 0:
+			print(f"[CI] Slot {slot} ready, waiting {settleDelay}s extra before re-zap")
+			timer = eTimer()
+			timer.callback.append(boundFunction(reZapCurrentService))
+			timer.start(settleDelay * 1000, True)
+			readyPollTimers[slot] = timer
+		else:
+			reZapCurrentService()
+		return
+	if elapsed >= MAX_READY_WAIT_SECONDS:
+		print(f"[CI] Slot {slot} did not report ready within {MAX_READY_WAIT_SECONDS}s, skipping auto re-zap")
+		readyPollTimers.pop(slot, None)
+		return
+	timer = eTimer()
+	timer.callback.append(boundFunction(pollCIModuleReady, slot, elapsed + 1))
+	timer.start(1000, True)
+	readyPollTimers[slot] = timer
+
+
+def scheduleReadyPoll(slot):
+	# Starts (or restarts) the "wait until ready, then re-zap" watch for a slot.
+	if slot in readyPollTimers:
+		readyPollTimers[slot].stop()
+		del readyPollTimers[slot]
+	timer = eTimer()
+	timer.callback.append(boundFunction(pollCIModuleReady, slot, 0))
+	timer.start(2000, True)
+	readyPollTimers[slot] = timer
 
 
 def setCIBitrate(configElement):
@@ -34,6 +115,60 @@ def setRelevantPidsRouting(configElement):
 	open(BoxInfo.getItem(f"CI{configElement.slotid}RelevantPidsRoutingSupport"), "w").write("yes" if configElement.value else "no")
 
 
+def doCIAutoReset(slot):
+	try:
+		action = config.ci[slot].autoresetaction.value
+	except (KeyError, AttributeError):
+		action = "reset"
+	try:
+		if action == "init":
+			print(f"[CI] Auto-init (post-boot) for slot {slot}")
+			eDVBCI_UI.getInstance().setInit(slot)
+		else:
+			print(f"[CI] Auto-reset (post-boot) for slot {slot}")
+			eDVBCI_UI.getInstance().setReset(slot)
+			authFile = f"/etc/ciplus/ci_auth_slot_{slot}.bin"
+			if exists(authFile):
+				remove(authFile)
+	except Exception as e:
+		print(f"[CI] Auto-reset/init failed for slot {slot}: {e}")
+	autoResetTimers.pop(slot, None)
+	scheduleReadyPoll(slot)
+
+
+def scheduleCIAutoReset(slot, delay):
+	if slot in autoResetTimers:
+		autoResetTimers[slot].stop()
+		del autoResetTimers[slot]
+	if delay > 0:
+		timer = eTimer()
+		timer.callback.append(boundFunction(doCIAutoReset, slot))
+		timer.start(delay * 1000, True)
+		autoResetTimers[slot] = timer
+		print(f"[CI] Auto-reset for slot {slot} scheduled in {delay} seconds")
+	else:
+		print(f"[CI] Auto-reset for slot {slot} disabled")
+
+
+def setCIAutoReset(configElement):
+	try:
+		delay = int(configElement.value)
+	except (TypeError, ValueError):
+		delay = 0
+	scheduleCIAutoReset(configElement.slotid, delay)
+
+
+def startCIAutoResetTimers():
+	if not BoxInfo.getItem("CommonInterface"):
+		return
+	for slot in range(BoxInfo.getItem("CommonInterface")):
+		try:
+			delay = int(config.ci[slot].autoreset.value)
+		except (KeyError, AttributeError, ValueError):
+			delay = 0
+		scheduleCIAutoReset(slot, delay)
+
+
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	config.cimisc = ConfigSubsection()
@@ -50,6 +185,41 @@ def InitCiConfig():
 			config.ci[slot].show_ci_messages = ConfigYesNo(default=True)
 			config.ci[slot].disable_operator_profile = ConfigYesNo(default=False)
 			config.ci[slot].alternative_ca_handling = ConfigSelection(choices=[(0, _("Off")), (1, _("Close CA device at programm end")), (2, _("Offset CA device index")), (3, _("Offset and close CA device"))], default=0)
+			config.ci[slot].autoreset = ConfigSelection(
+				choices=[
+					("0", _("Off")),
+					("5", _("5 seconds")),
+					("10", _("10 seconds")),
+					("15", _("15 seconds")),
+					("20", _("20 seconds")),
+					("25", _("25 seconds")),
+					("30", _("30 seconds")),
+				],
+				default="0"
+			)
+			config.ci[slot].autoreset.slotid = slot
+			config.ci[slot].autoreset.addNotifier(setCIAutoReset, initial_call=False)
+			config.ci[slot].autoresetaction = ConfigSelection(
+				choices=[
+					("reset", _("Reset")),
+					("init", _("Init")),
+				],
+				default="reset"
+			)
+			config.ci[slot].rezapsettledelay = ConfigSelection(
+				choices=[
+					("0", _("Immediate")),
+					("5", _("5 seconds")),
+					("10", _("10 seconds")),
+					("15", _("15 seconds")),
+					("20", _("20 seconds")),
+					("25", _("25 seconds")),
+					("30", _("30 seconds")),
+					("45", _("45 seconds")),
+					("60", _("60 seconds")),
+				],
+				default="15"
+			)
 			if BoxInfo.getItem(f"CI{slot}SupportsHighBitrates"):
 				highBitrateChoices = [
 					("normal", _("Normal")),
@@ -73,6 +243,7 @@ def InitCiConfig():
 			config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16", "16"), ("32", "32"), ("64", "64"), ("128", "128"), ("256", "256")])
 			config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
 		config.cimisc.bootDelay = ConfigSelection(default=5, choices=[(x, _("%d Seconds") % x) for x in range(16)])
+		startCIAutoResetTimers()
 
 
 class MMIDialog(Screen):
@@ -482,6 +653,9 @@ class CiSelection(Setup):
 		items.append(getConfigListEntry(_("Disable operator profiles"), config.ci[slot].disable_operator_profile))
 		items.append(getConfigListEntry(_("Descrambling options") + " *", config.ci[slot].alternative_ca_handling))
 		items.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
+		items.append(getConfigListEntry(_("Auto-reset after boot"), config.ci[slot].autoreset))
+		items.append(getConfigListEntry(_("Auto-reset action"), config.ci[slot].autoresetaction))
+		items.append(getConfigListEntry(_("Extra settle delay before re-zap"), config.ci[slot].rezapsettledelay))
 		if BoxInfo.getItem(f"CI{slot}SupportsHighBitrates"):
 			items.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].highBitrate))
 		if BoxInfo.getItem(f"CI{slot}RelevantPidsRoutingSupport"):
@@ -501,8 +675,10 @@ class CiSelection(Setup):
 				authFile = f"/etc/ciplus/ci_auth_slot_{slot}.bin"
 				if exists(authFile):
 					remove(authFile)
+				scheduleReadyPoll(slot)
 			elif action == 1:  # init
 				eDVBCI_UI.getInstance().setInit(slot)
+				scheduleReadyPoll(slot)
 			elif action == 5:
 				self.session.openWithCallback(self.cancelCB, PermanentPinEntry, config.ci[slot].static_pin, _("Smartcard PIN"))
 			elif action == 6:
