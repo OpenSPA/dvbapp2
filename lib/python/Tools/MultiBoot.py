@@ -608,7 +608,7 @@ class MultiBootClass():
 				revision = "" if revision.strip() == compileDate else revision
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				###### OPENSPA [morser] Add openspa beta data extraction ###############
-				if info.get("distro").lower() == "openspa":
+				if info.get("distro","").lower() == "openspa":
 					revision = ".%s" % info.get("imgrevision") if isinstance(info.get("imgrevision"),str) else revision
 					dev = info.get("feedsurl")
 					if "beta" in dev:
