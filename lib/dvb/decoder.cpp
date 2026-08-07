@@ -159,7 +159,7 @@ int eDVBAudio::startPid(int pid, int type)
 			break;
 		case aDRA:
 			bypass = 0x40;
-			break;			
+			break;
 		case aDDP:
 #ifdef DREAMBOX
 		bypass = 7;
@@ -201,7 +201,7 @@ int eDVBAudio::startPid(int pid, int type)
 	}
 #ifdef DREAMNEXTGEN
 	if (m_fd_demux >= 0)
-	{	
+	{
 		m_TsPaser->startPid(m_fd_demux);
 	}
 #endif
@@ -261,7 +261,7 @@ void eDVBAudio::flush()
 	}
 #ifdef DREAMNEXTGEN
 	if (m_fd_demux >= 0)
-	{	
+	{
 		m_TsPaser->flush();
 	}
 #endif
@@ -284,7 +284,7 @@ void eDVBAudio::freeze()
 	}
 #ifdef DREAMNEXTGEN
 	if (m_fd_demux >= 0)
-	{	
+	{
 		m_TsPaser->freeze();
 	}
 #endif
@@ -307,7 +307,7 @@ void eDVBAudio::unfreeze()
 	}
 #ifdef DREAMNEXTGEN
 	if (m_fd_demux >= 0)
-	{	
+	{
 		m_TsPaser->unfreeze();
 	}
 #endif
@@ -347,7 +347,7 @@ int eDVBAudio::getPTS(pts_t &now)
 	}
 #ifdef DREAMNEXTGEN
 	if (m_fd_demux >= 0)
-	{	
+	{
 		m_TsPaser->getPTS(now);
 	}
 #endif
@@ -413,11 +413,15 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 		m_fd_demux = -1;
 	}
 
+#if defined(HAVE_FCC) // [norhap] fixme, This needs to be checked for issues stemming from UHD video with HAVE_FCC
+	eDebug("[eDVBVideo] FCC=%d", m_fcc_enable);
+#else
 	if (demux && m_dev == 0)
 	{
 		m_hdr_detector = new eHEVCHDRDetector(demux, sigc::mem_fun(*this, &eDVBVideo::hdr_gamma_detected));
-		eDebug("[eHEVCHDRDetector] attached to video decoder %d (FCC=%d)", m_dev, m_fcc_enable);
+		eDebug("[eHEVCHDRDetector] attached to video decoder %d", m_dev);
 	}
+#endif
 
 #ifndef DREAMNEXTGEN
 	if (m_fd >= 0)
@@ -947,20 +951,20 @@ void eDVBVideo::video_event(int)
 void eDVBVideo::sysfs_poll_timeout()
 {
 	int new_width = -1, new_height = -1, new_framerate = -1, new_progressive = -1;
-	
+
 	CFile::parseInt(&new_width, "/sys/class/video/frame_width");
 	CFile::parseInt(&new_height, "/sys/class/video/frame_height");
 	CFile::parseInt(&new_framerate, "/proc/stb/vmpeg/0/frame_rate");
 	CFile::parseInt(&new_progressive, "/proc/stb/vmpeg/0/progressive");
-	
+
 	bool changed = false;
-	
+
 	// Check if size changed
 	if (new_width > 0 && new_height > 0 && (new_width != m_width || new_height != m_height))
 	{
 		m_width = new_width;
 		m_height = new_height;
-		
+
 		struct iTSMPEGDecoder::videoEvent event;
 		event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
 		event.width = m_width;
@@ -969,31 +973,31 @@ void eDVBVideo::sysfs_poll_timeout()
 		/* emit */ m_event(event);
 		changed = true;
 	}
-	
+
 	// Check if framerate changed
 	if (new_framerate > 0 && new_framerate != m_framerate)
 	{
 		m_framerate = new_framerate;
-		
+
 		struct iTSMPEGDecoder::videoEvent event;
 		event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
 		event.framerate = m_framerate;
 		/* emit */ m_event(event);
 		changed = true;
 	}
-	
+
 	// Check if progressive changed
 	if (new_progressive >= 0 && new_progressive != m_progressive && new_progressive != 2)
 	{
 		m_progressive = new_progressive;
-		
+
 		struct iTSMPEGDecoder::videoEvent event;
 		event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
 		event.progressive = m_progressive;
 		/* emit */ m_event(event);
 		changed = true;
 	}
-	
+
 	// Stop polling once we have valid values and no more changes
 	if (m_width > 0 && m_height > 0 && m_framerate > 0 && !changed)
 	{
@@ -1048,7 +1052,7 @@ int eDVBVideo::readApiSize(int fd, int &xres, int &yres, int &aspect)
 		xres=w;
 		yres=h;
 		//eDebug("[eDVBVideo] ReadAPIsize xres - %d yres - %d", w, h);
-		aspect = 2;	
+		aspect = 2;
 		return 0;
 	}
 #endif
@@ -1907,7 +1911,7 @@ void eTSMPEGDecoder::parseVideoInfo()
 		event.framerate = m_framerate;
 		video_event(event);
 	}
-	else if (m_width > 0 && m_progressive == -1) 
+	else if (m_width > 0 && m_progressive == -1)
 	{
 		CFile::parseInt(&m_progressive, "/proc/stb/vmpeg/0/progressive");
 		if (m_progressive != 2)
@@ -1996,7 +2000,7 @@ int eTSMPEGDecoder::getVideoAspect()
 {
 #ifdef DREAMNEXTGEN
 	int m_aspect = -1;
-	CFile::parseIntHex(&m_aspect, "/sys/class/video/frame_aspect_ratio"); //0x90 (16:9) 
+	CFile::parseIntHex(&m_aspect, "/sys/class/video/frame_aspect_ratio"); //0x90 (16:9)
 	//eDebug("[eTSMPEGDecoder] m_aspect - %d", m_aspect);
 	if (!m_aspect)
 		return -1;
@@ -2029,7 +2033,7 @@ int eTSMPEGDecoder::getVideoGamma()
 
 RESULT eTSMPEGDecoder::prepareFCC(int fe_id, int vpid, int vtype, int pcrpid)
 {
-	eTrace("[eTSMPEGDecoder] prepareFCC vp : %d, vt : %d, pp : %d, fe : %d", vpid, vtype, pcrpid, fe_id); 
+	eTrace("[eTSMPEGDecoder] prepareFCC vp : %d, vt : %d, pp : %d, fe : %d", vpid, vtype, pcrpid, fe_id);
 
 	if ((fccGetFD() == -1) || (fccSetPids(fe_id, vpid, vtype, pcrpid) < 0) || (fccStart() < 0))
 	{
