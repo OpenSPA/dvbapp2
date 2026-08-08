@@ -608,7 +608,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			<widget source="key_detailed" render="Label" position="1470,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
+			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;24" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
 		</screen>"""
 
 	def __init__(self, session, readeruser):
