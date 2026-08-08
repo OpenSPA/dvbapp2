@@ -2422,6 +2422,9 @@ msgstr "Permitir subtítulos para sordos"
 msgid "Allow unsupported modes"
 msgstr "Permitir modos no compatibles"
 
+msgid "Allow guest access"
+msgstr "Permitir el acceso a los invitados"
+
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Permite que tu %s %s lea los datos grabados en el EPG periódicamente."
 
@@ -8331,6 +8334,9 @@ msgstr "Introduzca la máscara de subred que se utilizará para este adaptador d
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Ingrese el código de suscripción para habilitar completamente el complemento AI-Powered Translation, el código unificado para la prueba es 15."
+
+msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr "Introduzca el nombre del grupo de trabajo que utilizará este receptor para las conexiones basadas en Samba. (El valor predeterminado es 'WORKGROUP')."
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Ingrese el ID de red de ZeroTier. Debe tener exactamente 16 caracteres."
@@ -25366,6 +25372,9 @@ msgstr "Mezcla WMA Pro"
 
 msgid "WOL Standby"
 msgstr "Apagado WOL"
+
+msgid "Workgroup name"
+msgstr "Nombre grupo de trabajo"
 
 #
 msgid "WPA"
