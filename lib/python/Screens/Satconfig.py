@@ -1250,7 +1250,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		else:
 			self.restoreService(_("Zap back to service before tuner setup?"))
 
-	def saveAll(self, validateSat=True):
+	def saveAll(self, validateSat=True, reopen=False):
 		if self.isCableTerrestrialHybrid():
 			self.nimConfig.hybridTunerMode.save()
 			self.nimConfig.dvbc.configMode.save()
@@ -1269,6 +1269,27 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			# Sanity check for empty sat list.
 			if validateSat and self.nimConfig.dvbs.configMode.value != "satposdepends" and len(nimmanager.getSatListForNim(self.slotid)) < 1:
 				self.nimConfig.dvbs.configMode.value = "nothing"
+		if self.nim.isCompatible("DVB-C") and self.nim.isFBCRoot():
+			rootMode = self.nimConfig.dvbc.configMode.value
+			for slot in nimmanager.nim_slots:
+				if slot.isFBCLink() and slot.is_fbc[2] == self.nim.is_fbc[2]:
+					slot.config.dvbc.configMode.value = rootMode
+					slot.config.dvbc.configMode.save()
+		if reopen and self.oldref and self.serviceSlot == self.slotid and self.oldAlternativeRef:
+			serviceType = self.oldAlternativeRef.getUnsignedData(4) >> 16
+			forceReopen = serviceType == 0xEEEE and self.nim.canBeCompatible("DVB-T") and self.nimConfig.dvbt.configMode.value == "nothing"
+			forceReopen |= serviceType == 0xFFFF and (
+				self.nim.canBeCompatible("DVB-C") and self.nimConfig.dvbc.configMode.value == "nothing"
+				or self.nim.canBeCompatible("ATSC") and self.nimConfig.atsc.configMode.value == "nothing"
+			)
+			if forceReopen:
+				rawChannel = eDVBResourceManager.getInstance().allocateRawChannel(self.slotid)
+				if rawChannel:
+					frontend = rawChannel.getFrontend()
+					if frontend:
+						frontend.closeFrontend()
+						frontend.reopenFrontend()
+				del rawChannel
 		for x in self["config"].list:
 			x[1].save()
 		if self.isSatelliteCableTerrestrialHybrid():

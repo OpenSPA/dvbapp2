@@ -13,7 +13,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		"A", "B", "C", "D"
 	]
 
-	universal_central_sats_frequencies = [
+	sat_frequencies = [
 		# Astra 19.2E ntv
 		(
 			12188,
@@ -35,6 +35,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			1,
 			"Astra 1 19.2°E"
 		),
+
 		# Hotbird 13.0E Rai 1
 		(
 			10992,
@@ -56,6 +57,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			318,
 			"Hotbird 13.0°E"
 		),
+
 		# Astra 23.5E Astra SES
 		(
 			12168,
@@ -77,6 +79,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			3,
 			"Astra 3 23.5°E"
 		),
+
 		# Astra 28.2E EPG background audio
 		(
 			11778,
@@ -98,9 +101,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			2,
 			"Astra 2 28.2°E"
 		),
-	]
 
-	universal_east_sats_frequencies = [
 		# Astra 4A 4.8 Home 3
 		(
 			11785,
@@ -122,6 +123,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			85,
 			"Astra 4A 4.8°E"
 		),
+
 		# Eutelsat 9.0E CCTV 4 Europe
 		(
 			11996,
@@ -143,6 +145,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			1,
 			"Eutelsat 9B 9.0°E"
 		),
+
 		# Eutelsat 16.0E CGTN
 		(
 			11595,
@@ -164,9 +167,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			64,
 			"Eutelsat 16A 16.0°E"
 		),
-	]
 
-	universal_west_sats_frequencies = [
 		# Thor 0.8W Sky News
 		(
 			12418,
@@ -188,6 +189,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			70,
 			"Thor 5/6/7 0.8°W"
 		),
+
 		# Eutelsat 5.0W Fransat
 		(
 			11054,
@@ -209,6 +211,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			1375,
 			"Eutelsat 5 West B 5.0°W"
 		),
+
 		# Hispasat 30.0W
 		(
 			10770,
@@ -230,6 +233,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			6,
 			"Hispasat 30.0°W"
 		),
+
 		# thor  3592 CT24
 		(
 			12072,
@@ -253,7 +257,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		),
 	]
 
-	circular_sats_frequencies = [
+	circular_sat_frequencies = [
 		# Express AMU1 36.0E NHK World Japan
 		(
 			12341,
@@ -275,6 +279,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			112,
 			"Express AMU1 36.0°E"
 		),
+
 		# Express AT1 56.0E NTV Plus Vostok
 		(
 			12054,
