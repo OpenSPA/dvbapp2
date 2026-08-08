@@ -215,11 +215,10 @@ def loadSkin(filename, replace = False, scope=SCOPE_SKINS, desktop=getDesktop(GU
 							if config.crash.debugScreens.value:
 								res = [parseInteger(x.strip()) for x in res.split(",")]
 								print(f"[Skin] Loading screen '{name}'{f", resolution {res[0]}x{res[1]}," if len(res) == 2 and res[0] and res[1] else ""} from '{filename}'.  (scope={scope})")
-							domScreens[name] = (element, f"{dirname(filename)}/")
-						#### OPENSPA [morser] - Update skin.py for old skins compability #################
-						if scope == SCOPE_GUISKIN or name not in domScreens or replace:
-							domScreens[name] = (element, f"{dirname(filename)}/")
-						##################################################################################
+							#### OPENSPA [morser] - Update skin.py for old skins compability #################
+							if scope == SCOPE_GUISKIN or name not in domScreens or replace:
+								domScreens[name] = (element, f"{dirname(filename)}/")
+							##################################################################################
 				case "windowstyle":  # Process the windowstyle element.
 					scrnID = element.attrib.get("id")
 					if scrnID is not None:  # Without an scrnID, it is useless!
