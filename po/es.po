@@ -1435,6 +1435,30 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
+msgid "5 seconds"
+msgstr "5 segundos"
+
+msgid "10 seconds"
+msgstr "10 segundos"
+
+msgid "15 seconds"
+msgstr "15 segundos"
+
+msgid "20 seconds"
+msgstr "20 segundos"
+
+msgid "25 seconds"
+msgstr "25 segundos"
+
+msgid "30 seconds"
+msgstr "30 segundos"
+
+msgid "45 seconds"
+msgstr "45 segundos"
+
+msgid "60 seconds"
+msgstr "60 segundos"
+
 msgid "1. Tune to an imported channel with at least EPG EIT.\n2. Restart enigma2.\n3. Now try to download EPG cache from the reserve receiver."
 msgstr "1. Sintonice un canal importado con al menos EPG EIT.\n2. Reinicie Enigma2.\n3. Ahora intente descargar la caché EPG del receptor reserva."
 
@@ -2918,6 +2942,12 @@ msgstr "Modo de autorización"
 
 msgid "Auto"
 msgstr "Auto"
+
+msgid "Auto-reset after boot"
+msgstr "Reinicio automático después del arranque"
+
+msgid "Auto-reset action"
+msgstr "Acción de reinicio automático"
 
 msgid "Auto detect"
 msgstr "Detección automática"
@@ -9025,6 +9055,9 @@ msgstr "Altura extra"
 msgid "Extra motor options"
 msgstr "Opciones extras de motor"
 
+msgid "Extra settle delay before re-zap"
+msgstr "Retraso antes de volver a zapear"
+
 msgid "Extra wide"
 msgstr "Extra ancho"
 
@@ -10486,6 +10519,9 @@ msgstr "Modo de la tecla INFO"
 
 msgid "Information Settings"
 msgstr "Configuración de información"
+
+msgid "Immediate"
+msgstr "Inmediato"
 
 msgid "INS"
 msgstr "INS"
