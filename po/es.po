@@ -2318,7 +2318,7 @@ msgid "After Event"
 msgstr "Después del evento"
 
 # Powerlost setup.xml
-msgid "After PowerLost"
+msgid "After power loss"
 msgstr "Tras perder la alimentación"
 
 # Scheduler
@@ -8790,6 +8790,9 @@ msgstr "Etiopía"
 msgid "Even if TV has another input active?"
 msgstr "¿Incluso si la TV tiene otra entrada activa?"
 
+msgid "Even if a 'Wakeup' scheduled task starting?"
+msgstr "¿Incluso si se inicia una tarea programada de 'Activación'?"
+
 msgid "Even if a 'Zap and Record' recording timer starting?"
 msgstr ""
 "¿Incluso si se inicia un temporizador de grabación 'Zapeo y Grabación'?"
@@ -9242,10 +9245,6 @@ msgstr "Configuración del cambio rapido de canal"
 msgid "Fast DiSEqC"
 msgstr "DiSEqC Rápido"
 
-msgid "Fast Scan"
-msgstr "Búsqueda rápida"
-
-#
 msgid "Fast epoch"
 msgstr "Época rápida"
 
@@ -9254,6 +9253,12 @@ msgstr "Avance rápido"
 
 msgid "Fast forward speeds"
 msgstr "Velocidades de avance rápido"
+
+msgid "Fast Scan"
+msgstr "Búsqueda rápida"
+
+msgid "Fast Skin Reload"
+msgstr "Recarga rápida de la Skin"
 
 msgid "Favorites"
 msgstr "Favoritos"
@@ -16468,6 +16473,9 @@ msgstr "Recargar canales"
 msgid "Reload Skin"
 msgstr "Recargar Skin"
 
+msgid "Reload the skin without restarting the GUI when switching skins."
+msgstr "Recarga la skin sin reiniciar la interfaz gráfica al cambiarla."
+
 msgid "Reloading EPG Cache..."
 msgstr "Recargando caché EPG..."
 
@@ -19148,6 +19156,9 @@ msgstr "Selecciona que hacer después que finalice el temporizador de zapeo."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "Seleccione lo que hay que hacer cuando el %s %s haya arrancado, visualizar o ir a reposo."
+
+msgid "Select what should be done when the %s %s was shut down incorrectly, or after power was lost."
+msgstr "Seleccione qué se debe hacer cuando el %s %s se apagó incorrectamente o después de un corte de energía."
 
 # Powerlost setup.xml
 msgid ""
