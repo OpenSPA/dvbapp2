@@ -4592,6 +4592,9 @@ msgstr "Seleccione si las pistas de sonido del canal DTS deben ser mezcladas en 
 msgid "Select whether Dolby TrueHD audio tracks should be passed through or decoded."
 msgstr "Seleccione si las pistas de audio Dolby TrueHD deben transmitirse o decodificarse."
 
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then select which should be preferred."
+msgstr "Seleccione si se deben usar los protocolos IPv4, IPv6 o ambos. Si ambos están habilitados, seleccione cuál se debe priorizar."
+
 msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Seleccione si las pistas de sonido del canal WMA Pro deben ser remezcladas o transcodificadas."
 
@@ -8364,17 +8367,17 @@ msgstr ""
 msgid "Enter the password, pass-phrase or pre-shared key for the selected wireless network."
 msgstr "Introduzca la contraseña, la frase de acceso o la clave precompartida de la red inalámbrica seleccionada."
 
-msgid "Enter the primary IPv4 DNS setting for this adapter."
-msgstr "Introduzca la configuración DNS IPv4 principal para este adaptador."
+msgid "Enter the primary IPv4 DNS server for this adapter."
+msgstr "Introduzca el servidor DNS IPv4 principal para este adaptador."
 
-msgid "Enter the primary IPv6 DNS setting for this adapter. (Optional)"
-msgstr "Introduzca la configuración DNS IPv6 principal para este adaptador. (Opcional)"
+msgid "Enter the primary IPv6 DNS server for this adapter. (Optional)"
+msgstr "Introduzca el servidor DNS IPv6 principal para este adaptador. (Opcional)"
 
-msgid "Enter the secondary IPv4 DNS setting for this adapter. (Optional)"
-msgstr "Introduzca la configuración DNS IPv4 secundaria para este adaptador. (Opcional)"
+msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
+msgstr "Introduzca el servidor DNS IPv4 secundario para este adaptador. (Opcional)"
 
-msgid "Enter the secondary IPv6 DNS setting for this adapter. (Optional)"
-msgstr "Introduzca la configuración DNS IPv6 secundaria para este adaptador. (Opcional)"
+msgid "Enter the secondary IPv6 DNS server for this adapter. (Optional)"
+msgstr "Introduzca el servidor DNS IPv6 secundario para este adaptador. (Opcional)"
 
 #
 msgid "Enter the service pin"
@@ -8386,8 +8389,8 @@ msgstr "Introduzca la máscara de subred que se utilizará para este adaptador d
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Ingrese el código de suscripción para habilitar completamente el complemento AI-Powered Translation, el código unificado para la prueba es 15."
 
-msgid "Enter the workgroup name to be used by this receiver for Samba based connections. (Default is 'WORKGROUP'.)"
-msgstr "Introduzca el nombre del grupo de trabajo que utilizará este receptor para las conexiones basadas en Samba. (El valor predeterminado es 'WORKGROUP')."
+msgid "Enter the workgroup name to be used by this server for Samba based connections. (Default is 'WORKGROUP'.)"
+msgstr "Introduzca el nombre del grupo de trabajo que utilizará este servidor para las conexiones basadas en Samba. (El valor predeterminado es 'WORKGROUP')."
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Ingrese el ID de red de ZeroTier. Debe tener exactamente 16 caracteres."
@@ -16089,7 +16092,7 @@ msgstr "Tipo de FB seleccionado"
 msgid "Read failled"
 msgstr "Lectura fallida"
 
-msgid "Read Only"
+msgid "Read-Only"
 msgstr "Solo lectura"
 
 msgid "Read/Write"
@@ -18698,6 +18701,9 @@ msgstr "Seleccione respuesta Sí / Verdadero"
 msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Seleccione el modo de acceso, Lectura/Escritura o Sólo lectura, aplicado a todos los recursos compartidos de Samba exportados automáticamente."
 
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all exported directories."
+msgstr "Seleccione el modo de acceso, Lectura/Escritura o Solo lectura, que se aplicará a todos los directorios exportados."
+
 msgid "Select the mode of access, Read/Write or Read Only, applied to all exported directories."
 msgstr "Seleccione el modo de acceso, Lectura/Escritura o Solo lectura, que se aplicará a todos los directorios exportados."
 
@@ -18716,6 +18722,9 @@ msgstr "Seleccione la acción que se realizará cuando se active el temporizador
 
 msgid "Select the AI-Powered Translation target language."
 msgstr "Seleccione el idioma de destino de traducción impulsada por IA."
+
+msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
+msgstr "Seleccione el/los servidor/es DNS que se utilizarán para buscar nombres de host y resolver direcciones IP."
 
 msgid ""
 "Select the animation speed of the button indicators in the help screens. "
@@ -18913,9 +18922,6 @@ msgid ""
 msgstr ""
 "Seleccione el método de restauración de la resolución de la pantalla y del "
 "framebuffer al salir del teletexto."
-
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr "Seleccione si se deben usar IPv4, IPv6 o ambos protocolos. Si ambos están habilitados, cuál se debe preferir."
 
 msgid ""
 "Select the model number of your Unicable device. If the model number is not "
@@ -19373,8 +19379,8 @@ msgstr "Serial No"
 msgid "Server down"
 msgstr "Servidor caido"
 
-msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
-msgstr "El servidor no debe implementar su propia lista negra. Algunos servidores pueden implementar sus propias listas negras para bloquear sitios por motivos de control parental, bloqueo de anuncios, etc"
+msgid "Server must not enforce its own blacklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgstr "El servidor no debe imponer su propia lista negra. Algunos servidores pueden implementar sus propias listas negras para bloquear sitios web por motivos de control parental, bloqueo de anuncios, etc."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
 msgstr "El servidor no debe registrar las consultas de los usuarios (declarativo). Esto puede mejorar la privacidad de las búsquedas DNS al no registrar la solicitud en el servidor que proporciona los datos."
@@ -21553,8 +21559,8 @@ msgstr "Características especiales"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Especificar el directorio a usar cuando se inicie el Media Player."
 
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Especifique el sufijo DNS de red que se aplicará cuando solo se proporcione el nombre del host. Esto facilita que el solucionador DNS encuentre el host solicitado."
+msgid "Enter the network domain name suffix to be added to the hostname above. This helps the DNS resolver find other network devices on the network."
+msgstr "Introduzca el sufijo del dominio de red que desea añadir al nombre de host anterior. Esto ayuda al servidor DNS a encontrar otros dispositivos de red."
 
 msgid "Speed"
 msgstr "Velocidad"
@@ -25921,8 +25927,8 @@ msgstr ""
 msgid "When enabled, show status or error messages."
 msgstr "Cuando está activado, mostrar mensajes de estado o error."
 
-msgid "When enabled, specify custom DNS settings for this adapter instead of the global DNS settings."
-msgstr "Cuando está habilitada, permite especificar ajustes DNS personalizados para este adaptador en lugar de los ajustes DNS globales."
+msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
+msgstr "Cuando esté habilitada, especifique la configuración DNS personalizada para este adaptador en lugar de utilizar la configuración DNS global."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Cuando está activado, pueden usarse subtítulos para sordos."
@@ -26003,6 +26009,9 @@ msgstr ""
 
 msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and will not be used to connect to any network."
 msgstr "Cuando está habilitado, este adaptador Wi-Fi permanece únicamente en modo Wake-on-WiFi y no se utilizará para conectarse a ninguna red."
+
+msgid "When enabled, this adapter will be initialized and activated at boot time."
+msgstr "Cuando está habilitado, este adaptador se inicializará y activará al arrancar el sistema."
 
 msgid ""
 "When enabled, time shift starts automatically in background after specified "
@@ -28944,8 +28953,8 @@ msgstr "Por favor, selecciona el paquete a borrar."
 msgid "Select method?"
 msgstr "Seleccionar método?"
 
-msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason as an incorrect setting can break network connectivity."
-msgstr "Fuerza una velocidad de enlace de red/modo dúplex específico en lugar de la negociación automática. Solo cambia esta configuración si tienes un motivo específico, ya que una configuración incorrecta puede interrumpir la conectividad de red."
+msgid "Force a specific network link speed/duplex mode instead of auto-negotiation. Only change this if you have a specific reason for the change as an incorrect setting can break network connectivity."
+msgstr "Fuerza una velocidad de enlace de red/modo dúplex específico en lugar de la negociación automática. Solo cambia esta configuración si tienes un motivo específico para ello, ya que una configuración incorrecta puede interrumpir la conectividad de red."
 
 #
 msgid "Force Depends"
