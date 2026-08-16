@@ -1318,7 +1318,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if slot.isFBCLink() and slot.is_fbc[2] == self.nim.is_fbc[2]:
 					slot.config.dvbc.configMode.value = rootMode
 					slot.config.dvbc.configMode.save()
-		self.synchronizeMultiTypeFrontend()			
+		self.synchronizeMultiTypeFrontend()
 		if reopen and self.oldref and self.serviceSlot == self.slotid and self.oldAlternativeRef:
 			serviceType = self.oldAlternativeRef.getUnsignedData(4) >> 16
 			forceReopen = serviceType == 0xEEEE and self.nim.canBeCompatible("DVB-T") and self.nimConfig.dvbt.configMode.value == "nothing"
@@ -1352,7 +1352,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def cancelConfirm(self, result):
 		if not result:
 			return
-		for x in self["config"].list:			
+		for x in self["config"].list:
 			if len(x) > 1:
 				x[1].cancel()
 		for deliverySystem in ("dvbs", "dvbc", "dvbt"):
