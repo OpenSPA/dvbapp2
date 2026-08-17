@@ -6130,6 +6130,9 @@ msgstr "D"
 msgid "DAC"
 msgstr "DAC"
 
+msgid "Device Settings"
+msgstr "Configuración del dispositivo"
+
 msgid "DLNA support"
 msgstr "Soporte DLNA"
 
@@ -6143,7 +6146,7 @@ msgid "DNS override"
 msgstr "Anulación de DNS"
 
 msgid "DNS Settings"
-msgstr "Ajustes DNS"
+msgstr "Configuración DNS"
 
 msgid "DNS Settings Actions"
 msgstr "Acciones de configuración DNS"
@@ -17370,8 +17373,11 @@ msgstr "Cliente Samba"
 msgid "Samba Server"
 msgstr "Servidor Samba"
 
+msgid "Samba Server Settings"
+msgstr "Configuración del servidor Samba"
+
 msgid "Samba Settings"
-msgstr "Ajustes Samba"
+msgstr "Configuración Samba"
 
 msgid "Same as in active"
 msgstr "Igual que en activo"
