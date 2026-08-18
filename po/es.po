@@ -1218,8 +1218,19 @@ msgid "%s - Setup"
 msgstr "%s - Configuración"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "La acción %s falló (código de salida %s)"
+
+#, python-format
 msgid "%s Browser Manage Actions"
 msgstr "%s Acciones de administración del navegador"
+
+#, python-format
+msgid "%s is currently not running.\n\nDo you want to start it?"
+msgstr "%s no se está ejecutando actualmente.\n\n¿Desea iniciarla?"
+
+msgid "%s is currently stopped or unreachable. Log in to CAMD Manager start it."
+msgstr "%s está detenido o no está disponible. Inicie sesión en CAMD Manager para iniciarla."
 
 #, python-format
 msgid "%s GHz"
@@ -7357,21 +7368,15 @@ msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "¿Seguro que quiere eliminar tu marcador %s?"
 
 #
-msgid ""
-"Do you really want to restart %s?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
-msgstr ""
-"¿Realmente quieres reiniciar %s?\n"
-"\n"
-"¡Tardará unos 5 segundos!"
+msgid "Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!"
+msgstr "¿Quieres reiniciar %s?\n\n¡Tardará unos 5 segundos!"
 
 msgid ""
 "Do you really want to shut down %s?\n"
 "\n"
 "ATTENTION: To reactivate %s, enter CAMD Manager and press GREEN button."
 msgstr ""
-"¿De verdad quieres parar %s?\n"
+"¿Quieres parar %s?\n"
 "\n"
 "ATENCIÓN: ¡Para reactivar %s, ingrese a Gestor de CAMD y pulse botón VERDE."
 
@@ -16972,11 +16977,11 @@ msgstr "¿Reiniciar la interfaz ahora?"
 msgid "Restart Network"
 msgstr "Reiniciar Red"
 
-msgid "Restart NCam"
-msgstr "Reiniciar NCam"
+msgid "Restart %s"
+msgstr "Reiniciar %s"
 
-msgid "Restart OSCam"
-msgstr "Reiniciar OSCam"
+msgid "Restarting %s failed (exit code %s)"
+msgstr "El reinicio de %s falló (código de salida %s)"
 
 msgid "Restart both"
 msgstr "Reiniciar ambos"
@@ -21045,20 +21050,14 @@ msgstr "Muestra el estado de la película visto."
 msgid "Shuffle play list"
 msgstr "Lista de reproducción aleatoria"
 
-#
 msgid "Shut down"
 msgstr "Apagar"
 
-#
 msgid "Shutdown"
 msgstr "Apagar"
 
-#
-msgid "Shutdown NCam"
-msgstr "Parar NCam"
-
-msgid "Shutdown OSCam"
-msgstr "Parar OSCam"
+msgid "Shutdown %s"
+msgstr "Parar %s"
 
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
@@ -21736,7 +21735,10 @@ msgid "Standby without TV shut down"
 msgstr "Reposo sin apagar TV"
 
 msgid "Start"
-msgstr "Inicio"
+msgstr "Iniciar"
+
+msgid "Start %s"
+msgstr "Iniciar %s"
 
 msgid "Start Auto Refresh"
 msgstr "Iniciar auto refresco"
@@ -21830,6 +21832,9 @@ msgstr "Directorio de inicio"
 
 msgid "Starting time"
 msgstr "Hora de inicio"
+
+msgid "Starting %s failed (exit code %s)"
+msgstr "El inicio de %s falló (código de salida %s)"
 
 # MovieSelection.py
 msgid "Starts in a few seconds"
@@ -21983,8 +21988,8 @@ msgstr "Detener temporizador de grabación"
 msgid "Stopped"
 msgstr "Detenido"
 
-msgid "Stopping Softcam"
-msgstr "Deteniendo Softcam"
+msgid "Stopping %s failed (exit code %s)"
+msgstr "Error al detener %s (código de salida %s)"
 
 msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Detener timeshift si se ejecuta a la par que se está grabando (aconsejable para memoria USB)"
