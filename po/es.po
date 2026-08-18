@@ -1218,8 +1218,19 @@ msgid "%s - Setup"
 msgstr "%s - Configuración"
 
 #, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "La acción %s falló (código de salida %s)"
+
+#, python-format
 msgid "%s Browser Manage Actions"
 msgstr "%s Acciones de administración del navegador"
+
+#, python-format
+msgid "%s is currently not running.\n\nDo you want to start it?"
+msgstr "%s no se está ejecutando actualmente.\n\n¿Desea iniciarla?"
+
+msgid "%s is currently stopped or unreachable. Press GREEN to start it."
+msgstr "%s está detenido o no está disponible. Pulse VERDE para iniciarla."
 
 #, python-format
 msgid "%s GHz"
@@ -7362,15 +7373,8 @@ msgstr "¿Seguro que quiere eliminar el temporizador de %s?"
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "¿Seguro que quiere eliminar tu marcador %s?"
 
-#
-msgid ""
-"Do you really want to restart %s?\n"
-"\n"
-"HINT: This will take about 5 seconds!"
-msgstr ""
-"¿Realmente quieres reiniciar %s?\n"
-"\n"
-"¡Tardará unos 5 segundos!"
+msgid "Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!"
+msgstr "¿Realmente quieres reiniciar %s?\n\n¡Tardará unos 5 segundos!"
 
 msgid ""
 "Do you really want to shut down %s?\n"
@@ -14216,9 +14220,6 @@ msgstr "Abriendo la configuración del adaptador de red..."
 msgid "OSCam Information"
 msgstr "Información OSCam"
 
-msgid "OSCam webif disabled"
-msgstr "OScam webif desactivado"
-
 msgid "OSCamInfo Actions"
 msgstr "OSCam Info Acciones"
 
@@ -16972,11 +16973,11 @@ msgstr "¿Reiniciar la interfaz ahora?"
 msgid "Restart Network"
 msgstr "Reiniciar red"
 
-msgid "Restart NCam"
-msgstr "Reiniciar NCam"
+msgid "Restart %s"
+msgstr "Reiniciar %s"
 
-msgid "Restart OSCam"
-msgstr "Reiniciar OSCam"
+msgid "Restarting %s failed (exit code %s)"
+msgstr "El reinicio de %s falló (código de salida %s)"
 
 msgid "Restart both"
 msgstr "Reiniciar ambos"
@@ -21051,11 +21052,8 @@ msgid "Shutdown"
 msgstr "Apagar"
 
 #
-msgid "Shutdown NCam"
-msgstr "Parar NCam"
-
-msgid "Shutdown OSCam"
-msgstr "Parar OSCam"
+msgid "Shutdown %s"
+msgstr "Parar %s"
 
 msgid "Sichuan Yi / Nuosu"
 msgstr "Sichuan Yi / Nuosu"
@@ -21730,7 +21728,13 @@ msgid "Standby without TV shut down"
 msgstr "Reposo sin apagar TV"
 
 msgid "Start"
-msgstr "Inicio"
+msgstr "Iniciar"
+
+msgid "Start %s"
+msgstr "Iniciar %s"
+
+msgid "Starting %s failed (exit code %s)"
+msgstr "El inicio de %s falló (código de salida %s)"
 
 msgid "Start Auto Refresh"
 msgstr "Iniciar auto refresco"
@@ -21976,6 +21980,9 @@ msgstr "Detener temporizador de grabación"
 
 msgid "Stopped"
 msgstr "Detenido"
+
+msgid "Stopping %s failed (exit code %s)"
+msgstr "Error al detener %s (código de salida %s)"
 
 msgid "Stopping Softcam"
 msgstr "Deteniendo Softcam"
