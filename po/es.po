@@ -24689,6 +24689,9 @@ msgstr "Usar HDMI-preemphasis"
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Usar temporizador de apagado por hardware del disco duro"
 
+msgid "Use HTTPS protocol"
+msgstr "Utilice el protocolo HTTPS"
+
 #
 msgid "Use key map *"
 msgstr "Usar mapeo del teclado *"
