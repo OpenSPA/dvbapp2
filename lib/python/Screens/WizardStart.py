@@ -480,7 +480,8 @@ if config.misc.firstrun.value:
 	wizardManager.registerWizard(WizardLanguage, config.misc.wizardLanguageEnabled.value, priority=0)
 wizardManager.registerWizard(WizardVideo, config.misc.videowizardenabled.value, priority=1)
 # wizardManager.registerWizard(LocaleWizard, config.misc.languageselected.value, priority=2)
-# Priorities 8, 9, 25 are taken by wizards defined elsewhere (FPUpgrade, SystemMessage,
-# NetworkWizard) - keep new priorities here clear of those.
-wizardManager.registerWizard(WizardStart, config.misc.firstrun.value, priority=30)
-# WizardStart itself chains into WizardInstall once its steps are done.
+# FrontprocessorUpgrade FPUpgrade priority = 8
+# FrontprocessorUpgrade SystemMessage priority = 9
+wizardManager.registerWizard(WizardStart, config.misc.firstrun.value, priority=25)
+# StartWizard calls InstallWizard
+# NetworkWizard priority = 25

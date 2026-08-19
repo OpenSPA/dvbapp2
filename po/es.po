@@ -26572,20 +26572,20 @@ msgstr "Su %s %s se reiniciará..."
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the installation of service.\n"
+"Your %s %s will be restarted after the installation of service"
 "\n"
-"Do you want to install now ?"
+"Ready to install '%s'?"
 msgstr ""
-"Se reiniciará tu %s %s después de instalar el servicio.\n"
+"Se reiniciará tu %s %s después de instalar el servicio\n"
 "\n"
-"¿Quieres instalarlo ahora?"
+"¿Quieres instalar '%s'?"
 
 #, python-format
 msgid ""
-"Your %s %s will be restarted after the removal of service.\n"
+"Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now?"
 msgstr ""
-"El %s %s se reiniciará después de eliminar el servicio.\n"
+"El %s %s se reiniciará después de eliminar el servicio\n"
 "Quieres eliminarlo ahora?"
 
 #, python-format
