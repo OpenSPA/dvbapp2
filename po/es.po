@@ -5081,14 +5081,8 @@ msgstr ""
 "seguridad en segundo plano."
 
 #
-msgid ""
-"Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n"
-"\n"
-"When the settings are correct press OK to continue."
-msgstr ""
-"Configure o verifique la configuración de su DNS (Servidor de Nombres Dinámicos) ajustando los valores mostrados."
-"\n"
-"Cuando los ajustes sea correctos, presiona OK para continuar."
+msgid "Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n\nWhen the settings are correct press OK to continue."
+msgstr "Configure o verifique la configuración de su DNS (Servidor de Nombres Dinámicos) ajustando los valores mostrados.\nCuando los ajustes sea correctos, presiona OK para continuar."
 
 msgid "Configure remote control type"
 msgstr "Configurar el tipo de mando a distancia"
