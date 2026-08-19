@@ -8179,6 +8179,9 @@ msgstr "Habilite esta opción para añadir detalles de teletexto adicionales al 
 msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Habilitar esta opción para añadir los datos del mapeo del teclado al archivo del log de depuración."
 
+msgid "Enable this option to add network information to the debug log file."
+msgstr "Habilite esta opción para agregar información de red al archivo de registro de depuración."
+
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Habilitar esta opción para añadir los datos de salida de opkg al archivo de registro de depuración."
 
@@ -11055,6 +11058,9 @@ msgstr "Incluir los datos del mapa de acción"
 #
 msgid "Include keyboard data"
 msgstr "Incluir los datos del teclado"
+
+msgid "Include network data"
+msgstr "Incluir datos de red"
 
 msgid "Include opkg output data"
 msgstr "Incluir los datos de salida de opkg"
