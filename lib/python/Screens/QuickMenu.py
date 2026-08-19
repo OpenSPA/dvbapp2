@@ -217,7 +217,6 @@ class QuickMenu(Screen, ProtectedScreen):
 # ####### Mount Settings Menu ##############################
 	def Qmount(self):
 		self.sublist = []
-		if NETWORKBROWSER:
 		self.subList.append(self.quickSubMenuEntryComponent(_("Network Mounts Overview"), _("Manage network mounts"), _("Setup your network mounts"), screen="NetworkMounts", screenName="NetworkMountsOverview"))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), screen="NetworkMounts", screenName="NetworkShares"))
 		self.sublist.append(QuickSubMenuEntryComponent("Device Manager", _("Mounts Devices"), _("Setup your Device mounts (USB, HDD, others...)")))
