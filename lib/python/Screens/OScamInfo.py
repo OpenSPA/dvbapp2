@@ -11,7 +11,7 @@ from time import time
 from pathlib import Path
 from xml.etree.ElementTree import XML, ParseError
 from ipaddress import ip_address
-from socket import getaddrinfo, gaierror, gethostname
+from socket import getaddrinfo, gaierror
 
 # ENIGMA IMPORTS
 from enigma import eTimer, ePicLoad
@@ -21,47 +21,15 @@ from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.About import GetIPsFromNetworkInterfaces
 from Components.SystemInfo import BoxInfo, getSysSoftcam
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Tools.BoundFunction import boundFunction
 from Components.Pixmap import Pixmap
-from Tools.ServiceAction import ServiceAction
 
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-1]
-
-
-def isLoopback(host):
-	if host == "localhost":
-		return True
-	try:
-		return ip_address(host).is_loopback
-	except ValueError:
-		return False
-
-
-def isLocalHost(host):
-	if isLoopback(host):
-		return True
-	if host.lower() == gethostname().lower():
-		return True
-	try:
-		targetIPs = {info[4][0] for info in getaddrinfo(host, None)}
-	except gaierror:
-		return False
-	localIPs = {"127.0.0.1", "::1"}
-	try:
-		localIPs |= {ip for _, ip in GetIPsFromNetworkInterfaces()}
-	except OSError:
-		pass
-	return bool(targetIPs & localIPs)
-
-
-def camDisplayName(text):
-	return "NCam" if "ncam" in (text or "").lower() else "OSCam"
 
 
 class OSCamGlobals():
@@ -135,7 +103,7 @@ class OSCamGlobals():
 			ip, proto, blocked = "127.0.0.1", "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
 			user = pwd = None
 			conffile = f"{conffile or 'oscam.conf'}"
-			ret = _("%s webif disabled") % camDisplayName(api) if not error else error
+			ret = _("OSCam webif disabled") if not error else error
 			if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
 				if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
 					if conffile is not None and exists(conffile):  # If we have a config file, we need to investigate it further
@@ -202,7 +170,7 @@ class OSCamGlobals():
 			else:
 				errmsg = str(error)
 			print(f"[{MODULE_NAME}] ERROR in module 'callApi': Unexpected error accessing WebIF: {errmsg}")
-			return False, url, errmsg.encode("UTF-8", "ignore")
+			return False, url, errmsg.encode(encoding="latin-1", errors="ignore")
 
 	def parseTimestamp(self, value):
 		if not value:
@@ -226,7 +194,7 @@ class OSCamGlobals():
 
 	def updateLog(self):
 		webifok, api, url, signstatus, result = self.openWebIF(log=True)
-		ret, result = False, result.decode("UTF-8", "ignore")
+		ret, result = False, result.decode(encoding="latin-1", errors="ignore")
 		if webifok:
 			try:
 				xml = XML(result).find("log")
@@ -317,11 +285,6 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.setTitle("OSCam Info: " + _("Information") if getSysSoftcam() == "oscam" else "NCam Info: " + _("Information"))
 		self.rulist = []
 		self["camlogo"] = Pixmap()
-		self.lastWebifOk = False
-		self.isLocal = False
-		self._isLocalKey = None
-		self._fetchInProgress = False
-		self.camName = camDisplayName(BoxInfo.getItem("CurrentSoftcam"))
 		self["buildinfos"] = StaticText()
 		self["extrainfos"] = StaticText()
 		self["timerinfos"] = StaticText()
@@ -346,15 +309,13 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"menu": (self.keyMenu, _("Open Settings")),
-			"red": (self.keyShutdown, _("Shutdown %s") % self.camName),
-			"green": (self.keyRestart, _("Restart %s") % self.camName),
+			"red": (self.keyShutdown, _("Shutdown OSCam")),
+			"green": (self.keyRestart, _("Restart OSCam")),
 			"yellow": (self.keyInfo, _("Open Capability")),
 			"blue": (self.keyBlue, _("Open Log"))
 		}, prio=1, description=_("OSCamInfo Actions"))
 		self.loop = eTimer()
 		self.loop.callback.append(self._triggerDataUpdate)
-		self.actionRefreshTimer = eTimer()
-		self.actionRefreshTimer.callback.append(self._triggerDataUpdate)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 
@@ -399,34 +360,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 			pass
 		callInThread(self._fetchOScamData)
 
-	def _updateIsLocal(self):
-		key = (bool(config.oscaminfo.userDataFromConf.value), str(config.oscaminfo.ip.value))
-		if key != self._isLocalKey:
-			self._isLocalKey = key
-			self.isLocal = key[0] or isLocalHost(key[1])
-
 	def _fetchOScamData(self):
 		"""Fetch data in background thread, then update UI"""
-		if self._fetchInProgress:
-			return
-		self._fetchInProgress = True
-		try:
-			self._updateIsLocal()
-			webifok, api, url, signstatus, result = self.openWebIF()
-			self.lastWebifOk = webifok
-			self._updateMainUI(webifok, api, url, signstatus, result)
-			self.updateKeyLabels()
-		finally:
-			self._fetchInProgress = False
-
-	def updateKeyLabels(self):
-		self["key_red"].setText(_("Shutdown %s") % self.camName if self.lastWebifOk else "")
-		if self.lastWebifOk:
-			self["key_green"].setText(_("Restart %s") % self.camName)
-		elif self.isLocal:
-			self["key_green"].setText(_("Start %s") % self.camName)
-		else:
-			self["key_green"].setText("")
+		webifok, api, url, signstatus, result = self.openWebIF()
+		self._updateMainUI(webifok, api, url, signstatus, result)
 
 	def _updateMainUI(self, webifok, api, url, signstatus, result):
 		"""Update main UI"""
@@ -434,8 +371,6 @@ class OSCamInfo(Screen, OSCamGlobals):
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 		na = _("n/a")
 		tag, camname = {"oscamapi": ("oscam", "OSCam"), "ncamapi": ("ncam", "NCam"), None: (na, na)}.get(api)
-		if camname != na:
-			self.camName = camname
 		if webifok and result:
 			jsonData = loads(result).get(tag, {})
 			sysinfo = jsonData.get("sysinfo", {})
@@ -507,12 +442,9 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["outlist"].updateList(outlist)
 			self.displayLog()
 		else:
+			self.loop.stop()
 			self["buildinfos"].setText(url)
-			errtext = result.decode("UTF-8", "ignore")
-			if self.isLocal:
-				self["extrainfos"].setText(_("%s is currently stopped or unreachable. Press GREEN to start it.") % self.camName)
-			else:
-				self["extrainfos"].setText(_("Unexpected error accessing WebIF: %s") % errtext)
+			self["extrainfos"].setText(_("Unexpected error accessing WebIF: %s") % result.decode(encoding="latin-1", errors="ignore"))
 			self["timerinfos"].setText(currtime)  # set at least one element just for having the attribute 'activeComponents'
 
 	def strf_delta(self, td):  # converts deltatime-format in hours (e.g. '2 days, 01:00' in '49:00:00')
@@ -532,6 +464,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["logtext"].setText(result)
 			self["logtext"].moveBottom()
 		else:
+			self.loop.stop()
 			self["extrainfos"].setText(_("Unexpected error accessing WebIF: %s") % result)
 
 	def showHideKeyOk(self):
@@ -561,17 +494,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.session.openWithCallback(self.menuCallback, OSCamInfoSetup)
 
 	def keyShutdown(self):
-		if not self.lastWebifOk:
-			return
 		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down %s?\n\nATTENTION: To reactivate %s, enter CAMD Manager and press GREEN button.") % (getSysSoftcam().replace("osc", "OSC").replace("nc", "NC").replace("+", ""), getSysSoftcam().replace("osc", "OSC").replace("nc", "NC").replace("+", "")), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyRestart(self):
-		if not self.lastWebifOk and not self.isLocal:
-			return
-		if not self.lastWebifOk:
-			self.session.openWithCallback(boundFunction(self.msgboxCB, "start"), MessageBox, _("%s is currently not running.\n\nDo you want to start it?") % self.camName, MessageBox.TYPE_YESNO, timeout=10, default=True)
-		else:
-			self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!") % getSysSoftcam().replace("osc", "OSC").replace("nc", "NC").replace("+", ""), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!") % getSysSoftcam().replace("osc", "OSC").replace("nc", "NC").replace("+", ""), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyInfo(self):
 		self.loop.stop()
@@ -581,44 +507,21 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.loop.stop()
 		self.session.openWithCallback(self.keyCallback, OSCamInfoLog)
 
-	def _afterAction(self, action, exitCode=None):
-		if exitCode:
-			messages = {
-				"start": _("Starting %s failed (exit code %s)"),
-				"stop": _("Stopping %s failed (exit code %s)"),
-				"restart": _("Restarting %s failed (exit code %s)"),
-			}
-			self._showActionError(messages.get(action, _("%s action failed (exit code %s)")) % (self.camName, exitCode))
-		self.actionRefreshTimer.start(3000, True)
-		self.updateKeyLabels()
-		if config.oscaminfo.autoUpdate.value:
-			self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
-
-	def _localAction(self, action):
-		sa = ServiceAction("softcam")
-		{"start": sa.start, "stop": sa.stop, "restart": sa.restart}[action](boundFunction(self._afterAction, action))
-
-	def _remoteAction(self, action):
-		def doAction():
-			webifok, api, url, signstatus, result = self.openWebIF(part=action)
-			if not webifok:
-				self._showActionError(result)
-			self._afterAction(action)
-		callInThread(doAction)
-
 	def msgboxCB(self, action, answer):
 		if answer:
 			self.loop.stop()
-			localAction = {"shutdown": "stop", "restart": "restart", "start": "start"}[action]
-			if self.isLocal:
-				self._localAction(localAction)
-			else:
-				self._remoteAction(action)
+			# Execute shutdown/restart in background to avoid blocking
+
+			def doAction():
+				webifok, api, url, signstatus, result = self.openWebIF(part=action)
+				if not webifok:
+					self._showActionError(result)
+			callInThread(doAction)
 
 	def _showActionError(self, result):
 		"""Show action error"""
 		print("[%s] ERROR in module 'msgboxCB': %s" % (MODULE_NAME, "Unexpected error accessing WebIF: %s" % result))
-		self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s") % result, MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
+		self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
 
 	def exit(self):
 		self.loop.stop()
