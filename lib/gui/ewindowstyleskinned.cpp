@@ -33,11 +33,7 @@ void eWindowStyleSkinned::handleNewSize(eWindow *wnd, eSize &size, eSize &offset
 			size.height() + m_border[bsWindow].m_border_top + m_border[bsWindow].m_border_bottom
 		);
 
-	// For proper centering with asymmetric borders, offset by the average border size
-	offset = eSize(
-		-(m_border[bsWindow].m_border_left + m_border[bsWindow].m_border_right) / 2,
-		-(m_border[bsWindow].m_border_top + m_border[bsWindow].m_border_bottom) / 2
-	);
+	offset = eSize(-m_border[bsWindow].m_border_left, -m_border[bsWindow].m_border_top);
 
 	eWidget *child = wnd->child();
 
