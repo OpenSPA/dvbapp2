@@ -19024,6 +19024,9 @@ msgstr ""
 "Seleccione el método de restauración de la resolución de la pantalla y del "
 "framebuffer al salir del teletexto."
 
+msgid "Select the mode of access, Read/Write or Read-Only, applied to all automatically exported Samba shares."
+msgstr "Seleccione el modo de acceso, Lectura/Escritura o Solo lectura, que se aplicará a todos los recursos compartidos de Samba exportados automáticamente."
+
 msgid ""
 "Select the model number of your Unicable device. If the model number is not "
 "listed, set 'SCR' to 'User defined' and enter the device parameters manually "
@@ -21677,6 +21680,9 @@ msgstr "Introduzca el sufijo del dominio de red que desea añadir al nombre de h
 
 msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "Introduzca el nombre de host de red que se utilizará para identificar a este receptor."
+
+msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
+msgstr "Introduzca el número de subprocesos del servidor NFS que se asignarán/utilizarán. Un valor más alto mejora el rendimiento con varios clientes, pero consume más memoria."
 
 msgid "Speed"
 msgstr "Velocidad"
@@ -27204,10 +27210,10 @@ msgid "Enable Move Mode"
 msgstr "Habilitar modo movimiento"
 
 msgid "Enable NFSv3"
-msgstr ""
+msgstr "Habilitar NFSv3"
 
 msgid "Enable NFSv4"
-msgstr ""
+msgstr "Habilitar NFSv4"
 
 #
 msgid "enabled"
