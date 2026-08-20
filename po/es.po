@@ -13507,6 +13507,9 @@ msgstr "Navegador de recursos compartidos de red"
 msgid "Network Shares Context Menu"
 msgstr "Menú contextual de recursos compartidos de red"
 
+msgid "Network Test"
+msgstr "Prueba de red"
+
 msgid "Network Test Actions"
 msgstr "Acciones de prueba de red"
 
