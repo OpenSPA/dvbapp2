@@ -12837,7 +12837,7 @@ msgstr "Menú contextual de montaje"
 
 #
 msgid "Mount Manager"
-msgstr "Administrador de montajes"
+msgstr "Administrador de Montajes"
 
 msgid "Mount Setup"
 msgstr "Configurar montajes"
@@ -14877,7 +14877,7 @@ msgstr "Contraseña / Clave"
 
 #
 msgid "Password Settings"
-msgstr "Configuración de la contraseña"
+msgstr "Configuración de Contraseña"
 
 msgid "Password changed."
 msgstr "Se ha cambiado la contraseña."
