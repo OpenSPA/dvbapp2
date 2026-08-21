@@ -128,8 +128,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			"ok": self.keyOk,
 			"save": self.keySave,
 			"cancel": self.keyCancel,
-			"yellow": self.keyYellow,
-			"blue": self.keyBlue,
+			"changetype": self.changeConfigurationMode,
+			"nothingconnected": self.nothingConnectedShortcut,
+			"yellow": self.keyYellow,  # OpenSPA [norhap] Auto DiSEqC
+			"blue": self.keyBlue,  # OpenSPA [norhap] Auto DiSEqC
 			"red": self.keyCancel,
 			"green": self.keySave,
 		}, prio=-2)
@@ -407,6 +409,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			plan["link"].save()
 		return None
 
+	# OpenSPA [norhap] Auto DiSEqC
 	def keyMenuCallback(self, answer):
 		if answer:
 			cur = self["config"].getCurrent(full=False)
@@ -427,7 +430,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createSimpleSetup(self, mode):
 		nim = self.nimConfig.dvbs
-		self.autodiseqc_enabled = nim.diseqcA.value == 3600
+		self.autodiseqc_enabled = nim.diseqcA.value == 3600  # OpenSPA [norhap] Auto DiSEqC
 		if mode == "single":
 			self.singleSatEntry = getConfigListEntry(_("Satellite"), nim.diseqcA, _("Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."))
 			self.list.append(self.singleSatEntry)
@@ -439,6 +442,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if mode == "diseqc_a_b_c_d":
 				self.list.append(getConfigListEntry(_("Port C"), nim.diseqcC, _("Select the satellite which is connected to Port-C of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'.")))
 				self.list.append(getConfigListEntry(_("Port D"), nim.diseqcD, _("Select the satellite which is connected to Port-D of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'.")))
+				"""
+				ATV
 			if mode != "toneburst_a_b":
 				self.list.append(getConfigListEntry(_("Set voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone, _("Leave this set to 'Yes' unless you fully understand why you are adjusting it.")))
 				self.list.append(getConfigListEntry(_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange, _("Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap.")))
@@ -452,6 +457,20 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				autoOrder = nim.autoDiSEqCOrderSingle if mode == "single" else nim.autoDiSEqCOrder
 				self.autoDiseqcOrderEntry = getConfigListEntry(_("Auto DiSEqC search order"), autoOrder, _("Limit the search to the satellite group normally used by this installation."))
 				self.list.append(self.autoDiseqcOrderEntry)
+				ATV
+				"""
+		# OpenSPA [norhap] Auto DiSEqC
+				self.autodiseqc_enabled = self.autodiseqc_enabled or (nim.diseqcC.value == "3600") or (nim.diseqcD.value == "3600")
+		if self.autodiseqc_enabled:
+				self.list.append(getConfigListEntry(_("Set auto DiSEqC search order"), nim.autoDiSEqC_order_single if mode == "single" else nim.autoDiSEqC_order, _("Finetune the auto DiSEqC order to in your situation the satellites could be found faster.")))
+		if mode in ("diseqc_a_b", "diseqc_a_b_c_d"):
+			self.list.append(getConfigListEntry(_("Set voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone, _("Leave this set to 'Yes' unless you fully understand why you are adjusting it.")))
+			self.list.append(getConfigListEntry(_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange, _("Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap.")))
+		elif mode == "single":
+			if nim.diseqcA.value in (360, 560):
+				self.list.append(getConfigListEntry(_("Use circular LNB"), nim.simpleDiSEqCSetCircularLNB, _("If you are using a Circular polarised LNB select 'yes', otherwise select 'no'.")))
+			self.list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC, _("Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'.")))
+			# END OF BLOCK OpenSPA [norhap] Auto DiSEqC
 
 	def createPositionerSetup(self):
 		nim = self.nimConfig.dvbs
@@ -586,6 +605,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.adaptConfigModeChoices()
 		print("[SatConfig] Creating setup.")
 		self.list = []
+		self.autodiseqc_enabled = False  # OpenSPA [norhap] Auto DiSEqC
 		self.configMode = None
 		self.configModeEntries = []
 		self.diseqcModeEntry = None
@@ -850,6 +870,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		if config.usage.setup_level.index > 1:
 			self.list.append(getConfigListEntry(_("Force Legacy Signal stats"), self.nimConfig.force_legacy_signal_stats, _("Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded.")))
 		self["config"].list = self.list
+		# OpenSPA [norhap] Auto DiSEqC
+		self["key_yellow"].setText(self.autodiseqc_enabled and self.nim.canBeCompatible("DVB-S") and _("Auto DiSEqC") or self.configMode and _("Configuration mode") or "")
 
 	def newConfig(self):
 		self.setTextKeyBlue()
@@ -1265,8 +1287,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.deleteConfirmed(confirmed)
 			break
 		else:
-			self.restoreService(_("Zap back to service before tuner setup?"))
+			self.restoreService(_("Zap back to service before tuner setup?"))  # OpenSPA [norhap] Auto DiSEqC
 
+	# OpenSPA [norhap] Auto DiSEqC
 	def keyLeft(self):
 		cur = self["config"].getCurrent(full=False)
 		if cur and isFBCLink(self.nim.slot):
@@ -1348,6 +1371,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.nimConfig.multiType.save()
 		except Exception:
 			pass
+		configfile.save()
 
 	def cancelConfirm(self, result):
 		if not result:
@@ -1413,6 +1437,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def countrycodeToCountry(self, cc):
 		return self.nimCountries.get(cc.upper(), cc).upper()
+		# END OF BLOCK OpenSPA [norhap] Auto DiSEqC
 
 	def createSummary(self):
 		return SetupSummary
