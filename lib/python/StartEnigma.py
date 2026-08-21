@@ -73,9 +73,6 @@ class Session:
 				from traceback import print_exc
 				print_exc()
 
-		from Components.Network import iNetwork
-		iNetwork.getInterfaces()
-
 	def processDelay(self):
 		callback = self.current_dialog.callback
 		if hasattr(self.current_dialog, "returnValue"):  # OpenSPA [norhap] if self.current_dialog is spzTimeshift not have attribute to return value.
