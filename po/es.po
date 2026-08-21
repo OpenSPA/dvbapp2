@@ -4955,7 +4955,7 @@ msgid "Composition of the recording filenames"
 msgstr "Composición nombres de grabaciones"
 
 msgid "Compress root file system tar file. (This takes the most time!)"
-msgstr "Comprimir archivo tar del sistema de archivos raíz. (¡Esto es lo que más tiempo lleva!)"
+msgstr "Comprimir archivo tar del sistema de archivos root. (¡Esto es lo que más tiempo lleva!)"
 
 msgid "Compressed bits/pixel"
 msgstr "Bits/Pixels comprimidos"
@@ -5905,16 +5905,16 @@ msgid "Create rescue dump."
 msgstr "Crear rescate dump."
 
 msgid "Create root file system dump."
-msgstr "Crear un volcado del sistema de archivos raíz."
+msgstr "Crear un volcado del sistema de archivos root."
 
 msgid "Create root journaling flash file system."
-msgstr "Crear sistema de archivos flash con registro raíz."
+msgstr "Crear sistema de archivos flash con registro root."
 
 msgid "Create root UBI file system."
-msgstr "Crear sistema de archivos UBI raíz."
+msgstr "Crear sistema de archivos UBI root."
 
 msgid "Create tar file of root file system."
-msgstr "Crear archivo tar del sistema de archivos raíz."
+msgstr "Crear archivo tar del sistema de archivos root."
 
 msgid "Create working directories."
 msgstr "Crear directorios de trabajo."
@@ -8774,17 +8774,17 @@ msgstr "Error: ¡La ruta %s ya existe!"
 
 msgid "Error: The root file system and system directories can't be deleted!"
 msgstr ""
-"Error: El sistema de archivos raíz y el sistema de directorios no se puede "
+"Error: El sistema de archivos root y el sistema de directorios no se puede "
 "eliminar!"
 
 msgid "Error: The root file system and system directories can't be moved!"
 msgstr ""
-"Error: El sistema de archivos raíz y el sistema de directorios no se puede "
+"Error: El sistema de archivos root y el sistema de directorios no se puede "
 "mover!"
 
 msgid "Error: The root file system and system directories can't be renamed!"
 msgstr ""
-"Error: El sistema de archivos raíz y el sistema de directorios no se puede "
+"Error: El sistema de archivos root y el sistema de directorios no se puede "
 "renombrar!"
 
 #, python-format
@@ -9973,7 +9973,7 @@ msgid "Go to first movie or top of list"
 msgstr "Ir a la primera película o principio de la lista"
 
 msgid "Go to parent directory of the current column"
-msgstr "Ir al directorio raíz de la columna actual"
+msgstr "Ir al directorio principal de la columna actual"
 
 #
 msgid "Go to standby"
@@ -12865,7 +12865,7 @@ msgid "Mount point"
 msgstr "Punto de montaje"
 
 msgid "Mount root file system."
-msgstr "Montar el sistema de archivos raíz."
+msgstr "Montar el sistema de archivos root."
 
 msgid "Mounted"
 msgstr "Montado"
@@ -17174,13 +17174,13 @@ msgid "Root"
 msgstr "Root"
 
 msgid "Root directory"
-msgstr "Directorio raíz"
+msgstr "Directorio root"
 
 msgid "Root file"
-msgstr "Archivo raíz"
+msgstr "Archivo root"
 
 msgid "Root squash"
-msgstr "Restricción raíz"
+msgstr "Restricción root"
 
 msgid "Rose"
 msgstr "Rosa"
@@ -24344,7 +24344,7 @@ msgid "USB switch ERROR! - already on USB"
 msgstr "¡ERROR al cambiar a USB! - ya en USB"
 
 msgid "USB switch ERROR! - root files not transferred to USB"
-msgstr "¡ERROR al cambiar a USB! - archivos raíz no transferidos al USB"
+msgstr "¡ERROR al cambiar a USB! - archivos root no transferidos al USB"
 
 msgid "UUID"
 msgstr ""
