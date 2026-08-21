@@ -2129,7 +2129,7 @@ msgid "Add a mark"
 msgstr "Añadir marca"
 
 msgid "Add a new Saved Wi-Fi Network"
-msgstr "Añadir una nueva red Wi-Fi guardada"
+msgstr "Añadir una nueva Red Wi-Fi guardada"
 
 msgid "Add a new bouquet"
 msgstr "Añadir una nueva lista"
@@ -5604,7 +5604,7 @@ msgid "Console Actions"
 msgstr "Consola"
 
 msgid "Console Network Packages"
-msgstr "Paquetes de consola de red"
+msgstr "Paquetes de consola de Red"
 
 msgid "Console Packages"
 msgstr "Paquetes de consola"
@@ -6715,7 +6715,7 @@ msgid "Delete Mount"
 msgstr "Eliminar montaje"
 
 msgid "Delete Network"
-msgstr "Eliminar red"
+msgstr "Eliminar Red"
 
 msgid "Delete Plugins"
 msgstr "Desinstalar Plugins"
@@ -7999,7 +7999,7 @@ msgstr "Habilitar EPG Netmed"
 
 # PowerTimerEntry.py
 msgid "Enable Network IP address check"
-msgstr "Habilitar la comprobación de IPs de la red"
+msgstr "Habilitar la comprobación de IPs de Red"
 
 msgid "Enable OpenTV EPG"
 msgstr "Habilitar la EPG de OpenTV"
@@ -8226,7 +8226,7 @@ msgstr ""
 msgid ""
 "Enable to show the 'Restart Network' entry in the Extension Menu screen."
 msgstr ""
-"Habilitar para mostrar la entrada \"Reiniciar red\" en el menú de "
+"Habilitar para mostrar la entrada \"Reiniciar Red\" en el menú de "
 "extensiones."
 
 #
@@ -8454,7 +8454,7 @@ msgid "Enter the workgroup name to be used by this server for Samba based connec
 msgstr "Introduzca el nombre del grupo de trabajo que utilizará este servidor para las conexiones basadas en Samba. (El valor predeterminado es 'WORKGROUP')."
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr "Ingrese el ID de red de ZeroTier. Debe tener exactamente 16 caracteres."
+msgstr "Ingrese el ID de Red de ZeroTier. Debe tener exactamente 16 caracteres."
 
 msgid "Enter URL"
 msgstr "Ingresar URL"
@@ -13420,162 +13420,162 @@ msgstr "Países Bajos"
 
 #
 msgid "Netmask"
-msgstr "Máscara de red"
+msgstr "Máscara de Red"
 
 #
 msgid "Network"
 msgstr "Red"
 
 msgid "Network Adapter '%s' Settings"
-msgstr "Configuración del adaptador de red '%s'"
+msgstr "Configuración del adaptador de Red '%s'"
 
 msgid "Network Adapter Selection"
-msgstr "Selección de adaptador de red"
+msgstr "Selección de adaptador de Red"
 
 msgid "Network Adapter Settings"
-msgstr "Configuración del adaptador de red"
+msgstr "Configuración del adaptador de Red"
 
 # Quick Menue
 msgid "Network Browser"
 msgstr "Navegador Web"
 
 msgid "Network ID"
-msgstr "ID de red"
+msgstr "ID de Red"
 
 # Informationen
 msgid "Network Information"
-msgstr "Información de red"
+msgstr "Información de Red"
 
 msgid "Network Information Actions"
-msgstr "Acciones de información de la red"
+msgstr "Acciones de información de Red"
 
 #
 msgid "Network Interface"
-msgstr "Interfaz de red"
+msgstr "Interfaz de Red"
 
 #
 msgid "Network Log"
-msgstr "Log de red"
+msgstr "Log de Red"
 
 msgid "Network Log Actions"
-msgstr "Acciones del registro de la red"
+msgstr "Acciones del registro de Red"
 
 msgid "Network Mount Manager Actions"
-msgstr "Acciones del administrador de montaje de red"
+msgstr "Acciones del administrador de montaje de Red"
 
 msgid "Network Mount Settings"
-msgstr "Configuración de montaje de red"
+msgstr "Configuración de montaje de Red"
 
 msgid "Network Mounts Overview"
-msgstr "Descripción general de los soportes de red"
+msgstr "Montajes de Red"
 
 #
 msgid "Network Neighbourhood"
-msgstr "Red de vecinos"
+msgstr "Red de Vecindarios"
 
 msgid "Network Overview"
-msgstr "Descripción general de la red"
+msgstr "Adaptadores de Red"
 
 msgid "Network Overview Actions"
-msgstr "Acciones generales de la red"
+msgstr "Acciones Generales de Red"
 
 msgid "Network Packages"
-msgstr "Paquetes de red"
+msgstr "Paquetes de Red"
 
 #
 msgid "Network Restart"
-msgstr "Reiniciar red"
+msgstr "Reiniciar Red"
 
 #
 msgid "Network Services"
-msgstr "Servicios de red"
+msgstr "Servicios de Red"
 
 #
 msgid "Network Settings"
-msgstr "Configurar red"
+msgstr "Configurar Red"
 
 #
 msgid "Network Setup Actions"
-msgstr "Configuración de red"
+msgstr "Configuración de Red"
 
 msgid "Network Share Actions"
-msgstr "Acciones para compartir en la red"
+msgstr "Acciones para compartir en Red"
 
 msgid "Network Shares Browser"
-msgstr "Navegador de recursos compartidos de red"
+msgstr "Navegador de recursos compartidos de Red"
 
 msgid "Network Shares Context Menu"
-msgstr "Menú contextual de recursos compartidos de red"
+msgstr "Menú contextual de recursos compartidos de Red"
 
 msgid "Network Test"
-msgstr "Prueba de red"
+msgstr "Prueba de Red"
 
 msgid "Network Test Actions"
-msgstr "Acciones de prueba de red"
+msgstr "Acciones de prueba de Red"
 
 msgid "Network Test For '%s'"
-msgstr "Prueba de red para '%s'"
+msgstr "Prueba de Red para '%s'"
 
 msgid "Network Wi-Fi Settings"
-msgstr "Configuración de red Wi-Fi"
+msgstr "Configuración de Red Wi-Fi"
 
 #
 msgid "Network adapter disabled."
-msgstr "Adaptador de red deshabilitado."
+msgstr "Adaptador de Red deshabilitado."
 
 msgid "Network adapter enabled."
-msgstr "Adaptador de red habilitado."
+msgstr "Adaptador de Red habilitado."
 
 msgid "Network address"
-msgstr "Dirección de la red"
+msgstr "Dirección de Red"
 
 msgid "Network cable connected (%s)"
-msgstr "Cable de red conectado (%)"
+msgstr "Cable de Red conectado (%)"
 
 #, python-format
 msgid "Network cable disconnected (%s)"
-msgstr "Cable de red desconectado (%s)"
+msgstr "Cable de Red desconectado (%s)"
 
 msgid "Network configuration..."
-msgstr "Configuración de red..."
+msgstr "Configuración de Red..."
 
 msgid "Network connected successfully.\n\nInterface: %s\nIP address: %s"
 msgstr "Red conectada correctamente.\n\nInterfaz: %s\nDirección IP: %s"
 
 msgid "Network Credentials"
-msgstr "Credenciales de red"
+msgstr "Credenciales de Red"
 
 msgid "Network information"
-msgstr "Información sobre la red"
+msgstr "Información sobre de Red"
 
 #, python-format
 msgid "Network information for %s %s"
-msgstr "Información de red para %s %s"
+msgstr "Información de Red para %s %s"
 
 msgid "Network menu"
-msgstr "Menú de red"
+msgstr "Menú de Red"
 
 msgid "Network metric"
 msgstr "Métrica de red"
 
 # MovieSelection.py
 msgid "Network mounts"
-msgstr "Montajes de red"
+msgstr "Montajes de Red"
 
 msgid "Network name (SSID)"
-msgstr "Nombre de red (SSID)"
+msgstr "Nombre de Red (SSID)"
 
 msgid "Network scan"
 msgstr "Escanear red"
 
 msgid "Network storage on"
-msgstr "Almacenamiento en red en"
+msgstr "Almacenamiento en Red en"
 
 msgid "Network test..."
 msgstr "Prueba de red..."
 
 msgid "Network-ID"
-msgstr "ID de red"
+msgstr "ID de Red"
 
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
@@ -14463,13 +14463,13 @@ msgid "Open the Mount Context Menu"
 msgstr "Abrir el menú contextual del Montaje"
 
 msgid "Open the Network Adapter Settings for the selected item"
-msgstr "Abra la configuración del adaptador de red para el elemento seleccionado."
+msgstr "Abra la configuración del adaptador de Red para el elemento seleccionado."
 
 msgid "Open the Network Shares Browser"
-msgstr "Abra el explorador de recursos compartidos de red."
+msgstr "Abra el explorador de recursos compartidos de Red."
 
 msgid "Open the Network Shares Context Menu"
-msgstr "Abra el menú contextual de Recursos compartidos de red."
+msgstr "Abra el menú contextual de Recursos compartidos de Red."
 
 msgid "Open the Plugin Browser"
 msgstr "Abrir Explorador de Plugins"
@@ -16970,7 +16970,7 @@ msgstr "¿Reiniciar la interfaz ahora?"
 #
 
 msgid "Restart Network"
-msgstr "Reiniciar red"
+msgstr "Reiniciar Red"
 
 msgid "Restart NCam"
 msgstr "Reiniciar NCam"
@@ -17552,10 +17552,10 @@ msgid "Save time shift buffer now and continue recording"
 msgstr "Guarde el búfer timeshift ahora y continúe grabando"
 
 msgid "Saved Wi-Fi Network '%s' Context Menu"
-msgstr "Menú contextual de la red Wi-Fi guardada '%s'"
+msgstr "Menú contextual de Red Wi-Fi guardada '%s'"
 
 msgid "Saved Wi-Fi Network '%s' Settings"
-msgstr "Configuración de red Wi-Fi guardada '%s'"
+msgstr "Configuración de Red Wi-Fi guardada '%s'"
 
 msgid "Saved Wi-Fi Networks"
 msgstr "Redes Wi-Fi guardadas"
@@ -20035,10 +20035,10 @@ msgid "Setup NFS"
 msgstr "Configurar NFS"
 
 msgid "Setup Network Services"
-msgstr "Configura los servicios de red"
+msgstr "Configurar Servicios de Red"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
-msgstr "Configura los servicios de red (Samba, Ftp, NFS, …)"
+msgstr "Configura los servicios de Red (Samba, Ftp, NFS, …)"
 
 msgid "Setup OpenVPN"
 msgstr "Configurar OpenVPN"
@@ -20444,7 +20444,7 @@ msgstr "Mostrar películas grabadas"
 
 # setup.xml
 msgid "Show Restart Network in Extensions *"
-msgstr "Mostrar ‘Reiniciar red’ en la lista de extensiones *"
+msgstr "Mostrar ‘Reiniciar Red’ en la lista de extensiones *"
 
 msgid "Show SD as"
 msgstr "Mostrar SD como"
@@ -20706,7 +20706,7 @@ msgid "Show network adapter connection information"
 msgstr "Mostrar información de conexión del adaptador de red"
 
 msgid "Open Network Settings"
-msgstr "Abrir ajustes de red"
+msgstr "Abrir ajustes de Red"
 
 msgid "Show next commit log"
 msgstr "Mostrar log del próximo commit"
@@ -20912,7 +20912,7 @@ msgid "Show the Logs Settings screen"
 msgstr "Mostrar pantalla de configuración de logs"
 
 msgid "Show the Network Information for the selected adapter"
-msgstr "Mostrar la información de red del adaptador seleccionado."
+msgstr "Mostrar información de Red del adaptador seleccionado."
 
 msgid "Show the OSCam information screen"
 msgstr "Mostrar pantalla de información OSCam"
@@ -26557,7 +26557,7 @@ msgid ""
 "Your %s %s isn't connected to the Internet properly. Please check it and try "
 "again."
 msgstr ""
-"Tu %s %s no está conectado a internet. Comprueba los ajustes de red y vuelve "
+"Tu %s %s no está conectado a Internet. Comprueba los ajustes y vuelve "
 "a intentarlo."
 
 # PowerLost
@@ -27140,7 +27140,7 @@ msgid "Disable Move Mode"
 msgstr "Deshabilitar modo movimiento"
 
 msgid "Disable Network"
-msgstr "Deshabilitar la red"
+msgstr "Deshabilitar la Red"
 
 #
 msgid "disabled"
@@ -29118,7 +29118,7 @@ msgid "Configure DNS (Dynamic Name Server)"
 msgstr "Configurar DNS (Servidor de nombres dinámico)"
 
 msgid "Connect to the selected Saved Wi-Fi Network"
-msgstr "Conéctese a la red Wi-Fi guardada seleccionada."
+msgstr "Conéctese a la Red Wi-Fi guardada seleccionada."
 
 msgid "Connected"
 msgstr "Conectado"
@@ -29519,13 +29519,13 @@ msgid "Move to the previous item in list"
 msgstr "Mover al elemento previo de la lista"
 
 msgid "Network adapter not connected to a network!"
-msgstr "Adaptador de red no conectado a la red!"
+msgstr "Adaptador de Red no conectado a la red!"
 
 msgid "Network adapter setup result:"
-msgstr "Resultado de la configuración del adaptador de red:"
+msgstr "Resultado de la configuración del adaptador de Red:"
 
 msgid "Network adapter status"
-msgstr "Estado del adaptador de red"
+msgstr "Estado del adaptador de Red"
 
 #
 msgid "No network adapters enabled/available!"
