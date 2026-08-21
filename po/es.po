@@ -14877,7 +14877,7 @@ msgstr "Contraseña / Clave"
 
 #
 msgid "Password Settings"
-msgstr "Configuración de Contraseña"
+msgstr "Configurar Contraseña"
 
 msgid "Password changed."
 msgstr "Se ha cambiado la contraseña."
@@ -17180,7 +17180,7 @@ msgid "Root file"
 msgstr "Archivo raíz"
 
 msgid "Root squash"
-msgstr "Squash raíz"
+msgstr "Restricción raíz"
 
 msgid "Rose"
 msgstr "Rosa"
