@@ -614,6 +614,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			if self.isLocal:
 				self._localAction(localAction)
 			else:
+				self._remoteAction(action)
 			END OF BLOCK ATV Softcam
 			"""
 			self._remoteAction(action)
