@@ -1229,9 +1229,6 @@ msgstr "%s Acciones de administración del navegador"
 msgid "%s is currently not running.\n\nDo you want to start it?"
 msgstr "%s no se está ejecutando actualmente.\n\n¿Desea iniciarla?"
 
-msgid "%s is currently stopped or unreachable. Log in to CAMD Manager start it."
-msgstr "%s está detenido o no está disponible. Inicie sesión en CAMD Manager para iniciarla."
-
 #, python-format
 msgid "%s GHz"
 msgstr "%s GHz"
@@ -6522,6 +6519,9 @@ msgstr "Escáner de servicios predeterminado"
 msgid "Default files/folders to backup"
 msgstr "Archivos/carpetas por defecto para el backup"
 
+msgid "Default gateway"
+msgstr "Puerta de enlace"
+
 msgid "Default left column directory"
 msgstr "Carpeta columna izquierda predeterminada"
 
@@ -8651,6 +8651,9 @@ msgstr "Retraso de reintento por error"
 
 msgid "Error text:"
 msgstr "Texto de error :"
+
+msgid "Error to read data from"
+msgstr "Error al leer datos de"
 
 #, python-format
 msgid "Error unzipping image '%s'!"
@@ -11442,6 +11445,9 @@ msgstr "Irlanda"
 
 msgid "Irish"
 msgstr "Irlandes"
+
+msgid "is currently stopped. Log in to CAMD Manager start it."
+msgstr "Actualmente está detenido. Inicie sesión en CAMD Manager para reiniciarla."
 
 msgid "Is this setting ok?"
 msgstr "¿Es correcto este ajuste?"
@@ -15654,6 +15660,9 @@ msgstr "Pulse EXIT para cerrar."
 #
 msgid "Press EXIT to return to the help screen."
 msgstr "Pulse EXIT para volver a la pantalla de ayuda."
+
+msgid "Press MENU and configue."
+msgstr "Pulse MENÚ y configure."
 
 msgid "Press OK for MultiBoot selection."
 msgstr "Pulse OK para la selección de MultiBoot."

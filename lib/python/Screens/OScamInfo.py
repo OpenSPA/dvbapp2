@@ -12,6 +12,7 @@ from pathlib import Path
 from xml.etree.ElementTree import XML, ParseError
 from ipaddress import ip_address
 from socket import getaddrinfo, gaierror, gethostname
+from process import ProcessList
 
 # ENIGMA IMPORTS
 from enigma import eTimer, ePicLoad
@@ -358,6 +359,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 
+	def _getSoftcam(self):  # OpenSPA [norhap] Improve header information display.
+		cam = str(ProcessList().named(getSysSoftcam())).strip("[]")
+		return cam if cam else None
+
 	def onLayoutFinished(self):
 		self.showHideKeyOk()
 		self["outlist"].onSelectionChanged.append(self.showHideKeyOk)
@@ -417,10 +422,12 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self._updateMainUI(webifok, api, url, signstatus, result)
 			self.updateKeyLabels()
 		finally:
+			if not self._getSoftcam():
+				self["extrainfos"].setText(f"{self.camName} {_("is currently stopped. Log in to CAMD Manager start it.")}")
 			self._fetchInProgress = False
 
 	def updateKeyLabels(self):
-		self["key_red"].setText(_("Shutdown %s") % self.camName if self.lastWebifOk else "")
+		self["key_red"].setText(_("Shutdown %s") % self.camName if self.lastWebifOk or self._getSoftcam() else "")
 		if self.lastWebifOk:
 			self["key_green"].setText(_("Restart %s") % self.camName)
 		elif self.isLocal:
@@ -432,6 +439,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 		"""Update main UI"""
 		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
+		if currtime and self._getSoftcam() and not url:
+			self["extrainfos"].setText(f"{_("Error to read data from")} {getSysSoftcam().replace("+", "")}.conf. {_("Press MENU and configue.")}")
 		na = _("n/a")
 		tag, camname = {"oscamapi": ("oscam", "OSCam"), "ncamapi": ("ncam", "NCam"), None: (na, na)}.get(api)
 		if camname != na:
@@ -510,7 +519,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["buildinfos"].setText(url)
 			errtext = result.decode("UTF-8", "ignore")
 			if self.isLocal:
-				self["extrainfos"].setText(_("%s is currently stopped or unreachable. Log in to CAMD Manager start it.") % self.camName)
+				self["extrainfos"].setText(f"{self.camName} {_("is currently stopped. Log in to CAMD Manager start it.")}" if not self._getSoftcam() else f"{_("Error to read data from")} {getSysSoftcam().replace("+", "")}.conf. {_("Press MENU and configue.")}")
 			else:
 				self["extrainfos"].setText(_("Unexpected error accessing WebIF: %s") % errtext)
 			self["timerinfos"].setText(currtime)  # set at least one element just for having the attribute 'activeComponents'
