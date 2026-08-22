@@ -187,7 +187,8 @@ class ConfigListScreen:
 			self["fullUIActions"] = HelpableActionMap(self, ["ConfigListActions"], {
 				"cancel": (self.keyCancel, _("Cancel any changed settings and exit")),
 				"close": (self.closeRecursive, _("Cancel any changed settings and exit all menus")),
-				"save": (self.keySave, _("Save all changed settings and exit"))
+				"save": (self.keySave, _("Save all changed settings and exit")),
+				"ok": self.keySelect if not config.misc.firstrun.value else self.keySave  # OpenSPA [norhap] Enable OK KEY in the Wizard.
 			}, prio=1, description=_("Common Setup Actions"))
 			self.actionMaps = ["fullUIActions"]
 			if allowDefault:
