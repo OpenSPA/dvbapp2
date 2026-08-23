@@ -1,7 +1,8 @@
 # PYTHON IMPORTS
 from datetime import datetime, timezone, timedelta
 from json import loads
-from os.path import exists
+from os.path import exists, basename
+from os import listdir
 from re import compile
 from twisted.internet.reactor import callInThread
 from ssl import create_default_context, _create_unverified_context as SkipCertificateVerification
@@ -335,8 +336,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self["camname"] = StaticText()
 		self["virtuell"] = StaticText()
 		self["resident"] = StaticText()
-		self["key_red"] = StaticText(_("Shutdown OSCam") if getSysSoftcam() == "oscam" else _("Shutdown NCam"))
-		self["key_green"] = StaticText(_("Restart OSCam") if getSysSoftcam() == "oscam" else _("Restart NCam"))
+		self["key_red"] = StaticText(_("Shutdown %s") % self.camName)
+		self["key_green"] = StaticText(_("Restart %s") % self.camName)
 		self["key_yellow"] = StaticText(_("Show Capabilities"))
 		self["key_blue"] = StaticText(_("Show Log"))
 		self["key_OK"] = StaticText()
@@ -423,15 +424,16 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self.updateKeyLabels()
 		finally:
 			if not self._getSoftcam():
-				self["extrainfos"].setText(f"{self.camName} {_("is currently stopped. Log in to CAMD Manager start it.")}")
+				self["extrainfos"].setText(f"{self.camName} {_("is currently stopped. Press GREEN button to start it.")}")
 			self._fetchInProgress = False
 
 	def updateKeyLabels(self):
-		self["key_red"].setText(_("Shutdown %s") % self.camName if self.lastWebifOk or self._getSoftcam() else "")
 		if self.lastWebifOk:
+			self["key_red"].setText(_("Shutdown %s") % self.camName)
 			self["key_green"].setText(_("Restart %s") % self.camName)
 		elif self.isLocal:
-			self["key_green"].setText(_("Start %s") % self.camName)
+			self["key_red"].setText("" if not self._getSoftcam() else _("Shutdown %s") % self.camName)
+			self["key_green"].setText(_("Start %s") % self.camName if not self._getSoftcam() else _("Restart %s") % self.camName)
 		else:
 			self["key_green"].setText("")
 
@@ -519,7 +521,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["buildinfos"].setText(url)
 			errtext = result.decode("UTF-8", "ignore")
 			if self.isLocal:
-				self["extrainfos"].setText(f"{self.camName} {_("is currently stopped. Log in to CAMD Manager start it.")}" if not self._getSoftcam() else f"{_("Error to read data from")} {getSysSoftcam().replace("+", "")}.conf. {_("Press MENU and configue.")}")
+				self["extrainfos"].setText(f"{self.camName} {_("is currently stopped. Press GREEN button to start it.")}" if not self._getSoftcam() else f"{_("Error to read data from")} {getSysSoftcam().replace("+", "")}.conf. {_("Press MENU and configue.")}")
 			else:
 				self["extrainfos"].setText(_("Unexpected error accessing WebIF: %s") % errtext)
 			self["timerinfos"].setText(currtime)  # set at least one element just for having the attribute 'activeComponents'
@@ -572,15 +574,15 @@ class OSCamInfo(Screen, OSCamGlobals):
 	def keyShutdown(self):
 		if not self.lastWebifOk:
 			return
-		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down %s?\n\nATTENTION: To reactivate %s, enter CAMD Manager and press GREEN button.") % (getSysSoftcam().replace("osc", "OSC").replace("nc", "NC").replace("+", ""), getSysSoftcam().replace("osc", "OSC").replace("nc", "NC").replace("+", "")), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down %s?\nTo reactivate %s press GREEN button.") % (self.camName, self.camName), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyRestart(self):
 		if not self.lastWebifOk and not self.isLocal:
 			return
 		if not self.lastWebifOk:
-			self.session.openWithCallback(boundFunction(self.msgboxCB, "start"), MessageBox, _("%s is currently not running.\n\nDo you want to start it?") % self.camName, MessageBox.TYPE_YESNO, timeout=10, default=True)
+			self.session.openWithCallback(boundFunction(self.msgboxCB, "start"), MessageBox, _("%s is currently not running.\nDo you want to start it?") % self.camName, MessageBox.TYPE_YESNO, timeout=10, default=True)
 		else:
-			self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!") % getSysSoftcam().replace("osc", "OSC").replace("nc", "NC").replace("+", ""), MessageBox.TYPE_YESNO, timeout=10, default=False)
+			self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart %s?\nThis will take about 5 seconds!") % self.camName, MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyInfo(self):
 		self.loop.stop()
@@ -608,10 +610,21 @@ class OSCamInfo(Screen, OSCamGlobals):
 		{"start": sa.start, "stop": sa.stop, "restart": sa.restart}[action](boundFunction(self._afterAction, action))
 
 	def _remoteAction(self, action):
+		camscript = ""
+		if exists("/usr/script"):
+			for script in [x for x in listdir("/usr/script") if "cam.sh" in x]:
+				if self.camName.casefold() in basename(script).casefold():
+					camscript = script
+
 		def doAction():
 			webifok, api, url, signstatus, result = self.openWebIF(part=action)
 			if not webifok:
-				self._showActionError(result)
+				if self.camName and camscript:
+					from Components.Console import Console  # noqa: E402
+					self["key_red"].setText(_("Shutdown %s") % self.camName)
+					Console().ePopen("/usr/script/" + camscript + " start")
+				else:
+					self._showActionError(result)
 			self._afterAction(action)
 		callInThread(doAction)
 
