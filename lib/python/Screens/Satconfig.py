@@ -535,9 +535,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def isCableTerrestrialMultiType(self):
 		return self.nim.isMultiType() and self.nim.canBeCompatible("DVB-C") and self.nim.canBeCompatible("DVB-T")
 
-	def usesCableTerrestrialCoaxSwitch(self):
-		return self.isCableTerrestrialMultiType() and self.nimConfig.dvbc.configMode.value != "nothing" and self.nimConfig.dvbt.configMode.value != "nothing"
-
 	def getMultiTypeName(self, deliverySystem):
 		return next((frontendType for frontendType in self.nim.getMultiTypeList().values() if frontendType.startswith(deliverySystem)), deliverySystem)
 
@@ -580,8 +577,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		return False
 
 	def synchronizeMultiTypeFrontend(self):
-		if self.usesCableTerrestrialCoaxSwitch():
-			self.nimConfig.dvbt.terrestrial_5V.value = True
 		if not self.nim.isMultiType():
 			return
 		try:
@@ -747,11 +742,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.indentMultiTypeEntries(detailStart)
 
 		if self.isCableTerrestrialMultiType():
-			sharedInputHeading = _("C/T input switching")
-			if self.usesCableTerrestrialCoaxSwitch():
-				sharedInputHeading = _("C/T input switching: external 5V coax switch")
-			self.list.append(getConfigListEntry(sharedInputHeading))
-		sharedInputDescription = _("DVB-C and DVB-T/T2 share this input. When both are enabled, Enigma2 uses 5V to control the external coax switch.")
+			self.list.append(getConfigListEntry(_("C/T input switching")))
+		sharedInputDescription = _("DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power.")
 		if cableAvailable:
 			if isMultiType:
 				inputName = _("C/T input") if self.isCableTerrestrialMultiType() else _("Cable input")
@@ -857,7 +849,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.terrestrialRegionsEntry = getConfigListEntry(_("Region"), self.terrestrialRegions, _("Select your region. If it is not available change 'Country' to 'All' and select one of the default alternatives."))
 				self.list.append(self.terrestrialCountriesEntry)
 				self.list.append(self.terrestrialRegionsEntry)
-				if BoxInfo.getItem("machinebuild") not in ('spycat',) and not self.usesCableTerrestrialCoaxSwitch():
+				if BoxInfo.getItem("machinebuild") not in ('spycat',):
 					self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.dvbt.terrestrial_5V, _("Enable this setting if your aerial system needs power.")))
 			self.indentMultiTypeEntries(detailStart, indentLevel=2 if self.isCableTerrestrialMultiType() else 1)
 		if atscAvailable:
