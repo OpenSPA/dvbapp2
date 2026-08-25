@@ -995,6 +995,12 @@ msgid "%d ms"
 msgstr "%d ms"
 
 #, python-format
+msgid "%d network found."
+msgid_plural "%d networks found."
+msgstr[0] "%d red encontrada."
+msgstr[1] "%d redes encontradas."
+
+#, python-format
 msgid "%d package found."
 msgid_plural "%d packages found."
 msgstr[0] "%d paquete encontrado."
@@ -1218,10 +1224,6 @@ msgid "%s - Setup"
 msgstr "%s - Configuración"
 
 #, python-format
-msgid "%s action failed (exit code %s)"
-msgstr "La acción %s falló (código de salida %s)"
-
-#, python-format
 msgid "%s Browser Manage Actions"
 msgstr "%s Acciones de administración del navegador"
 
@@ -1258,7 +1260,10 @@ msgstr "%s Configuración"
 msgid "%s View"
 msgstr "%s Ver"
 
-#
+#, python-format
+msgid "%s action failed (exit code %s)"
+msgstr "La acción %s falló (código de salida %s)"
+
 #, python-format
 msgid "%s additional screens"
 msgstr "%s pantallas adicionales"
@@ -1286,6 +1291,14 @@ msgstr "%s prolongado"
 #, python-format
 msgid "%s not available."
 msgstr "%s no disponible."
+
+#, python-format
+msgid "%s version"
+msgstr "%s version"
+
+#, python-format
+msgid "%s webif disabled"
+msgstr "% s webif deshabilitado"
 
 #, python-format
 msgid "%s%d min"
@@ -1898,6 +1911,9 @@ msgstr "Ajusta la compensación de la latencia del búfer de hardware para DM9x0
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI Subtitles"
+msgstr "Subtítulos con IA"
+
 msgid "AI-Powered translation color"
 msgstr "Color de traducción asistida por IA"
 
@@ -1931,11 +1947,11 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "Proveedor ATSC"
 
+msgid "AV Receiver, Soundbar And Remote"
+msgstr "Receptor AV, Barra de Sonido y Mando Distancia"
+
 msgid "AV Setup"
 msgstr "Configurar AV"
-
-msgid "AV receiver, soundbar and remote"
-msgstr "Receptor AV, barra de sonido y control remoto"
 
 msgid "Abkhazian"
 msgstr "Abkhazian"
@@ -2318,15 +2334,17 @@ msgstr "Público adulto, violencia intensa 15+"
 msgid "Advanced"
 msgstr "Avanzado"
 
-#
+msgid "Advanced Diagnostics"
+msgstr "Diagnóstico Avanzado"
+
 msgid "Advanced Options"
-msgstr "Opciones avanzadas"
+msgstr "Opciones Avanzadas"
 
 msgid "Advanced Restore"
-msgstr "Restauración avanzada"
+msgstr "Restauración Avanzada"
 
 msgid "Advanced Settings"
-msgstr "Ajustes avanzados"
+msgstr "Ajustes Avanzados"
 
 msgid "Advanced options and settings."
 msgstr "Opciones avanzadas y configuración."
@@ -2590,6 +2608,9 @@ msgstr "Alternativo 2"
 #
 msgid "Alternative Edit"
 msgstr "Edición alternativa"
+
+msgid "Alternative Tuner Sources"
+msgstr "Fuentes Alternativas de Sintonizadores"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "URL alternativas para DVB-T/C o ATSC"
@@ -2916,6 +2937,12 @@ msgstr "Nivel de volumen automático"
 msgid "Audio Channel"
 msgstr "Canal de audio"
 
+msgid "Audio Formats And Output"
+msgstr "Formatos Y Salida de Audio"
+
+msgid "Audio Language And Track Selection"
+msgstr "Selección de Idioma Y Pista de Audio"
+
 msgid "Audio PID"
 msgstr "Audio PID"
 
@@ -2935,6 +2962,9 @@ msgstr "Fuente de audio"
 
 msgid "Audio Sync"
 msgstr "Sincronización de audio"
+
+msgid "Audio Synchronization"
+msgstr "Sincronización de Audio"
 
 msgid "Audio language selection 1"
 msgstr "Selección de idioma de audio 1"
@@ -3564,6 +3594,15 @@ msgstr "Brillo (normal)"
 msgid "Brightness (Standby)"
 msgstr "Brillo (reposo)"
 
+msgid "Brightness And Contrast"
+msgstr "Brillo y Contraste"
+
+msgid "Brightness Video"
+msgstr "Brillo de Video"
+
+msgid "Brightness Video & OSD"
+msgstr "Brillo de Video & OSD"
+
 msgid "British Indian Ocean Territory"
 msgstr "Territorio Británico del Océano Índico"
 
@@ -3587,6 +3626,9 @@ msgstr "Explorar, instalar o eliminar plugins uno a uno."
 
 msgid "Brunei Darussalam"
 msgstr "Brunéi"
+
+msgid "Buffer Management"
+msgstr "Gestión de Búfer"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -3650,6 +3692,9 @@ msgstr "Bus: "
 
 msgid "Business & Finance"
 msgstr "Negocios y Finanzas"
+
+msgid "Button Assignments"
+msgstr "Asignación de Botones"
 
 # Quick Menue
 msgid "Button Setup"
@@ -4270,6 +4315,12 @@ msgstr "Canal 1"
 msgid "Channel 1 with prime time"
 msgstr "Canal 1 de máxima audiencia"
 
+msgid "Channel And EPG Import"
+msgstr "Importación de Canales Y EPG"
+
+msgid "Channel History And Messages"
+msgstr "Historial del Canal Y Mensajes"
+
 msgid "Channel Info"
 msgstr "Información de canal"
 
@@ -4295,6 +4346,9 @@ msgstr "Acciones de navegación de la selección de canales"
 
 msgid "Channel Selection picon path"
 msgstr "Ruta del picon lista de canales"
+
+msgid "Channel Zapping And Keys"
+msgstr "Cambio de Canales Y Teclas"
 
 #
 msgid "Channel Selection Settings"
@@ -4436,12 +4490,12 @@ msgid "Check power and input state from TV"
 msgstr "Compruebe el estado de la alimentación y la entrada del televisor"
 
 msgid "Check the Internet connection again"
-msgstr "Volver a comprobar la conexión a internet"
+msgstr "Volver a comprobar la conexión a Internet"
 
 msgid ""
 "Check/Install online updates (you must have a working Internet connection)"
 msgstr ""
-"Comprueba/Instala actualizaciones en línea (debes tener conexión a internet)"
+"Comprueba/Instala actualizaciones en línea (debes tener conexión a Internet)"
 
 msgid "Checking Feeds"
 msgstr "Comprobando fuentes"
@@ -4863,6 +4917,9 @@ msgstr "Colombia"
 msgid "Color"
 msgstr "Color"
 
+msgid "Color Button Assignments"
+msgstr "Asignación de Colores de Botones"
+
 msgid "Color format"
 msgstr "Formato de color"
 
@@ -4943,6 +5000,9 @@ msgstr "Acciones comunes de ajustes"
 
 msgid "Comoros"
 msgstr "Comoras"
+
+msgid "Compatibility And Emulation"
+msgstr "Compatibilidad Y Emulación"
 
 msgid "Compiled by"
 msgstr "Compilado por"
@@ -5855,6 +5915,9 @@ msgstr "País para la información de clasificación de eventos de la EPG"
 msgid "Crash %d/%d"
 msgstr "Bloqueo %d/%d"
 
+msgid "Crash Handling"
+msgstr "Manejo de Crash"
+
 msgid "Crash Logs"
 msgstr "Crash Logs"
 
@@ -6062,6 +6125,9 @@ msgstr "Niveles de volumen recordados actualmente:"
 msgid "Custom"
 msgstr "Personalizado"
 
+msgid "Custom Skip Times"
+msgstr "Tiempos de Salto Personalizados"
+
 msgid "Custom mountpoint"
 msgstr "Punto de montaje personalizado"
 
@@ -6095,6 +6161,9 @@ msgstr "Personaliza los ajustes de Enigma2"
 #
 msgid "Cut"
 msgstr "Cortar"
+
+msgid "CutList Skipping"
+msgstr "Saltar Lista de Cortes"
 
 msgid "CutList skip time for '%s' button"
 msgstr "Tiempo de omisión en CutList (plugin) para el botón '%s'"
@@ -6190,6 +6259,12 @@ msgstr "Versión de la API DVB"
 msgid "DVB CI Delay"
 msgstr "Retraso DVB-CI"
 
+msgid "DVB Subtitles"
+msgstr "Subtítulos DVB"
+
+msgid "DVB Subtitles PID & Language"
+msgstr "Subtítulos DVB PID e Idioma"
+
 msgid "DVB Subtitles PID & lang"
 msgstr "PID de subtítulos DVB e idioma"
 
@@ -6213,6 +6288,9 @@ msgstr "DVB-C ANEXO B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANEXO C"
+
+msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
+msgstr "Los sistemas DVB-C y DVB-T/T2 comparten esta entrada. Active los 5 V solo si el sistema de antena o un conmutador coaxial externo requieren alimentación."
 
 #
 msgid "DVB-S"
@@ -6267,6 +6345,9 @@ msgstr "Fecha"
 
 msgid "Date / Time"
 msgstr "Fecha/Hora"
+
+msgid "Date And Time"
+msgstr "Fecha Y Hora"
 
 msgid "Date / Time format in standby"
 msgstr "Formato Hora / Fecha en reposo"
@@ -6445,14 +6526,17 @@ msgstr "Depuración %d/%d"
 msgid "Debug Information"
 msgstr "Información de depuración"
 
+msgid "Debug Log Content"
+msgstr "Contenido del Registro de Depuración"
+
 msgid "Debug Log Information"
-msgstr "Información del registro de depuración"
+msgstr "Información del Registro de Depuración"
 
 msgid "Debug Log Information Actions"
-msgstr "Acciones de información del registro de depuración"
+msgstr "Acciones de Información del Registro de Depuración"
 
 msgid "Debug Logs"
-msgstr "Logs de depuración"
+msgstr "Logs de Depuración"
 
 msgid "Debug log time format *"
 msgstr "Formato tiempo del log de depuración *"
@@ -7169,9 +7253,15 @@ msgstr "Visualizar los contenidos 4:3 como"
 msgid "Display >16:9 content as"
 msgstr "Visualizar los contenidos >16:9 como"
 
+msgid "Display Power And Content"
+msgstr "Encendido y Contenido de la Pantalla"
+
+msgid "Display Scrolling"
+msgstr "Desplazamiento de Pantalla"
+
 # Quick Menue
 msgid "Display Settings"
-msgstr "Ajustes display"
+msgstr "Ajustes Display"
 
 msgid "Display and user interface"
 msgstr "Pantalla y interfaz de usuario"
@@ -7362,7 +7452,24 @@ msgstr "¿Seguro que quiere eliminar el directorio %s del disco?"
 msgid "Do you really want to remove the timer for %s?"
 msgstr "¿Seguro que quiere eliminar el temporizador de %s?"
 
-#
+#, python-format
+msgid "Do you really want to restart %s?"
+msgstr "¿De verdad quieres reiniciar %s?"
+
+#, python-format
+msgid ""
+"Do you really want to shut down %s?\n"
+"\n"
+"ATTENTION: To reactivate %s, a complete receiver restart must be carried out!"
+msgstr ""
+"¿De verdad quieres apagar %s?"
+"\n"
+"ATENCIÓN: Para reactivar %s, ¡debe reiniciarse completamente el receptor!"
+
+#, python-format
+msgid "Do you really want to stop %s?"
+msgstr "¿De verdad quieres parar %s?"
+
 #, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "¿Seguro que quiere eliminar tu marcador %s?"
@@ -7711,23 +7818,17 @@ msgstr "Acciones de la EPG"
 msgid "EPG Bouquet Actions"
 msgstr "Acciones EPG de la lista"
 
-msgid "EPG button mode"
-msgstr "Modo de la tecla EPG"
-
 msgid "EPG Cache Check"
 msgstr "Verificación de caché EPG"
 
 msgid "EPG Channel/Service Selection"
 msgstr "Selección de canales/servicios de la EPG"
 
+msgid "EPG Data In Streams"
+msgstr "Datos EPG en Streams"
+
 msgid "EPG Display Actions"
 msgstr "Acciones de visualización de la EPG"
-
-msgid "EPG filename"
-msgstr "Nombre de archivo EPG"
-
-msgid "EPG history"
-msgstr "Historial de la EPG"
 
 msgid "EPG imported successfully from"
 msgstr "EPG importada con éxito desde"
@@ -7735,11 +7836,17 @@ msgstr "EPG importada con éxito desde"
 msgid "EPG Jump"
 msgstr "Salto de EPG"
 
+msgid "EPG Language"
+msgstr "Idioma de la EPG"
+
 msgid "EPG Navigation Actions"
 msgstr "Acciones de navegación de la EPG"
 
 msgid "EPG Other Actions"
 msgstr "Otras acciones de la EPG"
+
+msgid "EPG Range And History"
+msgstr "Rango EPG e Historia"
 
 msgid "EPG Search"
 msgstr "Buscar en EPG"
@@ -7754,6 +7861,21 @@ msgstr "Ajustes de EPG"
 
 msgid "EPG Setup"
 msgstr "Configuración de EPG"
+
+msgid "EPG Sources"
+msgstr "Fuentes de la EPG"
+
+msgid "EPG Storage And Refresh"
+msgstr "Almacenamiento y Actualización EPG"
+
+msgid "EPG button mode"
+msgstr "Modo de la tecla EPG"
+
+msgid "EPG filename"
+msgstr "nombre de archivo EPG"
+
+msgid "EPG history"
+msgstr "historia EPG"
 
 msgid ""
 "EPG key : Switch to channel list\n"
@@ -8240,6 +8362,9 @@ msgstr "Encriptado"
 
 msgid "Encryption"
 msgstr "Encriptación"
+
+msgid "Encryption And Descrambling"
+msgstr "Cifrado Y Descifrado"
 
 msgid "Encryption:"
 msgstr "Encriptación:"
@@ -8868,6 +8993,9 @@ msgstr "¿Incluso si se inicia un temporizador de grabación 'Zap'?"
 msgid "Event Info"
 msgstr "Información de programa"
 
+msgid "Event Metadata And Correction"
+msgstr "Metadatos del Evento Y Corrección"
+
 msgid "Event View"
 msgstr "Vista de programa"
 
@@ -9095,6 +9223,9 @@ msgstr "PiP externo"
 msgid "External Storage %s"
 msgstr "Almacenamiento externo %s"
 
+msgid "External Subtitles"
+msgstr "Subtítulos Externos"
+
 msgid "External subtitle color"
 msgstr "Color de subtítulo externo"
 
@@ -9297,6 +9428,9 @@ msgstr "Configuración del cambio rapido de canal"
 msgid "Fast DiSEqC"
 msgstr "DiSEqC Rápido"
 
+msgid "Fast Forward And Rewind"
+msgstr "Avance Rápido Y Retroceso"
+
 msgid "Fast epoch"
 msgstr "Época rápida"
 
@@ -9326,6 +9460,9 @@ msgstr "Fuente estable."
 
 msgid "Feed unstable!"
 msgstr "Fuente inestable!"
+
+msgid "Feeds And Networking"
+msgstr "Fuentes de Noticias y Redes"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Obtenga EPG y actualice los temporizadores ahora"
@@ -9454,6 +9591,9 @@ msgstr "La transferencia de archivos fue cancelada por el usuario"
 #
 msgid "Filename"
 msgstr "Nombre del fichero"
+
+msgid "Files And Directories"
+msgstr "Archivos Y Directorios"
 
 msgid "Filelist"
 msgstr "Lista de archivos"
@@ -9883,13 +10023,29 @@ msgstr "General"
 msgid "General AC3 delay"
 msgstr "Retraso general de AC3"
 
-#
+msgid "General Appearance"
+msgstr "Apariencia General"
+
 msgid "General BT audio delay"
 msgstr "Retraso general de BT Audio"
 
-#
+msgid "General Channel Selection"
+msgstr "Selección General de Canales"
+
+msgid "General OSD Behavior"
+msgstr "Comportamiento General de OSD"
+
 msgid "General PCM delay"
-msgstr "Retraso general PCM"
+msgstr "Retraso General PCM"
+
+msgid "General Setup Behavior"
+msgstr "Comportamiento de Configuración General"
+
+msgid "General Subtitle Appearance And Timing"
+msgstr "Apariencia y Sincronización General de los Subtítulos"
+
+msgid "General Time Shift Behavior"
+msgstr "Comportamiento General del Cambio de Horario"
 
 msgid "Generic"
 msgstr "Generico"
@@ -10296,6 +10452,9 @@ msgstr "Ayuda"
 
 msgid "Help Action"
 msgstr "Acción de Ayuda"
+
+msgid "Help And Visual Feedback"
+msgstr "Ayuda y Retroalimentación Visual"
 
 msgid "Help Screen Information"
 msgstr "Información de la pantalla de ayuda"
@@ -11135,6 +11294,12 @@ msgstr "Ancho de la información de icono"
 msgid "InfoBar"
 msgstr "Barra de información"
 
+msgid "InfoBar And Pause"
+msgstr "InfoBar Y Pausa"
+
+msgid "InfoBar Content And Time Display"
+msgstr "Visualización del Contenido y la hora de la InfoBar"
+
 msgid "InfoBar EPG"
 msgstr "Barra de información EPG"
 
@@ -11147,8 +11312,14 @@ msgstr "Ajustes de EPG en Infobar"
 msgid "InfoBar EPG mode"
 msgstr "Modo barra de información EPG"
 
+msgid "InfoBar Timing And Appearance"
+msgstr "Momento y Apariencia de la InfoBar"
+
+msgid "InfoBar Visibility And Behavior"
+msgstr "Visibilidad y Comportamiento de la InfoBar"
+
 msgid "InfoBar Event View Actions"
-msgstr "Acciones de la vista de eventos de la barra de información"
+msgstr "Acciones de la Vista de Eventos de la InfoBar"
 
 msgid "Show/Hide Actions"
 msgstr "Acciones de mostrar/ocultar de la barra de información"
@@ -11643,6 +11814,9 @@ msgstr "Versión del núcleo"
 msgid "Key"
 msgstr "Tecla"
 
+msgid "Key Map And Power Buttons"
+msgstr "Mapa de Teclas y Botones de Encendido"
+
 #
 msgid "Keyboard"
 msgstr "Teclado"
@@ -11764,6 +11938,9 @@ msgstr "LED en apagado"
 
 msgid "LED Deep Standby color"
 msgstr "Color del LED en espera profundo"
+
+msgid "LED Indicators"
+msgstr "Indicadores LED"
 
 msgid "LED Normal"
 msgstr "LED normal"
@@ -11897,6 +12074,9 @@ msgstr "Letonia"
 msgid "Latvian"
 msgstr "Letón"
 
+msgid "Layout And Fonts"
+msgstr "Diseño Y Fuentes"
+
 msgid "Leave"
 msgstr "Salir"
 
@@ -11911,9 +12091,11 @@ msgstr ""
 msgid "Lebanon"
 msgstr "Libano"
 
-#
 msgid "Left"
 msgstr "Izquierda"
+
+msgid "Left USB"
+msgstr "USB Izquierdo"
 
 msgid "Left column"
 msgstr "Columna izquierda"
@@ -11924,9 +12106,14 @@ msgstr "Orden directorios columna izquierda"
 msgid "Left column file sort"
 msgstr "Orden archivos columna izquierda"
 
-#
 msgid "Left of service name"
 msgstr "A la izquierda del nombre de canal"
+
+msgid "Left, back USB"
+msgstr "Izquierdo, USB frontal"
+
+msgid "Left, front USB"
+msgstr "Izquierdo, parte trasera USB"
 
 msgid "Left, wrapped"
 msgstr "Izquierda, envuelto"
@@ -12040,15 +12227,18 @@ msgstr "Enlazar los títulos con un menú de DVD"
 msgid "Links"
 msgstr "Enlaces"
 
+msgid "List Appearance And Sorting"
+msgstr "Apariencia Y Ordenación de la Lista"
+
 #
 msgid "List available EPG functions"
 msgstr "Enumerar funciones del EPG..."
 
 msgid "List Navigation Actions"
-msgstr "Acciones de navegación en la lista"
+msgstr "Acciones de Navegación en la Lista"
 
 msgid "List of Storage Devices"
-msgstr "Lista de dispositivos de almacenamiento"
+msgstr "Lista de Dispositivos de Almacenamiento"
 
 # Mediaplayer Setup
 msgid "List of storage devices"
@@ -12193,6 +12383,9 @@ msgstr "Registro %d/%d"
 
 msgid "Log Manager"
 msgstr "Administrador de logs"
+
+msgid "Log Retention And Access"
+msgstr "Retención Y Acceso a los Registros"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -12548,6 +12741,9 @@ msgstr "Medio"
 msgid "Media Center"
 msgstr "Centro multimedia"
 
+msgid "Media Files And Navigation"
+msgstr "Archivos Multimedia y Navegación"
+
 #
 msgid "Media Player"
 msgstr "Reproductor multimedia"
@@ -12636,6 +12832,9 @@ msgstr "Estilo de entrada del menú"
 msgid "Menu style"
 msgstr "Estilo del menú"
 
+msgid "Menus And Setup"
+msgstr "Menús Y Configuración"
+
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Combinar la EPG de emisión con IceTV"
 
@@ -12692,6 +12891,9 @@ msgstr "Configurar MiniDLNA"
 
 msgid "MiniTV"
 msgstr "MiniTV"
+
+msgid "MiniTV And PiP"
+msgstr "MiniTV Y PiP"
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV con OSD"
@@ -13152,19 +13354,22 @@ msgid "Movie"
 msgstr "Película"
 
 msgid "Movie Event View Actions"
-msgstr "Acciones de la vista de eventos de películas"
+msgstr "Acciones de la Vista de Rventos de Películas"
 
 msgid "Movie List"
-msgstr "Lista de películas"
+msgstr "Lista de Películas"
+
+msgid "Movie List And Playback Behavior"
+msgstr "Lista de Películas Y Comportamiento de Reproducción"
 
 msgid "Movie Selection Actions"
-msgstr "Lista de acciones de la película"
+msgstr "Lista de Acciones de la Película"
 
 msgid "Movie Selection Settings"
-msgstr "Configuración de la lista de películas"
+msgstr "Configuración de la Lista de Películas"
 
 msgid "Movie Player Actions"
-msgstr "Acciones del reproductor de películas"
+msgstr "Acciones del Reproductor de Películas"
 
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
@@ -13407,6 +13612,12 @@ msgstr ""
 "Navegue hacia arriba/abajo con los botones ARRIBA/ABAJO y paguina arriba/"
 "abajo con IZQUIERDA/DERECHA. Pulsa OK para realizar la acción descrita en la "
 "ayuda actualmente resaltada."
+
+msgid "Navigation And Button Assignments"
+msgstr "Navegación Y Asignación de Botones"
+
+msgid "Navigation And Time Range"
+msgstr "Navegación Y Rango de Tiempo"
 
 msgid "Ndonga"
 msgstr "Ndonga"
@@ -14131,6 +14342,9 @@ msgstr "Nada que actualizar"
 msgid "Nothing, just leave this menu"
 msgstr "Nada, solo salir de este menú"
 
+msgid "Notifications And Display"
+msgstr "Notificaciones Y Visualización"
+
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Ahora"
@@ -14461,6 +14675,9 @@ msgstr "Abrir la lista de servicios y seleccionar el canal anterior para PiP"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Abrir la pantalla de ajustes de lista de canales"
 
+msgid "Open the Context Menu for the selected item"
+msgstr "Abra el menú contextual del elemento seleccionado"
+
 msgid "Open the Image information"
 msgstr "Abrir la información de sistema"
 
@@ -14521,6 +14738,9 @@ msgstr "Configurar OpenVPN"
 
 msgid "OpenViX Packages"
 msgstr "Paquetes OpenViX"
+
+msgid "OpenWebif Connection"
+msgstr "Conexión OpenWebif"
 
 msgid "OpenVpn Log"
 msgstr "Historial OpenVPN"
@@ -14590,13 +14810,16 @@ msgid "Other"
 msgstr "Otro"
 
 msgid "Other Actions"
-msgstr "Otras acciones"
+msgstr "Otras Acciones"
+
+msgid "Other OSD Elements"
+msgstr "Otros Elementos OSD"
 
 msgid "Other Packages"
-msgstr "Otros paquetes"
+msgstr "Otros Paquetes"
 
 msgid "Other Subtitles & lang"
-msgstr "Otros subtítulos e idioma"
+msgstr "Otros Subtítulos e Idioma"
 
 msgid ""
 "Other buttons will jump to the help information for that button, if there is "
@@ -14739,9 +14962,11 @@ msgstr "PVR"
 msgid "Package"
 msgstr "Paquete"
 
-#
+msgid "Package Categories"
+msgstr "Categorías de Paquetes"
+
 msgid "Package Manager"
-msgstr "Administrar paquetes"
+msgstr "Administrador de Paquetes"
 
 msgid "Package files:"
 msgstr "Paquete de archivos:"
@@ -14996,17 +15221,20 @@ msgstr "Picon y nombre de canal"
 msgid "Picon width"
 msgstr "Anchura de picon"
 
+msgid "Picture In Picture"
+msgstr "Imagen dentro de la Imagen"
+
 msgid "Picture Information"
-msgstr "Información sobre la imagen"
+msgstr "Información Sobre la Imagen"
 
 msgid "Picture Information Actions"
-msgstr "Acciones de información de imágenes"
+msgstr "Acciones de Información de Imágenes"
 
 msgid "Picture in EPG"
 msgstr "Imagen en EPG"
 
 msgid "Picture in Picture Settings"
-msgstr "Configuración de imagen en imagen"
+msgstr "Configuración de Imagen en Imagen"
 
 msgid "Picture in graphics"
 msgstr "Imagen en gráficos"
@@ -15028,7 +15256,7 @@ msgid "Pilot"
 msgstr "Piloto"
 
 msgid "Pinging..."
-msgstr "Sonido..."
+msgstr "Comprobando..."
 
 msgid "Pink"
 msgstr "Rosa"
@@ -15119,8 +15347,14 @@ msgstr "Reproduce el archivo de audio"
 msgid "Play the selected service"
 msgstr "Reproducir el servicio seleccionado"
 
+msgid "Playback And Saving"
+msgstr "Reproducción Y Guardado"
+
+msgid "Playback And Status"
+msgstr "Reproducción Y Estado"
+
 msgid "Playback Settings"
-msgstr "Ajustes de reproducción"
+msgstr "Configuración de Reproducción"
 
 msgid "Playback, Recording & Time Shift"
 msgstr "Reproducción Grabaciones & Timeshift"
@@ -15829,6 +16063,9 @@ msgstr "DNS primario (IPv4)"
 msgid "Primary DNS (IPv6)"
 msgstr "DNS primario (IPv6)"
 
+msgid "Prime Time"
+msgstr "Horario Estelar"
+
 msgid "Prime time"
 msgstr "Hora de máxima audiencia"
 
@@ -16389,12 +16626,24 @@ msgstr "Cajón de herramientas de recursos grabables"
 msgid "Recording"
 msgstr "Grabación"
 
+msgid "Recording And Status Indicators"
+msgstr "Indicadores de Registro Y Estado"
+
+msgid "Recording Filenames And Data"
+msgstr "Grabación de Nombres de Archivos Y Datos"
+
+msgid "Recording Locations"
+msgstr "Localización de Grabación"
+
+msgid "Recording Preparation And Margins"
+msgstr "Preparación del Registro Y Márgenes"
+
 msgid "Recording Settings"
-msgstr "Ajustes de grabación"
+msgstr "Ajustes de Grabación"
 
 #
 msgid "Recording Setup"
-msgstr "Configuración de grabación"
+msgstr "Configuración de Grabación"
 
 msgid "Recording aborted"
 msgstr "Grabación cancelada"
@@ -16466,8 +16715,11 @@ msgstr ""
 msgid "Recovery"
 msgstr "Recuperación"
 
+msgid "Recovery And Hardware"
+msgstr "Recuperación Y Hardware"
+
 msgid "Recovery Mode"
-msgstr "Modo recuperación"
+msgstr "Modo Recuperación"
 
 msgid "Red"
 msgstr "Rojo"
@@ -16603,10 +16855,16 @@ msgid "Remote Control"
 msgstr "Mando a distancia"
 
 msgid "Remote Control Button Settings"
-msgstr "Configuración botones del mando"
+msgstr "Configuración botones del Mando"
 
 msgid "Remote Control Code Settings"
-msgstr "Código de mando"
+msgstr "Configuración del Mando"
+
+msgid "Remote Receiver Connection"
+msgstr "Conexión del Receptor Remoto"
+
+msgid "Remote Timers"
+msgstr "Temporizadores Remotos"
 
 msgid "Remote receiver"
 msgstr "Receptor remoto"
@@ -17157,6 +17415,12 @@ msgstr "Orden archivo columna derecha"
 #
 msgid "Right of service name"
 msgstr "A la derecha del nombre de canal"
+
+msgid "Right, back USB"
+msgstr "Derecho, USB trasero"
+
+msgid "Right, front USB"
+msgstr "Derecho, USB frontal"
 
 msgid "Right, wrapped"
 msgstr "Derecha, envuelto"
@@ -17794,7 +18058,12 @@ msgstr "Buscando al oeste..."
 msgid "Second cable of motorized LNB"
 msgstr "Segundo cable del LNB motorizado"
 
-#
+msgid "Secondary DNS (IPv4)"
+msgstr "DNS secundario (IPv4)"
+
+msgid "Secondary DNS (IPv6)"
+msgstr "DNS secundario (IPv6)"
+
 msgid "Seconds"
 msgstr "Segundos"
 
@@ -19096,6 +19365,9 @@ msgstr ""
 msgid "Select the read block buffer size (rsize) mount option. Use 'Automatic' to allow the kernel and server to negotiate the optimal size."
 msgstr "Seleccione la opción de montaje del tamaño del búfer de bloques de lectura (rsize). Use 'Automático' para permitir que el kernel y el servidor negocien el tamaño óptimo."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr "Seleccione la acción del receptor cuando el televisor cambie a una entrada distinta a la del receptor."
+
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr "Seleccione el protocolo de seguridad que se utilizará para acceder a la red inalámbrica seleccionada."
 
@@ -19534,7 +19806,21 @@ msgstr "Canal '%s' ya está definido."
 msgid "Service ID"
 msgstr "ID Canales"
 
-#
+msgid "Service ID (SID)"
+msgstr "Identificador de Servicio (SID)"
+
+msgid "Service Information"
+msgstr "Información de Servicio"
+
+msgid "Service Information Actions"
+msgstr "Acciones de Información del Servicio"
+
+msgid "Service List Appearance"
+msgstr "Apariencia en la Lista de Servicios"
+
+msgid "Service Scan Actions"
+msgstr "Acciones de Búsqueda del Servicio"
+
 msgid "Service Name"
 msgstr "Nombre del canal"
 
@@ -21180,6 +21466,9 @@ msgstr "Seleccionar skin"
 msgid "SkinSelection"
 msgstr "Selección de skin"
 
+msgid "Skip Modes"
+msgstr "Modos de Salto"
+
 #
 msgid "Skins"
 msgstr "Skins"
@@ -21188,7 +21477,7 @@ msgstr "Skins"
 msgid ""
 "Skip Internet connection check (disables automatic package installation)"
 msgstr ""
-"Saltar comprobación de conexión a internet (deshabilita la instalación "
+"Saltar comprobación de conexión a Internet (deshabilita la instalación "
 "automática de paquetes)"
 
 msgid "Skip back"
@@ -21427,6 +21716,9 @@ msgstr "Configuracion de Softcam"
 msgid "Softcam Setup"
 msgstr "Configuración de softcam"
 
+msgid "Software Display Scrolling"
+msgstr "Desplazamiento de Pantalla de Software"
+
 #
 msgid "Software"
 msgstr "Software"
@@ -21618,6 +21910,9 @@ msgstr "Soul/Ritmo y Blues"
 #
 msgid "Sound"
 msgstr "Sonido"
+
+msgid "Sound Enhancements"
+msgstr "Mejoras de Sonido"
 
 msgid "Sound carrier"
 msgstr "Portadora de sonido"
@@ -21843,6 +22138,9 @@ msgstr "El inicio de %s falló (código de salida %s)"
 msgid "Starts in a few seconds"
 msgstr "Iniciar en pocos segundos"
 
+msgid "Startup And Wakeup"
+msgstr "Empezar Y Encender"
+
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
 msgstr "Estado"
@@ -22010,9 +22308,12 @@ msgstr "Almacenamiento/Discos"
 msgid "Storage / Drive information"
 msgstr "Almacenamiento / Información de disco"
 
+msgid "Storage And Deletion"
+msgstr "Almacenamiento Y Eliminación"
+
 #
 msgid "Storage Devices"
-msgstr "Dispositivos de almacenamiento"
+msgstr "Dispositivos de Almacenamiento"
 
 #
 msgid "Store position"
@@ -22119,14 +22420,17 @@ msgstr "Subtítulo"
 
 #
 msgid "Subtitle Actions"
-msgstr "Acciones de subtítulo"
+msgstr "Acciones de Subtítulo"
+
+msgid "Subtitle Language And Selection"
+msgstr "Idioma Y Selección de Subtítulos"
 
 # Subtitle QuickMenu
 msgid "Subtitle Quickmenu"
 msgstr "Menú rápido de subtítulo"
 
 msgid "Subtitle Settings"
-msgstr "Ajustes de subtítulos"
+msgstr "Ajustes de Subtítulos"
 
 msgid "Subtitle alignment"
 msgstr "Alineación de subtítulos"
@@ -22163,10 +22467,10 @@ msgstr "Posición de subtítulos"
 
 #
 msgid "Subtitle Selection"
-msgstr "Selección de subtítulo"
+msgstr "Selección de Subtítulo"
 
 msgid "Open Subtitle options"
-msgstr "Selección de subtítulos…"
+msgstr "Abrir opciones de Subtítulo"
 
 #
 msgid "Subtitles"
@@ -22387,7 +22691,7 @@ msgstr "Sincronizar hora usando"
 
 # Zeitenstellung
 msgid "Synchronize system time using transponder or Internet."
-msgstr "Sincronizar hora de sistema mediante transpondedor o internet."
+msgstr "Sincronizar hora de sistema mediante transpondedor o Internet."
 
 msgid "Synchronous"
 msgstr "Síncrono"
@@ -22474,6 +22778,12 @@ msgstr "SINTONIZADOR:"
 
 msgid "TV"
 msgstr "TV"
+
+msgid "TV Input And Receiver Wakeup"
+msgstr "Entrada de TV Y Activación del Receptor"
+
+msgid "TV Power"
+msgstr "Encender TV"
 
 msgid "TV button mode"
 msgstr "Modo de tecla TV"
@@ -22572,6 +22882,9 @@ msgstr "Inicio X teletexto (borde izquierdo)"
 
 msgid "Teletext StartY (lower border)"
 msgstr "Inicio Y teletexto (borde abajo)"
+
+msgid "Teletext Subtitles"
+msgstr "Subtítulos de Teletexto"
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teletexto TTFBold (0=normal, 1=negrita)"
@@ -22710,7 +23023,7 @@ msgstr ""
 "Pulsa OK para reiniciar el %s %s."
 
 msgid "The %s %s does not have an Internet connection."
-msgstr "El %s %s no tiene conexión a internet."
+msgstr "El %s %s no tiene conexión a Internet."
 
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file.\n\nPress EXIT if you do not want to create it."
 msgstr "El %s %s tiene capacidad limitada de memoria. Se requiere un archivo swap para aumentar la cantidad de memoria disponible, de otra forma el %s %s puede funcionar mal. Selecciona el dispositivo de destino para almacenar el archivo swap.\n\nPulse EXIT si no desea crearlo."
@@ -22778,7 +23091,7 @@ msgid ""
 "your %s %s\n"
 "Details"
 msgstr ""
-"No se puede alcanzar el servidor IceTV. Prueva la conexión a internet de tu "
+"No se puede alcanzar el servidor IceTV. Prueva la conexión a Internet de tu "
 "%s %s\n"
 "Detalles"
 
@@ -23714,6 +24027,12 @@ msgstr "Escala de tiempo"
 msgid "Timeout"
 msgstr "Fuera de tiempo"
 
+msgid "Timer Defaults And Retention"
+msgstr "Valores Predeterminados del Temporizador Y Retención"
+
+msgid "Timer Selection Actions"
+msgstr "Acciones de Selección del Temporizador"
+
 msgid "Timer edit"
 msgstr "Editar temporizador"
 
@@ -23731,11 +24050,11 @@ msgid "Timer log"
 msgstr "Historial de temporizadores"
 
 msgid "Timer Log Actions"
-msgstr "Acciones log del temporizador"
+msgstr "Acciones Log del Temporizador"
 
 #
 msgid "Timer Sanity Error"
-msgstr "Error de temporizador"
+msgstr "Error de Temporizador"
 
 msgid "Timer start window"
 msgstr "Ventana de inicio del temporizador"
@@ -23784,6 +24103,9 @@ msgstr "Timeshift Activo"
 
 msgid "Timezone"
 msgstr "Zona horaria"
+
+msgid "Timing And Diagnostics"
+msgstr "Sincronización Y Diagnóstico"
 
 msgid "Timing and diagnostics"
 msgstr "Sincronización y diagnóstico"
@@ -24041,6 +24363,9 @@ msgstr "Hora del transpondedor"
 msgid "Transport Stream Type"
 msgstr "Tipo de Stream"
 
+msgid "Trash And Deletion"
+msgstr "Papelera Y Eliminación"
+
 msgid "Trashcan"
 msgstr "Papelera"
 
@@ -24143,20 +24468,26 @@ msgstr "Sintonizador "
 msgid "Tuner :"
 msgstr "Sintonizador:"
 
+msgid "Tuner Allocation And Conflicts"
+msgstr "Asignación de Sintonizadores Y Conflictos"
+
+msgid "Tuner And Streaming"
+msgstr "Sintonizadores Y Streaming"
+
 #
 msgid "Tuner Configuration"
-msgstr "Configuración del sintonizador"
+msgstr "Configuración del Sintonizador"
 
 msgid "Tuner Information"
-msgstr "Información de sintonizador"
+msgstr "Información del Sintonizador"
 
 #
 msgid "Tuner Settings"
-msgstr "Ajustes del sintonizador"
+msgstr "Ajustes del Sintonizador"
 
 #
 msgid "Tuner Setup"
-msgstr "Configuración de sintonizador"
+msgstr "Configuración de Sintonizador"
 
 msgid "Tuner data is not available!"
 msgstr "¡Los datos del sintonizador no están disponibles!"
@@ -24330,6 +24661,12 @@ msgstr "USALS"
 msgid "USALS automatically moves a motorized dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "USALS mueve automáticamente una antena motorizada al satélite correcto basado en las coordenadas introducidas por el usuario. Sin USALS se necesitará configurar y guardar individualmente cada satélite."
 
+msgid "USB 2.0 (Back, inner)"
+msgstr "USB 2.0 (Parte trasera, interior)"
+
+msgid "USB 3.0 (Back, outer)"
+msgstr "USB 3.0 (Parte trasera, exterior)"
+
 msgid "U - Suitable for all"
 msgstr "U - Apta para todos"
 
@@ -24377,6 +24714,9 @@ msgstr "Imposible inicializar Multiboot Kexec!"
 #
 msgid "Unattended upgrade without GUI"
 msgstr "Actualización desatendida sin interfaz"
+
+msgid "Unavailable"
+msgstr "Indisponible"
 
 #
 msgid "Undefined"
@@ -25442,7 +25782,10 @@ msgid "Volume Adjust Service Selection Actions"
 msgstr "Acciones de selección de servicio de ajuste de volumen"
 
 msgid "Volume Adjust Settings"
-msgstr "Configuraciones de ajuste de volumen"
+msgstr "Configuraciones de Ajuste de Volumen"
+
+msgid "Volume Control"
+msgstr "Control de Volumen"
 
 msgid "Volume adjustment mode"
 msgstr "Modo de ajuste de volumen"
@@ -25453,8 +25796,8 @@ msgstr "Tiempo visualización volumen"
 msgid "Volume down"
 msgstr "Bajar volumen"
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
-msgstr "Las teclas de volumen del mando a distancia controlarán el volumen de la TV. Si no se soporta esta característica, las teclas de volumen no tendrán ninguna función!"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
+msgstr "Las teclas de volumen del mando a distancia del receptor controlarán el volumen del televisor, el receptor AV o la barra de sonido mediante HDMI-CEC. Si esta función no es compatible, las teclas de volumen no funcionarán."
 
 msgid "Volume steps"
 msgstr "Pasos de volumen"
@@ -26104,7 +26447,7 @@ msgstr ""
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr "Cuando el cursor de entrada alcance este punto (porcentaje del ancho, desde cualquier lado) desplaza el texto hasta el cursor."
 
-msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of standby."
+msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Cuando el receptor encienda del reposo o de reposo profundo, enviará un comando al televisor para que salga del reposo."
 
 msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
@@ -26546,7 +26889,7 @@ msgid ""
 "Your %s %s is not connected to the Internet, please check your network "
 "settings and try again."
 msgstr ""
-"Tu %s %s no está conectado a internet. Comprueba los ajustes de red y vuelve "
+"Tu %s %s no está conectado a Internet. Comprueba los ajustes de red y vuelve "
 "a intentarlo."
 
 #, python-format
@@ -26750,6 +27093,9 @@ msgstr "Zapeo"
 
 msgid "Zap + Exit"
 msgstr "Zapear y salir"
+
+msgid "Zap Timer Settings"
+msgstr "Configuración del Temporizador Zap"
 
 msgid "Zap Up/Down"
 msgstr "Zap arriba/abajo"
@@ -28066,7 +28412,7 @@ msgid "Unpublished"
 msgstr "No publicado"
 
 msgid "Unreachable"
-msgstr "Inalcanzable"
+msgstr "Inaccesible"
 
 msgid "untestable"
 msgstr "incomprobable"
@@ -29221,7 +29567,7 @@ msgid "Limited memory size, swap file required"
 msgstr "Tamaño memoria limitada, archivo swap requerido"
 
 msgid "No Internet connection"
-msgstr "Sin conexión a internet"
+msgstr "Sin conexión a Internet"
 
 msgid "No Name"
 msgstr "Sin nombre"
@@ -29421,10 +29767,10 @@ msgstr ""
 
 #, python-format
 msgid "Your Internet connection is working (IP: %s)"
-msgstr "Tu conexión a internet está funcionando (IP : %s)"
+msgstr "Tu conexión a Internet está funcionando (IP : %s)"
 
 msgid "Your receiver does not have an Internet connection"
-msgstr "Tu receptor no tiene conexión a internet"
+msgstr "Tu receptor no tiene conexión a Internet"
 
 msgid "inactive"
 msgstr "inactivo"
