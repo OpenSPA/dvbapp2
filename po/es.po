@@ -3198,22 +3198,31 @@ msgid "BSSID"
 msgstr "BSSID"
 
 msgid "Back USB"
-msgstr "USB posterior"
+msgstr "USB trasero"
 
 msgid "Back USB 3.0"
 msgstr "USB 3.0 trasero"
 
+msgid "Back USB-C"
+msgstr "USB-C trasero"
+
 msgid "Back, inner USB"
-msgstr "Posterior, USB interno"
+msgstr "USB interno trasero"
+
+msgid "Back, left USB"
+msgstr "USB izquierdo trasero"
 
 msgid "Back, lower USB"
-msgstr "Trasero, USB inferior"
+msgstr "USB inferior trasero"
 
 msgid "Back, outer USB"
-msgstr "Posterior, USB externo"
+msgstr "USB externo trasero"
+
+msgid "Back, right USB"
+msgstr "USB derecho trasero"
 
 msgid "Back, upper USB"
-msgstr "Trasero, USB superior"
+msgstr "USB trasero superior"
 
 msgid "Back/Recall"
 msgstr "Volver/Recuperar"
@@ -11537,6 +11546,9 @@ msgstr "Interno"
 msgid "Internal Flash"
 msgstr "Flash interna"
 
+msgid "Internal SSD"
+msgstr "SSD interno"
+
 msgid "Internal USB"
 msgstr "USB interno"
 
@@ -12095,7 +12107,7 @@ msgid "Left"
 msgstr "Izquierda"
 
 msgid "Left USB"
-msgstr "USB Izquierdo"
+msgstr "USB izquierdo"
 
 msgid "Left column"
 msgstr "Columna izquierda"
@@ -12110,10 +12122,10 @@ msgid "Left of service name"
 msgstr "A la izquierda del nombre de canal"
 
 msgid "Left, back USB"
-msgstr "Izquierdo, USB frontal"
+msgstr "USB izquierdo trasero"
 
 msgid "Left, front USB"
-msgstr "Izquierdo, parte trasera USB"
+msgstr "USB izquierdo frontal"
 
 msgid "Left, wrapped"
 msgstr "Izquierda, envuelto"
@@ -17403,6 +17415,9 @@ msgstr "Remarcar subtítulos"
 msgid "Right"
 msgstr "Derecha"
 
+msgid "Right USB"
+msgstr "USB derecho"
+
 msgid "Right column"
 msgstr "Columna derecha"
 
@@ -17417,10 +17432,10 @@ msgid "Right of service name"
 msgstr "A la derecha del nombre de canal"
 
 msgid "Right, back USB"
-msgstr "Derecho, USB trasero"
+msgstr "USB derecho trasero"
 
 msgid "Right, front USB"
-msgstr "Derecho, USB frontal"
+msgstr "USB derecho frontal"
 
 msgid "Right, wrapped"
 msgstr "Derecha, envuelto"
@@ -17541,6 +17556,12 @@ msgstr "Entrada SAT"
 
 msgid "SATA"
 msgstr "SATA"
+
+msgid "SATA BACK"
+msgstr "SATA TRASERO"
+
+msgid "SATA FRONT"
+msgstr "SATA FRONTAL"
 
 msgid "SATPI"
 msgstr "SATPI"
@@ -28617,7 +28638,7 @@ msgid "You're watching..."
 msgstr "Estás viendo..."
 
 msgid "Playback Time:"
-msgstr "Tiempo de reproducción:"
+msgstr "Tiempo de Reproducción:"
 
 msgid ""
 "Used: %s\n"
