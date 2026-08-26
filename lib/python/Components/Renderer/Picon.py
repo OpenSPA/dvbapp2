@@ -2,16 +2,13 @@ from os import listdir
 from os.path import exists, getmtime, getsize, isdir, join
 from re import sub
 from enigma import ePixmap, eServiceReference, iServiceInformation  # , ePicLoad
-from Components.config import config
+from Components.config import config, ConfigText, ConfigYesNo
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
 import NavigationInstance
 from ServiceReference import ServiceReference
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
-from Components.Harddisk import harddiskmanager
-from ServiceReference import ServiceReference
-from Components.config import config, ConfigText, ConfigYesNo
 
 config.misc.picon_path = ConfigText(default = "/usr/share/enigma2/picon/")
 config.misc.picon_search_hdd = ConfigYesNo (default = False)

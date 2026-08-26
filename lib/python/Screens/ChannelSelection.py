@@ -109,18 +109,6 @@ multibouquet_radio_ref.setPath("FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet
 
 singlebouquet_radio_ref = serviceRefAppendPath(service_types_radio_ref, " FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet")
 
-def getStreamRelayRef(sref):
-	try:
-		if "http" in sref:
-			icamport = config.misc.softcam_streamrelay_port.value
-			icamip = ".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)
-			icam = f"http%3a//{icamip}%3a{icamport}/"
-			if icam in sref:
-				return sref.split(icam)[1].split(":")[0].replace("%3a", ":"), True
-	except Exception:
-		pass
-	return sref, False
-
 # Configuration for last service:
 config.tv = ConfigSubsection()
 config.tv.lastservice = ConfigText()

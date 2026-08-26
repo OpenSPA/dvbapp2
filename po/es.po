@@ -967,6 +967,9 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d se ha actualizado el paquete del repositorio."
 msgstr[1] "%d se han actualizado los paquetes del repositorio."
 
+msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
+msgstr "%d feeds están en satélites no disponibles, %d usa transportes no admitidos y %d están deshabilitados"
+
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "Se encontró el host %d."
@@ -999,6 +1002,9 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d red encontrada."
 msgstr[1] "%d redes encontradas."
+
+msgid "%d of %d feeds completed; failed feed bouquets were kept"
+msgstr "%d de %d feeds completados; Se mantuvieron los bouquets de alimentación fallidos."
 
 #, python-format
 msgid "%d package found."
@@ -1083,6 +1089,9 @@ msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
 msgstr[0] "%d paquete fue actualizado."
 msgstr[1] "%d paquetes fueron actualizados."
+
+msgid "%d radio bouquets created"
+msgstr "%d bouquets de radio creados"
 
 #, python-format
 msgid "%d sec"
@@ -1219,6 +1228,9 @@ msgstr "Hay actualizaciones disponibles del software de tu %s %s."
 msgid "%s %sB"
 msgstr "%s %sB"
 
+msgid "%s - PID 0x%04X - %s"
+msgstr "%s - PID 0x%04X - %s"
+
 #, python-format
 msgid "%s - Setup"
 msgstr "%s - Configuración"
@@ -1311,6 +1323,10 @@ msgstr "%s%s(Por defecto: %s)"
 #, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
+
+#, python-format
+msgid "%s: bouquet could not be written"
+msgstr "%s: no se pudo escribir el bouquet"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1716,6 +1732,9 @@ msgstr "<no se han encontrado logs>"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A DAB+ scan cannot run while a recording is in progress."
+msgstr "No se puede realizar una búsqueda DAB+ mientras hay una grabación en curso."
 
 msgid "A backup is now being created."
 msgstr "Se está creando una copia de seguridad."
@@ -6207,6 +6226,12 @@ msgstr "República Checa"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ Scan"
+msgstr "Búsqueda DAB+"
+
+msgid "DAB+ scan failed; existing bouquets were kept."
+msgstr "Error en la búsqueda DAB+; Se mantuvieron los bouquets existentes."
+
 msgid "DAC"
 msgstr "DAC"
 
@@ -6326,17 +6351,12 @@ msgstr "Navegador de archivos DVD"
 msgid "DVD Menu"
 msgstr "Menú del DVD"
 
-#
-msgid "DVD Title list"
-msgstr "Lista de títulos de DVD"
-
-#
 msgid "DVD Player"
 msgstr "Reproductor de DVD"
 
 #
-msgid "DVDPlayer"
-msgstr "Reproductor de DVD"
+msgid "DVD Title list"
+msgstr "Lista de títulos de DVD"
 
 msgid "Daily"
 msgstr "Diario"
@@ -11585,8 +11605,21 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Inválido"
 
+msgid "Invalid DAB feed file root element"
+msgstr "Elemento raíz del archivo de alimentación DAB no válido"
+
+#, python-format
+msgid "Invalid bouquet file name '%s'"
+msgstr "Nombre de archivo de bouquet no válido '%s'"
+
 msgid "Invalid location!"
 msgstr "¡Ubicación incorrecta!"
+
+msgid "Invalid multicast port"
+msgstr "Puerto de multidifusión no válido"
+
+msgid "Invalid orbital position"
+msgstr "Posición orbital no válida"
 
 msgid "Invalid transponder data"
 msgstr "Datos de transpondedor inválidos"
@@ -12950,6 +12983,13 @@ msgstr ""
 "sintonizador %s!\n"
 "La opción \"conectado a\" del sintonizador %s ahora está deshabilitada"
 
+#, python-format
+msgid "Missing attribute '%s'"
+msgstr "Falta el atributo '%s'"
+
+msgid "Missing multicast address"
+msgstr "Falta dirección de multidifusión"
+
 msgid "Mobile connection"
 msgstr "Conexión móvil"
 
@@ -14102,6 +14142,9 @@ msgstr "No se han encontrado ubicaciones de respaldo adecuadas!"
 msgid "No suitable sat tuner found!"
 msgstr "No se encontró ningún sintonizador de satélite adecuado!"
 
+msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
+msgstr "No hay feeds DAB+ compatibles disponibles para las posiciones de los satélites configuradas en este receptor."
+
 #
 msgid "No tags are set on these movies."
 msgstr "No hay etiquetas en estas películas."
@@ -14155,6 +14198,9 @@ msgstr "No es necesario actualizar!"
 
 msgid "No updates available."
 msgstr "No hay actualizaciones disponibles."
+
+msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
+msgstr "No hay canales DAB+ válidos configurados. Consulte /etc/enigma2/dab.xml."
 
 msgid "No updates were available.  Please try again later."
 msgstr ""
@@ -15094,6 +15140,10 @@ msgstr "Particiones"
 
 msgid "Pass"
 msgstr "Paso"
+
+#, python-format
+msgid "Pass %d/%d"
+msgstr "Paso %d/%d"
 
 msgid "Pass-through"
 msgstr "Pass-through"
@@ -17928,6 +17978,16 @@ msgstr "Busca extensiones locales y las instala."
 msgid "Scanning %s..."
 msgstr "Buscando %s..."
 
+msgid "Scanning DAB+ feed; waiting for live FIC data..."
+msgstr "Búsqueda de feed DAB+; esperando datos FIC en vivo..."
+
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr "No se puede realizar la búsqueda mientras las grabaciones están en curso."
+
+#, python-format
+msgid "Scanning completed, %d DAB+ services found."
+msgstr "Escaneo completado, %d canales DAB+ encontrados."
+
 #, python-format
 msgid "Scanning: %d%% complete"
 msgid_plural "Scanning: %d%% complete"
@@ -17953,6 +18013,10 @@ msgstr "Buscando acciones..."
 
 msgid "Scanning..."
 msgstr "Buscando..."
+
+#, python-format
+msgid "Scanning: %d services found; validating live result (%d/%d)..."
+msgstr "Búscando: %d canales encontrados; validando resultado en vivo (%d/%d)..."
 
 #
 msgid ""
@@ -19981,8 +20045,8 @@ msgid ""
 "Services may be grouped in bouquets. When enabled, you can use more than one "
 "bouquet."
 msgstr ""
-"Los servicios pueden agruparse en ramos. Cuando está activado, puede "
-"utilizar más de un ramo."
+"Los servicios pueden agruparse en bouquets. Cuando está activado, puede "
+"utilizar más de un bouquet."
 
 msgid "Set Base Time"
 msgstr "Establece hora base"
@@ -22155,6 +22219,9 @@ msgstr "Hora de inicio"
 msgid "Starting %s failed (exit code %s)"
 msgstr "El inicio de %s falló (código de salida %s)"
 
+msgid "Starting DAB+ scan..."
+msgstr "Iniciando búsqueda DAB+ ..."
+
 # MovieSelection.py
 msgid "Starts in a few seconds"
 msgstr "Iniciar en pocos segundos"
@@ -24048,6 +24115,9 @@ msgstr "Escala de tiempo"
 msgid "Timeout"
 msgstr "Fuera de tiempo"
 
+msgid "Timeout waiting for FIC service data"
+msgstr "Tiempo de espera de espera de datos del servicio FIC"
+
 msgid "Timer Defaults And Retention"
 msgstr "Valores Predeterminados del Temporizador Y Retención"
 
@@ -24732,6 +24802,9 @@ msgstr "Ucraniano"
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"
 
+msgid "Unable to start the DAB+ feed"
+msgstr "No se puede iniciar el feed DAB+"
+
 #
 msgid "Unattended upgrade without GUI"
 msgstr "Actualización desatendida sin interfaz"
@@ -24820,6 +24893,9 @@ msgstr "Canal desconocido"
 #
 msgid "Unknown error code"
 msgstr "Código de error desconocido"
+
+msgid "Unknown feed"
+msgstr "Feed desconocido"
 
 #, python-format
 msgid "Unknown group: %d"
