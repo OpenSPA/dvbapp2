@@ -5800,7 +5800,7 @@ msgid "DVD Title list"
 msgstr ""
 
 #, fuzzy
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "hide player"
 
 #, fuzzy

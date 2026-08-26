@@ -5778,7 +5778,7 @@ msgid "DVD Title list"
 msgstr ""
 
 #
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "Reprodutor de DVD"
 
 #

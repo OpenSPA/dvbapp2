@@ -5803,7 +5803,7 @@ msgid "DVD Title list"
 msgstr "DVD-titellista"
 
 #
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD-spelare"
 
 #

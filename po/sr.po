@@ -5590,7 +5590,7 @@ msgstr "DVD Meni"
 msgid "DVD Title list"
 msgstr "DVD lista Naslova"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD plejer"
 
 msgid "DVDPlayer"

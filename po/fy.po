@@ -5982,7 +5982,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "spieler ferbergje"
 
 #

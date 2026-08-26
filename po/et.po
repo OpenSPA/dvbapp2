@@ -5629,7 +5629,7 @@ msgstr "DVD menüü"
 msgid "DVD Title list"
 msgstr "DVD nimekiri"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD-mängija"
 
 msgid "DVDPlayer"

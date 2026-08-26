@@ -5552,8 +5552,8 @@ msgstr "Menyja DVD"
 msgid "DVD Title list"
 msgstr "Lista e titujve të DVD-së"
 
-msgid "DVD player"
-msgstr "DVD player"
+msgid "DVD Player"
+msgstr "DVD Player"
 
 msgid "DVDPlayer"
 msgstr "DVDPlayer"
