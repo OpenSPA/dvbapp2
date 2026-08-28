@@ -967,9 +967,6 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d se ha actualizado el paquete del repositorio."
 msgstr[1] "%d se han actualizado los paquetes del repositorio."
 
-msgid "%d feeds are on unavailable satellites, %d use unsupported transports and %d are disabled"
-msgstr "%d feeds están en satélites no disponibles, %d usa transportes no admitidos y %d están deshabilitados"
-
 msgid "%d host found."
 msgid_plural "%d hosts found."
 msgstr[0] "Se encontró el host %d."
@@ -1004,7 +1001,7 @@ msgstr[0] "%d red encontrada."
 msgstr[1] "%d redes encontradas."
 
 msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "%d de %d feeds completados; Se mantuvieron los bouquets de alimentación fallidos."
+msgstr "%d de %d feeds completados; Se mantuvieron los bouquets de alimentación fallidos"
 
 #, python-format
 msgid "%d package found."
@@ -3140,6 +3137,9 @@ msgstr "Autoinicio"
 
 msgid "Autostart:"
 msgstr "Autoinicio:"
+
+msgid "Available"
+msgstr "Disponible"
 
 #
 msgid "Available format variables"
@@ -11605,21 +11605,8 @@ msgstr "Inupiaq"
 msgid "Invalid"
 msgstr "Inválido"
 
-msgid "Invalid DAB feed file root element"
-msgstr "Elemento raíz del archivo de alimentación DAB no válido"
-
-#, python-format
-msgid "Invalid bouquet file name '%s'"
-msgstr "Nombre de archivo de bouquet no válido '%s'"
-
 msgid "Invalid location!"
 msgstr "¡Ubicación incorrecta!"
-
-msgid "Invalid multicast port"
-msgstr "Puerto de multidifusión no válido"
-
-msgid "Invalid orbital position"
-msgstr "Posición orbital no válida"
 
 msgid "Invalid transponder data"
 msgstr "Datos de transpondedor inválidos"
@@ -12982,13 +12969,6 @@ msgstr ""
 "¡Conexión unicable mal configurada desde el sintonizador %s hasta el "
 "sintonizador %s!\n"
 "La opción \"conectado a\" del sintonizador %s ahora está deshabilitada"
-
-#, python-format
-msgid "Missing attribute '%s'"
-msgstr "Falta el atributo '%s'"
-
-msgid "Missing multicast address"
-msgstr "Falta dirección de multidifusión"
 
 msgid "Mobile connection"
 msgstr "Conexión móvil"
@@ -17715,12 +17695,6 @@ msgstr "San Pedro y Miquelón"
 
 msgid "Saint Vincent and the Grenadines"
 msgstr "San Vicente y las Granadinas"
-
-msgid "Samba Client"
-msgstr "Cliente Samba"
-
-msgid "Samba Server"
-msgstr "Servidor Samba"
 
 msgid "Samba Server Settings"
 msgstr "Configuración del servidor Samba"
@@ -24894,9 +24868,6 @@ msgstr "Canal desconocido"
 msgid "Unknown error code"
 msgstr "Código de error desconocido"
 
-msgid "Unknown feed"
-msgstr "Feed desconocido"
-
 #, python-format
 msgid "Unknown group: %d"
 msgstr "Grupo desconocido: %d"
@@ -27269,9 +27240,6 @@ msgstr "Zapear+Grabar siguiente"
 msgid "ZeroTier Actions"
 msgstr "Acciones de ZeroTier"
 
-msgid "ZeroTier-One"
-msgstr "ZeroTier-One"
-
 msgid "ZeroTier Settings"
 msgstr "Ajustes de ZeroTier"
 
@@ -27456,9 +27424,6 @@ msgstr "Automático"
 
 msgid "AutoTimer was installed successfully."
 msgstr "AutoTimer se instaló exitosamente."
-
-msgid "Available"
-msgstr "Disponible"
 
 msgid "back"
 msgstr "Atrás"
