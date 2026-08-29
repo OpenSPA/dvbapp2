@@ -1001,7 +1001,7 @@ msgstr[0] "%d red encontrada."
 msgstr[1] "%d redes encontradas."
 
 msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "%d de %d feeds completados; Se mantuvieron los bouquets de alimentación fallidos"
+msgstr "%d de %d feeds completados; Se mantuvieron los bouquets de feed fallido"
 
 #, python-format
 msgid "%d package found."
@@ -6248,7 +6248,7 @@ msgid "DMM normal"
 msgstr "DMM normal"
 
 msgid "DNS override"
-msgstr "Anulación de DNS"
+msgstr "DNS personalizadas"
 
 msgid "DNS Settings"
 msgstr "Configuración DNS"
@@ -26355,7 +26355,7 @@ msgid "When enabled, show status or error messages."
 msgstr "Cuando está activado, mostrar mensajes de estado o error."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
-msgstr "Cuando esté habilitada, especifique la configuración DNS personalizada para este adaptador en lugar de utilizar la configuración DNS global."
+msgstr "Cuando esté habilitada, especifique la configuración de DNS personalizadas para este adaptador en lugar de utilizar la configuración DNS global."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Cuando está activado, pueden usarse subtítulos para sordos."
@@ -27673,10 +27673,10 @@ msgid "Equestrian"
 msgstr "Ecuestre"
 
 msgid "error starting scanning"
-msgstr "Error iniciando la exploración"
+msgstr "Error iniciando la búsqueda"
 
 msgid "error while scanning"
-msgstr "Error durante la exploración"
+msgstr "Error durante la búsqueda"
 
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Ejecutar cortes (requiere MovieCut plugin)"
@@ -27994,7 +27994,7 @@ msgid "no CI slots found"
 msgstr "No se han encontrado slots CI"
 
 msgid "no channel list"
-msgstr "No hay lista de canales"
+msgstr "no hay lista de canales"
 
 #
 msgid "no module found"
