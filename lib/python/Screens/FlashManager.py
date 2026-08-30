@@ -20,26 +20,14 @@ from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
 from Screens.MessageBox import MessageBox
 from Screens.MultiBootManager import MultiBootManager
 from Screens.Screen import Screen
-from Tools.Downloader import DownloadWithProgress
+from Tools.Downloader import DownloadWithProgress, USER_AGENTS
 from Tools.MultiBoot import MultiBoot
 
 OFGWRITE = "/usr/bin/ofgwrite"
 
 FEED_DISTRIBUTION = 0
 FEED_JSON_URL = 1
-FEED_URLS = [
-	("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s" % BoxInfo.getItem("BoxName")),
-	("openATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName")),
-	("OpenBH", "https://images.openbh.net/json/%s" % BoxInfo.getItem("model")),
-	("OpenPLi", "http://downloads.openpli.org/json/%s" % BoxInfo.getItem("model")),
-	("OpenViX", "https://www.openvix.co.uk/json/%s" % BoxInfo.getItem("machinebuild")),
-	("OpenHDF", "https://flash.hdfreaks.cc/openhdf/json/%s" % BoxInfo.getItem("machinebuild")),
-	("Open8eIGHT", "http://openeight.de/json/%s" % BoxInfo.getItem("machinebuild")),
-	("OpenDROID", "https://opendroid.org/json/%s" % BoxInfo.getItem("machinebuild")),
-	("TeamBlue", "https://images.teamblue.tech/json/%s" % BoxInfo.getItem("machinebuild")),
-	("EGAMI", "https://image.egami-image.com/json/%s" % BoxInfo.getItem("machinebuild"))
-]
-USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"}
+USER_AGENT = {"User-Agent": USER_AGENTS.CHROME}
 
 def checkImageFiles(files):
 	return sum(f.endswith((".nfi", ".tar.xz")) for f in files) == 1 or sum(("kernel" in f and f.endswith(".bin")) or f in {"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.ubi", "rootfs.bin", "rootfs.tar.bz2", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"} for f in files) >= 2
@@ -104,7 +92,7 @@ class FlashManager(Screen):
 		self["key_blue"] = StaticText()
 		self["description"] = StaticText()
 		self["list"] = ChoiceList(list=[ChoiceEntryComponent("", ((_("Retrieving image list, please wait...")), "Loading"))])
-		self.feedUrls = FEED_URLS
+		self.feedUrls = USER_AGENT
 		#[("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s" % BoxInfo.getItem("BoxName"))]
 		self.callLater(self.getImagesList)
 
@@ -253,7 +241,7 @@ class FlashManager(Screen):
 	def keyDistribution(self):
 		distributionList = []
 		default = 0
-		for index, feed in enumerate(FEED_URLS):
+		for index, feed in enumerate(USER_AGENT):
 			distribution = feed[FEED_DISTRIBUTION]
 			distributionList.append((distribution, distribution))
 			if distribution == self.imageFeed:
@@ -688,9 +676,15 @@ class FlashImage(Screen):
 	######################################################################
 
 	def downloadProgress(self, current, total):
-		self["progress"].setValue(100 * current // total)
-		self.progressCounter = int(100 * current / total)
-		self["progress_counter"].setText(str(self.progressCounter) + " %")
+		if total > 0:  # total is -1 while the download size is still unknown
+			self["progress"].setValue(100 * current // total)
+			self.progressCounter = int(100 * current / total)
+			self["progress_counter"].setText(str(self.progressCounter) + " %")
+			""" ATV
+			eta = self.downloader.getEta()
+			eta = f" / {eta}s" if eta > 0 else ""
+			self["info"].setText(f"{self.imageName}{eta}")
+			"""
 
 	def downloadEnd(self, filename=None):
 		self.downloader.stop()
@@ -698,7 +692,7 @@ class FlashImage(Screen):
 
 	def downloadError(self, error):
 		self.downloader.stop()
-		self.session.openWithCallback(self.keyCancel, MessageBox, "%s\n\n%s" % (_("Error downloading image '%s'!") % self.imageName, error.strerror), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+		self.session.openWithCallback(self.keyCancel, MessageBox, "%s\n\n%s" % (_("Error downloading image '%s'!") % self.imageName, error), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def unzip(self):
 		self["header"].setText(_("Unzipping Image"))
