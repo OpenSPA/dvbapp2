@@ -2126,7 +2126,7 @@ msgid "Add Marker To Bouquet"
 msgstr "Añadir marcador a lista"
 
 msgid "Add Mount Manually"
-msgstr "Agregar soporte manualmente"
+msgstr "Añadir soporte manualmente"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Añadir nueva entrada de canal quad"
@@ -2215,7 +2215,7 @@ msgstr "Añadir archivos a la lista de reproducción"
 
 #
 msgid "Add highlighted directory to bookmarks"
-msgstr "Agregar carpeta seleccionada a los marcadores"
+msgstr "Añadir carpeta seleccionada a los marcadores"
 
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Añadir acciones heredadas IZQUIERDA/DERECHA"
@@ -2290,7 +2290,7 @@ msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Añadir/Quitar el plugin seleccionado en/de la lista de actualización"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr "Agregar o quitar el canal actual a la lista de desplazamiento de volumen"
+msgstr "Añadir o quitar el canal actual a la lista de desplazamiento de volumen"
 
 msgid "Adding schedule..."
 msgstr "Añadiendo calendario..."
@@ -7522,7 +7522,7 @@ msgid "Do you want change '%s' access mode?"
 msgstr "Quieres cambiar el modo de acceso '%s'?"
 
 msgid "Do you want to add any additional information ?"
-msgstr "¿Desea agregar información adicional?"
+msgstr "¿Desea añadir información adicional?"
 
 msgid ""
 "Do you want to also install samba client ?\n"
@@ -8297,22 +8297,22 @@ msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Habilitar las opciones de ajuste avanzadas de HDMI-CEC."
 
 msgid "Enable this option to add bouquet database information to the debug log file."
-msgstr "Habilite esta opción para agregar información de la base de datos del bouquet al archivo debug."
+msgstr "Habilite esta opción para añadir información de la base de datos del bouquet al archivo debug."
 
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr "Active esta opción para añadir la información de MultiBoot detectada durante el arranque del sistema al archivo de registro de depuración."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
-msgstr "Habilitar esta opción para agregar datos de mapeo de mapa de acción / control remoto al archivo de registro de depuración."
+msgstr "Habilitar esta opción para añadir datos de mapeo de mapa de acción / control remoto al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB details to the debug log file."
-msgstr "Habilite esta opción para agregar detalles DVB adicionales al archivo de registro de depuración."
+msgstr "Habilite esta opción para añadir detalles DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr "Habilite esta opción para añadir datos de escaneo DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB time sync data to the debug log file."
-msgstr "Habilite esta opción para agregar datos de sincronización de tiempo DVB adicionales al archivo de registro de depuración."
+msgstr "Habilite esta opción para añadir datos de sincronización de tiempo DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Activa esta opción para añadir datos extra de la EPG al archivo de registro de depuración."
@@ -8324,7 +8324,7 @@ msgid "Enable this option to add keyboard key map data to the debug log file."
 msgstr "Habilitar esta opción para añadir los datos del mapeo del teclado al archivo del log de depuración."
 
 msgid "Enable this option to add network information to the debug log file."
-msgstr "Habilite esta opción para agregar información de red al archivo de registro de depuración."
+msgstr "Habilite esta opción para añadir información de red al archivo de registro de depuración."
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Habilitar esta opción para añadir los datos de salida de opkg al archivo de registro de depuración."
@@ -8335,8 +8335,11 @@ msgstr "Habilitar esta opción para añadir los datos del control remoto al arch
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Habilita esta opción para añadir los nombres de las pantallas y los datos de resolución al archivo de registro de depuración."
 
+msgid "Enable this option to add seek/time shift debugging data to the debug log file."
+msgstr "Habilite esta opción para añadir datos de depuración de búsqueda/desplazamiento temporal al archivo de registro de depuración."
+
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
-msgstr "Habilite esta opción para agregar información del dispositivo de almacenamiento detectado durante el arranque del sistema y eventos de conexión en caliente al archivo de registro de depuración."
+msgstr "Habilite esta opción para añadir información del dispositivo de almacenamiento detectado durante el arranque del sistema y eventos de conexión en caliente al archivo de registro de depuración."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Activa esta opción para añadir los datos de depuración del temporizador al archivo de registro de depuración."
@@ -11257,6 +11260,9 @@ msgstr "Incluir los datos del mando a distancia"
 
 msgid "Include screen load data"
 msgstr "Incluir datos de carga de la pantalla"
+
+msgid "Include seek data"
+msgstr "Incluir datos de búsqueda"
 
 msgid "Include storage device data"
 msgstr "Incluir datos del dispositivo de almacenamiento"
@@ -19804,6 +19810,9 @@ msgstr "Enviar DISEqC sólo en cambio de satélite"
 msgid "Senegal"
 msgstr "Senegal"
 
+msgid "Sensibility skips"
+msgstr "La salta la sensibilidad"
+
 #
 msgid "Seperate titles with a main menu"
 msgstr "Separar títulos con un menú principal"
@@ -20095,17 +20104,14 @@ msgstr "Establezca el intervalo de tiempo de omisión del plugin CutList para lo
 msgid "Set the hostname or IP address."
 msgstr "Establezca el nombre de host o la dirección IP."
 
-msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr "Establezca el porcentaje de omisión del botón IZQUIERDO/DERECHO para la barra de búsqueda."
-
 msgid "Set the skip time interval for the '%s' button."
 msgstr "Establezca el intervalo de tiempo de salto para el botón '%s'."
 
+msgid "Set the skip time interval for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Establece el intervalo de tiempo de salto para el botón '%s'. Los números positivos avanzan, los negativos retroceden."
+
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr "Establezca el intervalo de tiempo de salto para los botones '%s'/'%s'."
-
-msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr "Establezca el porcentaje de omisión del botón ARRIBA/ABAJO para la barra de búsqueda."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr "Configura el ID de usuario del OpenWebif del sintonizador reserva."
@@ -20201,6 +20207,9 @@ msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Configura la velocidad de desplazamiento de texto en el LCD."
+
+msgid "Set the skip percentage for the '%s' button. Positive numbers skip forward, negative numbers skip backward."
+msgstr "Establece el porcentaje de salto para el botón '%s'. Los números positivos permiten avanzar, los negativos permiten retroceder."
 
 msgid "Set the style of the channel list."
 msgstr "Establece el estilo de la lista de canales."
@@ -20434,7 +20443,7 @@ msgid "Select if data entry timeouts are to be applied when entering digits into
 msgstr "Seleccione si se aplicarán tiempos de espera al introducir dígitos en la pantalla emergente de selección de canal. Al exceder un tiempo de espera, se utilizará el número introducido para la selección. Los tiempos de espera predeterminados son 3 segundos para el primer dígito y 1 segundo para los demás."
 
 msgid "Select if file locking is available. Select 'No' to add 'nolock' to the settings which is most compatible with older/simple NFS servers."
-msgstr "Seleccione si el bloqueo de archivos está disponible. Seleccione 'No' para agregar 'nolock' a la configuración, que es la más compatible con servidores NFS más antiguos o sencillos."
+msgstr "Seleccione si el bloqueo de archivos está disponible. Seleccione 'No' para añadir 'nolock' a la configuración, que es la más compatible con servidores NFS más antiguos o sencillos."
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Configura cada sintonizador de tu receptor"
@@ -24775,6 +24784,9 @@ msgstr "Ucraniano"
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"
+
+msgid "Unable to register the DAB+ transponder"
+msgstr "No se pudo registrar el transpondedor DAB+"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "No se puede iniciar el feed DAB+"
@@ -29741,14 +29753,11 @@ msgid "Skip package installation, only core packages will be available"
 msgstr ""
 "Omitir instalación de paquetes, solo paquetes básicos (sin servicio FTP)"
 
-msgid "Skip sensibility (Horizontal)"
-msgstr "Sensibilidad de salto (Horizontal)"
-
-msgid "Skip sensibility (Vertical)"
+msgid "Skip sensibility for '%s' button"
 msgstr "Sensibilidad de salto (Vertical)"
 
 msgid "Skip time for '%s' button"
-msgstr "Saltar tiempo para el botón '%s'"
+msgstr "Omitir sensibilidad para el botón '%s'"
 
 msgid "Skip time for '%s'/'%s' buttons"
 msgstr "Omitir tiempo para los botones '%s'/'%s'"
