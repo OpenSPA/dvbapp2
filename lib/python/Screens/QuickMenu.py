@@ -218,7 +218,7 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qmount(self):
 		self.sublist = []
 		self.subList.append(self.quickSubMenuEntryComponent(_("Network Mounts Overview"), _("Manage network mounts"), _("Setup your network mounts"), screen="NetworkMounts", screenName="NetworkMountsOverview"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), screen="NetworkMounts", screenName="NetworkShares"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), callback=self.openNetworkShares))
 		self.sublist.append(QuickSubMenuEntryComponent("Device Manager", _("Mounts Devices"), _("Setup your Device mounts (USB, HDD, others...)")))
 		self["sublist"].setList(self.sublist)
 
@@ -529,6 +529,14 @@ class QuickMenu(Screen, ProtectedScreen):
 		else:
 			from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 			self.session.open(ImageBackup)
+
+
+	def openNetworkShares(self):
+		from Screens.NetworkMounts import NetworkMountsOverview
+		self.session.open(NetworkMountsOverview, openBrowser=True)
+
+	def openSetup(self, key):
+		self.session.open(Setup, key)
 
 
 # ####### Create MENULIST format #######################
