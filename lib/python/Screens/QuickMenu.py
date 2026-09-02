@@ -535,9 +535,6 @@ class QuickMenu(Screen, ProtectedScreen):
 		from Screens.NetworkMounts import NetworkMountsOverview
 		self.session.open(NetworkMountsOverview, openBrowser=True)
 
-	def openSetup(self, key):
-		self.session.open(Setup, key)
-
 
 # ####### Create MENULIST format #######################
 def QuickMenuEntryComponent(name, description, long_description=None, width=540):
