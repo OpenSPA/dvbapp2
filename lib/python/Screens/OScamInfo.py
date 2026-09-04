@@ -34,6 +34,7 @@ from Tools.ServiceAction import ServiceAction
 
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-1]
+stopncam = False
 
 
 def isLoopback(host):
@@ -428,17 +429,19 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self._fetchInProgress = False
 
 	def updateKeyLabels(self):
+		global stopncam
 		if self.lastWebifOk:
 			self["key_red"].setText(_("Shutdown %s") % self.camName)
 			self["key_green"].setText(_("Restart %s") % self.camName)
 		elif self.isLocal:
-			self["key_red"].setText("" if not self._getSoftcam() else _("Shutdown %s") % self.camName)
+			self["key_red"].setText("" if not self._getSoftcam() or stopncam else _("Shutdown %s") % self.camName)
 			self["key_green"].setText(_("Start %s") % self.camName if not self._getSoftcam() else _("Restart %s") % self.camName)
 		else:
 			self["key_green"].setText("")
 
 	def _updateMainUI(self, webifok, api, url, signstatus, result):
 		"""Update main UI"""
+		global stopncam
 		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 		if currtime and self._getSoftcam() and not url:
@@ -521,7 +524,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["buildinfos"].setText(url)
 			errtext = result.decode("UTF-8", "ignore")
 			if self.isLocal:
-				self["extrainfos"].setText(f"{self.camName} {_("is currently stopped. Press GREEN button to start it.")}" if not self._getSoftcam() else f"{_("Error to read data from")} {getSysSoftcam().replace("+", "")}.conf. {_("Press MENU and configue.")}")
+				self["extrainfos"].setText(f"{self.camName} {_("is currently stopped. Press GREEN button to start it.")}" if not self._getSoftcam() or stopncam else f"{_("Error to read data from")} {getSysSoftcam().replace("+", "")}.conf. {_("Press MENU and configue.")}")
 			else:
 				self["extrainfos"].setText(_("Unexpected error accessing WebIF: %s") % errtext)
 			self["timerinfos"].setText(currtime)  # set at least one element just for having the attribute 'activeComponents'
@@ -572,11 +575,16 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.session.openWithCallback(self.menuCallback, OSCamInfoSetup)
 
 	def keyShutdown(self):
+		global stopncam
 		if not self.lastWebifOk:
 			return
+		if "ncam" in getSysSoftcam():
+			stopncam = True
 		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down %s?\nTo reactivate %s press GREEN button.") % (self.camName, self.camName), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyRestart(self):
+		global stopncam
+		stopncam = False
 		if not self.lastWebifOk and not self.isLocal:
 			return
 		if not self.lastWebifOk:
