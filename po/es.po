@@ -1307,7 +1307,7 @@ msgstr "%s version"
 
 #, python-format
 msgid "%s webif disabled"
-msgstr "% s webif deshabilitado"
+msgstr "%s webif deshabilitado"
 
 #, python-format
 msgid "%s%d min"
@@ -14304,20 +14304,23 @@ msgid "Not Classified"
 msgstr "No clasificado"
 
 msgid "Not Connected"
-msgstr "No conectado"
+msgstr "No Conectado"
 
 msgid "Not Defined"
 msgstr "No Definido"
+
+msgid "Not defined"
+msgstr "No definido"
 
 msgid "Non-flashing"
 msgstr "No parpadea"
 
 #
 msgid "Not Installed"
-msgstr "No está instalado"
+msgstr "No Instalado"
 
 msgid "Not Shown"
-msgstr "No mostrado"
+msgstr "No Mostrado"
 
 msgid "Not associated"
 msgstr "No asociado"
@@ -14840,6 +14843,12 @@ msgstr "Orientación"
 
 msgid "Original"
 msgstr "Original"
+
+msgid "Original Network ID (ONID)"
+msgstr "ID de red original (NO)"
+
+msgid "Original language"
+msgstr "Idioma original"
 
 msgid "Oriya"
 msgstr "Oriente"
