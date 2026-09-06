@@ -8201,7 +8201,7 @@ msgstr "Habilitar exploración rápida automática"
 
 #, python-format
 msgid "Enable auto fast scan for %s"
-msgstr "Habilitar escaneo rápido automático para %s"
+msgstr "Habilitar búsqueda rápida automática para %s"
 
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Habilitar el símbolo de grabación parpadeando en el display LCD."
@@ -8309,7 +8309,7 @@ msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Habilite esta opción para añadir detalles DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB scan data to the debug log file."
-msgstr "Habilite esta opción para añadir datos de escaneo DVB adicionales al archivo de registro de depuración."
+msgstr "Habilite esta opción para añadir datos de búsqueda DVB adicionales al archivo de registro de depuración."
 
 msgid "Enable this option to add extra DVB time sync data to the debug log file."
 msgstr "Habilite esta opción para añadir datos de sincronización de tiempo DVB adicionales al archivo de registro de depuración."
@@ -11222,7 +11222,7 @@ msgid "Include DVB details"
 msgstr "Incluir detalles DVB"
 
 msgid "Include DVB scan data"
-msgstr "Incluir datos de escaneo DVB"
+msgstr "Incluir datos de búsqueda DVB"
 
 msgid "Include DVB timesync data"
 msgstr "Incluir datos de sincronización horaria DVB"
@@ -17975,13 +17975,13 @@ msgstr "No se puede realizar la búsqueda mientras las grabaciones están en cur
 
 #, python-format
 msgid "Scanning completed, %d DAB+ services found."
-msgstr "Escaneo completado, %d canales DAB+ encontrados."
+msgstr "Búsqueda completa, %d canales DAB+ encontrados."
 
 #, python-format
 msgid "Scanning: %d%% complete"
 msgid_plural "Scanning: %d%% complete"
-msgstr[0] "Escaneo: %d%% completo"
-msgstr[1] "Escaneo: %d%% completo"
+msgstr[0] "Búsqueda: %d%% completa"
+msgstr[1] "Búsqueda: %d%% completa"
 
 #, python-format
 msgid "%d service found."
@@ -17992,10 +17992,10 @@ msgstr[1] "%d canales encontrados."
 msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Scanning completado, %d canal encontrado."
-msgstr[1] "Escaneo completado, %d canales encontrados."
+msgstr[1] "Búsqueda completa, %d canales encontrados."
 
 msgid "Scanning failed!"
-msgstr "¡El escaneo ha fallado!"
+msgstr "¡La búsqueda ha fallado!"
 
 msgid "Scanning for shares..."
 msgstr "Buscando acciones..."
@@ -18005,7 +18005,7 @@ msgstr "Buscando..."
 
 #, python-format
 msgid "Scanning: %d services found; validating live result (%d/%d)..."
-msgstr "Búscando: %d canales encontrados; validando resultado en vivo (%d/%d)..."
+msgstr "Buscando: %d canales encontrados; validando resultado en vivo (%d/%d)..."
 
 #
 msgid ""
@@ -24626,7 +24626,7 @@ msgid "Tuner type %s"
 msgstr "Tipo de sintonizador %s"
 
 msgid "Tuners, Scanning & Reception"
-msgstr "Sintonizadores Escaneo & Recepción"
+msgstr "Sintonizadores Búsqueda & Recepción"
 
 msgid "Tuning algorithm"
 msgstr "Algoritmo de sintonización"
