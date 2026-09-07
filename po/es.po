@@ -1236,6 +1236,9 @@ msgstr "%s - Configuración"
 msgid "%s Browser Manage Actions"
 msgstr "%s Acciones de administración del navegador"
 
+msgid "%s (cached)"
+msgstr "%s (en caché)"
+
 #, python-format
 msgid "%s is currently not running.\nDo you want to start it?"
 msgstr "%s no se está ejecutando actualmente.\n¿Desea iniciarla?"
@@ -2337,6 +2340,9 @@ msgstr ""
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Ajuste la posición horizontal de las letras usadas en el teletexto."
 
+msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
+msgstr "Ajuste el desplazamiento del oscilador del sintonizador para optimizar la recepción de la señal DAB+."
+
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Ajuste la posición vertical de las letras utilizadas en el teletexto."
 
@@ -3083,6 +3089,9 @@ msgstr "AutoBoquetsMaker se instaló correctamente.\nEs necesario reiniciar enig
 msgid "AutoIns:"
 msgstr "AutoInstalación:"
 
+msgid "Automatic gain"
+msgstr "Ganancia automática"
+
 msgid "Automatic search"
 msgstr "Búsqueda automática"
 
@@ -3502,6 +3511,9 @@ msgstr "Dispositivo de bloque"
 #
 msgid "Block noise reduction"
 msgstr "Reducción de bloque de ruido"
+
+msgid "Block RTL2832 DVB kernel driver"
+msgstr "Bloquear el driver del kernel DVB RTL2832"
 
 msgid "Blue"
 msgstr "Azul"
@@ -5996,6 +6008,9 @@ msgstr "Crear ISO"
 msgid "Create kernel dump."
 msgstr "Crear un volcado de kernel."
 
+msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
+msgstr "Cree o elimine la lista negra del módulo DVB RTL2832. Es necesario reiniciar completamente el receptor; mientras esté habilitado, este sintonizador USB estará disponible para DAB+ pero no para DVB-T/T2."
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Crear backup de imagen de recuperación '%s'."
@@ -6226,11 +6241,20 @@ msgstr "República Checa"
 msgid "D"
 msgstr "D"
 
+msgid "DAB+ decoder back end not installed"
+msgstr "El sistema decodificador DAB+ no está instalado"
+
 msgid "DAB+ Scan"
 msgstr "Búsqueda DAB+"
 
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "Error en la búsqueda DAB+; Se mantuvieron los bouquets existentes."
+
+msgid "DAB+ Settings"
+msgstr "Ajustes DAB+"
+
+msgid "DAB+ Settings Actions"
+msgstr "Acciones Ajustes DAB+"
 
 msgid "DAC"
 msgstr "DAC"
@@ -8096,6 +8120,9 @@ msgstr "Habilitar %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Habilitar 5V para la antena activa"
 
+msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+ cannot use the same receiver at the same time."
+msgstr "Habilite un receptor USB RTL-SDR seleccionado para la recepción de DAB+. DVB-T y DAB+ no pueden usar el mismo receptor simultáneamente."
+
 msgid "Enable automatic shares"
 msgstr "Habilitar acciones automáticas"
 
@@ -8107,6 +8134,9 @@ msgstr "Habilitar audio BT"
 
 msgid "Enable Chkroot MultiBoot"
 msgstr "Habilitar Chkroot MultiBoot"
+
+msgid "Enable DAB+ mode"
+msgstr "Habilitar modo DAB+"
 
 msgid "Enable Dolby Digital / Dolby AC-3 offsets"
 msgstr "Habilitar compensaciones Dolby Digital / Dolby AC-3"
@@ -9883,6 +9913,9 @@ msgstr "Swap libre"
 msgid "Free:"
 msgstr "Libre:"
 
+msgid "Frequency correction offset"
+msgstr "Desplazamiento de corrección de frecuencia"
+
 # Language
 msgid "French"
 msgstr "Francés"
@@ -11185,6 +11218,9 @@ msgstr ""
 msgid "In progress"
 msgstr "En curso"
 
+msgid "In use by DAB+"
+msgstr "En uso por DAB+"
+
 msgid "Inaccessible"
 msgstr "Inaccesible"
 
@@ -11269,6 +11305,9 @@ msgstr "Incluir datos del dispositivo de almacenamiento"
 
 msgid "Include teletext details"
 msgstr "Incluir detalles del teletexto"
+
+msgid "Include this configured satellite position in the DAB+ scan. Disable it to skip the position."
+msgstr "Incluir esta posición de satélite configurada en la búsqueda DAB+. Desactívela para omitir dicha posición."
 
 msgid "Include timer data"
 msgstr "Incluir los datos del temporizador"
@@ -12153,6 +12192,9 @@ msgstr "USB izquierdo trasero"
 msgid "Left, front USB"
 msgstr "USB izquierdo frontal"
 
+msgid "Let the tuner select its RF gain automatically."
+msgstr "Deje que el sintonizador seleccione automáticamente su ganancia de RF."
+
 msgid "Left, wrapped"
 msgstr "Izquierda, envuelto"
 
@@ -12205,6 +12247,9 @@ msgstr "Limburgan / Limburger / Limburgish"
 
 msgid "Lime"
 msgstr "Cal"
+
+msgid "Limit a DAB+ USB scan to the frequency blocks defined for this region in the 'dab.xml' file."
+msgstr "Limite la búsqueda USB DAB+ a los bloques de frecuencia definidos para esta región en el archivo 'dab.xml'."
 
 msgid "Limit character set for recording filenames"
 msgstr "Limitar caracteres en los nombres de los archivos de las grabaciones"
@@ -13435,6 +13480,9 @@ msgstr "Moviendo al este..."
 msgid "Moving files"
 msgstr "Moviendo archivos"
 
+msgid "Moving rotor and tuning DAB+ satellite feed..."
+msgstr "Movimiento del motor y sintonización de la señal satelital DAB+..."
+
 msgid "Moving to position"
 msgstr "Moviendo a posición"
 
@@ -13450,6 +13498,9 @@ msgstr "Multi"
 
 msgid "Multi EPG"
 msgstr "EPG Múltiple"
+
+msgid "Multi-path mode"
+msgstr "Rutas múltiples"
 
 msgid "MultiBoot"
 msgstr "MultiBoot"
@@ -13957,6 +14008,9 @@ msgstr "¡No se encontró ningún DVDROM (compatible)!"
 
 msgid "No category"
 msgstr "Sin categoría"
+
+msgid "No compatible RTL-SDR USB tuner detected"
+msgstr "No se detectó ningún sintonizador USB RTL-SDR compatible"
 
 msgid "No ECM PIDs available"
 msgstr "No hay ECM Pids disponibles"
@@ -14658,6 +14712,9 @@ msgstr "Abrir Temporizadores Automáticos"
 msgid "Open EPGSearch"
 msgstr "Abrir EPGSearch"
 
+msgid "Open event information"
+msgstr "Abrir información del evento"
+
 msgid "Open IMDb"
 msgstr "Abrir IMDb"
 
@@ -14672,6 +14729,9 @@ msgstr "Abrir configuraciones"
 
 msgid "Open Similar List Channel List"
 msgstr "Abrir lista de canales similares"
+
+msgid "Open SleepTimer Settings"
+msgstr "Mostrar temporizador de apagado"
 
 msgid "Open RecordTimer Overview"
 msgstr "Abrir lista de temporizadores"
@@ -15792,6 +15852,9 @@ msgstr "Portugués"
 msgid "Position"
 msgstr "Posición"
 
+msgid "Position in the tuner's supported gain range. The back end selects the closest gain step."
+msgstr "Posición en el rango de ganancia compatible con el afinador. El sistema selecciona el paso de ganancia más cercano."
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Posición de temporizadores finalizados en lista"
 
@@ -16472,7 +16535,9 @@ msgstr "Botón ROJO"
 msgid "RED long"
 msgstr "Rojo largo"
 
-#
+msgid "RF gain"
+msgstr "Ganancia de RF"
+
 msgid "RF Output Settings"
 msgstr "Salida de antena"
 
@@ -16525,6 +16590,9 @@ msgstr "Lector"
 #, python-format
 msgid "Ready to install \"%s\"?"
 msgstr "¿Listo para instalar %s?"
+
+msgid "Ready"
+msgstr "Preparado"
 
 #, python-format
 msgid "Ready to remove \"%s\"?"
@@ -16627,6 +16695,9 @@ msgstr "Sintonizadores"
 
 msgid "Reception Settings"
 msgstr "Ajustes de recepción"
+
+msgid "Reception sources to scan"
+msgstr "Fuentes de recepción para buscar"
 
 msgid "Reception Lists"
 msgstr "Listas de recepción"
@@ -16815,6 +16886,9 @@ msgstr ""
 
 msgid "Refresh"
 msgstr "Actualizar"
+
+msgid "Refresh list of RTL-SDR USB tuners"
+msgstr "Actualizar la lista de sintonizadores USB RTL-SDR"
 
 msgid "Refresh ZeroTier status information"
 msgstr "Actualizar la información del estado de ZeroTier"
@@ -17164,6 +17238,9 @@ msgid ""
 msgstr ""
 "Reemplazar todas las etiquetas '%s' con:\n"
 "(NOTA: ¡'Cancelar' no puede deshacer esto!)"
+
+msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
+msgstr "Sustituya el fondo estático de la radio por imágenes transmitidas por la emisora ​​DAB+ actual."
 
 msgid "Require authentication for http streams"
 msgstr "Requerir autenticación para retransmisiones http"
@@ -17778,6 +17855,9 @@ msgstr "Equipo satélite"
 msgid "Satellite equipment setup"
 msgstr "Ajustes del equipo satélite"
 
+msgid "Satellite feeds to scan"
+msgstr "Feeds satélite para buscar"
+
 #
 msgid "Satellites"
 msgstr "Satélites"
@@ -17962,6 +18042,9 @@ msgstr "Busca extensiones locales y las instala"
 #
 msgid "Scan for local extensions and install them."
 msgstr "Busca extensiones locales y las instala."
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr "Busque el sintonizador USB, las señales satelitales DAB+ disponibles o ambas."
 
 #, python-format
 msgid "Scanning %s..."
@@ -19442,6 +19525,9 @@ msgstr "Seleccione la opción de montaje del tamaño del búfer de bloques de le
 msgid "Select the receiver action when the TV switches away from the receiver input."
 msgstr "Seleccione la acción del receptor cuando el televisor cambie a una entrada distinta a la del receptor."
 
+msgid "Select the RTL-SDR USB tuner to be used for DAB+ reception."
+msgstr "Seleccione el sintonizador USB RTL-SDR que se utilizará para la recepción de DAB+."
+
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr "Seleccione el protocolo de seguridad que se utilizará para acceder a la red inalámbrica seleccionada."
 
@@ -19631,6 +19717,9 @@ msgid ""
 msgstr ""
 "Selecciona para usar un tamaño de paso logarítmico con más pasos en los "
 "niveles de volumen más bajos."
+
+msgid "Select tuner"
+msgstr "Seleccionar sintonizador"
 
 msgid "Select update source location"
 msgstr "Seleccionar ubicación del origen de actualización"
@@ -20685,6 +20774,9 @@ msgstr "Mostrar CCcam en extensiones"
 msgid "Show CI messages"
 msgstr "Mostrar mensajes CI"
 
+msgid "Show DAB+ slideshow"
+msgstr "Mostrar presentación de diapositivas DAB+"
+
 msgid "Show Default Backup Files"
 msgstr "Mostrar archivos predeterminados del backup"
 
@@ -21291,12 +21383,6 @@ msgstr "Mostrar pantalla de información OSCam"
 msgid "Open Scheduler Overview"
 msgstr "Descripción general del programador abierto"
 
-msgid "Open SleepTimer Settings"
-msgstr "Mostrar temporizador de apagado"
-
-msgid "Open event information"
-msgstr "Abrir información del evento"
-
 msgid "Show the list of AutoTimers."
 msgstr "Mostrar lista de autotemporizadores."
 
@@ -21505,6 +21591,9 @@ msgstr "Satélite único"
 
 msgid "Single step (GOP)"
 msgstr "Un solo paso (GOP)"
+
+msgid "Single-path mode"
+msgstr "Ruta única"
 
 msgid "SingleEPG Settings"
 msgstr "Ajustes de EPG única"
@@ -23404,6 +23493,9 @@ msgstr "El proceso tardará aproximadamente %d minutos en completarse."
 msgid "The results have been written to %s."
 msgstr "Los resultados se han escrito en %s."
 
+msgid "The RTL2832 kernel driver blacklist could not be updated:\n%s"
+msgstr "No se pudo actualizar la lista negra del controlador del kernel RTL2832:\n%s"
+
 msgid "The saved PIN was cleared."
 msgstr "Se ha borrado el PIN guardado."
 
@@ -24631,6 +24723,9 @@ msgstr "Sintonizadores Búsqueda & Recepción"
 msgid "Tuning algorithm"
 msgstr "Algoritmo de sintonización"
 
+msgid "Tuning DAB+ satellite feed..."
+msgstr "Sintonizando la señal satelital DAB+..."
+
 msgid "Tunisia"
 msgstr "Tunisia"
 
@@ -24750,6 +24845,9 @@ msgstr "USB 2.0 (Parte trasera, interior)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (Parte trasera, exterior)"
 
+msgid "USB receiver settings"
+msgstr "Configuración del receptor USB"
+
 msgid "U - Suitable for all"
 msgstr "U - Apta para todos"
 
@@ -24793,6 +24891,9 @@ msgstr "Ucraniano"
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"
+
+msgid "Unable to open tuner (%d)"
+msgstr "No se puede abrir el sintonizador (%d)"
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "No se pudo registrar el transpondedor DAB+"
@@ -28251,6 +28352,9 @@ msgstr ""
 "o configurar los ajustes del sintonizador"
 
 #
+msgid "Scan region"
+msgstr "Búsqueda de región"
+
 msgid "scan state"
 msgstr "Estado de la búsqueda"
 
@@ -30202,6 +30306,9 @@ msgstr "Paquetes de idiomas"
 
 # boot-up action
 msgid "Common Settings"
+msgstr "Ajustes Comunes"
+
+msgid "Common settings"
 msgstr "Ajustes comunes"
 
 msgid "Picon install location"
