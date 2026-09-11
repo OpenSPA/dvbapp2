@@ -752,6 +752,7 @@ def parseScrollbarLength(value, default):
 		value = options.get(value, default)
 	return value
 
+
 def parseSize(value, scale, object=None, desktop=None):
 	return eSize(*parseValuePair(value, scale, object, desktop))
 

@@ -127,6 +127,7 @@ def findPicon(serviceName, mode=None):
 					return pngname
 		return ""
 
+
 def getChannelSelectionPiconName(serviceName):
 	return getPiconName(serviceName, mode="channelselection")
 
