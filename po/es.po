@@ -964,8 +964,8 @@ msgstr[1] "%d núcleos"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] "%d se ha actualizado el paquete del repositorio."
-msgstr[1] "%d se han actualizado los paquetes del repositorio."
+msgstr[0] "%d se ha actualizado el paquete del feed."
+msgstr[1] "%d se han actualizado los paquetes del feed."
 
 msgid "%d host found."
 msgid_plural "%d hosts found."
@@ -1000,8 +1000,11 @@ msgid_plural "%d networks found."
 msgstr[0] "%d red encontrada."
 msgstr[1] "%d redes encontradas."
 
-msgid "%d of %d feeds completed; failed feed bouquets were kept"
-msgstr "%d de %d feeds completados; Se mantuvieron los bouquets de feed fallido"
+msgid "%d of %d channels contained a DAB+ ensemble"
+msgstr "%d de %d canales contenían un conjunto DAB+"
+
+msgid "%d of %d feeds completed"
+msgstr "%d de %d fuentes completas"
 
 #, python-format
 msgid "%d package found."
@@ -1239,6 +1242,9 @@ msgstr "%s Acciones de administración del navegador"
 msgid "%s (cached)"
 msgstr "%s (en caché)"
 
+msgid "%s (motor)"
+msgstr "%s (motor)"
+
 #, python-format
 msgid "%s is currently not running.\nDo you want to start it?"
 msgstr "%s no se está ejecutando actualmente.\n¿Desea iniciarla?"
@@ -1387,6 +1393,9 @@ msgstr "'%s' montado."
 #, python-format
 msgid "'%s' unmounted."
 msgstr "'%s' desmontado."
+
+msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
+msgstr "'%s' utiliza autenticación empresarial (802.1X). ​​Este tipo de redes no se pueden configurar aquí; deben configurarse manualmente en wpa_supplicant.conf."
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "‘Búfer en horas’ o ‘número de últimos eventos’. Para eliminar archivos timeshift antiguos, la condición que ocurrió primero tiene prioridad."
@@ -1733,11 +1742,11 @@ msgstr "<no se han encontrado logs>"
 msgid "A"
 msgstr "A"
 
-msgid "A DAB+ scan cannot run while a recording is in progress."
-msgstr "No se puede realizar una búsqueda DAB+ mientras hay una grabación en curso."
-
 msgid "A backup is now being created."
 msgstr "Se está creando una copia de seguridad."
+
+msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
+msgstr "Se ha encontrado una copia de seguridad de sus configuraciones anteriores. ¿Desea restaurarla antes de continuar con la configuración?"
 
 msgid ""
 "A comma separated list of extensions to be used for 'My Extension' setting "
@@ -2084,6 +2093,9 @@ msgstr "Solo activo"
 
 msgid "Adapter"
 msgstr "Adaptador"
+
+msgid "Adapter '%s'"
+msgstr "Adaptador '%s'"
 
 #, python-format
 msgid "Adapter '%s' Context Menu"
@@ -2465,6 +2477,9 @@ msgstr "Todos los eventos arriba"
 msgid "All files"
 msgstr "Todos los archivos"
 
+msgid "All regions"
+msgstr "Todas las regiones"
+
 msgid "All resolutions"
 msgstr "Todas las resoluciones"
 
@@ -2680,6 +2695,9 @@ msgstr "Amlogic remoto"
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Cantidad %d / Éxito %d / Fallido %d"
+
+msgid "An RTL-SDR receiver was detected. The optional DAB+ USB runtime is being installed from the feed."
+msgstr "Se ha detectado un receptor RTL-SDR. Se está instalando el componente opcional de tiempo de ejecución USB para DAB+ desde el feed."
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Se intenta capturar el estado actual del televisor. Si los mensajes de estado son incorrectos o no se muestran, el receptor podría responder inesperadamente. De lo contrario, ayuda al receptor a gestionar mejor las diferentes condiciones de funcionamiento."
@@ -2987,6 +3005,9 @@ msgstr "Sincronización de audio"
 
 msgid "Audio Synchronization"
 msgstr "Sincronización de Audio"
+
+msgid "Audio bit rate"
+msgstr "Tasa de bits de audio"
 
 msgid "Audio language selection 1"
 msgstr "Selección de idioma de audio 1"
@@ -3504,6 +3525,12 @@ msgstr "Parpadeo de REC"
 
 msgid "Blinking REC symbol"
 msgstr "Icono REC parpadeando"
+
+msgid "Block %s"
+msgstr "Bloquear %s"
+
+msgid "Block %s - %.3f MHz"
+msgstr "Bloquear %s - %.3f MHz"
 
 msgid "Block device"
 msgstr "Dispositivo de bloque"
@@ -4743,6 +4770,9 @@ msgstr "Seleccione si las pistas de sonido multicanal deben ser emitidas como PC
 msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Seleccione si se muestra o no un icono cuando se mueve una antena motorizada."
 
+msgid "Select whether to prefill the 'Server' field below with this host's discovered DNS/mDNS name instead of its IP address."
+msgstr "Seleccione si desea rellenar previamente el campo «Servidor» (más abajo) con el nombre DNS/mDNS detectado de este host, en lugar de con su dirección IP."
+
 msgid ""
 "Choose which level of menu/setting's to display. 'Expert'-level shows all "
 "items."
@@ -4896,6 +4926,9 @@ msgstr "Cerrar diálogo"
 
 msgid "Close network test"
 msgstr "Prueba de red cerrada"
+
+msgid "Close network test and exit all menus"
+msgstr "Cierra la prueba de red y sal de todos los menús."
 
 msgid "Close screen"
 msgstr "Cerrar pantalla"
@@ -6250,14 +6283,38 @@ msgstr "Búsqueda DAB+"
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "Error en la búsqueda DAB+; Se mantuvieron los bouquets existentes."
 
+msgid "DAB+ service information for '%s'"
+msgstr "Información del servicio DAB+ para '%s'"
+
 msgid "DAB+ Settings"
 msgstr "Ajustes DAB+"
 
 msgid "DAB+ Settings Actions"
 msgstr "Acciones Ajustes DAB+"
 
+msgid "DAB+ USB support could not be installed from the feed."
+msgstr "No se pudo instalar el soporte para DAB+ USB desde el feed."
+
+msgid "DAB+ USB support was installed. You can now enable the receiver in Reception settings."
+msgstr "Se ha instalado la compatibilidad con DAB+ por USB. Ahora puede activar el receptor en la configuración de recepción."
+
+msgid "DAB+ USB: bouquet could not be written"
+msgstr "USB DAB+: no se pudo escribir el paquete de canales"
+
+msgid "DAB+ channel"
+msgstr "Canal DAB+"
+
+msgid "DAB+ channel %s"
+msgstr "Canal DAB+ %s"
+
 msgid "DAC"
 msgstr "DAC"
+
+msgid "Detect positioner movement by its current consumption."
+msgstr "Detecte el movimiento del motor mediante su consumo de corriente."
+
+msgid "Detected USB hardware"
+msgstr "Hardware USB detectado"
 
 msgid "Device Settings"
 msgstr "Configuración del dispositivo"
@@ -6322,6 +6379,12 @@ msgstr "Subtítulos DVB"
 
 msgid "DVB Subtitles PID & Language"
 msgstr "Subtítulos DVB PID e Idioma"
+
+msgid "DVB frontend"
+msgstr "Frontend DVB"
+
+msgid "DVB payload PID"
+msgstr "PID de carga útil DVB"
 
 msgid "DVB Subtitles PID & lang"
 msgstr "PID de subtítulos DVB e idioma"
@@ -7835,6 +7898,9 @@ msgstr "Holandés / Flamenco"
 msgid "Dynamic contrast"
 msgstr "Contraste dinámico"
 
+msgid "Dynamic label"
+msgstr "Etiqueta dinámica"
+
 msgid "Dzongkha"
 msgstr "Dzongkha"
 
@@ -8012,9 +8078,6 @@ msgstr "Editar temporizador"
 msgid "Edit Title"
 msgstr "Editar título"
 
-msgid "Edit Upgrade Source URL"
-msgstr "Editar la URL de la fuente de actualización"
-
 msgid "Edit Username/Password Credentials"
 msgstr "Editar credenciales de nombre de usuario/contraseña"
 
@@ -8042,8 +8105,14 @@ msgstr "Edite el puerto del servidor CCcam/NewCamd."
 msgid "Edit the NewCamd DES Key."
 msgstr "Editar la clave DES para NewCamd."
 
+msgid "Edit the currently highlighted feed"
+msgstr "Editar el canal seleccionado actualmente"
+
 msgid "Edit the currently selected timer"
 msgstr "Editar temporizador seleccionado"
+
+msgid "Edit the feed URL:"
+msgstr "Editar la URL del feed:"
 
 msgid "Edit the password."
 msgstr "Editar la contraseña."
@@ -8329,6 +8398,9 @@ msgstr "Habilitar las opciones de ajuste avanzadas de HDMI-CEC."
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "Habilite esta opción para añadir información de la base de datos del bouquet al archivo debug."
 
+msgid "Enable this option to add detailed DAB+ receiver, packet, MOT and SPI information to the debug log file."
+msgstr "Habilite esta opción para añadir información detallada sobre el receptor DAB+, los paquetes, MOT y SPI al archivo de registro de depuración."
+
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
 msgstr "Active esta opción para añadir la información de MultiBoot detectada durante el arranque del sistema al archivo de registro de depuración."
 
@@ -8373,6 +8445,9 @@ msgstr "Habilite esta opción para añadir información del dispositivo de almac
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Activa esta opción para añadir los datos de depuración del temporizador al archivo de registro de depuración."
+
+msgid "Enable this option to add verbose SEC/DiSEqC debug data to the debug log file."
+msgstr "Habilite esta opción para añadir datos detallados de depuración SEC/DiSEqC al archivo de registro de depuración."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Habilite esta opción para mostrar todas las pantallas de información disponibles en la lista de elementos del menú Información."
@@ -8504,6 +8579,12 @@ msgstr "Versión de Enigma2"
 
 msgid "Enigmalight"
 msgstr "Iluminación enigma"
+
+msgid "Ensemble"
+msgstr "Conjunto"
+
+msgid "Ensemble ID (EID)"
+msgstr "ID de conjunto (EID)"
 
 msgid "Enter"
 msgstr "Introducir"
@@ -9361,6 +9442,9 @@ msgstr ""
 "FFmpeg no está instalado, así que las acciones en archivos '.mvi' no estan "
 "disponibles!"
 
+msgid "FIC quality"
+msgstr "Calidad FIC"
+
 msgid "FFmpeg version"
 msgstr "Versión FFmpeg"
 
@@ -10058,6 +10142,9 @@ msgstr "Gabón"
 
 msgid "Gaelic"
 msgstr "Gaélico"
+
+msgid "Gain steps"
+msgstr "Avanzar"
 
 msgid "Galicia (Spain)"
 msgstr "Galicia (España)"
@@ -11140,19 +11227,12 @@ msgstr "Backup de la imagen en %s"
 msgid "Image Flash Actions"
 msgstr "Acciones Flash de la imagen"
 
-#
 msgid "Image created:"
 msgstr "Imagen creada:"
 
-#
 msgid "Image creation failed!"
 msgstr "Ha fallado la creación de la imagen!"
 
-#
-msgid "ImageWizard"
-msgstr "Asistente de imagen"
-
-#
 msgid "Immediate shut down"
 msgstr "Apagado inmediato"
 
@@ -11254,6 +11334,9 @@ msgstr "Incluir datos desde la DB del bouquet"
 msgid "Include CI assignment"
 msgstr "Incluir asignación CI"
 
+msgid "Include DAB+ data"
+msgstr "Incluir datos DAB+"
+
 msgid "Include DVB details"
 msgstr "Incluir detalles DVB"
 
@@ -11277,6 +11360,9 @@ msgstr "Incluye los datos de MultiBoot *"
 
 msgid "Include SDT and BAT in http streams"
 msgstr "Incluir SDT y BAT en streams http"
+
+msgid "Include SEC/DiSEqC data"
+msgstr "Incluir datos SEC/DiSEqC"
 
 msgid "Include action map data"
 msgstr "Incluir los datos del mapa de acción"
@@ -11499,7 +11585,6 @@ msgstr "Instalar comando '%s'"
 msgid "Install 1/1"
 msgstr "Instalar 1/1"
 
-#
 msgid "Install Local Extension"
 msgstr "Instalar extensión local"
 
@@ -11509,18 +11594,9 @@ msgstr "Instalar Plugin"
 msgid "Install Plugins"
 msgstr "Instalar Plugins"
 
-#
-msgid "Install a new image with a USB stick"
-msgstr "Instalar una nueva imagen con pendrive USB"
-
-#
-msgid "Install a new image with your web browser"
-msgstr "Instalar una nueva imagen con el navegador web"
-
 msgid "Install extensions"
 msgstr "Instalar extensiones"
 
-#
 msgid "Install extensions."
 msgstr "Instalar extensiones."
 
@@ -11530,30 +11606,24 @@ msgstr "Instalar servicio"
 msgid "Install the package"
 msgstr "Instalar el paquete"
 
-#
 msgid "Install the selected plugin / list of plugins"
 msgstr "Instalar el plugin seleccionado o lista de plugins seleccionada"
 
-#
 msgid "Installation finished."
 msgstr "Instalación terminada."
 
-#
 msgid "Installed"
 msgstr "Instalado"
 
-#
 msgid "Installing"
 msgstr "Instalando"
 
-#, python-format
 msgid "Installing %s (%s)..."
 msgstr "Instalando %s (%s)..."
 
 msgid "Installing Service"
 msgstr "Instalando servicio"
 
-#
 msgid "Installing Software..."
 msgstr "Instalando Software…"
 
@@ -12604,6 +12674,9 @@ msgstr "MÁS"
 
 msgid "MOUSE"
 msgstr "MOUSE"
+
+msgid "MSC audio frame quality"
+msgstr "Calidad de trama de audio MSC"
 
 msgid "MTD boot"
 msgstr "MTD boot"
@@ -14042,21 +14115,15 @@ msgstr "No se ha encontrado ningún canal activo."
 msgid "No age block"
 msgstr "Sin bloqueo de edad"
 
-#
-msgid "No backup needed"
-msgstr "No es necesario ningún backup"
-
 msgid "No cable tuner found!"
 msgstr "¡No se encontró ningún sintonizador de cable!"
 
 msgid "No card inserted!"
 msgstr "¡No hay tarjeta insertada!"
 
-#
 msgid "No channel"
 msgstr "Ningún canal"
 
-#
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -14239,6 +14306,9 @@ msgstr "No es necesario actualizar!"
 msgid "No updates available."
 msgstr "No hay actualizaciones disponibles."
 
+msgid "No usable RTL-SDR DAB+ receiver was found."
+msgstr "No se encontró ningún receptor RTL-SDR DAB+ utilizable."
+
 msgid "No valid DAB+ feeds configured. Check /etc/enigma2/dab.xml."
 msgstr "No hay canales DAB+ válidos configurados. Consulte /etc/enigma2/dab.xml."
 
@@ -14265,21 +14335,15 @@ msgstr "No (con notificación)"
 msgid "No, but restart from begin"
 msgstr "No, pero reiniciar desde el principio"
 
-#
-msgid "No, do nothing."
-msgstr "No, no haga nada."
+msgid "No, continue with the setup"
+msgstr "No, continúe con la configuración."
 
 msgid "No, don't flash this image"
 msgstr "No, no flashee esta imagen"
 
-#
-msgid "No, just start my %s %s"
-msgstr "No, sólo iniciar mi %s %s"
-
 msgid "No, never"
 msgstr "No, nunca"
 
-#
 msgid "No, scan later manually"
 msgstr "No, buscar después manualmente"
 
@@ -14502,24 +14566,17 @@ msgstr "Modo de salto numérico"
 msgid "OEM model"
 msgstr "Modelo OEM"
 
-#
 msgid "OK"
 msgstr "OK"
 
-#
 msgid "OK button (long)"
 msgstr "Tecla OK (larga)"
 
-#
 msgid "OK button (short)"
 msgstr "Tecla OK (corta)"
 
 msgid "OK button mode"
 msgstr "Modo de tecla OK"
-
-#
-msgid "OK, guide me through the upgrade process"
-msgstr "Sí, guíame por el proceso de actualización"
 
 msgid "ONID"
 msgstr "ONID"
@@ -15077,6 +15134,12 @@ msgstr "Paquete"
 
 msgid "Package Categories"
 msgstr "Categorías de Paquetes"
+
+msgid "Package Feed Editor"
+msgstr "Editor de fuentes de paquetes"
+
+msgid "Package Feed Editor Actions"
+msgstr "Acciones del editor de fuentes de paquetes"
 
 msgid "Package Manager"
 msgstr "Administrador de Paquetes"
@@ -16077,9 +16140,6 @@ msgstr "Pulse OK para seleccionar satélites"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Pulse OK para seleccionar/deseleccionar un CAId."
 
-msgid "Press OK to start the backup now"
-msgstr "Pulsa OK para iniciar el backup ahora"
-
 msgid "Press OK to start the scan"
 msgstr "Pulse OK para iniciar la búsqueda"
 
@@ -16221,6 +16281,9 @@ msgstr "Procesar"
 msgid "Processor information"
 msgstr "Información del procesador"
 
+msgid "Product"
+msgstr "Producto"
+
 msgid "Profile"
 msgstr "Perfil"
 
@@ -16237,6 +16300,9 @@ msgid ""
 msgstr ""
 "Se necesita instalar el programa '%s' para realizar esta acción. Quieres "
 "instalar el paquete '%s' para instalar el programa?"
+
+msgid "Program type"
+msgstr "Tipo de programa"
 
 msgid "Programmlisten History"
 msgstr "Lista de programas, Historia"
@@ -16320,6 +16386,9 @@ msgstr "Proteger menú de apagado"
 
 msgid "Protect timer menu"
 msgstr "Proteger menú de temporizadores"
+
+msgid "Protection"
+msgstr "Protección"
 
 msgid "Protocol"
 msgstr "Protocolo"
@@ -16535,11 +16604,26 @@ msgstr "Botón ROJO"
 msgid "RED long"
 msgstr "Rojo largo"
 
+msgid "RF Output Settings"
+msgstr "Salida de antena"
+
+msgid "RF SNR"
+msgstr "SNR de RF"
+
 msgid "RF gain"
 msgstr "Ganancia de RF"
 
-msgid "RF Output Settings"
-msgstr "Salida de antena"
+msgid "RGB clamp (lower)"
+msgstr "Abrazadera RGB (inferior)"
+
+msgid "RGB clamp (upper)"
+msgstr "Abrazadera RGB (superior)"
+
+msgid "RTL-SDR USB tuner"
+msgstr "Sintonizador USB RTL-SDR"
+
+msgid "RTL-SDR tuner"
+msgstr "Sintonizador RTL-SDR"
 
 msgid "Radio"
 msgstr "Radio"
@@ -16687,6 +16771,9 @@ msgstr "Acciones de información del receptor"
 msgid "Receiver information for %s %s"
 msgstr "Información del receptor %s %s"
 
+msgid "Receiver lock"
+msgstr "Bloqueo del receptor"
+
 msgid "Receiver name"
 msgstr "Nombre del receptor"
 
@@ -16695,6 +16782,9 @@ msgstr "Sintonizadores"
 
 msgid "Reception Settings"
 msgstr "Ajustes de recepción"
+
+msgid "Reception source"
+msgstr "Fuente de recepción"
 
 msgid "Reception sources to scan"
 msgstr "Fuentes de recepción para buscar"
@@ -16896,15 +16986,12 @@ msgstr "Actualizar la información del estado de ZeroTier"
 msgid "Refresh every"
 msgstr "Actualizar cada"
 
-#
 msgid "Refresh rate"
 msgstr "Velocidad de actualización"
 
-#
 msgid "Refresh rate for 'Lowest Mode'"
 msgstr "Tasa de refresco para el 'Modo más bajo'"
 
-#
 msgid "Refresh screen"
 msgstr "Actualizar pantalla"
 
@@ -17408,8 +17495,8 @@ msgstr "Reiniciar prueba"
 msgid "Restarting adapter..."
 msgstr "Reiniciando el adaptador..."
 
-msgid "Restarting saved Wi-Fi network..."
-msgstr "Reiniciando la red Wi-Fi guardada..."
+msgid "Restarting network..."
+msgstr "Reiniciando la red..."
 
 msgid "Restarting..."
 msgstr "Reiniciando..."
@@ -17443,12 +17530,12 @@ msgid "Restore your %s %s settings."
 msgstr "Restaura los ajustes de tu %s %s."
 
 #
-msgid "Restore your %s %s with a new firmware."
-msgstr "Restaura tu %s %s con un nuevo firmware."
+msgid "Restore your backups by date."
+msgstr "Restaura tus copias de seguridad por fecha."
 
 #
-msgid "Restore your backups by date."
-msgstr "Restaurar por fecha sus copias de seguridad."
+msgid "Restore your previous settings?"
+msgstr "¿Restaurar la configuración anterior?"
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Restaurar sus ajustes desde un backup. Después de restaurar, el receptor se reiniciará para a activar los nuevos ajustes."
@@ -17842,6 +17929,9 @@ msgstr "Sábados y domingos"
 msgid "Satellite"
 msgstr "Satélite"
 
+msgid "Satellite DAB+ feeds cannot be scanned while a recording is in progress, and no USB receiver is available."
+msgstr "No es posible escanear señales DAB+ por satélite mientras se está realizando una grabación y no hay ningún receptor USB disponible."
+
 msgid "Satellite Dish Settings"
 msgstr "Configuración de antena parabólica"
 
@@ -17857,6 +17947,9 @@ msgstr "Ajustes del equipo satélite"
 
 msgid "Satellite feeds to scan"
 msgstr "Feeds satélite para buscar"
+
+msgid "Satellite only"
+msgstr "Solo por satélite"
 
 #
 msgid "Satellites"
@@ -18872,8 +18965,8 @@ msgstr "Seleccionar fuente de actualización"
 msgid "Select Upgrade Source To Edit"
 msgstr "Seleccione fuente de actualización a editar"
 
-msgid "Select Wi-Fi adapter"
-msgstr "Seleccione el adaptador Wi-Fi"
+msgid "Select Wi-Fi adapter:"
+msgstr "Seleccione el adaptador Wi-Fi:"
 
 msgid "Select a bouquet"
 msgstr "Seleccionar un grupo"
@@ -19721,10 +19814,6 @@ msgstr ""
 msgid "Select tuner"
 msgstr "Seleccionar sintonizador"
 
-msgid "Select update source location"
-msgstr "Seleccionar ubicación del origen de actualización"
-
-#
 msgid "Select video mode"
 msgstr "Seleccione modo de vídeo"
 
@@ -19929,6 +20018,9 @@ msgstr "Serbio"
 
 msgid "Serial No"
 msgstr "Serial No"
+
+msgid "Serial number"
+msgstr "Número de serie"
 
 msgid "Server down"
 msgstr "Servidor caido"
@@ -21905,11 +21997,6 @@ msgstr "Configurar administrador de software"
 msgid "Software MultiBoot"
 msgstr "Software MultiBoot"
 
-#
-msgid "Software Restore"
-msgstr "Restaurar software"
-
-#
 msgid "Software Update"
 msgstr "Actualización de software"
 
@@ -22319,6 +22406,9 @@ msgstr "Estático"
 
 msgid "Static IP / Custom"
 msgstr "IP Estática / Personalizada"
+
+msgid "Station"
+msgstr "Estación"
 
 msgid "Status"
 msgstr "Estado"
@@ -23197,9 +23287,6 @@ msgstr "El %s %s no tiene conexión a Internet."
 msgid "The %s %s has a limited memory capacity. A swap file is required to increase the amount of available memory otherwise the %s %s may not work properly. Select the target device to hold the swap file.\n\nPress EXIT if you do not want to create it."
 msgstr "El %s %s tiene capacidad limitada de memoria. Se requiere un archivo swap para aumentar la cantidad de memoria disponible, de otra forma el %s %s puede funcionar mal. Selecciona el dispositivo de destino para almacenar el archivo swap.\n\nPulse EXIT si no desea crearlo."
 
-msgid "The %s %s is shutting down. Please wait..."
-msgstr "El %s %s está apagándose. Espera por favor..."
-
 msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "El %s %s lee los datos EPG almacenados cada número de horas seleccionado."
 
@@ -23364,25 +23451,6 @@ msgstr ""
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "El backup puede tardar unos 15 minutos en completarse."
 
-#
-msgid "The backup failed"
-msgstr "Falló el backup"
-
-#
-msgid "The backup failed! Choose a different backup location."
-msgstr "Fallo al crear backup! Escoge otra ubicación para el backup."
-
-#
-msgid "The backup succeeded"
-msgstr "El backup se ha realizado con éxito"
-
-#
-msgid ""
-"The backup succeeded. We will now continue to explain the upgrade process."
-msgstr ""
-"Su backup se realizó con éxito. Ahora continuaremos explicando el proceso de "
-"actualización."
-
 msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
 msgstr "Tasa de bits del codificador de vídeo. Valores más altos mejoran la calidad y aumentan el tamaño del archivo"
 
@@ -23488,8 +23556,15 @@ msgstr "El directorio de picons ya existe y se tiene que eliminar. ¿Quieres con
 msgid "The process will take approximately %d minutes to complete."
 msgstr "El proceso tardará aproximadamente %d minutos en completarse."
 
-#
-#, python-format
+msgid ""
+"The restore has finished. The %s %s needs to restart.\n"
+"\n"
+"Please press OK to restart the %s %s."
+msgstr ""
+"La restauración ha finalizado. Es necesario reiniciar %s %s.\n"
+"\n"
+"Por favor, pulse OK para reiniciar el %s %s."
+
 msgid "The results have been written to %s."
 msgstr "Los resultados se han escrito en %s."
 
@@ -23569,22 +23644,12 @@ msgstr "La interfaz de usuario de su %s %s se detendrá para ejecutar Kodi"
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "El ancho de la imagen. La entrada se escalará para igualar este valor."
 
-msgid ""
-"The wizard can backup your current settings. Do you want to start a backup "
-"now?"
-msgstr ""
-"El asistente puede hacer un backup de tus ajustes actuales. ¿Deseas hacer el "
-"backup ahora?"
-
-#
 msgid "There are at least "
 msgstr "Hay al menos "
 
-#
 msgid "There are currently no outstanding actions."
 msgstr "Actualmente no hay ninguna acción en ejecución."
 
-#, python-format
 msgid "There are no actions available to process '%s'!"
 msgstr "No hay acciones disponibles para procesar '%s'!"
 
@@ -24202,6 +24267,12 @@ msgstr "Fuera de tiempo"
 msgid "Timeout waiting for FIC service data"
 msgstr "Tiempo de espera de espera de datos del servicio FIC"
 
+msgid "Timeout waiting for tuner lock"
+msgstr "Tiempo de espera agotado al intentar sincronizar el sintonizador"
+
+msgid "Timeout waiting for tuner or rotor"
+msgstr "Tiempo de espera agotado al esperar al sintonizador o al motor."
+
 msgid "Timer Defaults And Retention"
 msgstr "Valores Predeterminados del Temporizador Y Retención"
 
@@ -24402,9 +24473,6 @@ msgstr "Alternar modo multi-selección"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 "Alternar nuevas inserciones de texto antes o sobrescribir el texto existente"
-
-msgid "Toggle picking a share by IP address or by DNS name"
-msgstr "Alternar la selección de un recurso compartido por dirección IP o por nombre DNS"
 
 msgid "Toggle selection of the current tag"
 msgstr "Alternar selección de la etiqueta actual"
@@ -24720,6 +24788,9 @@ msgstr "Tipo de sintonizador %s"
 msgid "Tuners, Scanning & Reception"
 msgstr "Sintonizadores Búsqueda & Recepción"
 
+msgid "Tuning"
+msgstr "Sintonizando"
+
 msgid "Tuning algorithm"
 msgstr "Algoritmo de sintonización"
 
@@ -24845,8 +24916,26 @@ msgstr "USB 2.0 (Parte trasera, interior)"
 msgid "USB 3.0 (Back, outer)"
 msgstr "USB 3.0 (Parte trasera, exterior)"
 
+msgid "USB ID"
+msgstr "ID de USB"
+
+msgid "USB and satellite"
+msgstr "USB y satélite"
+
+msgid "USB port"
+msgstr "Puerto USB"
+
+msgid "USB reader %d"
+msgstr "Lector USB %d"
+
+msgid "USB receiver only"
+msgstr "Solo receptor USB"
+
 msgid "USB receiver settings"
 msgstr "Configuración del receptor USB"
+
+msgid "USB speed"
+msgstr "Velocidad USB"
 
 msgid "U - Suitable for all"
 msgstr "U - Apta para todos"
@@ -24854,9 +24943,6 @@ msgstr "U - Apta para todos"
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "Slot UBI %s%s"
-
-msgid "USB reader %d"
-msgstr "Lector USB %d"
 
 #, python-format
 msgid "USB slot %s%s"
@@ -24900,6 +24986,9 @@ msgstr "No se pudo registrar el transpondedor DAB+"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "No se puede iniciar el feed DAB+"
+
+msgid "Unable to tune the DAB+ satellite feed"
+msgstr "No se puede sintonizar la señal satelital DAB+"
 
 #
 msgid "Unattended upgrade without GUI"
@@ -25199,6 +25288,9 @@ msgstr "Usar DHCP"
 
 msgid "Use DNS cache"
 msgstr "Usar caché DNS"
+
+msgid "Use DNS name"
+msgstr "Usar nombre DNS"
 
 msgid "Use DNS rotation"
 msgstr "Utilizar la rotación DNS"
@@ -25537,12 +25629,6 @@ msgstr "Nombre de usuario"
 
 msgid "Username (httpuser)"
 msgstr "Nombre de usuario (httpuser)"
-
-msgid "Using DNS"
-msgstr "Usando DNS"
-
-msgid "Using IP"
-msgstr "Usando IP"
 
 msgid "Using automatic address"
 msgstr "Usando dirección automática"
@@ -26210,18 +26296,6 @@ msgstr ""
 "\n"
 "Luego busque hasta el final, presione OK, seleccione ‘end cut’. Eso es."
 
-#
-msgid ""
-"Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of the %s %s by providing a backup facility for the current "
-"settings and a short explanation of how to upgrade the firmware."
-msgstr ""
-"Bienvenido/a al asistente de actualización de la imagen. El asistente le "
-"guiará en la actualización del firmware de su %s %s, con la posibilidad de "
-"hacer un backup de los ajustes actuales, con una breve explicación de cómo "
-"actualizar el firmware."
-
-#
 msgid "Welcome..."
 msgstr "Bienvenido..."
 
@@ -26656,11 +26730,6 @@ msgstr "Al sintonizar un canal, el sistema normalmente escanea el transpondedor 
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Seleccione 'Sí' para utilizar los datos PDC, si están disponibles en el servicio actual, para detener con precisión la grabación instantánea al final del evento."
 
-#
-msgid "Where do you want to backup your settings?"
-msgstr "¿Dónde quiere hacer el backup de sus ajustes?"
-
-#
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "¿Dónde quieres guardar las grabaciones temporales de timeshift?"
 
@@ -26670,7 +26739,6 @@ msgstr "¿Qué evento de búfer de cambio de tiempo desea guardar?"
 msgid "Which event do you want to save permanently?"
 msgstr "¿Qué programa quieres guardar permanentemente?"
 
-#
 msgid "While available"
 msgstr "Mientras esté disponible"
 
@@ -26869,13 +26937,8 @@ msgstr "Sí (modo seguro)"
 msgid "Yes, always"
 msgstr "Sí, siempre"
 
-#
 msgid "Yes, and delete this movie"
 msgstr "Sí y eliminar esta películas"
-
-#
-msgid "Yes, backup my settings!"
-msgstr "Sí, ¡realice un backup de mis ajustes!"
 
 msgid "Yes, but don't save time shift as movie"
 msgstr "Sí, pero no guardes timeshift como película"
@@ -26892,35 +26955,26 @@ msgstr "Sí, pero guarda timeshift como película y sigue grabando"
 msgid "Yes, but save time shift as movie and stop recording"
 msgstr "Sí, pero guarda timeshift como película y detén la grabación"
 
-# InfoBar.py
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Sí, eliminar esta película y volver a la lista"
 
-#
 msgid "Yes, do a manual scan now"
 msgstr "Sí, hacer una búsqueda manual ahora"
 
-#
 msgid "Yes, do an automatic scan now"
 msgstr "Sí, hacer una búsqueda automática ahora"
 
-#
 msgid "Yes, do another manual scan now"
 msgstr "Sí, hacer otra búsqueda manual ahora"
 
 msgid "Yes, don't ask again"
 msgstr "Sí, no preguntar otra vez"
 
-#
-msgid "Yes, restore the settings now"
-msgstr "Sí, restaurar los ajustes ahora"
+msgid "Yes, restore my settings now"
+msgstr "Sí, restaurar mi configuración ahora"
 
-#
 msgid "Yes, returning to movie list"
 msgstr "Sí, volver a la lista de películas"
-
-msgid "Yes, shut down now."
-msgstr "Sí, apagar ahora."
 
 msgid "Yesterday"
 msgstr "Ayer"
@@ -26982,20 +27036,8 @@ msgid ""
 "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr "Ya has enviado este historial. ¿Seguro que quiere reenviarlo?\n"
 
-#
-msgid ""
-"You have chosen to backup your settings. Press OK to start the backup now."
-msgstr ""
-"Has elegido hacer backup de tus ajustes. Por favor, pulsa OK para iniciar el "
-"backup ahora."
-
-#
-msgid ""
-"You have chosen to restore the settings. Enigma2 will restart after restore. "
-"Press OK to start the restore now."
-msgstr ""
-"Has elegido restaurar la configuración. Enigma2 se reiniciará después. Pulsa "
-"‘OK’ para iniciar ahora la restauración."
+msgid "You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now."
+msgstr "Ha elegido restaurar su configuración. El %s %s se reiniciará tras la restauración. Pulse OK para iniciar la restauración ahora."
 
 msgid "You have chosen to save the current time shift buffer"
 msgstr "Has elegido guardar el búfer time shift actual"
@@ -27889,6 +27931,9 @@ msgstr "Grabar esta pantalla como bitmap"
 #
 msgid "green"
 msgstr "Verde"
+
+msgid "guest"
+msgstr "invitado"
 
 msgid "h:mm"
 msgstr "h:mm"
@@ -29703,22 +29748,14 @@ msgstr "Eliminar el carácter debajo el cursor"
 msgid "Delete the flash expander in the selected device"
 msgstr "Eliminar flash expander del dispositivo seleccionado"
 
-#
 msgid "Do another manual service scan?"
 msgstr "¿Hacer otra búsqueda manual de canales?"
-
-#
-msgid "Do you want the upgrade guide?"
-msgstr "¿Quieres actualizar la guía?"
 
 msgid "Do you want to deactivate this flash expander?"
 msgstr "¿Quieres desactivar este flash expander?"
 
 msgid "Do you want to delete this flash expander directory?"
 msgstr "¿Quieres eliminar este directorio de flash expander?"
-
-msgid "Do you want to start a backup now?"
-msgstr "¿Quieres iniciar un backup ahora?"
 
 msgid "Error: The copy was unsuccessful!"
 msgstr "Error: La copia ha fallado!"
@@ -29759,12 +29796,8 @@ msgstr "Sin conexión a Internet"
 msgid "No Name"
 msgstr "Sin nombre"
 
-#
 msgid "Package installation failed."
 msgstr "Falló la instalación de paquete."
-
-msgid "Perform the upgrade?"
-msgstr "¿Realizar la actualización?"
 
 msgid ""
 "Please wait, swap is is being created. This could take a few minutes to "
@@ -29826,11 +29859,6 @@ msgstr "Seleccione un dispositivo para utilizar como flash expander"
 msgid "Select the search mode to find picons. 'Single-path mode' uses one path for all picons. 'Multi-path mode' allows multiple picon paths to be used for different use cases."
 msgstr "Seleccione el modo de búsqueda para encontrar picones. El modo de ruta única utiliza una sola ruta para todos los picones. El modo de rutas múltiples permite utilizar varias rutas de picones para diferentes casos de uso."
 
-msgid "Select the source location from where to obtain the upgrade files."
-msgstr ""
-"Selecciona la ubicación de origen desde la que obteber los archivos de "
-"actualización."
-
 msgid "Select the Zap timer prerequisite conditions. The Zap timer will only activate in the state selected."
 msgstr "Seleccione las condiciones previas del temporizador Zapeo. El temporizador Zapeo solo se activará en el estado seleccionado."
 
@@ -29858,9 +29886,6 @@ msgstr ""
 "\n"
 "Para los modelos de sintonizadores híbridos, cambie el tipo de sintonizador "
 "con las teclas izquierda y derecha."
-
-msgid "Shutting down. Please wait..."
-msgstr "Apagando. Espera por favor..."
 
 msgid "Skip package installation, only core packages will be available"
 msgstr ""
@@ -29895,14 +29920,6 @@ msgid_plural "There are %d scrambled recordings, which will be unscrambled durin
 msgstr[0] "Hay %d grabaciones codificadas, que se decodificarán durante el modo de espera."
 msgstr[1] "Hay %d grabación codificada, que se decodificará durante el modo de espera."
 
-#
-msgid "This wizard has finished"
-msgstr "El asistente ha terminado"
-
-#
-msgid "This wizard has finished."
-msgstr "El asistente ha terminado."
-
 msgid "Use UP/DOWN buttons to select option then press OK"
 msgstr ""
 "Utilice los botones ARRIBA y ABAJO para seleccionar opción y luego pulse OK"
@@ -29935,19 +29952,6 @@ msgstr ""
 
 msgid "Wizard Actions"
 msgstr "Acciones del asistente"
-
-msgid ""
-"You need a PC connected to your %s %s. Visit the website https://openspa."
-"info/ for further instructions.\n"
-"The %s %s will now be halted. After you have performed the update "
-"instructions from the website, the new firmware will ask you to restore the "
-"settings."
-msgstr ""
-"Necesitas un PC conectado a tu %s %s. Visita la web https://openspa.info/ "
-"para más información.\n"
-"El %s %s ahora se detendrá. Después de haber realizado las instrucciones de "
-"actualización econtradas en la web, el nuevo firmware le pedirá que "
-"restablezca la configuración."
 
 #, python-format
 msgid "Your Internet connection is working (IP: %s)"
