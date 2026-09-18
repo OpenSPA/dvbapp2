@@ -4252,6 +4252,12 @@ msgstr "Dibujos animados"
 msgid "Cascade PiP"
 msgstr "PiP en cascada"
 
+msgid "Case insensitive"
+msgstr "No distingue mayúsculas-minúsculas"
+
+msgid "Case sensitive"
+msgstr "Distingue mayúsculas-minúsculas"
+
 msgid "Catalan / Valencian"
 msgstr "Catalán / Valenciano"
 
