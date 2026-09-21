@@ -455,6 +455,35 @@ config.ParentalControl.setuppin.save()
 	</step>
 	-->
 
+	<step id="reboot">
+		<condition>
+from Components.International import international
+self.condition = bool(international.getPurgablePackages())
+		</condition>
+		<buttons enable="" />
+		<text value="Please wait while unused locales/languages are purged..." />
+		<displaytext value="Purging unused locales/languages..." />
+		<code async="yes">
+self.purgeLocales()
+		</code>
+	</step>
+
+	<step id="restartdevice" nextstep="end">
+		<condition>
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash")
+		</condition>
+		<buttons enable="OK" />
+		<text value="Thank you for using and completing the wizard. The %s %s needs to restart.\n\nPlease press OK to restart the %s %s." />
+		<displaytext value="Restart needed, press OK to restart" />
+		<code>
+self.markDone()
+from enigma import quitMainloop
+from Screens.Standby import QUIT_RESTART
+quitMainloop(QUIT_RESTART)
+		</code>
+	</step>
+
 	<step id="end" laststep="true">
 		<condition>
 self.condition = self.isLastWizard
