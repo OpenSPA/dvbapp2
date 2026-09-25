@@ -948,6 +948,9 @@ msgid_plural "%d Years"
 msgstr[0] "%d Año"
 msgstr[1] "%d Años"
 
+msgid "%d additional slots have been created.\n"
+msgstr "Se han creado %d espacios adicionales.\n"
+
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
 msgid "%d channel found"
@@ -999,6 +1002,9 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d red encontrada."
 msgstr[1] "%d redes encontradas."
+
+msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
+msgstr "Se reemplazarán o eliminarán %d archivos de inicio obsoletos del fabricante."
 
 msgid "%d of %d channels contained a DAB+ ensemble"
 msgstr "%d de %d canales contenían un conjunto DAB+"
@@ -2146,6 +2152,9 @@ msgstr "Añadir soporte manualmente"
 msgid "Add New Quad Channel Entry"
 msgstr "Añadir nueva entrada de canal quad"
 
+msgid "Add Path"
+msgstr "Añadir Ruta"
+
 msgid "Add RecordTimer"
 msgstr "Añadir temporizador de grabación"
 
@@ -2247,6 +2256,9 @@ msgstr "Añadir nueva línea NewCamd"
 msgid "Add new tag"
 msgstr "Añadir nueva etiqueta"
 
+msgid "Add or change additional slots"
+msgstr "Añadir o modificar espacios adicionales"
+
 msgid "Add provider"
 msgstr "Añadir proveedor"
 
@@ -2333,6 +2345,12 @@ msgstr ""
 "Las opciones adicionales del motor le permiten introducir los detalles de la "
 "hoja de especificaciones de su motor para que enigma pueda calcular el "
 "tiempo que tardará en cambiar a otro satélite."
+
+msgid "Additional rotor cable from %s"
+msgstr "Cable de motor adicional de %s"
+
+msgid "Additional slots cannot be changed while the receiver is running from one of them."
+msgstr "No se pueden modificar las ranuras adicionales mientras el receptor está funcionando desde una de ellas."
 
 msgid "Addon for kodi"
 msgstr "Addons para Kodi"
@@ -2467,6 +2485,9 @@ msgstr "Todos los canales"
 
 msgid "All ages"
 msgstr "Todas las edades"
+
+msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
+msgstr "Se borrarán todos los datos del dispositivo seleccionado. ¿Crear una partición de datos compartida con %d slots MultiBoot adicionales, una partición de intercambio (swap) de 512 MiB y el kernel del slot interno 1?"
 
 msgid "All events down"
 msgstr "Todos los eventos abajo"
@@ -4340,6 +4361,9 @@ msgstr "¿Cambiar ajustes de repetición y retraso?"
 # GraphMultiEpg.py
 msgid "Change skin"
 msgstr "Cambiar interfaz"
+
+msgid "Change slots"
+msgstr "Cambiar slots"
 
 #
 msgid "Change step size"
@@ -12808,6 +12832,15 @@ msgstr "Importar manualmente desde el sintonizador reserva"
 msgid "Manufacturer"
 msgstr "Fabricante"
 
+msgid "Manufacturer slot 1 does not provide suitable STARTUP files."
+msgstr "El slot 1 del fabricante no proporciona archivos de inicio adecuados."
+
+msgid "Manufacturer slot 1 has no usable STARTUP command with a kernel device."
+msgstr "El slot 1 del fabricante no tiene ningún comando STARTUP utilizable con un dispositivo de kernel."
+
+msgid "Manufacturer slot 1 was not found and cannot be used as the shared kernel template."
+msgstr "No se encontró el slot 1 del fabricante y no puede utilizarse como plantilla de kernel compartida."
+
 msgid "Manx"
 msgstr "Mancha"
 
@@ -14118,6 +14151,9 @@ msgstr "No hay grabador de TS disponible"
 msgid "No active channel found."
 msgstr "No se ha encontrado ningún canal activo."
 
+msgid "No additional slots have been planned."
+msgstr "No se han previsto espacios adicionales."
+
 msgid "No age block"
 msgstr "Sin bloqueo de edad"
 
@@ -14324,6 +14360,9 @@ msgstr ""
 
 msgid "No valid device detected - Press OK"
 msgstr "No se ha detectado un dispositivo válido - Presiona OK"
+
+msgid "No valid manufacturer MultiBoot slots were found."
+msgstr "No se encontraron slots MultiBoot válidas del fabricante."
 
 #, python-format
 msgid "No valid mount for '%s' found!"
@@ -16071,6 +16110,12 @@ msgstr "Preescolar"
 msgid "Press '0' to toggle PiP mode"
 msgstr "Pulsa ‘0’ para cambiar el modo de PiP"
 
+msgid "Press BLUE to add more slots."
+msgstr "Pulsa el botón AZUL para añadir más slots."
+
+msgid "Press BLUE to change the additional slots."
+msgstr "Pulsa el botón AZUL para cambiar slots adicionales."
+
 msgid "Press EXIT to close."
 msgstr "Pulse EXIT para cerrar."
 
@@ -16187,8 +16232,14 @@ msgstr ""
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
 msgstr "Pulse los botones ARRIBA/ABAJO para seleccionar un slot y pulse OK o VERDE para reiniciar en ese slot. Si está disponible, el botón AMARILLO eliminará o borrará el slot. Un slot eliminado se puede restaurar con el botón AZUL. ¡Un slot borrado se elimina por completo y no se puede restaurar!"
 
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. Press YELLOW to delete the selected image or hold YELLOW to permanently wipe it. A deleted image can be restored with BLUE, but a wiped image cannot. Press INFO to show or hide empty slots."
+msgstr "Pulse los botones ARRIBA/ABAJO para seleccionar un slot y pulse OK o el botón VERDE para reiniciar en ese slot. Pulse el botón AMARILLO para eliminar la imagen seleccionada o mantenga pulsado el botón AMARILLO para borrarla permanentemente. Una imagen eliminada puede restaurarse con el botón AZUL, pero una imagen borrada permanentemente no. Pulse INFO para mostrar u ocultar slots vacíos."
+
 msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
 msgstr "Pulsa los botones ARRIBA/ABAJO para seleccionar un slot y, a continuación, pulsa OK o VERDE para reiniciar en ese slot. Si está disponible, el botón AMARILLO desactiva MultiBoot, elimina o borra el slot seleccionado. Pulsa AZUL para añadir más slots."
+
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot."
+msgstr "Pulse los botones ARRIBA/ABAJO para seleccionar un slot y, a continuación, pulse OK o el botón VERDE para reiniciar en dicho slot. Si está disponible, el botón AMARILLO desactivará el MultiBoot, o bien eliminará o borrará el contenido del slot seleccionado."
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -21299,6 +21350,9 @@ msgstr "Mostrar notificación cuando la importación de canales no fue con éxit
 msgid "Show notification when import channels was successful"
 msgstr "Mostrar notificación cuando la importación de canales fue con éxito"
 
+msgid "Show or hide empty slots"
+msgstr "Mostrar u ocultar espacios vacíos"
+
 msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Mostrar u ocultar la descripción ampliada (depende de la skin)."
 
@@ -23480,6 +23534,9 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "El comando para encender desde reposo se enviará múltiples veces."
 
+msgid "The custom mount point for '%s' is empty!"
+msgstr "¡El punto de montaje personalizado para '%s' está vacío!"
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -23552,6 +23609,16 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr "El ajuste de loopthrough es incorrecto."
 
+msgid "The manufacturer STARTUP device cannot be mounted for inspection."
+msgstr "El dispositivo de arranque del fabricante no puede montarse para su inspección."
+
+msgid "The manufacturer STARTUP device was not found."
+msgstr "No se encontró el dispositivo de inicio del fabricante."
+
+#, python-format
+msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
+msgstr "No es posible ampliar de forma segura el archivo de inicio del fabricante '%s'."
+
 msgid "The PIN code entered is incorrect!"
 msgstr "El código PIN introducido es incorrecto!"
 
@@ -23574,6 +23641,9 @@ msgstr ""
 msgid "The results have been written to %s."
 msgstr "Los resultados se han escrito en %s."
 
+msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
+msgstr "El subdirectorio raíz del archivo STARTUP del fabricante no puede ampliarse de forma segura."
+
 msgid "The RTL2832 kernel driver blacklist could not be updated:\n%s"
 msgstr "No se pudo actualizar la lista negra del controlador del kernel RTL2832:\n%s"
 
@@ -23587,6 +23657,12 @@ msgstr ""
 "El canal seleccionado no soporta VPS para temporizadores programados "
 "manualmente!\n"
 "Seguro que quieres activar VPS?"
+
+msgid "The selected device is not a supported removable block device."
+msgstr "El dispositivo seleccionado no es un dispositivo de bloques extraíble compatible."
+
+msgid "The selected device is too small. At least 2561 MiB is required."
+msgstr "El dispositivo seleccionado es demasiado pequeño. Se requieren al menos 2561 MiB."
 
 #
 msgid "The service list is reloaded."
@@ -24981,6 +25057,12 @@ msgstr "Ucrania"
 msgid "Ukrainian"
 msgstr "Ucraniano"
 
+msgid "Unable to create the additional STARTUP files."
+msgstr "No se pueden crear los archivos STARTUP adicionales."
+
+msgid "Unable to create the new manufacturer STARTUP files."
+msgstr "No se pueden crear los nuevos archivos de inicio del fabricante."
+
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"
 
@@ -24989,6 +25071,9 @@ msgstr "No se puede abrir el sintonizador (%d)"
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "No se pudo registrar el transpondedor DAB+"
+
+msgid "Unable to remove the obsolete additional STARTUP files."
+msgstr "No se pueden eliminar los archivos de inicio adicionales obsoletos."
 
 msgid "Unable to start the DAB+ feed"
 msgstr "No se puede iniciar el feed DAB+"
@@ -26720,8 +26805,8 @@ msgstr "Cuando el cursor de entrada alcance este punto (porcentaje del ancho, de
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Cuando el receptor encienda del reposo o de reposo profundo, enviará un comando al televisor para que salga del reposo."
 
-msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
-msgstr "Cuando el receptor sale del modo reposo, envíe la fuente activa, la ruta del stream y los comandos de enrutamiento para que el televisor cambie a la entrada HDMI conectada al receptor."
+msgid "When the receiver wakes from Standby, announce it as the active source so the TV switches to the connected HDMI input."
+msgstr "Cuando el receptor salga del modo de espera, anúncielo como la fuente activa para que el televisor cambie a la entrada HDMI conectada."
 
 msgid ""
 "When the red box is correctly visible press the GREEN button to save the "
@@ -28346,7 +28431,9 @@ msgstr "Eliminar del control parental"
 msgid "Remove New Found Flag"
 msgstr "Eliminar la nueva marca encontrada"
 
-#
+msgid "Remove Path"
+msgstr "Eliminar Ruta"
+
 msgid "Remove plugins ..."
 msgstr "Borrar Plugins..."
 
@@ -29572,9 +29659,6 @@ msgstr "<No se encontraron capacidades>"
 msgid "<Select a device>"
 msgstr "<Seleccione un dispositivo>"
 
-msgid "Add more slots"
-msgstr "Añadir más slots"
-
 msgid "Choose the amount of additional slots."
 msgstr "Escoge la cantidad de slots adicionales."
 
@@ -29609,9 +29693,14 @@ msgid "NOTE"
 msgstr "NOTA"
 
 msgid "Permanently remove the MultiBoot files?"
-msgstr "¿Borrar permanentemente los archivos MultiBoot?"
+msgstr "¿Eliminar permanentemente los archivos MultiBoot?"
 
-#
+msgid "Permanently wipe the highlighted slot"
+msgstr "Eliminar permanentemente el slot resaltada"
+
+msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
+msgstr "¿Eliminar permanentemente esta ranura? Todos los archivos del slot se eliminarán y no se podrán recuperar."
+
 msgid "Please select the device or Cancel to cancel the selection."
 msgstr "Seleccione el dispositivo o Cancelar para cancelar la selección."
 
