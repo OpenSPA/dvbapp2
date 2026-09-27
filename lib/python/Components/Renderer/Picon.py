@@ -253,7 +253,7 @@ class Picon(Renderer):
 ###OPENSPA [morser] for Picon Path change
 def setPiconPath():
 	global lastPiconPath
-	lastPiconPath = None
+	lastPiconPath = {}
 	initPiconPaths()
 #####################################
 
