@@ -1336,6 +1336,9 @@ msgstr "%s%s(Por defecto: %s)"
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
 
+msgid "%s: bouquet could not be cleared"
+msgstr "%s: no se pudo eliminar el bouquet"
+
 #, python-format
 msgid "%s: bouquet could not be written"
 msgstr "%s: no se pudo escribir el bouquet"
@@ -2722,6 +2725,12 @@ msgstr "Se ha detectado un receptor RTL-SDR. Se está instalando el componente o
 
 msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
 msgstr "Se intenta capturar el estado actual del televisor. Si los mensajes de estado son incorrectos o no se muestran, el receptor podría responder inesperadamente. De lo contrario, ayuda al receptor a gestionar mejor las diferentes condiciones de funcionamiento."
+
+msgid "An existing timer already records this service during the requested time."
+msgstr "Un temporizador existente ya registra este servicio durante el tiempo solicitado."
+
+msgid "An instant recording is already running on this service."
+msgstr "Ya se está ejecutando una grabación instantánea en este servicio."
 
 msgid "An unknown error occurred!"
 msgstr "¡Se produjo un error desconocido!"
@@ -6316,6 +6325,9 @@ msgstr "Error en la búsqueda DAB+; Se mantuvieron los bouquets existentes."
 msgid "DAB+ service information for '%s'"
 msgstr "Información del servicio DAB+ para '%s'"
 
+msgid "DAB+ signal detected; waiting for FIC service data..."
+msgstr "Señal DAB+ detectada; esperando datos de servicio FIC..."
+
 msgid "DAB+ Settings"
 msgstr "Ajustes DAB+"
 
@@ -7359,11 +7371,18 @@ msgstr "Desactivar proceso de HDD en VFD."
 msgid "Disable the MultiBoot option"
 msgstr "Deshabilitar la opción MultiBoot"
 
-#
 msgid "Disable timer"
 msgstr "Deshabilitar temporizador"
 
-#
+msgid "Disable timer '%s'?"
+msgstr "¿Desactivar el temporizador '%s'?"
+
+msgid "Disable timer: %s"
+msgstr "Desactivar temporizador: %s"
+
+msgid "Disable timer: '%s'"
+msgstr "Desactivar temporizador: '%s'"
+
 msgid "Disabled"
 msgstr "Desactivado"
 
@@ -12361,6 +12380,9 @@ msgstr "Limitar el tamaño del historial de depuración (MB)"
 msgid "Limit east"
 msgstr "Límite este"
 
+msgid "Limit instant recording until %s"
+msgstr "Limitar la grabación instantánea hasta %s"
+
 msgid ""
 "Limit the characters that can be used in recording filenames to (7 bit) "
 "ASCII. This ensures compatibility with operating systems or file systems "
@@ -17233,6 +17255,9 @@ msgstr "Eliminar la línea de ocultación del VBI para este servicio"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Eliminar la carpeta seleccionada de los marcadores"
+
+msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr "Elimina los canales almacenados previamente de los multiplexores DAB+ escaneados. Desactiva esta opción para conservar los canales cuando un multiplexor no esté disponible temporalmente."
 
 msgid "Remove service"
 msgstr "Eliminar servicio"
@@ -22379,6 +22404,12 @@ msgstr "Empezar desde el principio"
 msgid "Start instant recording"
 msgstr "Iniciar grabación instantánea"
 
+msgid "Start instant recording and set duration"
+msgstr "Inicia la grabación instantánea y establece la duración."
+
+msgid "Start instant recording and set end time"
+msgstr "Iniciar grabación inmediata y establecer la hora de finalización"
+
 msgid "Start mode"
 msgstr "Modo de inicio"
 
@@ -22559,6 +22590,12 @@ msgstr "Detener grabación y eliminar"
 
 msgid "Stop recording now"
 msgstr "Detener grabación"
+
+msgid "Stop recording: %s"
+msgstr "Detener la grabación: %s"
+
+msgid "Stop recording: '%s'"
+msgstr "Detener la grabación: '%s'"
 
 msgid "Stop service"
 msgstr "Parar servicio"
@@ -23629,6 +23666,12 @@ msgstr "El directorio de picons ya existe y se tiene que eliminar. ¿Quieres con
 msgid "The process will take approximately %d minutes to complete."
 msgstr "El proceso tardará aproximadamente %d minutos en completarse."
 
+msgid "The recording end time has already passed."
+msgstr "La hora de finalización de la grabación ya ha pasado."
+
+msgid "The requested recording conflicts with other timers. What do you want to do?"
+msgstr "La grabación solicitada entra en conflicto con otras programaciones. ¿Qué desea hacer?"
+
 msgid ""
 "The restore has finished. The %s %s needs to restart.\n"
 "\n"
@@ -24095,23 +24138,21 @@ msgstr "Esta opción configura la supresión de bordes digitales falsos, resulta
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Esta opción configura la nitidez de la imagen cuando se está ampliando."
 
-#
+msgid "This recording has already ended."
+msgstr "Esta grabación ya ha terminado."
+
 msgid "This plugin is installed."
 msgstr "Este plugin está instalado."
 
-#
 msgid "This plugin is not installed."
 msgstr "Este plugin no está instalado."
 
-#
 msgid "This plugin will be installed."
 msgstr "Se instalará este coplemento."
 
-#
 msgid "This plugin will be removed."
 msgstr "Se desinstalará este plugin."
 
-#
 msgid "This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
 msgstr "Esta rotación cambia el orden en que se utiliza la lista de servidores DNS y puede evitar problemas si un servidor DNS de la lista deja de estar disponible."
 
@@ -30113,7 +30154,6 @@ msgstr "Error DNS del servidor de feeds!"
 msgid "Feed server access error!"
 msgstr "Error acceso al servidor de feeds!"
 
-#
 msgid "Hide error messages from the Common Interface module."
 msgstr "Ocultar mensajes de error del módulo interfaz común."
 
@@ -30126,11 +30166,12 @@ msgstr "Administrar Plugins. Se eliminarán/instalarán plugins en tu receptor"
 msgid "Manage the highlighted %s"
 msgstr "Administrar el %s seleccionado"
 
-#, python-format
 msgid "Manage the highlighted %s / list of %s"
 msgstr "Administrar el %s / lista de %s seleccionados"
 
-#
+msgid "Manage timer conflicts"
+msgstr "Gestionar conflictos de temporizador"
+
 msgid "Move to the first item on the current line"
 msgstr "Mover al primer elemento de la línea actual"
 
