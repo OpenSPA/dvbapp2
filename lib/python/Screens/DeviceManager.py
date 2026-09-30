@@ -1108,10 +1108,12 @@ class DeviceManagerMountPoints(Setup):
 			self.close(False)
 
 	def closeRecursive(self):
-		self.close(False)
+		if not self.console.appContainers:
+			self.close(False)
 
 	def keyCancel(self):
-		self.close(False)
+		if not self.console.appContainers:
+			self.close(False)
 
 
 class DeviceManagerSetup(Setup):
