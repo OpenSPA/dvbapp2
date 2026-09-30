@@ -3886,12 +3886,13 @@ class InfoBarPiP:
 			if serviceList and serviceList.dopipzap:
 				self.togglePipZap()
 			if self.session.pipshown:
-				lastPiPServiceTimeout = int(config.usage.pip_last_service_timeout.value)
-				if lastPiPServiceTimeout >= 0:
-					self.lastPiPService = self.session.pip.getCurrentServiceReference()
-					if lastPiPServiceTimeout:
-						self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
-				del self.session.pip
+				if hasattr(self.session, "pip"):
+					lastPiPServiceTimeout = int(config.usage.pip_last_service_timeout.value)
+					if lastPiPServiceTimeout >= 0:
+						self.lastPiPService = self.session.pip.getCurrentServiceReference()
+						if lastPiPServiceTimeout:
+							self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
+					del self.session.pip
 				if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
 					print("[InfoBarGenerics] [LCDMiniTV] disable PiP")
 					eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
