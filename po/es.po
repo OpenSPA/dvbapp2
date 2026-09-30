@@ -15838,9 +15838,11 @@ msgstr "Por favor, espera mientras se instala el idioma..."
 msgid "Please wait while locales/languages are purged..."
 msgstr "Por favor, espera mientras se eliminan los idiomas..."
 
-#
 msgid "Please wait while scanning is in progress..."
 msgstr "Espera mientras la búsqueda está en curso..."
+
+msgid "Please wait while the Internet connection is checked..."
+msgstr "Por favor, espere mientras se comprueba la conexión a Internet..."
 
 msgid "Please wait while the data is extracted..."
 msgstr "Por favor, espera mientras se extraen los datos..."
@@ -16528,6 +16530,9 @@ msgstr ""
 
 msgid "Purging all unused locales/languages..."
 msgstr "Limpiar todos los idiomas/regiones no utilizados..."
+
+msgid "Purging unused locales/languages..."
+msgstr "Eliminando configuraciones regionales o idiomas no utilizados..."
 
 msgid "Purple"
 msgstr "Púrpura"
@@ -23649,8 +23654,14 @@ msgstr "El ajuste de loopthrough es incorrecto."
 msgid "The manufacturer STARTUP device cannot be mounted for inspection."
 msgstr "El dispositivo de arranque del fabricante no puede montarse para su inspección."
 
+msgid "The manufacturer STARTUP device is not mounted. STARTUP files have not been changed."
+msgstr "El dispositivo STARTUP del fabricante no está montado. Los archivos STARTUP no han sido modificados."
+
 msgid "The manufacturer STARTUP device was not found."
 msgstr "No se encontró el dispositivo de inicio del fabricante."
+
+msgid "The manufacturer STARTUP file '%s' has changed. Restart the user interface and try again."
+msgstr "El archivo STARTUP del fabricante '%s' ha cambiado. Reinicie la interfaz de usuario e inténtelo de nuevo."
 
 #, python-format
 msgid "The manufacturer STARTUP filename '%s' cannot be safely extended."
@@ -25109,6 +25120,12 @@ msgstr "Imposible inicializar Multiboot Kexec!"
 
 msgid "Unable to open tuner (%d)"
 msgstr "No se puede abrir el sintonizador (%d)"
+
+msgid "Unable to read the UUID of the new MultiBoot partition. STARTUP files have not been changed."
+msgstr "No se ha podido leer el UUID de la nueva partición MultiBoot. Los archivos de inicio no se han modificado."
+
+msgid "Unable to read the manufacturer STARTUP file '%s'."
+msgstr "No se puede leer el archivo STARTUP del fabricante '%s'."
 
 msgid "Unable to register the DAB+ transponder"
 msgstr "No se pudo registrar el transpondedor DAB+"
@@ -29929,6 +29946,9 @@ msgstr "Tamaño memoria limitada, archivo swap requerido"
 msgid "No Internet connection"
 msgstr "Sin conexión a Internet"
 
+msgid "No Internet connection available!"
+msgstr "¡No hay conexión a Internet disponible!"
+
 msgid "No Name"
 msgstr "Sin nombre"
 
@@ -30237,6 +30257,9 @@ msgstr "Por favor, espera mientras se sustituye el plugin."
 
 msgid "Please wait while the plugin is updated."
 msgstr "Por favor, espera mientras se actualiza el plugin."
+
+msgid "Please wait while unused locales/languages are purged..."
+msgstr "Por favor, espere mientras se eliminan las configuraciones regionales o los idiomas no utilizados..."
 
 msgid "Plugin Action Log Actions"
 msgstr "Acciones del log de acciones del plugin"
