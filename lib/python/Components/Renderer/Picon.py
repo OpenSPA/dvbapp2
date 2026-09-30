@@ -14,12 +14,21 @@ config.misc.picon_path = ConfigText(default = "/usr/share/enigma2/picon/")
 config.misc.picon_search_hdd = ConfigYesNo (default = False)
 
 searchPaths = []
-lastPiconPath = {}
+lastPiconPath = None  # default/infobar path as plain string for plugins
+piconPathCache = {}
 
 
 def resetPiconPath():
+	global lastPiconPath, piconPathCache
+	lastPiconPath = None
+	piconPathCache = {}
+
+
+def setPiconPath(key, path):
 	global lastPiconPath
-	lastPiconPath = {}
+	piconPathCache[key] = path
+	if key in (None, "infobar"):
+		lastPiconPath = path
 
 
 def getPiconPath(mode=None):
@@ -109,21 +118,21 @@ def onPartitionChange(why, part):
 
 def findPicon(serviceName, mode=None):
 	key = mode if config.picon.mode.value else None
-	cachedPath = lastPiconPath.get(key)
+	cachedPath = piconPathCache.get(key)
 	if cachedPath is not None:
 		pngname = join(cachedPath, f"{serviceName}.png")
 		return pngname if exists(pngname) else ""
 	else:
 		path = getPiconPath(mode)
 		if path:
-			lastPiconPath[key] = path
+			setPiconPath(key, path)
 			pngname = join(path, f"{serviceName}.png")
 			return pngname if exists(pngname) else ""
 		for path in searchPaths:
 			if isdir(path) and not path.startswith("/media/net"):
 				pngname = join(path, f"{serviceName}.png")
 				if exists(pngname):
-					lastPiconPath[key] = path
+					setPiconPath(key, path)
 					return pngname
 		return ""
 
