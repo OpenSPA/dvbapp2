@@ -265,7 +265,7 @@ class Picon(Renderer):
 				self.instance.hide()
 
 ###OPENSPA [morser] for Picon Path change
-# OpenSPA [norhap] This has been redefined in the code with the latest changes; there are two definitions. 
+# OpenSPA [norhap] This has been redefined in the code with the latest changes; there are two definitions.
 # def setPiconPath():
 # 	global lastPiconPath
 # 	lastPiconPath = {}
