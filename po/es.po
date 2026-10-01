@@ -2353,7 +2353,7 @@ msgid "Additional rotor cable from %s"
 msgstr "Cable de motor adicional de %s"
 
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
-msgstr "No se pueden modificar las ranuras adicionales mientras el receptor está funcionando desde una de ellas."
+msgstr "No se pueden modificar los slots adicionales mientras el receptor está funcionando desde una de ellas."
 
 msgid "Addon for kodi"
 msgstr "Addons para Kodi"
@@ -3623,7 +3623,7 @@ msgstr "¡Es necesario actualizar el cargador de arranque (bootloader)!"
 
 #, python-format
 msgid "Boot slot information for %s %s"
-msgstr "Información de la ranura de arranque para %s %s"
+msgstr "Información del slots de arranque para %s %s"
 
 msgid "Boot time"
 msgstr "Tiempo de arranque"
@@ -4218,10 +4218,10 @@ msgid "Cancel the service selection"
 msgstr "Cancelar la selección del servicio"
 
 msgid "Cancel the slot selection and exit"
-msgstr "Cancelar la selección de ranura y salir"
+msgstr "Cancelar la selección de slot y salir"
 
 msgid "Cancel the slot selection and exit all menus"
-msgstr "Cancelar la selección de ranura y salir de todos los menús"
+msgstr "Cancelar la selección de slot y salir de todos los menús"
 
 msgid "Cancel the task"
 msgstr "Anular la tarea"
@@ -6369,9 +6369,6 @@ msgstr "DMM avanzado"
 
 msgid "DMM normal"
 msgstr "DMM normal"
-
-msgid "DNS override"
-msgstr "DNS personalizadas"
 
 msgid "DNS Settings"
 msgstr "Configuración DNS"
@@ -14234,6 +14231,9 @@ msgstr "Sin índice libre disponible"
 msgid "No free tuner!"
 msgstr "¡No hay ningún sintonizador libre!"
 
+msgid "No further DVB-I alternative is available."
+msgstr "No hay ninguna otra alternativa DVB-I disponible."
+
 msgid "No gateway"
 msgstr "Sin puerta de enlace"
 
@@ -14384,7 +14384,7 @@ msgid "No valid device detected - Press OK"
 msgstr "No se ha detectado un dispositivo válido - Presiona OK"
 
 msgid "No valid manufacturer MultiBoot slots were found."
-msgstr "No se encontraron slots MultiBoot válidas del fabricante."
+msgstr "No se encontraron slots MultiBoot válidos del fabricante."
 
 #, python-format
 msgid "No valid mount for '%s' found!"
@@ -15078,7 +15078,9 @@ msgstr "Texto de salida:"
 msgid "Overall progress:"
 msgstr "Progreso general:"
 
-#
+msgid "Override DNS"
+msgstr "DNS personalizadas"
+
 msgid "Overscan Test"
 msgstr "Prueba de sobreescaneo"
 
@@ -16247,7 +16249,7 @@ msgid ""
 "deleted image can be restored with the BLUE button. A wiped image is "
 "completely removed and cannot be restored!"
 msgstr ""
-"Pulse los botones ARRIBA/ABAJO para seleccionar una ranura y pulse OK o "
+"Pulse los botones ARRIBA/ABAJO para seleccionar un slot y pulse OK o "
 "VERDE para reiniciar a esa imagen. Si está disponible, el botón AMARILLO "
 "eliminará o borrará la imagen. Una imagen borrada puede restaurarse con el "
 "botón AZUL. Una imagen borrada se elimina por completo y no se puede "
@@ -17611,7 +17613,7 @@ msgid "Restore settings from a backup"
 msgstr "Restaurar ajustes a partir de un backup"
 
 msgid "Restore the highlighted slot"
-msgstr "Restaurar la ranura resaltada"
+msgstr "Restaurar el slot resaltado"
 
 msgid "Restore your %s %s settings."
 msgstr "Restaura los ajustes de tu %s %s."
@@ -17669,7 +17671,7 @@ msgid "Retrieving '%s' log, please wait..."
 msgstr "Recuperando el registro '%s', por favor espere..."
 
 msgid "Retrieving boot slot information..."
-msgstr "Recuperando la información de la ranura de arranque..."
+msgstr "Recuperando la información del slot de arranque..."
 
 msgid "Retrieving image list, please wait..."
 msgstr "Recuperando lista de imágenes, por favor espere..."
@@ -19592,10 +19594,10 @@ msgid "Select the function to be assigned to this button."
 msgstr "Seleccione la función asignada a este botón."
 
 msgid "Select the highlighted image and proceed to the slot selection"
-msgstr "Seleccione la imagen resaltada y proceda a la selección de la ranura"
+msgstr "Seleccione la imagen resaltada y proceda a la selección de slot"
 
 msgid "Select the highlighted slot and reboot"
-msgstr "Seleccione la ranura resaltada y reinicie"
+msgstr "Seleccione el slot resaltado y reinicie"
 
 msgid ""
 "Select the initial position of the timeline marker. The marker is the "
@@ -23559,6 +23561,9 @@ msgstr "Tasa de bits del codificador de vídeo. Valores más altos mejoran la ca
 msgid "The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"
 msgstr "El bouquet \"Último Escaneado\" no se ha creado.\nEs necesario reiniciar enigma2 y volver a escanear para poder crearlo.\n¿Quiere reiniciar enigma2 ahora?"
 
+msgid "The time shift storage device is not available.\nPlease check the device and the time shift path."
+msgstr "El dispositivo de almacenamiento para timeShift no está disponible. Por favor, compruebe el dispositivo y la ruta de desplazamiento temporal."
+
 msgid ""
 "The time shift buffer exceeds the limit specified in the settings.\n"
 "What do you want to do?"
@@ -23871,6 +23876,9 @@ msgstr "Esto le permite establecer el número máximo de dígitos en un número 
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Esta lista está protegida por un PIN de control parental!"
+
+msgid "This channel is currently off air."
+msgstr "Este canal está actualmente off."
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -29757,7 +29765,7 @@ msgid "Permanently wipe the highlighted slot"
 msgstr "Eliminar permanentemente el slot resaltada"
 
 msgid "Permanently wipe this slot? All files in the slot will be deleted and cannot be restored."
-msgstr "¿Eliminar permanentemente esta ranura? Todos los archivos del slot se eliminarán y no se podrán recuperar."
+msgstr "¿Eliminar permanentemente este slot? Todos los archivos del slot se eliminarán y no se podrán recuperar."
 
 msgid "Please select the device or Cancel to cancel the selection."
 msgstr "Seleccione el dispositivo o Cancelar para cancelar la selección."
