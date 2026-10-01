@@ -389,7 +389,7 @@ class ConfigListScreen:
 			if isinstance(currentItem, ConfigBoolean):
 				self.keyToggle()
 			elif isinstance(self.getCurrentItem(), ConfigDirectory): ### OPENSPA [morser] openlocation for Directory config with OK
-				self.openLocation()				
+				self.openLocation()
 			elif isinstance(currentItem, ConfigSelection):
 				self.keyMenu()
 			elif isinstance(currentItem, ConfigText) and not isinstance(currentItem, (ConfigMACText, ConfigNumber)):
