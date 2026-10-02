@@ -16936,8 +16936,11 @@ msgstr "Nach terrestrischen LCNs suchen und LCN-Bouquets erstellen"
 msgid "Scan wireless networks"
 msgstr "WLAN-Netzwerke suchen"
 
-msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Durchsucht das Netzwerk nach WLAN-Zugangspunkten und stellt eine Verbindung mit Hilfe des ausgewählten WLAN-Gerätes her."
+msgid "Scan the QR code to open the manual:"
+msgstr "QR-Code scannen, um das Handbuch zu öffnen:"
+
+msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
+msgstr "USB-Tuner, verfügbare DAB+-Satellitenfeeds oder beides scannen."
 
 msgid "Scanning"
 msgstr "Suchlauf"
@@ -21000,6 +21003,9 @@ msgstr "Sundanesisch"
 msgid "Sunday"
 msgstr "Sonntag"
 
+msgid "Support"
+msgstr "Support"
+
 msgid "Suriname"
 msgstr "Suriname"
 
@@ -21995,6 +22001,9 @@ msgstr "In dieser Reihenfolge werden DiSEqC-Befehle an das Antennensystem gesend
 
 msgid "This menu contains selections to display information about the receiver."
 msgstr "Alle Informationen über den Receiver."
+
+msgid "This menu contains selections to get help and report problems."
+msgstr "Dieses Menü enthält Einträge, um Hilfe zu erhalten und Probleme zu melden."
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "Die Software von %s %s verwalten."
@@ -23686,6 +23695,9 @@ msgstr "Eigene Feed-URL"
 
 msgid "User ID"
 msgstr "Benutzer-ID"
+
+msgid "User Manual"
+msgstr "Handbuch"
 
 msgid "User comments"
 msgstr "Benutzerkommentare"
