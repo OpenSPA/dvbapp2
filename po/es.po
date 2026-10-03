@@ -3008,10 +3008,10 @@ msgid "Audio Channel"
 msgstr "Canal de audio"
 
 msgid "Audio Formats And Output"
-msgstr "Formatos Y Salida de Audio"
+msgstr "Formatos y Salida de Audio"
 
 msgid "Audio Language And Track Selection"
-msgstr "Selección de Idioma Y Pista de Audio"
+msgstr "Selección de Idioma y Pista de Audio"
 
 msgid "Audio PID"
 msgstr "Audio PID"
@@ -4422,10 +4422,10 @@ msgid "Channel 1 with prime time"
 msgstr "Canal 1 de máxima audiencia"
 
 msgid "Channel And EPG Import"
-msgstr "Importación de Canales Y EPG"
+msgstr "Importación de Canales y EPG"
 
 msgid "Channel History And Messages"
-msgstr "Historial del Canal Y Mensajes"
+msgstr "Historial del Canal y Mensajes"
 
 msgid "Channel Info"
 msgstr "Información de canal"
@@ -4454,7 +4454,7 @@ msgid "Channel Selection picon path"
 msgstr "Ruta del picon lista de canales"
 
 msgid "Channel Zapping And Keys"
-msgstr "Cambio de Canales Y Teclas"
+msgstr "Cambio de Canales y Teclas"
 
 #
 msgid "Channel Selection Settings"
@@ -5114,7 +5114,7 @@ msgid "Comoros"
 msgstr "Comoras"
 
 msgid "Compatibility And Emulation"
-msgstr "Compatibilidad Y Emulación"
+msgstr "Compatibilidad y Emulación"
 
 msgid "Compiled by"
 msgstr "Compilado por"
@@ -6502,7 +6502,7 @@ msgid "Date / Time"
 msgstr "Fecha/Hora"
 
 msgid "Date And Time"
-msgstr "Fecha Y Hora"
+msgstr "Fecha y Hora"
 
 msgid "Date / Time format in standby"
 msgstr "Formato Hora / Fecha en reposo"
@@ -8547,7 +8547,7 @@ msgid "Encryption"
 msgstr "Encriptación"
 
 msgid "Encryption And Descrambling"
-msgstr "Cifrado Y Descifrado"
+msgstr "Cifrado y Descifrado"
 
 msgid "Encryption:"
 msgstr "Encriptación:"
@@ -9183,7 +9183,7 @@ msgid "Event Info"
 msgstr "Información de programa"
 
 msgid "Event Metadata And Correction"
-msgstr "Metadatos del Evento Y Corrección"
+msgstr "Metadatos del Evento y Corrección"
 
 msgid "Event View"
 msgstr "Vista de programa"
@@ -9621,7 +9621,7 @@ msgid "Fast DiSEqC"
 msgstr "DiSEqC Rápido"
 
 msgid "Fast Forward And Rewind"
-msgstr "Avance Rápido Y Retroceso"
+msgstr "Avance Rápido y Retroceso"
 
 msgid "Fast epoch"
 msgstr "Época rápida"
@@ -9785,7 +9785,7 @@ msgid "Filename"
 msgstr "Nombre del fichero"
 
 msgid "Files And Directories"
-msgstr "Archivos Y Directorios"
+msgstr "Archivos y Directorios"
 
 msgid "Filelist"
 msgstr "Lista de archivos"
@@ -10657,6 +10657,9 @@ msgstr "Ayuda y Retroalimentación Visual"
 msgid "Help Screen Information"
 msgstr "Información de la pantalla de ayuda"
 
+msgid "Help and support"
+msgstr "Ayuda y soporte"
+
 msgid "Help animation speed"
 msgstr "Velocidad de animación de indicadores de ayuda"
 
@@ -11501,7 +11504,7 @@ msgid "InfoBar"
 msgstr "Barra de información"
 
 msgid "InfoBar And Pause"
-msgstr "InfoBar Y Pausa"
+msgstr "InfoBar y Pausa"
 
 msgid "InfoBar Content And Time Display"
 msgstr "Visualización del Contenido y la hora de la InfoBar"
@@ -12268,7 +12271,7 @@ msgid "Latvian"
 msgstr "Letón"
 
 msgid "Layout And Fonts"
-msgstr "Diseño Y Fuentes"
+msgstr "Diseño y Fuentes"
 
 msgid "Leave"
 msgstr "Salir"
@@ -12430,7 +12433,7 @@ msgid "Links"
 msgstr "Enlaces"
 
 msgid "List Appearance And Sorting"
-msgstr "Apariencia Y Ordenación de la Lista"
+msgstr "Apariencia y Ordenación de la Lista"
 
 #
 msgid "List available EPG functions"
@@ -12587,7 +12590,7 @@ msgid "Log Manager"
 msgstr "Administrador de logs"
 
 msgid "Log Retention And Access"
-msgstr "Retención Y Acceso a los Registros"
+msgstr "Retención y Acceso a los Registros"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -13047,7 +13050,7 @@ msgid "Menu style"
 msgstr "Estilo del menú"
 
 msgid "Menus And Setup"
-msgstr "Menús Y Configuración"
+msgstr "Menús y Configuración"
 
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Combinar la EPG de emisión con IceTV"
@@ -13107,7 +13110,7 @@ msgid "MiniTV"
 msgstr "MiniTV"
 
 msgid "MiniTV And PiP"
-msgstr "MiniTV Y PiP"
+msgstr "MiniTV y PiP"
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV con OSD"
@@ -13574,7 +13577,7 @@ msgid "Movie List"
 msgstr "Lista de Películas"
 
 msgid "Movie List And Playback Behavior"
-msgstr "Lista de Películas Y Comportamiento de Reproducción"
+msgstr "Lista de Películas y Comportamiento de Reproducción"
 
 msgid "Movie Selection Actions"
 msgstr "Lista de Acciones de la Película"
@@ -13834,10 +13837,10 @@ msgstr ""
 "ayuda actualmente resaltada."
 
 msgid "Navigation And Button Assignments"
-msgstr "Navegación Y Asignación de Botones"
+msgstr "Navegación y Asignación de Botones"
 
 msgid "Navigation And Time Range"
-msgstr "Navegación Y Rango de Tiempo"
+msgstr "Navegación y Rango de Tiempo"
 
 msgid "Ndonga"
 msgstr "Ndonga"
@@ -14575,7 +14578,7 @@ msgid "Nothing, just leave this menu"
 msgstr "Nada, solo salir de este menú"
 
 msgid "Notifications And Display"
-msgstr "Notificaciones Y Visualización"
+msgstr "Notificaciones y Visualización"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -14762,22 +14765,21 @@ msgstr "Al final de la película (como menú)"
 msgid "On valid ONIDs, ignore frequency sub network part."
 msgstr "En los ONIDs válidos, ignorar la parte de la subred de frecuencia."
 
-#
 msgid "Once"
 msgstr "Una vez"
 
-#
 msgid "One"
 msgstr "Uno"
 
 msgid "One line"
 msgstr "Una línea"
 
-#
+msgid "Online manual"
+msgstr "Manual en línea"
+
 msgid "Online software update"
 msgstr "Actualización de software en línea"
 
-#
 msgid "Online update of your %s %s software."
 msgstr "Actualización en línea del software de tu %s %s."
 
@@ -14790,7 +14792,6 @@ msgstr "Sólo extensiones."
 msgid "Only HD"
 msgstr "Solo HD"
 
-#
 msgid "Only free scan"
 msgstr "Solo canales FTA"
 
@@ -14948,6 +14949,9 @@ msgstr "Abrir la vista EPG multiservicio"
 
 msgid "Open the single service EPG view"
 msgstr "Abrir la vista EPG de servicio único"
+
+msgid "Open the user manual and tools to get help or report problems"
+msgstr "Abra el manual del usuario y las herramientas para obtener ayuda o informar de problemas"
 
 msgid "Open with File Commander"
 msgstr "Abrir con el Comandante de Archivos"
@@ -15597,10 +15601,10 @@ msgid "Play the selected service"
 msgstr "Reproducir el servicio seleccionado"
 
 msgid "Playback And Saving"
-msgstr "Reproducción Y Guardado"
+msgstr "Reproducción y Guardado"
 
 msgid "Playback And Status"
-msgstr "Reproducción Y Estado"
+msgstr "Reproducción y Estado"
 
 msgid "Playback Settings"
 msgstr "Configuración de Reproducción"
@@ -16931,16 +16935,16 @@ msgid "Recording"
 msgstr "Grabación"
 
 msgid "Recording And Status Indicators"
-msgstr "Indicadores de Registro Y Estado"
+msgstr "Indicadores de Registro y Estado"
 
 msgid "Recording Filenames And Data"
-msgstr "Grabación de Nombres de Archivos Y Datos"
+msgstr "Grabación de Nombres de Archivos y Datos"
 
 msgid "Recording Locations"
 msgstr "Localización de Grabación"
 
 msgid "Recording Preparation And Margins"
-msgstr "Preparación del Registro Y Márgenes"
+msgstr "Preparación del Registro y Márgenes"
 
 msgid "Recording Settings"
 msgstr "Ajustes de Grabación"
@@ -17020,7 +17024,7 @@ msgid "Recovery"
 msgstr "Recuperación"
 
 msgid "Recovery And Hardware"
-msgstr "Recuperación Y Hardware"
+msgstr "Recuperación y Hardware"
 
 msgid "Recovery Mode"
 msgstr "Modo Recuperación"
@@ -21665,6 +21669,9 @@ msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr ""
 "Muestra el Explorador de Plugins. Puedes configurar los plugins instalados"
 
+msgid "Shows a QR code to open the online manual on your phone or PC"
+msgstr "Muestra un código QR para abrir el manual en línea en su teléfono o PC"
+
 msgid "Shows available plugins. Here you can download and install them"
 msgstr ""
 "Muestra los plugins disponibles. Aquí puedes descargarlos e instalarlos"
@@ -22493,7 +22500,7 @@ msgid "Starts in a few seconds"
 msgstr "Iniciar en pocos segundos"
 
 msgid "Startup And Wakeup"
-msgstr "Empezar Y Encender"
+msgstr "Empezar y Encender"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -22672,13 +22679,11 @@ msgid "Storage / Drive information"
 msgstr "Almacenamiento / Información de disco"
 
 msgid "Storage And Deletion"
-msgstr "Almacenamiento Y Eliminación"
+msgstr "Almacenamiento y Eliminación"
 
-#
 msgid "Storage Devices"
 msgstr "Dispositivos de Almacenamiento"
 
-#
 msgid "Store position"
 msgstr "Almacenar posición"
 
@@ -22688,7 +22693,6 @@ msgstr "Se han eliminado las credenciales almacenadas para este servidor."
 msgid "Stored credentials for this server have been deleted."
 msgstr "Las credenciales almacenadas para este servidor han sido eliminadas."
 
-#
 msgid "Stored position"
 msgstr "Posición almacenada"
 
@@ -22781,12 +22785,11 @@ msgstr "Subcanales"
 msgid "Subtitle"
 msgstr "Subtítulo"
 
-#
 msgid "Subtitle Actions"
 msgstr "Acciones de Subtítulo"
 
 msgid "Subtitle Language And Selection"
-msgstr "Idioma Y Selección de Subtítulos"
+msgstr "Idioma y Selección de Subtítulos"
 
 # Subtitle QuickMenu
 msgid "Subtitle Quickmenu"
@@ -22828,14 +22831,12 @@ msgstr "Selección de 4º idioma de subtítulos"
 msgid "Subtitle position"
 msgstr "Posición de subtítulos"
 
-#
 msgid "Subtitle Selection"
 msgstr "Selección de Subtítulo"
 
 msgid "Open Subtitle options"
 msgstr "Abrir opciones de Subtítulo"
 
-#
 msgid "Subtitles"
 msgstr "Subtítulos"
 
@@ -22863,13 +22864,14 @@ msgstr "Máscara de subred"
 msgid "Sun"
 msgstr "Dom"
 
-#
 msgid "Sundanese"
 msgstr "Sundanés"
 
-#
 msgid "Sunday"
 msgstr "Domingo"
+
+msgid "Support"
+msgstr "Soporte"
 
 msgid "Suriname"
 msgstr "Surinam"
@@ -22883,33 +22885,27 @@ msgstr "Swahili"
 msgid "Swap File Manager"
 msgstr "Administrador Swap"
 
-#
 msgid "Swap File not found. You have to create the file before to activate."
 msgstr "Memoria swap no encontrada. Tienes que crearla antes para activarla."
 
-#
 msgid "Swap Manager"
 msgstr "Administrador Swap"
 
 msgid "Swap PiP"
 msgstr "Cambiar PiP"
 
-#
 msgid "Swap PiP and main picture"
 msgstr "Intercambiar PiP con pantalla principal"
 
-#
 msgid "Swap Place:"
 msgstr "Ruta Swap:"
 
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Cambiar SNR en ‘%’ por SNR en ‘db’"
 
-#
 msgid "Swap Size:"
 msgstr "Tamaño Swap:"
 
-#
 msgid "Swap services"
 msgstr "Cambiar canales"
 
@@ -23143,7 +23139,7 @@ msgid "TV"
 msgstr "TV"
 
 msgid "TV Input And Receiver Wakeup"
-msgstr "Entrada de TV Y Activación del Receptor"
+msgstr "Entrada de TV y Activación del Receptor"
 
 msgid "TV Power"
 msgstr "Encender TV"
@@ -23244,7 +23240,7 @@ msgid "Teletext StartX (left border)"
 msgstr "Inicio X teletexto (borde izquierdo)"
 
 msgid "Teletext StartY (lower border)"
-msgstr "Inicio Y teletexto (borde abajo)"
+msgstr "Inicio y teletexto (borde abajo)"
 
 msgid "Teletext Subtitles"
 msgstr "Subtítulos de Teletexto"
@@ -24416,7 +24412,7 @@ msgid "Timeout waiting for tuner or rotor"
 msgstr "Tiempo de espera agotado al esperar al sintonizador o al motor."
 
 msgid "Timer Defaults And Retention"
-msgstr "Valores Predeterminados del Temporizador Y Retención"
+msgstr "Valores Predeterminados del Temporizador y Retención"
 
 msgid "Timer Selection Actions"
 msgstr "Acciones de Selección del Temporizador"
@@ -24493,7 +24489,7 @@ msgid "Timezone"
 msgstr "Zona horaria"
 
 msgid "Timing And Diagnostics"
-msgstr "Sincronización Y Diagnóstico"
+msgstr "Sincronización y Diagnóstico"
 
 msgid "Timing and diagnostics"
 msgstr "Sincronización y diagnóstico"
@@ -24749,7 +24745,7 @@ msgid "Transport Stream Type"
 msgstr "Tipo de Stream"
 
 msgid "Trash And Deletion"
-msgstr "Papelera Y Eliminación"
+msgstr "Papelera y Eliminación"
 
 msgid "Trashcan"
 msgstr "Papelera"
@@ -24854,10 +24850,10 @@ msgid "Tuner :"
 msgstr "Sintonizador:"
 
 msgid "Tuner Allocation And Conflicts"
-msgstr "Asignación de Sintonizadores Y Conflictos"
+msgstr "Asignación de Sintonizadores y Conflictos"
 
 msgid "Tuner And Streaming"
-msgstr "Sintonizadores Y Streaming"
+msgstr "Sintonizadores y Streaming"
 
 #
 msgid "Tuner Configuration"
@@ -25141,31 +25137,33 @@ msgstr "No se pudo registrar el transpondedor DAB+"
 msgid "Unable to remove the obsolete additional STARTUP files."
 msgstr "No se pueden eliminar los archivos de inicio adicionales obsoletos."
 
+msgid "Unable to save network configuration!"
+msgstr "¡No se pudo guardar la configuración de red!"
+
+msgid "Unable to select the audio channel."
+msgstr "No se puede seleccionar el canal de audio."
+
 msgid "Unable to start the DAB+ feed"
 msgstr "No se puede iniciar el feed DAB+"
 
 msgid "Unable to tune the DAB+ satellite feed"
 msgstr "No se puede sintonizar la señal satelital DAB+"
 
-#
 msgid "Unattended upgrade without GUI"
 msgstr "Actualización desatendida sin interfaz"
 
 msgid "Unavailable"
 msgstr "Indisponible"
 
-#
 msgid "Undefined"
 msgstr "No definido"
 
 msgid "Undetermined"
 msgstr "Indeterminado"
 
-#
 msgid "Undo install"
 msgstr "Deshacer instalación"
 
-#
 msgid "Undo uninstall"
 msgstr "Deshacer desinstalación"
 
@@ -25178,28 +25176,24 @@ msgstr ""
 "Error inesperado al recuperar información de temporizador del sintonizador "
 "de reserva"
 
-#
 msgid "UnhandledKey"
 msgstr "Clave sin manipular"
 
 msgid "Unhide parental control services"
 msgstr "Mostrar servicios de control parental"
 
-#
 msgid "Unicable "
 msgstr "Unicable "
 
 msgid "Unicable / JESS"
 msgstr "Unicable / JESS"
 
-#
 msgid "Unicable LNB"
 msgstr "LNB Unicable"
 
 msgid "Unicable Matrix"
 msgstr "Unicable Matrix"
 
-#
 msgid "Uninstall"
 msgstr "Desinstalar"
 
@@ -25207,18 +25201,17 @@ msgid "Unique numbering"
 msgstr "Numeración única"
 
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Emiratos Árabes Unidos"
 
 msgid "United Kingdom"
-msgstr ""
+msgstr "Reino Unido"
 
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "Islas Ultramarinas Menores de los Estados Unidos"
 
 msgid "United States of America"
-msgstr ""
+msgstr "Estados Unidos de América"
 
-#
 msgid "Universal LNB"
 msgstr "LNB Universal"
 
@@ -25228,11 +25221,9 @@ msgstr "Desconocido"
 msgid "Unknown Packages"
 msgstr "Paquetes desconocidos"
 
-#
 msgid "Unknown Service"
 msgstr "Canal desconocido"
 
-#
 msgid "Unknown error code"
 msgstr "Código de error desconocido"
 
@@ -25246,7 +25237,6 @@ msgstr "Evento de grabación desconocido"
 msgid "Unknown service!"
 msgstr "Servicio desconocido!"
 
-#
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Usuario desconocido: %d"
@@ -25745,7 +25735,6 @@ msgstr "Se utiliza para especificar el retraso cuando se cambia entre servicios 
 msgid "Used:"
 msgstr "Utilizado:"
 
-#
 msgid "User  (keymap.usr)"
 msgstr "Usuario  (keymap.usr)"
 
@@ -25758,19 +25747,19 @@ msgstr "Url de feed del usuario"
 msgid "User ID"
 msgstr "ID de usuario"
 
+msgid "User Manual"
+msgstr "Manual de Usuario"
+
 msgid "User comments"
 msgstr "Comentarios de usuario"
 
-#
 msgid "User defined"
 msgstr "Definido por el usuario"
 
-#
 #, python-format
 msgid "User defined 0x%02x"
 msgstr "Definido por el usuario 0x%02x"
 
-#
 msgid "User defined transponder"
 msgstr "Transpondedor definido por usuario"
 
@@ -25780,7 +25769,6 @@ msgstr "Configurar interfaz de usuario"
 msgid "User logo:"
 msgstr "Logo de usuario:"
 
-#
 msgid "Username"
 msgstr "Nombre de usuario"
 
@@ -25813,14 +25801,12 @@ msgstr ""
 msgid "Uzbekistan"
 msgstr ""
 
-#
 msgid "VCR Scart Settings"
 msgstr "Euroconector VCR"
 
 msgid "VMC"
 msgstr "VMC"
 
-#
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (trailer intro)"
 
@@ -28555,9 +28541,11 @@ msgstr ""
 "pero no será posible la búsqueda de nuevos canales\n"
 "o configurar los ajustes del sintonizador"
 
-#
 msgid "Scan region"
 msgstr "Búsqueda de región"
+
+msgid "Scan the QR code to open the manual:"
+msgstr "Escanea el código QR para abrir el manual:"
 
 msgid "scan state"
 msgstr "Estado de la búsqueda"
@@ -28568,7 +28556,6 @@ msgstr "Ciencia ficción/Fantasía/Miedo"
 msgid "search EPG..."
 msgstr "Búsqueda EPG ..."
 
-#
 msgid "select CAId's"
 msgstr "Seleccionar CAId's"
 
@@ -30516,20 +30503,17 @@ msgid "X-margin on GUI"
 msgstr "Margen X en pantalla"
 
 msgid "Y-margin on GUI"
-msgstr "Margen Y en pantalla"
+msgstr "Margen y en pantalla"
 
-#
 msgid "Enable Ntpd when start Chromium"
 msgstr "Habilitar Ntpd cuando inicie Chromium"
 
 msgid "Do not show YouTube TV Starter again"
 msgstr "No mostrar más el lanzador de YouTube TV"
 
-#
 msgid "Enable Ntpd when start YoutubeTV"
 msgstr "Habilitar Ntpd cuando inicie YoutubeTV"
 
-#
 msgid "YouTubeTV Settings"
 msgstr "Configuración YouTubeTV"
 
