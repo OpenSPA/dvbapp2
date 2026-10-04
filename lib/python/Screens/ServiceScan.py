@@ -16,8 +16,6 @@ except ImportError:
 from Screens.InfoBar import InfoBar
 from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
-from Screens.MessageBox import MessageBox
-from Screens.Standby import TryQuitMainloop
 from ServiceReference import isRadioServiceReference, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, resolveFilename
 from Tools.Transponder import getChannelNumber
