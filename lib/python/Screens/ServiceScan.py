@@ -18,6 +18,7 @@ from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
+from ServiceReference import isRadioServiceReference, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, resolveFilename
 from Tools.Transponder import getChannelNumber
 
@@ -411,32 +412,36 @@ class ServiceScan(Screen):
 			eDVBDB.getInstance().reloadBouquets()
 
 	def keySave(self):
-		# try:
-		# 	self.session.nav.playService(self["servicelist"].getCurrent()[1])
-		# except Exception:
-		# 	pass
-		# self.close(True)
 		if self.currentInfobar.__class__.__name__ == "InfoBar":
 			selectedService = self["servicelist"].getCurrent()
 			if selectedService and self.currentServiceList is not None:
-				self.currentServiceList.setTvMode()
-				bouquets = self.currentServiceList.getBouquetList()
-				lastScannedBouquet = bouquets and next((x[1] for x in bouquets if x[0] == "Last Scanned"), None)
-				if lastScannedBouquet:
-					self.currentServiceList.enterUserbouquet(lastScannedBouquet)
-					self.currentServiceList.setCurrentSelection(eServiceReference(selectedService[1]))
-					service = self.currentServiceList.getCurrentSelection()
-					if not self.session.postScanService or service != self.session.postScanService:
-						self.session.postScanService = service
-						self.currentServiceList.addToHistory(service)
-					config.servicelist.lastmode.save()
-					self.currentServiceList.saveChannel(service)
-					self.keyCloseRecursive()
+				service = eServiceReference(selectedService[1])
+				radio = isRadioServiceReference(service)
+				types = service_types_radio_ref if radio else service_types_tv_ref
+				extension = "radio" if radio else "tv"
+				lastScannedBouquet = serviceRefAppendPath(types, f' FROM BOUQUET "userbouquet.LastScanned.{extension}" ORDER BY bouquet')
+				if radio and not config.usage.e1like_radio_mode.value:
+					# The separate radio screen owns its history; do not overwrite TV state.
+					root = serviceRefAppendPath(types, ' FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
+					config.radio.lastroot.value = f"{root.toString()};{lastScannedBouquet.toString()};"
+					config.radio.lastroot.save()
+					config.radio.lastservice.value = service.toString()
+					config.radio.lastservice.save()
 				else:
-					def restartGUI(answer=False):
-						if answer:
-							self.session.open(TryQuitMainloop, 3)
-					self.session.openWithCallback(restartGUI, MessageBox, _("The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"), type=MessageBox.TYPE_YESNO, simple=True)
+					if radio:
+						self.currentServiceList.setModeRadio()
+					else:
+						self.currentServiceList.setModeTv()
+					self.currentServiceList.radioTV = int(radio)
+					self.currentServiceList.enterUserbouquet(lastScannedBouquet)
+					self.currentServiceList.setCurrentSelection(service)
+					if service != self.session.postScanService:
+						self.currentServiceList.addToHistory(service)
+					self.currentServiceList.saveChannel(service)
+					config.servicelist.lastmode.save()
+				self.session.postScanService = service
+				self.keyCloseRecursive()
+				return
 		self.keyCancel()
 
 	def createSummary(self):
