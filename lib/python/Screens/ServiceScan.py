@@ -402,7 +402,7 @@ class ServiceScan(Screen):
 		if self.currentInfobar.__class__.__name__ == "InfoBar":
 			self.close(returnValue)
 		self.close(returnValue)
-		if exists(str(self.bouquetLastScanned)):  # [norhap][OpenSPA]
+		if exists(str(self.bouquetLastScanned)) or config.misc.firstrun.value:  # [norhap][OpenSPA]
 			for ext in ("tv", "radio"):
 				path = f"/etc/enigma2/userbouquet.LastScanned.{ext}"
 				path_favourites = f"/etc/enigma2/userbouquet.favourites.{ext}"
