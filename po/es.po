@@ -9646,7 +9646,7 @@ msgstr "Búsqueda rápida"
 msgid "Fast Skin Reload"
 msgstr "Recarga rápida de la Skin"
 
-msgid "Favorites"
+msgid "Favourites"
 msgstr "Favoritos"
 
 msgid "Feed URL"

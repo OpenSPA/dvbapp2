@@ -405,11 +405,17 @@ class ServiceScan(Screen):
 		if exists(str(self.bouquetLastScanned)):  # [norhap][OpenSPA]
 			for ext in ("tv", "radio"):
 				path = f"/etc/enigma2/userbouquet.LastScanned.{ext}"
+				path_favourites = f"/etc/enigma2/userbouquet.favourites.{ext}"
 				if exists(path):
 					with open(path, "r") as fr:
 						bouquetread = fr.readlines()
 					with open(path, "w") as fw:
 						fw.writelines(line.replace("Last Scanned", _("Last Scanned")) for line in bouquetread)
+				if exists(path_favourites):
+					with open(path_favourites, "r") as fr:
+						bouquetFavourites = fr.readlines()
+					with open(path_favourites, "w") as fw:
+						fw.writelines(line.replace("Favourites", _("Favourites")) for line in bouquetFavourites)
 			eDVBDB.getInstance().reloadBouquets()
 
 	def keySave(self):
