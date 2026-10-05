@@ -2501,6 +2501,9 @@ msgstr "Todos los eventos arriba"
 msgid "All files"
 msgstr "Todos los archivos"
 
+msgid "All packages"
+msgstr "Todos los paquetes"
+
 msgid "All regions"
 msgstr "Todas las regiones"
 
@@ -4352,20 +4355,20 @@ msgstr "Cambiar los permisos de ejecución (755/644)"
 msgid "Change next timer"
 msgstr "Cambiar próximo temporizador"
 
-#
 msgid "Change pin code"
 msgstr "Cambiar código pin"
 
-#
 msgid "Change recording (Duration)"
 msgstr "Cambiar grabación (duración)"
 
-#
 msgid "Change recording (End time)"
 msgstr "Cambiar grabación (fin)"
 
 msgid "Change repeat and delay settings?"
 msgstr "¿Cambiar ajustes de repetición y retraso?"
+
+msgid "Change search"
+msgstr "Cambiar búsqueda"
 
 # GraphMultiEpg.py
 msgid "Change skin"
@@ -4374,7 +4377,6 @@ msgstr "Cambiar interfaz"
 msgid "Change slots"
 msgstr "Cambiar slots"
 
-#
 msgid "Change step size"
 msgstr "Cambiar tamaño del salto"
 
@@ -4906,6 +4908,9 @@ msgstr "Limpiar fijo"
 # Mediaplayer playlist Menue
 msgid "Clear play list"
 msgstr "Limpiar la lista de reproducción"
+
+msgid "Clear search"
+msgstr "Borrar búsqueda"
 
 msgid "Clear the logs for this timer"
 msgstr "Limpiar los registros de este temporizador"
@@ -6342,6 +6347,9 @@ msgstr "Se ha instalado la compatibilidad con DAB+ por USB. Ahora puede activar 
 
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "USB DAB+: no se pudo escribir el paquete de canales"
+
+msgid "DAB+ audio decoding"
+msgstr "Decodificación de audio DAB+"
 
 msgid "DAB+ channel"
 msgstr "Canal DAB+"
@@ -10599,20 +10607,20 @@ msgstr "Gestionar el encendido desde la TV"
 msgid "Hard Disk Settings"
 msgstr "Configurar disco duro"
 
-#
 msgid "Hard disk Standby after"
 msgstr "Disco duro en reposo tras"
 
 msgid "Hard disk Standby in receiver Standby after"
 msgstr "Disco duro en reposo con el receptor en reposo tras"
 
-#
 msgid "Harddisk"
 msgstr "Disco duro"
 
-#
 msgid "Harddisk Setup"
 msgstr "Configuración de disco duro"
+
+msgid "Hardware AAC"
+msgstr "Hardware AAC"
 
 msgid "Hardware information"
 msgstr "Información sobre el hardware"
@@ -14254,21 +14262,21 @@ msgstr ""
 msgid "No matching place names found"
 msgstr "No se han encontrado topónimos que coincidan"
 
-#
 msgid "No network connection available."
 msgstr "No hay conexión de red disponible."
 
 msgid "No network storage detected."
 msgstr "No se ha detectado ningún almacenamiento en red."
 
-#
 msgid "No networks found."
 msgstr "No se han encontrado redes."
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Número de elementos para cambiar (aumentar o disminuir)"
 
-#
+msgid "No packages found."
+msgstr "No se encontraron paquetes."
+
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
@@ -14278,7 +14286,6 @@ msgstr ""
 msgid "No pictures available"
 msgstr "No hay imágenes disponibles"
 
-#
 msgid "No positioner capable frontend found."
 msgstr "No se ha encontrado ningún motor."
 
@@ -18357,7 +18364,9 @@ msgstr "Buscar satélites"
 msgid "Search Sats, check signal and lock"
 msgstr "Buscar satélites, comprobar señal y bloqueo"
 
-#
+msgid "Search all packages"
+msgstr "Buscar todos los paquetes"
+
 msgid "Search east"
 msgstr "Buscar al este"
 
@@ -18367,13 +18376,18 @@ msgstr "Busca recursos compartidos en red"
 msgid "Search for similar events"
 msgstr "Buscar eventos similares"
 
+msgid "Search in the current view"
+msgstr "Buscar en la vista actual"
+
+msgid "Search packages by name or description"
+msgstr "Buscar paquetes por nombre o descripción"
+
 msgid "Search EPG for current event"
 msgstr "Buscar en el epg para el evento actual."
 
 msgid "Search weather location ID"
 msgstr "Buscar el ID de la ubicación meteorológica"
 
-#
 msgid "Search west"
 msgstr "Buscar al oeste"
 
@@ -22096,6 +22110,9 @@ msgstr "Configurar administrador de software"
 msgid "Software MultiBoot"
 msgstr "Software MultiBoot"
 
+msgid "Software PCM"
+msgstr "Software PCM"
+
 msgid "Software Update"
 msgstr "Actualización de software"
 
@@ -25122,6 +25139,9 @@ msgstr "No se pueden crear los nuevos archivos de inicio del fabricante."
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Imposible inicializar Multiboot Kexec!"
 
+msgid "Unable to load package information."
+msgstr "No se pudo cargar la información del paquete."
+
 msgid "Unable to open tuner (%d)"
 msgstr "No se puede abrir el sintonizador (%d)"
 
@@ -25526,6 +25546,9 @@ msgstr "Utilizar una pantalla alternativa más pequeña."
 
 msgid "Use as HDD replacement"
 msgstr "Úselo como reemplazo de HDD"
+
+msgid "Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path."
+msgstr "Utilice la detección automática de hardware, solicite la decodificación AAC por hardware o fuerce la ruta de compatibilidad PCM por software."
 
 msgid "Use as HDD"
 msgstr "Usar como HDD"
