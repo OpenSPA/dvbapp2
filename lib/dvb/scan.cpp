@@ -1824,6 +1824,7 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 
 			bouquet->m_bouquet_name = "Last Scanned";
 			bouquet->m_services.clear();
+			/* [norhap] Iterate over m_new_servicerefs (vector, scanner order) first services with Name then services with SID. */
 			for (std::vector<eServiceReferenceDVB>::const_iterator
 				service(m_new_servicerefs.begin()); service != m_new_servicerefs.end(); ++service)
 			{
