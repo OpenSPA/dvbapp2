@@ -16,6 +16,8 @@ except ImportError:
 from Screens.InfoBar import InfoBar
 from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
+from Screens.MessageBox import MessageBox
+from Screens.Standby import TryQuitMainloop
 from ServiceReference import isRadioServiceReference, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, resolveFilename
 from Tools.Transponder import getChannelNumber
@@ -400,13 +402,14 @@ class ServiceScan(Screen):
 		if self.currentInfobar.__class__.__name__ == "InfoBar":
 			self.close(returnValue)
 		self.close(returnValue)
-		self.bouquetLastScanned = "/etc/enigma2/userbouquet.LastScanned.tv"
-		if exists(str(self.bouquetLastScanned)) and "en" not in config.osd.language.value:  # [norhap][OpenSPA]
-			with open(self.bouquetLastScanned, "r") as fr:
-				bouquetread = fr.readlines()
-				with open(self.bouquetLastScanned, "w") as fw:
-					for line in bouquetread:
-						fw.write(line.replace("Last Scanned", _("Last Scanned")))
+		if exists(str(self.bouquetLastScanned)):  # [norhap][OpenSPA]
+			for ext in ("tv", "radio"):
+				path = f"/etc/enigma2/userbouquet.LastScanned.{ext}"
+				if exists(path):
+					with open(path, "r") as fr:
+						bouquetread = fr.readlines()
+					with open(path, "w") as fw:
+						fw.writelines(line.replace("Last Scanned", _("Last Scanned")) for line in bouquetread)
 			eDVBDB.getInstance().reloadBouquets()
 
 	def keySave(self):
@@ -418,28 +421,35 @@ class ServiceScan(Screen):
 				types = service_types_radio_ref if radio else service_types_tv_ref
 				extension = "radio" if radio else "tv"
 				lastScannedBouquet = serviceRefAppendPath(types, f' FROM BOUQUET "userbouquet.LastScanned.{extension}" ORDER BY bouquet')
-				if radio and not config.usage.e1like_radio_mode.value:
-					# The separate radio screen owns its history; do not overwrite TV state.
-					root = serviceRefAppendPath(types, ' FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
-					config.radio.lastroot.value = f"{root.toString()};{lastScannedBouquet.toString()};"
-					config.radio.lastroot.save()
-					config.radio.lastservice.value = service.toString()
-					config.radio.lastservice.save()
-				else:
-					if radio:
-						self.currentServiceList.setModeRadio()
+				self.bouquetLastScanned = f"/etc/enigma2/userbouquet.LastScanned.{extension}"
+				if lastScannedBouquet:
+					if radio and not config.usage.e1like_radio_mode.value:
+						# The separate radio screen owns its history; do not overwrite TV state.
+						root = serviceRefAppendPath(types, ' FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
+						config.radio.lastroot.value = f"{root.toString()};{lastScannedBouquet.toString()};"
+						config.radio.lastroot.save()
+						config.radio.lastservice.value = service.toString()
+						config.radio.lastservice.save()
 					else:
-						self.currentServiceList.setModeTv()
-					self.currentServiceList.radioTV = int(radio)
-					self.currentServiceList.enterUserbouquet(lastScannedBouquet)
-					self.currentServiceList.setCurrentSelection(service)
-					if service != self.session.postScanService:
-						self.currentServiceList.addToHistory(service)
-					self.currentServiceList.saveChannel(service)
-					config.servicelist.lastmode.save()
-				self.session.postScanService = service
-				self.keyCloseRecursive()
-				return
+						if radio:
+							self.currentServiceList.setModeRadio()
+						else:
+							self.currentServiceList.setModeTv()
+						self.currentServiceList.radioTV = int(radio)
+						self.currentServiceList.enterUserbouquet(lastScannedBouquet)
+						self.currentServiceList.setCurrentSelection(service)
+						if service != self.session.postScanService:
+							self.currentServiceList.addToHistory(service)
+						self.currentServiceList.saveChannel(service)
+						config.servicelist.lastmode.save()
+					self.session.postScanService = service
+					self.keyCloseRecursive()
+					return
+				else:
+					def restartGUI(answer=False):
+						if answer:
+							self.session.open(TryQuitMainloop, 3)
+					self.session.openWithCallback(restartGUI, MessageBox, _("The bouquet \"Last Scanned\" has not been created.\nYou need to restart enigma2 and rescan it to create it.\nDo you want to restart enigma2 now?"), type=MessageBox.TYPE_YESNO, simple=True)
 		self.keyCancel()
 
 	def createSummary(self):
