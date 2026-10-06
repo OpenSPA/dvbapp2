@@ -1822,7 +1822,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-msgid "AboutOpenSPA"
+msgid "About OpenSPA"
 msgstr ""
 
 msgid "About to start"
