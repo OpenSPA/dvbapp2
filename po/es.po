@@ -8746,6 +8746,9 @@ msgstr "Introduzca el servidor DNS IPv6 principal para este adaptador. (Opcional
 msgid "Enter the remote share name (SMB) or exported path (NFS) on the server."
 msgstr "Ingrese el nombre del recurso compartido remoto (SMB) o la ruta exportada (NFS) en el servidor."
 
+msgid "Enter the same PIN code again to confirm it."
+msgstr "Vuelva a introducir el mismo código PIN para confirmarlo."
+
 msgid "Enter the secondary IPv4 DNS server for this adapter. (Optional)"
 msgstr "Introduzca el servidor DNS IPv4 secundario para este adaptador. (Opcional)"
 
@@ -10764,6 +10767,9 @@ msgstr "Ocultar canales con bloqueo parental"
 # Mediaplayer playlist Menue
 msgid "Hide player"
 msgstr "Ocultar reproductor"
+
+msgid "Hide protected services while the service PIN is not remembered."
+msgstr "Ocultar los servicios protegidos mientras no se recuerde el PIN del servicio."
 
 msgid "Hide the InfoBar"
 msgstr "Ocultar la barra de información"
@@ -16132,11 +16138,9 @@ msgstr "Sintonizador preferido para grabaciones"
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Sintoniz. preferidos en grabaciones, se permite selección múltiple"
 
-#
 msgid "Preparation time for recording"
 msgstr "Tiempo de preparación para la grabación"
 
-#
 msgid "Preparing... Please wait"
 msgstr "Preparando... Por favor, espere"
 
@@ -16156,7 +16160,6 @@ msgstr "Pulsa el botón AZUL para cambiar slots adicionales."
 msgid "Press EXIT to close."
 msgstr "Pulse EXIT para cerrar."
 
-#
 msgid "Press EXIT to return to the help screen."
 msgstr "Pulse EXIT para volver a la pantalla de ayuda."
 
@@ -16169,21 +16172,21 @@ msgstr "Pulse OK para la selección de MultiBoot."
 msgid "Press OK on the selected key."
 msgstr "Pulse OK en la tecla seleccionada."
 
-#
 msgid "Press OK on your remote control to continue."
 msgstr "Pulse OK en el mando para continuar."
+
+msgid "Press OK to change the PIN used for service and screen protection."
+msgstr "Pulse Aceptar para cambiar el PIN utilizado para el servicio y la protección de la pantalla."
 
 msgid "Press OK to continue."
 msgstr "Pulse OK para continuar."
 
-#
 msgid "Press OK to edit the settings."
 msgstr "Pulse OK para editar la configuración."
 
 msgid "Press OK to enter PIN code"
 msgstr "Pulsa OK para introducir código PIN"
 
-#
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Pulse OK para obtener más detalles de %s"
@@ -16202,13 +16205,15 @@ msgstr "Pulse OK para instalar y utilizar esta configuración regional.  [%s]"
 msgid "Press OK to open module info"
 msgstr "Pulsa OK para abrir información de módulo"
 
+msgid "Press OK to reload the list of protected services from disk."
+msgstr "Pulse Aceptar para recargar la lista de canales protegidos desde el disco."
+
 msgid "Press OK to reset PIN code"
 msgstr "Pulsa OK para resetear código PIN"
 
 msgid "Press OK to reset module"
 msgstr "Pulsa OK para resetear módulo"
 
-#
 msgid "Press OK to scan"
 msgstr "Pulse OK para buscar"
 
@@ -16477,6 +16482,12 @@ msgstr "Proteger la pantalla de actualización del software"
 
 msgid "Protect standby menu"
 msgstr "Proteger menú de apagado"
+
+msgid "Protect storage device management"
+msgstr "Proteger la gestión de dispositivos de almacenamiento"
+
+msgid "Protect the main menu and the system functions covered by screen protection, including access through shortcuts."
+msgstr "Proteja el menú principal y las funciones del sistema cubiertas por la protección de pantalla, incluido el acceso mediante atajos."
 
 msgid "Protect timer menu"
 msgstr "Proteger menú de temporizadores"
@@ -17427,12 +17438,65 @@ msgstr ""
 "(NOTA: ¡'Cancelar' no puede deshacer esto!)"
 
 msgid "Replace the static radio background with pictures transmitted by the current DAB+ station."
-msgstr "Sustituya el fondo estático de la radio por imágenes transmitidas por la emisora ​​DAB+ actual."
+msgstr "Sustituya el fondo estático de la radio por imágenes transmitidas por la emisora DAB+ actual."
+
+msgid "Require a PIN code before resetting the receiver configuration."
+msgstr "Solicitar un código PIN antes de restablecer la configuración del receptor."
+
+msgid "Require a PIN code to access protected storage management, swap and flash expansion screens."
+msgstr "Exigir un código PIN para acceder a las pantallas de gestión de almacenamiento protegido, memoria de intercambio (swap) y expansión flash."
+
+msgid "Require a PIN code to access software updates."
+msgstr "Requerir un código PIN para acceder a las actualizaciones de software."
+
+msgid "Require a PIN code to access the selected menus and system functions, including their protected shortcuts."
+msgstr "Exigir un código PIN para acceder a los menús y funciones del sistema seleccionados, incluidos sus accesos directos protegidos."
+
+msgid "Require a PIN code to flash images or restore backups."
+msgstr "Requerir un código PIN para flashear imágenes o restaurar copias de seguridad."
+
+msgid "Require a PIN code to install or remove packages, including IPK files found on removable media."
+msgstr "Exigir un código PIN para instalar o eliminar paquetes, incluidos los archivos IPK almacenados en medios extraíbles."
+
+msgid "Require a PIN code to manage MultiBoot images and slots."
+msgstr "Requerir un código PIN para gestionar las imágenes y slots de MultiBoot."
+
+msgid "Require a PIN code to open protected context menus."
+msgstr "Solicitar un código PIN para abrir menús contextuales protegidos."
+
+msgid "Require a PIN code to open settings and protected system configuration screens."
+msgstr "Exigir un código PIN para abrir la configuración y las pantallas protegidas de configuración del sistema."
+
+msgid "Require a PIN code to open the Quickmenu."
+msgstr "Solicitar un código PIN para abrir el menú rápido."
+
+msgid "Require a PIN code to open the extensions menu."
+msgstr "Solicitar un código PIN para abrir el menú de extensiones."
+
+msgid "Require a PIN code to open the movie list."
+msgstr "Solicitar un código PIN para abrir la lista de películas."
+
+msgid "Require a PIN code to open the plugin browser and launch plugins through protected entry points."
+msgstr "Exigir un código PIN para abrir el explorador de plugins e iniciar plugins a través de puntos de acceso protegidos."
+
+msgid "Require a PIN code to open the script runner."
+msgstr "Requerir un código PIN para abrir el ejecutor de scripts."
+
+msgid "Require a PIN code to open the standby and shutdown menu."
+msgstr "Solicitar un código PIN para abrir el menú de suspensión y apagado."
+
+msgid "Require a PIN code to open the timer menu."
+msgstr "Solicitar un código PIN para abrir el menú del temporizador."
+
+msgid "Require a PIN code to watch protected services or programmes covered by the selected age limit."
+msgstr "Solicitar un código PIN para ver canales o programas protegidos que entren dentro del límite de edad seleccionado."
 
 msgid "Require authentication for http streams"
 msgstr "Requerir autenticación para retransmisiones http"
 
-#
+msgid "Require the service PIN for programmes at or above this age, using the age information supplied by the broadcaster."
+msgstr "Solicitar el PIN de servicio para programas clasificados para esta edad o una superior, utilizando la información de edad proporcionada por la cadena emisora."
+
 msgid "Required medium type:"
 msgstr "Tipo de recurso requerido:"
 
@@ -19187,9 +19251,11 @@ msgstr "Seleccione los directorios exportados"
 msgid "Select files to exclude from backup"
 msgstr "Selecciona archivos a excluir en el backup"
 
-#
 msgid "Select files/folders to backup"
 msgstr "Seleccione archivos/carpetas para el backup"
+
+msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
+msgstr "Seleccione durante cuánto tiempo se recordará un PIN de servicio introducido correctamente. Esto no desbloquea la configuración protegida ni las acciones del sistema."
 
 msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr "Seleccione cuánto tiempo la imagen del protector de pantalla permanecerá en la misma ubicación en la pantalla antes de ser movida."
@@ -22349,6 +22415,9 @@ msgstr "Introduzca el sufijo del dominio de red que desea añadir al nombre de h
 
 msgid "Enter the network hostname to be used to identify this receiver."
 msgstr "Introduzca el nombre de host de red que se utilizará para identificar a este receptor."
+
+msgid "Enter the new four-digit PIN code."
+msgstr "Introduzca el nuevo código PIN de cuatro dígitos."
 
 msgid "Enter the number of NFS server threads to be allocated/used. Higher values improve performance with multiple clients but uses more memory."
 msgstr "Introduzca el número de subprocesos del servidor NFS que se asignarán/utilizarán. Un valor más alto mejora el rendimiento con varios clientes, pero consume más memoria."
@@ -29783,7 +29852,9 @@ msgstr "Seleccione el dispositivo o Cancelar para cancelar la selección."
 msgid "Press GREEN to enable MultiBoot!"
 msgstr "Pulsa botón VERDE para activar Multiboot!"
 
-#
+msgid "Press OK"
+msgstr "Pulse OK"
+
 msgid "Remove Files"
 msgstr "Eliminar archivos"
 
@@ -29796,11 +29867,9 @@ msgstr "Seleccione un dispositivo para crear slots multiboot"
 msgid "Select a device to use for the additional slots"
 msgstr "Seleccione un dispositivo para usar en los slots adicionales"
 
-#
 msgid "Slot Manager"
 msgstr "Administrador de slots"
 
-#
 msgid ""
 "Video output port selection.\n"
 "\n"
