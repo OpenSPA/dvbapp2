@@ -1,5 +1,5 @@
 from os import listdir, remove, rename
-from os.path import join
+from os.path import exists, join
 from time import localtime, strftime, time
 
 from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
@@ -349,6 +349,15 @@ class ChannelSelectionBase(Screen):
 			self.bouquet_root = eServiceReference(multibouquet_radio_ref if config.usage.multibouquet.value else singlebouquet_radio_ref)
 		self.service_types = self.service_types_ref.toString()
 		self.bouquet_rootstr = self.bouquet_root.toString()
+		for ext in ("tv", "radio"):  # OpenSPA [norhap] translate Favourites Bouquet.
+			path_favourites = f"/etc/enigma2/userbouquet.favourites.{ext}"
+			if exists(path_favourites):
+				with open(path_favourites, "r") as fr:
+					favourites_content = fr.read()
+				if "Favourites" in favourites_content:
+					with open(path_favourites, "w") as fw:
+						fw.write(favourites_content.replace("Favourites", _("Favourites")))
+					eDVBDB.getInstance().reloadBouquets()
 
 	def buildTitle(self):
 		mode = _("TV") if self.mode == MODE_TV else _("Radio")
@@ -378,6 +387,8 @@ class ChannelSelectionBase(Screen):
 		# print(f"[ChannelSelection] getServiceName DEBUG: Service Name Before='{serviceNameTmp}', After='{serviceName}'.")
 		if "Last Scanned" in serviceName:  # OpenSPA [norhap] Last Scanned always translated.
 			serviceName = serviceName.replace("Last Scanned", _("Last Scanned"))
+		if "Favourites" in serviceName:  # OpenSPA [norhap] translate title Favourites Bouquet.
+			serviceName = serviceName.replace("Favourites", _("Favourites"))
 		if "User - bouquets" in serviceName:
 			return _("User - Bouquets")
 		if not serviceName:
