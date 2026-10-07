@@ -17356,7 +17356,7 @@ msgid "Remove highlighted directory from bookmarks"
 msgstr "Eliminar la carpeta seleccionada de los marcadores"
 
 msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
-msgstr "Elimina los canales almacenados previamente de los multiplexores DAB+ escaneados. Desactiva esta opción para conservar los canales cuando un multiplexor no esté disponible temporalmente."
+msgstr "Elimina los canales almacenados previamente de los multiplexores DAB+ escaneados. Desactiva esta opción para conservar los canales cuando un multiplexor no esté disponible temporalmente.\nADVERTENCIA: Desactivado no creará bouquets DAB+"
 
 msgid "Remove service"
 msgstr "Eliminar servicio"
