@@ -685,7 +685,7 @@ if not hasattr(config.dab, "audioMode"):
 		("pcm", _("Software PCM"))
 	])
 if not hasattr(config.dab, "clearBeforeScan"):
-	config.dab.clearBeforeScan = ConfigYesNo(default=False)
+	config.dab.clearBeforeScan = ConfigYesNo(default=True)  # OpenSPA [norhap] always creates DAB+ bouquets by default.
 if not hasattr(config.dab, "rtlsdr"):
 	config.dab.rtlsdr = ConfigSubsection()
 	config.dab.rtlsdr.enabled = ConfigYesNo(default=False)
