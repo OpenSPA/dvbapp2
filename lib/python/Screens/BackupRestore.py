@@ -135,7 +135,9 @@ class BackupScreen(ConfigListScreen, Screen):
 		seenMountPoints = []  # DEBUG: Fix Hardisk.py to remove duplicated mount points!
 		choices = []
 		oldpath = config.plugins.configurationbackup.backuplocation.value
+		""" OpenATV ONLY
 		configPath = config.plugins.softwaremanager.backuptarget.value
+		"""
 		index = 0
 		for partition in harddiskmanager.getMountedPartitions(onlyhotplug=False):
 			path = join(partition.mountpoint, "")
@@ -148,11 +150,12 @@ class BackupScreen(ConfigListScreen, Screen):
 					index = len(choices) - 1
 
 		if len(choices):
+			""" OpenATV ONLY
 			if len(choices) > 1 and configPath:
 				configPath = [x for x in choices if x[1] == configPath]
 				if configPath:
 					choices = configPath
-
+			"""
 			if len(choices) > 1:
 				self.session.openWithCallback(backuplocationCB, MessageBox, _("Please select medium to use as backup location"), list=choices, default=index, windowTitle=_("Backup Location"), timeout=10)
 			else:
