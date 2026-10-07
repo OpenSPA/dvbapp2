@@ -102,7 +102,7 @@ class MultiBootManager(Screen):
 			# "right": (self.keyDown, _("Move down a line")),
 			"down": (self.keyDown, _("Move down a line")),
 			# "pageDown": (self.keyBottom, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restartActions"] = HelpableActionMap(self, ["OkSaveActions"], {
 			"save": (self.reboot, _("Select the highlighted slot and reboot")),
