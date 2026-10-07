@@ -1,4 +1,4 @@
-from enigma import eComponentScan, eConsoleAppContainer, eDVBFrontendParametersATSC, eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eConsoleAppContainer, eDVBResourceManager, eTimer, iDVBFrontend
+from enigma import eComponentScan, eConsoleAppContainer, eDVBDB, eDVBFrontendParametersATSC, eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBResourceManager, eTimer, iDVBFrontend
 
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, ConfigEnableDisable, ConfigFloat, ConfigInteger, ConfigSelection, ConfigSlider, ConfigSubsection, ConfigYesNo
@@ -9,7 +9,6 @@ from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
-from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.ServiceScan import ServiceScan
 from Tools.Transponder import channel2frequency, getChannelNumber, supportedChannels
