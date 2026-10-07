@@ -1861,26 +1861,11 @@ msgstr ""
 "Grabación en curso.\n"
 "¿Qué quieres hacer?"
 
-#
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"Hay una grabación en curso. Detén la grabación antes de configurar el motor."
+msgid "Error: A recording is currently in progress! Stop the recording or allow it to finish before trying to perform a scan."
+msgstr "Error: ¡Hay una grabación en curso! Detenga la grabación o espere a que finalice antes de intentar realizar la búsqueda."
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"scan."
-msgstr ""
-"Hay una grabación en curso. Detén la grabación antes de iniciar la búsqueda."
-
-#
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satellite finder."
-msgstr ""
-"Hay una grabación en curso. Detén la grabación antes de iniciar el buscador "
-"de satélites."
+msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
+msgstr "Hay una grabación en curso. Detén la grabación antes de iniciar el buscador de satélites."
 
 #, python-format
 msgid ""
@@ -8388,9 +8373,11 @@ msgstr "Búsqueda de cable"
 msgid "Enable auto fast scan"
 msgstr "Habilitar exploración rápida automática"
 
-#, python-format
-msgid "Enable auto fast scan for %s"
-msgstr "Habilitar búsqueda rápida automática para %s"
+msgid "Enable auto fast scan for '%s'"
+msgstr "Habilitar escaneo rápido automático para %s"
+
+msgid "Enable autorefresh templates."
+msgstr "Habilitar la actualización automática de plantillas."
 
 msgid "Enable blinking rec symbol on the LCD Display."
 msgstr "Habilitar el símbolo de grabación parpadeando en el display LCD."
@@ -18370,7 +18357,7 @@ msgid "Scan the USB tuner, available DAB+ satellite feeds, or both."
 msgstr "Busque el sintonizador USB, las señales satelitales DAB+ disponibles o ambas."
 
 #, python-format
-msgid "Scanning %s..."
+msgid "Scanning '%s'..."
 msgstr "Buscando %s..."
 
 msgid "Scanning DAB+ feed; waiting for live FIC data..."
@@ -18400,8 +18387,8 @@ msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Scanning completado, %d canal encontrado."
 msgstr[1] "Búsqueda completa, %d canales encontrados."
 
-msgid "Scanning failed!"
-msgstr "¡La búsqueda ha fallado!"
+msgid "Error: Scan failed!"
+msgstr "Error: ¡El escaneo ha fallado!"
 
 msgid "Scanning for shares..."
 msgstr "Buscando acciones..."
@@ -25776,10 +25763,10 @@ msgstr "Usar predeterminados"
 msgid "Use extended List"
 msgstr "Usar lista extendida"
 
-msgid "Use fastscan channel names"
+msgid "Use fast scan channel names"
 msgstr "Usar los nombres de canales de búsqueda rápida"
 
-msgid "Use fastscan channel numbering"
+msgid "Use fast scan channel numbering"
 msgstr "Usar la numeración de canales de búsqueda rápida"
 
 msgid "Use Flash Expander"
