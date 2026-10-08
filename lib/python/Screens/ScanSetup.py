@@ -651,7 +651,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		#self.statusTimer.start(5000, True)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list)
+		ConfigListScreen.__init__(self, self.list, on_change=self.changedEntry)
 		if not self.scan_nims.value == "":
 			self.createSetup()
 			self["introduction"] = Label(_("Press OK to start the scan"))
@@ -2073,7 +2073,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								break
 		self.list.sort()
 		self.scanOptions = self.list[:]
-		ConfigListScreen.__init__(self, self.list)
+		ConfigListScreen.__init__(self, self.list, on_change=self.changedEntry)
 		if self.nim_enable:
 			self.scan_clearallservices.addNotifier(self.updateScanOptions, initial_call=True)
 		self["header"] = Label(_("Automatic Scan"))
