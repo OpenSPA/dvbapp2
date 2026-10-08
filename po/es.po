@@ -3010,12 +3010,14 @@ msgstr "Acciones de audio"
 msgid "Audio Auto Volume Level"
 msgstr "Nivel de volumen automático"
 
-#
 msgid "Audio Channel"
 msgstr "Canal de audio"
 
 msgid "Audio Formats And Output"
 msgstr "Formatos y Salida de Audio"
+
+msgid "Audio decoding"
+msgstr "Decodificación de audio"
 
 msgid "Audio Language And Track Selection"
 msgstr "Selección de Idioma y Pista de Audio"
@@ -3030,7 +3032,6 @@ msgstr "PID de audio%s, códec e idioma"
 msgid "Audio PID, codec & lang"
 msgstr "PID de audio, códec y idioma"
 
-#
 msgid "Audio Settings"
 msgstr "Ajustes de audio"
 
@@ -3058,7 +3059,6 @@ msgstr "Selección de idioma de audio 3"
 msgid "Audio language selection 4"
 msgstr "Selección de idioma de audio 4"
 
-#
 msgid "Open Audio options"
 msgstr "Opciones de audio"
 
@@ -3069,11 +3069,9 @@ msgstr "Australia"
 msgid "Austria"
 msgstr "Austria"
 
-#
 msgid "Author: "
 msgstr "Autor: "
 
-#
 msgid "Authoring mode"
 msgstr "Modo de autorización"
 
@@ -3116,7 +3114,6 @@ msgstr "División automática de capítulos cada ? minutos (0=nunca)"
 msgid "Auto deep standby"
 msgstr "Apagado automático"
 
-#
 msgid "Auto flesh"
 msgstr "Auto flesh"
 
@@ -3153,25 +3150,21 @@ msgstr "Ganancia automática"
 msgid "Automatic search"
 msgstr "Búsqueda automática"
 
-#
 msgid "AutoMountManager"
 msgstr "Administrador de automontaje"
 
 msgid "AutoTimer"
 msgstr "Temporizador automático"
 
-#
 msgid "AutoUpdate"
 msgstr "Actualización automática"
 
 msgid "Automatic"
 msgstr "Automático"
 
-#
 msgid "Automatic Scan"
 msgstr "Búsqueda automática"
 
-#
 msgid "Automatic Service Searching"
 msgstr "Búsqueda automática de servicios"
 
@@ -3211,7 +3204,6 @@ msgstr "Autoinicio:"
 msgid "Available"
 msgstr "Disponible"
 
-#
 msgid "Available format variables"
 msgstr "Variables de formato disponibles"
 
@@ -3249,7 +3241,6 @@ msgstr "Azerbaiyano"
 msgid "Azure"
 msgstr "Azur"
 
-#
 msgid "B"
 msgstr "B"
 
@@ -3263,7 +3254,6 @@ msgstr "BDMV Bludisc (títulos HDTV solo)"
 msgid "BDMV Compatible Blu-ray disk (HDTV only)"
 msgstr "BDMV Bludisc compatible (HDTV solo)"
 
-#
 msgid "BER:"
 msgstr "BER:"
 
@@ -3279,7 +3269,6 @@ msgstr "Azul largo"
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "Pulsación tecla azul: corta / larga"
 
-#
 msgid "Back"
 msgstr "Atrás"
 
@@ -3316,7 +3305,6 @@ msgstr "USB trasero superior"
 msgid "Back/Recall"
 msgstr "Volver/Recuperar"
 
-#
 msgid "Background"
 msgstr "Continuar en segundo plano"
 
@@ -3332,7 +3320,6 @@ msgstr "Velocidad al borrar en segundo plano"
 msgid "Background selected:"
 msgstr "Fondo seleccionado:"
 
-#
 msgid "Background:"
 msgstr "Fondo:"
 
@@ -3357,7 +3344,6 @@ msgstr "Modo backup: Recuperación USB"
 msgid "Backup Settings"
 msgstr "Ajustes de backup"
 
-#
 msgid "Backup System Settings"
 msgstr "Backup de los ajustes del sistema"
 
@@ -3375,7 +3361,6 @@ msgstr ""
 "Se ha encontrado un backup de los plugins\n"
 "¿Quiere instalarlo ahora?"
 
-#
 #, python-format
 msgid "Backup tool for %s %s"
 msgstr "Herramienta de backup para %s %s"
@@ -3414,7 +3399,6 @@ msgstr "Bambara"
 msgid "Band"
 msgstr "Banda"
 
-#
 msgid "Bandwidth"
 msgstr "Ancho de banda"
 
@@ -3481,19 +3465,15 @@ msgstr "Tiempo de inicio"
 msgid "Behave like STOP button"
 msgstr "Comportamiento como botón STOP"
 
-#
 msgid "Behavior of 'pause' when paused"
 msgstr "Comportamiento de ‘pausa’ en pausa"
 
-#
 msgid "Behavior of 0 key in PiP-mode"
 msgstr "Comportamiento de botón '0' en PiP"
 
-#
 msgid "Behavior when a movie is started"
 msgstr "Comportamiento con película empezada"
 
-#
 msgid "Behavior when a movie is stopped"
 msgstr "Comportamiento con película en pausa"
 
@@ -3541,7 +3521,6 @@ msgstr "Biografía"
 msgid "Bislama"
 msgstr "Bislama"
 
-#
 msgid "Bitrate"
 msgstr "Tasa de bits"
 
@@ -3575,7 +3554,6 @@ msgstr "Bloquear %s - %.3f MHz"
 msgid "Block device"
 msgstr "Dispositivo de bloque"
 
-#
 msgid "Block noise reduction"
 msgstr "Reducción de bloque de ruido"
 
@@ -3611,11 +3589,9 @@ msgstr "Favorito añadido."
 msgid "Bookmark removed."
 msgstr "Favorito eliminado."
 
-#
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#
 msgid "Boost blue"
 msgstr "Reforzar azul"
 
@@ -3691,7 +3667,6 @@ msgstr "Brasil"
 msgid "Breton"
 msgstr "Bretón"
 
-#
 msgid "Brightness"
 msgstr "Brillo"
 
@@ -3780,7 +3755,6 @@ msgstr "Birmano"
 msgid "Burn Blu-ray disc"
 msgstr "Grabar Bludisc"
 
-#
 msgid "Burn DVD"
 msgstr "Grabar DVD"
 
@@ -3796,7 +3770,6 @@ msgstr "Burundi"
 msgid "Bus"
 msgstr "Bus"
 
-#
 msgid "Bus: "
 msgstr "Bus: "
 
@@ -3828,7 +3801,6 @@ msgstr "Bytes enviados"
 msgid "C"
 msgstr "C"
 
-#
 msgid "C-Band"
 msgstr "Banda-C"
 
@@ -3923,7 +3895,6 @@ msgstr "CANAL %s"
 msgid "CHANGE BOUQUET"
 msgstr "CAMBIAR GRUPO"
 
-#
 msgid "CHANNEL +/-"
 msgstr "CANAL +/-"
 
@@ -3937,7 +3908,6 @@ msgstr "Retraso arranque DVB-CI"
 msgid "CI Helper Settings"
 msgstr "Ajustes del asistente de CI"
 
-#
 msgid "CI assignment"
 msgstr "Asignación de CI"
 
@@ -3984,7 +3954,6 @@ msgstr "Temperatura de la CPU"
 msgid "CaID: "
 msgstr "CaID: "
 
-#
 msgid "Cable"
 msgstr "Cable"
 
@@ -4113,7 +4082,6 @@ msgstr "No se puede cargar el temporizador"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "No se puede asignar el origen del programa (p.e. el sintonizador)"
 
-#
 msgid "Can't create backup directory!"
 msgstr "No se puede crear carpeta del backup!"
 
@@ -4146,7 +4114,6 @@ msgstr ""
 msgid "Canada"
 msgstr "Canadá"
 
-#
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -4269,7 +4236,6 @@ msgstr ""
 msgid "Capacity"
 msgstr "Capacidad"
 
-#
 msgid "Capacity: "
 msgstr "Capacidad: "
 
@@ -4341,7 +4307,6 @@ msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
 "Cambiar el modo del receptor para controlar los modos de chip de hardware*"
 
-#
 msgid "Change Language"
 msgstr "Cambiar idioma"
 
@@ -4355,7 +4320,6 @@ msgstr "Cambiar PIN"
 msgid "Change Timer"
 msgstr "Cambiar temporizador"
 
-#
 msgid "Change bouquets in quickzap"
 msgstr "Cambiar de lista en zapeo rápido"
 
@@ -4413,7 +4377,6 @@ msgstr ""
 "Los cambios requieren que se reinicie el sistema para surtir efecto.\n"
 "¿Reiniciar tu %s %s ahora?"
 
-#
 msgid "Channel"
 msgstr "Canal"
 
@@ -4426,7 +4389,6 @@ msgstr "Modo de tecla de canal +/-"
 msgid "Channel / Service"
 msgstr "Canal / Servicio"
 
-#
 msgid "Channel 1"
 msgstr "Canal 1"
 
@@ -4448,14 +4410,12 @@ msgstr "Lista de canales"
 msgid "Channel number"
 msgstr "Número de canal"
 
-#
 msgid "Channel List Menu"
 msgstr "Menú de lista de canales"
 
 msgid "Channel Selection"
 msgstr "Selección de canal"
 
-#
 msgid "Channel Selection Actions"
 msgstr "Acciones de la selección de canales"
 
@@ -4468,7 +4428,6 @@ msgstr "Ruta del picon lista de canales"
 msgid "Channel Zapping And Keys"
 msgstr "Cambio de Canales y Teclas"
 
-#
 msgid "Channel Selection Settings"
 msgstr "Ajustes de lista de canales"
 
@@ -4505,7 +4464,6 @@ msgstr "Tipo de lista de canales"
 msgid "Channel name"
 msgstr "Nombre de canal"
 
-#
 msgid "Channel preview mode"
 msgstr "Modo de previsualización de canales"
 
@@ -4518,7 +4476,6 @@ msgstr "Configuración de los canales"
 msgid "Channel Selection Context Menu"
 msgstr "Menú contextual de lista de canales"
 
-#
 msgid "Channel Selection Context Menu Actions"
 msgstr "Acciones de menú contextual de lista de canales"
 
@@ -4543,7 +4500,6 @@ msgstr "Modo de retardo al zapear"
 msgid "Service zap screen contents"
 msgstr "Contenido de la pantalla de canal zap"
 
-#
 msgid "Channel:"
 msgstr "Canal:"
 
@@ -4559,19 +4515,15 @@ msgstr "Solo Canales"
 msgid "ChannelEPG Settings"
 msgstr "Ajustes de canal EPG"
 
-#
 msgid "Chap."
 msgstr "Cap."
 
-#
 msgid "Chapter"
 msgstr "Capítulo"
 
-#
 msgid "Chapter:"
 msgstr "Capítulo:"
 
-#
 msgid "Character device"
 msgstr "Dispositivo de caracteres"
 
@@ -4581,11 +4533,9 @@ msgstr "Conjunto de caracteres"
 msgid "Chat show"
 msgstr "Programa de chat"
 
-#
 msgid "Chechen"
 msgstr "Checheno"
 
-#
 msgid "Check"
 msgstr "Comprobar"
 
@@ -4855,11 +4805,9 @@ msgstr "Escudo Canadiense CIRA (Privado)"
 msgid "CIRA Canadian Shield (Protected)"
 msgstr "Escudo Canadiense CIRA (Protegido)"
 
-#
 msgid "Circular left"
 msgstr "Circular izquierda"
 
-#
 msgid "Circular right"
 msgstr "Circular derecha"
 
@@ -4902,7 +4850,6 @@ msgstr "Limpiar"
 msgid "Clear"
 msgstr "Limpiar"
 
-#
 msgid "Clear Log"
 msgstr "Borrar historial"
 
@@ -4955,7 +4902,6 @@ msgstr "Reloj:"
 msgid "Clone TV screen to LCD"
 msgstr "Clonar pantalla de TV al LCD"
 
-#
 msgid "Close"
 msgstr "Cerrar"
 
@@ -5026,11 +4972,9 @@ msgstr "Velocidad de código LP"
 msgid "Collapse"
 msgstr "Colapsar"
 
-#
 msgid "Collection name"
 msgstr "Nombre de la colección"
 
-#
 msgid "Collection settings"
 msgstr "Ajustes de la colección"
 
@@ -5071,13 +5015,11 @@ msgstr "Comando '%s' desconocido"
 msgid "Command execution..."
 msgstr "Ejecución de comando..."
 
-#
 msgid "Command finished."
 msgid_plural "Commands finished."
 msgstr[0] "Comando finalizado."
 msgstr[1] "Comandos finalizados."
 
-#
 msgid "Command order"
 msgstr "Orden de comando"
 
@@ -5105,15 +5047,12 @@ msgstr "Confirmar registros"
 msgid "Common Information Actions"
 msgstr "Acciones comunes de información"
 
-#
 msgid "Common Interface"
 msgstr "Interfaz común"
 
-#
 msgid "Common Interface Assignment"
 msgstr "Asignación de interfaz común"
 
-#
 msgid "Common Interface Settings"
 msgstr "Configuración Interfaz común"
 
@@ -5130,15 +5069,12 @@ msgstr "Compatibilidad y Emulación"
 msgid "Compiled by"
 msgstr "Compilado por"
 
-#
 msgid "Complete"
 msgstr "Completo"
 
-#
 msgid "Complete Backup"
 msgstr "Backup completo"
 
-#
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Complejo (permite mezclar pistas de audio y aspectos)"
 
@@ -5151,7 +5087,6 @@ msgstr "Comprimir archivo tar del sistema de archivos root. (¡Esto es lo que m�
 msgid "Compressed bits/pixel"
 msgstr "Bits/Pixels comprimidos"
 
-#
 msgid "Config"
 msgstr "Configuración"
 
@@ -5162,7 +5097,6 @@ msgstr "Archivo de configuración %s guardado."
 msgid "Config file name (ok to change):"
 msgstr "Nombre del archivo de configuración (ok para cambiar):"
 
-#
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Configurable"
@@ -5271,7 +5205,6 @@ msgstr ""
 "Configurar en qué dispositivos debe usarse la opción de borrar copias de "
 "seguridad en segundo plano."
 
-#
 msgid "Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n\nWhen the settings are correct press OK to continue."
 msgstr "Configure o verifique la configuración de su DNS (Servidor de Nombres Dinámicos) ajustando los valores mostrados.\nCuando los ajustes sea correctos, presiona OK para continuar."
 
@@ -5311,12 +5244,10 @@ msgstr ""
 "Configurar el comportamiento cuando la reproducción de películas se para "
 "manualmente."
 
-#
 msgid "Configure the behavior when movie playback is started."
 msgstr ""
 "Configurar el comportamiento cuando empieza la reproducción de películas."
 
-#
 msgid ""
 "Configure the behavior when reaching the end of a movie, during movie "
 "playback."
@@ -5413,7 +5344,6 @@ msgstr "Configurar el primer idioma de los subtítulos (primera prioridad)."
 msgid "Configure the font size of the subtitles."
 msgstr "Configurar el tamaño de letra de los subtítulos."
 
-#
 msgid ""
 "Configure the font size relative to default size, so 1 increases by 1 point "
 "size, and -1 decreases by 1 point size."
@@ -5421,7 +5351,6 @@ msgstr ""
 "Configure el tamaño de la fuente en relación con el tamaño por defecto, de "
 "modo que 1 aumenta en 1 punto de tamaño, y -1 disminuye en 1 punto de tamaño."
 
-#
 msgid ""
 "Configure the font size relative to skin size, so 1 increases by 1 point "
 "size, and -1 decreases by 1 point size."
@@ -5501,7 +5430,6 @@ msgstr ""
 "Configurar los días que se guardan los temporizadores antiguos antes de "
 "eliminarlos automáticamente de la lista."
 
-#
 msgid "Configure the number of rows shown."
 msgstr "Configura el número de filas mostradas."
 
@@ -5610,11 +5538,9 @@ msgstr ""
 "Configurar la posición vertical de los subtítulos, medida desde la parte "
 "inferior de la pantalla."
 
-#
 msgid "Configure the width allocated to the picon."
 msgstr "Configurar la anchura asignada a picon."
 
-#
 msgid "Configure the width allocated to the service name."
 msgstr "Configurar la anchura asignada al nombre de canal."
 
@@ -5631,14 +5557,12 @@ msgstr ""
 "a otro sintonizador, copiar una configuración de otro sintonizador o "
 "desactivarlo."
 
-#
 msgid ""
 "Configure to show channel names, numbers, picons or all three inside EPG."
 msgstr ""
 "Configurar para mostrar los nombres de los canales, los números, los picons "
 "o los tres dentro de la EPG."
 
-#
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Elige si mostrar nombres de canal, picon o ambos en el EPG."
 
@@ -5745,7 +5669,6 @@ msgstr ""
 "Enhorabuena, ha configurado con éxito su %s %s para usarlo con el servicio "
 "IceTV Smart Recording. Su guía IceTV se descargará ahora en segundo plano."
 
-#
 msgid "Connect"
 msgstr "Conectar"
 
@@ -5812,7 +5735,6 @@ msgstr "Constcw"
 msgid "Constellation"
 msgstr "Constelación"
 
-#
 msgid "Constellation & FFT mode"
 msgstr "Constelación y modo FFT"
 
@@ -5838,7 +5760,6 @@ msgstr "Contenido"
 msgid "contents:"
 msgstr "contenido:"
 
-#
 msgid "Content does not fit on DVD!"
 msgstr "¡El contenido no cabe en un DVD!"
 
@@ -6005,7 +5926,6 @@ msgstr "No se pudo conectar. ¿Contraseña de Wi-Fi incorrecta?"
 msgid "Could not load Medium! No disc inserted?"
 msgstr "No se pudo cargar el recurso. ¿Hay algún disco insertado?"
 
-#
 msgid "Could not open Picture in Picture"
 msgstr "No se pudo abrir Picture in Picture"
 
@@ -6092,7 +6012,6 @@ msgstr "Crear volcado de información del dispositivo."
 msgid "Create Directory"
 msgstr "Crear un directorio"
 
-#
 msgid "Create DVD-ISO"
 msgstr "Crear DVD-ISO"
 
@@ -6154,7 +6073,6 @@ msgstr "Credenciales para '%s'"
 msgid "Cree"
 msgstr "Cree"
 
-#
 msgid "Cricket"
 msgstr "Criquet"
 
@@ -6231,11 +6149,9 @@ msgstr "Modo actual: %s \n"
 msgid "Current time"
 msgstr "Hora actual"
 
-#
 msgid "Current transponder"
 msgstr "Transpondedor actual"
 
-#
 msgid "Current value: "
 msgstr "Valor actual: "
 
@@ -6268,19 +6184,15 @@ msgstr "Tiempos de Salto Personalizados"
 msgid "Custom mountpoint"
 msgstr "Punto de montaje personalizado"
 
-#
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Personalizar el intervalo de salto de las teclas ‘1’/‘3’"
 
-#
 msgid "Custom skip time for '4'/'6' buttons"
 msgstr "Personalizar el intervalo de salto de las teclas ‘4’/‘6’"
 
-#
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Personalizar el intervalo de salto de las teclas ‘7’/‘9’"
 
-#
 msgid "Customize"
 msgstr "Configurar"
 
@@ -6295,7 +6207,6 @@ msgstr "Personalizar"
 msgid "Customize enigma2 personal settings"
 msgstr "Personaliza los ajustes de Enigma2"
 
-#
 msgid "Cut"
 msgstr "Cortar"
 
@@ -6364,9 +6275,6 @@ msgstr "Se ha instalado la compatibilidad con DAB+ por USB. Ahora puede activar 
 
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "USB DAB+: no se pudo escribir el paquete de canales"
-
-msgid "Audio decoding"
-msgstr "Decodificación de audio"
 
 msgid "DAB+ channel"
 msgstr "Canal DAB+"
@@ -6477,11 +6385,9 @@ msgstr "DVB-C ANEXO C"
 msgid "DVB-C and DVB-T/T2 share this input. Enable 5V only if the aerial system or an external coax switch requires power."
 msgstr "Los sistemas DVB-C y DVB-T/T2 comparten esta entrada. Active los 5 V solo si el sistema de antena o un conmutador coaxial externo requieren alimentación."
 
-#
 msgid "DVB-S"
 msgstr "DVB-S"
 
-#
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
@@ -6491,35 +6397,30 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
-#
 msgid "DVD Burn"
 msgstr "Grabación de DVD"
 
 msgid "DVD File Browser"
 msgstr "Navegador de archivos DVD"
 
-#
 msgid "DVD Menu"
 msgstr "Menú del DVD"
 
 msgid "DVD Player"
 msgstr "Reproductor de DVD"
 
-#
 msgid "DVD Title list"
 msgstr "Lista de títulos de DVD"
 
 msgid "Daily"
 msgstr "Diario"
 
-#
 msgid "Dance"
 msgstr "Baile"
 
 msgid "Danish"
 msgstr "Danés"
 
-#
 msgid "Date"
 msgstr "Fecha"
 
@@ -6569,7 +6470,6 @@ msgstr "Día DD Lun"
 msgid "Day DD-Mon"
 msgstr "Día DD-Mon"
 
-#
 msgid "Day DD/M"
 msgstr "Día DD/M"
 
@@ -6730,18 +6630,15 @@ msgstr "Retardo de inicio del decodificador"
 msgid "Decoder start timeout"
 msgstr "Tiempo de espera de inicio del decodificador"
 
-#
 msgid "Decryption & Parental Control"
 msgstr "Descifrado & control parental"
 
-#
 msgid "Deep Standby"
 msgstr "Reposo profundo"
 
 msgid "Default"
 msgstr "Por defecto"
 
-#
 msgid "Default  (keymap.xml)"
 msgstr "Predeterminado  (keymap.xml)"
 
@@ -6776,7 +6673,6 @@ msgstr ""
 "reducir la carga del sistema, así los scripts no interferirán con el resto "
 "del sistema (valores más altos = menor prioridad)."
 
-#
 msgid "Default Services Scanner"
 msgstr "Escáner de servicios predeterminado"
 
@@ -7023,18 +6919,15 @@ msgstr "Eliminar carácter a la izquierda del cursor o seleccionar horas AM"
 msgid "Delete character under cursor or select PM times"
 msgstr "Eliminar carácter bajo el cursor o seleccionar horas PM"
 
-#
 msgid "Delete current line"
 msgstr "Eliminar línea actual"
 
 msgid "Delete directory or file"
 msgstr "Eliminar carpeta o archivo"
 
-#
 msgid "Delete entry"
 msgstr "Eliminar entrada"
 
-#
 msgid "Delete failed!"
 msgstr "¡Eliminación fallida!"
 
@@ -7060,7 +6953,6 @@ msgstr "Eliminar solo archivo resaltado"
 msgid "Empty or Wipe the highlighted slot"
 msgstr "Vacíe o elimine el slot resaltado"
 
-#
 msgid "Delete play list entry"
 msgstr "Eliminar entrada en la lista de reproducción"
 
@@ -7291,7 +7183,6 @@ msgstr ""
 msgid "Digit entry for service selection"
 msgstr "Entrada de dígitos para la selección del servicio"
 
-#
 msgid "Digital contour removal"
 msgstr "Eliminar contorno digital"
 
@@ -7307,7 +7198,6 @@ msgstr ""
 msgid "Direct menu item selection"
 msgstr "Selección directa de elementos del menú"
 
-#
 msgid "Direct playback of linked titles without menu"
 msgstr "Reproduce los títulos enlazados sin menú"
 
