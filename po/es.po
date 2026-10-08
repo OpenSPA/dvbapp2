@@ -6365,8 +6365,8 @@ msgstr "Se ha instalado la compatibilidad con DAB+ por USB. Ahora puede activar 
 msgid "DAB+ USB: bouquet could not be written"
 msgstr "USB DAB+: no se pudo escribir el paquete de canales"
 
-msgid "DAB+ audio decoding"
-msgstr "Decodificación de audio DAB+"
+msgid "Audio decoding"
+msgstr "Decodificación de audio"
 
 msgid "DAB+ channel"
 msgstr "Canal DAB+"
