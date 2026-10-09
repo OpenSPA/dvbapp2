@@ -94,7 +94,7 @@ class FlashManager(Screen):
 		self["downloadActions"].setEnabled(False)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText()
-		self["key_yellow"] = StaticText(_("Distribution"))
+		# self["key_yellow"] = StaticText(_("Distribution"))
 		self["key_blue"] = StaticText()
 		self["description"] = StaticText()
 		self["list"] = ChoiceList(list=[ChoiceEntryComponent("", ((_("Retrieving image list, please wait...")), "Loading"))])
@@ -253,6 +253,7 @@ class FlashManager(Screen):
 		self.selectionChanged()
 
 	def keyDistribution(self):
+		""" ONLY OpenATV
 		distributionList = []
 		default = 0
 		for index, feed in enumerate(USER_AGENT):
@@ -261,6 +262,8 @@ class FlashManager(Screen):
 			if distribution == self.imageFeed:
 				default = index
 		self.session.openWithCallback(self.keyDistributionCallback, MessageBox, _("Please select a distribution from which you would like to flash an image:"), list=distributionList, default=default, windowTitle=_("Flash Manager - Distributions"))
+		"""
+		pass
 
 	def keyDistributionCallback(self, distribution):
 		if distribution:
