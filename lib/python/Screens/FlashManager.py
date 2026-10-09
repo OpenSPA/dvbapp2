@@ -16,33 +16,27 @@ from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
-from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+from Screens.BackupRestore import BackupScreen
 from Screens.MessageBox import MessageBox
 from Screens.MultiBootManager import MultiBootManager
 from Screens.Screen import Screen
-from Tools.Downloader import DownloadWithProgress
+from Tools.Downloader import DownloadWithProgress, USER_AGENTS
 from Tools.MultiBoot import MultiBoot
 
 OFGWRITE = "/usr/bin/ofgwrite"
 
 FEED_DISTRIBUTION = 0
 FEED_JSON_URL = 1
-FEED_URLS = [
-	("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s" % BoxInfo.getItem("BoxName")),
-	("openATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName")),
-	("OpenBH", "https://images.openbh.net/json/%s" % BoxInfo.getItem("model")),
-	("OpenPLi", "http://downloads.openpli.org/json/%s" % BoxInfo.getItem("model")),
-	("OpenViX", "https://www.openvix.co.uk/json/%s" % BoxInfo.getItem("machinebuild")),
-	("OpenHDF", "https://flash.hdfreaks.cc/openhdf/json/%s" % BoxInfo.getItem("machinebuild")),
-	("Open8eIGHT", "http://openeight.de/json/%s" % BoxInfo.getItem("machinebuild")),
-	("OpenDROID", "https://opendroid.org/json/%s" % BoxInfo.getItem("machinebuild")),
-	("TeamBlue", "https://images.teamblue.tech/json/%s" % BoxInfo.getItem("machinebuild")),
-	("EGAMI", "https://image.egami-image.com/json/%s" % BoxInfo.getItem("machinebuild"))
-]
-USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5"}
+USER_AGENT = {"User-Agent": USER_AGENTS.CHROME}
 
 def checkImageFiles(files):
 	return sum(f.endswith((".nfi", ".tar.xz")) for f in files) == 1 or sum(("kernel" in f and f.endswith(".bin")) or f in {"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.ubi", "rootfs.bin", "rootfs.tar.bz2", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"} for f in files) >= 2
+
+
+def isSmallBoxBootstrapImage(image):
+	# This archive only boots the mandatory native setup from a USB stick.  A
+	# running SmallBox image must use the full companion Multiboot archive.
+	return BoxInfo.getItem("SmallBoxWizard") and str(image).split("?", 1)[0].lower().endswith("_usb.zip")
 
 
 class FlashManager(Screen):
@@ -83,12 +77,12 @@ class FlashManager(Screen):
 			"red": (self.keyCancel, _("Cancel the image selection and exit")),
 			"green": (self.keyOk, _("Select the highlighted image and proceed to the slot selection")),
 			"yellow": (self.keyDistribution, _("Select a distribution from where images are to be obtained")),
-			"top": (self.keyTop, _("Move to first line / screen")),
+			"top": (self.keyTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
-			"bottom": (self.keyBottom, _("Move to last line / screen"))
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=-1, description=_("Flash Manager Actions"))
 		self["deleteActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"blue": (self.keyDeleteImage, _("Delete the selected locally stored image")),
@@ -104,7 +98,7 @@ class FlashManager(Screen):
 		self["key_blue"] = StaticText()
 		self["description"] = StaticText()
 		self["list"] = ChoiceList(list=[ChoiceEntryComponent("", ((_("Retrieving image list, please wait...")), "Loading"))])
-		self.feedUrls = FEED_URLS
+		self.feedUrls = USER_AGENT
 		#[("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s" % BoxInfo.getItem("BoxName"))]
 		self.callLater(self.getImagesList)
 
@@ -114,7 +108,7 @@ class FlashManager(Screen):
 			return result[0] if result else None
 
 		def getImages(path, files):
-			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and (boxname in x or machinebuild in x or model in x)]:
+			for file in [x for x in files if splitext(x)[1] == ".zip" and not basename(x).startswith(".") and (boxname in x or machinebuild in x or model in x) and not isSmallBoxBootstrapImage(x)]:
 				try:
 					zipData = ZipFile(file, mode="r")
 					zipFiles = zipData.namelist()
@@ -156,6 +150,14 @@ class FlashManager(Screen):
 			try:
 				req = Request(feedURL, None, USER_AGENT)
 				self.imagesList = dict(load(urlopen(req, timeout=10)))  # OpenSPA [norhap] add response timeout.
+				if BoxInfo.getItem("SmallBoxWizard"):
+					self.imagesList = {
+						category: {
+							image: data for image, data in images.items()
+							if not isSmallBoxBootstrapImage(data.get("name", image))
+						} for category, images in self.imagesList.items()
+					}
+					self.imagesList = {category: images for category, images in self.imagesList.items() if images}
 				# if config.usage.alternative_imagefeed.value:
 				# 	url = "%s%s" % (config.usage.alternative_imagefeed.value, box)
 				# 	self.imagesList.update(dict(load(urlopen(url))))
@@ -253,7 +255,7 @@ class FlashManager(Screen):
 	def keyDistribution(self):
 		distributionList = []
 		default = 0
-		for index, feed in enumerate(FEED_URLS):
+		for index, feed in enumerate(USER_AGENT):
 			distribution = feed[FEED_DISTRIBUTION]
 			distributionList.append((distribution, distribution))
 			if distribution == self.imageFeed:
@@ -688,9 +690,15 @@ class FlashImage(Screen):
 	######################################################################
 
 	def downloadProgress(self, current, total):
-		self["progress"].setValue(100 * current // total)
-		self.progressCounter = int(100 * current / total)
-		self["progress_counter"].setText(str(self.progressCounter) + " %")
+		if total > 0:  # total is -1 while the download size is still unknown
+			self["progress"].setValue(100 * current // total)
+			self.progressCounter = int(100 * current / total)
+			self["progress_counter"].setText(str(self.progressCounter) + " %")
+			""" ATV
+			eta = self.downloader.getEta()
+			eta = f" / {eta}s" if eta > 0 else ""
+			self["info"].setText(f"{self.imageName}{eta}")
+			"""
 
 	def downloadEnd(self, filename=None):
 		self.downloader.stop()
@@ -698,7 +706,7 @@ class FlashImage(Screen):
 
 	def downloadError(self, error):
 		self.downloader.stop()
-		self.session.openWithCallback(self.keyCancel, MessageBox, "%s\n\n%s" % (_("Error downloading image '%s'!") % self.imageName, error.strerror), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+		self.session.openWithCallback(self.keyCancel, MessageBox, "%s\n\n%s" % (_("Error downloading image '%s'!") % self.imageName, error), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def unzip(self):
 		self["header"].setText(_("Unzipping Image"))
@@ -728,6 +736,15 @@ class FlashImage(Screen):
 			self.session.openWithCallback(self.keyCancel, MessageBox, _("Error unzipping image '%s'!") % self.imageName, type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def flashImage(self):
+		if BoxInfo.getItem("model") in ("dm820", "dm7080") and not hasattr(self, "dreamKernelA"):
+			def featuresDone(data, retVal, extraArgs):
+				self.dreamKernelA = retVal == 0 and "dream-kernel-a" in data.split()
+				self.containerOFGWrite = None
+				self.flashImage()
+			self.containerOFGWrite = Console()
+			self.containerOFGWrite.ePopen(["/usr/bin/ofgwrite_bin", "/usr/bin/ofgwrite_bin", "--features"], callback=featuresDone)
+			return
+
 		def findImageFiles(path):
 			for path, subDirs, files in walk(path):
 				if not subDirs and files:
@@ -756,8 +773,14 @@ class FlashImage(Screen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel]
 			elif BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-r%s" % mtdRootFS, "-a"]
-			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
-				cmdArgs = ["-rmmcblk0p1"] if rootSubDir is None else ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
+			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):
+				if rootSubDir is None:
+					cmdArgs = ["-r"] if self.dreamKernelA else ["-rmmcblk0p1"]
+				else:
+					cmdArgs = ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
+				# Chkroot guests keep sharing A. Update it with the main internal image.
+				if self.dreamKernelA and (rootSubDir is None or (mtdRootFS == "mmcblk0p1" and rootSubDir == "linuxrootfs1")):
+					cmdArgs.append("-k")
 			elif MultiBoot.canMultiBoot() and self.slotCode not in ("R", "F"):  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				if BoxInfo.getItem("chkrootmb"):
 					cmdArgs = ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
@@ -784,6 +807,9 @@ class FlashImage(Screen):
 		fbClass.getInstance().unlock()
 		self.containerOFGWrite = None
 		if retVal == 0:
+			slotCode = getattr(self, "slotCode", None)
+			if slotCode and BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT"):
+				MultiBoot.updateDreamBootSection(slotCode)
 			self["header"].setText(_("Flashing image successful"))
 			self["summary_header"].setText(self["header"].getText())
 			self["info"].setText("%s\n\n%s\n%s" % (self.imageName, _("Press OK for MultiBoot selection."), _("Press EXIT to close.")))

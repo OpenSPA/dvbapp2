@@ -1,11 +1,11 @@
 from os import listdir, remove, rename
-from os.path import join
+from os.path import exists, join
 from time import localtime, strftime, time
 
 from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
-from ServiceReference import ServiceReference, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
+from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, isRadioServiceReference, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from skin import getSkinFactor, findSkinScreen, standardenigma
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
@@ -19,7 +19,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.ServiceList import ServiceList, ServiceListLegacy, refreshServiceList
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.UsageConfig import preferredTimerPath
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 from Components.Sources.Event import Event
 from Components.Sources.List import List
 from Components.Sources.RdsDecoder import RdsDecoder
@@ -84,6 +84,7 @@ def unregisterServicelistInfoKeyHandler(key):
 def getServicelistInfoKeyHandler(key):
 	return SERVICELIST_INFOKEY_HANDLERS.get(key)
 
+
 # Values for csel.bouquet_mark_edit:
 OFF = 0
 EDIT_OFF = 0
@@ -108,18 +109,6 @@ multibouquet_radio_ref = eServiceReference(service_types_radio_ref)
 multibouquet_radio_ref.setPath("FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet")
 
 singlebouquet_radio_ref = serviceRefAppendPath(service_types_radio_ref, " FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet")
-
-def getStreamRelayRef(sref):
-	try:
-		if "http" in sref:
-			icamport = config.misc.softcam_streamrelay_port.value
-			icamip = ".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)
-			icam = f"http%3a//{icamip}%3a{icamport}/"
-			if icam in sref:
-				return sref.split(icam)[1].split(":")[0].replace("%3a", ":"), True
-	except Exception:
-		pass
-	return sref, False
 
 # Configuration for last service:
 config.tv = ConfigSubsection()
@@ -360,6 +349,15 @@ class ChannelSelectionBase(Screen):
 			self.bouquet_root = eServiceReference(multibouquet_radio_ref if config.usage.multibouquet.value else singlebouquet_radio_ref)
 		self.service_types = self.service_types_ref.toString()
 		self.bouquet_rootstr = self.bouquet_root.toString()
+		for ext in ("tv", "radio"):  # OpenSPA [norhap] translate Favourites Bouquet.
+			path_favourites = f"/etc/enigma2/userbouquet.favourites.{ext}"
+			if exists(path_favourites):
+				with open(path_favourites, "r") as fr:
+					favourites_content = fr.read()
+				if "Favourites" in favourites_content:
+					with open(path_favourites, "w") as fw:
+						fw.write(favourites_content.replace("Favourites", _("Favourites")))
+					eDVBDB.getInstance().reloadBouquets()
 
 	def buildTitle(self):
 		mode = _("TV") if self.mode == MODE_TV else _("Radio")
@@ -389,6 +387,8 @@ class ChannelSelectionBase(Screen):
 		# print(f"[ChannelSelection] getServiceName DEBUG: Service Name Before='{serviceNameTmp}', After='{serviceName}'.")
 		if "Last Scanned" in serviceName:  # OpenSPA [norhap] Last Scanned always translated.
 			serviceName = serviceName.replace("Last Scanned", _("Last Scanned"))
+		if "Favourites" in serviceName:  # OpenSPA [norhap] translate title Favourites Bouquet.
+			serviceName = serviceName.replace("Favourites", _("Favourites"))
 		if "User - bouquets" in serviceName:
 			return _("User - Bouquets")
 		if not serviceName:
@@ -1416,7 +1416,8 @@ class ChannelContextMenu(Screen):
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
 				if isPlayable:
 					for plugin in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_CONTEXT_MENU):
-						appendWhenValid(current, menu, (plugin.name, boundFunction(self.runPlugin, plugin)))
+						if plugin.serviceFilter is None or plugin.serviceFilter(current):
+							appendWhenValid(current, menu, (plugin.name, boundFunction(self.runPlugin, plugin)))
 					if config.servicelist.startupservice.value == self.csel.getCurrentSelection().toString():
 						appendWhenValid(current, menu, (_("Unset As Startup Service"), self.unsetStartupService))
 					else:
@@ -1753,8 +1754,8 @@ class ChannelContextMenu(Screen):
 		self.session.openWithCallback(self.close, MessageBox, _("The service list is reloaded."), MessageBox.TYPE_INFO, timeout=5)
 
 	def showServiceInformations(self, current):
-		from Screens.Information import ServiceInformation  # The import needs to be here to prevent a cyclic import.
-		self.session.open(ServiceInformation, current)
+		from Screens.Information import InformationService  # The import needs to be here to prevent a cyclic import.
+		self.session.open(InformationService, current)
 
 	def showServiceListOpenSPA(self, current):  # OPENSPA [norhap] Show OpenSPA channel list.
 		config.usage.standardchannelselection.value = False
@@ -2506,10 +2507,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.setTvMode()
 		self.setMode()
 
-	def setModeRadio(self):
+	def setModeRadio(self, force=False):
 		if self.revertMode is None and config.servicelist.lastmode.value == "tv":
 			self.revertMode = MODE_TV
-		if config.usage.e1like_radio_mode.value:
+		if force or config.usage.e1like_radio_mode.value:
 			self.history = self.history_radio
 			self.lastservice = config.radio.lastservice
 			self.lastroot = config.radio.lastroot
@@ -2541,12 +2542,40 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				standbyScreen.correctChannelNumber = True
 			elif self == ChannelSelection.instance:
 				doPlay = True  # Do real playback only for the first instance and only if not in Standby
+				startupService = self.getStartupService(lastservice)
+				if startupService != lastservice:
+					self.performZap(startupService)
+					return
 
 			if self.isSubservices():
 				self.zap(ref=lastservice, doPlay=doPlay)
 				self.enterSubservices()
 			else:
 				self.zap(doPlay=doPlay)
+
+	def getStartupService(self, service):
+		# Due timers can reserve the tuners before ChannelSelection is created.
+		# Keep their reservations and share a recording's transponder if the
+		# requested startup service is no longer playable. Do not delay timers.
+		if service.type != eServiceReference.idDVB or (service.getPath() and not service.flags & eServiceReference.isGroup):
+			return service
+		recordings = [timer for timer in self.session.nav.RecordTimer.timer_list
+			if not timer.disabled and not timer.justplay and not timer.failed
+			and timer.state in (timer.StatePrepared, timer.StateRunning) and timer.record_service]
+		if recordings:
+			serviceHandler = eServiceCenter.getInstance()
+			ignoreService = eServiceReference()
+			info = serviceHandler.info(service)
+			if info and not info.isPlayable(service, ignoreService):
+				for timer in recordings:
+					recordingService = timer.service_ref.ref
+					if recordingService.type != eServiceReference.idDVB or (recordingService.getPath() and not recordingService.flags & eServiceReference.isGroup):
+						continue
+					info = serviceHandler.info(recordingService)
+					if info and info.isPlayable(recordingService, ignoreService):
+						print(f"[ChannelSelection] Startup service '{service.toString()}' unavailable during recording, using '{recordingService.toString()}'.")
+						return recordingService
+		return service
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()
@@ -2994,9 +3023,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if Screens.InfoBar.InfoBar.instance:
 			servicelist = Screens.InfoBar.InfoBar.instance.servicelist
 			if servicelist:
-				refStr = sref.toString()
-				sType = refStr.split(":", maxsplit=3)
-				if len(sType) == 4 and sType[2] in ("2", "A") and config.usage.e1like_radio_mode.value:
+				isDAB = sref.type == eServiceReference.idServiceDAB
+				if isDAB or (isRadioServiceReference(sref) and config.usage.e1like_radio_mode.value):
 					typestr = "radio"
 					if servicelist.mode != 1:
 						servicelist.setModeRadio()
@@ -3023,10 +3051,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def performZap(self, sref):
 		def getBqRoot(reference):
-			reference = reference.toString()
 			isTV = True
-			sType = reference.split(":", maxsplit=3)
-			if len(sType) == 4 and sType[2] in ("2", "A") and config.usage.e1like_radio_mode.value:
+			isDAB = reference.type == eServiceReference.idServiceDAB
+			if isDAB or (isRadioServiceReference(reference) and config.usage.e1like_radio_mode.value):
 				isTV = False
 				if config.usage.multibouquet.value:
 					bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
@@ -3070,7 +3097,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				service = servicelist.getNext()
 				while service.valid():
 					if service.flags & eServiceReference.isDirectory:
-						if level == 0 and "userbouquet.LastScanned.tv" in service.toString():  # Don't search in LastScanned.
+						if level == 0 and any(name in service.getPath() for name in ('"userbouquet.LastScanned.tv"', '"userbouquet.LastScanned.radio"')):  # Don't search in LastScanned.
 							service = servicelist.getNext()
 							continue
 						found = walk(serviceHandler, service, level + 1)
@@ -3222,6 +3249,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.onClose.append(self.__onClose)
 		self.onExecBegin.append(self.__onExecBegin)
 		self.onExecEnd.append(self.__onExecEnd)
+		self.onShown.append(self.info.show)
 
 	def __onClose(self):
 		del self.info["RdsDecoder"]
@@ -3303,7 +3331,13 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 	def onCreate(self):
 		self.setRadioMode()
 		self.restoreRoot()
-		lastservice = eServiceReference(config.radio.lastservice.value)
+		currentservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if isRadioServiceReference(currentservice):
+			lastservice = currentservice
+			config.radio.lastservice.value = lastservice.toString()
+			config.radio.lastservice.save()
+		else:
+			lastservice = eServiceReference(config.radio.lastservice.value)
 		if lastservice.valid():
 			self.servicelist.setCurrent(lastservice)
 			self.session.nav.playService(lastservice)
@@ -3467,7 +3501,7 @@ class HistoryZapSelector(Screen):
 						localBegin = localtime(begin)
 						localEnd = localtime(end)
 						eventDuration = f"{strftime(config.usage.time.short.value, localBegin)}  -  {strftime(config.usage.time.short.value, localEnd)}    ({prefix}{ngettext('%d Min', '%d Mins', remaining) % remaining})"
-				servicePicon = getPiconName(str(ServiceReference(serviceReference)))
+				servicePicon = getChannelSelectionPiconName(str(ServiceReference(serviceReference)))
 				servicePicon = loadPNG(servicePicon) if servicePicon else ""
 				historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, serviceReference))
 		if config.usage.zapHistorySort.value == 0:
@@ -3540,9 +3574,9 @@ class ChannelSelectionSetup(Setup):
 		ChannelSelectionSetup.updateSettings(self.session)
 
 	@staticmethod
-	def updateSettings(session):
+	def updateSettings(session, force=False):
 		styleChanged = False
-		styleScreenChanged = config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged()
+		styleScreenChanged = force or config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged()
 		if not styleScreenChanged:
 			for setting in ("showNumber", "showPicon", "showServiceTypeIcon", "showCryptoIcon", "recordIndicatorMode", "piconRatio"):
 				if getattr(config.channelSelection, setting).isChanged():

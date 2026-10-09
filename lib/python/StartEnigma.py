@@ -60,10 +60,12 @@ class Session:
 		self.in_exec = False
 		self.screen = SessionGlobals(self)
 		self.shutdown = False
+		self.isStandby = False  # Set by Screens.Standby.
 		from Components.FrontPanelLed import frontPanelLed
 		frontPanelLed.setSession(self)
+		from Tools.Notifications import notificationCenter
 		self.allDialogs = []
-
+		notificationCenter.setup(self)
 		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
 			try:
 				plugin.__call__(reason=0, session=self)
@@ -71,9 +73,6 @@ class Session:
 				print("[StartEnigma] Error: Plugin raised exception at WHERE_SESSIONSTART!")
 				from traceback import print_exc
 				print_exc()
-
-		from Components.Network import iNetwork
-		iNetwork.getInterfaces()
 
 	def processDelay(self):
 		callback = self.current_dialog.callback
@@ -234,13 +233,24 @@ class Session:
 		for callback in self.onShutdown:
 			if callable(callback):
 				callback()
+		Toast.instance.doShutdown()
 
-	def reloadDialogs(self):
+	def reloadDialogs(self, exclude=None):
 		for dialog in self.allDialogs:
+			if exclude and id(dialog) in exclude:
+				continue
+			# print(f"[reloadDialogs] dialog={dialog.__class__.__name__} desktop={hasattr(dialog, 'desktop')}")
 			if hasattr(dialog, "desktop"):
-				oldDesktop = dialog.desktop
-				readSkin(dialog, None, dialog.skinName, oldDesktop)
-				dialog.applySkin()
+				dialog.reloadSkin()
+
+	def showInfo(self, text, timeout=4):
+		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout)
+
+	def showWarning(self, text, timeout=5):
+		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_WARNING, timeout=timeout)
+
+	def showError(self, text, timeout=5):
+		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_ERROR, timeout=timeout)
 
 
 class PowerKey:
@@ -414,11 +424,16 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 	enigma.resumeInit()
 	enigma.eProfileWrite("Session")
+	toast = Toast()  # noqa F841
 	nav = Navigation(config.misc.nextWakeup.value)
 	session = Session(desktop=enigma.getDesktop(0), summaryDesktop=enigma.getDesktop(1), navigation=nav)
 	CiHandler.setSession(session)
+	from Components.RTLSDR import initRTLSDR
+	initRTLSDR(session)
 	from Screens.SwapManager import SwapAutostart
 	SwapAutostart()
+	enigma.eProfileWrite("Processing Screen")
+	processing = Processing(session)  # noqa F841
 	enigma.eProfileWrite("Wizards")
 	screensToRun = []
 	RestoreSettings = None
@@ -426,9 +441,9 @@ def runScreenTest():
 	if config.misc.firstrun.value and (firstPath := next((f"/media/{d}/images/config/settings" for d in listdir("/media") if d not in ("audiocd", "autofs") and isfile(f"/media/{d}/images/config/settings")), None)):
 		if autorestoreLoop(autorestoreFilename):
 			RestoreSettings = True
+			from Screens.BackupRestore import RestoreScreen
 			if firstPath:
 				config.plugins.configurationbackup.backuplocation.value = firstPath.replace("images/config/settings", "")
-			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreScreen
 			session.open(RestoreScreen, runRestore=True)
 		else:
 			screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
@@ -451,10 +466,8 @@ def runScreenTest():
 	vol = VolumeControl(session)  # noqa F841
 	enigma.eProfileWrite("VolumeAdjust")
 	vol = VolumeAdjust(session)  # noqa F841
-	enigma.eProfileWrite("Processing Screen")
-	processing = Processing(session)  # noqa F841
 	enigma.eProfileWrite("Global MessageBox Screen")
-	modalmessagebox = ModalMessageBox(session)  # noqa F841
+	modalMessagebox = ModalMessageBox(session)  # noqa F841
 	enigma.eProfileWrite("PowerKey")
 	power = PowerKey(session)  # noqa F841
 	if enigma.getVFDSymbolsPoll():
@@ -482,12 +495,16 @@ def runScreenTest():
 	if not config.usage.shutdownOK.value and not config.usage.shutdownNOK_action.value == "normal" or not config.usage.boot_action.value == "normal":
 		print("[StartEnigma] Last shutdown=%s." % config.usage.shutdownOK.value)
 		from Screens.PowerLost import PowerLost
-		PowerLost(session)
+		powerLost = PowerLost(session)  # noqa F841 - Keep the deferred startup action alive.
 	if not RestoreSettings:
 		config.usage.shutdownOK.setValue(False)
 		config.usage.shutdownOK.save()
 		configfile.save()
 	from Components.FrontPanelLed import frontPanelLed
+
+	ormTimer = enigma.eTimer()  # ORM, started by enigma2.sh, learns that the main loop runs.
+	ormTimer.callback.append(lambda: enigma.eProfileNotify("ready"))
+	ormTimer.start(0, True)
 	runReactor()
 	session.shutdown = True
 	frontPanelLed.shutdown()
@@ -509,7 +526,7 @@ def runScreenTest():
 		nextRecordTime = session.nav.RecordTimer.getNextRecordingTime()
 		nextRecordTimeInStandby = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
 	# Zap timer.
-	nextZapTime = session.nav.RecordTimer.getNextZapTime()
+	nextZapTime = session.nav.RecordTimer.getNextZapTime(forWakeup=True)
 	nextZapTimeInStandby = 0
 	# Scheduler timer.
 	tmp = session.nav.Scheduler.getNextPowerManagerTime(getNextStbPowerOn=True)
@@ -757,14 +774,18 @@ config.crash.debugOpkg = ConfigYesNo(default=False)
 config.crash.debugRemoteControls = ConfigYesNo(default=False)
 config.crash.debugScreens = ConfigYesNo(default=False)
 config.crash.debugEPG = ConfigYesNo(default=False)
+config.crash.debugDAB = ConfigYesNo(default=False)
+config.crash.debugDVB = ConfigYesNo(default=False)
+config.crash.debugDVBDB = ConfigYesNo(default=False)
 config.crash.debugDVBScan = ConfigYesNo(default=False)
 config.crash.debugDVBTime = ConfigYesNo(default=False)
-config.crash.debugDVB = ConfigYesNo(default=False)
 config.crash.debugTimers = ConfigYesNo(default=False)
+config.crash.debugSec = ConfigYesNo(default=False)
+config.crash.debugSeek = ConfigYesNo(default=False)
 config.crash.debugTeletext = ConfigYesNo(default=False)
 config.crash.debugStorage = ConfigYesNo(default=False)
-config.crash.debugDVBDB = ConfigYesNo(default=False)
 config.crash.debugTextEncoding = ConfigYesNo(default=False)
+config.crash.debugNetwork = ConfigYesNo(default=True)
 
 # config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar.
 config.plugins = ConfigSubsection()
@@ -837,9 +858,9 @@ enigma.eProfileWrite("AutoRunPlugins")
 # Initialize autorun plugins and plugin menu entries.
 from Components.PluginComponent import plugins
 
-enigma.eProfileWrite("StartWizard")
+enigma.eProfileWrite("WizardStart")
 config.misc.rcused = ConfigInteger(default=1)
-from Screens.StartWizard import *
+from Screens.WizardStart import *
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 
@@ -871,6 +892,7 @@ from Screens.Processing import Processing
 
 enigma.eProfileWrite("ModalMessageBox")
 from Screens.MessageBox import ModalMessageBox
+from Screens.Toast import Toast
 
 enigma.eProfileWrite("StackTracePrinter")
 from Components.StackTrace import StackTracePrinter
@@ -886,7 +908,6 @@ InitSkins()
 enigma.eProfileWrite("InitInputDevices")
 from Components.InputDevice import InitInputDevices
 InitInputDevices()
-import Components.InputHotplug
 
 enigma.eProfileWrite("InitAVSwitch")
 from Components.AVSwitch import InitAVSwitch, InitiVideomodeHotplug
@@ -930,8 +951,9 @@ if exists(config.usage.keymap_usermod.value):
 	loadKeymap(config.usage.keymap_usermod.value)
 
 enigma.eProfileWrite("InitNetwork")
-from Components.Network import InitNetwork
-InitNetwork()
+from Components.NetworkManager import discoveryManager, networkManager
+networkManager.startNetworkCheck()
+discoveryManager.start()  # one bounded SMB/NFS mDNS discovery pass per boot, auto-stops after DiscoveryManager.DEFAULT_RUN_MS
 
 enigma.eProfileWrite("InitLCD")
 from Components.Lcd import IconCheck, InitLcd

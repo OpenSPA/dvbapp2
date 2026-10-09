@@ -218,6 +218,9 @@ void eDVBScan::stateChange(iDVBChannel *ch)
 			SCAN_eDebug("[eDVBScan] blindscan channel completed");
 			m_ch_blindscan.pop_front();
 		}
+
+		m_ch_current_active = false;
+		m_event(evtUpdate);
 		nextChannel();
 	}
 	/* unavailable will timeout, anyway. */
@@ -250,6 +253,7 @@ RESULT eDVBScan::nextChannel()
 		/* keep iterating with the same 'channel' till we get a tune failure */
 		SCAN_eDebug("[eDVBScan] blindscan channel iteration");
 		m_ch_current = m_ch_blindscan.front();
+		m_ch_current_active = true;
 	}
 	else
 	{
@@ -290,6 +294,7 @@ RESULT eDVBScan::nextChannel()
 		m_ch_current = m_ch_toScan.front();
 
 		m_ch_toScan.pop_front();
+		m_ch_current_active = true;
 	}
 
 	if (m_channel->getFrontend(fe))
@@ -303,7 +308,10 @@ RESULT eDVBScan::nextChannel()
 	m_channel_state = iDVBChannel::state_idle;
 
 	if (fe->tune(*m_ch_current, !m_ch_blindscan.empty()))
+	{
+		m_ch_current_active = false;
 		return nextChannel();
+	}
 
 	m_event(evtUpdate);
 	return 0;
@@ -423,6 +431,24 @@ RESULT eDVBScan::startFilter()
 void eDVBScan::SDTready(int err)
 {
 	SCAN_eDebug("[eDVBScan] got sdt %d", err);
+	if (err && m_SDT)
+	{
+		eDVBTableSpec previous;
+		if (!m_SDT->getSpec(previous) && (previous.flags & eDVBTableSpec::tfHaveTIDExt))
+		{
+			// Some multiplexes signal a different TSID in PAT and SDT. Before
+			// falling back to SID-only names, read SDT actual without the PAT TSID.
+			// Do not accept SDT other here: it describes a different transponder.
+			eDVBTableSpec fallback = eDVBSDTSpec();
+			fallback.timeout = 10000;
+			SCAN_eDebug("[eDVBScan] SDT for PAT TSID %04x unavailable, retrying SDT actual without TSID filter", previous.tidext);
+			m_SDT = new eTable<ServiceDescriptionSection>;
+			CONNECT(m_SDT->tableReady, eDVBScan::SDTready);
+			if (!m_SDT->start(m_demux, fallback))
+				return;
+			SCAN_eDebug("[eDVBScan] failed to start SDT actual fallback");
+		}
+	}
 	m_ready |= readySDT;
 	if (!err)
 		m_ready |= validSDT;
@@ -1450,6 +1476,7 @@ void eDVBScan::channelDone()
 		}
 	}
 
+	m_ch_current_active = false;
 	m_ch_scanned.push_back(m_ch_current);
 
 	for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end();)
@@ -1463,6 +1490,7 @@ void eDVBScan::channelDone()
 		++i;
 	}
 
+	m_event(evtUpdate);
 	nextChannel();
 }
 
@@ -1776,48 +1804,56 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 
 	if (!backgroundscanresult)
 	{
-		/* only create a 'Last Scanned' bouquet when this is not the result of a background scan */
-		std::string bouquetname = "userbouquet.LastScanned.tv";
-		std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
-		eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
-		bouquetref.setData(0, 1); /* set bouquet 'servicetype' to tv (even though we probably have both tv and radio channels) */
-		eBouquet *bouquet = NULL;
-		eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet");
-		if (!db->getBouquet(bouquetref, bouquet) && bouquet)
+		/* Keep separate TV/radio results; background scans must not replace them. */
+		for (int bouquetType : {eServiceReferenceDVB::dTv, eServiceReferenceDVB::dRadio})
 		{
-			/* bouquet already exists, empty it before we continue */
-			bouquet->m_services.clear();
-		}
-		else
-		{
-			/* bouquet doesn't yet exist, create a new one */
-			if (!db->getBouquet(rootref, bouquet) && bouquet)
+			bool radio = bouquetType == eServiceReferenceDVB::dRadio;
+			std::string extension = radio ? "radio" : "tv";
+			std::string bouquetname = "userbouquet.LastScanned." + extension;
+			std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
+			eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
+			bouquetref.setData(0, bouquetType);
+			eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets." + extension + "\" ORDER BY bouquet");
+			rootref.setData(0, bouquetType);
+			eBouquet *root = NULL;
+			if (db->getBouquet(rootref, root) || !root)
 			{
-				bouquet->m_services.push_back(bouquetref);
-				bouquet->flushChanges();
+				eDebug("[eDVBScan] failed to find bouquet root for '%s'!", bouquetname.c_str());
+				continue;
 			}
-			/* loading the bouquet seems to be the only way to add it to the bouquet list */
-			eDVBDB *dvbdb = eDVBDB::getInstance();
-			if (dvbdb) dvbdb->loadBouquet(bouquetname.c_str());
-			/* and now that it has been added to the list, we can find it */
-			db->getBouquet(bouquetref, bouquet);
-		}
-		if (bouquet)
-		{
-			bouquet->m_bouquet_name = "Last Scanned";
+			if (std::find(root->m_services.begin(), root->m_services.end(), bouquetref) == root->m_services.end())
+			{
+				root->m_services.push_back(bouquetref);
+				root->flushChanges();
+			}
 
+			eBouquet *bouquet = NULL;
+			if (db->getBouquet(bouquetref, bouquet) || !bouquet)
+			{
+				/* Loading also registers a new bouquet in the database. */
+				eDVBDB::getInstance()->loadBouquet(bouquetname.c_str());
+				db->getBouquet(bouquetref, bouquet);
+			}
+			if (!bouquet)
+			{
+				eDebug("[eDVBScan] failed to create '%s'!", bouquetname.c_str());
+				continue;
+			}
+
+			bouquet->m_bouquet_name = "Last Scanned";
+			bouquet->m_services.clear();
+			/* [norhap] Iterate over m_new_servicerefs (vector, scanner order) first services with Name then services with SID. */
 			for (std::vector<eServiceReferenceDVB>::const_iterator
 				service(m_new_servicerefs.begin()); service != m_new_servicerefs.end(); ++service)
 			{
-				bouquet->m_services.push_back(*service);
+				int serviceType = service->getServiceType();
+				bool radioService = serviceType == eServiceReferenceDVB::dRadio || serviceType == eServiceReferenceDVB::dRadioAvc;
+				if (radioService == radio)
+					bouquet->m_services.push_back(*service);
 			}
 			bouquet->flushChanges();
-			eDVBDB::getInstance()->renumberBouquet();
 		}
-		else
-		{
-			eDebug("[eDVBScan] failed to create 'Last Scanned' bouquet!");
-		}
+		eDVBDB::getInstance()->renumberBouquet();
 
 		if(m_updateLCN)
 		{
@@ -2217,7 +2253,7 @@ RESULT eDVBScan::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnecti
 void eDVBScan::getStats(int &transponders_done, int &transponders_total, int &services)
 {
 	transponders_done = m_ch_scanned.size() + m_ch_unavailable.size();
-	transponders_total = m_ch_toScan.size() + transponders_done;
+	transponders_total = m_ch_toScan.size() + transponders_done + (m_ch_current_active ? 1 : 0);
 	services = m_new_services.size();
 }
 

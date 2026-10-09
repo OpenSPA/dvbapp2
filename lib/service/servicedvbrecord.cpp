@@ -2,6 +2,7 @@
 #include <lib/dvb/csasession.h>
 #include <lib/dvb/csaengine.h>
 #include <lib/dvb/cahandler.h>
+#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/epgcache.h>
@@ -16,10 +17,42 @@
 
 DEFINE_REF(eDVBServiceRecord);
 
+static bool needsGigabluePvrDescrambleMetaUpdate()
+{
+	static int supported = -1;
+
+	if (supported == -1)
+	{
+		char boxtype[32] = {};
+		char version[64] = {};
+		CFile boxtypeFile("/proc/stb/info/boxtype", "r");
+		CFile versionFile("/proc/stb/info/version", "r");
+
+		supported = 0;
+		if (boxtypeFile && versionFile
+			&& fgets(boxtype, sizeof(boxtype), boxtypeFile)
+			&& fgets(version, sizeof(version), versionFile))
+		{
+			boxtype[strcspn(boxtype, "\r\n")] = '\0';
+			version[strcspn(version, "\r\n")] = '\0';
+			size_t versionLength = strlen(version);
+
+			if (!strcmp(boxtype, "gigablue")
+				&& versionLength >= 5
+				&& !strcmp(version + versionLength - 5, "-u171"))
+				supported = 1;
+		}
+	}
+
+	return supported == 1;
+}
+
 eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstreamclient): m_ref(ref)
 {
 	CONNECT(m_service_handler.serviceEvent, eDVBServiceRecord::serviceEvent);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServiceRecord::gotNewEvent);
+	m_eit_retry_timer = eTimer::create(eApp);
+	CONNECT(m_eit_retry_timer->timeout, eDVBServiceRecord::retryEitSave);
 	m_state = stateIdle;
 	m_want_record = 0;
 	m_record_ecm = false;
@@ -186,7 +219,17 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				std::string fname = filename;
 				fname.erase(fname.length()-2, 2);
 				fname += "eit";
-				eEPGCache::getInstance()->saveEventToFile(fname.c_str(), ref, eit_event_id, begTime, endTime);
+				if (eEPGCache::getInstance()->saveEventToFile(fname.c_str(), ref, eit_event_id, begTime, endTime))
+				{
+					/* event not yet in EPG cache (recording started before tuning); retry once, 30s later */
+					eTrace("[eDVBServiceRecord] saveEventToFile failed for %s (event_id %04x), retrying in 30s", fname.c_str(), eit_event_id);
+					m_eitFilename = fname;
+					m_eitRef = ref;
+					m_eitEventId = eit_event_id;
+					m_eitBegTime = begTime;
+					m_eitEndTime = endTime;
+					m_eit_retry_timer->start(30000, true);
+				}
 			}
 		}
 		return ret;
@@ -216,6 +259,9 @@ RESULT eDVBServiceRecord::start(bool simulate)
 
 RESULT eDVBServiceRecord::stop()
 {
+	m_eit_retry_timer->stop();
+	m_eitFilename.clear();
+
 	if (!m_simulate)
 		eDebug("[eDVBServiceRecord] stop recording!");
 
@@ -484,6 +530,18 @@ int eDVBServiceRecord::doRecord()
 			eDebug("[eDVBServiceRecord] getting program info failed.");
 		else
 		{
+			// As for streaming, wait asynchronously for the real PMT before
+			// recording a service that uses it. Cached PIDs do not tell us whether
+			// this transponder shares a PMT PID with other services.
+			if (program.isCached)
+			{
+				ePtr<eDVBService> service;
+				if (!m_service_handler.getService(service) && service && service->usePMT())
+					return 0;
+			}
+			else
+				m_record->setServiceFilter(program.serviceId, program.pmtPid, m_service_handler.hasSharedPmtPid(program.pmtPid));
+
 			// Check if channel needs software descrambling
 			bool is_encrypted = program.isCrypted();
 			if (is_encrypted && !m_use_software_descramble)
@@ -613,6 +671,9 @@ int eDVBServiceRecord::doRecord()
 			if (program.textPid != -1)
 				pids_to_record.insert(program.textPid); // Videotext
 
+			if (m_pvr_descramble)
+				updatePvrDescrambleMeta(program);
+
 			if (m_record_ecm)
 			{
 				for (std::list<eDVBServicePMTHandler::program::capid_pair>::const_iterator i(program.caids.begin());
@@ -671,6 +732,70 @@ int eDVBServiceRecord::doRecord()
 	m_error = 0;
 	m_event((iRecordableService*)this, evRecordRunning);
 	return 0;
+}
+
+void eDVBServiceRecord::updatePvrDescrambleMeta(const eDVBServicePMTHandler::program &program)
+{
+	eDVBMetaParser meta;
+
+	if (!needsGigabluePvrDescrambleMetaUpdate())
+		return;
+
+	if (m_filename.empty() || meta.parseMeta(m_filename))
+	{
+		eWarning("[eDVBServiceRecord] unable to update PVR descramble metadata for '%s'", m_filename.c_str());
+		return;
+	}
+
+	ePtr<eDVBService> service = new eDVBService;
+	eDVBDB::getInstance()->parseServiceData(service, meta.m_service_data);
+
+	/*
+	 * prepare() initially writes the service-list cache.  During an offline
+	 * descramble that cache can still contain PIDs from an older PMT.  Replace
+	 * it with the program actually parsed from the recording so playback does
+	 * not start a decoder on a stale audio or video PID.
+	 */
+	for (int x = 0; x < eDVBService::cacheMax; ++x)
+		service->setCacheEntry((eDVBService::cacheID)x, -1);
+
+	if (!program.videoStreams.empty())
+	{
+		service->setCacheEntry(eDVBService::cVPID, program.videoStreams[0].pid);
+		service->setCacheEntry(eDVBService::cVTYPE, program.videoStreams[0].type);
+	}
+
+	if (!program.audioStreams.empty())
+	{
+		int audio = program.defaultAudioStream;
+		if (audio < 0 || audio >= (int)program.audioStreams.size())
+			audio = 0;
+		service->updateAudioCache(program.audioStreams[audio].pid,
+			program.audioStreams[audio].type);
+	}
+
+	if (program.textPid >= 0 && program.textPid < 0x1fff)
+		service->setCacheEntry(eDVBService::cTPID, program.textPid);
+	if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
+		service->setCacheEntry(eDVBService::cPCRPID, program.pcrPid);
+	if (program.pmtPid >= 0 && program.pmtPid < 0x1fff)
+		service->setCacheEntry(eDVBService::cPMTPID, program.pmtPid);
+
+	char tmp[255];
+	sprintf(tmp, "f:%x", service->m_flags);
+	meta.m_service_data = tmp;
+	for (int x = 0; x < eDVBService::cacheMax; ++x)
+	{
+		int entry = service->getCacheEntry((eDVBService::cacheID)x);
+		if (entry != -1)
+		{
+			sprintf(tmp, ",c:%02d%04x", x, entry);
+			meta.m_service_data += tmp;
+		}
+	}
+
+	if (meta.updateMeta(m_filename))
+		eWarning("[eDVBServiceRecord] failed to write PVR descramble metadata for '%s'", m_filename.c_str());
 }
 
 void eDVBServiceRecord::updateDecoder()
@@ -816,6 +941,19 @@ void eDVBServiceRecord::gotNewEvent(int /*error*/)
 	m_last_event_id = event_id;
 
 	m_event((iRecordableService*)this, evNewEventInfo);
+}
+
+void eDVBServiceRecord::retryEitSave()
+{
+	if (m_eitFilename.empty())
+		return;
+
+	if (!eEPGCache::getInstance()->saveEventToFile(m_eitFilename.c_str(), m_eitRef, m_eitEventId, m_eitBegTime, m_eitEndTime))
+		eTrace("[eDVBServiceRecord] saveEventToFile succeeded for %s (event_id %04x)", m_eitFilename.c_str(), m_eitEventId);
+	else
+		eTrace("[eDVBServiceRecord] saveEventToFile failed for %s (event_id %04x), giving up", m_eitFilename.c_str(), m_eitEventId);
+
+	m_eitFilename.clear();
 }
 
 void eDVBServiceRecord::saveCutlist()

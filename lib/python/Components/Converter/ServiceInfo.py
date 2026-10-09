@@ -1,5 +1,5 @@
 
-from enigma import eAVControl, iPlayableService, iServiceInformation
+from enigma import eAVControl, eServiceReference, iPlayableService, iServiceInformation
 
 from Components.Element import cached
 from Components.Converter.Converter import Converter
@@ -59,6 +59,8 @@ class ServiceInfo(Converter):
 	XRES = 45
 	YRES = 46
 	IS_SOFTCSA = 47
+	IS_DAB = 48
+	IS_DVBI = 49
 
 	VIDEO_INFO_WIDTH = 0
 	VIDEO_INFO_HEIGHT = 1
@@ -85,25 +87,27 @@ class ServiceInfo(Converter):
 			"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo, iPlayableService.evHBBTVInfo,)),
 			"HasTeletext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
 			"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
-			"Is1080": (self.IS_1080, (iPlayableService.evVideoSizeChanged,)),
-			"Is480": (self.IS_480, (iPlayableService.evVideoSizeChanged,)),
-			"Is4K": (self.IS_4K, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
-			"Is576": (self.IS_576, (iPlayableService.evVideoSizeChanged,)),
-			"Is720": (self.IS_720, (iPlayableService.evVideoSizeChanged,)),
+			"Is1080": (self.IS_1080, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
+			"Is480": (self.IS_480, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
+			"Is4K": (self.IS_4K, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged, iPlayableService.evUpdatedInfo)),
+			"Is576": (self.IS_576, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
+			"Is720": (self.IS_720, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
 			"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
+			"IsDAB": (self.IS_DAB, (iPlayableService.evStart, iPlayableService.evUpdatedInfo)),
+			"IsDVBI": (self.IS_DVBI, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"IsSoftCSA": (self.IS_SOFTCSA, (iPlayableService.evUpdatedInfo,)),
-			"IsHD": (self.IS_HD, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
-			"IsHDHDR": (self.IS_HDHDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
-			"IsHDR": (self.IS_HDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
-			"IsHDR10": (self.IS_HDR10, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
-			"IsHLG": (self.IS_HLG, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
+			"IsHD": (self.IS_HD, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged, iPlayableService.evUpdatedInfo)),
+			"IsHDHDR": (self.IS_HDHDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged, iPlayableService.evUpdatedInfo)),
+			"IsHDR": (self.IS_HDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged, iPlayableService.evUpdatedInfo)),
+			"IsHDR10": (self.IS_HDR10, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged, iPlayableService.evUpdatedInfo)),
+			"IsHLG": (self.IS_HLG, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged, iPlayableService.evUpdatedInfo)),
 			"IsIPStream": (self.IS_STREAM, (iPlayableService.evUpdatedInfo,)),
 			"IsMultichannel": (self.IS_MULTICHANNEL, (iPlayableService.evUpdatedInfo,)),
 			"IsNotWidescreen": (self.IS_NOT_WIDESCREEN, (iPlayableService.evVideoSizeChanged,)),
-			"IsSD": (self.IS_SD, (iPlayableService.evVideoSizeChanged,)),
+			"IsSD": (self.IS_SD, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
 			# "IsSDAndNotWidescreen": (self.IS_SD_AND_NOT_WIDESCREEN, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
 			# "IsSDAndWidescreen": (self.IS_SD_AND_WIDESCREEN, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
-			"IsSDR": (self.IS_SDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
+			"IsSDR": (self.IS_SDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged, iPlayableService.evUpdatedInfo)),
 			"IsStereo": (self.IS_STEREO, (iPlayableService.evUpdatedInfo,)),
 			"IsStream": (self.IS_STREAM, (iPlayableService.evUpdatedInfo,)),
 			# "IsVideoAVC": (self.IS_VIDEO_AVC, (iPlayableService.evUpdatedInfo,)),
@@ -149,6 +153,8 @@ class ServiceInfo(Converter):
 
 		result = False
 		service = self.source.service
+		if self.token == self.IS_DVBI:
+			return bool(service and getattr(self.source, "isDVBI", False))
 		info = service and service.info()
 		if info:
 			videoData = info.getInfoString(iServiceInformation.sVideoInfo) or "-1|-1|-1|-1|-1|-1"
@@ -179,6 +185,9 @@ class ServiceInfo(Converter):
 					result = videoHeight > 700 and videoHeight <= 720
 				case self.IS_CRYPTED:
 					result = info.getInfo(iServiceInformation.sIsCrypted) == 1 and info.getInfo(iServiceInformation.sIsSoftCSA) != 1
+				case self.IS_DAB:
+					ref = info.getInfoString(iServiceInformation.sServiceref)
+					result = bool(ref and eServiceReference(ref).type == eServiceReference.idServiceDAB)
 				case self.IS_SOFTCSA:
 					result = info.getInfo(iServiceInformation.sIsSoftCSA) == 1
 				case self.IS_HD:

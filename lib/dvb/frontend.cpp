@@ -20,8 +20,8 @@
 #endif
 
 #define ioctlMeasureStart \
-	struct timeval start, end; \
-	int duration; \
+	struct timeval start = {}, end = {}; \
+	int duration = 0; \
 	if (m_debuglevel==5) { gettimeofday(&start, NULL); }
 
 #define ioctlMeasureEval(x) \
@@ -995,6 +995,14 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 
 	if (m_fd >= 0)
 	{
+		long advancedSatposLink = m_data[ADVANCED_SATPOSDEPENDS_LINK];
+		if (advancedSatposLink != -1)
+		{
+			m_data[ADVANCED_SATPOSDEPENDS_LINK] = -1;
+			if (m_sec && !m_simulate)
+				m_sec->resetAdvancedsatposdependsRoot(advancedSatposLink);
+		}
+
 		if(m_type == feSatellite)
 			setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
@@ -1488,8 +1496,17 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				cab_max = 4200;
 				break;
 			case feTerrestrial:
-				ret = (int)(snr / 30);
-				ter_max = 4200;
+				if (!strcmp(m_description, "GIGA DVB-T2/C NIM (TT3L10)"))
+				{
+					// Adjust the lower legacy SNR scale reported by the GigaBlue TT3L10 driver.
+					ret = (int)(snr / 20);
+					ter_max = 1700;
+				}
+				else
+				{
+					ret = (int)(snr / 30);
+					ter_max = 4200;
+				}
 				break;
 		}
 	}
@@ -3205,7 +3222,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 		switch (diction)
 		{
 			case 1:
-				if(pin < 1)
+				if(pin < 0)
 				{
 					diseqc.len = 4;
 					diseqc.data[0] = 0x70;
@@ -3222,7 +3239,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 				break;
 			case 0:
 			default:
-				if(pin < 1)
+				if(pin < 0)
 				{
 					diseqc.len = 5;
 					diseqc.data[2] = 0x5A;
@@ -3632,7 +3649,7 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, bool is
 		}
 		if (score > 1 && is_multistream() && !multistream)
 		{
-			eDebug("[eDVBFrontend] isCompatibleWith NON MULTISTREAM CHANNEL!!!!");
+			eTrace("[eDVBFrontend] isCompatibleWith NON MULTISTREAM CHANNEL!!!!");
 			/* prefer to use a non multistream tuner, try to keep multistream tuners free for multistream transponders */
 			score--;
 		}
@@ -3816,7 +3833,7 @@ bool eDVBFrontend::changeType(int type)
 		{
 			eDebug("[eDVBFrontend] m_need_delivery_system_workaround active");
 			FILE *f = fopen("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "rw");
-			int old;
+			int old = 0;
 			if (f)
 			{
 				if (fscanf(f, "%d", &old) != 1)

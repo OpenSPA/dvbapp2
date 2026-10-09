@@ -1,4 +1,6 @@
+from enigma import eTimer
 from Screens.MessageBox import MessageBox
+from Screens.Toast import Toast
 
 notifications = []
 
@@ -76,3 +78,105 @@ def AddPopupWithCallback(fnc, text, type, timeout, id=None):
 		RemovePopup(id)
 	print("[Notifications] AddPopupWithCallback id = %s" % id)
 	AddNotificationWithIDCallback(fnc, id, MessageBox, text=text, type=type, timeout=timeout, close_on_any_key=False)
+
+
+def showError(text, timeout=5):
+	notificationCenter.showError(text, timeout)
+
+
+def showInfo(text, timeout=4):
+	notificationCenter.showInfo(text, timeout)
+
+
+def showWarning(text, timeout=5):
+	notificationCenter.showWarning(text, timeout)
+
+
+def AddModalNotification(text, timeout=-1, list=None, default=True, typeIcon=None, windowTitle=None, callback=None):
+	notificationCenter.addModalNotification(text, timeout, list, default, typeIcon, windowTitle, callback)
+
+
+class NotificationCenter:
+
+	def __init__(self):
+		self.session = None
+		self.modalDialog = None
+		self.modalQueue = []
+		self.modalCallback = None
+		self.nextModalTimer = None
+
+	def setup(self, session):
+		self.session = session
+		self.modalDialog = session.instantiateDialog(MessageBox, "", enableInput=False, skinName="MessageBoxModal")
+		self.modalDialog.setAnimationMode(0)
+		self.modalDialog.hide()
+		self.nextModalTimer = eTimer()
+		self.nextModalTimer.callback.append(self.showNextModal)
+		Toast.instance.setup(session)
+
+	def addModalNotification(self, text, timeout=-1, list=None, default=True, typeIcon=None, windowTitle=None, callback=None):
+		if not self.modalDialog:
+			print("[NotificationCenter] addModalNotification: not yet set up, notification dropped.")
+			return
+		if typeIcon is None:
+			typeIcon = MessageBox.TYPE_YESNO
+		self.modalQueue.append((text, timeout, list, default, typeIcon, windowTitle, callback))
+		if not self.modalDialog.shown and not (self.nextModalTimer and self.nextModalTimer.isActive()):
+			self.showNextModal()
+
+	def showNextModal(self):
+		if not self.modalQueue or not self.modalDialog:
+			return
+		text, timeout, list_, default, typeIcon, windowTitle, callback = self.modalQueue.pop(0)
+		self.modalCallback = callback
+		dialog = self.modalDialog
+		dialog.text = text
+		dialog["text"].setText(text)
+		dialog.typeIcon = typeIcon
+		dialog.type = typeIcon
+		dialog.picon = (typeIcon != MessageBox.TYPE_NOICON)
+		if typeIcon == MessageBox.TYPE_YESNO:
+			dialog.list = [(_("Yes"), True), (_("No"), False)] if list_ is None else list_
+			dialog["list"].setList(dialog.list)
+			dialog.startIndex = 0 if default else 1
+			dialog["list"].show()
+		else:
+			dialog["list"].hide()
+			dialog.list = None
+		dialog.timeout = timeout
+		dialog.msgBoxID = None
+		dialog.enableInput = True
+		dialog.createActionMap(-20)
+		dialog["actions"].execBegin()
+		dialog.closeOnAnyKey = False
+		dialog.timeoutDefault = True if default else False
+		dialog.windowTitle = windowTitle or _("Message")
+		dialog.baseTitle = dialog.windowTitle
+		dialog.activeTitle = dialog.windowTitle
+		dialog.reloadLayout()
+		dialog.close = self.onModalAnswer
+		dialog.show()
+
+	def onModalAnswer(self, *retval):
+		dialog = self.modalDialog
+		if dialog.enableInput:
+			dialog["actions"].execEnd()
+		dialog.hide()
+		callback = self.modalCallback
+		self.modalCallback = None
+		if callback and callable(callback):
+			callback(*retval)
+		if self.modalQueue:
+			self.nextModalTimer.start(500, True)
+
+	def showInfo(self, text, timeout=4):
+		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout)
+
+	def showWarning(self, text, timeout=5):
+		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_WARNING, timeout=timeout)
+
+	def showError(self, text, timeout=5):
+		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_ERROR, timeout=timeout)
+
+
+notificationCenter = NotificationCenter()

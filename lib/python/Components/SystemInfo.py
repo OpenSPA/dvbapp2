@@ -1,10 +1,9 @@
 from ast import literal_eval
 from hashlib import md5
 from os.path import exists, isfile, join
-from subprocess import PIPE, Popen
 
-from enigma import eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getOARev, Misc_Options
-from Tools.Directories import fileCheck, fileExists, fileHas, fileReadLine, fileReadLines, isPluginInstalled, pathExists, resolveFilename, SCOPE_LIBDIR, SCOPE_SKINS
+from enigma import Misc_Options, eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getOARev
+from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, fileCheck, fileExists, fileHas, fileReadLine, fileReadLines, isPluginInstalled, pathExists, resolveFilename
 from Tools.MultiBoot import MultiBoot
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -209,19 +208,6 @@ def getChipsetString():
 		chipset = chipset.lower().replace("\n", "").replace("bcm", "").replace("brcm", "").replace("sti", "")
 	return chipset
 
-
-def getModuleLayout():
-	module = None
-	modulePath = BoxInfo.getItem("enigmamodule")
-	if modulePath:
-		process = Popen(("/sbin/modprobe", "--dump-modversions", modulePath), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-		stdout, stderr = process.communicate()
-		if process.returncode == 0:
-			for detail in stdout.split("\n"):
-				if "module_layout" in detail:
-					module = detail.split("\t")[0]
-	return module
-
 # OPENSPA [morser] change for openspa softcam detected
 #def hasSoftcamEmu():
 #	if isfile(NOEMU):
@@ -248,7 +234,7 @@ def updateSysSoftCam():
 	BoxInfo.setMutableItem("ShowOscamInfo", getSysSoftcam() == ("oscam"))
 	BoxInfo.setMutableItem("ShowNcamInfo", getSysSoftcam() in ("ncam+", "ncam"))
 	BoxInfo.setMutableItem("ShowCccamInfo", getSysSoftcam() == ("cccam"))
-	#BoxInfo.setMutableItem("HasSoftcamEmu", hasSoftcamEmu())
+	BoxInfo.setMutableItem("CurrentSoftcam", getSysSoftcam())
 	#BoxInfo.setMutableItem("Softcams", getSoftcams())
 	#BoxInfo.setMutableItem("CurrentSoftcam", getCurrentSoftcam())
 
@@ -297,7 +283,6 @@ def getWakeOnLANType(fileName):
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
-BoxInfo.setItem("ModuleLayout", getModuleLayout())
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
@@ -412,6 +397,7 @@ BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
 BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode") or MODEL in ("dreamone", "dreamtwo"))
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
+BoxInfo.setItem("SmallBoxWizard", fileExists("/etc/smallbox-wizard.done"))
 BoxInfo.setItem("SoftCam",  not isPluginInstalled("spazeMenu"))
 BoxInfo.setItem("StandbyPowerLed", fileExists("/proc/stb/power/standbyled"))
 BoxInfo.setItem("STi", SOC_FAMILY.startswith("sti"))
@@ -453,6 +439,7 @@ BoxInfo.setItem("minidlna", exists("/etc/init.d/minidlna"))
 BoxInfo.setItem("ushare", exists("/etc/init.d/ushare"))
 BoxInfo.setItem("udpxy", exists("/etc/init.d/udpxy"))
 BoxInfo.setItem("xupnpd", exists("/etc/init.d/xupnpd"))
+BoxInfo.setItem("nfsserver", exists("/etc/init.d/nfsserver"))
 BoxInfo.setItem("samba", exists("/etc/init.d/samba"))
 BoxInfo.setItem("zerotier", exists("/etc/init.d/zerotier"))
 

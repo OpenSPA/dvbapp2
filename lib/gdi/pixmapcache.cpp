@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <map>
 #include <string>
+#include <vector>
 #include <lib/base/elock.h>
 
 uint PixmapCache::MaximumSize = 256;
@@ -95,8 +96,8 @@ gPixmap* PixmapCache::Get(const char *filename)
 			else
 			{
 				// file no longer exists, has been modified or changed size, so remove from the cache
-				pixmapCache.erase(it);
 				disposePixmap = it->second.pixmap;
+				pixmapCache.erase(it);
 			}
 		}
 	}
@@ -107,6 +108,22 @@ gPixmap* PixmapCache::Get(const char *filename)
 		disposePixmap->Release();
 
 	return NULL;
+}
+
+void clearPixmapCache()
+{
+	std::vector<gPixmap*> disposePixmaps;
+	{
+		eSingleLocker lock(pixmapCacheLock);
+		disposePixmaps.reserve(pixmapCache.size());
+		for (NameToPixmap::iterator it = pixmapCache.begin(); it != pixmapCache.end(); ++it)
+			disposePixmaps.push_back(it->second.pixmap);
+		pixmapCache.clear();
+	}
+
+	// Release outside the lock, since Release() may call back into PixmapDisposed
+	for (std::vector<gPixmap*>::iterator it = disposePixmaps.begin(); it != disposePixmaps.end(); ++it)
+		(*it)->Release();
 }
 
 void PixmapCache::Set(const char *filename, gPixmap* pixmap)
@@ -128,18 +145,19 @@ void PixmapCache::Set(const char *filename, gPixmap* pixmap)
 				it->second.pixmap = pixmap;
 				it->second.filesize = img_stat.st_size;
 				it->second.modifiedDate = img_stat.st_mtime;
+				it->second.lastUsed = ::time(0);
 			}
 			else
 			{
-				if (pixmapCache.size() > MaximumSize)
+				if (pixmapCache.size() >= MaximumSize)
 				{
 					// find the least recently used
 					NameToPixmap::iterator it = std::min_element(pixmapCache.begin(), pixmapCache.end(), &CompareLastUsed);
 					if (it != pixmapCache.end())
 					{
-						pixmapCache.erase(it);
 						// need to release the pixmap being removed after we've finished updating the cache
 						disposePixmap = it->second.pixmap;
+						pixmapCache.erase(it);
 					}
 				}
 

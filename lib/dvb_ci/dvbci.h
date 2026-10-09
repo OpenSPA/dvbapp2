@@ -210,7 +210,15 @@ private:
 	eFixedMessagePump<int> m_messagepump_thread; // message handling in the thread
 	eFixedMessagePump<int> m_messagepump_main;	 // message handling in the e2 mainloop
 	ePtr<eTimer> m_runTimer;					 // workaround to interrupt thread mainloop as some ci drivers don't implement poll properly
+	ePtr<eTimer> m_ciReleaseTimer;
+	bool m_needs_ci_release_refresh;
+	bool m_needs_ci_demux_refresh;
+	bool m_needs_ci_decoder_refresh;
+	sigc::signal<void(int)> m_routing_changed;
+	std::set<int> m_pending_ci_releases;
+	void refreshReleasedRouting();
 	static pthread_mutex_t m_pmt_handler_lock;
+	enum { messageRecheckPMTHandlers = 1, messageRefreshDemuxSources, messageRoutingChanged = 1000 };
 
 	int sendCAPMT(int slot);
 
@@ -232,6 +240,11 @@ public:
 	void executeRecheckPMTHandlersInMainloop();
 	void gotPMT(eDVBServicePMTHandler *pmthandler);
 	bool isCiConnected(eDVBServicePMTHandler *pmthandler);
+	bool hasActiveCiRouting();
+	void retryReleasedRouting();
+#ifndef SWIG
+	RESULT connectRoutingChanged(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection);
+#endif
 	void ciRemoved(eDVBCISlot *slot);
 	int getSlotState(int slot);
 
@@ -269,12 +282,12 @@ public:
 			appNameChanged,
 			slotDecodingStateChanged
 		};
-		int m_type;
-		int m_slotid;
-		int m_state;
-		unsigned char m_tag[3];
-		unsigned char m_data[4096];
-		int m_len;
+		int m_type = 0;
+		int m_slotid = 0;
+		int m_state = 0;
+		unsigned char m_tag[3] = {};
+		unsigned char m_data[4096] = {};
+		int m_len = 0;
 		std::string m_appName;
 		Message(int type, int slotid) : m_type(type), m_slotid(slotid) {};
 		Message(int type, int slotid, int state) : m_type(type), m_slotid(slotid), m_state(state) {};
@@ -282,7 +295,7 @@ public:
 		Message(int type, int slotid, const unsigned char *tag, unsigned char *data, int len) : m_type(type), m_slotid(slotid), m_len(len)
 		{
 			memcpy(m_tag, tag, 3);
-			memcpy(m_data, data, len);
+			memcpy(m_data, data, len); //NOSONAR
 		};
 	};
 #endif

@@ -361,7 +361,7 @@ class HelpMenuList(List):
 				# print("[HelpMenu] HelpMenuList DEBUG: Headings found.")
 				formatFlags |= self.HEADINGS
 			for (action, helpText) in actions:  # DEBUG: Should helpText be response?
-				helpTags = []  # if mapFlag else [pgettext("Abbreviation of 'Disabled'", "Disabled")]
+				helpTags = [_("Disabled")] if action in actionMap.disbledActions else []
 				if callable(helpText):
 					helpText = helpText()
 					helpTags.append(pgettext("Abbreviation of 'Configurable'", "Configurable"))
@@ -455,7 +455,7 @@ class HelpMenuList(List):
 
 	def select(self):
 		item = self.getCurrent()  # A list entry has a "private" tuple as first entry...
-		if item is not None:
+		if item is not None and item[2] not in item[0].disbledActions:  # Highlighting/navigation stays enabled, but OK does nothing for disabled actions.
 			self.callback(item[0], item[1], item[2])  # ...containing (Actionmap, Context, Action, Buttondata). We returns this tuple to the callback.
 
 
@@ -501,14 +501,14 @@ class XMLHelp(Screen):
 		self["detailtext"] = ScrollLabel()
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.close, _("Close the documentation screen")),
-			"top": (self["detailtext"].goTop, _("Move to first line / screen")),
+			"top": (self["detailtext"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["detailtext"].goPageUp, _("Move up a screen")),
 			"up": (self["detailtext"].goLineUp, _("Move up a line")),
 			"first": (self.firstPage, _("Go to the first page of documentation")),
 			"last": (self.lastPage, _("Go to the last page of documentation")),
 			"down": (self["detailtext"].goLineDown, _("Move down a line")),
 			"pageDown": (self["detailtext"].goPageDown, _("Move down a screen")),
-			"bottom": (self["detailtext"].goBottom, _("Move to last line / screen")),
+			"bottom": (self["detailtext"].goBottom, _("Move to the last line / screen")),
 			"yellow": (self.prevPage, _("Go to the previous page of documentation")),
 			"left": (self.prevPage, _("Go to the previous page of documentation")),
 			"blue": (self.nextPage, _("Go to the next page of documentation")),

@@ -49,8 +49,12 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/e2avahi.h>
 #include <lib/base/internetcheck.h>
 #include <lib/base/profile.h>
+#include <lib/network/serviceactionclient.h>
 #include <lib/driver/rc.h>
 #include <lib/driver/rcinput_swig.h>
+#include <lib/driver/ehotplug_socket.h>
+#include <lib/driver/inputhotplug.h>
+#include <lib/driver/inputdevicemanager.h>
 #include <lib/service/event.h>
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
@@ -90,6 +94,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/actions/action.h>
 #include <lib/gdi/gfont.h>
 #include <lib/gdi/epng.h>
+#include <lib/gdi/pixmapcache.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/frontendparms.h>
 #include <lib/dvb/idvb.h>
@@ -102,6 +107,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/csaengine.h>
+#include <lib/hbbtv/oipfapplication.h>
+#include <lib/hbbtv/hbbtv.h>
 #include <lib/dvb/fastscan.h>
 #include <lib/dvb/cablescan.h>
 #include <lib/dvb/encoder.h>
@@ -191,8 +198,10 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/python/python_service.i>
 %include <lib/python/python_pmt.i>
 %include <lib/python/python_pcore.i>
+%include <lib/python/python_hbbtv.i>
 
 %immutable eSocketNotifier::activated;
+%immutable eHotplugSocket::dataReceived;
 %include <lib/base/ebase.h>
 %include <lib/base/modelinformation.h>
 %include <lib/base/smartptr.h>
@@ -205,6 +214,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 
 // TODO: embed these...
 %immutable eInternetCheck::callback;
+%immutable eServiceActionClient::actionResult;
 %immutable ePicLoad::PictureData;
 %immutable eButton::selected;
 %immutable eInput::changed;
@@ -224,6 +234,16 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %immutable eHdmiCEC::messageReceived;
 %immutable eHdmiCEC::addressChanged;
 %immutable ePythonMessagePump::recv_msg;
+%immutable eStreamServer::availabilityChanged;
+%immutable eStreamServer::sourceStateChanged;
+%immutable eStreamServer::upstreamStateChanged;
+%immutable eStreamServer::upstreamBitrateChanged;
+%immutable eStreamServer::rtspClientCountChanged;
+%immutable eStreamServer::rtspStateChanged;
+%immutable eStreamServer::hlsStateChanged;
+%immutable eStreamServer::uriParametersChanged;
+%immutable eStreamServer::dbusError;
+%immutable eStreamServer::ping;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
 %immutable eFCCServiceManager::m_fcc_event;
 %immutable eTuxtxtApp::appClosed;
@@ -231,9 +251,11 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %immutable eStreamServer::streamStatusChanged;
 %include <lib/base/message.h>
 %include <lib/base/internetcheck.h>
+%include <lib/network/serviceactionclient.h>
 %include <lib/base/etpm.h>
 %include <lib/driver/rc.h>
 %include <lib/driver/rcinput_swig.h>
+%include <lib/python/python_inputdevicemanager.i>
 %include <lib/gdi/fb.h>
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>
@@ -267,6 +289,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/actions/action.h>
 %include <lib/gdi/gfont.h>
 %include <lib/gdi/epng.h>
+%include <lib/gdi/pixmapcache.h>
 %include <lib/dvb/volume.h>
 %include <lib/dvb/sec.h>
 %include <lib/dvb/epgcache.h>
@@ -283,6 +306,8 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/components/scan.h>
 %include <lib/components/file_eraser.h>
 %include <lib/components/tuxtxtapp.h>
+%include <lib/driver/ehotplug_socket.h>
+%include <lib/driver/inputhotplug.h>
 %include <lib/driver/avswitch.h>
 %include <lib/driver/avcontrol.h>
 %include <lib/driver/hdmi_cec.h>
@@ -361,6 +386,12 @@ public:
 	$1 = $input->get();
 }
 
+%template(PSignal2VIS) PSignal2<void,int,const char *c>;
+
+%typemap(out) PSignal2VIS {
+	$1 = $input->get();
+}
+
 template<class R, class P0, class P1, class P2> class PSignal3
 {
 public:
@@ -370,6 +401,18 @@ public:
 %template(PSignal3VISS) PSignal3<void,int,const char *,const char *>;
 
 %typemap(out) PSignal3VISS {
+	$1 = $input->get();
+}
+
+template<class R, class P0, class P1, class P2, class P3> class PSignal4
+{
+public:
+	PyObject *get();
+};
+
+%template(PSignal4VIIII) PSignal4<void,int,int,int,int>;
+
+%typemap(out) PSignal4VIIII {
 	$1 = $input->get();
 }
 
@@ -414,6 +457,55 @@ PyObject *New_iCECMessagePtr(const ePtr<iCECMessage> &ptr)
 %}
 
 /* needed for service groups */
+
+int setDVBIFallbackServices(PyObject *services);
+int setDVBIServiceProfiles(PyObject *profiles);
+int setDVBIHbbTVApplications(PyObject *applications);
+PyObject *getDVBIPlaybackService(const eServiceReference &ref, const eServiceReference &after);
+int getDVBIServiceAvailability(const eServiceReference &ref);
+int getDVBIMinimumAge(const eServiceReference &ref);
+PyObject *getDVBIFallbackService(const eServiceReference &ref, bool force=false);
+bool canDVBIFallbackReleaseForRecording(const eServiceReference &live, const eServiceReference &recording);
+%{
+int setDVBIHbbTVApplications(PyObject *applications)
+{
+	return eDVBIFallback::setApplications(applications);
+}
+int setDVBIServiceProfiles(PyObject *profiles)
+{
+	return eDVBIFallback::setProfiles(profiles);
+}
+PyObject *getDVBIPlaybackService(const eServiceReference &ref, const eServiceReference &after)
+{
+	eServiceReference target = eDVBIFallback::playback(ref, after);
+	if (target)
+		return New_eServiceReference(target);
+	Py_RETURN_NONE;
+}
+int getDVBIServiceAvailability(const eServiceReference &ref)
+{
+	return eDVBIFallback::availability(ref);
+}
+int getDVBIMinimumAge(const eServiceReference &ref)
+{
+	return eDVBIFallback::minimumAge(ref);
+}
+int setDVBIFallbackServices(PyObject *services)
+{
+	return eDVBIFallback::setServices(services);
+}
+PyObject *getDVBIFallbackService(const eServiceReference &ref, bool force=false)
+{
+	eServiceReference fallback = eDVBIFallback::resolve(ref, force);
+	if (fallback)
+		return New_eServiceReference(fallback);
+	Py_RETURN_NONE;
+}
+bool canDVBIFallbackReleaseForRecording(const eServiceReference &live, const eServiceReference &recording)
+{
+	return eDVBIFallback::canReleaseForRecording(live, recording);
+}
+%}
 
 PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore, bool simulate=false);
 %{
@@ -548,6 +640,14 @@ void eProfileWrite(const char* checkPoint)
 }
 %}
 
+void eProfileNotify(const char*);
+%{
+void eProfileNotify(const char* message)
+{
+	eProfile::notify(message);
+}
+%}
+
 
 /************** temp *****************/
 
@@ -561,6 +661,7 @@ extern void setPrevAsciiCode(int code);
 extern int getBsodCounter();
 extern void resetBsodCounter();
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
+extern void clearFonts();
 extern const char *getEnigmaVersionString();
 extern const char *getE2Rev();
 extern const char *getOARev();
@@ -581,6 +682,7 @@ extern bool checkLogin(const char *user, const char *pwd);
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
+extern void clearFonts();
 extern int getPrevAsciiCode();
 extern void setPrevAsciiCode(int code);
 extern int getBsodCounter();

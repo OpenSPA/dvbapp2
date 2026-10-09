@@ -158,19 +158,43 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 	}
 	FT_Done_Face(face);
 
+	auto it = fontMap.find(name);
+	if (it != fontMap.end())
+	{
+		FTC_Manager_RemoveFaceID(cacheManager, (FTC_FaceID)it->second);
+		delete it->second;
+	}
+
 	fontListEntry *n = new fontListEntry;
 	n->filename = filename;
 	n->face = name;
 	n->scale = scale;
 	n->renderflags = renderflags;
-	n->next=font;
-	font=n;
 
 	fontMap[name] = n;
 	fontFacesCacheValid = false;
 	eDebugNoNewLine(" -> '%s'.\n", n->face.c_str());
 
 	return n->face;
+}
+
+void fontRenderClass::ClearFonts()
+{
+	singleLock s(ftlock);
+	for (auto &entry : fontMap)
+	{
+		FTC_Manager_RemoveFaceID(cacheManager, (FTC_FaceID)entry.second);
+		delete entry.second;
+	}
+	fontMap.clear();
+	fontFacesCacheValid = false;
+	eTextPara::setReplacementFont("");
+	eTextPara::setFallbackFont("");
+}
+
+void clearFonts()
+{
+	fontRenderClass::getInstance()->ClearFonts();
 }
 
 fontRenderClass::fontListEntry::~fontListEntry() = default;
@@ -187,7 +211,6 @@ fontRenderClass::fontRenderClass()
 	}
 	eDebug("[Font] Loading fonts.");
 	fflush(stdout);
-	font=0;
 
 	int maxbytes=4*1024*1024;
 	eDebug("[Font] Initializing font cache, using max. %dMB.", maxbytes/1024/1024);
@@ -252,12 +275,8 @@ float fontRenderClass::getLineHeight(const gFont& font)
 fontRenderClass::~fontRenderClass()
 {
 	singleLock s(ftlock);
-	while(font)
-	{
-		fontListEntry *f=font;
-		font=font->next;
-		delete f;
-	}
+	for (auto &entry : fontMap)
+		delete entry.second;
 	fontMap.clear();
 
 //	auskommentiert weil freetype und enigma die kritische masse des suckens ueberschreiten.
@@ -284,8 +303,8 @@ std::vector<std::string> fontRenderClass::getFontFaces()
 	if (!fontFacesCacheValid)
 	{
 		fontFacesCache.clear();
-		for (fontListEntry *f = font; f; f = f->next)
-			fontFacesCache.push_back(f->face);
+		for (const auto &entry : fontMap)
+			fontFacesCache.push_back(entry.first);
 		fontFacesCacheValid = true;
 	}
 	return fontFacesCache;
@@ -415,13 +434,28 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	else
 	{
 		FTC_SBit glyph;
-		if (current_font->getGlyphBitmap(glyphIndex, &glyph))
-			return 1;
-
-		xadvance = glyph->xadvance;
-		top = glyph->top;
-		left = glyph->left;
-		height = glyph->height;
+		if (current_font->getGlyphBitmap(glyphIndex, &glyph) || !glyph->buffer)
+		{
+			/* SBit failed or returned corrupt data (FT_Char/FT_Byte field overflow
+			 * for large glyphs: buffer=null, h=0, xadvance wraps around).
+			 * Fall back to direct rendering via current_face. */
+			if (FT_Load_Glyph(current_face, glyphIndex, FT_LOAD_DEFAULT) ||
+			    FT_Render_Glyph(current_face->glyph, FT_RENDER_MODE_NORMAL) ||
+			    FT_Get_Glyph(current_face->glyph, &ng.image))
+				return 1;
+			FT_BitmapGlyph bglyph = (FT_BitmapGlyph)ng.image;
+			xadvance = current_face->glyph->advance.x >> 6;
+			top = bglyph->top;
+			left = bglyph->left;
+			height = bglyph->bitmap.rows;
+		}
+		else
+		{
+			xadvance = glyph->xadvance;
+			top = glyph->top;
+			left = glyph->left;
+			height = glyph->height;
+		}
 	}
 
 	if (int nx = cursor.x() + xadvance; (rflags & RS_WRAP) && (nx > area.right()))
@@ -596,6 +630,11 @@ void eTextPara::setFont(const gFont *font, int tabwidth)
 	fontRenderClass::getInstance()->getFont(fnt, font->family.c_str(), font->pointSize, tabwidth);
 	if (!fnt)
 		eWarning("[eTextPara] Font '%s' is missing!", font->family.c_str());
+	else if (font->pointWidth > 0 && font->pointWidth < font->pointSize)
+	{
+		fnt->scaler.width = font->pointWidth;
+		fnt->font.width   = font->pointWidth;
+	}
 	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize, tabwidth);
 	fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize, tabwidth);
 	setFont(fnt, replacement, fallback);
@@ -605,7 +644,7 @@ void eTextPara::setFont(const gFont *font, int tabwidth)
 	 * holds via FTC_Manager_LookupSize, so current_face and its size
 	 * metrics are guaranteed to be valid when we read them.              */
 	cachedLineHeight = 0;
-	if (current_face)
+	if (current_face && current_face->size)
 	{
 		int h = current_face->size->metrics.height;
 		if (!h)
@@ -820,6 +859,7 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 
 	unsigned long newcolor = 0;
 	bool activate_newcolor = false;
+	bool activate_colorreset = false;
 	int nextflags = 0;
 	int pos = 0;
 	int markedlen = 0;
@@ -864,16 +904,27 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 							{
 								if ((i + 2 + codeidx) == uc_visual.end()) break;
 								color[codeidx] = (char)((*(i + 2 + codeidx)) & 0xff);
+								// Hex digits + legacy color notation (: ; < = > ?)
+								unsigned char cc = (unsigned char)color[codeidx];
+								if (!(isxdigit(cc) || (cc >= ':' && cc <= '?')))
+									break;
 							}
 							if (codeidx == 8)
 							{
 								newcolor = gRGB(color).argb();
 								activate_newcolor = true;
+								activate_colorreset = false;
 								isprintable = 0;
 								i += 1 + codeidx;
 							}
 							break;
 						}
+						case 'C':
+							activate_colorreset = true;
+							activate_newcolor = false;
+							isprintable = 0;
+							++i;
+							break;
 						default:
 						;
 					}
@@ -919,6 +970,9 @@ nprint:				isprintable=0;
 		}
 		if (isprintable)
 		{
+			if (activate_colorreset)
+				flags |= GS_COLORRESET;
+
 			if (markedpos == -2 || markedpos == pos++)
 			{
 				flags |= GS_INVERT;
@@ -961,6 +1015,7 @@ nprint:				isprintable=0;
 			{
 				nextflags = 0;
 				activate_newcolor = false;
+				activate_colorreset = false;
 			}
 		} else if (nextflags&GS_ISFIRST && !glyphs.empty())
 		{
@@ -1041,10 +1096,15 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 			line_offs = *(line_offs_it++);
 			line_chars = *(line_chars_it++);
 		}
-		if (i->flags & GS_COLORCHANGE)
+		/* don't do colorchanges in borders */
+		if (!border)
 		{
-			/* don't do colorchanges in borders */
-			if (!border)
+			if (i->flags & GS_COLORRESET)
+			{
+				currentforeground = foreground;
+				setcolor = true;
+			}
+			else if (i->flags & GS_COLORCHANGE)
 			{
 				currentforeground = i->newcolor;
 				setcolor = true;
@@ -1079,10 +1139,10 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 					int sa = i * 16;
 					if (sa < 256)
 					{
-						da = BLEND(background.a, currentforeground.a, sa) & 0xFF;
-						dr = BLEND(background.r, currentforeground.r, sa) & 0xFF;
-						dg = BLEND(background.g, currentforeground.g, sa) & 0xFF;
-						db = BLEND(background.b, currentforeground.b, sa) & 0xFF;
+						da = BLEND(background.a, currentforeground.a, sa) & 0xFF; // NOSONAR
+						dr = BLEND(background.r, currentforeground.r, sa) & 0xFF; // NOSONAR
+						dg = BLEND(background.g, currentforeground.g, sa) & 0xFF; // NOSONAR
+						db = BLEND(background.b, currentforeground.b, sa) & 0xFF; // NOSONAR
 					}
 #undef BLEND
 					da ^= 0xFF;
@@ -1147,7 +1207,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 		if (i->image)
 		{
 			FT_BitmapGlyph glyph = border ? (FT_BitmapGlyph)i->borderimage : (FT_BitmapGlyph)i->image;
-			if (!glyph->bitmap.buffer) continue;
+			if (!glyph || !glyph->bitmap.buffer) continue;
 			rxbase = i->x + glyph->left + offset.x();
 			rybase = i->y - glyph->top + offset.y();
 			rybase=(doTopBottomReordering ? line_offs : i->y) - glyph->top + offset.y();
@@ -1268,7 +1328,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 							{
 								register int b=(*s++)>>4;
 								if(b)
-									*td=lookup32[b];
+									*td=lookup32[b] | 0xFF000000;
 								++td;
 							}
 							s += extra_source_stride;
@@ -1288,7 +1348,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 								register int b = (*s++) >> 4;
 								if (b)
 								{
-									// unsigned char frame_a = (*td) >> 24 & 0xFF;
+									unsigned char frame_a = (*td) >> 24 & 0xFF;
 									unsigned char frame_r = (*td) >> 16 & 0xFF;
 									unsigned char frame_g = (*td) >> 8 & 0xFF;
 									unsigned char frame_b = (*td) & 0xFF;
@@ -1299,11 +1359,12 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 									unsigned char db = lookup32[b] & 0xFF;
 
 #define BLEND(y, x, a) (y + (((x-y) * a)>>8))
+									frame_a = BLEND(frame_a, (unsigned char)(currentforeground.a ^ 0xFF), da) & 0xFF;
 									frame_r = BLEND(frame_r, dr, da) & 0xFF;
 									frame_g = BLEND(frame_g, dg, da) & 0xFF;
 									frame_b = BLEND(frame_b, db, da) & 0xFF;
 #undef BLEND
-									*td = ((currentforeground.a ^ 0xFF) << 24) | (frame_r << 16) | (frame_g << 8) | frame_b;
+									*td = (frame_a << 24) | (frame_r << 16) | (frame_g << 8) | frame_b;
 								}
 								++td;
 							}

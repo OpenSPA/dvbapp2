@@ -5,11 +5,13 @@
 #include <lib/base/message.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/pgssubtitle.h>
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
 #include <lib/service/iservice.h>
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
+#include <atomic>
 #include <mutex>
 
 class eStaticServiceMP3Info;
@@ -21,6 +23,7 @@ public:
 	eServiceFactoryMP3();
 	virtual ~eServiceFactoryMP3();
 	enum { id = eServiceReference::idServiceMP3 };
+	static eServiceFactoryMP3 *getDVBIFactory(const eServiceReference &ref);
 
 	// iServiceHandler
 	RESULT play(const eServiceReference&, ePtr<iPlayableService>& ptr);
@@ -31,6 +34,7 @@ public:
 	gint m_eServicemp3_counter;
 
 private:
+	static eServiceFactoryMP3 *instance;
 	ePtr<eStaticServiceMP3Info> m_service_info;
 };
 
@@ -95,14 +99,12 @@ class GstMessageContainer : public iObject {
 	GstPad* messagePad;
 	GstBuffer* messageBuffer;
 	int messageType;
+	int messageGeneration;
 
 public:
-	GstMessageContainer(int type, GstMessage* msg, GstPad* pad, GstBuffer* buffer) {
-		messagePointer = msg;
-		messagePad = pad;
-		messageBuffer = buffer;
-		messageType = type;
-	}
+	GstMessageContainer(int type, GstMessage* msg, GstPad* pad, GstBuffer* buffer, int generation = 0)
+		: messagePointer(msg), messagePad(pad), messageBuffer(buffer), messageType(type),
+		  messageGeneration(generation) {}
 	~GstMessageContainer() {
 		if (messagePointer)
 			gst_message_unref(messagePointer);
@@ -113,6 +115,9 @@ public:
 	}
 	int getType() {
 		return messageType;
+	}
+	int getGeneration() const {
+		return messageGeneration;
 	}
 	operator GstMessage*() {
 		return messagePointer;
@@ -239,6 +244,8 @@ public:
 	int getInfo(int w);
 	std::string getInfoString(int w);
 	ePtr<iServiceInfoContainer> getInfoObject(int w);
+	void getAITApplications(std::map<int, std::string>& aitlist);
+	PyObject *getHbbTVApplications();
 
 	// iAudioTrackSelection
 	int getNumberOfTracks();
@@ -269,11 +276,11 @@ public:
 
 	struct audioStream {
 		GstPad* pad;
-		audiotype_t type;
+		audiotype_t type = atUnknown;
 		std::string language_code; /* iso-639, if available. */
 		std::string codec; /* clear text codec description */
 		std::string title;
-		audioStream() : pad(0), type(atUnknown) {}
+		audioStream() : pad(0) {}
 
 		bool operator==(const audioStream& rhs) const { return type == rhs.type && language_code == rhs.language_code && codec == rhs.codec; }
 
@@ -281,7 +288,7 @@ public:
 	};
 	struct subtitleStream {
 		GstPad* pad;
-		subtype_t type;
+		subtype_t type = stUnknown;
 		std::string language_code; /* iso-639, if available. */
 		std::string title;
 		subtitleStream() : pad(0) {}
@@ -292,15 +299,13 @@ public:
 		bool operator!=(const subtitleStream& rhs) const { return !(*this == rhs); }
 	};
 	struct sourceStream {
-		audiotype_t audiotype;
-		containertype_t containertype;
-		gboolean is_audio;
-		gboolean is_video;
-		gboolean is_streaming;
-		gboolean is_hls;
-		sourceStream()
-			: audiotype(atUnknown), containertype(ctNone), is_audio(FALSE), is_video(FALSE), is_streaming(FALSE),
-			  is_hls(FALSE) {}
+		audiotype_t audiotype = atUnknown;
+		containertype_t containertype = ctNone;
+		gboolean is_audio = FALSE;
+		gboolean is_video = FALSE;
+		gboolean is_streaming = FALSE;
+		gboolean is_hls = FALSE;
+		sourceStream() {}
 	};
 	struct bufferInfo {
 		gint bufferPercent;
@@ -316,6 +321,8 @@ public:
 
 protected:
 	ePtr<eTimer> m_nownext_timer;
+	ePtr<eTimer> m_dvbiAvailabilityTimer;
+	void checkDVBIAvailability();
 	ePtr<eServiceEvent> m_event_now, m_event_next;
 	void updateEpgCacheNowNext();
 
@@ -339,9 +346,23 @@ private:
 	static int pcm_delay;
 	static int ac3_delay;
 	int m_currentAudioStream;
+	int m_initialAudioStream = -1;
+	bool m_initialAudioSelection = true;
+	void applyAudioSelection();
 	int m_currentSubtitleStream;
 	int m_cachedSubtitleStream;
-	int selectAudioStream(int i, bool skipAudioFix = false);
+	/* bumped on every subtitle stream switch and on every seek; buffers stamped
+	   with an older generation are still in the pump queue and must not reach a
+	   parser. Written on the main thread, read on the gstreamer thread. */
+	std::atomic<int> m_subtitle_generation{0};
+	/* current-text switch requested while the pipeline was not settled in PLAYING;
+	   applied on the next PAUSED->PLAYING transition */
+	bool m_subtitle_switch_deferred = false;
+	void applySubtitleStreamSwitch();
+	/* audio stream requested while the pipeline was not settled in PLAYING, -1 if none */
+	int m_audio_switch_deferred = -1;
+	int selectAudioStream(int i, bool skipAudioFix = false, bool remember = true);
+	GstElement* getAudioChannelSink();
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;
 	iSubtitleUser* m_subtitle_widget;
@@ -363,6 +384,7 @@ private:
 	bool m_audiosink_not_running;
 	/* DASH path: bypass playbin, build explicit pipeline via gst_parse_launch */
 	bool m_is_dash_pipeline;
+	bool m_is_adaptive_stream;
 	/* servicemMP3 chapter TOC support CVR */
 	bool m_use_chapter_entries;
 	/* last used seek position gst-1 only */
@@ -373,7 +395,13 @@ private:
 	gint m_last_seek_count;
 	bool m_seeking_or_paused;
 	bool m_to_paused;
+	// seek held back until preroll, -1 = none
 	gint64 m_pending_seek_pos;
+	bool m_prerolled;
+	// evResumed still to be sent
+	bool m_resume_pending;
+	// "&e2subtitletrack=" given, ignore pango_autoturnon
+	bool m_subtitle_requested;
 	int64_t m_last_trickseek_ms;   /* CLOCK_MONOTONIC, throttle 500ms */
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
@@ -429,6 +457,8 @@ private:
 #endif
 	ePtr<eDVBSubtitleParser> m_dvb_subtitle_parser;
 	ePtr<eConnection> m_new_dvb_subtitle_page_connection;
+	ePtr<ePGSSubtitleParser> m_pgs_subtitle_parser;
+	ePtr<eConnection> m_new_pgs_subtitle_page_connection;
 	void newDVBSubtitlePage(const eDVBSubtitlePage& p);
 
 	pts_t m_prev_decoder_time = -1;
@@ -451,6 +481,7 @@ private:
 	gulong m_subs_to_pull_handler_id, m_notify_source_handler_id, m_notify_element_added_handler_id;
 
 	RESULT seekToImpl(pts_t to);
+	void applyPendingSeek();
 
 	gint m_aspect, m_width, m_height, m_framerate, m_progressive, m_gamma;
 	std::string m_useragent;

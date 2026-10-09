@@ -43,9 +43,8 @@ class fontRenderClass
 		std::string filename, face;
 		int scale; // 100 is 1:1
 		int renderflags;
-		fontListEntry *next;
 		~fontListEntry();
-	} *font;
+	};
 
 	FT_Library library;
 	FTC_Manager cacheManager;	// the cache manager
@@ -81,6 +80,7 @@ public:
 	static fontRenderClass *getInstance();
 #ifndef SWIG
 	std::string AddFont(const std::string &filename, const std::string &name, int scale, int renderflags = 0);
+	void ClearFonts();
 	FT_Error FTC_Face_Requester(FTC_FaceID face_id, FT_Face *aface);
 	int getFont(ePtr<Font> &font, const std::string &face, int size, int tabwidth = -1);
 	std::vector<std::string> getFontFaces();
@@ -106,6 +106,7 @@ public:
 #define GS_LF 128
 #define GS_FIXED 256
 #define GS_MAYBREAK 512
+#define GS_COLORRESET 1024
 #define GS_CANBREAK (GS_ISSPACE | GS_SOFTHYPHEN | GS_HYPHEN)
 
 struct pGlyph

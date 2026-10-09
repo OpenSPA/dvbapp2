@@ -35,6 +35,7 @@ QUIT_ERROR_RESTART = 5
 QUIT_DEBUG_RESTART = 6
 QUIT_KODI = 15
 QUIT_MAINT = 16
+QUIT_RETROGAMING = 17
 QUIT_UPGRADE_PROGRAM = 42
 QUIT_IMAGE_RESTORE = 43
 QUIT_UPGRADE_FRONTPANEL = 44
@@ -52,8 +53,10 @@ class TVstate:  # load in Navigation
 			import Components.HdmiCec
 			self.hdmicec_instance = Components.HdmiCec.hdmi_cec.instance
 			self.hdmicec_ok = self.hdmicec_instance and config.hdmicec.enabled.value
+			self.hdmicec_pending = self.hdmicec_ok and getattr(self.hdmicec_instance, "tv_state_pending", True)
 		except ImportError:
 			self.hdmicec_ok = False
+			self.hdmicec_pending = False
 
 		if not self.hdmicec_ok:
 			print('[Standby] HDMI-CEC is not enabled or unavailable !!!')
@@ -82,7 +85,7 @@ class TVstate:  # load in Navigation
 		return False
 
 	def getTVstate(self, value):
-		if self.hdmicec_ok:
+		if self.hdmicec_ok and not self.hdmicec_pending:
 			if not config.hdmicec.check_tv_state.value or self.hdmicec_instance.sendMessagesIsActive():
 				return False
 			elif value == 'on':
@@ -241,7 +244,7 @@ class Standby2(Screen):
 			else:
 				self.timeHandler.m_timeUpdated.get().append(self.stopService)
 
-		if self.session.pipshown:
+		if getattr(self.session, "pipshown", False) and hasattr(self.session, "pip"):
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
@@ -263,6 +266,7 @@ class Standby2(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
+		self.session.isStandby = False
 		self.standbyStopServiceTimer.stop()
 		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
 		if self.paused_service:
@@ -288,6 +292,7 @@ class Standby2(Screen):
 	def __onFirstExecBegin(self):
 		global inStandby
 		inStandby = self
+		self.session.isStandby = True
 		self.session.screen["Standby"].boolean = True
 		config.misc.standbyCounter.value += 1
 		if BoxInfo.getItem("AmlogicFamily"):
@@ -364,6 +369,7 @@ class QuitMainloopScreen(Screen):
 			QUIT_REBOOT: _("Your %s %s is rebooting") % getBoxDisplayName(),
 			QUIT_RESTART: _("The user interface of your %s %s is restarting") % getBoxDisplayName(),
 			QUIT_KODI: _("The user interface of your %s %s will be stopped to run Kodi") % getBoxDisplayName(),
+			QUIT_RETROGAMING: _("The user interface of your %s %s will be stopped to run RetroGaming") % getBoxDisplayName(),
 			QUIT_UPGRADE_FP: _("Your front panel processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
 			QUIT_ERROR_RESTART: _("The user interface of your %s %s is restarting\ndue to an error in StartEnigma.py") % getBoxDisplayName(),
 			QUIT_MAINT: _("Your %s %s is rebooting into Recovery Mode") % getBoxDisplayName(),
@@ -423,11 +429,11 @@ class TryQuitMainloop(MessageBox):
 			clients = eStreamServer.getInstance().getConnectedClients()
 			if len(clients) == 1 and len(clients[0]) == 3 and clients[0][0] == "::ffff:127.0.0.1":  # ignore internal streams
 				reason = ""
-		elif mediaFilesInUse(session) and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_KODI, QUIT_RESTART, QUIT_UPGRADE_FP, QUIT_UPGRADE_PROGRAM, QUIT_UPGRADE_FRONTPANEL):
+		elif mediaFilesInUse(session) and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_KODI, QUIT_RETROGAMING, QUIT_RESTART, QUIT_UPGRADE_FP, QUIT_UPGRADE_PROGRAM, QUIT_UPGRADE_FRONTPANEL):
 			reason = _("A file from media is in use!")
 			default_yes = False
 			timeout = 30
-		elif jobs and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_KODI):
+		elif jobs and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_KODI, QUIT_RETROGAMING):
 			reason = _('%d jobs are running in the background!') % jobs
 			default_yes = False
 			timeout = 30
@@ -454,6 +460,7 @@ class TryQuitMainloop(MessageBox):
 				QUIT_REBOOT: _("Really reboot now?"),
 				QUIT_RESTART: _("Really restart now?"),
 				QUIT_KODI: _("Really start Kodi and stop user interface now?"),
+				QUIT_RETROGAMING: _("Really start RetroGaming and stop the user interface now?"),
 				QUIT_UPGRADE_FP: _("Really upgrade the front panel processor and reboot now?"),
 				QUIT_MAINT: _("Really reboot into Recovery Mode?"),
 				QUIT_UPGRADE_PROGRAM: _("Really upgrade your %s %s and reboot now?") % getBoxDisplayName(),

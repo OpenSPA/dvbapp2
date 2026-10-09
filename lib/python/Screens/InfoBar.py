@@ -56,32 +56,34 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
-		if config.usage.show_infobar_lite.value and (config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml" or config.skin.primary_skin.value.startswith('MetrixHD/')):
-			self.skinName = "InfoBarLite"
+		self.showInfoBarLite = config.usage.show_infobar_lite.value
+		if self.showInfoBarLite:
+			self.skinName = ["InfoBarLite", "InfoBar"]
+		self.onExecBegin.append(self.updateInfoBarSkin)
 
 		self["actions"] = HelpableActionMap(self, "InfobarActions", {
-			"showMovies": (self.showMovies, _("Open Movie Selection")),
-			"showRadio": (self.showRadioButton, _("Open Radio bouquet selection")),
-			"showTv": (self.showTvButton, _("Open TV bouquet selection")),
-			"toogleTvRadio": (self.toogleTvRadio, _("Toggles between TV and Radio")),
-			"openBouquetList": (self.openBouquetList, _("Open Bouquet selection")),
-			"showMediaPlayer": (self.showMediaPlayer, _("Open Media Player")),
-			"openTimerList": (self.openTimerList, _("Open RecordTimer Overview")),
-			"openAutoTimerList": (self.openAutoTimerList, _("Open AutoTimer Overview")),
-			"openEPGSearch": (self.openEPGSearch, _("Open EPGSearch")),
-			"openIMDB": (self.openIMDB, _("Open IMDb")),
-			"showMC": (self.showMediaCenter, _("Open MediaCenter")),
-			"openSleepTimer": (self.openSleepTimer, _("Open SleepTimer Settings")),
-			"openSchedulerList": (self.openSchedulerList, _("Open Scheduler Overview")),
-			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),
-			"ZoomOff": (self.ZoomOff, _("Zoom Off")),
-			"showWWW": (self.showPORTAL, _("Open MediaStream")),
-			"showSetup": (self.showSetup, _("Open Setup menu")),
-			"showInformation": (self.showInformation, _("Open Information menu")),
-			"showFormat": (self.showFormat, _("Open VideoMode")),
-			"showPluginBrowser": (self.showPluginBrowser, _("Open Plugin Browser")),
-			"showBoxPortal": (self.showBoxPortal, _("Open Box Portal")),
-			"openSimpleUnmount": (self.openSimpleUnmount, _("Open Simple Umount")),
+			"showMovies": (self.showMovies, _("Open Movie Selection")),  # PLAY, VIDEO (Break), PVR (Break), FILE (Break), MEDIA (Break).
+			"showRadio": (self.showRadioButton, _("Open Radio bouquet selection")),  # RADIO (Break).
+			"showTv": (self.showTvButton, _("Open TV bouquet selection")),  # TV (Break).
+			"toogleTvRadio": (self.toogleTvRadio, _("Toggles between TV and Radio")),  # Not defined in keymap!
+			"openBouquetList": (self.openBouquetList, _("Open Bouquet selection")),  # TV (Long), RADIO (Long), FAV (Break). AB (Break).
+			"showMediaPlayer": (self.showMediaPlayer, _("Open Media Player")),  # VIDEO (Long), PVR (Long), LIST (Break).
+			"openTimerList": (self.openTimerList, _("Open RecordTimer Overview")),  # PROGRAM (Break), SLOW (Break), F5 (Break), TIME (Break).
+			"openAutoTimerList": (self.openAutoTimerList, _("Open AutoTimer Overview")),  # PROGRAM (Long), CALENDAR (Break).
+			"openEPGSearch": (self.openEPGSearch, _("Open EPGSearch")),  # SEARCH (Break).
+			"openIMDB": (self.openIMDB, _("Open IMDb")),  # SEARCH (Long).
+			"showMC": (self.showMediaCenter, _("Open MediaCenter")),  # Not defined in keymap!
+			"openSleepTimer": (self.openSleepTimer, _("Open SleepTimer Settings")),  # SLEEP (Break).
+			"openSchedulerList": (self.openSchedulerList, _("Open Scheduler Overview")),  # SLEEP (Long).
+			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),  # ZOOM (Break).
+			"ZoomOff": (self.ZoomOff, _("Zoom Off")),  # ZOOM (Long).
+			"showWWW": (self.showPORTAL, _("Open MediaStream")),  # WWW (Break), F1 (Break), F2 (Break).
+			"showSetup": (self.showSetup, _("Open Setup menu")),  # SETUP.
+			"showInformation": (self.showInformation, _("Open Information menu")),  # QUESTION.
+			"showFormat": (self.showFormat, _("Open VideoMode")),  # Not defined in keymap!
+			"showPluginBrowser": (self.showPluginBrowser, _("Open Plugin Browser")),  # DIRECTORY (Break).
+			"showBoxPortal": (self.showBoxPortal, _("Open Box Portal")),  # F6 (Break).
+			"openSimpleUnmount": (self.openSimpleUnmount, _("Open Simple Umount")),  # EJECT (Break).
 			}, prio=2, description=_("Live TV Actions"))
 
 		self["key_red"] = Label()
@@ -118,6 +120,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.zoomin = 1
 
 		self.onShow.append(self.doButtonsCheck)
+
+	def updateInfoBarSkin(self):
+		showInfoBarLite = config.usage.show_infobar_lite.value
+		if self.showInfoBarLite != showInfoBarLite:
+			self.showInfoBarLite = showInfoBarLite
+			self.skinName = ["InfoBarLite", "InfoBar"] if showInfoBarLite else "InfoBar"
+			# Rebuild on return from setup, before the components are activated.
+			self.reloadSkin()
 
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
@@ -367,20 +377,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The MediaStream plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showSetup(self):
-		from Screens.Menu import Menu, findMenu
-		menu = findMenu("setup")
-		if menu:
-			self.session.infobar = self
-			self.session.open(Menu, menu)
-			return
+		self._showMenu("setup")
 
 	def showInformation(self):
-		from Screens.Menu import Menu, findMenu
-		menu = findMenu("information")
-		if menu:
-			self.session.infobar = self
-			self.session.open(Menu, menu)
-			return
+		self._showMenu("information")
 
 	def showFormat(self):
 		try:
@@ -508,8 +508,8 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self["statusicon"] = MultiPixmap()
 
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions", {
-			"leavePlayer": (self.leavePlayer, _("Leave movie player")),
-			"leavePlayerOnExit": (self.leavePlayerOnExit, _("Leave movie player"))
+			"leavePlayer": (self.leavePlayer, _("Leave movie player")),  # STOP, TV, BACK.
+			"leavePlayerOnExit": (self.leavePlayerOnExit, _("Leave movie player"))  # EXIT, ESC.
 		}, prio=0, description=_("Movie Player Actions"))
 
 		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
@@ -736,7 +736,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 					self.leavePlayerConfirmed([True, "quit"])
 		elif answer in "repeatcurrent":
 			if config.usage.next_movie_msg.value:
-				(item, length) = self.getPlaylistServiceInfo(self.cur_service)
+				(next_service, item, length) = self.getPlaylistServiceInfo(self.cur_service)
 				self.displayPlayedName(self.cur_service, item, length)
 			self.session.nav.stopService()
 			self.session.nav.playService(self.cur_service)
@@ -881,7 +881,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":
-					return i + 1, len(playlist)
+					return service, i + 1, len(playlist)
 				i += 1
 				if i < len(playlist):
 					return playlist[i], i + 1, len(playlist)

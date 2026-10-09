@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 05:46+0000\n"
+"POT-Creation-Date: 2026-06-22 11:12+0000\n"
 "PO-Revision-Date: 2026-06-17 09:16+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1722,6 +1722,9 @@ msgstr "Lisää p.tarjoaja"
 msgid "AV Setup"
 msgstr "Kuva/Ääni Asetukset"
 
+msgid "AV receiver, soundbar and remote"
+msgstr ""
+
 msgid "Abkhazian"
 msgstr "Abkhazian"
 
@@ -1959,7 +1962,7 @@ msgstr "Lisää valittu kansio kirjanmerkkeihin"
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Lisää vanhat VASEN/OIKEA toiminnot"
 
-msgid "Add more slots"
+msgid "Add slots"
 msgstr "Lisää paikkoja"
 
 msgid "Add new CCcam line"
@@ -2485,7 +2488,7 @@ msgstr "Haluatko varmasti poistaa tämän lokin:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Haluatko varmasti poistaa tämän?"
 
-msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgid "Disable Chkroot Multiboot?"
 msgstr "Haluatko poistaa Chkroot Multibootin käytöstä?"
 
 msgid "Are you sure you want to exit this wizard?"
@@ -4129,7 +4132,7 @@ msgstr "Valitse tiedostonimi, jonne EPG-tiedot tallennetaan kun %s %s sammutetaa
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Valitse vaihtoehto virheellisten EPG tietojen korjaamiseksi."
 
-msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgid "Choose the skin to be used for the graphical user interface (GUI). Press 'GREEN' to activate the skin."
 msgstr "Valitse käyttöliittymän teema. Paina 'VIHREÄÄ' aktivoidaksesi teema."
 
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
@@ -5520,11 +5523,17 @@ msgstr "DVB tekstityksen väri"
 msgid "DVB-C"
 msgstr "DVB-C"
 
+msgid "DVB-C / Cable only"
+msgstr ""
+
 msgid "DVB-C ANNEX B"
 msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
+
+msgid "DVB-C and DVB-T/T2 via external 5V controlled coax switch"
+msgstr ""
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -5534,6 +5543,9 @@ msgstr "DVB-S2"
 
 msgid "DVB-T"
 msgstr "DVB-T"
+
+msgid "DVB-T/T2 / Terrestrial only"
+msgstr ""
 
 msgid "DVB-T2"
 msgstr "DVB-T2"
@@ -5550,7 +5562,7 @@ msgstr "DVD Valikko"
 msgid "DVD Title list"
 msgstr "DVD Otsikko lista"
 
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "DVD soitin"
 
 msgid "DVDPlayer"
@@ -6057,7 +6069,7 @@ msgstr "Poista loki"
 msgid "Delete only highlighted file"
 msgstr "Poista vain korostettu tiedosto"
 
-msgid "Delete or Wipe the highlighted slot"
+msgid "Empty or Wipe the highlighted slot"
 msgstr "Poista tai pyyhi nykyinen ohjelmisto paikka"
 
 msgid "Delete play list entry"
@@ -6708,6 +6720,9 @@ msgstr "Dokumenttit"
 
 msgid "Dolby Digital downmix is now"
 msgstr "Dolby Digital stereoksi on nyt käytössä"
+
+msgid "Dolby TrueHD"
+msgstr ""
 
 msgid "Domain"
 msgstr "Verkkotunnus"
@@ -8250,8 +8265,8 @@ msgstr "Falklandinsaaret"
 msgid "Fallback API did not return a valid result."
 msgstr "Fallback API ei löytänyt oikeaa tulosta."
 
-msgid "Fallback Font *"
-msgstr "Toissijainen Fontti *"
+msgid "Fallback Font"
+msgstr "Toissijainen Fontti"
 
 msgid "Fallback Remote Receiver Settings"
 msgstr "Etävastaanottimen asetukset"
@@ -8847,8 +8862,8 @@ msgstr "GStreamerin debug loki luokka *"
 msgid "GStreamer debug log level *"
 msgstr "GStreamer virheenkorjauslokin taso *"
 
-msgid "GUI Skin *"
-msgstr "Käyttöliittymän teema *"
+msgid "GUI Skin"
+msgstr "Käyttöliittymän teema"
 
 msgid "Gabon"
 msgstr "Gabon"
@@ -9534,6 +9549,9 @@ msgstr "Unkari"
 
 msgid "Hybrid Tuner"
 msgstr "Hybridi viritin"
+
+msgid "Hybrid tuner mode"
+msgstr ""
 
 msgid "Hz"
 msgstr "Hz"
@@ -10525,8 +10543,8 @@ msgstr "LAN yhteys"
 msgid "LCD scroll speed"
 msgstr "LCD selausnopeus"
 
-msgid "LCD/Front panel *"
-msgstr "Näyttöpaneeli *"
+msgid "LCD/Front panel"
+msgstr "Näyttöpaneeli"
 
 msgid "LCN Scanner"
 msgstr "LCN Scanneri"
@@ -14315,10 +14333,10 @@ msgstr "Paina OK käyttääksesi tätä kieltä. [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Käytä tätä aluetta painamalla OK.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that slot. If available, YELLOW will either delete or wipe the slot. A deleted slot can be restored with the BLUE button. A wiped slot is completely removed and cannot be restored!"
 msgstr "Paina YLÖS/ALAS painikkeita valitaksesi image paikan ja paina OK tai VIHREÄ Uudelleen käynnistääksesi kyseiseen image paikan, jos on käytettävissä, KELTAINEN Poista image paikka. Poistettua ohjelmistoa ei voi palauttaa!"
 
-msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that slot. If available, YELLOW will disable MultiBoot, delete, or wipe the selected slot. Press BLUE to add more slots."
 msgstr "Paina Ylös/Alas painikkeita valitsemaan paikka, paina sitten OK tai Vihreä uudelleen käynnistettäväksi kyseiseen ohjelmiston. Jos käytettävissä, Keltainen poistaa Multibootin käytöstä, poista tai pyyhkii valitun ohjelmiston. Paina Sininen lisätäksesi lisää paikkoja."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -14556,8 +14574,8 @@ msgstr "Pushto / Pashto"
 msgid "Put TV in Standby"
 msgstr "Laita TV valmiustilaan"
 
-msgid "Put your AV Receiver in Standby"
-msgstr "Sammuta kotiteatteri valmiustilaan"
+msgid "Put your AV Receiver or Soundbar in Standby"
+msgstr ""
 
 msgid "Python"
 msgstr "python"
@@ -15242,11 +15260,18 @@ msgstr "Muokkaa nimi ja kuvaus uusille tallenteille"
 msgid "Rename only highlighted file"
 msgstr "Nimeä vain korostettu tiedosto uudelleen"
 
+#, python-format
+msgid "Rename slot '%s' (leave empty to reset):"
+msgstr ""
+
 msgid "Rename the proposed file to be created"
 msgstr "Nimeä ehdotettu tiedosto uudelleen"
 
 msgid "Rename the selected service"
 msgstr "Nimeä uudelleen valittu kanava"
+
+msgid "Rename the highlighted slot"
+msgstr ""
 
 msgid "Rename this tag"
 msgstr "Nimeä tämä tunniste uudelleen"
@@ -16226,7 +16251,7 @@ msgstr "Valitse \"Kyllä\", jos haluat herätää television kun Virta ajastus k
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "'Kyllä' valinnalla tietopalkki näytetään, pysyvästi keskeytetyssä tilassa (ei aikakatkaisua)."
 
-msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgid "When enabled, allow each storage device detected to be automatically exported as a Samba share."
 msgstr "Valitse 'Kyllä' salliaksesi, että jokainen tunnistettu tallennuslaite viedään automaattisesti Samba jaoksi."
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
@@ -16694,6 +16719,9 @@ msgstr ""
 msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Valitse, miten aikataulu käsitellään valmiustilassa."
 
+msgid "Select how this DVB-C/T tuner is connected. Use the external coax switch option only with a 5V controlled coax switch."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Määrittää, kuinka Nopea EPG aktivoidaan."
 
@@ -16837,7 +16865,7 @@ msgstr "Valitse tähän virittimeen asetettu käyttäjän taajuusalueen taajuus.
 msgid "Select the Yes / True response"
 msgstr "Valitse Kyllä / Tosi vastaus"
 
-msgid "Select the access mode for the automatically exported samba shares."
+msgid "Select the mode of access, Read/Write or Read Only, applied to all automatically exported Samba shares."
 msgstr "Valitse pääsy automaattisesti viedyille Samba jaoille."
 
 #, python-format
@@ -20102,8 +20130,14 @@ msgstr "TV"
 msgid "TV button mode"
 msgstr "TV näppäimen toiminto"
 
+msgid "TV input and receiver wakeup"
+msgstr ""
+
 msgid "TV physical address report"
 msgstr "TV:n fyysisen osoitteen raportti"
+
+msgid "TV power"
+msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -21308,6 +21342,9 @@ msgstr "Ajansiirto"
 
 msgid "Timezone"
 msgstr "Aikavyöhyke"
+
+msgid "Timing and diagnostics"
+msgstr ""
 
 msgid "Timor-Leste / East Timor"
 msgstr "Timor-Leste / Itä Timor"
@@ -22783,8 +22820,8 @@ msgstr "Äänenvoimakkuuden säätö tila"
 msgid "Volume down"
 msgstr "Äänenvoimakkuus -"
 
-msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
-msgstr "Vastaanottimen kaukosäätimen äänenvoimakkuusnäppäimet ohjaavat television äänenvoimakkuutta. Jos tätä ominaisuutta ei tueta, äänenvoimakkuusnäppäimillä ei ole mitään toimintaa!"
+msgid "Volume keys on the receiver remote will control the TV, AV receiver or soundbar volume over HDMI-CEC. If this feature is not supported the volume keys have no function!"
+msgstr ""
 
 msgid "Volume steps"
 msgstr "Äänenvoimakkuuden askelkoko"
@@ -22867,8 +22904,8 @@ msgstr "Herätysaika ennen ajastimen alkamista [minuutteina]"
 msgid "Wake up to standby"
 msgstr "Käynnisty valmiustilaan"
 
-msgid "Wake up your AV Receiver from Standby"
-msgstr "Käynnistä kotiteatteri valmiustilasta"
+msgid "Wake up your AV Receiver or Soundbar from Standby"
+msgstr ""
 
 msgid "Wallis and Futuna"
 msgstr "Wallis and Futuna"
@@ -23126,14 +23163,14 @@ msgstr "Kun päällä, PiP-kuvan voi sulkea exit-näppäimellä."
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Kun päällä, VCR SCART -valinta näytetään päävalikossa."
 
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched off."
+msgstr ""
+
+msgid "When enabled, the connected AV receiver or soundbar will automatically be switched on."
+msgstr ""
+
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Kun päällä, tallenteiden kestot näytetään tallenneluettelossa (saattaa hidastaa hieman näkymän latautumista)."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti pois päältä."
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti päälle."
 
 msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Kun tämä on käytössä, vastaanotin palaa automaattisesti valmiustilaan, kun televisio sammutetaan."
@@ -23210,8 +23247,8 @@ msgstr "Kun syöttökursori saavuttaa tämän pisteen (prosenttiosuus leveydest�
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Kun vastaanotin herää valmiustilasta tai virransäästötilasta, se lähettää televisiolle komennon, jolla se herätetään valmiustilasta."
 
-msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "Kun vastaanotin herää valmiustilasta, se käskee televisiota vaihtamaan HDMI tuloon, johon vastaanotin on liitetty."
+msgid "When the receiver wakes from Standby, send active source, stream path and routing commands so the TV switches to the HDMI input connected to the receiver."
+msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Kun punainen laatikko on oikein näkyvissä, paina VIHREÄÄ painiketta tallentaaksesi asetukset ja poistuaksesi."
@@ -24472,6 +24509,24 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
+#~ msgstr "Kun vastaanotin herää valmiustilasta, se käskee televisiota vaihtamaan HDMI tuloon, johon vastaanotin on liitetty."
+
+#~ msgid "Put your AV Receiver in Standby"
+#~ msgstr "Sammuta kotiteatteri valmiustilaan"
+
+#~ msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
+#~ msgstr "Vastaanottimen kaukosäätimen äänenvoimakkuusnäppäimet ohjaavat television äänenvoimakkuutta. Jos tätä ominaisuutta ei tueta, äänenvoimakkuusnäppäimillä ei ole mitään toimintaa!"
+
+#~ msgid "Wake up your AV Receiver from Standby"
+#~ msgstr "Käynnistä kotiteatteri valmiustilasta"
+
+#~ msgid "When enabled, the receiver will automatically be switched off."
+#~ msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti pois päältä."
+
+#~ msgid "When enabled, the receiver will automatically be switched on."
+#~ msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti päälle."
 
 #~ msgid "Color Bottom"
 #~ msgstr "Väri näppäin"

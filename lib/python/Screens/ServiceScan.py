@@ -18,7 +18,10 @@ from Screens.Processing import Processing
 from Screens.Screen import Screen, ScreenSummary
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
+from ServiceReference import isRadioServiceReference, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, resolveFilename
+from Tools.Notifications import notificationCenter
+from Tools.ScanBouquetRepair import ScanBouquetRepair
 from Tools.Transponder import getChannelNumber
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -57,11 +60,14 @@ class ServiceScan(Screen):
 		3: _("No channel list")
 	}
 
-	def __init__(self, session, scanList):
+	def __init__(self, session, scanList, updateBouquets=False):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Service Scan"))
 		self.scanList = scanList
 		self.bouquetLastScanned = None
+		self.updateBouquets = updateBouquets and bool(scanList) and all(scan["flags"] & eComponentScan.scanRemoveServices for scan in scanList)
+		self.bouquetRepair = None
+		self.onClose.append(self.clearBouquetRepair)
 		if hasattr(session, "infobar"):
 			self.currentInfobar = InfoBar.instance
 			if self.currentInfobar:
@@ -103,12 +109,12 @@ class ServiceScan(Screen):
 			"close": (self.keyCloseRecursive, _("Select the previous service and close the scanner and exit all menus")),
 			"ok": (self.keySave, _("Select the currently highlighted service and exit")),
 			"save": (self.keySave, _("Select the currently highlighted service and exit")),
-			"top": (self["servicelist"].goTop, _("Move to first line / screen")),
+			"top": (self["servicelist"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["servicelist"].goPageUp, _("Move up a screen")),
 			"up": (self["servicelist"].goLineUp, _("Move up a line")),
 			"down": (self["servicelist"].goLineDown, _("Move down a line")),
 			"pageDown": (self["servicelist"].goPageDown, _("Move down a screen")),
-			"bottom": (self["servicelist"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["servicelist"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Service Scan Actions"))
 		self["doneActions"].setEnabled(False)
 		self.lcnScanner = LCNScanner() if LCNScanner else None
@@ -131,6 +137,12 @@ class ServiceScan(Screen):
 			self["pass"].setText(_("Recording in progress!"))
 			self["scan_state"].setText(_("Scanning can't be performed while recordings are in progress."))
 		else:
+			if self.run == 0 and self.updateBouquets:
+				try:
+					self.bouquetRepair = ScanBouquetRepair()
+				except Exception as err:
+					print(f"[ServiceScan] Unable to prepare bouquet update: {err}")
+					notificationCenter.showError(_("Unable to prepare the bouquet update. The scan will continue without updating bouquets."))
 			self.scan = eComponentScan()
 			self.scan.newService.get().append(self.newService)
 			self.scan.statusChanged.get().append(self.statusChanged)
@@ -150,6 +162,8 @@ class ServiceScan(Screen):
 		self.foundServices += 1
 		serviceName = self.scan.getLastServiceName()
 		serviceRef = self.scan.getLastServiceRef()
+		if self.bouquetRepair is not None:
+			self.bouquetRepair.addScannedService(serviceRef)
 		self.serviceList.append((serviceName, serviceRef))
 		self["servicelist"].setList(self.serviceList)
 		self["servicelist"].goBottom()
@@ -340,6 +354,8 @@ class ServiceScan(Screen):
 					self.timer.callback.append(delayNext1)  # Hack to work around a timing bug in eComponentScan!
 					self.timer.startLongTimer(2)  # Delay the next step by 2 seconds to give eComponentScan time to finish.
 				else:
+					self.finishBouquetRepair()
+
 					def delayNext2():
 						self.timer.stop()
 						self.timer.callback.remove(delayNext2)
@@ -355,12 +371,35 @@ class ServiceScan(Screen):
 					self.timer.callback.append(delayNext2)  # Hack to work around a timing bug in eComponentScan!
 					self.timer.startLongTimer(2)  # Delay the next step by 2 seconds to give eComponentScan time to finish.
 			case self.ERROR:
+				self.clearBouquetRepair()
 				stateText = _("Error: Failed to run service scan!  (%s)") % self.ERRORS[errorCode]
 
 		if stateText:
 			self["scan_state"].setText(stateText)
 			for callback in self.onStateChanged:
 				callback(stateText)
+
+	def clearBouquetRepair(self):
+		if self.bouquetRepair is not None:
+			self.bouquetRepair.clear()
+			self.bouquetRepair = None
+
+	def finishBouquetRepair(self):
+		if self.bouquetRepair is None:
+			return
+		try:
+			updated, unresolved, failed = self.bouquetRepair.repair()
+			message = _("Bouquet update: %(updated)d updated, %(unresolved)d unresolved, %(failed)d failed.") % {"updated": updated, "unresolved": unresolved, "failed": failed}
+			print(f"[ServiceScan] {message}")
+			if failed:
+				notificationCenter.showError(message, timeout=8)
+			else:
+				notificationCenter.showInfo(message, timeout=8)
+		except Exception as err:
+			print(f"[ServiceScan] Unable to update bouquets: {err}")
+			notificationCenter.showError(_("Unable to complete the bouquet update. Please check your bouquets."))
+		finally:
+			self.clearBouquetRepair()
 
 	def runLCNScanner(self):
 		def performScan():
@@ -394,6 +433,9 @@ class ServiceScan(Screen):
 		self.finish(True)
 
 	def finish(self, returnValue):
+		self.clearBouquetRepair()
+		if self.state == self.RUNNING:
+			self.timer.stop()
 		# try:
 		# 	self.session.nav.playService(self.currentServiceRef)
 		# except Exception:
@@ -401,37 +443,56 @@ class ServiceScan(Screen):
 		if self.currentInfobar.__class__.__name__ == "InfoBar":
 			self.close(returnValue)
 		self.close(returnValue)
-		self.bouquetLastScanned = "/etc/enigma2/userbouquet.LastScanned.tv"
-		if exists(str(self.bouquetLastScanned)) and "en" not in config.osd.language.value:  # [norhap][OpenSPA]
-			with open(self.bouquetLastScanned, "r") as fr:
-				bouquetread = fr.readlines()
-				with open(self.bouquetLastScanned, "w") as fw:
-					for line in bouquetread:
-						fw.write(line.replace("Last Scanned", _("Last Scanned")))
+		if exists(str(self.bouquetLastScanned)) or config.misc.firstrun.value:  # [norhap][OpenSPA]
+			for ext in ("tv", "radio"):
+				path = f"/etc/enigma2/userbouquet.LastScanned.{ext}"
+				path_favourites = f"/etc/enigma2/userbouquet.favourites.{ext}"
+				if exists(path):
+					with open(path, "r") as fr:
+						lastscanned_content = fr.read()
+					with open(path, "w") as fw:
+						fw.write(lastscanned_content.replace("Last Scanned", _("Last Scanned")))
+				if exists(path_favourites):
+					with open(path_favourites, "r") as fr:
+						favourites_content = fr.read()
+					if "Favourites" in favourites_content:
+						with open(path_favourites, "w") as fw:
+							fw.write(favourites_content.replace("Favourites", _("Favourites")))
 			eDVBDB.getInstance().reloadBouquets()
 
 	def keySave(self):
-		# try:
-		# 	self.session.nav.playService(self["servicelist"].getCurrent()[1])
-		# except Exception:
-		# 	pass
-		# self.close(True)
 		if self.currentInfobar.__class__.__name__ == "InfoBar":
 			selectedService = self["servicelist"].getCurrent()
 			if selectedService and self.currentServiceList is not None:
-				self.currentServiceList.setTvMode()
-				bouquets = self.currentServiceList.getBouquetList()
-				lastScannedBouquet = bouquets and next((x[1] for x in bouquets if x[0] == "Last Scanned"), None)
+				service = eServiceReference(selectedService[1])
+				radio = isRadioServiceReference(service)
+				types = service_types_radio_ref if radio else service_types_tv_ref
+				extension = "radio" if radio else "tv"
+				lastScannedBouquet = serviceRefAppendPath(types, f' FROM BOUQUET "userbouquet.LastScanned.{extension}" ORDER BY bouquet')
+				self.bouquetLastScanned = f"/etc/enigma2/userbouquet.LastScanned.{extension}"
 				if lastScannedBouquet:
-					self.currentServiceList.enterUserbouquet(lastScannedBouquet)
-					self.currentServiceList.setCurrentSelection(eServiceReference(selectedService[1]))
-					service = self.currentServiceList.getCurrentSelection()
-					if not self.session.postScanService or service != self.session.postScanService:
-						self.session.postScanService = service
-						self.currentServiceList.addToHistory(service)
-					config.servicelist.lastmode.save()
-					self.currentServiceList.saveChannel(service)
+					if radio and not config.usage.e1like_radio_mode.value:
+						# The separate radio screen owns its history; do not overwrite TV state.
+						root = serviceRefAppendPath(types, ' FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
+						config.radio.lastroot.value = f"{root.toString()};{lastScannedBouquet.toString()};"
+						config.radio.lastroot.save()
+						config.radio.lastservice.value = service.toString()
+						config.radio.lastservice.save()
+					else:
+						if radio:
+							self.currentServiceList.setModeRadio()
+						else:
+							self.currentServiceList.setModeTv()
+						self.currentServiceList.radioTV = int(radio)
+						self.currentServiceList.enterUserbouquet(lastScannedBouquet)
+						self.currentServiceList.setCurrentSelection(service)
+						if service != self.session.postScanService:
+							self.currentServiceList.addToHistory(service)
+						self.currentServiceList.saveChannel(service)
+						config.servicelist.lastmode.save()
+					self.session.postScanService = service
 					self.keyCloseRecursive()
+					return
 				else:
 					def restartGUI(answer=False):
 						if answer:

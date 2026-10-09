@@ -8,14 +8,14 @@
 from datetime import datetime
 from os.path import exists
 from time import time, localtime, mktime
-from enigma import eLabel, eRect, eSize, eServiceReference, gFont, eListbox, eServiceCenter, eListboxPythonMultiContent, eListboxPythonServiceContent, eListboxServiceContent, eEPGCache, getDesktop, eTimer, loadPNG
+from enigma import eLabel, eRect, eSize, eServiceReference, gFont, eListbox, eServiceCenter, eListboxPythonMultiContent, eListboxPythonServiceContent, eListboxServiceContent, eEPGCache, getDesktop, eTimer, loadPNG, getDVBIFallbackService
 
 from Components.GUIComponent import GUIComponent
 from Components.config import config
 from Components.MultiContent import MultiContentEntryProgress, MultiContentEntryText, MultiContentEntryRectangle, MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 import NavigationInstance
-from ServiceReference import ServiceReference
+from ServiceReference import ServiceReference, isRadioServiceReference
 from skin import componentTemplates, getcomponentTemplate, parseColor, parseFont, parseListOrientation, reloadSkinTemplates, SizeTuple, SkinContext, SkinContextStack, TemplateParser
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
@@ -328,6 +328,7 @@ class ServiceListBase(GUIComponent):
 		self.picCrypto = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/icon_crypt.png"))
 		self.picRecord = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/record.png"))
 		self.picStream = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/ico_stream.png"))
+		self.picDAB = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/ico_dab-plus.png"))
 		self.picCatchup = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/ico_catchup.png"))
 		self.picFavorites = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "icons/epgclock_primetime.png"))  # TODO
 
@@ -485,7 +486,7 @@ class ServiceListBase(GUIComponent):
 		from Components.ServiceEventTracker import InfoBarCount
 		if adjust and config.usage.multibouquet.value and InfoBarCount == 1 and ref and ref.type != 8192:
 			print("[servicelist] search for service in userbouquets")
-			isRadio = ref.toString().startswith("1:0:2:") or ref.toString().startswith("1:0:A:")
+			isRadio = isRadioServiceReference(ref)
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
@@ -604,6 +605,9 @@ class ServiceListLegacy(ServiceListBase):
 
 		if self.picStream:
 			self.l.setPixmap(self.l.picStream, self.picStream)
+
+		if self.picDAB:
+			self.l.setPixmap(self.l.picDAB, self.picDAB)
 
 		##### OPENSPA [morser] Add picons for service quality #######################################
 		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_sd.png"))
@@ -836,7 +840,7 @@ class ServiceListLegacy(ServiceListBase):
 		self.l.setShowTwoLines(twoLines)
 
 		if config.usage.service_icon_enable.value:
-			self.l.setGetPiconNameFunc(getPiconName)
+			self.l.setGetPiconNameFunc(getChannelSelectionPiconName)
 		else:
 			self.l.setGetPiconNameFunc(None)
 
@@ -1105,7 +1109,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 			service_str = first_in_alternative.toString() if first_in_alternative else service.toString()
 		else:
 			service_str = service.toString()
-		picon = getPiconName(service_str)
+		picon = getChannelSelectionPiconName(service_str)
 		if exists(picon):
 			return loadPNG(picon)
 		return None
@@ -1119,7 +1123,9 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		elif service.flags & eServiceReference.isDirectory:
 			pixmap = self.picFolder
 		else:
-			if "catchupdays=" in service.toString():
+			if service.type == eServiceReference.idServiceDAB:
+				pixmap = self.picDAB
+			elif "catchupdays=" in service.toString():
 				pixmap = self.picCatchup
 			elif "%3a//" in service.toString():
 				pixmap = self.picStream
@@ -1158,6 +1164,8 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 			self.readTemplate(config.channelSelection.widgetStyle.value)
 
 	def applySkin(self, desktop, parent):
+		if self.skinAttributes is None:
+			return GUIComponent.applySkin(self, desktop, parent)
 		attribs = []
 
 		attributeMapping = {
@@ -1310,11 +1318,11 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 				backgroundColorSelected = attributes.get("backgroundColorSelected", defaults.get("backgroundColorSelected"))
 
 				if serviceAvail == 1:
-					foregroundColor = defaults.get("serviceNotAvailColor", foregroundColor)
-					foregroundColorSelected = defaults.get("serviceNotAvailColorSelected", foregroundColor)
+					foregroundColor = attributes.get("serviceNotAvailColor", defaults.get("serviceNotAvailColor", foregroundColor))
+					foregroundColorSelected = attributes.get("serviceNotAvailColorSelected", defaults.get("serviceNotAvailColorSelected", foregroundColor))
 				elif serviceAvail == 2:
-					foregroundColor = defaults.get("fallbackColor", foregroundColor)
-					foregroundColorSelected = defaults.get("fallbackColorSelected", foregroundColor)
+					foregroundColor = attributes.get("fallbackColor", defaults.get("fallbackColor", foregroundColor))
+					foregroundColorSelected = attributes.get("fallbackColorSelected", defaults.get("fallbackColorSelected", foregroundColor))
 
 			return foregroundColor, backgroundColor, foregroundColorSelected, backgroundColorSelected
 
@@ -1337,6 +1345,9 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		if not marked and isPlayable and info:
 			oldref = self.PlayableIgnoreService or eServiceReference()
 			isPlayableValue = info.isPlayable(service, oldref)
+			# Presentation only: keep the DVB tuner check unchanged for recordings.
+			if isPlayableValue == 0 and getDVBIFallbackService(service, True) is not None:
+				isPlayableValue = 1
 			if isPlayableValue == 0:
 				serviceAvail = 1
 			elif isPlayableValue == 2:

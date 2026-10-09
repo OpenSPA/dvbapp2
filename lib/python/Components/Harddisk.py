@@ -1,3 +1,4 @@
+from functools import total_ordering
 from glob import glob
 from os import listdir, lstat, mkdir, remove, statvfs, system, walk
 from os.path import abspath, dirname, exists, isfile, islink, ismount, join, realpath
@@ -109,6 +110,7 @@ def Freespace(dev):
 	return space
 
 
+@total_ordering
 class Harddisk:
 	def __init__(self, device, removable=False, model=None):
 		self.device = device
@@ -676,8 +678,19 @@ class HarddiskManager:
 				print(f"[Harddisk] Error {err.errno}: Couldn't determine blockdev or physdev for device '{device}'!  ({err.strerror})")
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		if not blacklisted and medium_found:
+			mountpoint = self.getMountpoint(device)
+			# A device can be reported more than once (udev re-add after a bus
+			# glitch, bdpoll, optical media change).  Do not register it twice.
+			for existing in self.partitions[:]:
+				if existing.device == device:
+					if existing.mountpoint == mountpoint:
+						self.debugPrint(f"Device {device} already registered at {mountpoint}")
+						return error, blacklisted, removable, is_cdrom, partitions, medium_found
+					self.partitions.remove(existing)
+					if existing.mountpoint:
+						self.triggerAddRemovePartion("remove", existing)
 			description = self.getUserfriendlyDeviceName(device, physdev)
-			p = Partition(mountpoint=self.getMountpoint(device), description=description, force_mounted=True, device=device)
+			p = Partition(mountpoint=mountpoint, description=description, force_mounted=True, device=device)
 			self.partitions.append(p)
 			if p.mountpoint:  # Plugins won't expect unmounted devices
 				self.triggerAddRemovePartion("add", p)

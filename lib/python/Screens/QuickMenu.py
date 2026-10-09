@@ -15,7 +15,7 @@ from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
-from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
+from Screens.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
 from Screens.CCcamInfo import CCcamInfoMain
 from Screens.HarddiskSetup import HarddiskConvertExt4Selection, HarddiskFsckSelection, HarddiskSelection
 from Screens.MountManager import HddMount
@@ -35,7 +35,6 @@ from Screens.VideoMode import VideoSetup
 from Tools.Directories import isPluginInstalled
 from Tools.LoadPixmap import LoadPixmap
 
-NETWORKBROWSER = isPluginInstalled("NetworkBrowser")
 AUDIOSYNC = isPluginInstalled("AudioSync")
 VIDEOENH = isPluginInstalled("VideoEnhancement") and exists("/proc/stb/vmpeg/0/pep_apply")
 DFLASH = isPluginInstalled("dFlash")
@@ -218,9 +217,8 @@ class QuickMenu(Screen, ProtectedScreen):
 # ####### Mount Settings Menu ##############################
 	def Qmount(self):
 		self.sublist = []
-		if NETWORKBROWSER:
-			self.sublist.append(QuickSubMenuEntryComponent("Mount Manager", _("Manage network mounts"), _("Setup your network mounts")))
-			self.sublist.append(QuickSubMenuEntryComponent("Network Browser", _("Search for network shares"), _("Search for network shares")))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Mounts Overview"), _("Manage network mounts"), _("Setup your network mounts"), screen="NetworkMounts", screenName="NetworkMountsOverview"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), callback=self.openNetworkShares))
 		self.sublist.append(QuickSubMenuEntryComponent("Device Manager", _("Mounts Devices"), _("Setup your Device mounts (USB, HDD, others...)")))
 		self["sublist"].setList(self.sublist)
 
@@ -531,6 +529,11 @@ class QuickMenu(Screen, ProtectedScreen):
 		else:
 			from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 			self.session.open(ImageBackup)
+
+
+	def openNetworkShares(self):
+		from Screens.NetworkMounts import NetworkMountsOverview
+		self.session.open(NetworkMountsOverview, openBrowser=True)
 
 
 # ####### Create MENULIST format #######################

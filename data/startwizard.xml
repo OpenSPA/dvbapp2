@@ -1,12 +1,72 @@
 <wizard>
+	<step id="restorequestion">
+		<condition>
+self.condition = self.hasConfigBackup()
+		</condition>
+		<buttons enable="OK,UP,DOWN" />
+		<text value="A backup of your previous settings was found. Do you want to restore it before continuing with the setup?" />
+		<displaytext value="Restore your previous settings?" />
+		<list>
+			<listentry caption="Yes, restore my settings now" step="restore" />
+			<listentry caption="No, continue with the setup" step="introduction" />
+		</list>
+	</step>
+
 	<step id="introduction" >
 		<buttons enable="OK,UP,DOWN" />
 		<text value="Welcome to OpenSPA.\n\nUse the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen." />
 		<displaytext value="Use UP/DOWN buttons to select option then press OK" />
 		<list>
-			<listentry caption="Use the wizard to set up basic features" step="flashexpander" />
+			<listentry caption="Use the wizard to set up basic features" step="nwifaceselect" />
 			<listentry caption="Exit the wizard" step="end" />
 		</list>
+	</step>
+
+	<step id="nwifaceselect">
+		<displaytext value="Set up network" />
+		<text value="Select a network interface to configure, or skip to configure the network later in system settings." />
+		<list type="dynamic" source="nwListInterfaces" evaluation="nwIfaceSelected" onselect="nwIfaceMoved" />
+		<code>
+self.nwSelectedIface = None
+self.nwIpFound = ""
+self.nwSubFlowActive = False
+		</code>
+		<code pos="after" async="yes">
+self.nwAdvanceFromSelect()
+		</code>
+	</step>
+
+	<step id="nwconfig">
+		<displaytext value="Configure network adapter" />
+		<text value="Opening network adapter configuration..." />
+		<code>
+self.clearSelectedKeys()
+		</code>
+		<code async="yes">
+self.nwOpenSetup()
+		</code>
+	</step>
+
+	<step id="nwstatus">
+		<displaytext value="Network adapter status" />
+		<text value="Network adapter setup result:" />
+		<code>
+self.nwShowStatus()
+		</code>
+		<list>
+			<listentry caption="Continue" step="nwdns" />
+			<listentry caption="Configure another network adapter" step="nwifaceselect" />
+		</list>
+	</step>
+
+	<step id="nwdns">
+		<text value="Configure or verify your DNS (Dynamic Name Server) settings by adjusting the values shown.\n\nWhen the settings are correct press OK to continue." />
+		<displaytext value="Configure DNS (Dynamic Name Server)" />
+		<config screen="DNSSettings" module="NetworkSetup" type="ConfigList" />
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+		</code>
 	</step>
 
 	<step id="flashexpander" >
@@ -24,7 +84,7 @@ self.condition = self.smallFlashSize
 
 	<step id="initflashexpander" nextstep="initswap">
 		<condition>
-self.condition = self.smallFlashSize
+self.condition = self.smallFlashSize and not self.smallBoxPrepared
 		</condition>
 		<config screen="FlashExpander" module="FlashExpander" type="standalone" />
 		<code pos="after" async="yes">
@@ -90,7 +150,7 @@ self.condition = self.hasPartitions()
 
 	<step id="network">
 		<condition>
-self.condition = self.smallFlashSize or self.isFlashExpanderActive()
+self.condition = not self.smallBoxPrepared and (self.smallFlashSize or self.isFlashExpanderActive())
 		</condition>
 		<buttons enable="OK,UP,DOWN" />
 		<text value="To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now." />
@@ -104,15 +164,15 @@ self.condition = self.smallFlashSize or self.isFlashExpanderActive()
 	<step id="update">
 		<condition>
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash")
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared
 		</condition>
-		<config screen="InstallWizardSmallBox" module="InstallWizard" type="standalone" />
+		<config screen="WizardInstallSmallBox" module="WizardInstall" type="standalone" />
 	</step>
 
 	<step id="networkfailed" >
 		<condition>
 from Components.SystemInfo import BoxInfo
-self.condition = BoxInfo.getItem("SmallFlash") and not config.misc.installwizard.ipkgloaded.value
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared and not config.misc.installwizard.ipkgloaded.value
 		</condition>
 		<buttons enable="OK,UP,DOWN" />
 		<text value="The %s %s does not have an Internet connection." />
@@ -140,7 +200,7 @@ from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 0 and not nimmanager.nim_slots[0].empty and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
 	</step>
@@ -151,7 +211,7 @@ from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 1 and not nimmanager.nim_slots[1].empty and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
 	</step>
@@ -163,7 +223,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 2 and not nimmanager.nim_slots[2].empty and not isFBCLink(nimmanager.nim_slots[2].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="2" type="ConfigList" />
 	</step>
@@ -175,7 +235,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 3 and not nimmanager.nim_slots[3].empty and not isFBCLink(nimmanager.nim_slots[3].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="3" type="ConfigList" />
 	</step>
@@ -187,7 +247,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 4 and not nimmanager.nim_slots[4].empty and not isFBCLink(nimmanager.nim_slots[4].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="4" type="ConfigList" />
 	</step>
@@ -199,7 +259,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 5 and not nimmanager.nim_slots[5].empty and not isFBCLink(nimmanager.nim_slots[5].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="5" type="ConfigList" />
 	</step>
@@ -211,7 +271,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 6 and not nimmanager.nim_slots[6].empty and not isFBCLink(nimmanager.nim_slots[6].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="6" type="ConfigList" />
 	</step>
@@ -223,7 +283,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 7 and not nimmanager.nim_slots[7].empty and not isFBCLink(nimmanager.nim_slots[7].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="7" type="ConfigList" />
 	</step>
@@ -235,7 +295,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].empty and not isFBCLink(nimmanager.nim_slots[8].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="8" type="ConfigList" />
 	</step>
@@ -247,7 +307,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 9 and not nimmanager.nim_slots[9].empty and not isFBCLink(nimmanager.nim_slots[9].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="9" type="ConfigList" />
 	</step>
@@ -259,7 +319,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 16 and not nimmanager.nim_slots[16].empty and not isFBCLink(nimmanager.nim_slots[16].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="16" type="ConfigList" />
 	</step>
@@ -271,7 +331,7 @@ from enigma import isFBCLink
 self.condition = len(nimmanager.nim_slots) > 17 and not nimmanager.nim_slots[17].empty and not isFBCLink(nimmanager.nim_slots[17].slot) and not self.ExistsSPABackup()
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT,1,2,3,4,5,6,7,8,9,0,BACKSPACE,DEL" />
-		<text value="Set up tuner [TUNER].\n\nFor hybrid tuner models switch Tuner Type with the LEFT and RIGHT buttons." />
+		<text value="Set up tuner [TUNER].\n\nFor tuners supporting multiple reception types, configure each available type separately." />
 		<displaytext value="Set up tuner [TUNER]" />
 		<config screen="NimSetup" module="Satconfig" args="17" type="ConfigList" />
 	</step>
@@ -279,12 +339,12 @@ self.condition = len(nimmanager.nim_slots) > 17 and not nimmanager.nim_slots[17]
 	<!--<step id="channels">
 		<condition>
 from Components.NimManager import nimmanager
-self.condition = nimmanager.somethingConnected() and any(slot.isCompatible("DVB-S") and slot.config.dvbs.configMode.value != "nothing" for slot in nimmanager.nim_slots)
+self.condition = nimmanager.somethingConnected() and any(slot.canBeCompatible("DVB-S") and slot.config.dvbs.configMode.value != "nothing" for slot in nimmanager.nim_slots)
 		</condition>
 		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
 		<text value="Do you want to install a channel list?" />
 		<displaytext value="Do you want to install a channel list?" />
-		<config screen="InstallWizard" module="InstallWizard" args="1" type="ConfigList" />
+		<config screen="WizardInstall" module="WizardInstall" args="1" type="ConfigList" />
 	</step>-->
 
 	<step id="scanquestion">
@@ -395,6 +455,36 @@ config.ParentalControl.setuppin.save()
 	</step>
 	-->
 
+	<step id="reboot">
+		<condition>
+from Components.International import international
+from Components.SystemInfo import BoxInfo
+self.condition = not BoxInfo.getItem("SmallFlash") and bool(international.getPurgablePackages())
+		</condition>
+		<buttons enable="" />
+		<text value="Please wait while unused locales/languages are purged..." />
+		<displaytext value="Purging unused locales/languages..." />
+		<code async="yes">
+self.purgeLocales()
+		</code>
+	</step>
+
+	<step id="restartdevice" nextstep="end">
+		<condition>
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared
+		</condition>
+		<buttons enable="OK" />
+		<text value="Thank you for using and completing the wizard. The %s %s needs to restart.\n\nPlease press OK to restart the %s %s." />
+		<displaytext value="Restart needed, press OK to restart" />
+		<code>
+self.markDone()
+from enigma import quitMainloop
+from Screens.Standby import QUIT_RESTART
+quitMainloop(QUIT_RESTART)
+		</code>
+	</step>
+
 	<step id="end" laststep="true">
 		<condition>
 self.condition = self.isLastWizard
@@ -402,5 +492,24 @@ self.condition = self.isLastWizard
 		<buttons enable="OK" />
 		<text value="Thank you for using and completing the wizard. The %s %s is now ready to use.\n\nPlease press OK to start using the %s %s." />
 		<displaytext value="Press OK to start using %s %s" />
+	</step>
+
+	<step id="restore" nextstep="restorereboot">
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
+		<text value="You have chosen to restore your settings. The %s %s will restart after the restore. Press OK to start the restore now." />
+		<displaytext value="Restore settings now" />
+		<config screen="RestoreScreen" module="BackupRestore" type="ConfigList" />
+	</step>
+
+	<step id="restorereboot">
+		<buttons enable="OK" />
+		<text value="The restore has finished. The %s %s needs to restart.\n\nPlease press OK to restart the %s %s." />
+		<displaytext value="Restart needed, press OK to restart" />
+		<code>
+self.markDone()
+from enigma import quitMainloop
+from Screens.Standby import QUIT_RESTART
+quitMainloop(QUIT_RESTART)
+		</code>
 	</step>
 </wizard>

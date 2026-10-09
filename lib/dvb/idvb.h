@@ -679,7 +679,7 @@ public:
 	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
 	enum
 	{
-		evtPreStart, evtEOF, evtSOF, evtFailed, evtStopped
+		evtPreStart, evtEOF, evtSOF, evtFailed, evtStopped, evtSignalLost
 	};
 	virtual RESULT connectStateChange(const sigc::slot<void(iDVBChannel*)> &stateChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT connectEvent(const sigc::slot<void(iDVBChannel*,int)> &eventChange, ePtr<eConnection> &connection)=0;
@@ -831,6 +831,11 @@ public:
 	virtual RESULT play()=0;
 		/** Freeze frame. */
 	virtual RESULT pause()=0;
+#ifdef DREAMNEXTGEN
+		/** Hint: user PVR/Timeshift pause (not stream-stall recovery /
+		 * trick handover). Gates the kernel STC-freeze ioctl chain. */
+	virtual void setUserPauseActive(bool /*active*/) {}
+#endif
 
 		/** fast forward by skipping frames. 0 is disabled, 2 is twice-the-speed, ... */
 	virtual RESULT setFastForward(int skip=0)=0;

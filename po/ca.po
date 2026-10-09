@@ -5619,7 +5619,7 @@ msgid "DVD Title list"
 msgstr "Llista de títols DVD"
 
 #
-msgid "DVD player"
+msgid "DVD Player"
 msgstr "Reproductor de DVD"
 
 #

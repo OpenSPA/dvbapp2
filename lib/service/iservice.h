@@ -28,6 +28,7 @@ public:
 		idServiceMP3          = 0x1001,				// 4097
 		idServiceAirPlay      = 0x1009,				// 4105
 		idServiceXINE         = 0x1010,				// 4112
+		idServiceDAB          = 0x1013,				// 4115, DAB ensemble carried over DVB
 		idServiceDVD          = 0x1111,				// 4369
 		idServiceAzBox        = 0x1112,                         // 4370
 		idServiceHDMIIn       = 0x2000,				// 8192
@@ -428,7 +429,17 @@ public:
 		sIsRecoveringStream,
 		sIsSoftCSA,			/* 1 if current service uses software descrambling */
 
-		sUser = 0x100
+		sUser = 0x100,
+		sDABServiceList = sUser + 1, /* tab-separated SID, bitrate, DAB+ flag and label */
+		sDABServiceRevision = sUser + 2, /* rises while the FIC still changes */
+		sDABReceiverName = sUser + 3, /* RTL-SDR tuner reported by the active backend */
+		sDABChannel = sUser + 4,
+		sDABEnsembleLabel = sUser + 5,
+		sDABEnsembleId = sUser + 6,
+		sDABFICQuality = sUser + 7,
+		sDABMSCQuality = sUser + 8,
+		sDABProtection = sUser + 9,
+		sDABDynamicLabel = sUser + 10
 	};
 	enum {
 		resNA = -1,
@@ -463,7 +474,7 @@ public:
 	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData();
 	virtual void getAITApplications(std::map<int, std::string> &aitlist) {};
-	virtual PyObject *getHbbTVApplications() {return getHbbTVApplications();};  // NOSONAR
+	virtual PyObject *getHbbTVApplications() { return PyList_New(0); }
 	virtual void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes);
 	virtual long long getFileSize();
 
@@ -748,6 +759,9 @@ public:
 	virtual void setPage(const ePangoSubtitlePage &p) = 0;
 	virtual void setPage(const eVobSubtitlePage &p) = 0;
 	virtual void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest) = 0;
+	/* hide the page on screen now; setPage() armed the widget's own hide timer
+	   for that page's timeout and knows nothing about a track switch */
+	virtual void clearPage() = 0;
 	virtual void destroy() = 0;
 };
 
@@ -995,6 +1009,10 @@ public:
 		evUpdateTags,
 		evUpdateIDv3Cover,
 		evGstreamerStart,
+
+		// "&e2startoffset=" start position applied
+		evResumed,
+		evStreamError, /* recoverable failure of the primary HTTP source, not normal EOF */
 
 		evUser = 0x100
 	};

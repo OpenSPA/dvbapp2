@@ -5,7 +5,7 @@ from Components.Sources.StaticText import StaticText
 from Components.config import config, configfile, ConfigNothing
 from Components.NimManager import nimmanager, InitNimManager
 from Components.TuneTest import Tuner
-from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer
+from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer, iDVBFrontend
 
 
 class AutoDiseqc(ConfigListScreen, Screen):
@@ -13,7 +13,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		"A", "B", "C", "D"
 	]
 
-	universal_central_sats_frequencies = [
+	sat_frequencies = [
 		# Astra 19.2E ntv
 		(
 			12188,
@@ -35,6 +35,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			1,
 			"Astra 1 19.2°E"
 		),
+
 		# Hotbird 13.0E Rai 1
 		(
 			10992,
@@ -56,6 +57,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			318,
 			"Hotbird 13.0°E"
 		),
+
 		# Astra 23.5E Astra SES
 		(
 			12168,
@@ -77,6 +79,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			3,
 			"Astra 3 23.5°E"
 		),
+
 		# Astra 28.2E EPG background audio
 		(
 			11778,
@@ -98,9 +101,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			2,
 			"Astra 2 28.2°E"
 		),
-	]
 
-	universal_east_sats_frequencies = [
 		# Astra 4A 4.8 Home 3
 		(
 			11785,
@@ -122,6 +123,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			85,
 			"Astra 4A 4.8°E"
 		),
+
 		# Eutelsat 9.0E CCTV 4 Europe
 		(
 			11996,
@@ -143,6 +145,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			1,
 			"Eutelsat 9B 9.0°E"
 		),
+
 		# Eutelsat 16.0E CGTN
 		(
 			11595,
@@ -164,9 +167,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			64,
 			"Eutelsat 16A 16.0°E"
 		),
-	]
 
-	universal_west_sats_frequencies = [
 		# Thor 0.8W Sky News
 		(
 			12418,
@@ -188,6 +189,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			70,
 			"Thor 5/6/7 0.8°W"
 		),
+
 		# Eutelsat 5.0W Fransat
 		(
 			11054,
@@ -209,6 +211,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			1375,
 			"Eutelsat 5 West B 5.0°W"
 		),
+
 		# Hispasat 30.0W
 		(
 			10770,
@@ -230,6 +233,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			6,
 			"Hispasat 30.0°W"
 		),
+
 		# thor  3592 CT24
 		(
 			12072,
@@ -253,7 +257,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		),
 	]
 
-	circular_sats_frequencies = [
+	circular_sat_frequencies = [
 		# Express AMU1 36.0E NHK World Japan
 		(
 			12341,
@@ -275,6 +279,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			112,
 			"Express AMU1 36.0°E"
 		),
+
 		# Express AT1 56.0E NTV Plus Vostok
 		(
 			12054,
@@ -335,21 +340,21 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		self.simple_tone = simple_tone
 		self.simple_sat_change = simple_sat_change
 		self.found_sats = []
-		self.circular_setup = 0
-		if order == "all":
-			self.sat_frequencies = self.universal_central_sats_frequencies[:] + self.universal_east_sats_frequencies[:] + self.universal_west_sats_frequencies[:]
-			if nr_of_ports == 1:
-				self.sat_frequencies += self.circular_sats_frequencies[:]
-		elif order == "astra":
-			self.sat_frequencies = self.universal_central_sats_frequencies[:]
+		self.circular_setup = False
+		centralPositions = {130, 192, 235, 282}
+		eastPositions = centralPositions | {48, 90, 160}
+		westPositions = {3592, 3550, 3300}
+		allUniversal = list(self.sat_frequencies)
+		if order == "astra":
+			self.sat_frequencies = [sat for sat in allUniversal if sat[self.SAT_TABLE_ORBPOS] in centralPositions]
 		elif order == "east":
-			self.sat_frequencies = self.universal_central_sats_frequencies[:] + self.universal_east_sats_frequencies[:]
-			if nr_of_ports == 1:
-				self.sat_frequencies += self.circular_sats_frequencies[:]
+			self.sat_frequencies = [sat for sat in allUniversal if sat[self.SAT_TABLE_ORBPOS] in eastPositions]
 		elif order == "west":
-			self.sat_frequencies = self.universal_west_sats_frequencies[:]
+			self.sat_frequencies = [sat for sat in allUniversal if sat[self.SAT_TABLE_ORBPOS] in westPositions]
 		elif order == "circular":
-			self.sat_frequencies = self.circular_sats_frequencies[:]
+			self.sat_frequencies = list(self.circular_sat_frequencies)
+		else:
+			self.sat_frequencies = allUniversal + (list(self.circular_sat_frequencies) if self.nr_of_ports == 1 else [])
 		if not self.openFrontend():
 			self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.session.nav.stopService()
@@ -419,8 +424,49 @@ class AutoDiseqc(ConfigListScreen, Screen):
 					return True
 		return False
 
+	def setMultiTypeValue(self, deliverySystem):
+		try:
+			multiType = config.Nims[self.feid].multiType
+		except Exception:
+			return
+		for value, description in multiType.choices.choices:
+			if description.startswith(deliverySystem):
+				multiType.setValue(value)
+				return
+
+	def prepareSatelliteFrontend(self):
+		slot = nimmanager.nim_slots[self.feid]
+		if not slot.canBeCompatible("DVB-S"):
+			return False
+		if not slot.isMultiType():
+			return True
+		self.setMultiTypeValue("DVB-S")
+		res_mgr = eDVBResourceManager.getInstance()
+		if res_mgr and slot.frontend_id is not None:
+			res_mgr.setFrontendType(slot.frontend_id, "dummy", False)
+			for FeType in slot.getMultiTypeList().values():
+				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[self.feid].dvbs.configMode.value == "nothing":
+					continue
+				if FeType in ("DVB-C", "DVB-C2") and config.Nims[self.feid].dvbc.configMode.value == "nothing":
+					continue
+				if FeType in ("DVB-T", "DVB-T2") and config.Nims[self.feid].dvbt.configMode.value == "nothing":
+					continue
+				if FeType == "ATSC" and config.Nims[self.feid].atsc.configMode.value == "nothing":
+					continue
+				res_mgr.setFrontendType(slot.frontend_id, FeType, True)
+		if not self.frontend:
+			print("[AutoDiseqc] no frontend for tuner type change")
+			return False
+		if not self.frontend.changeType(iDVBFrontend.feSatellite):
+			print("[AutoDiseqc] tunerTypeChange to 'DVB-S' failed")
+			return False
+		return True
+
 	def statusCallback(self):
 		if self.state == 0:
+			if not self.prepareSatelliteFrontend():
+				self.close(False)
+				return
 			if self.port_index == 0 and self.diseqc[0] == 3600:
 				self.clearNimEntries()
 				config.Nims[self.feid].dvbs.diseqcA.value = int(self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
@@ -440,7 +486,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 				config.Nims[self.feid].dvbs.diseqcMode.value = "diseqc_a_b"
 			else:
 				config.Nims[self.feid].dvbs.diseqcMode.value = "single"
-				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] == 360 and not self.found_sats:
+				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] in (360, 560) and not self.found_sats:
 					config.Nims[self.feid].dvbs.simpleDiSEqCSetCircularLNB.value = True
 					self.circular_setup = 1
 				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] == 560 and not self.found_sats:
@@ -448,8 +494,8 @@ class AutoDiseqc(ConfigListScreen, Screen):
 					self.circular_setup = 2
 
 			config.Nims[self.feid].dvbs.configMode.value = "simple"
-			config.Nims[self.feid].dvbs.simpleDiSEqCSetVoltageTone = self.simple_tone
-			config.Nims[self.feid].dvbs.simpleDiSEqCOnlyOnSatChange = self.simple_sat_change
+			config.Nims[self.feid].dvbs.simpleDiSEqCSetVoltageTone.value = self.simple_tone.value
+			config.Nims[self.feid].dvbs.simpleDiSEqCOnlyOnSatChange.value = self.simple_sat_change.value
 
 			self.saveAndReloadNimConfig()
 			self.state += 1
@@ -475,6 +521,9 @@ class AutoDiseqc(ConfigListScreen, Screen):
 					self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
 
 			InitNimManager(nimmanager)
+			if not self.prepareSatelliteFrontend():
+				self.close(False)
+				return
 
 			self.tuner = Tuner(self.frontend)
 			if self.raw_channel:

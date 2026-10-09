@@ -170,6 +170,16 @@ public:
 	enum t_toneburst_param { NO=0, A=1, B=2 };
 #ifndef SWIG
 	uint8_t m_committed_cmd;
+	int m_committed_cmd_horizontal = -1;
+	int m_committed_cmd_vertical = -1;
+	int getCommittedCommand(int polarization) const
+	{
+		// Select by transponder polarization, not by the configured supply voltage.
+		if (m_committed_cmd_horizontal >= AA && m_committed_cmd_horizontal <= BB
+			&& m_committed_cmd_vertical >= AA && m_committed_cmd_vertical <= BB)
+			return (polarization & 1) ? m_committed_cmd_vertical : m_committed_cmd_horizontal;
+		return m_committed_cmd;
+	}
 	t_diseqc_mode m_diseqc_mode;
 	t_toneburst_param m_toneburst_param;
 
@@ -279,7 +289,7 @@ public:
 
 #define MAX_EN50607_POSITIONS 		64
 #define MAX_FIXED_LNB_POSITIONS		64
-#define MAX_MOVABLE_LNBS 		6
+#define MAX_MOVABLE_LNBS 		7
 
 #define MAX_LNBNUM (MAX_FIXED_LNB_POSITIONS + MAX_MOVABLE_LNBS)
 
@@ -287,6 +297,7 @@ public:
 	int SatCR_positions;
 	int SatCR_idx;
 	int SatCR_format;
+	int SatCR_pin;
 	int SatCR_switch_reliable;
 	int SatCR_RetuneNoPatEntry;
 	int BootUpTime;
@@ -325,6 +336,7 @@ public:
 		UNICABLE_DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS,
 		UNICABLE_DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS,
 		UNICABLE_DELAY_AFTER_LAST_DISEQC_CMD,
+		SEC_DEBUG, // enable/disable eSecDebug output at runtime (0=off, 1=on), off by default
 		MAX_PARAMS
 	};
 private:
@@ -365,11 +377,13 @@ public:
 	RESULT setLNBThreshold(int threshold);
 	RESULT setLNBIncreasedVoltage(bool onoff);
 	RESULT setLNBPrio(int prio);
+	RESULT setLNBsatposdepends(int advanced_satposdepends);
 /* DiSEqC Specific Parameters */
 	RESULT setDiSEqCMode(int diseqcmode);
 	RESULT setToneburst(int toneburst);
 	RESULT setRepeats(int repeats);
 	RESULT setCommittedCommand(int command);
+	RESULT setCommittedCommandByPolarization(int horizontal, int vertical);
 	RESULT setUncommittedCommand(int command);
 	RESULT setCommandOrder(int order);
 	RESULT setFastDiSEqC(bool onoff);
@@ -390,10 +404,12 @@ public:
 	RESULT setLNBSatCRformat(int SatCR_format);	//DiSEqc or JESS (or ...)
 	RESULT setLNBSatCR(int SatCR_idx);
 	RESULT setLNBSatCRvco(int SatCRvco);
+	RESULT setLNBSatCRpin(int SatCR_pin);
 	RESULT setLNBSatCRpositions(int SatCR_positions);
 	RESULT getLNBSatCRformat();	//DiSEqc or JESS (or ...)
 	RESULT getLNBSatCR();
 	RESULT getLNBSatCRvco();
+	RESULT getLNBSatCRpin();
 	RESULT getLNBSatCRpositions();
 /* Satellite Specific Parameters */
 	RESULT addSatellite(int orbital_position);

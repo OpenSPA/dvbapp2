@@ -1,8 +1,9 @@
 /*
 
 Scroll Text Feature of eListBox
+Font Scale Feature of eListBox
 
-Copyright (c) 2025 jbleyel
+Copyright (c) 2025-2026 jbleyel
 
 This code may be used commercially. Attribution must be given to the original author.
 Licensed under GPLv2.
@@ -19,6 +20,17 @@ Licensed under GPLv2.
 #include <lib/base/esimpleconfig.h>
 #include <lib/gui/ewindowstyleskinned.h>
 #include <sstream>
+
+// Width used for unbounded text measurement (wider than any real screen)
+static constexpr int TEXT_MEASURE_MAX_WIDTH = 8000;
+
+// Maximum pixmap size in pixels for scroll cache (protects low-memory devices)
+static constexpr int MAX_SCROLL_PIXMAP_PIXELS = 1'000'000;
+
+// Extra buffer factor added to roll-mode pixmap width/height
+static constexpr float SCROLL_ROLL_EXTRA_FACTOR = 1.5f;
+
+RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
 
 using namespace std;
 
@@ -64,10 +76,7 @@ int iListboxContent::currentCursorSelectable() {
 
 DEFINE_REF(eListboxPythonStringContent);
 
-eListboxPythonStringContent::eListboxPythonStringContent()
-	: m_saved_cursor_line(0), scrollTimer(eTimer::create(eApp)), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_max_text_width(0), m_orientation(1) {
-	CONNECT(scrollTimer->timeout, eListboxPythonStringContent::updateScrollPosition);
-}
+eListboxPythonStringContent::eListboxPythonStringContent() {} // NOSONAR
 
 eListboxPythonStringContent::~eListboxPythonStringContent() {
 	Py_XDECREF(m_list);
@@ -88,6 +97,7 @@ int eListboxPythonStringContent::cursorMove(int count) {
 		cursorHome();
 	else if (m_cursor > size())
 		cursorEnd();
+
 	return 0;
 }
 
@@ -147,18 +157,23 @@ void eListboxPythonStringContent::setSize(const eSize& size) {
 }
 
 int eListboxPythonStringContent::getMaxItemTextWidth() {
+	// Return cached result if already calculated
+	if (m_max_text_width >= 0)
+		return m_max_text_width;
+
 	ePtr<gFont> fnt;
-	eListboxStyle* local_style = 0;
-	int m_text_offset = 1;
+	eListboxStyle* local_style = nullptr;
+	int text_offset = 1;
 	if (m_listbox)
 		local_style = m_listbox->getLocalStyle();
 	if (local_style) {
 		fnt = local_style->m_font;
-		m_text_offset = local_style->m_text_padding.x();
+		text_offset = local_style->m_text_padding.x();
 	}
 	if (!fnt)
 		fnt = new gFont("Regular", 20);
 
+    int max_width = 0;
 	for (int i = 0; i < size(); i++) {
 		ePyObject item = PyList_GET_ITEM(m_list, i);
 		if (PyTuple_Check(item)) {
@@ -166,19 +181,55 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
 		}
 		if (item != Py_None) {
 			const char* string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
-			eRect textRect = eRect(0, 0, 8000, 100);
+			eRect textRect = eRect(0, 0, TEXT_MEASURE_MAX_WIDTH, 100);
 
 			ePtr<eTextPara> para = new eTextPara(textRect);
 			para->setFont(fnt);
 			para->renderString(string);
 			int textWidth = para->getBoundBox().width();
-			if (textWidth > m_max_text_width) {
-				m_max_text_width = textWidth;
+			if (textWidth > max_width) {
+				max_width = textWidth;
 			}
 		}
 	}
+    // Store result; cache is invalidated by setList()
+    m_max_text_width = max_width + (text_offset * 2);
+	return m_max_text_width;
+}
 
-	return m_max_text_width + (m_text_offset * 2);
+static eSize calculateTextSize(gFont* font, const std::string& string, eSize targetSize, bool nowrap) {
+	// Calculate text size for a piece of text without creating an eLabel instance
+	// this avoids the side effect of "invalidate" being called on the parent container
+	// during the setup of the font and text on the eLabel
+	eTextPara para(eRect(0, 0, targetSize.width(), targetSize.height()));
+	para.setFont(font);
+	para.renderString(string.empty() ? 0 : string.c_str(), nowrap ? 0 : RS_WRAP);
+	return para.getBoundBox().size();
+}
+
+/* Returns a new scaled gFont if scaling is needed, null otherwise.
+   Caller must call painter.setFont(result) before and painter.setFont(fnt) after renderText. */
+static ePtr<gFont> makeFontScale(gFont* fnt, const char* text, int visibleW, const eListboxStyle* style)
+{
+	if (!fnt || !style || !style->m_fontScaleType || visibleW <= 0)
+		return nullptr;
+	eSize ts = calculateTextSize(fnt, text ? text : "", eSize(visibleW, 0x7fff), true);
+	if (ts.width() <= visibleW)
+		return nullptr;
+	int origSize = fnt->pointSize;
+	int newSize = origSize, newWidth = 0;
+	int sW = origSize * visibleW / ts.width();
+	// A negative m_fontScaleSize is relative to the original font size (i.e. the minimum floor is origSize + m_fontScaleSize)
+	int scaleFloor = style->m_fontScaleSize < 0 ? origSize + style->m_fontScaleSize : style->m_fontScaleSize;
+	if (style->m_fontScaleType == 1)
+		newSize = std::max(sW, scaleFloor);
+	else if (style->m_fontScaleType == 2)
+		newWidth = std::max(sW, scaleFloor);
+	else
+		return nullptr;
+	ePtr<gFont> scaled = new gFont(fnt->family, newSize);
+	scaled->pointWidth = newWidth;
+	return scaled;
 }
 
 void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
@@ -295,10 +346,10 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		else if (local_style && !local_style->m_background && cursorValid && (local_style->m_gradient_set[0] || radius))
 		{
 			if (local_style->m_gradient_set[0])
-			{
-				alphablendtext = local_style->m_gradient_set[0];
 				painter.setGradient(local_style->m_gradient_colors[0], local_style->m_gradient_direction[0], local_style->m_gradient_alphablend[0]);
-			}
+
+			alphablendtext = true;
+
 			if (radius)
 				painter.setRadius(radius, edges);
 			painter.drawRectangle(itemRect);
@@ -352,12 +403,11 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 		else if (selected && local_style && (local_style->m_gradient_set[1] || radius) && !local_style->m_selection)
 		{
-
 			if (local_style->m_gradient_set[1])
-			{
-				alphablendtext = local_style->m_gradient_set[1];
 				painter.setGradient(local_style->m_gradient_colors[1], local_style->m_gradient_direction[1], local_style->m_gradient_alphablend[1]);
-			}
+
+			alphablendtext = true;
+
 			if (radius)
 				painter.setRadius(radius, edges);
 			painter.drawRectangle(itemRect);
@@ -414,6 +464,9 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				else if (local_style->m_halign == eListboxStyle::alignBlock)
 					flags |= gPainter::RT_HALIGN_BLOCK;
 
+				if (local_style->is_set.wrap && local_style->m_wrap == 2)
+					flags |= gPainter::RT_ELLIPSIS;
+
 				int paddingx = local_style->m_text_padding.x();
 				int paddingy = local_style->m_text_padding.y();
 				int paddingw = local_style->m_text_padding.width();
@@ -430,7 +483,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 					m_scroll_index = m_cursor;
 					m_scroll_size = eSize(position.width(), position.height());
 					m_scroll_text_str = string;
-					updateTextSize(m_scroll_text_str, fnt, flags, border_color, border_size);
+					updateTextSize(m_scroll_text_str, fnt, flags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
 				}
 				if(m_scroll_text)
 				{
@@ -444,12 +497,19 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 						position.setX(position.x() - m_scroll_pos);
 					else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
 						position.setY(position.y() - m_scroll_pos);
-					painter.renderText(position, m_scroll_text_str.empty() ? string : m_scroll_text_str.c_str(), flags, border_color, border_size);
+					painter.renderText(position, m_scroll_text_str.empty() ? string : m_scroll_text_str, flags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
 					painter.clippop();
 					return;
 				}
 			}
-			painter.renderText(position, string, flags, border_color, border_size);
+			{
+				ePtr<gFont> scaledFnt = makeFontScale(fnt, string, position.width(), local_style);
+				if (scaledFnt)
+					painter.setFont(scaledFnt);
+				painter.renderText(position, string, flags, border_color, border_size);
+				if (scaledFnt)
+					painter.setFont(fnt);
+			}
 
 		}
 	}
@@ -466,6 +526,9 @@ void eListboxPythonStringContent::setList(ePyObject list) {
 		Py_INCREF(m_list);
 	}
 
+	// Invalidate cached text width so it is recalculated for the new list
+	m_max_text_width = -1;
+
 	if (m_listbox)
 		m_listbox->entryReset(false);
 
@@ -475,7 +538,9 @@ void eListboxPythonStringContent::setList(ePyObject list) {
 }
 
 void eListboxPythonStringContent::updateEntry(int index, ePyObject entry) {
-	if (index < size()) {
+	if (index >= 0 && index < size()) {
+		Py_XDECREF(PyList_GET_ITEM(m_list, index));
+		Py_INCREF(entry);
 		PyList_SET_ITEM(m_list, index, entry);
 		if (m_listbox)
 			m_listbox->entryChanged(index);
@@ -525,24 +590,16 @@ void eListboxPythonStringContent::invalidate() {
 	}
 }
 
-static eSize calculateTextSize(gFont* font, const std::string& string, eSize targetSize, bool nowrap) {
-	// Calculate text size for a piece of text without creating an eLabel instance
-	// this avoids the side effect of "invalidate" being called on the parent container
-	// during the setup of the font and text on the eLabel
-	eTextPara para(eRect(0, 0, targetSize.width(), targetSize.height()));
-	para.setFont(font);
-	para.renderString(string.empty() ? 0 : string.c_str(), nowrap ? 0 : RS_WRAP);
-	return para.getBoundBox().size();
-}
-
 void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size) {
 	if (m_scroll_text)
 		stopScroll();
 
 	if (m_listbox) {
-		int scroll_text_direction = m_listbox->m_scroll_config.direction;
+		const int scroll_text_direction = m_listbox->m_scroll_config.direction;
 
 		if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight) {
+			if (m_scroll_size.width() <= 0)
+				return;
 			m_text_size = calculateTextSize(font, text, m_scroll_size, true); // nowrap
 
 
@@ -551,7 +608,7 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 				m_scroll_text = true;
 
 				if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll)
-					m_text_size.setWidth(m_text_size.width() + m_scroll_size.width() * 1.5);
+					m_text_size.setWidth(m_text_size.width() + static_cast<int>(m_scroll_size.width() * SCROLL_ROLL_EXTRA_FACTOR));
 
 				/*
 				if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll && scroll_text_direction == eScrollConfig::scrollLeft)
@@ -565,15 +622,22 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 				*/
 			}
 		} else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom) {
+			if (m_scroll_size.height() <= 0)
+				return;
 			m_text_size = calculateTextSize(font, text, m_scroll_size, false); // allow wrap
 			if (m_text_size.height() > m_scroll_size.height()) {
 				m_text_size.setHeight(m_text_size.height() + font->pointSize / 10); // avoid issues with rounding
 				m_scroll_text = true;
 				if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll)
-					m_text_size.setHeight(m_text_size.height() + m_scroll_size.height() * 1.5);
+					m_text_size.setHeight(m_text_size.height() + static_cast<int>(m_scroll_size.height() * SCROLL_ROLL_EXTRA_FACTOR));
 			}
 		}
 		if (m_scroll_text) {
+
+			if (!scrollTimer) {
+				scrollTimer = eTimer::create(eApp);
+				CONNECT(scrollTimer->timeout, eListboxPythonStringContent::updateScrollPosition);
+			}
 
 			int visibleW = m_scroll_size.width();
 			int visibleH = m_scroll_size.height();
@@ -585,7 +649,7 @@ void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font,
 
 			if (m_listbox->m_scroll_config.cached) {
 				// limit 1MB pixmap size
-				if ((m_text_size.width() * m_text_size.height()) > 1000000) {
+				if ((m_text_size.width() * m_text_size.height()) > MAX_SCROLL_PIXMAP_PIXELS) {
 					m_listbox->m_scroll_config.cached = false;
 					if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll)
 						m_listbox->m_scroll_config.mode = eScrollConfig::scrollModeNormal;
@@ -602,6 +666,21 @@ void eListboxPythonStringContent::createScrollPixmap(std::string& text, gFont* f
 
 	int w = std::max(m_text_size.width(), m_scroll_size.width());
 	int h = std::max(m_text_size.height(), m_scroll_size.height());
+
+	if (w <= 0 || h <= 0)
+		return;
+
+	// Guard against excessively large pixmap allocations
+	if (w * h > MAX_SCROLL_PIXMAP_PIXELS)
+	{
+		eWarning("[eListboxPythonStringContent] createScrollPixmap: "
+					"pixmap size %dx%d exceeds limit (%d px), skipping cache",
+					w, h, MAX_SCROLL_PIXMAP_PIXELS);
+		m_listbox->m_scroll_config.cached = false;
+		if (m_listbox->m_scroll_config.mode == eScrollConfig::scrollModeRoll)
+			m_listbox->m_scroll_config.mode = eScrollConfig::scrollModeNormal;
+		return;
+	}
 
 	eSize s = eSize(w, h);
 
@@ -664,26 +743,27 @@ void eListboxPythonStringContent::stopScroll() {
 	m_scroll_swap = false;
 }
 
+// Returns the maximum scroll position for the current direction.
+static int computeMaxScroll(int direction, const eSize& textSize, const eSize& visibleSize)
+{
+	if (direction == eScrollConfig::scrollLeft || direction == eScrollConfig::scrollRight)
+		return std::max(0, textSize.width() - visibleSize.width());
+	if (direction == eScrollConfig::scrollTop || direction == eScrollConfig::scrollBottom)
+		return std::max(0, textSize.height() - visibleSize.height());
+	return 0;
+}
+
 void eListboxPythonStringContent::updateScrollPosition() {
 	if (m_listbox) {
-		int scroll_text_direction = m_listbox->m_scroll_config.direction;
-		int repeat = m_listbox->m_scroll_config.repeat;
-		int end_delay = m_listbox->m_scroll_config.endDelay;
-		int scroll_mode = m_listbox->m_scroll_config.mode;
+		const int scroll_text_direction = m_listbox->m_scroll_config.direction;
+		const int repeat = m_listbox->m_scroll_config.repeat;
+		const int end_delay = m_listbox->m_scroll_config.endDelay;
+		const int scroll_mode = m_listbox->m_scroll_config.mode;
 
 		if (!m_scroll_text)
 			return;
 
-		// calculate visible area
-		int visibleW = m_scroll_size.width();
-		int visibleH = m_scroll_size.height();
-
-		// compute max_scroll depending on direction
-		int max_scroll = 0;
-		if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight)
-			max_scroll = std::max(0, m_text_size.width() - visibleW);
-		else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
-			max_scroll = std::max(0, m_text_size.height() - visibleH);
+		const int max_scroll = computeMaxScroll(scroll_text_direction, m_text_size, m_scroll_size);
 
 		// determine step sign
 		int step = m_listbox->m_scroll_config.stepSize;
@@ -770,8 +850,6 @@ void eListboxPythonStringContent::updateScrollPosition() {
 
 //////////////////////////////////////
 
-RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
-
 void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
 	ePtr<gFont> fnt;
@@ -851,10 +929,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		else if (local_style && !local_style->m_background && cursorValid && (local_style->m_gradient_set[0] || radius))
 		{
 			if (local_style->m_gradient_set[0])
-			{
-				alphablendtext = local_style->m_gradient_set[0];
 				painter.setGradient(local_style->m_gradient_colors[0], local_style->m_gradient_direction[0], local_style->m_gradient_alphablend[0]);
-			}
+
+			alphablendtext = true;
+
 			if (radius)
 				painter.setRadius(radius, edges);
 			painter.drawRectangle(itemRect);
@@ -898,10 +976,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		else if (selected && (local_style->m_gradient_set[1] || radius) && !local_style->m_selection)
 		{
 			if (local_style->m_gradient_set[1])
-			{
-				alphablendtext = local_style->m_gradient_set[1];
 				painter.setGradient(local_style->m_gradient_colors[1], local_style->m_gradient_direction[1], local_style->m_gradient_alphablend[1]);
-			}
+
+			alphablendtext = true;
+
 			if (radius)
 				painter.setRadius(radius, edges);
 			painter.drawRectangle(itemRect);
@@ -962,11 +1040,16 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 				/* CallObject will call __call__ which should return the value tuple */
 				value = PyObject_CallObject(value, args);
+				Py_DECREF(args);
 
 				if (PyErr_Occurred())
+				{
 					PyErr_Print();
+					// Abort rendering this item; value may be null or invalid
+					painter.clippop();
+					return;
+				}
 
-				Py_DECREF(args);
 				/* the PyInt was stolen. */
 				painter.setFont(fnt);
 			}
@@ -1017,15 +1100,82 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			}
 
 
-			eRect labelrect(ePoint(offset.x() + leftOffset + indent, offset.y()), m_itemsize);
-			painter.renderText(labelrect, string, alphablendflag | gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
+			/* Pre-measure value text width for dynamic label/value split.
+			   Value is measured first so the label knows how much space it has. */
+			int scroll_text_direction = (m_listbox) ? m_listbox->m_scroll_config.direction : 0;
+			int valueAreaWidth = 0;
+			if (!value_alignment_left && value && PyTuple_Check(value))
+			{
+				ePyObject preType = PyTuple_GET_ITEM(value, 0);
+				const char *preAtype = (preType && PyUnicode_Check(preType)) ? PyUnicode_AsUTF8(preType) : nullptr;
+				if (preAtype && (!strcmp(preAtype, "text") || !strcmp(preAtype, "mtext")))
+				{
+					ePyObject preVal = PyTuple_GET_ITEM(value, 1);
+					const char *valStr = (preVal && PyUnicode_Check(preVal)) ? PyUnicode_AsUTF8(preVal) : "";
+					if (*valStr)
+					{
+						ePtr<eTextPara> para = new eTextPara(eRect(0, 0, m_itemsize.width(), m_itemsize.height()));
+						para->setFont(fnt2);
+						para->renderString(valStr, 0);
+						valueAreaWidth = para->getBoundBox().width() + leftOffset;
+					}
+				}
+			}
+
+			/* Label area: left side of item, capped to leave room for value. */
+			int labelMaxWidth = m_itemsize.width() - leftOffset - indent - valueAreaWidth;
+			if (labelMaxWidth < 0) labelMaxWidth = 0;
+			eRect labelrect(ePoint(offset.x() + leftOffset + indent, offset.y()),
+			                eSize(labelMaxWidth > 0 ? labelMaxWidth : m_itemsize.width(), m_itemsize.height()));
+
+			/* Render label — scroll it when selected and it doesn't fit. */
+			int labelflags = alphablendflag | gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER;
+			if (local_style && local_style->is_set.wrap && local_style->m_wrap == 2)
+				labelflags |= gPainter::RT_ELLIPSIS;
+
+			if (selected && scroll_text_direction && labelMaxWidth > 0)
+			{
+				if (m_scroll_index != m_cursor)
+				{
+					m_listbox->m_scroll_rect = labelrect;
+					m_scroll_index = m_cursor;
+					m_scroll_size = eSize(labelrect.width(), labelrect.height());
+					m_scroll_text_str = string;
+					updateTextSize(m_scroll_text_str, fnt ? fnt : fnt3, labelflags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
+				}
+				if (m_scroll_text)
+				{
+					if (!scrollTimer->isActive())
+						scrollTimer->start(m_listbox->m_scroll_config.startDelay);
+					eRect scrolledLabel = labelrect;
+					if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight)
+						scrolledLabel.setX(scrolledLabel.x() - m_scroll_pos);
+					else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
+						scrolledLabel.setY(scrolledLabel.y() - m_scroll_pos);
+					painter.renderText(scrolledLabel, m_scroll_text_str, labelflags & ~gPainter::RT_ELLIPSIS, border_color, border_size);
+				}
+				else
+				{
+					ePtr<gFont> scaledFnt = makeFontScale(fnt, string, labelrect.width(), local_style);
+					if (scaledFnt) painter.setFont(scaledFnt);
+					painter.renderText(labelrect, string, labelflags, border_color, border_size);
+					if (scaledFnt) painter.setFont(fnt);
+				}
+			}
+			else
+			{
+				ePtr<gFont> scaledFnt = makeFontScale(fnt, string, labelrect.width(), local_style);
+				if (scaledFnt) painter.setFont(scaledFnt);
+				painter.renderText(labelrect, string, labelflags, border_color, border_size);
+				if (scaledFnt) painter.setFont(fnt);
+			}
 
 			/*  check if this is really a tuple */
 			if (value && PyTuple_Check(value))
 			{
 				/* convert type to string */
 				ePyObject type = PyTuple_GET_ITEM(value, 0);
-				const char *atype = (type && PyUnicode_Check(type)) ? PyUnicode_AsUTF8(type) : 0;
+				const char *atype = (type && PyUnicode_Check(type)) ? PyUnicode_AsUTF8(type) : nullptr;
 
 				if (atype)
 				{
@@ -1063,20 +1213,12 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 								/* plist is 0 or borrowed */
 							}
 						}
-						/* find the width of the label, to prevent the value overwriting it. */
-						ePoint valueoffset = offset;
-						eSize valuesize = m_itemsize;
-						int labelwidth = 0;
-						if (*string)
-						{
-							ePtr<eTextPara> para = new eTextPara(labelrect);
-							para->setFont(fnt);
-							para->renderString(string, 0);
-							labelwidth = para->getBoundBox().width() + leftOffset;
-						}
-						valueoffset.setX(valueoffset.x() + leftOffset + labelwidth);
-						valuesize.setWidth(valuesize.width() - leftOffset - labelwidth - leftOffset);
-						painter.renderText(eRect(valueoffset, valuesize), text, alphablendflag | flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos, &m_text_offset[cursor]);
+
+						/* Value: render in full item width; flags (RT_HALIGN_LEFT/RIGHT) control alignment.
+						   Label is already clipped to labelMaxWidth so there is no overlap. */
+						eRect valueRect(ePoint(offset.x() + leftOffset, offset.y()),
+						                eSize(m_itemsize.width() - 2 * leftOffset, m_itemsize.height()));
+						painter.renderText(valueRect, text, alphablendflag | flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos, &m_text_offset[cursor]);
 						/* pvalue is borrowed */
 					}
 					else if (!strcmp(atype, "slider"))
@@ -1253,9 +1395,6 @@ int eListboxPythonConfigContent::getIndentSize()
 
 //////////////////////////////////////
 
-/* todo: make a real infrastructure here! */
-RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
-
 eListboxPythonMultiContent::eListboxPythonMultiContent()
 	: m_clip(gRegion::invalidRegion()), m_old_clip(gRegion::invalidRegion())
 {
@@ -1266,6 +1405,7 @@ eListboxPythonMultiContent::~eListboxPythonMultiContent()
 	Py_XDECREF(m_buildFunc);
 	Py_XDECREF(m_selectableFunc);
 	Py_XDECREF(m_template);
+	Py_XDECREF(m_templatesList);
 }
 
 void eListboxPythonMultiContent::setSelectionClip(eRect &rect, bool update)
@@ -1449,18 +1589,23 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 
 int eListboxPythonMultiContent::getMaxItemTextWidth()
 {
+	// Return cached result if already calculated
+	if (m_max_text_width >= 0)
+		return m_max_text_width;
+
 	ePtr<gFont> fnt;
-	eListboxStyle *local_style = 0;
-	int m_text_offset = 1;
+	eListboxStyle *local_style = nullptr;
+	int text_offset = 1;
 	if (m_listbox)
 		local_style = m_listbox->getLocalStyle();
 	if (local_style) {
 		fnt = local_style->m_font;
-		m_text_offset = local_style->m_text_padding.x();
+		text_offset = local_style->m_text_padding.x();
 	}
 	if (!fnt) fnt = new gFont("Regular", 20);
 
 	ePyObject items, buildfunc_ret;
+    int max_width = 0;
 	if (m_list) {
 		for (int k = 0; k < size(); k++)
 		{
@@ -1485,10 +1630,10 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 					we will later detect that "data" is present, and refer to that, instead
 					of the immediate value. */
 			int start = 1;
-			if (m_template)
+			if (ePyObject tmplate = m_templates.empty() ? m_template : selectTemplate(items); tmplate)
 			{
 				data = items;
-				items = m_template;
+				items = tmplate;
 				start = 0;
 			}
 
@@ -1537,14 +1682,14 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 							continue;
 
 						const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
-						eRect textRect = eRect(0,0, 9999, 100);
+						eRect textRect = eRect(0,0, TEXT_MEASURE_MAX_WIDTH, 100);
 
 						ePtr<eTextPara> para = new eTextPara(textRect);
 						para->setFont(fnt);
 						para->renderString(string);
 						int textWidth = para->getBoundBox().width() + PyLong_AsLong(px);
-						if (textWidth > m_max_text_width) {
-							m_max_text_width = textWidth;
+						if (textWidth > max_width) {
+							max_width = textWidth;
 						}
 						break;
 					}
@@ -1555,7 +1700,9 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 
 	}
 
-	return m_max_text_width + (m_text_offset*2);
+	// Store result; cache is invalidated by setList()
+	m_max_text_width = max_width + (text_offset * 2);
+	return m_max_text_width;
 }
 
 
@@ -1573,6 +1720,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	bool marked = false;
 	gRGB defaultForeColor;
 	gRGB defaultBackColor;
+	int rightShrink = 0;
 
 	if (sel_clip.valid())
 		sel_clip.moveBy(offset);
@@ -1586,6 +1734,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		orientation = m_listbox->getOrientation();
 		itemZoomed = local_style->m_selection_zoom > 1.0;
 		itemZoomContent = itemZoomed && local_style->is_set.zoom_content;
+		if (local_style->is_set.shrink)
+			rightShrink = m_listbox->getScrollbarListOffset();
 	}
 
 	ePoint offs = offset;
@@ -1708,7 +1858,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			goto error_out;
 		}
 
-		if (!m_template || m_template == Py_None)
+		bool templated = (m_template && m_template != Py_None) || !m_templates.empty();
+		if (!templated)
 		{
 			if (!PyList_Check(items))
 			{
@@ -1731,10 +1882,16 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			we will later detect that "data" is present, and refer to that, instead
 			of the immediate value. */
 		int start = 1;
-		if (m_template && m_template != Py_None)
+		ePyObject tmplate = m_templates.empty() ? m_template : selectTemplate(items);
+		if (templated && !tmplate)
+		{
+			eDebug("[eListboxPythonMultiContent] could not select a template for list entry %d via data[0]", cursor);
+			goto error_out;
+		}
+		if (tmplate)
 		{
 			data = items;
-			items = m_template;
+			items = tmplate;
 			start = 0;
 		}
 
@@ -1819,6 +1976,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int cornerRadius = pCornerRadius ? PyLong_AsLong(pCornerRadius) : 0;
 				int cornerEdges = pCornerEdges ? PyLong_AsLong(pCornerEdges) : 15;
+
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
 
 				if (selected && itemZoomContent)
 				{
@@ -1997,6 +2157,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						width -= m_listbox->getScrollbarListOffset();
 				}
 
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
+
 				int flags = PyLong_AsLong(pflags);
 				int fnt = PyLong_AsLong(pfnt);
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 0;
@@ -2098,7 +2261,45 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				eRect textRect = eRect(rect.x() + paddingLeft, rect.y() + paddingTop, rect.width() - paddingLeft - paddingRight, rect.height() - paddingTop - paddingBottom);
 
-				if (pTextBorderColor && btwidth)
+				/* scrollText: if RT_SCROLL is set and this is the selected item,
+				   scroll this text element. Only the first RT_SCROLL element per
+				   row scrolls; subsequent ones are rendered normally. */
+				int scroll_text_direction = (m_listbox) ? m_listbox->m_scroll_config.direction : 0;
+				bool do_scroll = selected && scroll_text_direction && (flags & gPainter::RT_SCROLL);
+				flags &= ~gPainter::RT_SCROLL; // strip flag before passing to renderText
+
+				if (do_scroll && m_scroll_index != m_cursor)
+				{
+					// first time we see this cursor position — set up scroll
+					m_listbox->m_scroll_rect = textRect;
+					m_scroll_index = m_cursor;
+					m_scroll_size = eSize(textRect.width(), textRect.height());
+					m_scroll_text_str = string;
+					gRGB bcolor = (pTextBorderColor && btwidth) ? gRGB(PyLong_AsUnsignedLongMask(pTextBorderColor)) : border_color;
+					int bsize = (pTextBorderColor && btwidth) ? btwidth : border_size;
+					updateTextSize(m_scroll_text_str, m_fonts[fnt], flags & ~gPainter::RT_ELLIPSIS, bcolor, bsize);
+					/* Discard any cached pixmap: createScrollPixmap uses listbox-style colors,
+					   not the per-item pbackColorSelected, so blitting it would show the wrong
+					   background. Force a full-item repaint on each scroll tick instead. */
+					m_listbox->m_textPixmap = nullptr;
+				}
+
+				if (do_scroll && m_scroll_text)
+				{
+					if (!scrollTimer->isActive())
+						scrollTimer->start(m_listbox->m_scroll_config.startDelay);
+					eRect scrollRect = textRect;
+					if (scroll_text_direction == eScrollConfig::scrollLeft || scroll_text_direction == eScrollConfig::scrollRight)
+						scrollRect.setX(scrollRect.x() - m_scroll_pos);
+					else if (scroll_text_direction == eScrollConfig::scrollTop || scroll_text_direction == eScrollConfig::scrollBottom)
+						scrollRect.setY(scrollRect.y() - m_scroll_pos);
+					gRGB bcolor = (pTextBorderColor && btwidth) ? gRGB(PyLong_AsUnsignedLongMask(pTextBorderColor)) : border_color;
+					int bsize = (pTextBorderColor && btwidth) ? btwidth : border_size;
+					painter.clip(textRect);
+					painter.renderText(scrollRect, m_scroll_text_str, flags & ~gPainter::RT_ELLIPSIS, bcolor, bsize);
+					painter.clippop();
+				}
+				else if (pTextBorderColor && btwidth)
 				{
 					uint32_t textBColor = PyLong_AsUnsignedLongMask(pTextBorderColor);
 					painter.renderText(textRect, string, flags, gRGB(textBColor), btwidth);
@@ -2264,6 +2465,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					continue;
 
 				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 2;
+
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
 
 				if (selected && itemZoomContent)
 				{
@@ -2506,6 +2710,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 				int direction = PyLong_AsLong(pdirection);
 
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
+
 				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
@@ -2643,6 +2850,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					ePyObject pPadding = PyTuple_GET_ITEM(item, 14);
 					paddingBottom = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
 				}
+
+				if (rightShrink > 0 && (x + width) > itemRect.width())
+					width -= rightShrink;
 
 				if (selected && itemZoomContent)
 				{
@@ -2797,4 +3007,51 @@ void eListboxPythonMultiContent::setTemplate(ePyObject tmplate)
 	Py_XDECREF(m_template);
 	m_template = tmplate;
 	Py_XINCREF(m_template);
+}
+
+/* templates: a list of templates (each one a list of (TYPE, ...) tuples,
+   same format setTemplate() has always taken). When set, every list
+   entry's data[0] (an int) selects which of these templates renders it;
+   data[1], data[2], ... are then the entry's actual data fields. Does not
+   affect setTemplate()/m_template at all - the two are independent, and
+   m_templates (if non-empty) takes priority in paint()/getMaxItemTextWidth(). */
+void eListboxPythonMultiContent::setTemplates(ePyObject templates)
+{
+	Py_XDECREF(m_templatesList);
+	m_templatesList = templates;
+	Py_XINCREF(m_templatesList);
+
+	m_templates.clear();
+	if (m_templatesList && m_templatesList != Py_None)
+	{
+		Py_ssize_t size = PyList_Size(m_templatesList);
+		m_templates.reserve(size);
+		for (Py_ssize_t i = 0; i < size; ++i)
+			m_templates.push_back(PyList_GET_ITEM(m_templatesList, i)); // borrowed, kept alive via m_templatesList
+	}
+}
+
+ePyObject eListboxPythonMultiContent::selectTemplate(ePyObject items)
+{
+	if (!PyTuple_Check(items) || !PyTuple_Size(items))
+	{
+		eDebug("[eListboxPythonMultiContent] entry is not a (non-empty) tuple, can't select a template via data[0]");
+		return ePyObject();
+	}
+
+	ePyObject pIndex = PyTuple_GET_ITEM(items, 0);
+	if (!PyLong_Check(pIndex))
+	{
+		eDebug("[eListboxPythonMultiContent] data[0] is not an int, can't select a template");
+		return ePyObject();
+	}
+
+	long index = PyLong_AsLong(pIndex);
+	if (index < 0 || static_cast<size_t>(index) >= m_templates.size())
+	{
+		eDebug("[eListboxPythonMultiContent] template index %ld in data[0] is out of range", index);
+		return ePyObject();
+	}
+
+	return m_templates[index];
 }

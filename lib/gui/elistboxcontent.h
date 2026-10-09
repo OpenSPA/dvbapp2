@@ -3,6 +3,8 @@
 
 #include <lib/python/python.h>
 #include <lib/gui/elistbox.h>
+#include <unordered_map>
+#include <vector>
 
 class eListboxPythonStringContent : public virtual iListboxContent
 {
@@ -22,7 +24,7 @@ public:
 	void invalidateEntry(int index);
 	void invalidate();
 	eSize getItemSize() { return m_itemsize; }
-	int getMaxItemTextWidth();
+	int getMaxItemTextWidth() override;
 	uint8_t getOrientation() { return m_orientation; }
 	
 #ifndef SWIG
@@ -51,49 +53,53 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 	int getItemWidth() { return m_itemwidth; }
-	int getScollPos() { return m_scroll_pos; }
+	int getScrollPos() override { return m_scroll_pos; } // Returns the current scroll position in pixels.
 
 private:
-	int m_saved_cursor_line;
+	int m_saved_cursor_line = 0;
 	ePtr<gFont> m_font_zoomed;
 	// scroll
+
+protected:
+	int m_cursor = 0;
+	int m_saved_cursor = 0;
+	ePyObject m_list;
+	eSize m_itemsize;
+	int m_itemheight = 25;
+	int m_itemwidth = 25;
+	int m_max_text_width = -1; // -1 means not yet calculated
+	uint8_t m_orientation = 1;
+
+	// scroll
+	std::string m_scroll_text_str;
+	int m_scroll_index = -1;
+	ePtr<eTimer> scrollTimer;
+	eSize m_text_size;
+	eSize m_scroll_size;
+
 	int m_scroll_pos = 0;
 	bool m_scroll_text = false;
 	bool m_scroll_started = false;
 	int m_repeat_count = 0;
 	bool m_scroll_swap = false;
 	bool m_end_delay_active = false;
-	eSize m_text_size;
-	eSize m_scroll_size;
 	void updateScrollPosition();
 	void stopScroll();
 	void updateTextSize(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size);
-	std::string m_scroll_text_str;
-	int m_scroll_index = -1;
 	void createScrollPixmap(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size);
-	ePtr<eTimer> scrollTimer;
 
-protected:
-	int m_cursor;
-	int m_saved_cursor;
-	ePyObject m_list;
-	eSize m_itemsize;
-	int m_itemheight;
-	int m_itemwidth;
-	int m_max_text_width;
-	uint8_t m_orientation;
 #endif
 };
 
 class eListboxPythonConfigContent : public eListboxPythonStringContent
 {
 public:
-	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
+	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected) override;
 	void setSeperation(int sep) { m_seperation = sep; }
 	int getEntryLeftOffset();
 	int getHeaderLeftOffset();
 	int getIndentSize();
-	int currentCursorSelectable();
+	int currentCursorSelectable() override;
 	void setSlider(int height, int space)
 	{
 		m_slider_height = height;
@@ -102,7 +108,9 @@ public:
 	eSize calculateEntryTextSize(const std::string &string, bool headerFont = true);
 
 private:
-	int m_seperation, m_slider_height, m_slider_space;
+	int m_seperation = 0;   // pixel separation between label and value
+	int m_slider_height = 10; // height of the filled slider bar in pixels
+	int m_slider_space = 2;   // spacing between slider bar and its frame in pixels
 	std::map<int, int> m_text_offset;
 };
 
@@ -111,6 +119,8 @@ class eListboxPythonMultiContent : public eListboxPythonStringContent
 	ePyObject m_buildFunc;
 	ePyObject m_selectableFunc;
 	ePyObject m_template;
+	ePyObject m_templatesList;
+	std::vector<ePyObject> m_templates;
 	eRect m_selection_clip;
 	gRegion m_clip, m_old_clip;
 
@@ -129,8 +139,8 @@ public:
 		TYPE_PIXMAP_ALPHABLEND,
 		TYPE_PROGRESS_PIXMAP
 	};
-	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
-	int currentCursorSelectable();
+	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected) override;
+	int currentCursorSelectable() override;
 	void setList(SWIG_PYOBJECT(ePyObject) list);
 	void setFont(int fnt, gFont *font);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
@@ -140,16 +150,18 @@ public:
 	void resetClip();
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
-	int getMaxItemTextWidth();
+	void setTemplates(SWIG_PYOBJECT(ePyObject) templates);
+	int getMaxItemTextWidth() override;
 protected:
-	virtual void setBuildArgs(int selected) {}
-	virtual bool getIsMarked(int selected) { return false; }
+	virtual void setBuildArgs(int selected) {} // intended extension point for subclasses // NOSONAR
+	virtual bool getIsMarked(int selected) { return false; } // intended extension point for subclasses
 	bool m_servicelist = false;
 	ePyObject m_pArgs;
 
 private:
-	std::map<int, ePtr<gFont>> m_fonts;
-	std::map<int, ePtr<gFont>> m_fonts_zoomed;
+	std::unordered_map<int, ePtr<gFont>> m_fonts;
+	std::unordered_map<int, ePtr<gFont>> m_fonts_zoomed;
+	ePyObject selectTemplate(ePyObject items);
 };
 
 #ifdef SWIG
@@ -165,6 +177,7 @@ private:
 #define RT_ELLIPSIS 128
 #define RT_BLEND 256
 #define RT_UNDERLINE 512
+#define RT_SCROLL 1024
 #define BT_ALPHATEST 1
 #define BT_ALPHABLEND 2
 #define BT_SCALE 4

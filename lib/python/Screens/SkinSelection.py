@@ -1,12 +1,16 @@
 from os import listdir
 from os.path import exists, isdir, isfile, join, split
 
-from enigma import ePicLoad
+from enigma import addFont, ePicLoad
 
 from Components.config import ConfigSelection, NoSave, config
+from Components.PluginComponent import plugins
 from Components.Pixmap import Pixmap
+from Plugins.Plugin import PluginDescriptor
+from Screens.Processing import Processing
 from Screens.Setup import Setup
-from Tools.Directories import fileReadXML, SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
+from Tools.Directories import fileReadXML, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, resolveFilename
+from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 
 
 class SkinSelection(Setup):
@@ -87,24 +91,52 @@ class SkinSelection(Setup):
 		self.loadPreview()
 
 	def keySave(self):
-		if config.skin.guiSkin.value != config.skin.primary_skin.value:
-			if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml":
-				try:
-					from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
-					ActivateSkinSettings().RefreshIcons(True)  # Restore default icons if old skin is Metrix.
-				except Exception:
-					pass
+		guiSkinChanged = config.skin.guiSkin.value != config.skin.primary_skin.value
+		if guiSkinChanged:
 			config.skin.primary_skin.value = config.skin.guiSkin.value
 			config.skin.primary_skin.save()
 		if config.skin.lcdSkin.value != config.skin.display_skin.value:
 			config.skin.display_skin.value = config.skin.lcdSkin.value
 			config.skin.display_skin.save()
 
-		if config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged():
-			from Screens.ChannelSelection import ChannelSelectionSetup
+		from Screens.ChannelSelection import ChannelSelection, ChannelSelectionSetup
+
+		if not guiSkinChanged and (config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged()):
 			ChannelSelectionSetup.updateSettings(self.session)
 
+		if guiSkinChanged and config.usage.fastSkinReload.value:
+			Processing.instance.setDescription(_("Loading skin..."))
+			Processing.instance.showProgress(endless=True)
+			self.saveAll()
+			open("/etc/.restore_skins", "w").close()
+			from skin import reloadSkins
+			reloadSkins()
+			skinChangePlugins = plugins.getPlugins(PluginDescriptor.WHERE_SKINCHANGE)
+			for plugin in skinChangePlugins:
+				plugin(session=self.session)
+			exclude = {id(x) for x in self.summaries}
+			for dialog, _shown in self.session.dialog_stack[1:]:
+				exclude.add(id(dialog))
+				exclude.update(id(x) for x in dialog.summaries)
+			for dialog in self.session.allDialogs:
+				if isinstance(dialog, ChannelSelection):
+					exclude.add(id(dialog))
+			self.session.reloadDialogs(exclude=exclude)
+			ChannelSelectionSetup.updateSettings(self.session, force=True)
+			Processing.instance.hideProgress()
+			self.close(True)
+			return
+		elif not guiSkinChanged and config.skin.FallbackFont.isChanged():
+			fallbackFont = resolveFilename(SCOPE_FONTS, config.skin.FallbackFont.value)
+			if isfile(fallbackFont):
+				addFont(fallbackFont, "Fallback", 100, -1, 0)
 		Setup.keySave(self)
+
+	def restartGUICallback(self, answer):
+		if answer:
+			self.session.open(TryQuitMainloop, QUIT_RESTART)
+		else:
+			self.close(True)
 
 	def loadPreview(self):
 		def loadImage(root):

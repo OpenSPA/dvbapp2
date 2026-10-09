@@ -121,12 +121,16 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			}
 
 			serviceEvent(eventTuned);
+			if (eDVBCIInterfaces::getInstance())
+				eDVBCIInterfaces::getInstance()->retryReleasedRouting();
 		}
 	} else if ((m_last_channel_state != iDVBChannel::state_failed) &&
 			(state == iDVBChannel::state_failed))
 	{
 		eDebug("[eDVBServicePMTHandler] tune failed.");
 		serviceEvent(eventTuneFailed);
+		if (eDVBCIInterfaces::getInstance())
+			eDVBCIInterfaces::getInstance()->retryReleasedRouting();
 	}
 }
 
@@ -145,6 +149,9 @@ void eDVBServicePMTHandler::channelEvent(iDVBChannel *channel, int event)
 		break;
 	case iDVBChannel::evtStopped:
 		serviceEvent(eventStopped);
+		break;
+	case iDVBChannel::evtSignalLost:
+		serviceEvent(eventSignalLost);
 		break;
 	default:
 		break;
@@ -229,6 +236,24 @@ void eDVBServicePMTHandler::sendEventNoPatEntry()
 		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
 		frontend->checkRetune();
 	}
+}
+
+bool eDVBServicePMTHandler::hasSharedPmtPid(int pmtPid)
+{
+	ePtr<eTable<ProgramAssociationSection>> pat;
+	if (pmtPid <= 0 || m_PAT.getCurrent(pat))
+		return false;
+	bool own = false, other = false;
+	for (const auto &section : pat->getSections())
+		for (const auto &program : *section->getPrograms())
+			if (program->getProgramNumber() && program->getProgramMapPid() == pmtPid)
+			{
+				if (program->getProgramNumber() == m_reference.getServiceID().get())
+					own = true;
+				else
+					other = true;
+			}
+	return own && other;
 }
 
 void eDVBServicePMTHandler::PATready(int)
@@ -525,6 +550,16 @@ void eDVBServicePMTHandler::AITready(int error)
 	}
 	/* for now, do not keep listening for table updates */
 	m_AIT.stop();
+}
+
+
+void eDVBServicePMTHandler::getHbbTVApplicationInfos(std::vector<HbbTVApplicationInfo> &applications) const
+{
+	applications.clear();
+	for (HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin(); infoiter != m_HbbTVApplications.end(); ++infoiter)
+	{
+		applications.push_back(**infoiter);
+	}
 }
 
 void eDVBServicePMTHandler::OCready(int error)
@@ -869,7 +904,13 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			else if (allow_hearingimpaired && autosub_dvb_hearing != -1)
 				program.defaultSubtitleStream = autosub_dvb_hearing;
 		}
-		if (program.defaultSubtitleStream != -1 && (program.audioStreams[program.defaultAudioStream].language_code.empty() || ((equallanguagemask & (1<<(autosub_level-1))) == 0 && compareAudioSubtitleCode(program.subtitleStreams[program.defaultSubtitleStream].language_code, program.audioStreams[program.defaultAudioStream].language_code) == 0)))
+		if (program.defaultSubtitleStream != -1
+			&& (program.audioStreams.empty()
+				|| program.defaultAudioStream < 0
+				|| program.defaultAudioStream >= (int)program.audioStreams.size()
+				|| program.audioStreams[program.defaultAudioStream].language_code.empty()
+				|| ((equallanguagemask & (1<<(autosub_level-1))) == 0
+					&& compareAudioSubtitleCode(program.subtitleStreams[program.defaultSubtitleStream].language_code, program.audioStreams[program.defaultAudioStream].language_code) == 0)))
 			program.defaultSubtitleStream = -1;
 
 		ret = 0;

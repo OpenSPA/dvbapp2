@@ -1,7 +1,8 @@
+from gettext import bindtextdomain, dgettext
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
 from os import makedirs, remove, unlink, mkdir, listdir
-from os.path import exists, isfile, join as pathjoin, normpath, splitext
+from os.path import dirname, exists, isdir, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
 
@@ -9,13 +10,13 @@ from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIG
 
 from keyids import KEYIDS
 from skin import getcomponentTemplateNames, parameters, domScreens
-from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, SCOPE_PICON, defaultRecordingLocation, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename, isPluginInstalled
+from Tools.Directories import SCOPE_HDD, SCOPE_PLUGINS, SCOPE_SKINS, SCOPE_TIMESHIFT, SCOPE_PICON, defaultRecordingLocation, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename, isPluginInstalled
 
 MODULE_NAME = __name__.split(".")[-1]
 DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
@@ -23,6 +24,41 @@ DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 
 originalAudioTracks = "orj dos ory org esl qaa qaf und mis mul ORY ORJ Audio_ORJ oth"
 visuallyImpairedCommentary = "NAR qad"
+
+
+def eEnv_resolve_multi(path):
+	resolve = eEnv.resolve(path)
+	return [] if resolve == path else resolve.split()
+
+
+def refreshChannelSelectionStyleChoices():
+	def translateSkinString(text):
+		return dgettext(skinDir, text)
+
+	skinDir = dirname(config.skin.primary_skin.value).replace("MetrixHD", "MyMetrixLite")
+	localePath = resolveFilename(SCOPE_PLUGINS, pathjoin("Extensions", skinDir, "locale"))
+
+	if skinDir and isdir(localePath):
+		bindtextdomain(skinDir, localePath)
+	else:
+		translateSkinString = _
+
+	screenChoiceList = [("", _("Legacy mode"))]
+	styles = getcomponentTemplateNames("serviceList") or []
+	if styles:
+		for screen, (element, path) in domScreens.items():
+			if element.get("base") == "ChannelSelection":
+				screenChoiceList.append((screen, translateSkinString(element.get("label", screen))))
+	widgetChoiceList = [(style, translateSkinString(style)) for style in styles]
+	for name, choices, default in (
+		("screenStyle", screenChoiceList, ""),
+		("widgetStyle", widgetChoiceList, styles[0] if styles else "")
+	):
+		setting = getattr(config.channelSelection, name, None)
+		if setting is None:
+			setattr(config.channelSelection, name, ConfigSelection(default=default, choices=choices))
+		else:
+			setting.setChoices(choices, default=default)
 
 
 def InitUsageConfig():
@@ -62,10 +98,9 @@ def InitUsageConfig():
 
 	# "UserInterface" settings.
 	#
-	config.usage.menuType = ConfigSelection(default="standard", choices=[
-		("horzanim", _("Horizontal menu")),
-		("horzicon", _("Horizontal icons")),
-		("standard", _("Vertical menu"))
+	config.usage.menuType = ConfigSelection(default=0, choices=[
+		(0, _("Vertical menu")),
+		(1, _("Horizontal menu"))
 	])
 	config.usage.menuEntryStyle = ConfigSelection(default="text", choices=[
 		("text", _("Entry text only")),
@@ -110,6 +145,7 @@ def InitUsageConfig():
 	])
 	config.usage.unhandledKeyTimeout = ConfigSelection(default=2, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 6)])
 	config.usage.show_spinner = ConfigYesNo(default=True)
+	config.usage.fastSkinReload = ConfigYesNo(default=False)
 	config.usage.screenSaverStartTimer = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, ngettext("%d Second", "%d Seconds", x) % x) for x in (5, 10, 20, 30, 40, 50)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 20, 30, 45, 60)])
 	config.usage.screenSaverMoveTimer = ConfigSelection(default=10, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 61)])
 	config.usage.screenSaverMode = ConfigSelection(default=1, choices=[
@@ -362,23 +398,7 @@ def InitUsageConfig():
 
 	config.channelSelection.showTimers = ConfigYesNo(default=False)
 
-	screenChoiceList = [("", _("Legacy mode"))]
-	widgetChoiceList = []
-	styles = getcomponentTemplateNames("serviceList")
-	default = ""
-	if styles:
-		for screen in domScreens:
-			element, path = domScreens.get(screen, (None, None))
-			if element.get("base") == "ChannelSelection":
-				label = element.get("label", screen)
-				screenChoiceList.append((screen, label))
-
-		default = styles[0]
-		for style in styles:
-			widgetChoiceList.append((style, style))
-
-	config.channelSelection.screenStyle = ConfigSelection(default="", choices=screenChoiceList)
-	config.channelSelection.widgetStyle = ConfigSelection(default=default, choices=widgetChoiceList)
+	refreshChannelSelectionStyleChoices()
 
 	# ########  Workaround for VTI Skins   ##############
 	config.usage.picon_dir = ConfigDirectory(default="/usr/share/enigma2/picon")
@@ -391,7 +411,11 @@ def InitUsageConfig():
 	# ####################################################
 
 	config.usage.panicbutton = ConfigYesNo(default=False)
-	config.usage.panicchannel = ConfigInteger(default=1, limits=(1, 5000))
+	config.usage.panicchannel = ConfigInteger(default=1, limits=(1, 5000))  # Legacy setting, migrated to a service reference.
+	config.usage.panicsref = ConfigService()
+	if not config.usage.panicsref.value and (config.usage.panicbutton.value or config.usage.panicchannel.saved_value is not None):
+		from ServiceReference import getPanicService
+		getPanicService()
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default=False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default=True)
 
@@ -539,6 +563,15 @@ def InitUsageConfig():
 	] + [(str(x * 60), ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 30, 45, 60)]
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choiceList)
 
+	def createConfiguredDirectory(configElement):
+		if configElement.isChanged():  # Final notifiers also run when leaving an unsaved setup entry.
+			return
+		path = configElement.value
+		try:
+			makedirs(path, 0o755, exist_ok=True)
+		except OSError as err:
+			print(f"[UsageConfig] Error {err.errno}: Unable to create configured directory '{path}'!  ({err.strerror})")
+
 	defaultPath = resolveFilename(SCOPE_HDD)
 	config.usage.default_path = ConfigSelection(default=defaultPath, choices=[(defaultPath, defaultPath)])
 	config.usage.default_path.load()
@@ -549,18 +582,7 @@ def InitUsageConfig():
 			config.usage.default_path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.usage.default_path.value = savedPath
 	config.usage.default_path.save()
-	currentPath = config.usage.default_path.value
-	print(f"[UsageConfig] Checking/Creating current movie directory '{currentPath}'.")
-	try:
-		makedirs(currentPath, 0o755, exist_ok=True)
-	except OSError as err:
-		print(f"[UsageConfig] Error {err.errno}: Unable to create current movie directory '{currentPath}'!  ({err.strerror})")
-		if defaultPath != currentPath:
-			print(f"[UsageConfig] Checking/Creating default movie directory '{defaultPath}'.")
-			try:
-				makedirs(defaultPath, 0o755, exist_ok=True)
-			except OSError as err:
-				print(f"[UsageConfig] Error {err.errno}: Unable to create default movie directory '{defaultPath}'!  ({err.strerror})")
+	config.usage.default_path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
 
 	choiceList = [
 		("<default>", "<Default>"),
@@ -611,6 +633,7 @@ def InitUsageConfig():
 	##############################################
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
+	config.usage.movielistTrashcanConfirm = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelection(default=8, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 32)])
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
@@ -1536,10 +1559,14 @@ def InitUsageConfig():
 
 	config.network.ZeroTierNetworkId = ConfigText(default=" " * 16, fixed_size=True)
 
+	config.network.mountsSortByMount = ConfigYesNo(default=True)
+	config.network.browserSortByIP = ConfigYesNo(default=False)
+	config.network.browserUsingDNS = ConfigYesNo(default=False)
+
 	config.samba = ConfigSubsection()
 	config.samba.enableAutoShare = ConfigYesNo(default=True)
 	config.samba.autoShareAccess = ConfigSelection(default=1, choices=[
-		(0, _("Read Only")),
+		(0, _("Read-Only")),
 		(1, _("Read/Write"))
 	])
 
@@ -1548,11 +1575,9 @@ def InitUsageConfig():
 		("leftright", _("Long LEFT/RIGHT")),
 		("ffrw", _("Long <</>>"))
 	])
-	config.seek.sensibilityHorizontal = ConfigSelection(default=1.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
-	config.seek.sensibilityVertical = ConfigSelection(default=2.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
 	config.seek.arrowSkipMode = ConfigSelection(default="t", choices=[
 		("t", _("Traditional")),
-		("s", _("Symmetrical skips")),
+		("s", _("Sensibility skips")),
 		("d", _("Defined skips"))
 	])
 	config.seek.numberSkipMode = ConfigSelection(default="s", choices=[
@@ -1585,6 +1610,12 @@ def InitUsageConfig():
 	config.seek.defined["CUT_LEFT"] = ConfigSelectionNumber(default=-1, min=-600, max=600, stepwidth=1, wraparound=True)
 	config.seek.defined["CUT_RIGHT"] = ConfigSelectionNumber(default=1, min=-600, max=600, stepwidth=1, wraparound=True)
 	config.seek.defined["CUT_DOWN"] = ConfigSelectionNumber(default=-300, min=-600, max=600, stepwidth=1, wraparound=True)
+	config.seek.sensibilities = ConfigSubDict()
+	config.seek.sensibilities["UP"] = ConfigSelection(default=2.0, choices=[(x, f"{x:.1f}%") for x in [-10.0, -5.0, -2.0, -1.0, -0.5, -0.2, -0.1, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+	config.seek.sensibilities["LEFT"] = ConfigSelection(default=-1.0, choices=[(x, f"{x:.1f}%") for x in [-10.0, -5.0, -2.0, -1.0, -0.5, -0.2, -0.1, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+	config.seek.sensibilities["RIGHT"] = ConfigSelection(default=1.0, choices=[(x, f"{x:.1f}%") for x in [-10.0, -5.0, -2.0, -1.0, -0.5, -0.2, -0.1, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+	config.seek.sensibilities["DOWN"] = ConfigSelection(default=-2.0, choices=[(x, f"{x:.1f}%") for x in [-10.0, -5.0, -2.0, -1.0, -0.5, -0.2, -0.1, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+
 	# The following 4 items are legacy and kept for plugin compatibility.
 	config.seek.sensibility = ConfigSelectionNumber(default=10, min=1, max=10, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_13 = ConfigSelectionNumber(default=15, min=1, max=300, stepwidth=1, wraparound=True)
@@ -1705,6 +1736,12 @@ def InitUsageConfig():
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[
 		("beginning", _("At beginning")),
 		("end", _("At end"))
+	])
+	config.usage.timerListSortOrder = ConfigSelection(default="dateAscending", choices=[
+		("dateAscending", _("Start Time (Earliest First)")),
+		("dateDescending", _("Start Time (Latest First)")),
+		("nameAscending", _("Name (A-Z)")),
+		("nameDescending", _("Name (Z-A)"))
 	])
 	config.usage.timerlist_show_epg = ConfigYesNo(default=True)
 
@@ -2566,6 +2603,81 @@ def InitUsageConfig():
 		("slow", _("Slow"))
 	])
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
+
+	# BackupRestore
+	config.plugins.configurationbackup = ConfigSubsection()
+
+	# BACKUPFILES contains all files and folders to back up, for wildcard entries ALWAYS use eEnv_resolve_multi!
+	BACKUPFILES = ["/etc/enigma2/", "/etc/CCcam.cfg", "/usr/keys/", "/etc/wireguard/",
+		"/etc/davfs2/", "/etc/tuxbox/config/", "/etc/auto.network", "/etc/feeds.xml", "/etc/machine-id", "/etc/rc.local",
+		"/etc/openvpn/", "/etc/ipsec.conf", "/etc/ipsec.secrets", "/etc/ipsec.user", "/etc/strongswan.conf", "/etc/vtuner.conf",
+		"/etc/default/crond", "/etc/dropbear/", "/etc/default/dropbear", "/home/", "/etc/samba/", "/etc/fstab", "/etc/inadyn.conf",
+		"/etc/network/interfaces", "/etc/wpa_supplicant.conf", "/etc/wpa_supplicant.ath0.conf", "/etc/ciplus/", "/etc/udev/known_devices",
+		"/etc/resolv.conf", "/etc/enigma2/nameserversdns.conf", "/etc/default_gw", "/etc/hostname", "/etc/hosts", "/etc/epgimport/", "/etc/exports",
+		"/etc/enigmalight.conf", "/etc/enigma2/volume.xml", "/etc/enigma2/ci_auth_slot_0.bin", "/etc/enigma2/ci_auth_slot_1.bin", "/etc/PrivateKey.key", "/etc/wg_token.key",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd",
+		"/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config",
+		"/usr/share/enigma2/MetrixHD/skinparts/",
+		"/usr/share/enigma2/display/skin_display_usr.xml",
+		"/usr/share/enigma2/display/userskin.png",
+		"/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml",
+		"/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db",
+		"/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db",
+		"/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db", "/etc/ConfFS",
+		"/etc/rc3.d/S99tuner.sh",
+		"/usr/bin/enigma2_pre_start.sh",
+		"/var/lib/bluetooth/",
+		"/etc/enigma2/AutoBouquetsMaker/custom/",
+		"/etc/enigma2/AutoBouquetsMaker/providers/",
+		"/home/root/.config/content_shell/",
+		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
+		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
+		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
+		+ eEnv_resolve_multi("${sysconfdir}/wpa_supplicant.wlan*.conf")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/mySkin")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
+		+ eEnv_resolve_multi("/etc/*.emu")\
+		+ eEnv_resolve_multi("${sysconfdir}/cron*")\
+		+ eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\
+		+ eEnv_resolve_multi("${sysconfdir}/init.d/cardserver*")\
+		+ eEnv_resolve_multi("${sysconfdir}/sundtek.*")\
+		+ eEnv_resolve_multi("/usr/sundtek/*")\
+		+ eEnv_resolve_multi("/opt/bin/*")\
+		+ eEnv_resolve_multi("/usr/script/*")
+
+	# Drop non existant paths from list
+	backupset = [f for f in BACKUPFILES if exists(f)]
+
+	config.plugins.configurationbackup.backuplocation = ConfigText(default="/media/hdd/", visible_width=50, fixed_size=False)
+	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=backupset))
+	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[])  # "backupdirs_addon" is called "backupdirs" for backwards compatibility, holding the user"s old selection, duplicates are removed during backup
+	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
+
+	# Picon
+	config.picon = ConfigSubsection()
+	piconPaths = ["/usr/share/enigma2/picon/", "/picon"]
+	for part in harddiskmanager.getMountedPartitions():
+		piconPath = pathjoin(part.mountpoint, "picon")
+		if exists(piconPath):
+			piconPaths.append(piconPath)
+
+	config.picon.allowedPaths = ConfigLocations(default=piconPaths)
+	config.picon.mode = ConfigSelection(default=0, choices=[
+		(0, _("Single-path mode")),
+		(1, _("Multi-path mode"))
+	])
+	choices = [(x, _("Picon path %s") % (x + 1)) for x in range(4)]
+	config.picon.infobar = ConfigSelection(default=0, choices=choices)
+	config.picon.channelselection = ConfigSelection(default=0, choices=choices)
+	config.picon.display = ConfigSelection(default=0, choices=choices)
+	config.picon.openwebif = ConfigSelection(default=0, choices=choices)
+	for index in range(4):
+		section = ConfigSubsection()
+		section.path = ConfigText(default="/usr/share/enigma2/picon" if index == 0 else "", fixed_size=False)
+		setattr(config.picon, f"set{index}", section)
+
 	#
 	# Time shift settings.
 	#
@@ -2614,18 +2726,7 @@ def InitUsageConfig():
 			config.timeshift.path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.timeshift.path.value = savedPath
 	config.timeshift.path.save()
-	currentPath = config.timeshift.path.value
-	print(f"[UsageConfig] Checking/Creating current time shift directory '{currentPath}'.")
-	try:
-		makedirs(currentPath, 0o755, exist_ok=True)
-	except OSError as err:
-		print(f"[UsageConfig] Error {err.errno}: Unable to create current time shift directory '{currentPath}'!  ({err.strerror})")
-		if defaultPath != currentPath:
-			print(f"[UsageConfig] Checking/Creating default time shift directory '{defaultPath}'.")
-			try:
-				makedirs(defaultPath, 0o755, exist_ok=True)
-			except OSError as err:
-				print(f"[UsageConfig] Error {err.errno}: Unable to create default time shift directory '{defaultPath}'!  ({err.strerror})")
+	config.timeshift.path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
 
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
@@ -2702,95 +2803,91 @@ def defaultMoviePath():
 
 
 def patchTuxtxtConfFile(dummyConfigElement):
-	if config.usage.tuxtxt_font_and_res.value == "X11_SD":
-		tuxtxt2 = [
-			["UseTTF", 0],
-			["TTFBold", 1],
-			["TTFScreenResX", 720],
-			["StartX", 50],
-			["EndX", 670],
-			["StartY", 30],
-			["EndY", 555],
-			["TTFShiftY", 0],
-			["TTFShiftX", 0],
-			["TTFWidthFactor16", 26],
-			["TTFHeightFactor16", 14]
-		]
-	elif config.usage.tuxtxt_font_and_res.value == "TTF_SD":
-		tuxtxt2 = [
-			["UseTTF", 1],
-			["TTFBold", 1],
-			["TTFScreenResX", 720],
-			["StartX", 50],
-			["EndX", 670],
-			["StartY", 30],
-			["EndY", 555],
-			["TTFShiftY", 2],
-			["TTFShiftX", 0],
-			["TTFWidthFactor16", 29],
-			["TTFHeightFactor16", 14]
-		]
-	elif config.usage.tuxtxt_font_and_res.value == "TTF_HD":
-		tuxtxt2 = [
-			["UseTTF", 1],
-			["TTFBold", 0],
-			["TTFScreenResX", 1280],
-			["StartX", 80],
-			["EndX", 1200],
-			["StartY", 35],
-			["EndY", 685],
-			["TTFShiftY", -3],
-			["TTFShiftX", 0],
-			["TTFWidthFactor16", 26],
-			["TTFHeightFactor16", 14]
-		]
-	elif config.usage.tuxtxt_font_and_res.value == "TTF_FHD":
-		tuxtxt2 = [
-			["UseTTF", 1],
-			["TTFBold", 0],
-			["TTFScreenResX", 1920],
-			["StartX", 140],
-			["EndX", 1780],
-			["StartY", 52],
-			["EndY", 1027],
-			["TTFShiftY", -6],
-			["TTFShiftX", 0],
-			["TTFWidthFactor16", 26],
-			["TTFHeightFactor16", 14]
-		]
-	elif config.usage.tuxtxt_font_and_res.value == "expert_mode":
-		tuxtxt2 = [
-			["UseTTF", int(config.usage.tuxtxt_UseTTF.value)],
-			["TTFBold", int(config.usage.tuxtxt_TTFBold.value)],
-			["TTFScreenResX", int(config.usage.tuxtxt_TTFScreenResX.value)],
-			["StartX", config.usage.tuxtxt_StartX.value],
-			["EndX", config.usage.tuxtxt_EndX.value],
-			["StartY", config.usage.tuxtxt_StartY.value],
-			["EndY", config.usage.tuxtxt_EndY.value],
-			["TTFShiftY", int(config.usage.tuxtxt_TTFShiftY.value)],
-			["TTFShiftX", int(config.usage.tuxtxt_TTFShiftX.value)],
-			["TTFWidthFactor16", config.usage.tuxtxt_TTFWidthFactor16.value],
-			["TTFHeightFactor16", config.usage.tuxtxt_TTFHeightFactor16.value]
-		]
+	match config.usage.tuxtxt_font_and_res.value:
+		case "X11_SD":
+			tuxtxt2 = [
+				["UseTTF", 0],
+				["TTFBold", 1],
+				["TTFScreenResX", 720],
+				["StartX", 50],
+				["EndX", 670],
+				["StartY", 30],
+				["EndY", 555],
+				["TTFShiftY", 0],
+				["TTFShiftX", 0],
+				["TTFWidthFactor16", 26],
+				["TTFHeightFactor16", 14]
+			]
+		case "TTF_SD":
+			tuxtxt2 = [
+				["UseTTF", 1],
+				["TTFBold", 1],
+				["TTFScreenResX", 720],
+				["StartX", 50],
+				["EndX", 670],
+				["StartY", 30],
+				["EndY", 555],
+				["TTFShiftY", 2],
+				["TTFShiftX", 0],
+				["TTFWidthFactor16", 29],
+				["TTFHeightFactor16", 14]
+			]
+		case "TTF_HD":
+			tuxtxt2 = [
+				["UseTTF", 1],
+				["TTFBold", 0],
+				["TTFScreenResX", 1280],
+				["StartX", 80],
+				["EndX", 1200],
+				["StartY", 35],
+				["EndY", 685],
+				["TTFShiftY", -3],
+				["TTFShiftX", 0],
+				["TTFWidthFactor16", 26],
+				["TTFHeightFactor16", 14]
+			]
+		case "TTF_FHD":
+			tuxtxt2 = [
+				["UseTTF", 1],
+				["TTFBold", 0],
+				["TTFScreenResX", 1920],
+				["StartX", 140],
+				["EndX", 1780],
+				["StartY", 52],
+				["EndY", 1027],
+				["TTFShiftY", -6],
+				["TTFShiftX", 0],
+				["TTFWidthFactor16", 26],
+				["TTFHeightFactor16", 14]
+			]
+		case "expert_mode":
+			tuxtxt2 = [
+				["UseTTF", int(config.usage.tuxtxt_UseTTF.value)],
+				["TTFBold", int(config.usage.tuxtxt_TTFBold.value)],
+				["TTFScreenResX", int(config.usage.tuxtxt_TTFScreenResX.value)],
+				["StartX", config.usage.tuxtxt_StartX.value],
+				["EndX", config.usage.tuxtxt_EndX.value],
+				["StartY", config.usage.tuxtxt_StartY.value],
+				["EndY", config.usage.tuxtxt_EndY.value],
+				["TTFShiftY", int(config.usage.tuxtxt_TTFShiftY.value)],
+				["TTFShiftX", int(config.usage.tuxtxt_TTFShiftX.value)],
+				["TTFWidthFactor16", config.usage.tuxtxt_TTFWidthFactor16.value],
+				["TTFHeightFactor16", config.usage.tuxtxt_TTFHeightFactor16.value]
+			]
 	tuxtxt2.append(["CleanAlgo", config.usage.tuxtxt_CleanAlgo.value])
-
-	TUXTXT_CFG_FILE = "/etc/tuxtxt/tuxtxt2.conf"
-	oldLines = fileReadLines(TUXTXT_CFG_FILE, [], source=MODULE_NAME)
+	tuxtxtConfigFile = "/etc/tuxtxt/tuxtxt2.conf"
+	oldLines = fileReadLines(tuxtxtConfigFile, [], source=MODULE_NAME)
 	oldLines.sort()
 	lines = [line.split() for line in oldLines if line]
-	keys = [f[0] for f in tuxtxt2]
-
+	keys = [x[0] for x in tuxtxt2]
 	newLines = []
 	for line in lines:
 		if line[0] not in keys:
 			newLines.append(f"{line[0]} {line[1]}")
-
 	for line in tuxtxt2:
 		newLines.append(f"{line[0]} {line[1]}")
-
 	newLines.sort()
 	if oldLines != newLines:  # Only write if there are changes.
-		fileWriteLines(TUXTXT_CFG_FILE, newLines, source=MODULE_NAME)
-		print(f"[UsageConfig] TuxTxt: Patched {TUXTXT_CFG_FILE}.")
-
+		fileWriteLines(tuxtxtConfigFile, newLines, source=MODULE_NAME)
+		print(f"[UsageConfig] TuxTxt: Patched {tuxtxtConfigFile}.")
 	config.usage.tuxtxt_ConfFileHasBeenPatched.setValue(True)  # If False then patchTuxtxtConfFile will be called from the tutxt plugin.

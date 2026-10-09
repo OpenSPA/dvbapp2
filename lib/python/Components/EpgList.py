@@ -6,7 +6,7 @@ from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, eServiceRefe
 
 from Components.GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getChannelSelectionPiconName
 from skin import parseColor, parseFont, parameters as skinparameter, getSkinFactor
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
@@ -84,6 +84,7 @@ class EPGList(GUIComponent):
 
 		self.listRows = 8
 		self.listFirstServiceIndex = 0
+		self.pageRow = 0
 		self.serviceList = ()
 
 		self.overjump_empty = overjump_empty
@@ -235,6 +236,7 @@ class EPGList(GUIComponent):
 		self.eventNameAlign = 'left'
 		self.eventNameWrap = 'yes'
 		self.NumberOfRows = None
+		self.minimumItemHeight = 0
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
@@ -362,6 +364,8 @@ class EPGList(GUIComponent):
 					self.backColorZapSelected = parseColor(value).argb()
 				elif attrib == "NumberOfRows":
 					self.NumberOfRows = int(value)
+				elif attrib == "MinimumItemHeight":
+					self.minimumItemHeight = max(0, int(value))
 				else:
 					attribs.append((attrib, value))
 			self.skinAttributes = attribs
@@ -511,6 +515,11 @@ class EPGList(GUIComponent):
 					idx += 1
 			self.cur_event = best
 		self.selEntry(0)
+		# The listbox draws the old and new row before the selection state is updated, so redraw both rows.
+		if old_service is not cur_service:
+			for index, entry in enumerate(self.list):
+				if entry is old_service or entry is cur_service:
+					self.l.invalidateEntry(index)
 
 	def selectionChanged(self):
 		for x in self.onSelChanged:
@@ -608,6 +617,14 @@ class EPGList(GUIComponent):
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
+
+		# Opt-in readable rows: preserve native density preferences, but avoid partial rows.
+		if self.minimumItemHeight and self.listHeight > 0:
+			self.itemHeight = min(self.listHeight, max(self.minimumItemHeight, self.itemHeight))
+			self.listRows = max(1, self.listHeight // self.itemHeight)
+			self.l.setItemHeight(self.itemHeight)
+			self.listHeight = self.listRows * self.itemHeight
+			self.instance.resize(eSize(self.listWidth, self.listHeight))
 
 	def setFontsize(self):
 		if self.type == EPG_TYPE_GRAPH:
@@ -736,7 +753,7 @@ class EPGList(GUIComponent):
 	def getPixmapForEntry(self, service, eventId, beginTime, duration):
 		if not beginTime:
 			return None
-		rec = self.timer.isInTimer(eventId, beginTime, duration, ":".join(service.split(":")[:11]))
+		rec = self.timer.isInTimer(eventId, beginTime, duration, eServiceReference(service).toCompareString())
 		if rec is not None:
 			self.wasEntryAutoTimer = bool(rec[2] & 1)
 			self.wasEntryIceTV = bool(rec[2] & 2)
@@ -932,7 +949,7 @@ class EPGList(GUIComponent):
 		displayPicon = None
 		if self.showPicon:
 			if picon is None:  # go find picon and cache its location
-				picon = getPiconName(service)
+				picon = getChannelSelectionPiconName(service)
 				curIdx = self.l.getCurrentSelectionIndex()
 				self.list[curIdx] = (service, service_name, events, picon, channel)
 			piconWidth = self.picon_size.width()
@@ -1552,6 +1569,7 @@ class EPGList(GUIComponent):
 			self.cur_event = None
 			self.cur_service = None
 			self.listFirstServiceIndex = 0
+			self.pageRow = 0
 			self.serviceList = services
 			if current_service is not None:
 				for i in range(len(self.serviceList)):
@@ -1649,26 +1667,31 @@ class EPGList(GUIComponent):
 				break
 			index += 1
 
+	def pageRows(self):  # Number of rows on the current page.
+		return max(min(self.listRows, len(self.serviceList) - self.listFirstServiceIndex), 1)
+
+	def storePageRow(self):  # Keep the row when a shorter page has moved the selection up.
+		idx = self.getCurrentIndex()
+		if idx < self.pageRows() - 1 or self.pageRow < idx:
+			self.pageRow = idx
+
 	def nextPage(self, selectFirstService=False):
+		self.storePageRow()
 		if self.listFirstServiceIndex + self.listRows < len(self.serviceList):
 			self.listFirstServiceIndex += self.listRows
 		else:
 			self.listFirstServiceIndex = 0
 		self.fillGraphEPG(None)
-		if selectFirstService:
-			self.setCurrentIndex(0)
+		self.setCurrentIndex(0 if selectFirstService else min(self.pageRow, self.pageRows() - 1))
 
 	def prevPage(self, selectLastService=False):
+		self.storePageRow()
 		if self.listFirstServiceIndex - self.listRows >= 0:
 			self.listFirstServiceIndex -= self.listRows
 		else:
-			self.listFirstServiceIndex = int(len(self.serviceList) / self.listRows) * self.listRows
+			self.listFirstServiceIndex = max(len(self.serviceList) - 1, 0) // self.listRows * self.listRows
 		self.fillGraphEPG(None)
-		if selectLastService:
-			if self.listFirstServiceIndex + self.listRows <= len(self.serviceList):
-				self.setCurrentIndex(self.listRows - 1)
-			else:
-				self.setCurrentIndex(len(self.serviceList) - self.listFirstServiceIndex - 1)
+		self.setCurrentIndex(self.pageRows() - 1 if selectLastService else min(self.pageRow, self.pageRows() - 1))
 
 	def moveUp(self):
 		idx = self.getCurrentIndex() - 1
@@ -1676,6 +1699,7 @@ class EPGList(GUIComponent):
 			self.prevPage(True)
 		else:
 			self.setCurrentIndex(idx)
+		self.pageRow = self.getCurrentIndex()
 
 	def moveDown(self):
 		idx = self.getCurrentIndex() + 1
@@ -1683,6 +1707,19 @@ class EPGList(GUIComponent):
 			self.nextPage(True)
 		else:
 			self.setCurrentIndex(idx)
+		self.pageRow = self.getCurrentIndex()
+
+	def toTop(self, stime=None, getnow=False):  # Select first row before filling, findBestEvent uses it.
+		self.listFirstServiceIndex = 0
+		self.pageRow = 0
+		self.setCurrentIndex(0)
+		self.fillGraphEPG(None, stime, getnow)
+
+	def toEnd(self):
+		self.listFirstServiceIndex = max(len(self.serviceList) - 1, 0) // self.listRows * self.listRows
+		self.fillGraphEPG(None)
+		self.pageRow = self.pageRows() - 1
+		self.setCurrentIndex(self.pageRow)
 
 
 class TimelineText(GUIComponent):

@@ -26,12 +26,14 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/metaparser.cpp \
 	dvb/opentv.cpp \
 	dvb/pesparse.cpp \
+	dvb/pgssubtitle.cpp \
 	dvb/pmt.cpp \
 	dvb/pvrparse.cpp \
 	dvb/radiotext.cpp \
 	dvb/rotor_calc.cpp \
 	dvb/scan.cpp \
 	dvb/sec.cpp \
+	dvb/servicetsfilter.cpp \
 	dvb/subtitle.cpp \
 	dvb/teletext.cpp \
 	dvb/tstools.cpp \
@@ -44,6 +46,15 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/fcc.cpp \
 	dvb/fccdecoder.cpp \
 	dvb/eramtimeshift.cpp
+
+if DREAMNEXTGEN
+dvb_libenigma_dvb_a_SOURCES += 	\
+	dvb/alsa.cpp \
+	dvb/audiomanager.cpp \
+	dvb/avsync_core.cpp \
+	dvb/iec61937.cpp \
+	dvb/tsparser.cpp
+endif
 
 dvbincludedir = $(pkgincludedir)/lib/dvb
 dvbinclude_HEADERS = \
@@ -77,12 +88,14 @@ dvbinclude_HEADERS = \
 	dvb/metaparser.h \
 	dvb/opentv.h \
 	dvb/pesparse.h \
+	dvb/pgssubtitle.h \
 	dvb/pmt.h \
 	dvb/pvrparse.h \
 	dvb/radiotext.h \
 	dvb/rotor_calc.h \
 	dvb/scan.h \
 	dvb/sec.h \
+	dvb/servicetsfilter.h \
 	dvb/specs.h \
 	dvb/subtitle.h \
 	dvb/teletext.h \
@@ -100,7 +113,8 @@ dvbinclude_HEADERS = \
 if DREAMNEXTGEN
 dvbinclude_HEADERS += \
 	dvb/alsa.h \
-	dvb/decoders.h \
-	dvb/ringbuffer.h \
+	dvb/audiomanager.h \
+	dvb/avsync_core.h \
+	dvb/iec61937.h \
 	dvb/tsparser.h
 endif

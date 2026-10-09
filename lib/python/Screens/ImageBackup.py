@@ -1,5 +1,6 @@
 from os import chmod, listdir, makedirs, linesep
 from os.path import exists, isdir, isfile, join
+from shlex import quote
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
@@ -21,6 +22,26 @@ MACHINE_NAME = BoxInfo.getItem("displaymodel")
 
 
 class ImageBackup(Screen):
+	def dreamKernelBackupCommands(self, backupRoot, workDir, kernelFile):
+		# Guests can contain an older /boot. Export the shared physical A bank,
+		# then replace kernel files only in the archive, never in the source image.
+		stage = join(workDir, "dream-kernel")
+		overlay = join(stage, "rootfs")
+		commands = [f"/usr/bin/ofgwrite_bin --backup-dream-kernel-a {quote(stage)} || exit 1"]
+		commands.append(f"{self.moveCmd} {quote(join(stage, 'kernel.bin'))} {quote(join(workDir, kernelFile))} || exit 1")
+		# Old recovery chooses dpkg first if its info directory exists. Do not
+		# invent a dpkg directory in an opkg image, as that hides all its postinsts.
+		commands.append(f"if [ -d {quote(join(backupRoot, 'var/lib/dpkg/info'))} ]; then kernelPackage=dpkg; elif [ -d {quote(join(backupRoot, 'var/lib/opkg/info'))} ]; then kernelPackage=opkg; else echo 'Dream: missing package info directory'; exit 1; fi")
+		commands.append(f'{self.makeDirCmd} -p {quote(overlay)}/var/lib/"$kernelPackage"/info || exit 1')
+		commands.append(f'{self.copyCmd} -p {quote(join(stage, "kernel-image.postinst"))} {quote(overlay)}/var/lib/"$kernelPackage"/info/kernel-image.postinst || exit 1')
+		commands.append(f'kernelName="$(readlink {quote(join(overlay, "boot/vmlinux.bin"))})" || exit 1')
+		excludes = " ".join(f"--exclude {quote(path)}" for path in (
+			"./boot/vmlinux.bin*", "./boot/vmlinux.gz*", "./usr/share/fastboot/lcd_anim.bin",
+			"./var/lib/dpkg/info/kernel-image.postinst", "./var/lib/opkg/info/kernel-image.postinst"))
+		# Append only files, preserving directory metadata from the original rootfs.
+		append = f'{self.tarCmd} -rf {quote(join(workDir, "rootfs.tar"))} -C {quote(overlay)} ./boot/vmlinux.bin "./boot/$kernelName" ./usr/share/fastboot/lcd_anim.bin "./var/lib/$kernelPackage/info/kernel-image.postinst" || exit 1'
+		return commands, excludes, append
+
 	skin = """
 	<screen name="ImageBackup" title="Image Backup" position="center,center" size="800,460" resolution="1280,720">
 		<widget source="description" render="Label" position="0,0" size="e,50" font="Regular;20" verticalAlignment="center" />
@@ -49,12 +70,12 @@ class ImageBackup(Screen):
 			"save": (self.keyStart, _("Start the backup of the selected image")),
 			"close": (self.keyCloseRecursive, _("Exit and close all screens without performing a backup")),
 			"ok": (self.keyStart, _("Start the backup of the selected image")),
-			"top": (self["config"].goTop, _("Move to first line / screen")),
+			"top": (self["config"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["config"].goPageUp, _("Move up a screen")),
 			"up": (self["config"].goLineUp, _("Move up a line")),
 			"down": (self["config"].goLineDown, _("Move down a line")),
 			"pageDown": (self["config"].goPageDown, _("Move down a screen")),
-			"bottom": (self["config"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["config"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Image Backup Actions"))
 		self.bzip2Cmd = "/usr/bin/bzip2"
 		self.catCmd = "/bin/cat"
@@ -89,6 +110,7 @@ class ImageBackup(Screen):
 		self.runScript = "/tmp/imagebackup.sh"
 		self.usbBin = "usb_update.bin"
 		self.separator = f"{"_" * 66}"
+		self.imageInfo = {}
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.callLater(self.getImageList)
 
@@ -97,31 +119,34 @@ class ImageBackup(Screen):
 
 	def getImageList(self):
 		def getImageListCallback(imageList):
+			self.imageInfo = imageList or {}
 			currentImageSlot = MultiBoot.getCurrentSlotCode()
 			rootSlot = BoxInfo.getItem("HasKexecMultiboot") and currentImageSlot == "R"
 			flashSlot = currentImageSlot == "F"
 			currentImageSlot = int(currentImageSlot) if currentImageSlot and currentImageSlot.isdecimal() else 1
 			print(f"[ImageBackup] Current slot={currentImageSlot}, rootSlot={rootSlot}.")
-			images = []  # ChoiceEntryComponent(key, (Label, slotCode, recovery))
+			images = []  # ChoiceEntryComponent(key, (Label, slotCode, recovery, slotDistro, slotVersion))
 			if imageList:
 				for slotCode in sorted(imageList.keys()):
 					print(f"[ImageBackup]     Slot {slotCode}: {imageList[slotCode]}")
 					if imageList[slotCode]["status"] == "active" or imageList[slotCode]["status"] == "flash":
 						slotText = f'{slotCode} {"eMMC" if "mmcblk" in imageList[slotCode]["device"] else "MTD" if "mtd" in imageList[slotCode]["device"] else "UBI" if "ubi" in imageList[slotCode]["device"] else "USB"}'
+						slotDistro = imageList[slotCode].get("displaydistro") or None
+						slotVersion = imageList[slotCode].get("imgversion") or None
 						if slotCode == "1" and currentImageSlot == 1 and BoxInfo.getItem("canRecovery"):
-							images.append(ChoiceEntryComponent(None, (_("Slot %s: %s as USB Recovery") % (slotText, imageList[slotCode]["imagename"]), slotCode, True)))
+							images.append(ChoiceEntryComponent(None, (_("Slot %s: %s as USB Recovery") % (slotText, imageList[slotCode]["imagename"]), slotCode, True, slotDistro, slotVersion)))
 						if rootSlot:
-							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s")) % (slotText, imageList[slotCode]["imagename"]), slotCode, False)))
+							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s")) % (slotText, imageList[slotCode]["imagename"]), slotCode, False, slotDistro, slotVersion)))
 						else:
-							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s (Current image)") if slotCode == str(currentImageSlot) else _("Slot %s: %s")) % (slotText, imageList[slotCode]["imagename"]), slotCode, False)))
+							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s (Current image)") if slotCode == str(currentImageSlot) else _("Slot %s: %s")) % (slotText, imageList[slotCode]["imagename"]), slotCode, False, slotDistro, slotVersion)))
 				if rootSlot:
-					images.append(ChoiceEntryComponent(None, (_("Slot R: Root Slot Image Backup (Current image)"), "R", False)))
+					images.append(ChoiceEntryComponent(None, (_("Slot R: Root Slot Image Backup (Current image)"), "R", False, None, None)))
 				elif flashSlot:
-					images.append(ChoiceEntryComponent(None, (_("Slot F: Flash Slot Image Backup (Current image)"), "F", False)))
+					images.append(ChoiceEntryComponent(None, (_("Slot F: Flash Slot Image Backup (Current image)"), "F", False, None, None)))
 			else:
 				if BoxInfo.getItem("canRecovery"):
-					images.append(ChoiceEntryComponent(None, (_("Internal flash: %s %s as USB Recovery") % (displayDistro, imageVersion), "slotCode", True)))
-				images.append(ChoiceEntryComponent(None, (_("Internal flash:  %s %s ") % (displayDistro, imageVersion), "slotCode", False)))
+					images.append(ChoiceEntryComponent(None, (_("Internal flash: %s %s as USB Recovery") % (displayDistro, imageVersion), "slotCode", True, None, None)))
+				images.append(ChoiceEntryComponent(None, (_("Internal flash:  %s %s ") % (displayDistro, imageVersion), "slotCode", False, None, None)))
 			self["config"].setList(images)
 			for index, item in enumerate(images):
 				if item[0][1] == str(currentImageSlot):
@@ -133,16 +158,18 @@ class ImageBackup(Screen):
 		MultiBoot.getSlotImageList(getImageListCallback)
 
 	def keyStart(self):
-		current = self["config"].getCurrent()  # (label, slotCode, recovery)
+		current = self["config"].getCurrent()  # (label, slotCode, recovery, slotDistro, slotVersion)
+		slotDistro = current[0][3] if len(current[0]) > 3 else None
+		slotVersion = current[0][4] if len(current[0]) > 4 else None
 		targets = []
-		choiceList = []  # (label, slotCode, target, recovery)
+		choiceList = []  # (label, slotCode, target, recovery, slotDistro, slotVersion)
 		if current[0][1]:  # The MultiBoot enumeration is complete as we now have slotCodes.
 			for target in [join("/media", x) for x in listdir("/media")] + ([join("/media/net", x) for x in listdir("/media/net")] if isdir("/media/net") else []):
 				if Freespace(target) > 300000:
 					targets.append(target)
-					choiceList.append((target, current[0][1], target, current[0][2]))
-			choiceList.append((_("Do not backup the image"), False, None, False))
-			print(f"""[ImageBackup] Potential target{"" if len(targets) == 1 else "s"}: '{"', '".join(targets)}'.""")
+					choiceList.append((target, current[0][1], target, current[0][2], slotDistro, slotVersion))
+			choiceList.append((_("Do not backup the image"), False, None, False, None, None))
+			print(f"[ImageBackup] Potential target{"" if len(targets) == 1 else "s"}: '{"', '".join(targets)}'.")
 			self.session.openWithCallback(self.runImageBackup, ChoiceBox, text=_("Please select the target location to save the backup:"), choiceList=choiceList, windowTitle=self.getTitle())
 
 	def keyCloseRecursive(self):
@@ -153,8 +180,9 @@ class ImageBackup(Screen):
 			print("[ImageBackup] Image backup completed.")
 			self.close()
 
-		label, slotCode, target, recovery = answer if answer else (None, None, None, None)
+		label, slotCode, target, recovery, slotDistro, slotVersion = answer if answer else (None, None, None, None, None, None)
 		if slotCode:
+			slotInfo = self.imageInfo.get(slotCode, {})
 			shutdownOK = config.usage.shutdownOK.value
 			config.usage.shutdownOK.setValue(True)
 			config.usage.shutdownOK.save()
@@ -255,6 +283,15 @@ class ImageBackup(Screen):
 			cmdLines.append("\tDisplayDistro=Unknown")
 			cmdLines.append("\tImageVersion=Unknown")
 			cmdLines.append("fi")
+			# Prefer the slot's resolved displaydistro/imgversion
+			if slotDistro:
+				safeDistro = "".join(c if c.isalnum() or c in "._+-" else "_" for c in slotDistro).strip("_") or "Unknown"
+				shellDisplayDistro = slotDistro.replace("'", "'\\''")
+				cmdLines.append(f"Distro={safeDistro}")
+				cmdLines.append(f"DisplayDistro='{shellDisplayDistro}'")
+			if slotVersion:
+				safeVersion = "".join(c if c.isalnum() or c in "._+-" else "_" for c in slotVersion).strip("_") or "Unknown"
+				cmdLines.append(f"ImageVersion={safeVersion}")
 			cmdLines.append(f"{self.echoCmd} \"{_("Image version")} $DisplayDistro $ImageVersion.\"")
 			# Build the "imageversion" inventory file.
 			cmdLines.append(f"{self.echoCmd} \"[Image Version]\" > /tmp/imageversion")
@@ -274,9 +311,23 @@ class ImageBackup(Screen):
 				cmdLines.append(f"{self.opkgCmd} list-installed | {self.grepCmd} \"enigma2-plugin-*\" >> /tmp/imageversion")
 			cmdLines.append(f"{self.echoCmd} 3 > /proc/sys/vm/drop_caches")  # Clear memory caches.
 			# Create the root file system image.
-			imageFs = BoxInfo.getItem("imagefs").strip().split()
+			imageFs = (slotInfo.get("imagefs") or BoxInfo.getItem("imagefs")).strip().split()
+			smallBoxBackup = bool(slotInfo.get("smallflash", BoxInfo.getItem("smallflash", False)) or slotInfo.get("smallboxmultiboot", False))
+			if smallBoxBackup and not recovery:
+				# SmallBox backups are installed by ofgwrite into the current image
+				# or a multiboot slot; an oversized USB-flashed UBI is not useful.
+				imageFs = ["tar"]
 			mkubifsArgs = BoxInfo.getItem("mkubifs")
 			backupRootNoSlash = backupRoot[:-1]
+			boxName = BoxInfo.getItem("BoxName")
+			kernelFile = BoxInfo.getItem("kernelfile")
+			dreamBackup = boxName in ("dm820", "dm7080")
+			dreamExcludes = ""
+			if dreamBackup:
+				if recovery or "jffs2" in imageFs or "ubi" in imageFs:
+					cmdLines.append("echo 'Dream kernel A backup requires a rootfs tar archive'; exit 1")
+				dreamCommands, dreamExcludes, dreamAppend = self.dreamKernelBackupCommands(backupRoot, workDir, kernelFile)
+				cmdLines.extend(dreamCommands)
 			if "jffs2" in imageFs:
 				cmdLines.append(f"{self.echoCmd} \"{_("Create root journaling flash file system.")}\"")
 				cmdLines.append(f"{self.mkfsJffs2} --root={backupRootNoSlash} --faketime --output={workDir}root.jffs2 {mkubifsArgs}")
@@ -297,10 +348,12 @@ class ImageBackup(Screen):
 			elif not recovery:
 				cmdLines.append(f"{self.echoCmd} \"{_("Create tar file of root file system.")}\"")
 				# cmdLines.append(f"{self.touchCmd} {workDir}rootfs.tar")  # Uncomment this line and comment out the line below to enable a fast backup debugging mode.
-				cmdLines.append(f"{self.tarCmd} -cf {workDir}rootfs.tar -C {backupRootNoSlash} --exclude ./boot/kernel.img --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket --exclude ./run/chrony/chronyd.sock --exclude ./run/udev/control .")
+				cmdLines.append(f"{self.tarCmd} -cf {quote(join(workDir, 'rootfs.tar'))} -C {quote(backupRootNoSlash)} {dreamExcludes} --exclude ./boot/kernel.img --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket --exclude ./run/chrony/chronyd.sock --exclude ./run/udev/control .{' || exit 1' if dreamBackup else ''}")
+				if dreamBackup:
+					cmdLines.append(dreamAppend)
 				cmdLines.append(f"{self.syncCmd}")
 				cmdLines.append(f"{self.echoCmd} \"{_("Compress root file system tar file. (This takes the most time!)")}\"")
-				cmdLines.append(f"{self.bzip2Cmd} {workDir}rootfs.tar")
+				cmdLines.append(f"{self.bzip2Cmd} {quote(join(workDir, 'rootfs.tar'))}{' || exit 1' if dreamBackup else ''}")
 			cmdLines.append(f"{self.syncCmd}")
 			# Create other image backup components.
 			boxName = BoxInfo.getItem("BoxName")
@@ -349,7 +402,8 @@ class ImageBackup(Screen):
 			cmdLines.append(f"{self.echoCmd} \"{_("Create kernel dump.")}\"")
 			kernelFile = BoxInfo.getItem("kernelfile")
 			if boxName in ("dm820", "dm7080"):
-				cmdLines.append(f"{self.echoCmd} \"dummy file dont delete\" > {workDir}{kernelFile}")
+				# Already exported from A before creating the rootfs archive.
+				cmdLines.append(f"test -s {quote(join(workDir, kernelFile))} || exit 1")
 			elif MultiBoot.canMultiBoot() or mtdKernel.startswith("mmcblk0") or model in ("h8", "h8se", "hzero"):
 				if BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT"):
 					cmdLines.append(f"{self.copyCmd} /{mtdKernel} {workDir}{kernelFile}")
@@ -482,7 +536,7 @@ class ImageBackup(Screen):
 						cmdLines.append(f"{self.moveCmd} {workDir}{kernelFile} {mainDestination}")
 					else:
 						cmdLines.append(f"{self.moveCmd} {workDir}vmlinux.gz {mainDestination}{kernelFile}")
-					rootFile = BoxInfo.getItem("rootfile")
+					rootFile = "rootfs.tar.bz2" if smallBoxBackup else (slotInfo.get("rootfile") or BoxInfo.getItem("rootfile"))
 					if rootFile in ("rootfs.tar.bz2", "rootfs-two.tar.bz2", "rootfs-one.tar.bz2"):
 						if model in ("dreamone", "dreamtwo"):
 							cmdLines.append(f"{self.moveCmd} {workDir}rootfs.tar.bz2 {mainDestination}{rootFile}")

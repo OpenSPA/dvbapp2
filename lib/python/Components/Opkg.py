@@ -269,6 +269,7 @@ class OpkgComponent:
 		self.console.setBufferSize(dataBuffer)
 		self.console.dataAvail.append(self.consoleDataAvail)
 		self.console.appClosed.append(self.consoleAppClosed)
+		self.console.setLineMode("lineMode" in self.args and self.args["lineMode"])
 		status = self.console.execute(*opkgArgs)
 		if status:
 			print(f"[Opkg] Note: Opkg execute returned a value of {status}.")
@@ -433,7 +434,7 @@ class OpkgComponent:
 				if line.startswith("Not selecting "):
 					print(f"[Opkg] Warning: Not selecting '{line[14:]}'.")
 			args = []
-			for line in lines:
+			for line in lines + [""]:  # Flush the last record even without a trailing blank line.
 				if args:
 					if line[:1] == " ":
 						args[-1] = f"{args[-1]} {line.strip()}"
@@ -447,8 +448,7 @@ class OpkgComponent:
 						data[package].append(entry)
 					else:
 						data[package] = [entry]
-				args = line.split(" - ", 2)
-				args = [x.strip() for x in args]
+				args = [x.strip() for x in line.split(" - ", 2)] if line.strip() else []
 		packages = []
 		for package in sorted(data.keys()):
 			select = 0
@@ -468,7 +468,7 @@ class OpkgComponent:
 			token = None
 			entry = {}
 			value = ""
-			for line in lines:
+			for line in lines + [""]:  # Flush the last record even without a trailing blank line.
 				if line == "":
 					if "Package" in entry:
 						if "Size" in entry and isinstance(entry["Size"], str):
@@ -565,20 +565,16 @@ class OpkgComponent:
 			self.nextCommand = (self.CMD_CLEAN_UPDATE, args)
 		elif cmd in (self.CMD_UPDATE, self.CMD_CLEAN_UPDATE):
 			argv = extra + ["update"]
-		elif cmd == self.CMD_UPGRADE:
-			command = extra + ["upgrade"]
-			if "testMode" in args and args["testMode"]:
-				command.insert(0, "--noaction")
-			argv = command
 		elif cmd == self.CMD_SET_FLAG:
 			argv = ["flag", "hold"] + [x[0] for x in self.excludeList]
 			self.nextCommand = (self.CMD_UPGRADE_EXCLUDE, args)
-		elif cmd == self.CMD_UPGRADE_EXCLUDE:
+		elif cmd in (self.CMD_UPGRADE_EXCLUDE, self.CMD_UPGRADE):
 			command = extra + ["upgrade"]
-			if "testMode" in args and args["testMode"]:
+			if args and "testMode" in args and args["testMode"]:
 				command.insert(0, "--noaction")
 			argv = command
-			self.nextCommand = (self.CMD_RESET_FLAG, args)
+			if cmd == self.CMD_UPGRADE_EXCLUDE:
+				self.nextCommand = (self.CMD_RESET_FLAG, args)
 		elif cmd == self.CMD_RESET_FLAG:
 			packages = [x[0] for x in self.excludeList]
 			argv = ["flag", "ok"] + packages
@@ -617,6 +613,7 @@ class OpkgComponent:
 		self.console.setBufferSize(consoleBuffer)
 		self.console.dataAvail.append(self.cmdData)
 		self.console.appClosed.append(self.cmdFinished)
+		self.console.setLineMode(bool(args and "lineMode" in args and args["lineMode"]))
 		argv.insert(0, self.opkg)
 		if self.console.execute(self.opkg, *argv):
 			self.cmdFinished(-1)

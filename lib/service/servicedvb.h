@@ -240,6 +240,8 @@ protected:
 	int m_decoder_index;
 	int m_have_video_pid;
 	int m_tune_state;
+	ePtr<eTimer> m_dvbi_signal_timer;
+	void dvbiSignalLost();
 	bool m_noaudio;
 
 	/* in time shift mode, we essentially have two channels, and thus pmt handlers. */
@@ -284,10 +286,25 @@ protected:
 	void switchToTimeshift();
 
 	void updateDecoder(bool sendSeekableStateChanged = false);
+	ePtr<eConnection> m_ci_routing_connection;
+	ePtr<eTimer> m_ci_decoder_timer;
+	int m_ci_changed_tuner = -1;
+	int m_ci_decoder_retries = 0;
+	void ciRoutingChanged(int tuner);
+	void refreshCIDecoder();
 
 	int m_skipmode;
 	int m_fastforward;
 	int m_slowmotion;
+#ifdef DREAMNEXTGEN
+	/* Wallclock-based position estimate during skipmode trickmode (FF>=16).
+	 * During trickmode the cue advances the file cursor at skipmode rate;
+	 * audio decoder consumes PES from skipped positions and PTS becomes
+	 * garbage / past file-end. We compute pos = entry_pos + elapsed * rate
+	 * instead, clamped to movie length, so UI fortschritt + seekTo stay sane. */
+	pts_t m_pos_before_skipmode;
+	int64_t m_skipmode_entry_ms;
+#endif
 
 	/* tap */
 
@@ -380,6 +397,30 @@ protected:
 	virtual void startPreciseRecoveryCheck();
 	void resetRecoveryState(); // Resets all recovery state variables.
 	// -- END: Precise Recovery System --
+};
+
+// Populated only by the enabled DVB-I addon, on the main loop. No persistent
+// setting, network access or XML parsing is involved in a service selection.
+struct eDVBIHbbTV
+{
+	int tsid, onid, sid;
+	std::vector<HbbTVApplicationInfo> applications;
+};
+
+class eDVBIFallback
+{
+public:
+	static int setServices(ePyObject services);
+	static eServiceReference get(const eServiceReference &ref);
+	static eServiceReference resolve(const eServiceReference &ref, bool force = false);
+	static bool canReleaseForRecording(const eServiceReference &live, const eServiceReference &recording);
+	static int setProfiles(ePyObject profiles);
+	static eServiceReference playback(const eServiceReference &ref, const eServiceReference &after = eServiceReference(), bool simulate = false);
+	static int availability(const eServiceReference &ref);
+	static int minimumAge(const eServiceReference &ref);
+	static bool hasSchedule(const eServiceReference &ref);
+	static int setApplications(ePyObject applications);
+	static const eDVBIHbbTV *applications(const eServiceReference &ref);
 };
 
 class eStaticServiceDVBBouquetInformation : public iStaticServiceInformation {

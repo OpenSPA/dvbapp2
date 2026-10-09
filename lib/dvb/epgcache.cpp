@@ -20,6 +20,20 @@
 #include <unordered_set>
 
 
+/* Events with a duration longer than this are considered suspect and,
+ * if they overlap with a legitimately received later event, get their
+ * duration truncated instead of being deleted outright. */
+#define SUSPICIOUS_DURATION_THRESHOLD (18 * 60 * 60)  // 18 hours
+
+/* Minimum remaining part of a truncated event that is kept although it is
+ * less than half of the original duration. */
+#define MIN_REMAINDER_DURATION (10 * 60)  // 10 minutes
+
+static inline bool keepRemainder(int remainder, int duration)
+{
+	return remainder > 0 && (remainder * 2 >= duration || remainder >= MIN_REMAINDER_DURATION || duration > SUSPICIOUS_DURATION_THRESHOLD);
+}
+
 /* Interval between "garbage collect" cycles */
 #define CLEAN_INTERVAL (60 * 1000)       //  1 minute
 
@@ -62,6 +76,27 @@ struct eventData
 	{
 		return fromBCD(rawEITdata[7])*3600+fromBCD(rawEITdata[8])*60+fromBCD(rawEITdata[9]);
 	}
+	void setDuration(int duration)
+	{
+		rawEITdata[7] = toBCD(duration / 3600);
+		rawEITdata[8] = toBCD((duration % 3600) / 60);
+		rawEITdata[9] = toBCD(duration % 60);
+	}
+	void setStartTime(time_t t)
+	{
+		tm time;
+		gmtime_r(&t, &time);
+		int l = 0;
+		int month = time.tm_mon + 1;
+		if (month == 1 || month == 2)
+			l = 1;
+		int mjd = 14956 + time.tm_mday + (int)((time.tm_year - l) * 365.25) + (int)((month + 1 + l * 12) * 30.6001);
+		rawEITdata[2] = mjd >> 8;
+		rawEITdata[3] = mjd & 0xFF;
+		rawEITdata[4] = toBCD(time.tm_hour);
+		rawEITdata[5] = toBCD(time.tm_min);
+		rawEITdata[6] = toBCD(time.tm_sec);
+	}
 };
 
 unsigned int eventData::CacheSize = 0;
@@ -91,6 +126,13 @@ const eServiceReference &handleGroup(const eServiceReference &ref)
 		}
 	}
 	return ref;
+}
+
+static void getEPGServiceIds(const eServiceReference &ref, int &tsidonid, int &sid)
+{
+	const uniqueEPGKey key(handleGroup(ref));
+	tsidonid = ((key.tsid & 0xffff) << 16) | (key.onid & 0xffff);
+	sid = key.sid;
 }
 
 static uint32_t calculate_crc_hash(const uint8_t *data, int size)
@@ -499,7 +541,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 	eventMap &eventmap = servicemap.byEvent;
 	timeMap &timemap = servicemap.byTime;
 
-	if(m_icetv_enabled) 
+	if(m_icetv_enabled)
 	{
 		if (!(source & EPG_IMPORT) && (servicemap.sources & EPG_IMPORT))
 			return;
@@ -547,6 +589,37 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			time_t new_start = new_evt->getStartTime();
 			time_t new_end = new_start + new_evt->getDuration();
 
+			// fix duration for events if the next event is overlapping
+			if (new_evt->getDuration() > SUSPICIOUS_DURATION_THRESHOLD && ptr + eit_event_size + EIT_LOOP_SIZE <= len)
+			{
+				eit_event_struct *next_eit_event = (eit_event_struct*)(((uint8_t*)eit_event) + eit_event_size);
+				time_t next_start = parseDVBtime((const uint8_t*)next_eit_event + 2);
+
+				if (next_start > new_start && new_end > next_start)
+				{
+					int fixed_duration = next_start - new_start;
+					if (m_debug)
+						eDebug("[eEPGCache] Event %04X: suspicious duration %d s corrected to %d s using next event in same section (starts at %lld).", event_id, new_evt->getDuration(), fixed_duration, (long long)next_start);
+					new_evt->setDuration(fixed_duration);
+					new_end = next_start;
+				}
+			}
+
+			// fix duration for events if an already cached later event is overlapping
+			if (new_evt->getDuration() > SUSPICIOUS_DURATION_THRESHOLD && !timemap.empty())
+			{
+				timeMap::iterator next_it = timemap.upper_bound(new_start);
+				if (next_it != timemap.end() && next_it->second->getStartTime() < new_end)
+				{
+					time_t cached_start = next_it->second->getStartTime();
+					int fixed_duration = cached_start - new_start;
+					if (m_debug)
+						eDebug("[eEPGCache] Event %04X: suspicious duration %d s corrected to %d s using cached event %04X (starts at %lld).", event_id, new_evt->getDuration(), fixed_duration, next_it->second->getEventID(), (long long)cached_start);
+					new_evt->setDuration(fixed_duration);
+					new_end = cached_start;
+				}
+			}
+
 			// Ignore zero-length events
 			if (new_start == new_end)
 			{
@@ -556,6 +629,51 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 
 //			if(m_debug)
 //				eDebug("[eEPGCache] Created event %04X at %ld.", new_evt->getEventID(), new_start);
+
+			// Clip the new event against overlapping events from a higher-priority source
+			{
+				time_t clip_start = new_start;
+				time_t clip_end = new_end;
+				timeMap::iterator hp = timemap.lower_bound(new_start);
+				if (hp != timemap.begin())
+					--hp;
+				for (; hp != timemap.end() && hp->first < clip_end && clip_start < clip_end; ++hp)
+				{
+					if (hp->second->getEventID() == event_id || (source & ~EPG_IMPORT) <= (hp->second->type & ~EPG_IMPORT))
+						continue;
+					time_t hp_start = hp->first;
+					time_t hp_end = hp_start + hp->second->getDuration();
+					if (hp_end <= clip_start)
+						continue;
+					if (hp_start <= clip_start)
+						clip_start = hp_end;
+					else if (hp_end >= clip_end)
+						clip_end = hp_start;
+					else
+						clip_end = clip_start; // higher-priority event inside the new one
+				}
+
+				if (clip_start != new_start || clip_end != new_end)
+				{
+					int remainder = clip_end > clip_start ? clip_end - clip_start : 0;
+					if (!keepRemainder(remainder, new_end - new_start))
+					{
+						if(m_debug)
+							eDebug("[eEPGCache] Event %04X for service (%04X:%04X:%04X) (%lld~%lld, source=0x%X) skipped: overlaps higher-priority event.",
+								event_id, service.onid, service.tsid, service.sid, (long long)new_start, (long long)new_end, source);
+						delete new_evt;
+						goto next;
+					}
+					if(m_debug)
+						eDebug("[eEPGCache] Event %04X for service (%04X:%04X:%04X) (source=0x%X) clipped %lld~%lld -> %lld~%lld by higher-priority event.",
+							event_id, service.onid, service.tsid, service.sid, source, (long long)new_start, (long long)new_end, (long long)clip_start, (long long)clip_end);
+					if (clip_start != new_start)
+						new_evt->setStartTime(clip_start);
+					new_evt->setDuration(remainder);
+					new_start = clip_start;
+					new_end = clip_end;
+				}
+			}
 
 			// Remove existing event if the id matches
 			eventMap::iterator ev_it = eventmap.find(event_id);
@@ -575,7 +693,8 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 				// Remove existing event
 				if (timemap.erase(ev_it->second->getStartTime()) == 0)
 				{
-					eDebug("[eEPGCache] Event %04X not found in time map at %lld.", event_id, (long long)ev_it->second->getStartTime());
+					if (m_debug)
+						eDebug("[eEPGCache] Event %04X not found in time map at %lld.", event_id, (long long)ev_it->second->getStartTime());
 				}
 				eventData *data = ev_it->second;
 				eventmap.erase(ev_it);
@@ -597,27 +716,60 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			while (it != timemap.end())
 			{
 				time_t old_start = it->second->getStartTime();
-				time_t old_end = old_start + it->second->getDuration();
-
+				int old_duration = it->second->getDuration();
+				time_t old_end = old_start + old_duration;
 //				if(m_debug)
 //					eDebug("[eEPGCache] Checking against event %04X at %ld.", it->second->getEventID(), it->second->getStartTime());
 
 				if ((old_start < new_end) && (old_end > new_start))
 				{
-
-					if(m_debug) {
-						eDebug("[eEPGCache] Removing old overlapping event %04X:\n"
-								"       old %lld ~ %lld\n"
-								"       new %lld ~ %lld",
-								it->second->getEventID(), (long long)old_start, (long long)old_end, (long long)new_start, (long long)new_end);
-					}
-
-					if (eventmap.erase(it->second->getEventID()) == 0)
+					// Keep the part sticking out at the front, else the one at the back.
+					if (old_start < new_start && keepRemainder(new_start - old_start, old_duration))
 					{
-						eDebug("[eEPGCache] Event %04X not found in event map at %lld.", it->second->getEventID(), (long long)it->second->getStartTime());
+						if(m_debug)
+							eDebug("[eEPGCache] Truncating event %04X for service (%04X:%04X:%04X): "
+								"duration %d s, end %lld -> %lld "
+								"(overlaps new event %04X at %lld).",
+								it->second->getEventID(), service.onid, service.tsid, service.sid,
+								old_duration, (long long)old_end, (long long)new_start,
+								event_id, (long long)new_start);
+
+						it->second->setDuration(new_start - old_start);
+						++it;
 					}
-					delete it->second;
-					timemap.erase(it++);
+					else if (old_end > new_end && keepRemainder(old_end - new_end, old_duration) && timemap.find(new_end) == timemap.end())
+					{
+						if(m_debug)
+							eDebug("[eEPGCache] Truncating event %04X for service (%04X:%04X:%04X) "
+								"(%lld~%lld, type=0x%X) to tail %lld~%lld instead of removing it, "
+								"superseded at the front by new event %04X (%lld~%lld, source=0x%X).",
+								it->second->getEventID(), service.onid, service.tsid, service.sid,
+								(long long)old_start, (long long)old_end, it->second->type,
+								(long long)new_end, (long long)old_end,
+								event_id, (long long)new_start, (long long)new_end, source);
+
+						eventData *tail = it->second;
+						timemap.erase(it++);
+						tail->setStartTime(new_end);
+						tail->setDuration(old_end - new_end);
+						timemap[new_end] = tail;
+					}
+					else
+					{
+						if(m_debug) {
+							eDebug("[eEPGCache] Removing old overlapping event %04X:\n"
+									"       old %lld ~ %lld\n"
+									"       new %lld ~ %lld",
+									it->second->getEventID(), (long long)old_start, (long long)old_end, (long long)new_start, (long long)new_end);
+						}
+
+						if (eventmap.erase(it->second->getEventID()) == 0)
+						{
+							eDebug("[eEPGCache] Event %04X not found in event map at %lld.", it->second->getEventID(), (long long)old_start);
+						}
+						delete it->second;
+						timemap.erase(it++);
+					}
 				}
 				else
 				{
@@ -1082,7 +1234,7 @@ void eEPGCache::save()
 				return;
 			}
 		}
-	
+
 		char* buf = realpath(EPGDAT, NULL);
 		if (!buf)
 		{
@@ -1102,7 +1254,7 @@ void eEPGCache::save()
 			free(buf);
 			return;
 		}
-	
+
 		// check for enough free space on storage
 		tmp=st.f_bfree;
 		tmp*=st.f_bsize;
@@ -1274,8 +1426,9 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, eP
 	{
 		Event ev((uint8_t*)data->get());
 		result = new eServiceEvent();
-		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)service;
-		ret = result->parseFrom(&ev, (ref.getTransportStreamID().get()<<16)|ref.getOriginalNetworkID().get(), ref.getServiceID().get());
+		int tsidonid, sid;
+		getEPGServiceIds(service, tsidonid, sid);
+		ret = result->parseFrom(&ev, tsidonid, sid);
 	}
 	return ret;
 }
@@ -1363,8 +1516,9 @@ RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, 
 	{
 		Event ev((uint8_t*)data->get());
 		result = new eServiceEvent();
-		const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)service;
-		ret = result->parseFrom(&ev, (ref.getTransportStreamID().get()<<16)|ref.getOriginalNetworkID().get(), ref.getServiceID().get());
+		int tsidonid, sid;
+		getEPGServiceIds(service, tsidonid, sid);
+		ret = result->parseFrom(&ev, tsidonid, sid);
 	}
 	return ret;
 }
@@ -1375,7 +1529,7 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 
 	if (m_timeQueryRef)
 		delete m_timeQueryRef;
-	m_timeQueryRef = (eServiceReferenceDVB*)new eServiceReference(handleGroup(service));
+	m_timeQueryRef = new eServiceReference(handleGroup(service));
 
 	if (begin == -1)
 		begin = ::time(0);
@@ -1498,14 +1652,37 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 		{
 			Event ev((uint8_t*)timemap_it->second->get());
 			result = new eServiceEvent();
-			int currentQueryTsidOnid = (m_timeQueryRef->getTransportStreamID().get()<<16) | m_timeQueryRef->getOriginalNetworkID().get();
-			int currentQuerySid = m_timeQueryRef->getServiceID().get();
+			int currentQueryTsidOnid, currentQuerySid;
+			getEPGServiceIds(*m_timeQueryRef, currentQueryTsidOnid, currentQuerySid);
 			m_timeQueryCount++;
 			return result->parseFrom(&ev, currentQueryTsidOnid, currentQuerySid);
 		}
 	}
 	return -1;
 }
+
+std::vector< ePtr<eServiceEvent> > eEPGCache::lookupEvents(const eServiceReference &service, int startTime, int minutes)
+{
+	std::vector< ePtr<eServiceEvent> > events;
+
+	if (startTime < 0)
+		startTime = ::time(0);
+
+	if (startTimeQuery(service, (time_t)startTime, minutes))
+		return events;
+
+	while (true)
+	{
+		ePtr<eServiceEvent> event;
+		if (getNextTimeEntry(event) == -1)
+			break;
+		if (event)
+			events.push_back(event);
+	}
+
+	return events;
+}
+
 
 void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject service_reference, eServiceEvent *ptr, ePyObject service_name, ePyObject nowTime, eventData *evData)
 {
@@ -1585,19 +1762,32 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 	}
 }
 
-int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, int argcount, ePyObject service, ePyObject nowTime, ePyObject service_name, ePyObject convertFunc, ePyObject convertFuncArgs)
+struct EventTupleContext
+{
+	const char *argstring;
+	int argcount;
+	ePyObject service;
+	ePyObject service_name;
+	ePyObject nowTime;
+};
+
+int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const EventTupleContext &ctx, ePyObject convertFunc)
 {
 	if (convertFunc)
 	{
-		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, service_name, nowTime, 0);
+		// fresh tuple per call, PyTuple_SET_ITEM does not release previous items
+		ePyObject convertFuncArgs = PyTuple_New(ctx.argcount);
+		fillTuple(convertFuncArgs, ctx.argstring, ctx.argcount, ctx.service, ptr, ctx.service_name, ctx.nowTime, nullptr);
 		ePyObject result = PyObject_CallObject(convertFunc, convertFuncArgs);
+		Py_DECREF(convertFuncArgs);
 		if (!result)
 		{
+			ePyObject service_name = ctx.service_name;
+			ePyObject nowTime = ctx.nowTime;
 			if (service_name)
 				Py_DECREF(service_name);
 			if (nowTime)
 				Py_DECREF(nowTime);
-			Py_DECREF(convertFuncArgs);
 			Py_DECREF(dest_list);
 			PyErr_SetString(PyExc_Exception, "[eEPGCache] handleEvent: Error in convertFunc execute!");
 			//eDebug("[eEPGCache] handleEvent: Error in convertFunc execute!");
@@ -1608,8 +1798,8 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 	}
 	else
 	{
-		ePyObject tuple = PyTuple_New(argcount);
-		fillTuple(tuple, argstring, argcount, service, ptr, service_name, nowTime, 0);
+		ePyObject tuple = PyTuple_New(ctx.argcount);
+		fillTuple(tuple, ctx.argstring, ctx.argcount, ctx.service, ptr, ctx.service_name, ctx.nowTime, nullptr);
 		PyList_Append(dest_list, tuple);
 		Py_DECREF(tuple);
 	}
@@ -1651,7 +1841,6 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 
 PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 {
-	ePyObject convertFuncArgs;
 	int argcount = 0;
 	const char *argstring = NULL;
 	if (!PyList_Check(list))
@@ -1704,15 +1893,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	}
 	int returnMaxItemsCount = 1;
 
-	if (convertFunc)
+	if (convertFunc && !PyCallable_Check(convertFunc))
 	{
-		if (!PyCallable_Check(convertFunc))
-		{
-			PyErr_SetString(PyExc_TypeError, "[eEPGCache] The convertFunc is not callable!");
-			// eDebug("[eEPGCache] The convertFunc is not callable!");
-			return NULL;
-		}
-		convertFuncArgs = PyTuple_New(argcount);
+		PyErr_SetString(PyExc_TypeError, "[eEPGCache] The convertFunc is not callable!");
+		// eDebug("[eEPGCache] The convertFunc is not callable!");
+		return NULL;
 	}
 
 	ePyObject nowTime = strchr(argstring, 'C') ? PyLong_FromLong(::time(0)) : ePyObject();
@@ -1774,9 +1959,10 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 
 			eServiceReference ref(handleGroup(eServiceReference(PyUnicode_AsUTF8(service))));
 
-			// redirect subservice querys to parent service
+			// Redirect DVB linkage subservices to their parent. Other service
+			// types reuse these data words for their own identifiers.
 			eServiceReferenceDVB &dvb_ref = (eServiceReferenceDVB &)ref;
-			if (dvb_ref.getParentTransportStreamID().get()) // linkage subservice
+			if (ref.type == eServiceReference::idDVB && dvb_ref.getParentTransportStreamID().get())
 			{
 				eServiceCenterPtr service_center;
 				if (!eServiceCenter::getPrivInstance(service_center))
@@ -1824,6 +2010,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				if (!service_name)
 					service_name = PyUnicode_FromString("<n/a>");
 			}
+			const EventTupleContext ctx = {argstring, argcount, service, service_name, nowTime};
 			if (minutes)
 			{
 				if (!startTimeQuery(ref, stime, minutes))
@@ -1840,11 +2027,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 							}
 							returnMaxItemsCount++;
 						}
-						if (handleEvent(evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+						if (handleEvent(evt, dest_list, ctx, convertFunc))
 							return 0; // error
 					}
 				}
-				else if (forceReturnOne && handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+				else if (forceReturnOne && handleEvent(nullptr, dest_list, ctx, convertFunc))
 					return 0; // error
 			}
 			else
@@ -1873,17 +2060,18 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 					}
 					if (ev_data)
 					{
-						const eServiceReferenceDVB &dref = (const eServiceReferenceDVB &)ref;
 						Event ev((uint8_t *)ev_data->get());
-						evt.parseFrom(&ev, (dref.getTransportStreamID().get() << 16) | dref.getOriginalNetworkID().get(), dref.getServiceID().get());
+						int tsidonid, sid;
+						getEPGServiceIds(ref, tsidonid, sid);
+						evt.parseFrom(&ev, tsidonid, sid);
 					}
 				}
 				if (ev_data)
 				{
-					if (handleEvent(&evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+					if (handleEvent(&evt, dest_list, ctx, convertFunc))
 						return 0; // error
 				}
-				else if (forceReturnOne && handleEvent(0, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
+				else if (forceReturnOne && handleEvent(nullptr, dest_list, ctx, convertFunc))
 					return 0; // error
 			}
 			if (service_changed)
@@ -1894,8 +2082,6 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 skip_entry:
 		;
 	}
-	if (convertFuncArgs)
-		Py_DECREF(convertFuncArgs);
 	if (nowTime)
 		Py_DECREF(nowTime);
 	return dest_list;
@@ -1951,21 +2137,31 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	long duration, const char* title, const char* short_summary,
 	const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, uint16_t event_id)
 {
+	std::vector<eServiceReference> refs(serviceRefs.begin(), serviceRefs.end());
+	submitEventData(refs, start, duration, title, short_summary, long_description,
+		event_types, parental_ratings, event_id);
+}
+
+void eEPGCache::submitEventData(const std::vector<eServiceReference>& serviceRefs, long start,
+	long duration, const char* title, const char* short_summary,
+	const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, uint16_t event_id)
+{
 	std::vector<int> sids;
 	std::vector<eDVBChannelID> chids;
 	chids.reserve(serviceRefs.size());
-	for (std::vector<eServiceReferenceDVB>::const_iterator serviceRef = serviceRefs.begin();
+	for (std::vector<eServiceReference>::const_iterator serviceRef = serviceRefs.begin();
 		serviceRef != serviceRefs.end();
 		++serviceRef)
 	{
-		eDVBChannelID chid;
-		serviceRef->getChannelID(chid);
-		chids.push_back(chid);
-		sids.push_back(serviceRef->getServiceID().get());
+		const uniqueEPGKey key(*serviceRef);
+		chids.push_back(eDVBChannelID(eDVBNamespace(0),
+			eTransportStreamID(key.tsid), eOriginalNetworkID(key.onid)));
+		sids.push_back(key.sid);
 
 		// disable EIT event parsing when using EPG_IMPORT
 		ePtr<eDVBService> service;
-		if (!eDVBDB::getInstance()->getService(*serviceRef, service) && service->useEIT())
+		if (serviceRef->type == eServiceReference::idDVB &&
+			!eDVBDB::getInstance()->getService((const eServiceReferenceDVB &)*serviceRef, service) && service->useEIT())
 		{
 			service->m_flags |= eDVBService::dxNoEIT;
 		}
@@ -2180,7 +2376,7 @@ unsigned int eEPGCache::getEpgSources()
 	return m_enabledEpgSources;
 }
 
-unsigned int eEPGCache::getEpgmaxdays()  
+unsigned int eEPGCache::getEpgmaxdays()
 {
 	return maxdays;
 }
@@ -2225,7 +2421,7 @@ void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
  */
 void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 {
-	std::vector<eServiceReferenceDVB> refs;
+	std::vector<eServiceReference> refs;
 
 	if (PyUnicode_Check(serviceReferences))
 	{
@@ -2236,7 +2432,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 			eDebug("[eEPGCache] The import serviceReferences string is 0, aborting!");
 			return;
 		}
-		refs.push_back(eServiceReferenceDVB(refstr));
+		refs.push_back(eServiceReference(refstr));
 	}
 	else if (PyTuple_Check(serviceReferences))
 	{
@@ -2266,7 +2462,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 				}
 				else
 				{
-					refs.push_back(eServiceReferenceDVB(refstr));
+					refs.push_back(eServiceReference(refstr));
 				}
 			}
 			else if (PyTuple_Check(item))
@@ -2591,14 +2787,14 @@ PyObject *eEPGCache::search(ePyObject arg)
 							it != eventData::descriptors.end(); ++it)
 						{
 							uint8_t *data = it->second.data;
-							if ( querytype == CRID_SEARCH ) { 
+							if ( querytype == CRID_SEARCH ) {
 								if (data[0] == CONTENT_IDENTIFIER_DESCRIPTOR )
 								{
 									auto cid = ContentIdentifierDescriptor(data);
 									auto cril = cid.getIdentifier();
 									for (auto crid = cril->begin(); crid != cril->end(); ++crid)
 									{
-										// some broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than 
+										// some broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than
 										// the specification's 1 and 2 for episode and series respectively
 										if (((*crid)->getType() & 0xf) == casetype && (*crid)->getBytes()->data() != NULL)
 										{
@@ -2611,10 +2807,10 @@ PyObject *eEPGCache::search(ePyObject arg)
 											}
 										}
 									}
-								}								
+								}
 								continue;
 							}
-														
+
 							eit_short_event_descriptor_struct *short_event_descriptor = (eit_short_event_descriptor_struct *) ((u_char *) data);
 							if ((u_char)short_event_descriptor->descriptor_tag == (u_char)SHORT_EVENT_DESCRIPTOR ) // short event descriptor
 							{
@@ -3228,7 +3424,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 	char descriptors_file[dbroot.length()+25];
 	char aliases_file[dbroot.length()+21];
 	int channels_count, events_count = 0, aliases_groups_count;
-	unsigned char revision;
+	unsigned char revision = 0;
 	[[maybe_unused]] size_t ret; /* dummy value to store fread return values */
 
 	eDebug("[eEPGCache] Starting CrossEPG import.");
@@ -3457,8 +3653,8 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 				data_eit_short_event->iso_639_2_language_code_2 = title.iso_639_2;
 				data_eit_short_event->iso_639_2_language_code_3 = title.iso_639_3;
 
-				data_tmp[6] = 0;
-				data_tmp[7] = current_text_length;
+				data_tmp[6] = 0; //item information (car, year, director, etc. Unsupported for now)
+				data_tmp[7] = current_text_length; //length of description string (part in this message)
 				if (IS_UTF8(title.flags))
 				{
 					data_tmp[8] = 0x15;

@@ -18,7 +18,7 @@ class OverscanTestScreen(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("Overscan Test"))
 
-		self.skin = """<screen position="fill">
+		self.skin = """<screen position="fill" flags="wfNoBorder">
 				<ePixmap pixmap="%s" position="0,0" size="%s,%s" zPosition="2" scale="1" alphatest="on"/>
 			</screen>""" % (getDesktop(0).size().height() == 1080 and ("overscan.png", 1920, 1080) or ("overscan.png", 1280, 720))
 
@@ -48,7 +48,7 @@ class OverscanTestScreen(Screen):
 
 class FullHDTestScreen(OverscanTestScreen):
 	skin = """
-		<screen position="fill">
+		<screen position="fill" flags="wfNoBorder">
 			<ePixmap pixmap="testscreen.png" position="0,0" size="1920,1080" zPosition="2" alphatest="on"/>
 		</screen>"""
 
@@ -83,7 +83,7 @@ class FullHDTestScreen(OverscanTestScreen):
 
 
 class FullUHDTestScreen(OverscanTestScreen):
-	skin = """<screen position="0,0" size="0,0"/>"""
+	skin = """<screen position="0,0" size="0,0" flags="wfNoBorder"/>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -115,7 +115,7 @@ class FullUHDTestScreen(OverscanTestScreen):
 
 class VideoFinetune(Screen):
 	skin = """
-		<screen position="fill">
+		<screen position="fill" flags="wfNoBorder">
 			<widget source="Canvas" render="Canvas" position="fill" zPosition="2"/>
 		</screen>"""
 
@@ -295,15 +295,15 @@ class VideoFinetune(Screen):
 				self.bbox(offset, y + (height + o) * 1, ew, height, RGB(0, 0, 0), bbw, bbh)
 				self.bbox(offset, y + (height + o) * 2, ew, height, RGB(0, 0, 0), bbw, bbh)
 
-			for i in list(range(8)):
+			for j in list(range(8)):
 				height = yres // 3
 				eh = height // 8
-				offset = yres // 6 + eh * i
+				offset = yres // 6 + eh * j
 				x = xres * 2 // 3
 				width = yres // 6
 
-				c.fill(x, offset, width, eh, self.basic_colors[i])
-				if i == 0:
+				c.fill(x, offset, width, eh, self.basic_colors[j])
+				if j == 0:
 					self.bbox(x, offset, width, eh, RGB(0, 0, 0), bbw, bbh)
 
 		c.writeText(xres // 10, yres // 6 - self.fontsize * 3, xres * 3 // 5, 40, RGB(128, 0, 0), RGB(255, 255, 255), gFont("Regular", self.fontsize * 2),
@@ -419,7 +419,7 @@ class VideoFinetune(Screen):
 
 class PixelsTestScreen(Screen):
 	skin = """
-		<screen position="fill">
+		<screen position="fill" flags="wfNoBorder">
 			<widget source="Canvas" render="Canvas" position="fill" zPosition="2"/>
 		</screen>"""
 

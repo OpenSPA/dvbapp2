@@ -90,6 +90,8 @@ scopeLCDSkin = defaultPaths[SCOPE_LCDSKIN][0]
 scopeFonts = defaultPaths[SCOPE_FONTS][0]
 scopePlugins = defaultPaths[SCOPE_PLUGINS][0]
 
+pluginBlacklist = set()
+
 
 def InitDefaultPaths():
 	resolveFilename(SCOPE_CONFIG)
@@ -99,6 +101,12 @@ class ResolveLists:
 	skin = []
 	lcdSkin = []
 	fonts = []
+
+
+def clearResolveLists():
+	ResolveLists.skin.clear()
+	ResolveLists.lcdSkin.clear()
+	ResolveLists.fonts.clear()
 
 
 def resolveFilename(scope, base="", path_prefix=None):
@@ -325,9 +333,12 @@ def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False)
 				content = fd.readlines()
 				line, column = err.position
 				print(f"[{source}] XML Parse Error: '{err}' in '{filename}'!")
-				data = content[line - 1].replace("\t", " ").rstrip()
-				print(f"[{source}] XML Parse Error: '{data}'")
-				print(f"[{source}] XML Parse Error: '{'-' * column}^{' ' * (len(data) - column - 1)}'")
+				if 0 < line <= len(content):
+					data = content[line - 1].replace("\t", " ").rstrip()
+					print(f"[{source}] XML Parse Error: '{data}'")
+					print(f"[{source}] XML Parse Error: '{'-' * column}^{' ' * max(len(data) - column - 1, 0)}'")
+				else:
+					print(f"[{source}] XML Parse Error: The file is empty.")
 			except Exception as err:
 				print(f"[{source}] Error: Unable to parse data in '{filename}' - '{err}'!")
 	except OSError as err:
@@ -691,7 +702,19 @@ def mediaFilesInUse(session):
 	return set([file for file in files if not (filename and file == filename and files.count(filename) < 2)])
 
 
+def readPluginBlacklist():
+	pluginBlacklist.clear()
+	for filename in (join(scopeConfig, "plugin_blacklist"), "/tmp/plugin_blacklist"):
+		pluginBlacklist.update(x.strip() for x in fileReadLines(filename, default=[], source=DEFAULT_MODULE_NAME) if x.strip())
+	return pluginBlacklist
+
+
+readPluginBlacklist()
+
+
 def isPluginInstalled(pluginName, pluginFile="plugin", pluginType=None):
+	if pluginName in pluginBlacklist:
+		return False
 	types = ["Extensions", "SystemPlugins"]
 	if pluginType:
 		types = [pluginType]

@@ -1,19 +1,50 @@
 from os import listdir
-from os.path import exists, getsize, isdir, join
+from os.path import exists, getmtime, getsize, isdir, join, normpath
 from re import sub
-from enigma import ePixmap  # , ePicLoad
+from enigma import ePixmap, eServiceReference, iServiceInformation  # , ePicLoad
+from Components.config import config, ConfigText, ConfigYesNo
+from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
+import NavigationInstance
+from ServiceReference import ServiceReference
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
-from Components.Harddisk import harddiskmanager
-from ServiceReference import ServiceReference
-from Components.config import config, ConfigText, ConfigYesNo
 
 config.misc.picon_path = ConfigText(default = "/usr/share/enigma2/picon/")
 config.misc.picon_search_hdd = ConfigYesNo (default = False)
 
 searchPaths = []
-lastPiconPath = None
+lastPiconPath = None  # default/infobar path as plain string for plugins
+piconPathCache = {}
+
+
+def resetPiconPath():
+	global lastPiconPath, piconPathCache
+	lastPiconPath = None
+	piconPathCache = {}
+
+
+def setPiconPath(key, path):
+	global lastPiconPath
+	piconPathCache[key] = path
+	if key in (None, "infobar"):
+		lastPiconPath = path
+
+
+def getDefaultPiconPath():
+	path = getPiconPath("infobar") or lastPiconPath or next((x for x in searchPaths if not x.startswith("/media/net")), None)
+	return normpath(path) if path else None
+
+
+def getPiconPath(mode=None):
+	if config.picon.mode.value:
+		if mode not in ("channelselection", "infobar"):
+			mode = "infobar"
+		modeValue = getattr(config.picon, mode).value
+		path = getattr(config.picon, f"set{modeValue}").path.value
+		if isdir(path):
+			return path
+	return None
 
 
 def initPiconPaths():
@@ -90,39 +121,63 @@ def onPartitionChange(why, part):
 		onMountpointRemoved(part.mountpoint)
 
 
-def findPicon(serviceName):
-	global lastPiconPath
-	if lastPiconPath is not None:
-		pngname = f"{lastPiconPath}{serviceName}.png"
+def findPicon(serviceName, mode=None):
+	key = mode if config.picon.mode.value else None
+	cachedPath = piconPathCache.get(key)
+	if cachedPath is not None:
+		pngname = join(cachedPath, f"{serviceName}.png")
 		return pngname if exists(pngname) else ""
 	else:
+		path = getPiconPath(mode)
+		if path:
+			setPiconPath(key, path)
+			pngname = join(path, f"{serviceName}.png")
+			return pngname if exists(pngname) else ""
 		for path in searchPaths:
-			if exists(path) and not path.startswith("/media/net"):
-				pngname = f"{path}{serviceName}.png"
+			if isdir(path) and not path.startswith("/media/net"):
+				pngname = join(path, f"{serviceName}.png")
 				if exists(pngname):
-					lastPiconPath = path
+					setPiconPath(key, path)
 					return pngname
 		return ""
 
-def getPiconName(serviceName):
+
+def getChannelSelectionPiconName(serviceName):
+	return getPiconName(serviceName, mode="channelselection")
+
+
+def getPiconName(serviceName, mode=None):
 	fields = GetWithAlternative(serviceName).split(":", 10)[:10]  # Remove the path and name fields, and replace ":" by "_"
 	if not fields or len(fields) < 10:
 		return ""
-	pngname = findPicon("_".join(fields))
+	pngname = findPicon("_".join(fields), mode)
 	if not pngname and not fields[6].endswith("0000"):
 		fields[6] = fields[6][:-4] + "0000"  # Remove "sub-network" from namespace
-		pngname = findPicon("_".join(fields))
+		pngname = findPicon("_".join(fields), mode)
 	if not pngname and fields[0] != "1":
 		fields[0] = "1"  # Fallback to 1 for other reftypes
-		pngname = findPicon("_".join(fields))
+		pngname = findPicon("_".join(fields), mode)
 	if not pngname and fields[2] != "1":
 		fields[2] = "1"  # Fallback to 1 for services with different service types
-		pngname = findPicon("_".join(fields))
+		pngname = findPicon("_".join(fields), mode)
 	if not pngname:
 		if (sName := ServiceReference(serviceName).getServiceName().replace('\x80', '').replace('\x86', '').replace('\x87', '')) and "SID 0x" not in sName and (utf8Name := sanitizeFilename(sName).lower()) and utf8Name != "__":  # avoid lookups on zero length service names
 			legacyName = sub("[^a-z0-9]", "", utf8Name.replace("&", "and").replace("+", "plus").replace("*", "star").replace(_("(TV)"), "").replace(_("(Radio)"), "").replace("remote", "").lower())  # legacy ascii service name picons
-			pngname = findPicon(utf8Name) or legacyName and findPicon(legacyName) or findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8Name).strip()) or legacyName and findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", legacyName).strip())
+			pngname = findPicon(utf8Name, mode) or legacyName and findPicon(legacyName, mode) or findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8Name).strip(), mode) or legacyName and findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", legacyName).strip(), mode)
 	return pngname
+
+
+def getDABImage(serviceName):
+	ref = eServiceReference(serviceName or "")
+	if ref.type != eServiceReference.idServiceDAB or NavigationInstance.instance is None:
+		return ""
+	playingRef = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+	if not playingRef or playingRef.toString().split(":", 10)[:10] != ref.toString().split(":", 10)[:10]:
+		return ""
+	service = NavigationInstance.instance.getCurrentService()
+	info = service and service.info()
+	image = info and info.getInfoString(iServiceInformation.sTagImage) or ""
+	return image if image and exists(image) else ""
 
 
 class Picon(Renderer):
@@ -135,6 +190,10 @@ class Picon(Renderer):
 		self.piconsize = (0, 0)
 		self.pngname = ""
 		self.lastPath = None
+		self.mode = None
+		self.setDefaultPicon()
+
+	def setDefaultPicon(self, mode=None):
 		defaultName = "picon_default"
 		pngname = findPicon(defaultName)
 		self.defaultpngname = None
@@ -162,6 +221,11 @@ class Picon(Renderer):
 			if attrib == "path":
 				self.addPath(value)
 				attribs.remove((attrib, value))
+			elif attrib == "mode":
+				if value in ("infobar", "channelselection"):
+					self.mode = value
+					self.setDefaultPicon(value)
+				attribs.remove((attrib, value))
 			elif attrib == "size":
 				self.piconsize = value
 		self.skinAttributes = attribs
@@ -180,12 +244,13 @@ class Picon(Renderer):
 		if self.instance:
 			pngname = ""
 			if what[0] == 1 or what[0] == 3:
-				pngname = getPiconName(self.source.text)
+				pngname = getDABImage(self.source.text) or getPiconName(self.source.text, self.mode)
 				if not exists(pngname):  # No picon for service found
 					pngname = self.defaultpngname
 				if not config.usage.showpicon.value:
 					pngname = self.nopicon
-				if self.pngname != pngname:
+				pngkey = (pngname, getmtime(pngname), getsize(pngname)) if pngname and exists(pngname) else pngname
+				if self.pngname != pngkey:
 					if pngname:
 						self.instance.setScale(1)
 						self.instance.setPixmapFromFile(pngname)
@@ -194,16 +259,17 @@ class Picon(Renderer):
 #						self.PicLoad.startDecode(pngname)
 					else:
 						self.instance.hide()
-					self.pngname = pngname
+					self.pngname = pngkey
 			elif what[0] == 2:
 				self.pngname = ""
 				self.instance.hide()
 
 ###OPENSPA [morser] for Picon Path change
-def setPiconPath():
-	global lastPiconPath
-	lastPiconPath = None
-	initPiconPaths()
+# OpenSPA [norhap] This has been redefined in the code with the latest changes; there are two definitions.
+# def setPiconPath():
+# 	global lastPiconPath
+# 	lastPiconPath = {}
+# 	initPiconPaths()
 #####################################
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)

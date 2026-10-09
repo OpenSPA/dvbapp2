@@ -10,7 +10,7 @@ from ServiceReference import ServiceReference
 from skin import parseBoolean, parseFont, parseInteger
 from timer import TimerEntry
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config
+from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config, configfile
 from Components.GUIComponent import GUIComponent
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -509,14 +509,14 @@ class TimerOverviewBase(Screen):
 		self["actions"] = HelpableActionMap(self, ["TimerActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Close the screen")),
 			"close": (self.keyClose, _("Close the screen and exit all menus")),
-			"top": (self.keyGoTop, _("Move to first line / screen")),
+			"top": (self.keyGoTop, _("Move to the first line / screen")),
 			"pageUp": (self.keyGoPageUp, _("Move up a page / screen")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
-			# "first": (self.keyTop, _("Move to first line / screen")),
-			# "last": (self.keyBottom, _("Move to last line / screen")),
+			# "first": (self.keyTop, _("Move to the first line / screen")),
+			# "last": (self.keyBottom, _("Move to the last line / screen")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a page / screen")),
-			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
+			"bottom": (self.keyGoBottom, _("Move to the last line / screen"))
 		}, prio=0, description=MODE_DATA[mode][MODE_DATA_ACTIONS])
 		if mode == MODE_CONFLICT:
 			self["key_blue"].setText(_("Ignore"))
@@ -668,7 +668,7 @@ class SchedulerOverview(TimerOverviewBase):
 	def __init__(self, session):
 		self["timerlist"] = SchedulerList([])
 		TimerOverviewBase.__init__(self, session, mode=MODE_SCHEDULER)
-		self.skinName.insert(0, "PowerTimerOverview")  # Fallback for old skins.
+		self.skinName.insert(1, "PowerTimerOverview")  # Fallback for old skins.
 
 	def doChangeCallbackAppend(self):
 		self.session.nav.Scheduler.on_state_change.append(self.onStateChange)
@@ -839,6 +839,28 @@ class RecordTimerOverview(TimerOverviewBase):
 		self["description"] = Label("")
 		self["Event"] = Event()
 		self["Service"] = ServiceEvent()
+		self["sortActions"] = HelpableActionMap(self, ["MenuActions"], {
+			"menu": (self._sortTimers, _("Select the timer list sort order"))
+		}, prio=0, description=MODE_DATA[MODE_RECORD][MODE_DATA_ACTIONS])
+
+	def _sortTimers(self):
+		sortOrder = config.usage.timerListSortOrder
+		choices = [(x[1], x[0]) for x in sortOrder.getSelectionList()]
+		self.session.openWithCallback(self._sortTimersCallback, MessageBox, _("Select how to sort the timer list."), type=MessageBox.TYPE_YESNO, list=choices, default=sortOrder.index, windowTitle=_("Sort Timers"))
+
+	def _sortTimersCallback(self, choice):
+		sortOrder = config.usage.timerListSortOrder
+		if choice in sortOrder.getChoices() and choice != sortOrder.value:
+			selectedTimer = self["timerlist"].getCurrent()
+			sortOrder.value = choice
+			sortOrder.save()
+			configfile.save()
+			self.loadTimerList()
+			for index, item in enumerate(self["timerlist"].getList()):
+				if item[0] is selectedTimer:
+					self["timerlist"].setCurrentIndex(index)
+					break
+			self.selectionChanged()
 
 	def doChangeCallbackAppend(self):
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
@@ -851,20 +873,21 @@ class RecordTimerOverview(TimerOverviewBase):
 		self.selectionChanged()
 
 	def loadTimerList(self):
-		def condition(element):
-			return element[0].state == TimerEntry.StateEnded, element[0].begin
-
 		timerList = []
 		if self.fallbackTimer.list:
-			timerList.extend([(timer, False) for timer in self.fallbackTimer.list if timer.state != 3])
-			timerList.extend([(timer, True) for timer in self.fallbackTimer.list if timer.state == 3])
-		timerList.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
-		timerList.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
+			timerList.extend([(x, False) for x in self.fallbackTimer.list if x.state != TimerEntry.StateEnded])
+			timerList.extend([(x, True) for x in self.fallbackTimer.list if x.state == TimerEntry.StateEnded])
+		timerList.extend([(x, False) for x in self.session.nav.RecordTimer.timer_list])
+		timerList.extend([(x, True) for x in self.session.nav.RecordTimer.processed_timers])
+		sortOrder = config.usage.timerListSortOrder.value
+		timerList.sort(key=lambda x: x[0].begin, reverse=sortOrder == "dateDescending")
+		if sortOrder in ("nameAscending", "nameDescending"):
+			timerList.sort(key=lambda x: (x[0].name or "").casefold(), reverse=sortOrder == "nameDescending")
 		if config.usage.timerlist_finished_timer_position.index:  # End of list.
-			timerList.sort(key=condition)
-		else:
-			timerList.sort(key=lambda x: x[0].begin)
+			# Stable grouping keeps completed timers last in either sort direction.
+			timerList.sort(key=lambda x: x[0].state == TimerEntry.StateEnded)
 		self["timerlist"].setList(timerList)
+		self.setTitle(f"{MODE_DATA[MODE_RECORD][MODE_DATA_TITLE]} - {config.usage.timerListSortOrder.getText()}")
 
 	def getEventDescription(self, timer):
 		description = timer.description
@@ -1435,7 +1458,6 @@ class SchedulerEdit(Setup):
 class RecordTimerEdit(Setup):
 	def __init__(self, session, timer):
 		self.timer = timer
-		self.newEntry = False  # TODO.
 		self.timer.service_ref_prev = self.timer.service_ref
 		self.timer.begin_prev = self.timer.begin
 		self.timer.end_prev = self.timer.end
@@ -1444,6 +1466,8 @@ class RecordTimerEdit(Setup):
 		self.fallbackInfo = None
 		self.initEndTime = True
 		self.session = session  # We need session before createConfig.
+		if not self.timer.external_prev and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value:
+			self.timer.external_prev = self.timer not in session.nav.RecordTimer.timer_list and self.timer not in session.nav.RecordTimer.processed_timers
 		self.createConfig()
 		if self.timer.external:
 			FallbackTimerDirs(self, self.fallbackResult)
@@ -1538,17 +1562,31 @@ class RecordTimerEdit(Setup):
 				tagName = "%s%s" % (tagName[0].upper(), tagName[1:].replace(" ", "_"))
 				self.tags.append(tagName)
 		self.timerTags = ConfigSelection(choices=[not self.tags and "None" or " ".join(self.tags)])
-		self.timerAfterEvent = ConfigSelection(default=RECORDTIMER_AFTER_EVENTS.get(self.timer.afterEvent, "auto"), choices=[
+		self.timerFallback = ConfigYesNo(default=self.timer.external_prev)
+		afterEvent = "zapback" if getattr(self.timer, "zapBack", False) else RECORDTIMER_AFTER_EVENTS.get(self.timer.afterEvent, "auto")
+		self.timerAfterEvent = ConfigSelection(default=afterEvent, choices=[
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.NONE), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.NONE)),
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.STANDBY), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.STANDBY)),
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.DEEPSTANDBY), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.DEEPSTANDBY)),
-			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.AUTO), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.AUTO))
+			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.AUTO), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.AUTO)),
+			("zapback", _("Return to previous channel"))
 		])
-		self.timerFallback = ConfigYesNo(default=self.timer.external_prev or self.newEntry and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value)
+		self.timerPrecondition = ConfigSelection(default=self.timer.precondition, choices=[
+			(0, _("Always")),
+			(1, _("Running only")),
+			(2, _("(Deep) Standby only")),
+		])
 		for callback in onRecordTimerCreate:
 			callback(self)
 
 	def createSetup(self):  # NOSONAR silence S2638
+		choices = [(value, self.timerAfterEvent.description[value]) for value in self.timerAfterEvent.choices if value != "zapback"]
+		if self.timerType.value == "zap" and self.timerHasEndTime.value and not self.timerFallback.value:
+			choices.append(("zapback", _("Return to previous channel")))
+		elif self.timerAfterEvent.value == "zapback":
+			self.timerAfterEvent.value = "nothing"
+		default = self.timerAfterEvent.default
+		self.timerAfterEvent.setChoices(choices, default=default if any(value == default for value, label in choices) else "nothing")
 		Setup.createSetup(self)
 		for callback in onRecordTimerSetup:
 			callback(self)
@@ -1567,7 +1605,7 @@ class RecordTimerEdit(Setup):
 				self.timerHasEndTime.value = config.recording.zap_has_endtime.value
 				self.timerMarginBefore.value = config.recording.zap_margin_before.value // 60
 				self.timerMarginAfter.value = config.recording.zap_margin_after.value // 60
-				Setup.createSetup(self)
+				self.createSetup()
 
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
@@ -1615,6 +1653,7 @@ class RecordTimerEdit(Setup):
 		self.timer.description = self.timerDescription.value if self.timerDescription.default != self.timerDescription.value else self.timer.description
 		self.timer.justplay = self.timerType.value == "zap"
 		self.timer.always_zap = self.timerType.value == "zap+record"
+		self.timer.precondition = self.timerPrecondition.value if self.timerType.value == "zap" else 0
 		self.timer.rename_repeat = 1 if self.timerRename.value else 0
 		if self.timerType.value == "zap" and not self.timerHasEndTime.value:
 			self.timerAfterEvent.value = "nothing"
@@ -1683,7 +1722,8 @@ class RecordTimerEdit(Setup):
 		}[self.timerRecordingType.value]
 		self.saveMovieDir()
 		self.timer.tags = self.tags
-		self.timer.afterEvent = RECORDTIMER_AFTER_VALUES[self.timerAfterEvent.value]
+		self.timer.zapBack = self.timer.justplay and self.timer.hasEndTime and not self.timerFallback.value and self.timerAfterEvent.value == "zapback"
+		self.timer.afterEvent = RECORD_AFTEREVENT.NONE if self.timer.zapBack else RECORDTIMER_AFTER_VALUES.get(self.timerAfterEvent.value, RECORD_AFTEREVENT.NONE)
 		if self.timer.eit is not None and not self.lookupEvent():
 			return
 		self.saveTimers()
@@ -1938,14 +1978,14 @@ class TimerLog(Screen):
 			"ok": (self.refreshLog, _("Refresh the screen")),
 			"yellow": (self.refreshLog, _("Refresh the screen")),
 			"blue": (self.keyClearLog, _("Clear the logs for this timer")),
-			"top": (self["log"].moveTop, _("Move to first line / screen")),
+			"top": (self["log"].moveTop, _("Move to the first line / screen")),
 			"pageUp": (self["log"].pageUp, _("Move up a screen")),
 			"up": (self["log"].moveUp, _("Move up a line")),
 			# "left": (self["log"].pageUp, _("Move up a screen")),
 			# "right": (self["log"].pageDown, _("Move down a screen")),
 			"down": (self["log"].moveDown, _("Move down a line")),
 			"pageDown": (self["log"].pageDown, _("Move down a screen")),
-			"bottom": (self["log"].moveBottom, _("Move to last line / screen"))
+			"bottom": (self["log"].moveBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Timer Log Actions"))
 		self.refreshLog()
 

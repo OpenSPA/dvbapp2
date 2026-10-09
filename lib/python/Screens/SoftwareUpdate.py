@@ -110,12 +110,12 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, cancelMsg),
 			"red": (self.keyCancel, cancelMsg),
-			"top": (self["list"].goTop, _("Move to first line / screen")),
+			"top": (self["list"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["list"].goPageUp, _("Move up a page / screen")),
 			"up": (self["list"].goLineUp, _("Move up a line")),
 			"down": (self["list"].goLineDown, _("Move down a line")),
 			"pageDown": (self["list"].goPageDown, _("Move down a page / screen")),
-			"bottom": (self["list"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["list"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Software Update Actions"))
 		updateMsg = _("Proceed with the update")
 		self["updateActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
@@ -282,14 +282,17 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 					self.session.open(FlashManager)
 				case 2:
 					self.session.open(RunSoftwareUpdate)
+				case 3:
+					from Screens.ImageBackup import ImageBackup
+					self.session.openWithCallback(showWarning, ImageBackup)
+					return
+				case 4:
+					from Screens.BackupRestore import BackupScreen
+					self.session.openWithCallback(showWarning, BackupScreen, runBackup=True)
+					return
 			self.close()
 
-		self.opkg.removeCallback(self.opkgCallback)
-		updateLimit = BoxInfo.getItem("UpdateLimit", 200)
-		if self.packageCount <= updateLimit:
-			keyUpdateCallback(2)
-		else:
-			print("[SoftwareUpdate] Warning: There are %d packages available, more than the %d maximum recommended, for an update!" % (self.packageCount, updateLimit))
+		def showWarning(*args):
 			message = [
 				_("Warning: There are %d update packages!") % self.packageCount,
 				_("There is a risk that your %s %s will not boot or may malfunction after such a large on-line update.") % getBoxDisplayName(),
@@ -300,9 +303,19 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 			optionList = [
 				(_("Cancel the update"), 0),
 				(_("Perform an on-line flash instead"), 1),
-				(_("Continue with the on-line update"), 2)
+				(_("Continue with the on-line update"), 2),
+				(_("Create an image backup"), 3),
+				(_("Create a settings backup"), 4)
 			]
 			self.session.openWithCallback(keyUpdateCallback, MessageBox, message, list=optionList, default=0)
+
+		self.opkg.removeCallback(self.opkgCallback)
+		updateLimit = BoxInfo.getItem("UpdateLimit", 200)
+		if self.packageCount <= updateLimit:
+			keyUpdateCallback(2)
+		else:
+			print(f"[SoftwareUpdate] Warning: There are {self.packageCount} packages available, more than the {updateLimit} maximum recommended, for an update!")
+			showWarning()
 
 	def keyRefresh(self):
 		self.timer.callback.append(self.checkTrafficLight)
@@ -380,12 +393,12 @@ class RunSoftwareUpdate(Screen):
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Stop the update, if running, then exit")),
 			"ok": (self.keyCancel, _("Stop the update, if running, then exit")),
-			"top": (self["update"].goTop, _("Move to first line / screen")),
+			"top": (self["update"].goTop, _("Move to the first line / screen")),
 			"pageUp": (self["update"].goPageUp, _("Move up a page / screen")),
 			"up": (self["update"].goLineUp, _("Move up a page / screen")),
 			"down": (self["update"].goLineDown, _("Move down a page / screen")),
 			"pageDown": (self["update"].goPageDown, _("Move down a page / screen")),
-			"bottom": (self["update"].goBottom, _("Move to last line / screen"))
+			"bottom": (self["update"].goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Software Update Actions"))
 		self.activity = 0
 		self.packageTotal = 0
@@ -396,7 +409,6 @@ class RunSoftwareUpdate(Screen):
 		self.deselectCount = 0
 		self.upgradeCount = 0
 		self.configureCount = 0
-		self.metrixUpdated = False
 		self.timer = eTimer()
 		self.timer.callback.append(self.timeout)
 		self.opkg = OpkgComponent()
@@ -433,8 +445,6 @@ class RunSoftwareUpdate(Screen):
 		elif event == OpkgComponent.EVENT_UPVERSION:
 			self.upgradeCount += 1
 			self["update"].appendText(f"{_("Updating")} {self.upgradeCount}/{self.packageTotal}: '{parameter}'.\n")
-			if "enigma2-plugin-skins-metrix-atv" in parameter:
-				self.metrixUpdated = True
 		elif event == OpkgComponent.EVENT_INSTALL:
 			self.installCount += 1
 			self["update"].appendText(f"{_("Installing")}: '{parameter}'.\n")
@@ -453,7 +463,7 @@ class RunSoftwareUpdate(Screen):
 			if self.opkg.currentCommand == OpkgComponent.CMD_UPGRADE_LIST:
 				self.packageTotal = len(self.opkg.getFetchedList())
 				if self.packageTotal:
-					self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={"testMode": False})
+					self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={"testMode": False, "lineMode": True})
 				else:
 					self.activity = -1
 					self["update"].appendText(f"{_("No updates available.")}\n\n{_("Press OK on your remote control to continue.")}")
@@ -504,17 +514,6 @@ class RunSoftwareUpdate(Screen):
 		if self.opkg.isRunning():
 			self.opkg.stop()
 		self.opkg.removeCallback(self.opkgCallback)
-		if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and self.metrixUpdated:   # TODO: move this to Metrix Plugin.
-			try:
-				if not exists("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):
-					from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreMyMetrixHD
-					self.session.openWithCallback(keyCancelCallback, RestoreMyMetrixHD)
-					return
-				elif config.plugins.MyMetrixLiteOther.EHDenabled.value != "0":
-					from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
-					ActivateSkinSettings().RefreshIcons()
-			except Exception:
-				pass
 		if self.upgradeCount != 0:
 			keyCancelCallback()
 		else:

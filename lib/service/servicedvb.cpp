@@ -2,8 +2,10 @@
 #include <lib/base/object.h>
 #include <lib/base/modelinformation.h>
 #include <string>
+#include <memory>
 #include <lib/service/servicedvb.h>
 #include <lib/service/service.h>
+#include <lib/hbbtv/hbbtv.h>
 #include <lib/dvb/csasession.h>
 #include <lib/dvb/csaengine.h>
 #include <lib/service/servicedvbsoftdecoder.h>
@@ -14,6 +16,9 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
+#ifdef DREAMNEXTGEN
+#include <lib/dvb/alsa.h>
+#endif
 
 #include <lib/base/cfile.h>
 #include <lib/dvb/pmtparse.h>
@@ -78,6 +83,357 @@ public:
 };
 
 DEFINE_REF(eStaticServiceDVBInformation);
+
+namespace
+{
+	struct DVBIInterval
+	{
+		int days, start, end, recurrence;
+	};
+	struct DVBIPeriod
+	{
+		long long from, to;
+		std::vector<DVBIInterval> intervals;
+	};
+	struct DVBICandidate
+	{
+		eServiceReference ref;
+		bool restricted;
+		std::vector<DVBIPeriod> periods;
+		bool available(time_t now) const
+		{
+			if (!restricted)
+				return true;
+			for (const auto &period : periods)
+			{
+				if ((period.from && now < period.from) || (period.to && now >= period.to))
+					continue;
+				if (period.intervals.empty())
+					return true;
+				for (const auto &interval : period.intervals)
+				{
+					struct tm utc;
+					gmtime_r(&now, &utc);
+					int clock = (utc.tm_hour * 3600 + utc.tm_min * 60 + utc.tm_sec) * 1000;
+					bool overnight = interval.end <= interval.start;
+					if (overnight ? (clock < interval.start && clock >= interval.end) : (clock < interval.start || clock >= interval.end))
+						continue;
+					time_t day = now - (overnight && clock < interval.end ? 86400 : 0);
+					gmtime_r(&day, &utc);
+					if (!(interval.days & (1 << ((utc.tm_wday + 6) % 7))))
+						continue;
+					if (interval.recurrence > 1)
+					{
+						if (!period.from)
+							continue;
+						// Unix epoch Thursday; weeks start Monday, UTC.
+						long long weeks = (day / 86400 + 3) / 7 - (period.from / 86400 + 3) / 7;
+						if (weeks < 0 || weeks % interval.recurrence)
+							continue;
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+	};
+	struct DVBIProfile
+	{
+		int age;
+		std::vector<DVBICandidate> candidates;
+	};
+	std::map<eServiceReference, std::shared_ptr<DVBIProfile>> dvbiProfiles;
+	std::map<eServiceReference, eServiceReference> dvbiFallbackServices;
+	std::map<eServiceReference, eDVBIHbbTV> dvbiApplications;
+
+	bool isBroadcastReference(const eServiceReference &ref)
+	{
+		return ref.type == eServiceFactoryDVB::id && ref.path.empty() && ref.alternativeurl.empty()
+			&& !(ref.flags & (eServiceReference::isDirectory | eServiceReference::isMarker | eServiceReference::isGroup));
+	}
+
+	int broadcastAvailability(const eServiceReference &ref, const eServiceReference &ignore)
+	{
+		ePtr<eDVBResourceManager> manager;
+		if (!isBroadcastReference(ref) || eDVBResourceManager::getInstance(manager))
+			return -1;
+		eDVBChannelID channel, ignored;
+		((const eServiceReferenceDVB&)ref).getChannelID(channel);
+		if (isBroadcastReference(ignore))
+			((const eServiceReferenceDVB&)ignore).getChannelID(ignored);
+		int system;
+		return manager->canAllocateChannel(channel, ignored, system, false);
+	}
+}
+
+int eDVBIFallback::setApplications(ePyObject entries)
+{
+	if (!PyList_Check(entries) || PyList_Size(entries) > 10000)
+		return -1;
+	std::map<eServiceReference, eDVBIHbbTV> replacements;
+	size_t applicationCount = 0;
+	for (Py_ssize_t i = 0; i < PyList_Size(entries); ++i)
+	{
+		const char *reference;
+		PyObject *apps;
+		eDVBIHbbTV metadata;
+		if (!PyArg_ParseTuple(PyList_GetItem(entries, i), "s(iii)O", &reference, &metadata.tsid, &metadata.onid, &metadata.sid, &apps))
+		{
+			PyErr_Clear();
+			return -1;
+		}
+		eServiceReference ref(reference);
+		if (ref.type != 4097 || ref.flags || (ref.path.compare(0, 7, "http://") && ref.path.compare(0, 8, "https://"))
+			|| metadata.tsid < 0 || metadata.tsid > 65535 || metadata.onid < 0 || metadata.onid > 65535 || metadata.sid < 0 || metadata.sid > 65535
+			|| !PyList_Check(apps) || PyList_Size(apps) > 32)
+			return -1;
+		for (Py_ssize_t j = 0; j < PyList_Size(apps); ++j)
+		{
+			int control, appId, profile;
+			PyObject *orgValue;
+			const char *name, *url;
+			if (!PyArg_ParseTuple(PyList_GetItem(apps, j), "issOii", &control, &name, &url, &orgValue, &appId, &profile))
+			{
+				PyErr_Clear();
+				return -1;
+			}
+			unsigned long long orgId = PyLong_AsUnsignedLongLong(orgValue);
+			if (PyErr_Occurred())
+			{
+				PyErr_Clear();
+				return -1;
+			}
+			std::string location(url);
+			if (++applicationCount > 100000 || (control != 1 && control != 2) || orgId > 0xFFFFFFFFUL || appId < 0 || appId > 65535 || profile != 0
+				|| strlen(name) > 512 || location.size() > 8192 || (location.compare(0, 7, "http://") && location.compare(0, 8, "https://"))
+				|| std::any_of(location.begin(), location.end(), [](unsigned char c) { return c < 32; }))
+				return -1;
+			metadata.applications.emplace_back(control, static_cast<int>(orgId), appId, location, name, profile);
+		}
+		replacements.emplace(ref, std::move(metadata));
+	}
+	dvbiApplications.swap(replacements);
+	return PyList_Size(entries);
+}
+
+const eDVBIHbbTV *eDVBIFallback::applications(const eServiceReference &ref)
+{
+	// Never expose DVB-I signalling on a native DVB service or unrelated IPTV.
+	auto entry = dvbiApplications.find(ref);
+	return ref.type != 4097 || availability(ref) != 1 || entry == dvbiApplications.end() ? nullptr : &entry->second;
+}
+
+int eDVBIFallback::setProfiles(ePyObject profiles)
+{
+	if (!PyList_Check(profiles) || PyList_Size(profiles) > 10000)
+		return -1;
+	std::map<eServiceReference, std::shared_ptr<DVBIProfile>> replacements;
+	size_t candidateCount = 0, ruleCount = 0;
+	for (Py_ssize_t i = 0; i < PyList_Size(profiles); ++i)
+	{
+		const char *source;
+		int age;
+		PyObject *candidates;
+		if (!PyArg_ParseTuple(PyList_GetItem(profiles, i), "siO", &source, &age, &candidates))
+		{
+			PyErr_Clear();
+			return -1;
+		}
+		if (age < 0 || age > 18 || !PyList_Check(candidates) || PyList_Size(candidates) > 16)
+			return -1;
+		eServiceReference original(source);
+		if (!original || original.flags)
+			return -1;
+		auto profile = std::make_shared<DVBIProfile>();
+		profile->age = age;
+		for (Py_ssize_t j = 0; j < PyList_Size(candidates); ++j)
+		{
+			if (++candidateCount > 20000)
+				return -1;
+			const char *target;
+			PyObject *periods;
+			if (!PyArg_ParseTuple(PyList_GetItem(candidates, j), "sO", &target, &periods))
+			{
+				PyErr_Clear();
+				return -1;
+			}
+			DVBICandidate candidate;
+			candidate.ref = eServiceReference(target);
+			candidate.restricted = periods != Py_None;
+			if (candidate.ref.flags || (candidate.ref.type != 1 && candidate.ref.type != 4097 && candidate.ref.type != 5001 && candidate.ref.type != 5002)
+				|| (candidate.ref.path.compare(0, 7, "http://") && candidate.ref.path.compare(0, 8, "https://")))
+				return -1;
+			for (int field = 0; field < 7; ++field)
+				if (candidate.ref.data[field] != original.data[field])
+					return -1;
+			if (candidate.restricted)
+			{
+				if (!PyList_Check(periods) || PyList_Size(periods) > 64)
+					return -1;
+				for (Py_ssize_t k = 0; k < PyList_Size(periods); ++k)
+				{
+					if (++ruleCount > 65536)
+						return -1;
+					DVBIPeriod period;
+					PyObject *intervals;
+					if (!PyArg_ParseTuple(PyList_GetItem(periods, k), "LLO", &period.from, &period.to, &intervals))
+					{
+						PyErr_Clear();
+						return -1;
+					}
+					if (period.from < 0 || period.to < 0 || (period.to && period.to <= period.from) || !PyList_Check(intervals) || PyList_Size(intervals) > 64)
+						return -1;
+					for (Py_ssize_t n = 0; n < PyList_Size(intervals); ++n)
+					{
+						if (++ruleCount > 65536)
+							return -1;
+						DVBIInterval interval;
+						if (!PyArg_ParseTuple(PyList_GetItem(intervals, n), "iiii", &interval.days, &interval.start, &interval.end, &interval.recurrence))
+						{
+							PyErr_Clear();
+							return -1;
+						}
+						if (interval.days < 0 || interval.days > 127 || interval.start < 0 || interval.start >= 86400000 || interval.end < 0 || interval.end >= 86400000 || interval.recurrence < 1)
+							return -1;
+						period.intervals.push_back(interval);
+					}
+					candidate.periods.push_back(period);
+				}
+			}
+			auto duplicate = std::find_if(profile->candidates.begin(), profile->candidates.end(),
+				[&candidate](const DVBICandidate &existing) { return existing.ref == candidate.ref; });
+			if (duplicate == profile->candidates.end())
+				profile->candidates.push_back(candidate);
+			else
+			{
+				// Repeated URLs are one attempt, with the union of their airtimes.
+				// A provider must not accidentally create an A -> B -> A retry loop.
+				duplicate->restricted = duplicate->restricted && candidate.restricted;
+				if (duplicate->restricted)
+					duplicate->periods.insert(duplicate->periods.end(), candidate.periods.begin(), candidate.periods.end());
+				else
+					duplicate->periods.clear();
+			}
+		}
+		replacements[original] = profile;
+		for (const auto &candidate : profile->candidates)
+			replacements[candidate.ref] = profile;
+	}
+	dvbiProfiles.swap(replacements);
+	return PyList_Size(profiles);
+}
+
+eServiceReference eDVBIFallback::playback(const eServiceReference &ref, const eServiceReference &after, bool simulate)
+{
+	auto profile = dvbiProfiles.find(ref);
+	if (profile == dvbiProfiles.end())
+		return eServiceReference();
+	ePtr<eServiceCenter> center;
+	if (eServiceCenter::getPrivInstance(center) || !center)
+		return eServiceReference();
+	bool next = !after;
+	for (const auto &candidate : profile->second->candidates)
+	{
+		if (next && (simulate || candidate.available(time(nullptr))) && center->hasServiceFactory(candidate.ref.type))
+			return candidate.ref;
+		if (candidate.ref == after)
+			next = true;
+	}
+	return eServiceReference();  // Never wrap around a failed alternative list.
+}
+
+int eDVBIFallback::availability(const eServiceReference &ref)
+{
+	auto profile = dvbiProfiles.find(ref);
+	if (profile == dvbiProfiles.end())
+		return 0;
+	for (const auto &candidate : profile->second->candidates)
+		if (candidate.ref == ref)
+			return candidate.available(time(nullptr)) ? 1 : -1;
+	return playback(ref) ? 1 : -1;
+}
+
+int eDVBIFallback::minimumAge(const eServiceReference &ref)
+{
+	auto profile = dvbiProfiles.find(ref);
+	return profile == dvbiProfiles.end() ? 0 : profile->second->age;
+}
+
+bool eDVBIFallback::hasSchedule(const eServiceReference &ref)
+{
+	auto profile = dvbiProfiles.find(ref);
+	if (profile != dvbiProfiles.end())
+		for (const auto &candidate : profile->second->candidates)
+			if (candidate.restricted)
+				return true;
+	return false;
+}
+
+int eDVBIFallback::setServices(ePyObject services)
+{
+	// Replace atomically: a bad payload must never leave a half-installed map.
+	if (!PyList_Check(services) || PyList_Size(services) > 10000)
+		return -1;
+	std::map<eServiceReference, eServiceReference> replacements;
+	for (Py_ssize_t i = 0; i < PyList_Size(services); ++i)
+	{
+		PyObject *pair = PyList_GetItem(services, i);
+		if (!PyTuple_Check(pair) || PyTuple_Size(pair) != 2
+			|| !PyUnicode_Check(PyTuple_GetItem(pair, 0)) || !PyUnicode_Check(PyTuple_GetItem(pair, 1)))
+			return -1;
+		const char *source = PyUnicode_AsUTF8(PyTuple_GetItem(pair, 0));
+		const char *target = PyUnicode_AsUTF8(PyTuple_GetItem(pair, 1));
+		if (!source || !target)
+			return -1;
+		eServiceReference from(source), to(target);
+		if (!isBroadcastReference(from) || to.flags
+			|| (to.type != 1 && to.type != 4097 && to.type != 5001 && to.type != 5002)
+			|| (to.path.compare(0, 7, "http://") && to.path.compare(0, 8, "https://")))
+			return -1;
+		// Preserve the broadcast EPG identity; only player, media hint and URL differ.
+		for (int field = 0; field < 7; ++field)
+			if (from.data[field] != to.data[field])
+				return -1;
+		auto existing = replacements.find(from);
+		if (existing != replacements.end() && existing->second != to)
+			return -1;
+		replacements[from] = to;
+	}
+	dvbiFallbackServices.swap(replacements);
+	return dvbiFallbackServices.size();
+}
+
+eServiceReference eDVBIFallback::get(const eServiceReference &ref)
+{
+	if (dvbiFallbackServices.empty() || !isBroadcastReference(ref))
+		return eServiceReference();
+	auto entry = dvbiFallbackServices.find(ref);
+	if (entry == dvbiFallbackServices.end())
+		return eServiceReference();
+	if (dvbiProfiles.count(ref))
+		return playback(ref);
+	ePtr<eServiceCenter> center;
+	if (eServiceCenter::getPrivInstance(center) || !center || !center->hasServiceFactory(entry->second.type))
+		return eServiceReference();
+	return entry->second;
+}
+
+eServiceReference eDVBIFallback::resolve(const eServiceReference &ref, bool force)
+{
+	eServiceReference fallback = get(ref);
+	if (fallback && (force || broadcastAvailability(ref, eServiceReference()) == 0))
+		return fallback;
+	return eServiceReference();
+}
+
+bool eDVBIFallback::canReleaseForRecording(const eServiceReference &live, const eServiceReference &recording)
+{
+	// Same multiplex, free second tuner, or a conflict held by another recording:
+	// none of these should interrupt live TV. Never change the recording target.
+	return get(live) && isBroadcastReference(recording)
+		&& broadcastAvailability(recording, eServiceReference()) == 0
+		&& broadcastAvailability(recording, live) > 0;
+}
 
 RESULT eStaticServiceDVBInformation::getName(const eServiceReference &ref, std::string &name)
 {
@@ -1102,6 +1458,10 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_skipmode(0),
 	m_fastforward(0),
 	m_slowmotion(0),
+#ifdef DREAMNEXTGEN
+	m_pos_before_skipmode(0),
+	m_skipmode_entry_ms(0),
+#endif
 	m_tap_recorder(0),
 	m_cuesheet_changed(0),
 	m_cutlist_enabled(1),
@@ -1125,6 +1485,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	CONNECT(m_passthrough_fix_timer->timeout, eDVBServicePlay::forcePassthrough);
 #endif
 	CONNECT(m_precise_recovery_timer->timeout, eDVBServicePlay::startPreciseRecoveryCheck);
+	eDVBCIInterfaces::getInstance()->connectRoutingChanged(sigc::mem_fun(*this, &eDVBServicePlay::ciRoutingChanged), m_ci_routing_connection);
 }
 
 eDVBServicePlay::~eDVBServicePlay()
@@ -1257,6 +1618,21 @@ void eDVBServicePlay::updateEpgCacheNowNext()
 	if (update) m_event((iPlayableService*)this, evUpdatedEventInfo);
 }
 
+void eDVBServicePlay::dvbiSignalLost()
+{
+	// Event-driven grace period, not frontend polling. Recheck opt-in and lock:
+	// a short disturbance, disabled addon or active timeshift must not switch.
+	if (!m_is_primary || m_timeshift_enabled || !eDVBIFallback::get(m_reference))
+		return;
+	eUsePtr<iDVBChannel> channel;
+	int state;
+	if (m_service_handler.getChannel(channel) || !channel || channel->getState(state)
+		|| state == iDVBChannel::state_ok)
+		return;
+	eDebug("[eDVBServicePlay] DVB-I: sustained signal loss, requesting live fallback");
+	m_event((iPlayableService*)this, evTuneFailed);
+}
+
 void eDVBServicePlay::serviceEvent(int event)
 {
 	m_tune_state = event;
@@ -1265,6 +1641,8 @@ void eDVBServicePlay::serviceEvent(int event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
 	{
+		if (m_dvbi_signal_timer)
+			m_dvbi_signal_timer->stop();
 		/* fill now/next with info from the epg cache, will be replaced by EIT when it arrives */
 		updateEpgCacheNowNext();
 
@@ -1287,6 +1665,31 @@ void eDVBServicePlay::serviceEvent(int event)
 	{
 		eDebug("[eDVBServicePlay] DVB service failed to tune - error %d", event);
 		m_event((iPlayableService*)this, evTuneFailed);
+		break;
+	}
+	case eDVBServicePMTHandler::eventSignalLost:
+	{
+		// Keep existing timeshift recovery; only opted-in live services may
+		// request DVB-I after a short signal-loss grace period.
+		if (m_stream_corruption_detected)
+			break;
+
+		if (m_timeshift_enabled)
+		{
+			eTrace("[PreciseRecovery] Signal lost during timeshift. Initiating recovery.");
+			m_stream_corruption_detected = true;
+			handleEofRecovery();
+		}
+		else if (m_is_primary && eDVBIFallback::get(m_reference))
+		{
+			if (!m_dvbi_signal_timer)
+			{
+				m_dvbi_signal_timer = eTimer::create(eApp);
+				CONNECT(m_dvbi_signal_timer->timeout, eDVBServicePlay::dvbiSignalLost);
+			}
+			if (!m_dvbi_signal_timer->isActive())
+				m_dvbi_signal_timer->start(1500, true);
+		}
 		break;
 	}
 	case eDVBServicePMTHandler::eventTuneFailed:
@@ -1360,6 +1763,16 @@ void eDVBServicePlay::serviceEvent(int event)
 					}
 				}
 			}
+			else if (m_teletext_parser && m_decoder_index == 0)
+			{
+				// same as in updateDecoder: the text pid may only show up in a later program info
+				eDVBServicePMTHandler::program program;
+				if (!m_service_handler.getProgramInfo(program) && program.textPid >= 0 && program.textPid != m_teletext_parser->getPid())
+				{
+					m_teletext_parser->start(program.textPid);
+					eDebug("[eDVBServicePlay] Teletext parser restarted on PID %04x", program.textPid);
+				}
+			}
 
 			// Late-start case: session is active but SoftDecoder may not be running yet
 			// This happens when we switched to a channel where CSA-ALT was already cached
@@ -1390,6 +1803,8 @@ void eDVBServicePlay::serviceEvent(int event)
 		m_event((iPlayableService*)this, evSOF);
 		break;
 	case eDVBServicePMTHandler::eventHBBTVInfo:
+		if (eHbbtv::getInstance()->getPlayableService() == this)
+			eHbbtv::getInstance()->updateApplicationsFromPMTHandler(&m_service_handler);
 		m_event((iPlayableService*)this, evHBBTVInfo);
 		break;
 	}
@@ -1410,21 +1825,21 @@ void eDVBServicePlay::handleEofRecovery() {
 
 	eTrace("[PreciseRecovery] Corruption detected. Pausing playback, recording continues.");
 
-	if (m_decoder) {
-		m_decoder->pause();
-		m_is_paused = 1;
-	}
-
+	/* Take the delay fingerprint BEFORE pausing: pause() freezes the decoder
+	 * clock, and a getPlayPosition() taken after it would read a stale or
+	 * zero PTS, corrupting the fingerprint. */
 	if (m_record) {
 		pts_t live_pts = 0, playback_pts = 0;
-		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0) {
-			if (live_pts >= playback_pts)
-				m_original_timeshift_delay = live_pts - playback_pts;
-			else
-				m_original_timeshift_delay = (live_pts + 0x200000000LL) - playback_pts;
+		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0 && live_pts > playback_pts) {
+			m_original_timeshift_delay = live_pts - playback_pts;
 			m_delay_calculated = true;
 			eTrace("[PreciseRecovery] Original delay fingerprint set: %lld PTS", m_original_timeshift_delay);
 		}
+	}
+
+	if (m_decoder) {
+		m_decoder->pause();
+		m_is_paused = 1;
 	}
 
 	m_precise_recovery_timer->start(100, false);
@@ -1436,13 +1851,14 @@ void eDVBServicePlay::startPreciseRecoveryCheck() {
 		return;
 	}
 
+	/* The fingerprint is taken in handleEofRecovery() before the pause, so by
+	 * the time this timer runs m_delay_calculated is expected to be set. If it
+	 * is not (reads failed), keep retrying once per tick rather than stopping
+	 * the recovery outright. */
 	if (!m_delay_calculated) {
 		pts_t live_pts = 0, playback_pts = 0;
-		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0) {
-			if (live_pts >= playback_pts)
-				m_original_timeshift_delay = live_pts - playback_pts;
-			else
-				m_original_timeshift_delay = (live_pts + 0x200000000LL) - playback_pts;
+		if (m_record->getCurrentPCR(live_pts) == 0 && getPlayPosition(playback_pts) == 0 && live_pts > playback_pts) {
+			m_original_timeshift_delay = live_pts - playback_pts;
 			m_delay_calculated = true;
 			eTrace("[PreciseRecovery] Delayed fingerprint set: %lld PTS", m_original_timeshift_delay);
 		}
@@ -1685,6 +2101,8 @@ RESULT eDVBServicePlay::start()
 
 RESULT eDVBServicePlay::stop()
 {
+	if (m_dvbi_signal_timer)
+		m_dvbi_signal_timer->stop();
 		/* add bookmark for last play position */
 		/* m_cutlist_enabled bit 2 is the "don't remember bit" */
 	if (m_is_pvr && ((m_cutlist_enabled & 2) == 0))
@@ -1763,6 +2181,9 @@ RESULT eDVBServicePlay::setTarget(int target, bool noaudio)
 	m_is_primary = !target;
 	m_decoder_index = target;
 	m_noaudio = noaudio;
+	// An FCC service may already have read its AIT while running in the background.
+	if (m_is_primary && eHbbtv::getInstance()->getPlayableService() == this)
+		eHbbtv::getInstance()->updateApplicationsFromPMTHandler(&m_service_handler);
 	return 0;
 }
 
@@ -1845,6 +2266,28 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 	if (m_skipmode != skipmode)
 	{
 		eDebug("[eDVBServicePlay] setFastForward setting cue skipmode to %d", skipmode);
+#ifdef DREAMNEXTGEN
+		/* Snapshot pos+wallclock at skipmode entry/rate-change so
+		 * getPlayPosition can extrapolate while audio PTS is unreliable. */
+		if (skipmode != 0) {
+			pts_t cur = 0;
+			/* Already in skipmode → use running estimate; else live pos. */
+			if (m_skipmode != 0 && m_pos_before_skipmode > 0) {
+				struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
+				int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+				int64_t elapsed_ms = now_ms - m_skipmode_entry_ms;
+				cur = m_pos_before_skipmode + (pts_t)elapsed_ms * 90 * m_skipmode;
+			} else {
+				getPlayPosition(cur);
+			}
+			if (cur > 0) {
+				m_pos_before_skipmode = cur;
+				struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
+				m_skipmode_entry_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+				eDebug("[eDVBServicePlay] skipmode anchor: pos=%lld rate=%d", m_pos_before_skipmode, skipmode);
+			}
+		}
+#endif
 		if (m_cue)
 		{
 			long long _skipmode = skipmode;
@@ -1859,13 +2302,23 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 		}
 	}
 
-	m_skipmode = skipmode;
-
 	if (final_seek)
 	{
+		/* IMPORTANT: read position BEFORE updating m_skipmode below.
+		 * getPlayPosition uses m_skipmode != 0 to return the frozen
+		 * pre-trickmode position; once we reset m_skipmode to 0 below it
+		 * would fall back to the garbage live audio PTS. */
 		RESULT r = getPlayPosition(pos);
 		eDebug("[eDVBServicePlay] setFastForward trickplay stopped .. ret %d, pos %lld", r, pos);
 	}
+
+	m_skipmode = skipmode;
+#ifdef DREAMNEXTGEN
+	/* Skipmode fully exited — clear the frozen anchor so future getPlayPosition
+	 * reads return live PTS again. */
+	if (skipmode == 0)
+		m_pos_before_skipmode = 0;
+#endif
 
 	m_fastforward = ffratio;
 
@@ -1926,7 +2379,13 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 RESULT eDVBServicePlay::pause()
 {
 	eDebug("[eDVBServicePlay] pause");
-	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
+#ifdef DREAMNEXTGEN
+	/* Hold ALSA writer (drain + park, FIFO preserved) before decoder
+	 * freezes its kernel state. */
+	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+		a->pauseWriter();
+#endif
+	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
 	// During timeshift playback, we use the normal decoder for the timeshift file
 	if (m_soft_decoder && m_csa_session && m_csa_session->isActive() && !m_timeshift_active)
@@ -1934,6 +2393,9 @@ RESULT eDVBServicePlay::pause()
 		m_pause_position = -1;
 		m_slowmotion = 0;
 		m_is_paused = 1;
+#ifdef DREAMNEXTGEN
+		m_soft_decoder->setUserPauseActive(true);
+#endif
 		return m_soft_decoder->pause();
 	}
 	if (m_decoder)
@@ -1941,6 +2403,9 @@ RESULT eDVBServicePlay::pause()
 		m_pause_position = -1;
 		m_slowmotion = 0;
 		m_is_paused = 1;
+#ifdef DREAMNEXTGEN
+		m_decoder->setUserPauseActive(true);
+#endif
 		return m_decoder->pause();
 	} else
 		return -1;
@@ -1949,7 +2414,11 @@ RESULT eDVBServicePlay::pause()
 RESULT eDVBServicePlay::unpause()
 {
 	eDebug("[eDVBServicePlay] unpause");
-	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
+#ifdef DREAMNEXTGEN
+	/* Writer wakes AFTER decoder kernel state has resumed. First writei
+	 * hits EBADFD → handler runs snd_pcm_prepare + re-anchor. */
+#endif
+	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
 	// During timeshift playback, we use the normal decoder for the timeshift file
 	if (m_soft_decoder && m_csa_session && m_csa_session->isActive() && !m_timeshift_active)
@@ -1961,7 +2430,13 @@ RESULT eDVBServicePlay::unpause()
 			eTrace("[PreciseRecovery] User resumed playback. Resetting recovery state.");
 			resetRecoveryState();
 		}
-		return m_soft_decoder->play();
+		RESULT r = m_soft_decoder->play();
+#ifdef DREAMNEXTGEN
+		m_soft_decoder->setUserPauseActive(false);
+		if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+			a->resumeWriter();
+#endif
+		return r;
 	}
 	if (m_decoder)
 	{
@@ -1977,7 +2452,13 @@ RESULT eDVBServicePlay::unpause()
             resetRecoveryState();
         }
 
-		return m_decoder->play();
+		RESULT r = m_decoder->play();
+#ifdef DREAMNEXTGEN
+		m_decoder->setUserPauseActive(false);
+		if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+			a->resumeWriter();
+#endif
+		return r;
 	} else
 		return -1;
 }
@@ -2000,6 +2481,14 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 	m_cue->seekTo(0, to);
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
+#ifdef DREAMNEXTGEN
+	/* Drop FIFO + re-arm anchor + signal kernel discontinuity so the new
+	 * post-seek PCR epoch becomes the next anchor target. Without this the
+	 * old in-flight chunks keep playing while pts_video jumps to the new
+	 * file offset (audio "wo ganz anders"). */
+	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+		a->flushOnSeek();
+#endif
 
 	return 0;
 }
@@ -2030,6 +2519,10 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	m_cue->seekTo(mode, to);
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
+#ifdef DREAMNEXTGEN
+	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
+		a->flushOnSeek();
+#endif
 	return 0;
 }
 
@@ -2042,6 +2535,27 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 
 	if ((m_timeshift_enabled ? m_service_handler_timeshift : m_service_handler).getPVRChannel(pvr_channel))
 		return -1;
+
+#ifdef DREAMNEXTGEN
+	/* During skipmode (FF>=16) audio PTS is unreliable — extrapolate
+	 * position from entry anchor + elapsed*rate. Clamped to length-1s. */
+	if (m_skipmode != 0 && m_pos_before_skipmode > 0 && m_skipmode_entry_ms > 0) {
+		struct timespec ts; clock_gettime(CLOCK_MONOTONIC, &ts);
+		int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+		int64_t elapsed_ms = now_ms - m_skipmode_entry_ms;
+		pts_t advance = (pts_t)elapsed_ms * 90 * m_skipmode;  /* 90khz pts/ms * rate (signed for rewind) */
+		pos = m_pos_before_skipmode + advance;
+		if (pos < 0) pos = 0;
+		/* clamp to length-1s so EOF action does not trigger immediately */
+		pts_t len = 0;
+		ePtr<iDVBPVRChannel> pvr;
+		if (m_service_handler.getPVRChannel(pvr) == 0 && pvr->getLength(len) == 0 && len > 90000) {
+			pts_t cap = len - 90000;
+			if (pos > cap) pos = cap;
+		}
+		return 0;
+	}
+#endif
 
 	int r = 0;
 
@@ -2059,7 +2573,14 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 	}
 	// Case 2: Normal hardware decoder
 	else if (m_decoder) {
-		if (m_noaudio && m_have_video_pid)
+		bool use_video_pts = (m_noaudio && m_have_video_pid);
+#ifdef DREAMNEXTGEN
+		/* HW FF (2/4/8x): audio stopped, use video PTS so UI progresses.
+		 * Not for skipmode (m_fastforward==1) — video PTS races past EOF. */
+		if (m_fastforward > 1 && m_have_video_pid)
+			use_video_pts = true;
+#endif
+		if (use_video_pts)
 			r = m_decoder->getPTS(1, pos); // Video PTS
 		else
 			r = m_decoder->getPTS(0, pos); // Auto (original behavior)
@@ -2703,9 +3224,11 @@ int eDVBServicePlay::selectAudioStream(int i)
 		std::string pass = CFile::read("/proc/stb/audio/ac3");
 		if(pass.find("passthrough") != std::string::npos)
 		{
-			int shortAudioDelay = eSimpleConfig::getInt("config.av.passthrough_fix_short", 100);
+			int audioDelay = apidtype == eDVBPMTParser::audioStream::atDDP
+				? eSimpleConfig::getInt("config.av.passthrough_fix_long", 1200)
+				: eSimpleConfig::getInt("config.av.passthrough_fix_short", 100);
 			m_passthrough_fix_timer->stop();
-			m_passthrough_fix_timer->start(shortAudioDelay, true);
+			m_passthrough_fix_timer->start(audioDelay, true);
 		}
 	}
 #endif
@@ -3557,7 +4080,7 @@ void eDVBServicePlay::switchToTimeshift()
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
 
-	m_cue->seekTo(0, -1000);
+	m_cue->seekTo(0, -90000);
 
 	ePtr<iTsSource> source = createTsSource(r);
 	m_service_handler_timeshift.tuneExt(r, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
@@ -3565,6 +4088,82 @@ void eDVBServicePlay::switchToTimeshift()
 	eDebug("[eDVBServicePlay] switchToTimeshift, in pause mode now.");
 	pause();
 	updateDecoder(true); /* mainly to switch off PCR, and to set pause */
+
+#ifdef DREAMNEXTGEN
+	/* Re-point eAlsaOutput's PCR demux fd to the timeshift demux. Live
+	 * and timeshift often share the same demux ID — force a close+reopen
+	 * so setPcrDemux doesn't early-return on the matching id. */
+	if (m_decode_demux) {
+		uint8_t did = 0;
+		m_decode_demux->getCADemuxID(did);
+		eAlsaOutput::instance()->setPcrDemux(0, -1);   /* force close cached fd */
+		eAlsaOutput::instance()->setPcrDemux(0, did);  /* re-open on timeshift demux */
+		eDebug("[eDVBServicePlay] timeshift entry: re-opened PCR fd on adapter0/demux%d", did);
+	}
+#endif
+}
+
+void eDVBServicePlay::ciRoutingChanged(int tuner)
+{
+	if (!m_is_primary || m_decoder_index != 0 || m_is_pvr || m_is_stream || m_timeshift_active)
+		return;
+	eUsePtr<iDVBChannel> channel;
+	ePtr<iDVBFrontend> frontend;
+	if (m_service_handler.getChannel(channel) || !channel || channel->getFrontend(frontend)
+		|| !frontend || static_cast<eDVBFrontend *>(&*frontend)->getSlotID() != tuner)
+		return;
+	m_ci_changed_tuner = tuner;
+	m_ci_decoder_retries = 10;
+	if (!m_ci_decoder_timer)
+	{
+		m_ci_decoder_timer = eTimer::create(eApp);
+		CONNECT(m_ci_decoder_timer->timeout, eDVBServicePlay::refreshCIDecoder);
+	}
+	m_ci_decoder_timer->start(300, true);
+}
+
+void eDVBServicePlay::refreshCIDecoder()
+{
+	// Recheck after the routing settles: a zap or entry into timeshift playback
+	// during the grace period must not restart a different decoder.
+	if (!m_is_primary || m_decoder_index != 0 || m_is_pvr || m_is_stream
+		|| m_timeshift_active || (m_is_paused && !m_stream_corruption_detected) || !m_decoder || m_soft_decoder
+		|| m_service_handler.isCiConnected())
+		return;
+	eUsePtr<iDVBChannel> channel;
+	ePtr<iDVBFrontend> frontend;
+	int state;
+	if (m_service_handler.getChannel(channel) || !channel || channel->getState(state)
+		|| channel->getFrontend(frontend) || !frontend
+		|| static_cast<eDVBFrontend *>(&*frontend)->getSlotID() != m_ci_changed_tuner)
+		return;
+	if (state != iDVBChannel::state_ok)
+	{
+		if (m_ci_decoder_retries-- > 0)
+			m_ci_decoder_timer->start(300, true);
+		return;
+	}
+	eDVBServicePMTHandler::program program;
+	if (!m_service_handler.isPmtReady() || m_service_handler.getProgramInfo(program)
+		|| !program.caids.empty() || program.videoStreams.empty())
+		return;
+	eDebug("[eDVBServicePlay] CI routing decoder refresh: tuner=%d", m_ci_changed_tuner);
+	// Recreate only decoder PID filters. Keep the PMT handler, data demux and
+	// timeshift recorder alive, including the current timeshift buffer.
+	m_decoder->setVideoPID(-1, -1);
+	m_decoder->setAudioPID(-1, -1);
+	m_decoder->setSyncPCR(-1);
+	m_decoder->setTextPID(-1);
+	m_decoder->set();
+	if (m_stream_corruption_detected)
+	{
+		// Live viewing has no playback delay to recover. A CI path switch can
+		// report a transient lost lock; clear that pause after lock returns.
+		resetRecoveryState();
+		m_is_paused = 0;
+		m_decoder->play();
+	}
+	updateDecoder();
 }
 
 void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
@@ -3677,10 +4276,16 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			selectAudioStream();
 		}
 
+#ifdef DREAMNEXTGEN
+		/* Kernel AV-sync needs the real PCR-PID for DMX_GET_STC. 0x1FFF
+		 * works in steady state but breaks anchor convergence after seek. */
+		m_decoder->setSyncPCR(pcrpid);
+#else
 		if (!(m_is_pvr || m_is_stream || m_timeshift_active))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
+#endif
 
 		if (m_decoder_index == 0)
 		{
@@ -3721,6 +4326,12 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 				}
 			}
 			m_teletext_parser->start(program.textPid);
+		}
+		else if (m_teletext_parser && m_decoder_index == 0 && tpid >= 0 && tpid != m_teletext_parser->getPid())
+		{
+			/* first program info can come from the service cache without a text pid,
+			   pick it up once the real PMT arrives */
+			m_teletext_parser->start(tpid);
 		}
 
 		/* don't worry about non-existing services, nor pvr services */
@@ -4125,12 +4736,13 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 		eDVBTeletextSubtitlePage tmppage = page;
 		pts_t diff = tmppage.m_pts - pts;
 
-		if (diff > 0 && diff < (MAX_SUBTITLE_LIFESPAN * 90000))
-		{
-			tmppage.m_pts += (m_is_pvr || m_timeshift_enabled) ? 0 : eSubtitleSettings::subtitle_bad_timing_delay;
-			m_subtitle_pages.push_back(tmppage);
-			m_subtitle_pages.sort(compare_pts);
-		}
+		// No usable timing (PES without PTS, or an absurd diff): show now instead of dropping the page.
+		if (diff <= 0 || diff >= (MAX_SUBTITLE_LIFESPAN * 90000))
+			tmppage.m_pts = pts;
+
+		tmppage.m_pts += (m_is_pvr || m_timeshift_enabled) ? 0 : eSubtitleSettings::subtitle_bad_timing_delay;
+		m_subtitle_pages.push_back(tmppage);
+		m_subtitle_pages.sort(compare_pts);
 
 		checkSubtitleTiming();
 	}

@@ -1,11 +1,13 @@
 from os.path import isfile
+from types import CodeType
 
-from enigma import eRCInput, eStack, eTimer, eWindow, getDesktop
+from enigma import eRCInput, eStack, eTimer, eWindow
 
-from skin import GUI_SKIN_ID, applyAllAttributes, menus, screens, setups
+from skin import applyAllAttributes, menus, readSkin, screens, setups
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.GUIComponent import GUIComponent
+from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.Source import Source
 from Components.Sources.StaticText import StaticText
@@ -53,9 +55,10 @@ class Screen(dict):
 		self.screenTitle = ""  # This is the current screen title without the path.
 		self["ScreenPath"] = StaticText()
 		self["Title"] = StaticText()
-		self.screenImage = self.checkImage(className)  # This is the current screen image name.
+		self.screenImageGlyph = None
+		self.screenImage = self.checkImage(className)  # This is the current screen image name (Pixmap path or Glyph unicode character).
 		if self.screenImage:
-			self["Image"] = Pixmap()
+			self["Image"] = Label() if self.screenImageGlyph else Pixmap()
 		if enableHelp:
 			self["helpActions"] = HelpableActionMap(self, ["HelpAction"], {
 				# "displayHelp": (self.showHelp, _("Display the context sensitive help screen"))
@@ -190,29 +193,32 @@ class Screen(dict):
 
 	def checkImage(self, image, source=None):
 		screenImage = None
-		if image:
+		if image and not isinstance(self, ScreenSummary):  # Ignore Summary Screens:
+			self.screenImageGlyph = False
 			images = {
 				# "screen": screens,
 				"menu": menus,
 				"setup": setups
 			}.get(source, screens)
-			if not isinstance(self, ScreenSummary):  # Ignore Summary Screens
-				defaultImage = images.get("default", "")
-				screenImage = images.get(image, defaultImage)
-			if screenImage:
-				screenImage = resolveFilename(SCOPE_GUISKIN, screenImage)
-				msg = f"{'Default' if screenImage == defaultImage and image != 'default' else 'Specified'} {source if source else 'screen'} image for '{image}' is '{screenImage}'"
-				if isfile(screenImage):
-					print(f"[Screen] {msg}.")
-				else:
-					print(f"[Screen] Error: {msg} but this is not a file!")
-					screenImage = None
+			defaultImage = images.get("default")
+			screenImage = images.get(image, defaultImage)
+			if screenImage is not None:
+				if len(screenImage) > 1:  # Use pixmap image.
+					screenImage = resolveFilename(SCOPE_GUISKIN, screenImage)
+					msg = f"{'Default' if screenImage == defaultImage and image != 'default' else 'Specified'} {source if source else 'screen'} image for '{image}' is '{screenImage}'"
+					if isfile(screenImage):
+						print(f"[Screen] {msg}.")
+					else:
+						print(f"[Screen] Error: {msg} but this is not a file!")
+						screenImage = None
+				else:  # Use glyph image.
+					self.screenImageGlyph = True
 		return screenImage
 
 	def setImage(self, image, source=None):
 		self.screenImage = self.checkImage(image, source=source)
-		if self.screenImage and "Image" not in self:
-			self["Image"] = Pixmap()
+		if "Image" not in self and self.screenImage:
+			self["Image"] = Label() if self.screenImageGlyph else Pixmap()
 
 	def getImage(self):
 		return self.screenImage
@@ -283,7 +289,7 @@ class Screen(dict):
 				method()
 
 	def applySkin(self):
-		bounds = (getDesktop(GUI_SKIN_ID).size().width(), getDesktop(GUI_SKIN_ID).size().height())
+		bounds = (self.desktop.size().width(), self.desktop.size().height())
 		resolution = bounds
 		zPosition = 0
 		for (key, value) in self.skinAttributes:
@@ -346,8 +352,11 @@ class Screen(dict):
 			applyAllAttributes(widget.instance, desktop, widget.skinAttributes, self.scale)
 			addToStack(widget)
 		if self.screenImage:
-			screenImage = LoadPixmap(self.screenImage)
-			self["Image"].instance.setPixmap(screenImage)
+			if self.screenImageGlyph:
+				self["Image"].setText(self.screenImage)
+			else:
+				screenImage = LoadPixmap(self.screenImage)
+				self["Image"].instance.setPixmap(screenImage)
 		for method in self.onLayoutFinish:
 			if not isinstance(method, type(self.close)):
 				exec(method, globals(), locals())
@@ -358,6 +367,29 @@ class Screen(dict):
 		for (name, val) in list(self.items()):
 			if isinstance(val, GUIComponent):
 				val.GUIdelete()
+				val.skinAttributes = []
+
+	def reloadSkin(self):
+		self.deleteGUIScreen()
+		if hasattr(self, "additionalWidgets"):
+			for widget in self.additionalWidgets:
+				if hasattr(widget, "instance") and widget.instance:
+					widget.instance.hide()
+			self.additionalWidgets = []
+		if hasattr(self, "renderer"):
+			for renderer in self.renderer:
+				# Remove widget callbacks before disconnectAll destroys the renderer state.
+				if hasattr(renderer, "instance") and renderer.instance:
+					renderer.GUIdelete()
+				renderer.disconnectAll()
+			self.renderer = []
+		self.onLayoutFinish = [x for x in self.onLayoutFinish if not isinstance(x, CodeType)]
+		self.onContentChanged = [x for x in self.onContentChanged if not isinstance(x, CodeType)]
+		readSkin(self, None, self.skinName, self.desktop)
+		self.applySkin()
+		for renderer in self.renderer:
+			if hasattr(renderer, "instance") and renderer.instance:
+				renderer.changed((renderer.CHANGED_DEFAULT,))
 
 	def createSummary(self):
 		return None
