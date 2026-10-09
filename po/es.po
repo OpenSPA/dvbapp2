@@ -5480,13 +5480,8 @@ msgstr "Configurar el intervalo de tiempo de salto para las teclas’7’ y ‘9
 msgid "Configure the slow motion speeds."
 msgstr "Configurar las velocidades a cámara lenta."
 
-msgid ""
-"Configure the source of the frontend data as shown on the infobars. "
-"'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
-msgstr ""
-"Configura como se muestra la fuente de datos del ‘frontend’ en la barra de "
-"información. ‘Ajustes’ si se ubica en ajustes. ‘Sintonizador’ según lo "
-"reportado por el sintonizador."
+msgid "Configure the source of the frontend data as shown on the InfoBars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
+msgstr "Configure la fuente de datos del frontend tal como se indica en las barras de información (InfoBars). La opción 'Settings' utiliza la configuración almacenada; la opción 'Tuner' utiliza la información reportada por el sintonizador."
 
 msgid ""
 "Configure the speed of the background deletion process. Lower speed will "
@@ -19422,16 +19417,16 @@ msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""
 
 msgid "Select the Picon path, from the option(s) above, to be used for Channel Selection picons."
-msgstr "Seleccione la ruta del picon, de entre las opciones anteriores, que se utilizará para los picons de selección de canal."
+msgstr "Seleccione la ruta del Picon, de entre las opciones anteriores, que se utilizará para los picons de selección de canal."
 
 msgid "Select the Picon path, from the option(s) above, to be used for Front panel/Display picons."
 msgstr "Seleccione la ruta del Picon, de entre las opciones anteriores, que se utilizará para los picons del panel frontal/pantalla."
 
 msgid "Select the Picon path, from the option(s) above, to be used for InfoBar picons."
-msgstr "Seleccione la ruta del picon, de entre las opciones anteriores, que se utilizará para los picons de la InfoBar."
+msgstr "Seleccione la ruta del Picon, de entre las opciones anteriores, que se utilizará para los picons de la InfoBar."
 
 msgid "Select the Picon path, from the option(s) above, to be used for OpenWebif picons."
-msgstr "Seleccione la ruta del picon, de entre las opciones anteriores, que se utilizará para los picons de OpenWebif."
+msgstr "Seleccione la ruta del Picon, de entre las opciones anteriores, que se utilizará para los picons de OpenWebif."
 
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Seleccione la tasa de refresco que se usará en la TV."
@@ -20223,7 +20218,7 @@ msgid "Service Information Actions"
 msgstr "Acciones de Información del Servicio"
 
 msgid "Service List Appearance"
-msgstr "Apariencia en la Lista de Servicios"
+msgstr "Apariencia en la Lista de Canales"
 
 msgid "Service Scan Actions"
 msgstr "Acciones de Búsqueda del Servicio"
@@ -23950,8 +23945,8 @@ msgstr "Esto le permite cambiar el tamaño de la fuente en relación con el tama
 msgid "This allows you to change the number of rows shown."
 msgstr "Te permite cambiar el número de filas mostradas."
 
-msgid "This allows you to set the maximum number of digits in a service number, up to 5."
-msgstr "Esto le permite establecer el número máximo de dígitos en un número de canal, hasta 5."
+msgid "This allows you to set the maximum number of digits in a service number, up to 6."
+msgstr "Esto le permite establecer el número máximo de dígitos en un número de canal, hasta un máximo de 6."
 
 msgid "This bouquet is protected by a parental control PIN!"
 msgstr "Esta lista está protegida por un PIN de control parental!"
@@ -25444,7 +25439,7 @@ msgid "Update finished!"
 msgstr "¡Actualización finalizada!"
 
 msgid "Update outdated bouquet entries"
-msgstr "Actualizar entradas de bouquets obsoletas"
+msgstr "Actualizar entradas de bouquets obsoletos"
 
 msgid "Update is reported as faulty !!"
 msgstr "¡La actualización no es segura!"
@@ -28627,7 +28622,7 @@ msgstr "Mostrar tarjetas con salto superior %s"
 msgid "Show picons in quickzap"
 msgstr "Mostrar picons en zapeo rápido"
 
-msgid "show picons in service list"
+msgid "Show picons in service list"
 msgstr "Mostrar picon en la lista de canales"
 
 msgid "show program information..."

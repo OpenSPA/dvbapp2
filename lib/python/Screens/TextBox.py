@@ -11,9 +11,14 @@ class TextBox(Screen):
 			skinName = skin_name
 		if widget is None and label:
 			widget = label
+		""" ONLY OpenATV
 		self.skinName = [skinName]
+		"""
 		widget = widget if widget else "text"
+		""" ONLY OpenATV
 		if "TextBox" not in self.skinName and widget == "text":
+		"""
+		if "TextBox" not in self.skinName:
 			self.skinName.append("TextBox")
 		if title is None:
 			title = _("Text Box")
