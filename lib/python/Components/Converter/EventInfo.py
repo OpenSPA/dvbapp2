@@ -16,10 +16,11 @@ class ETSIClassifications(dict):
 	def __init__(self):
 		def shortRating(age):
 			if age < 4:
-				return _("All ages")
+				result = _("All ages")
 			elif age <= 15:
 				age += 3
-				return f"{age}+"
+				result = f"{age}+"
+			return result
 
 		def imageRating(age):
 			result = None
