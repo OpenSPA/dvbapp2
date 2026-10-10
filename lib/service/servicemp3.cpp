@@ -1077,9 +1077,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_pgs_subtitle_parser = new ePGSSubtitleParser();
 	m_pgs_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eServiceMP3::newDVBSubtitlePage),
 										  m_new_pgs_subtitle_page_connection);
-#ifdef PASSTHROUGH_FIX
-	m_passthrough_fix_timer = eTimer::create(eApp);
-#endif
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
@@ -1143,9 +1140,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	CONNECT(m_dvb_subtitle_sync_timer->timeout, eServiceMP3::pushDVBSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	CONNECT(m_nownext_timer->timeout, eServiceMP3::updateEpgCacheNowNext);
-#ifdef PASSTHROUGH_FIX
-	CONNECT(m_passthrough_fix_timer->timeout, eServiceMP3::forcePassthrough);
-#endif
 	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
 
 	m_state = stIdle;
@@ -1649,15 +1643,6 @@ eServiceMP3::~eServiceMP3() {
 	m_new_dvb_subtitle_page_connection = 0;
 	m_new_pgs_subtitle_page_connection = nullptr;
 }
-
-#ifdef PASSTHROUGH_FIX
-void eServiceMP3::forcePassthrough() {
-	eTrace("[eServiceMP3] Setting 'passthrough' to force correct operation");
-	CFile::writeStr("/proc/stb/audio/ac3", "passthrough");
-	m_clear_buffers = true;
-	clearBuffers();
-}
-#endif
 
 /**
  * @brief Updates the EPG cache for the current and next events.
@@ -3100,10 +3085,6 @@ void eServiceMP3::applyAudioSelection() {
  * @param[in] force If true, forces the clearing of buffers even if not initially started.
  */
 void eServiceMP3::clearBuffers(bool force) {
-#ifdef PASSTHROUGH_FIX
-	if ((!m_initial_start || !m_clear_buffers) && !force)
-		return;
-#endif
 	bool validposition = false;
 	pts_t ppos = 0;
 	if (getPlayPosition(ppos) >= 0) {
