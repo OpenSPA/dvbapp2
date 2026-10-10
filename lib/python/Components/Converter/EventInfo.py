@@ -17,6 +17,9 @@ class ETSIClassifications(dict):
 		def shortRating(age):
 			if age < 4:
 				return _("All ages")
+			elif age <= 15:
+				age += 3
+				return f"{age}+"
 
 		def imageRating(age):
 			result = None
@@ -33,13 +36,6 @@ class ETSIClassifications(dict):
 				result = _("Minimum age %d years") % (age + 3)
 			return result
 
-		def shortRating(age):
-			result = None
-			if age == 0:
-				result = _("All ages")
-			elif age <= 15:
-				result = f"{age + 3}+"
-			return result
 
 		#         0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15
 		colors = (0x000000, 0x00A822, 0x00A822, 0x00A822, 0x007DCA, 0x007DCA, 0x007DCA, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723, 0xD70723, 0xD70723)
