@@ -15,6 +15,7 @@ from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 class ETSIClassifications(dict):
 	def __init__(self):
 		def shortRating(age):
+			result = None
 			if age < 4:
 				result = _("All ages")
 			elif age <= 15:
@@ -31,6 +32,7 @@ class ETSIClassifications(dict):
 			return result
 
 		def longRating(age):
+			result = None
 			if age < 4:
 				return _("All ages")
 			elif age <= 15:
