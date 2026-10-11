@@ -8,11 +8,10 @@ from os import listdir
 from os.path import exists, isfile, ismount, realpath, splitext
 from pickle import dump, load
 from re import match
-from socket import AF_UNIX, SOCK_STREAM, socket
 from sys import maxsize
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter
+from enigma import eAVControl, eActionMap, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
@@ -41,7 +40,7 @@ from Components.Sources.RdsDecoder import RdsDecoder
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.ChannelSelection import BouquetSelector, ChannelSelection, EpgBouquetSelector, PiPZapSelection, SilentBouquetSelector, service_types_tv, service_types_radio
+from Screens.ChannelSelection import BouquetSelector, ChannelSelection, EpgBouquetSelector, PiPZapSelection, SilentBouquetSelector, service_types_radio, service_types_tv
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import InstantRecordingEndTime
 from Screens.Dish import Dish
@@ -54,13 +53,13 @@ from Screens.MinuteInput import MinuteInput
 from Screens.PictureInPicture import PictureInPicture
 from Screens.PiPSetup import PiPSetup
 from Screens.PVRState import PVRState, TimeshiftState
-from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import DABSlideDisplay, RassInteractive, RdsInfoDisplay
 from Screens.Screen import Screen
 from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
 import Screens.Standby
 from Screens.Standby import Standby, TryQuitMainloop  # noqa F401
+from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.Timers import RecordTimerEdit, RecordTimerOverview
 from Screens.UnhandledKey import UnhandledKey
 from Tools import Notifications
@@ -3343,18 +3342,22 @@ class InfoBarEPG:
 			return 1
 
 	def zapToService(self, service, bouquet=None, preview=False, zapback=False):
+		if service is not None and not service.valid():
+			print(f"[InfoBarEPG] Ignore invalid zap reference '{service.toString()}'.")
+			return
 		if self.servicelist.startServiceRef is None:
 			self.servicelist.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.servicelist.currentServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if service is not None:
-			if self.servicelist.getRoot() != bouquet:  # Already in correct bouquet?
+			if bouquet is not None and self.servicelist.getRoot() != bouquet:  # Already in correct bouquet?
 				self.servicelist.clearPath()
 				if self.servicelist.bouquet_root != bouquet:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
 				self.servicelist.enterPath(bouquet)
 			self.servicelist.setCurrentSelection(service)  # Select the service in the service list.
 		if not zapback or preview:
-			self.servicelist.zap(preview_zap=preview)
+			# The EPG target need not be selectable in the current channel list.
+			self.servicelist.zap(preview_zap=preview, ref=service)
 		if (self.servicelist.dopipzap or zapback) and not preview:
 			self.servicelist.zapBack()
 		if not preview:
