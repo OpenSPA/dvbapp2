@@ -1308,6 +1308,9 @@ msgstr "%s prolongado"
 msgid "%s not available."
 msgstr "%s no disponible."
 
+msgid "%s support"
+msgstr "soporte para %s"
+
 #, python-format
 msgid "%s version"
 msgstr "%s version"
@@ -2516,11 +2519,8 @@ msgstr ""
 "seleccionar este LNB para otros satélites (p.e. parabólicas motorizadas) "
 "para no configurar el mismo LNB varias veces."
 
-msgid "Allow 10bit"
-msgstr "Permitir 10 bits"
-
-msgid "Allow 12bit"
-msgstr "Permitir 12 bits"
+msgid "Allow %s-bit"
+msgstr "Permitir %s bits"
 
 msgid "Allow quit movie player with exit"
 msgstr "Permitir salir del reproductor con exit"
@@ -10449,9 +10449,6 @@ msgstr "Guinea-Bisáu"
 msgid "Gujarati"
 msgstr "Gujarati"
 
-msgid "Gurani"
-msgstr "Gurani"
-
 msgid "Guyana"
 msgstr "Guyana"
 
@@ -10516,12 +10513,6 @@ msgstr "Entrada HDMI"
 msgid "HDR OSD adjustment"
 msgstr "Ajuste OSD HDR"
 
-msgid "HDR10 Support"
-msgstr "Compatibilidad con HDR10"
-
-msgid "HDR10 support"
-msgstr "compatibilidad con HDR10"
-
 msgid "HELP"
 msgstr "AYUDA"
 
@@ -10538,12 +10529,6 @@ msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "HI-cleanup para subtítulos externos"
-
-msgid "HLG Support"
-msgstr "Compatibilidad con HLG"
-
-msgid "HLG support"
-msgstr "compatibilidad con HLG"
 
 msgid "Haiti"
 msgstr "Haiti"
@@ -18588,11 +18573,8 @@ msgstr "Cuando está habilitada, permite el acceso a la red Samba sin contraseñ
 msgid "When enabled, allow the receiver to be powered on by a remote Wake-on-LAN network signal (Magic Packet)."
 msgstr "Cuando está habilitada, permite que el receptor se encienda mediante una señal de red Wake-on-LAN remota (Magic Packet)."
 
-msgid "When enabled, allow the use of 10 bit color mode."
-msgstr "Cuando está habilitado, permite el uso del modo de color de 10 bits."
-
-msgid "When enabled, allow the use of 12 bit color mode."
-msgstr "Cuando está habilitado, permite el uso del modo de color de 12 bits."
+msgid "When enabled, allow the use of %s-bit color mode."
+msgstr "Cuando está habilitado, permite el uso del modo de color de %s bits."
 
 msgid "When enabled, allow usage of the NFS version 3 protocols."
 msgstr "Cuando está habilitada, permite el uso de los protocolos NFS versión 3."
@@ -19425,6 +19407,9 @@ msgstr "Selecciona orden temporal de archivo de la columna actual"
 msgid "Select the %s entry"
 msgstr "Seleccione la entrada %s"
 
+msgid "Select the %s mode to be used with the HDMI connected HDR capable TV/monitor."
+msgstr "Seleccione el modo %s que se utilizará con el televisor o monitor compatible con HDR conectado por HDMI."
+
 msgid "Select the access mode for the automatically exported samba shares."
 msgstr "Seleccione el modo de acceso para los recursos compartidos de Samba exportados automáticamente."
 
@@ -19528,18 +19513,6 @@ msgstr "Seleccione la colorimetría HDMI que se utilizará al mostrar contenido 
 
 msgid "Select the HDR mode to be used for the HDMI attached UHD capable TV/monitor."
 msgstr "Seleccione el modo HDR que se utilizará para el televisor o monitor compatible con UHD conectado por HDMI."
-
-msgid "Select the HDR10 mode to be used with the HDMI connected HDR capable TV/monitor."
-msgstr "Seleccione el modo HDR10 que se utilizará con el televisor o monitor compatible con HDR conectado por HDMI."
-
-msgid "Select the HDR10 mode to be used with the HDMI connected UHD capable TV/monitor."
-msgstr "Seleccione el modo HDR10 que se utilizará con el televisor o monitor compatible con UHD conectado por HDMI."
-
-msgid "Select the HLG mode to be used with the HDMI connected HDR capable TV/monitor."
-msgstr "Seleccione el modo HLG para utilizarlo con el televisor o monitor compatible con HDR conectado por HDMI."
-
-msgid "Select the HLG mode to be used with the HDMI connected UHD capable TV/monitor."
-msgstr "Seleccione el modo HLG para utilizarlo con el televisor o monitor compatible con UHD conectado por HDMI."
 
 msgid ""
 "Select the animation speed of the button indicators in the help screens. "
@@ -20221,7 +20194,7 @@ msgstr "Serbio"
 msgid "Serbian"
 msgstr "Serbio"
 
-msgid "Serbo-Croat"
+msgid "Serbo-Croatian"
 msgstr "Serbocroata"
 
 msgid "Serial No"
