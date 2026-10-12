@@ -1400,17 +1400,17 @@
 		<item level="0" text="Bypass HDMI EDID Check" description="This option allows you to bypass HDMI EDID check." requires="Canedidchecking">config.av.bypass_edid_checking</item>
 		<item level="0" text="Hardware video mode" description="Select the video mode of the hardware chip. PiP and 12-bit HDR output cannot be used at the same time, so choose whether to enable Picture in Picture or 12-bit HDR output." requires="haveboxmode">config.av.boxmode</item>
 		<if requires="HDRSupport">
-			<item level="0" text="HLG Support" description="This option allows you to force the HLG Modes for UHD.">config.av.hlg_support</item>
-			<item level="0" text="HDR10 Support" description="This option allows you to force the HDR10 Modes for UHD.">config.av.hdr10_support</item>
-			<item level="0" text="Allow 12bit" description="This option allows you to enable or disable the 12 Bit Color Mode.">config.av.allow_12bit</item>
-			<item level="0" text="Allow 10bit" description="This option allows you to enable or disable the 10 Bit Color Mode.">config.av.allow_10bit</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HLG">config.av.hlg_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HDR10">config.av.hdr10_support</item>
+			<item level="0" text="Allow %s-bit" description="When enabled, allow the use of %s-bit color mode." data="10">config.av.allow_10bit</item>
+			<item level="0" text="Allow %s-bit" description="When enabled, allow the use of %s-bit color mode." data="12">config.av.allow_12bit</item>
 		</if>
 		<item level="0" text="Sync mode" description="Setup how to control the channel changing." requires="havesyncmode">config.av.sync_mode</item>
 		<item level="1" text="Deinterlacer mode" description="Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide." requires="havedeinterlace">config.av.deinterlace</item>
 		<item level="1" text="Show 'Manual resolution' in extensions menu" description="Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video." conditional="config.av.videoport.value != 'Scart'">config.av.manual_resolution_extmenu</item>
 		<if requires="haveamlhdrsupport">
-			<item level="0" text="HLG support" description="Select the HLG mode to be used with the HDMI connected UHD capable TV/monitor.">config.av.amlhlg_support</item>
-			<item level="0" text="HDR10 support" description="Select the HDR10 mode to be used with the HDMI connected UHD capable TV/monitor.">config.av.amlhdr10_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HLG">config.av.amlhlg_support</item>
+			<item level="0" text="%s support" description="Select the %s mode to be used with the HDMI connected HDR capable TV/monitor." data="HDR10">config.av.amlhdr10_support</item>
 		</if>
 	</setup>
 	<setup key="VolumeAdjust" title="Volume Adjust Settings">
