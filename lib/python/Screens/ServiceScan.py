@@ -449,8 +449,9 @@ class ServiceScan(Screen):
 				if exists(path):
 					with open(path, "r") as fr:
 						lastscanned_content = fr.read()
-					with open(path, "w") as fw:
-						fw.write(lastscanned_content.replace("Last Scanned", _("Last Scanned")))
+					if _("Last Scanned") not in lastscanned_content:
+						with open(path, "w") as fw:
+							fw.write(lastscanned_content.replace("Last Scanned", _("Last Scanned")))
 			eDVBDB.getInstance().reloadBouquets()
 
 	def keySave(self):
