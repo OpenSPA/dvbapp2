@@ -1289,7 +1289,7 @@ msgid "%s Setup"
 msgstr "%s Configuración"
 
 msgid "%s support"
-msgstr "soporte para %s"
+msgstr "Soporte para %s"
 
 #, python-format
 msgid "%s version"
@@ -5516,7 +5516,6 @@ msgstr ""
 "Configura si se mostrarán los picons para grupos de favoritos en la lista de "
 "canales."
 
-
 msgid "Configure if icons for 3D services will be shown."
 msgstr "Configura si se mostrarán los iconos para servicios 3D."
 
@@ -7166,6 +7165,9 @@ msgid ""
 msgstr ""
 "Define qué velocidades de avance rápido se usan el CUE normal. El resto de "
 "velocidades de avance y rebobinado usarán saltos de tiempo."
+
+msgid "Deinterlacer mode"
+msgstr "Modo desentrelazador"
 
 msgid "Delay after change voltage before switch command"
 msgstr "Retardo después del cambio de voltaje antes del comando de conmutación"
@@ -20492,6 +20494,9 @@ msgstr "Seleccione 'Sí' si desea activar el televisor cuando se inicie una tare
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Seleccione \"Sí\" para mantener la barra de información en pantalla, sin tiempo de espera, mientras la reproducción multimedia está en pausa."
 
+msgid "Select 'Yes' to add an entry to the extensions menu to change the video mode for the current video."
+msgstr "Seleccione 'Sí' para agregar una entrada al menú de extensiones para cambiar el modo de video del video actual."
+
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Seleccione 'Sí' para permitir que cada dispositivo de almacenamiento detectado se exporte automáticamente como recurso compartido Samba."
 
@@ -20893,6 +20898,9 @@ msgstr "Seleccione 'Sí' para apagar inmediatamente en lugar de iniciar la desco
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Seleccione \"Sí\" para separar tareas en acciones separadas."
+
+msgid "Select 'Yes' to switch the HDMI HDR type (HDR10, HLG or SDR) to match the HDR information of the current video."
+msgstr "Seleccione 'Sí' para cambiar el tipo HDMI HDR (HDR10, HLG o SDR) para que coincida con la información HDR del video actual."
 
 msgid "Select 'Yes' to treat interlaced streams and media files as progressive. DVB services and recordings are not affected. This helps with streams that are wrongly flagged as interlaced."
 msgstr "Seleccione 'Sí' para tratar los flujos y archivos multimedia entrelazados como progresivos. Los servicios y grabaciones DVB no se ven afectados. Esto ayuda con los flujos que están marcados incorrectamente como entrelazados."
@@ -21455,6 +21463,9 @@ msgstr "Seleccione la fecha de inicio de este temporizador."
 
 msgid "Select the day of the week that this timer will activate."
 msgstr "Seleccione el día de la semana en que se activará este temporizador."
+
+msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
+msgstr "Seleccione el modo de desentrelazado del decodificador de video. 'Auto' deja que el conductor decida."
 
 msgid "Select the default directory to be used if the left column directory is not saved."
 msgstr "Selecciona el directorio predeterminado que se usará si no se ha guardado el directorio de la columna izquierda."
@@ -23096,6 +23107,9 @@ msgstr "Se debería resetear el contador de fallos para prevenir un reinicio?"
 
 msgid "Show"
 msgstr "Mostrar"
+
+msgid "Show 'Manual resolution' in extensions menu"
+msgstr "Mostrar 'Resolución manual' en el menú de extensiones"
 
 msgid "Show 1080p 24fps as"
 msgstr "Mostrar 1080p 24fps como"
@@ -26553,6 +26567,9 @@ msgstr "Esta opción te permite elegir si quieres visualizar la información del
 # A/V Settings
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Esta opción te permite habilitar el audio 3D Surround."
+
+msgid "This option allows you to force the HDR Modes for UHD."
+msgstr "Esta opción le permite forzar los modos HDR para UHD."
 
 # Box Display
 msgid "This option allows you to Power Off the display."
