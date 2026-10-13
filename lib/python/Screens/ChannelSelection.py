@@ -354,7 +354,7 @@ class ChannelSelectionBase(Screen):
 			if exists(path_favourites):
 				with open(path_favourites, "r") as fr:
 					favourites_content = fr.read()
-				if "Favourites" in favourites_content:
+				if _("Favourites") not in favourites_content:
 					with open(path_favourites, "w") as fw:
 						fw.write(favourites_content.replace("Favourites", _("Favourites")))
 					eDVBDB.getInstance().reloadBouquets()
@@ -385,9 +385,9 @@ class ChannelSelectionBase(Screen):
 		serviceNameTmp = ServiceReference(serviceReference).getServiceName()
 		serviceName = serviceNameTmp.replace(_("(TV)") if self.mode == MODE_TV else _("(Radio)"), "").replace("  ", " ").strip()
 		# print(f"[ChannelSelection] getServiceName DEBUG: Service Name Before='{serviceNameTmp}', After='{serviceName}'.")
-		if "Last Scanned" in serviceName:  # OpenSPA [norhap] Last Scanned always translated.
+		if _("Last Scanned") not in serviceName:  # OpenSPA [norhap] Last Scanned always translated.
 			serviceName = serviceName.replace("Last Scanned", _("Last Scanned"))
-		if "Favourites" in serviceName:  # OpenSPA [norhap] translate title Favourites Bouquet.
+		if _("Favourites") not in serviceName:  # OpenSPA [norhap] translate title Favourites Bouquet.
 			serviceName = serviceName.replace("Favourites", _("Favourites"))
 		if "User - bouquets" in serviceName:
 			return _("User - Bouquets")
