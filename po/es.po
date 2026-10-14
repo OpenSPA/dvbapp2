@@ -11772,11 +11772,13 @@ msgid "History Zap Actions"
 msgstr "Acciones historial de zapeo"
 
 msgid "Hmong"
-msgstr ""
+msgstr "Hmong"
 
-#
 msgid "Hockey"
 msgstr "Hockey"
+
+msgid "Hold first frame"
+msgstr "Mantén primero el marco"
 
 msgid "Hold screen"
 msgstr "Mantener pantalla"
@@ -21465,7 +21467,7 @@ msgid "Select the day of the week that this timer will activate."
 msgstr "Seleccione el día de la semana en que se activará este temporizador."
 
 msgid "Select the de-interlacing mode of the video decoder. 'Auto' lets the driver decide."
-msgstr "Seleccione el modo de desentrelazado del decodificador de video. 'Auto' deja que el conductor decida."
+msgstr "Seleccione el modo de desentrelazado del decodificador de video. 'Auto' deja que el driver decida."
 
 msgid "Select the default directory to be used if the left column directory is not saved."
 msgstr "Selecciona el directorio predeterminado que se usará si no se ha guardado el directorio de la columna izquierda."
@@ -24323,14 +24325,15 @@ msgstr "Eslovenia"
 msgid "Slovenian"
 msgstr "Esloveno"
 
-#
 msgid "Slow"
 msgstr "Lento"
 
 msgid "slow"
 msgstr "Lento"
 
-#
+msgid "Slow motion"
+msgstr "Cámara lenta"
+
 msgid "Slow motion speeds"
 msgstr "Velocidades de cámara lenta"
 
