@@ -1,11 +1,11 @@
 from bisect import insort
 from datetime import datetime
-from os import access, fsync, makedirs, remove, rename, statvfs, W_OK
-from os.path import exists, isdir, realpath, ismount
+from os import W_OK, access, fsync, makedirs, remove, rename, statvfs
+from os.path import exists, isdir, ismount, realpath
 from threading import Thread, Timer as ThreadTimer
 from time import ctime, localtime, strftime, time
 
-from enigma import eActionMap, eEPGCache, eServiceEventEnums, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iRecordableService, quitMainloop, pNavigation, setPreferredTuner
+from enigma import eActionMap, eEPGCache, eServiceEventEnums, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iRecordableService, pNavigation, quitMainloop, setPreferredTuner
 
 import NavigationInstance
 from timer import Timer, TimerEntry
@@ -105,7 +105,8 @@ class RecordingTunerHandoff:
 					self.finish(False)
 					return False
 				infobar.recordingPriorityHandoff = self
-				infobar.session.showInfo(_("A recording has priority. Time shift is being stopped."), timeout=10)
+				if infobar.timeshiftEnabled():
+					infobar.session.showInfo(_("A recording has priority. Time shift is being stopped."), timeout=10)
 			# Unlike a generic evEnd (notably FCC), this returns after the old
 			# native service has stopped. A pending PIN/PTS choice is not completion.
 			self.nav.stopService()
@@ -966,7 +967,6 @@ class RecordTimerEntry(TimerEntry):
 				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) is True:
 					if config.recording.ask_to_abort_pip.value == "ask":
 						self.log(8, "Asking user to disable PiP.")
-						self.messageBoxAnswerPending = True
 						message = _("A timer failed to record!\nDisable PiP and try again?\n")
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.failureCB_pip, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
@@ -985,7 +985,6 @@ class RecordTimerEntry(TimerEntry):
 				if len(NavigationInstance.instance.getRecordings(False, pNavigation.isPseudoRecording)) > 0:
 					if config.recording.ask_to_abort_pseudo_rec.value == "ask":
 						self.log(8, "Asking user to abort pseudo recordings.")
-						self.messageBoxAnswerPending = True
 						message = _("A timer failed to record!\nAbort pseudo recordings (e.g. EPG refresh) and try again?\n")
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.failureCB_pseudo_rec, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
@@ -1004,7 +1003,6 @@ class RecordTimerEntry(TimerEntry):
 				if len(NavigationInstance.instance.getRecordings(False, pNavigation.isStreaming)) > 0:
 					if config.recording.ask_to_abort_streaming.value == "ask":
 						self.log(8, "Asking user to abort streaming.")
-						self.messageBoxAnswerPending = True
 						message = _("A timer failed to record!\nAbort streaming and try again?\n")
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.failureCB_streaming, message, MessageBox.TYPE_YESNO, timeout=20, default=True)
@@ -1030,7 +1028,6 @@ class RecordTimerEntry(TimerEntry):
 						handoff.confirm(True)
 					elif not config.recording.asktozap.value:
 						self.log(8, "Asking user to zap.")
-						self.messageBoxAnswerPending = True
 						message = _("A timer failed to record!\nDisable TV and try again?\n")
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(handoff.confirm, message, MessageBox.TYPE_YESNO, timeout=20, default=True)

@@ -2674,6 +2674,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		# IPTV may have zero DVB identifiers; valid() only rejects idInvalid.
 		if nref is None or not nref.valid():
 			print("[ChannelSelection] Ignore zap without a valid service reference.")
+			if recordingHandoff:
+				recordingHandoff.finish(False)
 			return
 		self.curRoot = self.startRoot
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -2727,6 +2729,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if doPlay:
 				if recordingHandoff:
 					if not recordingHandoff.stopService():
+						self.setStartRoot(self.curRoot)
+						self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 						return
 					try:
 						self.session.nav.playService(nref)
