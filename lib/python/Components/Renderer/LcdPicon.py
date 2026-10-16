@@ -118,6 +118,7 @@ def onPartitionChange(why, part):
 		case "remove":
 			onMountpointRemoved(part.mountpoint)
 
+
 def findLcdPicon(serviceName):
 	global lastLcdPiconPath
 	if lastLcdPiconPath is not None:

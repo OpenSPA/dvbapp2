@@ -6,6 +6,7 @@ from enigma import ePixmap, eServiceReference, iServiceInformation
 
 import NavigationInstance
 from ServiceReference import ServiceReference
+
 from Components.config import config, ConfigText, ConfigYesNo
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
