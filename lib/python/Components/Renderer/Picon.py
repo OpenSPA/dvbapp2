@@ -26,11 +26,16 @@ def resetPiconPath():
 	piconPathCache = {}
 
 
-def setPiconPath(key, path):
-	global lastPiconPath
-	piconPathCache[key] = path
-	if key in (None, "infobar"):
-		lastPiconPath = path
+def setPiconPath(key=None, path=None):
+    global lastPiconPath, piconPathCache  # OpenSPA [norhap] piconPathCache necessary for PiconPatch.
+    if path is None:  # OpenSPA [norhap] Legacy call for PiconPaths.py.
+        lastPiconPath = None
+        piconPathCache = {}
+        initPiconPaths()
+        return
+    piconPathCache[key] = path
+    if key in (None, "infobar"):
+        lastPiconPath = path
 
 
 def getDefaultPiconPath():
