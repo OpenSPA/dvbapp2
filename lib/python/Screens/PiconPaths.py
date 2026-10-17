@@ -195,8 +195,6 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 		config.misc.picon_path.value = self.picon_dirname.value
 		config.misc.picon_path.save()
 		config.misc.picon_search_hdd.save()
-		from Components.Renderer import Picon
-		Picon.setPiconPath()
 		try:
 			from Components.Renderer import Picon
 			Picon.setPiconPath()
