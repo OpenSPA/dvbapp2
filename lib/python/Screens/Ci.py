@@ -298,10 +298,10 @@ class MMIDialog(Screen):
 		self.menuRetryTimer.callback.append(self.retryMenu)
 		self.onClose.append(self.stopMenuRetry)
 
-		#else the skins fails
-		self["title"] = Label("")
-		self["subtitle"] = Label("")
-		self["bottom"] = Label("")
+		# else the skins fails
+		self["title"] = Label()
+		self["subtitle"] = Label()
+		self["bottom"] = Label()
 		self["key_menu"] = StaticText(_("MENU"))
 		self["entries"] = ConfigList([])
 
