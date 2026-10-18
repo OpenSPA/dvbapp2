@@ -9,7 +9,6 @@ from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import ConfigInteger, ConfigSelection
 from Components.Console import Console
 from Components.Label import Label
-from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen

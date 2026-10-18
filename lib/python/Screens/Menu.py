@@ -4,16 +4,16 @@ from os.path import getmtime, isdir, isfile
 from enigma import eTimer
 
 from skin import menus
-from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
+from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import avSwitch
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Label import Label
 from Components.NimManager import nimmanager  # noqa F401 needed in menu.xml
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Plugins.Plugin import PluginDescriptor
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen, ScreenSummary

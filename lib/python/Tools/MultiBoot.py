@@ -4,7 +4,7 @@ from hashlib import md5
 from os import listdir, mkdir, rename, rmdir, stat
 from os.path import basename, exists, isdir, isfile, ismount, join, islink, realpath
 from re import search
-from struct import calcsize, pack, unpack, error
+from struct import calcsize, error, pack, unpack
 from tempfile import mkdtemp
 
 # NOTE: This module must not import from SystemInfo.py as this module is
