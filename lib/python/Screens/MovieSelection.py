@@ -1829,7 +1829,7 @@ class MovieSelectionSummary(Screen):
 	# this when the info is not selected.
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
-		self["name"] = StaticText("")
+		self["name"] = StaticText()
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
@@ -1935,7 +1935,7 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 class MovieContextMenuSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
-		self["selected"] = StaticText("")
+		self["selected"] = StaticText()
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
