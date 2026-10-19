@@ -3144,9 +3144,6 @@ msgstr "Preguntar al usuario (con ‘no’ como predeterminado)"
 msgid "Ask user (with default of 'Yes')"
 msgstr "Preguntar al usuario (con ‘sí’ como predeterminado)"
 
-msgid "Aspect"
-msgstr "Aspecto"
-
 msgid "Aspect ratio"
 msgstr "Aspecto"
 
@@ -3518,9 +3515,6 @@ msgstr "USB derecho trasero"
 
 msgid "Back, upper USB"
 msgstr "USB trasero superior"
-
-msgid "Back/Recall"
-msgstr "Volver/Recuperar"
 
 msgid "Background"
 msgstr "Continuar en segundo plano"
@@ -6142,9 +6136,6 @@ msgstr "¡El contenido no cabe en un DVD!"
 msgid "contents:"
 msgstr "contenido:"
 
-msgid "Context"
-msgstr "Contexto"
-
 msgid "Continent"
 msgstr "Continente"
 
@@ -6740,6 +6731,9 @@ msgstr "Canal DAB+ %s"
 
 msgid "DAB+ decoder back end not installed"
 msgstr "El sistema decodificador DAB+ no está instalado"
+
+msgid "DAB+ front display"
+msgstr "Display DAB+"
 
 msgid "DAB+ Scan"
 msgstr "Búsqueda DAB+"
@@ -8650,9 +8644,6 @@ msgstr "educación/ciencia/temas fácticos"
 msgid "Egypt"
 msgstr "Egipto"
 
-msgid "EJECTCD"
-msgstr "EXPULSIÓN DE CD"
-
 msgid "El Salvador"
 msgstr "El Salvador"
 
@@ -8662,7 +8653,6 @@ msgstr "Transcurrido"
 msgid "Elapsed & Remaining"
 msgstr "Transcurrido y restante"
 
-#
 msgid "Electronic Program Guide"
 msgstr "Guía de programación electrónica"
 
@@ -9060,9 +9050,6 @@ msgstr "Cifrado y Descifrado"
 
 msgid "Encryption:"
 msgstr "Encriptación:"
-
-msgid "End"
-msgstr "Final"
 
 msgid "End Alternatives Edit"
 msgstr "Fin de edición de alternativas"
@@ -9468,11 +9455,9 @@ msgstr "Rango EPG e Historia"
 msgid "EPG Search"
 msgstr "Buscar en EPG"
 
-#
 msgid "EPG Selection"
 msgstr "Selección en EPG"
 
-#
 msgid "EPG Settings"
 msgstr "Ajustes de EPG"
 
@@ -9485,13 +9470,9 @@ msgstr "Fuentes de la EPG"
 msgid "EPG Storage And Refresh"
 msgstr "Almacenamiento y Actualización EPG"
 
-msgid "Epg/Guide"
-msgstr "EPG/Guía"
-
 msgid "EPGSearch"
 msgstr "Búsqueda en EPG"
 
-#
 msgid "Equal to"
 msgstr "Igual a"
 
@@ -10212,9 +10193,6 @@ msgstr "F2"
 
 msgid "F3"
 msgstr "F3"
-
-msgid "F4"
-msgstr "F4"
 
 msgid "Factory release"
 msgstr "Lanzamiento de fabrica"
@@ -11530,9 +11508,6 @@ msgstr "Acciones de la entrada HDMI-IN"
 msgid "HDMI-In Recording Settings"
 msgstr "Configuración de la grabación HDMI-IN"
 
-msgid "HDMIin"
-msgstr "Entrada HDMI"
-
 msgid "HDR OSD adjustment"
 msgstr "Ajuste OSD HDR"
 
@@ -11755,13 +11730,9 @@ msgstr "Hispasat 30.0 O"
 msgid "Historical"
 msgstr "Historial"
 
-msgid "History"
-msgstr "Historia"
-
 msgid "History back"
 msgstr "Historial anterior"
 
-#
 msgid "History buttons mode"
 msgstr "Modo de las teclas de historial"
 
@@ -12362,18 +12333,12 @@ msgstr "Indonesio"
 msgid "INFO"
 msgstr "INFO"
 
-#
 msgid "Info"
 msgstr "Info"
 
-msgid "Info (EPG)"
-msgstr "Info (EPG)"
-
-#
 msgid "Info button (long)"
 msgstr "Tecla INFO (larga)"
 
-#
 msgid "Info button (short)"
 msgstr "Tecla INFO (corta)"
 
@@ -12389,7 +12354,6 @@ msgstr "Anulación del archivo de información"
 msgid "Info icon width"
 msgstr "Ancho de la información de icono"
 
-#
 msgid "InfoBar"
 msgstr "Barra de información"
 
@@ -13073,19 +13037,15 @@ msgstr "Tecla"
 msgid "Key Map And Power Buttons"
 msgstr "Mapa de Teclas y Botones de Encendido"
 
-#
 msgid "Keyboard"
 msgstr "Teclado"
 
-#
 msgid "Keyboard data entry"
 msgstr "Introducción de datos con el teclado"
 
-#
 msgid "Keyboard map"
 msgstr "Mapa del teclado"
 
-#
 msgid "Keyboard Settings"
 msgstr "Configurar teclado"
 
@@ -13101,10 +13061,6 @@ msgstr "Kirguís / Kirguizistán"
 msgid "Kiribati"
 msgstr "Kiribati"
 
-msgid "Kodi"
-msgstr "Kodi"
-
-#
 msgid "Kodi installed:"
 msgstr "Kodi instalado:"
 
@@ -13517,7 +13473,6 @@ msgstr "LIRC remoto"
 msgid "List Appearance And Sorting"
 msgstr "Apariencia y Ordenación de la Lista"
 
-#
 msgid "List available EPG functions"
 msgstr "Enumerar funciones del EPG..."
 
@@ -13531,10 +13486,6 @@ msgstr "Lista de Dispositivos de Almacenamiento"
 msgid "List of storage devices"
 msgstr "Enumerar dispositivos de almacenamiento"
 
-msgid "List/Fav"
-msgstr "Lista / Fav"
-
-#
 msgid "Listen to the radio"
 msgstr "Escuchar la radio"
 
@@ -13561,14 +13512,12 @@ msgstr "Transmisión en vivo"
 msgid "Live TV Actions"
 msgstr "Acciones televisivas en directo"
 
-#
 msgid "LNB"
 msgstr "LNB"
 
 msgid "LNB/Switch Bootup time [ms]"
 msgstr "Tiempo de arranque del LNB/Switch [ms]"
 
-#
 msgid "Load"
 msgstr "Cargar"
 
@@ -13840,10 +13789,6 @@ msgstr "Madagascar"
 msgid "Magazines/Reports/Documentary"
 msgstr "Documentales/Entrevistas/Informes"
 
-msgid "Magic"
-msgstr "Mágico"
-
-#
 msgid "Main Menu"
 msgstr "Menú principal"
 
@@ -13856,15 +13801,12 @@ msgstr "Construir"
 msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
 msgstr "Permitir iniciar manualmente la importación de canales y/o la guía electrónica de programación (EPG) a través del menú de la extensión."
 
-#
 msgid "Make this mark an 'in' point"
 msgstr "Convertir esta marca en punto de 'entrada'"
 
-#
 msgid "Make this mark an 'out' point"
 msgstr "Convertir esta marca en punto de 'salida'"
 
-#
 msgid "Make this mark just a mark"
 msgstr "Convertir esta marca en un marcador"
 
@@ -13981,14 +13923,12 @@ msgstr "Maori"
 msgid "Marathi"
 msgstr "Maratí"
 
-#
 msgid "Margin after recording"
 msgstr "Margen después de grabar (minutos)"
 
 msgid "Margin after zap"
 msgstr "Margen después del zapeo"
 
-#
 msgid "Margin before recording"
 msgstr "Margen antes de grabar (minutos)"
 
@@ -13997,9 +13937,6 @@ msgstr "Margen antes de cambiar"
 
 msgid "Mark As Dedicated 3D Service"
 msgstr "Marcar como servicio 3D dedicado"
-
-msgid "Mark/Portal/Playlist"
-msgstr "Marca/Portal/Lista de reproducción"
 
 msgid "Marker Actions"
 msgstr "Acciones del marcador"
@@ -14070,9 +14007,6 @@ msgstr "Mayotte"
 msgid "MB"
 msgstr "MB"
 
-msgid "Media"
-msgstr "Medio"
-
 msgid "Media Center"
 msgstr "Centro multimedia"
 
@@ -14082,7 +14016,6 @@ msgstr "Archivos Multimedia y Navegación"
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Reproducción restante/transcurrida como"
 
-#
 msgid "Media Player"
 msgstr "Reproductor multimedia"
 
@@ -14101,7 +14034,6 @@ msgstr "Reproductor de streams"
 msgid "MediaInfo"
 msgstr "Información multimedia"
 
-#
 msgid "MediaPlayer"
 msgstr "Reproductor"
 
@@ -14114,11 +14046,9 @@ msgstr "Médico"
 msgid "Medicine/Physiology/Psychology"
 msgstr "Medicina/Fisiología/Psicología"
 
-#
 msgid "Medium is not a writeable DVD!"
 msgstr "¡El recurso no es un DVD grabable!"
 
-#
 msgid "Medium is not empty!"
 msgstr "¡El recurso no está vacío!"
 
@@ -14145,7 +14075,6 @@ msgstr "Información sobre la memoria de %s %s"
 msgid "MENU"
 msgstr "MENU"
 
-#
 msgid "Menu"
 msgstr "Menú"
 
@@ -14454,9 +14383,6 @@ msgstr "Montajes"
 
 msgid "Mounts Devices"
 msgstr "Monta dispositivos"
-
-msgid "MOUSE"
-msgstr "MOUSE"
 
 msgid "Move"
 msgstr "Mover"
@@ -16366,9 +16292,6 @@ msgstr "Acciones del registro de Opkg"
 msgid "optimize images..."
 msgstr "Optimizar imágenes..."
 
-msgid "Option"
-msgstr "Opción"
-
 msgid "Option to disable picons on the InfoBar."
 msgstr "Opción para desactivar picon de la InfoBar"
 
@@ -16775,11 +16698,9 @@ msgstr "Ruta '%s' no encontrada!"
 msgid "Pause"
 msgstr "Pausa"
 
-#
 msgid "Pause movie at end"
 msgstr "Pausar la película al final"
 
-#
 msgid "Pause playback"
 msgstr "Pausar la reproducción"
 
@@ -16788,9 +16709,6 @@ msgstr "Pausar / continuar la reproducción"
 
 msgid "Pausing"
 msgstr "Pausa"
-
-msgid "PC"
-msgstr "PC"
 
 msgid "PCM Multichannel"
 msgstr "PCM Multicanal"
@@ -16940,7 +16858,6 @@ msgstr "pid:"
 msgid "Pillarbox"
 msgstr "Columnas"
 
-#
 msgid "Pilot"
 msgstr "Piloto"
 
@@ -16952,10 +16869,6 @@ msgstr "Comprobando..."
 
 msgid "Pink"
 msgstr "Rosa"
-
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP"
-msgstr "PIP"
 
 msgid "PiP"
 msgstr "PiP"
@@ -16987,7 +16900,6 @@ msgstr "Pixels\n"
 msgid "Platform"
 msgstr "Plataforma"
 
-#
 msgid "Play"
 msgstr "Reproducir"
 
@@ -17006,23 +16918,18 @@ msgstr "Reproducir archivos multimedia"
 msgid "Play catch up service archive"
 msgstr "Archivo del servicio de recuperación de reproducción"
 
-#
 msgid "Play DVD"
 msgstr "Reproducir DVD"
 
-#
 msgid "Play DVDs"
 msgstr "Reproducción de DVDs"
 
-#
 msgid "Play entry"
 msgstr "Reproducir elemento"
 
-#
 msgid "Play from next mark or play list entry"
 msgstr "Reproducir desde la siguiente marca o película"
 
-#
 msgid "Play from previous mark or play list entry"
 msgstr "Reproducir desde la marca anterior o película"
 
@@ -18030,9 +17937,6 @@ msgstr "Perfil"
 msgid "Profile: Local receiver"
 msgstr "Perfil: receptor local"
 
-msgid "Program"
-msgstr "Programa"
-
 #, python-format
 msgid ""
 "Program '%s' needs to be installed to perform this action. Do you want to "
@@ -18170,13 +18074,9 @@ msgstr "Protección"
 msgid "Protocol"
 msgstr "Protocolo"
 
-msgid "Prov"
-msgstr "Prov"
-
 msgid "provid:"
 msgstr "provid:"
 
-#
 msgid "Provider"
 msgstr "Proveedor"
 
@@ -18189,7 +18089,6 @@ msgstr "Proveedor:"
 msgid "Provider: "
 msgstr "Proveedor: "
 
-#
 msgid "Providers"
 msgstr "Proveedores"
 
@@ -18246,16 +18145,12 @@ msgstr "Poner TV en reposo"
 msgid "Put your AV Receiver or Soundbar in Standby"
 msgstr "Pon tu receptor AV o barra de sonido en en reposo"
 
-msgid "PVR"
-msgstr "PVR"
-
 msgid "Python"
 msgstr "Python"
 
 msgid "Python Development Packages"
 msgstr "Paquetes de desarrollo python"
 
-#
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend para /tmp/mmi.socket"
 
@@ -18271,7 +18166,6 @@ msgstr "Qatar"
 msgid "Quad PiP channel "
 msgstr "Canal Quad PiP "
 
-#
 msgid "Quad PiP Channel Selection"
 msgstr "Selección de canal Quad PiP"
 
@@ -18290,7 +18184,6 @@ msgstr "Quechua"
 msgid "Question"
 msgstr "Pregunta"
 
-#
 msgid "Quick"
 msgstr "Rápido"
 
@@ -18321,7 +18214,6 @@ msgstr "Menú Rápido / Extensiones"
 msgid "QuickSelect Actions"
 msgstr "Acciones de selección rápida"
 
-#
 msgid "RADIO"
 msgstr "RADIO"
 
@@ -18333,6 +18225,9 @@ msgstr "Selección del canal de radio"
 
 msgid "Radio Channel Selection Actions"
 msgstr "Acciones de la selección de canales de radio"
+
+msgid "Radio text"
+msgstr "Texto para radio"
 
 msgid "Raise and lower the CPU frequency gradually depending on the load."
 msgstr "Aumente y disminuya la frecuencia de la CPU gradualmente en función de la carga."
@@ -19816,10 +19711,6 @@ msgstr "Santo Tomé y Príncipe"
 msgid "Sardinian"
 msgstr "Cerdeña"
 
-msgid "SAT"
-msgstr "SAT"
-
-#
 msgid "Sat"
 msgstr "Sáb"
 
@@ -20275,9 +20166,6 @@ msgstr "Fuente de búsqueda"
 
 msgid "Search west"
 msgstr "Buscar al oeste"
-
-msgid "Search/WEB"
-msgstr "Buscar/WEB"
 
 msgid "Searching"
 msgstr "Buscando"
@@ -21050,9 +20938,11 @@ msgstr "Seleccionar CAId's"
 msgid "Select cardserver"
 msgstr "Seleccione el servidor de tarjetas"
 
-#
 msgid "Select channel audio"
 msgstr "Seleccione el canal de audio"
+
+msgid "Select channel set"
+msgstr "Seleccionar conjunto de canales"
 
 msgid "Select copy destination for:"
 msgstr "Seleccionar ubicación de la copia de:"
@@ -23170,6 +23060,9 @@ msgstr "Mostrar alternativas"
 msgid "Show animation while busy"
 msgstr "Mostrar animación cuando esté ocupado"
 
+msgid "Show available DAB+ reception and decoding information above the radio text. This option applies to both USB and DVB reception."
+msgstr "Muestra información sobre la recepción y decodificación DAB+ disponible, por encima del texto de radio. Esta opción se aplica tanto a la recepción por USB como a la recepción DVB."
+
 msgid "Show Audioselection"
 msgstr "Mostrar selección de audio"
 
@@ -23626,12 +23519,14 @@ msgstr "Mostrar evento anterior"
 msgid "Show previous page"
 msgstr "Mostrar página anterior"
 
-#
 msgid "Show previous picture"
 msgstr "Cambiar foto anterior"
 
 msgid "Show previous system information screen"
 msgstr "Mostrar pantalla previa de información del sistema"
+
+msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
+msgstr "Muestra texto de radio, imágenes o solo el logotipo de la emisora ​​en la pantalla a color. En el modo de presentación, si no hay imágenes disponibles, se muestra el logotipo de la emisora; en el modo de solo logotipo, nunca se muestran imágenes. Si no se dispone del logotipo de la emisora, se muestra el logotipo de DAB+. Esta configuración es independiente de la presentación de imágenes en modo TV."
 
 msgid "show program information..."
 msgstr "Mostrar información del programa…"
@@ -23787,15 +23682,14 @@ msgstr "Mostrar lista de tareas"
 msgid "Show task messages"
 msgstr "Mostrar mensajes de tarea"
 
-msgid ""
-"Show task messages if File Commander is not running and all task are "
-"completed."
-msgstr ""
-"Mostrar mensajes de tarea si el Administrador de archivos no está "
-"funcionando y se han finalizado todas las tareas."
-
 msgid "Show the about screen"
 msgstr "Mostrar la pantalla 'Acerca de'"
+
+msgid "Show task messages if File Commander is not running and all task are completed."
+msgstr "Mostrar mensajes de tarea si el Administrador de archivos no está funcionando y se han finalizado todas las tareas."
+
+msgid "Show technical status line"
+msgstr "Mostrar línea de estado técnico"
 
 msgid "Show the CCcam Info Screen"
 msgstr "Mostrar pantalla de información CCcam"
@@ -23903,6 +23797,9 @@ msgstr "Show / show de juegos (general)"
 
 msgid "Show/Hide Actions"
 msgstr "Acciones de mostrar/ocultar de la barra de información"
+
+msgid "Show/Hide channel name"
+msgstr "Mostrar/Ocultar nombre del canal"
 
 msgid "Show/Hide focus bar"
 msgstr "Mostrar/Ocultar barra de enfoque"
@@ -24136,16 +24033,12 @@ msgstr "Omitir sensibilidad para el botón '%s'"
 msgid "Skip time for '%s'/'%s' buttons"
 msgstr "Omitir tiempo para los botones '%s'/'%s'"
 
-msgid "Sleep"
-msgstr "Dormir"
-
 msgid "Sleep delay"
 msgstr "Retraso de apagado"
 
 msgid "Sleep test"
 msgstr "Prueba de apagado"
 
-#
 msgid "Sleep Timer"
 msgstr "Temporizador de apagado"
 
@@ -24218,7 +24111,9 @@ msgstr "Bucle en la presentación de diapositivas"
 msgid "Slide top to bottom"
 msgstr "Deslice de arriba hacia abajo"
 
-#
+msgid "Slideshow / station logo"
+msgstr "Presentación de diapositivas / logotipo de la emisora"
+
 #, python-format
 msgid "Slot %d"
 msgstr "Slot %d"
@@ -24918,6 +24813,9 @@ msgstr "IP Estática / Personalizada"
 
 msgid "Station"
 msgstr "Estación"
+
+msgid "Station logo only"
+msgstr "Solo el logotipo de la estación"
 
 msgid "Status"
 msgstr "Estado"
@@ -28824,20 +28722,15 @@ msgstr "VMGM (trailer intro)"
 msgid "VOB file"
 msgstr "Archivo VOB"
 
-msgid "VOD"
-msgstr "VOD"
-
 msgid "Vol"
 msgstr "Vol"
 
 msgid "Volapük"
 msgstr ""
 
-#
 msgid "Voltage mode"
 msgstr "Modo voltaje"
 
-#
 msgid "Volume"
 msgstr "Volumen"
 
@@ -29878,9 +29771,6 @@ msgstr "La escritura en el dispositivo de almacenamiento para el time shift ha f
 msgid "WSS on 4:3"
 msgstr "WSS en 4:3"
 
-msgid "Www"
-msgstr "Www"
-
 msgid "X-margin on GUI"
 msgstr "Margen X en pantalla"
 
@@ -30320,9 +30210,6 @@ msgstr ""
 msgid "Youth"
 msgstr "Juventud"
 
-msgid "YouTube"
-msgstr "YouTube"
-
 msgid "Youtube TV"
 msgstr "Youtube TV"
 
@@ -30436,9 +30323,6 @@ msgstr "Zhuang / Chuang"
 
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
-
-msgid "ZOOM"
-msgstr "ZOOM"
 
 msgid "Zoom Actions"
 msgstr "Acciones de zoom"
