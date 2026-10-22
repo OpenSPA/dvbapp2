@@ -52,6 +52,7 @@ class Navigation:
 		self.indicatorRecordingsCount = None
 		self.anyRecordingsCount = None
 		self.realRecordingsCount = None
+		self.streamRetryOverride = False
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.dispatchEvent)
 		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
@@ -329,10 +330,13 @@ class Navigation:
 		bar = InfoBar.instance
 		ref = self.currentlyPlayingServiceOrGroup
 		streamRef = self.hybridPlaybackService or ref
+		isOverride = self.streamRetryOverride  # OpenSPA [norhap] add flag indicator HTTP stream injected into the demux e.g. ExtEplayer3.
 		if (not bar or ServiceEventTracker.getActiveInfoBar() is not bar or Screens.Standby.inStandby
-				or self.isCurrentServiceDVBI or self.isCurrentServiceStreamRelay
-				or not ref or ref.flags & eServiceReference.isGroup or streamRef.type != 4097
-				or not streamRef.getPath().lower().startswith(("http://", "https://"))
+				or (self.isCurrentServiceDVBI and not isOverride)
+				or self.isCurrentServiceStreamRelay
+				or not ref or ref.flags & eServiceReference.isGroup
+				or (not isOverride and streamRef.type != 4097)
+				or (not isOverride and not streamRef.getPath().lower().startswith(("http://", "https://")))
 				or bar.seekstate != bar.SEEK_STATE_PLAY):
 			return None
 		service = self.getCurrentService()
