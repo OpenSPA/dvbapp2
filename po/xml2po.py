@@ -45,6 +45,8 @@ for arg in argv[1:]:
 	attributes = list(attributes)
 	attributes.sort(key=lambda x: x[0])
 	for (key, value) in attributes:
+		if "dvbapp2" in arg:
+			arg = arg.split("dvbapp2")[1]
 		print(f"\n#: {arg}")
 		key.replace("\\n", "\"\n\"")
 		if value:
