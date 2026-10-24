@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-23 01:37+0200\n"
-"PO-Revision-Date: 2026-10-24 05:13+0200\n"
+"PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -2284,6 +2284,9 @@ msgstr "Adulto"
 
 msgid "Adult Audience, Strong Violence 15+"
 msgstr "Público adulto, violencia intensa 15+"
+
+msgid "Adult Hits"
+msgstr "Éxitos para adultos"
 
 msgid "Adult movie/Drama"
 msgstr "Película para adultos/Drama"
@@ -4610,6 +4613,9 @@ msgstr "Niños"
 msgid "children's (general)"
 msgstr "programa para niños (general)"
 
+msgid "Children's programmes"
+msgstr "Programas infantiles"
+
 msgid "Children's/Youth programs"
 msgstr "Programa para niños / jóvenes (general)"
 
@@ -4811,6 +4817,9 @@ msgstr "Circular derecha"
 msgid "City"
 msgstr "Ciudad"
 
+msgid "Classic Rock"
+msgstr "Rock clásico"
+
 msgid "Classical"
 msgstr "Clásico"
 
@@ -5007,6 +5016,9 @@ msgstr "Nombre de la colección"
 
 msgid "Collection settings"
 msgstr "Ajustes de la colección"
+
+msgid "College"
+msgstr "Universitario"
 
 msgid "Colombia"
 msgstr "Colombia"
@@ -5877,6 +5889,9 @@ msgstr "País para la información sobre el género del evento EPG"
 msgid "Country for EPG event rating information"
 msgstr "País para la información de clasificación de eventos de la EPG"
 
+msgid "Country Music"
+msgstr "Música country"
+
 msgid "CPU"
 msgstr "CPU"
 
@@ -6084,6 +6099,9 @@ msgstr "Cuba"
 msgid "Cult"
 msgstr "Culto"
 
+msgid "Culture"
+msgstr "Cultura"
+
 msgid "Curacao"
 msgstr "Curasao"
 
@@ -6095,6 +6113,9 @@ msgstr "Actual"
 
 msgid "Current 1/1"
 msgstr "Actual 1/1"
+
+msgid "Current Affairs"
+msgstr "Actualidad"
 
 msgid "Current affairs"
 msgstr "Asuntos de actualidad"
@@ -7921,6 +7942,9 @@ msgstr "Satélites orientales"
 
 msgid "Easy listening"
 msgstr "Fácil de escuchar"
+
+msgid "Easy Listening Music"
+msgstr "Música ligera"
 
 msgid "EasyMedia"
 msgstr "EasyMedia"
@@ -9827,6 +9851,9 @@ msgstr "Velocidad final de desplazamiento"
 msgid "Finance"
 msgstr "Finanzas"
 
+msgid "Finance/Business"
+msgstr "Finanzas/Negocios"
+
 msgid "Find connected events"
 msgstr "Búsqueda de eventos relacionados"
 
@@ -9983,6 +10010,9 @@ msgstr "Vaciar caché y volver a escanear"
 msgid "Folk and Country"
 msgstr "Música folk y country"
 
+msgid "Folk Music"
+msgstr "Música folk"
+
 msgid "Folk/Traditional music"
 msgstr "Música folclórica/tradicional"
 
@@ -10051,6 +10081,9 @@ msgstr "Forzar ToneBurst"
 
 msgid "Foreign countries/Expeditions"
 msgstr "Países extranjeros/Expediciones"
+
+msgid "Foreign Language"
+msgstr "Idioma Extranjero"
 
 msgid "Formal a disk"
 msgstr "Formatear disco"
@@ -11993,6 +12026,9 @@ msgstr "Jazz"
 msgid "jazz"
 msgstr "jazz"
 
+msgid "Jazz Music"
+msgstr "Música Jazz"
+
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -12502,6 +12538,9 @@ msgstr "Heredado (SMB1)"
 msgid "Legacy mode"
 msgstr "Modo heredado"
 
+msgid "Leisure"
+msgstr "Ocio"
+
 msgid "Leisure hobbies"
 msgstr "Pasatiempos de ocio"
 
@@ -12540,6 +12579,9 @@ msgstr "Liechtenstein"
 
 msgid "Lifestyle"
 msgstr "Estilo de vida"
+
+msgid "Light Classical"
+msgstr "Clásica ligera"
 
 msgid "Light Grey"
 msgstr "Gris claro"
@@ -13194,6 +13236,9 @@ msgstr "Médico"
 
 msgid "Medicine/Physiology/Psychology"
 msgstr "Medicina/Fisiología/Psicología"
+
+msgid "Medium"
+msgstr "Medio"
 
 msgid "Medium is not a writeable DVD!"
 msgstr "¡El recurso no es un DVD grabable!"
@@ -14029,6 +14074,9 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr "Narración"
 
+msgid "National Music"
+msgstr "Música Nacional"
+
 msgid "National music"
 msgstr "Música nacional"
 
@@ -14782,6 +14830,9 @@ msgstr "Bokml noruego"
 msgid "Norwegian Nynorsk"
 msgstr "Nynorqués noruego"
 
+msgid "Nostalgia"
+msgstr "Nostalgia"
+
 msgid "not"
 msgstr "No"
 
@@ -15003,6 +15054,12 @@ msgstr "Modo de tecla OK"
 
 msgid "OK checks the currently tuned transponder."
 msgstr "OK comprueba el transpondedor actualmente sintonizado."
+
+msgid "Oldies"
+msgstr "Éxitos clásicos"
+
+msgid "Oldies Music"
+msgstr "Música Oldies"
 
 msgid "Olympic blue"
 msgstr "Azul olimpico"
@@ -15490,6 +15547,9 @@ msgstr "Otras Acciones"
 msgid "Other buttons will jump to the help information for that button, if there is help available."
 msgstr "Otros botones pasaran a la información de ayuda de ese botón, en caso de haber ayuda disponible."
 
+msgid "Other Music"
+msgstr "Otra Música"
+
 msgid "Other OSD Elements"
 msgstr "Otros Elementos OSD"
 
@@ -15835,6 +15895,9 @@ msgstr "Permisos"
 msgid "Persian"
 msgstr "Persa"
 
+msgid "Personality"
+msgstr "Personalidad"
+
 msgid "Personalize your Skin"
 msgstr "Personalice el aspecto"
 
@@ -15849,6 +15912,9 @@ msgstr "Archivo PGS"
 
 msgid "Philippines"
 msgstr "Filipinas"
+
+msgid "Phone In"
+msgstr "Llamadas Telefónicas"
 
 msgid "Picon"
 msgstr "Picon"
@@ -16412,6 +16478,9 @@ msgstr "Polaco"
 msgid "Politics"
 msgstr "Política"
 
+msgid "Pop Music"
+msgstr "Música Pop"
+
 msgid "Popular culture/Traditional arts"
 msgstr "Cultura popular/Artes tradicionales"
 
@@ -16877,6 +16946,9 @@ msgstr "INICIO PROGRAMA:"
 msgid "Program type"
 msgstr "Tipo de programa"
 
+msgid "Programme type (PTY)"
+msgstr "Tipo de programa (PTY)"
+
 msgid "Programmlisten from DXAndy"
 msgstr "Lista de programas de DXAndy"
 
@@ -17014,6 +17086,9 @@ msgstr "Proveedores:"
 
 msgid "Proxy detected"
 msgstr "Se ha detectado un proxy"
+
+msgid "Public"
+msgstr "Público"
 
 msgid "Public IP"
 msgstr "IP pública"
@@ -17611,6 +17686,12 @@ msgstr "religión"
 
 msgid "Religious"
 msgstr "Religioso"
+
+msgid "Religious Music"
+msgstr "Música Religiosa"
+
+msgid "Religious Talk"
+msgstr "Charla Religiosa"
 
 msgid "Reload all services from disk"
 msgstr "Recargar todos los canales desde el disco."
@@ -18341,6 +18422,9 @@ msgstr "Abrazadera RGB (inferior)"
 msgid "RGB clamp (upper)"
 msgstr "Abrazadera RGB (superior)"
 
+msgid "Rhythm and Blues"
+msgstr "Ritmo y Blues"
+
 msgid "Right"
 msgstr "Derecha"
 
@@ -18376,6 +18460,12 @@ msgstr "USB derecho frontal"
 
 msgid "Right, wrapped"
 msgstr "Derecha, envuelto"
+
+msgid "Rock"
+msgstr "Rock"
+
+msgid "Rock Music"
+msgstr "Música Rock"
 
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
@@ -20201,6 +20291,9 @@ msgstr "Selecciona el orden de clasificación de las entradas del menú del Expl
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
 msgstr "Selecciona el orden de clasificación de las entradas del menú del Explorador de Plugins. Definido por el usuario también permite ocultar las entradas del menú."
 
+msgid "Select the speed of the fade-in and fade-out of toast messages."
+msgstr "Seleccione la velocidad de desvanecimiento de entrada y salida de los mensajes de notificación."
+
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Seleccione la hora de inicio a partir de la cual se activará este temporizador. Antes de esta hora, el temporizador no se activará aunque se cumplan otras condiciones."
 
@@ -20542,6 +20635,9 @@ msgstr "Serial No"
 
 msgid "Serial number"
 msgstr "Número de serie"
+
+msgid "Serious Classical"
+msgstr "Clásica Seria"
 
 msgid "Serious music/Classic music"
 msgstr "Música seria/Música clásica"
@@ -22522,6 +22618,9 @@ msgstr "Familia SoC"
 msgid "Soccer"
 msgstr "Fútbol"
 
+msgid "Social Affairs"
+msgstr "Asuntos Sociales"
+
 msgid "Social/Political issues/Economics"
 msgstr "Asuntos sociales/políticos/Economía"
 
@@ -22540,8 +22639,17 @@ msgstr "Sociedad y cultura"
 msgid "Socket"
 msgstr "Socket"
 
+msgid "Soft"
+msgstr "Suave"
+
 msgid "Soft mount"
 msgstr "Montaje suave"
+
+msgid "Soft Rhythm and Blues"
+msgstr "Ritmo y Blues Suave"
+
+msgid "Soft Rock"
+msgstr "Rock Suave"
 
 msgid "Softcam"
 msgstr "Softcam"
@@ -23731,6 +23839,9 @@ msgstr "Tajik"
 msgid "Tajikistan"
 msgstr "Tajikistan"
 
+msgid "Talk"
+msgstr "Conversación"
+
 msgid "Talk show"
 msgstr "Programa de entrevistas"
 
@@ -24909,6 +25020,9 @@ msgstr "Para restaurar la imagen, use la opción Flash Online del Administrador 
 msgid "To where would you like to extract '%s'?"
 msgstr "¿Donde te gustaría extraer '%s'?"
 
+msgid "Toast fade"
+msgstr "Desvanecimiento de notificaciones"
+
 msgid "Today"
 msgstr "Hoy"
 
@@ -25031,6 +25145,9 @@ msgstr "Esta noche a... "
 
 msgid "Top"
 msgstr "Arriba"
+
+msgid "Top 40"
+msgstr "Top 40"
 
 msgid "Top and Bottom"
 msgstr "Arriba y abajo"
@@ -26310,6 +26427,9 @@ msgstr "Válido"
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
+msgid "Varied"
+msgstr "Variado"
+
 msgid "Variety"
 msgstr "Variedad"
 
@@ -26831,6 +26951,9 @@ msgstr "Informe Meteorológico"
 
 msgid "Weather settings"
 msgstr "Configuración del tiempo"
+
+msgid "Weather/meteorology"
+msgstr "Clima/Meteorología"
 
 msgid "Web browser base visibility"
 msgstr "Visibilidad del navegador"
