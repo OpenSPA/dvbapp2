@@ -19526,7 +19526,7 @@ msgstr ""
 msgid "Service picons downsize"
 msgstr ""
 
-msgid "service PIN"
+msgid "Service PIN"
 msgstr ""
 
 msgid "Service reference"
@@ -21518,7 +21518,7 @@ msgstr ""
 msgid "Spanish / Castilian"
 msgstr ""
 
-msgid "spaPANEL"
+msgid "SpaPANEL"
 msgstr ""
 
 msgid "SPDIF"
