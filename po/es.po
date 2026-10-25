@@ -2286,7 +2286,7 @@ msgid "Adult Audience, Strong Violence 15+"
 msgstr "Público adulto, violencia intensa 15+"
 
 msgid "Adult Hits"
-msgstr "Éxitos para adultos"
+msgstr "Éxitos para Adultos"
 
 msgid "Adult movie/Drama"
 msgstr "Película para adultos/Drama"
@@ -4818,7 +4818,7 @@ msgid "City"
 msgstr "Ciudad"
 
 msgid "Classic Rock"
-msgstr "Rock clásico"
+msgstr "Rock Clásico"
 
 msgid "Classical"
 msgstr "Clásico"
@@ -5890,7 +5890,7 @@ msgid "Country for EPG event rating information"
 msgstr "País para la información de clasificación de eventos de la EPG"
 
 msgid "Country Music"
-msgstr "Música country"
+msgstr "Música Country"
 
 msgid "CPU"
 msgstr "CPU"
@@ -7944,7 +7944,7 @@ msgid "Easy listening"
 msgstr "Fácil de escuchar"
 
 msgid "Easy Listening Music"
-msgstr "Música ligera"
+msgstr "Música Ligera"
 
 msgid "EasyMedia"
 msgstr "EasyMedia"
@@ -10011,7 +10011,7 @@ msgid "Folk and Country"
 msgstr "Música folk y country"
 
 msgid "Folk Music"
-msgstr "Música folk"
+msgstr "Música Folk"
 
 msgid "Folk/Traditional music"
 msgstr "Música folclórica/tradicional"
@@ -12581,7 +12581,7 @@ msgid "Lifestyle"
 msgstr "Estilo de vida"
 
 msgid "Light Classical"
-msgstr "Clásica ligera"
+msgstr "Clásica Ligera"
 
 msgid "Light Grey"
 msgstr "Gris claro"
