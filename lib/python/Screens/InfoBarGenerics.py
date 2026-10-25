@@ -3927,7 +3927,7 @@ class InfoBarPiP:
 			from Screens.InfoBar import InfoBar
 			slist = InfoBar.instance and InfoBar.instance.servicelist
 		if self.session.pipshown:
-			if serviceList and serviceList.dopipzap:
+			if slist and slist.dopipzap:
 				self.togglePipZap()
 			if self.session.pipshown:
 				if hasattr(self.session, "pip"):
