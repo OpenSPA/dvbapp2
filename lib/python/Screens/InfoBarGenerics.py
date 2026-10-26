@@ -2738,13 +2738,11 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.dlg_stack[dlgs - 1].close(dlgs > 1)
 		self.reopen(ret)
 
-	def eventViewCallback(self, setEvent, setService, val):  # Used for Now/Next display.
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0] = epglist[1]
-			epglist[1] = tmp
-			setEvent(epglist[0])
+	def eventViewCallback(self, setEvent, setService, val):
+		event = self.eventView and self.eventView.getAdjacentEvent(val, self.epglist)
+		if event:
+			self.is_now_next = False  # Keep live EPG updates from resetting the selected event.
+			setEvent(event)
 
 	def checkHideVBI(self):
 		service = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -3192,13 +3190,11 @@ class InfoBarSimpleEventView:
 				self.eventView = showEventViewCallback(self.closed, self.session, True, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
-	def eventViewCallback(self, setEvent, setService, val):  # Used for Now/Next display.
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0] = epglist[1]
-			epglist[1] = tmp
-			setEvent(epglist[0])
+	def eventViewCallback(self, setEvent, setService, val):
+		event = self.eventView and self.eventView.getAdjacentEvent(val, self.epglist)
+		if event:
+			self.is_now_next = False  # Keep live EPG updates from resetting the selected event.
+			setEvent(event)
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -3627,13 +3623,11 @@ class InfoBarEPG:
 				self.eventView = showEventViewCallback(self.closed, self.session, True, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
-	def eventViewCallback(self, setEvent, setService, val):  # Used for Now/Next display.
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0] = epglist[1]
-			epglist[1] = tmp
-			setEvent(epglist[0])
+	def eventViewCallback(self, setEvent, setService, val):
+		event = self.eventView and self.eventView.getAdjacentEvent(val, self.epglist)
+		if event:
+			self.is_now_next = False  # Keep live EPG updates from resetting the selected event.
+			setEvent(event)
 
 
 class InfoBarRdsDecoder:
