@@ -185,13 +185,12 @@ def countFrontpanelLEDs():
 #		elif cam.startswith("cardserver.") and not cam.endswith("None"):
 #			return True
 #	return False
-
-
 def getRCFile(ext):
 	filename = resolveFilename(SCOPE_SKINS, join("hardware", f"{BoxInfo.getItem('rcname')}.{ext}"))
 	if not isfile(filename):
 		filename = resolveFilename(SCOPE_SKINS, join("hardware", f"dmm1.{ext}"))
 	return filename
+
 
 def getChipsetString():
 	if MODEL in ("dm7080", "dm820"):
@@ -296,6 +295,7 @@ class VideoCodec:  # Stream type to codec name mapping.
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
+BoxInfo.setItem("KernelVersion", getKernelVersion())
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
