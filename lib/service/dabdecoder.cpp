@@ -814,6 +814,7 @@ void eDABDecoder::resolveService()
 	m_service_label = service->second.label;
 	if (changed)
 	{
+		m_audio_format = eDABAudioFormat();
 		m_mp2_frame.clear();
 		m_mp2_frame_count = -1;
 		m_superframe.clear();
@@ -887,6 +888,7 @@ void eDABDecoder::feedDAB(const uint8_t *data, size_t length, int frameCount)
 	}
 
 	const uint32_t header = read32(data);
+	m_audio_format = frame.format;
 	const bool mpeg1 = ((header >> 19) & 3) == 3;
 	const bool mono = ((header >> 6) & 3) == 3;
 	const size_t scaleFactorCRCLength = mpeg1 && m_selected_bitrate < (mono ? 56 : 112) ? 2 : 4;
@@ -991,6 +993,7 @@ void eDABDecoder::processSuperframe()
 			++m_crc_errors;
 			continue;
 		}
+		m_audio_format.setAAC(config);
 		inspectPAD(payload, size - 2);
 		emitLOAS(payload, size - 2, config, auDurationNs);
 	}
