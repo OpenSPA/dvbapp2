@@ -4,6 +4,7 @@ from os.path import exists, isfile, join
 
 from enigma import Misc_Options, eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getOARev
 
+from Components.About import getKernelVersionString
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, fileCheck, fileExists, fileHas, fileReadLine, fileReadLines, isPluginInstalled, pathExists, resolveFilename
 from Tools.MultiBoot import MultiBoot
 
@@ -185,13 +186,12 @@ def countFrontpanelLEDs():
 #		elif cam.startswith("cardserver.") and not cam.endswith("None"):
 #			return True
 #	return False
-
-
 def getRCFile(ext):
 	filename = resolveFilename(SCOPE_SKINS, join("hardware", f"{BoxInfo.getItem('rcname')}.{ext}"))
 	if not isfile(filename):
 		filename = resolveFilename(SCOPE_SKINS, join("hardware", f"dmm1.{ext}"))
 	return filename
+
 
 def getChipsetString():
 	if MODEL in ("dm7080", "dm820"):
@@ -296,6 +296,7 @@ class VideoCodec:  # Stream type to codec name mapping.
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
+BoxInfo.setItem("KernelVersion", getKernelVersionString())
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))

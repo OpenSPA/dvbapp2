@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-25 21:30+0100\n"
+"POT-Creation-Date: 2026-10-28 19:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4291,9 +4291,6 @@ msgstr ""
 msgid "Children's"
 msgstr ""
 
-msgid "Children's programmes"
-msgstr ""
-
 msgid "Children's/Youth programs"
 msgstr ""
 
@@ -7404,7 +7401,7 @@ msgstr ""
 msgid "Easy listening"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "EasyMedia"
