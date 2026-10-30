@@ -7811,6 +7811,9 @@ msgstr "DTS HD downmix"
 msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 
+msgid "Dual channel"
+msgstr "Doble canal"
+
 msgid "DUAL LAYER DVD"
 msgstr "DVD DOBLE CAPA"
 
@@ -7937,11 +7940,11 @@ msgstr "Límite este"
 msgid "Eastern satellites"
 msgstr "Satélites orientales"
 
-msgid "Easy listening"
-msgstr "Fácil de escuchar"
-
 msgid "Easy Listening"
 msgstr "Música Ligera"
+
+msgid "Easy listening"
+msgstr "Música ligera"
 
 msgid "EasyMedia"
 msgstr "EasyMedia"
@@ -12041,6 +12044,9 @@ msgstr "Unirse o abandonar la red ZeroTier configurada"
 msgid "Joined"
 msgstr "Unido"
 
+msgid "Joint stereo"
+msgstr "Estéreo conjunto"
+
 msgid "Jordan"
 msgstr "Jordania"
 
@@ -13467,6 +13473,9 @@ msgstr "Mongolia"
 
 msgid "Mongolian"
 msgstr "Mongol"
+
+msgid "Mono"
+msgstr "Mono"
 
 msgid "Montenegro"
 msgstr "Montenegro"
@@ -23218,6 +23227,9 @@ msgstr "Hacia el este"
 msgid "Stepped west"
 msgstr "Camino hacia el oeste"
 
+msgid "Stereo"
+msgstr "Estéreo"
+
 msgid "stereo"
 msgstr "estéreo"
 
@@ -23556,6 +23568,15 @@ msgstr "Soporte"
 
 msgid "Suriname"
 msgstr "Surinam"
+
+msgid "Surround"
+msgstr "Envolvente"
+
+msgid "Surround 5.1"
+msgstr "Envolvente 5.1"
+
+msgid "Surround 7.1"
+msgstr "Envolvente 7.1"
 
 msgid "suspended (GLES disabled)"
 msgstr "suspendido (GLES deshabilitado)"

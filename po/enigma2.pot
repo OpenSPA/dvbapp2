@@ -7290,6 +7290,9 @@ msgstr ""
 msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "DUAL LAYER DVD"
 msgstr ""
 
@@ -11223,6 +11226,9 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr ""
 
@@ -12528,6 +12534,9 @@ msgid "Mongolia"
 msgstr ""
 
 msgid "Mongolian"
+msgstr ""
+
+msgid "Mono"
 msgstr ""
 
 msgid "Montenegro"
@@ -21322,6 +21331,9 @@ msgstr ""
 msgid "Stepped west"
 msgstr ""
 
+msgid "Stereo"
+msgstr ""
+
 msgid "stereo"
 msgstr ""
 
@@ -21629,6 +21641,15 @@ msgid "Sunday"
 msgstr ""
 
 msgid "Suriname"
+msgstr ""
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
 msgstr ""
 
 msgid "suspended (GLES disabled)"
