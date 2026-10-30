@@ -24855,9 +24855,6 @@ msgstr "Límite de últimos eventos de timeshift [número de eventos]"
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Timeshift puede no funcionar correctamente sin un directorio aceptable."
 
-msgid "Time shift not possible!"
-msgstr "¡No es posible realizar Time shift!"
-
 msgid "Time shift save action on zap"
 msgstr "Guardar timeshift durante el zapeo"
 

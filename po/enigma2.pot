@@ -22879,9 +22879,6 @@ msgstr ""
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Time shift not possible!"
-msgstr ""
-
 msgid "Time shift save action on zap"
 msgstr ""
 
