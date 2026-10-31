@@ -18,7 +18,7 @@
 	<menu key="mainmenu" text="Main Menu" title="Main Menu">
 		<!-- added by mpiero -->
 		<menu key="openspa" weight="0" level="0" text="OpenSPA Menu">
-			<menu key="openspa_-20" level="2" text="spaPANEL" />
+			<menu key="openspa_-20" level="2" text="SpaPANEL" />
 			<menu key="openspa_-4" level="2" text="Multimedia" />
 			<menu key="openspa_-9" level="2" text="Customize" />
 			<menu key="openspa_-13" level="2" text="AddOns" />

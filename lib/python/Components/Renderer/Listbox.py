@@ -30,38 +30,23 @@ class Listbox(Renderer):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		self.setWrapAround(self.wrapAround)  # Trigger property changes.
 		self.setSelectionEnabled(self.selectionEnabled)
-		self.setScrollbarMode(self.scrollbarMode)
 
 	def preWidgetRemove(self, instance):
 		# Clearing the content emits selectionChanged, so disconnect the callback first.
 		instance.selectionChanged.get().remove(self.selectionChanged)
 		instance.setContent(None)
 
-	def setWrapAround(self, wrapAround):
-		if self.instance is not None:
-			self.instance.setWrapAround(wrapAround)
-
-	def getWrapAround(self):
-		return self.instance and self.instance.getWrapAround()
-
-	wrapAround = property(getWrapAround, setWrapAround)
-
-	def setContent(self, content):
-		self.__content = content
-		if self.instance is not None:
-			self.instance.setContent(self.__content)
-
-	content = property(lambda self: self.__content, setContent)
+	def changed(self, what):
+		if hasattr(self.source, "selectionEnabled"):
+			self.selectionEnabled = self.source.selectionEnabled
+		if hasattr(self.source, "scrollbarMode"):
+			self.scrollbarMode = self.source.scrollbarMode
+		if len(what) > 1 and isinstance(what[1], str) and what[1] in ("style", "template") or self.content:
+			return
+		self.content = self.source.content
 
 	def contentChanged(self):
 		self.content = self.source.content
-
-	def setSelectionEnabled(self, enabled):
-		self.__selectionEnabled = enabled
-		if self.instance is not None:
-			self.instance.setSelectionEnable(enabled)
-
-	selectionEnabled = property(lambda self: self.__selectionEnabled, setSelectionEnabled)
 
 	def selectionChanged(self):
 		# Ignore late widget events after the source or GUI has been detached.
@@ -76,6 +61,33 @@ class Listbox(Renderer):
 	def entry_changed(self, index):  # Remove this method when it is no longer in use.
 		self.entryChanged(index)
 
+	def move(self, direction):
+		if self.instance is not None:
+			self.instance.moveSelection(direction)
+
+	def getWrapAround(self):
+		return self.instance and self.instance.getWrapAround()
+
+	def setWrapAround(self, wrapAround):
+		if self.instance is not None:
+			self.instance.setWrapAround(wrapAround)
+
+	wrapAround = property(getWrapAround, setWrapAround)
+
+	def setContent(self, content):
+		self.__content = content
+		if self.instance is not None:
+			self.instance.setContent(self.__content)
+
+	content = property(lambda self: self.__content, setContent)
+
+	def setSelectionEnabled(self, enabled):
+		self.__selectionEnabled = enabled
+		if self.instance is not None:
+			self.instance.setSelectionEnable(enabled)
+
+	selectionEnabled = property(lambda self: self.__selectionEnabled, setSelectionEnabled)
+
 	def getIndex(self):
 		return 0 if self.instance is None else self.instance.getCurrentIndex()
 
@@ -84,10 +96,6 @@ class Listbox(Renderer):
 			self.instance.moveSelectionTo(index)
 
 	index = property(getIndex, moveToIndex)
-
-	def move(self, direction):
-		if self.instance is not None:
-			self.instance.moveSelection(direction)
 
 	def getScrollbarMode(self):
 		mode = self.instance and self.instance.getScrollbarMode()
@@ -108,16 +116,10 @@ class Listbox(Renderer):
 				"showNever": eListbox.showNever,
 				"showLeft": eListbox.showLeftOnDemand,
 				"showLeftOnDemand": eListbox.showLeftOnDemand,
-				"showLeftAlways": eListbox.showLeftAlways
+				"showLeftAlways": eListbox.showLeftAlways,
+				"showTopOnDemand": eListbox.showTopOnDemand,
+				"showTopAlways": eListbox.showTopAlways,
+				"showOnDemandShrink": eListbox.showOnDemandShrink
 			}.get(mode, eListbox.showNever))
 
 	scrollbarMode = property(getScrollbarMode, setScrollbarMode)
-
-	def changed(self, what):
-		if hasattr(self.source, "selectionEnabled"):
-			self.selectionEnabled = self.source.selectionEnabled
-		if hasattr(self.source, "scrollbarMode"):
-			self.scrollbarMode = self.source.scrollbarMode
-		if len(what) > 1 and isinstance(what[1], str) and what[1] in ("style", "template") or self.content:
-			return
-		self.content = self.source.content

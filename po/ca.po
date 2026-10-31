@@ -3341,6 +3341,9 @@ msgstr "Config Bluetooth"
 msgid "Bluetooth Setup"
 msgstr "Config Bluetooth"
 
+msgid "Favourites"
+msgstr "Preferits"
+
 msgid "Press red key to enable bluetooth."
 msgstr "Prem botó vermell per activar bluetooth."
 
@@ -20088,6 +20091,21 @@ msgstr "Aquest camp et permet buscar una velocitat de símbol addicional fins a 
 
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr "Aquesta funció no està disponible perquè el processament d'arxius grans pot trigar massa a executar-se en aquest hardware."
+
+msgid ""
+"This function recovers your video signal in case of loss. The video has been changed to 720p.\n"
+"If this is your case, please keep the video at 720P and do the following:\n"
+"Go to System > Receiver Setup > Video > Video Settings\n"
+"Now set a correct resolution.\n"
+"\n"
+"Do you want to keep the video at 720p?"
+msgstr ""
+"Aquesta funció recupera la vostra senyal de vídeo en cas de pèrdua. El vídeo s'ha canviat a 720p.\n"
+"Si aquest és el vostre cas, mantingueu el vídeo a 720P i feu el següent:\n"
+"Anar a Sistema > Configuració del receptor > Vídeo > Ajustos de vídeo\n"
+"Ara establiu una resolució correcta.\n"
+"\n"
+"Voleu mantenir el vídeo a 720p?"
 
 msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
 msgstr "Aquesta és una solució alternativa per a alguns dispositius que es desperten de nou després de canviar a repòs. L'ordre engegat d'altres dispositius s'ignorarà durant uns segons."

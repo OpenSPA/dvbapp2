@@ -1,6 +1,6 @@
 from time import time
 
-from enigma import eEPGCache, eServiceReference, eServiceCenter, iPlayableService, iServiceInformation
+from enigma import eEPGCache, eServiceCenter, eServiceReference, iPlayableService, iServiceInformation
 
 from Components.Element import cached
 from Components.PerServiceDisplay import PerServiceBase
@@ -82,6 +82,24 @@ class pServiceEvent:
 
 	def getExtraEventData(self):
 		return None
+
+	def getCridData(self, types):
+		return []
+
+	def getEPGSource(self):
+		return ""
+
+	def getGenreDataList(self):
+		return []
+
+	def getParentalData(self):
+		return None
+
+	def getPdcPil(self):
+		return 0
+
+	def getRunningStatus(self):
+		return 0
 
 
 class EventInfo(PerServiceBase, Source):

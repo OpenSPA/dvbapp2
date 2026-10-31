@@ -38,4 +38,8 @@ if S8100
 SUBDIRS += MiniTV
 endif
 
+if DREAMNEXTGEN
+SUBDIRS += QuadPip
+endif
+
 install_PYTHON = __init__.py

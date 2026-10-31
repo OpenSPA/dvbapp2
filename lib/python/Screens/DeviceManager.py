@@ -14,9 +14,9 @@ from enigma import eTimer, getDeviceDB
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigText, NoSave, config
 from Components.Console import Console
-from Components.Storage import EXPANDER_MOUNT, StorageDevice, cleanMediaDirs, getProcMountsNew
-from Components.Label import Label
 from Components.Harddisk import harddiskmanager
+from Components.Label import Label
+from Components.Storage import EXPANDER_MOUNT, StorageDevice, cleanMediaDirs, getProcMountsNew
 from Components.SystemInfo import BoxInfo
 from Components.Task import job_manager
 from Components.Sources.List import List
@@ -29,8 +29,8 @@ from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Conversions import scaleNumber
-from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_GUISKIN, fileReadLine, fileReadLines, fileWriteLines, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -507,10 +507,10 @@ class DeviceManager(Screen):
 		self["description"] = Label()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions"], {
 			"ok": (self.keyMountPoint, _("Select a permanent mount point for the current device")),
-			"cancel": (self.close, _("Close the Device Manager screen")),
+			"cancel": (self.keyCancel, _("Close the Device Manager screen")),
 			"close": (self.keyClose, _("Close the Device Manager screen and exit all menus")),
 			"menu": (self.keyMenu, _("Hard Disk Settings")),
-			"red": (self.close, _("Close the Device Manager screen")),
+			"red": (self.keyCancel, _("Close the Device Manager screen")),
 			"green": (self.keyActions, _("Select an action for the current device")),
 			"yellow": (self.keyMountPoints, _("Select a permanent mount point for all devices"))
 		}, prio=0, description=_("Device Manager Actions"))
@@ -608,10 +608,14 @@ class DeviceManager(Screen):
 	def keyMenu(self):
 		self.session.open(DeviceManagerSetup)
 
+	def keyCancel(self):
+		if not self.console.appContainers:
+			self.close()
+
 	def keyClose(self):
 		if self.needReboot:
 			self.session.open(TryQuitMainloop, QUIT_REBOOT)
-		else:
+		elif not self.console.appContainers:
 			self.close((True, ))
 
 	def keyMountPoints(self):
@@ -1125,8 +1129,8 @@ class DevicesPanelSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
 		self.skinName = "SetupSummary"
-		self["entry"] = StaticText("")
-		self["value"] = StaticText("")
+		self["entry"] = StaticText()
+		self["value"] = StaticText()
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
 

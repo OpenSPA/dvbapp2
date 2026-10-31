@@ -48,6 +48,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/modelinformation.h>
 #include <lib/base/e2avahi.h>
 #include <lib/base/internetcheck.h>
+#include <lib/base/externalvideo.h>
 #include <lib/base/profile.h>
 #include <lib/network/serviceactionclient.h>
 #include <lib/driver/rc.h>
@@ -83,6 +84,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/egauge.h>
 #include <lib/gui/evideo.h>
 #include <lib/gui/ecanvas.h>
+#include <lib/gui/eqrcode.h>
 #include <lib/python/connections.h>
 #include <lib/python/pythonconfig.h>
 #include <lib/gui/elistbox.h>
@@ -215,6 +217,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 // TODO: embed these...
 %immutable eInternetCheck::callback;
 %immutable eServiceActionClient::actionResult;
+%immutable eExternalVideo::videoChanged;
 %immutable ePicLoad::PictureData;
 %immutable eButton::selected;
 %immutable eInput::changed;
@@ -251,6 +254,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %immutable eStreamServer::streamStatusChanged;
 %include <lib/base/message.h>
 %include <lib/base/internetcheck.h>
+%include <lib/base/externalvideo.h>
 %include <lib/network/serviceactionclient.h>
 %include <lib/base/etpm.h>
 %include <lib/driver/rc.h>
@@ -270,6 +274,7 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/gui/erectangle.h>
 %include <lib/gui/estack.h>
 %include <lib/gui/ecanvas.h>
+%include <lib/gui/eqrcode.h>
 %include <lib/gui/ebutton.h>
 %include <lib/gui/ewindow.h>
 %include <lib/gui/eslider.h>
@@ -541,6 +546,15 @@ void setSpinnerOnOff(int onoff)
 {
 	gRC *rc = gRC::getInstance();
 	if (rc) rc->setSpinnerOnOff(onoff);
+}
+%}
+
+void setSpinnerColor(unsigned int);
+%{
+void setSpinnerColor(unsigned int color)
+{
+	gRC *rc = gRC::getInstance();
+	if (rc) rc->setSpinnerColor(color);
 }
 %}
 

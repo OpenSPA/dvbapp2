@@ -4,6 +4,7 @@
 #include <cctype>
 #include <cstring>
 
+#include <lib/service/dabaudioframe.h>
 #include <lib/service/dabdebug.h>
 #include <lib/service/dabpacketdecoder.h>
 
@@ -13,18 +14,19 @@ struct UEPProfile
 {
 	uint16_t bitrate;
 	uint16_t size;
+	uint8_t protection;
 };
 
 /* EN 300 401, table of the 64 short-form UEP profiles. */
 const UEPProfile uepProfiles[64] = {
-	{32,16},{32,21},{32,24},{32,29},{32,35},{48,24},{48,29},{48,35},
-	{48,42},{48,52},{56,29},{56,35},{56,42},{56,52},{64,32},{64,42},
-	{64,48},{64,58},{64,70},{80,40},{80,52},{80,58},{80,70},{80,84},
-	{96,48},{96,58},{96,70},{96,84},{96,104},{112,58},{112,70},{112,84},
-	{112,104},{128,64},{128,84},{128,96},{128,116},{128,140},{160,80},{160,104},
-	{160,116},{160,140},{160,168},{192,96},{192,116},{192,140},{192,168},{192,208},
-	{224,116},{224,140},{224,168},{224,208},{224,232},{256,128},{256,168},{256,192},
-	{256,232},{256,280},{320,160},{320,208},{320,280},{384,192},{384,280},{384,416}
+	{32,16,5},{32,21,4},{32,24,3},{32,29,2},{32,35,1},{48,24,5},{48,29,4},{48,35,3},
+	{48,42,2},{48,52,1},{56,29,5},{56,35,4},{56,42,3},{56,52,2},{64,32,5},{64,42,4},
+	{64,48,3},{64,58,2},{64,70,1},{80,40,5},{80,52,4},{80,58,3},{80,70,2},{80,84,1},
+	{96,48,5},{96,58,4},{96,70,3},{96,84,2},{96,104,1},{112,58,5},{112,70,4},{112,84,3},
+	{112,104,2},{128,64,5},{128,84,4},{128,96,3},{128,116,2},{128,140,1},{160,80,5},{160,104,4},
+	{160,116,3},{160,140,2},{160,168,1},{192,96,5},{192,116,4},{192,140,3},{192,168,2},{192,208,1},
+	{224,116,5},{224,140,4},{224,168,3},{224,208,2},{224,232,1},{256,128,5},{256,168,4},{256,192,3},
+	{256,232,2},{256,280,1},{320,160,5},{320,208,4},{320,280,2},{384,192,5},{384,280,3},{384,416,1}
 };
 
 struct EEPProfile
@@ -248,7 +250,7 @@ void eDABDecoder::feedETI(const uint8_t *data, size_t length)
 	}
 	++m_eti_frames;
 	parseFIC(data + mstStart, ficLength);
-	feedMSC(streams);
+	feedMSC(streams, data[4]);
 }
 
 void eDABDecoder::processAF(const uint8_t *data, size_t length)
@@ -408,6 +410,7 @@ void eDABDecoder::processTags(const uint8_t *data, size_t length)
 	std::vector<uint8_t> fic;
 	std::vector<Stream> streams;
 	bool isETI = false;
+	int frameCount = -1;
 	size_t position = 0;
 	while (position + 8 <= length)
 	{
@@ -425,6 +428,7 @@ void eDABDecoder::processTags(const uint8_t *data, size_t length)
 		else if (id == 0x64657469 && valueLength >= 6) // deti
 		{
 			const uint16_t deti = read16(value);
+			frameCount = deti & 0xff; // FCT, modulo 250, as in ETI-NI.
 			const bool atstf = deti & 0x8000;
 			const bool ficf = deti & 0x4000;
 			const uint32_t etiHeader = read32(value + 2);
@@ -449,7 +453,7 @@ void eDABDecoder::processTags(const uint8_t *data, size_t length)
 		return;
 	++m_eti_frames;
 	parseFIC(fic.data(), fic.size());
-	feedMSC(streams);
+	feedMSC(streams, frameCount);
 }
 
 void eDABDecoder::parseFIC(const uint8_t *data, size_t length)
@@ -488,7 +492,7 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 	const bool otherEnsemble = data[0] & 0x40;
 	const bool longSid = data[0] & 0x20;
 	const int extension = data[0] & 0x1f;
-	if (otherEnsemble)
+	if (otherEnsemble || (data[0] & 0x80))
 		return;
 	size_t position = 1;
 	if (extension == 0 && position + 2 <= length)
@@ -518,7 +522,10 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				const int profile = option * 4 + protection;
 				subchannel.size = ((form & 3) << 8) | data[position + 3];
 				if (profile >= 0 && profile < 8 && subchannel.size % eepProfiles[profile].sizeMultiplier == 0)
+				{
 					subchannel.bitrate = subchannel.size / eepProfiles[profile].sizeMultiplier * eepProfiles[profile].rateMultiplier;
+					subchannel.protection = "EEP " + std::to_string(protection + 1) + (option ? "-B" : "-A");
+				}
 				position += 4;
 			}
 			else
@@ -526,11 +533,13 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				const int tableIndex = form & 0x3f;
 				subchannel.size = uepProfiles[tableIndex].size;
 				subchannel.bitrate = uepProfiles[tableIndex].bitrate;
+				subchannel.protection = "UEP " + std::to_string(uepProfiles[tableIndex].protection);
 				position += 3;
 			}
 			std::map<int, Subchannel>::const_iterator previous = m_subchannels.find(subchannelId);
 			if (previous == m_subchannels.end() || previous->second.startAddress != subchannel.startAddress ||
-				previous->second.size != subchannel.size || previous->second.bitrate != subchannel.bitrate)
+				previous->second.size != subchannel.size || previous->second.bitrate != subchannel.bitrate ||
+				previous->second.protection != subchannel.protection)
 			{
 				m_subchannels[subchannelId] = subchannel;
 				++m_service_revision;
@@ -604,6 +613,33 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 			reportPacketComponent(componentId);
 		}
 	}
+	else if (extension == 5)
+	{
+		while (position < length)
+		{
+			const uint8_t first = data[position];
+			if (first & 0x80)
+			{
+				/* Long form addresses a packet-mode SCId, not an audio SubChId. */
+				if (position + 3 > length)
+					break;
+				position += 3;
+			}
+			else
+			{
+				if (position + 2 > length)
+					break;
+				if (!(first & 0x40))
+				{
+					const int subchannel = first & 0x3f;
+					const int language = data[position + 1];
+					/* Keep language independently: FIG 0/5 may precede FIG 0/1. */
+					m_subchannel_languages[subchannel] = language;
+				}
+				position += 2;
+			}
+		}
+	}
 	else if (extension == 13)
 	{
 		while (position + (longSid ? 5 : 3) <= length)
@@ -636,6 +672,28 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				}
 				position += applicationLength;
 			}
+		}
+	}
+	else if (extension == 9 && !longSid && position + 3 <= length)
+	{
+		// FIG 0/9: LTO, ensemble ECC, International Table Identifier.
+		m_programme_type_table = data[position + 2];
+	}
+	else if (extension == 17 && !longSid)
+	{
+		while (position + 4 <= length)
+		{
+			const uint16_t sid = read16(data + position);
+			const uint8_t flags = data[position + 2];
+			const size_t recordLength = 4 + ((flags & 0x20) ? 1 : 0) + ((flags & 0x10) ? 1 : 0);
+			if (position + recordLength > length)
+				break;
+			if (flags & 0x20)
+				m_services[sid].language = data[position + 3];
+			// The international code follows the optional legacy language byte.
+			// Both static and dynamic FIGs update the service's current PTY.
+			m_services[sid].programmeType = data[position + 3 + ((flags & 0x20) ? 1 : 0)] & 0x1f;
+			position += recordLength;
 		}
 	}
 }
@@ -712,6 +770,32 @@ void eDABDecoder::parseFIG1(const uint8_t *data, size_t length)
 	}
 }
 
+int eDABDecoder::language() const
+{
+	const auto service = m_services.find(m_service_id);
+	if (service == m_services.end())
+		return -1;
+	const auto language = m_subchannel_languages.find(service->second.subchannel);
+	if (language != m_subchannel_languages.end() && language->second != 0)
+		return language->second;
+	return service->second.language;
+}
+
+int eDABDecoder::programmeType() const
+{
+	const auto service = m_services.find(m_service_id);
+	return service == m_services.end() ? -1 : service->second.programmeType;
+}
+
+std::string eDABDecoder::protection() const
+{
+	const auto service = m_services.find(m_service_id);
+	if (service == m_services.end())
+		return std::string();
+	const auto subchannel = m_subchannels.find(service->second.subchannel);
+	return subchannel == m_subchannels.end() ? std::string() : subchannel->second.protection;
+}
+
 void eDABDecoder::resolveService()
 {
 	std::map<uint32_t, Service>::const_iterator service = m_services.find(m_service_id);
@@ -721,6 +805,7 @@ void eDABDecoder::resolveService()
 	if (subchannel == m_subchannels.end() || !subchannel->second.bitrate)
 		return;
 	const bool changed = m_selected_subchannel != service->second.subchannel ||
+		m_selected_start_address != subchannel->second.startAddress ||
 		m_selected_bitrate != subchannel->second.bitrate || m_selected_dabplus != service->second.dabplus;
 	m_selected_subchannel = service->second.subchannel;
 	m_selected_start_address = subchannel->second.startAddress;
@@ -729,6 +814,9 @@ void eDABDecoder::resolveService()
 	m_service_label = service->second.label;
 	if (changed)
 	{
+		m_audio_format = eDABAudioFormat();
+		m_mp2_frame.clear();
+		m_mp2_frame_count = -1;
 		m_superframe.clear();
 		m_superframe_parts = 0;
 		m_superframe_part_size = 0;
@@ -738,7 +826,7 @@ void eDABDecoder::resolveService()
 	}
 }
 
-void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
+void eDABDecoder::feedMSC(const std::vector<Stream> &streams, int frameCount)
 {
 	for (size_t i = 0; i < streams.size(); ++i)
 	{
@@ -747,6 +835,10 @@ void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 			++m_msc_frames;
 			if (m_selected_dabplus)
 				feedDABPlus(streams[i].data.data(), streams[i].data.size());
+			else if (streams[i].startAddress == m_selected_start_address)
+				feedDAB(streams[i].data.data(), streams[i].data.size(), frameCount);
+			else
+				m_mp2_frame.clear();
 		}
 		for (std::map<uint16_t, std::unique_ptr<eDABPacketDecoder> >::iterator decoder =
 			m_packet_decoders.begin(); decoder != m_packet_decoders.end(); ++decoder)
@@ -756,6 +848,65 @@ void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 				decoder->second->feed(streams[i].data.data(), streams[i].data.size());
 		}
 	}
+}
+
+void eDABDecoder::feedDAB(const uint8_t *data, size_t length, int frameCount)
+{
+	/* ETSI TS 103 466: each MSC block covers 24 ms. MPEG-1 Layer II (48 kHz)
+	 * fits in one block; MPEG-2 LSF (24 kHz) needs two consecutive blocks.
+	 * PAD belongs to the end of the complete audio frame, not its first half. */
+	if (frameCount < 0 || frameCount >= 250 || m_mp2_frame_count < 0 ||
+		frameCount != (m_mp2_frame_count + 1) % 250)
+		m_mp2_frame.clear();
+	m_mp2_frame_count = frameCount;
+	if (!data || length < 10 || !m_audio_callback || m_selected_bitrate <= 0 ||
+		length != static_cast<size_t>(m_selected_bitrate) * 3)
+	{
+		m_mp2_frame.clear();
+		return;
+	}
+	const size_t blockLength = length;
+	if (!m_mp2_frame.empty())
+	{
+		m_mp2_frame.insert(m_mp2_frame.end(), data, data + length);
+		data = m_mp2_frame.data();
+		length = m_mp2_frame.size();
+	}
+	eDABAudioFrame frame;
+	const eDABAudioFrame::Result result = frame.parse(data, length);
+	if (result == eDABAudioFrame::Invalid || frame.dabplus ||
+		(frame.durationNs != 24000000 && frame.durationNs != 48000000) ||
+		frame.length != blockLength * (frame.durationNs / 24000000))
+	{
+		m_mp2_frame.clear();
+		return;
+	}
+	if (result == eDABAudioFrame::Incomplete)
+	{
+		m_mp2_frame.assign(data, data + length);
+		return;
+	}
+
+	const uint32_t header = read32(data);
+	m_audio_format = frame.format;
+	const bool mpeg1 = ((header >> 19) & 3) == 3;
+	const bool mono = ((header >> 6) & 3) == 3;
+	const size_t scaleFactorCRCLength = mpeg1 && m_selected_bitrate < (mono ? 56 : 112) ? 2 : 4;
+	const size_t bodyLength = length - 4;
+	if (bodyLength > scaleFactorCRCLength + 2)
+	{
+		const uint8_t *body = data + 4;
+		const uint8_t *fpad = body + bodyLength - 2;
+		if (fpad[0] & 0x30)
+		{
+			++m_pad_packets;
+			m_pad_decoder.Process(body, bodyLength - scaleFactorCRCLength - 2, false, fpad);
+		}
+	}
+
+	++m_audio_frames;
+	m_audio_callback(data, length, data, length, frame.durationNs, 0, false);
+	m_mp2_frame.clear();
 }
 
 void eDABDecoder::feedDABPlus(const uint8_t *data, size_t length)
@@ -842,6 +993,7 @@ void eDABDecoder::processSuperframe()
 			++m_crc_errors;
 			continue;
 		}
+		m_audio_format.setAAC(config);
 		inspectPAD(payload, size - 2);
 		emitLOAS(payload, size - 2, config, auDurationNs);
 	}
@@ -992,5 +1144,5 @@ void eDABDecoder::emitLOAS(const uint8_t *data, size_t length, uint8_t config, u
 	if (frame.empty())
 		return;
 	++m_audio_frames;
-	m_audio_callback(data, length, frame.data(), frame.size(), durationNs, config);
+	m_audio_callback(data, length, frame.data(), frame.size(), durationNs, config, true);
 }

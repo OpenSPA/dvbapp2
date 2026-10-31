@@ -10,8 +10,12 @@ Licensed under GPLv2.
 
 #include <lib/base/object.h>
 #include <lib/python/connections.h>
+#include <set>
+#include <map>
+#include <utility>
 
 class eSocketNotifier;
+class eTimer;
 
 class eAVControl : public sigc::trackable
 {
@@ -49,6 +53,7 @@ public:
 	void setAspectRatio(int ratio, int flags = 0) const;
 	void setAspect(const std::string &newFormat, int flags = 0) const;
 	void setColorFormat(const std::string &newFormat, int flags = 0) const;
+	void setHDMIColordepth(const std::string &colordepth, int flags = 0);
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	void setVideoModeMulti(const std::string &mode50, const std::string &mode60, const std::string &mode24, int flags = 0) const;
@@ -56,6 +61,14 @@ public:
 	void startStopHDMIIn(bool on, bool audio, int flags = 0);
 	void disableHDMIIn(int flags = 0) const;
 	void setOSDAlpha(int alpha, int flags = 0) const;
+	void setOSDAutoHideTimeout(int seconds);
+	bool isOSDAutoHidden() const { return m_osdHidden; }
+	bool isOSDAutoHidePaused() const { return m_osdHidePaused; }
+	PSignal1<void, int> osdAutoHidePauseChanged;
+#ifndef SWIG
+	void setOSDWindowVisible(const void *window, bool visible);
+	bool handleOSDKey(const std::string &device, int key, int flags);
+#endif
 
 	bool hasProcHDMIRXMonitor() const { return m_b_has_proc_hdmi_rx_monitor; }
 	bool hasProcVideoMode50() const { return m_b_has_proc_videomode_50; }
@@ -82,12 +95,29 @@ public:
 	int getVCRSlowBlanking();
 
 private:
+	ePtr<eTimer> m_osdHideTimer;
+	ePtr<eTimer> m_osdFadeTimer;
+	int m_osdFadeStep = 0;
+	bool m_osdHidePaused = false;
+	bool m_osdReplayZero = false;
+	std::map<std::pair<std::string, int>, int> m_osdZeroKeys;
+	int m_osdHideTimeout = 0;
+	mutable int m_osdAlpha = 255;
+	mutable bool m_osdHidden = false;
+	std::set<const void *> m_osdWindows;
+	std::set<std::pair<std::string, int> > m_osdWakeKeys;
+	int writeOSDAlpha(int alpha, int flags = 0) const;
+	void hideOSD();
+	void fadeOSD();
+	void restoreOSD();
+	void restartOSDTimer();
 	static eAVControl *m_instance;
 	std::string m_video_mode;
 	std::string m_video_mode_50;
 	std::string m_video_mode_60;
 	std::string m_videomode_choices;
 	std::string m_standby_video_mode;
+	std::string m_hdmi_colordepth = "auto";
 
 	bool m_b_has_proc_osd_alpha;
 	bool m_b_has_proc_hdmi_rx_monitor;
@@ -102,6 +132,8 @@ private:
 	ePtr<eSocketNotifier> m_fp_notifier;
 
 	std::string readAvailableModes(int flags = 0) const;
+	void writeHDMIColorFormat(const std::string &driverMode, int flags = 0) const;
+	void applyHDMIColorFormat(int flags = 0) const;
 	bool checkScartSwitch(int flags = 0) const;
 };
 

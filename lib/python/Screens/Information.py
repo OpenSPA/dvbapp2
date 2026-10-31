@@ -8,7 +8,7 @@ from re import search
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBCSAEngine, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eInputDeviceManager, eRTSPStreamServer, eServiceCenter, eServiceReference, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iFrontendInformation, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Components.About import about
@@ -24,13 +24,14 @@ from Components.Pixmap import Pixmap
 from Components.RTLSDR import getRTLSDRChannelFrequency
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.StaticText import StaticText
 # from Components.Storage import storageManager
-from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
+from Components.SystemInfo import BoxInfo, VideoCodec, getBoxDisplayName, getDemodVersion
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
 from Tools.Conversions import formatDate, scaleNumber
+from Tools.DAB import dabMetadata
 from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
@@ -1278,8 +1279,14 @@ class InformationReceiver(InformationBase):
 		cpu = about.getCPUInfoString()
 		info.append(self.formatLine("P1", _("CPU"), cpu[0]))
 		info.append(self.formatLine("P1", _("CPU speed/cores"), f"{cpu[1]} {cpu[2]}"))
+		currentSpeed = about.getCPUCurrentSpeed()
+		if currentSpeed:
+			info.append(self.formatLine("P1", _("Current CPU speed"), currentSpeed))
 		if cpu[3]:
 			info.append(self.formatLine("P1", _("CPU temperature"), cpu[3]))
+		ramTemp = about.getRAMTemperature()
+		if ramTemp:
+			info.append(self.formatLine("P1", _("RAM temperature"), ramTemp))
 		info.append(self.formatLine("P1", _("CPU brand"), about.getCPUBrand()))
 		socFamily = BoxInfo.getItem("socfamily")
 		if socFamily:
@@ -1317,6 +1324,14 @@ class InformationReceiver(InformationBase):
 		customCode = fileReadLine("/proc/stb/ir/rc/customcode", source=MODULE_NAME)
 		if customCode:
 			info.append(self.formatLine("P1", _("RC custom code"), customCode))
+		manager = eInputDeviceManager.getInstance()
+		if manager and manager.available():
+			for device in manager.getConnectedDevices():
+				info.append(self.formatLine("P1", _("Bluetooth remote"), f"{device.name()}  ({device.address()})"))
+				if device.batteryLevel() > 0:
+					info.append(self.formatLine("P2", _("Battery"), f"{device.batteryLevel()}%"))
+				if device.rssi():
+					info.append(self.formatLine("P2", _("Signal strength"), f"{device.rssi()} dBm"))
 		if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value:
 			info.append("")
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("N/A")
@@ -1326,7 +1341,7 @@ class InformationReceiver(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		info.append(self.formatLine("P1", _("Drivers version"), formatDate(BoxInfo.getItem("driversdate"))))
-		info.append(self.formatLine("P1", _("Kernel version"), BoxInfo.getItem("kernel")))
+		info.append(self.formatLine("P1", _("Kernel version"), BoxInfo.getItem("KernelVersion")))
 		deviceId = fileReadLine("/proc/device-tree/amlogic-dt-id", source=MODULE_NAME)
 		if deviceId:
 			info.append(self.formatLine("P1", _("Device id"), deviceId))
@@ -1436,8 +1451,16 @@ class InformationService(InformationBase):
 		if serviceRef:
 			self.serviceCommandsIndex = 1
 		else:
-			self.eventTracker = ServiceEventTracker(screen=self, eventmap={iPlayableService.evEnd: self.fetchInformationDelayed})
+			self.eventTracker = ServiceEventTracker(screen=self, eventmap={
+				iPlayableService.evEnd: self.fetchInformationDelayed,
+				iPlayableService.evUpdatedInfo: self.dabInformationUpdated
+			})
 			self.serviceCommandsIndex = 0
+
+	def dabInformationUpdated(self):
+		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		if serviceRef and serviceRef.type == eServiceReference.idServiceDAB and self.serviceCommandsIndex == 0:
+			self.informationTimer.start(100, True)
 
 	def fetchInformationDelayed(self):  # This allows the newly selected service to stabilize before updating the service data.
 		self.informationTimer.startLongTimer(3)
@@ -1613,8 +1636,9 @@ class InformationService(InformationBase):
 				addIfAvailable(info, _("DAB+ channel"), channelText)
 			elif serviceRef:
 				addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
-			addIfAvailable(info, _("Program type"), getServiceInfoValue(iServiceInformation.sTagGenre))
-			addIfAvailable(info, _("Language"), getServiceInfoValue(iServiceInformation.sTagLanguageCode))
+			addIfAvailable(info, _("Genre"), getServiceInfoValue(iServiceInformation.sTagGenre))
+			addIfAvailable(info, _("Programme type (PTY)"), dabMetadata.programmeTypeName(getServiceInfoValue(iServiceInformation.sDABPTY), getServiceInfoValue(iServiceInformation.sDABPTYTable)))
+			addIfAvailable(info, _("Language"), dabMetadata.languageName(getServiceInfoValue(iServiceInformation.sTagLanguageCode)))
 			addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
 			addIfAvailable(info, _("Audio bit rate"), getServiceInfoValue(iServiceInformation.sTagBitrate))
 			addIfAvailable(info, _("Protection"), getServiceInfoValue(iServiceInformation.sDABProtection))
@@ -1638,16 +1662,16 @@ class InformationService(InformationBase):
 			info.append(self.formatLine("H", _("Service and PID information for '%s'") % self.serviceName))
 			info.append("")
 			if self.serviceInfo:
-				from Components.Converter.PliExtraInfo import codec_data  # This should be in SystemInfo maybe as a BoxInfo variable.
 				videoData = []
-				videoData.append(codec_data.get(self.serviceInfo.getInfo(iServiceInformation.sVideoType), _("N/A")))
+				videoData.append(VideoCodec.getName(self.serviceInfo.getInfo(iServiceInformation.sVideoType), _("N/A")))
 				width = self.serviceInfo.getInfo(iServiceInformation.sVideoWidth)
 				height = self.serviceInfo.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
 					videoData.append(f"{width}x{height}")
-					videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{("i", "p", "")[self.serviceInfo.getInfo(iServiceInformation.sProgressive)]}")
+					progressive = {0: "i", 1: "p"}.get(self.serviceInfo.getInfo(iServiceInformation.sProgressive), "")
+					videoData.append(f"{(self.serviceInfo.getInfo(iServiceInformation.sFrameRate) + 500) // 1000}{progressive}")
 					videoData.append(f"[{"4:3" if getServiceInfoValue(iServiceInformation.sAspect) in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) else "16:9"}]")  # This should be in SystemInfo maybe as a BoxInfo variable.
-				gamma = ("SDR", "HDR", "HDR10", "HLG", "")[self.serviceInfo.getInfo(iServiceInformation.sGamma)]  # This should be in SystemInfo maybe as a BoxInfo variable.
+				gamma = {0: "SDR", 1: "HDR", 2: "HDR10", 3: "HLG"}.get(self.serviceInfo.getInfo(iServiceInformation.sGamma), "")  # This should be in SystemInfo maybe as a BoxInfo variable.
 				if gamma:
 					videoData.append(gamma)
 				videoData = "  -  ".join(videoData)

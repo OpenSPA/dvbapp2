@@ -1030,7 +1030,6 @@ lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
 lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/AtileHD/Makefile
-lib/python/Plugins/Extensions/AtileHD/pic/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
@@ -1063,7 +1062,6 @@ lib/python/Plugins/SystemPlugins/LCNScanner/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
-lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
 lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancementAML/Makefile

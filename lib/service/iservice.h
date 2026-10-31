@@ -439,7 +439,10 @@ public:
 		sDABFICQuality = sUser + 7,
 		sDABMSCQuality = sUser + 8,
 		sDABProtection = sUser + 9,
-		sDABDynamicLabel = sUser + 10
+		sDABDynamicLabel = sUser + 10,
+		sDABPTY = sUser + 11,
+		sDABPTYTable = sUser + 12,
+		sDABSampleRate = sUser + 13 /* source audio sample rate in Hz, after SBR */
 	};
 	enum {
 		resNA = -1,
@@ -697,6 +700,12 @@ public:
 	virtual RESULT saveTimeshiftFile()=0;
 	virtual std::string getTimeshiftFilename()=0;
 	virtual void switchToLive()=0;
+	// Confirmed, complete TS packets across all parts; -1 when unavailable.
+	virtual long long getTimeshiftFileSize() { return -1; }
+	// Immutable decoder PID cache for the current native buffer; empty if unavailable.
+	virtual std::string getTimeshiftServiceData() { return ""; }
+	// RAM sources have no recording file and must bypass disk PTS bookkeeping.
+	virtual bool isTimeshiftMemory() { return false; }
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 
@@ -1013,6 +1022,7 @@ public:
 		// "&e2startoffset=" start position applied
 		evResumed,
 		evStreamError, /* recoverable failure of the primary HTTP source, not normal EOF */
+		evTimeshiftError, /* recorder write failure; time shift has returned to live TV */
 
 		evUser = 0x100
 	};

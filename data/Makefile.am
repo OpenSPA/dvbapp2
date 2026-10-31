@@ -3,6 +3,7 @@ SUBDIRS = fonts keymaps icons spinner
 dist_pkgdata_DATA = \
 	encoding.conf \
 	dab.xml \
+	hybridservices.xml \
 	keymap.xml \
 	keymap.ntr \
 	keymap.u80 \

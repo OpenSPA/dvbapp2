@@ -1,12 +1,12 @@
 from enigma import eComponentScan, eConsoleAppContainer, eDVBDB, eDVBFrontendParametersATSC, eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBResourceManager, eTimer, iDVBFrontend
 
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.config import config, ConfigEnableDisable, ConfigFloat, ConfigInteger, ConfigSelection, ConfigSlider, ConfigSubsection, ConfigYesNo
+from Components.config import ConfigEnableDisable, ConfigFloat, ConfigInteger, ConfigSelection, ConfigSlider, ConfigSubsection, ConfigYesNo, config
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.NimManager import getConfigSatlist, nimmanager
-from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
+from Components.Sources.StaticText import StaticText
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -1371,7 +1371,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		self.scan_type = ConfigSelection(default=defaultSatSearchType, choices=[("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat all select"))])
 		self.scan_typecable = ConfigSelection(default=defaultCabSearchType, choices=[("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("complete", _("Complete"))])
 		self.last_scan_typecable = "single_transponder"
-		self.cable_toggle = {"single_transponder": "complete", "complete": "single_transponder"}
+		# A tuner change can leave a provider transponder selected for a steps/bands tuner.
+		self.cable_toggle = {"single_transponder": "complete", "complete": "single_transponder", "predefined_transponder": "single_transponder"}
 		self.scan_typeterrestrial = ConfigSelection(default=defaultTerrSearchType, choices=[("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("complete", _("Complete"))])
 		self.scan_typeatsc = ConfigSelection(default=defaultATSCSearchType, choices=[("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("complete", _("Complete"))])
 		self.scan_input_as = ConfigSelection(default="channel", choices=[("frequency", _("Frequency")), ("channel", _("Channel"))])

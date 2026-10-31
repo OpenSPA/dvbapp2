@@ -3,6 +3,8 @@ from hashlib import md5
 from os.path import exists, isfile, join
 
 from enigma import Misc_Options, eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getOARev
+
+from Components.About import getKernelVersionString
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, fileCheck, fileExists, fileHas, fileReadLine, fileReadLines, isPluginInstalled, pathExists, resolveFilename
 from Tools.MultiBoot import MultiBoot
 
@@ -184,13 +186,12 @@ def countFrontpanelLEDs():
 #		elif cam.startswith("cardserver.") and not cam.endswith("None"):
 #			return True
 #	return False
-
-
 def getRCFile(ext):
 	filename = resolveFilename(SCOPE_SKINS, join("hardware", f"{BoxInfo.getItem('rcname')}.{ext}"))
 	if not isfile(filename):
 		filename = resolveFilename(SCOPE_SKINS, join("hardware", f"dmm1.{ext}"))
 	return filename
+
 
 def getChipsetString():
 	if MODEL in ("dm7080", "dm820"):
@@ -281,8 +282,21 @@ def getWakeOnLANType(fileName):
 	return onOff if value in onOff else ("disable", "enable")
 
 
+class VideoCodec:  # Stream type to codec name mapping.
+	NAMES = (
+		"MPEG2", "AVC", "H263", "VC1", "MPEG4-VC", "VC1-SM", "MPEG1", "HEVC", "VP8", "VP9", "XVID",
+		"N/A 11", "N/A 12", "DIVX 3.11", "DIVX 4", "DIVX 5", "AVS", "N/A 17", "VP6", "N/A 19", "N/A 20", "SPARK"
+	)
+	EXTRA_NAMES = {40: "AVS2"}
+
+	@staticmethod
+	def getName(videoType, default="N/A"):
+		return VideoCodec.NAMES[videoType] if 0 <= videoType < len(VideoCodec.NAMES) else VideoCodec.EXTRA_NAMES.get(videoType, default)
+
+
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
+BoxInfo.setItem("KernelVersion", getKernelVersionString())
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
@@ -351,6 +365,13 @@ BoxInfo.setItem("ForceToneBurstChanged", fileCheck("/proc/stb/frontend/fbc/force
 BoxInfo.setItem("FrontpanelDisplay", fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0"))
 BoxInfo.setItem("GBWOL", fileExists("/usr/bin/gigablue_wol"))
 BoxInfo.setItem("grautec", fileExists("/tmp/usbtft"))
+try:
+	# The driver reports hexadecimal bpp. Legacy colorlcd128 branding also
+	# includes monochrome OLEDs, so the build flag alone is not sufficient.
+	colorFrontpanel = int(fileReadLine("/proc/stb/lcd/bpp", default="0"), 16) > 8
+except ValueError:
+	colorFrontpanel = False
+BoxInfo.setItem("ColorFrontpanelDisplay", bool(BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment", "textlcd") and (colorFrontpanel or BoxInfo.getItem("grautec") or DISPLAYTYPE in ("colorlcd220", "colorlcd240", "colorlcd390", "colorlcd400", "colorlcd480", "colorlcd720", "colorlcd800"))))
 BoxInfo.setItem("GraphicLCD", MACHINEBUILD in ("vuultimo", "xpeedlx3", "et10000", "mutant2400", "quadbox2400", "sezammarvel", "atemionemesis", "mbultra", "beyonwizt4", "osmio4kplus"))
 BoxInfo.setItem("HasExternalPIP", MODEL not in ("et9x00", "et6x00", "et5x00") and fileCheck("/proc/stb/vmpeg/1/external"))
 BoxInfo.setItem("HasFullHDSkinSupport", MACHINEBUILD not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc", "iziboxecohd", "jdhdduo"))
@@ -384,7 +405,6 @@ BoxInfo.setItem("LEDStandbyColor", fileExists("/proc/stb/fp/ledstandbycolor"))
 BoxInfo.setItem("LEDSuspendColor", fileExists("/proc/stb/fp/ledsuspendledcolor"))
 BoxInfo.setItem("MiddleFlash", BoxInfo.getItem("middleflash") and not BoxInfo.getItem("smallflash"))
 BoxInfo.setItem("MiniTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable"))
-BoxInfo.setItem("need_dsw", MACHINEBUILD not in ("osminiplus", "osmega"))
 BoxInfo.setItem("NumFrontpanelLEDs", countFrontpanelLEDs())
 BoxInfo.setItem("NumVideoDecoders", getNumVideoDecoders())
 BoxInfo.setItem("OledDisplay", fileExists("/dev/dbox/oled0") or MACHINEBUILD in ("osminiplus",))

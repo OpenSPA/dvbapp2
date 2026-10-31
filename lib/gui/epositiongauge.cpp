@@ -56,12 +56,12 @@ void ePositionGauge::setPointer(int which, gPixmap *pixmap, const ePoint &center
 	{
 		m_point_center = center;
 		m_point_widget->setPixmap(pixmap);
-		m_point_widget->resize(pixmap->size());
+		m_point_widget->resize(pixmap ? pixmap->size() : eSize(0, 0));
 	} else
 	{
 		m_seek_point_center = center;
 		m_seek_point_widget->setPixmap(pixmap);
-		m_seek_point_widget->resize(pixmap->size());
+		m_seek_point_widget->resize(pixmap ? pixmap->size() : eSize(0, 0));
 	}
 	updatePosition();
 }
@@ -231,6 +231,10 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		return 0;
 	}
 	case evtChangedPosition:
+		return 0;
+	case evtChangedSize:
+		eWidget::event(event, data, data2);
+		updatePosition();
 		return 0;
 	default:
 		return eWidget::event(event, data, data2);

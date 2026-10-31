@@ -6,11 +6,11 @@ from os.path import dirname, exists, isdir, isfile, join as pathjoin, normpath, 
 from sys import maxsize
 from time import time
 
-from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, eSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
+from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEPGCache, eEnv, eServiceEvent, eSettings, eSubtitleSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerColor, setSpinnerOnOff, setTunerTypePriorityOrder
 
 from keyids import KEYIDS
-from skin import getcomponentTemplateNames, parameters, domScreens
-from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from skin import domScreens, getcomponentTemplateNames, parameters
+from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigIP, ConfigInteger, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NimManager import nimmanager
@@ -79,15 +79,22 @@ def InitUsageConfig():
 	config.misc.SettingsVersion.save()
 	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, ngettext("%d Minute", "%d Minutes", 30) % 30)] + [(x * 60, ngettext("%d Hour", "%d Hours", x) % x) for x in (1, 24)])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
-
 	config.misc.extraopkgpackages = ConfigYesNo(default=False)
 	config.misc.actionLeftRightToPageUpPageDown = ConfigYesNo(default=True)
-
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
-
 	config.misc.spinnerPosition = ConfigSequence(default=[50, 50], limits=[(0, 1260), (0, 700)], seperator=",")
+	config.misc.spinnerColor = ConfigSelection(default="2b7fd9", choices=[("2b7fd9", _("Blue")), ("ffffff", _("White")), ("00c080", _("Green")), ("ffbf00", _("Yellow")), ("ff8000", _("Orange")), ("e04040", _("Red"))])
 
+	def spinnerColorChanged(configElement):
+		setSpinnerColor(int(configElement.value, 16))
+	config.misc.spinnerColor.addNotifier(spinnerColorChanged)
 	config.misc.disableServiceHiSilicon = ConfigYesNo(default=False)
+	config.misc.toastFade = ConfigSelection(default=10, choices=[
+		(0, _("Disabled")),
+		(5, _("Slow")),
+		(10, _("Medium")),
+		(20, _("Fast"))
+	])
 
 	config.workaround = ConfigSubsection()
 	config.workaround.deeprecord = ConfigYesNo(default=False)
@@ -2116,14 +2123,16 @@ def InitUsageConfig():
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(epglanguage)
 
-	def getselectedlanguages(range):
-		return [eval("config.autolanguage.audio_autoselect%x.value" % x) for x in range]
+	def updateLanguageChoices(selections, choices):
+		for index, selection in enumerate(selections):
+			# Read the current values after each update: setChoices can change a selection.
+			selectedValues = {x.value for x in selections if x is not selection}
+			allowNone = index == len(selections) - 1 or not selections[index + 1].value
+			selection.setChoices([x for x in choices if x[0] and x[0] not in selectedValues or not x[0] and allowNone])
 
 	def autolanguage(configElement):
-		config.autolanguage.audio_autoselect1.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((2, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect2.value])
-		config.autolanguage.audio_autoselect2.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect3.value])
-		config.autolanguage.audio_autoselect3.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 2, 4)) or not x[0] and not config.autolanguage.audio_autoselect4.value])
-		config.autolanguage.audio_autoselect4.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 2, 3)) or not x[0]])
+		selections = (config.autolanguage.audio_autoselect1, config.autolanguage.audio_autoselect2, config.autolanguage.audio_autoselect3, config.autolanguage.audio_autoselect4)
+		updateLanguageChoices(selections, languageChoiceList)
 		eSettings.setAudioLanguages(config.autolanguage.audio_autoselect1.value, config.autolanguage.audio_autoselect2.value, config.autolanguage.audio_autoselect3.value, config.autolanguage.audio_autoselect4.value)
 
 	config.autolanguage.audio_autoselect1 = ConfigSelection(default="", choices=languageChoiceList)
@@ -2153,17 +2162,12 @@ def InitUsageConfig():
 	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
 	config.autolanguage.audio_usecache.addNotifier(setAudioUseCache)
 
-	def getselectedsublanguages(range):
-		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
-
 	def autolanguagesub(configElement):
-		config.autolanguage.subtitle_autoselect1.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((2, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect2.value])
-		config.autolanguage.subtitle_autoselect2.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect3.value])
-		config.autolanguage.subtitle_autoselect3.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 2, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect4.value])
-		config.autolanguage.subtitle_autoselect4.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 2, 3)) or not x[0]])
+		selections = (config.autolanguage.subtitle_autoselect1, config.autolanguage.subtitle_autoselect2, config.autolanguage.subtitle_autoselect3, config.autolanguage.subtitle_autoselect4)
+		updateLanguageChoices(selections, subtitleChoiceList)
 		choiceList = [(0, _("None"))]
 		for y in list(range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else (4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0))))):
-			choiceList.append((y, ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
+			choiceList.append((y, ", ".join([selections[x - 1].getText() for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
 			choiceList.append((y + 1, _("All")))
 		config.autolanguage.equal_languages.setChoices(default=0, choices=choiceList)
@@ -2726,7 +2730,8 @@ def InitUsageConfig():
 			config.timeshift.path.setChoices(default=defaultPath, choices=[(defaultPath, defaultPath), (savedPath, savedPath)])
 			config.timeshift.path.value = savedPath
 	config.timeshift.path.save()
-	config.timeshift.path.addNotifier(createConfiguredDirectory, immediate_feedback=False)
+	# The Timeshift storage worker creates missing directories after checking
+	# the mount. A settings notifier must not create them on fallback RAM/flash.
 
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
@@ -2737,13 +2742,14 @@ def InitUsageConfig():
 
 	config.timeshift.path.addNotifier(setTimeshiftPath)
 
+	choiceList = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movie list location>")), ("<timer>", _("<Last timer location>"))]
 	config.timeshift.recordingPath = ConfigSelection(default="<default>", choices=choiceList)
 	config.timeshift.recordingPath.load()
 	if config.timeshift.recordingPath.saved_value:
 		savedValue = config.timeshift.recordingPath.saved_value if config.timeshift.recordingPath.saved_value.startswith("<") else pathjoin(config.timeshift.recordingPath.saved_value, "")
-		if savedValue and savedValue not in choiceList:
+		if savedValue and savedValue not in [x[0] for x in choiceList]:
 			config.timeshift.recordingPath.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
-			config.timeshift.recordingPath.value = savedValue
+		config.timeshift.recordingPath.value = savedValue
 	config.timeshift.recordingPath.save()
 
 

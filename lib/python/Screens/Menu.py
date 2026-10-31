@@ -4,16 +4,16 @@ from os.path import getmtime, isdir, isfile
 from enigma import eTimer
 
 from skin import menus
-from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
+from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.AVSwitch import avSwitch
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Label import Label
 from Components.NimManager import nimmanager  # noqa F401 needed in menu.xml
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Plugins.Plugin import PluginDescriptor
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen, ScreenSummary
@@ -578,8 +578,9 @@ class Menu(Screen, ProtectedScreen):
 			else:
 				self.nextNumberTimer.start(1500, True)
 		else:
-			if hasattr(self.session, "infobar") and self.session.infobar:
-				self.session.infobar.showUnhandledKey()
+			showUnhandledKey = getattr(getattr(self.session, "infobar", None), "showUnhandledKey", None)  # PowerKey sets session.infobar for the shutdown menu.
+			if showUnhandledKey:
+				showUnhandledKey()
 			self.resetNumberKey()
 
 	def resetNumberKey(self):
@@ -779,7 +780,7 @@ class MenuHorizontal(Menu):
 class MenuSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self["entry"] = StaticText("")
+		self["entry"] = StaticText()
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:

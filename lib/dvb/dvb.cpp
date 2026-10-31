@@ -11,6 +11,7 @@
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
+#include <lib/dvb/warmstart.h>
 #include <lib/dvb/fbc.h>
 #include <lib/dvb/fcc.h>
 #include <lib/dvb/specs.h>
@@ -37,6 +38,11 @@ DEFINE_REF(eDVBAllocatedFrontend);
 
 void eDVBRegisteredFrontend::closeFrontend()
 {
+	if (!m_inuse && eDVBWarmStart::deferClose(*m_frontend))
+	{
+		disable->start(3000, true);
+		return;
+	}
 	if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
 		disable->start(60000, true);  // retry close in 60secs
 }
@@ -123,6 +129,23 @@ eDVBResourceManager::eDVBResourceManager()
 		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size());
 
 	m_fbcmng = new eFBCTunerManager(instance);
+
+	std::string warmDevice;
+	int warmVoltage;
+	if (eDVBWarmStart::load(warmDevice, warmVoltage))
+		for (auto &frontend : m_frontend)
+			if (frontend->m_frontend->getDeviceName() == warmDevice)
+			{
+				frontend->inc_use();
+				if (!frontend->m_frontend->setVoltage(warmVoltage))
+					eDVBWarmStart::powered(*frontend->m_frontend);
+				else
+					frontend->m_frontend->setVoltage(iDVBFrontend::voltageOff);
+				// Normal allocation may claim it before the main loop starts.
+				// Otherwise the existing idle timer closes the unused frontend.
+				frontend->dec_use();
+				break;
+			}
 
 	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }
@@ -853,6 +876,92 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		}
 	}
 	Py_RETURN_NONE;
+}
+
+PyObject *eDVBResourceManager::setFrontendInputGroups(ePyObject list)
+{
+	if (!PyList_Check(list))
+	{
+		PyErr_SetString(PyExc_TypeError, "frontend input groups must be a list of (slot, SAT group, C/T group)");
+		return nullptr;
+	}
+	std::map<int, std::pair<int, int>> groups;
+	for (Py_ssize_t index = 0; index < PyList_Size(list); ++index)
+	{
+		ePyObject entry = PyList_GET_ITEM(list, index);
+		if (!PyTuple_Check(entry) || PyTuple_Size(entry) != 3
+			|| !PyLong_Check(PyTuple_GET_ITEM(entry, 0)) || !PyLong_Check(PyTuple_GET_ITEM(entry, 1)) || !PyLong_Check(PyTuple_GET_ITEM(entry, 2)))
+		{
+			PyErr_SetString(PyExc_TypeError, "frontend input groups require three integer slot IDs");
+			return nullptr;
+		}
+		long slot = PyLong_AsLong(PyTuple_GET_ITEM(entry, 0));
+		long sat = PyLong_AsLong(PyTuple_GET_ITEM(entry, 1));
+		long ct = PyLong_AsLong(PyTuple_GET_ITEM(entry, 2));
+		if (PyErr_Occurred())
+			return nullptr;
+		if (slot < 0 || slot >= 32 || sat < -1 || sat >= 32 || ct < -1 || ct >= 32 || groups.count(slot))
+		{
+			PyErr_SetString(PyExc_ValueError, "invalid or duplicate frontend input group slot");
+			return nullptr;
+		}
+		groups[slot] = {sat, ct};
+	}
+	// Simulated allocations must never change the real dish position cache.
+	for (auto *frontends : {&m_frontend, &m_simulate_frontend})
+	{
+		std::map<int, std::shared_ptr<std::array<long, eDVBFrontend::NUM_DATA_ENTRIES>>> satelliteInputs;
+		for (auto &entry : *frontends)
+		{
+			auto group = groups.find(entry->m_frontend->getSlotID());
+			int sat = group == groups.end() ? -1 : group->second.first;
+			int ct = group == groups.end() ? -1 : group->second.second;
+			std::shared_ptr<std::array<long, eDVBFrontend::NUM_DATA_ENTRIES>> data;
+			if (sat >= 0)
+			{
+				auto &shared = satelliteInputs[sat];
+				if (!shared)
+				{
+					shared = std::make_shared<std::array<long, eDVBFrontend::NUM_DATA_ENTRIES>>();
+					shared->fill(-1);
+				}
+				data = shared;
+			}
+			entry->m_frontend->setInputGroups(sat, ct, data);
+		}
+	}
+	Py_RETURN_NONE;
+}
+
+bool eDVBResourceManager::sharedInputInUse(eDVBFrontend *frontend, int type, bool incompatibleOnly)
+{
+	const bool satellite = type == iDVBFrontend::feSatellite;
+	if (!satellite && type != iDVBFrontend::feCable && type != iDVBFrontend::feTerrestrial)
+		return false;
+	const int group = satellite ? frontend->getSharedSatInput() : frontend->getSharedCTInput();
+	if (group < 0)
+		return false;
+	auto &frontends = frontend->is_simulate() ? m_simulate_frontend : m_frontend;
+	for (auto &entry : frontends)
+	{
+		eDVBFrontend *other = entry->m_frontend;
+		if (other == frontend || !entry->m_inuse || (satellite ? other->getSharedSatInput() : other->getSharedCTInput()) != group)
+			continue;
+		const int otherType = other->getTuneType();
+		if (satellite ? otherType != iDVBFrontend::feSatellite : (otherType != iDVBFrontend::feCable && otherType != iDVBFrontend::feTerrestrial))
+			continue;
+		if (!incompatibleOnly || otherType != type)
+			return true;
+		if (type == iDVBFrontend::feTerrestrial)
+		{
+			// A shared antenna/coax switch must not change power during a recording.
+			const std::string prefix = "config.Nims.";
+			if (eSimpleConfig::getBool((prefix + std::to_string(frontend->getSlotID()) + ".dvbt.terrestrial_5V").c_str(), false)
+				!= eSimpleConfig::getBool((prefix + std::to_string(other->getSlotID()) + ".dvbt.terrestrial_5V").c_str(), false))
+				return true;
+		}
+	}
+	return false;
 }
 
 bool eDVBResourceManager::frontendIsCompatible(int index, const char *type)
@@ -2333,7 +2442,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			if (current_offset < i->second)
 			{
 				start = current_offset;
-				size = diff_upto(i->second, start, max);
+				size = align(diff_upto(i->second, start, max), blocksize);
 				//eDebug("[eDVBChannel] HIT, %lld < %lld < %lld, size: %zd", i->first, current_offset, i->second, size);
 				return;
 			}

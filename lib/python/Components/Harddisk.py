@@ -1,3 +1,4 @@
+from errno import ENOMEDIUM
 from functools import total_ordering
 from glob import glob
 from os import listdir, lstat, mkdir, remove, statvfs, system, walk
@@ -5,12 +6,12 @@ from os.path import abspath, dirname, exists, isfile, islink, ismount, join, rea
 from re import search, sub
 from time import sleep, time
 
-from enigma import getDeviceDB, eTimer
+from enigma import eTimer, getDeviceDB
 
-from Components.SystemInfo import BoxInfo
 from Components.Console import Console
-from Tools.Directories import fileReadLines, fileReadLine, fileWriteLines
+from Components.SystemInfo import BoxInfo
 from Tools.CList import CList
+from Tools.Directories import fileReadLine, fileReadLines, fileWriteLines
 
 MODEL = BoxInfo.getItem("model")
 MODULE_NAME = __name__.split(".")[-1]
@@ -518,14 +519,18 @@ class HarddiskManager:
 				self.cd = blockdev
 		except OSError:
 			error = True
-		medium_found = True  # Check for medium.
+		mediumFound = False
 		try:
-			if exists(join("/dev", blockdev)):
-				open(join("/dev", blockdev)).close()
+			# Audio CDs can report zero sectors; probe optical media by opening the device.
+			if is_cdrom or int(readFile(join(devpath, "size"))) > 0:
+				with open(join("/dev", blockdev), "rb"):
+					mediumFound = True
 		except OSError as err:
-			if err.errno == 159:  # No medium present.
-				medium_found = False
-		return error, blacklisted, removable, is_cdrom, partitions, medium_found
+			if err.errno != ENOMEDIUM:
+				error = True
+		except ValueError:
+			error = True
+		return error, blacklisted, removable, is_cdrom, partitions, mediumFound
 
 	def enumerateHotPlugDevices(self, callback):
 		def parseDeviceData(inputData):

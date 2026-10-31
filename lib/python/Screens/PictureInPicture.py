@@ -1,12 +1,15 @@
-from Screens.Screen import Screen
-from Screens.Dish import Dishpip
-from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer
+from weakref import ref as weakrefRef
+
+from enigma import ePoint, eRect, eServiceCenter, eServiceReference, eSize, eTimer, getBestPlayableServiceReference
+
+from Components.config import ConfigPosition, ConfigSelection, config
+from Components.ParentalControl import parentalControl
 from Components.SystemInfo import BoxInfo
 from Components.VideoWindow import VideoWindow
 from Components.Sources.StreamService import StreamServiceList
-from Components.config import config, ConfigPosition, ConfigSelection
-from Tools import Notifications
-from Screens.MessageBox import MessageBox
+from Screens.Dish import Dishpip
+from Screens.Screen import Screen
+from Screens.Toast import Toast
 
 MAX_X = 720
 MAX_Y = 576
@@ -60,6 +63,7 @@ class PictureInPicture(Screen):
 		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
 		self.dishpipActive = session.instantiateDialog(Dishpip)
 		self.currentService = None
+		self.parentalControlService = None
 		self.currentServiceReference = None
 		self.noSkinReload = True
 		self.isCurrentStreamRelay = False
@@ -183,11 +187,22 @@ class PictureInPicture(Screen):
 	def getModeName(self):
 		return self.choicelist[config.av.pip_mode.index][1]
 
-	def playService(self, service):
+	def playService(self, service, checkParentalControl=True):
+		pipReference = weakrefRef(self)  # A pending PIN must not keep a closed PiP and its decoder alive.
+
+		def playAfterPin(ref, forceRestart=False):
+			pip = pipReference()
+			if pip is not None and getattr(pip.session, "pip", None) is pip and pip.parentalControlService == ref:
+				pip.playService(ref, checkParentalControl=False)
+
+		self.parentalControlService = service
 		if service is None:
 			self.session.nav.pnav.clearPiPService()
 			return 0
-		from Screens.InfoBarGenerics import streamrelay
+		if checkParentalControl and not parentalControl.isServicePlayable(service, playAfterPin):
+			return 0
+		self.parentalControlService = None
+		from Screens.InfoBarGenerics import streamrelay  # Avoid the circular import through InfoBarPiP.
 		ref = streamrelay.streamrelayChecker(self.resolveAlternatePipService(service))[0]
 		if ref:
 			if BoxInfo.getItem("CanNotDoSimultaneousTranscodeAndPIP") and StreamServiceList:
@@ -195,7 +210,7 @@ class PictureInPicture(Screen):
 				self.currentService = None
 				self.currentServiceReference = None
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text="PiP...\n" + _("Connected transcoding, limit - no PiP!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
+					Toast.instance.showToast("PiP...\n" + _("Connected transcoding, limit - no PiP!"), Toast.TYPE_ERROR, 5, replaceId="ZapPipError")
 				return 0
 			if ref.toString().startswith("4097"):  # Change to service type 1 and try to play a stream as type 1
 				ref = eServiceReference("1" + ref.toString()[4:])
@@ -207,7 +222,7 @@ class PictureInPicture(Screen):
 						self.pipservice.stop()
 					self.isCurrentStreamRelay = False
 				if not config.usage.hide_zap_errors.value and not is_sr:
-					Notifications.AddPopup(text=_("No free tuner!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
+					Toast.instance.showToast(_("No free tuner!"), Toast.TYPE_ERROR, 5, replaceId="ZapPipError")
 				return 0 if not is_sr else 2
 			print("[PictureInPicture] playing pip service", ref and ref.toString())
 			self.pipservice = eServiceCenter.getInstance().play(ref)
@@ -225,7 +240,7 @@ class PictureInPicture(Screen):
 				self.currentService = None
 				self.currentServiceReference = None
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text=_("Incorrect type service for PiP!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
+					Toast.instance.showToast(_("Incorrect type service for PiP!"), Toast.TYPE_ERROR, 5, replaceId="ZapPipError")
 		return 0
 
 	def getCurrentService(self):

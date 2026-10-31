@@ -1,13 +1,14 @@
-from enigma import getPrevAsciiCode
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ActionMap import NumberActionMap
-from Components.Label import Label
-from Components.Input import Input
-from Components.config import config
-from Tools.BoundFunction import boundFunction
-from Tools import Notifications
 from time import time
+
+from enigma import getPrevAsciiCode
+
+from Components.ActionMap import NumberActionMap
+from Components.config import config
+from Components.Input import Input
+from Components.Label import Label
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.BoundFunction import boundFunction
 
 
 class InputBox(Screen):
@@ -109,16 +110,16 @@ class PinInput(InputBox):
 				remaining = (self.triesEntry.time.value + (self.waitTime * 60)) - time()
 				remainingMinutes = int(remaining / 60)
 				remainingSeconds = int(remaining % 60)
-				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("Minutes") + ", " + str(remainingSeconds) + " " + _("Seconds"))
+				messageText = _("You have to wait %s!") % ", ".join((ngettext("%d Minute", "%d Minutes", remainingMinutes) % remainingMinutes, ngettext("%d Second", "%d Seconds", remainingSeconds) % remainingSeconds))
 				if service and simple:
-					Notifications.AddPopup(messageText, type=MessageBox.TYPE_ERROR, timeout=3)
+					self.session.showError(messageText)
 					self.closePinCancel()
 				else:
 					self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, messageText, MessageBox.TYPE_ERROR, timeout=3))
 			else:
 				self.setTries(3)
 
-		self["tries"] = Label("")
+		self["tries"] = Label()
 		self.onShown.append(self.showTries)
 
 	def gotAsciiCode(self):

@@ -38,6 +38,7 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/teletext.cpp \
 	dvb/tstools.cpp \
 	dvb/volume.cpp \
+	dvb/warmstart.cpp \
 	dvb/streamserver.cpp \
 	dvb/rtspstreamserver.cpp \
 	dvb/pmtparse.cpp \
@@ -49,11 +50,8 @@ dvb_libenigma_dvb_a_SOURCES = \
 
 if DREAMNEXTGEN
 dvb_libenigma_dvb_a_SOURCES += 	\
-	dvb/alsa.cpp \
-	dvb/audiomanager.cpp \
 	dvb/avsync_core.cpp \
-	dvb/iec61937.cpp \
-	dvb/tsparser.cpp
+	dvb/videoswdemux.cpp
 endif
 
 dvbincludedir = $(pkgincludedir)/lib/dvb
@@ -101,6 +99,7 @@ dvbinclude_HEADERS = \
 	dvb/teletext.h \
 	dvb/tstools.h \
 	dvb/volume.h \
+	dvb/warmstart.h \
 	dvb/streamserver.h \
 	dvb/rtspstreamserver.h \
 	dvb/pmtparse.h \
@@ -112,9 +111,6 @@ dvbinclude_HEADERS = \
 
 if DREAMNEXTGEN
 dvbinclude_HEADERS += \
-	dvb/alsa.h \
-	dvb/audiomanager.h \
 	dvb/avsync_core.h \
-	dvb/iec61937.h \
-	dvb/tsparser.h
+	dvb/videoswdemux.h
 endif

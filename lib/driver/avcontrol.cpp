@@ -10,16 +10,19 @@ Licensed under GPLv2.
 #include <sys/ioctl.h>
 #include <string.h>
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <regex>
 
 #include <lib/base/cfile.h>
+#include <lib/actions/action.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/eerror.h>
 #include <lib/base/ebase.h>
 #include <lib/base/modelinformation.h>
 #include <lib/driver/avcontrol.h>
+#include <lib/driver/rc.h>
 
 const char *__MODULE__ = "eAVControl"; // NOSONAR
 
@@ -32,6 +35,7 @@ const char *proc_videomode = "/sys/class/display/mode";			 // NOSONAR
 const char *proc_videoaspect_r = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_videoaspect_w = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_osd_alpha = "/sys/class/graphics/fb0/osd_plane_alpha";	 // NOSONAR
+const char *proc_hdmi_attr = "/sys/class/amhdmitx/amhdmitx0/attr";	 // NOSONAR
 #else
 const char *proc_policy169 = "/proc/stb/video/policy2";		 // NOSONAR
 const char *proc_policy43 = "/proc/stb/video/policy";		 // NOSONAR
@@ -263,6 +267,9 @@ void eAVControl::fp_event(int what)
 
 eAVControl::~eAVControl()
 {
+	if (m_osdHideTimer)
+		m_osdHideTimer->stop();
+	restoreOSD();
 	m_instance = nullptr;
 	if (m_fp_fd >= 0)
 		close(m_fp_fd);
@@ -429,6 +436,9 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 		return;
 	}
 #endif
+#ifdef DREAMNEXTGEN
+	writeHDMIColorFormat(driverMode, flags);
+#endif
 #ifdef VIDEO_MODE_50
 	// gigablue driver bug
 	CFile::writeStr(proc_videomode_50, driverMode, __MODULE__, flags);
@@ -437,9 +447,15 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 	CFile::writeStr(proc_videomode, driverMode, __MODULE__, flags);
 #endif
 #ifdef DREAMNEXTGEN
-	CFile::writeStr("/etc/u-boot.scr.d/000_hdmimode.scr", "setenv hdmimode " + driverMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
-	CFile::writeStr("/etc/u-boot.scr.d/000_outputmode.scr", "setenv outputmode " + driverMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
-	(void)std::system("update-autoexec");
+	// Rebuilding autoexec.img writes to the flash, so only do it when the mode really changed.
+	const std::string hdmiMode = "setenv hdmimode " + driverMode;
+	const std::string outputMode = "setenv outputmode " + driverMode;
+	if (CFile::read("/etc/u-boot.scr.d/000_hdmimode.scr", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS) != hdmiMode || CFile::read("/etc/u-boot.scr.d/000_outputmode.scr", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS) != outputMode)
+	{
+		CFile::writeStr("/etc/u-boot.scr.d/000_hdmimode.scr", hdmiMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
+		CFile::writeStr("/etc/u-boot.scr.d/000_outputmode.scr", outputMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
+		(void)std::system("update-autoexec");
+	}
 	CFile::writeStr("/sys/class/ppmgr/ppscaler", "1", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
 	CFile::writeStr("/sys/class/ppmgr/ppscaler", "0", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
 	CFile::writeStr("/sys/class/video/axis", getVideoAxis(newMode), __MODULE__, flags);
@@ -447,6 +463,52 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s (%s)", __MODULE__, "setVideoMode", newMode.c_str(), driverMode.c_str());
+}
+
+/// @brief Write the HDMI colour format for a video mode
+/// @param driverMode
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::writeHDMIColorFormat(const std::string &driverMode, int flags) const
+{
+#ifdef DREAMNEXTGEN
+	// Without a format the driver sends the deepest colour the TV reports.
+	// RGB as on DreamOS, YCbCr 4:2:0 for 2160p above 30 Hz, other colour spaces there can leave the TV without a picture.
+	bool uhd = driverMode.rfind("2160p", 0) == 0 || driverMode.rfind("smpte", 0) == 0;
+	bool lowRate = driverMode.find("23hz") != std::string::npos || driverMode.find("24hz") != std::string::npos || driverMode.find("25hz") != std::string::npos || driverMode.find("29hz") != std::string::npos || driverMode.find("30hz") != std::string::npos;
+	std::string colorspace = uhd && !lowRate ? "420" : "rgb";
+	std::string colordepth = m_hdmi_colordepth == "auto" ? "8bit" : m_hdmi_colordepth;
+	CFile::writeStr(proc_hdmi_attr, colorspace + "," + colordepth, __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s %s,%s", __MODULE__, "writeHDMIColorFormat", driverMode.c_str(), colorspace.c_str(), colordepth.c_str());
+#endif
+}
+
+/// @brief Apply the HDMI colour format to the current video mode
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::applyHDMIColorFormat(int flags) const
+{
+#ifdef DREAMNEXTGEN
+	if (!m_encoder_active)
+		return;
+	std::string driverMode = CFile::read(proc_videomode, __MODULE__, flags);
+	driverMode.erase(std::remove_if(driverMode.begin(), driverMode.end(), ::isspace), driverMode.end());
+	if (driverMode.empty() || driverMode == "null")
+		return;
+	writeHDMIColorFormat(driverMode, flags);
+	// The driver applies a new format only with the next mode write.
+	CFile::writeStr(proc_videomode, driverMode, __MODULE__, flags);
+#endif
+}
+
+/// @brief Set the HDMI colour depth
+/// @param colordepth auto, 8bit, 10bit or 12bit
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::setHDMIColordepth(const std::string &colordepth, int flags)
+{
+	if (colordepth == m_hdmi_colordepth)
+		return;
+	m_hdmi_colordepth = colordepth;
+	applyHDMIColorFormat(flags);
 }
 
 /// @brief Set video modes for 50Hz, 60Hz and 24Hz
@@ -879,11 +941,155 @@ void eAVControl::setVideoSize(int top, int left, int width, int height, int flag
 
 void eAVControl::setOSDAlpha(int alpha, int flags) const
 {
-#ifdef DREAMNEXTGEN
-	CFile::writeIntHex(proc_osd_alpha, alpha, __MODULE__, flags);
-#else
-	CFile::writeInt(proc_osd_alpha, alpha, __MODULE__, flags);
-#endif
+	m_osdAlpha = std::max(0, std::min(255, alpha));
+	writeOSDAlpha(m_osdHidden ? 0 : m_osdAlpha, flags);
+}
+
+int eAVControl::writeOSDAlpha(int alpha, int flags) const
+{
+	return CFile::writeInt(proc_osd_alpha, alpha, __MODULE__, flags);
+}
+
+void eAVControl::setOSDAutoHideTimeout(int seconds)
+{
+	m_osdHideTimeout = hasOSDAlpha() ? std::max(0, std::min(3600, seconds)) : 0;
+	if (!m_osdHideTimeout)
+		m_osdHidePaused = false;
+	if (m_osdHideTimeout && !m_osdHideTimer)
+	{
+		m_osdHideTimer = eTimer::create(eApp);
+		CONNECT(m_osdHideTimer->timeout, eAVControl::hideOSD);
+		m_osdFadeTimer = eTimer::create(eApp);
+		CONNECT(m_osdFadeTimer->timeout, eAVControl::fadeOSD);
+	}
+	restoreOSD();
+	restartOSDTimer();
+}
+
+void eAVControl::restartOSDTimer()
+{
+	if (!m_osdHideTimer)
+		return;
+	m_osdHideTimer->stop();
+	if (m_osdHideTimeout && !m_osdHidePaused && !m_osdWindows.empty() && m_osdWakeKeys.empty() && m_osdZeroKeys.empty())
+		m_osdHideTimer->startLongTimer(m_osdHideTimeout);
+}
+
+void eAVControl::hideOSD()
+{
+	if (m_osdHideTimeout && !m_osdHidePaused && !m_osdWindows.empty() && m_osdWakeKeys.empty() && m_osdZeroKeys.empty() && m_osdAlpha > 0)
+	{
+		m_osdFadeStep = 0;
+		fadeOSD();
+	}
+}
+
+void eAVControl::fadeOSD()
+{
+	// Fade out over one second; restoring the OSD always happens immediately.
+	const int steps = 20;
+	++m_osdFadeStep;
+	if (writeOSDAlpha(m_osdAlpha * (steps - m_osdFadeStep) / steps) < 0)
+	{
+		restoreOSD();
+		return;
+	}
+	m_osdHidden = true;
+	if (m_osdFadeStep < steps)
+		m_osdFadeTimer->start(50, true);
+}
+
+void eAVControl::restoreOSD()
+{
+	if (m_osdFadeTimer)
+		m_osdFadeTimer->stop();
+	if (m_osdHidden && writeOSDAlpha(m_osdAlpha) >= 0)
+		m_osdHidden = false;
+}
+
+void eAVControl::setOSDWindowVisible(const void *window, bool visible)
+{
+	if (visible)
+	{
+		if (!m_osdWindows.insert(window).second)
+			return;
+		// Newly opened dialogs must be visible, even while another screen waits.
+		restoreOSD();
+	}
+	else
+	{
+		if (!m_osdWindows.erase(window))
+			return;
+		if (m_osdWindows.empty())
+			restoreOSD();
+	}
+	restartOSDTimer();
+}
+
+bool eAVControl::handleOSDKey(const std::string &device, int key, int flags)
+{
+	if (m_osdReplayZero)
+		return false;
+	const std::pair<std::string, int> pressed(device, key);
+	if (key == KEY_0 && (m_osdHideTimeout || m_osdZeroKeys.count(pressed)))
+	{
+		// Defer a short zero until release, so holding it cannot zap or enter a digit.
+		if (flags == eRCKey::flagMake)
+		{
+			m_osdZeroKeys[pressed] = m_osdHidden ? 1 : 0;
+			restoreOSD();
+		}
+		auto zero = m_osdZeroKeys.find(pressed);
+		if (zero != m_osdZeroKeys.end())
+		{
+			if (flags == eRCKey::flagLong && zero->second != 2 && m_osdHideTimeout)
+			{
+				zero->second = 2;
+				m_osdHidePaused = !m_osdHidePaused;
+				restoreOSD();
+				osdAutoHidePauseChanged(m_osdHidePaused ? 1 : 0);
+			}
+			else if (flags == eRCKey::flagBreak)
+			{
+				const bool replay = zero->second == 0;
+				m_osdZeroKeys.erase(zero);
+				if (replay)
+				{
+					ePtr<eActionMap> actionMap;
+					eActionMap::getInstance(actionMap);
+					if (actionMap)
+					{
+						m_osdReplayZero = true;
+						actionMap->keyPressed(device, key, eRCKey::flagMake);
+						actionMap->keyPressed(device, key, eRCKey::flagBreak);
+						m_osdReplayZero = false;
+					}
+				}
+			}
+			restartOSDTimer();
+			return true;
+		}
+	}
+	if (m_osdWakeKeys.count(pressed))
+	{
+		// A wake press also owns its repeat, long and release events.
+		if (flags == eRCKey::flagBreak)
+		{
+			m_osdWakeKeys.erase(pressed);
+			restartOSDTimer();
+		}
+		return true;
+	}
+	if (m_osdHidden)
+	{
+		restoreOSD();
+		if (flags != eRCKey::flagBreak)
+			m_osdWakeKeys.insert(pressed);
+		restartOSDTimer();
+		return true;
+	}
+	restartOSDTimer();
+	return false;
 }
 
 /// @brief getEDIDPath

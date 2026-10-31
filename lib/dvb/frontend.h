@@ -6,6 +6,8 @@
 #endif
 
 #include <map>
+#include <array>
+#include <memory>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/frontendparms.h>
 
@@ -140,6 +142,10 @@ private:
 	eSecCommandList m_sec_sequence;
 
 	long m_data[NUM_DATA_ENTRIES];
+	std::shared_ptr<std::array<long, NUM_DATA_ENTRIES>> sharedSatData;
+	int sharedSatInput = -1;
+	int sharedCTInput = -1;
+	long &inputData(int num);
 
 	int m_idleInputpower[2];  // 13V .. 18V
 	int m_runningInputpower;
@@ -169,6 +175,11 @@ public:
 
 	int readInputpower();
 	int getCurrentType(){return m_type;}
+	int getTuneType() const;
+	int getSharedSatInput() const { return sharedSatInput; }
+	int getSharedCTInput() const { return sharedCTInput; }
+	void setInputGroups(int satInput, int ctInput, const std::shared_ptr<std::array<long, NUM_DATA_ENTRIES>> &satData);
+	bool sharedInputInUse(int type, bool incompatibleOnly = false);
 	void overrideType(int type){m_type = type;} //workaraound for dvb api < 5
 	RESULT tune(const iDVBFrontendParameters &where, bool blindscan = false);
 	RESULT prepare_sat(const eDVBFrontendParametersSatellite &, unsigned int timeout);
@@ -220,6 +231,7 @@ public:
 	int openFrontend();
 	int closeFrontend(bool force=false, bool no_delayed=false);
 	const char *getDescription() const { return m_description; }
+	const std::string &getDeviceName() const { return m_filename; }
 	const dvb_frontend_info getFrontendInfo() const { return fe_info; }
 	const dvb_frontend_info getFrontendInfo(fe_delivery_system_t delsys)  { return m_fe_info[delsys]; }
 	bool is_simulate() const { return m_simulate; }

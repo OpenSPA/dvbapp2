@@ -3,6 +3,7 @@ from ipaddress import ip_address
 from os import rename
 from os.path import exists
 from re import IGNORECASE, compile
+from time import sleep
 
 from enigma import eTimer, gRGB
 
@@ -12,20 +13,19 @@ from Components.config import ConfigIP, ConfigNumber, ConfigPassword, ConfigSele
 from Components.Console import Console
 from Components.Label import Label
 from Components.NetworkManager import Adapter, Connection, Encryption, VpnInfo, WiFiConfig, encryptionLabels, iwBin, iwListBin, networkManager, wlBin, wpaCliBin
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Information import InformationNetwork
 from Screens.MessageBox import MessageBox
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+from Screens.Standby import TryQuitMainloop
 from Tools.Conversions import formatNetworkSpeed
 from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename, fileExists
 from Tools.ServiceAction import ServiceAction
-from Screens.Standby import TryQuitMainloop
-from time import sleep
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -800,6 +800,7 @@ class NetworkAdapterSetup(Setup):
 		self.buildConfigObjects()
 		self.hasWakeOnLan = adapter.name == "eth0" and BoxInfo.getItem("wol") and BoxInfo.getItem("WakeOnLAN")
 		Setup.__init__(self, session=session, setup="NetworkAdapter")
+		self.savePending = False
 		self.setTitle(_("Network Adapter '%s' Settings") % adapter.name)
 		self["key_info"] = StaticText(_("INFO"))
 		self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
@@ -850,6 +851,14 @@ class NetworkAdapterSetup(Setup):
 		self.session.open(NetworkInformation, self.adapter)
 
 	def keySave(self):
+		def saveCallback():
+			# Screen.doClose() clears the attributes if the dialog was already closed.
+			if getattr(self, "savePending", False):
+				self.close((False, True))
+
+		if self.savePending:
+			return
+		self.savePending = True  # Keep repeated Save presses from closing during an active network change.
 		adapter = self.adapter
 		connection = self.connection
 		wasEnabled = adapter.adapterEnabled
@@ -895,9 +904,9 @@ class NetworkAdapterSetup(Setup):
 			change |= CHANGE_GENERAL
 		if adapter.adapterEnabled != wasEnabled:
 			change |= CHANGE_ADAPTER_ENABLED if adapter.adapterEnabled else CHANGE_ADAPTER_DISABLED
-		applyAdapterChange(adapter.name, change, lambda: self.close((False, True)))
 		if self.hasWakeOnLan:
 			config.network.wol.save()
+		applyAdapterChange(adapter.name, change, saveCallback)
 
 
 # Setup screen for one Wi-Fi profile (SSID).

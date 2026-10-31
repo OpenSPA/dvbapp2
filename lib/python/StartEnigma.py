@@ -52,6 +52,7 @@ class Session:
 		self.nav = navigation
 		self.delay_timer = enigma.eTimer()
 		self.delay_timer.callback.append(self.processDelay)
+		self.pendingCallbacks = []
 		self.current_dialog = None
 		self.dialog_stack = []
 		self.summary_stack = []
@@ -79,17 +80,40 @@ class Session:
 		if hasattr(self.current_dialog, "returnValue"):  # OpenSPA [norhap] if self.current_dialog is spzTimeshift not have attribute to return value.
 			retVal = self.current_dialog.returnValue
 			if self.current_dialog.isTmp:
-				self.current_dialog.doClose()
+				if self.pendingCallbacks:
+					# Earlier callbacks can still use this screen, including through a closure.
+					# Keep its cleanup before its own callback, but after those earlier callbacks.
+					self.pendingCallbacks.append((None, (), self.current_dialog))
+				else:
+					self.current_dialog.doClose()
 				# dump(self.current_dialog)
 				del self.current_dialog
 			else:
 				del self.current_dialog.callback
-			self.popCurrent()
-			try:  # OpenSPA [norhap] Make sure that callback is not None.
+			try:
+				self.popCurrent()
 				if callback is not None:
-					callback(*retVal)
-			except AttributeError:
-				print(str(AttributeError))
+					self.pendingCallbacks.append((callback, retVal, None))
+				# Cleanup needs no modal context. Callbacks must wait until the resumed screen stays in exec.
+				while self.pendingCallbacks:
+					callback, retVal, dialog = self.pendingCallbacks[0]
+					if dialog is None and not (self.in_exec or self.current_dialog is None):
+						break
+					self.pendingCallbacks.pop(0)
+					if dialog is not None:
+						dialog.doClose()
+					else:
+						callback(*retVal)
+			except Exception:
+				# Do not leave closed screens alive when a callback or execBegin fails.
+				pendingCallbacks, self.pendingCallbacks = self.pendingCallbacks, []
+				for callback, retVal, dialog in pendingCallbacks:
+					if dialog is not None:
+						try:
+							dialog.doClose()
+						except Exception as error:
+							print(f"[StartEnigma] Error: Deferred dialog cleanup failed: {error}")
+				raise
 
 	def execBegin(self, first=True, do_show=True):
 		if self.in_exec:
@@ -243,14 +267,14 @@ class Session:
 			if hasattr(dialog, "desktop"):
 				dialog.reloadSkin()
 
-	def showInfo(self, text, timeout=4):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout)
+	def showInfo(self, text, timeout=4, replaceId=None):
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_INFO, timeout=timeout, replaceId=replaceId)
 
 	def showWarning(self, text, timeout=5):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_WARNING, timeout=timeout)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_WARNING, timeout=timeout)
 
 	def showError(self, text, timeout=5):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_ERROR, timeout=timeout)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_ERROR, timeout=timeout)
 
 
 class PowerKey:
@@ -272,6 +296,8 @@ class PowerKey:
 		self.session.infobar = None
 
 	def shutdown(self):
+		if not self.session.in_exec:  # Global keys can arrive while a dialog is closing.
+			return
 		recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 		if recordings:
 			from Screens.MessageBox import MessageBox
@@ -290,12 +316,14 @@ class PowerKey:
 			return
 
 		self.standbyblocked = 1
+		if not self.session.in_exec:
+			return
 		if action == "shutdown":
 			self.shutdown()
 		elif action == "show_menu":
 			print("[StartEnigma] Show shutdown menu.")
 			menu = findMenu("shutdown")
-			if menu:
+			if menu is not None:
 				self.session.infobar = self
 				self.session.openWithCallback(self.MenuClosed, Menu, menu)
 				return
@@ -330,6 +358,8 @@ class PowerKey:
 			self.session.open(Screens.Standby.Standby)
 
 	def openSleepTimer(self):
+		if not self.session.in_exec:
+			return
 		from Screens.SleepTimer import SleepTimerButton
 		self.session.open(SleepTimerButton)
 
@@ -505,7 +535,10 @@ def runScreenTest():
 	ormTimer = enigma.eTimer()  # ORM, started by enigma2.sh, learns that the main loop runs.
 	ormTimer.callback.append(lambda: enigma.eProfileNotify("ready"))
 	ormTimer.start(0, True)
+	from Tools.StartupTasks import startupTasks  # Enigma's timer bindings and the session must exist first.
+	startupTasks.start()
 	runReactor()
+	startupTasks.stop()
 	session.shutdown = True
 	frontPanelLed.shutdown()
 	print("[StartEnigma] Normal shutdown.")
@@ -785,7 +818,7 @@ config.crash.debugSeek = ConfigYesNo(default=False)
 config.crash.debugTeletext = ConfigYesNo(default=False)
 config.crash.debugStorage = ConfigYesNo(default=False)
 config.crash.debugTextEncoding = ConfigYesNo(default=False)
-config.crash.debugNetwork = ConfigYesNo(default=True)
+config.crash.debugNetwork = ConfigYesNo(default=False)
 
 # config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar.
 config.plugins = ConfigSubsection()
@@ -1003,9 +1036,9 @@ try:
 	from Components.ParentalControl import parentalControl
 	parentalControl.save()  # Save parental control settings.
 except Exception:
-	print("Error: Exception in Python StartEnigma startup code:")
-	print("=" * 52)
-	print_exc(file=sys.stdout)
-	print("[StartEnigma] Exiting via quitMainloop #4.")
+	print("Error: Exception in Python StartEnigma startup code:", file=sys.stderr)
+	print("=" * 52, file=sys.stderr)
+	print_exc(file=sys.stderr)  # Keep startup errors visible when debug output is disabled.
+	print("[StartEnigma] Exiting via quitMainloop #4.", file=sys.stderr)
 	enigma.quitMainloop(5)  # QUIT_ERROR_RESTART
-	print("-" * 52)
+	print("-" * 52, file=sys.stderr)

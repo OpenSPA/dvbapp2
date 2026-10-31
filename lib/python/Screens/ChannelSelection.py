@@ -1,6 +1,7 @@
 from os import listdir, remove, rename
 from os.path import exists, join
 from time import localtime, strftime, time
+from weakref import ref as weakrefRef
 
 from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
@@ -15,7 +16,7 @@ from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
 from Components.ParentalControl import parentalControl
 from Components.PluginComponent import plugins
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
 from Components.ServiceList import ServiceList, ServiceListLegacy, refreshServiceList
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.UsageConfig import preferredTimerPath
@@ -354,7 +355,7 @@ class ChannelSelectionBase(Screen):
 			if exists(path_favourites):
 				with open(path_favourites, "r") as fr:
 					favourites_content = fr.read()
-				if "Favourites" in favourites_content:
+				if _("Favourites") not in favourites_content:
 					with open(path_favourites, "w") as fw:
 						fw.write(favourites_content.replace("Favourites", _("Favourites")))
 					eDVBDB.getInstance().reloadBouquets()
@@ -385,9 +386,9 @@ class ChannelSelectionBase(Screen):
 		serviceNameTmp = ServiceReference(serviceReference).getServiceName()
 		serviceName = serviceNameTmp.replace(_("(TV)") if self.mode == MODE_TV else _("(Radio)"), "").replace("  ", " ").strip()
 		# print(f"[ChannelSelection] getServiceName DEBUG: Service Name Before='{serviceNameTmp}', After='{serviceName}'.")
-		if "Last Scanned" in serviceName:  # OpenSPA [norhap] Last Scanned always translated.
+		if _("Last Scanned") not in serviceName:  # OpenSPA [norhap] Last Scanned always translated.
 			serviceName = serviceName.replace("Last Scanned", _("Last Scanned"))
-		if "Favourites" in serviceName:  # OpenSPA [norhap] translate title Favourites Bouquet.
+		if _("Favourites") not in serviceName:  # OpenSPA [norhap] translate title Favourites Bouquet.
 			serviceName = serviceName.replace("Favourites", _("Favourites"))
 		if "User - bouquets" in serviceName:
 			return _("User - Bouquets")
@@ -2666,16 +2667,32 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if hasattr(self.session, "pip"):
 			self.session.pip.inactive()
 
-	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None, doPlay=True):
+	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None, doPlay=True, recordingHandoff=None):
+		if recordingHandoff and not recordingHandoff.isValid():
+			recordingHandoff.finish(False)
+			return
+		nref = ref if ref is not None else self.getCurrentSelection()
+		# IPTV may have zero DVB identifiers; valid() only rejects idInvalid.
+		if nref is None or not nref.valid():
+			print("[ChannelSelection] Ignore zap without a valid service reference.")
+			if recordingHandoff:
+				recordingHandoff.finish(False)
+			return
 		self.curRoot = self.startRoot
-		nref = ref or self.getCurrentSelection()
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
+				pipReference = weakrefRef(self.session.pip)
+
+				def zapAfterPin(ref, forceRestart=False):
+					pip = pipReference()
+					if pip is not None and self.dopipzap and getattr(self.session, "pip", None) is pip:
+						self.zap(enable_pipzap=True, checkParentalControl=False, ref=ref)
+
 				nref = self.session.pip.resolveAlternatePipService(nref)
-				if nref and (not checkParentalControl or parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
-					zap_res = self.session.pip.playService(nref)
+				if nref and (not checkParentalControl or parentalControl.isServicePlayable(nref, zapAfterPin)):
+					zap_res = self.session.pip.playService(nref, checkParentalControl=False)
 					if zap_res == 1:
 						self.__evServiceStart()
 						self.showPipzapMessage()
@@ -2687,8 +2704,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
 		elif ref is None or ref != nref:
-			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref, doPlay))
+			if recordingHandoff:
+				callback = boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref, doPlay, recordingHandoff=recordingHandoff)
+				if recordingHandoff.priority:
+					callback(True)
+				else:
+					Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(callback)
+			else:
+				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref, doPlay))
 		elif not preview_zap:
+			if recordingHandoff:
+				recordingHandoff.finish(True)  # The target is already the live service.
 			self.lastroot.value = ""  # force save root.
 			self.saveRoot()
 			self.saveChannel(nref)
@@ -2699,11 +2725,27 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.rootChanged = False
 			self.revertMode = None
 
-	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, doPlay, answer):
+	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, doPlay, answer, recordingHandoff=None):
+		if recordingHandoff and not recordingHandoff.isValid():
+			recordingHandoff.finish(False)
+			return
+		if recordingHandoff and (not answer or not doPlay):
+			recordingHandoff.finish(False)
+			answer = False
 		if answer:
 			self.new_service_played = True
 			if doPlay:
-				self.session.nav.playService(nref)
+				if recordingHandoff:
+					if not recordingHandoff.stopService():
+						self.setStartRoot(self.curRoot)
+						self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+						return
+					try:
+						self.session.nav.playService(nref)
+					finally:
+						recordingHandoff.finish(True)
+				else:
+					self.session.nav.playService(nref)
 			if not preview_zap:
 				self.lastroot.value = ""  # Force save root.
 				self.saveRoot()
@@ -2711,7 +2753,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				config.servicelist.lastmode.save()
 				if self.startServiceRef is None or nref != self.startServiceRef:
 					self.addToHistory(nref)
-				if self.dopipzap:
+				if self.dopipzap and recordingHandoff is None:
 					self.setCurrentSelection(self.session.pip.getCurrentService())
 				else:
 					self.mainScreenMode = config.servicelist.lastmode.value
@@ -3019,7 +3061,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setCurrentSelection(tmp_ref)
 		self.revertMode = None
 
-	def switchToAll(self, sref):
+	def switchToAll(self, sref, recordingHandoff=None):
 		if Screens.InfoBar.InfoBar.instance:
 			servicelist = Screens.InfoBar.InfoBar.instance.servicelist
 			if servicelist:
@@ -3043,13 +3085,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 						servicelist.bouquet_root = rootBouquet
 				servicelist.enterPath(bouquet)
 				servicelist.setCurrentSelection(sref)
-				servicelist.zap(enable_pipzap=True)
+				options = {"recordingHandoff": recordingHandoff} if recordingHandoff else {}
+				servicelist.zap(enable_pipzap=recordingHandoff is None, **options)
 				servicelist.correctChannelNumber()
 				servicelist.startRoot = bouquet
 				if servicelist.dopipzap:
 					servicelist.addToHistory(sref)
 
-	def performZap(self, sref):
+	def performZap(self, sref, recordingHandoff=None):
+		if recordingHandoff and not recordingHandoff.isValid():
+			recordingHandoff.finish(False)
+			return
+		options = {"recordingHandoff": recordingHandoff} if recordingHandoff else {}
+
 		def getBqRoot(reference):
 			isTV = True
 			isDAB = reference.type == eServiceReference.idServiceDAB
@@ -3070,7 +3118,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if "current" in servicepath:
 				self.saveChannel(sref)
 				self.setCurrentSelection(sref)
-				self.zap(enable_pipzap=True)
+				self.zap(enable_pipzap=recordingHandoff is None, **options)
 				if self.dopipzap:
 					self.addToHistory(sref)
 				return
@@ -3085,7 +3133,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if bouquet:
 					self.enterPath(eServiceReference(bouquet))
 			self.setCurrentSelection(sref)
-			self.zap(enable_pipzap=True)
+			self.zap(enable_pipzap=recordingHandoff is None, **options)
 			self.correctChannelNumber()
 			self.startRoot = bouquet
 			if self.dopipzap:
@@ -3120,7 +3168,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if found:
 			finalZap(isTV, found)
 		else:
-			self.switchToAll(sref)
+			self.switchToAll(sref, **options)
 
 
 class PiPZapSelection(ChannelSelection):
@@ -3259,6 +3307,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.session.nav.playService(lastservice)
 
 	def startRassInteractive(self):
+		self.infobar.dab_slide_display.rassPictureAvailable()
 		self.info.hide()
 		self.infobar.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
 
@@ -3477,6 +3526,7 @@ class HistoryZapSelector(Screen):
 
 	def __init__(self, session, serviceReferences, markedItem=0, selectedItem=0):
 		Screen.__init__(self, session, enableHelp=True)
+		self.skinName = ["HistoryZap", "HistoryZapSelector"]
 		self.setTitle(_("History Zap"))
 		serviceHandler = eServiceCenter.getInstance()
 		historyList = []
@@ -3511,7 +3561,17 @@ class HistoryZapSelector(Screen):
 			self.selectedItem = selectedItem
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Select"))
-		self["menu"] = List(historyList)
+		indexNames = {
+			# "Spacer": 0,  # This is a legacy value that is not actively used.  This index can be reassigned to something more useful.
+			"ServiceMarker": 1,
+			"ServiceName": 2,
+			"EventName": 3,
+			"EventDescription": 4,
+			"EventDuration": 5,
+			"ServicePicon": 6,
+			# "ServiceReference": 7  # This is for internal use only.
+		}
+		self["menu"] = List(historyList, indexNames=indexNames)
 		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
 			"select": (self.keySelect, _("Select the currently highlighted service")),
 			"cancel": (self.keyCancel, _("Cancel the service history zap"))

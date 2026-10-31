@@ -1,15 +1,14 @@
-from enigma import eDVBResourceManager, eDVBFrontendParametersSatellite, iDVBFrontend, eConsoleAppContainer
+from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, iDVBFrontend, eConsoleAppContainer
 
+from Components.ActionMap import ActionMap
+from Components.config import config
+from Components.NimManager import nimmanager
+from Components.TuneTest import Tuner
+from Components.Sources.FrontendStatus import FrontendStatus
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
 from Screens.ScanSetup import ScanSetup, buildTerTransponder
 from Screens.ServiceScan import ServiceScan
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
-
-from Components.Sources.FrontendStatus import FrontendStatus
-from Components.ActionMap import ActionMap
-from Components.NimManager import nimmanager
-from Components.config import config
-from Components.TuneTest import Tuner
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Tools.Transponder import channel2frequency

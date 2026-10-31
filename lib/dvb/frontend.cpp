@@ -3,6 +3,7 @@
 
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/frontendparms.h>
+#include <lib/dvb/warmstart.h>
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
@@ -13,6 +14,8 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <sstream>
+#include <thread>
+#include <chrono>
 
 #include "absdiff.h"
 #ifndef I2C_SLAVE_FORCE
@@ -613,7 +616,9 @@ void eDVBFrontend::reopenFrontend()
 {
 	sleep(1);
 	m_delsys.clear();
-	openFrontend();
+	// driver may still be re-registering the device after a mode change
+	for (int retry = 0; openFrontend() && m_state == stateClosed && retry < 20; ++retry)
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 }
 
 int eDVBFrontend::initModeList()
@@ -706,18 +711,6 @@ int eDVBFrontend::openFrontend()
 	if (!m_simulate)
 	{
 		m_need_delivery_system_workaround = eSimpleConfig::getBool("config.usage.enable_delivery_system_workaround", false);
-		FILE *boxtype_file;
-		char boxtype_name[20];
-		if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
-		{
-			[[maybe_unused]] char* ret = fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
-			fclose(boxtype_file);
-
-			if(!strcmp(boxtype_name, "osminiplus\n") || !strcmp(boxtype_name, "osmega") || !strcmp(boxtype_name, "spycat4kmini"))
-			{
-				m_need_delivery_system_workaround = false;
-			}
-		}
 		eDebug("[eDVBFrontend] m_need_delivery_system_workaround = %d", m_need_delivery_system_workaround);
 
 		eDebug("[eDVBFrontend] opening frontend %d", m_dvbid);
@@ -727,6 +720,7 @@ int eDVBFrontend::openFrontend()
 			if (m_fd < 0)
 			{
 				eWarning("[eDVBFrontend] failed! (%s) %m", m_filename.c_str());
+				m_state = stateClosed;
 				return -1;
 			}
 		}
@@ -759,6 +753,7 @@ int eDVBFrontend::openFrontend()
 				eWarning("[eDVBFrontend] ioctl FE_GET_INFO failed: %m");
 				::close(m_fd);
 				m_fd = -1;
+				m_state = stateClosed;
 				return -1;
 			}
 #pragma GCC diagnostic push
@@ -929,7 +924,8 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 	eDVBFrontend *sec_fe = this;
 
 	long linked_prev_ptr = -1;
-	getData(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr);
+	if (sharedCTInput < 0 || m_type == feSatellite)
+		getData(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr);
 	while (linked_prev_ptr != -1)
 	{
 		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_prev_ptr;
@@ -974,18 +970,27 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 			return 0;
 		}
 		else
-			m_data[ROTOR_CMD] = -1;
+			inputData(ROTOR_CMD) = -1;
 	}
 
-	long tmp = m_data[LINKED_NEXT_PTR];
+	if (sharedInputInUse(m_type) || (m_type != feSatellite && sharedInputInUse(feSatellite)))
+	{
+		// Closing either demodulator may switch off their common antenna/LNB supply.
+		// A C/T demodulator can also cut power to the shared SAT input after a zap.
+		if (!m_simulate && m_sn)
+			m_sn->stop();
+		m_state = stateIdle;
+		return -1;
+	}
+	long tmp = sharedCTInput >= 0 && m_type != feSatellite ? -1 : m_data[LINKED_NEXT_PTR];
 	while (tmp != -1)
 	{
 		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
-		if (linked_fe->m_inuse)
+		if (linked_fe->m_inuse && (sharedCTInput < 0 || linked_fe->m_frontend->getTuneType() == feSatellite))
 		{
 			eDebugNoSimulate("[eDVBFrontend] dont close frontend %d until the linked frontend %d in slot %d is still in use",
 				m_dvbid, linked_fe->m_frontend->getDVBID(), linked_fe->m_frontend->getSlotID());
-			if (!m_simulate)
+			if (!m_simulate && m_sn)
 				m_sn->stop();
 			m_state = stateIdle;
 			return -1;
@@ -1078,8 +1083,8 @@ void eDVBFrontend::feEvent(int w)
 			{
 				eDebug("[eDVBFrontend] stateLostLock");
 				state = stateLostLock;
-				if (!m_rotor_mode)
-					sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = -1; // reset diseqc
+				if (!m_rotor_mode && (sharedCTInput < 0 || m_type == feSatellite))
+					sec_fe->inputData(CSW) = sec_fe->inputData(UCSW) = sec_fe->inputData(TONEBURST) = -1; // reset diseqc
 			}
 		}
 		if (m_state != state)
@@ -1120,7 +1125,8 @@ void eDVBFrontend::retune()
 {
 	m_timeout->stop();
 	m_state = stateFailed;
-	m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1; // reset diseqc
+	if (sharedCTInput < 0 || m_type == feSatellite)
+		inputData(CSW) = inputData(UCSW) = inputData(TONEBURST) = -1; // reset diseqc
 	m_stateChanged(this);
 }
 
@@ -2027,7 +2033,8 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 	int delay=-1;
 	eDVBFrontend *sec_fe = this;
 	eDVBRegisteredFrontend *regFE[32];
-	long tmp = m_data[LINKED_PREV_PTR];
+	// Internal SAT loop-through does not carry the separate C/T input.
+	long tmp = sharedCTInput >= 0 && m_type != feSatellite ? -1 : m_data[LINKED_PREV_PTR];
 	while ( tmp != -1 )
 	{
 		eDVBRegisteredFrontend *prev = (eDVBRegisteredFrontend *)tmp;
@@ -2039,7 +2046,8 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			int state = sec_fe->m_state;
 			if (!m_fbc && state != eDVBFrontend::stateIdle && state != stateClosed)
 			{
-				sec_fe->m_sn->stop();
+				if (sec_fe->m_sn)
+					sec_fe->m_sn->stop();
 				state = sec_fe->m_state = stateIdle;
 			}
 			// sec_fe is closed... we must reopen it here..
@@ -2054,7 +2062,6 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 
 	if ( m_sec_sequence && m_sec_sequence.current() != m_sec_sequence.end() )
 	{
-		long *sec_fe_data = sec_fe->m_data;
 //		eDebugNoSimulate("[eDVBFrontend] tuneLoop %d\n", m_sec_sequence.current()->cmd);
 		delay = 0;
 		switch (m_sec_sequence.current()->cmd)
@@ -2077,7 +2084,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::IF_VOLTAGE_GOTO:
 			{
 				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
-				if ( compare.voltage == sec_fe_data[CUR_VOLTAGE] && setSecSequencePos(compare.steps) )
+				if ( compare.voltage == sec_fe->inputData(CUR_VOLTAGE) && setSecSequencePos(compare.steps) )
 					break;
 				++m_sec_sequence.current();
 				break;
@@ -2085,7 +2092,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::IF_NOT_VOLTAGE_GOTO:
 			{
 				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
-				if ( compare.voltage != sec_fe_data[CUR_VOLTAGE] && setSecSequencePos(compare.steps) )
+				if ( compare.voltage != sec_fe->inputData(CUR_VOLTAGE) && setSecSequencePos(compare.steps) )
 					break;
 				++m_sec_sequence.current();
 				break;
@@ -2093,7 +2100,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::IF_TONE_GOTO:
 			{
 				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
-				if ( compare.tone == sec_fe_data[CUR_TONE] && setSecSequencePos(compare.steps) )
+				if ( compare.tone == sec_fe->inputData(CUR_TONE) && setSecSequencePos(compare.steps) )
 					break;
 				++m_sec_sequence.current();
 				break;
@@ -2101,7 +2108,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::IF_NOT_TONE_GOTO:
 			{
 				eSecCommand::pair &compare = m_sec_sequence.current()->compare;
-				if ( compare.tone != sec_fe_data[CUR_TONE] && setSecSequencePos(compare.steps) )
+				if ( compare.tone != sec_fe->inputData(CUR_TONE) && setSecSequencePos(compare.steps) )
 					break;
 				++m_sec_sequence.current();
 				break;
@@ -2338,7 +2345,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					setSecSequencePos(cmd.steps);
 					break;
 				}
-				int idleInputpower = m_idleInputpower[ (sec_fe_data[CUR_VOLTAGE]&1) ? 0 : 1];
+				int idleInputpower = m_idleInputpower[ (sec_fe->inputData(CUR_VOLTAGE)&1) ? 0 : 1];
 				const char *txt = cmd.direction ? "running" : "stopped";
 				--m_timeoutCount;
 				if (!m_timeoutCount && m_retryCount > 0)
@@ -2369,35 +2376,35 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				break;
 			}
 			case eSecCommand::IF_ROTORPOS_VALID_GOTO:
-				if (sec_fe_data[ROTOR_CMD] != -1 && sec_fe_data[ROTOR_POS] != -1)
+				if (sec_fe->inputData(ROTOR_CMD) != -1 && sec_fe->inputData(ROTOR_POS) != -1)
 					setSecSequencePos(m_sec_sequence.current()->steps);
 				else
 					++m_sec_sequence.current();
 				break;
 			case eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS:
 				eDebugNoSimulate("[SEC] invalidate current switch params");
-				sec_fe_data[CSW] = -1;
-				sec_fe_data[UCSW] = -1;
-				sec_fe_data[TONEBURST] = -1;
+				sec_fe->inputData(CSW) = -1;
+				sec_fe->inputData(UCSW) = -1;
+				sec_fe->inputData(TONEBURST) = -1;
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::UPDATE_CURRENT_SWITCHPARMS:
-				sec_fe_data[CSW] = sec_fe_data[NEW_CSW];
-				sec_fe_data[UCSW] = sec_fe_data[NEW_UCSW];
-				sec_fe_data[TONEBURST] = sec_fe_data[NEW_TONEBURST];
+				sec_fe->inputData(CSW) = sec_fe->inputData(NEW_CSW);
+				sec_fe->inputData(UCSW) = sec_fe->inputData(NEW_UCSW);
+				sec_fe->inputData(TONEBURST) = sec_fe->inputData(NEW_TONEBURST);
 				eDebugNoSimulate("[SEC] update current switch params");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::INVALIDATE_CURRENT_ROTORPARMS:
 				eDebugNoSimulate("[SEC] invalidate current rotorparams");
-				sec_fe_data[ROTOR_CMD] = -1;
-				sec_fe_data[ROTOR_POS] = -1;
+				sec_fe->inputData(ROTOR_CMD) = -1;
+				sec_fe->inputData(ROTOR_POS) = -1;
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
-				sec_fe_data[ROTOR_CMD] = sec_fe_data[NEW_ROTOR_CMD];
-				sec_fe_data[ROTOR_POS] = sec_fe_data[NEW_ROTOR_POS];
-				eDebugNoSimulate("[SEC] update current rotorparams %d %04lx %ld", m_timeoutCount, sec_fe_data[ROTOR_CMD], sec_fe_data[ROTOR_POS]);
+				sec_fe->inputData(ROTOR_CMD) = sec_fe->inputData(NEW_ROTOR_CMD);
+				sec_fe->inputData(ROTOR_POS) = sec_fe->inputData(NEW_ROTOR_POS);
+				eDebugNoSimulate("[SEC] update current rotorparams %d %04lx %ld", m_timeoutCount, sec_fe->inputData(ROTOR_CMD), sec_fe->inputData(ROTOR_POS));
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_ROTOR_DISEQC_RETRYS:
@@ -2627,6 +2634,12 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		int type = -1;
 		oparm.getSystem(type);
 		eDebug("setting frontend %d events: %s", m_dvbid, recvEvents?"on":"off");
+		if (!m_sn)
+		{
+			eWarning("[eDVBFrontend] frontend %d not opened, tune failed", m_dvbid);
+			retune();
+			return;
+		}
 		if (recvEvents)
 			m_sn->start();
 		feEvent(-1); // flush events
@@ -3180,6 +3193,11 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 		res = -EINVAL;
 		goto tune_error;
 	}
+	if (sharedInputInUse(type, true))
+	{
+		eDebug("[eDVBFrontend%d] shared C/T input is in use by an incompatible reception type", m_dvbid);
+		return -EBUSY;
+	}
 
 	if (!m_sn && !m_simulate)
 	{
@@ -3193,7 +3211,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 
 	m_sec_sequence.clear();
 
-	if((m_type == feSatellite) && (type != feSatellite))
+	if ((m_type == feSatellite) && (type != feSatellite) && !sharedInputInUse(feSatellite))
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 
 	if((m_type == feSatellite) && (type != feSatellite) && (m_data[SATCR] != -1))
@@ -3318,7 +3336,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 				sec_fe->getData(LINKED_NEXT_PTR, tmp);
 			}
 			eDebug("[eDVBFrontend%d] reset diseqc after leave rotor mode!", m_dvbid);
-			sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = sec_fe->m_data[ROTOR_CMD] = sec_fe->m_data[ROTOR_POS] = -1; // reset diseqc
+			sec_fe->inputData(CSW) = sec_fe->inputData(UCSW) = sec_fe->inputData(TONEBURST) = sec_fe->inputData(ROTOR_CMD) = sec_fe->inputData(ROTOR_POS) = -1; // reset diseqc
 		}
 		m_rotor_mode = feparm.no_rotor_command_on_tune;
 		if (!m_simulate)
@@ -3344,8 +3362,11 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 		if (res)
 			goto tune_error;
 
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
+		if (sharedCTInput < 0)
+			m_sec_sequence.push_back(eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff));
 		m_sec_sequence.push_back(eSecCommand(eSecCommand::CHANGE_TUNER_TYPE, type));
+		if (sharedCTInput >= 0)
+			m_sec_sequence.push_back(eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff));
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 1) );
 		break;
@@ -3429,11 +3450,19 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 {
 	bool increased=false;
 	fe_sec_voltage_t vlt;
-	m_data[CUR_VOLTAGE]=voltage;
+	inputData(CUR_VOLTAGE)=voltage;
 	switch (voltage)
 	{
 		case voltageOff:
-			m_data[CSW]=m_data[UCSW]=m_data[TONEBURST]=-1; // reset diseqc
+			eDVBWarmStart::voltageOff(*this);
+			if (sharedCTInput < 0 || m_type == feSatellite)
+				inputData(CSW) = inputData(UCSW) = inputData(TONEBURST) = -1; // reset diseqc
+			else if (sharedSatData && !sharedInputInUse(feSatellite))
+			{
+				// The demodulator also switches off the LNB supply of the shared SAT input.
+				(*sharedSatData)[CUR_VOLTAGE] = voltageOff;
+				(*sharedSatData)[CSW] = (*sharedSatData)[UCSW] = (*sharedSatData)[TONEBURST] = -1;
+			}
 			vlt = SEC_VOLTAGE_OFF;
 			char filename[256];
 			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/active_antenna_power", m_slotid);
@@ -3483,7 +3512,7 @@ RESULT eDVBFrontend::setTone(int t)
 		eDebug("[eDVBFrontend%d] sendTone allowed only in feSatellite (%d)", m_dvbid, m_type);
 		return 0;
 	}
-	m_data[CUR_TONE]=t;
+	inputData(CUR_TONE)=t;
 	switch (t)
 	{
 		case toneOn:
@@ -3567,9 +3596,9 @@ RESULT eDVBFrontend::setSecSequence(eSecCommandList &list, iDVBFrontend *fe)
 
 RESULT eDVBFrontend::getData(int num, long &data)
 {
-	if ( num < NUM_DATA_ENTRIES )
+	if (num >= 0 && num < NUM_DATA_ENTRIES)
 	{
-		data = m_data[num];
+		data = inputData(num);
 		return 0;
 	}
 	return -EINVAL;
@@ -3577,12 +3606,45 @@ RESULT eDVBFrontend::getData(int num, long &data)
 
 RESULT eDVBFrontend::setData(int num, long val)
 {
-	if ( num < NUM_DATA_ENTRIES )
+	if (num >= 0 && num < NUM_DATA_ENTRIES)
 	{
-		m_data[num] = val;
+		inputData(num) = val;
 		return 0;
 	}
 	return -EINVAL;
+}
+
+long &eDVBFrontend::inputData(int num)
+{
+	// Switch/rotor state belongs to the coax input, while pending commands and
+	// Unicable user bands belong to the individual demodulator.
+	if (sharedSatData && (num == CSW || num == UCSW || num == TONEBURST || num == ROTOR_CMD || num == ROTOR_POS
+		|| (m_type == feSatellite && (num == CUR_VOLTAGE || num == CUR_TONE))))
+		return (*sharedSatData)[num];
+	return m_data[num];
+}
+
+void eDVBFrontend::setInputGroups(int satInput, int ctInput, const std::shared_ptr<std::array<long, NUM_DATA_ENTRIES>> &satData)
+{
+	sharedSatInput = satInput;
+	sharedCTInput = ctInput;
+	sharedSatData = satData;
+}
+
+int eDVBFrontend::getTuneType() const
+{
+	int type;
+	return oparm.getSystem(type) ? m_type : type;
+}
+
+bool eDVBFrontend::sharedInputInUse(int type, bool incompatibleOnly)
+{
+	// Frontends are opened/closed while the resource manager is still being
+	// constructed. Input groups only exist after NimManager has configured it.
+	if ((type == feSatellite ? sharedSatInput : sharedCTInput) < 0)
+		return false;
+	ePtr<eDVBResourceManager> manager;
+	return !eDVBResourceManager::getInstance(manager) && manager->sharedInputInUse(this, type, incompatibleOnly);
 }
 
 bool eDVBFrontend::isPreferred(int preferredFrontend, int slotid)
@@ -3656,6 +3718,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, bool is
 	}
 	else if ((type == eDVBFrontend::feCable) || (types & (1 << eDVBFrontend::feCable)))
 	{
+		if (sharedInputInUse(feCable, true))
+			return 0;
 		eDVBFrontendParametersCable parm;
 		bool can_handle_dvbc_annex_a, can_handle_dvbc_annex_c;
 		if (feparm->getDVBC(parm) < 0)
@@ -3687,6 +3751,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, bool is
 	}
 	else if ((type == eDVBFrontend::feTerrestrial) || (types & (1 << eDVBFrontend::feTerrestrial)))
 	{
+		if (sharedInputInUse(feTerrestrial, true))
+			return 0;
 		eDVBFrontendParametersTerrestrial parm;
 		bool can_handle_dvbt, can_handle_dvbt2;
 		can_handle_dvbt = supportsDeliverySystem(SYS_DVBT, true);
@@ -3781,12 +3847,12 @@ bool eDVBFrontend::changeType(int type)
 #endif
 		case feTerrestrial:
 		{
-			char configStr[255];
-			snprintf(configStr, 255, "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
-			if (eSimpleConfig::getBool(configStr, false))
-				 setVoltage(iDVBFrontend::voltage13);
-			else
-				 setVoltage(iDVBFrontend::voltageOff);
+			if (sharedCTInput < 0)
+			{
+				char configStr[255];
+				snprintf(configStr, 255, "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
+				setVoltage(eSimpleConfig::getBool(configStr, false) ? voltage13 : voltageOff);
+			}
 
 			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBT]);
 			p[1].u.data = SYS_DVBT;
@@ -3794,7 +3860,8 @@ bool eDVBFrontend::changeType(int type)
 		}
 		case feCable:
 		{
-			 setVoltage(iDVBFrontend::voltageOff);
+			if (sharedCTInput < 0)
+				setVoltage(iDVBFrontend::voltageOff);
 #ifdef SYS_DVBC_ANNEX_A
 			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBC_ANNEX_A]);
 			p[1].u.data = SYS_DVBC_ANNEX_A;

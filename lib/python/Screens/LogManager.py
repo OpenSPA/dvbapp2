@@ -4,7 +4,10 @@ from os import SEEK_END, remove, rmdir, stat, walk, listdir
 from os.path import basename, exists, getsize, isdir, join
 from re import compile
 from time import ctime, time, sleep
+
 from enigma import eBackgroundFileEraser, eLabel, eTimer, fontRenderClass, gFont
+
+from skin import getSkinFactor
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.config import config, configfile
@@ -15,7 +18,6 @@ import Components.Task
 from Components.VariableText import VariableText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from skin import getSkinFactor
 from Tools.Conversions import scaleNumber
 from Tools.Directories import fileReadLines
 from Tools.TextBoundary import getTextBoundarySize
@@ -407,22 +409,23 @@ class LogManagerViewLog(Screen):
 		listwidth = int(self["list"].instance.size().width() / fontwidth)
 		if hasattr(self, "logfile"):
 			if exists(self.logfile):
-				for line in open(self.logfile).readlines():
-					line = line.replace('\t', ' ' * 9)
-					if len(line) > listwidth:
-						pos = 0
-						offset = 0
-						readyline = True
-						while readyline:
-							a = " " * offset + line[pos:pos + listwidth - offset]
-							self.log.append(a)
-							if len(line[pos + listwidth - offset:]):
-								pos += listwidth - offset
-								offset = 20
-							else:
-								readyline = False
-					else:
-						self.log.append(line)
+				with open(self.logfile, encoding="UTF-8", errors="replace") as logFile:
+					for line in logFile:
+						line = line.replace('\t', ' ' * 9)
+						if len(line) > listwidth:
+							pos = 0
+							offset = 0
+							readyline = True
+							while readyline:
+								a = " " * offset + line[pos:pos + listwidth - offset]
+								self.log.append(a)
+								if len(line[pos + listwidth - offset:]):
+									pos += listwidth - offset
+									offset = 20
+								else:
+									readyline = False
+						else:
+							self.log.append(line)
 			else:
 				self.log = [_("file can not displayed - file not found")]
 			self["list"].setList(self.log)

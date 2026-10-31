@@ -2,8 +2,7 @@ from os import remove
 from os.path import exists
 from time import ctime, time
 
-from enigma import eServiceCenter, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iServiceInformation, iRecordableService, iRecordableServicePtr, pNavigation
-from enigma import canDVBIFallbackReleaseForRecording, getDVBIFallbackService, getDVBIPlaybackService, getDVBIServiceAvailability
+from enigma import canDVBIFallbackReleaseForRecording, eServiceCenter, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, getDVBIFallbackService, getDVBIPlaybackService, getDVBIServiceAvailability, iPlayableService, iRecordableService, iRecordableServicePtr, iServiceInformation, pNavigation
 
 import NavigationInstance
 import RecordTimer
@@ -23,8 +22,8 @@ from Screens.MessageBox import MessageBox
 import Screens.Standby
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileWriteLine
-from Tools.StbHardware import getFPWasTimerWakeup
 from Tools.Notifications import AddPopup, AddNotification
+from Tools.StbHardware import getFPWasTimerWakeup
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -52,6 +51,7 @@ class Navigation:
 		self.indicatorRecordingsCount = None
 		self.anyRecordingsCount = None
 		self.realRecordingsCount = None
+		self.streamRetryOverride = False
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.dispatchEvent)
 		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
@@ -71,6 +71,7 @@ class Navigation:
 		self.isRecordTimerImageStandard = False
 		self.isCurrentServiceStreamRelay = False
 		self.isCurrentServiceDVBI = False
+		self.hybridPlaybackService = None
 		self.dvbiFailureTimer = None
 		self.dvbiFailureService = None
 		self.dvbiPlaybackService = None
@@ -311,6 +312,7 @@ class Navigation:
 		for x in self.event:
 			x(i)
 		if i == iPlayableService.evEnd:
+			self.hybridPlaybackService = None
 			if not self.skipServiceReferenceReset:
 				self.currentlyPlayingServiceReference = None
 				self.currentlyPlayingServiceOrGroup = None
@@ -326,10 +328,14 @@ class Navigation:
 	def getStreamRetryService(self):
 		bar = InfoBar.instance
 		ref = self.currentlyPlayingServiceOrGroup
+		streamRef = self.hybridPlaybackService or ref
+		isOverride = self.streamRetryOverride  # OpenSPA [norhap] add flag indicator HTTP stream injected into the demux e.g. ExtEplayer3.
 		if (not bar or ServiceEventTracker.getActiveInfoBar() is not bar or Screens.Standby.inStandby
-				or self.isCurrentServiceDVBI or self.isCurrentServiceStreamRelay
-				or not ref or ref.flags & eServiceReference.isGroup or ref.type != 4097
-				or not ref.getPath().lower().startswith(("http://", "https://"))
+				or (self.isCurrentServiceDVBI and not isOverride)
+				or self.isCurrentServiceStreamRelay
+				or not ref or ref.flags & eServiceReference.isGroup
+				or (not isOverride and streamRef.type != 4097)
+				or (not isOverride and not streamRef.getPath().lower().startswith(("http://", "https://")))
 				or bar.seekstate != bar.SEEK_STATE_PLAY):
 			return None
 		service = self.getCurrentService()
@@ -523,7 +529,13 @@ class Navigation:
 			else:
 				playref = ref
 			if self.pnav:
-				if not BoxInfo.getItem("FCCactive"):
+				# Let native navigation hand over a live SDR session before stopping
+				# the old service. Hooks and extensions resolve the final target first;
+				# native navigation checks whether the receiver can actually be reused.
+				keepSDRReceiver = (not forceRestart
+					and oldref and oldref.type == 4115 and playref.type == 4115
+					and oldref.getPath().startswith("dab://rtlsdr/") and oldref.getPath() == playref.getPath())
+				if (not BoxInfo.getItem("FCCactive") and not keepSDRReceiver) or (forceRestart and oldref and oldref.type == 4115):
 					self.pnav.stopService()
 				else:
 					self.skipServiceReferenceReset = True
@@ -551,6 +563,9 @@ class Navigation:
 				if not isStreamRelay:
 					playref, wrappererror = self.serviceHook(playref)
 					if wrappererror:
+						if keepSDRReceiver:
+							self.pnav.stopService()
+							self.skipServiceReferenceReset = False
 						return 1
 
 				originalPlayref = playref.toString()
@@ -562,6 +577,9 @@ class Navigation:
 						playref, isAsyncPlay = ret
 					if isAsyncPlay or playref.toString() != originalPlayref:
 						break
+				if keepSDRReceiver and isAsyncPlay:
+					self.pnav.stopService()
+					self.skipServiceReferenceReset = False
 
 				print(f"[Navigation] Playref is '{playref.toString()}'.")
 				# Keep the delivery route separate from the logical channel used for EPG.

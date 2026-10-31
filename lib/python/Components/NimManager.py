@@ -1,21 +1,16 @@
 from copy import deepcopy
 from datetime import datetime
 from os import F_OK, access
-from os.path import exists
+from os.path import exists, join
 from time import localtime, mktime
-import xml.etree.cElementTree
+from xml.etree.ElementTree import parse
 
-from enigma import eDVBResourceManager, eDVBDB, \
-	eDVBSatelliteDiseqcParameters as diseqcParam, \
-	eDVBSatelliteEquipmentControl as secClass, \
-	eDVBSatelliteRotorParameters as rotorParam, \
-	eDVBSatelliteSwitchParameters as switchParam, \
-	eEnv, getLinkedSlotID, iDVBFrontend, isFBCLink
+from enigma import eDVBDB, eDVBResourceManager, eDVBSatelliteDiseqcParameters as diseqcParam, eDVBSatelliteEquipmentControl as secClass, eDVBSatelliteRotorParameters as rotorParam, eDVBSatelliteSwitchParameters as switchParam, eEnv, getLinkedSlotID, iDVBFrontend, isFBCLink
 
 from Components.config import ConfigDateTime, ConfigFloat, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSatlist, ConfigSelection, ConfigSubDict, ConfigSubList, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.SystemInfo import BoxInfo
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import fileReadLines, fileWriteLine
+from Tools.Directories import fileReadLine, fileReadLines, fileWriteLine
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -226,7 +221,9 @@ class SecConfigure:
 		try:
 			for slot in nim_slots:
 				if slot.frontend_id is not None:
-					types = [tunertype for tunertype in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, tunertype)]
+					# Before the initial slot assignment, native slot IDs are still frontend IDs.
+					frontendIndex = slot.frontend_id if self.NimManager.firstRun else slot.slot
+					types = [x for x in ("DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "ATSC") if eDVBResourceManager.getInstance().frontendIsCompatible(frontendIndex, x)]
 					if "DVB-T2" in types:  # DVB-T2 implies DVB-T support.
 						types.remove("DVB-T")
 					if "DVB-S2" in types:  # DVB-S2 implies DVB-S support.
@@ -252,6 +249,8 @@ class SecConfigure:
 					slot.canBeCompatible("DVB-S2X") and (slot.config.dvbs.configMode.value != "nothing" and True or False),
 					slot.frontend_id is None and -1 or slot.frontend_id))
 		eDVBResourceManager.getInstance().setFrontendSlotInformations(used_nim_slots)
+		if hasattr(eDVBResourceManager.getInstance(), "setFrontendInputGroups"):
+			eDVBResourceManager.getInstance().setFrontendInputGroups([(x.slot, x.sharedSatInput, x.sharedCTInput) for x in nim_slots if x.frontend_id is not None])
 		for slot in nim_slots:
 			x = slot.slot
 			if slot.canBeCompatible("DVB-S"):
@@ -363,7 +362,7 @@ class SecConfigure:
 		for slot in nim_slots:
 			if slot.frontend_id is not None:
 				if slot.isMultiType():
-					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False)  # To force a clear of 'm_delsys_whitelist'.
+					eDVBResourceManager.getInstance().setFrontendType(slot.slot, "dummy", False)  # To force a clear of 'm_delsys_whitelist'.
 					types = slot.getMultiTypeList()
 					for FeType in types.values():
 						if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
@@ -374,9 +373,9 @@ class SecConfigure:
 							continue
 						elif FeType in ("ATSC") and config.Nims[slot.slot].atsc.configMode.value == "nothing":
 							continue
-						eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
+						eDVBResourceManager.getInstance().setFrontendType(slot.slot, FeType, True)
 				else:
-					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
+					eDVBResourceManager.getInstance().setFrontendType(slot.slot, slot.getType())
 		print("[NimManager] Sec configuration completed.")
 
 	def updateAdvanced(self, sec, slotid):
@@ -759,6 +758,9 @@ class NIM:
 		self.__is_empty = is_empty
 		self.is_fbc = is_fbc or (0, 0, 0)
 		self.input_name = input_name
+		self.sharedSatInput = -1
+		self.sharedCTInput = -1
+		self.inputGroupSlots = ()
 		self.compatible = {
 			None: (None,),
 			"DVB-S": ("DVB-S", None),
@@ -837,6 +839,13 @@ class NIM:
 
 	def internallyConnectableTo(self):
 		return self.internally_connectable
+
+	def getInputDescription(self):
+		if self.sharedSatInput >= 0:
+			return _("Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together.")
+		if self.sharedCTInput >= 0:
+			return _("Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together.")
+		return ""
 
 	def setInternalLink(self):
 		if self.internally_connectable is not None:
@@ -980,9 +989,9 @@ class NimManager:
 		self.cablesList = []
 		self.terrestrialsList = []
 		self.atscList = []
+		self.firstRun = True
 		self.enumerateNIMs()
 		self.readTransponders()
-		self.firstRun = True
 		InitNimManager(self)  # Initialize configuration.
 		self.firstRun = False
 
@@ -1208,7 +1217,8 @@ class NimManager:
 		try:
 			for slot in self.nim_slots:
 				if slot.frontend_id is not None:
-					types = [tunertype for tunertype in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, tunertype)]
+					frontendIndex = slot.frontend_id if self.firstRun else slot.slot
+					types = [x for x in ("DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC") if eDVBResourceManager.getInstance().frontendIsCompatible(frontendIndex, x)]
 					if "DVB-T2" in types:  # DVB-T2 implies DVB-T support.
 						types.remove("DVB-T")
 					if "DVB-S2" in types:  # DVB-S2 implies DVB-S support.
@@ -1349,11 +1359,16 @@ class NimManager:
 			if "has_outputs" not in entry:
 				entry["has_outputs"] = True  # "Has_Outputs: yes" not in /proc/bus/nim_sockets NIM, but the physical loopthrough exist.
 
-			if "frontend_device" in entry:  # Check if internally connectible.
-				if exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((id > 0) or (BoxInfo.getItem("machinebuild") == "vusolo2")):
-					entry["internally_connectable"] = entry["frontend_device"] - 1
-				else:
+			if "frontend_device" in entry:
+				if "internally_connectable" not in entry:
+					# Frontend IDs can differ from slot IDs when a preceding socket is empty.
+					previousFrontend = entry["frontend_device"] - 1
 					entry["internally_connectable"] = None
+					if exists(join("/proc/stb/frontend", str(entry["frontend_device"]), "rf_switch")):
+						if BoxInfo.getItem("machinebuild") == "vusolo2":
+							entry["internally_connectable"] = previousFrontend  # Preserve the Solo2's reversed A-to-B link.
+						elif id > 0:
+							entry["internally_connectable"] = next((x for x in entries if entries[x].get("frontend_device") == previousFrontend), None)
 			else:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if "multi_type" not in entry:
@@ -1377,6 +1392,37 @@ class NimManager:
 					fbc_tuner += 1
 			# print(f"[NimManager] DEBUG: Create NIM '{entry}'.")
 			self.nim_slots.append(NIM(slot=id, description=entry["name"], nimtype=entry["type"], has_outputs=entry["has_outputs"], internally_connectable=entry["internally_connectable"], multi_type=entry["multi_type"], frontend_id=entry["frontend_device"], i2c=entry["i2c"], is_empty=entry["isempty"], input_name=entry.get("input_name", None), supports_blind_scan=entry["supports_blind_scan"], is_fbc=entry["fbc"], number_of_slots=self.number_of_slots))
+		self.configureInputGroups()
+
+	def configureInputGroups(self):
+		# Delivery-system capabilities alone do not describe the physical connectors.
+		machine = BoxInfo.getItem("machinebuild")
+		groups = {}
+		for slot in self.nim_slots:
+			slot.sharedSatInput = slot.sharedCTInput = -1
+			slot.inputGroupSlots = ()
+			if slot.frontend_id is None or slot.isFBCTuner() or not all(slot.canBeCompatible(x) for x in ("DVB-S", "DVB-C", "DVB-T")):
+				continue
+			fixedCombo = machine in ("dreamone", "dreamtwo") and slot.description == "Si2169D"
+			plugInTriple = machine in ("dm900", "dm920", "dm820", "dm7080") and slot.description == "Si2169C"
+			name = slot.input_name or ""
+			if not (fixedCombo or plugInTriple) or len(name) != 2 or name[1] not in "12":
+				continue
+			groups.setdefault((name[0], slot.description, slot.i2c), []).append(slot)
+		for slots in groups.values():
+			slots.sort(key=lambda x: x.input_name)
+			if len(slots) != 2 or slots[0].input_name[1] != "1" or slots[1].input_name[1] != "2" or slots[1].frontend_id != slots[0].frontend_id + 1:
+				continue
+			sharedSat = slots[0].description == "Si2169D"
+			# Use explicit driver input choices when available; older plug-in drivers omit them.
+			inputChoices = [fileReadLine(join("/proc/stb/frontend", str(x.frontend_id), "input_choices"), default="", source=MODULE_NAME).split() for x in slots]
+			if all(inputChoices):
+				sharedSat = inputChoices[0] == inputChoices[1] and len(inputChoices[0]) == 1
+			for slot in slots:
+				slot.sharedSatInput = slots[0].slot if sharedSat else -1
+				slot.sharedCTInput = slots[0].slot
+				slot.inputGroupSlots = tuple(x.slot for x in slots)
+			print(f"[NimManager] Triple tuner {slots[0].input_name[0]}: slots {slots[0].inputGroupSlots}, {'one shared' if sharedSat else 'two separate'} SAT inputs, one shared C/T input.")
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
@@ -1814,7 +1860,7 @@ def InitNimManager(nimmgr, update_slots=None):
 	unicablelnbproducts = {}
 	unicablematrixproducts = {}
 	with open(eEnv.resolve("${datadir}/enigma2/unicable.xml")) as fd:
-		doc = xml.etree.cElementTree.parse(fd)
+		doc = parse(fd)
 	root = doc.getroot()
 	entry = root.find("lnb")
 	for manufacturer in entry:
@@ -2046,14 +2092,17 @@ def InitNimManager(nimmgr, update_slots=None):
 							scrlist_append = scrlist.append
 							vcolist = unicableproducts[manufacturer][article].get("frequencies")
 							tmp.vco[article] = ConfigSubList()
+							defaultScr = None  # Keep SCR indices for SEC, but default to the first usable user band.
 							for cnt in range(1, len(vcolist) + 1):
 								vcofreq = int(vcolist[cnt - 1])
+								if vcofreq and defaultScr is None:
+									defaultScr = f"{cnt}"
 								if vcofreq == 0 and vco_null_check:
 									scrlist_append((f"{cnt}", f"SCR {cnt} " + _("not used")))
 								else:
 									scrlist_append((f"{cnt}", f"SCR {cnt}"))
 								tmp.vco[article].append(ConfigInteger(default=vcofreq, limits=(vcofreq, vcofreq)))
-							tmp.scr[article] = ConfigSelection(choices=scrlist, default=scrlist[0][0])
+							tmp.scr[article] = ConfigSelection(choices=scrlist, default=defaultScr or scrlist[0][0])
 							tmp.lofl[article] = ConfigSubList()
 							tmp.lofh[article] = ConfigSubList()
 							tmp.loft[article] = ConfigSubList()
@@ -2094,7 +2143,7 @@ def InitNimManager(nimmgr, update_slots=None):
 				default = UnicableLnbManufacturers[0]
 			defaultProduct = rootDefaults.get("unicable_lnb_product", None) if defaultSlot else lnbTemplateProduct(template, "unicableLnb", default)
 			section.unicableLnbManufacturer = ConfigSelection(UnicableLnbManufacturers, default)
-			section.unicableLnb = fillUnicableConf(unicablelnbproducts, False, defaultProduct, defaultSlot)
+			section.unicableLnb = fillUnicableConf(unicablelnbproducts, True, defaultProduct, defaultSlot)
 			# TODO satpositions for satcruser.
 			section.bootuptimeuser = ConfigInteger(default=lnbTemplateValue(template, "bootuptimeuser", 2700), limits=(0, 15000))
 			section.dictionuser = ConfigSelection(advanced_lnb_diction_user_choices, default=lnbTemplateValue(template, "dictionuser", "EN50494"))
@@ -2421,7 +2470,8 @@ def InitNimManager(nimmgr, update_slots=None):
 	try:
 		for slot in nimmgr.nim_slots:
 			if slot.frontend_id is not None:
-				types = [tunertype for tunertype in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, tunertype)]
+				frontendIndex = slot.frontend_id if nimmgr.firstRun else slot.slot
+				types = [x for x in ("DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC") if eDVBResourceManager.getInstance().frontendIsCompatible(frontendIndex, x)]
 				if "DVB-T2" in types:  # DVB-T2 implies DVB-T support.
 					types.remove("DVB-T")
 				if "DVB-S2" in types:  # DVB-S2 implies DVB-S support.

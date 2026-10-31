@@ -14,12 +14,12 @@
 #include <lib/base/message.h>
 #include <lib/base/thread.h>
 #include <lib/dvb/idvb.h>
+#include <lib/service/dabaudioframe.h>
 #include <lib/service/dabtsadapter.h>
 #include <lib/service/iservice.h>
 
 class eDABDecoder;
 class eDABSDRWorker;
-class eTSMPEGDecoder;
 typedef struct _GstElement GstElement;
 
 enum { DAB_MAX_SCANNED_SERVICES = 64 };
@@ -81,8 +81,11 @@ struct eDABWorkerStats
 	int slideFormat;
 	int bitrate;
 	int snrCentidB;
+	eDABAudioFormat audioFormat;
 	int ficQuality;
 	int mscQuality;
+	int programmeType = -1;
+	int programmeTypeTable = -1;
 	bool rfSynced;
 	bool serviceFound;
 	bool dabplus;
@@ -101,6 +104,8 @@ struct eDABWorkerStats
 	char programType[64];
 	char protection[32];
 	int error;
+	uint64_t sdrGeneration = 0;
+	bool sdrRestartRequired = false;
 
 	eDABWorkerStats();
 };
@@ -108,7 +113,7 @@ struct eDABWorkerStats
 class eDABWorker : private eThread
 {
 public:
-	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t)> AudioCallback;
+	typedef std::function<void(const uint8_t *, size_t, const uint8_t *, size_t, uint64_t, uint8_t, bool)> AudioCallback;
 	typedef std::function<void(const uint8_t *, size_t, int)> ImageCallback;
 	typedef std::function<int(const uint8_t *, size_t, int, int,
 		const std::string &, uint16_t)> MOTCallback;
@@ -194,6 +199,8 @@ class eServiceDAB : public iPlayableService, public iServiceInformation, public 
 public:
 	explicit eServiceDAB(const eServiceReference &ref);
 	~eServiceDAB() override;
+	static bool prepareRTLSDRZap(iPlayableService *previous, const eServiceReference &reference,
+		ePtr<iPlayableService> &next);
 
 	RESULT connectEvent(const sigc::slot<void(iPlayableService *, int)> &event, ePtr<eConnection> &connection) override;
 	RESULT start() override;
@@ -254,14 +261,15 @@ private:
 	void parentEvent(iPlayableService *service, int event);
 	void workerMessage(const eDABWorkerStats &stats);
 	static bool sinkAcceptsLOAS(const char *factoryName);
-	bool startAudioPipeline(bool loasInput = false, bool pcmInput = false);
+	bool startAudioPipeline(bool loasInput = false, bool pcmInput = false, bool mp2Input = false);
 	void stopAudioPipeline();
 	void pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config);
+	void pushMP2(const uint8_t *data, size_t length, uint64_t durationNs);
+	void pushSDRAudio(const uint8_t *data, size_t length, uint64_t durationNs, bool dabplus);
 	void pushLOAS(const uint8_t *data, size_t length);
 	void pushPCM(const uint8_t *data, size_t length, unsigned sampleRate);
 	void setAudioCaps(uint8_t config);
 	static void audioQueueOverrun(GstElement *queue, void *userData);
-	void showRadioPicture();
 	void storeSlide(const uint8_t *data, size_t length, int format);
 	bool cacheSPIImage(const std::string &path, const std::string &contentName);
 	bool cacheSPIImageData(const uint8_t *data, size_t length, const std::string &contentName);
@@ -282,6 +290,7 @@ private:
 	eFixedMessagePump<eDABWorkerStats> m_worker_pump;
 	std::unique_ptr<eDABWorker> m_worker;
 	std::unique_ptr<eDABSDRWorker> m_sdr_worker;
+	bool m_sdr_reused = false;
 	struct RTLSDRConsumer
 	{
 		std::function<void(const uint8_t *, size_t)> audioCallback;
@@ -291,6 +300,7 @@ private:
 	static eServiceDAB *s_rtlsdr_source;
 	std::mutex m_rtlsdr_consumers_mutex;
 	std::map<uint64_t, RTLSDRConsumer> m_rtlsdr_consumers;
+	bool m_rtlsdr_handover = false;
 	uint64_t m_next_rtlsdr_consumer = 1;
 	int m_socket[2];
 	bool m_running;
@@ -304,13 +314,15 @@ private:
 	GstElement *m_audio_pipeline;
 	GstElement *m_audio_source;
 	GstElement *m_audio_queue;
-	ePtr<eTSMPEGDecoder> m_radio_picture_decoder;
 	FILE *m_audio_capture;
 	uint64_t m_audio_next_pts;
 	uint8_t m_audio_format;
 	bool m_audio_caps_set;
 	bool m_audio_input_loas = false;
 	bool m_audio_input_pcm = false;
+	bool m_audio_input_mp2 = false;
+	std::mutex m_audio_mutex;
+	bool m_sdr_pcm_requested = false;
 	bool m_audio_loas = false;
 	unsigned m_pcm_sample_rate = 0;
 	uint64_t m_audio_probe_deadline = 0;
@@ -340,7 +352,7 @@ public:
 		const char *name, const char *description, const char *tags,
 		bool descramble, bool recordEcm, int packetSize) override;
 	RESULT prepareStreaming(bool descramble, bool includeEcm) override;
-	RESULT prepareStreamingToFD(int fd);
+	RESULT prepareStreamingToFD(int fd, bool sendHTTPHeader = false);
 	RESULT start(bool simulate = false) override;
 	RESULT stop() override;
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) override;
@@ -363,6 +375,7 @@ private:
 	void parentEvent(iPlayableService *service, int event);
 	void workerMessage(const eDABWorkerStats &stats);
 	void writeAudio(const uint8_t *data, size_t length);
+	void writeData(const uint8_t *data, size_t length);
 	void reportFailure(int error, int event);
 
 	eServiceReference m_reference;
@@ -380,6 +393,7 @@ private:
 	State m_state;
 	bool m_simulate;
 	bool m_streaming;
+	bool m_send_http_header = false;
 	bool m_tuned;
 	bool m_tap_running;
 	bool m_running_event_sent;
