@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 19:51+0100\n"
+"POT-Creation-Date: 2026-10-31 18:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1628,6 +1628,9 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr ""
 
 msgid "A new storage device has been connected:"
+msgstr ""
+
+msgid "A prepared or running timer can not be moved to the fallback tuner."
 msgstr ""
 
 msgid ""
@@ -22419,6 +22422,9 @@ msgid "The time shift storage device is not available. Please check the device a
 msgstr ""
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr ""
+
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
 msgstr ""
 
 msgid "The timer file '%s' is corrupt and could not be loaded."

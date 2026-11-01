@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 19:51+0100\n"
+"POT-Creation-Date: 2026-10-31 18:09+0100\n"
 "PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -1768,6 +1768,9 @@ msgstr "Un resaltado en la imagen del mando a distancia muestra a qué botón se
 
 msgid "A new storage device has been connected:"
 msgstr "Se ha conectado un nuevo dispositivo de almacenamiento:"
+
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr "No se puede trasladar al sintonizador de reserva un temporizador preparado o en ejecución."
 
 msgid "A recording has been started:\n%s"
 msgstr "Se ha iniciado una grabación:\n%s"
@@ -24378,6 +24381,9 @@ msgstr "El dispositivo de almacenamiento para el time shift no está disponible.
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "Se ha retirado el dispositivo de almacenamiento para el time shift. La función de time shift se ha detenido."
+
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr "El temporizador entra en conflicto con un temporizador local y no se ha trasladado desde el sintonizador de reserva."
 
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "El archivo de temporizador '%s' está corrupto y no se puede cargar."
