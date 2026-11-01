@@ -69,9 +69,10 @@ self.selectKey("OK")
 		</code>
 	</step>
 
-	<step id="flashexpander" >
+	<step id="flashexpander">
 		<condition>
-self.condition = self.smallFlashSize
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared
 		</condition>
 		<buttons enable="OK,UP,DOWN" />
 		<text value="Welcome to Flash Expander" />
@@ -84,7 +85,8 @@ self.condition = self.smallFlashSize
 
 	<step id="initflashexpander" nextstep="initswap">
 		<condition>
-self.condition = self.smallFlashSize and not self.smallBoxPrepared
+from Components.SystemInfo import BoxInfo
+self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared
 		</condition>
 		<config screen="FlashExpander" module="FlashExpander" type="standalone" />
 		<code pos="after" async="yes">
