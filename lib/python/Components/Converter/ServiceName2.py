@@ -41,12 +41,14 @@ class ServiceName2(Converter):
 	SATELLITE = 7
 	ALLREF = 8
 	FORMAT = 9
+	BOUQUETREF = 10
 
 	def __init__(self, token):
 		Converter.__init__(self, token)
 		self.type = {
 			"AllRef": self.ALLREF,
 			"Bouquet": self.BOUQUET,
+			"Bouquetref": self.BOUQUETREF,
 			"Name": self.NAME,
 			"Number": self.NUMBER,
 			"OrbitalPos": self.ORBPOS,
@@ -72,7 +74,7 @@ class ServiceName2(Converter):
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == iPlayableService.evStart:
 			self.refstr = self.isStream = self.ref = self.info = self.tpdata = None
-			if self.type in (self.NUMBER, self.BOUQUET) or (self.type == self.FORMAT and ("%n" in self.sfmt or "%B" in self.sfmt)):
+			if self.type in (self.NUMBER, self.BOUQUET, self.BOUQUETREF) or (self.type == self.FORMAT and ("%n" in self.sfmt or "%B" in self.sfmt)):
 				self.what = what
 				self.Timer.start(200, True)
 			else:
@@ -225,7 +227,7 @@ class ServiceName2(Converter):
 							found = service
 			return found, num
 
-		result = (0, "")
+		result = (0, "", None)
 		if isinstance(ref, eServiceReference):
 			isRadioService = ref.getData(0) in (2, 10)
 			lastPath = config.radio.lastroot.value if isRadioService else config.tv.lastroot.value
@@ -266,7 +268,7 @@ class ServiceName2(Converter):
 									break
 				if service is not None:
 					info = serviceHandler.info(bouquet)
-					result = (number, info and info.getName(bouquet) or "")
+					result = (number, info and info.getName(bouquet) or "", bouquet or None)
 		return result
 
 	@cached
@@ -336,6 +338,12 @@ class ServiceName2(Converter):
 					text = getAllRef()
 				case self.BOUQUET:
 					text = getNumberAndBouquet()[1]
+				case self.BOUQUETREF:
+					text = getNumberAndBouquet()[2]
+					if text:
+						text = text.toString()
+					else:
+						text = ""
 				case self.FORMAT:
 					parts = self.sfmt.split("%")
 					text = parts[0]
