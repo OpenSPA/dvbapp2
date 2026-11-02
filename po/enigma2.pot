@@ -5494,9 +5494,6 @@ msgstr ""
 msgid "Country for EPG event rating information"
 msgstr ""
 
-msgid "Country Music"
-msgstr ""
-
 msgid "CPU"
 msgstr ""
 
@@ -11211,9 +11208,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr ""
 
@@ -14011,9 +14005,6 @@ msgid "OK checks the currently tuned transponder."
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -17012,9 +17003,6 @@ msgid "Right, wrapped"
 msgstr ""
 
 msgid "Rock"
-msgstr ""
-
-msgid "Rock Music"
 msgstr ""
 
 msgid "Rock/Pop"

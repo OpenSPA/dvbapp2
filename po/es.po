@@ -5889,9 +5889,6 @@ msgstr "País para la información sobre el género del evento EPG"
 msgid "Country for EPG event rating information"
 msgstr "País para la información de clasificación de eventos de la EPG"
 
-msgid "Country Music"
-msgstr "Música Country"
-
 msgid "CPU"
 msgstr "CPU"
 
@@ -12029,9 +12026,6 @@ msgstr "Jazz"
 msgid "jazz"
 msgstr "jazz"
 
-msgid "Jazz Music"
-msgstr "Música Jazz"
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -15066,9 +15060,6 @@ msgstr "OK comprueba el transpondedor actualmente sintonizado."
 
 msgid "Oldies"
 msgstr "Éxitos clásicos"
-
-msgid "Oldies Music"
-msgstr "Música Oldies"
 
 msgid "Olympic blue"
 msgstr "Azul olimpico"
@@ -18472,9 +18463,6 @@ msgstr "Derecha, envuelto"
 
 msgid "Rock"
 msgstr "Rock"
-
-msgid "Rock Music"
-msgstr "Música Rock"
 
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
