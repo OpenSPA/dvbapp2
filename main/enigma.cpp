@@ -322,7 +322,7 @@ int main(int argc, char **argv)
 		constexpr int MAX_SPINNER = 64;
 		std::vector<std::string> paths = {eEnv::resolve("${sysconfdir}/enigma2/spinner")};
 		// Match skin.py when the default skin has not been saved in settings yet.
-		const char *defaultSkin = eModelInformation::getInstance().getValue("smallflash") == "True" ? "Umbra/skin.xml" : "MetrixHD/skin.xml";
+		const char *defaultSkin = eModelInformation::getInstance().getValue("smallflash") == "True" ? "MetrixJRSD/skin.xml" : "OpenStarHD/skin.xml";
 		if (access(eEnv::resolve(std::string("${datadir}/enigma2/") + defaultSkin).c_str(), R_OK))
 			defaultSkin = "skin_default/skin.xml";
 		const std::string skin = eSimpleConfig::getString("config.skin.primary_skin", defaultSkin);
