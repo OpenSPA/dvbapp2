@@ -1,5 +1,6 @@
 from time import localtime, strftime
 
+from Components.config import config
 from Components.DateTimes import dateTimes
 from Components.Element import cached
 from Components.Converter.Converter import Converter
