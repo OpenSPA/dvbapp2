@@ -665,47 +665,8 @@ msgstr "%sTasa de refresco para UHD"
 msgid "%sShow 1080i as 1080p"
 msgstr "%sMostrar 1080i como 1080p"
 
-msgid "%T"
-msgstr "%T"
-
-msgid "%Y %B %-d"
-msgstr "%Y %B %-d"
-
-msgid "%Y %b %-d"
-msgstr "%Y %b %-d"
-
-msgid "%Y %B %d"
-msgstr "%Y %B %d"
-
-msgid "%Y %b %d"
-msgstr "%Y %b %d"
-
-msgid "%Y-%B-%-d"
-msgstr "%Y-%B-%-d"
-
-msgid "%Y-%b-%-d"
-msgstr "%Y-%b-%-d"
-
-msgid "%Y-%B-%d"
-msgstr "%Y-%B-%d"
-
-msgid "%Y-%b-%d"
-msgstr "%Y-%b-%d"
-
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
-
-msgid "%Y/%-m/%-d"
-msgstr "%Y/%-m/%-d"
-
-msgid "%Y/%-m/%d"
-msgstr "%Y/%-m/%d"
-
-msgid "%Y/%m/%-d"
-msgstr "%Y/%m/%-d"
-
-msgid "%Y/%m/%d"
-msgstr "%Y/%m/%d"
 
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "‘%s’ contiene %d archivo(s) y %d sub-directorios.\n"
@@ -4093,12 +4054,6 @@ msgstr "Elegir la frecuencia con la que se conectará al servidor IceTV para com
 
 msgid "Choose the amount of additional slots."
 msgstr "Escoge la cantidad de slots adicionales."
-
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Elegir el estilo de formato de visualización para las fechas. 'D' / 'DD' es la fecha y 'M' / 'MM' es el mes en dígitos.  ('DD' y 'MM' tienen ceros a la izquierda para los valores de un solo dígito). La visualización en pantalla se basará en su elección pero podría estar influida por la interfaz."
-
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Elegir el estilo de formato de visualización de las horas. 'H' / 'HH' es la hora para un reloj de 24 horas, 'h' / 'hh' es la hora para un reloj de 12 horas, 'mm' son los minutos y 'ss' son los segundos.  ('HH' y 'hh' tienen ceros a la izquierda para los valores de un solo dígito). La visualización de la pantalla se basará en su elección pero podría estar influida por la interfaz."
 
 msgid "Choose the fallback font."
 msgstr "Escoge la fuente alternativa."
