@@ -7,7 +7,7 @@ from Components.config import config, ConfigSelection, getConfigListEntry, confi
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Pixmap import Pixmap
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, SCOPE_SKINS, SCOPE_CONFIG, resolveFilename
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
@@ -207,6 +207,23 @@ class PiconPathsSetup(Screen,ConfigListScreen):
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
 	def keySave(self):
+		# [norhap] change spinner
+		if not config.misc.use_fallback_spinner.value:
+			for spinner_original in (resolveFilename(SCOPE_SKINS, "spinner_original"), resolveFilename(SCOPE_CONFIG, "spinner_original"), resolveFilename(SCOPE_SKINS, config.skin.primary_skin.value.replace("skin.xml", "spinner_original"))):
+				spinner = spinner_original.replace("spinner_original", "spinner")
+				try:
+					if os.path.isdir(spinner_original) and not os.path.exists(spinner):
+						os.rename(spinner_original, spinner)
+				except Exception:
+					pass
+		else:
+			for spinner in (resolveFilename(SCOPE_SKINS, "spinner"), resolveFilename(SCOPE_CONFIG, "spinner"), resolveFilename(SCOPE_SKINS, config.skin.primary_skin.value.replace("skin.xml", "spinner"))):
+				spinner_original = spinner.replace("spinner", "spinner_original")
+				try:
+					if os.path.isdir(spinner) and not os.path.exists(spinner_original):
+						os.rename(spinner, spinner_original)
+				except Exception:
+					pass
 		self.saveAll()
 		self.close()
 

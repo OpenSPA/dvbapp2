@@ -136,8 +136,8 @@ void keyEvent(const eRCKey &key)
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/epgtransponderdatareader.h>
 #ifdef DREAMNEXTGEN
-extern "C" { 
-#include <libavdevice/avdevice.h> 
+extern "C" {
+#include <libavdevice/avdevice.h>
 }
 #endif
 
@@ -322,7 +322,28 @@ int main(int argc, char **argv)
 		constexpr int MAX_SPINNER = 64;
 		std::vector<std::string> paths = {eEnv::resolve("${sysconfdir}/enigma2/spinner")};
 		// Match skin.py when the default skin has not been saved in settings yet.
-		const char *defaultSkin = eModelInformation::getInstance().getValue("smallflash") == "True" ? "MetrixJRSD/skin.xml" : "OpenStarHD/skin.xml";
+		/* [norhap] check skins OpenSPA */
+		const char *defaultSkin;
+
+		auto isPluginInstalled = [](const char *name) -> bool {
+			char path[512];
+			snprintf(path, sizeof(path), "/usr/lib/enigma2/python/Plugins/Extensions/%s", name);
+			return access(path, F_OK) == 0;
+		};
+		const bool smallflash = eModelInformation::getInstance().getValue("smallflash") == "True";
+		const bool fhdskin    = eModelInformation::getInstance().getValue("fhdskin") == "True";
+		if (isPluginInstalled("spazeMenu")) {
+			if (!smallflash || fhdskin)
+				defaultSkin = "OpenStarHD/skin.xml";
+			else
+				defaultSkin = "MetrixJRSD/skin.xml";
+		} else {
+			if (!smallflash || fhdskin)
+				defaultSkin = "OctEtFHD/skin.xml";
+			else
+				defaultSkin = "OctEtHD/skin.xml";
+		}
+		/* [norhap] check skins OpenSPA */
 		if (access(eEnv::resolve(std::string("${datadir}/enigma2/") + defaultSkin).c_str(), R_OK))
 			defaultSkin = "skin_default/skin.xml";
 		const std::string skin = eSimpleConfig::getString("config.skin.primary_skin", defaultSkin);
@@ -331,6 +352,7 @@ int main(int argc, char **argv)
 		{
 			const std::string directory = skin.substr(0, separator);
 			paths.push_back(directory[0] == '/' ? directory + "/spinner" : eEnv::resolve("${datadir}/enigma2/" + directory + "/spinner"));
+			paths.push_back(eEnv::resolve("${datadir}/enigma2/spinner"));
 		}
 		int frames = 0;
 		ePtr<gPixmap> wait[MAX_SPINNER];

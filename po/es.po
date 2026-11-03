@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:49+0100\n"
+"POT-Creation-Date: 2026-11-03 14:51+0100\n"
 "PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -19259,8 +19259,8 @@ msgstr "Seleccione el conjunto de caracteres (iocharset) que se utilizará para 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
 msgstr "Seleccione la profundidad de color que se utilizará con el televisor o monitor compatible con UHD conectado por HDMI."
 
-msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
-msgstr "Selecciona el color del spinner integrado. Los spinners personalizados en formato PNG conservan sus propios colores."
+msgid "Select the color of the built-in busy spinner."
+msgstr "Selecciona el color del indicador del spinner."
 
 msgid "Select the color of the front panel power LED when the receiver is in Deep Standby."
 msgstr "Seleccione el color del LED de encendido del panel frontal cuando el receptor esté en modo de espera profunda."
@@ -25430,6 +25430,12 @@ msgstr "Usar DNS GitHub alternas"
 
 msgid "Use an alternative smaller screen."
 msgstr "Utilizar una pantalla alternativa más pequeña."
+
+msgid "Use an integrated spinner with color"
+msgstr "Utiliza un spinner integrado con color"
+
+msgid "Use an integrated spinner with color."
+msgstr "Utiliza un spinner integrado con color."
 
 msgid "Use as HDD"
 msgstr "Usar como HDD"

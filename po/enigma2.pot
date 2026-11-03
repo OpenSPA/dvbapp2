@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:49+0100\n"
+"POT-Creation-Date: 2026-11-03 14:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17602,7 +17602,7 @@ msgstr ""
 msgid "Select the character set (iocharset) to be used to match/translate remote filenames."
 msgstr ""
 
-msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
+msgid "Select the color of the built-in busy spinner."
 msgstr ""
 
 msgid "Select the color to be used for the AI-Powered Translation text."
@@ -23304,6 +23304,12 @@ msgid "Use alternate GitHub DNS"
 msgstr ""
 
 msgid "Use an alternative smaller screen."
+msgstr ""
+
+msgid "Use an integrated spinner with color"
+msgstr ""
+
+msgid "Use an integrated spinner with color."
 msgstr ""
 
 msgid "Use as HDD replacement"

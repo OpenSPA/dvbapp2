@@ -84,6 +84,7 @@ def InitUsageConfig():
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
 	config.misc.spinnerPosition = ConfigSequence(default=[50, 50], limits=[(0, 1260), (0, 700)], seperator=",")
 	config.misc.spinnerColor = ConfigSelection(default="2b7fd9", choices=[("2b7fd9", _("Blue")), ("ffffff", _("White")), ("00c080", _("Green")), ("ffbf00", _("Yellow")), ("ff8000", _("Orange")), ("e04040", _("Red"))])
+	config.misc.use_fallback_spinner = ConfigYesNo(default=False)
 
 	def spinnerColorChanged(configElement):
 		setSpinnerColor(int(configElement.value, 16))

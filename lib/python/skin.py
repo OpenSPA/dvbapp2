@@ -17,16 +17,16 @@ MODULE_NAME = __name__.split(".")[-1].capitalize()
 
 if isPluginInstalled("spazeMenu"):
 	standardenigma = False
-	if BoxInfo.getItem("HasFullHDSkinSupport"):
+	if not BoxInfo.getItem("smallflash"):
 		DEFAULT_SKIN = "OpenStarHD/skin.xml"
 	else:
-		DEFAULT_SKIN = "MetrixJRSD/skin.xml"
+		DEFAULT_SKIN = "OpenStarHD/skin.xml" if BoxInfo.getItem("fhdskin") else "MetrixJRSD/skin.xml"
 else:
 	standardenigma = True
-	if BoxInfo.getItem("HasFullHDSkinSupport"):
+	if not BoxInfo.getItem("smallflash"):
 		DEFAULT_SKIN = "OctEtFHD/skin.xml"
 	else:
-		DEFAULT_SKIN = "OctEtHD/skin.xml"
+		DEFAULT_SKIN = "OctEtFHD/skin.xml" if BoxInfo.getItem("fhdskin") else "OctEtHD/skin.xml"
 EMERGENCY_SKIN = "skin_default/skin.xml"
 EMERGENCY_NAME = "Default OE-A"
 DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if BoxInfo.getItem("grautec") else "skin_display.xml"
