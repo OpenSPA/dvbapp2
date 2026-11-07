@@ -1,13 +1,11 @@
-from base64 import b64encode
-from urllib.parse import quote
-
-from RecordTimer import AFTEREVENT, createRecordTimerEntry
 from ServiceReference import ServiceReference
-from timer import TimerEntry as TimerObject
 from Components.config import config
-from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
-from Tools.Downloader import formatError, getJson
+from timer import TimerEntry as TimerObject
+from urllib.parse import quote
+from json import loads
+from requests import get, exceptions
+from twisted.internet.threads import deferToThread
 
 
 class FallbackTimerList():
@@ -37,11 +35,17 @@ class FallbackTimerList():
 			service_ref = service_ref.rsplit("::", 1)[0] + ":"
 		return service_ref
 
-	def sendAPIcommand(self, url, timeout=10, headers=None):
-		headers = dict(headers or {})
-		if self.password:
-			headers["Authorization"] = f"Basic {b64encode(f'{self.userid}:{self.password}'.encode()).decode()}"
-		return getJson(quote(url, safe="!#$%&'()*+,/:;=?@[]~"), headers=headers, connectTimeout=3, timeout=timeout, verify=False)  # Requote like requests did.
+	def sendAPIcommand(self, url, timeout=(3.05, 3), headers=None, verify=False):
+		def sendUrl(url, timeout, headers, auth):
+			try:
+				response = get(url, headers=headers or {}, auth=auth, timeout=timeout, verify=verify)
+				response.raise_for_status()
+				return loads(response.content)
+			except exceptions.RequestException as error:
+				print("sendAPIcommand", error)
+
+		auth = (self.userid, self.password) if self.password else None
+		return deferToThread(lambda: sendUrl(url, timeout, headers, auth))
 
 	def getUrl(self, url):
 		print("[FallbackTimer] getURL", url)
@@ -51,7 +55,7 @@ class FallbackTimerList():
 		self.list = []
 		if self.url:
 			try:
-				self.getUrl("api/timerlist").addCallbacks(self.gotFallbackTimerList, self.gotFallbackTimerListError)
+				self.getUrl("api/timerlist").addCallback(self.gotFallbackTimerList).addErrback(self.fallback)
 			except Exception:
 				self.fallback(_("Unexpected error while retrieving fallback tuner's timer information"))
 		else:
@@ -77,25 +81,21 @@ class FallbackTimerList():
 		print(f"[FallbackTimer] read {len(self.list)} timers from fallback tuner")
 		self.parent.session.nav.RecordTimer.setFallbackTimerList(self.list)
 
-	def gotFallbackTimerListError(self, failure):
-		self.fallbackError(failure)
-		self.parent.session.nav.RecordTimer.setFallbackTimerList(self.list)
-
 	def removeTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
-		self.getUrl(f"api/timerdelete?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallbackError)
+		self.getUrl(f"api/timerdelete?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallback)
 
 	def toggleTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
-		self.getUrl(f"api/timertogglestatus?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallbackError)
+		self.getUrl(f"api/timertogglestatus?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallback)
 
 	def cleanupTimers(self, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
 		if self.url:
-			self.getUrl("api/timercleanup?cleanup=true").addCallback(self.getUrlFallback).addErrback(self.fallbackError)
+			self.getUrl("api/timercleanup?cleanup=true").addCallback(self.getUrlFallback).addErrback(self.fallback)
 		else:
 			self.fallback()
 
@@ -121,53 +121,13 @@ class FallbackTimerList():
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
 		url = f"api/timeradd?sRef={self.cleanServiceRef(timer.service_ref)}{self.timerurldata(timer)}"
-		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallbackError)
+		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallback)
 
 	def editTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
 		url = f"api/timerchange?sRef={self.cleanServiceRef(timer.service_ref)}&channelOld={timer.service_ref_prev}&beginOld={timer.begin_prev}&endOld={timer.end_prev}{self.timerurldata(timer)}"
-		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallbackError)
-
-	def moveTimer(self, timer, addLocal, fallbackFunction, fallbackFunctionNOK=None):
-		# Move an edited timer between local and fallback tuner, "addLocal" receives the new local entry.
-		def restorePrev():
-			timer.service_ref, timer.begin, timer.end = timer.service_ref_prev, timer.begin_prev, timer.end_prev
-
-		def removeLocal():
-			restorePrev()
-			timer.external = timer.external_prev
-			timer.afterEvent = AFTEREVENT.NONE
-			self.parent.session.nav.RecordTimer.removeEntry(timer)
-			fallbackFunction()
-
-		def moveError():
-			timer.external = timer.external_prev
-			if not timer.external:  # The local timer was edited in place and keeps its changes.
-				# NOTE: No TimerSanityCheck here, changed times may conflict with other local timers.
-				# NOTE: If timeradd worked but reloading the timer list failed, the timer exists on both sides.
-				print(f"[FallbackTimer] moveTimer failed, keep local timer '{timer.name}'")
-				self.parent.session.nav.RecordTimer.timeChanged(timer)
-				self.parent.session.nav.RecordTimer.saveTimers()
-			(fallbackFunctionNOK or fallbackFunction)()
-
-		def removeRemote():
-			addLocal(newEntry)
-			fallbackFunction()
-
-		if timer.external:
-			if timer.state in (TimerObject.StatePrepared, TimerObject.StateRunning):  # A prepared or running recording can not be moved.
-				self.parent.session.openWithCallback(lambda answer: moveError(), MessageBox, _("A prepared or running timer can not be moved to the fallback tuner."), MessageBox.TYPE_ERROR)
-			else:
-				self.addTimer(timer, removeLocal, moveError)
-		else:
-			newEntry = createRecordTimerEntry(timer)
-			newEntry.check_justplay()
-			if TimerSanityCheck(self.parent.session.nav.RecordTimer.timer_list, newEntry).check():
-				restorePrev()
-				self.removeTimer(timer, removeRemote, moveError)
-			else:  # Check before removing the fallback timer, so a conflict can not lose it.
-				self.parent.session.openWithCallback(lambda answer: moveError(), MessageBox, _("The timer conflicts with a local timer and was not moved from the fallback tuner."), MessageBox.TYPE_ERROR)
+		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallback)
 
 	def getUrlFallback(self, data):
 		if data.get("result"):
@@ -180,10 +140,6 @@ class FallbackTimerList():
 			self.parent.session.openWithCallback(self.fallbackNOK, MessageBox, _("Error while retrieving fallback timer information\n%s") % message, MessageBox.TYPE_ERROR)
 		else:
 			self.fallbackFunction()
-
-	def fallbackError(self, failure):
-		print(f"[FallbackTimer] sendAPIcommand Error: {formatError(failure)}")
-		self.fallback(formatError(failure))
 
 	def fallbackNOK(self, answer=None):
 		self.fallbackFunctionNOK()
@@ -221,7 +177,6 @@ class FallbackTimerClass(TimerObject):
 		self.descramble = timerdict.get("descramble", 1)
 		self.record_ecm = timerdict.get("record_ecm", 0)
 		self.always_zap = timerdict.get("always_zap", 0)
-		self.precondition = timerdict.get("precondition", 0)
 		self.isAutoTimer = timerdict.get("isAutoTimer", 0)
 		self.ice_timer_id = timerdict.get("ice_timer_id", 0)
 		if self.ice_timer_id == -1:
