@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 14:51+0100\n"
+"POT-Creation-Date: 2026-11-07 18:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21427,11 +21427,6 @@ msgstr ""
 msgid "The %s %s will reboot within 1 seconds."
 msgstr ""
 
-msgid ""
-"The %s plugin is not installed!\n"
-"Please install it."
-msgstr ""
-
 msgid "The '%s' commit log can't be retrieved, please try again later."
 msgstr ""
 
@@ -21589,6 +21584,11 @@ msgstr ""
 msgid "The Kexec Multiboot is Enabled"
 msgstr ""
 
+msgid ""
+"The Kodi plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
 msgid "The local share name must not contain spaces, slashes or '#' and must not be '.' or '..'."
 msgstr ""
 
@@ -21616,6 +21616,11 @@ msgid ""
 msgstr ""
 
 msgid "The mount point '%s' is used by more than one share."
+msgstr ""
+
+msgid ""
+"The PanelExtra plugin is not installed!\n"
+"Please install it."
 msgstr ""
 
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
@@ -21693,6 +21698,16 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
+msgid ""
+"The spzCAMD plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid ""
+"The spzWeather plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
 msgid "The storage check did not finish. Please check the device or network and try again."
 msgstr ""
 
@@ -21720,9 +21735,6 @@ msgid "The time shift storage device is not available. Please check the device a
 msgstr ""
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
-msgstr ""
-
-msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
 msgstr ""
 
 msgid "The timer file '%s' is corrupt and could not be loaded."

@@ -4222,13 +4222,13 @@ class InfoBarInstantRecord:
 				from Plugins.Extensions.spazeMenu.spzPlugins.spzCAMD.plugin import startConfig
 				startConfig(self.session)
 			except:
-				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "spzCAMD"), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.open(MessageBox, _("The spzCAMD plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 		elif value == "meteo":
 			try:
 				from Plugins.Extensions.spzWeather.plugin import main
 				main(self.session)
 			except:
-				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "spzWeather"), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.open(MessageBox, _("The spzWeather plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 		elif value == "infobarepg":
 			self.openInfoBarEPG()
 		elif value == "movies":
@@ -4242,19 +4242,19 @@ class InfoBarInstantRecord:
 					from Plugins.Extensions.MediaCenter.MC_VideoPlayer import MC_VideoPlayer
 					self.session.open(MC_VideoPlayer)
 			except:
-				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "MediaCenter"), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.open(MessageBox, _("The MediaCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 		elif value == "panelextra":
 			try:
 				from Plugins.Extensions.PanelExtra.plugin import main
 				main(self.session)
 			except:
-				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "PanelExtra"), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.open(MessageBox, _("The PanelExtra plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 		elif value == "kodi":
 			try:
 				from Plugins.Extensions.Kodi.plugin import startLauncher
 				startLauncher(self.session)
 			except:
-				self.session.open(MessageBox, _("The %s plugin is not installed!\nPlease install it." % "Kodi"), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.open(MessageBox, _("The Kodi plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def yellowKey_Long(self):
 		if self.LongButtonPressed:

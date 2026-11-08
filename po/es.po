@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 14:51+0100\n"
+"POT-Creation-Date: 2026-11-07 18:01+0100\n"
 "PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -23542,6 +23542,9 @@ msgstr "MultiBoot Kexec deshabilitado"
 msgid "The Kexec Multiboot is Enabled"
 msgstr "MultiBoot Kexec habilitado"
 
+msgid "The Kodi plugin is not installed!\nPlease install it."
+msgstr "¡El plugin Kodi no está instalado!\\nInstálelo."
+
 msgid "The local image search timed out. Check your storage devices."
 msgstr "La búsqueda de imágenes local ha agotado el tiempo de espera. Compruebe sus dispositivos de almacenamiento."
 
@@ -23580,6 +23583,9 @@ msgstr "El plugin Merlin EPG Center no está instalado.\nPor favor, instálalo."
 
 msgid "The mount point '%s' is used by more than one share."
 msgstr "El punto de montaje '%s' es utilizado por más de un recurso compartido."
+
+msgid "The PanelExtra plugin is not installed!\nPlease install it."
+msgstr "¡El plugin PanelExtra no está instalado!\\nInstálelo."
 
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr "No se encontró el canal de pánico. Por favor, selecciónelo de nuevo en la configuración de selección de canales."
@@ -23665,6 +23671,12 @@ msgstr "El temporizador de apagado quiere poner el %s %s en %s.\n\nHacerlo ahora
 msgid "The software management extension is not installed!\nPlease install it."
 msgstr "¡La extensión de administración de software no está instalada!\nPor favor, instálelo."
 
+msgid "The spzCAMD plugin is not installed!\nPlease install it."
+msgstr "¡El plugin spzCAMD no está instalado!\\nInstálelo."
+
+msgid "The spzWeather plugin is not installed!\nPlease install it."
+msgstr "¡El plugin spzWeather no está instalado!\\nInstálelo."
+
 msgid "The storage check did not finish. Please check the device or network and try again."
 msgstr "La comprobación del almacenamiento no ha finalizado. Comprueba el dispositivo o la red y vuelve a intentarlo."
 
@@ -23691,9 +23703,6 @@ msgstr "El dispositivo de almacenamiento para el time shift no está disponible.
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "Se ha retirado el dispositivo de almacenamiento para el time shift. La función de time shift se ha detenido."
-
-msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
-msgstr "El temporizador entra en conflicto con un temporizador local y no se ha trasladado desde el sintonizador de reserva."
 
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "El archivo de temporizador '%s' está corrupto y no se puede cargar."
@@ -25028,6 +25037,9 @@ msgstr "no disponible"
 
 msgid "Undefined"
 msgstr "No definido"
+
+msgid "undefined"
+msgstr "no definido"
 
 msgid "Under 5"
 msgstr "Menores de 5 años"
