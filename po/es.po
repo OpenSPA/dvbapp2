@@ -25477,7 +25477,7 @@ msgid "Use frequency or channel"
 msgstr "Usar frecuencia o canal"
 
 msgid "Use Geolocation"
-msgstr "Usar geolocalización"
+msgstr "Hora Local"
 
 msgid "Use geolocation to get WAN information"
 msgstr "Utilizar geolocalización para conseguir la información WAN"
@@ -26245,7 +26245,7 @@ msgid "WAN connection information"
 msgstr "Información de conexión WAN"
 
 msgid "WAN Geolocation"
-msgstr "Geolocalización WAN"
+msgstr "Información WAN"
 
 msgid "want to stop and delete this recordings?"
 msgstr "¿Quieres detener y eliminar estas grabaciones?"
