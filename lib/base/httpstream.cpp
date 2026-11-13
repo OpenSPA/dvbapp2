@@ -6,6 +6,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/wrappers.h>
 #include <lib/base/esettings.h>
+#include <sys/socket.h>
 
 DEFINE_REF(eHttpStream);
 
@@ -405,7 +406,23 @@ ssize_t eHttpStream::read(off_t offset, void *buf, size_t count)
 		errno = EIO; // Do not reuse a previous EAGAIN in the reader thread.
 		return -1;
 	}
-	return httpChunkedRead(buf, count);
+
+	/* [norhap] sleep 1 after the first EOF from filepush is not sufficient for the next attempt. */
+	ssize_t result = httpChunkedRead(buf, count);
+	if (result <= 0 && streamSocket >= 0)
+	{
+		char byte;
+		ssize_t peek = ::recv(streamSocket, &byte, 1, MSG_PEEK | MSG_DONTWAIT);
+		bool connectionClosed = peek == 0 ||
+			(peek < 0 && (errno == ECONNRESET || errno == ENOTCONN || errno == EPIPE));
+		if (connectionClosed)
+		{
+			eDebug("[eHttpStream] Remote closed stream; reconnecting");
+			reconnect();
+		}
+	}
+	return result;
+	/* [norhap] sleep 1 after the first EOF from filepush is not sufficient for the next attempt. */
 }
 
 int eHttpStream::valid()
