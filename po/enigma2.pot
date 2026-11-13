@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-07 18:01+0100\n"
+"POT-Creation-Date: 2026-11-12 09:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3245,6 +3245,12 @@ msgid "Cannot determine %s limit ..., aborting!"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting!"
+msgstr ""
+
+msgid "Capacity unit range"
+msgstr ""
+
+msgid "Capacity units (CU)"
 msgstr ""
 
 msgid "Cape Verde"
@@ -15402,6 +15408,11 @@ msgstr ""
 msgid "Recording failed"
 msgstr ""
 
+msgid ""
+"Recording failed because the channel's programme information could not be received.\n"
+"%s"
+msgstr ""
+
 msgid "Recording Filenames And Data"
 msgstr ""
 
@@ -20837,6 +20848,9 @@ msgid "Stripes"
 msgstr ""
 
 msgid "Style:"
+msgstr ""
+
+msgid "Subchannel ID"
 msgstr ""
 
 msgid "Subnet mask"

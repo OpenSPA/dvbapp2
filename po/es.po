@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-07 18:01+0100\n"
+"POT-Creation-Date: 2026-11-12 09:27+0100\n"
 "PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -3526,6 +3526,12 @@ msgstr "No se puede encontrar ninguna señal..., ¡abortando!"
 
 msgid "Capacity"
 msgstr "Capacidad"
+
+msgid "Capacity unit range"
+msgstr "Rango de unidades de capacidad"
+
+msgid "Capacity units (CU)"
+msgstr "Unidades de capacidad (UC)"
 
 msgid "Capacity: "
 msgstr "Capacidad: "
@@ -16763,6 +16769,9 @@ msgstr "Indicadores de Registro y Estado"
 msgid "Recording failed"
 msgstr "Grabación fallida"
 
+msgid "Recording failed because the channel's programme information could not be received.\n%s"
+msgstr "La grabación falló porque no se pudo recibir la información de programación del canal.\\n%s"
+
 msgid "Recording Filenames And Data"
 msgstr "Grabación de Nombres de Archivos y Datos"
 
@@ -22773,6 +22782,9 @@ msgstr "Estilo"
 
 msgid "Style:"
 msgstr "Estilo:"
+
+msgid "Subchannel ID"
+msgstr "ID del subcanal"
 
 msgid "Subnet mask"
 msgstr "Máscara de subred"
