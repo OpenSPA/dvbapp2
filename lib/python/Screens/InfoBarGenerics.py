@@ -3642,6 +3642,7 @@ class InfoBarRdsDecoder:
 		self.rds_display.setAnimationMode(0)
 		self.dab_slide_display.reserveRadioTextArea(self.rds_display)
 		self.rds_display.onLayoutFinish.append(self.dab_slide_display.reserveRadioTextArea)
+		self.connectRadioOverlays()
 		self.rass_interactive = None
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evEnd: self.__serviceStopped,
@@ -3653,6 +3654,30 @@ class InfoBarRdsDecoder:
 		self["RdsActions"].setEnabled(False)
 		self.onLayoutFinish.append(self.rds_display.updateVisibility)
 		self.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
+
+	def connectRadioOverlays(self):
+		channelList = self.servicelist
+		if "DabImage" not in channelList:
+			print(f"[InfoBarRdsDecoder] {type(channelList).__name__} has no DabImage; embedded DAB slides are unavailable.")
+		channelList.onShow.append(boundFunction(self.showChannelListRadio, channelList))
+		channelList.onLayoutFinish.append(self.updateChannelListRadio)
+		channelList.onHide.append(boundFunction(self.setRadioListVisible, False))
+
+	def showChannelListRadio(self, channelList):
+		picture = channelList.get("DabImage")
+		self.setRadioListVisible(True, picture if picture and picture.skinAttributes else None)
+
+	def updateChannelListRadio(self):
+		channelList = self.servicelist
+		if channelList.execing and channelList.shown:
+			self.showChannelListRadio(channelList)
+			picture = channelList.get("DabImage")
+			if picture and picture.skinAttributes:
+				self.dab_slide_display.slideshowChanged()
+
+	def setRadioListVisible(self, visible, picture=None):
+		self.rds_display.setSuppressed(visible)
+		self.dab_slide_display.setRadioListVisible(visible, picture)
 
 	def RassInteractivePossibilityChanged(self, state):
 		self["RdsActions"].setEnabled(state)
