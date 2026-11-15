@@ -383,6 +383,12 @@ class EPGSelection(Screen):
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 
+		self.onExecEnd.append(self.suspendChoiceBoxDialog)
+		self.onExecBegin.append(self.resumeChoiceBoxDialog)
+
+		# Defer actual list population until the screen layout is complete.
+		self.onLayoutFinish.append(self.onCreate)
+
 	def createSetup(self):
 		def createSetupCallback(test=None):
 			if closeType:
@@ -1772,6 +1778,16 @@ class EPGSelection(Screen):
 				if isInTimer and isInTimer[1] in (2, 7, 12):
 					recordEvent = isInTimer[3]
 		return recordEvent
+
+	def suspendChoiceBoxDialog(self):
+		if self.ChoiceBoxDialog:
+			self.ChoiceBoxDialog.instantiateActionMap(False)
+			self.ChoiceBoxDialog.hide()
+
+	def resumeChoiceBoxDialog(self):
+		if self.ChoiceBoxDialog:
+			self.ChoiceBoxDialog.instantiateActionMap(True)
+			self.ChoiceBoxDialog.show()
 
 	def onSelectionChanged(self):
 		if self.type != EPG_TYPE_VERTICAL:
