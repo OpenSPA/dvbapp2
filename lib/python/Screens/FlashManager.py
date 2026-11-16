@@ -27,7 +27,27 @@ OFGWRITE = "/usr/bin/ofgwrite"
 
 FEED_DISTRIBUTION = 0
 FEED_JSON_URL = 1
+FEED_URLS = [
+	("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s" % BoxInfo.getItem("BoxName")),
+	("openATV", "https://images.mynonpublic.com/openatv/json/%s" % BoxInfo.getItem("BoxName")),
+	("OpenBH", "https://images.openbh.net/json/%s" % BoxInfo.getItem("model")),
+	("OpenPLi", "http://downloads.openpli.org/json/%s" % BoxInfo.getItem("model")),
+	("OpenViX", "https://www.openvix.co.uk/json/%s" % BoxInfo.getItem("machinebuild")),
+	("OpenHDF", "https://flash.hdfreaks.cc/openhdf/json/%s" % BoxInfo.getItem("machinebuild")),
+	("Open8eIGHT", "http://openeight.de/json/%s" % BoxInfo.getItem("machinebuild")),
+	("OpenDROID", "https://opendroid.org/json/%s" % BoxInfo.getItem("machinebuild")),
+	("TeamBlue", "https://images.teamblue.tech/json/%s" % BoxInfo.getItem("machinebuild")),
+	("EGAMI", "https://image.egami-image.com/json/%s" % BoxInfo.getItem("machinebuild"))
+]
 USER_AGENT = {"User-Agent": USER_AGENTS.CHROME}
+
+
+class FlashSelectionMessageBox(MessageBox):
+	def createActionMap(self, prio):
+		super().createActionMap(prio)
+		self["actions"].removeAction(self, "MsgBoxActions", "selectOk")
+		self["actions"].addAction(self, "MsgBoxActions", "selectOk", (self.select, _("Return the current selection response")))
+
 
 def checkImageFiles(files):
 	return sum(f.endswith((".nfi", ".tar.xz")) for f in files) == 1 or sum(("kernel" in f and f.endswith(".bin")) or f in {"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2", "oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.ubi", "rootfs.bin", "rootfs.tar.bz2", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"} for f in files) >= 2
@@ -94,12 +114,11 @@ class FlashManager(Screen):
 		self["downloadActions"].setEnabled(False)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText()
-		# self["key_yellow"] = StaticText(_("Distribution"))
+		self["key_yellow"] = StaticText(_("Distribution"))
 		self["key_blue"] = StaticText()
 		self["description"] = StaticText()
 		self["list"] = ChoiceList(list=[ChoiceEntryComponent("", ((_("Retrieving image list, please wait...")), "Loading"))])
-		self.feedUrls = USER_AGENT
-		#[("OpenSPA", "https://openspa.webhop.info/online/json.php?box=%s" % BoxInfo.getItem("BoxName"))]
+		self.feedUrls = FEED_URLS
 		self.callLater(self.getImagesList)
 
 	def getImagesList(self):
@@ -135,9 +154,11 @@ class FlashManager(Screen):
 		boxname = BoxInfo.getItem("BoxName")
 		if not self.imagesList:
 			index = findInList(self.imageFeed)
-			print("index: ", index)
-			box = machinebuild if index else boxname
-			feedURL = self.feedUrls[index][FEED_JSON_URL] if index else "https://openspa.webhop.info/online/json.php?box=%s" % box
+			if index is None:
+				print("[FlashManager] Unknown image distribution '%s'!" % self.imageFeed)
+				self.session.open(MessageBox, _("Error: Cannot find any images!"), type=MessageBox.TYPE_ERROR, timeout=3, windowTitle=self.getTitle())
+				return
+			feedURL = self.feedUrls[index][FEED_JSON_URL]
 			print("feedURL: ", feedURL)
 			##### OPENSPA [morser] Prepare for beta images #######################
 			if self.imageFeed == "OpenSPA":
@@ -166,7 +187,7 @@ class FlashManager(Screen):
 				self.imagesList = {}
 			searchFolders = []  # noqa F841
 			# Get all folders of /media/ and /media/net/
-			if not index:
+			if self.imageFeed == "OpenSPA":
 				for media in ["/media/%s" % x for x in listdir("/media")] + (["/media/net/%s" % x for x in listdir("/media/net")] if isdir("/media/net") else []):
 					# print("[FlashManager] getImagesList DEBUG: media='%s'." % media)
 					if not (BoxInfo.getItem("HasMMC") and "/mmc" in media) and isdir(media):
@@ -253,17 +274,14 @@ class FlashManager(Screen):
 		self.selectionChanged()
 
 	def keyDistribution(self):
-		""" ONLY OpenATV
 		distributionList = []
 		default = 0
-		for index, feed in enumerate(USER_AGENT):
+		for index, feed in enumerate(self.feedUrls):
 			distribution = feed[FEED_DISTRIBUTION]
 			distributionList.append((distribution, distribution))
 			if distribution == self.imageFeed:
 				default = index
-		self.session.openWithCallback(self.keyDistributionCallback, MessageBox, _("Please select a distribution from which you would like to flash an image:"), list=distributionList, default=default, windowTitle=_("Flash Manager - Distributions"))
-		"""
-		pass
+		self.session.openWithCallback(self.keyDistributionCallback, FlashSelectionMessageBox, _("Please select a distribution from which you would like to flash an image:"), list=distributionList, default=default, windowTitle=_("Flash Manager - Distributions"))
 
 	def keyDistributionCallback(self, distribution):
 		if distribution:
