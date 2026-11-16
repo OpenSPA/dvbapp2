@@ -41,7 +41,8 @@ class PluginDescriptor:
 	# Show this plugin (or a choicebox with all of them) for long INFO keypress or return a function which is
 	# called with session and the interface name for extended setup of this interface.
 	WHERE_EVENTINFO = 12
-	# Arguments: reason (True=Networkconfig read finished, False=Networkconfig reload initiated)
+	# Arguments: reason (True=network configuration read, including startup; False=reload initiated).
+	# Configuration being read does not guarantee an active Internet connection.
 	WHERE_NETWORKCONFIG_READ = 13
 	WHERE_AUDIOMENU = 14
 	# If fnc is 'SoftwareSupported' or 'AdvancedSoftwareSupported' must take a parameter and return None if the

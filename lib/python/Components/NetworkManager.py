@@ -529,13 +529,14 @@ class NetworkManager:
 			if otherAdapterUp:
 				self.log(f"notifyNetworkPlugins: {interface} changed but another adapter is still up -> skipped.")
 				return
-		try:
-			notified = [str(plugin) for plugin in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKCONFIG_READ)]
-			self.log(f"notifyNetworkPlugins: Calling {notified} with reason={reason}.")
-			for plugin in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKCONFIG_READ):
+		# OpenSPA [norhap] new method for plugins to receive the notification again upon startup.
+		networkPlugins = plugins.getPlugins(PluginDescriptor.WHERE_NETWORKCONFIG_READ)
+		self.log(f"notifyNetworkPlugins: Calling {[str(plugin) for plugin in networkPlugins]} with reason={reason}.")
+		for plugin in networkPlugins:
+			try:
 				plugin(reason=reason)
-		except Exception as err:
-			self.log(f"notifyNetworkPlugins: Error '{err}'!")
+			except Exception as err:
+				print(f"[{MODULE_NAME}] notifyNetworkPlugins: Plugin '{plugin}' failed: {err}")
 
 	def activateInterface(self, interface, callback=None):
 		adapter = self.adapters.get(interface)

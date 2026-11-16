@@ -535,6 +535,10 @@ def runScreenTest():
 	ormTimer = enigma.eTimer()  # ORM, started by enigma2.sh, learns that the main loop runs.
 	ormTimer.callback.append(lambda: enigma.eProfileNotify("ready"))
 	ormTimer.start(0, True)
+	# OpenSPA [norhap] Network configuration was loaded before plugins; notify them after the session is ready.
+	networkPluginTimer = enigma.eTimer()
+	networkPluginTimer.callback.append(lambda: networkManager.notifyNetworkPlugins(True))
+	networkPluginTimer.start(0, True)
 	from Tools.StartupTasks import startupTasks  # Enigma's timer bindings and the session must exist first.
 	startupTasks.start()
 	runReactor()
