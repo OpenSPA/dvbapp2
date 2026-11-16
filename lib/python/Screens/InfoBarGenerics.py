@@ -2819,11 +2819,12 @@ class InfoBarChannelSelection:
 		####### OPENSPA [morser] Support NewChannelSelection #####################################
 		try:
 			if config.misc.spazeChannelSelection.value and not config.usage.standardchannelselection.value:
-				from Screens.newChannelSelection import newChannelSelection
-				self.servicelist = self.session.instantiateDialog(newChannelSelection)
+				from Screens.ChannelSelectionDAB import ChannelSelectionDAB
+				self.servicelist = self.session.instantiateDialog(ChannelSelectionDAB)
 			else:
 				self.servicelist = self.session.instantiateDialog(ChannelSelection)
-		except:
+		except Exception as error:
+			print(f"[InfoBarChannelSelection] Failed to create the requested channel list: {error}. Using the standard list.")
 			self.servicelist = self.session.instantiateDialog(ChannelSelection)
 		##########################################################################################3
 

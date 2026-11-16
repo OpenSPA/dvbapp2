@@ -1772,9 +1772,10 @@ class ChannelContextMenu(Screen):
 
 	def showServiceListOpenSPA(self, current):  # OPENSPA [norhap] Show OpenSPA channel list.
 		from Screens.InfoBar import InfoBar
-		from Screens.newChannelSelection import newChannelSelection
+		from Screens.ChannelSelectionDAB import ChannelSelectionDAB
 		if InfoBar and InfoBar.instance:
-			InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(newChannelSelection)
+			InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(ChannelSelectionDAB)
+			ChannelSelection.instance = InfoBar.instance.servicelist
 			InfoBar.instance.connectRadioOverlays()
 			config.usage.standardchannelselection.value = False
 		AddPopup(text=_("The channel selection mode has changed!\nOpen the channel selection again"), type=MessageBox.TYPE_INFO, timeout=8, id='NewChannelSelection')
@@ -2370,6 +2371,9 @@ class SelectionEventInfo:
 		self.servicelist.connectSelChanged(self.__selectionChanged)
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateEventInfo)
+		self.__dabLogoTracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evUpdatedInfo: self.refreshDabLogo
+		})
 		self.onShown.append(self.__selectionChanged)
 		self.currentBouquetPath = ""
 		self.newBouquet = ""
@@ -2377,6 +2381,11 @@ class SelectionEventInfo:
 	def __selectionChanged(self):
 		if self.execing:
 			self.timer.start(100, True)
+
+	def refreshDabLogo(self):
+		ref = self.getCurrentSelection()
+		if self.execing and self.shown and ref and ref.type == eServiceReference.idServiceDAB and not self.timer.isActive():
+			self.timer.start(1000, True)
 
 	def updateBouquetPath(self, newBouquetPath):
 		if self.currentBouquetPath != newBouquetPath:
@@ -2427,6 +2436,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.skinName = ["ChannelSelection"]
 		self.channelListSkinNames = [self.skinName] if isinstance(self.skinName, str) else self.skinName[:]
 		self.channelListSkinNamesInitialized = False  # [norhap] Subclasse for newChannelSelection.
+		self["RdsDecoder"] = RdsDecoder(self.session.nav)
 		self["DabImage"] = Pixmap()
 		self["DabImage"].hide()
 		self.ignoreWidgets.append("DabImage")
