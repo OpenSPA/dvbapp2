@@ -202,6 +202,12 @@ def InitUsageConfig():
 	])
 	# OPENSPA [norhap] change channel list type in context menu.
 	config.usage.standardchannelselection = ConfigBoolean(default=False)
+
+	def saveChannelSelectionType(configElement):
+		configElement.save()
+		configfile.save()
+
+	config.usage.standardchannelselection.addNotifier(saveChannelSelectionType, initial_call=False)
 	# OPENSPA [norhap] wilcard for newsearch in screens standard EPG
 	config.usage.standardnewsearch = ConfigBoolean(default=False)
 

@@ -2818,7 +2818,7 @@ class InfoBarChannelSelection:
 		# instantiate forever
 		####### OPENSPA [morser] Support NewChannelSelection #####################################
 		try:
-			if config.misc.spazeChannelSelection.value:
+			if config.misc.spazeChannelSelection.value and not config.usage.standardchannelselection.value:
 				from Screens.newChannelSelection import newChannelSelection
 				self.servicelist = self.session.instantiateDialog(newChannelSelection)
 			else:

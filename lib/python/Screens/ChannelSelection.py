@@ -1771,12 +1771,12 @@ class ChannelContextMenu(Screen):
 		self.session.open(InformationService, current)
 
 	def showServiceListOpenSPA(self, current):  # OPENSPA [norhap] Show OpenSPA channel list.
-		config.usage.standardchannelselection.value = False
 		from Screens.InfoBar import InfoBar
 		from Screens.newChannelSelection import newChannelSelection
 		if InfoBar and InfoBar.instance:
 			InfoBar.instance.servicelist = InfoBar.instance.session.instantiateDialog(newChannelSelection)
 			InfoBar.instance.connectRadioOverlays()
+			config.usage.standardchannelselection.value = False
 		AddPopup(text=_("The channel selection mode has changed!\nOpen the channel selection again"), type=MessageBox.TYPE_INFO, timeout=8, id='NewChannelSelection')
 		self.close(True)
 
@@ -2426,6 +2426,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		else:
 			self.skinName = ["ChannelSelection"]
 		self.channelListSkinNames = [self.skinName] if isinstance(self.skinName, str) else self.skinName[:]
+		self.channelListSkinNamesInitialized = False  # [norhap] Subclasse for newChannelSelection.
 		self["DabImage"] = Pixmap()
 		self["DabImage"].hide()
 		self.ignoreWidgets.append("DabImage")
@@ -2528,6 +2529,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def updateRadioListSkin(self):
 		if self is not ChannelSelection.instance:
 			return
+		if not self.channelListSkinNamesInitialized:  # [norhap] OpenSPA Subclasses newChannelSelectino can replace skinName after the base constructor.
+			self.channelListSkinNames = [self.skinName] if isinstance(self.skinName, str) else self.skinName[:]
+			self.channelListSkinNamesInitialized = True
 		skinNames = self.channelListSkinNames
 		if self.mode == MODE_RADIO and config.usage.e1like_radio_mode.value:
 			reference = self.session.nav.getCurrentlyPlayingServiceReference()
