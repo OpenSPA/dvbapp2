@@ -4298,10 +4298,20 @@ class InfoBarInstantRecord:
 		try:
 			import Tools.Trashcan
 			trash = Tools.Trashcan.createTrashFolder(entry.Filename)
+			if not trash:
+				raise OSError("Unable to create trashcan")
+			for extension in (".ts", ".stream"):
+				filename = f"{entry.Filename}{extension}"
+				if isfile(filename):
+					break
+			else:
+				raise FileNotFoundError(f"Recording file not found: '{entry.Filename}.ts' or '{entry.Filename}.stream'")
 			from Screens.MovieSelection import moveServiceFiles
-			moveServiceFiles(entry.Filename, trash, entry.name, allowCopy=False)
-		except Exception:
-			pass
+			ref = eServiceReference(eServiceReference.idDVB, 0, filename)
+			moveServiceFiles(ref, trash, entry.name, allowCopy=False)
+		except Exception as err:
+			print(f"[InfoBarInstantRecord] Failed to move recording to trashcan: {err}")
+			self.session.open(MessageBox, _("Can't move to trashcan!") + "\n" + str(err), MessageBox.TYPE_ERROR)
 
 	def stopOrDeleteVariousRecordings(self, entry=-1):
 		def stopRecordingOrCancel(answer=False):
