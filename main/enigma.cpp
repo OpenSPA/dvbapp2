@@ -356,8 +356,13 @@ int main(int argc, char **argv)
 		}
 		int frames = 0;
 		ePtr<gPixmap> wait[MAX_SPINNER];
-		for (const auto &path : paths)
+		const bool useNativeSpinner = eSimpleConfig::getBool("config.misc.use_fallback_spinner", false);
+		for (const auto &spinnerPath : paths)
 		{
+			if (useNativeSpinner)
+				break;
+			// Older settings screens renamed the spinner directory while the native spinner was enabled.
+			const std::string path = access(spinnerPath.c_str(), F_OK) ? spinnerPath + "_original" : spinnerPath;
 			while (frames < MAX_SPINNER)
 			{
 				const std::string filename = path + "/wait" + std::to_string(frames + 1) + ".png";
