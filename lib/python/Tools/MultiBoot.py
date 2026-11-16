@@ -602,21 +602,6 @@ class MultiBootClass():
 			versionFile = join(imageDir, "etc/image-version")
 			if isfile(infoFile):
 				info = self.readSlotInfo(infoFile)
-				compileDate = str(info.get("compiledate"))
-				revision = info.get("imgrevision")
-				revision = f".{revision:03d}" if info.get("distro") == "openvix" and isinstance(revision, int) else f" {revision}"
-				revision = "" if revision.strip() == compileDate else revision
-				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
-				###### OPENSPA [morser] Add openspa beta data extraction ###############
-				if info.get("distro","").lower() == "openspa":
-					revision = ".%s" % info.get("imgrevision") if isinstance(info.get("imgrevision"),str) else revision
-					dev = info.get("feedsurl")
-					if "beta" in dev:
-						revision += " BETA"
-					if "oea" in dev:
-						revision += " OEA"
-				####################################################################
-				info = self.readSlotInfo(infoFile)
 				name = self._formatSlotName(info)
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
 				self.imageList[self.slotCode]["imagename"] = name
@@ -746,6 +731,15 @@ class MultiBootClass():
 			revision = "" if revision.strip() == compileDate else revision
 		else:
 			revision = ""
+		###### OPENSPA [morser] Add openspa beta data extraction ###############
+		if info.get("distro","").lower() == "openspa":
+			revision = ".%s" % info.get("imgrevision") if isinstance(info.get("imgrevision"),str) else revision
+			dev = info.get("feedsurl")
+			if "beta" in dev:
+				revision += " BETA"
+			if "oea" in dev:
+				revision += " OEA"
+		####################################################################
 		if len(compileDate) == 8 and compileDate.isdigit():
 			compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 		else:
