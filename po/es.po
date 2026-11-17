@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-16 15:53+0100\n"
+"POT-Creation-Date: 2026-11-18 20:37+0100\n"
 "PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -8292,9 +8292,6 @@ msgstr "Error: No se ha podido encontrar un dispositivo adecuado. Por favor, eli
 msgid "Error: Creating directory '%s' failed!"
 msgstr "¡Ha fallado la creación del directorio %s. !"
 
-msgid "Error: Creating picon target directory: (%s)"
-msgstr "Error: Creando directorio de picons: (%s)"
-
 msgid "Error: Directory '%s' does not exist!"
 msgstr "¡Error: No existe el directorio %s!"
 
@@ -11050,6 +11047,9 @@ msgstr "Flash interna"
 
 msgid "Internal flash"
 msgstr "Flash interna"
+
+msgid "Internal flash only allows small picon packages."
+msgstr "La memoria flash interna solo permite paquetes de picons pequeños."
 
 msgid "Internal flash:  %s %s "
 msgstr "Flash interna: %s %s "
@@ -15935,6 +15935,12 @@ msgstr "Sintoniz. preferidos en grabaciones, se permite selección múltiple"
 msgid "Preparation time for recording"
 msgstr "Tiempo de preparación para la grabación"
 
+msgid "Preparing picon storage. Existing picons will be preserved. Please wait..."
+msgstr "Preparando el almacenamiento de picons. Los picons existentes se conservarán. Por favor, espere..."
+
+msgid "Preparing picon storage. Please wait..."
+msgstr "Preparando el almacenamiento de picons. Por favor, espere..."
+
 msgid "Preparing recording, please wait..."
 msgstr "Preparando la grabación, por favor espere..."
 
@@ -16773,7 +16779,7 @@ msgid "Recording failed"
 msgstr "Grabación fallida"
 
 msgid "Recording failed because the channel's programme information could not be received.\n%s"
-msgstr "La grabación falló porque no se pudo recibir la información de programación del canal.\\n%s"
+msgstr "La grabación falló porque no se pudo recibir la información de programación del canal.\n%s"
 
 msgid "Recording Filenames And Data"
 msgstr "Grabación de Nombres de Archivos y Datos"
@@ -18775,6 +18781,9 @@ msgstr "Seleccionar un grupo"
 
 msgid "Select a cardserver from the available list."
 msgstr "Seleccione un servidor de tarjetas de la lista disponible."
+
+msgid "Select a connected HDD or USB device for the picons."
+msgstr "Selecciona un dispositivo HDD o USB conectado para los picons."
 
 msgid "Select a debug log file to view:"
 msgstr "Seleccione un archivo de registro de depuración para verlo:"
@@ -23497,6 +23506,9 @@ msgstr "No se puede modificar la selección del backup predeterminado.\nPor favo
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Los ajustes predeterminado son tiempo encendido 5 minutos antes e inicio de temporizador 5 minutos después. Gracias a esto, se puede detectar un encendido por un temporizador incluso en receptores que arrancan rápido."
 
+msgid "The destination '%s' already exists. Choose an empty destination or move the picons manually."
+msgstr "El destino '%s' ya existe. Elige un destino vacío o mueve los picons manualmente."
+
 msgid "The detailed information is intended for developers only."
 msgstr "La información detallada se reserva solo para desarrolladores."
 
@@ -23558,7 +23570,7 @@ msgid "The Kexec Multiboot is Enabled"
 msgstr "MultiBoot Kexec habilitado"
 
 msgid "The Kodi plugin is not installed!\nPlease install it."
-msgstr "¡El plugin Kodi no está instalado!\\nInstálelo."
+msgstr "¡El plugin Kodi no está instalado!\nInstálelo."
 
 msgid "The local image search timed out. Check your storage devices."
 msgstr "La búsqueda de imágenes local ha agotado el tiempo de espera. Compruebe sus dispositivos de almacenamiento."
@@ -23600,13 +23612,25 @@ msgid "The mount point '%s' is used by more than one share."
 msgstr "El punto de montaje '%s' es utilizado por más de un recurso compartido."
 
 msgid "The PanelExtra plugin is not installed!\nPlease install it."
-msgstr "¡El plugin PanelExtra no está instalado!\\nInstálelo."
+msgstr "¡El plugin PanelExtra no está instalado!\nInstálelo."
 
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr "No se encontró el canal de pánico. Por favor, selecciónelo de nuevo en la configuración de selección de canales."
 
+msgid "The picon destination must be outside the existing picon directory."
+msgstr "El destino de los picons debe estar fuera del directorio de picons existente."
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "El directorio de picons ya existe y se tiene que eliminar. ¿Quieres continuar?"
+
+msgid "The picon package could not be installed. Connect an HDD or USB device and select it as the picon install location in Plugin Browser settings. Check that the device is mounted and writable.\n\nInternal flash only allows small packages with up to 1,000 files and 10 MiB, with enough free space and file entries remaining."
+msgstr "No se pudo instalar el paquete de picons. Conecta un dispositivo HDD o USB y selecciónalo como ubicación de instalación de picons en la configuración del Navegador de Plugins. Comprueba que el dispositivo esté montado y sea escribible.\n\nLa memoria flash interna solo permite paquetes pequeños con un máximo de 1.000 archivos y 10 MiB, con suficiente espacio libre y entradas de archivo disponibles."
+
+msgid "The picon path '%s' is not a directory."
+msgstr "La ruta de picons '%s' no es un directorio."
+
+msgid "The picon storage device is read-only or full."
+msgstr "El dispositivo de almacenamiento de picons es de solo lectura o está lleno."
 
 msgid "The PIN code entered is incorrect!"
 msgstr "El código PIN introducido es incorrecto!"
@@ -23687,10 +23711,10 @@ msgid "The software management extension is not installed!\nPlease install it."
 msgstr "¡La extensión de administración de software no está instalada!\nPor favor, instálelo."
 
 msgid "The spzCAMD plugin is not installed!\nPlease install it."
-msgstr "¡El plugin spzCAMD no está instalado!\\nInstálelo."
+msgstr "¡El plugin spzCAMD no está instalado!\nInstálelo."
 
 msgid "The spzWeather plugin is not installed!\nPlease install it."
-msgstr "¡El plugin spzWeather no está instalado!\\nInstálelo."
+msgstr "¡El plugin spzWeather no está instalado!\nInstálelo."
 
 msgid "The storage check did not finish. Please check the device or network and try again."
 msgstr "La comprobación del almacenamiento no ha finalizado. Comprueba el dispositivo o la red y vuelve a intentarlo."
@@ -24957,6 +24981,12 @@ msgstr "Ucrania"
 msgid "Ukrainian"
 msgstr "Ucraniano"
 
+msgid "Unable to access the script directory."
+msgstr "No se puede acceder al directorio de scripts."
+
+msgid "Unable to change the picon storage location: %s"
+msgstr "No se puede cambiar la ubicación de almacenamiento de picons: %s"
+
 msgid "Unable to check HDD replacement: %s"
 msgstr "No se pudo verificar el reemplazo del disco duro: %s"
 
@@ -24980,6 +25010,9 @@ msgstr "¡No se pudo cargar la información del paquete!"
 
 msgid "Unable to open tuner (%d)"
 msgstr "No se puede abrir el sintonizador (%d)"
+
+msgid "Unable to prepare picon storage: %s"
+msgstr "No se puede preparar el almacenamiento de picons: %s"
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr "No se pudo preparar la actualización de los bouquets. El escaneo continuará sin actualizar los bouquets."
@@ -25049,6 +25082,9 @@ msgstr "Indisponible"
 
 msgid "unavailable"
 msgstr "no disponible"
+
+msgid "Unavailable: %s"
+msgstr "No disponible: %s"
 
 msgid "Undefined"
 msgstr "No definido"

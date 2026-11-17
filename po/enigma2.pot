@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-16 15:53+0100\n"
+"POT-Creation-Date: 2026-11-18 20:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7662,9 +7662,6 @@ msgstr ""
 msgid "Error: Creating directory '%s' failed!"
 msgstr ""
 
-msgid "Error: Creating picon target directory: (%s)"
-msgstr ""
-
 msgid "Error: Directory '%s' does not exist!"
 msgstr ""
 
@@ -10240,6 +10237,9 @@ msgid "Internal flash"
 msgstr ""
 
 msgid "Internal Flash"
+msgstr ""
+
+msgid "Internal flash only allows small picon packages."
 msgstr ""
 
 msgid "Internal flash:  %s %s "
@@ -14715,6 +14715,12 @@ msgstr ""
 msgid "Preparation time for recording"
 msgstr ""
 
+msgid "Preparing picon storage. Existing picons will be preserved. Please wait..."
+msgstr ""
+
+msgid "Preparing picon storage. Please wait..."
+msgstr ""
+
 msgid "Preparing... Please wait"
 msgstr ""
 
@@ -17231,6 +17237,9 @@ msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding dur
 msgstr ""
 
 msgid "Select a bouquet"
+msgstr ""
+
+msgid "Select a connected HDD or USB device for the picons."
 msgstr ""
 
 msgid "Select a debug log file to view:"
@@ -21534,6 +21543,9 @@ msgstr ""
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr ""
 
+msgid "The destination '%s' already exists. Choose an empty destination or move the picons manually."
+msgstr ""
+
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
@@ -21649,7 +21661,19 @@ msgstr ""
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
-msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgid "The picon destination must be outside the existing picon directory."
+msgstr ""
+
+msgid ""
+"The picon package could not be installed. Connect an HDD or USB device and select it as the picon install location in Plugin Browser settings. Check that the device is mounted and writable.\n"
+"\n"
+"Internal flash only allows small packages with up to 1,000 files and 10 MiB, with enough free space and file entries remaining."
+msgstr ""
+
+msgid "The picon path '%s' is not a directory."
+msgstr ""
+
+msgid "The picon storage device is read-only or full."
 msgstr ""
 
 msgid "The PIN code entered is incorrect!"
@@ -22955,6 +22979,12 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
+msgid "Unable to access the script directory."
+msgstr ""
+
+msgid "Unable to change the picon storage location: %s"
+msgstr ""
+
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
@@ -22971,6 +23001,9 @@ msgid "Unable to inherit the User Band for LNB %d: LNB 1 %s!"
 msgstr ""
 
 msgid "Unable to open tuner (%d)"
+msgstr ""
+
+msgid "Unable to prepare picon storage: %s"
 msgstr ""
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
@@ -23022,6 +23055,9 @@ msgid "unavailable"
 msgstr ""
 
 msgid "Unavailable"
+msgstr ""
+
+msgid "Unavailable: %s"
 msgstr ""
 
 msgid "Undefined"
