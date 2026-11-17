@@ -23,6 +23,14 @@ slide is available or the slideshow is disabled (if radio backgrounds are
 enabled). A skin may provide icons/default_dab.png to replace that logo.
 Without DabImage, the existing default radio/slideshow layout is retained.
 
+For the channel list in radio-as-TV mode, provide a separate
+ChannelSelectionRadioDABList screen with a list widget and DabImage. It is
+selected when the currently playing service is DAB. RdsDecoder is available
+as a source for RadioText and RtpText. With OpenSPA's new channel selection,
+this screen uses the standard channel-list controls; the plugin's TV layout
+and event-list controls are restored outside DAB. The standalone radio player
+uses ChannelSelectionRadioDABWithEPG instead.
+
 Keep RadioText, RtpText and RassLogo in the screen. Image coordinates are
 relative to the screen; the complete image must fit inside its bounds.
 The resolution attribute lets the skin engine scale this HD example to
@@ -32,6 +40,18 @@ RadioText/RtpText support explicit fontScale or scrollText attributes.
 The optional technical status line and front-panel display mode remain
 controlled by DAB settings. Disable the automatic technical line if your
 skin provides its own ServiceInfo/DABTechnical widget.
+The bundled 400, 480 and 800 display layouts show the station logo or
+slideshow beside radio text when the corresponding front-display mode is
+selected. For custom layouts, messageWithPicture contains the text while
+an image is shown; message contains it when there is no image.
+
+LcdPicon uses a cached DAB station logo when its source is a DAB reference.
+With parent.ServiceEvent this is the highlighted station, not necessarily
+the playing station. If no logo is cached, ordinary LCD picon lookup and
+its default remain available. This is separate from the DAB slideshow.
+Channel lists use each DAB station's cached SPI logo when available and
+otherwise retain the configured channel-list picon lookup. New logos can
+appear as they arrive without changing the selected service.
 
 Additional ServiceInfo converters for session.CurrentService:
   DABCodec       - transmitted AAC-LC, HE-AAC, HE-AAC v2 or MPEG Layer II

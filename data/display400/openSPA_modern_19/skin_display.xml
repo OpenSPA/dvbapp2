@@ -371,4 +371,5 @@ foregroundColor="red" font="Bold1; 29" transparent="1" >
 	  <convert type="infoRecBm">Numero</convert>
 	</widget>
   </screen>
+	<include filename="/usr/share/enigma2/display/dab_summary.xml"/>
 </skin>

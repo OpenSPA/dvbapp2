@@ -1,4 +1,4 @@
-from os import listdir
+from os import listdir, stat
 from os.path import exists, getsize, isdir, join
 from re import sub
 
@@ -8,6 +8,7 @@ from ServiceReference import ServiceReference
 from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.SystemInfo import BoxInfo
+from Components.Renderer.Picon import getDABCachedImage
 from Components.Renderer.Renderer import Renderer
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename, sanitizeFilename
@@ -168,6 +169,8 @@ class LcdPicon(Renderer):
 		self.PicLoad.PictureData.get().append(self.updatePicon)
 		self.piconsize = (0, 0)
 		self.pngname = ""
+		self.requestedPicon = None
+		self.loadingPicon = None
 		self.lastPath = None
 		defaultName = "lcd_picon_default" if BW else "picon_default"
 		pngname = findLcdPicon(defaultName)
@@ -200,21 +203,41 @@ class LcdPicon(Renderer):
 		if self.instance:
 			pngname = ""
 			match what[0]:
-				case 1 | 3 if self.source.text:
-					pngname = getLcdPiconName(self.source.text)
+				case 0 | 1 | 3 if self.source and self.source.text:
+					dabImage = getDABCachedImage(self.source.text)
+					pngname = dabImage or getLcdPiconName(self.source.text)
 					if not exists(pngname):  # No picon for service found
 						pngname = self.defaultpngname
-					if self.pngname != pngname:
-						if pngname:  # We need to used ePicLoad to support 32Bit Picons for all Display types
-							# Note: 1 + 100 is for 16 Bit LCD to force RGB
-							self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 101, "#FF000000"))
-							self.PicLoad.startDecode(pngname)
-						else:
-							self.instance.hide()
-						self.pngname = pngname
-				case 2:
+					pngkey = pngname
+					if dabImage and pngname == dabImage:
+						try:
+							status = stat(pngname)
+							pngkey = (pngname, status.st_mtime_ns, status.st_size)
+						except OSError as error:
+							print(f"[LcdPicon] Unable to read DAB logo '{pngname}': {error}")
+							pngname = self.defaultpngname
+							pngkey = pngname
+					if self.pngname != pngkey:
+						self.pngname = pngkey
+						self.requestedPicon = (pngname, pngkey) if pngname else None
+						self.instance.hide()
+						if self.requestedPicon and self.loadingPicon is None:
+							self.loadPicon()
+				case 0 | 1 | 2 | 3:
 					self.pngname = ""
+					self.requestedPicon = None
 					self.instance.hide()
+
+	def loadPicon(self):
+		self.loadingPicon = self.requestedPicon
+		pngname = self.loadingPicon[0]
+		# 101 forces RGB for 16-bit displays.
+		self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 101, "#FF000000"))
+		if self.PicLoad.startDecode(pngname):
+			print(f"[LcdPicon] Unable to start decoding '{pngname}'.")
+			self.loadingPicon = None
+			self.pngname = ""
+			self.instance.hide()
 
 	def addPath(self, value):
 		if exists(value):
@@ -225,9 +248,18 @@ class LcdPicon(Renderer):
 
 	def updatePicon(self, picInfo=None):
 		ptr = self.PicLoad.getData()
-		if ptr is not None:
-			self.instance.setPixmap(ptr.__deref__())
-			self.instance.show()
+		loaded = self.loadingPicon
+		self.loadingPicon = None
+		if self.instance and loaded and loaded == self.requestedPicon:
+			if ptr is not None:
+				self.instance.setPixmap(ptr.__deref__())
+				self.instance.show()
+			else:
+				print(f"[LcdPicon] Unable to decode '{loaded[0]}'.")
+				self.pngname = ""
+				self.instance.hide()
+		elif self.instance and self.requestedPicon:
+			self.loadPicon()
 
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)

@@ -2,7 +2,7 @@ from os import listdir
 from os.path import exists, getmtime, getsize, isdir, join, normpath
 from re import sub
 
-from enigma import ePixmap, eServiceReference, iServiceInformation
+from enigma import ePixmap, eServiceCenter, eServiceReference, iServiceInformation
 
 import NavigationInstance
 from ServiceReference import ServiceReference
@@ -152,7 +152,7 @@ def findPicon(serviceName, mode=None):
 
 
 def getChannelSelectionPiconName(serviceName):
-	return getPiconName(serviceName, mode="channelselection")
+	return getDABCachedImage(serviceName) or getPiconName(serviceName, mode="channelselection")
 
 
 def getPiconName(serviceName, mode=None):
@@ -174,6 +174,15 @@ def getPiconName(serviceName, mode=None):
 			legacyName = sub("[^a-z0-9]", "", utf8Name.replace("&", "and").replace("+", "plus").replace("*", "star").replace(_("(TV)"), "").replace(_("(Radio)"), "").replace("remote", "").lower())  # legacy ascii service name picons
 			pngname = findPicon(utf8Name, mode) or legacyName and findPicon(legacyName, mode) or findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8Name).strip(), mode) or legacyName and findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", legacyName).strip(), mode)
 	return pngname
+
+
+def getDABCachedImage(serviceName):
+	ref = eServiceReference(serviceName or "")
+	if ref.type != eServiceReference.idServiceDAB:
+		return ""
+	info = eServiceCenter.getInstance().info(ref)
+	image = info and info.getInfoString(ref, iServiceInformation.sTagImage) or ""
+	return image if image and exists(image) else ""
 
 
 def getDABImage(serviceName):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-12 09:27+0100\n"
+"POT-Creation-Date: 2026-11-16 15:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8535,6 +8535,9 @@ msgstr ""
 msgid "Flash Manager - %s Images"
 msgstr ""
 
+msgid "Flash Manager - Distributions"
+msgstr ""
+
 msgid "Flash Manager Actions"
 msgstr ""
 
@@ -14297,6 +14300,9 @@ msgstr ""
 msgid "Please select a category."
 msgstr ""
 
+msgid "Please select a distribution from which you would like to flash an image:"
+msgstr ""
+
 msgid "Please select a line to edit or select add to create new line."
 msgstr ""
 
@@ -14307,6 +14313,9 @@ msgid "Please select a play list..."
 msgstr ""
 
 msgid "Please select a resolution..."
+msgstr ""
+
+msgid "Please select a target directory."
 msgstr ""
 
 msgid "Please select an aspect ratio..."
@@ -19443,7 +19452,7 @@ msgstr ""
 msgid "Show Python packages"
 msgstr ""
 
-msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
+msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Depending on the display skin, radio text may also appear beside pictures. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
 msgstr ""
 
 msgid "Show record indicator"

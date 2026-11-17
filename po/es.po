@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-12 09:27+0100\n"
+"POT-Creation-Date: 2026-11-16 15:53+0100\n"
 "PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -15502,6 +15502,9 @@ msgstr "Seleccione una lista de reproducción…"
 msgid "Please select a resolution..."
 msgstr "Seleccione una resolución…"
 
+msgid "Please select a target directory."
+msgstr "Seleccione un directorio de destino."
+
 msgid "Please select an aspect ratio..."
 msgstr "Seleccione una relación de aspecto..."
 
@@ -21224,8 +21227,8 @@ msgstr "Mostrar paquetes python"
 msgid "Show quickmenu..."
 msgstr "Mostrar menú rápico..."
 
-msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
-msgstr "Muestra texto de radio, imágenes o solo el logotipo de la emisora en la pantalla a color. En el modo de presentación, si no hay imágenes disponibles, se muestra el logotipo de la emisora; en el modo de solo logotipo, nunca se muestran imágenes. Si no se dispone del logotipo de la emisora, se muestra el logotipo de DAB+. Esta configuración es independiente de la presentación de imágenes en modo TV."
+msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Depending on the display skin, radio text may also appear beside pictures. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
+msgstr "Muestra texto de radio, imágenes o solo el logotipo de la emisora en la pantalla a color. Según el skin del display, el texto de radio también puede aparecer junto a las imágenes. En el modo de presentación, si no hay imágenes disponibles, se muestra el logotipo de la emisora; en el modo de solo logotipo, nunca se muestran imágenes. Si no se dispone del logotipo de la emisora, se muestra el logotipo de DAB+. Esta configuración es independiente de la presentación de imágenes en modo TV."
 
 msgid "Show record indicator"
 msgstr "Mostrar indicador de grabación"
@@ -25492,7 +25495,7 @@ msgid "Use Geolocation"
 msgstr "Hora Local"
 
 msgid "Use geolocation to get WAN information"
-msgstr "Utilizar geolocalización para conseguir la información WAN"
+msgstr "Utilizar geolocalización para conseguir la información WLAN"
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Utilizar geolocalización para establecer la ubicación de la zona horaria actual"
@@ -26254,10 +26257,10 @@ msgid "Walloon"
 msgstr "Valón"
 
 msgid "WAN connection information"
-msgstr "Información de conexión WAN"
+msgstr "Información de conexión WLAN"
 
 msgid "WAN Geolocation"
-msgstr "Información WAN"
+msgstr "Información WLAN"
 
 msgid "want to stop and delete this recordings?"
 msgstr "¿Quieres detener y eliminar estas grabaciones?"

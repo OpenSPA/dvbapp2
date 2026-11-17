@@ -387,6 +387,7 @@ class RdsInfoDisplaySummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
 		self["message"] = StaticText()
+		self["messageWithPicture"] = StaticText()
 		self["station"] = StaticText()
 		self["combined"] = StaticText()
 		self["picture"] = Pixmap()
@@ -447,7 +448,7 @@ class RdsInfoDisplaySummary(Screen):
 		if not showPicture:
 			self["picture"].hide()
 		# Do not restart a running-text animation on every metadata event.
-		for name, text in (("station", station), ("message", "" if showPicture else message), ("combined", f"{station} - {message}" if message else station)):
+		for name, text in (("station", station), ("message", "" if showPicture else message), ("messageWithPicture", message if showPicture else ""), ("combined", f"{station} - {message}" if message else station)):
 			if self[name].text != text:
 				self[name].text = text
 		self.show()
@@ -507,7 +508,7 @@ class RdsInfoDisplaySummary(Screen):
 	def clearDisplay(self):
 		self.serviceGeneration += 1
 		self.failedPicture = None
-		for name in ("message", "station", "combined"):
+		for name in ("message", "messageWithPicture", "station", "combined"):
 			if self[name].text:
 				self[name].text = ""
 		self["picture"].hide()

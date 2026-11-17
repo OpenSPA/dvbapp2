@@ -421,4 +421,5 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="400,160" font="VFD; 36" halign="center" valign="center" transparent="1" foregroundColor="azul" />
 		<panel name="RelojAbajo" />
 	</screen>
+	<include filename="/usr/share/enigma2/display/dab_summary.xml"/>
 </skin>

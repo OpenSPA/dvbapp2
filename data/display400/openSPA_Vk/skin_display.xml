@@ -338,4 +338,5 @@
   </widget>
   <!--<ePixmap name="icotv" position="300,200" size="42,34" alphatest="blend" pixmap="display/skin_default/vfd_icon_upt.png" zPosition="19" />-->
 </screen>
+	<include filename="/usr/share/enigma2/display/dab_summary.xml"/>
 </skin>

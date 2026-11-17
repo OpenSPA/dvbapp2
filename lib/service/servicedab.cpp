@@ -125,6 +125,45 @@ std::string dabCacheDirectory()
 	return directory;
 }
 
+std::string &dabActiveCacheDirectory()
+{
+	static std::string directory;
+	if (directory.empty())
+		directory = dabCacheDirectory();
+	return directory;
+}
+
+uint32_t dabSourceHash(const eServiceReference &ref)
+{
+	uint32_t hash = 2166136261u;
+	for (const unsigned char character : ref.path)
+	{
+		hash ^= character;
+		hash *= 16777619u;
+	}
+	return hash;
+}
+
+std::string dabLogoBase(const eServiceReference &ref, const std::string &directory)
+{
+	char base[192];
+	snprintf(base, sizeof(base), "%s/dab-logo-%08x-%04x-%08x",
+		directory.c_str(), dabSourceHash(ref), ref.getUnsignedData(7) & 0xffff,
+		ref.getUnsignedData(6));
+	return base;
+}
+
+std::string dabLogoPath(const std::string &base)
+{
+	const std::string jpeg = base + ".jpg";
+	const std::string png = base + ".png";
+	if (access(jpeg.c_str(), R_OK) == 0)
+		return jpeg;
+	if (access(png.c_str(), R_OK) == 0)
+		return png;
+	return std::string();
+}
+
 bool parseSPIImageName(const std::string &name, uint32_t &serviceId, unsigned int &width, unsigned int &height)
 {
 	/* Broadcasters use several SPI logo naming schemes.  NDR prefixes the
@@ -1596,6 +1635,7 @@ int eStaticServiceDABInfo::getInfo(const eServiceReference &ref, int w)
 	case iServiceInformation::sProvider:
 	case iServiceInformation::sDescription:
 	case iServiceInformation::sServiceref:
+	case iServiceInformation::sTagImage:
 		return iServiceInformation::resIsString;
 	default:
 		return iServiceInformation::resNA;
@@ -1612,6 +1652,8 @@ std::string eStaticServiceDABInfo::getInfoString(const eServiceReference &ref, i
 		return ref.path.compare(0, 13, "dab://rtlsdr/") == 0 ? "Native RTL-SDR DAB service" : "Native DAB-over-DVB service";
 	case iServiceInformation::sServiceref:
 		return ref.toString();
+	case iServiceInformation::sTagImage:
+		return dabLogoPath(dabLogoBase(ref, dabActiveCacheDirectory()));
 	default:
 		return std::string();
 	}
@@ -2206,24 +2248,15 @@ eServiceDAB::eServiceDAB(const eServiceReference &ref)
 	/* Keep SLS and station logos across zaps and, when /media/hdd is backed by
 	 * storage, across reboots. Include transport, EId and the complete SId so
 	 * equally numbered services from different ensembles never share an entry. */
-	m_cache_directory = dabCacheDirectory();
-	m_source_hash = 2166136261u;
-	for (const unsigned char character : m_reference.path)
-	{
-		m_source_hash ^= character;
-		m_source_hash *= 16777619u;
-	}
+	m_cache_directory = dabActiveCacheDirectory() = dabCacheDirectory();
+	m_source_hash = dabSourceHash(m_reference);
 	char slideBase[192];
 	snprintf(slideBase, sizeof(slideBase), "%s/dab-sls-%08x-%04x-%08x",
 		m_cache_directory.c_str(), m_source_hash, m_reference.getUnsignedData(7) & 0xffff,
 		m_reference.getUnsignedData(6));
 	m_slide_jpeg_path = std::string(slideBase) + ".jpg";
 	m_slide_png_path = std::string(slideBase) + ".png";
-	char logoBase[192];
-	snprintf(logoBase, sizeof(logoBase), "%s/dab-logo-%08x-%04x-%08x",
-		m_cache_directory.c_str(), m_source_hash, m_reference.getUnsignedData(7) & 0xffff,
-		m_reference.getUnsignedData(6));
-	m_logo_base = logoBase;
+	m_logo_base = dabLogoBase(m_reference, m_cache_directory);
 	CONNECT(m_worker_pump.recv_msg, eServiceDAB::workerMessage);
 }
 
@@ -3472,7 +3505,7 @@ bool eServiceDAB::cacheSPIImageData(const uint8_t *data, size_t length, const st
 	}
 	eDABDebug("[eServiceDAB] cached SPI logo sid=%04x size=%ux%u path='%s'",
 		serviceId, width, height, destination.c_str());
-	return serviceId == (m_reference.getUnsignedData(6) & 0xffff);
+	return true;
 }
 
 int eServiceDAB::importSPI(const std::string &path)
@@ -3572,13 +3605,7 @@ std::string eServiceDAB::slidePath() const
 
 std::string eServiceDAB::logoPath() const
 {
-	const std::string logoJpeg = m_logo_base + ".jpg";
-	const std::string logoPng = m_logo_base + ".png";
-	if (access(logoJpeg.c_str(), R_OK) == 0)
-		return logoJpeg;
-	if (access(logoPng.c_str(), R_OK) == 0)
-		return logoPng;
-	return std::string();
+	return dabLogoPath(m_logo_base);
 }
 
 void eServiceDAB::pollAudioBus()

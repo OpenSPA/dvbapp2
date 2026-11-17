@@ -71,7 +71,7 @@ class RTLSDRSetup(Setup):
 		if BoxInfo.getItem("ColorFrontpanelDisplay"):
 			items.insert(2, (
 				(_("DAB+ front display"), 1), config.dab.frontDisplay,
-				_("Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow.")))
+				_("Show radio text, slideshow pictures or only the station logo on the receiver's color display. Depending on the display skin, radio text may also appear beside pictures. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow.")))
 		if self.hasRTLSDRHardware() and self.hasAvailableSatelliteDAB():
 			items.append((
 				(_("Reception sources to scan"), 1),

@@ -349,4 +349,5 @@
 </screen>
 
 
+	<include filename="/usr/share/enigma2/display/dab_summary.xml"/>
 </skin>

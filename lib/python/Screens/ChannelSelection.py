@@ -49,6 +49,7 @@ from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyboard
 from Tools.BoundFunction import boundFunction
+from Tools.LoadPixmap import LoadPixmap
 from Tools.Notifications import AddPopup, RemovePopup
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -175,6 +176,13 @@ class ChannelSelectionBase(Screen):
 		self["key_info"] = StaticText("")
 		self["list"] = self.createServiceList()
 		self.servicelist = self["list"]
+		self.dabPiconRefreshTimer = eTimer()
+		self.dabPiconRefreshTimer.callback.append(self.refreshDabPicons)
+		self.onHide.append(self.dabPiconRefreshTimer.stop)
+		self.onClose.append(self.dabPiconRefreshTimer.stop)
+		self.__dabPiconTracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evUpdatedInfo: self.scheduleDabPiconRefresh
+		})
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
 		self.servicePath = []
 		self.servicePathTV = []
@@ -258,6 +266,15 @@ class ChannelSelectionBase(Screen):
 
 	def layoutFinished(self):
 		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value and ("keymap.ntr" not in config.usage.keymap.value))  # Override list box navigation.
+
+	def scheduleDabPiconRefresh(self):
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if self.execing and self.shown and ref and ref.type == eServiceReference.idServiceDAB and not self.dabPiconRefreshTimer.isActive():
+			self.dabPiconRefreshTimer.start(1000, True)
+
+	def refreshDabPicons(self):
+		if self.execing and self.shown and self.servicelist.instance:
+			self.servicelist.instance.invalidate()
 
 	def reloadSkin(self):
 		selection = self.getCurrentSelection()
@@ -3649,7 +3666,8 @@ class HistoryZapSelector(Screen):
 						localEnd = localtime(end)
 						eventDuration = f"{strftime(config.usage.time.short.value, localBegin)}  -  {strftime(config.usage.time.short.value, localEnd)}    ({prefix}{ngettext('%d Min', '%d Mins', remaining) % remaining})"
 				servicePicon = getChannelSelectionPiconName(str(ServiceReference(serviceReference)))
-				servicePicon = loadPNG(servicePicon) if servicePicon else ""
+				if servicePicon:
+					servicePicon = LoadPixmap(servicePicon, cached=False, autoDetect=True) if serviceReference.type == eServiceReference.idServiceDAB else loadPNG(servicePicon)
 				historyList.append(("", index == markedItem and "\u00BB" or "", serviceName, eventName, eventDescription, eventDuration, servicePicon, serviceReference))
 		if config.usage.zapHistorySort.value == 0:
 			historyList.reverse()

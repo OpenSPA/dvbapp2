@@ -1107,12 +1107,12 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		if service.flags & eServiceReference.mustDescent:
 			alist = ServiceReference(service).list()
 			first_in_alternative = alist and alist.getNext()
-			service_str = first_in_alternative.toString() if first_in_alternative else service.toString()
+			piconService = first_in_alternative or service
 		else:
-			service_str = service.toString()
-		picon = getChannelSelectionPiconName(service_str)
+			piconService = service
+		picon = getChannelSelectionPiconName(piconService.toString())
 		if exists(picon):
-			return loadPNG(picon)
+			return LoadPixmap(picon, cached=False, autoDetect=True) if piconService.type == eServiceReference.idServiceDAB else loadPNG(picon)
 		return None
 
 	def buildOptionEntryServicePixmap(self, service):
