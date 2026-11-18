@@ -234,7 +234,7 @@ class Picon(Renderer):
 			pngname = ""
 			match what[0]:
 				case 1 | 3:
-					pngname = getDABImage(self.source.text) or getPiconName(self.source.text, self.mode)
+					pngname = getDABImage(self.source.text) or getDABCachedImage(self.source.text) or getPiconName(self.source.text, self.mode)
 					if not exists(pngname):  # No picon for service found
 						pngname = self.defaultpngname
 					if not config.usage.showpicon.value:

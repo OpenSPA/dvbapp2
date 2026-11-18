@@ -52,6 +52,8 @@ its default remain available. This is separate from the DAB slideshow.
 Channel lists use each DAB station's cached SPI logo when available and
 otherwise retain the configured channel-list picon lookup. New logos can
 appear as they arrive without changing the selected service.
+The Picon renderer also uses a cached logo for a highlighted DAB service,
+without requiring that service to be playing.
 
 Additional ServiceInfo converters for session.CurrentService:
   DABCodec       - transmitted AAC-LC, HE-AAC, HE-AAC v2 or MPEG Layer II
