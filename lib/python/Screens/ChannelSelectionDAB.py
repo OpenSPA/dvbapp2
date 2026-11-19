@@ -19,6 +19,11 @@ class ChannelSelectionDAB(newChannelSelection):
 			"keyTV": self.setModeTv,
 		})
 		self["dabListActions"].setEnabled(False)
+		self["spaNeutrinoPageActions"] = ActionMap(["DirectionActions"], {
+			"left": self.key_pageUp,
+			"right": self.key_pageDown,
+		}, prio=-3)
+		self["spaNeutrinoPageActions"].setEnabled("keymap.ntr" in config.usage.keymap.value)
 
 	def updateRadioListSkin(self):
 		if self is not ChannelSelection.instance:
@@ -31,6 +36,7 @@ class ChannelSelectionDAB(newChannelSelection):
 			and reference.type == eServiceReference.idServiceDAB
 			and findSkinScreen("ChannelSelectionRadioDABList")
 		)
+		self["spaNeutrinoPageActions"].setEnabled(not isDAB and "keymap.ntr" in config.usage.keymap.value)
 		if bool(isDAB) != self.dabListActive:
 			self.dabListActive = bool(isDAB)
 			if self.dabListActive:
