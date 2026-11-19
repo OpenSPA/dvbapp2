@@ -53,6 +53,12 @@ msgctxt "now/next: 'next' event label"
 msgid "Later"
 msgstr "Luego"
 
+msgid "\tSearch Type"
+msgstr "\tTipo de búsqueda"
+
+msgid "\tSize"
+msgstr "\tTamaño"
+
 msgid "\n\n[User - bouquets (TV)]\n"
 msgstr "\n\n[Usuario - listas (TV)]\n"
 
@@ -1064,12 +1070,6 @@ msgstr "[Timeshift] ¡Reiniciando timeshift!"
 msgid "[VuplusKexec][create Vu+ Multiboot environment] - Unable to complete, Vu+ Multiboot files missing"
 msgstr "[VuplusKexec][Crear entorno Multiboot Vu+ Multiboot] - Imposible completar, no se encuentran archivos Multiboot Vu+"
 
-msgid "\tSearch Type"
-msgstr "\tTipo de búsqueda"
-
-msgid "\tSize"
-msgstr "\tTamaño"
-
 msgid "A"
 msgstr "A"
 
@@ -1640,6 +1640,9 @@ msgstr "Ajuste el desplazamiento del oscilador del sintonizador para optimizar l
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Ajuste la posición vertical de las letras utilizadas en el teletexto."
 
+msgid "Adjust times to EPG"
+msgstr "Ajustar horas a la EPG"
+
 msgid "adjust your settings and close ... your settings are valid ..."
 msgstr "ajusta tus configuraciones y cierra... tus configuraciones son válidas..."
 
@@ -1858,6 +1861,9 @@ msgstr "Asigne un número al LNB físico que está configurando. Podrá volver a
 
 msgid "Allow %s-bit"
 msgstr "Permitir %s bits"
+
+msgid "Allow duplicate recordings"
+msgstr "Permitir grabaciones duplicadas"
 
 msgid "Allow guest access"
 msgstr "Permitir el acceso a los invitados"
@@ -9286,6 +9292,9 @@ msgstr "Música Folk"
 
 msgid "Folk/Traditional music"
 msgstr "Música folclórica/tradicional"
+
+msgid "Follow changes to the EPG start and end times, keeping the recording margins. Missing EPG data or timer conflicts leave the times unchanged."
+msgstr "Seguir los cambios de las horas de inicio y fin de la EPG, manteniendo los márgenes de grabación. Si faltan datos de la EPG o hay conflictos de temporizador, las horas no se modifican."
 
 msgid "Following tasks will be done after you press OK!"
 msgstr "¡Las siguientes tareas se realizarán después de pulsar OK!"
@@ -20595,7 +20604,7 @@ msgid "Setup your local network"
 msgstr "Configurar tu red local"
 
 msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
-msgstr "Configura tu red local. Para WLAN necesitas haber iniciado el receptor con el adaptador USB conectado"
+msgstr "Configura tu red local. Para WLAN necesitas haber iniciado el receptor con el adaptador USB-WLAN conectado"
 
 msgid "Setup your mounts for network"
 msgstr "Configura tus montajes en red"
@@ -25531,7 +25540,7 @@ msgid "Use Geolocation"
 msgstr "Hora Local"
 
 msgid "Use geolocation to get WAN information"
-msgstr "Utilizar geolocalización para conseguir la información WLAN"
+msgstr "Utilizar geolocalización para conseguir la información WAN"
 
 msgid "Use geolocation to set the current time zone location"
 msgstr "Utilizar geolocalización para establecer la ubicación de la zona horaria actual"
@@ -26293,10 +26302,10 @@ msgid "Walloon"
 msgstr "Valón"
 
 msgid "WAN connection information"
-msgstr "Información de conexión WLAN"
+msgstr "Información de conexión WAN"
 
 msgid "WAN Geolocation"
-msgstr "Información WLAN"
+msgstr "Información WAN"
 
 msgid "want to stop and delete this recordings?"
 msgstr "¿Quieres detener y eliminar estas grabaciones?"
@@ -26474,6 +26483,9 @@ msgstr "¿Qué le gustaría hacer?"
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Cuando está 'Habilitado', la vista del temporizador mostrará el espacio libre en el dispositivo de destino. Esto despertará el dispositivo del modo de suspensión."
+
+msgid "When disabled, skip recordings already indexed by E2MDB with the same title and descriptions. If the database is unavailable or the match is uncertain, record normally."
+msgstr "Cuando está desactivado, omite las grabaciones ya indexadas por E2MDB con el mismo título y descripción. Si la base de datos no está disponible o la coincidencia es incierta, se graba normalmente."
 
 msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
 msgstr "Cuando esté activo, el receptor retornará automáticamente a reposo cuando la TV se apague."

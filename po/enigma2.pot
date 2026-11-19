@@ -1482,6 +1482,9 @@ msgstr ""
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr ""
 
+msgid "Adjust times to EPG"
+msgstr ""
+
 msgid "Adult"
 msgstr ""
 
@@ -1669,6 +1672,9 @@ msgid "Allocate a number to the physical LNB you are configuring. You will be ab
 msgstr ""
 
 msgid "Allow %s-bit"
+msgstr ""
+
+msgid "Allow duplicate recordings"
 msgstr ""
 
 msgid "Allow guest access"
@@ -8596,6 +8602,9 @@ msgid "Folk Music"
 msgstr ""
 
 msgid "Folk/Traditional music"
+msgstr ""
+
+msgid "Follow changes to the EPG start and end times, keeping the recording margins. Missing EPG data or timer conflicts leave the times unchanged."
 msgstr ""
 
 msgid "Font size"
@@ -24331,6 +24340,9 @@ msgid "What would you like to do?"
 msgstr ""
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
+msgstr ""
+
+msgid "When disabled, skip recordings already indexed by E2MDB with the same title and descriptions. If the database is unavailable or the match is uncertain, record normally."
 msgstr ""
 
 msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
