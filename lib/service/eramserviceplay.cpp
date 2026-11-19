@@ -116,13 +116,11 @@ void eRamServicePlay::checkLapAndSeek() {
 		return;
 
 	// Use the existing watchdog, at most once every two seconds in Verbose.
-	// The source cursor is a read position, not proof of decoded playback.
 	if (debugLvl >= lvlTrace && ++m_trace_ticks % 10 == 0 && m_ts_source && m_ram_ring) {
 		pts_t playback = -1;
 		const int result = m_decoder ? m_decoder->getPTS(m_have_video_pid ? 1 : 2, playback) : -1;
-		eTrace("[RAMTimeshift] sourceRead=%lld retained=%lld..%lld playback=%lld ptsResult=%d paused=%d recovering=%d sync=%d",
-			(long long)m_ts_source->getReadOffset(), (long long)m_ram_ring->getMinOffset(),
-			(long long)m_ram_ring->getWriteOffset(), playback, result, m_is_paused,
+		eTrace("[RAMTimeshift] retained=%lld..%lld playback=%lld ptsResult=%d paused=%d recovering=%d sync=%d",
+			(long long)m_ram_ring->getMinOffset(), (long long)m_ram_ring->getWriteOffset(), playback, result, m_is_paused,
 			m_stream_corruption_detected.load(), m_timeshift_sync_enabled);
 	}
 

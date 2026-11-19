@@ -226,13 +226,6 @@ bool eRamTsSource::getLappedOffset(off_t& out_offset) {
 	return lapped;
 }
 
-off_t eRamTsSource::getReadOffset() const {
-	pthread_mutex_lock(&m_offset_mutex);
-	const off_t offset = m_has_read_offset ? m_read_offset : -1;
-	pthread_mutex_unlock(&m_offset_mutex);
-	return offset;
-}
-
 off_t eRamTsSource::length() {
 	return m_buf ? m_buf->getWriteOffset() : -1;
 }
