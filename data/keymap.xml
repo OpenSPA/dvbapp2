@@ -768,13 +768,13 @@
 		<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 	</map>
-	
+
 	<map context="InfobarArrowSeekActions">
 		<key id="KEY_LEFT" mapto="left" flags="b" />
 		<key id="KEY_RIGHT" mapto="right" flags="b" />
 		<key id="KEY_UP" mapto="up" flags="b" />
 		<key id="KEY_DOWN" mapto="down" flags="b" />
-	</map>	
+	</map>
 
 	<map context="InfobarSeekActions">
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
@@ -921,6 +921,7 @@
 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
 		<key id="KEY_SPACE" mapto="contextMenu" flags="m" />
 		<key id="KEY_INFO" mapto="showEventInfo" flags="m" />
+		<key id="KEY_EPG" mapto="showEventInfo" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="m" />
 	</map>
