@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-18 20:37+0100\n"
+"POT-Creation-Date: 2026-11-21 18:02+0100\n"
 "PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -320,9 +320,6 @@ msgid_plural "%d Minutes"
 msgstr[0] "%d Minuto"
 msgstr[1] "%d Minutos"
 
-msgid "%d minutes"
-msgstr "%d minutos"
-
 msgid "%d Minutes"
 msgstr "%d Minutos"
 
@@ -443,9 +440,6 @@ msgstr[1] "%d Plugins no disponibles:"
 
 msgid "%d radio bouquets created"
 msgstr "%d bouquets de radio creados"
-
-msgid "%d sec"
-msgstr "%d seg"
 
 msgid "%d Second"
 msgid_plural "%d Seconds"
@@ -3250,9 +3244,6 @@ msgstr "Por etiqueta del disco"
 
 msgid "By disk UUID"
 msgstr "Por UUID del disco"
-
-msgid "by hmmmdada"
-msgstr "por hmmmdada"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Comprobar Bypass EDID de HDMI"
@@ -10283,9 +10274,6 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-msgid "Hops:"
-msgstr "Saltos:"
-
 msgid "hops:"
 msgstr "saltos:"
 
@@ -11739,9 +11727,6 @@ msgstr "Brillo del LED en modo reposo"
 
 msgid "LED Standby color"
 msgstr "Color del LED en modo reposo"
-
-msgid "Left"
-msgstr "Izquierda"
 
 msgid "left"
 msgstr "izquierda"
@@ -13330,9 +13315,6 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr "Narración"
 
-msgid "National Music"
-msgstr "Música Nacional"
-
 msgid "National music"
 msgstr "Música nacional"
 
@@ -13446,9 +13428,6 @@ msgstr "Red conectada correctamente.\n\nInterfaz: %s\nDirección IP: %s"
 
 msgid "Network Credentials"
 msgstr "Credenciales de Red"
-
-msgid "Network ID"
-msgstr "ID de Red"
 
 msgid "Network Information"
 msgstr "Información de Red"
@@ -16589,9 +16568,6 @@ msgstr "Tamaño del bloque de lectura"
 msgid "Read failled"
 msgstr "Lectura fallida"
 
-msgid "Read Only"
-msgstr "Solo lectura"
-
 msgid "Read Userdata from 'ncam.conf'"
 msgstr "Leer datos de usuario desde ncam.conf"
 
@@ -17722,9 +17698,6 @@ msgstr "Abrazadera RGB (superior)"
 
 msgid "Rhythm and Blues"
 msgstr "Ritmo y Blues"
-
-msgid "Right"
-msgstr "Derecha"
 
 msgid "right"
 msgstr "derecha"
@@ -22567,9 +22540,6 @@ msgstr "Hacia el este"
 msgid "Stepped west"
 msgstr "Camino hacia el oeste"
 
-msgid "Stereo"
-msgstr "Estéreo"
-
 msgid "stereo"
 msgstr "estéreo"
 
@@ -26129,9 +26099,6 @@ msgstr "Texto teclado virtual:"
 
 msgid "Visual impaired commentary"
 msgstr "Comentario visual desemparejado"
-
-msgid "VMC"
-msgstr "VMC"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (trailer intro)"

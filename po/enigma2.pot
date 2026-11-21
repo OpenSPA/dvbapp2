@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-18 20:37+0100\n"
+"POT-Creation-Date: 2026-11-21 18:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -259,9 +259,6 @@ msgid_plural "%d Minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "%d minutes"
-msgstr ""
-
 msgid "%d Month"
 msgid_plural "%d Months"
 msgstr[0] ""
@@ -375,9 +372,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "%d radio bouquets created"
-msgstr ""
-
-msgid "%d sec"
 msgstr ""
 
 msgid "%d Second"
@@ -2965,9 +2959,6 @@ msgid "ButtonSetup"
 msgstr ""
 
 msgid "by date"
-msgstr ""
-
-msgid "by hmmmdada"
 msgstr ""
 
 msgid "Bypass HDMI EDID Check"
@@ -9548,9 +9539,6 @@ msgstr ""
 msgid "Hops:"
 msgstr ""
 
-msgid "hops:"
-msgstr ""
-
 msgid "Horizontal"
 msgstr ""
 
@@ -10864,9 +10852,6 @@ msgid "LED Standby"
 msgstr ""
 
 msgid "Left"
-msgstr ""
-
-msgid "left"
 msgstr ""
 
 msgid "Left column"
@@ -12350,9 +12335,6 @@ msgstr ""
 msgid "Narration"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 msgid "National Music"
 msgstr ""
 
@@ -12463,9 +12445,6 @@ msgid ""
 msgstr ""
 
 msgid "Network Credentials"
-msgstr ""
-
-msgid "Network ID"
 msgstr ""
 
 msgid "Network Information"
@@ -15247,9 +15226,6 @@ msgstr ""
 msgid "Read failled"
 msgstr ""
 
-msgid "Read Only"
-msgstr ""
-
 msgid "Read Userdata from 'ncam.conf'"
 msgstr ""
 
@@ -16261,9 +16237,6 @@ msgid "Rhythm and Blues"
 msgstr ""
 
 msgid "Right"
-msgstr ""
-
-msgid "right"
 msgstr ""
 
 msgid "Right column"
@@ -20670,9 +20643,6 @@ msgstr ""
 msgid "Stereo"
 msgstr ""
 
-msgid "stereo"
-msgstr ""
-
 msgid "Stop"
 msgstr ""
 
@@ -23972,9 +23942,6 @@ msgid "Virtual Keyboard Text:"
 msgstr ""
 
 msgid "Visual impaired commentary"
-msgstr ""
-
-msgid "VMC"
 msgstr ""
 
 msgid "VMGM (intro trailer)"

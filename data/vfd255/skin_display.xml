@@ -476,7 +476,7 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 	<!-- ATV -->
 	<!-- Quickmen?? -->
 	<screen name="QuickMenuSummary" position="0,0" size="256,64">
