@@ -233,13 +233,13 @@ class ServiceName2(Converter):
 			lastPath = config.radio.lastroot.value if isRadioService else config.tv.lastroot.value
 			if "FROM BOUQUET" not in lastPath:
 				if "FROM PROVIDERS" in lastPath:
-					result = ("P", _("Provider"))
+					result = ("P", _("Provider"), None)
 				elif "FROM SATELLITES" in lastPath:
-					result = ("S", _("Satellites"))
+					result = ("S", _("Satellites"), None)
 				elif ") ORDER BY name" in lastPath:
-					result = ("A", _("All Services"))
+					result = ("A", _("All Services"), None)
 				else:
-					result = (0, "N/A")
+					result = (0, "N/A", None)
 			else:
 				try:
 					acount = config.plugins.NumberZapExt.enable.value and config.plugins.NumberZapExt.acount.value or config.usage.alternative_number_mode.value
