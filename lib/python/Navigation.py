@@ -18,11 +18,11 @@ from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar, MoviePlayer
 from Screens.InfoBarGenerics import streamrelay
-from Screens.MessageBox import MessageBox
 import Screens.Standby
+from Screens.Toast import Toast
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileWriteLine
-from Tools.Notifications import AddPopup, AddNotification
+from Tools.Notifications import AddNotification
 from Tools.StbHardware import getFPWasTimerWakeup
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -641,7 +641,8 @@ class Navigation:
 		wrappererror = None
 		nref = ref
 		if config.usage.remote_fallback_enabled.value and BoxInfo.getItem("FCCactive"):
-			return AddPopup(_("Fallback tuner and FCC activated. Activate only one function."), type=MessageBox.TYPE_ERROR, timeout=10)
+			wrappererror = _("Fallback tuner and FCC activated. Activate only one function.")
+			Toast.instance.showToast(text=wrappererror, toastType=Toast.TYPE_ERROR, timeout=10, replaceId="fallbackFCC")
 		elif hasattr(nref, "getPath"):
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_PLAYSERVICE):
 				(newurl, errormsg) = p(service=nref)
@@ -652,7 +653,7 @@ class Navigation:
 					nref.setAlternativeUrl(newurl)
 					break
 			if wrappererror:
-				AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
+				Toast.instance.showToast(text=wrappererror, toastType=Toast.TYPE_ERROR, timeout=5, replaceId="channelzapwrapper")
 		return nref, wrappererror
 
 	def getCurrentlyPlayingServiceReference(self):
