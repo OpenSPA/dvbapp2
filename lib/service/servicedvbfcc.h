@@ -15,6 +15,7 @@ public:
 	void serviceEvent(int event);
 	RESULT start();
 protected:
+	bool onFallbackTunerSelected() override;  // [norhap] loop protection on the fallback tuner
 	void pushbackFCCEvents(int event);
 	void popFCCEvents();
 	void changeFCCMode();

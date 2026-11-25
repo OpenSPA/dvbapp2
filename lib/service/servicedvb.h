@@ -258,6 +258,8 @@ protected:
 
 	eDVBServicePlay(const eServiceReference& ref, eDVBService* service, bool connect_event = true);
 
+	virtual bool onFallbackTunerSelected() { return true; }  // [norhap] loop protection on the fallback tuner
+
 	/* events */
 	void gotNewEvent(int error);
 

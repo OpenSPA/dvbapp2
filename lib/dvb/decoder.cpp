@@ -2348,6 +2348,13 @@ RESULT eTSMPEGDecoder::prepareFCC(int fe_id, int vpid, int vtype, int pcrpid)
 {
 	eTrace("[eTSMPEGDecoder] prepareFCC vp : %d, vt : %d, pp : %d, fe : %d", vpid, vtype, pcrpid, fe_id);
 
+	/* [norhap] loop protection on the fallback tuner */
+	if (fe_id < 0)
+	{
+		eWarning("[eTSMPEGDecoder] Refusing FCC preparation without a frontend (source %d)", fe_id);
+		return -1;
+	}
+	/* [norhap] loop protection on the fallback tuner */
 	if ((fccGetFD() == -1) || (fccSetPids(fe_id, vpid, vtype, pcrpid) < 0) || (fccStart() < 0))
 	{
 		fccFreeFD();

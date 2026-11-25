@@ -157,6 +157,28 @@ RESULT eDVBServiceFCCPlay::start()
 	return ret;
 }
 
+/* [norhap] loop protection on the fallback tuner */
+bool eDVBServiceFCCPlay::onFallbackTunerSelected()
+{
+	if (!m_is_primary)
+		return true;
+
+	if (!getFCCStateDecoding())
+	{
+		eDebug("[eDVBServiceFCCPlay] Skipping FCC prefetch for fallback service");
+		m_event((iPlayableService*)this, evStart);
+		m_event((iPlayableService*)this, evTuneFailed);
+		return false;
+	}
+
+	eDebug("[eDVBServiceFCCPlay] Using normal decoding for fallback service");
+	m_normal_decoding = true;
+	setNormalDecoding();
+	m_service_handler.setCaDisable(false);
+	return true;
+}
+/* [norhap] loop protection on the fallback tuner */
+
 void eDVBServiceFCCPlay::pushbackFCCEvents(int event)
 {
 	if (event == evTuneFailed)
@@ -167,7 +189,8 @@ void eDVBServiceFCCPlay::pushbackFCCEvents(int event)
 void eDVBServiceFCCPlay::popFCCEvents()
 {
 	m_fcc_events.unique(); // remove duplicate evUpdatedInfo
-	for (std::list<int>::iterator it = m_fcc_events.begin(); it != m_fcc_events.end(); ++it)
+	/* [norhap] loop protection on the fallback tuner add !m_is_stream */
+	for (std::list<int>::iterator it = m_fcc_events.begin(); !m_is_stream && it != m_fcc_events.end(); ++it)
 	{
 		if (*it == evUpdatedInfo)
 		{
@@ -180,12 +203,17 @@ void eDVBServiceFCCPlay::popFCCEvents()
 	if (!getFCCStateDecoding())
 		return;
 
-	/* add CaHandler */
-	m_service_handler.addCaHandler();
+	/* [norhap] loop protection on the fallback tuner */
+	if (!m_is_stream)
+	{
+		/* add CaHandler */
+		m_service_handler.addCaHandler();
 
-	// Activate SoftCSA session when switching to decoding mode
-	// This enables software descrambling for CSA-ALT channels
-	activateFCCCSASession();
+		// Activate SoftCSA session when switching to decoding mode
+		// This enables software descrambling for CSA-ALT channels
+		activateFCCCSASession();
+	}
+	/* [norhap] loop protection on the fallback tuner */
 
 	/* send events */
 	for (std::list<int>::iterator it = m_fcc_events.begin(); it != m_fcc_events.end(); ++it)
@@ -334,7 +362,13 @@ void eDVBServiceFCCPlay::updateFCCDecoder(bool sendSeekableStateChanged)
 		}
 		else if (pmtVersionChanged)
 		{
-			m_decoder->fccUpdatePids(m_decode_demux->getSource(), vpid, vpidtype, pcrpid);
+			/* [norhap] loop protection on the fallback tuner */
+			if (m_decoder->fccUpdatePids(m_decode_demux->getSource(), vpid, vpidtype, pcrpid) < 0)
+			{
+				m_fcc_flag &= ~fcc_ready;
+				m_fcc_flag |= fcc_failed;
+			}
+			/* [norhap] loop protection on the fallback tuner */
 			m_fcc_flag &=~fcc_decoding;
 		}
 	}
@@ -533,6 +567,13 @@ void eDVBServiceFCCPlay::FCCDecoderStop()
 
 void eDVBServiceFCCPlay::switchToLive()
 {
+	/* [norhap] loop protection on the fallback tuner */
+	if (m_is_stream && m_normal_decoding)
+	{
+		eDVBServicePlay::switchToLive();
+		return;
+	}
+	/* [norhap] loop protection on the fallback tuner */
 	if (!m_timeshift_active)
 		return;
 

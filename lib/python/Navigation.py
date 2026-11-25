@@ -535,13 +535,6 @@ class Navigation:
 					self.pnav.stopService()
 				else:
 					self.skipServiceReferenceReset = True
-					from enigma import eFCCServiceManager  # OpenSPA [norhap] Set FCC not enabled if fallback tuner is active.
-					if config.usage.remote_fallback_enabled.value:
-						eFCCServiceManager.getInstance().setFCCEnable(False)
-						self.serviceHook(playref)
-						return 1
-					else:
-						eFCCServiceManager.getInstance().setFCCEnable(True)
 				# The addon registers only verified equivalents. The native resolver
 				# has an empty map by default and performs no I/O on the zap path.
 				dvbiRef = dvbiTarget or getDVBIFallbackService(playref, dvbiFallback)
@@ -636,10 +629,7 @@ class Navigation:
 	def serviceHook(self, ref):
 		wrappererror = None
 		nref = ref
-		if config.usage.remote_fallback_enabled.value and BoxInfo.getItem("FCCactive"):
-			wrappererror = _("Fallback tuner and FCC activated. Activate only one function.")
-			Toast.instance.showToast(text=wrappererror, toastType=Toast.TYPE_ERROR, timeout=10, replaceId="fallbackFCC")
-		elif hasattr(nref, "getPath"):
+		if hasattr(nref, "getPath"):
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_PLAYSERVICE):
 				(newurl, errormsg) = p(service=nref)
 				if errormsg:
