@@ -1867,6 +1867,10 @@ class ConfigDirectory(ConfigText):
 	def __init__(self, default="", visible_width=60):
 		ConfigText.__init__(self, default, fixed_size=True, visible_width=visible_width)
 
+	# OpenSPA [norhap] Legacy invalid relative paths.
+	def fromString(self, value):
+		return "" if value == "None" else value
+
 	def handleKey(self, key, callback=None):
 		if callable(callback):
 			callback()

@@ -469,10 +469,15 @@ class FileListBase(MenuList):
 		mountPoint = self.getMountPoint(path)
 		last = path
 		path = dirname(path)
-		while last != sep and mountPoint == self.getMountPoint(path):
+		# OpenSPA [norhap] Legacy invalid relative paths.
+		while last not in ("", sep) and mountPoint == self.getMountPoint(path):
 			last = path
 			path = dirname(path)
+		if not last:
+			print("[FileList] Invalid relative directory passed to getMountPointLink.")
+			return mountPoint
 		return join(last, "")
+		# OpenSPA [norhap] Legacy invalid relative paths.
 
 	def getMountpointLink(self, path):  # Legacy method name for external code.
 		self.getMountPointLink(path)
