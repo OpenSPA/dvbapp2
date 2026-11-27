@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-21 18:02+0100\n"
+"POT-Creation-Date: 2026-11-27 20:13+0100\n"
 "PO-Revision-Date: 2026-10-24 21:10+0200\n"
 "Last-Translator: OpenSPA <openspateam@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -8793,9 +8793,6 @@ msgstr "URL del receptor reserva"
 msgid "Fallback Timer"
 msgstr "Temporizador de reserva"
 
-msgid "Fallback tuner and FCC activated. Activate only one function."
-msgstr "Tuner reserva y FCC activados. Activar solo una función."
-
 msgid "Fallback Tuner Setup"
 msgstr "Ajustes del Sintonizador Reserva"
 
@@ -10274,6 +10271,9 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
+msgid "Hops:"
+msgstr "Hops:"
+
 msgid "hops:"
 msgstr "saltos:"
 
@@ -11727,6 +11727,9 @@ msgstr "Brillo del LED en modo reposo"
 
 msgid "LED Standby color"
 msgstr "Color del LED en modo reposo"
+
+msgid "Left"
+msgstr "Izquierda"
 
 msgid "left"
 msgstr "izquierda"
@@ -13314,6 +13317,9 @@ msgstr "Namibia"
 
 msgid "Narration"
 msgstr "Narración"
+
+msgid "National Music"
+msgstr "Música Nacional"
 
 msgid "National music"
 msgstr "Música nacional"
@@ -17699,6 +17705,9 @@ msgstr "Abrazadera RGB (superior)"
 msgid "Rhythm and Blues"
 msgstr "Ritmo y Blues"
 
+msgid "Right"
+msgstr "Derecha"
+
 msgid "right"
 msgstr "derecha"
 
@@ -21991,6 +22000,9 @@ msgstr "Softcams"
 msgid "softcams"
 msgstr "softcams"
 
+msgid "SoftCSA"
+msgstr "SoftCSA"
+
 msgid "SoftCSA Settings"
 msgstr "Configuración SoftCSA"
 
@@ -22539,6 +22551,9 @@ msgstr "Hacia el este"
 
 msgid "Stepped west"
 msgstr "Camino hacia el oeste"
+
+msgid "Stereo"
+msgstr "Estéreo"
 
 msgid "stereo"
 msgstr "estéreo"
@@ -24842,6 +24857,9 @@ msgstr "Activar el LED de control"
 
 msgid "Turn on the power LED"
 msgstr "Activar el LED de encendido"
+
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr "Activa o desactiva la descodificación por software de los canales CSA-ALT."
 
 msgid "Turning step size"
 msgstr "Tamaño del paso de giro"

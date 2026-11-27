@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenSPA Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-21 18:02+0100\n"
+"POT-Creation-Date: 2026-11-27 20:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8129,9 +8129,6 @@ msgid "Fallback remote receiver URL"
 msgstr ""
 
 msgid "Fallback Timer"
-msgstr ""
-
-msgid "Fallback tuner and FCC activated. Activate only one function."
 msgstr ""
 
 msgid "Fallback Tuner Setup"
@@ -20165,6 +20162,9 @@ msgstr ""
 msgid "softcams"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -22842,6 +22842,9 @@ msgid "Turn on the control LED"
 msgstr ""
 
 msgid "Turn on the power LED"
+msgstr ""
+
+msgid "Turn the software descrambling of CSA-ALT services on or off."
 msgstr ""
 
 msgid "Turning step size"
