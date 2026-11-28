@@ -7023,6 +7023,9 @@ msgstr ""
 msgid "Enable saved Wi-Fi network"
 msgstr ""
 
+msgid "Enable SoftCSA"
+msgstr ""
+
 msgid "Enable Swap at startup"
 msgstr ""
 
@@ -20162,9 +20165,6 @@ msgstr ""
 msgid "softcams"
 msgstr ""
 
-msgid "SoftCSA"
-msgstr ""
-
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -22844,9 +22844,6 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
-msgid "Turn the software descrambling of CSA-ALT services on or off."
-msgstr ""
-
 msgid "Turning step size"
 msgstr ""
 
@@ -24511,6 +24508,9 @@ msgid "When enabled, this Wi-Fi adapter is kept in Wake-on-WiFi mode only and wi
 msgstr ""
 
 msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, turn on the software descrambling of CSA-ALT services."
 msgstr ""
 
 msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."

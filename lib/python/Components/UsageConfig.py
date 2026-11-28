@@ -9,7 +9,7 @@ from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIG
 
 from keyids import KEYIDS
 from skin import domScreens, getcomponentTemplateNames
-from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigEnableDisable, ConfigFloat, ConfigIP, ConfigInteger, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigIP, ConfigInteger, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.DateTimes import dateTimes
 from Components.Harddisk import harddiskmanager
 from Components.International import international
@@ -2221,7 +2221,7 @@ def InitUsageConfig():
 	BoxInfo.setItem("NcamInstalled", False)
 
 	config.softcsa = ConfigSubsection()
-	config.softcsa.enabled = ConfigEnableDisable(default=True)
+	config.softcsa.enabled = ConfigYesNo(default=True)
 	config.softcsa.decoderRelease = ConfigSelection(default=0, choices=[
 			(0, _("Quick")),
 			(1, _("Normal")),

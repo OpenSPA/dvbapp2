@@ -7592,6 +7592,9 @@ msgstr "Permite que el receptor reserva intente sintonizar canales que no se pue
 msgid "Enable saved Wi-Fi network"
 msgstr "Habilitar la red Wi-Fi guardada"
 
+msgid "Enable SoftCSA"
+msgstr "Habilitar SoftCSA"
+
 msgid "Enable Swap at startup"
 msgstr "Activar Swap al inicio"
 
@@ -22000,9 +22003,6 @@ msgstr "Softcams"
 msgid "softcams"
 msgstr "softcams"
 
-msgid "SoftCSA"
-msgstr "SoftCSA"
-
 msgid "SoftCSA Settings"
 msgstr "Configuración SoftCSA"
 
@@ -24858,9 +24858,6 @@ msgstr "Activar el LED de control"
 msgid "Turn on the power LED"
 msgstr "Activar el LED de encendido"
 
-msgid "Turn the software descrambling of CSA-ALT services on or off."
-msgstr "Activa o desactiva la descodificación por software de los canales CSA-ALT."
-
 msgid "Turning step size"
 msgstr "Tamaño del paso de giro"
 
@@ -26711,6 +26708,9 @@ msgstr "Cuando está habilitado, este adaptador Wi-Fi permanece únicamente en m
 
 msgid "When enabled, time shift starts automatically in background after the selected time."
 msgstr "Cuando está habilitada, la función de time shift se inicia automáticamente en segundo plano tras el tiempo seleccionado."
+
+msgid "When enabled, turn on the software descrambling of CSA-ALT services."
+msgstr "Si está habilitado, activa el descifrado por software de los canales CSA-ALT."
 
 msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
 msgstr "Cuando está habilitada, los búferes de time shift no utilizados se eliminan al cambiar de servicio. Cuando está deshabilitada, los búferes se gestionan de forma habitual. Mantener búferes temporales no crea grabaciones permanentes. Las grabaciones guardadas no se ven afectadas."
